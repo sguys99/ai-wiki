@@ -18,7 +18,7 @@
 
 Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 
-_(아직 자료가 없습니다)_
+- [[database/dsba-2026-paper-review-graph-based-rag|Graph-based RAG (LightRAG · LeanRAG)]] — DSBA 김도윤 박사과정 세미나; LightRAG의 dual-level keyword retrieval과 LeanRAG의 hierarchical KG + LCA retrieval 비교 (2026, video)
 
 ## LLMs (llms)
 
