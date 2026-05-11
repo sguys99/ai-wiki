@@ -24,7 +24,7 @@ _(아직 자료가 없습니다)_
 
 모델 아키텍처, pre-training, fine-tuning, foundation model 논문.
 
-_(아직 자료가 없습니다)_
+- [[llms/shumailov-2024-ununlearning-unlearning-is-not-sufficient|UnUnlearning]] — ICL로 인해 unlearning(exact 포함)만으로는 LLM content regulation에 불충분함을 논증 (2024, paper)
 
 ## Agents (agents)
 
