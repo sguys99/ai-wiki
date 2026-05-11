@@ -1,0 +1,11 @@
+{
+  "userIgnoreFilters": [
+    "temp-docs/",
+    "raw/",
+    "raw/articles/",
+    "raw/papers/",
+    "raw/reports/",
+    "raw/repos/",
+    "raw/videos/"
+  ]
+}
