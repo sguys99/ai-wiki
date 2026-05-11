@@ -1,6 +1,6 @@
 # AI Wiki
 
-AI 관련 기술자료(papers, repos, articles, reports, videos)를 저장·관리하는 개인 지식 베이스. [Karpathy의 LLM Wiki 패턴](https://gist.github.com/karpathy/1dd0294ef9567971c1e4348a90d69285)을 다중 자료 유형으로 확장한 구조다.
+AI 관련 기술자료(papers, repos, articles, reports, videos, books, lectures)를 저장·관리하는 개인 지식 베이스. [Karpathy의 LLM Wiki 패턴](https://gist.github.com/karpathy/1dd0294ef9567971c1e4348a90d69285)을 다중 자료 유형으로 확장한 구조다.
 
 ```
 원본 자료 (raw/) → sources/*.md (LLM 요약) → wiki/{category}/*.md (최종 페이지)
@@ -35,7 +35,9 @@ ai-wiki/
 │   ├── repos/              # 주요 OSS 스냅샷 (langgraph, vllm, ragas 등)
 │   ├── articles/           # 블로그·뉴스 (Karpathy, Lilian Weng, Sebastian Raschka 등)
 │   ├── reports/            # 산업/리서치 리포트 (Stanford HAI, a16z, McKinsey 등)
-│   └── videos/             # youtube 자료 (메타데이터 + transcript)
+│   ├── videos/             # youtube 자료 (메타데이터 + transcript)
+│   ├── books/              # 도서 (Raschka, Huyen 등) — TOC + 핵심 챕터 추출
+│   └── lectures/           # 강의 코스 패키지 (slides + notes + code, 코스 단위 폴더)
 ├── sources/                # 모든 자료의 LLM 요약 (flat, 한글)
 │   └── {stem}.md
 └── wiki/                   # 정제된 wiki 페이지 (한글)
@@ -67,6 +69,10 @@ ai-wiki/
 | `articles` | `{author}-{year}-{first-5-title-words}` | `karpathy-2024-software-3-llms` |
 | `reports` | `{org}-{year}-{first-5-title-words}` | `stanford-hai-2024-ai-index-report` |
 | `videos` | `{channel}-{year}-{first-5-title-words}` | `3blue1brown-2024-but-what-is-gpt` |
+| `books` | `{first-author-lastname}-{year}-{first-5-title-words}` | `raschka-2024-build-a-large-language-model` |
+| `lectures` | `{instructor-or-org}-{year}-{course-name}` | `karpathy-2023-zero-to-hero`, `stanford-2024-cs336-llms` |
+
+> 강의가 멀티파일이면 `raw/lectures/{stem}/` 하위 폴더에 묶는다. 도서를 챕터 분할로 다루면 `raw/books/{stem}/ch{N}.pdf`로 묶는다.
 
 ---
 
@@ -96,7 +102,7 @@ ai-wiki/
 
 ```yaml
 title: "..."                           # 원어 그대로 (영문 자료는 영문)
-type: paper | repo | article | report | video
+type: paper | repo | article | report | video | book | lecture
 year: YYYY
 category: database | llms | agents | evaluations | applications | etc
 raw_path: /full/path/to/raw/{type}/{stem}.{ext}
@@ -133,6 +139,21 @@ url: "https://..."
 channel: "..."
 url: "https://youtu.be/..."
 duration: "1h23m"                      # 또는 ISO 8601 ("PT1H23M")
+
+# books
+authors: "..."
+publisher: "..."
+isbn: "..."
+edition: "..."                         # 옵션
+url: "..."                             # 출판사·저자 페이지
+extraction_mode: "toc"                 # "toc" (기본, 단일 source) 또는 "chapters" (챕터 분할)
+
+# lectures
+instructor: "..."
+institution: "..."                     # 또는 channel
+course_code: "..."                     # 옵션 (예: CS336)
+url: "..."
+materials: ["slides", "notes", "code"] # 코스에 포함된 자료 종류
 ```
 
 ---
@@ -232,6 +253,53 @@ cat raw/repos/{org}-{repo}/README.md
 
 **Step 2** — transcript 본문을 그대로 LLM 입력으로 사용한다.
 
+### Books (PDF/EPUB)
+
+**Step 1** — 도서 파일을 `raw/books/`에 복사. 단일 모드는 `raw/books/{stem}.pdf`, 챕터 분할 모드는 `raw/books/{stem}/{ch01.pdf, ch02.pdf, ...}`.
+
+**Step 2** — 추출 전략은 두 모드 중 선택 (frontmatter의 `extraction_mode`에 기록):
+
+- **`toc` (기본, 단일 source)**: 처음 5–10페이지에서 목차를 뽑은 뒤, 사용자가 지정한 핵심 챕터(또는 첫 1–2개 챕터)를 ~12,000자까지 `pypdf`로 추출. papers와 동일한 도구·환경 사용. 책 한 권 = `sources/{stem}.md` 한 개.
+- **`chapters` (챕터 분할)**: 챕터별로 분할된 PDF 각각을 ~12,000자씩 추출하여 **챕터별 source 다수 생성** (`sources/{stem}-ch01.md`, `{stem}-ch02.md`, ...). wiki는 각 챕터를 별도 페이지로 둘 수도, 합쳐서 한 페이지로 둘 수도 있고, 책 전체에 대한 `wiki/overviews/{stem}-overview.md`를 별도로 작성하는 것이 권장된다.
+
+```bash
+# papers와 동일한 .venv/bin/python3 사용
+.venv/bin/python3 -c "
+import pypdf, sys
+reader = pypdf.PdfReader(sys.argv[1])
+text = ''
+for page in reader.pages[:15]:
+    t = page.extract_text()
+    if t: text += t + '\n'
+    if len(text) > 12000: break
+print(text[:12000])
+" "raw/books/{stem}.pdf"
+```
+
+> **분류 팁**: 책은 보통 한 카테고리에 들어가지만, 실무 도서(예: AI Engineering)는 여러 카테고리에 걸친다. 챕터 분할 모드에서는 챕터별로 다른 카테고리에 wiki 페이지를 두고, overview 페이지에서 묶는 것을 권장한다.
+
+### Lectures (코스 패키지)
+
+**Step 1** — 강의 자료를 `raw/lectures/{stem}/` 하위 폴더에 모은다. 일반적인 구성:
+
+```
+raw/lectures/karpathy-2023-zero-to-hero/
+├── transcripts/         # 강의 자막 (.md)
+├── slides/              # 슬라이드 PDF
+├── notes/               # 보조 노트
+└── code/                # 실습 코드 스냅샷
+```
+
+**Step 2** — 자료 종류별로 추출:
+
+- 슬라이드 PDF → `pypdf` (papers와 동일)
+- transcript/notes (.md) → 그대로 사용
+- code → README + 디렉토리 트리 + 핵심 파일 헤더 (repos와 동일)
+
+`source: {stem}.md`는 코스 한 권 단위로 작성한다. 강의가 너무 길면 모듈/섹션 단위로 분할해 `sources/{stem}-mod{N}.md`로 만들 수 있다 (책의 chapters 모드와 동일).
+
+> **video와의 구분**: 단일 영상(예: Karpathy의 단일 youtube 강연)은 `videos`로 충분. `lectures`는 슬라이드·노트·실습이 함께 있는 **코스 패키지**일 때 사용한다.
+
 ---
 
 ## Raw File Management Rules
@@ -239,7 +307,8 @@ cat raw/repos/{org}-{repo}/README.md
 - **항상 복사(`cp`), 절대 symlink 금지.** 외부 위치에서 `raw/` 안으로 실파일을 옮긴다.
 - `raw_path`는 반드시 `raw/` 내부를 가리킨다. `~/Downloads/` 등 외부 경로는 금지.
 - `raw_filename`은 `basename(raw_path)`와 정확히 일치해야 한다.
-- `type` 키는 `raw/`의 하위 폴더명과 정확히 일치해야 한다 (예: `type: paper` ↔ `raw/papers/`).
+- `type` 키는 `raw/`의 하위 폴더명과 정확히 일치해야 한다 (예: `type: paper` ↔ `raw/papers/`, `type: book` ↔ `raw/books/`, `type: lecture` ↔ `raw/lectures/`). type은 단수형(paper/book/lecture), 폴더명은 복수형(papers/books/lectures).
+- **멀티파일 패키지** (강의 코스, 챕터 분할 도서)의 경우 `raw_path`가 디렉토리(예: `raw/lectures/{stem}/`)를 가리키고, `raw_filename`은 디렉토리명(`{stem}/`) 또는 대표 파일명(`README.md` 등)으로 기록한다. 챕터 분할 도서는 source 파일별로 `raw_path`가 해당 챕터 PDF를 가리킨다.
 
 ---
 
