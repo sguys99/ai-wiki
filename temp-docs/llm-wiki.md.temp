@@ -1,0 +1,218 @@
+# AI Wiki: Building a Personal Knowledge Base for AI Tech. materials with AI Agents
+
+A methodology for using Claude Code or OpenAI Codex (the apps with code execution) to build and maintain a structured, searchable wiki from academic PDFs — designed for researchers who read dozens of papers and want compounding knowledge.
+
+> **This is a starter template.** Fork the structure, swap in your own categories. The wiki only becomes useful once it reflects *your* domain, not someone else's.
+
+## The Four Rules — the heart of the system
+
+The point of this wiki is to **prevent hallucination** by forcing every answer to be traceable to a paper you actually have. Without these rules, the wiki turns into a dressed-up web search.
+
+1. **No web search.** Forbid `WebSearch` / `WebFetch` outright in `CLAUDE.md`.
+2. **Answer from the wiki first.** `sources/` and `wiki/` are the only sources of truth.
+3. **If the wiki is insufficient, re-read the original matarials** in `raw/`. Then update the wiki.
+4. **If no paper exists on the topic, say so.** Tell the user *"I don't have a paper on this — please give me the PDF."* Do not improvise. Do not "look it up online."
+
+Apply these to every response, including overview pages: cite only papers that exist in the wiki.
+
+## The Concept
+
+Inspired by [Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/1dd0294ef9567971c1e4348a90d69285):
+
+```
+Original PDF → LLM markdown summary (sources/) → Structured wiki page (wiki/) → Overview synthesis
+```
+
+Each paper goes through a 3-tier pipeline:
+1. **papers/**: Original PDF (immutable archive)
+2. **sources/**: LLM-generated structured summary (7 standard sections)
+3. **wiki/{category}/**: Structured wiki page with cross-references (`[[wikilinks]]`)
+
+Overview pages synthesize across papers — this is where the real knowledge compounding happens.
+
+## What's in this gist
+
+| File | What it is |
+|---|---|
+| `llm-wiki-gist.md` | This essay — the methodology |
+| `CLAUDE.md.template` | Starter `CLAUDE.md` with placeholders for your domain. Drop into your project root and fill in. |
+
+To bootstrap: paste this gist URL into Claude Code or Codex and tell it *"set up an LLM Wiki for me, following this gist"*. The agent reads the files, asks about your domain, creates the folder structure, generates a customized `CLAUDE.md`, and ingests your first paper. Works on Mac, Linux, and Windows (Claude Code and Codex have native installers — no WSL2, no shell setup needed).
+
+## Repository Structure
+
+```
+your-llm-wiki/
+├── CLAUDE.md               # Schema, workflow, the Four Rules
+├── index.md                # Page catalog
+├── papers/                 # Original PDFs (cp, never symlink)
+│   └── {author}-{year}-{title-5-words}.pdf
+├── sources/                # PDF summaries (English)
+│   └── {author}-{year}-{title-5-words}.md
+└── wiki/                   # Wiki pages (English)
+    ├── {your-category}/    # Define your own
+    └── overviews/          # Synthesis pages (where compounding happens)
+```
+
+That's the whole thing. Keep it boring.
+
+## Paper Naming Convention
+
+All three tiers (PDF, source, wiki) share the same stem:
+
+```
+{first-author-lastname}-{year}-{first-5-title-words}.{ext}
+```
+
+- Lowercase, special chars stripped, spaces → `-`
+- Year is 4 digits
+- Consortium papers: use consortium name (e.g. `1000-genomes-project-2015-...`)
+
+Example: `pollard-2006-an-rna-gene-expressed-during.pdf`
+
+## Adding a Paper
+
+### Step 1 — Copy PDF to `papers/` and extract text
+
+Use `pypdf`. Pure Python, no Java required:
+
+```bash
+pip3 install pypdf
+
+python3 -c "
+import pypdf, sys
+reader = pypdf.PdfReader(sys.argv[1])
+text = ''
+for page in reader.pages[:15]:
+    t = page.extract_text()
+    if t: text += t + '\n'
+    if len(text) > 12000: break
+print(text[:12000])
+" "/path/to/paper.pdf"
+```
+
+The first ~15 pages and ~12,000 characters are usually enough for the agent to write a high-quality source summary.
+
+### Step 2 — Write `sources/{stem}.md`
+
+```yaml
+---
+title: "Paper Title"
+authors: Author List
+year: YYYY
+doi: DOI
+category: your-category
+pdf_path: /full/path/to/papers/{stem}.pdf
+pdf_filename: {stem}.pdf
+source_collection: external
+---
+```
+
+7 standard sections: One-line Summary · Document Information · Key Contributions · Methodology and Architecture · Key Results and Benchmarks · Limitations and Future Work · Related Work · Glossary.
+
+### Step 3 — Write `wiki/{category}/{stem}.md`
+
+Same frontmatter (plus `source: {stem}.md` and `tags: []`). Sections: Summary · Key Contributions · Methodology and Architecture · Results · Related Papers (with `[[wikilinks]]` to neighbors).
+
+### Step 4 — Update `index.md`
+
+One-line entry under the right category.
+
+The agent does all four steps in one go when you say *"Add this paper to the wiki: /path/to/paper.pdf"*.
+
+## The Knowledge Tree Method
+
+This is how the wiki actually grows. It's not "ingest 1,000 papers, then search." It's branching outward from real questions.
+
+```
+Root question (e.g., "non-cortical brain cell types")
+├── 1st wave: Direct overview pages
+│   ├── Thalamic molecular architecture
+│   ├── Cerebellar cell diversity
+│   └── ...
+├── 2nd wave: Deeper branches from discoveries
+│   ├── Dopaminergic neuron diversity (from brainstem section)
+│   └── Brain region-specific disease vulnerability
+└── 3rd wave: Cross-cutting themes
+    ├── Circadian regulation in brain evolution
+    └── ...
+```
+
+In practice:
+
+1. **Ask a question** → agent searches the wiki → answers from existing sources
+2. **If the wiki is insufficient** → agent re-reads original PDFs (rule #3) → updates the wiki
+3. **If the wiki has no paper** → agent says so (rule #4), you provide the PDF
+4. **Save good answers as overview pages** — *"Save this as an overview in `wiki/overviews/`"*
+
+Each session produces 5–15 new or updated wiki pages. After a few sessions the wiki becomes a searchable, cross-referenced knowledge graph that future conversations draw from.
+
+## When to Scale Up
+
+Hold off until you actually need to. Two signals:
+
+- **A category passes ~500 files** → split it. Pick split axes by asking *"when I want to read about X, what would I deliberately exclude?"*
+- **Total wiki passes ~500 pages** → install [QMD](https://qmd.ai) as a Claude Code MCP server. Hybrid BM25 + semantic + LLM re-ranking, fully on-device. At that scale plain `grep` starts missing related overview pages across categories.
+
+Below those thresholds, `index.md` + the agent's built-in search is fine.
+
+## Rules in `CLAUDE.md`
+
+The Four Rules at the top are non-negotiable. Beyond those, additional rules that emerged from real use:
+
+```markdown
+# All wiki content in English (RAG-friendly; conversation can be any language)
+# PDFs stored as real files in papers/ (never symlink)
+# pdf_path always points to papers/ folder; basename matches pdf_filename
+# Consistent YAML frontmatter in every file
+# When a category passes ~500 files, propose a split
+# Classify by method, not topic (a methylation paper studying ASD → methylation, not neuroscience)
+```
+
+See `CLAUDE.md.template` in this gist for a ready-to-fill version.
+
+## Getting Started
+
+You don't need to install Python, Java, Node, or set up shell scripts manually. Claude Code and Codex have native installers for Mac, Linux, **and Windows** (no WSL2). Let the agent do the bootstrap.
+
+1. **Install** Claude Code or Codex on your machine.
+2. **Open the agent** in an empty folder (this becomes your wiki root).
+3. **Paste this prompt**:
+
+   > Set up an LLM Wiki for me, following this gist: `https://gist.github.com/joonan30/cbce305684d079dbe9a3fbaefe4e3959`
+   >
+   > Read all files in the gist, ask me about my research field and 5–10 categories, then:
+   > - Create `papers/`, `sources/`, `wiki/{my-categories}/`, `wiki/overviews/`
+   > - Write `CLAUDE.md` from the template in this gist, filling in my domain
+   > - Install `pypdf` if missing
+   > - Apply the Four Rules from this gist verbatim — never use web search
+
+4. **Drop in your first 5–10 papers** as PDFs and ask: *"Add these papers to the wiki."*
+5. **Ask questions.** Build overview pages from good answers.
+6. **Add QMD when you cross ~500 pages.**
+
+The wiki becomes more valuable with every paper added, because new papers connect to existing ones through `[[wikilinks]]` and overview pages.
+
+## Recommended: Install Obsidian for Browsing
+
+The agent handles ingest and Q&A, but for **reading and navigating** the wiki, [Obsidian](https://obsidian.md/) is the best companion. It's a free local markdown editor with native support for `[[wikilinks]]`, graph view, and full-text search.
+
+1. Install from [https://obsidian.md/](https://obsidian.md/) (Mac / Windows / Linux native).
+2. Open your wiki folder as an **Obsidian Vault** (`File → Open Vault as Folder`).
+3. You get:
+   - Graph view of paper connections via `[[wikilinks]]`
+   - Click-to-navigate cross-references
+   - Outline view of every wiki page
+   - Full-text search and tag search
+
+Use Obsidian whenever you want to browse visually; keep using the agent for ingest, questions, and overview generation. The two layer cleanly because Obsidian only reads files — it never edits the structure the agent maintains.
+
+## A Note on Scale
+
+Two years in, this approach yielded ~2,800 source summaries and ~3,700 wiki pages with 320 overview pages. The actual value is in the **overview pages** — they grow ~5x faster than raw paper count over time. That's where knowledge compounds.
+
+You won't need any of that on day one. Start with the Four Rules and 5 papers.
+
+---
+
+*Built with [Claude Code](https://claude.com/claude-code) (Anthropic) + [Codex](https://github.com/openai/codex) (OpenAI). Browsing with [Obsidian](https://obsidian.md/). Search with [QMD](https://qmd.ai). For Karpathy's original idea: [@karpathy/1dd0294ef9567971c1e4348a90d69285](https://gist.github.com/karpathy/1dd0294ef9567971c1e4348a90d69285).*
