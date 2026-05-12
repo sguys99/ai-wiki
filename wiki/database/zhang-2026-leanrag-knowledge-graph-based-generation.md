@@ -133,5 +133,6 @@ tags: [graph-rag, rag, knowledge-graph, leanrag, hierarchical-retrieval, semanti
 
 ## 관련 페이지 (Related Pages)
 
+- [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG — LightRAG 계열 overview]] — 본 논문은 LightRAG 계열의 abstraction 축(외부 그룹) 확장에 해당. RAG-Anything(modality 축)과 다른 평가 셋업의 비대칭 비교, -Origin/-Context 모순의 해석 가설(retrieval 정밀도에 따라 원문이 noise냐 evidence냐가 갈린다)은 overview에서 정리.
 - [[database/guo-2025-lightrag-simple-and-fast|LightRAG (EMNLP 2025)]] — 본 논문의 주요 baseline. 평면 KG + dual-level keyword retrieval. LeanRAG의 hierarchical 접근과 method axis가 정확히 대비됨. 원문 ablation에서 정반대 결과.
 - [[database/dsba-2026-paper-review-graph-based-rag|Graph-based RAG (DSBA 세미나)]] — 본 논문과 LightRAG를 함께 비교한 김도윤 박사과정 발표. LCA case study 부재, 효율성 평가 부재 등의 비판 1차 출처.

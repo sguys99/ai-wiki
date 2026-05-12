@@ -97,6 +97,7 @@ VLM → (d_chunk_j 검색용 description, e_entity_j 그래프용 summary)
 
 ## 관련 페이지 (Related Pages)
 
+- [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG — LightRAG 계열 overview]] — 본 논문이 modality 축 확장 위치에 자리하는 LightRAG 계열 합성 페이지. LeanRAG(abstraction 축)와의 비대칭 비교, DocBench·MMLongBench vs UltraDomain의 head-to-head 부재 문제, 인덱싱 비용 open question은 overview에서 다룬다.
 - [[database/guo-2025-lightrag-simple-and-fast|LightRAG]] — 동일 HKUDS lab의 직전 작업. RAG-Anything의 **text-based KG**는 LightRAG의 KV 인덱스 + dual-level keyword retrieval을 그대로 차용한다. RAG-Anything은 그 위에 cross-modal KG를 얹어 multimodal로 확장.
 - [[database/zhang-2026-leanrag-knowledge-graph-based-generation|LeanRAG]] — hierarchical KG + LCA retrieval. RAG-Anything이 modality 축으로 KG를 확장한다면, LeanRAG는 abstraction 축으로 확장하는 방향. retrieval에서 redundancy 처리 관점은 다르나 둘 다 LightRAG 계열의 dual-level 사고를 잇는다.
 - [[database/9bow-2026-rag-anything-multimodal-rag-framework|RAG-Anything 한국어 소개글 (PyTorchKR)]] — 본 논문의 한국어 입문 자료. 5단계 파이프라인 정리, `pip install raganything` 코드 예제, LightRAG 통합 스니펫 포함. 단 본문은 GPT 모델 정리본이므로 정밀 인용은 이 페이지를 우선.

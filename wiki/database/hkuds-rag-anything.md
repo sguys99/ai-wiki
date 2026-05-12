@@ -109,6 +109,7 @@ ans = await rag.aquery("핵심 표가 보여주는 결과는?", mode="hybrid")
 
 ## 관련 페이지 (Related Pages)
 
+- [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG — LightRAG 계열 overview]] — 본 repo는 LightRAG 계열의 engineering 축 확장(paper → MIT OSS) 위치. resilience·callbacks·batch 등 운영 기능과 LightRAG/LeanRAG의 결과 모순(원문 ablation 등)이 합성된다.
 - [[database/guo-2025-rag-anything-all-in-one-rag]] — 본 repo의 paper. 알고리즘 디테일·벤치마크 표·case study는 paper 페이지가 진실의 원천이고, 이 페이지는 그 코드 구현·운영 측면을 담당한다.
 - [[database/guo-2025-lightrag-simple-and-fast]] — 필수 의존 패키지(`lightrag-hku`). text-side KG·KV 인덱스와 dual-level keyword retrieval을 그대로 차용.
 - [[database/zhang-2026-leanrag-knowledge-graph-based-generation]] — 같은 LightRAG 계열의 abstraction 축 확장. RAG-Anything이 modality 축으로 확장한다면 LeanRAG는 hierarchy 축으로 확장하는 방향.

@@ -120,6 +120,7 @@ DSBA 연구실(SNU 산업공학과) 김도윤 박사과정의 53분 세미나로
 
 ## 관련 페이지 (Related Pages)
 
+- [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG — LightRAG 계열 overview]] — 본 세미나의 비판(논문·코드 간극, LCA case study 부재 등)과 open question 5종을 LightRAG·RAG-Anything·LeanRAG 자료들과 합성한 페이지. 세미나가 다루지 않은 RAG-Anything(modality 축)을 같은 lineage에 묶어 본다.
 - [[database/guo-2025-lightrag-simple-and-fast|LightRAG (Guo et al., EMNLP 2025)]] — 본 세미나가 review한 1번 논문. dual-level keyword retrieval과 KV 인덱스의 원전. 본 페이지의 인용된 모든 LightRAG 수치(610K→<100 tokens, -Origin 결과 등)의 1차 출처.
 - [[database/zhang-2026-leanrag-knowledge-graph-based-generation|LeanRAG (Zhang et al., AAAI-26)]] — 본 세미나가 review한 2번 논문. hierarchical KG + aggregated relation + LCA retrieval. 본 페이지의 LeanRAG 점수표(Mix Overall 8.59 등)와 RQ3·RQ4 ablation의 1차 출처.
 

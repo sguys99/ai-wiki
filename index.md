@@ -59,4 +59,4 @@ _(아직 자료가 없습니다)_
 
 다수 자료를 합성한 페이지 — 지식이 복리로 쌓이는 곳.
 
-_(아직 자료가 없습니다)_
+- [[overviews/lightrag-family-graph-rag-overview|LightRAG 계열 Graph-based RAG]] — LightRAG(EMNLP 2025) trunk에서 RAG-Anything(modality 축)·LeanRAG(abstraction 축)·HKUDS repo·한국어 소개글·DSBA 세미나 6개 자료 합성; -Origin ablation 모순 등 open question 정리 (2026, overview)

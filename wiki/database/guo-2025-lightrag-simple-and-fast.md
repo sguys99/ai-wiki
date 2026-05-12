@@ -111,5 +111,6 @@ Diversity에서 GraphRAG 대비 가장 큰 격차 (Agriculture 77.2 : 22.8). Nai
 
 ## 관련 페이지 (Related Pages)
 
+- [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG — LightRAG 계열 overview]] — 본 논문이 trunk 역할을 하는 LightRAG 계열(RAG-Anything · LeanRAG · DSBA 세미나 포함) 6개 자료의 합성. -Origin ablation 모순, Mix 데이터셋 GraphRAG 미세 열세, judge LLM 영향 등 cross-paper 통찰은 여기 정리.
 - [[database/zhang-2026-leanrag-knowledge-graph-based-generation|LeanRAG (AAAI-26)]] — hierarchical KG + LCA retrieval로 LightRAG의 평면 구조 한계 보완. LightRAG를 baseline으로 사용하며 거의 모든 metric에서 능가. 원문 ablation은 정반대 결과.
 - [[database/dsba-2026-paper-review-graph-based-rag|Graph-based RAG (DSBA 세미나)]] — 본 논문과 LeanRAG를 함께 비교한 김도윤 박사과정 53분 발표. 논문·코드 간극 등 본 페이지에서 인용한 비판의 1차 출처.

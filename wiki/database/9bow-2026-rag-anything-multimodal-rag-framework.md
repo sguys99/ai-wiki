@@ -125,6 +125,7 @@ LightRAG와 직접 통합하려면 `working_dir`을 LightRAG 캐시로 지정(`.
 
 ## 관련 페이지 (Related Pages)
 
+- [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG — LightRAG 계열 overview]] — 본 글이 다루는 RAG-Anything은 LightRAG 계열의 modality 축 확장에 해당. LightRAG · RAG-Anything · LeanRAG · DSBA 세미나의 비교 매트릭스와 open question 정리는 overview 참조.
 - [[database/guo-2025-rag-anything-all-in-one-rag|RAG-Anything 원 논문 (arXiv 2510.12323)]] — 이 글의 1차 출처. 정밀 수치·아키텍처 다이어그램·MinerU 파서 등 글이 생략한 디테일은 여기서 확인.
 - [[database/guo-2025-lightrag-simple-and-fast|LightRAG (EMNLP 2025)]] — RAG-Anything의 직전 작업이자 text-based KG의 원형. 같은 HKUDS lab.
 - [[database/zhang-2026-leanrag-knowledge-graph-based-generation|LeanRAG (AAAI-26)]] — abstraction 축으로 LightRAG를 확장한 평행 후속작. RAG-Anything이 modality 축이라면 LeanRAG는 계층 축.
