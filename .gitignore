@@ -9,3 +9,6 @@ __pycache__/
 # Editor
 .idea/
 .vscode/
+
+# Obsidian (per-session UI state — noisy; 다른 .obsidian 설정은 기기 간 공유 유지)
+.obsidian/workspace.json
