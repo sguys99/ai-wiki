@@ -5,6 +5,8 @@ year: 2026
 category: database
 raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/videos/dsba-2026-paper-review-graph-based-rag.md
 raw_filename: "dsba-2026-paper-review-graph-based-rag.md"
+supplementary_raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/Paper-Review-Graph-based-RAG.pdf
+supplementary_raw_filename: "Paper-Review-Graph-based-RAG.pdf"
 source_collection: external
 source: dsba-2026-paper-review-graph-based-rag.md
 channel: "서울대학교 산업공학과 DSBA 연구실"
@@ -109,16 +111,23 @@ DSBA 연구실(SNU 산업공학과) 김도윤 박사과정의 53분 세미나로
 
 본 영상 자체의 한계: 자동 자막 기반이라 음성인식 오기·구어체가 다수. 두 논문의 정량 수치(테이블 값)가 대부분 인용되지 않아 정확한 벤치마크는 원논문 직접 확인 필요.
 
+## 보조 자료 (Supplementary Material)
+
+- **발표 슬라이드**: `raw/papers/Paper-Review-Graph-based-RAG.pdf` (45 pages)
+  - 표지: "Lab Seminar · 서울대학교 산업공학과 DSBA · 박사과정 김도윤 · Graph-based RAG · 2026. 4. 27.(월)"
+  - 구성: Introduction (vanilla vs graph RAG 비교표, retrieval 패턴 5종, GraphRAG·HippoRAG·HiRAG·HugRAG·CausalRAG·LightRAG·LeanRAG 연구 흐름, Multi-hop / Open-ended QA 평가) → Paper Review (LightRAG·LeanRAG 슬라이드) → Conclusion.
+  - 본 wiki의 표/수치는 슬라이드와 transcript 양쪽에서 종합. 정량 검증이 필요할 때는 슬라이드 PDF가 1차 출처.
+
 ## 관련 페이지 (Related Pages)
 
-_(아직 관련 wiki 페이지 없음. 후속으로 다음 자료가 추가되면 여기에 연결한다.)_
+- [[database/guo-2025-lightrag-simple-and-fast|LightRAG (Guo et al., EMNLP 2025)]] — 본 세미나가 review한 1번 논문. dual-level keyword retrieval과 KV 인덱스의 원전. 본 페이지의 인용된 모든 LightRAG 수치(610K→<100 tokens, -Origin 결과 등)의 1차 출처.
+- [[database/zhang-2026-leanrag-knowledge-graph-based-generation|LeanRAG (Zhang et al., AAAI-26)]] — 본 세미나가 review한 2번 논문. hierarchical KG + aggregated relation + LCA retrieval. 본 페이지의 LeanRAG 점수표(Mix Overall 8.59 등)와 RQ3·RQ4 ablation의 1차 출처.
 
-- 잠재 연결 후보 (raw 자료 추가 시):
-  - **GraphRAG 원논문** (Microsoft, 2024) — 본 영상의 baseline
-  - **LightRAG 원논문 (EMNLP 2025)** — 본 영상이 review한 1번 논문
-  - **LeanRAG 원논문 (AAAI-26)** — 본 영상이 review한 2번 논문
-  - **HippoRAG** — entity-PageRank-passage 기반 graph RAG
-  - **Raptor** — hierarchical clustering 기반 RAG (LeanRAG가 비판적으로 인용)
-  - **RAGAS** — RAG 평가 프레임워크 (`evaluations` 카테고리)
-  - **UltraDomain** dataset
-  - 김도윤 발표자의 이전 GraphRAG 세미나·GNN4NLP 세미나 영상
+향후 추가 후보:
+- **GraphRAG 원논문** (Microsoft, 2024) — LightRAG·LeanRAG 공통 baseline
+- **HippoRAG** — entity-PageRank-passage 기반 graph RAG (LeanRAG 비교에서 상위권)
+- **HiRAG** (Huang et al., 2025) — LeanRAG가 명시한 직전 SOTA
+- **Raptor** — hierarchical clustering 기반 RAG (abstract 노드만 만들고 relation은 안 만드는 한계의 대표 사례)
+- **RAGAS** — RAG 평가 프레임워크 (`evaluations` 카테고리)
+- **UltraDomain** dataset
+- 김도윤 발표자의 이전 GraphRAG 세미나·GNN4NLP 세미나 영상

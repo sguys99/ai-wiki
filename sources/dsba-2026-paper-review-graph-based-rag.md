@@ -5,6 +5,8 @@ year: 2026
 category: database
 raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/videos/dsba-2026-paper-review-graph-based-rag.md
 raw_filename: "dsba-2026-paper-review-graph-based-rag.md"
+supplementary_raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/Paper-Review-Graph-based-RAG.pdf
+supplementary_raw_filename: "Paper-Review-Graph-based-RAG.pdf"
 source_collection: external
 channel: "서울대학교 산업공학과 DSBA 연구실"
 presenter: "김도윤 (SNU 산업공학과 박사과정)"
@@ -30,10 +32,15 @@ DSBA 연구실(SNU 산업공학과) 김도윤 박사과정의 53분 세미나. *
 - **길이**: 53분 20초 (3,200초)
 - **유형**: 논문 세미나 (paper review)
 - **다룬 논문**:
-  1. **LightRAG**: Simple and Fast Retrieval-Augmented Generation (EMNLP 2025)
-  2. **LeanRAG**: Knowledge-Graph-Based Generation with Semantic Aggregation and Hierarchical Retrieval (AAAI-26, 2026년 1월 발표)
+  1. **LightRAG**: Simple and Fast Retrieval-Augmented Generation (EMNLP 2025) — `sources/guo-2025-lightrag-simple-and-fast.md`
+  2. **LeanRAG**: Knowledge-Graph-Based Generation with Semantic Aggregation and Hierarchical Retrieval (AAAI-26, 2026년 1월 발표) — `sources/zhang-2026-leanrag-knowledge-graph-based-generation.md`
 - **참고 사전 영상**: 발표자의 이전 GraphRAG 세미나 (Microsoft GraphRAG 2024 리뷰)와 GNN4NLP 세미나 — 본 영상은 그 후속.
 - **자막**: YouTube 자동 자막(ko)을 정제(rolling-subtitle dedup, 5분 단위 버킷)한 transcript 사용. 자동 자막 특성상 일부 음성인식 오기(예: "라이트래그"→"라이그/라이베그/레라그", "레그"→RAG, "지지크래프"→"지식 그래프")가 섞여 있음.
+- **보조 자료 — 발표 슬라이드**:
+  - 파일: `raw/papers/Paper-Review-Graph-based-RAG.pdf` (45 pages)
+  - 표지: "Lab Seminar · 서울대학교 산업공학과 DSBA · 박사과정 김도윤 · Graph-based RAG · 2026. 4. 27.(월)"
+  - 구성: 1) Introduction (Backgrounds, vanilla vs graph RAG 비교표, retrieval 유형 5종, 연구 흐름 도표: HippoRAG·GraphRAG·HiRAG·HugRAG·CausalRAG·LightRAG·LeanRAG, Multi-hop QA / Open-ended QA 평가) → 2) Paper Review (LightRAG 슬라이드 14–27, LeanRAG 슬라이드 29–42) → 3) Conclusion.
+  - 슬라이드에서 추출한 핵심 수치/그림은 본 문서의 4·5절에 이미 반영됨. PDF 자체에는 표·그림 캡션과 추가 인용 논문 참조가 포함되어 있어, 정량 수치 검증이 필요할 때는 슬라이드 PDF가 1차 출처.
 
 ## 2. 주요 기여 (Key Contributions)
 
