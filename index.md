@@ -25,6 +25,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[database/9bow-2026-rag-anything-multimodal-rag-framework|RAG-Anything 한국어 소개글]] — PyTorchKR 9bow(박정환) 작성; RAG-Anything의 dual-graph · modality-aware retrieval · DocBench/MMLongBench 결과 · `pip install raganything` 사용법까지 입문 정리, 단 GPT 정리본 디스클레이머 있음 (2026, article)
 - [[database/dsba-2026-paper-review-graph-based-rag|Graph-based RAG (LightRAG · LeanRAG)]] — DSBA 김도윤 박사과정 세미나 + 발표 슬라이드; LightRAG의 dual-level keyword retrieval과 LeanRAG의 hierarchical KG + LCA retrieval 비교·비판 (2026, video)
 - [[database/vectifyai-pageindex|VectifyAI/PageIndex (repo)]] — vectorless · reasoning-based RAG의 reference implementation. PDF/MD를 hierarchical TOC tree로 변환하고 `get_document` · `get_document_structure` · `get_page_content` 3개 함수로 agent가 tree search retrieval, LiteLLM multi-provider, MIT, FinanceBench 98.7% (Mafin 2.5) (2025, repo)
+- [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval|Direct Corpus Interaction (DCI)]] — embedding/index 없이 agent가 `grep`·`bash`로 raw corpus 직접 검색. BrowseComp-Plus 80.0% (vs Qwen3-Embed-8B 69.0%, cost −29.4%), 다중 홉 QA +30.7pp, IR ranking +21.5pp. "coverage가 아닌 localization"으로 이기는 mechanism + retrieval interface resolution 개념 (2026, paper)
 
 ## LLMs (llms)
 
