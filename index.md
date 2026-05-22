@@ -49,7 +49,12 @@ _(아직 자료가 없습니다)_
 
 RAG 응용, 도메인 적용 사례, 제품 패턴.
 
-_(아직 자료가 없습니다)_
+- [[applications/garrytan-gbrain|garrytan/gbrain (repo)]] — Y Combinator CEO Garry Tan의 markdown-first AI 에이전트 메모리 시스템. git markdown=source of truth + Postgres/pgvector hybrid retrieval + zero-LLM typed-edge KG + 43 skill pack + Minions(durable job queue) + nightly dream cycle. BrainBench P@5 49.1%/R@5 97.9%, graph 끄면 −31.4pp, MIT (2026, repo)
+- [[applications/gajjar-2026-gbrain-vs-computer-memory|GBrain vs DevRev Computer Memory]] — DevRev Tech Lead Arth Gajjar의 비교 에세이. 개인 GBrain ↔ 엔터프라이즈 Computer Memory(AirSync 50+ 시스템·SOC 2)의 3가지 격차와 공통 thesis "memory that compounds beats memory that just retrieves" (2026, article)
+- [[applications/vectorize-2026-gbrain-review-honest-assessment|GBrain Honest Assessment (Vectorize)]] — Vectorize.io의 10-dimension scorecard. 6강점(compounding/zero-LLM 추출/+31.4pp graph/plain-text/production infra/honest marketing) + 6약점(single-operator/no managed cloud/narrow integration/schema discipline/no multi-hop·temporal/v0.30 footguns), BrainBench·LongMemEval 수치 정리 (2026, article)
+- [[applications/mantena-2026-hermes-gbrain-setup-vps|Hermes + GBrain on AWS EC2 (Mantena)]] — Sudhir Mantena의 4-Part 실전 튜토리얼. PATH 픽스·5분 cron sync·Hermes 위임 ingestion + X Basic($200/월)·ngrok($8/월) 둘 다 회피하는 pay-per-use + VPS public IP OAuth 2.0 PKCE로 own·repost·likes 수집 (2026, article)
+- [[applications/techwealth-hub-2026-garry-tan-gbrain-explained|GBrain Explained (TechWealth Hub)]] — 출시 6일 뒤 업로드된 5분 45초 영상. 3-layer 멘탈 모델 / brain agent loop / 4개 DB primitive / dream cycle / "Sync ran ≠ sync worked" verification runbook 압축 (2026, video)
+- [[applications/liu-2026-rag-llm-wiki-or-gbrain|RAG, LLM Wiki, or GBrain? (Liu, Medium)]] — Yanli Liu의 3-축 결정 프레임워크. "agent의 job이 무엇이냐" 한 질문으로 RAG(retrieve)·LLM Wiki(compile)·Fat Skills(act)를 분류. GBrain `enrich` skill YAML verbatim, thin harness ~200 LOC, signal-detector "An unlinked mention is a broken brain", cron 1-liner "Read skills/{name}/SKILL.md and run it", 2026 convergence 예측 (retrieve+compile+act 단일 knowledge OS) (2026, article)
 
 ## Etc (etc)
 
@@ -62,3 +67,4 @@ _(아직 자료가 없습니다)_
 다수 자료를 합성한 페이지 — 지식이 복리로 쌓이는 곳.
 
 - [[overviews/lightrag-family-graph-rag-overview|LightRAG 계열 Graph-based RAG]] — LightRAG(EMNLP 2025) trunk에서 RAG-Anything(modality 축)·LeanRAG(abstraction 축)·HKUDS repo·한국어 소개글·DSBA 세미나 6개 자료 합성; -Origin ablation 모순 등 open question 정리 (2026, overview)
+- [[overviews/gbrain-ecosystem-overview|GBrain 생태계]] — Garry Tan의 markdown-first agent memory(2026-04-05 OSS) trunk에서 6개 자료(repo·DevRev 비교·Vectorize 리뷰·escvelocity 가이드·TechWealth 영상·Liu Medium 3-축 프레임워크) 합성; brain agent loop·verification runbook("Sync ran ≠ sync worked")·BrainBench/LongMemEval 수치·Liu의 retrieve/compile/act 3-축 분류·Karpathy LLM Wiki + Bush memex 계보·convergence 예측·남은 6 open question (2026, overview)
