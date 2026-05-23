@@ -37,7 +37,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 
 Agentic 시스템, tool use, planning, LangGraph 등.
 
-_(아직 자료가 없습니다)_
+- [[agents/qiao-2026-memory-intelligence-agent|Memory Intelligence Agent (MIA)]] — ECNU·Shanghai Innovation Institute. Manager-Planner-Executor 3-agent decoupling + non-parametric workflow memory ↔ parametric Planner memory bidirectional loop + GRPO two-stage alternating RL + online TTL + Reviewer-AC unsupervised judge. 7B Executor로 GPT-5.4/Gemini-3-Flash 추월(LiveVQA +43%), Memento 대비 +5.5p(multimodal)·+7.5p(text). "메모리는 Executor가 아닌 Planner에 주입해야 한다"는 ablation 결과 (2026, paper)
 
 ## Evaluations (evaluations)
 
