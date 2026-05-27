@@ -38,6 +38,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 Agentic 시스템, tool use, planning, LangGraph 등.
 
 - [[agents/qiao-2026-memory-intelligence-agent|Memory Intelligence Agent (MIA)]] — ECNU·Shanghai Innovation Institute. Manager-Planner-Executor 3-agent decoupling + non-parametric workflow memory ↔ parametric Planner memory bidirectional loop + GRPO two-stage alternating RL + online TTL + Reviewer-AC unsupervised judge. 7B Executor로 GPT-5.4/Gemini-3-Flash 추월(LiveVQA +43%), Memento 대비 +5.5p(multimodal)·+7.5p(text). "메모리는 Executor가 아닌 Planner에 주입해야 한다"는 ablation 결과 (2026, paper)
+- [[agents/lee-hoyeon-2026-harness-engineering|Harness Engineering (Team Attention)]] — 이호연(Team Attention) 2026-04-07 강의 deck(54p). Prompt → Context → Harness 3단계 진화 모델, 6축 순환(구조 → 맥락 → 계획 → 실행 → 검증 → 개선) + Claude Code 도구 매핑(CLAUDE.md 3-tier 상속, .claude/rules/ glob 조건부 로드, Progressive Disclosure, Single/Subagent/Team Mode, Ralph Loop, Generator/Evaluator 분리). 사례 데이터: LangChain 같은 모델·하네스만 변경 TerminalBench +14%p, Anthropic 싱글 $9 실패 vs 3에이전트 $200 성공, Stripe 1,000 PR/주 무인 머지. *"모델 교체 5%보다 하네스 설계 15% 개선이 현실적"* (2026, article)
 
 ## Evaluations (evaluations)
 
