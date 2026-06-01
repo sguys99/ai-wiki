@@ -26,6 +26,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[database/dsba-2026-paper-review-graph-based-rag|Graph-based RAG (LightRAG · LeanRAG)]] — DSBA 김도윤 박사과정 세미나 + 발표 슬라이드; LightRAG의 dual-level keyword retrieval과 LeanRAG의 hierarchical KG + LCA retrieval 비교·비판 (2026, video)
 - [[database/vectifyai-pageindex|VectifyAI/PageIndex (repo)]] — vectorless · reasoning-based RAG의 reference implementation. PDF/MD를 hierarchical TOC tree로 변환하고 `get_document` · `get_document_structure` · `get_page_content` 3개 함수로 agent가 tree search retrieval, LiteLLM multi-provider, MIT, FinanceBench 98.7% (Mafin 2.5) (2025, repo)
 - [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval|Direct Corpus Interaction (DCI)]] — embedding/index 없이 agent가 `grep`·`bash`로 raw corpus 직접 검색. BrowseComp-Plus 80.0% (vs Qwen3-Embed-8B 69.0%, cost −29.4%), 다중 홉 QA +30.7pp, IR ranking +21.5pp. "coverage가 아닌 localization"으로 이기는 mechanism + retrieval interface resolution 개념 (2026, paper)
+- [[database/shanbhogue-2026-gemini-embedding-2-native-multimodal|Gemini Embedding 2]] — Google DeepMind. Gemini를 bidirectional attention으로 fine-tune한 native multimodal embedder. NCE+MRL(768/1,536/3,072)·PFT→FT→Model Soup·task string drop. MTEB Multilingual 69.9·MTEB Code 84.0·MSCOCO T→I 62.9·Vatex 68.8. **Native audio가 ASR cascade를 cross-lingual에서 +5.01 mrr@10**으로 능가, 천문/미생물/요리 zero-shot SOTA. ViDoRe V2(64.9)만 Voyage-3.5-mm(65.5)에 소폭 패배 (2026, paper)
 
 ## LLMs (llms)
 
