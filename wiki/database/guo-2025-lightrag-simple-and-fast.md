@@ -3,8 +3,8 @@ title: "LightRAG — Simple and Fast Retrieval-Augmented Generation (EMNLP 2025)
 type: paper
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/2025.findings-emnlp.568.pdf
-raw_filename: "2025.findings-emnlp.568.pdf"
+raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/guo-2025-lightrag-simple-and-fast.pdf
+raw_filename: "guo-2025-lightrag-simple-and-fast.pdf"
 source_collection: external
 source: guo-2025-lightrag-simple-and-fast.md
 authors: "Zirui Guo, Lianghao Xia, Yanhua Yu, Tu Ao, Chao Huang"

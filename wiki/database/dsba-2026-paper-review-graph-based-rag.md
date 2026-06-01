@@ -5,8 +5,8 @@ year: 2026
 category: database
 raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/videos/dsba-2026-paper-review-graph-based-rag.md
 raw_filename: "dsba-2026-paper-review-graph-based-rag.md"
-supplementary_raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/Paper-Review-Graph-based-RAG.pdf
-supplementary_raw_filename: "Paper-Review-Graph-based-RAG.pdf"
+supplementary_raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/dsba-2026-paper-review-graph-based-rag.pdf
+supplementary_raw_filename: "dsba-2026-paper-review-graph-based-rag.pdf"
 source_collection: external
 source: dsba-2026-paper-review-graph-based-rag.md
 channel: "서울대학교 산업공학과 DSBA 연구실"
@@ -113,7 +113,7 @@ DSBA 연구실(SNU 산업공학과) 김도윤 박사과정의 53분 세미나로
 
 ## 보조 자료 (Supplementary Material)
 
-- **발표 슬라이드**: `raw/papers/Paper-Review-Graph-based-RAG.pdf` (45 pages)
+- **발표 슬라이드**: `raw/papers/dsba-2026-paper-review-graph-based-rag.pdf` (45 pages)
   - 표지: "Lab Seminar · 서울대학교 산업공학과 DSBA · 박사과정 김도윤 · Graph-based RAG · 2026. 4. 27.(월)"
   - 구성: Introduction (vanilla vs graph RAG 비교표, retrieval 패턴 5종, GraphRAG·HippoRAG·HiRAG·HugRAG·CausalRAG·LightRAG·LeanRAG 연구 흐름, Multi-hop / Open-ended QA 평가) → Paper Review (LightRAG·LeanRAG 슬라이드) → Conclusion.
   - 본 wiki의 표/수치는 슬라이드와 transcript 양쪽에서 종합. 정량 검증이 필요할 때는 슬라이드 PDF가 1차 출처.

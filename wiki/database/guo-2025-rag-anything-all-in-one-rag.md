@@ -3,8 +3,8 @@ title: "RAG-Anything — All-in-One Multimodal RAG Framework (arXiv 2025-10)"
 type: paper
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/2510.12323v1.pdf
-raw_filename: "2510.12323v1.pdf"
+raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/guo-2025-rag-anything-all-in-one-rag.pdf
+raw_filename: "guo-2025-rag-anything-all-in-one-rag.pdf"
 source_collection: external
 source: guo-2025-rag-anything-all-in-one-rag.md
 authors: "Zirui Guo, Xubin Ren, Lingrui Xu, Jiahao Zhang, Chao Huang"

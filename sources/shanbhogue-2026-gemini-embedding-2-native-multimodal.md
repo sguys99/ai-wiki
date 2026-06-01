@@ -3,8 +3,8 @@ title: "Gemini Embedding 2: A Native Multimodal Embedding Model from Gemini"
 type: paper
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/2605.27295v1.pdf
-raw_filename: "2605.27295v1.pdf"
+raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal.pdf
+raw_filename: "shanbhogue-2026-gemini-embedding-2-native-multimodal.pdf"
 source_collection: external
 authors: "Madhuri Shanbhogue, Zhe Li, Shanfeng Zhang, Gustavo Hernández Ábrego, Shih-Cheng Huang, Aashi Jain, et al. (Gemini Embedding Team, Google DeepMind)"
 arxiv_id: "2605.27295"
@@ -22,7 +22,7 @@ tags: [embedding, multimodal, gemini, mteb, retrieval, rag, contrastive-learning
 - **제목**: Gemini Embedding 2: A Native Multimodal Embedding Model from Gemini
 - **저자**: Gemini Embedding Team, Google DeepMind (Madhuri Shanbhogue, Zhe Li, Shanfeng Zhang, Gustavo Hernández Ábrego, Shih-Cheng Huang, Aashi Jain 등 60+명; equal contribution 6명)
 - **발표**: arXiv:2605.27295v1 [cs.CV], 2026-05-26 (총 21페이지)
-- **PDF 경로**: `raw/papers/2605.27295v1.pdf`
+- **PDF 경로**: `raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal.pdf`
 - **선행 모델**: Gemini Embedding (Lee et al., 2025, arXiv:2503.07891) — text-only 버전
 
 ## 2. 주요 기여 (Key Contributions)

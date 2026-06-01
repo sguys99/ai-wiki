@@ -3,8 +3,8 @@ title: "UnUnlearning: Unlearning is not sufficient for content regulation in adv
 type: paper
 year: 2024
 category: llms
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/2407.00106v1.pdf
-raw_filename: "2407.00106v1.pdf"
+raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/shumailov-2024-ununlearning-unlearning-is-not-sufficient.pdf
+raw_filename: "shumailov-2024-ununlearning-unlearning-is-not-sufficient.pdf"
 source_collection: external
 source: shumailov-2024-ununlearning-unlearning-is-not-sufficient.md
 authors: "Ilia Shumailov, Jamie Hayes, Eleni Triantafillou, Guillermo Ortiz-Jimenez, Nicolas Papernot, Matthew Jagielski, Itay Yona, Heidi Howard, Eugene Bagdasaryan"

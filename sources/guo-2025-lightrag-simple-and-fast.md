@@ -3,8 +3,8 @@ title: "LightRAG: Simple and Fast Retrieval-Augmented Generation"
 type: paper
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/2025.findings-emnlp.568.pdf
-raw_filename: "2025.findings-emnlp.568.pdf"
+raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/guo-2025-lightrag-simple-and-fast.pdf
+raw_filename: "guo-2025-lightrag-simple-and-fast.pdf"
 source_collection: external
 authors: "Zirui Guo, Lianghao Xia, Yanhua Yu, Tu Ao, Chao Huang"
 arxiv_id: "2410.05779"
@@ -24,7 +24,7 @@ tags: [graph-rag, rag, knowledge-graph, lightrag, dual-level-retrieval, key-valu
 - **교신저자**: Chao Huang (chaohuang75@gmail.com)
 - **발표**: EMNLP 2025 Findings, pp. 10746–10761 (November 4-9, 2025)
 - **arXiv**: 2410.05779 (최초 공개 2024-10)
-- **PDF 경로**: `raw/papers/2025.findings-emnlp.568.pdf` (16 pages)
+- **PDF 경로**: `raw/papers/guo-2025-lightrag-simple-and-fast.pdf` (16 pages)
 - **오픈소스**: https://github.com/HKUDS/LightRAG
 
 ## 2. 주요 기여 (Key Contributions)

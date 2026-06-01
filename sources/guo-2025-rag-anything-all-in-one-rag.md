@@ -3,8 +3,8 @@ title: "RAG-Anything: All-in-One RAG Framework"
 type: paper
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/2510.12323v1.pdf
-raw_filename: "2510.12323v1.pdf"
+raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/guo-2025-rag-anything-all-in-one-rag.pdf
+raw_filename: "guo-2025-rag-anything-all-in-one-rag.pdf"
 source_collection: external
 authors: "Zirui Guo, Xubin Ren, Lingrui Xu, Jiahao Zhang, Chao Huang"
 arxiv_id: "2510.12323"
@@ -22,7 +22,7 @@ tags: [multimodal-rag, rag, knowledge-graph, dual-graph, hybrid-retrieval, docum
 - **저자**: Zirui Guo, Xubin Ren, Lingrui Xu, Jiahao Zhang, Chao Huang* (The University of Hong Kong, HKUDS lab)
 - **교신저자**: Chao Huang (chaohuang75@gmail.com)
 - **arXiv**: 2510.12323v1 (2025-10-14)
-- **PDF 경로**: `raw/papers/2510.12323v1.pdf` (18 pages, 본문 + Appendix)
+- **PDF 경로**: `raw/papers/guo-2025-rag-anything-all-in-one-rag.pdf` (18 pages, 본문 + Appendix)
 - **오픈소스**: https://github.com/HKUDS/RAG-Anything
 - **계보**: 동일 그룹(HKUDS)의 **LightRAG**(EMNLP 2025 Findings)을 multimodal로 확장한 후속작. text KG 구성은 LightRAG/GraphRAG의 파이프라인을 그대로 사용하고, 그 위에 cross-modal KG와 hybrid retrieval을 얹은 구조.
 

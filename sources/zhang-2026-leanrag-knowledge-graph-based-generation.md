@@ -3,8 +3,8 @@ title: "LeanRAG: Knowledge-Graph-Based Generation with Semantic Aggregation and 
 type: paper
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/08780-AAAI26.ZhangY-NLP.pdf
-raw_filename: "08780-AAAI26.ZhangY-NLP.pdf"
+raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation.pdf
+raw_filename: "zhang-2026-leanrag-knowledge-graph-based-generation.pdf"
 source_collection: external
 authors: "Yaoze Zhang, Rong Wu, Pinlong Cai, Xiaoman Wang, Guohang Yan, Song Mao, Ding Wang, Botian Shi"
 venue: "AAAI-26 (The Fortieth AAAI Conference on Artificial Intelligence)"
@@ -22,7 +22,7 @@ tags: [graph-rag, rag, knowledge-graph, leanrag, hierarchical-retrieval, semanti
 - **저자**: Yaoze Zhang¹·²*, Rong Wu¹·³*, Pinlong Cai¹† (corresponding), Xiaoman Wang⁴, Guohang Yan¹, Song Mao¹, Ding Wang¹, Botian Shi¹  
   (*공동 1저자. ¹Shanghai AI Lab, ²University of Shanghai for Science and Technology, ³Zhejiang University, ⁴East China Normal University)
 - **발표**: AAAI-26 (The Fortieth AAAI Conference on Artificial Intelligence), pp. 34862–34869
-- **PDF 경로**: `raw/papers/08780-AAAI26.ZhangY-NLP.pdf` (8 pages)
+- **PDF 경로**: `raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation.pdf` (8 pages)
 - **오픈소스**: https://github.com/KnowledgeXLab/LeanRAG
 - **저작권**: © 2026 AAAI
 
