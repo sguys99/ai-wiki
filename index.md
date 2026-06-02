@@ -34,6 +34,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 모델 아키텍처, pre-training, fine-tuning, foundation model 논문.
 
 - [[llms/shumailov-2024-ununlearning-unlearning-is-not-sufficient|UnUnlearning]] — ICL로 인해 unlearning(exact 포함)만으로는 LLM content regulation에 불충분함을 논증 (2024, paper)
+- [[llms/cai-2026-vlm3-vision-language-models|VLM3 (Native 3D Learners)]] — Meta·Princeton. 표준 Qwen3-VL-4B + SFT에 ① focal length 통일(1000px resize) ② text-based pixel reference([0, 2000) 정규화) ③ data mixture 3가지만 적용. architecture·loss·heavy augmentation 0 변경으로 metric depth(δ1 0.84→**0.904**, UnidepthV2 매칭)·object-level 3D(SpatialRGPT-8B 능가, encoder 제거)·pixel correspondence(EPE **10× 감소**, DKM·RoMa 능가)·camera pose(AUC30 **5%→94%**, VGGT 능가, DA3-Giant 매칭) 4개 task SOTA. yaw/pitch/roll을 next-token-predict 하는 단순 SFT가 expert를 잡는다는 결과로 *"regression loss = 3D vision foundation"* 통념 정면 반박. 4B(0.904)>8B(0.880)>32B(0.873), 26M images에서 model보다 data mixture가 중요 (2026, paper)
 
 ## Agents (agents)
 
