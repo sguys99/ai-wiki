@@ -1,0 +1,422 @@
+#!/bin/bash
+#
+# Hybrid search (dense + BM25 sparse) E2E
+#
+# Scenarios covered:
+# 1. /health surfaces vector_store state
+# 2. Dense recall: natural-language query finds semantically-related doc
+# 3. Short keyword recall: single-token / Korean query (BM25's strength)
+# 4. Cross-vault isolation: search in vault A does not leak vault B
+# 5. Reindex-after-update: editing a doc refreshes its sparse vector
+# 6. Delete propagation: deleted doc no longer appears in search
+# 7. Nonsense query returns 0 cleanly
+# 8. /grep keeps working (sanity regression)
+#
+# Known flakiness (issue #42):
+# ---------------------------
+# Scenarios 3/4 (Korean/English BM25 recall) and 5 (reindex) intermittently
+# fail when run against the Seahorse-managed validation tier. Root cause is
+# *not* in this codebase — Seahorse indexes asynchronously and an upserted
+# point's visibility to /v2/data/search varies from ~5s to >300s on
+# different batches. We mitigate with `wait_for_indexing` (#47, 60s buffer)
+# and `search_until_hit` (#56, 10×20s polling), which gets stability to
+# ~60% on the validation tier; the remaining flake is upstream and
+# accepted. Re-run a failed run before treating it as a regression.
+# Production agent flows aren't affected — they tolerate the indexing
+# lag by design.
+#
+set -uo pipefail
+
+BASE_URL="${AKB_URL:-http://localhost:8000}"
+E2E_USER="hybrid-e2e-$(date +%s)"
+VAULT_A="hybrid-a-$(date +%s)"
+VAULT_B="hybrid-b-$(date +%s)"
+# Cap on how long we'll wait for embed_worker + vector_indexer to drain
+# (sparse + dense to the vector store) before giving up. The helper polls
+# /health, so it returns as soon as the queues are empty — INDEX_WAIT is
+# only the timeout floor for slow remote embedding endpoints (OpenRouter).
+INDEX_WAIT="${AKB_HYBRID_INDEX_WAIT:-180}"
+# Shared poll helper — replaces the previous fixed `sleep INDEX_WAIT`
+# which caused #42 (reindex-after-update flaky when sparse leg lagged).
+source "$(dirname "$0")/_wait_for_indexing.sh"
+PASS=0
+FAIL=0
+ERRORS=()
+
+pass() { PASS=$((PASS+1)); echo "  ✓ $1"; }
+fail() { FAIL=$((FAIL+1)); ERRORS+=("$1: $2"); echo "  ✗ $1 — $2"; }
+
+echo "╔══════════════════════════════════════════╗"
+echo "║   Hybrid Search E2E (dense + BM25)        ║"
+echo "║   Target: $BASE_URL"
+echo "╚══════════════════════════════════════════╝"
+echo ""
+
+# ── 0. Setup ────────────────────────────────────────────────
+echo "▸ 0. Setup"
+
+curl -sk -X POST "$BASE_URL/api/v1/auth/register" \
+  -H 'Content-Type: application/json' \
+  -d "{\"username\":\"$E2E_USER\",\"email\":\"$E2E_USER@test.dev\",\"password\":\"test1234\"}" >/dev/null 2>&1
+
+JWT=$(curl -sk -X POST "$BASE_URL/api/v1/auth/login" \
+  -H 'Content-Type: application/json' \
+  -d "{\"username\":\"$E2E_USER\",\"password\":\"test1234\"}" | python3 -c 'import sys,json; print(json.load(sys.stdin)["token"])' 2>/dev/null)
+
+PAT=$(curl -sk -X POST "$BASE_URL/api/v1/auth/tokens" \
+  -H "Authorization: Bearer $JWT" \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"hybrid-e2e"}' | python3 -c 'import sys,json; print(json.load(sys.stdin)["token"])' 2>/dev/null)
+
+[ -n "$PAT" ] && pass "PAT acquired" || { fail "PAT" "could not get PAT"; exit 1; }
+
+# MCP session
+INIT_RESP=$(curl -sk -i -X POST "$BASE_URL/mcp/" \
+  -H "Authorization: Bearer $PAT" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"hybrid-e2e","version":"1.0"}}}' 2>&1)
+SID=$(echo "$INIT_RESP" | grep -i "mcp-session-id" | tr -d '\r' | awk '{print $2}')
+[ -n "$SID" ] && pass "MCP session ($SID)" || { fail "MCP session" "no SID"; exit 1; }
+
+curl -sk -X POST "$BASE_URL/mcp/" \
+  -H "Authorization: Bearer $PAT" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -H "mcp-session-id: $SID" \
+  -d '{"jsonrpc":"2.0","method":"notifications/initialized"}' >/dev/null 2>&1
+
+MCP_ID=100
+mcp_call() {
+  local tool=$1 args=$2
+  MCP_ID=$((MCP_ID+1))
+  curl -sk -X POST "$BASE_URL/mcp/" \
+    -H "Authorization: Bearer $PAT" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json, text/event-stream" \
+    -H "mcp-session-id: $SID" \
+    -d "{\"jsonrpc\":\"2.0\",\"id\":$MCP_ID,\"method\":\"tools/call\",\"params\":{\"name\":\"$tool\",\"arguments\":$args}}" 2>&1
+}
+mcp_result() {
+  python3 -c "import sys,json; d=json.loads(sys.stdin.read()); print(d['result']['content'][0]['text'])" 2>/dev/null
+}
+
+# Create two vaults
+R=$(mcp_call akb_create_vault "{\"name\":\"$VAULT_A\",\"description\":\"hybrid E2E A\"}" | mcp_result)
+VAULT_A_ID=$(echo "$R" | python3 -c "import sys,json; print(json.load(sys.stdin).get('vault_id',''))" 2>/dev/null)
+[ -n "$VAULT_A_ID" ] && pass "vault A created" || fail "vault A" "$R"
+
+R=$(mcp_call akb_create_vault "{\"name\":\"$VAULT_B\",\"description\":\"hybrid E2E B\"}" | mcp_result)
+VAULT_B_ID=$(echo "$R" | python3 -c "import sys,json; print(json.load(sys.stdin).get('vault_id',''))" 2>/dev/null)
+[ -n "$VAULT_B_ID" ] && pass "vault B created" || fail "vault B" "$R"
+
+# ── 1. /health surfaces vector_store state ───────────────────
+echo ""
+echo "▸ 1. /health"
+
+HEALTH=$(curl -sk "$BASE_URL/health")
+HAS_VS=$(echo "$HEALTH" | python3 -c "import sys,json; d=json.load(sys.stdin); print('vector_store' in d)" 2>/dev/null)
+[ "$HAS_VS" = "True" ] && pass "/health has vector_store block" || fail "/health" "missing vector_store field"
+
+VS_REACHABLE=$(echo "$HEALTH" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('vector_store',{}).get('reachable', False))" 2>/dev/null)
+echo "    vector_store.reachable=$VS_REACHABLE"
+
+# ── 2. Seed docs ─────────────────────────────────────────────
+echo ""
+echo "▸ 2. Seed docs"
+
+mcp_call akb_put "{\"vault\":\"$VAULT_A\",\"collection\":\"notes\",\"title\":\"Kubernetes Introduction\",\"content\":\"## Overview\\n\\nKubernetes is a container orchestration system. Pods are the smallest deployable unit. 쿠버네티스 파드는 컨테이너를 그룹화한다.\",\"type\":\"note\",\"tags\":[\"k8s\"]}" >/dev/null
+mcp_call akb_put "{\"vault\":\"$VAULT_A\",\"collection\":\"notes\",\"title\":\"PostgreSQL Performance Tuning\",\"content\":\"## Tuning\\n\\nTuning PostgreSQL requires attention to shared_buffers, work_mem, and checkpoint settings. WAL archiving affects replication.\",\"type\":\"note\",\"tags\":[\"db\"]}" >/dev/null
+R=$(mcp_call akb_put "{\"vault\":\"$VAULT_A\",\"collection\":\"notes\",\"title\":\"GraphQL Basics\",\"content\":\"## Intro\\n\\nGraphQL is a query language for APIs. Resolvers map types to data sources. Schema-first design is common.\",\"type\":\"note\",\"tags\":[\"api\"]}" | mcp_result)
+GQL_DOC_URI=$(echo "$R" | python3 -c "import sys,json; print(json.load(sys.stdin).get('uri',''))" 2>/dev/null)
+
+mcp_call akb_put "{\"vault\":\"$VAULT_B\",\"collection\":\"notes\",\"title\":\"Vault B private doc\",\"content\":\"## Private\\n\\nThis document should only appear when searching within vault B, never vault A.\",\"type\":\"note\",\"tags\":[\"secret\"]}" >/dev/null
+
+pass "4 docs seeded"
+
+echo "    waiting for async embedding + vector-store indexing to drain (≤${INDEX_WAIT}s)…"
+wait_for_indexing "$INDEX_WAIT" || true
+# Force BM25 stats recompute so the freshly-indexed chunks are reflected
+# in `bm25_stats` (the background refresher only fires when delta >= 50
+# chunks — small-corpus tests never clear that threshold).
+${AKB_RECOMPUTE_CMD:-docker compose exec -T backend python -m scripts.init_bm25_vocab} \
+  >/dev/null 2>&1 || true
+
+search_total() {
+  local q=$1 vault=$2
+  local R
+  R=$(mcp_call akb_search "{\"query\":\"$q\",\"vault\":\"$vault\",\"limit\":10}" | mcp_result)
+  echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total', 0))" 2>/dev/null
+}
+
+# Issue one akb_search and return pipe-joined titles. Used by tests
+# that expect 0 hits (isolation, nonsense) — no retry, the empty
+# response is the assertion.
+search_titles() {
+  local q=$1 vault=$2
+  local R
+  R=$(mcp_call akb_search "{\"query\":\"$q\",\"vault\":\"$vault\",\"limit\":10}" | mcp_result)
+  echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print('|'.join([r.get('title','') for r in d.get('results', [])]))" 2>/dev/null
+}
+
+# Polls akb_search until `expected_substr` appears in the result
+# titles, up to `AKB_SEARCH_RETRIES` times with `AKB_SEARCH_RETRY_INTERVAL`s
+# spacing. Returns the latest titles (may not contain the substring
+# on timeout — caller's grep assertion catches that).
+#
+# E2E only. Seahorse's async indexing means a fresh upsert can be
+# invisible to /v2/data/search for tens of seconds; merely checking
+# "non-empty" isn't enough because an unrelated doc (e.g. the auto-
+# seeded Vault Skill) can satisfy that while the doc-under-test is
+# still propagating. Polling for the specific expected substring
+# closes that hole without adding a fixed long sleep.
+search_until_hit() {
+  local q=$1 vault=$2 expected=$3
+  local titles=""
+  # Defaults sized for Seahorse-managed validation tier: most fresh
+  # upserts surface within ~30s, but P99 outlier batches push past
+  # 150s. 10×20s = 200s gives the slow batches headroom while the
+  # fast path still returns after the first probe.
+  local retries="${AKB_SEARCH_RETRIES:-10}"
+  local interval="${AKB_SEARCH_RETRY_INTERVAL:-20}"
+  local i=0
+  while [ "$i" -le "$retries" ]; do
+    titles=$(search_titles "$q" "$vault")
+    if echo "$titles" | grep -q "$expected"; then
+      echo "$titles"
+      return 0
+    fi
+    i=$((i + 1))
+    [ "$i" -le "$retries" ] && sleep "$interval"
+  done
+  echo "$titles"
+}
+
+# ── 3. Dense recall ──────────────────────────────────────────
+# Hybrid is gated on at least one query token appearing in the candidate
+# set's BM25 vocab (otherwise dense baseline noise leaks through). The
+# query carries a keyword anchor ('PostgreSQL') so the gate passes; the
+# rest of the phrase tests that dense ordering kicks in (natural-language
+# wording rather than just the keyword).
+echo ""
+echo "▸ 3. Dense recall (natural-language with keyword anchor)"
+
+TITLES=$(search_until_hit "tuning PostgreSQL for better performance" "$VAULT_A" "PostgreSQL")
+if echo "$TITLES" | grep -q "PostgreSQL"; then
+  pass "natural-language query → postgres doc"
+else
+  fail "dense" "expected PostgreSQL doc, got: $TITLES"
+fi
+
+# ── 4. BM25 recall (short keyword) ───────────────────────────
+echo ""
+echo "▸ 4. BM25 recall (short keyword)"
+
+TITLES=$(search_until_hit "GraphQL" "$VAULT_A" "GraphQL")
+if echo "$TITLES" | grep -q "GraphQL"; then
+  pass "single keyword → graphql doc"
+else
+  fail "bm25-en" "expected GraphQL doc, got: $TITLES"
+fi
+
+TITLES=$(search_until_hit "쿠버네티스" "$VAULT_A" "Kubernetes")
+if echo "$TITLES" | grep -q "Kubernetes"; then
+  pass "Korean keyword → kubernetes doc"
+else
+  fail "bm25-ko" "expected Kubernetes doc, got: $TITLES"
+fi
+
+# ── 5. Cross-vault isolation ─────────────────────────────────
+echo ""
+echo "▸ 5. Cross-vault isolation"
+
+TITLES=$(search_titles "private" "$VAULT_A")
+if echo "$TITLES" | grep -q "Vault B private"; then
+  fail "isolation-A" "vault A search leaked vault B doc: $TITLES"
+else
+  pass "vault A search does not leak vault B doc"
+fi
+
+TITLES=$(search_until_hit "private" "$VAULT_B" "Vault B private")
+if echo "$TITLES" | grep -q "Vault B private"; then
+  pass "vault B search finds its own doc"
+else
+  fail "isolation-B" "expected vault B doc, got: $TITLES"
+fi
+
+# ── 6. Reindex after update ──────────────────────────────────
+echo ""
+echo "▸ 6. Reindex-after-update"
+
+if [ -n "$GQL_DOC_URI" ]; then
+  mcp_call akb_update "{\"uri\":\"$GQL_DOC_URI\",\"content\":\"## Intro\\n\\nGraphQL is a query language. Updated content now mentions Apollo and Relay clients. Federation allows composing services.\",\"message\":\"test re-index\"}" >/dev/null
+  echo "    waiting for re-index drain (≤${INDEX_WAIT}s)…"
+  wait_for_indexing "$INDEX_WAIT" || true
+  ${AKB_RECOMPUTE_CMD:-docker compose exec -T backend python -m scripts.init_bm25_vocab} \
+    >/dev/null 2>&1 || true
+
+  TITLES=$(search_until_hit "Apollo" "$VAULT_A" "GraphQL")
+  if echo "$TITLES" | grep -q "GraphQL"; then
+    pass "updated content is searchable"
+  else
+    fail "reindex" "expected GraphQL doc for 'Apollo', got: $TITLES"
+  fi
+else
+  fail "reindex" "no GraphQL uri captured, skipping"
+fi
+
+# ── 7. Delete propagation ────────────────────────────────────
+echo ""
+echo "▸ 7. Delete propagation"
+
+if [ -n "$GQL_DOC_URI" ]; then
+  mcp_call akb_delete "{\"uri\":\"$GQL_DOC_URI\"}" >/dev/null
+  echo "    waiting 8s for outbox + pre-filter…"
+  sleep 8
+  TITLES=$(search_titles "Apollo" "$VAULT_A")
+  if echo "$TITLES" | grep -q "GraphQL"; then
+    fail "delete" "deleted doc still appears: $TITLES"
+  else
+    pass "deleted doc is no longer returned"
+  fi
+fi
+
+# ── 7b. Response shape: returned vs total_matches (#35) ──────
+# `total` alias kept for back-compat; `returned`/`total_matches` are new.
+R=$(mcp_call akb_search "{\"query\":\"PostgreSQL\",\"vault\":\"$VAULT_A\",\"limit\":2}" | mcp_result)
+RETURNED=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('returned'))")
+TOTAL_M=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total_matches'))")
+TOTAL=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total'))")
+[ "$RETURNED" = "$TOTAL" ] && pass "returned == legacy total ($RETURNED)" || fail "returned" "returned=$RETURNED total=$TOTAL"
+# total_matches must always be ≥ returned (limit-as-count guarantee).
+[ -n "$TOTAL_M" ] && [ "$TOTAL_M" -ge "$RETURNED" ] 2>/dev/null \
+  && pass "total_matches ($TOTAL_M) >= returned ($RETURNED)" \
+  || fail "total_matches" "got total_matches=$TOTAL_M returned=$RETURNED"
+
+# ── 7c. truncated + hint signal (prefetch-pool honesty) ──────
+# A small corpus that fits entirely under the prefetch ceiling must
+# report truncated=false / hint=null. Adding the truncated field is
+# what lets agents tell "this is the whole set" from "tip of a deep
+# pool" — `total_matches` alone is a pool-depth read, not a corpus
+# count, since vector ANN is fundamentally top-K (see model docstring).
+TR=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('truncated', False))")
+HH=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print('yes' if d.get('hint') else 'no')")
+[ "$TR" = "False" ] && [ "$HH" = "no" ] \
+  && pass "small corpus → truncated=false, hint=null" \
+  || fail "truncated false" "truncated=$TR hint=$HH"
+
+# ── 8. Nonsense query returns 0 ──────────────────────────────
+# Queries with no vocab overlap (random strings, fully OOV tokens) are
+# treated as "no signal" — no dense-only fallback, so total must be 0.
+echo ""
+echo "▸ 8. Nonsense-query safety"
+
+TOTAL=$(search_total "Blarghnizophorpquix$RANDOM" "$VAULT_A")
+[ "$TOTAL" = "0" ] && pass "nonsense query returns 0" || fail "empty" "expected 0, got $TOTAL"
+
+# ── 9. /grep sanity ──────────────────────────────────────────
+echo ""
+echo "▸ 9. akb_grep regression"
+
+R=$(mcp_call akb_grep "{\"pattern\":\"shared_buffers\",\"vault\":\"$VAULT_A\"}" | mcp_result)
+GREP_TOTAL=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total_matches', 0))" 2>/dev/null)
+[ "$GREP_TOTAL" -ge 1 ] 2>/dev/null && pass "akb_grep still finds literal string" || fail "grep" "total_matches=$GREP_TOTAL"
+
+# count_only (grep -c) — issue #41
+R=$(mcp_call akb_grep "{\"pattern\":\"shared_buffers\",\"vault\":\"$VAULT_A\",\"count_only\":true}" | mcp_result)
+CO_TOTAL=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total_matches', 0))" 2>/dev/null)
+HAS_BY_DOC=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print('yes' if 'by_doc' in d and 'results' not in d else 'no')" 2>/dev/null)
+[ "$CO_TOTAL" -ge 1 ] 2>/dev/null && [ "$HAS_BY_DOC" = "yes" ] \
+  && pass "akb_grep count_only ($CO_TOTAL via by_doc)" \
+  || fail "grep count_only" "total=$CO_TOTAL has_by_doc=$HAS_BY_DOC"
+
+# files_with_matches (grep -l) — issue #41
+R=$(mcp_call akb_grep "{\"pattern\":\"shared_buffers\",\"vault\":\"$VAULT_A\",\"files_with_matches\":true}" | mcp_result)
+N_FILES=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('n_files', 0))" 2>/dev/null)
+HAS_FILES=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print('yes' if 'files' in d and 'results' not in d else 'no')" 2>/dev/null)
+[ "$N_FILES" -ge 1 ] 2>/dev/null && [ "$HAS_FILES" = "yes" ] \
+  && pass "akb_grep files_with_matches ($N_FILES files)" \
+  || fail "grep files_with_matches" "n=$N_FILES has_files=$HAS_FILES"
+
+# Mutual exclusion error
+R=$(mcp_call akb_grep "{\"pattern\":\"x\",\"vault\":\"$VAULT_A\",\"count_only\":true,\"files_with_matches\":true}" | mcp_result)
+ERR=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('error',''))" 2>/dev/null)
+case "$ERR" in
+  *"mutually exclusive"*) pass "akb_grep count_only + files_with_matches blocked" ;;
+  *) fail "grep mutual excl" "got err=$ERR" ;;
+esac
+
+# ── 10. Default-mode truncation: total_* MUST reflect full scan ──
+# Pre-patch bug: when more docs matched than `limit` allowed in the
+# default snippet response, `total_docs`/`total_matches` aggregated
+# only the post-limit slice. Agents reading those fields as "corpus
+# total" got false-low counts and made early-termination mistakes.
+# Now: `returned_*` = post-limit, `total_*` = full scan, plus a
+# `truncated` flag + hint so the agent can switch to count_only.
+echo ""
+echo "▸ 10. akb_grep default-mode truncation reports full corpus totals"
+
+TRUNC="TruncMarker${RANDOM}${RANDOM}"
+for i in 1 2 3; do
+  mcp_call akb_put \
+    "{\"vault\":\"$VAULT_A\",\"collection\":\"grep-trunc\",\"title\":\"trunc-$i\",\"content\":\"$TRUNC hit ${i}\"}" \
+    >/dev/null
+done
+wait_for_indexing "$INDEX_WAIT"
+
+# limit=1 → 1 doc returned, but full scan must surface total_docs=3.
+R=$(mcp_call akb_grep "{\"pattern\":\"$TRUNC\",\"vault\":\"$VAULT_A\",\"limit\":1}" | mcp_result)
+RD=$(echo  "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('returned_docs',-1))")
+RM=$(echo  "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('returned_matches',-1))")
+TD=$(echo  "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total_docs',-1))")
+TM=$(echo  "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total_matches',-1))")
+TR=$(echo  "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('truncated',False))")
+HH=$(echo  "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print('yes' if d.get('hint') else 'no')")
+[ "$RD" = "1" ] && [ "$RM" = "1" ] && [ "$TD" = "3" ] && [ "$TM" = "3" ] \
+  && [ "$TR" = "True" ] && [ "$HH" = "yes" ] \
+  && pass "truncated default returned=($RD,$RM) total=($TD,$TM) truncated+hint" \
+  || fail "grep truncated" "returned=($RD,$RM) total=($TD,$TM) truncated=$TR hint=$HH"
+
+# count_only on the same scope must agree with default's total_*.
+R=$(mcp_call akb_grep "{\"pattern\":\"$TRUNC\",\"vault\":\"$VAULT_A\",\"count_only\":true}" | mcp_result)
+CO_TD=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total_docs',-1))")
+CO_TM=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total_matches',-1))")
+[ "$CO_TD" = "$TD" ] && [ "$CO_TM" = "$TM" ] \
+  && pass "count_only total_* parity ($CO_TD docs, $CO_TM matches)" \
+  || fail "grep count_only parity" "count_only=($CO_TD,$CO_TM) default=($TD,$TM)"
+
+# When everything fits, returned == total, truncated=false, no hint.
+R=$(mcp_call akb_grep "{\"pattern\":\"$TRUNC\",\"vault\":\"$VAULT_A\",\"limit\":50}" | mcp_result)
+RD2=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('returned_docs',-1))")
+TD2=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total_docs',-1))")
+TR2=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('truncated',True))")
+HH2=$(echo "$R" | python3 -c "import sys,json; d=json.load(sys.stdin); print('yes' if d.get('hint') else 'no')")
+[ "$RD2" = "3" ] && [ "$TD2" = "3" ] && [ "$TR2" = "False" ] && [ "$HH2" = "no" ] \
+  && pass "no truncation when all fit (returned=$RD2 total=$TD2 truncated=$TR2 hint=$HH2)" \
+  || fail "grep untruncated" "returned=$RD2 total=$TD2 truncated=$TR2 hint=$HH2"
+
+# ── Cleanup ──────────────────────────────────────────────────
+echo ""
+echo "▸ Cleanup"
+
+mcp_call akb_delete_vault "{\"vault\":\"$VAULT_A\",\"confirm\":true}" >/dev/null
+mcp_call akb_delete_vault "{\"vault\":\"$VAULT_B\",\"confirm\":true}" >/dev/null
+# Self-delete test user
+curl -sk --max-time 15 -X DELETE "$BASE_URL/api/v1/my/account" -H "Authorization: Bearer $JWT" >/dev/null 2>&1
+pass "vaults deleted"
+
+# ── Summary ──────────────────────────────────────────────────
+echo ""
+echo "═══════════════════════════════════════════"
+echo "  Passed: $PASS"
+echo "  Failed: $FAIL"
+if [ $FAIL -gt 0 ]; then
+  echo ""
+  echo "  Errors:"
+  for e in "${ERRORS[@]}"; do
+    echo "    - $e"
+  done
+fi
+echo "═══════════════════════════════════════════"
+
+exit $FAIL

@@ -1,0 +1,103 @@
+# Local AKB stack — 3 containers (Postgres + backend + frontend).
+#
+# Default vector store: pgvector running inside the same Postgres
+# container that holds main app data. Driver writes its derived index
+# under the `vector_index` schema; main `chunks` table stays plain
+# PostgreSQL.
+#
+# Other vector-store options:
+# - Qdrant as a separate container — layer the optional override:
+#     docker compose -f docker-compose.yaml -f docker-compose.qdrant.yaml up
+# - Seahorse Cloud (managed) — no override; just edit config/app.yaml
+#   (vector_store_driver: seahorse, plus tenant_uuid/table) and
+#   config/secret.yaml (seahorse_token).
+#
+# Usage:
+#   1. cp config/app.yaml.example config/app.yaml
+#   2. cp config/secret.yaml.example config/secret.yaml
+#      (set embed_api_key — only required field for a fresh start)
+#   3. docker compose up
+#   4. open http://localhost:3000
+#
+# The Postgres password is hard-coded to `akb` here for local-dev
+# convenience and must match `db_password` in config/secret.yaml.
+
+services:
+  postgres:
+    # pgvector/pgvector image ships with the `vector` extension
+    # pre-installed, so the same container serves as both the main
+    # app DB and the vector store (under a separate schema).
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: akb
+      POSTGRES_USER: akb
+      POSTGRES_PASSWORD: akb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U akb -d akb"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  minio:
+    # S3-compatible object store for vault file uploads. Without this,
+    # `akb_put_file` / file e2e suites can't run locally — they get
+    # routed to a non-existent endpoint and silently 0-out.
+    image: minio/minio:latest
+    command: server /data --address :9000 --console-address :9001
+    environment:
+      MINIO_ROOT_USER: akb-local
+      MINIO_ROOT_PASSWORD: akb-local-secret
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"     # S3 API — backend hits this
+      - "9001:9001"     # web console — dev convenience
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:9000/minio/health/live"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # One-shot bucket bootstrap. Runs `mc mb akb-files` (idempotent) and
+  # exits — no long-lived sidecar. Backend brings up after this finishes
+  # so the bucket is guaranteed present on first request.
+  minio-bootstrap:
+    image: minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 akb-local akb-local-secret &&
+      mc mb -p local/akb-files &&
+      echo 'akb-files bucket ready'
+      "
+
+  backend:
+    build: ./backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio-bootstrap:
+        condition: service_completed_successfully
+    volumes:
+      # Single source of runtime config. Everything backend reads
+      # comes from the two yaml files mounted here — no env vars.
+      - ./config:/etc/akb:ro
+      - vault_data:/data/vaults
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
+  vault_data:
+  minio_data:

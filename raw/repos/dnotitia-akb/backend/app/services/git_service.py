@@ -1,0 +1,856 @@
+"""Git operations for Vault management.
+
+Each Vault is a Git bare repo. This service handles:
+- Vault (bare repo) initialization
+- Reading files from HEAD
+- Committing file changes (add/update/delete)
+- Log and diff queries
+- Cloning / fetching from an external remote (read-only mirror vaults)
+
+Writes go through a persistent per-vault worktree linked to the bare repo
+(`git worktree add`). No clone-per-commit, no push. The worktree shares
+the object store with bare, so commits in the worktree update the bare's
+refs directly. Concurrent writes against the same worktree are serialized
+by a per-vault threading lock.
+
+Remote ops (clone_mirror / fetch_remote / ls_remote_head) inject the auth
+token into the URL only at command-invocation time and never persist it
+to the bare repo's `.git/config`. That keeps the on-disk surface free of
+secrets even when callers handed us a plaintext PAT.
+"""
+
+from __future__ import annotations
+
+import logging
+import threading
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from urllib.parse import urlsplit, urlunsplit, quote
+
+from git import Repo, cmd as git_cmd
+from git.exc import GitError
+
+from app.config import settings
+
+logger = logging.getLogger("akb.git")
+
+
+# Per-vault serialization for worktree writes. asyncio.to_thread dispatches
+# to a shared ThreadPoolExecutor, so two concurrent commits on the same
+# vault can land on different worker threads — threading.Lock (not
+# asyncio.Lock) is the right primitive here.
+_VAULT_LOCKS_GUARD = threading.Lock()
+_VAULT_LOCKS: dict[str, threading.Lock] = {}
+
+
+def _vault_lock(vault_name: str) -> threading.Lock:
+    with _VAULT_LOCKS_GUARD:
+        lock = _VAULT_LOCKS.get(vault_name)
+        if lock is None:
+            lock = threading.Lock()
+            _VAULT_LOCKS[vault_name] = lock
+        return lock
+
+
+
+class GitService:
+    def __init__(self, storage_path: str | None = None):
+        self.storage_path = Path(storage_path or settings.git_storage_path)
+        self.storage_path.mkdir(parents=True, exist_ok=True)
+        self.worktrees_path = self.storage_path / "_worktrees"
+        self.worktrees_path.mkdir(parents=True, exist_ok=True)
+
+    def _bare_path(self, vault_name: str) -> Path:
+        return self.storage_path / f"{vault_name}.git"
+
+    def _worktree_path(self, vault_name: str) -> Path:
+        return self.worktrees_path / vault_name
+
+    def _get_repo(self, vault_name: str) -> Repo:
+        bare_path = self._bare_path(vault_name)
+        if not bare_path.exists():
+            raise FileNotFoundError(f"Vault repo not found: {vault_name}")
+        return Repo(str(bare_path))
+
+    @staticmethod
+    def _git_author_env(author_name: str, author_email: str) -> dict[str, str]:
+        return {
+            "GIT_AUTHOR_NAME": author_name,
+            "GIT_AUTHOR_EMAIL": author_email,
+            "GIT_COMMITTER_NAME": author_name,
+            "GIT_COMMITTER_EMAIL": author_email,
+        }
+
+    def _stage_and_commit(
+        self,
+        work_repo: Repo,
+        message: str,
+        author_name: str,
+        author_email: str,
+        *,
+        parent_required: bool,
+    ) -> str:
+        """Commit the already-staged index without GitPython IndexFile ops.
+
+        GitPython's IndexFile add/remove/commit path mutates process cwd.
+        The `repo.git.*` command interface launches git with an explicit
+        working directory instead, so writes remain safe across thread-pool
+        workers and vaults.
+        """
+        tree_sha = work_repo.git.write_tree()
+        parent_args: list[str] = []
+        if parent_required:
+            work_repo.git.rev_parse("--verify", "HEAD")
+            parent_args = ["-p", "HEAD"]
+
+        with work_repo.git.custom_environment(**self._git_author_env(author_name, author_email)):
+            commit_sha = work_repo.git.commit_tree(
+                "--no-gpg-sign",
+                tree_sha,
+                *parent_args,
+                "-m",
+                message,
+            ).strip()
+        work_repo.git.update_ref("HEAD", commit_sha)
+        return work_repo.git.rev_parse("HEAD").strip()
+
+    def _ensure_worktree(self, vault_name: str) -> Path | None:
+        """Create a persistent worktree for this vault if one doesn't exist.
+        Returns the worktree path, or None if the bare repo is empty (no
+        HEAD yet — worktree add needs an existing branch).
+
+        Callers must hold the vault lock.
+        """
+        bare = self._bare_path(vault_name)
+        wt = self._worktree_path(vault_name)
+        if (wt / ".git").exists():
+            return wt
+        bare_repo = Repo(str(bare))
+        try:
+            # Touch HEAD to see if there's at least one commit.
+            _ = bare_repo.head.commit
+            branch_name = bare_repo.head.ref.name
+        except (ValueError, TypeError, GitError):
+            return None  # empty repo; caller falls back to the clone path
+        wt.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            bare_repo.git.worktree("add", str(wt), branch_name)
+        except GitError as e:
+            # A previous `worktree add` killed mid-write (SIGKILL, OOM,
+            # container restart) can leave the bare's
+            # `.git/worktrees/<name>/` metadata half-written. The next
+            # call fails with "<name> is already registered" even though
+            # the on-disk worktree dir is gone. `git worktree prune`
+            # reaps those stale registrations; retry once after pruning.
+            msg = str(e)
+            if "already registered" not in msg:
+                raise
+            logger.warning(
+                "worktree add for vault %s tripped stale registration; pruning and retrying: %s",
+                vault_name, msg,
+            )
+            bare_repo.git.worktree("prune")
+            bare_repo.git.worktree("add", str(wt), branch_name)
+        logger.info("Worktree created for vault %s at %s (branch=%s)", vault_name, wt, branch_name)
+        return wt
+
+    # ── Vault lifecycle ──────────────────────────────────────
+
+    def init_vault(self, vault_name: str) -> str:
+        """Initialize a new bare repo for a vault. Returns the repo path."""
+        bare_path = self._bare_path(vault_name)
+        if bare_path.exists():
+            raise FileExistsError(f"Vault already exists: {vault_name}")
+        Repo.init(str(bare_path), bare=True)
+        return str(bare_path)
+
+    def vault_exists(self, vault_name: str) -> bool:
+        return self._bare_path(vault_name).exists()
+
+    def cleanup_stale_locks(self, max_age_seconds: float = 60.0) -> int:
+        """Remove `index.lock` files for every vault that are older than
+        `max_age_seconds`.
+
+        A crashed git process (OOM, SIGKILL, container restart mid-commit)
+        leaves the index.lock behind; subsequent writes to that worktree
+        fail with "Unable to create '.../index.lock': File exists" until
+        the lock is cleared by hand. Running this at startup recovers
+        every affected vault before any worker can run into the same wall.
+
+        Vault enumeration source: every `<storage>/<name>.git` bare repo
+        in `storage_path`. Iterating bare repos (rather than the linked
+        worktree dir) means we still find locks for vaults whose
+        `_worktrees/<name>` directory was wiped or never created — the
+        admin path inside the bare can hold an `index.lock` independently.
+
+        Lock locations checked per vault:
+          1. `<bare>/worktrees/<name>/index.lock` — where git keeps the
+             index for linked worktrees (the path the AKB write paths
+             actually touch).
+          2. `<worktree>/.git/index.lock` — fallback for non-linked
+             setups (initial clone path) where `.git` is a real dir.
+
+        Safe under concurrency: the only write paths that touch a
+        worktree's index hold `_vault_lock(vault_name)` per-vault, so
+        startup self-heal — which runs before workers — cannot remove
+        a lock held by a live operation. The age threshold provides
+        defense in depth in the unlikely case startup overlaps with an
+        in-flight commit (lock would be < 1s old, well under 60s).
+
+        Returns the number of locks removed.
+        """
+        cleared = 0
+        if not self.storage_path.exists():
+            return cleared
+        for bare in self.storage_path.iterdir():
+            if not bare.is_dir() or not bare.name.endswith(".git"):
+                continue
+            vault_name = bare.name[: -len(".git")]
+            if not vault_name:
+                continue
+            candidates = [
+                bare / "worktrees" / vault_name / "index.lock",
+                self._worktree_path(vault_name) / ".git" / "index.lock",
+            ]
+            for lock in candidates:
+                # `.git` in a linked worktree is a file (gitdir pointer),
+                # not a dir — its `index.lock` path is meaningless. Skip
+                # quickly if the parent isn't a directory.
+                if not lock.parent.is_dir():
+                    continue
+                if not lock.exists() or lock.is_dir():
+                    continue
+                try:
+                    age = time.time() - lock.stat().st_mtime
+                except OSError:
+                    continue
+                if age < max_age_seconds:
+                    continue
+                try:
+                    lock.unlink()
+                except OSError as e:
+                    logger.warning("failed to clear stale lock %s: %s", lock, e)
+                    continue
+                logger.warning(
+                    "removed stale git index.lock (age=%.0fs) at %s",
+                    age, lock,
+                )
+                cleared += 1
+        return cleared
+
+    def cleanup_vault_dirs(self, vault_name: str) -> None:
+        """Idempotently remove every on-disk artefact a vault owns.
+
+        Removes both the bare repo (`<storage>/{name}.git`) and the
+        persistent linked worktree (`<storage>/_worktrees/{name}`).
+        Safe to call when neither exists. Used by:
+
+          - delete_vault — final on-disk cleanup after DB cascade.
+          - create_vault rollback — undoes a half-finished init when
+            the request fails between init_vault and the DB INSERT
+            (without this, the bare directory persists and every
+            subsequent create_vault for the same name trips
+            init_vault's FileExistsError, requiring manual rm -rf).
+
+        Errors during cleanup propagate — callers handle via their
+        own try/except so a rollback failure doesn't hide the
+        original exception.
+        """
+        import shutil
+        for path in (self._bare_path(vault_name), self._worktree_path(vault_name)):
+            if path.exists():
+                shutil.rmtree(path)
+
+    # ── External remote operations ───────────────────────────
+
+    @staticmethod
+    def _with_auth(remote_url: str, auth_token: str | None) -> str:
+        """Inject `x-access-token:<token>` into the URL's userinfo, only
+        for the duration of one git command. Returns the URL unchanged
+        when no token is supplied or when the URL is already authenticated.
+        """
+        if not auth_token:
+            return remote_url
+        parts = urlsplit(remote_url)
+        if parts.scheme not in ("http", "https"):
+            return remote_url
+        if "@" in parts.netloc:
+            return remote_url
+        userinfo = f"x-access-token:{quote(auth_token, safe='')}"
+        netloc = f"{userinfo}@{parts.netloc}"
+        return urlunsplit((parts.scheme, netloc, parts.path, parts.query, parts.fragment))
+
+    def clone_mirror(
+        self,
+        vault_name: str,
+        remote_url: str,
+        branch: str,
+        auth_token: str | None = None,
+        timeout: int | None = None,
+    ) -> str:
+        """Clone an external repo as the vault's bare repo. The on-disk
+        remote URL is stored without auth so the token never touches
+        `.git/config`. Subsequent fetches re-inject auth at invocation.
+        `timeout` is in seconds (defaults to settings.external_git_clone_timeout);
+        if the clone hasn't finished, git is killed so the worker can
+        back off instead of hanging.
+        """
+        bare_path = self._bare_path(vault_name)
+        if bare_path.exists():
+            raise FileExistsError(f"Vault already exists: {vault_name}")
+        timeout = timeout or settings.external_git_clone_timeout
+        with _vault_lock(vault_name):
+            authed = self._with_auth(remote_url, auth_token)
+            git_cmd.Git().clone(
+                "--bare", "--single-branch", "--branch", branch,
+                authed, str(bare_path),
+                kill_after_timeout=timeout,
+            )
+            # Strip auth from stored remote URL so the token isn't on disk.
+            Repo(str(bare_path)).git.remote("set-url", "origin", remote_url)
+        # Log hostname only; caller may have embedded a PAT in the URL.
+        host = urlsplit(remote_url).hostname or "unknown"
+        logger.info("Mirror cloned: vault=%s host=%s branch=%s", vault_name, host, branch)
+        return str(bare_path)
+
+    def fetch_remote(
+        self,
+        vault_name: str,
+        remote_url: str,
+        branch: str,
+        auth_token: str | None = None,
+        timeout: int | None = None,
+    ) -> str:
+        """Fetch the remote branch into the bare repo. Updates the local
+        ref `refs/heads/<branch>` to whatever the remote currently is
+        (force — mirrors track upstream literally). Returns the new SHA.
+
+        Lock discipline: the network fetch itself runs **outside** the
+        per-vault lock — it can take minutes on a slow upstream and
+        holding the worktree-write lock that long blocks every
+        concurrent commit on this vault. The fetch lands new objects in
+        the bare's shared object store (idempotent and append-only;
+        safe to race), then we briefly acquire the lock for the
+        local-ref update + rev_parse, which is the only shared-state
+        mutation that needs serialization with worktree commits.
+        """
+        bare_path = self._bare_path(vault_name)
+        if not bare_path.exists():
+            raise FileNotFoundError(f"Vault repo not found: {vault_name}")
+        timeout = timeout or settings.external_git_fetch_timeout
+
+        # Network I/O outside the lock. We fetch to a temporary ref so
+        # the local branch ref is updated only inside the lock below.
+        repo = Repo(str(bare_path))
+        authed = self._with_auth(remote_url, auth_token)
+        tmp_ref = f"refs/akb/fetch-tmp/{branch}"
+        repo.git.fetch(
+            authed, f"+refs/heads/{branch}:{tmp_ref}",
+            kill_after_timeout=timeout,
+        )
+
+        # Brief critical section: move tmp ref onto the canonical
+        # branch ref and read the resulting sha. Both ops are local
+        # and millisecond-scale.
+        with _vault_lock(vault_name):
+            repo.git.update_ref(f"refs/heads/{branch}", tmp_ref)
+            try:
+                repo.git.update_ref("-d", tmp_ref)
+            except GitError:
+                # Best-effort cleanup; leftover tmp refs are harmless.
+                pass
+            return repo.git.rev_parse(f"refs/heads/{branch}")
+
+    def ls_remote_head(
+        self,
+        remote_url: str,
+        branch: str,
+        auth_token: str | None = None,
+        timeout: int | None = None,
+    ) -> str | None:
+        """Return the SHA of the remote branch HEAD without fetching
+        objects. Cheap network round-trip used by the poller to decide
+        whether a full fetch is worthwhile. Returns None if the branch
+        doesn't exist on the remote.
+        """
+        authed = self._with_auth(remote_url, auth_token)
+        timeout = timeout or settings.external_git_lsremote_timeout
+        out = git_cmd.Git().ls_remote(authed, branch, kill_after_timeout=timeout)
+        if not out:
+            return None
+        # Output: "<sha>\trefs/heads/<branch>" (possibly multiple lines).
+        for line in out.splitlines():
+            sha, _, ref = line.partition("\t")
+            if ref.endswith(f"refs/heads/{branch}"):
+                return sha.strip()
+        return None
+
+    def ls_tree(self, vault_name: str, sha: str) -> dict[str, str]:
+        """Return `{path: blob_sha}` for every blob reachable from `sha`.
+        Used by the reconciler to compare upstream tree against local
+        documents.external_blob without parsing diff status codes.
+        """
+        repo = self._get_repo(vault_name)
+        commit = repo.commit(sha)
+        out: dict[str, str] = {}
+        for item in commit.tree.traverse():
+            if item.type == "blob":
+                out[item.path] = item.hexsha
+        return out
+
+    def last_commit_for_path(
+        self, vault_name: str, path: str, rev: str | None = None
+    ) -> str | None:
+        """Hex sha of the most recent commit that touched `path`. Used to
+        stamp `documents.current_commit` per-file so mirror docs don't
+        all share the reconcile-time HEAD sha. Returns None when the
+        path has no commits (should not happen for a path we just
+        read from the tree).
+
+        `rev` pins the walk to a specific tip. The external_git reconciler
+        passes the tree-sha it just synced so attribution can't drift past
+        the snapshot it's writing — without it a concurrent fetch can
+        return a commit not yet reflected in `documents.current_commit`,
+        and that commit may not even contain `path` on the new tip.
+        """
+        repo = self._get_repo(vault_name)
+        try:
+            kwargs = {"paths": path, "max_count": 1}
+            commits = (
+                list(repo.iter_commits(rev, **kwargs))
+                if rev is not None
+                else list(repo.iter_commits(**kwargs))
+            )
+        except (ValueError, GitError):
+            return None
+        return commits[0].hexsha if commits else None
+
+    def cat_blob(self, vault_name: str, blob_sha: str) -> bytes:
+        """Read a blob's raw bytes from the object store by sha. Works
+        regardless of whether the blob is currently reachable from HEAD.
+        `cat-file blob` (not `-p`) so the output is the literal blob
+        contents, unaffected by git's pretty-printer for non-blob types.
+        """
+        repo = self._get_repo(vault_name)
+        return repo.git.cat_file("blob", blob_sha, stdout_as_string=False)
+
+    # ── Read operations ──────────────────────────────────────
+
+    def read_file(self, vault_name: str, file_path: str, commit: str | None = None) -> str | None:
+        """Read a file's content from the repo. Returns None if not found.
+
+        Caller is expected to have validated ``commit`` against
+        :func:`is_valid_commit_hash` before reaching here; we still catch
+        BadName/BadObject defensively so an unexpected ref string surfaces
+        as 404 rather than a 500.
+        """
+        repo = self._get_repo(vault_name)
+        from git.exc import BadName, BadObject
+        try:
+            ref = repo.commit(commit) if commit else repo.head.commit
+        except (ValueError, BadName, BadObject):
+            # Empty repo, malformed hash, or hash unknown to this repo.
+            return None
+        try:
+            blob = ref.tree / file_path
+            return blob.data_stream.read().decode("utf-8")
+        except (KeyError, TypeError):
+            return None
+
+    def list_files(self, vault_name: str, directory: str = "", extension: str = ".md") -> list[str]:
+        """List files under a directory in HEAD."""
+        repo = self._get_repo(vault_name)
+        try:
+            tree = repo.head.commit.tree
+        except ValueError:
+            return []
+
+        if directory:
+            try:
+                tree = tree / directory
+            except KeyError:
+                return []
+
+        results: list[str] = []
+        self._walk_tree(tree, directory, extension, results)
+        return results
+
+    def _walk_tree(self, tree, prefix: str, extension: str, results: list[str]) -> None:
+        for item in tree:
+            rel_path = f"{prefix}/{item.name}" if prefix else item.name
+            if item.type == "blob" and rel_path.endswith(extension):
+                results.append(rel_path)
+            elif item.type == "tree":
+                self._walk_tree(item, rel_path, extension, results)
+
+    def list_directories(self, vault_name: str, parent: str = "") -> list[str]:
+        """List immediate subdirectories under a path in HEAD."""
+        repo = self._get_repo(vault_name)
+        try:
+            tree = repo.head.commit.tree
+        except ValueError:
+            return []
+
+        if parent:
+            try:
+                tree = tree / parent
+            except KeyError:
+                return []
+
+        return [
+            item.name
+            for item in tree
+            if item.type == "tree" and not item.name.startswith(".")
+        ]
+
+    # ── Write operations ─────────────────────────────────────
+
+    def commit_file(
+        self,
+        vault_name: str,
+        file_path: str,
+        content: str,
+        message: str,
+        author_name: str = "AKB System",
+        author_email: str = "akb@system",
+    ) -> str:
+        """Write a file and commit. Returns the commit hash.
+
+        Uses a persistent per-vault worktree linked to the bare repo;
+        commits in the worktree update the bare's refs directly. Falls
+        back to clone-and-push only when the bare is empty (no HEAD to
+        attach the worktree to — happens once at vault creation).
+        """
+        with _vault_lock(vault_name):
+            wt = self._ensure_worktree(vault_name)
+            if wt is None:
+                return self._commit_via_clone(vault_name, file_path, content, message, author_name, author_email)
+
+            work_repo = Repo(str(wt))
+            # Defensive: if anything left the worktree dirty or behind the
+            # bare ref (e.g., a previous crash mid-commit), sync to HEAD
+            # before writing. With a single writer this is a no-op in the
+            # steady state.
+            work_repo.git.reset("--hard", "HEAD")
+
+            full_path = wt / file_path
+            full_path.parent.mkdir(parents=True, exist_ok=True)
+            full_path.write_text(content, encoding="utf-8")
+
+            work_repo.git.add("--", file_path)
+            return self._stage_and_commit(
+                work_repo,
+                message,
+                author_name,
+                author_email,
+                parent_required=True,
+            )
+
+    def delete_file(
+        self,
+        vault_name: str,
+        file_path: str,
+        message: str,
+        author_name: str = "AKB System",
+        author_email: str = "akb@system",
+    ) -> str:
+        """Delete a file and commit. Returns the commit hash."""
+        with _vault_lock(vault_name):
+            wt = self._ensure_worktree(vault_name)
+            if wt is None:
+                raise FileNotFoundError(f"File not found in vault: {file_path}")
+
+            work_repo = Repo(str(wt))
+            work_repo.git.reset("--hard", "HEAD")
+
+            full_path = wt / file_path
+            if not full_path.exists():
+                raise FileNotFoundError(f"File not found in vault: {file_path}")
+
+            work_repo.git.rm("--", file_path)
+            return self._stage_and_commit(
+                work_repo,
+                message,
+                author_name,
+                author_email,
+                parent_required=True,
+            )
+
+    def delete_paths_bulk(
+        self,
+        *,
+        vault_name: str,
+        file_paths: list[str],
+        message: str,
+        author_name: str = "AKB System",
+        author_email: str = "akb@system",
+    ) -> str | None:
+        """Remove many paths in one commit under a per-vault lock.
+
+        Idempotent on missing paths: any entry in `file_paths` that does
+        not exist in the worktree is skipped silently (no exception). If
+        every requested path is already absent, no commit is made and
+        this returns `None`. Duplicates in `file_paths` are deduplicated
+        (order-preserving) before the presence check so a doubled path
+        doesn't trip `git rm` on its second occurrence.
+
+        Mirrors `delete_file`'s lock + worktree-prep + commit shape.
+        Returns the new commit's hex SHA, or `None` when no commit was made.
+        """
+        with _vault_lock(vault_name):
+            wt = self._ensure_worktree(vault_name)
+            if wt is None:
+                # Empty bare repo or missing vault — nothing to delete.
+                return None
+
+            work_repo = Repo(str(wt))
+            work_repo.git.reset("--hard", "HEAD")
+
+            # Dedupe while preserving caller order so log output is stable
+            # and so a doubled path doesn't make `git rm` fail on
+            # the second occurrence.
+            unique_paths = list(dict.fromkeys(file_paths))
+            present = [p for p in unique_paths if (wt / p).exists()]
+            if not present:
+                logger.debug(
+                    "delete_paths_bulk: all paths already absent for vault=%s (%d requested)",
+                    vault_name, len(unique_paths),
+                )
+                return None
+
+            work_repo.git.rm("--", *present)
+            return self._stage_and_commit(
+                work_repo,
+                message,
+                author_name,
+                author_email,
+                parent_required=True,
+            )
+
+    def _commit_via_clone(
+        self,
+        vault_name: str,
+        file_path: str,
+        content: str,
+        message: str,
+        author_name: str,
+        author_email: str,
+    ) -> str:
+        """Legacy clone/push path, used only for the very first commit on
+        an empty bare repo (before any branch exists — worktree add can't
+        attach without a branch). One-shot cost at vault creation.
+
+        GitPython's ``Repo.clone_from`` calls ``os.getcwd()`` internally
+        to bootstrap the Git wrapper. If a previous call left the
+        process working directory pointing at a now-deleted
+        ``TemporaryDirectory``, that getcwd raises ``FileNotFoundError``
+        and every subsequent vault-creation request 500s. Use plain
+        ``subprocess`` with an explicit ``cwd`` so the call never reads
+        the process cwd.
+
+        Cancellation hazard: ``subprocess.run`` blocks the worker
+        thread until the child exits. If the surrounding asyncio task
+        is cancelled, the running ``git clone`` / ``git push`` keeps
+        going on the local filesystem until it finishes or hits the
+        timeout below. Acceptable because this path only runs on the
+        very first commit of a fresh vault — but the timeouts are
+        here as a hard upper bound so a wedged subprocess can't pin
+        the vault lock forever.
+        """
+        import subprocess
+        import tempfile
+        bare_path = self._bare_path(vault_name)
+        # Stable parent for the tmp dir so we don't depend on the
+        # process cwd to resolve a relative name. ``storage_path``
+        # always exists on a healthy deploy.
+        with tempfile.TemporaryDirectory(dir=str(self.storage_path)) as tmp:
+            try:
+                subprocess.run(
+                    ["git", "clone", "--quiet", str(bare_path), tmp],
+                    check=True, cwd=tmp, timeout=60,
+                )
+            except subprocess.TimeoutExpired as e:
+                raise GitError(
+                    f"git clone timed out after 60s for vault {vault_name}"
+                ) from e
+            work_repo = Repo(tmp)
+            full_path = Path(tmp) / file_path
+            full_path.parent.mkdir(parents=True, exist_ok=True)
+            full_path.write_text(content, encoding="utf-8")
+            work_repo.git.add("--", file_path)
+            commit_hash = self._stage_and_commit(
+                work_repo,
+                message,
+                author_name,
+                author_email,
+                parent_required=False,
+            )
+            # Push is local-to-local (bare repo on the same disk), so
+            # 60s is generous; if it hangs the timeout still releases
+            # the vault lock for the next caller.
+            try:
+                work_repo.git.push("origin", kill_after_timeout=60)
+            except GitError as e:
+                raise GitError(
+                    f"git push failed for vault {vault_name}: {e}"
+                ) from e
+        return commit_hash
+
+    # ── History operations ───────────────────────────────────
+
+    def file_log(
+        self,
+        vault_name: str,
+        file_path: str,
+        max_count: int = 20,
+        since_epoch: int | None = None,
+    ) -> list[dict]:
+        """Get commit log for a specific file.
+
+        ``since_epoch`` (Unix seconds) trims commits older than the boundary
+        so that history at a path which was deleted and re-created starts
+        clean from the current document's ``created_at`` — pre-fix, commits
+        from a since-deleted prior document leaked into the new doc's
+        history because git keys by path, not by document identity.
+        """
+        repo = self._get_repo(vault_name)
+        try:
+            commits = list(repo.iter_commits(paths=file_path, max_count=max_count))
+        except (ValueError, GitError):
+            return []
+
+        if since_epoch is not None:
+            commits = [c for c in commits if c.committed_date >= since_epoch]
+
+        return [
+            {
+                "hash": c.hexsha[:12],
+                "message": c.message.strip(),
+                "author": str(c.author),
+                "date": datetime.fromtimestamp(c.committed_date, tz=timezone.utc).isoformat(),
+            }
+            for c in commits
+        ]
+
+    def vault_log(self, vault_name: str, max_count: int = 30, since: str | None = None, path: str | None = None) -> list[dict]:
+        """Get commit log for the vault, optionally scoped to a path.
+
+        Like `git log -- <path>`: Git natively filters to only commits
+        that touched files under the given path. No post-filter limit issue.
+        """
+        repo = self._get_repo(vault_name)
+        try:
+            kwargs: dict = {"max_count": max_count}
+            if since:
+                kwargs["since"] = since
+            if path:
+                kwargs["paths"] = path
+            commits = list(repo.iter_commits(**kwargs))
+        except (ValueError, GitError):
+            return []
+
+        results = []
+        for c in commits:
+            # Parse commit message for action/summary
+            lines = c.message.strip().split("\n")
+            subject = lines[0] if lines else ""
+            body_lines = [line.strip() for line in lines[1:] if line.strip()]
+
+            meta = {}
+            for bl in body_lines:
+                if ":" in bl:
+                    k, v = bl.split(":", 1)
+                    meta[k.strip().lower()] = v.strip()
+
+            # Get changed files
+            changed_files = []
+            try:
+                if c.parents:
+                    diffs = c.parents[0].diff(c)
+                    for d in diffs:
+                        path = d.b_path or d.a_path
+                        if path and not path.startswith("."):
+                            change_type = "added" if d.new_file else ("deleted" if d.deleted_file else "modified")
+                            changed_files.append({"path": path, "change": change_type})
+                else:
+                    # Initial commit
+                    for item in c.tree.traverse():
+                        if item.type == "blob" and not item.path.startswith("."):
+                            changed_files.append({"path": item.path, "change": "added"})
+            except (GitError, TypeError):
+                pass
+
+            results.append({
+                "hash": c.hexsha[:12],
+                "subject": subject,
+                "author": str(c.author),
+                "date": datetime.fromtimestamp(c.committed_date, tz=timezone.utc).isoformat(),
+                "action": meta.get("action", ""),
+                "summary": meta.get("summary", ""),
+                "agent": meta.get("agent", str(c.author)),
+                "files": changed_files,
+            })
+
+        return results
+
+    def file_diff(self, vault_name: str, file_path: str, commit_hash: str) -> dict:
+        """Get diff for a specific file at a specific commit.
+
+        Returns the unified diff patch for the file.
+
+        Mirrors read_file's defensive `BadName/BadObject` catch so an
+        unknown / malformed commit hash surfaces as a clean
+        ``{"type":"unknown"}`` response rather than propagating as an
+        unhandled 500.
+        """
+        from git.exc import BadName, BadObject
+        repo = self._get_repo(vault_name)
+        try:
+            commit = repo.commit(commit_hash)
+        except (ValueError, BadName, BadObject):
+            return {
+                "file": file_path,
+                "commit": commit_hash,
+                "type": "unknown",
+                "diff": "",
+                "error": "commit not found",
+            }
+
+        if not commit.parents:
+            # Initial commit — show full content as addition
+            try:
+                blob = commit.tree / file_path
+                content = blob.data_stream.read().decode("utf-8")
+                return {
+                    "file": file_path,
+                    "commit": commit_hash,
+                    "type": "added",
+                    "diff": "\n".join(f"+{line}" for line in content.split("\n")),
+                }
+            except (KeyError, TypeError):
+                return {"file": file_path, "commit": commit_hash, "type": "unknown", "diff": ""}
+
+        parent = commit.parents[0]
+        diffs = parent.diff(commit, paths=[file_path], create_patch=True)
+
+        for d in diffs:
+            patch = d.diff
+            if isinstance(patch, bytes):
+                patch = patch.decode("utf-8", errors="replace")
+            change_type = "added" if d.new_file else ("deleted" if d.deleted_file else "modified")
+            return {
+                "file": file_path,
+                "commit": commit_hash,
+                "type": change_type,
+                "diff": patch,
+            }
+
+        return {"file": file_path, "commit": commit_hash, "type": "unchanged", "diff": ""}
+
+    def diff(self, vault_name: str, from_commit: str, to_commit: str | None = None) -> str:
+        """Get diff between two commits, or from a commit to HEAD."""
+        repo = self._get_repo(vault_name)
+        base = repo.commit(from_commit)
+        head = repo.commit(to_commit) if to_commit else repo.head.commit
+        return base.diff(head, create_patch=True).__str__()
