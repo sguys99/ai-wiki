@@ -16,58 +16,58 @@ tags: [ai-native-engineering, agentic-development-lifecycle, adlc, context-engin
 
 ## 요약 (Summary)
 
-**Meta Ads의 Global Head of Autonomous ML Iteration & Optimization** Shah Rahman이 2026-06-02 ByteByteGo Newsletter에 기고한 시리즈 Part 1. 도입은 *"AI가 Google 신규 코드 75% / OpenAI·Anthropic 거의 전부 / Amazon Java 8→17 30,000앱(약 4,500 dev-year 추정) / Zuckerberg 2026말 mid-level engineer AI 예측"* 의 화려한 통계로 시작하지만 곧장 *"그런데 왜 대부분 팀이 2년 전보다 더 많은 버그·인시던트·기술부채를 출시하는가"* (NYT 2026-04-06 Isaac & Griffith **"code overload"**)로 정면 질문하고, 이 격차를 **engineer → orchestrator** 정체성 전환 한 가지로 설명한다.
+Meta Ads에서 Autonomous ML Iteration & Optimization을 총괄하는 Shah Rahman이 2026-06-02 ByteByteGo Newsletter에 기고한 2부작 중 1부다. 글은 화려한 통계로 문을 연다 — AI가 Google 신규 코드의 75%를 쓰고, OpenAI·Anthropic은 거의 전부를 AI로 생성하며, Amazon은 Java 8에서 17로의 30,000개 앱 마이그레이션(약 4,500 dev-year 분량)을 단기간에 끝냈고, Zuckerberg는 2026년 말이면 AI가 mid-level engineer 수준으로 일하리라 내다봤다. 그러나 저자는 곧장 반문한다. 그렇다면 왜 대부분의 팀은 2년 전보다 더 많은 버그·인시던트·기술부채를 쏟아내는가? (NYT가 2026-04-06 Isaac & Griffith의 기사에서 "code overload"라 부른 현상이다.) 같은 모델과 도구를 쓰는데도 결과가 갈리는 이 격차를, Rahman은 **engineer에서 orchestrator로의 정체성 전환** 한 가지로 설명한다.
 
-핵심 thesis: **AI-native engineering ≠ vibe coding** (Karpathy 2025). *"코딩은 항상 engineering의 20–30%였고 더 많은 코드가 더 productive하지 않다 (오히려 less)"* 라는 인식 위에서, 4 Core Practices(① Synchronized Context Engineering — MCP = *"USB-C for AI"*, CLAUDE.md = core infrastructure, 팀 40–50% 속도 ↑ · ② Spec-Driven Development · ③ Critical Verification — AI 코드 ~**45% security flaw**, METR/Anthropic RCT 친숙 codebase에서 **−19%** 속도 · ④ Problem Decomposition — 인간 edge case + AI 70–80% routine), **40/20/40 시간 배분** (context / gen+test / review+verify), 3-phase 개인 전환 (Foundation ≤2주, Integration ≤1개월, Mastery live on — 목표 **80%+ AI-generated · <20% rewrite**), 70/30 팀 변환 (MIT 83% 리더가 *"psychological safety가 AI 성공에 기여"*), 그리고 핵심 운영 프레임 **ADLC (Agentic Development Life Cycle)** 6단계 (Planning → Building → Testing → Review → Documentation → Codify)를 처방한다.
+핵심 명제는 **AI-native engineering은 vibe coding(Karpathy 2025)과 범주가 다르다**는 것이다. "코딩은 늘 engineering의 20–30%였을 뿐이고, 코드가 늘었다고 더 생산적인 것은 아니다(오히려 줄기 쉽다)"는 인식 위에서, 저자는 네 가지 핵심 실천(4 Core Practices)을 처방한다 — ① 맥락 동기화 엔지니어링(Synchronized Context Engineering): MCP를 "USB-C for AI"로, CLAUDE.md를 선택적 문서가 아닌 핵심 인프라로 보며, 엄격히 실천하는 팀은 속도가 40–50% 빨라진다고 보고된다. ② 명세 주도 개발(Spec-Driven Development). ③ 비판적 검증(Critical Verification): AI 코드의 약 45%에 보안 결함이 있고, METR/Anthropic의 RCT에서는 경력 개발자가 친숙한 코드베이스에서 오히려 19% 느려졌다. ④ 문제 분해(Problem Decomposition): edge case와 도메인 로직은 사람이, 70–80%의 정형 구현은 AI가 맡는다. 여기에 **40/20/40 시간 배분**(맥락 설정 / 생성·테스트 / 리뷰·검증), 3단계 개인 전환(Foundation 2주 이내 · Integration 1개월 이내 · Mastery 지속 — 목표는 AI 생성 코드 80% 이상, 재작성률 20% 미만), 그리고 70/30 팀 변환(MIT 조사에서 리더 83%가 "psychological safety가 AI 이니셔티브 성공에 기여한다"고 응답)을 더하고, 운영의 중심축으로 **ADLC(Agentic Development Life Cycle)** 6단계(Planning → Building → Testing → Review → Documentation → Codify)를 정의한다.
 
-ADLC의 차별점은 *"plan/build/test/review를 별도 agent swarm으로 분리해 서로 견제"* (planning이 building을 challenge, testing이 coverage skipper 적발, review가 biased implementation 적발) + *"injection vulnerability 한 건 발견 시 generalization principle로 같은 type 사전 스캔"*. 또한 *"construction cost vs decision cost"* 구분으로 *"AI가 building 비용을 drastic 감소시켰지만 total dev cost의 20–30%일 뿐이며 '무엇을 빌드/죽일지' decision cost는 그대로"* 라고 산업 narrative를 정면 반박. AI 진정한 leverage는 **cheaper experimentation** (>70% feature가 사용자 미도달) · **prototyping** (v0/Replit Agent/Bolt.new) · **automated boilerplate (not judgment)** · **"design to 50%" principle**.
+ADLC의 차별점은 단계마다 별도의 agent swarm을 두어 서로 견제시키는 데 있다. planning agent가 지름길을 택한 building을 challenge하고, testing agent가 커버리지를 빠뜨린 곳을 잡아내며, review agent가 그럴듯하지만 편향된 구현을 적발한다. Review 단계에는 generalization principle을 둔다 — injection 취약점이 한 건 나오면 같은 유형이 다른 곳에도 있다고 보고 미리 스캔하는 것이다. 저자는 "construction cost와 decision cost"를 구분해 업계 통념도 반박한다. AI가 빌드 비용은 크게 줄였지만 그것은 전체 개발 비용의 20–30%일 뿐이고, "무엇을 만들고 무엇을 버릴지"라는 의사결정 비용은 거의 그대로라는 것이다. AI가 진짜 레버리지를 내는 곳은 네 군데다 — 값싼 실험(전체 기능의 70% 이상은 사용자에게 닿지도 못한다), 빠른 프로토타이핑(v0·Replit Agent·Bolt.new), 판단이 아닌 보일러플레이트 자동화, 그리고 "design to 50%" 원칙(최소 기능만 내보내고 사용자가 어디서 망설이고 이탈하는지 관찰).
 
-**Security guardrails는 더이상 옵션 아님** — *"환경에서 주당 ~1건 새 insecure AI integration 관찰, 다수가 production incident"*. 4 실 인시던트 (Chat Integration **RCE** 2일 빌드 + 2FA 우회 + ACL open / Unauthorized DB Access **~1,500 secure table** / Google Docs **Prompt Injection → RCE** / **slopsquatting** 2025 신규 supply-chain attack — AI hallucinated package name을 공격자가 register) + Anthropic Daybreak/Mythos 경각 + AI 코드 Python **~30%** · JS **~25%** snippet에 security weakness. 4 카테고리 처방 (Agent Identity & Access · Data Classification Awareness · **Prompt Injection Protection** — *"never auto-execute, never auto-accept agent suggestion"* · Infrastructure Sandboxing) + 기술 가드 (static analysis CI/CD + **Ralph Loops/OpenClaw autonomous loop** + skills-based security) + 조직 가드 (skill atrophy 예방 — Gartner *"50% 조직이 2026까지 AI-free skill assessment 요구"* · productivity paradox 경고 — *"broken process + AI = 더 빠르게 broken code"*).
+마지막으로 저자는 **보안 가드레일은 더 이상 선택이 아니라고** 못 박는다. 자신의 환경에서 주당 한 건꼴로 새로운 insecure AI integration이 나타났고 다수가 실제 production incident로 이어졌다고 전하며, 네 건의 사고를 든다 — 이틀 만에 AI로 만든 Chat Integration이 2FA 우회와 열린 ACL을 타고 RCE에 이른 사례, AI 코딩 agent가 약 1,500개의 보호된 DB 테이블에 무단 접근한 사례, Google Docs에 심긴 prompt injection이 입력 필터링을 우회해 RCE로 번진 사례, 그리고 AI가 환각한 패키지명을 공격자가 선점 등록하는 2025년 신종 공급망 공격 slopsquatting이다. AI 코드 스니펫의 보안 취약 비율은 Python 약 30%, JavaScript 약 25%로 집계된다. 처방은 9개 컨트롤(4+3+2)로 — Agent Identity & Access · Data Classification · Prompt Injection Protection("신뢰할 수 없는 명령을 자동 실행하지 말고, agent 제안을 자동 수락하지 말 것") · Infrastructure Sandboxing의 4축, static analysis의 CI/CD 통합 · Ralph Loops나 OpenClaw 같은 autonomous loop · skills-based security의 기술 3축, 그리고 skill atrophy 예방(Gartner는 2026년까지 조직의 50%가 "AI-free" 역량 평가를 요구하리라 전망)과 productivity paradox 경고("망가진 프로세스에 AI를 더하면 망가진 코드를 더 빠르게 찍어낼 뿐")의 조직 2축이다.
 
-마지막 메시지: **도메인 전문성이 AI-native productivity의 진짜 차별자**이며 *"multi-year transformation이지 tooling upgrade가 아니다"*.
+결론은 분명하다. **AI-native 생산성의 진짜 차별자는 도메인 전문성**이며, 이것은 한 번의 도구 도입이 아니라 여러 해에 걸친 전환이라는 것이다.
 
-> **2차 자료 주의**: Stanford/METR/Anthropic/GitClear/MIT/Gartner 등 다수 연구 인용에 **출처 링크/논문 ID/연도가 거의 없음**. NYT 링크(2026-04-06 Isaac & Griffith)만 명시. *"환경에서 주당 ~1건"* 같은 1인칭 정성 관찰은 Meta hyperscale 환경 추정이라 SMB/스타트업으로 generalize 불가. *"OpenClaw of Claude"* / *"Anthropic Daybreak/Mythos"* 명칭은 공식 문서 미확인 — 후속 검증 필요. 시리즈 Part 2 (AI-Native Leaders) 미발행.
+> **2차 자료 주의**: Stanford·METR·Anthropic·GitClear·MIT·Gartner 등 다수 연구를 인용하지만 출처 링크나 논문 ID, 연도가 거의 없다(명시된 것은 NYT 2026-04-06 Isaac & Griffith뿐). "주당 한 건" 같은 1인칭 정성 관찰은 Meta hyperscale 환경 기준이라 SMB·스타트업에 그대로 일반화하기 어렵다. "OpenClaw of Claude", "Anthropic Daybreak/Mythos"는 공식 명칭이 확인되지 않아 후속 추적이 필요하다. 2부 "AI-Native Leaders"는 아직 미발행이다.
 
 ## 주요 기여 (Key Contributions)
 
-1. **"Engineer → Orchestrator" 정체성 재정의**: *"코딩은 항상 engineering의 20–30%였고 더 많은 코드 ≠ 더 productive"* → AI-native engineering = *"코딩 능력을 전제로 AI agent와 도구를 commanding/mastering"*. **vibe coding과의 카테고리 분리** 명시.
-2. **4 Core Practices 체계화**: Synchronized Context Engineering / Spec-Driven Development / Critical Verification / Problem Decomposition. 각 practice가 무엇·왜·운영 룰까지 1:1 정렬.
-3. **40/20/40 시간 배분 권고**: 대부분 개발자가 generation에 시간 쓰는 통념을 정면 반박. *"generation은 빠르고 verification + context가 새 time sink"*.
-4. **3-phase 개인 전환 여정**: Foundation ≤ 2주 · Integration ≤ 1개월 · Mastery live on. **목표: 80%+ AI-generated · <20% rewrite**.
-5. **70/30 팀 변환 법칙**: 70% 성공이 operational/cultural 변화. 3 필수 — psychological safety (MIT 83%) · evolved code review (AI vs 휴먼 분리 rubric, *"AI-generated + AI-reviewed PR 조합 명시적 guardrail"*) · shared context libraries (표준화 ↔ standardization 경쟁 경계).
-6. **ADLC (Agentic Development Life Cycle) 6단계**: Planning → Building → Testing → Review → Documentation → Codify. **Pro Tip — agent swarm 분리 + 견제 구조**. Review에서 **generalization principle** (한 instance 발견 시 같은 type 사전 스캔).
-7. **"Construction cost vs decision cost" 구분**: *"AI가 building 비용 drastic 감소 = total dev cost의 20–30%일 뿐, '무엇을 빌드/죽일지' decision cost는 그대로"* — 산업 narrative 반박.
-8. **AI의 진짜 4 leverage**: cheaper experimentation (>70% feature 미도달) · prototyping (v0/Replit Agent/Bolt.new) · automated boilerplate (not judgment) · **"design to 50%" principle**.
-9. **4 실 보안 인시던트 + slopsquatting**: Chat Integration RCE / Unauthorized DB Access ~1,500 table / Google Docs Prompt Injection → RCE / slopsquatting 2025 신규 supply-chain attack. **AI 코드 Python ~30% · JS ~25% snippet security weakness**.
-10. **4+3+2 Guardrail 스택**: Agent/Identity 4축 (Access · Data Classification · **Prompt Injection Protection** · Infrastructure Sandboxing) + Technical 3축 (static analysis CI/CD · **Ralph Loops/OpenClaw autonomous loop** · skills-based security) + Organizational 2축 (skill atrophy 예방 — Gartner 50% · productivity paradox 경고).
-11. **도메인 전문성이 진짜 차별자**: *"senior engineer가 dramatically 더 나은 결과를 내는 이유는 더 깊은 context와 sharper judgment"*. AI는 amplify지 replace 아님. *"multi-year transformation이지 tooling upgrade가 아님 — tooling으로 취급한 팀은 일관 실패"*.
+1. **engineer에서 orchestrator로의 정체성 재정의**: 코딩은 늘 engineering의 20–30%였을 뿐이고 코드가 늘었다고 더 생산적이지는 않다는 전제에서 출발해, AI-native engineering을 "코딩 능력을 갖춘 사람이 AI agent와 도구를 부리고 통달하는 일"로 규정한다. vibe coding과는 범주가 다르다는 점을 분명히 했다.
+2. **4 Core Practices 체계화**: 맥락 동기화 엔지니어링 · 명세 주도 개발 · 비판적 검증 · 문제 분해. 각 실천을 "무엇을 · 왜 지금 · 어떤 운영 규칙으로"의 세 축으로 정렬했다.
+3. **40/20/40 시간 배분 권고**: 개발자 대부분이 코드 생성에 시간을 쏟는다는 통념을 반박한다. 생성은 빠르고, 새로운 병목은 검증과 맥락 설정이라는 것이다.
+4. **3단계 개인 전환 여정**: Foundation 2주 이내 · Integration 1개월 이내 · Mastery 지속. 목표는 AI 생성 코드 80% 이상, 재작성률 20% 미만이다.
+5. **70/30 팀 변환 법칙**: 전환 성공의 70%가 운영·문화 변화에서 온다. 세 가지가 필수다 — psychological safety(MIT 조사 리더 83%), 진화한 코드 리뷰(AI 코드와 사람 코드를 분리해 별도 rubric으로 보고, "AI가 생성하고 AI가 리뷰한 PR" 조합에는 명시적 guardrail), 그리고 공유 맥락 라이브러리(표준화를 두고 경쟁하지 말고 협업하라는 경계).
+6. **ADLC(Agentic Development Life Cycle) 6단계**: Planning → Building → Testing → Review → Documentation → Codify. 핵심 팁은 agent swarm을 분리해 서로 견제시키는 구조이며, Review 단계에는 한 건의 취약점이 발견되면 같은 유형을 미리 스캔하는 generalization principle을 둔다.
+7. **construction cost와 decision cost의 구분**: AI가 빌드 비용을 크게 줄였지만 그것은 전체 개발 비용의 20–30%일 뿐이고, "무엇을 만들고 무엇을 버릴지"의 의사결정 비용은 그대로라는 논리로 업계 통념을 반박한다.
+8. **AI가 내는 진짜 레버리지 4가지**: 값싼 실험(기능의 70% 이상은 사용자에게 닿지 못함), 빠른 프로토타이핑(v0·Replit Agent·Bolt.new), 판단이 아닌 보일러플레이트 자동화, 그리고 "design to 50%" 원칙.
+9. **실제 보안 사고 4건과 slopsquatting**: Chat Integration RCE, 약 1,500개 테이블에 대한 무단 DB 접근, Google Docs prompt injection을 통한 RCE, 그리고 2025년 신종 공급망 공격 slopsquatting. AI 코드 스니펫의 보안 취약 비율은 Python 약 30%, JavaScript 약 25%다.
+10. **4+3+2 = 9개 Guardrail 스택**: Agent/Identity 4축(Access · Data Classification · Prompt Injection Protection · Infrastructure Sandboxing), Technical 3축(static analysis CI/CD 통합 · Ralph Loops/OpenClaw autonomous loop · skills-based security), Organizational 2축(skill atrophy 예방 — Gartner 50% · productivity paradox 경고).
+11. **진짜 차별자는 도메인 전문성**: senior engineer가 훨씬 나은 결과를 내는 이유는 더 깊은 맥락과 더 날카로운 판단을 가져오기 때문이다. AI는 전문성을 대체하는 게 아니라 증폭한다. 이것은 한 번의 도구 도입이 아니라 여러 해에 걸친 전환이며, 도구 업그레이드로만 취급한 팀은 한결같이 실패했다.
 
 ## 방법론 및 아키텍처 (Methodology and Architecture)
 
 ### 4 Core Practices의 운영적 정의
 
-| Practice | What | Why now | Operational rule |
+| Practice | 무엇을 | 왜 지금 | 운영 규칙 |
 |---|---|---|---|
-| **Synchronized Context Engineering** | Project-specific info의 systematic curation + AI working memory 주입 (arch diagram·coding standard·business rule·team convention·dev workflow) — 팀 reusable·standardized | AI output 품질 = 받은 context 품질로 bounded. MCP가 *"USB-C for AI"* 표준. CLAUDE.md = core infrastructure (optional doc 아님) | "prompt engineering" → "context engineering" 의식 전환. 팀 효과 **40–50% 속도 ↑** 보고 |
-| **Spec-Driven Development** | "AI에게 빌드 요청 전 무엇을 원하는지 정의 → discrete milestone 분해 → success criteria 명시 → checkpoint별 validation으로 incrementally 실행" | garbage-in이 unprecedented speed/volume으로 증폭. spec 없으면 agent가 circular reasoning에 빠짐 | agent가 open Qs를 사용자에게 확인하고 *스스로 답 찾으러 떠나지 못하게* 강제 |
-| **Critical Verification** | 코드 작성 → 코드가 scale/reliability/security로 작동함을 증명으로 bottleneck 영구 이동 | AI 코드 품질 ≈ early-career dev. **~45% security flaw**, Stanford *"AI 사용자가 덜 안전한 코드를 더 자신감 있게"*, METR/Anthropic **−19% 친숙 codebase 속도**, GitClear *"code churn ↑"* | review/test/verification = new rate-limiting factor, non-negotiable |
-| **Problem Decomposition** | 인간 = edge case/custom logic/domain, AI = **70–80% routine implementation** | 복잡 문제 → context pollution → slop generation → recovery 어려움 | *"하루이틀 날리지 마라"* — well-defined context + 합리적 spec + verification guardrail 없는 stubborn run 회피 |
+| **Synchronized Context Engineering** | 프로젝트별 정보(아키텍처 다이어그램·코딩 표준·비즈니스 규칙·팀 관례·개발 워크플로우)를 체계적으로 큐레이션해 AI working memory에 주입 — 팀 전체가 재사용·표준화 | AI 출력 품질은 받은 맥락의 품질을 넘지 못한다. MCP가 "USB-C for AI" 표준으로 자리 잡았고, CLAUDE.md는 선택적 문서가 아닌 핵심 인프라다 | "prompt engineering"에서 "context engineering"으로의 의식 전환. 팀 속도 40–50% 향상 보고 |
+| **Spec-Driven Development** | AI에게 빌드를 맡기기 전에 무엇을 원하는지 먼저 정의하고, 명확한 milestone으로 쪼개 success criteria를 정한 뒤, 단계마다 검증하며 점진적으로 실행 | garbage-in이 전례 없는 속도·물량으로 증폭된다. 명세가 없으면 agent는 circular reasoning에 빠진다 | agent가 미해결 질문은 사용자에게 확인하게 하고, 혼자 답을 찾아 헤매지 못하게 강제 |
+| **Critical Verification** | 병목이 "코드를 쓰는 일"에서 "그 코드가 규모·신뢰성·보안 측면에서 작동함을 증명하는 일"로 영구 이동 | AI 코드 품질은 초급 개발자 수준이다. 약 45%에 보안 결함, Stanford 연구는 "AI 사용자가 덜 안전한 코드를 더 자신 있게 쓴다"고 보고, METR/Anthropic은 친숙한 코드베이스에서 19% 감속, GitClear는 code churn 증가를 관찰 | 리뷰·테스트·검증이 새로운 율속 단계이며 타협 불가 |
+| **Problem Decomposition** | 사람은 edge case·커스텀 로직·도메인을, AI는 70–80%의 정형 구현을 담당 | 복잡한 문제는 맥락 오염과 slop 생성을 부르고, agent가 거기서 회복하기 어렵다 | "하루이틀 날리지 마라" — 잘 정의된 맥락·합리적 명세·검증 가드레일 없이 고집스레 돌리는 실행을 피한다 |
 
-### 40/20/40 시간 배분 (반-직관)
+### 40/20/40 시간 배분 (직관에 반하는 처방)
 
 ```
 40% context-setting │ 20% generation + testing iteration │ 40% review + verification
 ```
 
-대부분 개발자가 generation 단계에 시간 쓰는 통념과 정면 충돌. *"generation은 빠르다 — verification + context가 새 time sink"*. ADLC 구조와 정합: planning이 가장 중요, review swarm이 마지막 게이트.
+개발자 대부분이 코드 생성에 시간을 쏟는다는 통념과 정면으로 부딪힌다. 생성은 빠르고, 새로운 시간 싱크는 검증과 맥락 설정이라는 것이다. ADLC 구조와도 맞물린다 — planning이 가장 중요하고, review swarm이 마지막 게이트가 된다.
 
 ### 3-phase 개인 전환 여정
 
 | Phase | 기간 | 핵심 활동 | 핵심 위험 |
 |---|---|---|---|
-| **1. Foundation** | ≤ 2주 | Primary AI assistant 1개 선택 (Codex / Claude Code / Cursor) · 일상 사용으로 capabilities/limitations 직관 빌드 · workspace/config 셋업 · 개인 노트 작성 | manual → AI-assisted 정체성 도약 — *"언제 AI가 value, 언제 더 일 만드는지"* judgment 결여 |
-| **2. Integration** | ≤ 1개월 | 구조화 프롬프트 framework · project-specific context file · **"Plan → Execute → Review" 워크플로우** · 각 atomic task 후 review · approval gate + guardrail | review skip = 사용자 + agent 동반 piled tech debt. 큰 자율 실행 유혹 — *"unplanned/speculative autonomous run = slop의 destiny는 throwaway"* |
-| **3. Mastery** | live on | 다중-단계/다중-파일 task에 agent deploy · AI-assisted code review · 다중 agent workflow + parallel session + cross-agent verification | 매주 새 벤치마크 — *"Claude/Codex 발신자 권고를 본인 상황에 맞게, blindly follow 금지"* |
+| **1. Foundation** | 2주 이내 | 주력 AI assistant 하나를 고르고(Codex / Claude Code / Cursor) 매일 써보며 능력과 한계에 대한 직관을 쌓는다 · workspace와 설정을 갖추고 개인 노트를 기록 | 수작업에서 AI 보조로의 정체성 도약 — "언제 AI가 도움이 되고 언제 일을 더 만드는지"에 대한 판단력 부재 |
+| **2. Integration** | 1개월 이내 | 구조화된 프롬프트 framework · 프로젝트별 context file · "Plan → Execute → Review" 워크플로우 · atomic task마다 리뷰 · approval gate와 guardrail 수립 | 리뷰를 건너뛰면 사용자와 agent 모두에게 기술부채가 쌓인다. 큰 자율 실행의 유혹 — 계획 없이 추측으로 돌린 autonomous run은 결국 버려질 slop만 남긴다 |
+| **3. Mastery** | 지속 | 다단계·다중 파일 task에 agent 투입 · AI 보조 코드 리뷰 · 다중 agent 워크플로우와 병렬 세션, cross-agent 검증 | 매주 새 벤치마크가 쏟아진다 — Claude·Codex 제작사의 권고를 그대로 따르지 말고 자기 상황에 맞게 적용 |
 
 **Target metric**: **80%+ AI-generated coding rate · <20% rewrite rate**.
 
@@ -82,14 +82,14 @@ Planning ───────────► Building ─────► Testin
 
 | 단계 | 핵심 | Pro pattern |
 |---|---|---|
-| **Planning** (가장 critical) | deep research + 다중 agent 병렬 탐사, codebase에 specify, ambiguity flag, subtask 분해, difficulty 추정, roadmap + version milestone | *"planning agent가 exploration agent들의 발견을 통합한 implementation strategy 생성"*. *"OpenClaw of Claude can run multiple sub-agents in parallel"* |
-| **Building** | agent = junior/mid-level engineer (*"1–2년 내 senior 예상"*), engineer = **tech lead**, sequential/parallel은 roadmap+verification plan 종속 | Claude Code · Cursor Composer · GitHub Copilot Agent Mode · OpenAI Codex 풍경 추적 |
-| **Testing** | *"TDD reincarnated"*: agent가 test plan 먼저, 처음엔 모두 실패 → 점진 통과. unit + integration + e2e | *"unit testing 과적합으로 integration/system 누락 경계"* |
-| **Review** | swarm을 7개 차원으로 specialize (functionality · quality · scalability · performance · reliability · security · privacy), agent 1차 → 휴먼 careful | **Generalization principle**: 한 instance (예: injection vulnerability) 발견 시 *"같은 type 다른 instance도 likely 존재 → 사전 스캔"* |
-| **Documentation** | post-facto → 실시간. agent가 summary/design decision/arch diagram/changelog → API doc/feature collateral/customer-facing content | *"수십 년 묵은 stale/outdated/inconsistent doc 문제 finally 해결"* |
-| **Codify ADLC** | Layer-1 (개인) + Layer-2 (팀) practice를 self-evolving context file/skills library/MCP tool로 인코딩 | *"tribal knowledge에 머물지 않도록 조직 전체 scale"* |
+| **Planning** (가장 중요) | deep research와 다중 agent 병렬 탐사, 코드베이스에 맞춘 명세화, 모호성 표시, subtask 분해, 난이도 추정, roadmap과 version milestone 수립 | planning agent가 여러 exploration agent의 발견을 모아 일관된 구현 전략을 만든다. Claude의 "OpenClaw"는 여러 sub-agent를 병렬로 돌릴 수 있다 |
+| **Building** | agent는 초·중급 엔지니어 역할(1–2년 안에 senior 수준으로 오르리라 예상), 사람은 tech lead 역할. 순차/병렬 실행은 roadmap과 검증 계획에 따라 결정 | Claude Code · Cursor Composer · GitHub Copilot Agent Mode · OpenAI Codex의 빠른 변화를 추적 |
+| **Testing** | "TDD의 부활" — agent가 테스트 계획을 먼저 세우고, 처음엔 모두 실패한 뒤 점진적으로 통과시킨다. unit · integration · e2e를 모두 | unit 테스트에 과몰입해 integration·system 테스트를 빠뜨리지 않도록 경계 |
+| **Review** | swarm을 7개 차원(기능성 · 품질 · 확장성 · 성능 · 신뢰성 · 보안 · 프라이버시)으로 전문화해 agent가 1차로 훑고 사람이 꼼꼼히 확인 | **generalization principle**: 한 사례(예: injection 취약점)가 나오면 같은 유형이 다른 곳에도 있다고 보고 미리 스캔 |
+| **Documentation** | 사후 문서화에서 실시간 생성으로 전환. agent가 요약·설계 결정·아키텍처 다이어그램·changelog를 쓰고, 이것이 API 문서와 고객용 콘텐츠로 이어진다 | 수십 년 묵은 낡고 일관성 없는 문서 문제를 마침내 풀어내는 중 |
+| **Codify ADLC** | Layer-1(개인)과 Layer-2(팀)의 실천을 스스로 진화하는 context file·skills library·MCP tool로 인코딩 | 부족 지식에 머물지 않도록 조직 전체로 확장 |
 
-**Pro Tip — Agent swarm 견제 구조**: planning/building/testing/review agent를 분리해 서로 견제. planning이 shortcut 잡는 building을 challenge, testing이 coverage skipper 적발, review가 biased-but-plausible implementation 적발.
+**Pro Tip — agent swarm 견제 구조**: planning·building·testing·review agent를 분리해 서로 견제하게 한다. planning은 지름길을 택한 building을 물고 늘어지고, testing은 커버리지를 빠뜨린 곳을 잡아내며, review는 그럴듯하지만 편향된 구현을 적발한다.
 
 ### Security Guardrail Stack (4+3+2 = 9 컨트롤)
 
@@ -97,29 +97,29 @@ Planning ───────────► Building ─────► Testin
 
 | 컨트롤 | 핵심 |
 |---|---|
-| Agent Identity & Access Control | step-up 2FA, least privilege, no shared credential/open ACL, read-only → read-write 확장 |
-| Data Classification Awareness | agent가 sensitive boundary 존중. **"Agentic Authorization"** = agent가 machine speed로 휴먼 oversight 못 따라가는 속도로 restriction 우회하는 enterprise neue challenge |
-| Prompt Injection Protection | 외부 컨텐츠(docs/web/user input)가 hidden instruction 담을 수 있다. input filtering / content validation / context sanitization. **never auto-execute untrusted command, never auto-accept agent suggestion** |
-| Infrastructure Sandboxing | agent activity observable+auditable, 고위험 prod surface (configuration · critical execution · critical storage) block, OS-level enforcement |
+| Agent Identity & Access Control | step-up 2FA, 최소 권한, 공유 credential·열린 ACL 금지, read-only로 시작해 read-write로 확장 |
+| Data Classification Awareness | agent가 민감 데이터 경계를 존중하게 한다. "Agentic Authorization" — agent가 사람의 감독이 따라잡지 못하는 기계 속도로 제약을 우회하는, 새롭게 떠오른 엔터프라이즈 과제 |
+| Prompt Injection Protection | 외부 콘텐츠(문서·웹·사용자 입력)에 숨은 명령이 들어 있을 수 있다. 입력 필터링·콘텐츠 검증·맥락 정화를 적용하고, 신뢰할 수 없는 명령을 자동 실행하거나 agent 제안을 자동 수락하지 않는다 |
+| Infrastructure Sandboxing | agent 활동을 관찰·감사 가능하게 하고, 고위험 production 영역(설정·핵심 실행·핵심 저장소)을 차단하며 OS 수준에서 강제 |
 
 **Technical 3축**
 
 | 컨트롤 | 핵심 |
 |---|---|
-| Static analysis CI/CD 통합 | AI 코드 Python **~30%** · JS **~25%** snippet에 security weakness. **인증/결제/PII는 mandatory 휴먼 review** |
-| Automated quality gates | **Ralph Loops · OpenClaw 등 autonomous loop** (success criteria까지 iterative verification) + type-check/lint/test before diff submit + multi-stage canary |
-| Skills-based security | agent에게 secure coding 패턴 학습 → generation 단계에 vulnerability flag. *"shift left, but with agents"* |
+| Static analysis CI/CD 통합 | AI 코드 스니펫의 보안 취약 비율은 Python 약 30%, JavaScript 약 25%. 인증·결제·PII 관련 코드는 사람 리뷰 필수 |
+| Automated quality gates | Ralph Loops나 OpenClaw 같은 autonomous loop로 success criteria를 충족할 때까지 반복 검증 + diff 제출 전 type-check·lint·test + 다단계 canary |
+| Skills-based security | agent에게 안전한 코딩 패턴을 가르쳐 생성 단계에서 취약점을 짚게 한다 — "shift left, 단 agent와 함께" |
 
 **Organizational 2축**
 
 | 컨트롤 | 핵심 |
 |---|---|
-| Skill atrophy prevention | Gartner *"50% 조직이 2026까지 AI-free skill assessment 요구"*. *"AI를 학습 도구로 — 생성 코드와 함께 explanation 요청"*, occasional 하게 AI 없이 작업. *"Luddism이 아니라 보험"* |
-| Productivity paradox 경고 | 개인 gain이 팀/회사에서 materialize 실패 다수. focus on **end-to-end cycle time + feature velocity** (not coding speed). *"broken process + AI = 더 빠르게 broken code"* |
+| Skill atrophy prevention | Gartner는 2026년까지 조직의 50%가 "AI-free" 역량 평가를 요구하리라 전망. AI를 학습 도구로 삼아 생성 코드와 함께 설명을 요청하고, 가끔은 AI 없이 작업한다. 러다이트가 아니라 보험이다 |
+| Productivity paradox 경고 | 개인 차원의 이득이 팀·회사 차원에서 실현되지 못하는 경우가 많다. 코딩 속도가 아니라 end-to-end 사이클 타임과 기능 속도에 집중하라. 망가진 프로세스에 AI를 더하면 망가진 코드를 더 빠르게 찍어낼 뿐이다 |
 
 ## 결과 (Results)
 
-본 자료는 essay이며 **자체 측정 수치는 없다**. 외부 인용 수치를 한 곳에 집계:
+이 글은 essay라서 **자체 측정 수치는 없다**. 인용된 외부 수치를 한자리에 모은다:
 
 | 메트릭 | 값 | 출처 (article 인용) |
 |---|---:|---|
@@ -143,35 +143,35 @@ Planning ───────────► Building ─────► Testin
 
 ## 한계 (Limitations)
 
-- **출처 명시 부족**: Stanford/METR/Anthropic/GitClear/MIT/Gartner 다수 연구를 인용하지만 직접 링크·논문 ID·연도가 거의 없다. NYT 링크(2026-04-06)만 명시 → 독자 follow-up 검증 어려움.
-- **Meta 시점 편향**: *"환경에서 주당 ~1건 insecure AI integration"* 같은 정성 관찰이 hyperscale 단일 회사에서 generalizable한지 불명. SMB/스타트업은 빈도/유형 다를 수 있음.
-- **벤치마크 부재**: *"4 Core Practices 적용 시 40–50% 속도 ↑"* 등 정량 주장의 측정 방법론·통제군 미공개. ADLC가 전통 SDLC보다 우월하다는 핵심 명제도 비교 실험 없음.
-- **80%+/<20% 메트릭 정의 모호**: *"AI-generated"* 범위(suggestion 채택? 무수정 채택? 함수 단위?), *"rewrite"* 기준(line-level diff? 시맨틱?) 미규정.
-- **40/20/40 시간 배분 일반화 위험**: 도메인(systems vs frontend), 친숙도(legacy vs greenfield), task 길이(quick fix vs multi-week)에 따른 적정 비율 변동 미논의. METR가 *"친숙 codebase에서 −19%"*임을 인용했음에도 80%+ AI-generated 목표가 그 환경에서 작동하는지 답 없음.
-- **명칭 모호**: *"OpenClaw of Claude"* / *"Anthropic Daybreak/Mythos"* 공식 명칭 미확인 → 미래 reader 추적성 약화.
-- **2차 통계 누적 인용 위험**: *">75% Google 신규 코드 AI"* 도입부 통계는 1차 출처 미명시. 미디어 반복 인용에서 정확도가 변질될 가능성.
-- **시리즈 Part 1만 발행**: 70% 팀 변환 처방이 Part 2 (AI-Native Leaders) 약속이라 본 essay만으로는 미완.
-- **실 인시던트 4건의 anonymization 한계**: 어느 조직·stack·effective mitigation 디테일 부재 → *"학습용 사례"* 가치 제한.
+- **출처 명시 부족**: Stanford·METR·Anthropic·GitClear·MIT·Gartner 등 여러 연구를 인용하지만 직접 링크나 논문 ID, 연도가 거의 없다. 링크가 달린 것은 NYT(2026-04-06)뿐이라 독자가 후속 검증을 하기 어렵다.
+- **Meta 시점 편향**: "주당 한 건꼴로 insecure AI integration이 나타난다"는 정성 관찰이 hyperscale 단일 회사를 넘어 일반화되는지 불분명하다. SMB·스타트업에서는 빈도와 유형이 다를 수 있다.
+- **벤치마크 부재**: "4 Core Practices를 적용하면 40–50% 빨라진다" 같은 정량 주장의 측정 방법론과 통제군이 공개되지 않았다. ADLC가 전통 SDLC보다 우월하다는 핵심 명제에도 비교 실험이 없다.
+- **80%+/<20% 메트릭 정의 모호**: "AI 생성"의 범위(제안 채택인지, 무수정 채택인지, 함수 단위인지)와 "재작성"의 기준(라인 단위 diff인지, 의미 단위인지)이 규정되지 않았다.
+- **40/20/40 시간 배분의 일반화 위험**: 도메인(systems vs frontend), 친숙도(legacy vs greenfield), task 길이(빠른 수정 vs 수 주짜리 기능)에 따라 적정 비율이 달라질 텐데 이를 논하지 않는다. METR의 "친숙한 코드베이스에서 19% 감속"을 인용하면서도, 80%+ AI 생성 목표가 바로 그 환경에서 통하는지에는 답하지 않는다.
+- **명칭 모호**: "OpenClaw of Claude", "Anthropic Daybreak/Mythos"는 공식 명칭이 확인되지 않아 미래 독자의 추적성이 약하다.
+- **2차 통계의 누적 인용 위험**: "Google 신규 코드의 75%+가 AI" 같은 도입부 통계는 1차 출처가 명시되지 않았다. 미디어를 거쳐 반복 인용되며 정확도가 변질될 수 있다.
+- **시리즈 1부만 발행**: 70% 팀 변환 처방은 2부 "AI-Native Leaders"의 몫으로 미뤄져, 이 글만으로는 미완이다.
+- **실제 사고 4건의 익명화 한계**: 어느 조직·스택이었는지, 어떤 완화책이 효과적이었는지 같은 디테일이 빠져 "학습용 사례"로서의 가치가 제한된다.
 
 ## 관련 페이지 (Related Pages)
 
-- [[agents/lee-hoyeon-2026-harness-engineering]] — 본 article의 **직접 짝**. *"prompt → context → 환경 자체 설계"* 진화 모델 공유. Lee Hoyeon의 **Harness 6축 순환** (구조/맥락/계획/실행/검증/개선)이 Rahman의 **ADLC 6단계** (Planning/Building/Testing/Review/Documentation/Codify)와 거의 1:1 대응. *"같은 모델 + 다른 harness = TerminalBench +14%p"* (LangChain 케이스) 인용이 본 article의 *"같은 모델/도구, 다른 결과"* 격차 thesis의 정량 증거.
-- [[agents/lin-2026-harness-updating-is-not-harness-benefit]] — *"harness invocation을 first-class skill로 학습, long-horizon instruction following을 RL/SFT target으로"* 결론이 본 article의 *"agent에게 secure coding 패턴을 skill로 학습"* (skills-based security)과 같은 방향. *"within-agent spread 5.1pp vs between-agent gap 36.0pp"* 발견이 본 article의 *"capability budget을 evolver가 아닌 task-solving agent에 투자"* 권고를 뒷받침.
-- [[agents/dennis-2026-compiling-agentic-workflows-into-llm]] — *"persistent structure belongs in weights, transient state belongs in prompt"* thesis가 본 article의 ADLC *"Codify"* 단계 (Layer-1/Layer-2 practice를 self-evolving context file/skill로 인코딩)와 같은 *"안정 구조 압축"* 철학.
-- [[agents/qiao-2026-memory-intelligence-agent]] — Manager-Planner-Executor 3-agent decoupling이 본 article의 *"planning/building/testing/review agent swarm 분리 + 견제"* Pro Tip과 같은 구조적 분리 사상.
-- [[agents/zou-2026-task-focused-memorization-multimodal-agents]] — *"memory is active goal-driven process, not passive storage"* thesis가 본 article의 *"context engineering = systematic curation + AI working memory 주입"* (단순 prompt 저장 아님) 정의와 같은 메모리 능동성 강조.
-- [[applications/kmyu-2026-llm-wiki-pattern-synthesis]] — *"북키핑 비용 ~0 → Bush Memex 1945 미해결 '누가 유지' 문제에 LLM이 답"* 통찰이 본 article의 ADLC *"Documentation"* 단계 (post-facto → 실시간 generation) 약속과 정렬.
-- [[applications/datasciencedojo-2026-llm-wiki-by-andrej-karpathy]] — *"context file = core infrastructure"* (본 article)와 LLM Wiki entity page (Karpathy 패턴)는 같은 *"AI working memory를 systematic 큐레이션"* 사상의 다른 표현.
-- [[applications/dnotitia-akb]] — MCP-first agent knowledge base. 본 article이 *"MCP = USB-C for AI"* 로 강조한 표준의 production 구현체.
-- [[applications/garrytan-gbrain]] / [[applications/safishamsi-graphify]] / [[applications/colbymchenry-codegraph]] — *"context file = core infrastructure"* 명제를 markdown-first agent memory · graph-only RAG · code-intelligence MCP 형태로 각각 인스턴스화한 도구들.
-- [[applications/pandey-2026-rag-is-no-longer-just]] — *"RAG는 single pattern이 아니라 design space"* 슬로건이 본 article의 *"agent ≠ 단일 paradigm — orchestration이 필요"* 마인드셋과 같은 방향.
+- [[agents/lee-hoyeon-2026-harness-engineering]] — 이 글의 직접적인 짝이다. "prompt → context → 환경 자체 설계"라는 진화 모델을 공유하며, 이호연의 Harness 6축 순환(구조/맥락/계획/실행/검증/개선)이 Rahman의 ADLC 6단계(Planning/Building/Testing/Review/Documentation/Codify)와 거의 1:1로 대응한다. "같은 모델에 다른 harness를 얹으니 TerminalBench가 14%p 올랐다"는 LangChain 사례가, 이 글의 "같은 모델·도구인데 결과가 갈린다"는 격차 명제의 정량적 증거가 된다.
+- [[agents/lin-2026-harness-updating-is-not-harness-benefit]] — "harness 호출을 first-class skill로 학습시키고 long-horizon instruction following을 RL/SFT 타깃으로 삼으라"는 결론이, 이 글의 skills-based security(agent에게 안전한 코딩 패턴을 학습)와 같은 방향이다. "within-agent 편차 5.1pp 대 between-agent 격차 36.0pp"라는 발견은 "capability budget을 evolver가 아니라 task-solving agent에 투자하라"는 권고를 뒷받침한다.
+- [[agents/dennis-2026-compiling-agentic-workflows-into-llm]] — "안정적 구조는 weights에, 일시적 상태는 prompt에 둔다"는 명제가, 이 글 ADLC의 Codify 단계(Layer-1/Layer-2 실천을 스스로 진화하는 context file·skill로 인코딩)와 같은 "안정 구조 압축" 철학이다.
+- [[agents/qiao-2026-memory-intelligence-agent]] — Manager-Planner-Executor 3-agent 분리가, 이 글의 "planning/building/testing/review agent swarm을 나눠 서로 견제시킨다"는 Pro Tip과 같은 구조적 분리 사상이다.
+- [[agents/zou-2026-task-focused-memorization-multimodal-agents]] — "메모리는 수동적 저장이 아니라 능동적·목표 지향적 과정"이라는 명제가, 이 글의 맥락 엔지니어링 정의(단순 prompt 저장이 아닌 체계적 큐레이션과 working memory 주입)와 같은 메모리 능동성을 강조한다.
+- [[applications/kmyu-2026-llm-wiki-pattern-synthesis]] — "북키핑 비용이 0에 가까워지며 Bush의 1945년 Memex가 풀지 못한 '누가 유지하느냐' 문제에 LLM이 답한다"는 통찰이, 이 글 ADLC의 Documentation 단계(사후 문서화에서 실시간 생성으로)의 약속과 정렬한다.
+- [[applications/datasciencedojo-2026-llm-wiki-by-andrej-karpathy]] — 이 글의 "context file은 핵심 인프라"라는 명제와 LLM Wiki의 entity page(Karpathy 패턴)는 "AI working memory를 체계적으로 큐레이션한다"는 같은 사상의 다른 표현이다.
+- [[applications/dnotitia-akb]] — MCP 우선의 agent knowledge base로, 이 글이 "MCP = USB-C for AI"로 강조한 표준의 production 구현체다.
+- [[applications/garrytan-gbrain]] / [[applications/safishamsi-graphify]] / [[applications/colbymchenry-codegraph]] — "context file은 핵심 인프라"라는 명제를 각각 markdown 우선 agent memory, graph 전용 RAG, code-intelligence MCP 형태로 구현한 도구들이다.
+- [[applications/pandey-2026-rag-is-no-longer-just]] — "RAG는 하나의 패턴이 아니라 design space"라는 슬로건이, 이 글의 "agent도 단일 패러다임이 아니며 orchestration이 필요하다"는 마인드셋과 같은 방향이다.
 
 ## 외부 참고 (External References)
 
 - 본 article URL: <https://blog.bytebytego.com/p/a-practical-guide-to-becoming-an>
 - NYT "Code Overload" (Isaac & Griffith, 2026-04-06): <https://www.nytimes.com/2026/04/06/technology/ai-code-overload.html>
 - Shah Rahman LinkedIn: <https://www.linkedin.com/in/shahirahman/>
-- Karpathy "vibe coding" (2025-early) — 본 article이 명시적으로 분리하는 비교 대상.
-- Anthropic MCP (Model Context Protocol) — *"USB-C for AI"* 비유로 인용.
-- METR/Anthropic RCT (−19% 친숙 codebase 속도), Stanford AI-assistant security study, GitClear "code churn", MIT psychological safety 83%, Gartner AI-free skill assessment 50%, slopsquatting (2025 신규 supply-chain attack vector), "OpenClaw of Claude", Anthropic Daybreak/Mythos — **본 article에 직접 링크/논문 ID 없음, 후속 1차 자료 추적 필요**.
-- 시리즈 Part 2 "AI-Native Leaders" — 본 article 마지막 줄 예고, 발행 시점 미상.
+- Karpathy "vibe coding" (2025-early) — 이 글이 명시적으로 구분하는 비교 대상.
+- Anthropic MCP (Model Context Protocol) — "USB-C for AI" 비유로 인용.
+- METR/Anthropic RCT(친숙한 코드베이스에서 19% 감속), Stanford AI-assistant 보안 연구, GitClear "code churn", MIT psychological safety 83%, Gartner AI-free 역량 평가 50%, slopsquatting(2025 신종 공급망 공격), "OpenClaw of Claude", Anthropic Daybreak/Mythos — **이 글에는 직접 링크나 논문 ID가 없어 후속 1차 자료 추적이 필요하다**.
+- 시리즈 2부 "AI-Native Leaders" — 글 말미에 예고됐으나 발행 시점 미상.
