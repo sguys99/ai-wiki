@@ -1,1 +1,2 @@
 - [커밋/푸시 금지](feedback_no_auto_commit.md) — 명시적 지시 없이 git commit/push 절대 금지
+- [모든 한글 텍스트 humanize 윤문](feedback_humanize_all_text.md) — raw·wiki·index 본문은 지시 없어도 humanize-korean으로 윤문
