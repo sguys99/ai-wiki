@@ -3,6 +3,9 @@
 __pycache__/
 *.pyc
 
+# humanize-korean 스킬 작업 스크래치 (run별 산출물 — 추적 불필요)
+_workspace/
+
 # macOS
 .DS_Store
 
