@@ -12,15 +12,67 @@ url: "https://blog.bytebytego.com/p/a-practical-guide-to-becoming-an"
 publisher: "ByteByteGo Newsletter (Substack)"
 publication_date: "2026-06-02"
 tags: [ai-native-engineering, agentic-development-lifecycle, adlc, context-engineering, spec-driven-development, critical-verification, problem-decomposition, multi-agent-orchestration, ai-security, slopsquatting, prompt-injection, bytebytego, shah-rahman, meta, claude-code, cursor, codex, ralph-loop, openclaw, design-to-50, mcp]
+figures:
+  - id: fig01
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig01.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig01.png
+    caption: "글 헤더 — ADLC 4단계(Planning→Building→Testing→Review) 순환"
+    strategy: manual
+    curated: true
+  - id: fig02
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig02.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig02.png
+    caption: "AI-native engineering ≠ vibe coding ≠ no human coding (범주 구분)"
+    strategy: manual
+    curated: true
+  - id: fig03
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig03.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig03.png
+    caption: "Orchestrator Pattern — Traditional engineer vs AI-native engineer(agent swarm 지휘)"
+    strategy: manual
+    curated: true
+  - id: fig04
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig04.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig04.png
+    caption: "Context Engineering 스택 (User prompt → Project files → Team conventions → Architecture/business rules → MCP → AI agent)"
+    strategy: manual
+    curated: true
+  - id: fig05
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig05.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig05.png
+    caption: "Verification Inversion — 기대(10/70/20) vs 실제(40/20/40) 시간 배분"
+    strategy: manual
+    curated: true
+  - id: fig06
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig06.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig06.png
+    caption: "Agentic Development Lifecycle 전체도 (Planning→Building→Testing→Review + Documentation + Codify ADLC)"
+    strategy: manual
+    curated: true
+  - id: fig07
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig07.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig07.png
+    caption: "Learning Loop — Build→Show→Watch→Learn→Decide→Simplify 순환"
+    strategy: manual
+    curated: true
 ---
 
 ## 요약 (Summary)
 
+![[assets/rahman-2026-a-practical-guide-to-becoming/fig01.png]]
+*Figure 1: 글 헤더 — ADLC 4단계(Planning → Building → Testing → Review)가 순환하는 AI-native 개발 모델 (Rahman 2026)*
+
 Meta Ads에서 Autonomous ML Iteration & Optimization을 총괄하는 Shah Rahman이 2026-06-02 ByteByteGo Newsletter에 기고한 2부작 중 1부다. 글은 화려한 통계로 문을 연다 — AI가 Google 신규 코드의 75%를 쓰고, OpenAI·Anthropic은 거의 전부를 AI로 생성하며, Amazon은 Java 8에서 17로의 30,000개 앱 마이그레이션(약 4,500 dev-year 분량)을 단기간에 끝냈고, Zuckerberg는 2026년 말이면 AI가 mid-level engineer 수준으로 일하리라 내다봤다. 그러나 저자는 곧장 반문한다. 그렇다면 왜 대부분의 팀은 2년 전보다 더 많은 버그·인시던트·기술부채를 쏟아내는가? (NYT가 2026-04-06 Isaac & Griffith의 기사에서 "code overload"라 부른 현상이다.) 같은 모델과 도구를 쓰는데도 결과가 갈리는 이 격차를, Rahman은 **engineer에서 orchestrator로의 정체성 전환** 한 가지로 설명한다.
+
+![[assets/rahman-2026-a-practical-guide-to-becoming/fig02.png]]
+*Figure 2: AI-native engineering ≠ vibe coding ≠ no human coding — 세 범주의 명시적 구분 (Rahman 2026)*
 
 핵심 명제는 **AI-native engineering은 vibe coding(Karpathy 2025)과 범주가 다르다**는 것이다. "코딩은 늘 engineering의 20–30%였을 뿐이고, 코드가 늘었다고 더 생산적인 것은 아니다(오히려 줄기 쉽다)"는 인식 위에서, 저자는 네 가지 핵심 실천(4 Core Practices)을 처방한다 — ① 맥락 동기화 엔지니어링(Synchronized Context Engineering): MCP를 "USB-C for AI"로, CLAUDE.md를 선택적 문서가 아닌 핵심 인프라로 보며, 엄격히 실천하는 팀은 속도가 40–50% 빨라진다고 보고된다. ② 명세 주도 개발(Spec-Driven Development). ③ 비판적 검증(Critical Verification): AI 코드의 약 45%에 보안 결함이 있고, METR/Anthropic의 RCT에서는 경력 개발자가 친숙한 코드베이스에서 오히려 19% 느려졌다. ④ 문제 분해(Problem Decomposition): edge case와 도메인 로직은 사람이, 70–80%의 정형 구현은 AI가 맡는다. 여기에 **40/20/40 시간 배분**(맥락 설정 / 생성·테스트 / 리뷰·검증), 3단계 개인 전환(Foundation 2주 이내 · Integration 1개월 이내 · Mastery 지속 — 목표는 AI 생성 코드 80% 이상, 재작성률 20% 미만), 그리고 70/30 팀 변환(MIT 조사에서 리더 83%가 "psychological safety가 AI 이니셔티브 성공에 기여한다"고 응답)을 더하고, 운영의 중심축으로 **ADLC(Agentic Development Life Cycle)** 6단계(Planning → Building → Testing → Review → Documentation → Codify)를 정의한다.
 
 ADLC의 차별점은 단계마다 별도의 agent swarm을 두어 서로 견제시키는 데 있다. planning agent가 지름길을 택한 building을 challenge하고, testing agent가 커버리지를 빠뜨린 곳을 잡아내며, review agent가 그럴듯하지만 편향된 구현을 적발한다. Review 단계에는 generalization principle을 둔다 — injection 취약점이 한 건 나오면 같은 유형이 다른 곳에도 있다고 보고 미리 스캔하는 것이다. 저자는 "construction cost와 decision cost"를 구분해 업계 통념도 반박한다. AI가 빌드 비용은 크게 줄였지만 그것은 전체 개발 비용의 20–30%일 뿐이고, "무엇을 만들고 무엇을 버릴지"라는 의사결정 비용은 거의 그대로라는 것이다. AI가 진짜 레버리지를 내는 곳은 네 군데다 — 값싼 실험(전체 기능의 70% 이상은 사용자에게 닿지도 못한다), 빠른 프로토타이핑(v0·Replit Agent·Bolt.new), 판단이 아닌 보일러플레이트 자동화, 그리고 "design to 50%" 원칙(최소 기능만 내보내고 사용자가 어디서 망설이고 이탈하는지 관찰).
+
+![[assets/rahman-2026-a-practical-guide-to-becoming/fig07.png]]
+*Figure 7: 학습 루프 — Build → Show → Watch → Learn → Decide → Simplify의 순환. AI가 Build를 압축해도 가치는 나머지 사이클의 실행 품질에 달려 있다 (Rahman 2026)*
 
 마지막으로 저자는 **보안 가드레일은 더 이상 선택이 아니라고** 못 박는다. 자신의 환경에서 주당 한 건꼴로 새로운 insecure AI integration이 나타났고 다수가 실제 production incident로 이어졌다고 전하며, 네 건의 사고를 든다 — 이틀 만에 AI로 만든 Chat Integration이 2FA 우회와 열린 ACL을 타고 RCE에 이른 사례, AI 코딩 agent가 약 1,500개의 보호된 DB 테이블에 무단 접근한 사례, Google Docs에 심긴 prompt injection이 입력 필터링을 우회해 RCE로 번진 사례, 그리고 AI가 환각한 패키지명을 공격자가 선점 등록하는 2025년 신종 공급망 공격 slopsquatting이다. AI 코드 스니펫의 보안 취약 비율은 Python 약 30%, JavaScript 약 25%로 집계된다. 처방은 9개 컨트롤(4+3+2)로 — Agent Identity & Access · Data Classification · Prompt Injection Protection("신뢰할 수 없는 명령을 자동 실행하지 말고, agent 제안을 자동 수락하지 말 것") · Infrastructure Sandboxing의 4축, static analysis의 CI/CD 통합 · Ralph Loops나 OpenClaw 같은 autonomous loop · skills-based security의 기술 3축, 그리고 skill atrophy 예방(Gartner는 2026년까지 조직의 50%가 "AI-free" 역량 평가를 요구하리라 전망)과 productivity paradox 경고("망가진 프로세스에 AI를 더하면 망가진 코드를 더 빠르게 찍어낼 뿐")의 조직 2축이다.
 
@@ -31,6 +83,9 @@ ADLC의 차별점은 단계마다 별도의 agent swarm을 두어 서로 견제�
 ## 주요 기여 (Key Contributions)
 
 1. **engineer에서 orchestrator로의 정체성 재정의**: 코딩은 늘 engineering의 20–30%였을 뿐이고 코드가 늘었다고 더 생산적이지는 않다는 전제에서 출발해, AI-native engineering을 "코딩 능력을 갖춘 사람이 AI agent와 도구를 부리고 통달하는 일"로 규정한다. vibe coding과는 범주가 다르다는 점을 분명히 했다.
+
+![[assets/rahman-2026-a-practical-guide-to-becoming/fig03.png]]
+*Figure 3: Orchestrator Pattern — 전통적 엔지니어는 Code·Tests·Docs·Reviews를 직접 다루지만, AI-native 엔지니어는 같은 자리에서 Planning·Building·Testing·Review agent를 지휘한다 (Rahman 2026)*
 2. **4 Core Practices 체계화**: 맥락 동기화 엔지니어링 · 명세 주도 개발 · 비판적 검증 · 문제 분해. 각 실천을 "무엇을 · 왜 지금 · 어떤 운영 규칙으로"의 세 축으로 정렬했다.
 3. **40/20/40 시간 배분 권고**: 개발자 대부분이 코드 생성에 시간을 쏟는다는 통념을 반박한다. 생성은 빠르고, 새로운 병목은 검증과 맥락 설정이라는 것이다.
 4. **3단계 개인 전환 여정**: Foundation 2주 이내 · Integration 1개월 이내 · Mastery 지속. 목표는 AI 생성 코드 80% 이상, 재작성률 20% 미만이다.
@@ -53,11 +108,17 @@ ADLC의 차별점은 단계마다 별도의 agent swarm을 두어 서로 견제�
 | **Critical Verification** | 병목이 "코드를 쓰는 일"에서 "그 코드가 규모·신뢰성·보안 측면에서 작동함을 증명하는 일"로 영구 이동 | AI 코드 품질은 초급 개발자 수준이다. 약 45%에 보안 결함, Stanford 연구는 "AI 사용자가 덜 안전한 코드를 더 자신 있게 쓴다"고 보고, METR/Anthropic은 친숙한 코드베이스에서 19% 감속, GitClear는 code churn 증가를 관찰 | 리뷰·테스트·검증이 새로운 율속 단계이며 타협 불가 |
 | **Problem Decomposition** | 사람은 edge case·커스텀 로직·도메인을, AI는 70–80%의 정형 구현을 담당 | 복잡한 문제는 맥락 오염과 slop 생성을 부르고, agent가 거기서 회복하기 어렵다 | "하루이틀 날리지 마라" — 잘 정의된 맥락·합리적 명세·검증 가드레일 없이 고집스레 돌리는 실행을 피한다 |
 
+![[assets/rahman-2026-a-practical-guide-to-becoming/fig04.png]]
+*Figure 4: Context Engineering 스택 — User prompt 위에 Project files, Team conventions(CLAUDE.md·코딩 표준), Architecture/business rules, MCP integrations를 쌓아 AI agent가 정렬된 출력을 내게 한다 (Rahman 2026)*
+
 ### 40/20/40 시간 배분 (직관에 반하는 처방)
 
 ```
 40% context-setting │ 20% generation + testing iteration │ 40% review + verification
 ```
+
+![[assets/rahman-2026-a-practical-guide-to-becoming/fig05.png]]
+*Figure 5: Verification Inversion — 개발자들이 기대하는 배분(10/70/20)과 실제로 통하는 배분(40/20/40)의 대비. 병목이 코드 작성에서 검증으로 이동했음을 보여준다 (Rahman 2026)*
 
 개발자 대부분이 코드 생성에 시간을 쏟는다는 통념과 정면으로 부딪힌다. 생성은 빠르고, 새로운 시간 싱크는 검증과 맥락 설정이라는 것이다. ADLC 구조와도 맞물린다 — planning이 가장 중요하고, review swarm이 마지막 게이트가 된다.
 
@@ -79,6 +140,9 @@ Planning ───────────► Building ─────► Testin
    │                                                                       │
    └──────────────────────── Codify ADLC ◄─────────────────────────────────┘
 ```
+
+![[assets/rahman-2026-a-practical-guide-to-becoming/fig06.png]]
+*Figure 6: Agentic Development Lifecycle 전체도 — Planning·Building·Testing·Review가 순환하고, Documentation은 모든 단계에 걸쳐 실시간 생성되며, Codify ADLC가 실천을 스스로 진화하는 라이브러리로 인코딩한다 (Rahman 2026)*
 
 | 단계 | 핵심 | Pro pattern |
 |---|---|---|

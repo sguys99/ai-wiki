@@ -11,6 +11,49 @@ url: "https://blog.bytebytego.com/p/a-practical-guide-to-becoming-an"
 publisher: "ByteByteGo Newsletter (Substack)"
 publication_date: "2026-06-02"
 tags: [ai-native-engineering, agentic-development-lifecycle, adlc, context-engineering, spec-driven-development, critical-verification, problem-decomposition, multi-agent-orchestration, ai-security, slopsquatting, prompt-injection, bytebytego, shah-rahman, meta, claude-code, cursor, codex, ralph-loop, openclaw, design-to-50, mcp]
+figures:
+  - id: fig01
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig01.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig01.png
+    caption: "글 헤더 — ADLC 4단계(Planning→Building→Testing→Review) 순환"
+    strategy: manual
+    curated: true
+  - id: fig02
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig02.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig02.png
+    caption: "AI-native engineering ≠ vibe coding ≠ no human coding (범주 구분)"
+    strategy: manual
+    curated: true
+  - id: fig03
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig03.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig03.png
+    caption: "Orchestrator Pattern — Traditional engineer vs AI-native engineer(agent swarm 지휘)"
+    strategy: manual
+    curated: true
+  - id: fig04
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig04.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig04.png
+    caption: "Context Engineering 스택 (User prompt → Project files → Team conventions → Architecture/business rules → MCP → AI agent)"
+    strategy: manual
+    curated: true
+  - id: fig05
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig05.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig05.png
+    caption: "Verification Inversion — 기대(10/70/20) vs 실제(40/20/40) 시간 배분"
+    strategy: manual
+    curated: true
+  - id: fig06
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig06.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig06.png
+    caption: "Agentic Development Lifecycle 전체도 (Planning→Building→Testing→Review + Documentation + Codify ADLC)"
+    strategy: manual
+    curated: true
+  - id: fig07
+    file: assets/rahman-2026-a-practical-guide-to-becoming/fig07.png
+    raw: raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/fig07.png
+    caption: "Learning Loop — Build→Show→Watch→Learn→Decide→Simplify 순환"
+    strategy: manual
+    curated: true
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -209,3 +252,17 @@ Planning ───────────► Building ─────► Testin
 - **Productivity paradox**: 개인의 AI 생산성 이득이 팀·회사 수준에서 실현되지 못하는 현상. "망가진 프로세스에 AI를 더하면 망가진 코드를 더 빠르게 양산할 뿐".
 - **70/30 (팀 변환)**: 성공의 70%가 운영·문화 변화에서, 30%가 기술·도구에서 온다는 이 글의 처방.
 - **80%+/<20% (Mastery 메트릭)**: AI 생성 코드 비율 80% 이상에 재작성률 20% 미만이 Phase 3 Mastery 목표.
+
+## 8. 그림 후보 (Figure Candidates)
+
+원본 article(ByteByteGo)에 실린 도식 7장을 사용자가 직접 캡처해 `raw/articles/rahman-2026-a-practical-guide-to-becoming-figures/`에 저장했다 (`strategy: manual` — rule #1로 에이전트 자동 fetch ❌). 모두 글의 핵심 개념을 1:1로 시각화한 자작 다이어그램이라 7장 전부 wiki 임베드를 권장한다.
+
+| id | caption | strategy | 추천 |
+|---|---|---|---|
+| fig01 | 글 헤더 — ADLC 4단계(Planning→Building→Testing→Review) 순환 | manual | ★ wiki 권장 (요약 헤더) |
+| fig02 | AI-native engineering ≠ vibe coding ≠ no human coding | manual | ★ wiki 권장 (orchestrator 정체성) |
+| fig03 | Orchestrator Pattern — Traditional vs AI-native engineer | manual | ★ wiki 권장 (주요 기여 #1) |
+| fig04 | Context Engineering 스택 (prompt→files→conventions→architecture→MCP→agent) | manual | ★ wiki 권장 (4 Core Practices) |
+| fig05 | Verification Inversion — 기대 10/70/20 vs 실제 40/20/40 | manual | ★ wiki 권장 (40/20/40 시간 배분) |
+| fig06 | Agentic Development Lifecycle 전체도 | manual | ★ wiki 권장 (ADLC) |
+| fig07 | Learning Loop — Build→Show→Watch→Learn→Decide→Simplify | manual | ★ wiki 권장 (학습 루프/레버리지) |
