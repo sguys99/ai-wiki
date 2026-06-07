@@ -1,0 +1,47 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/fig01.png",
+    "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig01.png",
+    "page": 16,
+    "caption": "Figure 1: Error distribution of TurboQuantprod and TurboQuantmse for Inner Product Estima-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/fig02.png",
+    "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig02.png",
+    "page": 17,
+    "caption": "Figure 2: The variance of Inner-product error remains constant for TurboQuantprod, while in",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/fig03.png",
+    "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig03.png",
+    "page": 18,
+    "caption": "Figure 3: Comparison of inner-product error and MSE against theoretical bounds across different",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/fig04.png",
+    "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig04.png",
+    "page": 19,
+    "caption": "Figure 4: Evaluation of Llama-3.1-8B-Instruct on the “Needle-In-A-Haystack” test, where a",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/fig05.png",
+    "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig05.png",
+    "page": 21,
+    "caption": "Figure 5: Recall comparison on different datasets with different embedding dimensions.",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
