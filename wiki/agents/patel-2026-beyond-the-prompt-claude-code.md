@@ -86,4 +86,4 @@ verify loop(Boris의 최다 반복 포인트) · Opus high/xhigh effort 기본 �
 
 ## 관련 페이지 (Related Pages)
 
-- [[agents/rahman-2026-a-practical-guide-to-becoming]] — Shah Rahman(Meta Ads)의 AI-Native Engineer 가이드. 본 글이 *Claude Code 단일 도구의 설정·운영* 매뉴얼이라면, Rahman 글은 *조직/팀 차원* 처방이다(ADLC·4 Core Practices·security guardrails). 둘은 같은 "engineer → orchestrator" 패러다임을 추상도만 달리해 다루며, context engineering·verification·multi-agent orchestration·MCP를 공통 핵심으로 공유한다.
+- [[etc/rahman-2026-a-practical-guide-to-becoming]] — Shah Rahman(Meta Ads)의 AI-Native Engineer 가이드. 본 글이 *Claude Code 단일 도구의 설정·운영* 매뉴얼이라면, Rahman 글은 *조직/팀 차원* 처방이다(ADLC·4 Core Practices·security guardrails). 둘은 같은 "engineer → orchestrator" 패러다임을 추상도만 달리해 다루며, context engineering·verification·multi-agent orchestration·MCP를 공통 핵심으로 공유한다.

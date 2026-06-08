@@ -25,7 +25,7 @@ tags: [claude-code, claude-md, claude-local-md, skills, subagents, mcp, plugins,
 - **URL**: <https://arps18.github.io/posts/claude-code-mastery/>
 - **분량/성격**: 12개 섹션 + Closing Notes. 코드/커맨드 예시 다수(ASCII), 표 다수. **2차 자료** 성격 — Anthropic 공식 문서·Boris Cherny의 talk/X 스레드·Cat Wu 발언·커뮤니티 레포(mattpocock/skills, awesome-claude-code-subagents 등)를 종합·재구성하고 저자 경험을 덧댄 큐레이션 가이드다.
 - **시각 요소**: Claude Code 아이콘(LobeHub, Apache 2.0) 1점 + ASCII 코드 예시. 별도 도식/차트는 없어 `figures` 키를 생략한다.
-- **본 wiki 내 인접 자료**: [[agents/rahman-2026-a-practical-guide-to-becoming|Shah Rahman의 AI-Native Engineer 가이드]]가 *조직/팀 차원*의 AI-native engineering 처방(ADLC·4 Core Practices·security guardrails)이라면, 본 글은 *Claude Code 단일 도구의 설정/운영 차원* 실무 매뉴얼이다 — 둘은 같은 "engineer → orchestrator" 패러다임의 추상도가 다른 짝이다.
+- **본 wiki 내 인접 자료**: [[etc/rahman-2026-a-practical-guide-to-becoming|Shah Rahman의 AI-Native Engineer 가이드]]가 *조직/팀 차원*의 AI-native engineering 처방(ADLC·4 Core Practices·security guardrails)이라면, 본 글은 *Claude Code 단일 도구의 설정/운영 차원* 실무 매뉴얼이다 — 둘은 같은 "engineer → orchestrator" 패러다임의 추상도가 다른 짝이다.
 
 ## 2. 주요 기여 (Key Contributions)
 
@@ -113,7 +113,7 @@ task list 먼저 생성 → 3개 수동 sanity-check로 프롬프트 tighten →
 ## 6. 관련 연구 (Related Work)
 
 - **본 wiki 내**:
-  - [[agents/rahman-2026-a-practical-guide-to-becoming|A Practical Guide to Becoming an AI-Native Engineer]] — 조직/팀 차원 AI-native engineering(ADLC·4 Core Practices·security). 본 글의 도구-차원 실무 매뉴얼과 추상도가 다른 짝이다. 둘 다 context engineering·verification·multi-agent orchestration·MCP를 핵심으로 공유한다.
+  - [[etc/rahman-2026-a-practical-guide-to-becoming|A Practical Guide to Becoming an AI-Native Engineer]] — 조직/팀 차원 AI-native engineering(ADLC·4 Core Practices·security). 본 글의 도구-차원 실무 매뉴얼과 추상도가 다른 짝이다. 둘 다 context engineering·verification·multi-agent orchestration·MCP를 핵심으로 공유한다.
 - **글이 인용한 외부 자료**(웹 검색 금지 — 인용 사실만 기록):
   - Anthropic 공식 docs(code.claude.com/docs), Anthropic blog "Best practices for Opus 4.7 with Claude Code"
   - howborisusesclaudecode.com (Boris Cherny X 스레드 집성)

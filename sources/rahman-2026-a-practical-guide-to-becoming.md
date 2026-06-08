@@ -2,7 +2,7 @@
 title: "AI-Native Engineer 실전 가이드 — 4 Core Practices · ADLC · Guardrails (Shah Rahman, ByteByteGo 2026-06-02)"
 type: article
 year: 2026
-category: agents
+category: etc
 raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/rahman-2026-a-practical-guide-to-becoming.md
 raw_filename: "rahman-2026-a-practical-guide-to-becoming.md"
 source_collection: external
