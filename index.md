@@ -73,6 +73,8 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/techwealth-hub-2026-garry-tan-gbrain-explained|GBrain Explained (TechWealth Hub)]] — 출시 6일 뒤 올라온 짧은 영상. 3-layer 멘탈 모델과 검증 runbook을 압축해 풀어낸 자료 (2026, video)
 - [[applications/liu-2026-rag-llm-wiki-or-gbrain|RAG, LLM Wiki, or GBrain? (Liu, Medium)]] — Yanli Liu가 제안한 결정 프레임워크. 에이전트의 job(retrieve, compile, act)으로 RAG, LLM Wiki, Fat Skills를 가르는 Medium 글 (2026, article)
 - [[applications/safishamsi-graphify|safishamsi/graphify (repo)]] — Safi Shamsi가 만든 YC S26 제품. 임의 폴더를 3-pass로 처리해 단일 NetworkX 그래프로 컴파일하며, 21개가 넘는 AI 어시스턴트와 호환되는 도구 (2026, repo)
+- [[applications/shamsi-2026-graphify-knowledge-graphs-for-ai|Graphify 한국어 랜딩 페이지 (graphify.net/kr)]] — Tree-sitter AST와 Leiden 군집화로 vector RAG 없이 코드를 이해하고, Karpathy mixed corpus에서 71.5× 토큰 감축을 보여 주는 공식 한국어 제품 소개 (2026, article)
+- [[applications/todaycode-2026-graphify-llm-token-reduction-wiki|Graphify 한국어 deep dive (오늘코드todaycode)]] — Karpathy LLM Wiki 계보를 한국어로 풀이하고, legalize-kr 특허법 폴더에서 657배 토큰 절감을 실측한 뒤 9단계 파이프라인·tree-sitter·Leiden을 60분 분량으로 압축해 풀어낸 영상 (2026, video)
 - [[applications/colbymchenry-codegraph|colbymchenry/codegraph (repo)]] — Colby Mchenry가 만든 로컬-퍼스트 code-intelligence MCP 서버. tree-sitter 기반 KG를 여러 에이전트에 노출하고 dynamic-dispatch 합성으로 indirect call까지 추적한다 (2026, repo)
 - [[applications/dnotitia-akb|dnotitia/AKB (repo)]] — Dnotitia가 만든 MCP-first agent knowledge base. Git bare repo와 Postgres, 플러그형 vector store로 vault 격리와 풍부한 MCP 도구셋을 한 패키지로 정리한 구현체 (2026, repo)
 - [[applications/datasciencedojo-2026-llm-wiki-by-andrej-karpathy|LLM Wiki by Karpathy 입문 튜토리얼 (Data Science Dojo)]] — Karpathy LLM Wiki Gist를 영어권 독자용 6단계 워크플로우로 풀어쓴 입문 가이드 (2026, article)
