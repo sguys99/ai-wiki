@@ -167,6 +167,7 @@ graphify extract ./docs --backend ollama   # data residency = 로컬
 
 ## 관련 페이지 (Related Pages)
 
+- [[applications/shamsi-2026-graphify-knowledge-graphs-for-ai|Graphify — Knowledge Graphs for AI Coding Assistants (graphify.net/kr 랜딩 페이지)]] — 같은 프로젝트의 **공식 한국어 랜딩 페이지**(article 타입). 본 repo 페이지가 모듈·언어·플랫폼 매트릭스를 망라하는 반면, 랜딩 페이지는 71.5× 토큰 절감의 마케팅 서사와 핵심 capability 6종을 압축해 보여 준다. 도구 소개·온보딩 용도로는 랜딩 페이지, 코드 단위 깊이가 필요할 땐 본 페이지.
 - [[applications/garrytan-gbrain|garrytan/gbrain (repo)]] — **가장 가까운 비교군**. 둘 다 *"agent memory = markdown source of truth + 자동 빌드 KG + git-driven workflow"* 패러다임. **차이**: GBrain은 개인 knowledge brain(43 skill pack + Minions durable queue + dream cycle) 중심, graphify는 *코드 + 임의 corpus의 knowledge graph 빌더*에 33 언어 AST + 21 IDE 통합 + PR triage로 폭이 넓다. 같은 패턴의 두 직교 제품.
 - [[applications/liu-2026-rag-llm-wiki-or-gbrain|RAG, LLM Wiki, or GBrain? (Liu, Medium)]] — Liu의 3-축 분류(retrieve/compile/act)에서 graphify는 **retrieve(graph) + compile(`GRAPH_REPORT.md`/`--wiki`)** 결합 + **act는 IDE 통합으로 위임**. 2026 convergence 예측("retrieve + compile + act가 단일 knowledge OS로")의 한 구체예.
 - [[applications/vectorize-2026-gbrain-review-honest-assessment|GBrain Honest Assessment (Vectorize)]] — GBrain용 10-dim scorecard. graphify에도 적용 가능 — multi-language·multi-IDE 폭은 graphify가 우월하지만 *dream cycle* 같은 능동 compounding 메커니즘은 약함.
