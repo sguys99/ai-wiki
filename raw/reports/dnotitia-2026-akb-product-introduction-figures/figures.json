@@ -1,0 +1,209 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig01.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig01.png",
+    "page": 1,
+    "caption": "에이전트를위한 | 올인원지식베이스 | 검색을넘어에이전트가스스로찾고· 쌓고· 가꾸는조직의기억",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig02.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig02.png",
+    "page": 2,
+    "caption": "왜지금인가 | AI 에이전트시대, 조직에새로필요해진것 | 01",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig03.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig03.png",
+    "page": 3,
+    "caption": "01 · 왜지금인가 | 이제회사지식을가장많이쓰는건 | 사람이아니라에이전트입니다",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig04.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig04.png",
+    "page": 4,
+    "caption": "문제2 | 임베딩이“비슷하다”고안보변, 글자가정확히맞아도검색에서 | 빠집니다.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig05.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig05.png",
+    "page": 5,
+    "caption": "03 · AKB의답— 5 갈래탐색 | 하나의검색방식에의존하지않습니다. | 문맥이살아있는문서를,",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig06.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig06.png",
+    "page": 6,
+    "caption": "에이전트는SOTA 방식으로여러탐색경로를조합해지식에접근합니다. 국문검색은형태소분석기Kiwi를활용해정확도를 | 높입니다. | 03 · AKB의답— 5 갈래탐색",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig07.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig07.png",
+    "page": 7,
+    "caption": "03 · AKB의답— 5 갈래탐색 | 전부읽지않습니다. 요약을따라좁혀들어갑니다 | L0",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig08.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig08.png",
+    "page": 8,
+    "caption": "문서 | 헤딩단위마크다운. 버전·이력까지 | 보존되는회사의글.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig09.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig09.png",
+    "page": 9,
+    "caption": "04 · 검색을넘은올인원 | 믿고맡기려면, 이력과보안이함께가야합니다 | 이력추적",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig10.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig10.png",
+    "page": 10,
+    "caption": "05 · Collector & Gardener | 잘만든지식베이스도 | 방치하면쓰레기산이됩니다",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig11.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig11.png",
+    "page": 11,
+    "caption": "Confluence | Jira | Slack",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig12.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig12.png",
+    "page": 12,
+    "caption": "눈높이요약 | 출처달기 | 솎아내기",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig13.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig13.png",
+    "page": 13,
+    "caption": "무인자동운영 | (2026-05-15 ~ 06-05) | 21일",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig14.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig14.png",
+    "page": 14,
+    "caption": "흩어진회사지식이, | 하나의두뇌처럼일합니다. | HR · 영업· 특허· 제품· 개발· 연구· 경쟁사분석까지모든도메인이권한경계를지키며한지붕아래.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig15.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig15.png",
+    "page": 15,
+    "caption": "HR · 인사 | 사내정책·규정·온보딩가이드 | Sales · 영업",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig16.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig16.png",
+    "page": 16,
+    "caption": "지식을채운다 | 지식을꺼내쓴다 | 도메인팀",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig17.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig17.png",
+    "page": 17,
+    "caption": "06 · 실전활용사례 | 한에이전트가여러금고를넘나들며일합니다 | 고객제안서/ RFP 응답",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig18.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig18.png",
+    "page": 18,
+    "caption": "정제 | Gardener | 야탑온프렘배포· 데이터반출정책",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig19.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig19.png",
+    "page": 19,
+    "caption": "실시간정보가쌓인다 | 필요한순간쓰인다 | Slack",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig20.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig20.png",
+    "page": 20,
+    "caption": "AKB | 보안지식허브 | Log Collection",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig21.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig21.png",
+    "page": 21,
+    "caption": "eXtended | Detection | Investigation",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig22.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig22.png",
+    "page": 22,
+    "caption": "폐기· HITL | 보내준다 | 정제· GARDENER",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig23",
+    "file": "assets/dnotitia-2026-akb-product-introduction/fig23.png",
+    "raw": "raw/reports/dnotitia-2026-akb-product-introduction-figures/fig23.png",
+    "page": 23,
+    "caption": "Q & A | 만들고, 찾고, 지키고, 가꾼다 | 에이전트시대의조직기억",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
