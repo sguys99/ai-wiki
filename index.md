@@ -55,6 +55,8 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/lin-2026-harness-updating-is-not-harness-benefit|Harness Updating Is Not Harness Benefit (Lin et al.)]] — self-evolving 에이전트의 이득을 base capability, harness-updating, harness-benefit 셋으로 갈라보고, 역량 예산을 어디 투입할지 통제된 격자 실험으로 짚어낸 연구 (2026, paper)
 - [[agents/zou-2026-task-focused-memorization-multimodal-agents|TaskMem (Task-Focused Memorization)]] — 멀티모달 에이전트의 장기 메모리를 학습 가능한 기억 정책으로 새로 정의한 ByteDance Seed 연구 (2026, paper)
 - [[agents/patel-2026-beyond-the-prompt-claude-code|Beyond the Prompt: Claude Code (Arpan Patel)]] — Arpan Patel이 쓴 Claude Code 실전 가이드. 설정과 메모리, 워크플로우를 "setup is the work"로 꿰뚫은 운영 매뉴얼 (2026, article)
+- [[agents/osmani-2026-loop-engineering|Loop Engineering (Addy Osmani)]] — Google Chrome 매니저 Addy Osmani가 "prompting agents"에서 "designing loops that prompt agents"로 넘어가는 전환을 Loop Engineering이라 부르고 automations·worktrees·skills·connectors·sub-agents 5+1 요소와 3대 한계를 짚은 짧은 에세이 (2026, article)
+- [[agents/lee-jeongmin-2026-loop-engineering-claude-code|Loop Engineering · Claude Code · RLM (Jeongmin Lee, LinkedIn)]] — Boris Cherny·Peter Steinberger·Addy Osmani 세 사람의 발언을 RLM(Recursive Language Model) 이론에 묶고 Claude Code Opus 4.8 dynamic workflow의 설계 의도를 7가지로 풀어낸 한국어 카드 포스트 (2026, article)
 
 ## Evaluations (evaluations)
 
