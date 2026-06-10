@@ -58,12 +58,13 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/osmani-2026-loop-engineering|Loop Engineering (Addy Osmani)]] — Google Chrome 매니저 Addy Osmani가 "prompting agents"에서 "designing loops that prompt agents"로 넘어가는 전환을 Loop Engineering이라 부르고 automations·worktrees·skills·connectors·sub-agents 5+1 요소와 3대 한계를 짚은 짧은 에세이 (2026, article)
 - [[agents/lee-jeongmin-2026-loop-engineering-claude-code|Loop Engineering · Claude Code · RLM (Jeongmin Lee, LinkedIn)]] — Boris Cherny·Peter Steinberger·Addy Osmani 세 사람의 발언을 RLM(Recursive Language Model) 이론에 묶고 Claude Code Opus 4.8 dynamic workflow의 설계 의도를 7가지로 풀어낸 한국어 카드 포스트 (2026, article)
 - [[agents/zhang-2026-recursive-language-models|Recursive Language Models (RLM)]] — MIT CSAIL이 제안한 inference-time scaffold. 임의 길이 prompt를 Python REPL 변수로 offload하고 root LLM은 코드로 prompt를 탐색하거나 sub-LM을 재귀 호출하는 방식으로 1M~10M+ 토큰을 처리한다. base GPT-5와 Claude Code·OpenCode·compaction을 4개 long-context 벤치마크에서 동시에 넘어선 결과 (2026, paper)
+- [[agents/bytebytego-2026-how-openai-built-its-data|How OpenAI Built Its Data Agent (ByteByteGo · Emma Tang 인터뷰)]] — 1.5 exabyte·9만 테이블 규모에서 OpenAI가 GPT-5.5 단일 모델 + 13개 큐레이션 도구 + 6-layer context assembly로 운영하는 *"vanilla"* data agent의 architectural deep-dive. *"foundation matters more than the agent"* thesis와 Codex 사내 use case 3건(cross-cloud migration 2개월, OSS 패치 무인 릴리스, support 자동 분류)을 함께 다룬다 (2026, article)
 
 ## Evaluations (evaluations)
 
 평가 프레임워크(RAGAS, Braintrust), benchmark.
 
-_(아직 자료가 없습니다)_
+- [[evaluations/marker-inc-korea-autorag|Marker-Inc-Korea/AutoRAG (repo)]] — RAG 파이프라인의 노드별 모듈 조합을 그리드 서치로 자동 평가·비교해 최적 파이프라인을 골라주는 RAG AutoML 프레임워크. Node Line→Node→Module 3계층 YAML 추상화, 한국어 BM25 토크나이저 기본 제공 (2024, repo)
 
 ## Applications (applications)
 
@@ -84,6 +85,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/kmyu-2026-llm-wiki-pattern-synthesis|Karpathy LLM Wiki 패턴 — 한국어 종합 정리 (kmyu99 Notion)]] — 본 ai-wiki 소유자 kmyu99가 Karpathy LLM Wiki 패턴을 한국어 자료와 합성해 Notion에 엮어낸 메타 기술 리포트 (2026, article)
 - [[applications/pandey-2026-rag-is-no-longer-just|RAG is no longer just vector search + LLM (Pandey, LinkedIn)]] — Brij Kishore Pandey가 올린 짧은 LinkedIn 카드. 2026 production RAG를 다섯 가지 디자인 공간으로 정렬한 사고 모델 (2026, article)
 - [[applications/lum1104-understand-anything|Lum1104/Understand-Anything (repo)]] — 임의 코드베이스를 7단계 파이프라인으로 분석해 knowledge graph와 가이드 투어로 변환하는, 다수 AI 어시스턴트와 호환되는 OSS (2026, repo)
+- [[applications/kmyu-2026-akb-llmwiki-gbrain-comparison|AKB · llmwiki · GBrain 비교 및 AKB 발전 방향 (kmyu)]] — AKB·llmwiki·GBrain을 6축 5점 척도로 점수화하고 AKB가 "shared memory DB"에서 "조직용 agent memory operating platform"으로 진화하기 위한 3-phase 로드맵을 제안한 2026-04-18 전략 보고서 (2026, report)
 
 ## Etc (etc)
 
