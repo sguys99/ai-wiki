@@ -16,63 +16,63 @@ figures:
     caption: "Figure 1 — GPT-5 vs RLM(GPT-5, depth=1) 길이·복잡도 스케일링 (S-NIAH/OOLONG/OOLONG-Pairs, 2^13~2^20 토큰)"
     page: 1
     strategy: page-region
-    curated: false
+    curated: true
   - id: fig02
     file: assets/zhang-2026-recursive-language-models/fig02.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig02.png
     caption: "Figure 2 — RLM 전체 아키텍처 다이어그램 (REPL 환경 E + 재귀 sub-LM 호출)"
     page: 2
     strategy: page-region
-    curated: false
+    curated: true
   - id: fig08
     file: assets/zhang-2026-recursive-language-models/fig08.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig08.png
     caption: "Figure 3 — (a) RLM-Qwen3-8B 파인튜닝 결과 (4개 벤치마크), (b) MRCRv2 길이 일반화 (64k 2-needle 학습 → 1M 8-needle 평가)"
     page: 8
     strategy: page-region
-    curated: false
+    curated: true
   - id: fig09
     file: assets/zhang-2026-recursive-language-models/fig09.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig09.png
     caption: "Figure 4 — (a) OOLONG에서 RLM(GPT-5)의 첫 decomposition 시도 분포, (b) RLM 트래젝토리의 syntax error 비율"
     page: 8
     strategy: page-region
-    curated: false
+    curated: true
   - id: fig12
     file: assets/zhang-2026-recursive-language-models/fig12.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig12.png
     caption: "Figure 6 — 파인튜닝된 RLM-Qwen3-8B의 runtime 효율 (3~9.6× 가속)"
     page: 17
     strategy: page-region
-    curated: false
+    curated: true
   - id: fig13
     file: assets/zhang-2026-recursive-language-models/fig13.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig13.png
     caption: "Figure 7 — BrowseComp-Plus 문서 수에 따른 RLM·base·CodeAct·ReAct 성능·비용 (10~1000 docs)"
     page: 30
     strategy: page-region
-    curated: false
+    curated: true
   - id: fig14
     file: assets/zhang-2026-recursive-language-models/fig14.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig14.png
     caption: "Figure 8 — RLM 트래젝토리의 3가지 공통 패턴 (regex 필터, 재귀 sub-call decomposition, output stitching)"
     page: 31
     strategy: page-region
-    curated: false
+    curated: true
   - id: fig15
     file: assets/zhang-2026-recursive-language-models/fig15.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig15.png
     caption: "Figure 9 — RLM(depth=1) vs 다른 baseline의 task-level win/tie/loss 비교"
     page: 40
     strategy: page-region
-    curated: false
+    curated: true
   - id: fig16
     file: assets/zhang-2026-recursive-language-models/fig16.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig16.png
     caption: "Figure 10 — task별 sub-call 횟수 (correct vs incorrect, model별)"
     page: 40
     strategy: page-region
-    curated: false
+    curated: true
 ---
 
 ## 한 줄 요약 (One-line Summary)

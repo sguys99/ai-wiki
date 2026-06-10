@@ -57,6 +57,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/patel-2026-beyond-the-prompt-claude-code|Beyond the Prompt: Claude Code (Arpan Patel)]] — Arpan Patel이 쓴 Claude Code 실전 가이드. 설정과 메모리, 워크플로우를 "setup is the work"로 꿰뚫은 운영 매뉴얼 (2026, article)
 - [[agents/osmani-2026-loop-engineering|Loop Engineering (Addy Osmani)]] — Google Chrome 매니저 Addy Osmani가 "prompting agents"에서 "designing loops that prompt agents"로 넘어가는 전환을 Loop Engineering이라 부르고 automations·worktrees·skills·connectors·sub-agents 5+1 요소와 3대 한계를 짚은 짧은 에세이 (2026, article)
 - [[agents/lee-jeongmin-2026-loop-engineering-claude-code|Loop Engineering · Claude Code · RLM (Jeongmin Lee, LinkedIn)]] — Boris Cherny·Peter Steinberger·Addy Osmani 세 사람의 발언을 RLM(Recursive Language Model) 이론에 묶고 Claude Code Opus 4.8 dynamic workflow의 설계 의도를 7가지로 풀어낸 한국어 카드 포스트 (2026, article)
+- [[agents/zhang-2026-recursive-language-models|Recursive Language Models (RLM)]] — MIT CSAIL이 제안한 inference-time scaffold. 임의 길이 prompt를 Python REPL 변수로 offload하고 root LLM은 코드로 prompt를 탐색하거나 sub-LM을 재귀 호출하는 방식으로 1M~10M+ 토큰을 처리한다. base GPT-5와 Claude Code·OpenCode·compaction을 4개 long-context 벤치마크에서 동시에 넘어선 결과 (2026, paper)
 
 ## Evaluations (evaluations)
 
