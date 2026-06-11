@@ -87,6 +87,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/pandey-2026-rag-is-no-longer-just|RAG is no longer just vector search + LLM (Pandey, LinkedIn)]] — Brij Kishore Pandey가 올린 짧은 LinkedIn 카드. 2026 production RAG를 다섯 가지 디자인 공간으로 정렬한 사고 모델 (2026, article)
 - [[applications/lum1104-understand-anything|Lum1104/Understand-Anything (repo)]] — 임의 코드베이스를 7단계 파이프라인으로 분석해 knowledge graph와 가이드 투어로 변환하는, 다수 AI 어시스턴트와 호환되는 OSS (2026, repo)
 - [[applications/kmyu-2026-akb-llmwiki-gbrain-comparison|AKB · llmwiki · GBrain 비교 및 AKB 발전 방향 (kmyu)]] — AKB·llmwiki·GBrain을 6축 5점 척도로 점수화하고 AKB가 "shared memory DB"에서 "조직용 agent memory operating platform"으로 진화하기 위한 3-phase 로드맵을 제안한 2026-04-18 전략 보고서 (2026, report)
+- [[applications/agricidaniel-claude-obsidian|AgriciDaniel/claude-obsidian (repo)]] — Karpathy LLM Wiki 패턴을 Claude Code 스킬 15개 + Obsidian 볼트 구조로 정착시킨 reference 구현체. Compound Vault refoundation(per-file advisory lock + BM25·contextual-prefix·cosine rerank hybrid retrieval) + Methodology Modes(generic·LYT·PARA·Zettelkasten) + 10-principle thinking framework를 묶은 MIT 라이선스 패키지 (2026, repo)
 
 ## Etc (etc)
 
