@@ -15,24 +15,24 @@ tags: [rag-anything, multimodal-rag, hkuds, lightrag, knowledge-graph, dual-grap
 
 ## 요약 (Summary)
 
-PyTorchKR 커뮤니티 운영자 **9bow(박정환)** 가 2026-05-05에 게시한 한국어 입문 자료. HKUDS의 **RAG-Anything**(arXiv 2510.12323, LightRAG 후속작)을 도전 과제 → 핵심 기여 → 5단계 파이프라인 → DocBench/MMLongBench 결과 → 어블레이션 → 사용법 흐름으로 정리한다.
+PyTorchKR 커뮤니티 운영자 **9bow(박정환)** 가 2026-05-05에 올린 한국어 입문 자료. HKUDS의 **RAG-Anything**(arXiv 2510.12323, LightRAG 후속작)을 도전 과제, 핵심 기여, 5단계 파이프라인, DocBench/MMLongBench 결과, 어블레이션, 사용법 순으로 짚는다.
 
-글이 강조하는 세 메시지:
-- **Dual-Graph**: cross-modal KG(이미지·표·수식 anchor) + text-based KG(LightRAG 방식)를 entity-name으로 융합.
+글이 내세우는 세 메시지:
+- **Dual-Graph**: cross-modal KG(이미지·표·수식 anchor)와 text-based KG(LightRAG 방식)를 entity-name으로 융합.
 - **Modality-aware Hybrid Retrieval**: 구조 탐색 + 의미 매칭 + 질의의 modality 단서("figure"/"table"/…) 결합.
-- **장문 우위**: 100페이지 초과 문서에서 MMGraphRAG 대비 격차 13점+.
+- **장문 우위**: 100페이지가 넘는 문서에서 MMGraphRAG 대비 격차 13점+.
 
-본 wiki에는 RAG-Anything **원 논문 페이지**가 이미 존재하므로, 이 article 페이지는 **한국어 입문·OSS 사용법** 진입점 역할을 한다. 정밀 수치·식·아키텍처 다이어그램은 [[database/guo-2025-rag-anything-all-in-one-rag|원 논문 페이지]]를 우선 참조한다.
+본 wiki에 RAG-Anything **원 논문 페이지**가 이미 있으므로, 이 article 페이지는 **한국어 입문·OSS 사용법** 진입점이다. 정밀 수치·식·아키텍처 다이어그램은 [[database/guo-2025-rag-anything-all-in-one-rag|원 논문 페이지]]에서 먼저 확인한다.
 
 > **2차 자료 주의**: 원문 디스클레이머 — "이 글은 GPT 모델로 정리되었으며, 원문의 내용과 다르게 정리된 부분이 있을 수 있습니다."
 
 ## 주요 기여 (Key Contributions)
 
-글이 RAG-Anything의 기여로 추린 다섯 가지를 그대로 정리(원 논문 위치는 [[database/guo-2025-rag-anything-all-in-one-rag|여기]]).
+글이 RAG-Anything의 기여로 꼽은 다섯 가지(원 논문 위치는 [[database/guo-2025-rag-anything-all-in-one-rag|여기]]).
 
 1. **이중 그래프 구축**: cross-modal KG와 text-based KG를 entity name 정렬로 융합 → modality-specific grounding 보존.
-2. **크로스-모달 하이브리드 검색**: 구조 탐색(multi-hop) + 의미 유사도 매칭(top-k embedding) 병행.
-3. **모달리티 인지 질의 처리**: 질의 내 "figure" · "table" · "equation" 단서를 modality 선호로 변환해 재랭킹.
+2. **크로스-모달 하이브리드 검색**: 구조 탐색(multi-hop)과 의미 유사도 매칭(top-k embedding)을 함께 돌림.
+3. **모달리티 인지 질의 처리**: 질의 안의 "figure" · "table" · "equation" 단서를 modality 선호로 바꿔 재랭킹.
 4. **긴 문서 강건성**: 100+ 페이지에서 격차가 벌어지는 일관 trend.
 5. **OSS 즉시 사용**: `pip install raganything`, MIT 라이선스, LightRAG와 직접 통합 가능.
 
@@ -49,7 +49,7 @@ PyTorchKR 커뮤니티 운영자 **9bow(박정환)** 가 2026-05-05에 게시한
 | 5. 응답 합성 | 텍스트 + 시각 → VLM | 비전-언어 모델에 함께 입력 |
 
 ### 핵심 도전 (글의 분류)
-- **통합 멀티모달 표현** — 모달리티 간 관계 보존.
+- **통합 멀티모달 표현** — 모달리티 사이 관계 보존.
 - **구조 인지 분해** — 공간·계층 관계 유지.
 - **크로스-모달 검색** — 모달리티를 가로지르는 추론.
 
@@ -81,7 +81,7 @@ async def main():
 asyncio.run(main())
 ```
 
-LightRAG와 직접 통합하려면 `working_dir`을 LightRAG 캐시로 지정(`./lightrag_cache`)하고 `vision_model_func`만 추가하면 된다.
+LightRAG와 직접 통합하려면 `working_dir`을 LightRAG 캐시(`./lightrag_cache`)로 잡고 `vision_model_func`만 더하면 된다.
 
 ## 결과 (Results)
 
@@ -119,14 +119,14 @@ LightRAG와 직접 통합하려면 `working_dir`을 LightRAG 캐시로 지정(`.
 
 ## 한계 (Limitations)
 
-- **Text-Centric Retrieval Bias**: 시각 정보를 요구하는 질의에도 텍스트 우선.
+- **Text-Centric Retrieval Bias**: 시각 정보가 필요한 질의에도 텍스트를 우선.
 - **Rigid Spatial Processing**: 비표준 레이아웃(셀 병합, 비정형 컬럼) 처리 제한.
-- **2차 자료의 누락**: 원 논문이 지적하는 **indexing cost 증가**(atomic unit별 VLM 호출 누적)와 **백본 의존**(GPT-4o-mini 단일)이 글에 명시되지 않음 → 인용 시 [[database/guo-2025-rag-anything-all-in-one-rag|원 논문]] 보완 필요.
+- **2차 자료의 누락**: 원 논문이 짚는 **indexing cost 증가**(atomic unit별 VLM 호출 누적)와 **백본 의존**(GPT-4o-mini 단일)이 글에 빠져 있음 → 인용 시 [[database/guo-2025-rag-anything-all-in-one-rag|원 논문]]으로 보완 필요.
 
 ## 관련 페이지 (Related Pages)
 
-- [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG — LightRAG 계열 overview]] — 본 글이 다루는 RAG-Anything은 LightRAG 계열의 modality 축 확장에 해당. LightRAG · RAG-Anything · LeanRAG · DSBA 세미나의 비교 매트릭스와 open question 정리는 overview 참조.
-- [[database/guo-2025-rag-anything-all-in-one-rag|RAG-Anything 원 논문 (arXiv 2510.12323)]] — 이 글의 1차 출처. 정밀 수치·아키텍처 다이어그램·MinerU 파서 등 글이 생략한 디테일은 여기서 확인.
+- [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG — LightRAG 계열 overview]] — 본 글이 다루는 RAG-Anything은 LightRAG 계열의 modality 축 확장이다. LightRAG · RAG-Anything · LeanRAG · DSBA 세미나의 비교 매트릭스와 open question 정리는 overview 쪽을 본다.
+- [[database/guo-2025-rag-anything-all-in-one-rag|RAG-Anything 원 논문 (arXiv 2510.12323)]] — 이 글의 1차 출처. 정밀 수치·아키텍처 다이어그램·MinerU 파서처럼 글에서 빠진 디테일은 여기서 본다.
 - [[database/guo-2025-lightrag-simple-and-fast|LightRAG (EMNLP 2025)]] — RAG-Anything의 직전 작업이자 text-based KG의 원형. 같은 HKUDS lab.
 - [[database/zhang-2026-leanrag-knowledge-graph-based-generation|LeanRAG (AAAI-26)]] — abstraction 축으로 LightRAG를 확장한 평행 후속작. RAG-Anything이 modality 축이라면 LeanRAG는 계층 축.
-- [[database/dsba-2026-paper-review-graph-based-rag|Graph-based RAG 세미나 (LightRAG · LeanRAG)]] — LightRAG/LeanRAG 비판적 리뷰. RAG-Anything은 이 비교의 multimodal 확장축으로 위치 지을 수 있다.
+- [[database/dsba-2026-paper-review-graph-based-rag|Graph-based RAG 세미나 (LightRAG · LeanRAG)]] — LightRAG/LeanRAG 비판적 리뷰. RAG-Anything은 이 비교의 multimodal 확장축으로 둘 수 있다.
