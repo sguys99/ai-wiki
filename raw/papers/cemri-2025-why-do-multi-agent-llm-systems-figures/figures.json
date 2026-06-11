@@ -1,0 +1,128 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig01.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: MAST: A Taxonomy of MAS Failure Modes. The inter-agent conversation stages indicate",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig02.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig02.png",
+    "page": 2,
+    "caption": "Figure 5 (Appendix B). Furthermore, there is no clear consensus on how to build robust and reliable",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig03.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 2: Methodological workflow for constructing the MAST-Data dataset, involving the empirical",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig04.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig04.png",
+    "page": 6,
+    "caption": "Figure 3: Visualization of a trace segment in MAST-Data. This illustrates an agent-to-agent conversa-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig05.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig05.png",
+    "page": 7,
+    "caption": "input (FM-2.5, 1.90%), or mismatches between reasoning and action (FM-2.6, 13.2%). Figure 3\nillustrates information withholding (FM-2.4). Diagnosing FC2 failures can be complex, as similar",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig06.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig06.png",
+    "page": 8,
+    "caption": "Figure 4: Distribution of failure in MAST-Data with MAST labels on total 210 traces. This plot",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig07.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig07.png",
+    "page": 19,
+    "caption": "Figure 5: Failure rates of six popular Multi-Agent LLM Systems with GPT-4o and Claude-3.7-Sonnet.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig08.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig08.png",
+    "page": 21,
+    "caption": "analyses of MAS architectures and underlying LLMs presented in Figure 8.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig09.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig09.png",
+    "page": 22,
+    "caption": "Figure 6 shows low correlations (0.17-0.32). This suggests that the categories capture distinct aspects",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig10.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig10.png",
+    "page": 22,
+    "caption": "Figure 7: MAS failure modes correlation matrix",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig11.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig11.png",
+    "page": 23,
+    "caption": "Figure 8: Comparison on MAST failure modes and categories on ProgramDev-v2 dataset explained",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig12.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig12.png",
+    "page": 23,
+    "caption": "Figure 9: Comparison on MAST failure modes and categories on ProgramDev-v2 dataset explained in",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig13.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig13.png",
+    "page": 28,
+    "caption": "Figure 10: Effect of prompt and topology interventions on AG2 as captured by MAST using the",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig14.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig14.png",
+    "page": 28,
+    "caption": "Figure 11: Effect of prompt and topology interventions on ChatDev as captured by MAST using the",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
