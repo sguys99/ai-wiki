@@ -1,0 +1,47 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/fig01.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1. Evaluation of continual learning capabilities across three key dimensions: factual memory (NaturalQuestions, PopQA), sense-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/fig02.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2. HippoRAG 2 methodology. For offline indexing, we use an LLM to extract open KG triples from passages, with synonym",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/fig03.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig03.png",
+    "page": 8,
+    "caption": "Figure 3. Continual learning experiment: We partition the NQ",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/fig04.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig04.png",
+    "page": 14,
+    "caption": "Figure 4. LLM prompts for triple filtering (recognition memory).",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/fig05.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig05.png",
+    "page": 15,
+    "caption": "Figure 5. An example of HippoRAG 2 pipeline.",
+    "strategy": "page-region",
+    "curated": false
+  }
+]

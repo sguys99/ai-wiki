@@ -32,6 +32,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[database/zhang-2026-your-embedding-model-is-smarter|SMART (Single-to-Multi Adaptation)]] — 단일 벡터 임베더의 hidden state에 MaxSim late-interaction을 얹어 학습 없이 멀티벡터 성능을 끌어내는 어댑테이션 (2026, paper)
 - [[database/geeksforgeeks-2026-vectorless-rag-pageindex|Vectorless RAG: PageIndex (GeeksforGeeks 튜토리얼)]] — PageIndex Cloud SaaS API를 10단계 코드 예제로 따라가는 입문 튜토리얼 (2026, article)
 - [[database/zhang-2025-pageindex-vectorless-reasoning-rag|PageIndex: Vectorless · Reasoning-based RAG (소개글)]] — PageIndex 팀이 직접 쓴 vectorless·reasoning RAG의 동기와 철학을 담은 소개글 (2025, article)
+- [[database/gutierrez-2025-from-rag-to-memory-non|HippoRAG 2: From RAG to Memory]] — KG + Personalized PageRank로 사실·sense-making·associativity 세 메모리 과제를 동시에 개선한 non-parametric continual learning 프레임워크 (2025, paper)
 - [[database/kalane-2026-pageindex-threw-out-vector-databases|PageIndex (Towards AI 리뷰)]] — IBM 엔지니어 Akshay Kalane이 쓴 3rd-party 리뷰. 출시 이후 신규 기능과 트레이드오프를 함께 짚은 사후 점검 카탈로그 (2026, article)
 - [[database/athina-ai-rag-cookbooks|Advanced + Agentic RAG Cookbooks (Athina AI)]] — advanced와 agentic RAG 16개 기법을 end-to-end Jupyter 노트북과 평가 단계로 한데 엮은 실무 cookbook (2024, repo)
 - [[database/zandieh-2025-turboquant-online-vector-quantization-with|TurboQuant: Online Vector Quantization]] — 랜덤 회전과 Lloyd-Max 스칼라 양자화로 학습 없이 MSE 최적에 도달하는 data-oblivious 벡터 양자화 기법 (2025, paper)
