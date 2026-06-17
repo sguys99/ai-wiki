@@ -3,8 +3,8 @@ title: "Lum1104/Understand-Anything"
 type: repo
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/lum1104-understand-anything
-raw_filename: "lum1104-understand-anything/"
+raw_path: raw/repos/lum1104-understand-anything.md
+raw_filename: "lum1104-understand-anything.md"
 source_collection: external
 tags: [code-understanding, knowledge-graph, multi-agent-pipeline, tree-sitter, llm-hybrid, claude-code-plugin, karpathy-llm-wiki, dashboard, incremental-analysis, monorepo]
 org: "Lum1104"

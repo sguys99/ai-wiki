@@ -4,8 +4,8 @@ type: repo
 year: 2026
 category: database
 source: ryancodrai-turbovec.md
-raw_path: /home/sguys99/project/ai-wiki/raw/repos/ryancodrai-turbovec
-raw_filename: "ryancodrai-turbovec/"
+raw_path: raw/repos/ryancodrai-turbovec.md
+raw_filename: "ryancodrai-turbovec.md"
 source_collection: external
 org: "RyanCodrai"
 repo: "turbovec"

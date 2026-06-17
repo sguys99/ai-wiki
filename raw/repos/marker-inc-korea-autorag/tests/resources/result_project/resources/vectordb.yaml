@@ -1,7 +1,0 @@
-vectordb:
-  - name: default
-    db_type: chroma
-    client_type: persistent
-    embedding_model: openai
-    collection_name: openai
-    path: ./chroma

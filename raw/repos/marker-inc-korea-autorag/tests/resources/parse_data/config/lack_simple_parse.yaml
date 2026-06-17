@@ -1,5 +1,0 @@
-modules:
-  # PDF
-  - module_type: langchain_parse
-    file_type: pdf
-    parse_method: pdfminer

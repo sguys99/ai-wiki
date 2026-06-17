@@ -3,8 +3,8 @@ title: "garrytan/gbrain"
 type: repo
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/garrytan-gbrain
-raw_filename: "garrytan-gbrain/"
+raw_path: raw/repos/garrytan-gbrain.md
+raw_filename: "garrytan-gbrain.md"
 source_collection: external
 org: "garrytan"
 repo: "gbrain"

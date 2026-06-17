@@ -3,8 +3,8 @@ title: "RAG-Anything (HKUDS) — All-in-One Multimodal RAG OSS"
 type: repo
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/hkuds-rag-anything
-raw_filename: "hkuds-rag-anything/"
+raw_path: raw/repos/hkuds-rag-anything.md
+raw_filename: "hkuds-rag-anything.md"
 source_collection: external
 source: hkuds-rag-anything.md
 org: "HKUDS"

@@ -3,8 +3,8 @@ title: "colbymchenry/codegraph"
 type: repo
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/colbymchenry-codegraph
-raw_filename: "colbymchenry-codegraph/"
+raw_path: raw/repos/colbymchenry-codegraph.md
+raw_filename: "colbymchenry-codegraph.md"
 source: colbymchenry-codegraph.md
 source_collection: external
 tags: [code-intelligence, knowledge-graph, mcp, tree-sitter, sqlite, fts5, claude-code, cursor, codex, opencode, gemini-cli, dynamic-dispatch, callback-synthesizer, static-analysis, multi-language, agent-tooling]

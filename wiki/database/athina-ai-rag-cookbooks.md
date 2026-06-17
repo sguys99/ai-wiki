@@ -3,8 +3,8 @@ title: "Advanced + Agentic RAG Cookbooks (Athina AI, GitHub repo)"
 type: repo
 year: 2024
 category: database
-raw_path: /home/sguys99/project/ai-wiki/raw/repos/athina-ai-rag-cookbooks
-raw_filename: "athina-ai-rag-cookbooks/"
+raw_path: raw/repos/athina-ai-rag-cookbooks.md
+raw_filename: "athina-ai-rag-cookbooks.md"
 source_collection: external
 source: athina-ai-rag-cookbooks.md
 org: "athina-ai"

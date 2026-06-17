@@ -3,8 +3,8 @@ title: "claude-obsidian: Self-Organizing AI Second Brain for Obsidian + Claude C
 type: repo
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/agricidaniel-claude-obsidian
-raw_filename: "agricidaniel-claude-obsidian/"
+raw_path: raw/repos/agricidaniel-claude-obsidian.md
+raw_filename: "agricidaniel-claude-obsidian.md"
 source_collection: external
 org: "AgriciDaniel"
 repo: "claude-obsidian"

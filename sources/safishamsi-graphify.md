@@ -3,8 +3,8 @@ title: "graphify: any input (code, docs, papers, images, videos) to knowledge gr
 type: repo
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/safishamsi-graphify
-raw_filename: "safishamsi-graphify/"
+raw_path: raw/repos/safishamsi-graphify.md
+raw_filename: "safishamsi-graphify.md"
 source_collection: external
 org: "safishamsi"
 repo: "graphify"

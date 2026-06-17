@@ -373,26 +373,35 @@ PY
 
 ### Repos
 
-**Step 1** — `git clone --depth 1 <url> raw/repos/{org}-{repo}/` 으로 스냅샷을 만들거나, 핵심 문서(README, ARCHITECTURE, design docs)만 골라 복사한다.
+**Step 1** — 사용자가 org/repo를 지정하면, 에이전트가 `WebFetch`로 README를 취득해 `raw/repos/{stem}.md`로 저장한다 (rule #1 예외: 사용자가 명시적으로 자료 수집을 지시한 경우에 한함).
 
-**Step 2** — README + 디렉토리 트리 + 핵심 파일 헤더 정도면 요약에 충분하다:
+- 취득 URL: `https://raw.githubusercontent.com/{org}/{repo}/main/README.md` (없으면 `/master/` 시도)
+- 서브디렉토리 경우: `https://raw.githubusercontent.com/{org}/{repo}/main/{path}/README.md`
 
-```bash
-# 디렉토리 트리
-find raw/repos/{org}-{repo} -type f -not -path '*/\.*' | head -50
+저장 형식:
 
-# README 본문
-cat raw/repos/{org}-{repo}/README.md
+```markdown
+---
+title: "..."
+type: repo
+year: YYYY
+category: ...
+raw_path: raw/repos/{stem}.md
+raw_filename: "{stem}.md"
+source_collection: external
+org: "..."
+repo: "..."
+url: "https://github.com/{org}/{repo}"
+license: "..."
+tags: []
+---
+
+{README.md 전문}
 ```
 
-**Step 2.5 (이미지 후보 나열)** — repo 내 기존 `assets/`·`img/`·`docs/`의 PNG/SVG/JPG를 in-place로 참조한다 (별도 `-figures/` 폴더는 만들지 않음). 후보 나열만:
+**Step 2** — 저장된 `raw/repos/{stem}.md`를 그대로 LLM 입력으로 사용한다 (articles와 동일).
 
-```bash
-find raw/repos/{org}-{repo}/ -type f \( -name "*.png" -o -name "*.svg" -o -name "*.jpg" -o -name "*.jpeg" \) \
-  -not -path '*/node_modules/*' -not -path '*/\.*' -not -name 'favicon*' -not -name 'logo*'
-```
-
-이 출력에서 사용자가 골라준 항목만 Step 4에서 `wiki/assets/{org-repo}/`로 cp 한다. sources `figures:` frontmatter에는 `raw`만 채우고 `strategy: manual` 으로 표기한다 (`page`는 생략).
+**Step 2.5 (이미지)** — repo 내 이미지는 자동 fetch하지 않는다. README 본문에 등장하는 이미지의 GitHub URL을 `figures:` frontmatter의 `raw` 필드에 기록하고 `strategy: manual`로 표기. 사용자가 필요한 이미지를 `wiki/assets/{stem}/`에 수동 저장.
 
 **비고**: `license` 키 작성 필수. 사용/인용 시 라이선스 조건 준수.
 

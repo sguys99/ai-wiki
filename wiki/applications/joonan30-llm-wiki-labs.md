@@ -3,8 +3,8 @@ title: "LLM-Wiki Labs — 31일 Joonan Lab 운영 실측 케이스 스터디"
 type: repo
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/joonan30-llm-wiki-labs
-raw_filename: "joonan30-llm-wiki-labs/"
+raw_path: raw/repos/joonan30-llm-wiki-labs.md
+raw_filename: "joonan30-llm-wiki-labs.md"
 source: joonan30-llm-wiki-labs.md
 source_collection: external
 org: "joonan30"

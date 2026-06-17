@@ -3,8 +3,8 @@ title: "sguys99/langchain-study — medium/3.vectorless-rag (Vectorless RAG: A R
 type: repo
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/sguys99-langchain-study-vectorless-rag
-raw_filename: "sguys99-langchain-study-vectorless-rag/"
+raw_path: raw/repos/sguys99-langchain-study-vectorless-rag.md
+raw_filename: "sguys99-langchain-study-vectorless-rag.md"
 source_collection: external
 org: sguys99
 repo: langchain-study (medium/3.vectorless-rag)

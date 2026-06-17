@@ -3,8 +3,8 @@ title: "LLM-Wiki Labs — Joonan Lab 인터랙티브 모음"
 type: repo
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/joonan30-llm-wiki-labs
-raw_filename: "joonan30-llm-wiki-labs/"
+raw_path: raw/repos/joonan30-llm-wiki-labs.md
+raw_filename: "joonan30-llm-wiki-labs.md"
 source_collection: external
 org: "joonan30"
 repo: "llm-wiki-labs"

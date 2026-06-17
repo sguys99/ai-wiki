@@ -3,8 +3,8 @@ title: "LLM Wiki — Karpathy LLM Knowledge Base 패턴의 한국어 레퍼런�
 type: repo
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/dragon1086-llm-wiki
-raw_filename: "dragon1086-llm-wiki/"
+raw_path: raw/repos/dragon1086-llm-wiki.md
+raw_filename: "dragon1086-llm-wiki.md"
 source_collection: external
 org: "dragon1086"
 repo: "llm-wiki"

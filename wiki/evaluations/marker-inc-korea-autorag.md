@@ -3,8 +3,8 @@ title: "AutoRAG: Automated Framework for optimization of Retrieval Augmented Gen
 type: repo
 year: 2024
 category: evaluations
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/marker-inc-korea-autorag
-raw_filename: "marker-inc-korea-autorag/"
+raw_path: raw/repos/marker-inc-korea-autorag.md
+raw_filename: "marker-inc-korea-autorag.md"
 source: marker-inc-korea-autorag.md
 source_collection: external
 org: "Marker-Inc-Korea"

@@ -3,8 +3,8 @@ title: "AKB — Agent Knowledge Base"
 type: repo
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/dnotitia-akb
-raw_filename: "dnotitia-akb/"
+raw_path: raw/repos/dnotitia-akb.md
+raw_filename: "dnotitia-akb.md"
 source_collection: external
 org: "dnotitia"
 repo: "AKB"

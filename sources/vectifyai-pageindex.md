@@ -3,8 +3,8 @@ title: "VectifyAI/PageIndex"
 type: repo
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/vectifyai-pageindex
-raw_filename: "vectifyai-pageindex/"
+raw_path: raw/repos/vectifyai-pageindex.md
+raw_filename: "vectifyai-pageindex.md"
 source_collection: external
 tags: [rag, vectorless-rag, reasoning-based-rag, tree-index, long-document, llm, pdf, agentic-rag, litellm]
 org: "VectifyAI"
