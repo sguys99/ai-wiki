@@ -11,10 +11,11 @@ import { rm, mkdir, writeFile, cp, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
-import { BASE, SITE, href } from './lib/config.mjs';
+import { BASE, href } from './lib/config.mjs';
 import { loadContent } from './lib/content.mjs';
 import { buildGraph } from './lib/graph.mjs';
-import { renderMarkdown, escapeHtml } from './lib/markdown.mjs';
+import { renderMarkdown } from './lib/markdown.mjs';
+import { home, wikiInterim } from './lib/templates.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..'); // 저장소 루트 (wiki/, index.md 등 콘텐츠 소스)
@@ -53,6 +54,18 @@ async function main() {
   );
   console.log(`[graph] nodes: ${graph.nodes.length}  ·  edges: ${graph.edges.length}`);
 
+  // 3.5) 무방향 인접 맵 (id → [이웃 id]) — 카드 hover 하이라이트 data 속성용
+  const adjacency = new Map();
+  const addAdj = (a, b) => {
+    if (!adjacency.has(a)) adjacency.set(a, new Set());
+    adjacency.get(a).add(b);
+  };
+  for (const e of graph.edges) {
+    addAdj(e.source, e.target);
+    addAdj(e.target, e.source);
+  }
+  for (const [id, set] of adjacency) adjacency.set(id, [...set]);
+
   // 4) wiki/assets → dist/assets 복사 (figure 임베드 src)
   const assetsSrc = resolve(ROOT, 'wiki', 'assets');
   if (existsSync(assetsSrc)) {
@@ -64,7 +77,7 @@ async function main() {
   //      dist/assets(=wiki figure 전용)와 분리해 경로 충돌 방지.
   await copyStatic();
 
-  // 5) 전 페이지 렌더 + 깨진 링크 수집 (INTERIM 레이아웃)
+  // 5) 전 페이지 렌더 + 깨진 링크 수집 (위키 본문은 공유 셸 + INTERIM 본문)
   const brokenByPage = []; // { id, targets:[...] }
   let rendered = 0;
   for (const page of pages.values()) {
@@ -72,13 +85,21 @@ async function main() {
     if (broken.length) brokenByPage.push({ id: page.id, targets: broken });
     const outDir = join(DIST, page.category, page.stem);
     await mkdir(outDir, { recursive: true });
-    await writeFile(join(outDir, 'index.html'), interimPage(page, html, toc, graph.degree));
+    await writeFile(join(outDir, 'index.html'), wikiInterim(page, html, toc, graph.degree));
     rendered++;
   }
   console.log(`[render] pages rendered: ${rendered}`);
 
-  // 6) 홈(카탈로그 인덱스) — INTERIM
-  await writeFile(join(DIST, 'index.html'), interimHome(sections, graph.degree));
+  // 6) 홈(랜딩) — Constellation 히어로 + 카테고리 밴드 + 카드 그리드
+  const stats = {
+    pages: graph.nodes.length,
+    links: graph.edges.length,
+    categories: sections.filter((s) => s.pages.length).length,
+  };
+  await writeFile(
+    join(DIST, 'index.html'),
+    home({ sections, degree: graph.degree, adjacency, stats, graphHref: href('/graph.json') })
+  );
 
   // 7) 깨진 링크 리포트
   const brokenTotal = brokenByPage.reduce((n, b) => n + b.targets.length, 0);
@@ -141,83 +162,6 @@ async function copyStatic() {
   }
 
   console.log('[build] copied site chrome + fonts → dist/static');
-}
-
-// ── INTERIM 레이아웃 (Phase 2~4가 templates.mjs로 대체) ─────────────────────────
-
-// FOUC 방지: CSS 적용 전 동기 실행으로 초기 테마를 확정한다.
-const FOUC_SCRIPT = `(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();`;
-
-function shell(title, bodyHtml) {
-  return `<!doctype html>
-<html lang="${SITE.lang}" data-theme="dark">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHtml(title)} · ${escapeHtml(SITE.title)}</title>
-<script>${FOUC_SCRIPT}</script>
-<link rel="stylesheet" href="${href('/static/fonts/pretendard/pretendard-dynamic-subset.css')}">
-<link rel="stylesheet" href="${href('/static/css/styles.css')}">
-</head>
-<body>
-<header class="topbar">
-<button type="button" class="theme-toggle" data-theme-toggle aria-label="테마 전환" aria-pressed="false">☀</button>
-</header>
-<main class="shell">
-<p class="interim">⚙ INTERIM 레이아웃 (Phase 1 콘텐츠 파이프라인 검증용). Constellation 디자인 시스템(토큰·폰트·light/dark)은 Phase 2 적용됨 — 컴포넌트 레이아웃(헤더·카드·constellation)은 Phase 3~4.</p>
-${bodyHtml}
-<hr>
-<p class="eyebrow"><a href="${href('/')}">← ${escapeHtml(SITE.title)} 홈</a></p>
-</main>
-<script src="${href('/static/js/theme.js')}" defer></script>
-</body>
-</html>
-`;
-}
-
-function interimPage(page, html, toc, degree) {
-  const deg = degree.get(page.id) || 0;
-  const meta = [page.catalogType || page.type, page.year].filter(Boolean).join(' · ');
-  const tocHtml = toc.length
-    ? `<nav class="eyebrow">TOC: ${toc
-        .map((t) => `<a href="#${t.id}">${escapeHtml(t.text)}</a>`)
-        .join(' · ')}</nav>`
-    : '';
-  return shell(
-    page.title,
-    `<p class="eyebrow">${escapeHtml(page.category)} · ${escapeHtml(meta)} · ↳ ${deg} links</p>
-<h1>${escapeHtml(page.title)}</h1>
-${tocHtml}
-<hr>
-${html}`
-  );
-}
-
-function interimHome(sections, degree) {
-  const blocks = sections
-    .filter((s) => s.pages.length)
-    .map((s) => {
-      const items = s.pages
-        .map((p) => {
-          const deg = degree.get(p.id) || 0;
-          return `<li><a href="${href(`/${p.category}/${p.stem}/`)}">${escapeHtml(
-            p.display
-          )}</a> <span class="eyebrow">↳ ${deg}</span><br><span class="eyebrow">${escapeHtml(
-            p.desc || ''
-          )}</span></li>`;
-        })
-        .join('\n');
-      return `<section><h2>${escapeHtml(s.label)} <span class="eyebrow">(${s.pages.length})</span></h2>
-<p class="eyebrow">${escapeHtml(s.desc || '')}</p>
-<ul>${items}</ul></section>`;
-    })
-    .join('\n');
-  return shell(
-    SITE.title,
-    `<p class="eyebrow">${escapeHtml(SITE.description)}</p>
-<h1>${escapeHtml(SITE.title)}</h1>
-${blocks}`
-  );
 }
 
 main().catch((err) => {

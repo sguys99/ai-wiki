@@ -336,26 +336,83 @@
   }
 }
 
-/* ── components (Phase 2 placeholder — 풀 헤더/카드/constellation은 Phase 3/4) ─── */
+/* ── components (Phase 3: 홈 랜딩 — 헤더·히어로·카드·푸터) ─────────────────────── */
 @layer components {
+  /* 읽기 컬럼 (위키 INTERIM 본문) */
   .shell {
     max-width: var(--measure);
     margin: 0 auto;
     padding: var(--space-6) var(--space-4) var(--space-12);
   }
 
-  /* 최소 top-bar: 테마 토글만 (Phase 3에서 워드마크·검색·About로 확장) */
-  .topbar {
+  .skip-link {
+    position: absolute;
+    left: var(--space-2);
+    top: -3rem;
+    z-index: var(--z-modal);
+    background: var(--surface);
+    color: var(--text);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    transition: top var(--dur) var(--ease);
+  }
+  .skip-link:focus {
+    top: var(--space-2);
+  }
+
+  /* ── 헤더 (sticky frosted) ── */
+  .site-header {
     position: sticky;
     top: 0;
     z-index: var(--z-header);
     display: flex;
-    justify-content: flex-end;
-    gap: var(--space-2);
-    padding: var(--space-2) var(--space-4);
-    background: color-mix(in srgb, var(--bg) 80%, transparent);
-    backdrop-filter: saturate(150%) blur(8px);
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: saturate(160%) blur(10px);
     border-bottom: var(--hairline-w) solid var(--hairline);
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .wordmark-dot {
+    color: var(--signal);
+  }
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--muted);
+    background: transparent;
+    border: var(--hairline-w) solid transparent;
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .nav-btn:hover {
+    color: var(--text);
+    border-color: var(--hairline);
+  }
+  .nav-btn-ico {
+    font-size: 1.1em;
   }
 
   .theme-toggle {
@@ -373,5 +430,244 @@
   .theme-toggle:hover {
     color: var(--signal);
     border-color: var(--signal);
+  }
+
+  /* ── 히어로 constellation ── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: var(--hairline-w) solid var(--hairline);
+    padding: clamp(var(--space-12), 12vh, 8rem) var(--space-4);
+  }
+  .hero-constellation {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.55;
+    -webkit-mask-image: radial-gradient(120% 90% at 70% 40%, #000 35%, transparent 88%);
+    mask-image: radial-gradient(120% 90% at 70% 40%, #000 35%, transparent 88%);
+  }
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin: 0 0 var(--space-3);
+  }
+  .hero-title {
+    font-size: clamp(var(--text-2xl), 6vw, var(--text-3xl));
+    margin: 0 0 var(--space-4);
+    letter-spacing: -0.02em;
+  }
+  .hero-accent {
+    color: var(--signal);
+  }
+  .hero-lede {
+    color: var(--muted);
+    font-size: var(--text-lg);
+    max-width: 36rem;
+    margin: 0 0 var(--space-8);
+  }
+  .hero-lede code {
+    font-size: 0.85em;
+  }
+  .hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+    margin: 0;
+  }
+  .hero-stats div {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .hero-stats dt {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .hero-stats dd {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-2xl);
+    line-height: 1;
+    margin: 0;
+    color: var(--text);
+  }
+
+  /* ── 카테고리 밴드 ── */
+  .band {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-4) 0;
+    scroll-margin-top: 4.5rem;
+  }
+  .band-head {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: baseline;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-3);
+    border-bottom: var(--hairline-w) solid var(--hairline);
+  }
+  .band-name {
+    margin: 0;
+    font-size: var(--text-xl);
+  }
+  .band-count {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--signal);
+  }
+  .band-desc {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: var(--muted);
+    font-size: var(--text-sm);
+  }
+
+  /* ── 카드 그리드 ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  @media (min-width: 640px) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .card-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    background: var(--surface);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color var(--dur) var(--ease),
+      transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+  }
+  .card:hover,
+  .card:focus-visible {
+    border-color: var(--signal);
+    transform: translateY(-2px);
+  }
+  .card-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .card-title {
+    margin: 0;
+    font-size: var(--text-base);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .card-desc {
+    margin: 0;
+    color: var(--muted);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-top: auto;
+    padding-top: var(--space-2);
+  }
+  .card-deg {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--faint);
+  }
+  .card-chips {
+    display: flex;
+    gap: var(--space-1);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    background: var(--surface-2);
+    border-radius: var(--radius-sm);
+    padding: 0.1em 0.5em;
+  }
+
+  /* neighborhood hover: 호버 카드의 연결 카드 강조, 나머지는 살짝 후퇴 */
+  .cards-focusing .card:not(.is-source):not(.is-linked) {
+    opacity: 0.4;
+  }
+  .card.is-linked {
+    border-color: var(--signal);
+  }
+  .card.is-source {
+    border-color: var(--signal);
+  }
+
+  /* ── 푸터 ── */
+  .site-footer {
+    margin-top: var(--space-12);
+    border-top: var(--hairline-w) solid var(--hairline);
+  }
+  .footer-inner {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-4);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+  }
+  .footer-sep {
+    color: var(--faint);
+  }
+
+  /* INTERIM 위키 본문의 TOC 인라인 줄 */
+  .toc-inline a {
+    margin-right: 0.4em;
+  }
+
+  /* 모바일: 검색 라벨 축약 */
+  @media (max-width: 560px) {
+    .nav-btn-label {
+      display: none;
+    }
+    .hero-stats {
+      gap: var(--space-6);
+    }
   }
 }

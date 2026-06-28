@@ -174,12 +174,21 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 > - ⚠️ 미해결(범위 밖): Phase 1 메모의 index.md 카탈로그 누락 2건 여전(`database/lumer-2025-…`, `database/sguys99-langchain-study-vectorless-rag`) — 빌드 자동 포함되나 카탈로그 설명 없음.
 
 ### Phase 3 — 홈(랜딩)
-- [ ] sticky frosted 헤더(워드마크 + 검색 + About + 테마토글)
-- [ ] **히어로 constellation**(`js/constellation.js`, graph.json 소비, ambient drift, reduced-motion 정지)
-- [ ] 카테고리 밴드 + 카드 그리드(type·year 모노 태그, 설명 clamp, `↳ N links`, tag chip)
-- [ ] 카드 hover 시 연결 카드 하이라이트
-- [ ] 푸터(repo·owner·license·Karpathy 패턴 + GitHub)
-- [ ] 홈 반응형(히어로 스택, 카드 1열) 확인
+- [x] sticky frosted 헤더(워드마크 + 검색 + About + 테마토글)
+- [x] **히어로 constellation**(`js/constellation.js`, graph.json 소비, ambient drift, reduced-motion 정지)
+- [x] 카테고리 밴드 + 카드 그리드(type·year 모노 태그, 설명 clamp, `↳ N links`, tag chip)
+- [x] 카드 hover 시 연결 카드 하이라이트
+- [x] 푸터(repo·owner·license·Karpathy 패턴 + GitHub)
+- [x] 홈 반응형(히어로 스택, 카드 1열) 확인
+
+> **Phase 3 결과 메모**
+> - **`lib/templates.mjs` 신설**: 공유 `layout()`(head/FOUC/헤더/푸터/skip-link/스크립트) + `home()`(히어로→밴드→카드) + `header()`/`footer()`/`card()` 파셜 + `wikiInterim()`(위키도 공유 셸 사용). `build.mjs`의 인라인 `shell`/`interimPage`/`interimHome` 제거 → 템플릿으로 이관.
+> - **히어로 constellation**: `js/constellation.js`가 캔버스에 `data-graph` URL(BASE 적용)로 graph.json fetch → golden-angle 결정적 배치 + bounded ambient drift, degree로 노드 크기, 색은 CSS 토큰(`--signal`/`--faint`/`--signal-dim`) 런타임 read라 light/dark 추종. `prefers-reduced-motion` 시 정지 1프레임. 히어로 뒤 ambient(opacity .55 + radial mask, `pointer-events:none`).
+> - **카드 hover 하이라이트**: 빌드 시 무방향 adjacency를 카드 `data-links`에 직렬화 → 같은 `constellation.js`가 hover 시 연결 카드 `.is-linked`/나머지 dim(`body.cards-focusing`). fetch 불필요(서버 임베드).
+> - **카드/밴드**: `card-grid` 1→2→3열(`640/1024px`), 카드 `TYPE·YEAR` 모노 태그 + 제목 + 설명 `line-clamp:3` + `↳ N` + tag chip(최대 2). 밴드 헤더 `이름 + count + desc`, `id={slug}`로 `[[category]]` 앵커와 호환.
+> - **헤더/푸터**: sticky frosted(`backdrop-filter`), 워드마크 `ai·wiki`(Space Grotesk). **검색은 placeholder 버튼**(Pagefind=Phase 5, `data-search-trigger`만), **About는 임시로 GitHub README 링크**(About 페이지=Phase 6). 푸터는 repo·owner·Karpathy gist 링크(LICENSE 파일 없음 → 라이선스 표기 생략).
+> - **검증**: 빌드 깨진 링크 0(58페이지) · 홈/constellation.js/graph.json/위키 HTTP 200 · `BASE=/ai-wiki` 시 워드마크·카드·canvas `data-graph`·스크립트 전부 `/ai-wiki/...` 정상. stats=pages 58·links 333·categories 7.
+> - ⚠️ 육안 확인 권장(헤드리스 미확인): 캔버스 drift 애니메이션 · 카드 hover 연결 강조 · light/dark 양쪽 대비. ⚠️ 밴드 카드 수는 카탈로그(56) 기준 — index.md 누락 2건은 카드 미표시(그래프·stats엔 58 포함).
 
 ### Phase 4 — 위키(절) 페이지
 - [ ] 공통 레이아웃(헤더/푸터 공유) + 리딩 컬럼(~72ch)
