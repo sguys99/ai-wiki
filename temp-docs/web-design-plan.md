@@ -145,11 +145,17 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 - [x] 빈 `build.mjs` 스켈레톤 → `dist/` 출력 파이프라인 동작 확인
 
 ### Phase 1 — 콘텐츠 파이프라인
-- [ ] `lib/content.mjs`: wiki frontmatter glob + index.md 카탈로그 머지 → 정렬된 섹션 모델
-- [ ] 카테고리 그룹핑 + slug/url 생성
-- [ ] `lib/markdown.mjs`: frontmatter 제거 + `marked` 렌더 + `[[wikilink]]`/`![[embed]]` 재작성 + heading id
-- [ ] `lib/graph.mjs`: `[[…]]` 인접 파싱 → `graph.json` + degree
-- [ ] 45개 페이지 전부 누락·깨진 링크 0 콘솔 리포트 확인
+- [x] `lib/content.mjs`: wiki frontmatter glob + index.md 카탈로그 머지 → 정렬된 섹션 모델
+- [x] 카테고리 그룹핑 + slug/url 생성 (+ `resolve()` 링크 리졸버, `categories` 맵)
+- [x] `lib/markdown.mjs`: frontmatter 제거 + `marked` 렌더 + `[[wikilink]]`/`![[embed]]` 재작성 + heading id (+ TOC 추출, 코드펜스/인라인코드 보호)
+- [x] `lib/graph.mjs`: `[[…]]` 인접 파싱 → `graph.json` + degree (무방향 고유이웃)
+- [x] 58개 페이지 전부 누락·깨진 링크 0 콘솔 리포트 확인 (계획서의 45는 구버전 수치 — 현재 wiki 58개)
+
+> **Phase 1 결과 메모**
+> - 리졸버는 Obsidian 문법 전부 처리: `[[cat/stem|disp]]` · 베어 `[[stem]]` · 교차카테고리 고유 stem 폴백 · `[[page#heading]]`/`[[#heading]]` 앵커(heading id와 동일 슬러그) · `[[category]]`→홈 밴드 앵커 · `[[sources/…]]`/`[[../../sources/…]]`→GitHub 원문(.md).
+> - `lib/nav.mjs`(prev/next + neighborhood) 선작성 — Phase 4·5에서 소비.
+> - 페이지 HTML은 **INTERIM 셸**(파이프라인 검증용). Phase 2~4에서 `lib/templates.mjs`(Constellation)로 교체.
+> - ⚠️ **콘텐츠 측 발견**(읽기전용, 미수정): `index.md` 카탈로그에 누락된 wiki 2건 — `database/lumer-2025-rethinking-retrieval-from-traditional-retrieval`, `database/sguys99-langchain-study-vectorless-rag`. 빌드는 자동 포함하지만 카탈로그 설명/정렬이 없음 → 추후 `index.md` 보강 권장.
 
 ### Phase 2 — 디자인 시스템 (CSS 토큰 · 폰트 · light/dark)
 - [ ] Pretendard + Space Grotesk + JetBrains Mono woff2 self-host
