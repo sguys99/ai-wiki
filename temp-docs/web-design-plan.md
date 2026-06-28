@@ -158,11 +158,20 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 > - ⚠️ **콘텐츠 측 발견**(읽기전용, 미수정): `index.md` 카탈로그에 누락된 wiki 2건 — `database/lumer-2025-rethinking-retrieval-from-traditional-retrieval`, `database/sguys99-langchain-study-vectorless-rag`. 빌드는 자동 포함하지만 카탈로그 설명/정렬이 없음 → 추후 `index.md` 보강 권장.
 
 ### Phase 2 — 디자인 시스템 (CSS 토큰 · 폰트 · light/dark)
-- [ ] Pretendard + Space Grotesk + JetBrains Mono woff2 self-host
-- [ ] `styles.css` 토큰: 컬러(light/dark), 타입스케일, 간격, 반경, hairline
-- [ ] 본문 타이포(헤딩/문단/목록/표/인용/코드/링크/figure) — 한글 가독 line-height ~1.7
-- [ ] 다크모드: `prefers-color-scheme` + `[data-theme]` + FOUC 방지 인라인 스크립트
-- [ ] `js/theme.js` 토글 + localStorage
+- [x] Pretendard + Space Grotesk + JetBrains Mono woff2 self-host
+- [x] `styles.css` 토큰: 컬러(light/dark), 타입스케일, 간격, 반경, hairline
+- [x] 본문 타이포(헤딩/문단/목록/표/인용/코드/링크/figure) — 한글 가독 line-height ~1.7
+- [x] 다크모드: `prefers-color-scheme` + `[data-theme]` + FOUC 방지 인라인 스크립트
+- [x] `js/theme.js` 토글 + localStorage
+
+> **Phase 2 결과 메모**
+> - **폰트 수급**: npm devDep(`pretendard` · `@fontsource/space-grotesk` · `@fontsource/jetbrains-mono`) → `build.mjs`의 `copyStatic()`이 `node_modules`→`dist/static/fonts`로 복사. git 추적은 `site/assets/css·js` + `package.json`(+lock)만.
+> - **Pretendard**: variable dynamic-subset 채택 — 패키지 실경로 `pretendard/dist/web/variable/{pretendardvariable-dynamic-subset.css, woff2-dynamic-subset/}`(92개 woff2, unicode-range). 패밀리명은 `'Pretendard Variable'`. CSS 내부 url이 `./woff2-dynamic-subset/…` 상대경로라 BASE 무관.
+> - **에셋 라우팅**: 사이트 크롬은 `dist/static/`(css·js·img·fonts) — `dist/assets/`(wiki figure 전용)와 분리. HTML `<link>`/`<script>`만 `href()` 경유, CSS `url()`은 전부 상대.
+> - **다크모드**: `<html data-theme="dark">` 기본 + head 인라인 FOUC 스크립트(localStorage → prefers-color-scheme). `theme.js`가 토글·localStorage 저장·미선택 시 OS 추종. `@media (prefers-reduced-motion)` 트랜지션 무력화.
+> - **styles.css 구조**: `@layer tokens, base, components, utilities` — Phase 3/4가 `components`에 헤더·카드·constellation append 예정(현재 `components`엔 placeholder `.topbar`/`.theme-toggle`/`.shell`만). INTERIM 셸은 인라인 `<style>` 제거 후 토큰 클래스 사용.
+> - **검증**: `npm run build` 깨진 링크 0(58페이지) · `dist/static` 전 에셋 200(HTTP 스모크) · `BASE=/ai-wiki` 빌드 시 `/ai-wiki/static/…` 정상.
+> - ⚠️ 미해결(범위 밖): Phase 1 메모의 index.md 카탈로그 누락 2건 여전(`database/lumer-2025-…`, `database/sguys99-langchain-study-vectorless-rag`) — 빌드 자동 포함되나 카탈로그 설명 없음.
 
 ### Phase 3 — 홈(랜딩)
 - [ ] sticky frosted 헤더(워드마크 + 검색 + About + 테마토글)

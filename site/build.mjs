@@ -7,7 +7,7 @@
 // 디자인 시스템)로 대체한다. 여기서는 파이프라인이 실제로 동작하는지(라우트 200·링크 해석·
 // 그래프 산출)를 검증할 수 있는 최소 셸만 둔다.
 
-import { rm, mkdir, writeFile, cp } from 'node:fs/promises';
+import { rm, mkdir, writeFile, cp, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
@@ -60,6 +60,10 @@ async function main() {
     console.log('[build] copied wiki/assets → dist/assets');
   }
 
+  // 4.5) 사이트 크롬(css/js/img) + self-host 폰트 → dist/static
+  //      dist/assets(=wiki figure 전용)와 분리해 경로 충돌 방지.
+  await copyStatic();
+
   // 5) 전 페이지 렌더 + 깨진 링크 수집 (INTERIM 레이아웃)
   const brokenByPage = []; // { id, targets:[...] }
   let rendered = 0;
@@ -88,34 +92,84 @@ async function main() {
   console.log('[build] done.');
 }
 
+// ── 정적 에셋 복사: 사이트 크롬 + self-host 폰트 → dist/static ──────────────────
+
+const SITE_ASSETS = resolve(__dirname, 'assets'); // site/assets/{css,js,img}
+const NODE_MODULES = resolve(__dirname, 'node_modules');
+
+// node_modules 의 Pretendard variable dynamic-subset 위치 (버전 무관 보존 구조).
+const PRETENDARD_DIR = join(NODE_MODULES, 'pretendard', 'dist', 'web', 'variable');
+const PRETENDARD_CSS = join(PRETENDARD_DIR, 'pretendardvariable-dynamic-subset.css');
+const PRETENDARD_SUBSET = join(PRETENDARD_DIR, 'woff2-dynamic-subset');
+
+// Latin self-host 대상 (latin subset woff2만, 필요한 weight만).
+const LATIN_FONTS = [
+  ['@fontsource/space-grotesk', 'space-grotesk-latin-500-normal.woff2'],
+  ['@fontsource/space-grotesk', 'space-grotesk-latin-700-normal.woff2'],
+  ['@fontsource/jetbrains-mono', 'jetbrains-mono-latin-400-normal.woff2'],
+  ['@fontsource/jetbrains-mono', 'jetbrains-mono-latin-500-normal.woff2'],
+];
+
+async function copyStatic() {
+  const staticDir = join(DIST, 'static');
+
+  // (B) 사이트 크롬: site/assets/{css,js,img} → dist/static/{css,js,img}
+  for (const sub of ['css', 'js', 'img']) {
+    const src = join(SITE_ASSETS, sub);
+    if (existsSync(src)) await cp(src, join(staticDir, sub), { recursive: true });
+  }
+
+  // (A) Pretendard dynamic-subset: CSS + woff2 디렉토리 (상대 url 구조 보존)
+  const pretendardOut = join(staticDir, 'fonts', 'pretendard');
+  if (existsSync(PRETENDARD_CSS) && existsSync(PRETENDARD_SUBSET)) {
+    await mkdir(pretendardOut, { recursive: true });
+    await copyFile(PRETENDARD_CSS, join(pretendardOut, 'pretendard-dynamic-subset.css'));
+    await cp(PRETENDARD_SUBSET, join(pretendardOut, 'woff2-dynamic-subset'), {
+      recursive: true,
+    });
+  } else {
+    console.log('[build] WARN Pretendard subset 미발견 — `npm install` 확인 필요');
+  }
+
+  // (A) Latin woff2 → dist/static/fonts/
+  const fontsOut = join(staticDir, 'fonts');
+  await mkdir(fontsOut, { recursive: true });
+  for (const [pkg, file] of LATIN_FONTS) {
+    const src = join(NODE_MODULES, pkg, 'files', file);
+    if (existsSync(src)) await copyFile(src, join(fontsOut, file));
+    else console.log(`[build] WARN Latin 폰트 미발견: ${file}`);
+  }
+
+  console.log('[build] copied site chrome + fonts → dist/static');
+}
+
 // ── INTERIM 레이아웃 (Phase 2~4가 templates.mjs로 대체) ─────────────────────────
+
+// FOUC 방지: CSS 적용 전 동기 실행으로 초기 테마를 확정한다.
+const FOUC_SCRIPT = `(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();`;
 
 function shell(title, bodyHtml) {
   return `<!doctype html>
-<html lang="${SITE.lang}">
+<html lang="${SITE.lang}" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapeHtml(title)} · ${escapeHtml(SITE.title)}</title>
-<style>
-  body{font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
-       max-width:46rem;margin:0 auto;padding:2rem 1rem;line-height:1.7;color:#1b1f27}
-  a{color:#0b7}.wikilink-missing{color:#b94a48;border-bottom:1px dotted #b94a48}
-  figure{margin:1.5rem 0}figure img{max-width:100%;height:auto;border:1px solid #e3e7ee;border-radius:6px}
-  figcaption{font-size:.85rem;color:#5c6473;margin-top:.4rem}
-  pre{background:#f1f3f7;padding:1rem;overflow:auto;border-radius:6px}
-  code{background:#f1f3f7;padding:.1em .3em;border-radius:3px}
-  pre code{background:none;padding:0}
-  table{border-collapse:collapse}th,td{border:1px solid #e3e7ee;padding:.4rem .6rem}
-  .eyebrow{font-size:.8rem;color:#5c6473;text-transform:uppercase;letter-spacing:.05em}
-  .interim{background:#fff7e6;border:1px solid #ffd591;padding:.5rem .8rem;border-radius:6px;font-size:.8rem;color:#8a5a00}
-</style>
+<script>${FOUC_SCRIPT}</script>
+<link rel="stylesheet" href="${href('/static/fonts/pretendard/pretendard-dynamic-subset.css')}">
+<link rel="stylesheet" href="${href('/static/css/styles.css')}">
 </head>
 <body>
-<p class="interim">⚙ INTERIM 레이아웃 (Phase 1 콘텐츠 파이프라인 검증용). Constellation 디자인은 Phase 2~4에서 적용.</p>
+<header class="topbar">
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="테마 전환" aria-pressed="false">☀</button>
+</header>
+<main class="shell">
+<p class="interim">⚙ INTERIM 레이아웃 (Phase 1 콘텐츠 파이프라인 검증용). Constellation 디자인 시스템(토큰·폰트·light/dark)은 Phase 2 적용됨 — 컴포넌트 레이아웃(헤더·카드·constellation)은 Phase 3~4.</p>
 ${bodyHtml}
 <hr>
 <p class="eyebrow"><a href="${href('/')}">← ${escapeHtml(SITE.title)} 홈</a></p>
+</main>
+<script src="${href('/static/js/theme.js')}" defer></script>
 </body>
 </html>
 `;
