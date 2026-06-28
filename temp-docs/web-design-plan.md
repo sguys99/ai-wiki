@@ -138,11 +138,11 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 ## 단계별 작업 계획 (체크리스트)
 
 ### Phase 0 — 셋업 & 기반
-- [ ] `site/` + `package.json`(ESM, `build`/`preview` 스크립트)
-- [ ] 의존성: `marked`, `gray-matter`, `pagefind`(devDep), 정적 서버(`serve`)
-- [ ] `.gitignore`에 `dist/`, `site/node_modules/` 추가
-- [ ] `BASE` 환경 분기(로컬/배포) 구조
-- [ ] 빈 `build.mjs` 스켈레톤 → `dist/` 출력 파이프라인 동작 확인
+- [x] `site/` + `package.json`(ESM, `build`/`preview` 스크립트)
+- [x] 의존성: `marked`, `gray-matter`, `pagefind`(devDep), 정적 서버(`serve`)
+- [x] `.gitignore`에 `dist/`, `site/node_modules/` 추가
+- [x] `BASE` 환경 분기(로컬/배포) 구조 (`site/lib/config.mjs`)
+- [x] 빈 `build.mjs` 스켈레톤 → `dist/` 출력 파이프라인 동작 확인
 
 ### Phase 1 — 콘텐츠 파이프라인
 - [ ] `lib/content.mjs`: wiki frontmatter glob + index.md 카탈로그 머지 → 정렬된 섹션 모델
