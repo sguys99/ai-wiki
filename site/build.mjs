@@ -15,8 +15,9 @@ import { BASE, href } from './lib/config.mjs';
 import { loadContent } from './lib/content.mjs';
 import { buildGraph } from './lib/graph.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
-import { home, wiki } from './lib/templates.mjs';
+import { home, wiki, about } from './lib/templates.mjs';
 import { prevNext } from './lib/nav.mjs';
+import { aboutMarkdown, ABOUT_INTRO } from './lib/about.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..'); // 저장소 루트 (wiki/, index.md 등 콘텐츠 소스)
@@ -131,6 +132,15 @@ async function main() {
     join(DIST, 'index.html'),
     home({ sections, degree: graph.degree, adjacency, stats, graphHref: href('/graph.json') })
   );
+
+  // 6.5) About — README/CLAUDE.md 철학·THE FOUR RULES·3-tier 파이프라인.
+  //      위키 본문과 같은 렌더 경로(renderMarkdown) → [[category]] 위키링크가 홈 밴드 앵커로 해석.
+  const aboutRender = renderMarkdown(aboutMarkdown(href), { resolve: resolveLink, hrefFn: href });
+  if (aboutRender.broken.length)
+    console.log(`[about] WARN unresolved links: ${aboutRender.broken.join(' | ')}`);
+  await mkdir(join(DIST, 'about'), { recursive: true });
+  await writeFile(join(DIST, 'about', 'index.html'), about(aboutRender.html, ABOUT_INTRO));
+  console.log('[render] about page rendered');
 
   // 7) 깨진 링크 리포트
   const brokenTotal = brokenByPage.reduce((n, b) => n + b.targets.length, 0);

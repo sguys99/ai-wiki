@@ -1124,3 +1124,177 @@
     overflow: hidden;
   }
 }
+
+/* ── components (Phase 6: 햄버거 내비 · 모바일 목차 · About · 반응형 마무리) ──────── */
+@layer components {
+  /* ── 햄버거 버튼 (모바일 전용) ── */
+  .nav-hamburger {
+    display: none; /* 데스크톱 숨김 — 모바일 미디어쿼리에서 노출 */
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.2rem;
+    color: var(--muted);
+    background: var(--surface);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .nav-hamburger:hover {
+    color: var(--signal);
+    border-color: var(--signal);
+  }
+  .hamburger-bars,
+  .hamburger-bars::before,
+  .hamburger-bars::after {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform var(--dur) var(--ease), background var(--dur) var(--ease),
+      top var(--dur) var(--ease);
+  }
+  .hamburger-bars {
+    position: relative;
+  }
+  .hamburger-bars::before,
+  .hamburger-bars::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+  .hamburger-bars::before {
+    top: -6px;
+  }
+  .hamburger-bars::after {
+    top: 6px;
+  }
+  /* 열림 상태 → X */
+  .nav-hamburger[aria-expanded='true'] .hamburger-bars {
+    background: transparent;
+  }
+  .nav-hamburger[aria-expanded='true'] .hamburger-bars::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+  .nav-hamburger[aria-expanded='true'] .hamburger-bars::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  /* ── 모바일 메뉴 시트 ── */
+  .site-menu {
+    display: none; /* 데스크톱: 미사용 (인라인 nav 가 대체) */
+  }
+
+  /* ── About 페이지 ── */
+  .wiki-grid.about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .about-lede {
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── 모바일 접이식 목차 (<details>) ── */
+  .wiki-toc-m {
+    margin-bottom: var(--space-6);
+    background: var(--surface);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-md);
+  }
+  .wiki-toc-m > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    cursor: pointer;
+    list-style: none;
+  }
+  .wiki-toc-m > summary::-webkit-details-marker {
+    display: none;
+  }
+  .wiki-toc-m > summary .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .toc-m-chevron {
+    width: 0.5em;
+    height: 0.5em;
+    border-right: 2px solid var(--faint);
+    border-bottom: 2px solid var(--faint);
+    transform: rotate(45deg);
+    transition: transform var(--dur) var(--ease);
+  }
+  .wiki-toc-m[open] .toc-m-chevron {
+    transform: rotate(-135deg);
+  }
+  .wiki-toc-m[open] > summary {
+    border-bottom: var(--hairline-w) solid var(--hairline);
+  }
+  .wiki-toc-m .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-2) var(--space-4) var(--space-3);
+  }
+  .wiki-toc-m .toc-item a {
+    display: block;
+    padding: var(--space-1) 0;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+  .wiki-toc-m .toc-h3 a {
+    padding-left: var(--space-4);
+    font-size: var(--text-xs);
+  }
+  .wiki-toc-m .toc-item a:hover {
+    color: var(--text);
+  }
+  /* 데스크톱(rail 노출 폭)에서는 접이식 목차 숨김 */
+  @media (min-width: 1080px) {
+    .wiki-toc-m {
+      display: none;
+    }
+  }
+
+  /* ── 모바일 내비 (≤560px): 인라인 About 숨김 · 햄버거 노출 · 시트 표시 ── */
+  @media (max-width: 560px) {
+    .nav-about {
+      display: none;
+    }
+    .nav-hamburger {
+      display: inline-flex;
+    }
+    .site-menu:not([hidden]) {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: calc(100% + var(--space-2));
+      right: var(--space-3);
+      min-width: 11rem;
+      padding: var(--space-2);
+      background: var(--surface);
+      border: var(--hairline-w) solid var(--hairline);
+      border-radius: var(--radius-md);
+      box-shadow: 0 18px 48px -22px rgba(0, 0, 0, 0.6);
+    }
+    .site-menu a {
+      padding: var(--space-2) var(--space-3);
+      color: var(--text);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      font-size: var(--text-sm);
+    }
+    .site-menu a:hover {
+      background: var(--surface-2);
+      color: var(--signal);
+    }
+  }
+}

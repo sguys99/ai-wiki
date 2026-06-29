@@ -224,12 +224,22 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 > - ⚠️ 육안 확인 권장(헤드리스 미확인): 검색 모달 실제 검색·결과 이동(브라우저 WASM 필요) · neighborhood SVG 노드 hover·light/dark · 이전/다음 카드 hover. ⚠️ 검색은 `npm run preview`/배포(Actions)에서 pagefind가 도는 환경에서만 동작 — 단독 `npm run build`엔 인덱스 없음(의도).
 
 ### Phase 6 — About · 반응형 · 접근성 마무리
-- [ ] **About 페이지**: README.md/CLAUDE.md에서 철학·THE FOUR RULES·3-tier 추출 렌더
-- [ ] 모바일 햄버거 내비 + 접이식 TOC
-- [ ] 브레이크포인트(모바일/태블릿/데스크톱) 점검
-- [ ] light/dark 양쪽 명도 대비·이미지·코드블록·constellation 점검
-- [ ] 접근성: 시맨틱 랜드마크, skip link, 포커스 스타일, aria(토글/내비), 키보드 내비
-- [ ] 메타/SEO: title·description·OG·favicon, `lang="ko"`
+- [x] **About 페이지**: README.md/CLAUDE.md에서 철학·THE FOUR RULES·3-tier 추출 렌더
+- [x] 모바일 햄버거 내비 + 접이식 TOC
+- [x] 브레이크포인트(모바일/태블릿/데스크톱) 점검
+- [x] light/dark 양쪽 명도 대비·이미지·코드블록·constellation 점검
+- [x] 접근성: 시맨틱 랜드마크, skip link, 포커스 스타일, aria(토글/내비), 키보드 내비
+- [x] 메타/SEO: title·description·OG·favicon, `lang="ko"`
+
+> **Phase 6 결과 메모**
+> - **About 페이지**(`lib/about.mjs` 신설 + `templates.mjs#about()` + `build.mjs` 6.5단계): README/CLAUDE.md에서 추출한 *개요·THE FOUR RULES·3-tier 파이프라인·분류·둘러보기*를 한글 markdown으로 작성 → 위키와 **같은 렌더 경로**(`renderMarkdown` + resolver)로 렌더해 `[[database]]`등 카테고리 위키링크가 홈 밴드 앵커(`/#database`)로 해석됨. 리딩 컬럼(.prose) + 페이지 헤더(eyebrow "프로젝트 소개" + lede), TOC rail·관련 그래프·이전/다음은 없음. `dist/about/index.html` 라우트. (Rule #1 위반 아님 — 로컬 문서 읽기.)
+> - **헤더 모바일화**(`templates.mjs#header()`): About 링크를 GitHub README → **내부 `/about/`** 로 교체. 모바일(≤560px)은 아이콘 행(⌕ 검색 · ☀ 테마 · ☰ 햄버거) + 햄버거가 여는 `#site-menu` 시트(홈·About·GitHub). 검색·테마는 항상 노출, 인라인 About은 모바일에서 시트로 이동. `js/nav.js` 신설 — 햄버거 토글(aria-expanded 동기화) + Esc/바깥클릭/링크클릭/데스크톱 리사이즈 시 닫기.
+> - **접이식 TOC**(`templates.mjs#wiki()`): TOC 항목을 rail/모바일 공유로 추출 → 데스크톱(≥1080px)은 기존 sticky rail(scrollspy), 그 미만은 리딩 컬럼 위 네이티브 `<details class="wiki-toc-m">`(JS 불필요, nav.js가 링크 클릭 시 접기). 561–1079px(태블릿)은 인라인 nav + 접이식 TOC 조합.
+> - **메타/SEO**(`templates.mjs#layout()` + `config.mjs#absUrl()`): 페이지별 `path`로 canonical·og:url 절대 URL 생성(BASE 반영 → 배포 시 `/ai-wiki/` 접두). OG(`og:type/site_name/title/description/url/image`) + Twitter `summary_large_image` + `<link rel=icon>`. `lang="ko"`는 기존 유지. **favicon.svg**(Constellation 모티프) + **og.svg**(1200×630 워드마크+노드그래프) 신설(`assets/img/`).
+> - **반응형/대비/접근성**: 브레이크포인트 모바일(≤560 햄버거)·태블릿(561–1079 인라인+접이식TOC)·데스크톱(≥1080 rail) 일관. 햄버거 바·시트·모바일 TOC는 모두 CSS 토큰 사용(light/dark 추종), constellation은 런타임 토큰 read로 기존부터 양 테마 대응. a11y: skip-link·`<main id=main>`·`<nav aria-label>`·테마토글 `aria-pressed`·햄버거 `aria-expanded`/`aria-controls`·`hamburger-bars aria-hidden`·`:focus-visible`·Esc 키 처리 전부 확인. 모션은 기존 `prefers-reduced-motion` 전역 무력화에 포함.
+> - **검증**: 빌드 깨진 링크 0(58) · about 페이지 렌더 · HTTP 200(홈·`/about/`·favicon.svg·og.svg·nav.js·theme.js·css·graph.json·위키) · `BASE=/ai-wiki` 시 favicon·og:image·canonical·`/about/`·nav.js 전부 `/ai-wiki/...` 정상 · CSS brace balanced · pagefind 여전히 **위키 58개만** 인덱싱(about은 `data-pagefind-body` 없어 검색 노이즈 제외) · `node --check` 전 파일 통과.
+> - ⚠️ 육안 확인 권장(헤드리스 브라우저 미가용): 햄버거 시트 열림/X 전환·바깥클릭 닫기 · 모바일 `<details>` 목차 펼침 · light/dark 양쪽 about/카드/코드블록 대비 · 360/768/1280px 레이아웃.
+> - ⚠️ **Known Gap**: `og:image`가 SVG라 일부 SNS(Twitter/Facebook 등)는 미리보기 이미지를 렌더하지 않을 수 있음(파비콘 SVG는 모던 브라우저 지원). 필요 시 PNG OG 이미지로 후속 교체. ⚠️ About 본문이 나열하는 빈 카테고리(`evaluations`·`etc`) 앵커는 홈에 밴드가 없어 클릭 시 홈 최상단으로 안착(깨진 링크 아님, 자료 추가 시 자동 해소).
 
 ### Phase 7 — 배포 & 검수
 - [ ] `.github/workflows/deploy.yml`: push(main) → node setup → `npm ci` → build → pagefind → Pages 아티팩트 업로드/배포

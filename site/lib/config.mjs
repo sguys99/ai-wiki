@@ -14,6 +14,15 @@ export function href(path = '/') {
   return BASE + p;
 }
 
+// 배포 origin (BASE 제외). OG/canonical 의 절대 URL 생성에만 쓴다.
+export const ORIGIN = 'https://sguys99.github.io';
+
+// 절대 URL: ORIGIN + href(path). og:url / og:image / canonical 용.
+// 로컬 빌드(BASE='')에서도 배포 기준 절대경로를 만든다(OG는 배포 환경에서만 의미).
+export function absUrl(path = '/') {
+  return ORIGIN + href(path);
+}
+
 // 배포 메타
 export const SITE = {
   repo: 'sguys99/ai-wiki',

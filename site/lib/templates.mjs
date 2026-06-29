@@ -10,7 +10,7 @@
 //   이전/다음·관련(neighborhood) 그래프·원문/소스 링크는 Phase 5, About은 Phase 6.
 // 검색(Pagefind)은 Phase 5 — 헤더 자리만 마련하고 링크는 임시.
 
-import { href, SITE } from './config.mjs';
+import { href, absUrl, SITE } from './config.mjs';
 import { escapeHtml } from './markdown.mjs';
 
 const GH_URL = `https://github.com/${SITE.repo}`;
@@ -20,7 +20,8 @@ const FOUC_SCRIPT = `(function(){try{var t=localStorage.getItem('theme');if(!t)t
 
 // ── 공유 셸 ───────────────────────────────────────────────────────────────────
 //
-// opts: { title, description?, body, mainClass?, head?, scripts?:[src,...] }
+// opts: { title, description?, body, mainClass?, head?, scripts?:[src,...], path? }
+//   - path: 페이지의 논리 경로('/', '/about/', '/agents/x/') — OG/canonical 절대 URL 생성용.
 export function layout(opts) {
   const {
     title,
@@ -29,8 +30,11 @@ export function layout(opts) {
     mainClass = '',
     head = '',
     scripts = [],
+    path = '/',
   } = opts;
   const pageTitle = title === SITE.title ? title : `${title} · ${SITE.title}`;
+  const canonical = absUrl(path);
+  const ogImage = absUrl('/static/img/og.svg');
   const extraScripts = scripts
     .map((src) => `<script src="${escapeHtml(href(src))}" defer></script>`)
     .join('\n');
@@ -43,6 +47,18 @@ export function layout(opts) {
 <title>${escapeHtml(pageTitle)}</title>
 <meta name="description" content="${escapeHtml(description)}">
 <script>${FOUC_SCRIPT}</script>
+<link rel="icon" href="${href('/static/img/favicon.svg')}" type="image/svg+xml">
+<link rel="canonical" href="${escapeHtml(canonical)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="${escapeHtml(SITE.title)}">
+<meta property="og:title" content="${escapeHtml(pageTitle)}">
+<meta property="og:description" content="${escapeHtml(description)}">
+<meta property="og:url" content="${escapeHtml(canonical)}">
+<meta property="og:image" content="${escapeHtml(ogImage)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+<meta name="twitter:description" content="${escapeHtml(description)}">
+<meta name="twitter:image" content="${escapeHtml(ogImage)}">
 <link rel="stylesheet" href="${href('/static/fonts/pretendard/pretendard-dynamic-subset.css')}">
 <link rel="stylesheet" href="${href('/static/css/styles.css')}">
 ${head}
@@ -55,6 +71,7 @@ ${body}
 </main>
 ${footer()}
 <script src="${href('/static/js/theme.js')}" defer></script>
+<script src="${href('/static/js/nav.js')}" defer></script>
 <script src="${href('/static/js/search.js')}" defer></script>
 ${extraScripts}
 </body>
@@ -63,6 +80,10 @@ ${extraScripts}
 }
 
 // ── 헤더 (sticky frosted) ─────────────────────────────────────────────────────
+//
+// 데스크톱: 워드마크 + [검색][About][테마].
+// 모바일(≤560px): 워드마크 + 아이콘 행([검색][테마][☰ 햄버거]) — About/홈/GitHub 는
+//   햄버거가 여는 #site-menu 시트로 이동(nav.js 가 토글). 검색·테마는 항상 노출.
 function header() {
   return `<header class="site-header">
   <a class="wordmark" href="${href('/')}">ai<span class="wordmark-dot">·</span>wiki</a>
@@ -70,9 +91,17 @@ function header() {
     <button type="button" class="nav-btn" data-search-trigger data-pagefind="${escapeHtml(href('/pagefind/pagefind.js'))}" aria-label="검색" title="검색 (Ctrl/⌘ K)">
       <span class="nav-btn-ico" aria-hidden="true">⌕</span><span class="nav-btn-label">검색</span><kbd class="nav-kbd">⌘K</kbd>
     </button>
-    <a class="nav-btn" href="${escapeHtml(GH_URL)}#readme" target="_blank" rel="noopener">About</a>
+    <a class="nav-btn nav-about" href="${href('/about/')}">About</a>
     <button type="button" class="theme-toggle" data-theme-toggle aria-label="테마 전환" aria-pressed="false">☀</button>
+    <button type="button" class="nav-hamburger" data-nav-toggle aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-menu">
+      <span class="hamburger-bars" aria-hidden="true"></span>
+    </button>
   </nav>
+  <div id="site-menu" class="site-menu" hidden>
+    <a href="${href('/')}">홈</a>
+    <a href="${href('/about/')}">About</a>
+    <a href="${escapeHtml(GH_URL)}" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
 </header>`;
 }
 
@@ -159,7 +188,34 @@ ${cards}
     title: SITE.title,
     body: `${hero}\n${bands}`,
     mainClass: 'home',
+    path: '/',
     scripts: ['/static/js/constellation.js'],
+  });
+}
+
+// ── About 페이지 ──────────────────────────────────────────────────────────────
+//
+// README/CLAUDE.md 에서 추출한 철학·THE FOUR RULES·3-tier 파이프라인을 리딩 컬럼에 렌더.
+// 위키 페이지와 같은 에디토리얼 본문(.prose)을 쓰되, TOC rail/관련 그래프/이전·다음은 없다.
+// html: about.mjs 의 markdown 을 renderMarkdown 으로 렌더한 본문.
+export function about(html, intro) {
+  const body = `<div class="wiki-grid about-grid">
+  <article class="wiki-article prose">
+    <header class="wiki-header">
+      <p class="eyebrow wiki-eyebrow">프로젝트 소개</p>
+      <h1 class="wiki-title">${escapeHtml(SITE.title)} — 개인 AI 지식 베이스</h1>
+      ${intro ? `<p class="wiki-meta about-lede">${escapeHtml(intro)}</p>` : ''}
+    </header>
+    ${html}
+  </article>
+</div>`;
+
+  return layout({
+    title: 'About',
+    description: intro || SITE.description,
+    body,
+    mainClass: 'wiki about',
+    path: '/about/',
   });
 }
 
@@ -201,27 +257,43 @@ export function wiki(page, html, toc, data = {}) {
   // 하단 footer (Phase 5): 관련 페이지(neighborhood) + 원문/소스 + 이전/다음.
   const foot = wikiFoot(page, neighbors, prev, next);
 
-  // TOC rail (h2/h3) — 항목이 있을 때만. 데스크톱 sticky, 모바일은 CSS로 숨김(Phase 6 접이식).
+  // TOC 항목(h2/h3) — 데스크톱 sticky rail 과 모바일 접이식 <details> 가 공유.
+  const tocItems = toc
+    .map(
+      (t) =>
+        `        <li class="toc-item toc-h${t.depth}"><a href="#${escapeHtml(t.id)}">${escapeHtml(
+          t.text
+        )}</a></li>`
+    )
+    .join('\n');
+
+  // (데스크톱) 우측 sticky rail — scrollspy 대상.
   const tocRail = toc.length
     ? `<aside class="wiki-toc" aria-label="목차">
     <nav class="wiki-toc-inner">
       <p class="wiki-toc-title eyebrow">목차</p>
       <ul class="toc-list">
-${toc
-  .map(
-    (t) =>
-      `        <li class="toc-item toc-h${t.depth}"><a href="#${escapeHtml(t.id)}">${escapeHtml(
-        t.text
-      )}</a></li>`
-  )
-  .join('\n')}
+${tocItems}
       </ul>
     </nav>
   </aside>`
     : '';
 
+  // (모바일) 접이식 목차 — 리딩 컬럼 위. 데스크톱은 CSS로 숨김. 네이티브 <details>라 JS 불필요.
+  const tocMobile = toc.length
+    ? `<details class="wiki-toc-m">
+    <summary><span class="eyebrow">목차</span><span class="toc-m-chevron" aria-hidden="true"></span></summary>
+    <nav aria-label="목차 (모바일)">
+      <ul class="toc-list">
+${tocItems}
+      </ul>
+    </nav>
+  </details>`
+    : '';
+
   const body = `<div class="reading-bar" aria-hidden="true"><i></i></div>
 <div class="wiki-grid">
+  ${tocMobile}
   <article class="wiki-article prose" data-pagefind-body>
     ${header}
     ${html}
@@ -235,6 +307,7 @@ ${toc
     description: page.desc || SITE.description,
     body,
     mainClass: 'wiki',
+    path: `/${page.category}/${page.stem}/`,
     scripts: ['/static/js/reader.js'],
   });
 }
