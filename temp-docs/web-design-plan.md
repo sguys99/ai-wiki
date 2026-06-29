@@ -191,11 +191,21 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 > - ⚠️ 육안 확인 권장(헤드리스 미확인): 캔버스 drift 애니메이션 · 카드 hover 연결 강조 · light/dark 양쪽 대비. ⚠️ 밴드 카드 수는 카탈로그(56) 기준 — index.md 누락 2건은 카드 미표시(그래프·stats엔 58 포함).
 
 ### Phase 4 — 위키(절) 페이지
-- [ ] 공통 레이아웃(헤더/푸터 공유) + 리딩 컬럼(~72ch)
-- [ ] 데스크톱 우측 TOC rail(h2/h3 scrollspy) + 상단 진행바(`js/reader.js`)
-- [ ] 페이지 헤더(카테고리 eyebrow + 제목 + 메타: authors/year/arxiv·url)
-- [ ] figure 임베드(`<figure>` + 캡션) + 표/인용/코드 에디토리얼 스타일
-- [ ] 45개 페이지 생성·내부 링크 정상 동작 확인
+- [x] 공통 레이아웃(헤더/푸터 공유) + 리딩 컬럼(~72ch)
+- [x] 데스크톱 우측 TOC rail(h2/h3 scrollspy) + 상단 진행바(`js/reader.js`)
+- [x] 페이지 헤더(카테고리 eyebrow + 제목 + 메타: authors/year/arxiv·url)
+- [x] figure 임베드(`<figure>` + 캡션) + 표/인용/코드 에디토리얼 스타일
+- [x] 58개 페이지 생성·내부 링크 정상 동작 확인 (계획서의 45는 구버전 수치)
+
+> **Phase 4 결과 메모**
+> - **`templates.mjs`에 `wiki()` 신설**: 공유 `layout()` 재사용 → 진행바 + `wiki-grid`(리딩 컬럼 + 우측 TOC rail) + 페이지 헤더 + 에디토리얼 본문. `build.mjs`가 INTERIM `wikiInterim()` 대신 `wiki(page, html, toc, {degree, categoryLabel})` 호출로 전환.
+> - **페이지 헤더**: eyebrow = `카테고리 링크(홈 #밴드 앵커) · TYPE · YEAR`(mono). 제목(Pretendard 3xl). 메타 = `저자(authors/author/org) · 단일 참조 링크 · ↳ N links`. 참조 링크는 `referenceLink()`가 **arxiv_id > doi > url(hostname ↗)** 우선순위로 1개만 노출(원문·source 링크 전체는 Phase 5).
+> - **리딩 컬럼**: `.wiki-article max-width:var(--measure)=72ch`, `min-width:0`로 grid 셀에서 긴 표/코드가 컬럼 밀지 않음. 넓은 표는 `display:block; overflow-x:auto`로 가로 스크롤.
+> - **TOC rail**: `markdown.mjs`가 이미 추출하던 `toc[{depth,id,text}]`(h2/h3, 한글 보존 slug + dedup) 소비. ≥1080px에서 `position:sticky` 15rem rail, 그 미만은 `display:none`(모바일 접이식은 Phase 6). 전 페이지 TOC ≥5개라 rail 항상 표시.
+> - **`js/reader.js` 신설**: (1) 진행바 = `scrollTop/scrollable` → `.reading-bar>i` `scaleX`. (2) scrollspy = 헤더 아래 120px 라인 막 지난 마지막 h2/h3을 현재 절로 `.is-active`. rAF 코얼레싱, 레이아웃 보조라 reduced-motion 무관 동작.
+> - **figure**: `markdown.mjs`의 기존 `![[assets/{stem}/figNN.png]]`→`<figure class="fig">` 변환을 위키 본문에서 그대로 사용(중앙 정렬 + figcaption). 9개 페이지 figure 임베드 확인(cemri 6장 등).
+> - **검증**: 빌드 깨진 링크 0(58페이지) · 위키/reader.js/figure/graph.json HTTP 200 · `BASE=/ai-wiki` 시 헤더 링크·`#밴드` 앵커·figure src·reader.js 전부 `/ai-wiki/...` 정상. repo 페이지(autorag) `org→authors`·`url→github ↗`, paper 페이지(cemri) `arXiv:2503.13657` 노출 확인.
+> - ⚠️ 육안 확인 권장(헤드리스 미확인): 진행바 채움 · TOC scrollspy `.is-active` 추종 · sticky rail 스크롤 · light/dark 본문 대비. ⚠️ 모바일 TOC는 현재 숨김(접이식 = Phase 6).
 
 ### Phase 5 — 부가 기능
 - [ ] **교차링크**: `[[wikilink]]` → 클릭 가능 내부 링크(완료 확인) + 미해석 경고 0

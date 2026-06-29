@@ -15,7 +15,7 @@ import { BASE, href } from './lib/config.mjs';
 import { loadContent } from './lib/content.mjs';
 import { buildGraph } from './lib/graph.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
-import { home, wikiInterim } from './lib/templates.mjs';
+import { home, wiki } from './lib/templates.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..'); // 저장소 루트 (wiki/, index.md 등 콘텐츠 소스)
@@ -77,7 +77,7 @@ async function main() {
   //      dist/assets(=wiki figure 전용)와 분리해 경로 충돌 방지.
   await copyStatic();
 
-  // 5) 전 페이지 렌더 + 깨진 링크 수집 (위키 본문은 공유 셸 + INTERIM 본문)
+  // 5) 전 페이지 렌더 + 깨진 링크 수집 (Constellation 위키 레이아웃: 리딩 컬럼 + TOC rail)
   const brokenByPage = []; // { id, targets:[...] }
   let rendered = 0;
   for (const page of pages.values()) {
@@ -85,7 +85,13 @@ async function main() {
     if (broken.length) brokenByPage.push({ id: page.id, targets: broken });
     const outDir = join(DIST, page.category, page.stem);
     await mkdir(outDir, { recursive: true });
-    await writeFile(join(outDir, 'index.html'), wikiInterim(page, html, toc, graph.degree));
+    await writeFile(
+      join(outDir, 'index.html'),
+      wiki(page, html, toc, {
+        degree: graph.degree,
+        categoryLabel: content.categories.get(page.category),
+      })
+    );
     rendered++;
   }
   console.log(`[render] pages rendered: ${rendered}`);

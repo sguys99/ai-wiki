@@ -5,8 +5,10 @@
 //   - home()    : 홈 랜딩 (히어로 constellation → 카테고리 밴드 → 카드 그리드).
 //   - 파셜       : header() · footer() · card()
 //
-// Phase 3 범위: 홈 + 공유 셸. 위키 본문 레이아웃(리딩 컬럼·TOC·neighborhood)은 Phase 4.
-// 검색(Pagefind)은 Phase 5, About 페이지는 Phase 6 — 헤더 자리만 마련하고 링크는 임시.
+// Phase 4 범위: 위키(절) 페이지 — 공유 셸 + 리딩 컬럼(~72ch) + 우측 TOC rail(scrollspy)
+//   + 상단 진행바 + 페이지 헤더(카테고리 eyebrow·제목·메타) + 에디토리얼 본문.
+//   이전/다음·관련(neighborhood) 그래프·원문/소스 링크는 Phase 5, About은 Phase 6.
+// 검색(Pagefind)은 Phase 5 — 헤더 자리만 마련하고 링크는 임시.
 
 import { href, SITE } from './config.mjs';
 import { escapeHtml } from './markdown.mjs';
@@ -160,24 +162,95 @@ ${cards}
   });
 }
 
-// ── 위키 INTERIM 본문 (Phase 4가 리딩 컬럼·TOC·neighborhood로 대체) ────────────
+// ── 위키(절) 페이지 ───────────────────────────────────────────────────────────
 //
-// 공유 layout() 셸(헤더/푸터/테마)은 적용하되, 본문은 파이프라인 검증용 최소 마크업.
-export function wikiInterim(page, html, toc, degree) {
-  const deg = degree.get(page.id) || 0;
-  const meta = [page.catalogType || page.type, page.year].filter(Boolean).join(' · ');
-  const tocHtml = toc.length
-    ? `<nav class="eyebrow toc-inline">TOC: ${toc
-        .map((t) => `<a href="#${t.id}">${escapeHtml(t.text)}</a>`)
-        .join(' · ')}</nav>`
+// 리딩 컬럼(~72ch) + 데스크톱 우측 TOC rail(scrollspy) + 상단 진행바 + 페이지 헤더.
+// data: { html, toc:[{depth,id,text}], degree:Map, categoryLabel }
+//   - degree: 그래프 연결 수(↳ N links 메타)
+//   - categoryLabel: 카테고리 eyebrow 표기(index.md 섹션 라벨, 폴백은 slug)
+export function wiki(page, html, toc, data = {}) {
+  const { degree, categoryLabel } = data;
+  const deg = (degree && degree.get(page.id)) || 0;
+  const catLabel = categoryLabel || page.category;
+  const type = (page.catalogType || page.type || '').toUpperCase();
+  const year = page.catalogYear || page.year || '';
+
+  // 페이지 헤더 — eyebrow(카테고리 링크 · TYPE · YEAR) + 제목 + 메타(저자 · 참조 · 연결수)
+  const eyebrowParts = [
+    `<a href="${href('/')}#${escapeHtml(page.category)}">${escapeHtml(catLabel)}</a>`,
+    type ? escapeHtml(type) : '',
+    year ? escapeHtml(String(year)) : '',
+  ].filter(Boolean);
+
+  const ref = referenceLink(page);
+  const metaParts = [
+    page.authors ? `<span class="wiki-authors">${escapeHtml(page.authors)}</span>` : '',
+    ref,
+    `<span class="wiki-deg" title="이 페이지와 연결된 페이지 ${deg}개">↳ ${deg} links</span>`,
+  ].filter(Boolean);
+
+  const header = `<header class="wiki-header">
+    <p class="eyebrow wiki-eyebrow">${eyebrowParts.join('<span class="sep"> · </span>')}</p>
+    <h1 class="wiki-title">${escapeHtml(page.title)}</h1>
+    ${metaParts.length ? `<p class="wiki-meta">${metaParts.join('<span class="sep"> · </span>')}</p>` : ''}
+  </header>`;
+
+  // TOC rail (h2/h3) — 항목이 있을 때만. 데스크톱 sticky, 모바일은 CSS로 숨김(Phase 6 접이식).
+  const tocRail = toc.length
+    ? `<aside class="wiki-toc" aria-label="목차">
+    <nav class="wiki-toc-inner">
+      <p class="wiki-toc-title eyebrow">목차</p>
+      <ul class="toc-list">
+${toc
+  .map(
+    (t) =>
+      `        <li class="toc-item toc-h${t.depth}"><a href="#${escapeHtml(t.id)}">${escapeHtml(
+        t.text
+      )}</a></li>`
+  )
+  .join('\n')}
+      </ul>
+    </nav>
+  </aside>`
     : '';
-  const body = `<article class="shell prose">
-  <p class="interim">⚙ INTERIM 위키 레이아웃 — Constellation 셸(헤더·푸터·테마·타이포)은 적용됨. 리딩 컬럼·TOC rail·관련 그래프는 Phase 4.</p>
-  <p class="eyebrow">${escapeHtml(page.category)} · ${escapeHtml(meta)} · ↳ ${deg} links</p>
-  <h1>${escapeHtml(page.title)}</h1>
-  ${tocHtml}
-  <hr>
-  ${html}
-</article>`;
-  return layout({ title: page.title, description: page.desc || SITE.description, body });
+
+  const body = `<div class="reading-bar" aria-hidden="true"><i></i></div>
+<div class="wiki-grid">
+  <article class="wiki-article prose">
+    ${header}
+    ${html}
+  </article>
+  ${tocRail}
+</div>`;
+
+  return layout({
+    title: page.title,
+    description: page.desc || SITE.description,
+    body,
+    mainClass: 'wiki',
+    scripts: ['/static/js/reader.js'],
+  });
+}
+
+// 페이지 헤더의 단일 참조 링크 — arxiv > doi > 일반 url 순. (raw/source 링크는 Phase 5.)
+function referenceLink(page) {
+  const fm = page.frontmatter || {};
+  if (fm.arxiv_id) {
+    const id = String(fm.arxiv_id);
+    return `<a class="wiki-ref" href="https://arxiv.org/abs/${escapeHtml(id)}" target="_blank" rel="noopener">arXiv:${escapeHtml(id)}</a>`;
+  }
+  if (fm.doi) {
+    const doi = String(fm.doi);
+    return `<a class="wiki-ref" href="https://doi.org/${escapeHtml(doi)}" target="_blank" rel="noopener">doi:${escapeHtml(doi)}</a>`;
+  }
+  if (page.sourceUrl) {
+    let host = page.sourceUrl;
+    try {
+      host = new URL(page.sourceUrl).hostname.replace(/^www\./, '');
+    } catch {
+      /* URL 파싱 실패 — 원문 문자열 그대로 */
+    }
+    return `<a class="wiki-ref" href="${escapeHtml(page.sourceUrl)}" target="_blank" rel="noopener">${escapeHtml(host)} ↗</a>`;
+  }
+  return '';
 }

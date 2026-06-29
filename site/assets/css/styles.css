@@ -671,3 +671,169 @@
     }
   }
 }
+
+/* ── components (Phase 4: 위키 절 페이지 — 리딩 컬럼·TOC rail·진행바·에디토리얼) ──── */
+@layer components {
+  main.wiki {
+    padding: 0 var(--space-4) var(--space-12);
+  }
+
+  /* 상단 진행바 — sticky 헤더 위 가장자리. JS(reader.js)가 scaleX로 채운다. */
+  .reading-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    z-index: calc(var(--z-header) + 1);
+    background: transparent;
+    pointer-events: none;
+  }
+  .reading-bar > i {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: var(--signal);
+    will-change: transform;
+  }
+
+  /* 그리드: 리딩 컬럼 + (데스크톱) 우측 TOC rail */
+  .wiki-grid {
+    max-width: 78rem;
+    margin: 0 auto;
+    padding-top: var(--space-8);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  @media (min-width: 1080px) {
+    .wiki-grid {
+      grid-template-columns: minmax(0, 1fr) 15rem;
+      align-items: start;
+    }
+  }
+
+  .wiki-article {
+    max-width: var(--measure);
+    width: 100%;
+    margin: 0 auto;
+    min-width: 0; /* grid 셀에서 긴 코드/표가 컬럼을 밀지 않도록 */
+  }
+
+  /* 앵커/scrollspy 착지: sticky 헤더 높이만큼 여유 */
+  .wiki-article :is(h1, h2, h3, h4) {
+    scroll-margin-top: 5rem;
+  }
+
+  /* ── 페이지 헤더 ── */
+  .wiki-header {
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-4);
+    border-bottom: var(--hairline-w) solid var(--hairline);
+  }
+  .wiki-eyebrow {
+    margin: 0 0 var(--space-3);
+  }
+  .wiki-eyebrow a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .wiki-eyebrow a:hover {
+    color: var(--signal);
+  }
+  .wiki-eyebrow .sep,
+  .wiki-meta .sep {
+    color: var(--faint);
+  }
+  .wiki-title {
+    margin: 0;
+    font-size: var(--text-3xl);
+  }
+  .wiki-meta {
+    margin: var(--space-4) 0 0;
+    font-size: var(--text-sm);
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .wiki-authors {
+    color: var(--text);
+  }
+  .wiki-ref,
+  .wiki-deg {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+  }
+  .wiki-deg {
+    color: var(--faint);
+  }
+
+  /* ── 본문 에디토리얼 미세조정 (.prose) ── */
+  .wiki-article.prose > h2 {
+    padding-top: var(--space-2);
+  }
+  .wiki-article.prose figure.fig {
+    text-align: center;
+  }
+  .wiki-article.prose figure.fig figcaption {
+    text-align: center;
+  }
+  /* 넓은 표는 컬럼을 밀지 않고 가로 스크롤 */
+  .wiki-article.prose table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* ── TOC rail (데스크톱 sticky) ── */
+  .wiki-toc {
+    display: none;
+  }
+  @media (min-width: 1080px) {
+    .wiki-toc {
+      display: block;
+      position: sticky;
+      top: 4.5rem;
+      align-self: start;
+      max-height: calc(100vh - 6rem);
+      overflow-y: auto;
+    }
+  }
+  .wiki-toc-title {
+    margin: 0 0 var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .wiki-toc .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: var(--hairline-w) solid var(--hairline);
+  }
+  .wiki-toc .toc-item {
+    margin: 0;
+  }
+  .wiki-toc .toc-item a {
+    display: block;
+    padding: var(--space-1) var(--space-3);
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    line-height: 1.4;
+    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .wiki-toc .toc-h3 a {
+    padding-left: var(--space-6);
+    font-size: var(--text-xs);
+  }
+  .wiki-toc .toc-item a:hover {
+    color: var(--text);
+  }
+  .wiki-toc .toc-item a.is-active {
+    color: var(--signal);
+    border-left-color: var(--signal);
+  }
+}
