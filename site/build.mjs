@@ -16,6 +16,7 @@ import { loadContent } from './lib/content.mjs';
 import { buildGraph } from './lib/graph.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
 import { home, wiki } from './lib/templates.mjs';
+import { prevNext } from './lib/nav.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..'); // 저장소 루트 (wiki/, index.md 등 콘텐츠 소스)
@@ -78,11 +79,32 @@ async function main() {
   await copyStatic();
 
   // 5) 전 페이지 렌더 + 깨진 링크 수집 (Constellation 위키 레이아웃: 리딩 컬럼 + TOC rail)
+  //    + Phase 5: 관련 페이지(neighborhood) · 같은 카테고리 이전/다음.
+  const sectionBySlug = new Map(sections.map((s) => [s.slug, s]));
   const brokenByPage = []; // { id, targets:[...] }
   let rendered = 0;
   for (const page of pages.values()) {
     const { html, toc, broken } = renderMarkdown(page.body, { resolve: resolveLink, hrefFn: href });
     if (broken.length) brokenByPage.push({ id: page.id, targets: broken });
+
+    // 관련 페이지: 무방향 직접 이웃 → degree 내림차순(동률은 제목순). 그래프 노드=위키 페이지.
+    const neighbors = (adjacency.get(page.id) || [])
+      .map((nid) => pages.get(nid))
+      .filter(Boolean)
+      .map((p) => ({
+        id: p.id,
+        url: p.url,
+        title: p.display || p.title,
+        category: p.category,
+        degree: graph.degree.get(p.id) || 0,
+        type: p.catalogType || p.type || '',
+        year: p.catalogYear || p.year || '',
+      }))
+      .sort((a, b) => b.degree - a.degree || a.title.localeCompare(b.title, 'ko'));
+
+    // 같은 카테고리(카탈로그 순서) 이전/다음.
+    const { prev, next } = prevNext(sectionBySlug.get(page.category), page.id);
+
     const outDir = join(DIST, page.category, page.stem);
     await mkdir(outDir, { recursive: true });
     await writeFile(
@@ -90,6 +112,9 @@ async function main() {
       wiki(page, html, toc, {
         degree: graph.degree,
         categoryLabel: content.categories.get(page.category),
+        neighbors,
+        prev,
+        next,
       })
     );
     rendered++;

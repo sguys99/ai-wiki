@@ -208,11 +208,20 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 > - ⚠️ 육안 확인 권장(헤드리스 미확인): 진행바 채움 · TOC scrollspy `.is-active` 추종 · sticky rail 스크롤 · light/dark 본문 대비. ⚠️ 모바일 TOC는 현재 숨김(접이식 = Phase 6).
 
 ### Phase 5 — 부가 기능
-- [ ] **교차링크**: `[[wikilink]]` → 클릭 가능 내부 링크(완료 확인) + 미해석 경고 0
-- [ ] **관련 페이지 그래프**: 페이지 하단 neighborhood 그래프(직접 링크 노드) + 텍스트 목록
-- [ ] **이전/다음**: 같은 카테고리 내 index 순서 기반 카드
-- [ ] **원문/소스 링크**: frontmatter `raw_path`/`source`로 GitHub 원문 + sources 링크
-- [ ] **전체 검색**: 빌드 후 `pagefind`로 `dist` 인덱싱 + 검색 UI(모달) 연동, 결과→페이지 이동 확인
+- [x] **교차링크**: `[[wikilink]]` → 클릭 가능 내부 링크(완료 확인) + 미해석 경고 0
+- [x] **관련 페이지 그래프**: 페이지 하단 neighborhood 그래프(직접 링크 노드) + 텍스트 목록
+- [x] **이전/다음**: 같은 카테고리 내 index 순서 기반 카드
+- [x] **원문/소스 링크**: frontmatter `raw_path`/`source`로 GitHub 원문 + sources 링크
+- [x] **전체 검색**: 빌드 후 `pagefind`로 `dist` 인덱싱 + 검색 UI(모달) 연동, 결과→페이지 이동 확인
+
+> **Phase 5 결과 메모**
+> - **`templates.mjs`에 `wikiFoot()` 신설**: 위키 본문 하단에 `<footer class="wiki-foot">`(grid-column 1, 리딩 컬럼 폭) → ① 관련 페이지(neighborhood) ② 원문·소스 ③ 이전/다음 3단. `build.mjs`가 페이지별 `neighbors`(무방향 직접 이웃, degree 내림차순)·`prev/next`(`nav.mjs#prevNext`, 같은 카테고리 카탈로그 순서)를 계산해 `wiki()`에 주입.
+> - **관련 페이지 그래프**: 빌드 시 **결정적 방사형 SVG**(중심=현재 페이지 signal 노드 + 이웃 노드/엣지, 노드 크기 ∝ degree, 색은 CSS 토큰이라 light/dark 추종). 각 이웃 노드는 `<a>`+`<title>` 툴팁으로 클릭 이동. 그래프는 시각 에코, **라벨 텍스트 목록**(제목·TYPE·YEAR·↳N)이 실제 내비게이션 — 이웃 수와 무관하게 안정. 이웃 0이면 "직접 연결된 페이지가 없습니다"(현재 0-이웃 페이지 없음).
+> - **원문·소스 링크**: `원문(PDF/MD ↗)` = `raw_path`에서 `raw/…` 부분만 잘라 GitHub blob URL로 변환(⚠️ `raw_path`가 기기별 절대경로 `/Users/kmyu/…`·`/home/sguys99/…` 혼재라 정규식 `(raw\/.+)$`로 추출) · `요약 source ↗`(`sources/{source}`) · `이 페이지 .md ↗`(`wiki/{relPath}`). raw/sources 모두 git 추적(145·57개) 확인.
+> - **전체 검색(Pagefind)**: `js/search.js` 신설 — 헤더 ⌕ 버튼·**Cmd/Ctrl+K**·`/`로 모달 open, Esc close. Pagefind 번들을 `data-pagefind`(BASE 적용 경로)로 **동적 import** → 160ms 디바운스 검색, ↑/↓·Enter·클릭 이동, `<mark>` 하이라이트. **base path 보정**: Pagefind url은 파일경로 기준(`/cat/stem/`)이라 배포 시 BASE를 수동 접두(로컬 ''·배포 `/ai-wiki`). 인덱스 부재(단독 `npm run build`) 시 안내 메시지로 graceful degrade.
+> - **인덱싱 범위**: 위키 `<article>`에만 `data-pagefind-body`(+ 제목 `data-pagefind-meta="title"`) → Pagefind가 **위키 58개 페이지만** 인덱싱(홈 카드그리드·About 제외, 노이즈 차단). `pagefind --site ../dist` → 58 pages·21,706 words.
+> - **검증**: 빌드 깨진 링크 0(58) · `pagefind` 58페이지 인덱싱 · HTTP 200(홈·`/pagefind/pagefind.js`·`search.js`·위키·graph.json) · `BASE=/ai-wiki` 시 검색트리거·search.js·이웃 href 전부 `/ai-wiki/…`, raw/source는 GitHub 절대URL 무영향 · 비카탈로그 페이지는 prevnext만 생략(관련·소스는 정상) · `node --check` 통과.
+> - ⚠️ 육안 확인 권장(헤드리스 미확인): 검색 모달 실제 검색·결과 이동(브라우저 WASM 필요) · neighborhood SVG 노드 hover·light/dark · 이전/다음 카드 hover. ⚠️ 검색은 `npm run preview`/배포(Actions)에서 pagefind가 도는 환경에서만 동작 — 단독 `npm run build`엔 인덱스 없음(의도).
 
 ### Phase 6 — About · 반응형 · 접근성 마무리
 - [ ] **About 페이지**: README.md/CLAUDE.md에서 철학·THE FOUR RULES·3-tier 추출 렌더
