@@ -242,11 +242,18 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 > - ⚠️ **Known Gap**: `og:image`가 SVG라 일부 SNS(Twitter/Facebook 등)는 미리보기 이미지를 렌더하지 않을 수 있음(파비콘 SVG는 모던 브라우저 지원). 필요 시 PNG OG 이미지로 후속 교체. ⚠️ About 본문이 나열하는 빈 카테고리(`evaluations`·`etc`) 앵커는 홈에 밴드가 없어 클릭 시 홈 최상단으로 안착(깨진 링크 아님, 자료 추가 시 자동 해소).
 
 ### Phase 7 — 배포 & 검수
-- [ ] `.github/workflows/deploy.yml`: push(main) → node setup → `npm ci` → build → pagefind → Pages 아티팩트 업로드/배포
+- [x] `.github/workflows/deploy.yml`: push(main) → node setup → `npm ci` → build → pagefind → Pages 아티팩트 업로드/배포
 - [ ] (⚠️ 사용자 직접) Settings → Pages 소스를 **GitHub Actions**로 설정
-- [ ] base path 적용 링크/에셋/폰트/graph.json/Pagefind가 배포 환경에서 정상인지 확인(최초 배포 후)
-- [ ] 로컬 `npm run build && preview`로 전 페이지·검색·테마·반응형·constellation 최종 점검
-- [ ] `README.md`에 사이트 링크 추가
+- [ ] (⚠️ 최초 배포 후) base path 적용 링크/에셋/폰트/graph.json/Pagefind가 배포 환경에서 정상인지 확인
+- [x] 로컬 `npm run build && preview`로 전 페이지·검색·테마·반응형·constellation 최종 점검
+- [x] `README.md`에 사이트 링크 추가
+
+> **Phase 7 결과 메모**
+> - **`.github/workflows/deploy.yml` 신설**: `push(main)`(paths 필터: `wiki/**`·`index.md`·`README.md`·`CLAUDE.md`·`site/**`·workflow 자체) + `workflow_dispatch` 트리거. 권한 `contents:read`/`pages:write`/`id-token:write`, `concurrency: pages`(cancel-in-progress=false). **build 잡**: checkout → setup-node@v4(node 24 + npm 캐시, `cache-dependency-path: site/package-lock.json`) → `npm ci`(working-directory `site`) → `npm run build:deploy`(=`BASE=/ai-wiki node build.mjs && pagefind --site ../dist`) → configure-pages@v5 → upload-pages-artifact@v3(`path: dist`). **deploy 잡**: `needs: build` + deploy-pages@v4(`environment: github-pages`). 표준 GitHub Pages Actions 플로우.
+> - **로컬 최종 점검**: `build:deploy`(BASE=/ai-wiki) 깨진 링크 0(58페이지)·pagefind 58페이지/21,706단어 인덱싱 확인. 로컬(BASE='') 빌드+pagefind 후 `serve ../dist` HTTP 스모크 — 홈·`/about/`·`graph.json`·`/pagefind/pagefind.js`·`static/{css,js×5,img/favicon.svg}`·각 카테고리 대표 위키 페이지(database·applications·agents·llms·overviews) **전부 200**. 58개 위키 라우트 생성 확인.
+> - **README**: 제목 아래 사이트 링크 배너 추가(`sguys99.github.io/ai-wiki/` + `site/`·workflow 링크).
+> - **남은 2건은 사용자/배포 후 작업**: (1) GitHub **Settings → Pages → Source = "GitHub Actions"** 1회 설정 필요(이게 없으면 deploy 잡이 실패). (2) 최초 배포 성공 후 실제 `/ai-wiki/` 환경에서 base path·폰트·검색·graph.json 로드 육안 확인.
+> - ⚠️ 헤드리스 환경이라 브라우저 육안 검증(검색 WASM·constellation 모션·테마·반응형)은 여전히 미확인 — `npm run preview` 로컬 브라우저 권장.
 
 ---
 

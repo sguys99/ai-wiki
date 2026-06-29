@@ -1,0 +1,70 @@
+# ai-wiki → GitHub Pages 배포.
+# main 푸시(또는 수동 실행) 시 site/ 빌드 → Pagefind 인덱싱 → dist/ 를 Pages 아티팩트로 배포.
+# 사전 설정(1회): Settings → Pages → Source 를 "GitHub Actions" 로 지정.
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+    # 콘텐츠/빌드 입력이 바뀔 때만 (문서 전용 변경은 무시).
+    paths:
+      - 'wiki/**'
+      - 'index.md'
+      - 'README.md'
+      - 'CLAUDE.md'
+      - 'site/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch: {}
+
+# GITHUB_TOKEN 이 Pages 에 배포할 수 있도록 권한 부여.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 동시 배포 1건만 (진행 중 실행은 취소하지 않고 큐잉 — 배포 중단 방지).
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install deps
+        working-directory: site
+        run: npm ci
+
+      # BASE=/ai-wiki 빌드(프로젝트 페이지 base path) + Pagefind 인덱싱(dist/pagefind).
+      - name: Build (BASE=/ai-wiki) + Pagefind
+        working-directory: site
+        run: npm run build:deploy
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

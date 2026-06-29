@@ -1,5 +1,7 @@
 # AI Wiki: AI 기술자료를 위한 개인 지식 베이스
 
+🌐 **웹사이트**: [sguys99.github.io/ai-wiki](https://sguys99.github.io/ai-wiki/) — wiki를 웹·모바일에서 둘러보기 (전체 검색 · 라이트/다크 · 지식 그래프). 빌드 코드는 [`site/`](site/), 자동 배포는 [GitHub Actions](.github/workflows/deploy.yml).
+
 Claude Code(또는 OpenAI Codex)로 papers · repos · articles · reports · videos · books · lectures를 구조화하고, 검색 가능한 wiki로 관리하는 방법론. 매일 새 모델과 프레임워크, 논문이 쏟아지는 와중에 *복리로 쌓이는* 지식 베이스를 만들고 싶은 엔지니어·연구자를 위한 템플릿이다.
 
 > **도메인 무관(domain-agnostic) 템플릿이다.** 예시는 AI 기술자료지만, 이 저장소의 구조·규칙·파이프라인은 어떤 도메인에도 그대로 옮겨갈 수 있다. 금융 리서치든 바이오 논문이든 법률 판례든, 카테고리·자료 유형·언어 정책만 갈아끼우면 작동한다. 교체 방법은 아래 [Customization (다른 도메인에 적용하기)](#customization-다른-도메인에-적용하기)를 참고하자. wiki는 *내 도메인*을 담을 때 비로소 가치가 생긴다.
