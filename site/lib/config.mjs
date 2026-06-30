@@ -27,6 +27,7 @@ export function absUrl(path = '/') {
 export const SITE = {
   repo: 'sguys99/ai-wiki',
   owner: 'sguys99',
+  maintainer: 'Kwang Myung Yu',   // 관리자·작성자 표시명 (푸터)
   url: 'https://sguys99.github.io/ai-wiki/',
   title: 'ai-wiki',
   description: 'AI 관련 기술자료를 저장·관리하는 개인 지식 베이스 (Karpathy LLM Wiki 패턴)',

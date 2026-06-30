@@ -114,7 +114,7 @@ function footer() {
   <div class="footer-inner">
     <span class="footer-meta">
       <a href="${escapeHtml(GH_URL)}" target="_blank" rel="noopener">${escapeHtml(SITE.repo)}</a>
-      <span class="footer-sep">·</span> ${escapeHtml(SITE.owner)}
+      <span class="footer-sep">·</span> ${escapeHtml(SITE.maintainer)}
     </span>
     <span class="footer-note">built on <a href="https://gist.github.com/karpathy/1dd0294ef9567971c1e4348a90d69285" target="_blank" rel="noopener">Karpathy LLM Wiki pattern</a></span>
   </div>
