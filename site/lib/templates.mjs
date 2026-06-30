@@ -166,12 +166,28 @@ export function home(data) {
   </div>
 </section>`;
 
+  // 카테고리 필터바 — sticky. '전체' + 각 카테고리 칩(카운트 포함). 클릭 시 밴드 토글은 filter.js.
+  // No-JS 시에도 의미 있는 카테고리 점프 앵커(<a href="#slug">)로 동작하도록 칩은 링크로 둔다.
+  const total = visible.reduce((n, s) => n + s.pages.length, 0);
+  const chips = [
+    `<a class="filter-chip is-active" href="${href('/')}" data-filter="all" role="button" aria-pressed="true">전체<span class="filter-count">${total}</span></a>`,
+    ...visible.map(
+      (s) =>
+        `<a class="filter-chip" href="#${escapeHtml(s.slug)}" data-filter="${escapeHtml(s.slug)}" role="button" aria-pressed="false">${escapeHtml(s.label)}<span class="filter-count">${s.pages.length}</span></a>`
+    ),
+  ].join('\n      ');
+  const filterBar = `<nav class="home-filter" aria-label="카테고리 필터">
+  <div class="home-filter-inner">
+      ${chips}
+  </div>
+</nav>`;
+
   const bands = visible
     .map((s) => {
       const cards = s.pages
         .map((p) => card(p, degree, adjacency.get(p.id)))
         .join('\n');
-      return `<section class="band" id="${escapeHtml(s.slug)}" aria-labelledby="band-${escapeHtml(s.slug)}">
+      return `<section class="band" id="${escapeHtml(s.slug)}" data-band="${escapeHtml(s.slug)}" aria-labelledby="band-${escapeHtml(s.slug)}">
   <div class="band-head">
     <h2 class="band-name" id="band-${escapeHtml(s.slug)}">${escapeHtml(s.label)}</h2>
     <span class="band-count">${s.pages.length}</span>
@@ -180,16 +196,17 @@ export function home(data) {
   <div class="card-grid">
 ${cards}
   </div>
+  <button type="button" class="band-more" data-more="${escapeHtml(s.slug)}" hidden>+ 더 보기</button>
 </section>`;
     })
     .join('\n');
 
   return layout({
     title: SITE.title,
-    body: `${hero}\n${bands}`,
+    body: `${hero}\n${filterBar}\n${bands}`,
     mainClass: 'home',
     path: '/',
-    scripts: ['/static/js/constellation.js'],
+    scripts: ['/static/js/constellation.js', '/static/js/filter.js'],
   });
 }
 

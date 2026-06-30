@@ -92,6 +92,7 @@
     --dur: 0.18s;
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
     --measure: 72ch; /* Phase 4 리딩 컬럼 폭 */
+    --header-h: 3.6rem; /* sticky 헤더 대략 높이 — 홈 필터바 sticky offset 기준 */
     --z-header: 100;
     --z-modal: 1000;
 
@@ -506,12 +507,92 @@
     color: var(--text);
   }
 
+  /* ── 홈 카테고리 필터바 (sticky, 헤더 아래) ── */
+  .home-filter {
+    position: sticky;
+    top: var(--header-h);
+    z-index: calc(var(--z-header) - 1);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: var(--hairline-w) solid var(--hairline);
+  }
+  .home-filter-inner {
+    max-width: 76rem;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+  }
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--muted);
+    background: var(--surface);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+      background var(--dur) var(--ease);
+  }
+  .filter-chip:hover,
+  .filter-chip:focus-visible {
+    color: var(--text);
+    border-color: var(--signal);
+  }
+  .filter-chip.is-active {
+    color: var(--bg);
+    background: var(--signal);
+    border-color: var(--signal);
+  }
+  .filter-count {
+    font-size: var(--text-xs);
+    color: var(--faint);
+  }
+  .filter-chip.is-active .filter-count {
+    color: color-mix(in srgb, var(--bg) 70%, var(--signal));
+  }
+
   /* ── 카테고리 밴드 ── */
   .band {
     max-width: 76rem;
     margin: 0 auto;
     padding: var(--space-12) var(--space-4) 0;
-    scroll-margin-top: 4.5rem;
+    /* sticky 헤더 + 필터바 아래로 앵커 스크롤이 가리지 않도록 */
+    scroll-margin-top: calc(var(--header-h) + 3.5rem);
+  }
+  .band[hidden] {
+    display: none;
+  }
+  /* top-N 초과로 접힌 카드 (filter.js progressive enhancement) */
+  .card.is-clamped {
+    display: none;
+  }
+  /* '+ 더 보기' 버튼 */
+  .band-more {
+    display: inline-flex;
+    align-items: center;
+    margin-top: var(--space-6);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--muted);
+    background: var(--surface);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-4);
+    cursor: pointer;
+    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .band-more:hover,
+  .band-more:focus-visible {
+    color: var(--signal);
+    border-color: var(--signal);
   }
   .band-head {
     display: grid;
@@ -668,6 +749,15 @@
     }
     .hero-stats {
       gap: var(--space-6);
+    }
+    /* 필터바: 모바일은 여러 줄 쌓임 대신 가로 스크롤 한 줄 */
+    .home-filter-inner {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .home-filter-inner::-webkit-scrollbar {
+      display: none;
     }
   }
 }
