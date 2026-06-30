@@ -92,6 +92,9 @@ function header() {
       <span class="nav-btn-ico" aria-hidden="true">⌕</span><span class="nav-btn-label">검색</span><kbd class="nav-kbd">⌘K</kbd>
     </button>
     <a class="nav-btn nav-about" href="${href('/about/')}">About</a>
+    <a class="nav-btn nav-github" href="${escapeHtml(GH_URL)}" target="_blank" rel="noopener" aria-label="GitHub 저장소" title="GitHub 저장소">
+      <svg class="nav-github-ico" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
     <button type="button" class="theme-toggle" data-theme-toggle aria-label="테마 전환" aria-pressed="false">☀</button>
     <button type="button" class="nav-hamburger" data-nav-toggle aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-menu">
       <span class="hamburger-bars" aria-hidden="true"></span>
@@ -154,10 +157,10 @@ export function home(data) {
   const hero = `<section class="hero">
   <canvas class="hero-constellation" data-graph="${escapeHtml(graphHref)}" aria-hidden="true"></canvas>
   <div class="hero-copy">
-    <p class="hero-eyebrow">개인 AI 지식 베이스 · Karpathy LLM Wiki 패턴</p>
+    <p class="hero-eyebrow">개인 AI 지식 베이스</p>
     <h1 class="hero-title">복리로 쌓이는 <span class="hero-accent">지식 그래프</span></h1>
-    <p class="hero-lede">papers · repos · articles · reports · videos · books · lectures를 한글로 요약하고
-      <code>[[wikilinks]]</code>로 엮은 ${stats.pages}개의 페이지. 아래는 그 페이지들이 실제로 이루는 인접 그래프다.</p>
+    <p class="hero-lede">AI 관련 지식을 한글로 요약한 지식 베이스<br>
+      지식의 적재 · 관리 · 요약을 에이전트가 수행합니다.</p>
     <dl class="hero-stats">
       <div><dt>pages</dt><dd>${stats.pages}</dd></div>
       <div><dt>links</dt><dd>${stats.links}</dd></div>
