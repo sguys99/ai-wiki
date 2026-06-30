@@ -12,6 +12,32 @@ url: "https://www.langchain.com/blog/the-art-of-loop-engineering"
 publisher: "LangChain Blog"
 publication_date: "2026-06-16"
 tags: [loop-engineering, langchain, create-agent, rubric-middleware, langsmith, verification-loop, event-driven, hill-climbing, traces, human-in-the-loop, agents, fleet, engine]
+figures:
+  - id: loop-stack
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop-stack.svg
+    caption: "4단계 루프 스택 — Agent⊂Verification⊂Event-Driven⊂Hill Climbing (본문 기반 재구성)"
+    strategy: manual
+    curated: true
+  - id: loop1-agent
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop1-agent.svg
+    caption: "Loop 1 Agent — Model⇄Tools 반복, docs writer 도구 (본문 기반 재구성)"
+    strategy: manual
+    curated: true
+  - id: loop2-verification
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop2-verification.svg
+    caption: "Loop 2 Verification — grader 채점→실패 시 피드백 재시도 (본문 기반 재구성)"
+    strategy: manual
+    curated: true
+  - id: loop3-event-driven
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop3-event-driven.svg
+    caption: "Loop 3 Event-Driven — 이벤트가 에이전트를 깨워 자율 실행 (본문 기반 재구성)"
+    strategy: manual
+    curated: true
+  - id: loop4-hill-climbing
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop4-hill-climbing.svg
+    caption: "Loop 4 Hill Climbing — trace→Engine→harness 개선이 안쪽 루프로 침투 (본문 기반 재구성)"
+    strategy: manual
+    curated: true
 ---
 
 ## 요약 (Summary)
@@ -24,6 +50,8 @@ LangChain의 **Sydney Runkle**이 2026-06-16에 쓴 글이다. 에이전트의 �
 
 > **2차 자료 주의**: LangChain 자사 블로그라 네 루프가 자사 제품 라인업(`create_agent`·LangSmith·Fleet)에 맞춰 정렬돼 있다. 도구 중립적 프레임워크라기보다 제품 내러티브에 가깝고, **정량 벤치마크는 없다**. verification·hill climbing의 품질 향상 폭, latency·비용 증가는 모두 정성 서술에 머문다. loop 4의 RL fine-tuning 확장은 self-hosted 모델 운영 조직 한정의 *전망*으로만 제시된다.
 
+> **도식 안내**: 원본 LangChain 블로그가 클라이언트 렌더링 페이지라 도식 이미지는 수집하지 못했다. 아래 다이어그램 5장은 모두 **본문 기술을 근거로 재구성한 그림**(Excalidraw 손그림 스타일)이며, 원본 도식의 복제가 아니다. 임베드는 SVG라 Obsidian·GitHub Pages 어디서나 플러그인 없이 바로 보인다. 편집용 원본(`.excalidraw`)은 같은 `assets/` 폴더에 나란히 둔다 — 수정 후 `python3 scripts/excalidraw_to_svg.py`로 SVG를 다시 뽑으면 된다.
+
 ## 4단계 루프 스택 (The Four Loops)
 
 | Loop | 기능 | 효과 | LangChain 도구 |
@@ -33,18 +61,36 @@ LangChain의 **Sydney Runkle**이 2026-06-16에 쓴 글이다. 에이전트의 �
 | **3. Event-driven loop** | 이벤트(문서·스케줄·webhook)가 에이전트를 기동, 실제 시스템 수정 | 자동화된 일을 넓게 실행 | LangSmith Deployment 또는 Fleet channel |
 | **4. Hill climbing loop** | trace를 분석 에이전트가 읽고 harness 설정을 개선 | harness 지속 개선 | LangSmith Engine |
 
+![[assets/runkle-2026-the-art-of-loop-engineering/loop-stack.svg]]
+*그림 1: 4단계 루프 스택 — Loop 1(Agent)을 2·3·4가 차례로 감싼다. 바깥일수록 더 많이 자동화하고, Loop 4는 안쪽 루프 자체를 개선한다. (본문 기반 재구성)*
+
 ## 각 루프의 동작 (How Each Loop Works)
 
 글 전체는 사내 **문서화 에이전트(docs writer)** 하나를 러닝 예제로 두고 네 층을 차례로 입힌다.
 
 - **Loop 1 — Agent**: 모델 + 도구의 기본 루프. 도구가 실제 시스템에 손을 대는 통로다. 문서화 에이전트는 요청을 받아 계획을 세우고 수정안을 쓰며, repo clone·파일 접근·문서 작성·PR 생성 도구를 호출한다.
+
+![[assets/runkle-2026-the-art-of-loop-engineering/loop1-agent.svg]]
+*그림 2: Loop 1 Agent — model이 tool을 반복 호출하다 작업이 끝나면 멈춘다. docs writer는 clone·read·write·PR 도구를 쓴다. (본문 기반 재구성)*
+
 - **Loop 2 — Verification**: agent loop을 grader로 감싼다. grader는 **deterministic**(규칙 기반)일 수도, **agentic**(LLM 평가)일 수도 있다. 문서화 예에서는 매 시도 뒤 테스트를 돌려 링크 정상 작동·CI 통과·요청 범위 밖 수정 없음을 확인한다. 사람이 손볼 오류를 통째로 걸러내는 대신, 실행마다 지연과 비용이 붙는다 — 품질이 속도보다 중요한 대부분의 production에서는 감수할 만한 거래다.
+
+![[assets/runkle-2026-the-art-of-loop-engineering/loop2-verification.svg]]
+*그림 3: Loop 2 Verification — agent loop의 출력을 grader가 채점해 통과면 내보내고, 실패면 피드백과 함께 되돌린다. (본문 기반 재구성)*
+
 - **Loop 3 — Event-Driven**: 에이전트를 조직 인프라에 연결해 백그라운드 자율 동작으로 만든다. *"이벤트가 발생하면 — 새 문서가 도착하거나, 스케줄이 발동하거나, webhook이 오면 — 에이전트가 돈다."* 스케줄의 흔한 구현이 **heartbeat**로, 에이전트를 늘 깨어 선제적으로 움직이는 보조자로 바꾼다. 문서화 에이전트는 Fleet 위에서 동작하며, 사내 `#docs-plz` Slack 채널에 메시지가 뜨면 channel이 에이전트를 깨운다.
+
+![[assets/runkle-2026-the-art-of-loop-engineering/loop3-event-driven.svg]]
+*그림 4: Loop 3 Event-Driven — 새 문서·스케줄·webhook·Slack 메시지 같은 이벤트가 Fleet channel을 통해 에이전트를 깨워 실제 시스템을 고친다. (본문 기반 재구성)*
+
 - **Loop 4 — Hill Climbing**: 매 실행이 남기는 **trace**(모델 행동·도구 호출·grader 판정 기록)를 분석 에이전트가 읽고 harness를 고친다. 수정 대상은 prompt·tool·grader다. LangSmith **Engine**이 이 분석을 맡아, 여러 trace에서 같은 문제가 반복되면 해당 prompt·tool 수정을 알림으로 띄운다.
 
 ## Hill Climbing — 개선의 자동화 (The Self-Improving Loop)
 
 hill climbing이 다른 루프와 갈리는 지점은 **복귀 경로**다. 보통의 루프는 끝나면 시작점으로 돌아가지만, 이 루프는 안쪽으로 파고들어 **agent loop 자체를 업그레이드**한다. 바깥 루프가 한 바퀴 돌 때마다 안쪽 메커니즘의 효율이 올라간다.
+
+![[assets/runkle-2026-the-art-of-loop-engineering/loop4-hill-climbing.svg]]
+*그림 5: Loop 4 Hill Climbing — 실행이 남긴 trace를 LangSmith Engine이 분석해 harness(prompt·tool·grader)를 고치고, 그 개선이 시작점이 아니라 안쪽 agent loop으로 직접 침투한다. (본문 기반 재구성)*
 
 확장 여지도 크다. prompt·tool 설정은 가장 손쉬운 개선 표적일 뿐이다. self-hosted 모델을 굴리는 조직이라면 trace·평가 정보를 **RL fine-tuning**의 학습 재료로 흘려보내 모델 자체를 개선 대상으로 삼을 수 있고, memory framework나 학습된 skill도 같은 방식으로 다룰 수 있다. 루프 구조는 그대로 두고 *무엇을 최적화하느냐*만 갈아 끼우는 셈이다.
 

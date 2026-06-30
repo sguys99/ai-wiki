@@ -11,6 +11,32 @@ url: "https://www.langchain.com/blog/the-art-of-loop-engineering"
 publisher: "LangChain Blog"
 publication_date: "2026-06-16"
 tags: [loop-engineering, langchain, create-agent, rubric-middleware, langsmith, verification-loop, event-driven, hill-climbing, traces, human-in-the-loop, agents, fleet, engine]
+figures:
+  - id: loop-stack
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop-stack.svg
+    caption: "4단계 루프 스택 — Agent⊂Verification⊂Event-Driven⊂Hill Climbing (본문 기반 재구성)"
+    strategy: manual
+    curated: true
+  - id: loop1-agent
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop1-agent.svg
+    caption: "Loop 1 Agent — Model⇄Tools 반복, docs writer 도구 (본문 기반 재구성)"
+    strategy: manual
+    curated: true
+  - id: loop2-verification
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop2-verification.svg
+    caption: "Loop 2 Verification — grader 채점→실패 시 피드백 재시도 (본문 기반 재구성)"
+    strategy: manual
+    curated: true
+  - id: loop3-event-driven
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop3-event-driven.svg
+    caption: "Loop 3 Event-Driven — 이벤트가 에이전트를 깨워 자율 실행 (본문 기반 재구성)"
+    strategy: manual
+    curated: true
+  - id: loop4-hill-climbing
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop4-hill-climbing.svg
+    caption: "Loop 4 Hill Climbing — trace→Engine→harness 개선이 안쪽 루프로 침투 (본문 기반 재구성)"
+    strategy: manual
+    curated: true
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -105,3 +131,15 @@ prompt·tool 설정은 가장 손쉬운 개선 표적일 뿐이다. self-hosted 
 - **Harness** — 모델 둘레의 prompt·tool·grader·메모리 등 실행 골격. hill climbing이 개선하는 대상이다.
 - **LangSmith Engine** — trace를 분석해 harness 개선 지점을 표면화하는 도구. loop 4의 구현이다.
 - **Human-in-the-loop** — 자동화 각 층에 사람의 판단을 끼워 넣는 설계. LangChain이 "first class primitive"로 다룬다고 표현한다.
+
+## 8. 그림 후보 (Figure Candidates)
+
+원본 LangChain 블로그가 클라이언트 렌더링이라 도식 이미지를 수집하지 못했다(raw 본문에는 `[Diagram: ...]` placeholder만 남음). 아래 다이어그램은 **원본 도식의 복제가 아니라 본문 기술을 근거로 재구성한 Excalidraw 손그림**이며, 모두 `wiki/assets/runkle-2026-the-art-of-loop-engineering/`에 큐레이션 사본으로 들어간다. 각 그림은 편집용 원본 `.excalidraw`와 렌더링용 `.svg` 두 벌로 두고(SVG는 손그림 느낌을 살린 feTurbulence 필터로 변환), wiki 본문에는 Obsidian·GitHub Pages 어디서나 플러그인 없이 보이는 **`.svg`를 임베드**한다.
+
+| id | 유형 | 내용 | 근거(raw 본문) | strategy | 추천 |
+|---|---|---|---|---|---|
+| loop-stack | 중첩 architecture | 4겹 루프 스택 (Agent⊂Verification⊂Event-Driven⊂Hill Climbing) | 전체 thesis, 종합 표 | manual | ★ wiki (overview) |
+| loop1-agent | flowchart | Model⇄Tools 반복 + docs writer 도구(clone·read·write·PR) | "Loop 1: The Agent" | manual | ★ wiki (method) |
+| loop2-verification | flowchart | agent loop을 grader가 감싸 채점→실패 시 피드백 재시도 | "Level 2: Verification Loop" | manual | ★ wiki (method) |
+| loop3-event-driven | architecture | 이벤트(새 문서·스케줄·webhook·#docs-plz Slack)→Fleet channel→agent→실제 시스템 | "Level 3: Event Driven Loop" | manual | ★ wiki (method) |
+| loop4-hill-climbing | flowchart | trace→LangSmith Engine→harness(prompt·tool·grader) 개선이 안쪽 agent loop으로 침투 | "Level 4: Hill Climbing Loop" | manual | ★ wiki (key insight) |
