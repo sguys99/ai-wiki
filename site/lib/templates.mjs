@@ -34,7 +34,8 @@ export function layout(opts) {
   } = opts;
   const pageTitle = title === SITE.title ? title : `${title} · ${SITE.title}`;
   const canonical = absUrl(path);
-  const ogImage = absUrl('/static/img/og.svg');
+  const ogImage = absUrl('/static/img/og.png');
+  const ogImageAlt = `${SITE.title} — ${SITE.description}`;
   const extraScripts = scripts
     .map((src) => `<script src="${escapeHtml(href(src))}" defer></script>`)
     .join('\n');
@@ -55,6 +56,10 @@ export function layout(opts) {
 <meta property="og:description" content="${escapeHtml(description)}">
 <meta property="og:url" content="${escapeHtml(canonical)}">
 <meta property="og:image" content="${escapeHtml(ogImage)}">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${escapeHtml(ogImageAlt)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
 <meta name="twitter:description" content="${escapeHtml(description)}">
