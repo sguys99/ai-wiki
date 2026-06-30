@@ -12,29 +12,44 @@ publisher: "LangChain Blog"
 publication_date: "2026-06-16"
 tags: [loop-engineering, langchain, create-agent, rubric-middleware, langsmith, verification-loop, event-driven, hill-climbing, traces, human-in-the-loop, agents, fleet, engine]
 figures:
-  - id: loop-stack
-    file: assets/runkle-2026-the-art-of-loop-engineering/loop-stack.svg
-    caption: "4단계 루프 스택 — Agent⊂Verification⊂Event-Driven⊂Hill Climbing (본문 기반 재구성)"
-    strategy: manual
-    curated: true
   - id: loop1-agent
     file: assets/runkle-2026-the-art-of-loop-engineering/loop1-agent.svg
-    caption: "Loop 1 Agent — Model⇄Tools 반복, docs writer 도구 (본문 기반 재구성)"
+    caption: "Loop 1 Agent loop — model이 action·observation으로 tool을 반복 호출, 끝나면 result (원본 도식 재현)"
+    strategy: manual
+    curated: true
+  - id: loop1-agent-docs
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop1-agent-docs.svg
+    caption: "Loop 1 docs writer — model(plan+draft) ⇄ sandbox tools → pull request (원본 도식 재현)"
     strategy: manual
     curated: true
   - id: loop2-verification
     file: assets/runkle-2026-the-art-of-loop-engineering/loop2-verification.svg
-    caption: "Loop 2 Verification — grader 채점→실패 시 피드백 재시도 (본문 기반 재구성)"
+    caption: "Loop 2 Verification — agent loop을 grader가 감싸 채점, pass면 done·아니면 retry (원본 도식 재현)"
     strategy: manual
     curated: true
-  - id: loop3-event-driven
-    file: assets/runkle-2026-the-art-of-loop-engineering/loop3-event-driven.svg
-    caption: "Loop 3 Event-Driven — 이벤트가 에이전트를 깨워 자율 실행 (본문 기반 재구성)"
+  - id: loop2-verification-docs
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop2-verification-docs.svg
+    caption: "Loop 2 docs writer — grader가 links resolve·CI passes 검사 (원본 도식 재현)"
+    strategy: manual
+    curated: true
+  - id: loop3-event
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop3-event.svg
+    caption: "Loop 3 Event loop — event trigger→verification loop, system update가 new events로 순환 (원본 도식 재현)"
+    strategy: manual
+    curated: true
+  - id: loop3-event-docs
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop3-event-docs.svg
+    caption: "Loop 3 docs writer — #docs-plz Slack 트리거, docs enhancement가 new request로 순환 (원본 도식 재현)"
     strategy: manual
     curated: true
   - id: loop4-hill-climbing
     file: assets/runkle-2026-the-art-of-loop-engineering/loop4-hill-climbing.svg
-    caption: "Loop 4 Hill Climbing — trace→Engine→harness 개선이 안쪽 루프로 침투 (본문 기반 재구성)"
+    caption: "Loop 4 Hill Climbing — traces→engine→harness improvements가 안쪽 루프로 (원본 도식 재현)"
+    strategy: manual
+    curated: true
+  - id: loop4-hill-climbing-docs
+    file: assets/runkle-2026-the-art-of-loop-engineering/loop4-hill-climbing-docs.svg
+    caption: "Loop 4 docs writer — engine analysis가 trace에서 문제를 찾아 prompt/tool 변경 제안 (원본 도식 재현)"
     strategy: manual
     curated: true
 ---
@@ -134,12 +149,15 @@ prompt·tool 설정은 가장 손쉬운 개선 표적일 뿐이다. self-hosted 
 
 ## 8. 그림 후보 (Figure Candidates)
 
-원본 LangChain 블로그가 클라이언트 렌더링이라 도식 이미지를 수집하지 못했다(raw 본문에는 `[Diagram: ...]` placeholder만 남음). 아래 다이어그램은 **원본 도식의 복제가 아니라 본문 기술을 근거로 재구성한 Excalidraw 손그림**이며, 모두 `wiki/assets/runkle-2026-the-art-of-loop-engineering/`에 큐레이션 사본으로 들어간다. 각 그림은 편집용 원본 `.excalidraw`와 렌더링용 `.svg` 두 벌로 두고(SVG는 손그림 느낌을 살린 feTurbulence 필터로 변환), wiki 본문에는 Obsidian·GitHub Pages 어디서나 플러그인 없이 보이는 **`.svg`를 임베드**한다.
+원본 블로그 도식(클라이언트 렌더링이라 ingest 시 자동 수집 실패)을 사용자가 스크린샷으로 제공했고, 이를 **동일 구조의 SVG로 재현**했다. 원본이 네 루프마다 일반형 + docs writer 예시형 한 쌍을 두므로 총 8장이다. 모두 `wiki/assets/runkle-2026-the-art-of-loop-engineering/`에 큐레이션 사본으로 들어가며, Obsidian·GitHub Pages 어디서나 플러그인 없이 렌더된다. 생성기는 `scripts/build_loop_diagrams.py`(좌표·스타일을 코드로 관리, deterministic)이며, 수정은 스크립트를 고쳐 재실행한다.
 
-| id | 유형 | 내용 | 근거(raw 본문) | strategy | 추천 |
+| id | 유형 | 내용 | 근거(원본 도식) | strategy | 추천 |
 |---|---|---|---|---|---|
-| loop-stack | 중첩 architecture | 4겹 루프 스택 (Agent⊂Verification⊂Event-Driven⊂Hill Climbing) | 전체 thesis, 종합 표 | manual | ★ wiki (overview) |
-| loop1-agent | flowchart | Model⇄Tools 반복 + docs writer 도구(clone·read·write·PR) | "Loop 1: The Agent" | manual | ★ wiki (method) |
-| loop2-verification | flowchart | agent loop을 grader가 감싸 채점→실패 시 피드백 재시도 | "Level 2: Verification Loop" | manual | ★ wiki (method) |
-| loop3-event-driven | architecture | 이벤트(새 문서·스케줄·webhook·#docs-plz Slack)→Fleet channel→agent→실제 시스템 | "Level 3: Event Driven Loop" | manual | ★ wiki (method) |
-| loop4-hill-climbing | flowchart | trace→LangSmith Engine→harness(prompt·tool·grader) 개선이 안쪽 agent loop으로 침투 | "Level 4: Hill Climbing Loop" | manual | ★ wiki (key insight) |
+| loop1-agent | flowchart | model이 action·observation으로 tool 반복 호출 → result | "LOOP 1 — AGENT LOOP" | manual | ★ wiki |
+| loop1-agent-docs | flowchart | model(plan+draft) ⇄ sandbox tools(clone·read·write) → pull request | "DOCS WRITER AGENT LOOP" | manual | ★ wiki |
+| loop2-verification | flowchart | agent loop을 grader(rubric/eval)가 감싸 채점, pass→done·fail→retry with feedback | "LOOP 2 — VERIFICATION LOOP" | manual | ★ wiki |
+| loop2-verification-docs | flowchart | grader가 links resolve·CI passes 검사 | "DOCS WRITER VERIFICATION LOOP" | manual | ★ wiki |
+| loop3-event | architecture | event trigger→verification loop→system update, new events로 순환 | "LOOP 3 — EVENT LOOP" | manual | ★ wiki |
+| loop3-event-docs | architecture | #docs-plz Slack→…→docs enhancement, new request로 순환 | "DOCS WRITER EVENT LOOP" | manual | ★ wiki |
+| loop4-hill-climbing | flowchart | 4겹 전체도 + traces→engine analysis→harness improvements가 안쪽으로 | "LOOP 4 — HILL CLIMBING LOOP" | manual | ★ wiki (overview) |
+| loop4-hill-climbing-docs | flowchart | engine analysis가 trace에서 문제 탐지→prompt/tool 변경 제안 | "DOCS WRITER HILL CLIMBING LOOP" | manual | ★ wiki |

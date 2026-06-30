@@ -2,16 +2,19 @@
   <rect x="145" y="224" width="760" height="366" fill="#ffffff"/>
   <rect x="175" y="325" width="700" height="235" rx="14" ry="14" fill="none" stroke="#8a7ce0" stroke-width="1.5" stroke-dasharray="6 5"/>
   <text x="191.0" y="342.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="13" fill="#8a7ce0" text-anchor="start" font-weight="700" dominant-baseline="middle">agent loop</text>
-  <rect x="425.0" y="250" width="200" height="52" rx="26.0" ry="26.0" fill="#edeae1" stroke="#c3bca6" stroke-width="1.6"/>
-  <text x="525.0" y="276.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="15.5" fill="#5a5341" text-anchor="middle" font-weight="600" dominant-baseline="middle">request</text>
+  <rect x="375.0" y="250" width="300" height="52" rx="26.0" ry="26.0" fill="#edeae1" stroke="#c3bca6" stroke-width="1.6"/>
+  <text x="525.0" y="276.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="15.5" fill="#5a5341" text-anchor="middle" font-weight="600" dominant-baseline="middle">docs improvement request</text>
   <polyline points="525.0,302.0 525.0,345.0 325.0,345.0 325.0,360.0" fill="none" stroke="#8c8c8c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
   <polygon points="325.0,360.0 320.2,352.4 329.8,352.4" fill="#8c8c8c"/>
   <rect x="210" y="360" width="230" height="72" rx="11" ry="11" fill="#eee9fc" stroke="#8a7ce0" stroke-width="1.6"/>
-  <text x="325.0" y="396.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="17" fill="#4a3ca6" text-anchor="middle" font-weight="700" dominant-baseline="middle">model</text>
+  <text x="325.0" y="388.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="16" fill="#4a3ca6" text-anchor="middle" font-weight="700" dominant-baseline="middle">model</text>
+  <text x="325.0" y="408.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="12.5" fill="#6a5cc4" text-anchor="middle" font-weight="600" dominant-baseline="middle">plan + draft changes</text>
   <rect x="610" y="360" width="230" height="72" rx="11" ry="11" fill="#eee9fc" stroke="#8a7ce0" stroke-width="1.6"/>
-  <text x="725.0" y="396.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="17" fill="#4a3ca6" text-anchor="middle" font-weight="700" dominant-baseline="middle">tools</text>
+  <text x="725.0" y="388.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="16" fill="#4a3ca6" text-anchor="middle" font-weight="700" dominant-baseline="middle">sandbox tools</text>
+  <text x="725.0" y="408.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="12.5" fill="#6a5cc4" text-anchor="middle" font-weight="600" dominant-baseline="middle">clone · read · write</text>
   <rect x="210" y="480" width="230" height="64" rx="11" ry="11" fill="#edeae1" stroke="#c3bca6" stroke-width="1.6"/>
-  <text x="325.0" y="512.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="17" fill="#5a5341" text-anchor="middle" font-weight="700" dominant-baseline="middle">result</text>
+  <text x="325.0" y="504.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="16" fill="#5a5341" text-anchor="middle" font-weight="700" dominant-baseline="middle">pull request</text>
+  <text x="325.0" y="524.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="12.5" fill="#6f674f" text-anchor="middle" font-weight="600" dominant-baseline="middle">diff + description</text>
   <polyline points="440.0,384.0 610.0,384.0" fill="none" stroke="#6f6f6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/>
   <polygon points="610.0,384.0 602.4,388.8 602.4,379.2" fill="#6f6f6f"/>
   <text x="525.0" y="373.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="12" fill="#6f6f6f" text-anchor="middle" font-weight="400" dominant-baseline="middle">action</text>
@@ -21,5 +24,5 @@
   <polyline points="325.0,432.0 325.0,480.0" fill="none" stroke="#8c8c8c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
   <polygon points="325.0,480.0 320.2,472.4 329.8,472.4" fill="#8c8c8c"/>
   <text x="343.0" y="456.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="12" fill="#888" text-anchor="start" font-weight="400" font-style="italic" dominant-baseline="middle">repeat until done</text>
-  <text x="525.0" y="246.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="15" fill="#6a6a6a" text-anchor="middle" font-weight="700" dominant-baseline="middle">LOOP 1 — AGENT LOOP</text>
+  <text x="525.0" y="246.0" font-family="Inter,'Helvetica Neue','Pretendard','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif" font-size="15" fill="#6a6a6a" text-anchor="middle" font-weight="700" dominant-baseline="middle">DOCS WRITER AGENT LOOP</text>
 </svg>
