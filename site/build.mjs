@@ -202,6 +202,17 @@ async function copyStatic() {
     else console.log(`[build] WARN Latin 폰트 미발견: ${file}`);
   }
 
+  // (C) KaTeX CSS + woff2 폰트 → dist/static/katex (CSS가 fonts/KaTeX_* 를 상대참조 → 구조 유지)
+  const katexDist = join(NODE_MODULES, 'katex', 'dist');
+  const katexOut = join(staticDir, 'katex');
+  if (existsSync(join(katexDist, 'katex.min.css')) && existsSync(join(katexDist, 'fonts'))) {
+    await mkdir(katexOut, { recursive: true });
+    await copyFile(join(katexDist, 'katex.min.css'), join(katexOut, 'katex.min.css'));
+    await cp(join(katexDist, 'fonts'), join(katexOut, 'fonts'), { recursive: true });
+  } else {
+    console.log('[build] WARN KaTeX 자산 미발견 — `npm install` 확인 필요');
+  }
+
   console.log('[build] copied site chrome + fonts → dist/static');
 }
 

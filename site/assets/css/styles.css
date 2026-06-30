@@ -285,6 +285,13 @@
     color: var(--muted);
   }
 
+  /* 디스플레이 수식($$…$$): 긴 식이 모바일 리딩 컬럼을 넘치지 않게 가로 스크롤 */
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.25rem 0;
+  }
+
   ::selection {
     background: var(--signal-dim);
   }

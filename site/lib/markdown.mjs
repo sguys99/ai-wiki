@@ -7,9 +7,10 @@
 //   - 모든 h2/h3 에 안정 id 부여 + TOC(scrollspy용) 추출
 //
 // 코드펜스/인라인코드 안의 [[…]]·![[…]] 예시는 건드리지 않는다(marked가 code 토큰으로 보호 +
-// figure 전처리는 펜스 인식). 수식은 unicode/첨자 → KaTeX 미도입(plain).
+// figure 전처리는 펜스 인식). 수식 $…$ / $$…$$ 는 marked-katex-extension으로 빌드 타임에 HTML 렌더.
 
 import { Marked } from 'marked';
+import markedKatex from 'marked-katex-extension';
 
 export function escapeHtml(s) {
   return String(s)
@@ -87,6 +88,46 @@ function transformFigures(src, hrefFn) {
   return out.join('\n');
 }
 
+// nonStandard KaTeX 모드는 닫는 '$' 뒤 공백을 요구하지 않아 한글 조사가 붙는 `$X_t$는` 수식을
+// 살리지만, 대신 통화 표기($0.97·$50 …)가 인접 delimiter로 오인돼 사이 텍스트를 통째로 math로
+// 삼킨다. 이 코퍼스에서 '$' 바로 뒤 숫자는 항상 통화(수식 opener는 letter·'\\'로 시작)이므로,
+// 코드펜스·인라인코드 밖에서 그 '$'를 HTML 엔티티(&#36;)로 치환해 delimiter 후보에서 제외한다.
+// (앞 문자가 '$'(=$$… 블록)·'\\'(=이미 escape)인 경우는 건드리지 않는다.)
+function protectCurrency(src) {
+  const lines = src.split('\n');
+  const out = [];
+  let inFence = false;
+  let fenceTok = '';
+
+  for (const line of lines) {
+    const fence = line.match(/^\s*(```+|~~~+)/);
+    if (fence) {
+      const tok = fence[1][0];
+      if (!inFence) {
+        inFence = true;
+        fenceTok = tok;
+      } else if (tok === fenceTok) {
+        inFence = false;
+      }
+      out.push(line);
+      continue;
+    }
+    if (inFence) {
+      out.push(line);
+      continue;
+    }
+    // 인라인 코드 스팬(`...`)은 보존하고 그 밖 세그먼트에서만 치환.
+    const conv = line
+      .split(/(`[^`]*`)/)
+      .map((seg) =>
+        seg.startsWith('`') ? seg : seg.replace(/(^|[^$\\])\$(?=\d)/g, '$1&#36;')
+      )
+      .join('');
+    out.push(conv);
+  }
+  return out.join('\n');
+}
+
 // 코드펜스 밖에서 [[…]] (단, ![[…]] 임베드 제외) 타깃 문자열을 모두 추출. graph.mjs도 사용.
 export function extractWikiTargets(src) {
   const lines = src.split('\n');
@@ -148,8 +189,13 @@ export function renderMarkdown(body, { resolve, hrefFn }) {
   const broken = [];
   const slugCount = new Map();
 
-  const pre = transformFigures(body, hrefFn);
+  const pre = transformFigures(protectCurrency(body), hrefFn);
   const md = new Marked({ gfm: true, breaks: false });
+
+  // 수식 렌더: $…$ (인라인) / $$…$$ (디스플레이) → KaTeX HTML. 잘못된 LaTeX는 빌드를 깨지 않고
+  // 에러색으로 렌더(throwOnError:false). nonStandard:true → 닫는 '$' 뒤에 공백/문장부호가 없어도
+  // 파싱(한글 조사가 바로 붙는 `$X_t$는`·`$m$은` 패턴이 한국어 본문에 흔함 — 표준 모드는 깨짐).
+  md.use(markedKatex({ throwOnError: false, nonStandard: true }));
 
   md.use({
     extensions: [wikilinkExtension(resolve, broken)],

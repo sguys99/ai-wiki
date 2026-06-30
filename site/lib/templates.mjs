@@ -66,6 +66,7 @@ export function layout(opts) {
 <meta name="twitter:image" content="${escapeHtml(ogImage)}">
 <link rel="stylesheet" href="${href('/static/fonts/pretendard/pretendard-dynamic-subset.css')}">
 <link rel="stylesheet" href="${href('/static/css/styles.css')}">
+<link rel="stylesheet" href="${href('/static/katex/katex.min.css')}">
 ${head}
 </head>
 <body>
