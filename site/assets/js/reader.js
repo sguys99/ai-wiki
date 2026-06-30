@@ -66,3 +66,69 @@
   window.addEventListener('resize', onScroll, { passive: true });
   update();
 })();
+
+// ── 관련 페이지 그래프: 즉시 툴팁 + 목록 행 강조 ──────────────────────────────
+//
+// native <title>의 ~1s 지연을 없애려고 커스텀 툴팁을 노드 위에 즉시 띄운다.
+// 노드 <a data-neigh data-title> ↔ 목록 <li data-neigh> 를 인덱스로 매칭.
+(function () {
+  'use strict';
+  var sec = document.querySelector('.related');
+  var svg = sec && sec.querySelector('.neigh');
+  if (!svg) return;
+
+  var anchors = Array.prototype.slice.call(svg.querySelectorAll('.neigh-nodes a[data-neigh]'));
+  if (!anchors.length) return;
+
+  var tip = document.createElement('div');
+  tip.className = 'neigh-tip';
+  tip.setAttribute('aria-hidden', 'true');
+  sec.appendChild(tip);
+
+  var activeLi = null;
+
+  function show(a) {
+    var circle = a.querySelector('circle');
+    if (!circle) return;
+    tip.textContent = a.getAttribute('data-title') || a.getAttribute('aria-label') || '';
+
+    var box = sec.getBoundingClientRect();
+    var c = circle.getBoundingClientRect();
+    var left = c.left - box.left + c.width / 2; // 노드 중심 x
+    var top = c.top - box.top - 8; // 노드 상단 위로 약간
+
+    // 컨테이너 좌우 밖으로 잘리지 않게 clamp (translateX(-50%) 기준 ≈ 절반 폭 여백)
+    var pad = Math.min(tip.offsetWidth, 288) / 2 + 8;
+    if (left < pad) left = pad;
+    if (left > box.width - pad) left = box.width - pad;
+
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+    tip.classList.add('is-visible');
+
+    var li = sec.querySelector('.related-list li[data-neigh="' + a.getAttribute('data-neigh') + '"]');
+    if (li) {
+      li.classList.add('is-active');
+      activeLi = li;
+    }
+  }
+
+  function hide() {
+    tip.classList.remove('is-visible');
+    if (activeLi) {
+      activeLi.classList.remove('is-active');
+      activeLi = null;
+    }
+  }
+
+  anchors.forEach(function (a) {
+    a.addEventListener('mouseenter', function () {
+      show(a);
+    });
+    a.addEventListener('focus', function () {
+      show(a);
+    });
+    a.addEventListener('mouseleave', hide);
+    a.addEventListener('blur', hide);
+  });
+})();

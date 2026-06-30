@@ -365,9 +365,10 @@ function relatedSection(page, neighbors) {
     const y = cy + ry * Math.sin(ang);
     const r = 4 + 5 * (nb.degree / maxDeg);
     edges += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`;
+    // native <title>은 ~1s 지연 툴팁이라 제외 — 즉시 표시는 reader.js가 data-title로 처리.
+    // aria-label은 스크린리더 접근명으로 유지. data-neigh로 아래 목록 행과 매칭.
     nodes +=
-      `<a href="${escapeHtml(nb.url)}" aria-label="${escapeHtml(nb.title)}">` +
-      `<title>${escapeHtml(nb.title)} (↳${nb.degree})</title>` +
+      `<a href="${escapeHtml(nb.url)}" aria-label="${escapeHtml(nb.title)}" data-neigh="${i}" data-title="${escapeHtml(nb.title)}">` +
       `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}"/></a>`;
   });
   const svg = `<svg class="neigh" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="관련 페이지 그래프 (${n}개)">
@@ -377,11 +378,11 @@ function relatedSection(page, neighbors) {
     </svg>`;
 
   const list = neighbors
-    .map((nb) => {
+    .map((nb, i) => {
       const tag = [String(nb.type || '').toUpperCase(), nb.year || '']
         .filter(Boolean)
         .join('·');
-      return `      <li>
+      return `      <li data-neigh="${i}">
         <a href="${escapeHtml(nb.url)}">${escapeHtml(nb.title)}</a>
         ${tag ? `<span class="related-tag">${escapeHtml(tag)}</span>` : ''}
         <span class="related-deg" title="연결 ${nb.degree}개">↳ ${nb.degree}</span>
