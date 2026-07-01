@@ -1,0 +1,137 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig01.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Agentic coding tasks cost significantly more tokens than Code Reasoning (single-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig02.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig02.png",
+    "page": 3,
+    "caption": "et al., 2024). Figure 1 shows the average token usage, monetary costs, and input/output",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig03.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 2: Token cost is highly variable both across problems and across repeated runs of",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig04.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig04.png",
+    "page": 5,
+    "caption": "Figure 3: Task accuracy and token cost across models. (a) Group-level accuracy and",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig05.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig05.png",
+    "page": 5,
+    "caption": "Figure 4: When working on the same problem, high-cost runs are associated with repeated",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig06.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig06.png",
+    "page": 6,
+    "caption": "Figure 5: Expert-rated task difficulty is a weak predictor of agent token consumption.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig07.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig07.png",
+    "page": 7,
+    "caption": "Figure 6: Token efficiency varies substantially across models and reflects model-specific",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig08.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig08.png",
+    "page": 8,
+    "caption": "Figure 7: Fine-grained file interaction patterns on the shared success subset. For each",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig09.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig09.png",
+    "page": 9,
+    "caption": "Figure 8: Phase-level token usage and cost dynamics. Input tokens dominate both raw",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig10.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig10.png",
+    "page": 9,
+    "caption": "agent trajectory (on task astropy astropy-7336). Figure 9 shows the per-round cost decom-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig11.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig11.png",
+    "page": 10,
+    "caption": "Figure 9: Round-level token-cost dynamics of the agent trajectory on astropy astropy-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig12.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig12.png",
+    "page": 11,
+    "caption": "Figure 10: Self-prediction performance and overhead across models. (a) Pearson correla-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig13.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig13.png",
+    "page": 12,
+    "caption": "Figure 11: Predicted vs. real token usage across models. The dashed diagonal indicates",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig14.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig14.png",
+    "page": 16,
+    "caption": "Figure 12: Output-token analyses. Top: Group-level accuracy vs. mean output tokens",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/bai-2026-how-do-ai-agents-spend/fig15.png",
+    "raw": "raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig15.png",
+    "page": 26,
+    "caption": "Figure 13: Self-prediction behavior without in-context demonstration (Sonnet 4.5 and",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
