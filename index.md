@@ -115,3 +115,4 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 
 - [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG 계열 — GraphRAG 트렁크 (LightRAG · LeanRAG · RAG-Anything)]] — GraphRAG를 트렁크로 두고 LightRAG, LeanRAG, RAG-Anything 분기와 한국어 자료를 한데 모은 graph RAG 계보 overview (2026, overview)
 - [[overviews/gbrain-ecosystem-overview|GBrain 생태계]] — Garry Tan이 공개한 GBrain을 축으로 repo와 리뷰, 튜토리얼, 영상, 결정 프레임을 합성한 생태계 overview (2026, overview)
+- [[overviews/agent-harness-engineering-overview|Agent Harness Engineering — Skills · Loops · Verification]] — Osmani의 Agent Skills·Loop Engineering, 이호연의 Harness Engineering, Patel의 실전 가이드를 한 지도로 묶고, Lin et al.의 controlled grid 실증으로 "harness는 frontier 모델에서 가장 크게 회수된다"는 경계까지 그은 개괄 (2026, overview)
