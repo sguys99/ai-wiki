@@ -1,0 +1,47 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/yang-2026-skillopt-executive-strategy-for/fig01.png",
+    "raw": "raw/papers/yang-2026-skillopt-executive-strategy-for-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 Overview of SkillOpt. The target model executes tasks with a current skill, an additional",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/yang-2026-skillopt-executive-strategy-for/fig02.png",
+    "raw": "raw/papers/yang-2026-skillopt-executive-strategy-for-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2\nPipeline of SkillOpt.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/yang-2026-skillopt-executive-strategy-for/fig03.png",
+    "raw": "raw/papers/yang-2026-skillopt-executive-strategy-for-figures/fig03.png",
+    "page": 12,
+    "caption": "Figure 3 Performance trends across epoch checkpoints on three benchmarks: (a) SpreadsheetBench, (b)",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/yang-2026-skillopt-executive-strategy-for/fig04.png",
+    "raw": "raw/papers/yang-2026-skillopt-executive-strategy-for-figures/fig04.png",
+    "page": 14,
+    "caption": "Figure 4.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/yang-2026-skillopt-executive-strategy-for/fig05.png",
+    "raw": "raw/papers/yang-2026-skillopt-executive-strategy-for-figures/fig05.png",
+    "page": 15,
+    "caption": "Figure 4 Representative learned rules, one per benchmark, extracted from the final best_skill.md of",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
