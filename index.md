@@ -75,6 +75,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/subratpati-2026-building-cost-efficient-agents-with|Cost-Efficient Agents with Headroom (Subrat Pati)]] — Headroom을 비용 관점으로 옮긴 Medium 소개글. 입력 45K 토큰 세션이 GPT-4o 기준 유저당 하루 $11.25라는 수치로 문제를 세우고 Cache Aligner·Smart Crusher·CCR로 40~90% 절감을 소개 (2026, article)
 - [[agents/nedai-2026-headroom-token-compression-guide|Headroom 사용법 (Nedai, AislesHub)]] — 한국어 how-to. 터미널 래핑·Cursor용 proxy·MCP 등록 세 방식과, 다른 글엔 없는 Windows 한글 파일명 `PYTHONUTF8=1` 인코딩 트러블슈팅을 담았다 (2026, article)
 - [[agents/9bow-2026-headroom-ai-agent-context-compression|headroom 한국어 소개 (9bow)]] — PyTorch KR 9bow의 짧은 커뮤니티 공유글. ContentRouter·local-first·다중 배포 세 축과 GSM8K 정확도 보존을 갈무리 (2026, article)
+- [[agents/google-2026-the-new-sdlc-with-vibe|The New SDLC With Vibe Coding]] — Addy Osmani 등이 쓴 Google 백서(Day-1). "코드에서 의도로"의 전환을 vibe coding→agentic engineering 스펙트럼과 Agent=Model+Harness 방정식으로 정리하고, context engineering·factory model·conductor/orchestrator·토큰 경제(CapEx/OpEx)까지 SDLC 전 단계를 훑는다 (2026, report)
 
 ## Evaluations (evaluations)
 

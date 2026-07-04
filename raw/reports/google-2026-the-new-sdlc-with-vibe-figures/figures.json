@@ -1,0 +1,101 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig01.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig01.png",
+    "page": 8,
+    "caption": "Figure 1: From Autocomplete to Autonomy",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig02.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig02.png",
+    "page": 10,
+    "caption": "Figure 2: The Agent Loop - Perceive, plan, act, observe, iterate.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig03.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig03.png",
+    "page": 13,
+    "caption": "Table 1: The Spectrum from Vibe Coding to Agentic Engineering",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig04.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig04.png",
+    "page": 14,
+    "caption": "Figure 3: The Vibe Coding to Agentic Engineering Spectrum",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig05.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig05.png",
+    "page": 17,
+    "caption": "Figure 4: Context Engineering — Static vs. Dynamic",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig06.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig06.png",
+    "page": 20,
+    "caption": "Figure 5: Traditional SDLC vs. AI-Driven SDLC",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig07.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig07.png",
+    "page": 25,
+    "caption": "Figure 6: The Factory Model Developer designs the system -> agents produce the code -> tests verify",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig08.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig08.png",
+    "page": 27,
+    "caption": "Figure 7: Harness Anatomy | Agent = Model + Harness",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig09.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig09.png",
+    "page": 32,
+    "caption": "Figure 8: Conductor vs. Orchestrator (Two modes of working with AI Agents)",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig10.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig10.png",
+    "page": 38,
+    "caption": "Snippet 1: Agents CLI Setup and Build.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig11.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig11.png",
+    "page": 40,
+    "caption": "Figure 9: The Economics of AI Development",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
