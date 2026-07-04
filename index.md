@@ -80,6 +80,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 평가 프레임워크(RAGAS, Braintrust), benchmark.
 
 - [[evaluations/marker-inc-korea-autorag|Marker-Inc-Korea/AutoRAG (repo)]] — RAG 파이프라인의 노드별 모듈 조합을 그리드 서치로 자동 평가·비교해 최적 파이프라인을 골라주는 RAG AutoML 프레임워크. Node Line→Node→Module 3계층 YAML 추상화, 한국어 BM25 토크나이저 기본 제공 (2024, repo)
+- [[evaluations/kim-2026-ai-prd-eval-plan|AI PRD는 무엇이 달라야 하는가 (article)]] — 확률적 AI 기능은 행동이 아니라 "합격선"을 명세해야 한다는 AI PRD 작성론. Eval Plan(스프레드시트 Eval 셋 + 규칙기반·LLM-as-a-Judge·사람 3층 피라미드 + 회귀 테스트)을 문서의 심장으로, 8대 필수 항목과 가격 모델까지 하나의 정합 시스템으로 (2026, article)
 
 ## Applications (applications)
 
