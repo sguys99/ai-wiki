@@ -11,14 +11,15 @@ sources:
   - lee-hoyeon-2026-harness-engineering.md
   - patel-2026-beyond-the-prompt-claude-code.md
   - lin-2026-harness-updating-is-not-harness-benefit.md
-tags: [harness-engineering, agent-skills, loop-engineering, verification, generator-evaluator, progressive-disclosure, scope-discipline, worktree, claude-code, mcp, compounding, self-evolving-agents, overview, synthesis]
+  - trq212-2026-a-field-guide-to-fable.md
+tags: [harness-engineering, agent-skills, loop-engineering, verification, generator-evaluator, progressive-disclosure, scope-discipline, worktree, claude-code, mcp, compounding, self-evolving-agents, unknowns, map-and-territory, fable, overview, synthesis]
 ---
 
 ## 요약 (Summary)
 
 2026년 상반기에 여러 저자가 같은 전환을 저마다 다른 이름으로 짚었다. **"프롬프트를 잘 쓰는 일"에서 "에이전트가 혼자 일할 작업 환경(harness)을 설계하는 일"로.** 이호연은 이를 *Harness Engineering*, Addy Osmani는 *Loop Engineering*, Arpan Patel은 *"setup is the work"* 라 불렀다. 이름은 달라도 뼈대는 포갠다 — 구조·맥락·계획·실행·**검증**·개선을 에이전트 바깥에 미리 깔아 두는 것.
 
-이 overview는 wiki에 실재하는 **6개 자료**를 한 장의 지도로 묶는다.
+이 overview는 wiki에 실재하는 **7개 자료**를 한 장의 지도로 묶는다.
 
 | 자료 | 층위 | 한 줄 |
 |---|---|---|
@@ -28,6 +29,7 @@ tags: [harness-engineering, agent-skills, loop-engineering, verification, genera
 | [[agents/lee-hoyeon-2026-harness-engineering]] | 전체 프레임 | 구조→맥락→계획→실행→검증→개선 6축 순환, *"모델 5% < 하네스 15%"* |
 | [[agents/patel-2026-beyond-the-prompt-claude-code]] | 실전 운영 | `.claude/` config·verify-your-own-work·worktree 병렬·Ralph Loop 매뉴얼 |
 | [[agents/lin-2026-harness-updating-is-not-harness-benefit]] | 실증 경계 | 하네스의 이득을 controlled grid로 계측 — 약한 모델은 invocation·adherence에서 무너진다 |
+| [[agents/trq212-2026-a-field-guide-to-fable]] | 하네스 앞단 (사람) | 지도(prompt·context) ↔ 영토(codebase)의 간극=unknown, 구현 전·중·후 8패턴으로 발굴 |
 
 ## 하나의 그림 (The Shared Picture)
 
@@ -38,6 +40,20 @@ tags: [harness-engineering, agent-skills, loop-engineering, verification, genera
 - **Osmani의 Skill**과 **Patel의 `.claude/` config**는 *구조 + 맥락* 축을 채우는 재료다. Skill은 재사용 가능한 절차, CLAUDE.md는 세션마다 로드되는 맥락이다.
 
 Skill이 harness의 전부가 아니라 **한 layer**일 뿐임을 Osmani가 못 박는다 — AGENTS.md(rulebook)·hooks(enforcement)·tools(action)·session log(memory)와 나란히 놓인 조각이다.
+
+## 하네스 앞단 — 사람의 unknown (The Human Input, trq212)
+
+위 다섯 자료가 그리는 것은 에이전트 **바깥 기계 쪽**이다. 구조·맥락·검증을 미리 깔아 두면 에이전트가 혼자 돈다. [[agents/trq212-2026-a-field-guide-to-fable]]은 그 지도의 **입력단**을 파고든다. 하네스를 아무리 정교하게 깔아도 사람이 무엇을 원하는지 흐릿하면 결과도 흐리다.
+
+trq212는 알프레드 코집스키의 *"지도는 영토가 아니다"* 를 빌려온다. 프롬프트·스킬·context가 **지도**라면, 코드베이스·현실 제약은 **영토**다. 둘 사이의 간극이 곧 **unknown(모르는 것)** 이고, Claude는 unknown을 만나면 사용자 의도를 최선으로 추측해 결정한다. 저자는 Fable을 두고 *"작업 품질이 unknown을 명료화하는 사용자 능력에 병목이 걸린 첫 모델"* 이라 규정한다. 이 한 줄이 overview 전체를 뒤집어 읽게 만든다. 하네스가 model보다 큰 lever라면(Lin의 조건부 실증), 그 하네스에 무엇을 먹이느냐가 다시 그 위의 lever인 셈이다.
+
+처방은 unknown을 4분면으로 갈라 구현 **전·중·후**에 발굴하는 8패턴이다 — blindspot pass·brainstorm·interview·reference·implementation plan(전), implementation notes(중), pitch·quiz(후). 이 패턴들은 다른 자료의 축과 곧장 맞물린다.
+
+- **implementation plan / reference**는 이호연 6축의 *계획·맥락* 축을 사람 쪽에서 채우는 재료다. Patel의 `.claude/` config가 세션 맥락을 붙박이로 깐다면, trq212의 reference("좋아하는 컴포넌트 폴더를 가리켜라")는 같은 맥락을 과제별로 즉석에서 만든다.
+- **quiz("완벽히 통과한 뒤에만 merge")** 는 §1 verification distance의 사람 쪽 짝이다. sub-agent가 코드를 검증한다면 quiz는 *사람이 변경을 이해했는지* 를 검증한다. 검증 대상이 산출물에서 이해도로 옮겨 갔을 뿐, 원리는 같다.
+- **implementation notes의 'Deviations' 로그**는 §3 compounding과 포갠다. 계획 이탈을 기록해 다음 시도에서 학습한다는 발상은 실수를 CLAUDE.md 규칙으로 굳히는 Compounding Engineering을 세션 안으로 줄인 것이다.
+
+하네스 담론이 *"에이전트를 어떻게 자율적으로 굴릴까"* 를 물을 때, trq212는 한 발 앞에서 *"그 에이전트에게 내가 원하는 걸 얼마나 또렷이 건넸나"* 를 묻는다. 두 물음은 경쟁하지 않고 포개진다.
 
 ## 관통하는 원리 세 가지 (Three Load-Bearing Principles)
 
@@ -81,6 +97,7 @@ Skill이 harness의 전부가 아니라 **한 layer**일 뿐임을 Osmani가 못
 
 ## 이 지도를 어떻게 쓰나 (Reading Order)
 
+0. **무엇을 먹일지부터** → [[agents/trq212-2026-a-field-guide-to-fable]] (하네스에 넣을 사람 쪽 입력 — unknown 발굴 8패턴)
 1. **왜 이 전환인가** → [[agents/lee-hoyeon-2026-harness-engineering]] (가장 넓은 프레임 + 회사별 수치)
 2. **무엇을 깔아야 하나** → [[agents/osmani-2026-agent-skills]] (Skill 원칙) + [[agents/patel-2026-beyond-the-prompt-claude-code]] (구체 config·커맨드)
 3. **어떻게 돌리나** → [[agents/osmani-2026-loop-engineering]] (자동 loop 시나리오)
