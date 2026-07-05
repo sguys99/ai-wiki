@@ -68,6 +68,8 @@ Jeongmin Lee가 LinkedIn에 올린 짧은 카드 포스트(2026-06-09)다. **"lo
 
 ## 관련 페이지 (Related Pages)
 
+- [[agents/osmani-2026-loop-engineering|Loop Engineering (Addy Osmani)]] — 본 글이 인용한 5-building-block(Automation·worktree·skill·connector·subagent)의 원출처. Jeongmin Lee가 요약·전달한 프레임을 Osmani 본인이 정의·전개한 원문이다.
+- [[agents/zhang-2026-recursive-language-models|Recursive Language Models (Zhang et al., arXiv 2512.24601)]] — 본 글이 dynamic workflow의 "이론적 기반"으로 지목한 RLM 논문. REPL의 context 변수 모델·`llm_query()`가 결과를 토큰이 아닌 변수로 반환·단일 context의 agentic laziness/self-preferential bias/goal drift 차단 등 본 글 ❷~❹의 근거가 여기서 나온다.
 - [[agents/lee-hoyeon-2026-harness-engineering|Harness Engineering (이호연)]] — *Prompt → Context → Harness*의 3단계 진화를 한국어로 정리한 강의 슬라이드. 본 글의 "loop engineering"은 이호연이 말하는 harness 6축 순환의 하위 개념(특히 subagent/worktree 축)과 짝을 이룬다.
 - [[agents/patel-2026-beyond-the-prompt-claude-code|Beyond the Prompt: Claude Code (Arpan Patel)]] — Boris Cherny의 *"verify its own work"* 원칙을 운영 매뉴얼로 풀어낸 27분 분량 실전 가이드. 본 글이 Boris 발언을 RLM 이론으로 풀이한 자리라면, Patel은 같은 발언을 `.claude/` 설정·skills·subagents·worktree·`/goal` Ralph Loop로 풀어낸 짝이다.
 - [[agents/lin-2026-harness-updating-is-not-harness-benefit|Harness Updating Is Not Harness Benefit (Lin et al.)]] — self-evolving 에이전트의 이득을 base capability·harness-updating·harness-benefit 셋으로 가른 논문. 본 글이 *"loop는 LLM의 부족한 판단력을 구조적으로 극복한다"* 라고 단언한 자리에 대한 통제 실험 짝이다.
