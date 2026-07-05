@@ -36,6 +36,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[database/gutierrez-2025-from-rag-to-memory-non|HippoRAG 2: From RAG to Memory]] — KG + Personalized PageRank로 사실·sense-making·associativity 세 메모리 과제를 동시에 개선한 non-parametric continual learning 프레임워크 (2025, paper)
 - [[database/kalane-2026-pageindex-threw-out-vector-databases|PageIndex (Towards AI 리뷰)]] — IBM 엔지니어 Akshay Kalane이 쓴 3rd-party 리뷰. 출시 이후 신규 기능과 트레이드오프를 함께 짚은 사후 점검 카탈로그 (2026, article)
 - [[database/athina-ai-rag-cookbooks|Advanced + Agentic RAG Cookbooks (Athina AI)]] — advanced와 agentic RAG 16개 기법을 end-to-end Jupyter 노트북과 평가 단계로 한데 엮은 실무 cookbook (2024, repo)
+- [[database/nirdiamant-rag-techniques|Advanced RAG Techniques (NirDiamant)]] — basic부터 agentic·graph·memory RAG까지 42+개 노트북을 8개 카테고리로 계단식 배열한 커뮤니티 카탈로그. HyPE 등 저자 오리지널 기법과 평가 4종 포함, custom non-commercial license (2024, repo)
 - [[database/zandieh-2025-turboquant-online-vector-quantization-with|TurboQuant: Online Vector Quantization]] — 랜덤 회전과 Lloyd-Max 스칼라 양자화로 학습 없이 MSE 최적에 도달하는 data-oblivious 벡터 양자화 기법 (2025, paper)
 - [[database/ryancodrai-turbovec|turbovec (repo)]] — Ryan Codrai가 TurboQuant 알고리즘을 Rust 코어와 Python 바인딩으로 옮긴 OSS 벡터 인덱스 (2026, repo)
 - [[database/9bow-2026-turbovec-turboquant-rust-vector-index|turbovec 한국어 소개글 (9bow)]] — PyTorchKR 9bow가 turbovec의 도전 과제, 알고리즘, 코드 예제를 갈무리한 한국어 입문글 (2026, article)
