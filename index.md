@@ -38,6 +38,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[database/zandieh-2025-turboquant-online-vector-quantization-with|TurboQuant: Online Vector Quantization]] — 랜덤 회전과 Lloyd-Max 스칼라 양자화로 학습 없이 MSE 최적에 도달하는 data-oblivious 벡터 양자화 기법 (2025, paper)
 - [[database/ryancodrai-turbovec|turbovec (repo)]] — Ryan Codrai가 TurboQuant 알고리즘을 Rust 코어와 Python 바인딩으로 옮긴 OSS 벡터 인덱스 (2026, repo)
 - [[database/9bow-2026-turbovec-turboquant-rust-vector-index|turbovec 한국어 소개글 (9bow)]] — PyTorchKR 9bow가 turbovec의 도전 과제, 알고리즘, 코드 예제를 갈무리한 한국어 입문글 (2026, article)
+- [[database/startrail-org-pixelrag|PixelRAG (repo)]] — 문서를 텍스트로 파싱하지 않고 스크린샷으로 렌더링한 뒤 이미지 자체를 검색하는 visual RAG. `Qwen3-VL-Embedding`을 LoRA 파인튜닝해 위키피디아 828만 페이지 FAISS 인덱스를 무료 API로 서빙하고, Claude Code 플러그인 `pixelbrowse`도 함께 제공한다 (2026, repo, Apache-2.0)
 
 ## LLMs (llms)
 
