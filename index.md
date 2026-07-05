@@ -102,6 +102,9 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 RAG 응용, 도메인 적용 사례, 제품 패턴.
 
 - [[applications/garrytan-gbrain|garrytan/gbrain (repo)]] — Garry Tan이 공개한 markdown-first 에이전트 메모리. git 마크다운을 진실 원천으로 두고 pgvector와 typed-edge KG, skill pack을 한데 결합한 OSS (2026, repo)
+- [[applications/garrytan-gbrain-tutorials|garrytan/gbrain — tutorials]] — 저장소 docs/tutorials의 실전 셋업 4편. 개인 브레인·회사 브레인·skillopt·코딩 에이전트 연결을 시간·비용 예산과 함께 정리 (2026, repo)
+- [[applications/xguru-2026-gbrain-open-source-personal-knowledge|GBrain — 오픈소스 개인 지식 베이스 (GeekNews)]] — xguru가 GeekNews에 올린 GBrain 소개. 한 문장 정의와 핵심 기능·기술 스택·v0.2.0 변경점 (2026, article)
+- [[applications/tilnote-2026-gbrain-repository-core-summary|GBrain 저장소 핵심 정리 (tilnote)]] — thin harness/fat skills와 contract-first 두 축으로 저장소를 읽고, v0.3→v0.9 버전 진화 궤적을 꿴 한국어 정리 (2026, article)
 - [[applications/gajjar-2026-gbrain-vs-computer-memory|GBrain vs DevRev Computer Memory]] — DevRev Arth Gajjar가 개인 GBrain과 엔터프라이즈 Computer Memory의 격차 세 가지를 비교한 에세이 (2026, article)
 - [[applications/vectorize-2026-gbrain-review-honest-assessment|GBrain Honest Assessment (Vectorize)]] — Vectorize.io가 GBrain을 10차원 스코어카드로 채점한 솔직 리뷰 (2026, article)
 - [[applications/mantena-2026-hermes-gbrain-setup-vps|Hermes + GBrain on AWS EC2 (Mantena)]] — Sudhir Mantena가 쓴 4-Part VPS 운영 튜토리얼. Hermes 위임 ingestion과 pay-per-use OAuth 흐름을 갈무리한 글 (2026, article)

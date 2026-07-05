@@ -16,7 +16,7 @@ tags: [gbrain, agent-memory, enterprise, devrev, computer-memory, airsync, two-w
 
 ## 요약 (Summary)
 
-DevRev Tech Lead **Arth Gajjar**의 비교 에세이. *"AI 에이전트는 매 세션마다 zero에서 시작한다"*는 문제에 대한 두 답—**GBrain**(Garry Tan, 개인 personal brain · git markdown · Postgres+pgvector · dream cycle)과 DevRev의 **Computer Memory**(50+ SaaS와 AirSync 양방향 sync · SOC 2 권한)—을 대비시킨다. 결론은 *"Memory that compounds beats memory that just retrieves"* — compounding 원리는 같고, 개인/엔터프라이즈 두 axis에서 각자 검증된다.
+DevRev Tech Lead **Arth Gajjar**가 쓴 비교 에세이. *"AI 에이전트는 매 세션마다 zero에서 시작한다"*는 문제를 두고 두 가지 답을 나란히 놓는다. 하나는 **GBrain**(Garry Tan, 개인 personal brain · git markdown · Postgres+pgvector · dream cycle), 다른 하나는 DevRev의 **Computer Memory**(50+ SaaS와 AirSync 양방향 sync · SOC 2 권한)다. 결론은 *"Memory that compounds beats memory that just retrieves"* — compounding 원리는 하나지만, 개인과 엔터프라이즈라는 두 축에서 각각 따로 검증된다는 것이다.
 
 ## 주요 기여 (Key Contributions)
 
@@ -37,12 +37,12 @@ DevRev Tech Lead **Arth Gajjar**의 비교 에세이. *"AI 에이전트는 매 �
 
 ## 결과 (Results)
 
-정량 벤치마크 없음. 정성 결론: 두 시스템은 거의 **다른 사용자 군**(개인 운영자 vs 엔터프라이즈 팀)을 겨냥하므로 zero-sum 경쟁이 아니라 같은 compounding 원리의 두 적용 사례로 읽힌다.
+정량 벤치마크는 없다. 정성 결론만 보면, 두 시스템은 애초에 겨냥하는 **사용자 군**이 다르다(개인 운영자 vs 엔터프라이즈 팀). 그래서 zero-sum 경쟁이라기보다 같은 compounding 원리를 서로 다른 데 적용한 두 사례에 가깝다.
 
 ## 한계 (Limitations)
 
 - 마케팅 톤 — DevRev가 자사 제품을 GBrain과 비교 포지셔닝.
-- "GBrain은 manual ingestion"이라는 묘사는 부분적으로만 맞다. [[applications/mantena-2026-hermes-gbrain-setup-vps]]가 Hermes로 PDF·tweet·calendar를 자동 ingest하는 흐름을 보여 줌 — 정확히는 "first-class **enterprise** connector가 부재"가 맞는 표현.
+- "GBrain은 manual ingestion"이라는 묘사는 절반만 맞다. [[applications/mantena-2026-hermes-gbrain-setup-vps]]는 Hermes로 PDF·tweet·calendar를 자동 ingest하는 흐름을 보여 준다. 정확히 말하면 "first-class **enterprise** connector가 없다" 정도가 맞다.
 - Computer Memory 자체 retrieval 디테일 비공개라 GBrain만큼 검증 불가.
 
 ## 관련 페이지 (Related Pages)

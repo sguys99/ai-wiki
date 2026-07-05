@@ -17,19 +17,19 @@ tags: [gbrain, video, brain-agent-loop, dream-cycle, verification-runbook, memex
 
 ## 요약 (Summary)
 
-TechWealth Hub의 5분 45초 영상. GBrain의 **3-layer 멘탈 모델**(brain repo ↔ GBrain ↔ AI agent), **brain agent loop**, **4개 DB primitive**(entity registry · event ledger · fact store · relationship graph), **dream cycle**, **verification runbook**("Sync ran ≠ sync worked")을 6분 안에 압축한다. GBrain 출시 6일 후 업로드 → 가장 빠른 시점의 외부 설명 영상.
+TechWealth Hub의 5분 45초짜리 영상으로, GBrain의 핵심을 6분 안에 훑는다. 다루는 것은 **3-layer 멘탈 모델**(brain repo ↔ GBrain ↔ AI agent), **brain agent loop**, **4개 DB primitive**(entity registry · event ledger · fact store · relationship graph), **dream cycle**, 그리고 **verification runbook**("Sync ran ≠ sync worked")이다. GBrain 출시 엿새 뒤에 올라온, 지금까지 나온 외부 설명 영상 중 가장 이른 것이다.
 
 ## 주요 기여 (Key Contributions)
 
 1. **3-layer 멘탈 모델** — markdown brain repo (source-of-truth) / GBrain (Postgres + hybrid retrieval) / agent (read-before-answer, write-after-learn).
-2. **Brain agent loop** — signal → entity detect → check brain first → answer with context → update brain → sync. "compounding thesis"의 가장 짧은 정의.
+2. **Brain agent loop** — signal → entity detect → check brain first → answer with context → update brain → sync. "compounding thesis"를 이보다 짧게 정의하기 어렵다.
 3. **DB primitive 4종** — entity registry · event ledger · fact store · relationship graph.
 4. **"Compiled truth above the line + append-only timeline below"** schema 강조.
 5. **Dream cycle** — *"the nightly job that sweeps conversations, enriches thin pages, fixes broken citations, and consolidates durable memory while you sleep."*
-6. **Verification runbook이 hidden hero** — *"Sync ran ≠ sync worked. The vector database is a derived index, not the source of truth."* + 강제 검증 패턴.
-7. **Wrong Supabase puller가 silently 페이지를 건너뛸 수 있다**는 known failure mode 호명.
+6. **Verification runbook이 숨은 주인공** — *"Sync ran ≠ sync worked. The vector database is a derived index, not the source of truth."* 여기에 검증을 강제하는 패턴이 붙는다.
+7. **Wrong Supabase puller가 페이지를 소리 없이 건너뛸 수 있다**는 known failure mode를 짚는다.
 8. **Garry Tan 1주차 수치** — 10,000+ markdown / 수천 people page / years calendar / hundreds meeting transcript.
-9. **install 4-step** — Bun + gbrain → `brain init` (Supabase) → 기존 markdown import → 실제 쿼리 검증. 그 다음 opinionated 단계로 schema·skill pack 읽기 + KB 재구조화 + daily cron 추가.
+9. **install 4-step** — Bun + gbrain → `brain init` (Supabase) → 기존 markdown import → 실제 쿼리 검증. 여기까지 하고 나면 취향이 갈리는 단계가 이어진다. schema·skill pack을 읽고, KB를 재구조화하고, daily cron을 붙이는 일이다.
 
 ## 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -61,10 +61,10 @@ TechWealth Hub의 5분 45초 영상. GBrain의 **3-layer 멘탈 모델**(brain r
 
 - 자동 자막 기반이라 일부 단어가 부정확:
   - "Garry Tan" → "Gary Tan"으로 음역.
-  - "Conductora / Conducto" — 영상은 conductora.com이라는 로컬-first orchestration 레이어를 거론하나 GBrain README에는 직접 등장하지 않음 (별도 확인 필요).
+  - "Conductora / Conducto" — 영상은 conductora.com이라는 로컬-first orchestration 레이어를 언급하는데, 정작 GBrain README에는 나오지 않는다 (별도 확인 필요).
   - "mist directories" — recommended schema "single primary home" 원칙의 디렉토리 표현 (정확한 README 용어 확인 필요).
   - "brain and bed stale chunks" — `gbrain embed`로 추정.
-- 5분 45초 분량이라 Minions·ZeroEntropy 같은 디테일은 다루지 않음.
+- 5분 45초짜리라 Minions·ZeroEntropy 같은 세부는 손대지 못한다.
 
 ## 관련 페이지 (Related Pages)
 

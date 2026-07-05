@@ -17,20 +17,20 @@ tags: [agent-memory, personal-brain, markdown-first, knowledge-graph, hybrid-sea
 
 ## 요약 (Summary)
 
-Garry Tan (Y Combinator CEO)이 자신의 OpenClaw·Hermes 에이전트를 위해 만든 **markdown-first AI 에이전트 메모리 시스템**. 핵심 thesis는 *"vector DB는 derived index, git markdown repo가 source of truth"*. 그 위에 ① Postgres + pgvector hybrid retrieval (HNSW + BM25 + RRF), ② zero-LLM-call typed-edge knowledge graph, ③ 43개 skill pack ("thin harness, fat skills"), ④ Postgres-native durable job queue (Minions), ⑤ nightly "dream cycle"을 결합한다. BrainBench(자체 240-page corpus) P@5 49.1% · R@5 97.9%로 graph 끄면 −31.4pp 떨어지는 점이 typed-edge KG가 vector-only 대비 retrieval lift를 가장 크게 만든다는 신호다 (MIT, TypeScript/Bun).
+Garry Tan (Y Combinator CEO)이 자신의 OpenClaw·Hermes 에이전트를 위해 만든 **markdown-first AI 에이전트 메모리 시스템**이다. 밑에 깔린 thesis는 하나다 — *"vector DB는 derived index, git markdown repo가 source of truth"*. 여기에 다섯 가지를 얹었다. ① Postgres + pgvector hybrid retrieval (HNSW + BM25 + RRF), ② zero-LLM-call typed-edge knowledge graph, ③ 43개 skill pack ("thin harness, fat skills"), ④ Postgres-native durable job queue (Minions), ⑤ nightly "dream cycle". BrainBench(자체 240-page corpus)에서 P@5 49.1% · R@5 97.9%를 찍는데, graph를 끄면 −31.4pp나 무너진다. typed-edge KG가 vector-only 대비 retrieval lift를 가장 크게 끌어올린다는 신호다 (MIT, TypeScript/Bun).
 
 ## 주요 기여 (Key Contributions)
 
-1. **"Brain repo = source of truth" 패턴의 production-grade 일반화** — git markdown을 소유, DB는 손실되면 `gbrain sync && gbrain embed`로 재빌드. 에이전트 학습 결과를 `git diff`로 검토하고 실험은 git branch로 격리한다.
-2. **Zero-LLM-call self-wiring KG** — 모든 page write에서 regex/wikilink 매칭만으로 `attended` · `works_at` · `invested_in` · `founded` · `advises` 등 typed edge를 즉시 추출 → 대용량 ingestion이 토큰 비용 사실상 \$0.
-3. **Hybrid retrieval + backlink boost가 vector-only를 +31.4 P@5pp 이김** — HNSW + tsvector BM25 + RRF + 4-layer dedup + backlink ranking. typed-edge graph 기여도가 hybrid search 단독보다 크다는 점이 차별점.
-4. **"Compiled truth + append-only timeline" page schema** — 모든 brain page가 상단=현재 진실, 하단=evidence ledger로 분리되어 "stale memory vs unbounded growth"를 audit 가능하게 해결.
-5. **Skill pack 43개로 "행동 layer를 markdown으로 표현"** — `skills/RESOLVER.md` 라우팅, 운영자가 fork·교체 가능. 별도 워크플로우 엔진 없이 markdown만 읽으면 에이전트 의사결정이 보인다.
-6. **Minions (Postgres-native job queue)** — BullMQ 모양, durable subagent(two-phase pending→done persistence로 crash 후 재개), shell audit, child + cascading timeout, rate lease, S3/Supabase attachment.
-7. **Dream cycle** — cron으로 도는 enrichment·citation fixer·contradiction finder·tomorrow-task prep. v0.36.4.0 부터 `gbrain doctor --remediate --max-usd 5`가 cost cap 안에서 score를 자율로 90까지 끌어올리는 autonomous loop 제공.
-8. **공개·재현 가능한 BrainBench + LongMemEval (97.60% R@5) + cross-modal eval** — 별도 `gbrain-evals` repo로 코퍼스·코드 공개. README가 published number ↔ 실제 code 행동을 정직하게 일치시킴 (Vectorize 리뷰가 "honesty of marketing 5/5"로 호평).
-9. **MCP 서버 (stdio + HTTP)** — `gbrain serve --http`는 OAuth 2.1 + per-client scope + DCR + rate limit + `/admin` SSE feed. Claude Desktop/Code/Cursor/ChatGPT/Perplexity/Cowork first-class.
-10. **ZeroEntropy default (v0.36.2.0)** — embedding `zembed-1`(1280d Matryoshka) + reranker `zerank-2`. OpenAI 대비 2.2× 빠르고 2.6× 저렴, 20-query head-to-head 11승.
+1. **"Brain repo = source of truth" 패턴의 production-grade 일반화** — git markdown을 소유하고, DB가 날아가면 `gbrain sync && gbrain embed`로 다시 세운다. 에이전트가 학습한 결과는 `git diff`로 들여다보고, 실험은 git branch로 떼어 격리한다.
+2. **Zero-LLM-call self-wiring KG** — page를 쓸 때마다 regex/wikilink 매칭만으로 `attended` · `works_at` · `invested_in` · `founded` · `advises` 같은 typed edge를 그 자리에서 뽑아낸다. 덕분에 대용량 ingestion이라도 토큰 비용이 사실상 \$0에 수렴한다.
+3. **Hybrid retrieval + backlink boost가 vector-only를 +31.4 P@5pp 앞선다** — HNSW + tsvector BM25 + RRF + 4-layer dedup + backlink ranking을 엮었다. hybrid search 단독보다 typed-edge graph의 기여가 더 크다는 게 이 시스템의 차별점이다.
+4. **"Compiled truth + append-only timeline" page schema** — brain page마다 위쪽은 현재 진실, 아래쪽은 evidence ledger로 나뉜다. 이 이분법이 "stale memory vs unbounded growth" 딜레마를 audit 가능한 형태로 푼다.
+5. **Skill pack 43개로 "행동 layer를 markdown으로 표현"** — `skills/RESOLVER.md`가 라우팅을 맡고, 운영자가 fork하거나 갈아끼울 수 있다. 별도 워크플로우 엔진 없이 markdown만 읽어도 에이전트가 왜 그렇게 판단했는지 드러난다.
+6. **Minions (Postgres-native job queue)** — BullMQ를 닮았다. durable subagent(two-phase pending→done persistence로 crash 후 재개), shell audit, child + cascading timeout, rate lease, S3/Supabase attachment를 갖췄다.
+7. **Dream cycle** — cron으로 도는 enrichment·citation fixer·contradiction finder·tomorrow-task prep. v0.36.4.0부터는 `gbrain doctor --remediate --max-usd 5`가 cost cap 안에서 score를 90까지 스스로 끌어올리는 autonomous loop를 제공한다.
+8. **공개·재현 가능한 BrainBench + LongMemEval (97.60% R@5) + cross-modal eval** — 코퍼스와 코드를 별도 `gbrain-evals` repo로 공개했다. README가 published number와 실제 code 행동을 정직하게 맞춰 둔 점을 Vectorize 리뷰가 "honesty of marketing 5/5"로 호평했다.
+9. **MCP 서버 (stdio + HTTP)** — `gbrain serve --http`는 OAuth 2.1 + per-client scope + DCR + rate limit + `/admin` SSE feed를 얹었고, Claude Desktop/Code/Cursor/ChatGPT/Perplexity/Cowork를 first-class로 지원한다.
+10. **ZeroEntropy default (v0.36.2.0)** — embedding `zembed-1`(1280d Matryoshka)에 reranker `zerank-2`. OpenAI 대비 2.2× 빠르고 2.6× 저렴하며, 20-query head-to-head에서 11승을 거뒀다.
 
 ## 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -43,7 +43,7 @@ message)  first       by context)     timeline)    + backlinks)     fresh)
           retrieval)
 ```
 
-요점은 *"에이전트가 답하기 전에 brain을 먼저 읽고, 답한 후에 brain에 다시 쓴다"*는 단순 contract.
+결국 핵심은 *"에이전트가 답하기 전에 brain을 먼저 읽고, 답한 뒤 brain에 다시 쓴다"*는 단순한 contract 하나로 압축된다.
 
 ### Two engines, one contract
 
@@ -59,13 +59,13 @@ message)  first       by context)     timeline)    + backlinks)     fresh)
 
 ### Search modes
 
-`conservative` / `balanced` / `tokenmax` 3종을 단일 config key로 전환. default `balanced` + ZeroEntropy reranker. **`gbrain init`이 9-cell cost matrix (mode × downstream model, 25× spread)를 출력하며 [AGENT] 마커로 STOP — 운영자에게 confirm 요청** — silent default 강요하지 않음.
+`conservative` / `balanced` / `tokenmax` 세 가지를 config key 하나로 갈아탄다. 기본값은 `balanced` + ZeroEntropy reranker. **`gbrain init`은 9-cell cost matrix (mode × downstream model, 25× spread)를 찍어 보여준 뒤 [AGENT] 마커에서 멈추고 운영자에게 confirm을 요청한다** — silent default를 밀어붙이지 않는다.
 
 ### 검증 가능한 sync (영상에서 강조)
 
 > Sync ran ≠ sync worked. Vector DB는 derived index이지 source of truth 아님.
 
-강제 패턴: `gbrain sync` → `gbrain embed`(stale 백필) → page count·embedding coverage 검증 → edit 후 cycle 대기 → 검색으로 reflect 확인. 잘못된 Supabase puller는 silently page 건너뛸 수 있음 (skill pack에 failure mode 명시).
+그래서 정해둔 패턴이 있다: `gbrain sync` → `gbrain embed`(stale 백필) → page count·embedding coverage 검증 → edit 후 cycle 대기 → 검색으로 reflect 확인. 잘못 구성된 Supabase puller는 page를 소리 없이 건너뛸 수 있어, skill pack이 이 failure mode를 못 박아 둔다.
 
 ## 결과 (Results)
 
@@ -110,21 +110,21 @@ message)  first       by context)     timeline)    + backlinks)     fresh)
 
 ## 한계 (Limitations)
 
-- **Single-operator design** — multi-tenant isolation은 design center가 아님.
-- **No managed cloud** — exclusively self-hosted.
-- **Integration breadth가 좁음** — first-class skill pack은 OpenClaw + Hermes만. 다른 에이전트 스택은 MCP로 wiring 필요하나 first-party 패키지 없음.
-- **Schema discipline 필요** — skill·schema가 모두 운영자 저작. set-and-forget이면 오류만 누적된다고 README가 명시.
-- **No multi-hop graph / temporal reasoning at retrieve** — write-time에 typed edge는 추출하나 retriever는 multi-hop traversal을 우선시하지 않음.
-- **Install footgun 2개** — `bun install -g github:garrytan/gbrain` 금지(postinstall hook 차단), `npm install -g gbrain` 금지(squatted package). 안내: `bun install -g github:garrytan/gbrain`이 안 되면 `git clone` 후 `bun install && bun link`.
+- **Single-operator design** — multi-tenant isolation은 애초에 설계 목표가 아니다.
+- **No managed cloud** — 오직 self-hosted만 지원한다.
+- **Integration breadth가 좁음** — first-class skill pack이 붙는 건 OpenClaw + Hermes뿐이다. 다른 에이전트 스택은 MCP로 직접 wiring해야 하고, first-party 패키지는 없다.
+- **Schema discipline 필요** — skill도 schema도 전부 운영자가 손수 짜야 한다. 방치하면 오류만 쌓인다고 README가 대놓고 경고한다.
+- **No multi-hop graph / temporal reasoning at retrieve** — typed edge는 write-time에 뽑아 두지만, retriever가 multi-hop traversal을 먼저 챙기지는 않는다.
+- **Install footgun 2개** — `bun install -g github:garrytan/gbrain`은 postinstall hook이 막혀 안 되고, `npm install -g gbrain`은 squatted package라 금물이다. 전자가 실패하면 `git clone` 후 `bun install && bun link`로 우회하라.
 
 ## 관련 페이지 (Related Pages)
 
-- [[applications/gajjar-2026-gbrain-vs-computer-memory]] — DevRev Tech Lead가 GBrain(개인 메모리) ↔ DevRev Computer Memory(엔터프라이즈 메모리)를 비교. shared / two-way sync / 권한 차이.
-- [[applications/vectorize-2026-gbrain-review-honest-assessment]] — Vectorize.io의 정직한 어세스먼트. 위 scorecard 출처. BrainBench·LongMemEval 수치 정리.
-- [[applications/mantena-2026-hermes-gbrain-setup-vps]] — AWS EC2 + Hermes에 GBrain 설치 + X(Twitter) 수집까지 풀세트 튜토리얼. PATH 이슈, OAuth 2.0 PKCE로 ngrok 없이 likes 수집.
-- [[applications/techwealth-hub-2026-garry-tan-gbrain-explained]] — 5분 45초 YouTube 영상. brain agent loop, 4개 DB primitives(entity registry · event ledger · fact store · relationship graph), verification runbook을 transcript 기반으로 요약.
+- [[applications/gajjar-2026-gbrain-vs-computer-memory]] — DevRev Tech Lead가 GBrain(개인 메모리)과 DevRev Computer Memory(엔터프라이즈 메모리)를 맞대어 본다. shared, two-way sync, 권한 차이가 초점.
+- [[applications/vectorize-2026-gbrain-review-honest-assessment]] — Vectorize.io의 솔직한 어세스먼트. 위 scorecard가 여기서 나왔고, BrainBench·LongMemEval 수치를 정리해 둔다.
+- [[applications/mantena-2026-hermes-gbrain-setup-vps]] — AWS EC2 + Hermes 위에 GBrain을 올리고 X(Twitter) 수집까지 훑는 풀세트 튜토리얼. PATH 이슈, 그리고 OAuth 2.0 PKCE로 ngrok 없이 likes를 긁는 법.
+- [[applications/techwealth-hub-2026-garry-tan-gbrain-explained]] — 5분 45초짜리 YouTube 영상. brain agent loop, 4개 DB primitives(entity registry · event ledger · fact store · relationship graph), verification runbook을 transcript 기반으로 간추린다.
 
 ## 메모 (Notes)
 
-- 본 ai-wiki의 `CLAUDE.md` 자체가 Karpathy LLM Wiki 패턴의 다중 자료형 확장이며, GBrain은 같은 패턴을 *에이전트가 직접 read/write* 축으로 production화한 것 — 두 프로젝트는 같은 thesis(markdown source-of-truth + retrieval layer + compounding)의 두 변형으로 볼 수 있다.
-- 인용된 수치(17,888 pages / 4,383 people / 723 companies, 21 cron jobs, 12 days)는 모두 README 첫 단락의 Garry Tan 본인 brain 통계.
+- 본 ai-wiki의 `CLAUDE.md` 역시 Karpathy LLM Wiki 패턴을 다중 자료형으로 넓힌 것이고, GBrain은 그 패턴을 *에이전트가 직접 read/write*하는 축으로 밀어 production화했다. 두 프로젝트는 markdown source-of-truth + retrieval layer + compounding이라는 같은 thesis에서 갈라진 두 변형인 셈이다.
+- 인용한 수치(17,888 pages / 4,383 people / 723 companies, 21 cron jobs, 12 days)는 전부 README 첫 단락에 실린 Garry Tan 본인 brain의 통계다.

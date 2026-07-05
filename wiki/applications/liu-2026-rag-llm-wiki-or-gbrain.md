@@ -16,7 +16,7 @@ tags: [rag, llm-wiki, gbrain, karpathy, garry-tan, fat-skills, decision-framewor
 
 ## 요약 (Summary)
 
-Yanli Liu가 쓴 15분짜리 architectural decision framework. *"What is your agent's job?"* 하나의 질문으로 메모리 아키텍처를 **3축**으로 가른다:
+Yanli Liu가 쓴 15분짜리 architectural decision framework. *"What is your agent's job?"* 질문 하나로 메모리 아키텍처를 **3축**으로 가른다:
 
 | 축 | 별칭 | 적합 조건 |
 |---|---|---|
@@ -31,9 +31,9 @@ Yanli Liu가 쓴 15분짜리 architectural decision framework. *"What is your ag
 1. **3축 결정 프레임워크** — *"what is your agent's job?"* 한 질문으로 RAG/Wiki/Skills 가운데 하나를 고른다.
 2. **RAG 7-failure-point에서 agent에 치명적인 3개 추림** — chunking / re-derivation / passivity.
 3. **Context window ≠ memory** — 1M token 모델도 300-400K(30-40%) 지점에서 degrade가 시작되고 세션이 끝나면 reset된다.
-4. **LLM Wiki 3-layer 정식화** — raw(immutable) / wiki(LLM 소유) / schema(CLAUDE.md). 한 번 ingest하면 10-15 page를 touch하고, 쿼리 응답이 wiki page로 file되어 tomorrow's queries benefit으로 이어진다.
+4. **LLM Wiki 3-layer 정식화** — raw(immutable) / wiki(LLM 소유) / schema(CLAUDE.md). 한 번 ingest하면 10-15 page를 touch하고, 쿼리 응답이 wiki page로 file되어 다음 쿼리가 그 위에서 덕을 본다.
 5. **LLM Wiki scale ceiling** — ~100 sources에 수백 page까지는 무난하지만 **10K에서 깨지고**, 100K 규모면 RAG로 돌아가야 한다.
-6. **"Thin harness, fat skills"의 정량 근거** — 하니스는 ~200 LOC, 지능은 markdown skill 쪽에 둔다. *"Fewer fatter skills makes the resolver shorter."*
+6. **"Thin harness, fat skills"의 정량 근거** — 하니스는 ~200 LOC로 얇게 두고 지능은 markdown skill 쪽에 몰아준다. *"Fewer fatter skills makes the resolver shorter."*
 7. **Resolver = skill description의 부산물** — explicit routing code가 따로 필요 없다.
 8. **Fat skill 실물 YAML** — `enrich` skill frontmatter를 그대로 인용한다(name/version/description/triggers/tools/mutating/writes_to). *"That's not a prompt template. It's a contract."*
 9. **3-tier enrichment** — inner-circle(all APIs, deep web) / industry figures(web+social+brain cross-ref) / tracking only. inline `[Source: ...]` citation이 필수이며, 우선순위는 user > compiled truth > timeline > external APIs.
