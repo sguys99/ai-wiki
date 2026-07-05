@@ -19,6 +19,7 @@
 Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 
 - [[database/edge-2024-from-local-to-global|GraphRAG: From Local to Global]] — Microsoft의 GraphRAG 원논문. 엔티티와 관계를 뽑아 Leiden 커뮤니티로 요약한 뒤 map-reduce로 글로벌 답변을 만드는 그래프 RAG의 출발점 (2024, paper)
+- [[database/microsoft-graphrag|microsoft/graphrag (repo)]] — GraphRAG 원논문의 공식 구현체. 비정형 텍스트를 knowledge graph로 인덱싱하는 파이프라인을 PyPI 패키지로 배포하며, 인덱싱 비용이 크다는 경고를 전면에 둔다 (2024, repo)
 - [[database/dsba-2025-graphrag-paper-review|GraphRAG Paper Review (DSBA, 김도윤 2025-08-11)]] — DSBA 김도윤이 정리한 GraphRAG 한국어 해설. 원논문에 발표자 견해 다섯 가지를 덧붙인 랩 세미나 슬라이드 (2025, article)
 - [[database/guo-2025-lightrag-simple-and-fast|LightRAG]] — GraphRAG의 KG를 key-value로 직렬화하고 dual-level keyword 검색으로 호출 비용을 줄인 후속작 (2025, paper)
 - [[database/zhang-2026-leanrag-knowledge-graph-based-generation|LeanRAG]] — GMM-BIC로 계층적 KG를 짓고 LCA 기반 검색으로 redundancy를 줄인 그래프 RAG 변형 (2026, paper)
