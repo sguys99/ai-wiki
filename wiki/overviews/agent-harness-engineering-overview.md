@@ -12,6 +12,7 @@ sources:
   - patel-2026-beyond-the-prompt-claude-code.md
   - lin-2026-harness-updating-is-not-harness-benefit.md
   - trq212-2026-a-field-guide-to-fable.md
+  - walkinglabs-learn-harness-engineering.md
 tags: [harness-engineering, agent-skills, loop-engineering, verification, generator-evaluator, progressive-disclosure, scope-discipline, worktree, claude-code, mcp, compounding, self-evolving-agents, unknowns, map-and-territory, fable, overview, synthesis]
 ---
 
@@ -19,7 +20,7 @@ tags: [harness-engineering, agent-skills, loop-engineering, verification, genera
 
 2026년 상반기에 여러 저자가 같은 전환을 저마다 다른 이름으로 짚었다. **"프롬프트를 잘 쓰는 일"에서 "에이전트가 혼자 일할 작업 환경(harness)을 설계하는 일"로.** 이호연은 이를 *Harness Engineering*, Addy Osmani는 *Loop Engineering*, Arpan Patel은 *"setup is the work"* 라 불렀다. 이름은 달라도 뼈대는 포갠다 — 구조·맥락·계획·실행·**검증**·개선을 에이전트 바깥에 미리 깔아 두는 것.
 
-이 overview는 wiki에 실재하는 **7개 자료**를 한 장의 지도로 묶는다.
+이 overview는 wiki에 실재하는 **8개 자료**를 한 장의 지도로 묶는다.
 
 | 자료 | 층위 | 한 줄 |
 |---|---|---|
@@ -30,6 +31,7 @@ tags: [harness-engineering, agent-skills, loop-engineering, verification, genera
 | [[agents/patel-2026-beyond-the-prompt-claude-code]] | 실전 운영 | `.claude/` config·verify-your-own-work·worktree 병렬·Ralph Loop 매뉴얼 |
 | [[agents/lin-2026-harness-updating-is-not-harness-benefit]] | 실증 경계 | 하네스의 이득을 controlled grid로 계측 — 약한 모델은 invocation·adherence에서 무너진다 |
 | [[agents/trq212-2026-a-field-guide-to-fable]] | 하네스 앞단 (사람) | 지도(prompt·context) ↔ 영토(codebase)의 간극=unknown, 구현 전·중·후 8패턴으로 발굴 |
+| [[agents/walkinglabs-learn-harness-engineering]] | 교육·실습 | 위 담론을 Instructions·State·Verification·Scope·Lifecycle 5축 커리큘럼으로 조작화, 같은 앱을 6번 지어 실습 |
 
 ## 하나의 그림 (The Shared Picture)
 
