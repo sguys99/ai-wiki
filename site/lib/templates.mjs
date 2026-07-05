@@ -143,6 +143,7 @@ function card(page, degree, links) {
   const dataLinks = (links || []).join(' ');
 
   return `<a class="card" href="${escapeHtml(page.url)}" data-id="${escapeHtml(page.id)}" data-links="${escapeHtml(dataLinks)}">
+  ${page.isNew ? '<span class="card-new">NEW</span>' : ''}
   ${tag ? `<span class="card-tag">${escapeHtml(tag)}</span>` : ''}
   <h3 class="card-title">${escapeHtml(page.display || page.title)}</h3>
   ${page.desc ? `<p class="card-desc">${escapeHtml(page.desc)}</p>` : ''}
@@ -157,8 +158,9 @@ function card(page, degree, links) {
 //
 // data: { sections, degree, adjacency:Map(id→[ids]), stats:{pages,links,categories}, graphHref }
 export function home(data) {
-  const { sections, degree, adjacency, stats, graphHref } = data;
+  const { sections, recent, degree, adjacency, stats, graphHref } = data;
   const visible = sections.filter((s) => s.pages.length);
+  const hasRecent = recent && recent.pages && recent.pages.length;
 
   const hero = `<section class="hero">
   <canvas class="hero-constellation" data-graph="${escapeHtml(graphHref)}" aria-hidden="true"></canvas>
@@ -180,6 +182,11 @@ export function home(data) {
   const total = visible.reduce((n, s) => n + s.pages.length, 0);
   const chips = [
     `<a class="filter-chip is-active" href="${href('/')}" data-filter="all" role="button" aria-pressed="true">전체<span class="filter-count">${total}</span></a>`,
+    ...(hasRecent
+      ? [
+          `<a class="filter-chip filter-chip-recent" href="#recent" data-filter="recent" role="button" aria-pressed="false">최근<span class="filter-count">${recent.pages.length}</span></a>`,
+        ]
+      : []),
     ...visible.map(
       (s) =>
         `<a class="filter-chip" href="#${escapeHtml(s.slug)}" data-filter="${escapeHtml(s.slug)}" role="button" aria-pressed="false">${escapeHtml(s.label)}<span class="filter-count">${s.pages.length}</span></a>`
@@ -191,12 +198,9 @@ export function home(data) {
   </div>
 </nav>`;
 
-  const bands = visible
-    .map((s) => {
-      const cards = s.pages
-        .map((p) => card(p, degree, adjacency.get(p.id)))
-        .join('\n');
-      return `<section class="band" id="${escapeHtml(s.slug)}" data-band="${escapeHtml(s.slug)}" aria-labelledby="band-${escapeHtml(s.slug)}">
+  const bandSection = (s, extraClass = '') => {
+    const cards = s.pages.map((p) => card(p, degree, adjacency.get(p.id))).join('\n');
+    return `<section class="band${extraClass ? ` ${extraClass}` : ''}" id="${escapeHtml(s.slug)}" data-band="${escapeHtml(s.slug)}" aria-labelledby="band-${escapeHtml(s.slug)}">
   <div class="band-head">
     <h2 class="band-name" id="band-${escapeHtml(s.slug)}">${escapeHtml(s.label)}</h2>
     <span class="band-count">${s.pages.length}</span>
@@ -207,12 +211,15 @@ ${cards}
   </div>
   <button type="button" class="band-more" data-more="${escapeHtml(s.slug)}" hidden>+ 더 보기</button>
 </section>`;
-    })
-    .join('\n');
+  };
+
+  // 최상단 통합 "최근 추가" 밴드(있으면) → 카테고리 밴드들.
+  const recentBand = hasRecent ? bandSection(recent, 'band-recent') : '';
+  const bands = visible.map((s) => bandSection(s)).join('\n');
 
   return layout({
     title: SITE.title,
-    body: `${hero}\n${filterBar}\n${bands}`,
+    body: `${hero}\n${filterBar}\n${recentBand}\n${bands}`,
     mainClass: 'home',
     path: '/',
     scripts: ['/static/js/constellation.js', '/static/js/filter.js'],

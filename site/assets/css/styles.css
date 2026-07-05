@@ -719,6 +719,32 @@
     padding: 0.1em 0.5em;
   }
 
+  /* ── 최근 추가 밴드 · NEW 뱃지 ── */
+  .card {
+    position: relative; /* .card-new 절대배치 기준 */
+  }
+  .card-new {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--bg);
+    background: var(--signal);
+    border-radius: var(--radius-sm);
+    padding: 0.05em 0.45em;
+    line-height: 1.5;
+  }
+  /* 통합 최근 밴드 — 강조는 accent eyebrow 로만(과설계 금지) */
+  .band-recent .band-head {
+    border-bottom-color: var(--signal);
+  }
+  .band-recent .band-name {
+    color: var(--signal);
+  }
+
   /* neighborhood hover: 호버 카드의 연결 카드 강조, 나머지는 살짝 후퇴 */
   .cards-focusing .card:not(.is-source):not(.is-linked) {
     opacity: 0.4;

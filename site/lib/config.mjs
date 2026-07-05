@@ -33,3 +33,7 @@ export const SITE = {
   description: 'AI 관련 기술자료를 저장·관리하는 개인 지식 베이스 (Karpathy LLM Wiki 패턴)',
   lang: 'ko',
 };
+
+// 홈 "최근 추가" 밴드/뱃지 튜닝. RECENT_COUNT: 통합 밴드 카드 수, RECENT_DAYS: NEW 뱃지 기준일.
+export const RECENT_COUNT = 6; // filter.js 접힘 TOP_N(2×3)과 정렬 — '더 보기' 없이 한눈에
+export const RECENT_DAYS = 14;

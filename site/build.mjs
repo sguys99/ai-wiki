@@ -11,8 +11,9 @@ import { rm, mkdir, writeFile, cp, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
-import { BASE, href } from './lib/config.mjs';
+import { BASE, href, RECENT_COUNT } from './lib/config.mjs';
 import { loadContent } from './lib/content.mjs';
+import { addedDates } from './lib/dates.mjs';
 import { buildGraph } from './lib/graph.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
 import { home, wiki, about } from './lib/templates.mjs';
@@ -30,8 +31,8 @@ async function main() {
   await rm(DIST, { recursive: true, force: true });
   await mkdir(DIST, { recursive: true });
 
-  // 2) 콘텐츠 로드 (wiki frontmatter + index.md 카탈로그 머지)
-  const content = await loadContent(ROOT);
+  // 2) 콘텐츠 로드 (wiki frontmatter + index.md 카탈로그 머지 + git 추가일 정렬)
+  const content = await loadContent(ROOT, addedDates(ROOT));
   const { pages, sections, resolve: resolveLink } = content;
   const totalPages = pages.size;
   const totalEntries = sections.reduce((n, s) => n + s.pages.length, 0);
@@ -128,9 +129,15 @@ async function main() {
     links: graph.edges.length,
     categories: sections.filter((s) => s.pages.length).length,
   };
+  // 전 카테고리 통합 "최근 추가" 밴드 (홈 전용 — prevNext/라우팅 미포함).
+  const recentPages = [...pages.values()]
+    .sort((a, b) => Date.parse(b.added) - Date.parse(a.added) || a.title.localeCompare(b.title, 'ko'))
+    .slice(0, RECENT_COUNT);
+  const recent = { label: '최근 추가', slug: 'recent', desc: null, pages: recentPages };
+
   await writeFile(
     join(DIST, 'index.html'),
-    home({ sections, degree: graph.degree, adjacency, stats, graphHref: href('/graph.json') })
+    home({ sections, recent, degree: graph.degree, adjacency, stats, graphHref: href('/graph.json') })
   );
 
   // 6.5) About — README/CLAUDE.md 철학·THE FOUR RULES·3-tier 파이프라인.

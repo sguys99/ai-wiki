@@ -10,7 +10,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { join, basename, relative, sep } from 'node:path';
 import matter from 'gray-matter';
-import { href, SITE } from './config.mjs';
+import { href, SITE, RECENT_DAYS } from './config.mjs';
 import { slugify } from './markdown.mjs';
 
 // index.md 카탈로그 한 줄 정규식.
@@ -135,9 +135,20 @@ async function loadCatalog(root) {
 
 // ── 머지 ─────────────────────────────────────────────────────────────────────
 
-export async function loadContent(root) {
+export async function loadContent(root, addedDates = new Map()) {
   const { pages, byStem, warnings } = await loadWikiPages(root);
   const catalog = await loadCatalog(root);
+
+  // git 추가일 부착: relPath("category/stem.md") → 저장소기준("wiki/category/stem.md")로 조회.
+  // 미추적/이력없음(로컬 신규 등)은 now 폴백 → 최상단에 뜬다.
+  const nowMs = Date.now();
+  const nowISO = new Date(nowMs).toISOString();
+  const newCutoffMs = RECENT_DAYS * 86400000;
+  for (const page of pages.values()) {
+    const key = 'wiki/' + page.relPath.split(sep).join('/');
+    page.added = addedDates.get(key) || nowISO;
+    page.isNew = nowMs - Date.parse(page.added) <= newCutoffMs;
+  }
 
   const missingFile = []; // 카탈로그엔 있으나 wiki 파일 없음
   const sections = [];
@@ -159,6 +170,8 @@ export async function loadContent(root) {
       page.catalogType = entry.type;
       secPages.push(page);
     });
+    // 최신 추가일 우선, 동률(같은 커밋)은 카탈로그 순서 유지 → 주제 클러스터링 보존.
+    secPages.sort((a, b) => Date.parse(b.added) - Date.parse(a.added) || a.order - b.order);
     sections.push({
       label: sec.label,
       slug: sec.slug,
