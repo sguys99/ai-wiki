@@ -125,6 +125,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 미분류, 횡단(cross-cutting) 주제.
 
 - [[etc/rahman-2026-a-practical-guide-to-becoming|AI-Native Engineer 실전 가이드 (Shah Rahman, ByteByteGo)]] — Meta Ads ML 총괄 Shah Rahman의 에세이. 엔지니어가 오케스트레이터로 정체성을 옮길 때 필요한 4 Core Practices와 ADLC 운영 프레임 (2026, article)
+- [[etc/google-okf|Open Knowledge Format (OKF)]] — 데이터·시스템을 둘러싼 지식을 YAML frontmatter markdown으로 표현하는 Google의 벤더 중립 포맷. 포맷 자체가 기여이고, 생산(BigQuery+Gemini reference agent)·소비(자기완결 HTML visualizer)는 PoC. 이 ai-wiki와 같은 계보 (2026, repo)
 
 ## Overviews (overviews)
 
