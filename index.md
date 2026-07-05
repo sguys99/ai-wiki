@@ -116,6 +116,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/agricidaniel-claude-obsidian|AgriciDaniel/claude-obsidian (repo)]] — Karpathy LLM Wiki 패턴을 Claude Code 스킬 15개 + Obsidian 볼트 구조로 정착시킨 reference 구현체. Compound Vault refoundation(per-file advisory lock + BM25·contextual-prefix·cosine rerank hybrid retrieval) + Methodology Modes(generic·LYT·PARA·Zettelkasten) + 10-principle thinking framework를 묶은 MIT 라이선스 패키지 (2026, repo)
 - [[applications/joonan30-llm-wiki-labs|joonan30/llm-wiki-labs (repo)]] — Joonan Lab(고려대 안준용 교수)의 1인 PI 연구실이 Karpathy LLM Wiki 패턴을 한국어로 굴린 31일치 실측 기록. 3,955 wiki 페이지·567줄 AGENTS.md·5개 자동 루프·5개 외부 시스템(Notion·Slack·Gmail·Grants·AI Agents) 통합을 4역할 렌즈(학부생/대학원생/연구원/PI)로 풀어쓴 단일 HTML 인터랙티브 케이스 스터디. *gist 한 줄 + "나도 이거 세팅해줘"* 진입 패턴과 *덤프 → 분류 → 규칙화 → 운영 → 분석* 5단계 진화 모델 (2026, repo)
 - [[applications/dragon1086-llm-wiki|dragon1086/llm-wiki (repo)]] — Karpathy LLM Knowledge Base 패턴을 `claude --dangerously-skip-permissions -p` subprocess 호출로 돌리는 한국어 미니멀 레퍼런스. 5개 Python 스크립트 1,228줄로 ingest/query/lint/watch를 묶고, macOS launchd plist로 raw/에 .md를 떨군 순간 wiki가 갱신되는 24/7 자동 ingest까지 묶은 자족형 시스템 (2026, repo)
+- [[applications/alex-xu-2026-rag-vs-graph-rag-vs|RAG vs Graph RAG vs Agentic RAG (Alex Xu, LinkedIn)]] — ByteByteGo 공동창업자 Alex Xu의 짧은 LinkedIn 카드. Standard·Graph·Agentic RAG를 각각 3~4단계 파이프라인으로 정리하고 Graph RAG의 local/global search 라우팅과 Agentic RAG의 검증-재검색 루프를 명시한 비교 자료 (2026, article)
 
 ## Etc (etc)
 
