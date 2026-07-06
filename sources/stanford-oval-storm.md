@@ -19,14 +19,16 @@ tags: [storm, co-storm, multi-agent, question-asking, retrieval, dspy, litellm, 
 
 ## 1. 자료 정보 (Document Information)
 
-- **저장소**: `stanford-oval/storm` (https://github.com/stanford-oval/storm)
+- **저장소**: `stanford-oval/storm` (https://github.com/stanford-oval/storm), Stanford OVAL 연구실
 - **배포**: PyPI `knowledge-storm` 패키지 (`pip install knowledge-storm`)
-- **라이선스**: 코드 MIT, FreshWiki 데이터셋은 Wikipedia 출처라 CC BY-SA
-- **연구 프리뷰**: http://storm.genie.stanford.edu
+- **라이선스**: 코드 MIT(repo LICENSE), FreshWiki 데이터셋은 Wikipedia 출처라 CC BY-SA
+- **연구 프리뷰**: http://storm.genie.stanford.edu — 라이브 프리뷰 이용자 7만 명 이상
 - **논문 두 편**:
-  - STORM — "Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models" (NAACL 2024)
-  - Co-STORM — "Into the Unknown Unknowns: Engaged Human Learning through Participation in Language Model Agent Conversations" (EMNLP 2024)
+  - STORM — "Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models" (NAACL 2024, arXiv:2402.14207)
+  - Co-STORM — "Into the Unknown Unknowns: Engaged Human Learning through Participation in Language Model Agent Conversations" (EMNLP 2024 main, arXiv:2408.15232)
+- **연락**: Yijia Shao(shaoyj@stanford.edu), Yucheng Jiang(yuchengj@stanford.edu)
 - **데이터셋**: FreshWiki(가장 많이 편집된 위키 문서 100편), WildSeek(주제 + 사용자의 딥서치 목표 쌍) — 둘 다 Hugging Face 공개
+- **버전 히스토리**: 2024/04 리팩터링(interface 정의) → 2024/05 Bing·GPT-4o → 2024/07 PyPI 배포·`VectorRM`(사용자 문서 grounding)·streamlit demo light → 2024/09 Co-STORM 통합(v1.0.0) → 2025/01 litellm 통합(v1.1.0)
 
 ## 2. 주요 기여 (Key Contributions)
 
@@ -45,8 +47,9 @@ tags: [storm, co-storm, multi-agent, question-asking, retrieval, dspy, litellm, 
 - 실행은 `STORMWikiRunner`가 맡는다. `do_research`/`do_generate_outline`/`do_generate_article`/`do_polish_article` 플래그로 단계를 켜고 끈다.
 
 **Co-STORM — 협업 담론 엔진:**
-- 참여자는 세 종류다. 외부 출처에 근거해 답하는 LLM 전문가, 자극적 질문을 던지는 사회자, 관찰하거나 직접 방향을 트는 인간.
-- 상태는 계층 개념 구조인 mind map으로 유지하며 정보를 조직한다.
+- 핵심은 **협업 담론 프로토콜(collaborative discourse protocol)**이다. turn management policy로 참여자들의 발언 순서를 조율한다. 예시 구현이 `knowledge_storm/collaborative_storm/engine.py`의 `DiscourseManager`다.
+- 참여자는 세 종류다. 외부 출처에 근거해 답하는 LLM 전문가, 이전 턴에 안 쓰인 검색 정보에서 착안해 생각을 자극하는 질문을 던지는 사회자(질문도 grounded 가능), 관찰하거나 직접 방향을 트는 인간.
+- 상태는 계층 개념 구조인 mind map으로 유지한다. 사람과 시스템이 공유하는 개념 공간을 세워, 담론이 길고 깊어질 때 인지 부담을 줄이는 역할이 검증됐다.
 - 실행은 `CoStormRunner`가 맡는다. `warm_start()`로 예열하고 `step()`으로 한 턴씩 진행하되, `user_utterance`로 사용자가 개입할 수 있으며, `knowledge_base.reorganize()`로 mind map을 재편하고 `generate_report()`로 최종 글을 뽑는다.
 - LM 역할을 여섯으로 쪼갠다(질의응답·담론관리·발화다듬기·warm-start outline·질문생성·knowledge base). 역할마다 max_tokens를 달리 줘서 비용을 통제한다.
 
@@ -64,7 +67,9 @@ README는 정량 지표를 본문에 싣기보다 논문(NAACL·EMNLP 2024)과 �
 
 - **검색 의존·비용**: 파이프라인 전체가 인터넷 검색과 다수 LM 호출로 굴러가 API 비용과 지연이 크다. Co-STORM은 역할별로 LM을 쪼개 비용을 조절하지만, 근본적으로 호출 수가 많다.
 - **출처 품질에 좌우**: 검색 결과가 곧 근거이므로, 검색 백엔드와 웹 문서 품질이 결과 신뢰도를 결정한다.
-- **확장 여지**: README는 추가 검색엔진·retriever 통합 기여를 특히 환영한다고 밝힌다.
+- **완성도**: 편집 없이 바로 게재할 수준의 글은 아직 못 만든다. 숙련 편집자들은 pre-writing 단계 보조로 유용하다고 평했다.
+- **로드맵**: 팀은 (1) Human-in-the-Loop 기능(지식 큐레이션에 사용자 참여 확대), (2) Information Abstraction(Wikipedia식 리포트를 넘어선 표현 형식)을 진행 중이다.
+- **확장 여지**: README는 추가 검색엔진·retriever 통합 기여를 특히 환영한다고 밝힌다. 논문 재현은 `NAACL-2024-code-backup`(STORM)·`EMNLP-2024-code-backup`(Co-STORM) 브랜치를 쓴다.
 
 ## 6. 관련 연구 (Related Work)
 
