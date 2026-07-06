@@ -1,0 +1,119 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig01.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: We explore writing Wikipedia-like articles",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig02.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig02.png",
+    "page": 2,
+    "caption": "and “Where” questions (Figure 1 (A)) which often",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig03.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 2: The overview of STORM that automates the pre-writing stage. Starting with a given topic, STORM",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig04.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig04.png",
+    "page": 4,
+    "caption": "the event’s basic information (Figure 1 (A)).",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig05.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig05.png",
+    "page": 5,
+    "caption": "sources (Figure 2 5 ). Finally, the LLM synthe-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig06.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig06.png",
+    "page": 6,
+    "caption": "drafting and refining the outline (Figure 2 7 - 8 ).",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig07.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig07.png",
+    "page": 8,
+    "caption": "Figure 3: Survey results of the perceived usefulness of",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig08.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig08.png",
+    "page": 14,
+    "caption": "Figure 4: Evolution of reference count in the Wikipedia",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig09.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig09.png",
+    "page": 14,
+    "caption": "in the article edit process and Figure 5 gives the dis-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig10.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig10.png",
+    "page": 17,
+    "caption": "Figure 6: Error analysis of unsupported sentences in 10",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig11.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig11.png",
+    "page": 19,
+    "caption": "We show the error distribution in Figure 6. No-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig12.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig12.png",
+    "page": 19,
+    "caption": "for each article. Figure 7 shows the screenshot of",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig13.png",
+    "raw": "raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig13.png",
+    "page": 22,
+    "caption": "Figure 7: Screenshot of the web application for evaluating the grounded article.",
+    "strategy": "page-region",
+    "curated": false
+  }
+]

@@ -54,6 +54,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 Agentic 시스템, tool use, planning, LangGraph 등.
 
 - [[agents/garrytan-gstack|gstack (repo)]] — Garry Tan이 공개한 Claude Code용 오픈소스 스킬 팩. 슬래시 명령어로 CEO·QA·보안 등 역할별 전문가를 불러 1인 개발자가 20인 팀의 스프린트 규율(Think→Ship→Reflect)을 밟게 한다. MIT (2026, repo)
+- [[agents/shao-2024-assisting-in-writing-wikipedia-like-articles|STORM]] — 주제만 주고 Wikipedia급 장문 글을 처음부터 쓰는 Stanford 시스템. 여러 관점을 가진 가상 writer가 전문가에게 인터넷 근거 질문을 던지는 시뮬레이션 대화로 pre-writing(리서치·outline)을 자동화한다 (2024, paper)
 - [[agents/qiao-2026-memory-intelligence-agent|Memory Intelligence Agent (MIA)]] — Manager·Planner·Executor 분리와 워크플로우 ↔ Planner 메모리 양방향 루프로 작은 Executor가 frontier 모델을 넘긴 ECNU 연구 (2026, paper)
 - [[agents/lee-hoyeon-2026-harness-engineering|Harness Engineering (Team Attention)]] — Team Attention 이호연이 만든 강의 슬라이드. Prompt → Context → Harness 3단계 진화와 6축 순환을 Claude Code 사례로 엮어낸 한국어 자료 (2026, article)
 - [[agents/dennis-2026-compiling-agentic-workflows-into-llm|Compiling Agentic Workflows into LLM Weights (Subterranean Agent)]] — LangGraph 같은 surface orchestration을 파인튜닝된 단일 모델 가중치로 컴파일하는, i14·멜버른대가 제안한 패러다임 (2026, paper)
@@ -89,6 +90,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/movez-2026-loop-engineering-for-trading-agents|Loop Engineering for Trading Agents (Movez)]] — loop engineering 담론을 코딩 에이전트가 아니라 금융 트레이딩 데스크에 이식한 도메인 케이스. Minara 앱 하나 안에서 Research·Strategy·Execution 세 루프를 12단계로 엮고, 거래 감사·페이퍼 런·alerts-only 세 verifier gate로 "스스로에게 동의하는 에이전트"를 막는 스스로 돌아가는 퀀트 데스크 로드맵. 단일 제품 튜토리얼이자 레퍼럴 링크 포함 홍보 글이라 프레임만 추출 권장 (2026, article)
 - [[agents/patel-2026-i-taught-myself-claude-code|I taught myself Claude Code from scratch (Manthan Patel, LinkedIn)]] — Claude Code 독학 자료 25개를 영상·repo·책·논문·커뮤니티 다섯 묶음으로 정리한 큐레이션 포스트. 논문은 ReAct·Toolformer·CoT·Reflexion·Generative Agents. 링크가 전부 lnkd.in 단축 URL이라 추적성은 약하다 (2026, article)
 - [[agents/thariq-2026-know-your-unknowns|Know your unknowns (Thariq)]] — 코딩 에이전트 시대의 병목은 구현이 아니라 "무엇을 몰랐는지 뒤늦게 아는 것"이라 보고, Johari Window의 map↔territory 격차를 unknown으로 규정한 뒤 구현 전·중·후 세 단계에서 unknown unknowns를 값싸게 들춰내는 11가지 기법(blindspot pass·interview·tweakable plan·implementation notes·quiz-me-before-merge 등)을 각각 동작하는 HTML 데모로 시연한 companion 페이지 (2026, article)
+- [[agents/stanford-oval-storm|stanford-oval/storm — STORM & Co-STORM (repo)]] — 주제 하나로 인터넷 검색만 써서 Wikipedia 스타일 글을 처음부터 쓰는 Stanford OVAL 시스템. "좋은 질문을 자동으로 만드는 것"을 연구 자동화의 급소로 보고 다관점 질문·가상 대화로 조사를 굴린다. Co-STORM은 사회자 에이전트와 인간이 함께 mind map을 키우는 협업형. DSPy+litellm 모듈식, 검색 백엔드 10종 (2024, repo, MIT)
 
 ## Evaluations (evaluations)
 
