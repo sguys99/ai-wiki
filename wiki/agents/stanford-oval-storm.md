@@ -16,7 +16,7 @@ tags: [storm, co-storm, multi-agent, question-asking, retrieval, dspy, litellm, 
 
 ## 요약 (Summary)
 
-`stanford-oval/storm`은 주제 하나를 받아 인터넷 검색만으로 Wikipedia 스타일 글을 처음부터 써내는 LLM 시스템이다. Stanford OVAL 연구실이 만들었고, 두 편의 논문(NAACL 2024의 STORM, EMNLP 2024의 Co-STORM)을 코드로 옮긴 reference 구현체다. 이 프로젝트의 관점은 분명하다. 글쓰기 자동화의 병목은 서술이 아니라 "무엇을 물을지"이며, 그래서 여러 관점에서 좋은 질문을 만들어내는 데 힘을 쏟는다. PyPI에는 `knowledge-storm`으로 배포되고, DSPy 위에 모듈식으로 짜여 litellm이 지원하는 LM이면 무엇이든 갈아 끼울 수 있다.
+`stanford-oval/storm`은 주제 하나를 받아 인터넷 검색만으로 Wikipedia 스타일 글을 처음부터 써내는 LLM 시스템이다. Stanford OVAL 연구실이 만들었고, 두 편의 논문(NAACL 2024의 STORM, EMNLP 2024의 Co-STORM)을 코드로 옮긴 reference 구현체다. 이 프로젝트의 관점은 분명하다. 글쓰기 자동화의 병목은 서술이 아니라 "무엇을 물을지"이며, 그래서 여러 관점에서 좋은 질문을 만들어내는 데 힘을 쏟는다. PyPI에는 `knowledge-storm`으로 배포되고, DSPy 위에 모듈식으로 짜여 litellm이 지원하는 LM이면 무엇이든 갈아 끼울 수 있다. 라이브 research preview는 이미 7만 명 넘게 써봤다. 다만 편집 없이 게재할 글은 아직 못 만들고, 숙련 위키 편집자들도 pre-writing 단계 보조로만 유용하다고 평했다.
 
 ## 주요 기여 (Key Contributions)
 
@@ -37,7 +37,7 @@ tags: [storm, co-storm, multi-agent, question-asking, retrieval, dspy, litellm, 
 
 **Co-STORM은 협업 담론 엔진이다.**
 
-참여자는 셋이다. 외부 출처에 근거해 답하는 LLM 전문가, 생각을 밀어붙이는 질문을 던지는 사회자, 그리고 지켜보거나 직접 방향을 트는 인간. 상태는 계층 개념 구조인 mind map으로 유지된다. `CoStormRunner`를 `warm_start()`로 예열한 뒤 `step()`으로 한 턴씩 돌린다. 중간에 `user_utterance`로 사람이 끼어들고, `knowledge_base.reorganize()`로 mind map을 다시 짜며, `generate_report()`로 최종 글을 뽑는다. LM 역할을 여섯으로 쪼갠 뒤(질의응답·담론관리·발화다듬기·warm-start outline·질문생성·knowledge base) 역할마다 max_tokens를 다르게 줘 비용을 조절하는 점이 특징이다.
+핵심은 협업 담론 프로토콜(collaborative discourse protocol)이다. turn management policy로 발언 순서를 조율하며, 예시 구현이 `engine.py`의 `DiscourseManager`다. 참여자는 셋이다. 외부 출처에 근거해 답하는 LLM 전문가, 이전 턴에 안 쓰인 검색 정보에서 착안해 생각을 자극하는 질문을 던지는 사회자, 그리고 지켜보거나 직접 방향을 트는 인간. 오간 정보는 계층 개념 구조인 mind map으로 유지되는데, 사람과 시스템이 공유하는 개념 공간을 세워 담론이 길어질수록 커지는 인지 부담을 덜어준다. `CoStormRunner`를 `warm_start()`로 예열한 뒤 `step()`으로 한 턴씩 돌린다. 중간에 `user_utterance`로 사람이 끼어들고, `knowledge_base.reorganize()`로 mind map을 다시 짜며, `generate_report()`로 최종 글을 뽑는다. LM 역할을 여섯으로 쪼갠 뒤(질의응답·담론관리·발화다듬기·warm-start outline·질문생성·knowledge base) 역할마다 max_tokens를 다르게 줘 비용을 조절하는 점이 특징이다.
 
 두 갈래 모두 **DSPy** 위에 모듈을 얹고 **litellm**으로 LM과 임베더를 추상화한다. 검색 모듈은 YouRM·BingSearch·VectorRM·SerperRM·BraveRM·SearXNG·DuckDuckGoSearchRM·TavilySearchRM·GoogleSearch·AzureAISearch를 갖췄고, 이 중 VectorRM은 커스텀 문서 벡터를 검색 대상으로 삼을 수 있게 한다.
 
@@ -52,7 +52,9 @@ tags: [storm, co-storm, multi-agent, question-asking, retrieval, dspy, litellm, 
 
 - **검색과 호출 비용**: 파이프라인 전체가 인터넷 검색과 다수 LM 호출로 굴러가 API 비용과 지연이 크다. Co-STORM이 역할별로 LM을 쪼개 조절하긴 해도 근본적으로 호출 수가 많다.
 - **출처 품질에 좌우됨**: 검색 결과가 곧 근거라, 검색 백엔드와 웹 문서 품질이 결과 신뢰도를 좌우한다.
-- **확장 여지**: README도 추가 검색엔진·retriever 통합 기여를 특히 반긴다고 밝힌다.
+- **확장 여지**: README도 추가 검색엔진·retriever 통합 기여를 특히 반긴다고 밝힌다. 논문 재현은 `NAACL-2024-code-backup`·`EMNLP-2024-code-backup` 브랜치를 쓴다.
+
+로드맵으로는 (1) Human-in-the-Loop — 지식 큐레이션에 사용자 참여를 넓히는 기능, (2) Information Abstraction — Wikipedia식 리포트를 넘어선 표현 형식을 팀이 진행 중이다.
 
 ## 관련 페이지 (Related Pages)
 
