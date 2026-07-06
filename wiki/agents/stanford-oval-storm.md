@@ -16,11 +16,11 @@ tags: [storm, co-storm, multi-agent, question-asking, retrieval, dspy, litellm, 
 
 ## 요약 (Summary)
 
-`stanford-oval/storm`은 주제 하나를 받아 인터넷 검색만으로 Wikipedia 스타일 글을 처음부터 써내는 LLM 시스템이다. Stanford OVAL 연구실이 만들었고, 두 편의 논문(NAACL 2024의 STORM, EMNLP 2024의 Co-STORM)을 코드로 옮긴 reference 구현체다. 이 프로젝트의 관점은 분명하다. 글쓰기 자동화의 병목은 서술이 아니라 "무엇을 물을지"이며, 그래서 여러 관점에서 좋은 질문을 만들어내는 데 힘을 쏟는다. PyPI에는 `knowledge-storm`으로 배포되고, DSPy 위에 모듈식으로 짜여 litellm이 지원하는 LM이면 무엇이든 갈아 끼울 수 있다. 라이브 research preview는 이미 7만 명 넘게 써봤다. 다만 편집 없이 게재할 글은 아직 못 만들고, 숙련 위키 편집자들도 pre-writing 단계 보조로만 유용하다고 평했다.
+`stanford-oval/storm`은 주제 하나를 받아 인터넷 검색만으로 Wikipedia 스타일 글을 처음부터 써내는 LLM 시스템이다. Stanford OVAL 연구실이 만들었고, 두 편의 논문(NAACL 2024의 STORM, EMNLP 2024의 Co-STORM)을 코드로 옮긴 reference 구현체다. 이 프로젝트의 관점은 분명하다. 글쓰기 자동화의 병목은 서술이 아니라 "무엇을 물을지"에 있고, 그래서 여러 관점에서 좋은 질문을 만들어내는 데 힘을 쏟는다. PyPI에는 `knowledge-storm`으로 배포되고, DSPy 위에 모듈식으로 짜여 litellm이 지원하는 LM이면 무엇이든 갈아 끼울 수 있다. 라이브 research preview는 이미 7만 명 넘게 써봤다. 다만 편집 없이 게재할 글은 아직 못 만들고, 숙련 위키 편집자들도 pre-writing 단계 보조로만 유용하다고 평했다.
 
 ## 주요 기여 (Key Contributions)
 
-- **질문 생성을 급소로 본다.** STORM은 연구 자동화의 핵심을 "좋은 질문을 자동으로 떠올리는 것"으로 규정한다. 나머지 검색과 집필은 그 질문에 딸려 온다.
+- **질문 생성을 급소로 본다.** STORM은 연구 자동화의 핵심을 "좋은 질문을 자동으로 떠올리는 것"으로 규정한다. 검색과 집필은 그 질문에 딸려 온다.
 - **다관점 질문(Perspective-Guided Question Asking).** 비슷한 주제의 기존 글을 훑어 서로 다른 관점을 뽑아내고, 관점별로 질문을 나눠 던져 조사의 폭과 깊이를 함께 키운다.
 - **가상 대화(Simulated Conversation).** 위키 작성자와 주제 전문가가 인터넷 출처에 근거해 주고받는 대화를 흉내 내며 참고문헌을 모은다.
 - **Co-STORM의 협업형 담론.** LLM 전문가 여러 명, 질문을 던지는 사회자(moderator), 그리고 사람이 한 대화에 함께 참여한다. 오간 정보는 계층형 mind map으로 실시간 정리된다.
@@ -37,9 +37,9 @@ tags: [storm, co-storm, multi-agent, question-asking, retrieval, dspy, litellm, 
 
 **Co-STORM은 협업 담론 엔진이다.**
 
-핵심은 협업 담론 프로토콜(collaborative discourse protocol)이다. turn management policy로 발언 순서를 조율하며, 예시 구현이 `engine.py`의 `DiscourseManager`다. 참여자는 셋이다. 외부 출처에 근거해 답하는 LLM 전문가, 이전 턴에 안 쓰인 검색 정보에서 착안해 생각을 자극하는 질문을 던지는 사회자, 그리고 지켜보거나 직접 방향을 트는 인간. 오간 정보는 계층 개념 구조인 mind map으로 유지되는데, 사람과 시스템이 공유하는 개념 공간을 세워 담론이 길어질수록 커지는 인지 부담을 덜어준다. `CoStormRunner`를 `warm_start()`로 예열한 뒤 `step()`으로 한 턴씩 돌린다. 중간에 `user_utterance`로 사람이 끼어들고, `knowledge_base.reorganize()`로 mind map을 다시 짜며, `generate_report()`로 최종 글을 뽑는다. LM 역할을 여섯으로 쪼갠 뒤(질의응답·담론관리·발화다듬기·warm-start outline·질문생성·knowledge base) 역할마다 max_tokens를 다르게 줘 비용을 조절하는 점이 특징이다.
+핵심은 협업 담론 프로토콜(collaborative discourse protocol)이다. turn management policy로 발언 순서를 조율하며, 예시 구현이 `engine.py`의 `DiscourseManager`다. 참여자는 셋이다. 외부 출처에 근거해 답하는 LLM 전문가, 이전 턴에 안 쓰인 검색 정보에서 착안해 생각을 자극하는 질문을 던지는 사회자, 그리고 지켜보거나 직접 방향을 트는 인간이다. 오간 정보는 계층 개념 구조인 mind map으로 유지되는데, 사람과 시스템이 공유하는 개념 공간을 세워 담론이 길어질수록 커지는 인지 부담을 덜어준다. `CoStormRunner`를 `warm_start()`로 예열한 뒤 `step()`으로 한 턴씩 돌린다. 중간에 `user_utterance`로 사람이 끼어들고, `knowledge_base.reorganize()`로 mind map을 다시 짜며, `generate_report()`로 최종 글을 뽑는다. LM 역할을 여섯으로 쪼갠 뒤(질의응답·담론관리·발화다듬기·warm-start outline·질문생성·knowledge base) 역할마다 max_tokens를 다르게 줘 비용을 조절하는 점이 특징이다.
 
-두 갈래 모두 **DSPy** 위에 모듈을 얹고 **litellm**으로 LM과 임베더를 추상화한다. 검색 모듈은 YouRM·BingSearch·VectorRM·SerperRM·BraveRM·SearXNG·DuckDuckGoSearchRM·TavilySearchRM·GoogleSearch·AzureAISearch를 갖췄고, 이 중 VectorRM은 커스텀 문서 벡터를 검색 대상으로 삼을 수 있게 한다.
+두 갈래 모두 **DSPy** 위에 모듈을 얹고 **litellm**으로 LM과 임베더를 추상화한다. 검색 모듈은 YouRM·BingSearch·VectorRM·SerperRM·BraveRM·SearXNG·DuckDuckGoSearchRM·TavilySearchRM·GoogleSearch·AzureAISearch를 갖췄고, 이 중 VectorRM은 커스텀 문서 벡터를 검색 대상으로 삼는다.
 
 ## 결과 (Results)
 
