@@ -87,21 +87,21 @@ Agent Skills는 `SKILL.md` 한 파일을 뼈대로 삼는 폴더 형태로, 에�
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
-- **보안 감사 필요**: 스킬에 담긴 코드 의존성·외부 네트워크 연결을 설치 전 철저히 감사하라고 명시(임의 스킬 실행의 위험).
-- **트리거 품질은 네이밍에 달림**: name·description 설계가 부실하면 스킬이 안 걸리거나 오작동.
-- **로드맵**: 스킬 라이프사이클 전반의 추가 기능, MCP 서버와의 보완적 통합 탐색을 예고 — 아직 *전망* 수준.
-- **정량 근거 부재**: 효율·신뢰성 향상은 서술적으로만 제시.
+- **보안 감사 필요**: 스킬에 담긴 코드 의존성과 외부 네트워크 연결을 설치 전에 철저히 감사하라고 못박는다(임의 스킬 실행에는 위험이 따른다).
+- **트리거 품질은 네이밍에 달림**: name·description 설계가 부실하면 스킬이 아예 안 걸리거나 엉뚱하게 작동한다.
+- **로드맵**: 스킬 라이프사이클 전반에 걸친 기능 확충과 MCP 서버와의 보완적 통합 탐색을 예고하지만, 아직 *전망* 수준에 머문다.
+- **정량 근거 부재**: 효율과 신뢰성 향상은 서술로만 제시할 뿐이다.
 
 ## 6. 관련 연구 (Related Work)
 
-- **MCP (Model Context Protocol)**: 외부 도구/데이터 연결 표준. 스킬(절차적 지식)과 상보 관계.
-- **Context engineering**: 같은 저장소의 [[agents/anthropic-2025-effective-context-engineering-for-ai]]와 직결 — progressive disclosure는 컨텍스트 큐레이션 원리의 구체적 구현.
-- **agentskills.io / agentskills/agentskills**: 이 포맷을 오픈 표준으로 문서화·확산한 사이트와 저장소(같은 턴에 함께 ingest).
+- **MCP (Model Context Protocol)**: 외부 도구/데이터 연결 표준. 절차적 지식인 스킬과 서로 보완하는 관계다.
+- **Context engineering**: 같은 저장소의 [[agents/anthropic-2025-effective-context-engineering-for-ai]]와 곧장 이어진다 — progressive disclosure는 컨텍스트 큐레이션 원리를 구체적으로 구현한 사례다.
+- **agentskills.io / agentskills/agentskills**: 이 포맷을 오픈 표준으로 문서화하고 퍼뜨린 사이트와 저장소(같은 턴에 함께 ingest).
 
 ## 7. 용어집 (Glossary)
 
-- **SKILL.md**: 스킬의 필수 진입 파일. YAML frontmatter(`name`·`description`) + Markdown 지시문.
-- **Progressive disclosure**: 필요한 정보만 단계적으로 드러내 컨텍스트를 아끼는 로딩 전략(매뉴얼 구조와 유사).
+- **SKILL.md**: 스킬의 필수 진입 파일. YAML frontmatter(`name`·`description`)에 Markdown 지시문이 이어진다.
+- **Progressive disclosure**: 필요한 정보만 단계적으로 드러내 컨텍스트를 아끼는 로딩 전략(매뉴얼 구조와 닮았다).
 - **Trigger(트리거)**: 태스크가 스킬 설명과 맞아 에이전트가 본문을 읽어 들이는 활성화 순간.
 - **Bundled files**: SKILL.md가 참조하는 부속 파일(스크립트·레퍼런스·에셋).
 
