@@ -91,6 +91,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/patel-2026-i-taught-myself-claude-code|I taught myself Claude Code from scratch (Manthan Patel, LinkedIn)]] — Claude Code 독학 자료 25개를 영상·repo·책·논문·커뮤니티 다섯 묶음으로 정리한 큐레이션 포스트. 논문은 ReAct·Toolformer·CoT·Reflexion·Generative Agents. 링크가 전부 lnkd.in 단축 URL이라 추적성은 약하다 (2026, article)
 - [[agents/thariq-2026-know-your-unknowns|Know your unknowns (Thariq)]] — 코딩 에이전트 시대의 병목은 구현이 아니라 "무엇을 몰랐는지 뒤늦게 아는 것"이라 보고, Johari Window의 map↔territory 격차를 unknown으로 규정한 뒤 구현 전·중·후 세 단계에서 unknown unknowns를 값싸게 들춰내는 11가지 기법(blindspot pass·interview·tweakable plan·implementation notes·quiz-me-before-merge 등)을 각각 동작하는 HTML 데모로 시연한 companion 페이지 (2026, article)
 - [[agents/stanford-oval-storm|stanford-oval/storm — STORM & Co-STORM (repo)]] — 주제 하나로 인터넷 검색만 써서 Wikipedia 스타일 글을 처음부터 쓰는 Stanford OVAL 시스템. "좋은 질문을 자동으로 만드는 것"을 연구 자동화의 급소로 보고 다관점 질문·가상 대화로 조사를 굴린다. Co-STORM은 사회자 에이전트와 인간이 함께 mind map을 키우는 협업형. DSPy+litellm 모듈식, 검색 백엔드 10종 (2024, repo, MIT)
+- [[agents/zhao-2026-generative-skill-composition-for-llm|Generative Skill Composition for LLM Agents (SkillComposer)]] — skill library에서 "무엇을·몇 개·어떤 순서로" 고를지를 세 축의 결합 결정으로 보고, 닫힌 어휘(library 인덱스+STOP) 위의 task-conditioned skill sequence prediction으로 정식화한 UNC·Honda 연구. frozen Qwen3-Embedding encoder에 ~3.9M짜리 작은 autoregressive decoder를 붙이고 TF-IDF retrieval prior와 set-membership 신호를 fuse해, SkillsBench pass rate를 Codex·Gemini에서 +23.1/+18.2 pp 높이며 retrieval을 앞서고 gold 상한에 근접한다. Figure 1·2·3·4·5 임베드 (2026, paper)
 
 ## Evaluations (evaluations)
 

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig01.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: Structured skill composition with SkillComposer. (A) Large skill libraries create a composition bottleneck. To",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig02.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Example of selecting an ordered skill sequence from a large skill library given a task and environment.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig03.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 3: SkillComposer method overview. (A) Given a task, environment context, and compact metadata from a fixed",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig04.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig04.png",
+    "page": 5,
+    "caption": "the flood-analysis task in Figure 2 as an example, the skill composing model reads the task x, the",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig05.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig05.png",
+    "page": 8,
+    "caption": "cardinality calibration separately in Figure 4. Set F1 is the order-agnostic F1 between predicted and gold",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig06.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig06.png",
+    "page": 10,
+    "caption": "Figure 5: (a) Test Set F1 across the (α, β) decoding-weight grid; the surface is smooth and bowl-shaped around the val-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig07.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig07.png",
+    "page": 16,
+    "caption": "Figure 6: Single-skill synthesis prompt (Gemini 2.5 Flash). Five tasks per call ensure scenario diversity at",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig08.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig08.png",
+    "page": 17,
+    "caption": "Figure 7: Multi-skill synthesis prompt (Gemini 2.5 Pro). Ordering constraints from dependency edges",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
