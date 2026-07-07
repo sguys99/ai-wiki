@@ -53,6 +53,9 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 
 Agentic 시스템, tool use, planning, LangGraph 등.
 
+- [[agents/anthropic-2025-equipping-agents-for-the-real|Equipping agents with Agent Skills (Anthropic Engineering)]] — Agent Skills 공식 발표·설계 해설. 스킬은 `SKILL.md`를 품은 폴더고, progressive disclosure 3레벨(메타데이터 ~100 · 본문 <5k · 번들 unlimited* 토큰)로 컨텍스트를 아끼며 번들 스크립트를 도구로 실행해 결정적 처리를 위임한다. 도식 6종 임베드 (2025, article)
+- [[agents/agentskills-agentskills|agentskills/agentskills (repo)]] — Anthropic이 시작해 오픈 표준으로 푼 Agent Skills 포맷의 스펙 저장소. 최소 규격(`SKILL.md` 폴더)과 discovery→activation→execution 3단계를 규정, 코드 Apache-2.0 / 문서 CC-BY-4.0 (2026, repo)
+- [[agents/agentskills-io-2026-agent-skills-overview|Agent Skills Overview (agentskills.io)]] — 오픈 표준 공식 문서 사이트. OpenAI Codex·Gemini CLI·Copilot·Cursor·Junie 등 40여 클라이언트가 같은 포맷을 채택했음을 Client Showcase로 전시 — 사실상 cross-vendor 표준 (2026, article)
 - [[agents/garrytan-gstack|gstack (repo)]] — Garry Tan이 공개한 Claude Code용 오픈소스 스킬 팩. 슬래시 명령어로 CEO·QA·보안 등 역할별 전문가를 불러 1인 개발자가 20인 팀의 스프린트 규율(Think→Ship→Reflect)을 밟게 한다. MIT (2026, repo)
 - [[agents/shao-2024-assisting-in-writing-wikipedia-like-articles|STORM]] — 주제만 주고 Wikipedia급 장문 글을 처음부터 쓰는 Stanford 시스템. 여러 관점을 가진 가상 writer가 전문가에게 인터넷 근거 질문을 던지는 시뮬레이션 대화로 pre-writing(리서치·outline)을 자동화한다 (2024, paper)
 - [[agents/qiao-2026-memory-intelligence-agent|Memory Intelligence Agent (MIA)]] — Manager·Planner·Executor 분리와 워크플로우 ↔ Planner 메모리 양방향 루프로 작은 Executor가 frontier 모델을 넘긴 ECNU 연구 (2026, paper)
