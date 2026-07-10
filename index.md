@@ -48,6 +48,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 
 - [[llms/shumailov-2024-ununlearning-unlearning-is-not-sufficient|UnUnlearning]] — ICL 때문에 unlearning(exact 포함)만으로는 LLM 콘텐츠 규제가 불충분하다는 점을 짚은 논문 (2024, paper)
 - [[llms/cai-2026-vlm3-vision-language-models|VLM3 (Native 3D Learners)]] — Qwen3-VL-4B와 SFT 위에 focal length 통일, 픽셀 reference, data mixture 세 가지만 더해 네 개의 3D 비전 task에서 SOTA를 잡은 네이티브 학습 (2026, paper)
+- [[llms/9bow-2026-gpt-5-6-sol-terra-luna|OpenAI GPT-5.6 Sol·Terra·Luna 프리뷰 (9bow)]] — PyTorch Korea 9bow가 옮긴 OpenAI GPT-5.6 프리뷰 소식. 숫자=세대·천체 이름=능력 티어의 새 네이밍으로 Sol(플래그십)·Terra(균형)·Luna(경량) 3종을 가르고, 가격·Terminal-Bench 수치와 함께 미국 정부 협의형 계층 안전 스택·단계적 배포에 절반의 비중을 둔 2차 소식 글 (2026, article)
 
 ## Agents (agents)
 
