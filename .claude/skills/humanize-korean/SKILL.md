@@ -24,8 +24,18 @@ humanize-korean v1.5 — {fast|strict} 모드 / run_id: {YYYY-MM-DD-NNN}
 
 ### 모드 결정
 - 사용자가 `--strict`·"정밀 모드"·"5인 파이프라인" 명시 → **strict**
+- **`register: wiki` (또는 대상 파일이 `wiki/`·`sources/` 하위) → strict 강제** (길이 무관, 자동 승급 + 1줄 고지). 이 저장소의 기술 위키 산문은 얕은 Fast Path로는 티가 남아, 독립 탐지·자연성 리뷰가 있는 strict로만 처리한다. §wiki register 참조.
 - 입력 8,000자 초과 → **strict** (자동 승급 + 사용자에 1줄 고지)
 - 그 외 모두 → **fast (디폴트)**
+
+### wiki register (기술 위키 전용)
+`register: wiki`는 이 저장소의 `wiki/`·`sources/` 기술 산문에 특화된 프로파일이다. 다음 4가지를 한 묶음으로 적용한다:
+1. **strict 강제** — 위 모드 결정대로 5인 파이프라인으로 라우팅.
+2. **변경률 밴드 상향** — 일반 밴드(5~30%)가 아니라 **목표 20~35% / 경고 >45% / 중단 >60%**. strict의 `content-fidelity-auditor`가 의미 불변을 독립 감사하므로 상한을 올려도 안전하다.
+3. **문단 흐름 복원 허용** — 국소 span 편집을 넘어 문단 단위 재구조화 허용(문서 전체 재작성은 여전히 금지). `rewriting-playbook.md §0` 참조.
+4. **plain-language 가드** — 번역투를 피하려다 잘 안 쓰는 문어체·문학체 어휘로 갈아타지 않는다. `quick-rules.md`·`rewriting-playbook.md`의 "흔한 어휘 우선" 규칙 적용.
+
+장르 힌트(칼럼·리포트 등)와 별개 축이다. wiki register는 문체 register를, genre_hint는 글의 장르를 가리킨다. 오케스트레이터는 register=wiki일 때 하위 에이전트(`korean-style-rewriter`·`naturalness-reviewer`)에 `register: wiki`를 전달한다.
 
 ### run_id 결정
 - 모든 경로는 **cwd 기준**. 새 폴더 생성도 cwd 기준 `_workspace/{YYYY-MM-DD-NNN}/`에 만든다.
@@ -116,6 +126,7 @@ v1.1 5인 파이프라인 그대로. 검증 분리·재윤문 루프가 의미 �
 
 ## 옵션 (인자 끝에 자연어로)
 
+- `register: wiki` — 기술 위키 프로파일 (strict 강제 + 변경률 20~35% + 문단 흐름 복원 + plain-language 가드). §wiki register 참조. `wiki/`·`sources/` 파일 저장 훅이 자동 안내.
 - `장르: 칼럼|리포트|블로그|공적` — 장르 명시 (생략 시 자동 추정)
 - `강도: 보수|기본|적극` — 윤문 강도 (기본값: 기본)
 - `최소심각도: S1|S2|S3` — 탐지 임계값 (기본값: S2)
@@ -169,6 +180,10 @@ v1.1 5인 파이프라인 그대로. 검증 분리·재윤문 루프가 의미 �
 - 사용자 명시 `--strict` 또는 8,000자+ 입력
 - 5인 파이프라인 끝까지 실행, 변경률 18~22%, 검증팀 full_pass
 
+### wiki register 흐름
+- 입력: `wiki/` 하위 기술 산문 (writerly 초안 — 문학체 어휘·명사 강조 볼드·콜론 헤딩 잔존)
+- 기대: strict 자동 라우팅, 변경률 20~35%, S1 잔존 0, `naturalness-reviewer`가 희귀 어휘·문단 흐름 항목 통과, `content-fidelity-auditor` full_pass. plain-language 가드로 과교정(문학체 드리프트) 0 시그널.
+
 ### 엣지 케이스 — 이미 사람이 쓴 글
 - monolith 자체 탐지에서 매치 거의 없음 → 변경률 5% 미만 + summary.md에 "윤문 불필요 가능성" 메모
 - 사용자가 `--strict`로 강제 검증 가능
@@ -179,7 +194,7 @@ v1.1 5인 파이프라인 그대로. 검증 분리·재윤문 루프가 의미 �
 - **수치·고유명사·직접 인용은 탐지/윤문 대상 아님.** Do-NOT list 엄수.
 - **장르 이탈 금지.** 칼럼이 에세이로, 에세이가 문학으로 옮겨가지 않는다.
 - **register 보존.** 격식체 입력 → 격식체 출력. AI 티는 문법·수사이지 격식 자체가 아님.
-- **변경률 30% 초과 → 경고, 50% 초과 → 강제 중단.**
+- **변경률(일반) 30% 초과 → 경고, 50% 초과 → 강제 중단. 단 `register: wiki`는 20~35% 목표 / 45% 경고 / 60% 중단.**
 - **자동 로드 금지.** 프로젝트 CLAUDE.md 등 다른 파일을 자동 파싱해 옵션을 추론하지 않는다.
 
 ## 참고 자료
