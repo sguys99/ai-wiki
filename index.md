@@ -139,6 +139,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/alex-xu-2026-rag-vs-graph-rag-vs|RAG vs Graph RAG vs Agentic RAG (Alex Xu, LinkedIn)]] — ByteByteGo 공동창업자 Alex Xu의 짧은 LinkedIn 카드. Standard·Graph·Agentic RAG를 각각 3~4단계 파이프라인으로 정리하고 Graph RAG의 local/global search 라우팅과 Agentic RAG의 검증-재검색 루프를 명시한 비교 자료 (2026, article)
 - [[applications/patel-2026-production-ai-app-seven-layers|Production AI 앱의 7개 레이어 (Manthan Patel, LinkedIn)]] — 프로덕션 AI 앱은 모델 선택도 prompt도 아니라 레이어를 하나의 시스템으로 엮는 규율이라 주장하며, Next.js·Supabase·Stripe 코드베이스를 7개 레이어로 해부하고 `.claude/`를 정식 레이어로 승격시킨 짧은 글. "모델은 쉬운 10%, 레이어가 90%" (2026, article)
 - [[applications/shubhamsaboo-awesome-llm-apps|Awesome LLM Apps (Shubhamsaboo, repo)]] — 포크해서 바로 돌리는 100+개 LLM 앱 템플릿 쿡북. 링크 모음이 아니라 full source가 담긴 자족형 실행 코드로, AI Agents·Multi-agent·Voice·MCP·RAG·Agent Skills·fine-tuning 등 modern AI stack 15개 카테고리를 provider-agnostic·Apache-2.0로 묶은 학습 자원 (2026, repo)
+- [[applications/zhulinsen-daily-stock-analysis|ZhuLinsen/daily_stock_analysis (repo)]] — A주·홍콩·미국·일본·한국·대만 6개 시장을 매일 자동 분석해 매수/관망/매도 대시보드를 생성하고 텔레그램·디스코드·슬랙 등으로 push하는 오픈소스 AI 주식 분석 시스템. GitHub Actions/Docker 배포, 15종 내장 전략의 에이전트 전략 채팅, MIT (2026, repo)
 
 ## Etc (etc)
 
