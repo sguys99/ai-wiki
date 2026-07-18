@@ -98,6 +98,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/stanford-oval-storm|stanford-oval/storm — STORM & Co-STORM (repo)]] — 주제 하나로 인터넷 검색만 써서 Wikipedia 스타일 글을 처음부터 쓰는 Stanford OVAL 시스템. "좋은 질문을 자동으로 만드는 것"을 연구 자동화의 급소로 보고 다관점 질문·가상 대화로 조사를 굴린다. Co-STORM은 사회자 에이전트와 인간이 함께 mind map을 키우는 협업형. DSPy+litellm 모듈식, 검색 백엔드 10종 (2024, repo, MIT)
 - [[agents/zhao-2026-generative-skill-composition-for-llm|Generative Skill Composition for LLM Agents (SkillComposer)]] — skill library에서 "무엇을·몇 개·어떤 순서로" 고를지를 세 축의 결합 결정으로 보고, 닫힌 어휘(library 인덱스+STOP) 위의 task-conditioned skill sequence prediction으로 정식화한 UNC·Honda 연구. frozen Qwen3-Embedding encoder에 ~3.9M짜리 작은 autoregressive decoder를 붙이고 TF-IDF retrieval prior와 set-membership 신호를 fuse해, SkillsBench pass rate를 Codex·Gemini에서 +23.1/+18.2 pp 높이며 retrieval을 앞서고 gold 상한에 근접한다. Figure 1·2·3·4·5 임베드 (2026, paper)
 - [[agents/madslorentzen-ai-job-search|MadsLorentzen/ai-job-search (repo)]] — Claude Code 위에 지은 구직 자동화 프레임워크. `/setup`·`/scrape`·`/apply` 코어 워크플로우가 drafter-reviewer 2단계 에이전트로 LaTeX CV·커버레터를 쓰고 PDF를 직접 컴파일·검증한다. 저자가 직접 써서 69건 지원·1건 계약 성사를 거둔 뒤 공개 (2026, repo, MIT)
+- [[agents/stablyai-orca|Orca (stablyai, repo)]] — Claude Code·Codex·OpenCode·Pi 같은 CLI 코딩 에이전트 여러 개를 각자 독립된 git worktree에서 나란히 돌리며 한 화면에서 관리하는 데스크톱 오케스트레이터. Parallel Worktrees로 프롬프트 하나를 여러 에이전트에 팬아웃해 결과를 비교·merge하고 GitHub·Linear 연동, SSH worktree, Design Mode, 모바일 컴패니언 앱을 갖췄다 (2026, repo, MIT)
 
 ## Evaluations (evaluations)
 
