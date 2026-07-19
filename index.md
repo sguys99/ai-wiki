@@ -102,6 +102,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/donchitos-claude-code-game-studios|Claude-Code-Game-Studios (repo)]] — Claude Code 세션 하나를 게임 개발 스튜디오로 바꾸는 템플릿. director·department lead·specialist 3단계 계층의 49개 에이전트, 73개 슬래시 커맨드, 12개 훅, 11개 경로 기반 코딩 규칙으로 기획부터 출시까지 스튜디오급 품질 게이트를 흉내 낸다. Godot 4·Unity·Unreal Engine 5 엔진별 에이전트 세트 제공 (2026, repo, MIT)
 - [[agents/llmsresearch-paperbanana|PaperBanana (repo)]] — 논문 방법론 설명 하나로 출판 품질 다이어그램·통계 플롯을 완성하는 7-agent 파이프라인(Retriever→Planner→Stylist→Visualizer↔Critic). OpenAI·Azure·Gemini·Atlas Cloud provider 교체 가능, CLI·Python API·MCP 서버·Claude Code 스킬 제공. arXiv:2601.23265(Zhu et al., 2026) 비공식 재구현 (2026, repo, MIT)
 - [[agents/imbad0202-academic-research-skills|Academic Research Skills / ARS (Imbad0202, repo)]] — Claude Code용 4-스킬(Deep Research·Academic Paper·Academic Paper Reviewer·Academic Pipeline) 학술 논문 파이프라인. 146,932건 환각 인용 추정 연구를 근거로 3단계 인용 무결성 인프라(locator anchor→claim-faithfulness audit→4색인 existence gate)를 쌓았고 Stage 2.5/4.5 integrity gate로 human-in-the-loop을 강제한다. 38,333 stars (2026, repo, CC BY-NC 4.0)
+- [[agents/yongkyun-2026-cutting-llm-token-costs-with|Cutting LLM Token Costs with rtk, headroom, and caveman (Yongkyun)]] — headroom·rtk·caveman이 내세우는 60~90%대 토큰 절감을 저자 본인의 실제 Claude Code 세션(614M 토큰, $926 지출)에 재생해 본 실측 반론. 세 도구를 합쳐도 청구액의 3.7%만 줄어드는 이유를 분모·워크로드·가격 책정 세 겹의 간극으로 분해하고 "정직한 코드"와 "손상된 릴리스" 두 시나리오로 나눠 보안 리스크까지 짚는다. 도식 7종 임베드 (2026, article)
 
 ## Evaluations (evaluations)
 
