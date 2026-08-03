@@ -55,6 +55,7 @@ ai-wiki/
     │   └── {stem}/
     ├── database/
     ├── llms/
+    ├── physical-ai/         # VLA, world model, robot learning, sim2real — 물리 세계와 상호작용
     ├── agents/
     ├── evaluations/
     ├── applications/
@@ -96,6 +97,7 @@ ai-wiki/
 |---|---|
 | `database` | Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등) |
 | `llms` | 모델 아키텍처, pre-training, fine-tuning, foundation model 논문 |
+| `physical-ai` | VLA, world model, robot learning, sim2real, 자율주행 — 물리 세계와 상호작용하는 방법 |
 | `agents` | Agentic 시스템, tool use, planning, LangGraph 등 |
 | `evaluations` | 평가 프레임워크(RAGAS, Braintrust), benchmark |
 | `applications` | RAG 응용, 도메인 적용 사례, 제품 패턴 |
@@ -105,6 +107,29 @@ ai-wiki/
 분류 원칙: **방법(method)** 을 기준으로 분류한다. 평가지표(RAGAS)를 활용한 RAG 사례 논문이라면 `applications`보다 `evaluations`로 가는 게 적절할 수 있다 — "미래의 나에게 어느 카테고리에서 발견되어야 더 유용한가?"로 판단한다.
 
 한 카테고리가 ~500개 파일을 넘어서면 분할을 고려한다.
+
+### physical-ai 분류 판단 규칙
+
+방법의 핵심에 물리 세계와의 상호작용(센서 입력, 액추에이터 출력, 시뮬레이터, 실체 로봇·차량)이 있으면 `physical-ai`로 보낸다. 물리 도메인을 소재로 삼되 방법이 순수 언어·검색이면 원래 카테고리를 유지한다.
+
+- RT-2, OpenVLA, Diffusion Policy → `physical-ai`
+- 로봇 매뉴얼 RAG의 검색 성능 평가 → `evaluations`
+- 순수 VLM 아키텍처 논문(VLM3 등) → `llms` 유지, physical-ai 허브에서 상호 링크
+
+### physical-ai 통제 태그 어휘 (canonical tags)
+
+`wiki/physical-ai/` 페이지는 도메인 루트 태그 `physical-ai`를 달고 아래에서 1~3개를 고른다.
+
+| 묶음 | 태그 |
+|---|---|
+| 학습·제어 방법 | `vla` · `world-model` · `robot-learning` · `imitation-learning` · `rl-control` |
+| 플랫폼·응용 | `manipulation` · `locomotion` · `humanoid` · `mobile-robot` · `autonomous-driving` · `drone` |
+| 환경·인식 | `sim2real` · `simulator` · `3d-perception` · `spatial-reasoning` · `slam` · `teleoperation` |
+| 자원·운영 | `robot-dataset` · `benchmark` · `edge-inference` · `hardware` · `safety` |
+
+기존 태그 풀에는 `graph-rag`와 `graphrag`처럼 표기가 갈린 사례가 있다. 이 목록은 표기를 하나만 허용한다. 목록에 없는 태그를 쓰려면 이 표에 먼저 추가한다.
+
+`wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더로 나눌지 다시 검토한다. 다른 카테고리의 ~500개 기준보다 훨씬 이른 값인데, 성격이 다른 두 도메인이 한 저장소에 섞여 있어서다.
 
 ---
 
@@ -116,7 +141,7 @@ ai-wiki/
 title: "..."                           # 원어 그대로 (영문 자료는 영문)
 type: paper | repo | article | report | video | book | lecture
 year: YYYY
-category: database | llms | agents | evaluations | applications | etc
+category: database | llms | physical-ai | agents | evaluations | applications | etc | overviews
 raw_path: /full/path/to/raw/{type}/{stem}.{ext}
 raw_filename: "{stem}.{ext}"
 source_collection: external
@@ -184,6 +209,19 @@ course_code: "..."                     # 옵션 (예: CS336)
 url: "..."
 materials: ["slides", "notes", "code"] # 코스에 포함된 자료 종류
 ```
+
+### study_path 키 스키마 (overview 페이지, 옵션)
+
+overview 페이지는 읽는 순서를 frontmatter로 선언할 수 있다. 사이트 빌드가 각 `id`를 wiki 페이지로 해석해 번호가 붙은 단계 목록으로 렌더한다. 해석되지 않는 참조는 빌드 콘솔에 리포트하되 빌드를 실패시키지는 않는다.
+
+```yaml
+study_path:
+  - id: physical-ai/{stem}                 # "category/stem" — wiki 페이지 id
+    note: "왜 여기서 읽는지 한 줄"
+    prereq: ["llms/{stem}"]                # 옵션 — 먼저 읽어야 할 페이지 id 목록
+```
+
+Obsidian에서는 frontmatter가 본문에 보이지 않는다. 그래서 같은 순서를 본문 `## 학습 경로` 섹션에 `[[wikilink]]` 목록으로 한 번 더 적는다. 사람이 읽는 쪽이 본문, 기계가 읽는 쪽이 frontmatter다.
 
 ---
 

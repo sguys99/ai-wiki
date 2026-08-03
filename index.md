@@ -33,6 +33,8 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[database/zhang-2026-your-embedding-model-is-smarter|SMART (Single-to-Multi Adaptation)]] — 단일 벡터 임베더의 hidden state에 MaxSim late-interaction을 얹어 학습 없이 멀티벡터 성능을 끌어내는 어댑테이션 (2026, paper)
 - [[database/geeksforgeeks-2026-vectorless-rag-pageindex|Vectorless RAG: PageIndex (GeeksforGeeks 튜토리얼)]] — PageIndex Cloud SaaS API를 10단계 코드 예제로 따라가는 입문 튜토리얼 (2026, article)
 - [[database/zhang-2025-pageindex-vectorless-reasoning-rag|PageIndex: Vectorless · Reasoning-based RAG (소개글)]] — PageIndex 팀이 직접 쓴 vectorless·reasoning RAG의 동기와 철학을 담은 소개글 (2025, article)
+- [[database/sguys99-langchain-study-vectorless-rag|sguys99/langchain-study — vectorless-rag (repo)]] — PageIndex API 없이 pymupdf4llm 파싱으로 DocumentTree를 직접 만드는 한글 학습용 reference 구현. LangGraph 4-노드 에이전트(analyze·descend·retrieve·generate)가 그 트리를 내려가며 답을 찾는다 (2026, repo)
+- [[database/lumer-2025-rethinking-retrieval-from-traditional-retrieval|Rethinking Retrieval (PwC, 금융 도메인)]] — SEC filing 1,200건과 150문항 벤치마크로 vector 기반 agentic RAG와 hierarchical node-based RAG를 같은 조건에서 비교한 PwC 논문. 금융 도메인에서는 vector 쪽이 68% win rate로 앞섰고 cross-encoder reranking은 MRR@5를 0.160에서 0.750으로 올렸다 (2025, paper)
 - [[database/gutierrez-2025-from-rag-to-memory-non|HippoRAG 2: From RAG to Memory]] — KG + Personalized PageRank로 사실·sense-making·associativity 세 메모리 과제를 동시에 개선한 non-parametric continual learning 프레임워크 (2025, paper)
 - [[database/kalane-2026-pageindex-threw-out-vector-databases|PageIndex (Towards AI 리뷰)]] — IBM 엔지니어 Akshay Kalane이 쓴 3rd-party 리뷰. 출시 이후 신규 기능과 트레이드오프를 함께 짚은 사후 점검 카탈로그 (2026, article)
 - [[database/athina-ai-rag-cookbooks|Advanced + Agentic RAG Cookbooks (Athina AI)]] — advanced와 agentic RAG 16개 기법을 end-to-end Jupyter 노트북과 평가 단계로 한데 엮은 실무 cookbook (2024, repo)
@@ -49,6 +51,10 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[llms/shumailov-2024-ununlearning-unlearning-is-not-sufficient|UnUnlearning]] — ICL 때문에 unlearning(exact 포함)만으로는 LLM 콘텐츠 규제가 불충분하다는 점을 짚은 논문 (2024, paper)
 - [[llms/cai-2026-vlm3-vision-language-models|VLM3 (Native 3D Learners)]] — Qwen3-VL-4B와 SFT 위에 focal length 통일, 픽셀 reference, data mixture 세 가지만 더해 네 개의 3D 비전 task에서 SOTA를 잡은 네이티브 학습 (2026, paper)
 - [[llms/9bow-2026-gpt-5-6-sol-terra-luna|OpenAI GPT-5.6 Sol·Terra·Luna 프리뷰 (9bow)]] — PyTorch Korea 9bow가 옮긴 OpenAI GPT-5.6 프리뷰 소식. 숫자=세대·천체 이름=능력 티어의 새 네이밍으로 Sol(플래그십)·Terra(균형)·Luna(경량) 3종을 가르고, 가격·Terminal-Bench 수치와 함께 미국 정부 협의형 계층 안전 스택·단계적 배포에 절반의 비중을 둔 2차 소식 글 (2026, article)
+
+## Physical AI (physical-ai)
+
+VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하는 방법.
 
 ## Agents (agents)
 

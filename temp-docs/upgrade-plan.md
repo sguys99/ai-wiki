@@ -169,19 +169,51 @@ CSS 토큰 현황: 다크 `--signal: #5eead4` / 라이트 `--signal: #0fb89b`, `
 
 사람 확인이 남은 항목: 다크·라이트 육안 확인, 앰버 대비비 실측 최종 판단, 640/1024/1080px 브레이크포인트 레이아웃.
 
-### Phase 1 — 분류 체계 확장
+### Phase 1 — 분류 체계 확장 ✅ 완료 (2026-08-03)
 
-- [ ] `wiki/physical-ai/.gitkeep` 생성 (`wiki/etc/`·`wiki/evaluations/` 선례를 따름)
-- [ ] `index.md`: `## LLMs (llms)` 섹션 다음에 `## Physical AI (physical-ai)` + 설명 한 줄 추가. 엔트리는 아직 없음
-- [ ] `CLAUDE.md:56-62` 저장소 구조 트리에 `physical-ai/` 추가
-- [ ] `CLAUDE.md:97-103` 카테고리 표에 physical-ai 행 추가
-- [ ] `CLAUDE.md:119` frontmatter enum에 `physical-ai` 추가 + 누락돼 있던 `overviews` 같이 보강
-- [ ] `CLAUDE.md`에 physical-ai 판단 규칙 문단 추가 (설계 1절)
-- [ ] `CLAUDE.md`에 통제 태그 어휘 표 + 40페이지 분할 트리거 추가
-- [ ] `CLAUDE.md`에 `study_path` frontmatter 키 스키마 문서화
-- [ ] `README.md:61-67` 구조 트리, `README.md:105` enum, `README.md:419` 커스터마이징 표, `README.md:487` 부트스트랩 프롬프트 갱신
-- [ ] 신규 한글 산문에 `humanize-korean` 적용
-- [ ] 기존 드리프트 정리: `wiki/database/` 미인덱스 2건을 `index.md`에 추가
+- [x] `wiki/physical-ai/.gitkeep` 생성 (`wiki/etc/`·`wiki/evaluations/` 선례를 따름)
+- [x] `index.md`: `## LLMs (llms)` 섹션 다음에 `## Physical AI (physical-ai)` + 설명 한 줄 추가. 엔트리는 아직 없음
+- [x] `CLAUDE.md` 저장소 구조 트리에 `physical-ai/` 추가
+- [x] `CLAUDE.md` 카테고리 표에 physical-ai 행 추가
+- [x] `CLAUDE.md` frontmatter enum에 `physical-ai` 추가 + 누락돼 있던 `overviews` 같이 보강
+- [x] `CLAUDE.md`에 physical-ai 판단 규칙 문단 추가 (설계 1절)
+- [x] `CLAUDE.md`에 통제 태그 어휘 표 + 40페이지 분할 트리거 추가
+- [x] `CLAUDE.md`에 `study_path` frontmatter 키 스키마 문서화
+- [x] `README.md` 구조 트리 · enum · 커스터마이징 표 · 부트스트랩 프롬프트 4개소 갱신
+- [x] 신규 한글 산문에 `humanize-korean` 적용
+- [x] 기존 드리프트 정리: `wiki/database/` 미인덱스 2건을 `index.md`에 추가
+
+#### 실행 기록
+
+`index.md`의 Physical AI 섹션은 LLMs와 Agents 사이에 들어갔고 엔트리는 비어 있다. `content.mjs`의 `SECTION_RE`가 `## Physical AI (physical-ai)` 헤더를 그대로 파싱해 sections가 8로 늘었다.
+
+통제 태그 어휘는 계획서의 22개 태그를 그대로 옮기되 학습·제어 방법 / 플랫폼·응용 / 환경·인식 / 자원·운영 네 묶음의 표로 정리했다. 나열만 하는 것보다 새 자료를 분류할 때 고르기 쉽다.
+
+드리프트 2건은 database 섹션의 PageIndex·vectorless 클러스터 안에 넣었다. 두 자료 모두 그 계보에 속한다 — `sguys99-langchain-study-vectorless-rag`는 PageIndex 없이 직접 만든 구현이고, `lumer-2025-...`는 vectorless 서사에 대한 금융 도메인 반례다.
+
+humanize-korean은 strict 5인 파이프라인 대신 monolith fast path로 돌렸다. 대상 산문이 1,392자뿐이고 직전 subagent가 세션 한도로 중단된 상태라 호출 비용을 줄이는 쪽을 택했다. 결과는 변경률 4.7% · 등급 A · 자체검증 6/6. 실제 수정은 네 곳이다. 카탈로그 엔트리의 좌향 관형구를 두 문장으로 풀었고, 판단 규칙의 대시 삽입구를 괄호로 바꿔 주어와 주격조사가 갈라지던 걸 붙였고, "분할 트리거:" 라벨이 뒤 문장과 겹쳐 지웠고, `study_path` 설명의 `-고,` 연결을 문장 분리로 바꿨다. 수치·고유명사·YAML key·경로는 등장 횟수까지 대조해 전부 보존했다.
+
+#### 빌드 검증 (기준선 대비)
+
+```
+[content] wiki pages: 121  ·  catalog entries: 121  ·  sections: 8
+[graph] nodes: 121  ·  edges: 626
+[render] pages rendered: 121
+[links] unresolved wikilinks: 0  ✓
+[build] done.
+```
+
+`dates.mjs self-check ✓`.
+
+| 항목 | 기준선 | Phase 1 후 |
+|---|---|---|
+| catalog entries | 119 | **121** |
+| sections | 7 | **8** |
+| index.md 미인덱스 WARN | 2건 | **0건** |
+| 카테고리 불일치 / 중복 stem / 카탈로그 고아 | 0 | 0 |
+| about unresolved / unresolved wikilinks | 0 | 0 |
+
+페이지 0개인 physical-ai 섹션은 새 경고를 만들지 않았다. 현재는 홈에서 밴드가 걸러져 보이지 않으며, 이걸 "준비 중" 상태로 바꾸는 건 Phase 3의 몫이다.
 
 ### Phase 2 — 도메인 2색
 

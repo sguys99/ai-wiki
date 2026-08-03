@@ -60,6 +60,7 @@ ai-wiki/
     │   └── {stem}/
     ├── database/           # Vector DB, RAG 인프라 (pgvector, Qdrant 등)
     ├── llms/               # 모델 아키텍처, pre-training, fine-tuning
+    ├── physical-ai/        # VLA, world model, robot learning, sim2real
     ├── agents/             # Agentic 시스템, tool use, planning
     ├── evaluations/        # 평가 프레임워크(RAGAS, Braintrust), benchmark
     ├── applications/       # RAG 응용, 도메인 적용 사례
@@ -102,7 +103,7 @@ ai-wiki/
 title: "..."                           # 원어 그대로 (영문 자료는 영문)
 type: paper | repo | article | report | video | book | lecture
 year: YYYY
-category: database | llms | agents | evaluations | applications | etc
+category: database | llms | physical-ai | agents | evaluations | applications | etc | overviews
 raw_path: /full/path/to/raw/{type}/{stem}.{ext}
 raw_filename: "{stem}.{ext}"
 source_collection: external
@@ -416,7 +417,7 @@ Root: "RAG 시스템 평가 (RAG evaluation)"
 
 | 항목 | AI wiki 기본값 | 교체 예시 |
 |---|---|---|
-| `wiki/{category}/` 폴더 | `database, llms, agents, evaluations, applications, etc, overviews` | 도메인 분류로 교체 (아래 시나리오 참고) |
+| `wiki/{category}/` 폴더 | `database, llms, physical-ai, agents, evaluations, applications, etc, overviews` | 도메인 분류로 교체 (아래 시나리오 참고) |
 | `raw/{type}/` 폴더 | `papers, repos, articles, reports, videos, books, lectures` | 도메인 자료 유형으로 교체·확장 (예: `filings`, `cases`, `protocols`) |
 | `category` 키의 enum | 위 카테고리 슬러그 | 위 폴더와 동기화 |
 | 본문 언어 | 한글 (CLAUDE.md 언어 정책) | 청중에 맞게 자유 선택 |
@@ -484,7 +485,7 @@ Claude Code와 Codex는 Mac · Linux · **Windows**(WSL2 불필요) 네이티브
 
    > 이 저장소의 `README.md`와 `CLAUDE.md`를 읽고 다음을 수행해줘:
    > - `raw/{papers,repos,articles,reports,videos,books,lectures}/` 폴더 생성
-   > - `wiki/{database,llms,agents,evaluations,applications,etc,overviews}/` + `wiki/assets/` 폴더 생성
+   > - `wiki/{database,llms,physical-ai,agents,evaluations,applications,etc,overviews}/` + `wiki/assets/` 폴더 생성
    > - 비어 있는 `index.md` 카탈로그 초기화 (카테고리별 섹션 헤딩만)
    > - `.venv`를 만들고 `uv pip install pypdf pymupdf` (텍스트·도식 추출)
    > - The Four Rules는 verbatim 적용 — `WebSearch`/`WebFetch` 금지
