@@ -1,0 +1,200 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig01.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: Data Pyramid for Robot Foundation Model",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig02.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2: GR00T N1 Model Overview. Our model is a Vision-Language-Action (VLA) model that adopts a",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig03.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig03.png",
+    "page": 3,
+    "caption": "In this section, we describe the GR00T N1 model architecture, illustrated in Fig. 3. GR00T N1 uses flow-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig04.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig04.png",
+    "page": 4,
+    "caption": "Figure 3: GR00T N1 Model Architecture. GR00T N1 is trained on a diverse set of embodiments ranging from",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig05.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig05.png",
+    "page": 5,
+    "caption": "language instructions (see Fig. 5 for examples). We additionally generate diverse simulation trajectories, which",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig06.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig06.png",
+    "page": 5,
+    "caption": "learned latent action space, potentially improving cross-embodiment generalization. Fig. 4 shows 𝑥𝑡and 𝑥𝑡+𝐻",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig07.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig07.png",
+    "page": 6,
+    "caption": "Figure 4: Latent Actions. We retrieve similar latent embeddings across various embodiments. The left images",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig08.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig08.png",
+    "page": 7,
+    "caption": "Figure 5: Synthetically Generated Videos. We leverage off-the-shelf video generation models to create neural",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig09.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig09.png",
+    "page": 10,
+    "caption": "Figure 6: Data Collection via Teleoperation. Our teleoperation infrastructure supports multiple devices to",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig10.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig10.png",
+    "page": 11,
+    "caption": "Figure 7: Simulation Tasks. Our simulation experiments use tasks from two open-source benchmarks (Robo-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig11.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig11.png",
+    "page": 12,
+    "caption": "of model performance. We show some example tasks from our real-world benchmarks in Fig. 8.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig12.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig12.png",
+    "page": 13,
+    "caption": "Figure 8: Real-World Tasks. All images are captured from policy rollouts of GR00T-N1-2B and models post-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig13.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig13.png",
+    "page": 16,
+    "caption": "Figure 9: Neural Trajectories Ablations. In the RoboCasa simulation, we show using neural trajectories for",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig14.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig14.png",
+    "page": 16,
+    "caption": "behavior in Fig. 11. In contrast, the post-trained checkpoint fails in this scenario. Since all post-training data",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig15.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig15.png",
+    "page": 17,
+    "caption": "success rate in our real-world benchmarks. We provide visualizations of two policy rollout examples in Fig. 12.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig16.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig16.png",
+    "page": 20,
+    "caption": "Figure 10: Average policy success rate on simulated manipulation tasks with varying numbers of demonstrations.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig17.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig17.png",
+    "page": 20,
+    "caption": "We provide qualitative rollout examples of our pre-trained and post-trained GR00T-N1-2B model in Fig. 11 and",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig18.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig18.png",
+    "page": 20,
+    "caption": "Fig. 12. Our model demonstrates strong language following abilities and generalization to unseen situations in",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig19.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig19.png",
+    "page": 21,
+    "caption": "Figure 11: Pre-training Qualitative Example. While prompting the pretrained GR00T-N1-2B model with a",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig20.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig20.png",
+    "page": 21,
+    "caption": "Figure 12: Post-training Qualitative Example. (Top) Post-trained GR00T-N1-2B successfully places the",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig21.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig21.png",
+    "page": 22,
+    "caption": "Figure 13: More Examples of Neural Generated Trajectories. We highlight 4 key capabilities of neural",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/nvidia-2025-gr00t-n1-an-open-foundation/fig22.png",
+    "raw": "raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig22.png",
+    "page": 25,
+    "caption": "Figure 14: Human Egocentric Video Dataset Samples. We use seven human video datasets for pre-training.",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
