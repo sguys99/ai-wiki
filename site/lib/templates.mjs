@@ -16,6 +16,12 @@ import { domainOf } from './domains.mjs';
 
 const GH_URL = `https://github.com/${SITE.repo}`;
 
+// index.md 에 선언만 돼 있고 페이지가 아직 0개인 카테고리 밴드의 안내문.
+// 밴드에는 이 문장 위에 index.md 섹션 설명(band-desc)이 이미 붙으므로,
+// 여기서는 "왜 비었는지 · 언제 채워지는지"만 말한다.
+const BAND_EMPTY_NOTE =
+  '아직 등록된 자료가 없습니다. 분류와 태그 체계를 먼저 세워 둔 자리라 자료를 정리하는 대로 카드가 채워집니다.';
+
 // FOUC 방지: CSS 적용 전 동기 실행으로 초기 테마를 확정.
 const FOUC_SCRIPT = `(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();`;
 
@@ -163,7 +169,9 @@ function card(page, degree, links) {
 // data: { sections, degree, adjacency:Map(id→[ids]), stats:{pages,links,categories}, graphHref }
 export function home(data) {
   const { sections, recent, degree, adjacency, stats, graphHref } = data;
-  const visible = sections.filter((s) => s.pages.length);
+  // 페이지가 있는 섹션 + index.md 에 선언만 된 빈 섹션(자료 대기 상태).
+  // 빈 섹션은 카드 그리드 대신 한 줄 안내를 단 밴드로 나간다.
+  const visible = sections.filter((s) => s.pages.length || s.declaredEmpty);
   const hasRecent = recent && recent.pages && recent.pages.length;
 
   const hero = `<section class="hero">
@@ -203,17 +211,23 @@ export function home(data) {
 </nav>`;
 
   const bandSection = (s, extraClass = '') => {
-    const cards = s.pages.map((p) => card(p, degree, adjacency.get(p.id))).join('\n');
-    return `<section class="band${extraClass ? ` ${extraClass}` : ''}" id="${escapeHtml(s.slug)}" data-band="${escapeHtml(s.slug)}" data-domain="${escapeHtml(domainOf(s.slug))}" aria-labelledby="band-${escapeHtml(s.slug)}">
+    const isEmpty = !s.pages.length;
+    // 빈 밴드: 카드 그리드와 '+ 더 보기'를 빼고 안내 한 줄만 둔다.
+    // data-band 는 그대로 유지 — filter.js 가 칩 클릭으로 이 밴드를 열 수 있어야 한다.
+    const inner = isEmpty
+      ? `  <p class="band-empty-note">${escapeHtml(BAND_EMPTY_NOTE)}</p>`
+      : `  <div class="card-grid">
+${s.pages.map((p) => card(p, degree, adjacency.get(p.id))).join('\n')}
+  </div>
+  <button type="button" class="band-more" data-more="${escapeHtml(s.slug)}" hidden>+ 더 보기</button>`;
+    const cls = ['band', extraClass, isEmpty ? 'band-empty' : ''].filter(Boolean).join(' ');
+    return `<section class="${cls}" id="${escapeHtml(s.slug)}" data-band="${escapeHtml(s.slug)}" data-domain="${escapeHtml(domainOf(s.slug))}" aria-labelledby="band-${escapeHtml(s.slug)}">
   <div class="band-head">
     <h2 class="band-name" id="band-${escapeHtml(s.slug)}">${escapeHtml(s.label)}</h2>
     <span class="band-count">${s.pages.length}</span>
     ${s.desc ? `<p class="band-desc">${escapeHtml(s.desc)}</p>` : ''}
   </div>
-  <div class="card-grid">
-${cards}
-  </div>
-  <button type="button" class="band-more" data-more="${escapeHtml(s.slug)}" hidden>+ 더 보기</button>
+${inner}
 </section>`;
   };
 

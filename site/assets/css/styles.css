@@ -646,6 +646,17 @@
     color: var(--muted);
     font-size: var(--text-sm);
   }
+  /* 자료 대기 중인 카테고리 — 카드 그리드 자리의 한 줄 안내.
+     점선 보더는 도메인 토큰(--signal-dim)이라 physical 밴드에서는 앰버로 나온다. */
+  .band-empty-note {
+    margin: 0;
+    padding: var(--space-6) var(--space-4);
+    color: var(--muted);
+    font-size: var(--text-sm);
+    background: var(--surface);
+    border: var(--hairline-w) dashed var(--signal-dim);
+    border-radius: var(--radius-lg);
+  }
 
   /* ── 카드 그리드 ── */
   .card-grid {

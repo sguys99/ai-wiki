@@ -124,10 +124,12 @@ async function main() {
   console.log(`[render] pages rendered: ${rendered}`);
 
   // 6) 홈(랜딩) — Constellation 히어로 + 카테고리 밴드 + 카드 그리드
+  // pages/links 는 실제 콘텐츠 집계(그래프 기준)라 빈 카테고리가 끼어들 여지가 없다.
+  // categories 는 홈에 실제로 보이는 밴드 수와 맞춘다 — 선언만 된 빈 카테고리도 밴드로 나가므로 포함.
   const stats = {
     pages: graph.nodes.length,
     links: graph.edges.length,
-    categories: sections.filter((s) => s.pages.length).length,
+    categories: sections.filter((s) => s.pages.length || s.declaredEmpty).length,
   };
   // 전 카테고리 통합 "최근 추가" 밴드 (홈 전용 — prevNext/라우팅 미포함).
   const recentPages = [...pages.values()]

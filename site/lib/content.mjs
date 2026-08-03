@@ -178,6 +178,10 @@ export async function loadContent(root, addedDates = new Map()) {
       desc: sec.desc,
       pages: secPages,
       empty: secPages.length === 0,
+      // index.md 에 선언은 됐는데 아직 페이지가 0개인 카테고리.
+      // 홈에서 밴드를 걸러내지 않고 "자료 없음" 안내로 렌더하는 신호다
+      // (신규 카테고리가 첫 자료를 받기 전까지의 상태).
+      declaredEmpty: secPages.length === 0,
     });
   }
 

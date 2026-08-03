@@ -64,8 +64,8 @@ wiki/overviews/{topic}.md ← 지식이 복리로 쌓이는 곳
 분류는 주제가 아니라 **방법**을 기준으로 정합니다 — *"나중의 내가 어느 칸에서 찾으면 제일
 빨리 발견할까?"* 가 판단 기준이에요.
 
-지금 있는 분류는 이래요: [[database]] · [[llms]] · [[agents]] · [[evaluations]] · [[applications]] ·
-[[etc]] · [[overviews]]. [홈으로 가면](${home}) 분류별 카드를 한눈에 볼 수 있어요.
+지금 있는 분류는 이래요: [[database]] · [[llms]] · [[physical-ai]] · [[agents]] · [[evaluations]] ·
+[[applications]] · [[etc]] · [[overviews]]. [홈으로 가면](${home}) 분류별 카드를 한눈에 볼 수 있어요.
 
 ## 둘러보는 방법
 

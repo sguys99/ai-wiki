@@ -285,13 +285,80 @@ wiki셸 : <main id="main" class="wiki" data-domain="physical">
 - physical wiki 페이지에서 헤더·푸터·검색 모달이 아쿠아를 유지하는지
 - `constellation.js`의 `PHYSICAL_CATEGORIES`가 `domains.mjs`와 이중 관리다. Phase 5에서 `graph.json` 노드에 `domain` 필드를 넣어 한쪽으로 합치는 걸 검토한다
 
-### Phase 3 — 빈 카테고리 준비 중 상태
+### Phase 3 — 빈 카테고리 준비 중 상태 ✅ 완료 (2026-08-03)
 
-- [ ] `content.mjs`: `index.md`에 선언됐지만 페이지 0개인 섹션을 `declaredEmpty` 플래그로 표시
-- [ ] `templates.mjs:162` / `build.mjs:130`의 `filter(s => s.pages.length)` 조정
-- [ ] 밴드 빈 상태 마크업 + `styles.css`에 최소 스타일
-- [ ] 홈 통계·필터 칩 카운트에서 빈 카테고리가 빠지는지 확인
-- [ ] `site/lib/about.mjs:67` 분류 목록에 `[[physical-ai]]` 추가 후 unresolved 경고가 사라지는지 확인
+- [x] `content.mjs`: `index.md`에 선언됐지만 페이지 0개인 섹션을 `declaredEmpty` 플래그로 표시
+- [x] `templates.mjs:162` / `build.mjs:130`의 `filter(s => s.pages.length)` 조정
+- [x] 밴드 빈 상태 마크업 + `styles.css`에 최소 스타일
+- [x] 홈 통계·필터 칩 카운트에서 빈 카테고리가 빠지는지 확인
+- [x] `site/lib/about.mjs:67` 분류 목록에 `[[physical-ai]]` 추가 후 unresolved 경고가 사라지는지 확인
+
+#### 실행 기록
+
+`content.mjs`의 `loadContent()`가 섹션 객체를 만들 때 `declaredEmpty: secPages.length === 0`을 붙인다. 섹션 선언 자체가 `index.md` 헤더에서만 나오므로 이 플래그는 "선언됐지만 페이지 0개"와 정확히 같은 뜻이다. 기존 `empty` 필드는 그대로 뒀다.
+
+플래그는 `build.mjs`가 받은 `content.sections`에서 두 갈래로 흐른다. 하나는 `stats.categories` 집계이고 다른 하나는 `home()`으로 넘어가 `templates.mjs`의 `visible` 필터를 통과한 뒤 `bandSection()`에 닿는다. `bandSection()`은 플래그를 다시 읽지 않고 `!s.pages.length`로 판정한다 — 통합 "최근 추가" 밴드처럼 `declaredEmpty`가 없는 합성 섹션도 같은 함수를 타기 때문이다. 플래그는 밴드를 렌더할지를 정하고 렌더 형태는 페이지 수가 정한다.
+
+빈 밴드는 카드 그리드와 "+ 더 보기"를 빼고 `.band-empty-note` 한 줄만 남긴다. `data-band`는 유지해 `filter.js`가 칩 클릭으로 이 밴드를 열 수 있게 했다. CSS는 `.band-empty-note` 한 블록이고 점선 보더에 `--signal-dim`을 써서 physical 밴드에서는 앰버로 나온다.
+
+`about.mjs`의 분류 목록에 `[[physical-ai]]`를 llms 다음에 넣었다. `index.md` 순서와 같다. `content.mjs`의 `categories` 맵이 페이지 유무와 무관하게 `index.md` 섹션 전부를 담기 때문에 Phase 3 없이 링크만 넣어도 경고는 안 났을 것이다. 다만 그 경우 앵커 대상 밴드가 없어 클릭이 무의미했다. 이제 앵커가 실제로 렌더된다.
+
+안내 문구는 `templates.mjs` 상단 `BAND_EMPTY_NOTE` 상수 한 곳에 뒀다.
+
+> 아직 등록된 자료가 없습니다. 분류와 태그 체계를 먼저 세워 둔 자리라 자료를 정리하는 대로 카드가 채워집니다.
+
+카테고리 이름은 넣지 않았다. 바로 위 `band-desc`가 `index.md` 섹션 설명문을 그대로 출력하므로 무엇이 들어올지는 이미 나와 있고, 안내문은 왜 비었는지와 언제 채워지는지만 말한다. 60자짜리 한 문장이라 humanize-korean 파이프라인 대신 CLAUDE.md의 문체 가이드로 직접 점검했다 — 연결어미 뒤 쉼표·기계적 병렬·명사 볼드·문두 접속사 모두 해당 없고 어휘도 평이하다. Phase 1이 1,392자에 strict 대신 monolith를 쓴 것과 같은 비례 판단이다.
+
+#### 홈 통계·칩 카운트 처리
+
+'전체' 칩의 121은 `visible.reduce((n, s) => n + s.pages.length, 0)`이라 빈 섹션이 0을 더해 값이 안 바뀐다. hero의 `pages`는 `graph.nodes.length`라 섹션 집계와 무관하고 `links`도 마찬가지다. 계획서의 "홈 통계의 페이지 수에서는 뺀다"는 이 두 지점에서 코드 변경 없이 이미 만족된다.
+
+판단이 필요했던 건 `categories` 하나다. 이건 페이지 수가 아니라 카테고리 수를 세는 별개 통계이고 홈에서 실제로 보이는 밴드 수와 대응한다. physical-ai 밴드가 눈에 보이는데 통계가 7이라고 하면 화면과 어긋나므로 8로 맞췄다. 계획서가 조정 대상으로 지목한 `build.mjs:130`이 바로 이 줄이다. 필터 칩의 physical-ai 카운트는 `0`으로 표시된다. 칩을 감추면 그 카테고리로 갈 수단이 없어지고 0이라는 숫자 자체가 비어 있다는 정보라서 그대로 뒀다.
+
+#### 빌드 검증 (Phase 2 대비)
+
+```
+[content] wiki pages: 121  ·  catalog entries: 121  ·  sections: 8
+[graph] nodes: 121  ·  edges: 626
+[render] pages rendered: 121
+[links] unresolved wikilinks: 0  ✓
+[build] done.
+```
+
+`dates.mjs self-check ✓`.
+
+| 항목 | Phase 2 | Phase 3 |
+|---|---|---|
+| wiki pages / catalog entries / sections | 121 / 121 / 8 | 121 / 121 / 8 |
+| graph nodes / edges | 121 / 626 | 121 / 626 |
+| pages rendered | 121 | 121 |
+| unresolved wikilinks | 0 | 0 |
+| `[about] WARN unresolved links` | 0 | 0 (`[[physical-ai]]` 추가 후에도 미발생) |
+| 카테고리 불일치 / 중복 stem / 카탈로그 고아 / index.md 미인덱스 | 0 | 0 |
+| 홈 hero `pages` | 121 | 121 |
+| 홈 hero `categories` | 7 | **8** |
+| 홈 밴드 수 | 8 | **9** (recent 1 + core 7 + physical 1) |
+
+`dist/index.html` grep — 밴드가 LLMs 다음·Agents 앞으로 `index.md` 순서 그대로 들어갔고 `data-domain="physical"`이 붙어 Phase 2의 앰버 오버라이드를 받는다.
+
+```html
+<section class="band band-empty" id="physical-ai" data-band="physical-ai" data-domain="physical" ...>
+  ...<span class="band-count">0</span>
+  <p class="band-desc">VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하는 방법.</p>
+  <p class="band-empty-note">아직 등록된 자료가 없습니다. ...</p>
+</section>
+```
+
+`band-empty-note` 1개 · `band-more` 버튼 8개(빈 밴드에는 없음). 필터 칩은 `<a class="filter-chip" href="#physical-ai" data-filter="physical-ai" data-domain="physical">Physical AI<span class="filter-count">0</span></a>`. `dist/about/index.html`은 `<a class="wikilink" href="/#physical-ai">Physical AI</a>`로 해석됐고 `BASE=/ai-wiki`에서는 `/ai-wiki/#physical-ai`로 접두된다.
+
+`filter.js` 경로도 읽어서 확인했다. `bands`가 `.band[data-band]`로 잡혀 빈 밴드도 포함되는데, `grid: null` → `cards: []`, `moreBtn: null`이 되고 `collapse()`·`expand()`가 둘 다 `if (b.moreBtn)` 가드를 가져 예외가 없다. `#physical-ai` 직접 진입과 About 링크 진입 모두 필터를 활성화하고, JS 없이도 앵커 점프로 동작한다.
+
+#### 남은 사람 확인 항목
+
+- 다크·라이트 각각 빈 밴드 육안 확인. 점선 보더가 `--signal-dim`이라 라이트 테마는 알파 0.18이라 실제로 보이는지 봐야 한다. 너무 흐리면 `--hairline`으로 바꾸거나 알파를 올린다
+- `band-count`의 `0`이 앰버로 찍히는데, 이게 Phase 2 이후 physical 도메인 색이 산출물에 처음 나타나는 지점이다
+- 640 / 1024px에서 안내 박스 세로 여백(`--space-6` 상하)이 카드 그리드 자리와 비교해 허전하지 않은지
+- 필터 칩에서 Physical AI를 눌렀을 때 sticky 필터바 아래 안내 한 줄만 남는 화면. Phase 8에서 첫 자료가 들어오면 카드 그리드로 자동 전환된다
 
 ### Phase 4 — 태그 인덱스·필터
 
