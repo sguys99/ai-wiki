@@ -122,6 +122,7 @@ function header() {
       <span class="nav-btn-ico" aria-hidden="true">⌕</span><span class="nav-btn-label">검색</span><kbd class="nav-kbd">⌘K</kbd>
     </button>
     <a class="nav-btn nav-tags" href="${href('/tags/')}">태그</a>
+    <a class="nav-btn nav-graph" href="${href('/graph/')}">그래프</a>
     <a class="nav-btn nav-about" href="${href('/about/')}">About</a>
     <a class="nav-btn nav-github" href="${escapeHtml(GH_URL)}" target="_blank" rel="noopener" aria-label="GitHub 저장소" title="GitHub 저장소">
       <svg class="nav-github-ico" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -134,6 +135,7 @@ function header() {
   <div id="site-menu" class="site-menu" hidden>
     <a href="${href('/')}">홈</a>
     <a href="${href('/tags/')}">태그</a>
+    <a href="${href('/graph/')}">그래프</a>
     <a href="${href('/about/')}">About</a>
     <a href="${escapeHtml(GH_URL)}" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
@@ -263,7 +265,9 @@ ${inner}
     body: `${hero}\n${filterBar}\n${recentBand}\n${bands}`,
     mainClass: 'home',
     path: '/',
-    scripts: ['/static/js/constellation.js', '/static/js/filter.js'],
+    // graph-core.js 는 constellation.js 가 window.GraphCore 를 읽으므로 반드시 앞에 온다
+    // (defer 스크립트는 문서 순서대로 실행된다).
+    scripts: ['/static/js/graph-core.js', '/static/js/constellation.js', '/static/js/filter.js'],
   });
 }
 
@@ -363,6 +367,82 @@ ${entry.pages.map((p) => card(p, degree, adjacency.get(p.id), tagsFor(p))).join(
     mainClass: 'tags tag-detail',
     domain: entry.domain,
     path: `/tags/${entry.slug}/`,
+  });
+}
+
+// ── 전체 그래프 (/graph/) ─────────────────────────────────────────────────────
+//
+// 캔버스 탐색기 + 카테고리별 노드 목록. 목록은 장식이 아니라 캔버스와 같은 내용의 텍스트
+// 판본이다 — 캔버스는 키보드·스크린리더로 읽히지 않고 스크립트가 없으면 아예 비어 있다.
+// 칩도 실제 <a> 라 JS 없이 해당 카테고리 목록으로 점프한다.
+//
+// 탐색기 블록은 hidden 으로 나가고 graph-explorer.js 가 그리기 직전에 연다('+ 더 보기'
+// 버튼과 같은 방식). 스크립트가 없거나 graph.json 을 못 받으면 빈 상자가 남지 않는다.
+//
+// data: { groups:[{ slug, label, domain, nodes:[{ id,url,title,degree }] }], stats:{nodes,edges},
+//         graphHref, base }
+export function graphPage(data) {
+  const { groups, stats, graphHref, base } = data;
+
+  const chips = [
+    `<a class="filter-chip is-active" href="${href('/graph/')}" data-filter="all" role="button" aria-pressed="true">전체<span class="filter-count">${stats.nodes}</span></a>`,
+    ...groups.map(
+      (g) =>
+        `<a class="filter-chip" href="#${escapeHtml(g.slug)}" data-filter="${escapeHtml(g.slug)}" data-label="${escapeHtml(g.label)}" data-domain="${escapeHtml(g.domain)}" role="button" aria-pressed="false">${escapeHtml(g.label)}<span class="filter-count">${g.nodes.length}</span></a>`
+    ),
+  ].join('\n      ');
+
+  const list = groups
+    .map(
+      (g) => `    <section class="graph-group" id="${escapeHtml(g.slug)}" data-category="${escapeHtml(g.slug)}" data-domain="${escapeHtml(g.domain)}" aria-labelledby="graph-group-${escapeHtml(g.slug)}">
+      <div class="band-head">
+        <h3 class="band-name" id="graph-group-${escapeHtml(g.slug)}">${escapeHtml(g.label)}</h3>
+        <span class="band-count">${g.nodes.length}</span>
+      </div>
+      <ul class="graph-nodes">
+${g.nodes
+  .map(
+    (n) =>
+      `        <li><a href="${escapeHtml(n.url)}">${escapeHtml(n.title)}</a><span class="graph-deg" title="연결 ${n.degree}개">↳ ${n.degree}</span></li>`
+  )
+  .join('\n')}
+      </ul>
+    </section>`
+    )
+    .join('\n');
+
+  const body = `<div class="tags-page graph-page">
+  <header class="tags-head graph-head">
+    <p class="eyebrow">지식 그래프</p>
+    <h1 class="tags-title">그래프</h1>
+    <p class="tags-lede">페이지 사이의 위키링크를 점과 선으로 그렸습니다. 점 크기는 연결 수이고 색은 도메인입니다.</p>
+    <p class="tags-stat">노드 ${stats.nodes}개 · 연결 ${stats.edges}개</p>
+  </header>
+  <nav class="graph-filter" aria-label="카테고리 필터">
+    <div class="graph-filter-inner">
+      ${chips}
+    </div>
+  </nav>
+  <div class="graph-explorer" hidden>
+    <div class="graph-canvas-wrap">
+      <canvas class="graph-canvas" data-graph="${escapeHtml(graphHref)}" data-base="${escapeHtml(base)}" role="img" aria-label="위키 페이지 ${stats.nodes}개와 연결 ${stats.edges}개를 점과 선으로 그린 그래프"></canvas>
+    </div>
+    <p class="graph-status" role="status" aria-live="polite">노드를 가리키면 이웃이 강조됩니다. 누르면 해당 페이지로 이동합니다.</p>
+  </div>
+  <section class="graph-list" aria-labelledby="graph-list-h">
+    <h2 class="graph-list-title" id="graph-list-h">카테고리별 목록</h2>
+    <p class="graph-list-desc">그래프와 같은 내용을 카테고리별로 정리했습니다. 스크립트가 없어도 이 목록으로 모든 페이지에 갈 수 있습니다.</p>
+${list}
+  </section>
+</div>`;
+
+  return layout({
+    title: '그래프',
+    description: `${SITE.title} 지식 그래프 — 페이지 ${stats.nodes}개 · 연결 ${stats.edges}개`,
+    body,
+    mainClass: 'tags graph',
+    path: '/graph/',
+    scripts: ['/static/js/graph-core.js', '/static/js/graph-explorer.js'],
   });
 }
 

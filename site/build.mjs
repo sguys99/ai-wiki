@@ -16,7 +16,8 @@ import { loadContent, tagsOf } from './lib/content.mjs';
 import { addedDates } from './lib/dates.mjs';
 import { buildGraph } from './lib/graph.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
-import { home, wiki, about, tagIndex, tag } from './lib/templates.mjs';
+import { home, wiki, about, tagIndex, tag, graphPage } from './lib/templates.mjs';
+import { domainOf } from './lib/domains.mjs';
 import { prevNext } from './lib/nav.mjs';
 import { aboutMarkdown, ABOUT_INTRO } from './lib/about.mjs';
 
@@ -177,6 +178,49 @@ async function main() {
     );
   }
   console.log(`[render] tag pages rendered: ${tagIdx.tags.length} (+ /tags/ index)`);
+
+  // 6.7) 전체 그래프 (/graph/) — 캔버스 탐색기 + 카테고리별 노드 목록(캔버스의 텍스트 판본).
+  //      목록은 그래프 노드에서 만든다. index.md 카탈로그가 아니라 실제 wiki 페이지가 기준이라
+  //      카탈로그 드리프트가 있어도 그래프와 목록이 어긋나지 않는다.
+  const graphGroups = [];
+  const nodesByCategory = new Map();
+  for (const node of graph.nodes) {
+    if (!nodesByCategory.has(node.category)) nodesByCategory.set(node.category, []);
+    const page = pages.get(node.id);
+    nodesByCategory.get(node.category).push({
+      id: node.id,
+      url: page ? page.url : href(`/${node.id}/`),
+      title: (page && (page.display || page.title)) || node.title,
+      degree: node.degree,
+    });
+  }
+  // 카테고리 순서는 index.md 섹션 순서를 따르고, 거기에 없는 카테고리는 뒤에 붙인다.
+  const catOrder = [
+    ...sections.map((s) => s.slug),
+    ...[...nodesByCategory.keys()].filter((c) => !sectionBySlug.has(c)),
+  ];
+  for (const slug of catOrder) {
+    const list = nodesByCategory.get(slug);
+    if (!list || !list.length) continue;
+    list.sort((a, b) => b.degree - a.degree || a.title.localeCompare(b.title, 'ko'));
+    graphGroups.push({
+      slug,
+      label: content.categories.get(slug) || slug,
+      domain: domainOf(slug),
+      nodes: list,
+    });
+  }
+  await mkdir(join(DIST, 'graph'), { recursive: true });
+  await writeFile(
+    join(DIST, 'graph', 'index.html'),
+    graphPage({
+      groups: graphGroups,
+      stats: { nodes: graph.nodes.length, edges: graph.edges.length },
+      graphHref: href('/graph.json'),
+      base: href('/'),
+    })
+  );
+  console.log(`[render] graph page rendered: ${graphGroups.length} category groups`);
 
   // 6.5) About — README/CLAUDE.md 철학·THE FOUR RULES·3-tier 파이프라인.
   //      위키 본문과 같은 렌더 경로(renderMarkdown) → [[category]] 위키링크가 홈 밴드 앵커로 해석.

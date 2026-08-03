@@ -473,14 +473,118 @@ entry = { slug, label, url, variants:Map(원표기→횟수), variantLabels, pag
 - `.tag-cloud-item[data-size='4']`가 `--signal`이라 physical 그룹에서 앰버로 나온다. Phase 8 이후 확인 대상
 - 태그 페이지의 `.card` 도메인 스코프는 태그 그룹 도메인을 따른다. core 태그 페이지에 physical 페이지 카드가 섞이면 카드가 아쿠아로 나온다. 의도한 동작이지만 자료가 들어온 뒤 어색한지 봐야 한다
 
-### Phase 5 — 전체 그래프 페이지
+### Phase 5 — 전체 그래프 페이지 ✅ 완료 (2026-08-03)
 
-- [ ] `constellation.js`에서 그래프 그리기 공통 로직 분리
-- [ ] `site/assets/js/graph-explorer.js` 작성 (도메인 색·degree 크기·호버 이웃 강조·클릭 이동)
-- [ ] `templates.mjs`에 `graphPage()` + `build.mjs`에서 `dist/graph/index.html` 렌더
-- [ ] 카테고리 칩 필터 + 해시 동기화 (`filter.js` 패턴)
-- [ ] 헤더 네비에 진입점 추가
-- [ ] 모바일에서의 동작·성능 확인
+- [x] `constellation.js`에서 그래프 그리기 공통 로직 분리
+- [x] `site/assets/js/graph-explorer.js` 작성 (도메인 색·degree 크기·호버 이웃 강조·클릭 이동)
+- [x] `templates.mjs`에 `graphPage()` + `build.mjs`에서 `dist/graph/index.html` 렌더
+- [x] 카테고리 칩 필터 + 해시 동기화 (`filter.js` 패턴)
+- [x] 헤더 네비에 진입점 추가
+- [x] 모바일에서의 동작·성능 확인
+
+#### 실행 기록
+
+변경 파일 7개다. 신규 2개(`site/assets/js/graph-core.js` 147줄, `site/assets/js/graph-explorer.js` 456줄)에 기존 5개 수정. 새 런타임 의존성은 없다.
+
+`site/lib/graph.mjs`가 `domainOf()`를 import해 노드마다 `domain` 필드를 싣는다. Phase 2가 남긴 이중 관리를 여기서 정리했다. `constellation.js`의 `PHYSICAL_CATEGORIES` 로컬 배열은 지웠고 두 렌더러 모두 `node.domain`을 읽는다. 브라우저 스크립트가 번들러 없이 실려 `domains.mjs`를 import할 수 없다는 제약은 그대로인데, 매핑을 빌드에서 한 번 풀어 JSON에 실어 보내면 JS 쪽에 카테고리 목록이 남지 않는다. 이제 `domains.mjs`에 카테고리를 한 줄 추가하면 그래프 색이 자동으로 따라온다.
+
+`graph-core.js`가 두 캔버스 화면의 공통 부품이다. `token`·`palette`(getComputedStyle 한 번으로 색 9개)·`isPhysical`·`nodeColor`·`reduceMotion`·`fitCanvas`(DPR 상한 2)·`onResize`(ResizeObserver 우선, 없으면 window resize, 둘 다 120ms 디바운스)·`onThemeChange`(MutationObserver로 `data-theme` 감시)·`fetchGraph`·`buildAdjacency`를 `window.GraphCore`로 노출한다. defer 스크립트가 문서 순서를 지키므로 `scripts` 배열에서 앞에 두는 것만으로 순서가 보장된다. `constellation.js`는 이 부품을 쓰면서 44줄이 줄었고, 부수 효과로 프레임마다 돌던 `getComputedStyle` 4회가 1회가 됐다. reduced-motion 정지 프레임에도 테마 재렌더가 붙었다 — 애니메이션 경로는 매 프레임 색을 다시 읽어 저절로 따라오지만 정지 프레임은 그렇지 않았다.
+
+`graph-explorer.js`의 배치는 Fruchterman-Reingold를 로드 시 한 번만 300회 돌리고 결과를 단위 좌표로 남긴다. 초기 위치가 골든앵글 나선이라 결정적이다 — 새로고침해도 같은 그림이 나온다. 애니메이션으로 수렴 과정을 보여주는 안을 버린 이유는 모바일 배터리와 상호작용 지연 때문이다. 정지 화면이면 호버·필터·리사이즈·테마 변경 때만 rAF 한 번씩 그린다. 실측 배치 시간은 121노드·626엣지에 13ms다. 리사이즈는 단위 좌표를 픽셀로 다시 매핑할 뿐 배치를 재계산하지 않고, 호버는 미리 만든 인접 리스트와 재사용 `Uint8Array` 플래그를 읽는다. 엣지 626개는 배경/강조 두 묶음으로 나눠 각각 path 하나에 모아 `stroke()` 두 번으로 끝낸다.
+
+정규화는 축별로 [0,1]로 늘렸다. 균등 축척으로 종횡비를 지키면 가로로 긴 캔버스의 양옆이 통째로 빈다. 배치가 거의 원형이라 늘려도 타원이 될 뿐이고 화면을 훨씬 잘 쓴다.
+
+터치 처리는 포인터 종류로 갈랐다. `(hover: hover) and (pointer: fine)`이면 클릭 한 번에 이동하고, 아니면 첫 탭이 선택이고 같은 노드를 다시 탭하면 이동한다. 선택된 노드는 상태줄에 실제 `<a>`로 뜨므로 두 번 탭을 모르는 사용자도 링크를 눌러 갈 수 있다. `pointermove`는 `pointerType === 'touch'`면 즉시 반환해 터치에서 유령 호버가 생기지 않는다. 캔버스에는 `touch-action: manipulation`을 걸어 탭이 더블탭 확대로 먹히지 않게 했다.
+
+접근성은 캔버스 옆이 아니라 아래에 두는 쪽을 골랐다. `<canvas role="img" aria-label>` 하나로는 121개 페이지 목록을 대신할 수 없어서, 카테고리별 링크 목록을 서버 렌더로 항상 내보내고 JS는 그 목록을 필터에 맞춰 접기만 한다. 칩도 `<a href="#{slug}">`라 JS 없이 해당 카테고리 목록으로 점프한다. 탐색기 블록은 `hidden`으로 나가고 스크립트가 그리기 직전에 연다 — Phase 3의 `+ 더 보기` 버튼과 같은 방식이고, 스크립트가 없거나 `graph.json`을 못 받으면 빈 상자가 남지 않는다. 처음엔 `<figure>`/`<figcaption>`을 썼는데 `figcaption`에 `role="status"`를 얹는 게 ARIA-in-HTML상 애매해 `<div>`/`<p>`로 바꿨다.
+
+목록은 `index.md` 카탈로그가 아니라 그래프 노드에서 만든다. 카탈로그 드리프트가 생겨도 캔버스와 목록이 어긋나지 않는다. 카테고리 순서만 `index.md` 섹션 순서를 따르고 거기 없는 카테고리는 뒤에 붙는다.
+
+필터는 `filter.js`의 해시 동기화를 그대로 가져왔다. 칩 클릭 → `preventDefault` → `apply()` → `history.replaceState`, `hashchange` 구독, 초기 상태는 해시에서 읽는다. 다만 밴드를 숨기는 홈과 달리 여기서는 캔버스 노드를 지우지 않고 죽인다(알파 0.1, faint 색) — 걸러낸 카테고리가 전체 구조 안 어디에 있었는지가 그래프에서는 정보다. 히트 테스트에서는 빠진다.
+
+CSS는 `@layer components` 블록 하나(117줄)를 새로 열었고 셸은 `.tags-page`와 공유한다. 색은 전부 기존 토큰이라 `[data-domain='physical']` 오버라이드가 그룹 섹션·칩에 그대로 걸린다. 헤더 네비와 모바일 시트에 `그래프`를 추가하고 `.nav-graph`를 ≤560px 숨김 목록에 넣었다.
+
+#### 빌드 검증 (Phase 4 대비)
+
+```
+[build] BASE='(local)'  ROOT=/Users/kmyu/Desktop/project/ai-wiki
+[content] wiki pages: 121  ·  catalog entries: 121  ·  sections: 8
+[tags] tags: 700  ·  page-tag links: 1314  ·  merged slugs: 3
+[tags]   merged 'rag' ← rag , RAG (대표 표기 'rag')
+[tags]   merged 'swe-bench' ← SWE-bench , swe-bench (대표 표기 'SWE-bench')
+[tags]   merged 'skillsbench' ← SkillsBench , skillsbench (대표 표기 'SkillsBench')
+[graph] nodes: 121  ·  edges: 626
+[build] copied wiki/assets → dist/assets
+[build] copied site chrome + fonts → dist/static
+[render] pages rendered: 121
+[render] tag pages rendered: 700 (+ /tags/ index)
+[render] graph page rendered: 7 category groups
+[render] about page rendered
+[links] unresolved wikilinks: 0  ✓
+[build] done.
+```
+
+`dates.mjs self-check ✓`. `[render] graph page rendered` 한 줄이 늘었고 정보성 로그다. 경고는 하나도 늘지 않았다.
+
+| 항목 | Phase 4 | Phase 5 |
+|---|---|---|
+| wiki pages / catalog / sections | 121 / 121 / 8 | 121 / 121 / 8 |
+| graph nodes / edges | 121 / 626 | 121 / 626 |
+| pages rendered | 121 | 121 |
+| 태그 페이지 | 700 (+ 인덱스 1) | 700 (+ 인덱스 1) |
+| unresolved wikilinks / `[about] WARN` | 0 / 0 | 0 / 0 |
+| 카테고리 불일치 / 중복 stem / 카탈로그 고아 / 미인덱스 | 0 | 0 |
+| dist HTML | 824 | **825** (52 MB) |
+| Pagefind pages / words / filters / sorts | 121 / 34,084 / 2 / 0 | 121 / 34,084 / 2 / 0 |
+
+프리뷰(4173) 200 확인: `/` `/graph/` `/graph.json` `/tags/` `/tags/rag/` `/about/` `/agents/lee-hoyeon-2026-harness-engineering/` `/static/js/graph-core.js` `/static/js/graph-explorer.js`. 확인 후 서버 종료.
+
+`BASE=/ai-wiki` 빌드에서 `data-graph="/ai-wiki/graph.json"` · `data-base="/ai-wiki/"` · 헤더 `href="/ai-wiki/graph/"` · 노드 링크 `/ai-wiki/agents/...`가 모두 접두되고 `/ai-wiki/` 링크가 그래프 페이지에 134개 나온다. 확인 후 기본 빌드로 되돌렸고 `data-base="/"`로 복귀한 것까지 확인했다.
+
+헤드리스 보완 검증 두 가지를 직접 돌렸다. 하나는 `layout()`/`normalize()`를 소스에서 뽑아 실제 `graph.json`으로 실행한 배치 품질 측정이고, 다른 하나는 최소 DOM 스텁 위에서 `graph-core.js` + `graph-explorer.js`를 통째로 실행한 동작 확인이다.
+
+| 측정 | 결과 |
+|---|---|
+| 배치 시간 | 13ms (121노드 · 626엣지 · 300 iteration) |
+| 데스크톱 1100×560 겹친 노드 쌍 | 2 / 7,260 (최소 간격 −1.3px) |
+| 모바일 360×330 겹친 노드 쌍 | 18 / 7,260 (최소 간격 −4.4px) |
+| 엣지 길이 중앙값 | 데스크톱 94px · 모바일 37px |
+| 10×10 격자 점유 | 58 / 100 셀 |
+| 초기 draw | 노드 121개 arc/fill · 엣지 stroke 1회 |
+| 호버 히트 테스트 | 1,020×490 스윕에서 205개 지점이 노드를 잡음 |
+| 노드 클릭 | `(30,192) → /agents/llmsresearch-paperbanana/` |
+| 카테고리 칩 | `agents` 적용 시 그룹 1개만 노출 · `aria-pressed=true` |
+| `explorer.hidden` | 그리기 직전 `false`로 전환 |
+
+physical 도메인 경로는 Phase 2 선례대로 임시 페이지를 만들어 확인하고 지웠다. `graph.json` 노드에 `domain: 'physical'`이 실리고, 그래프 페이지 그룹 `<section ... data-domain="physical">`과 칩 `data-domain="physical"`이 붙는다. 확인 후 삭제해 `wiki/physical-ai/`는 `.gitkeep`만 남았다.
+
+오케스트레이터 재검증: `npm run build` 콘솔이 위와 동일하고 `dates.mjs self-check ✓`. `dist` HTML 825개, `dist/graph/index.html`(31 KB)에 `data-graph="/graph.json"` · `data-base="/"` · `role="img"` · 필터 칩 7개 · `graph-core.js`/`graph-explorer.js` 참조가 각각 1회씩 나온다. 홈 헤더와 모바일 시트 양쪽에 `href="/graph/">그래프` 진입점이 들어갔다.
+
+#### 신규 한글 UI 문구
+
+| 위치 | 문구 |
+|---|---|
+| 헤더 nav / 모바일 시트 | `그래프` |
+| eyebrow · h1 | `지식 그래프` · `그래프` |
+| lede | `페이지 사이의 위키링크를 점과 선으로 그렸습니다. 점 크기는 연결 수이고 색은 도메인입니다.` |
+| 통계 | `노드 {n}개 · 연결 {m}개` |
+| 상태줄 기본값 | `노드를 가리키면 이웃이 강조됩니다. 누르면 해당 페이지로 이동합니다.` |
+| 목록 제목 · 설명 | `카테고리별 목록` · `그래프와 같은 내용을 카테고리별로 정리했습니다. 스크립트가 없어도 이 목록으로 모든 페이지에 갈 수 있습니다.` |
+| aria-label | `카테고리 필터` · `위키 페이지 {n}개와 연결 {m}개를 점과 선으로 그린 그래프` |
+
+합쳐 240자 남짓이라 Phase 3·4와 같은 비례 판단으로 humanize-korean 파이프라인은 돌리지 않고 CLAUDE.md 문체 가이드로 항목별 점검했다. 연결어미 뒤 쉼표 — 해당 없음. 기계적 병렬 — `점 크기는 A이고 색은 B` 한 쌍뿐이고 반복 틀이 아니다. 명사 볼드 — 없음. 콜론 부제 헤딩 — 없음. 문두 접속사 — 없음. 어휘는 초안의 "닿을 수 있습니다"를 "갈 수 있습니다"로 바꾼 것 외에는 전부 평이한 기술 문서 어휘다.
+
+#### 남은 사람 확인 항목
+
+- **배치 육안 확인이 최우선이다.** 겹침·엣지 길이는 수치로 봤지만 클러스터가 실제로 읽히는지, FR 상수(`k`·`TEMP 0.16`·`GRAV 2.0`·300 iteration)를 조정할지는 화면을 봐야 안다
+- 모바일 360px에서 겹친 쌍 18개. 답답하면 노드 반경 스케일 하한 `0.72`를 낮추거나 캔버스 높이 `clamp(18rem, 52vh, 26rem)`을 올린다
+- 축별 정규화로 인한 가로 늘어남. 1440px 같은 넓은 화면에서 타원이 과하게 퍼져 보이는지
+- 캔버스 라벨(호버 시 뜨는 제목 상자)이 다크·라이트 양쪽에서 읽히는지, 긴 제목 클리핑이 자연스러운지
+- 헤더에 nav 버튼이 하나 더 늘었다. **561~700px 구간에서 워드마크와 붙지 않는지 확인이 필요하다** — Phase 4가 남긴 같은 항목이 이번에 더 빡빡해졌다
+- 터치 두 번 탭 규칙이 발견 가능한지. 안내 문구에 넣지 않고 상태줄 링크로 대신했는데 실제로 충분한지
+- 그래프 페이지에서 physical 노드가 앰버로 구분돼 보이는지(Phase 8 이후). 지금은 노드가 0개다
+- 도메인 범례를 안 넣었다. physical 자료가 들어온 뒤 색만으로 충분한지 판단
+- reduced-motion 사용자에게는 원래 정지 화면이라 차이가 없다. 다만 첫 렌더 13ms 동안의 빈 화면이 눈에 띄는지
 
 ### Phase 6 — 학습 경로
 

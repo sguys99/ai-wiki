@@ -1483,6 +1483,7 @@
   /* ── 모바일 내비 (≤560px): 인라인 About 숨김 · 햄버거 노출 · 시트 표시 ── */
   @media (max-width: 560px) {
     .nav-tags,
+    .nav-graph,
     .nav-about,
     .nav-github {
       display: none;
@@ -1683,6 +1684,122 @@
     }
     .tags-head {
       margin-bottom: var(--space-6);
+    }
+  }
+}
+
+/* ── components (Phase 5: 전체 그래프 페이지 /graph/) ──────────────────────────── */
+@layer components {
+  /* 셸은 태그 페이지(.tags-page)와 공유하고 여기서는 탐색기 고유 부분만 둔다. */
+  .graph-filter {
+    margin-bottom: var(--space-6);
+  }
+  .graph-filter-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  /* 스크립트가 캔버스를 열기 전(또는 graph.json 실패)에는 통째로 빠진다. */
+  .graph-explorer {
+    margin: 0 0 var(--space-12);
+  }
+  .graph-explorer[hidden] {
+    display: none;
+  }
+  /* 캔버스 높이는 뷰포트를 따라가되 상한을 둔다 — 노드가 늘어도 화면을 다 먹지 않게. */
+  .graph-canvas-wrap {
+    height: clamp(22rem, 60vh, 40rem);
+    background: var(--surface);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .graph-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* 노드 탭이 더블탭 확대로 먹히지 않도록 */
+    touch-action: manipulation;
+  }
+  /* 상태줄 — 호버/선택한 노드의 제목·카테고리·연결 수. 높이를 잡아 두어 갱신 시 밀리지 않는다. */
+  .graph-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2);
+    min-height: 2.4em;
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .graph-status-link {
+    color: var(--signal);
+    text-decoration: none;
+    border-bottom: var(--hairline-w) solid var(--signal-dim);
+  }
+  .graph-status-link:hover,
+  .graph-status-link:focus-visible {
+    border-bottom-color: var(--signal);
+  }
+  .graph-status-meta {
+    font-size: var(--text-xs);
+    color: var(--faint);
+  }
+
+  /* ── 카테고리별 노드 목록 (캔버스의 텍스트 판본) ── */
+  .graph-list-title {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-xl);
+  }
+  .graph-list-desc {
+    max-width: var(--measure);
+    margin: 0 0 var(--space-8);
+    color: var(--muted);
+    font-size: var(--text-sm);
+  }
+  .graph-group {
+    margin-bottom: var(--space-12);
+  }
+  .graph-group[hidden] {
+    display: none;
+  }
+  .graph-nodes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: var(--space-1) var(--space-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .graph-nodes li {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    padding: var(--space-1) 0;
+    border-bottom: var(--hairline-w) solid transparent;
+  }
+  .graph-nodes a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: var(--text-sm);
+  }
+  .graph-nodes a:hover,
+  .graph-nodes a:focus-visible {
+    color: var(--signal);
+  }
+  .graph-deg {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--faint);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 560px) {
+    .graph-canvas-wrap {
+      height: clamp(18rem, 52vh, 26rem);
     }
   }
 }

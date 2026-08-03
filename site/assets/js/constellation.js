@@ -2,38 +2,22 @@
 //   (1) 히어로 ambient 그래프: graph.json을 캔버스에 렌더, 노드 drift + 엣지.
 //   (2) 카드 neighborhood hover: 카드에 마우스를 올리면 연결된 카드를 하이라이트.
 //
-// 색은 도메인당 signal 하나 — core는 aqua, physical은 amber. CSS 토큰을 런타임에
-// 읽으므로 light/dark 모두 따라간다.
+// 색은 도메인당 signal 하나 — core는 aqua, physical은 amber. 토큰 읽기·캔버스 fit·
+// 인접 계산 같은 공통 부품은 graph-core.js(window.GraphCore)가 갖고 있고 /graph/ 탐색기와
+// 공유한다. CSS 토큰을 런타임에 읽으므로 light/dark 모두 따라간다.
+// 노드 도메인은 graph.json 의 domain 필드다 — 카테고리 목록을 여기 적어 두지 않는다.
 // prefers-reduced-motion 시 정지 프레임 1장만 그린다.
 
 (function () {
   'use strict';
-  var reduce =
-    window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // 카테고리 → 도메인. 빌드 쪽 단일 소스는 site/lib/domains.mjs 이고, 이 파일은
-  // 번들러 없이 그대로 브라우저에 실리므로 physical 카테고리만 여기에 옮겨 둔다.
-  // domains.mjs 의 CATEGORY_DOMAIN 에 physical 항목을 추가하면 여기도 같이 고친다.
-  var PHYSICAL_CATEGORIES = ['physical-ai'];
-
-  function isPhysical(category) {
-    return PHYSICAL_CATEGORIES.indexOf(category) !== -1;
-  }
+  var GC = window.GraphCore;
+  var reduce = GC ? GC.reduceMotion() : false;
 
   // ── (1) 히어로 constellation ───────────────────────────────────────────────
-  function token(name, fallback) {
-    var v = getComputedStyle(document.documentElement).getPropertyValue(name);
-    return (v && v.trim()) || fallback;
-  }
-
   function initHero(canvas) {
     var url = canvas.dataset.graph;
     if (!url) return;
-    fetch(url)
-      .then(function (r) {
-        return r.json();
-      })
+    GC.fetchGraph(url)
       .then(function (graph) {
         runHero(canvas, graph);
       })
@@ -52,8 +36,7 @@
     });
 
     var W = 0,
-      H = 0,
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      H = 0;
     var maxDeg = 1;
     nodes.forEach(function (n) {
       if (n.degree > maxDeg) maxDeg = n.degree;
@@ -69,17 +52,14 @@
         ph: (i * 1.7) % (Math.PI * 2),
         sp: 0.6 + (((i * 53) % 100) / 100) * 0.8,
         r: 1.2 + 2.6 * (n.degree / maxDeg),
-        phys: isPhysical(n.category),
+        phys: GC.isPhysical(n),
       };
     });
 
     function resize() {
-      var rect = canvas.getBoundingClientRect();
-      W = rect.width;
-      H = rect.height;
-      canvas.width = Math.max(1, Math.floor(W * dpr));
-      canvas.height = Math.max(1, Math.floor(H * dpr));
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var size = GC.fitCanvas(canvas, ctx);
+      W = size.w;
+      H = size.h;
     }
 
     function pos(p, t) {
@@ -90,15 +70,12 @@
     }
 
     function draw(t) {
-      var signal = token('--signal', '#5eead4');
-      var dim = token('--signal-dim', 'rgba(94,234,212,.25)');
-      var faint = token('--faint', '#5a6373');
-      var signalP = token('--signal-physical', '#f0a868');
+      var pal = GC.palette();
       ctx.clearRect(0, 0, W, H);
 
       // 엣지
       ctx.lineWidth = 1;
-      ctx.strokeStyle = dim;
+      ctx.strokeStyle = pal.signalDim;
       for (var e = 0; e < edges.length; e++) {
         var si = index[edges[e].source];
         var ti = index[edges[e].target];
@@ -118,17 +95,24 @@
         ctx.beginPath();
         ctx.arc(pt.x, pt.y, P[i].r, 0, Math.PI * 2);
         ctx.globalAlpha = P[i].phys && !hub ? 0.55 : 1;
-        ctx.fillStyle = P[i].phys ? signalP : hub ? signal : faint;
+        ctx.fillStyle = P[i].phys ? pal.physical : hub ? pal.signal : pal.faint;
         ctx.fill();
       }
       ctx.globalAlpha = 1;
     }
 
     resize();
-    window.addEventListener('resize', resize);
+    GC.onResize(canvas, function () {
+      resize();
+      if (reduce) draw(0);
+    });
 
     if (reduce) {
+      // 정지 프레임 1장 — 애니메이션 경로와 달리 테마가 바뀌면 직접 다시 그려야 한다.
       draw(0);
+      GC.onThemeChange(function () {
+        draw(0);
+      });
       return;
     }
     var start = performance.now();
@@ -170,7 +154,7 @@
 
   function init() {
     var canvas = document.querySelector('.hero-constellation');
-    if (canvas) initHero(canvas);
+    if (canvas && GC) initHero(canvas);
     initCards();
   }
 
