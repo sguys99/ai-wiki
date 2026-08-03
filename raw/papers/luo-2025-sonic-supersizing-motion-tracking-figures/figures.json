@@ -1,0 +1,128 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig01.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: SONIC enables diverse humanoid tasks through a universal control policy that handles diverse input",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig02.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig02.png",
+    "page": 3,
+    "caption": "teleoperation (Sec. 2.4), and loco-manipulation (Sec. 2.5), shown in Fig. 1.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig03.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 2: Scaling (a–c): Effect of scaling data size, model size, and compute on success rate and MPJPE for test-content (novel motion",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig04.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig04.png",
+    "page": 5,
+    "caption": "Scaling Up Motion Tracking. In Fig. 2 (top row), we analyze scaling along three axes. For data size, we compare",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig05.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig05.png",
+    "page": 6,
+    "caption": "walking, injured walking, happy walking, and stealth walking, as shown in the first two rows of Fig. 3. The",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig06.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig06.png",
+    "page": 7,
+    "caption": "Figure 3: Top two rows: interactive navigation switching between different velocities, directions, and styles.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig07.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig07.png",
+    "page": 7,
+    "caption": "As shown in Fig. 4 (top), SONIC also supports a real-time, multi-modal control framework, enabled by our",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig08.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig08.png",
+    "page": 8,
+    "caption": "Figure 4: Video teleoperation, multi-modal control, and VR whole-body teleoperation.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig09.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig09.png",
+    "page": 10,
+    "caption": "Figure 5: VLA-driven loco-manipulation tasks. (a) Apple-to-plate pick-and-place via 3-point interface. (b) Carrot pickup. (c) Scrub",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig10.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig10.png",
+    "page": 12,
+    "caption": "seen in Fig. 6. The source dataset contains approximately 700 hours of human motion. After retargeting to the",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig11.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig11.png",
+    "page": 12,
+    "caption": "Fig. 7 provides an overview of our approach, SONIC, a universal humanoid motion tracking framework that",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig12.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig12.png",
+    "page": 13,
+    "caption": "Figure 6: Random samples from our motion dataset.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig13.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig13.png",
+    "page": 14,
+    "caption": "Figure 7: SONIC enables universal humanoid motion tracking through a universal control policy that",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig14.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig14.png",
+    "page": 19,
+    "caption": "Figure 8: Latent space alignment with and without consistency losses, visualized on a crawling motion. (a–b)",
+    "strategy": "page-region",
+    "curated": false
+  }
+]

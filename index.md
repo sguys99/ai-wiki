@@ -57,6 +57,9 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하는 방법.
 
 - [[physical-ai/hou-2026-world-model-for-robot-learning|World Model for Robot Learning (Survey)]] — NTU MARS 주도로 Berkeley·Stanford·Oxford 등 9개 기관이 함께 쓴 43페이지 서베이. 정책 결합 방식 5분류(IDM·single-backbone·MoE/MoT·unified VLA·latent), 학습된 시뮬레이터 역할, 로봇 비디오 world model 4단계로 문헌을 가르고, 병목이 "그럴듯한 미래"에서 "행동에 인과적으로 정렬된 실행 가능한 미래"로 옮겨갔다고 진단한다 (2026, paper)
+- [[physical-ai/luo-2025-sonic-supersizing-motion-tracking|SONIC (NVIDIA GEAR)]] — humanoid 제어가 스케일링되지 않은 원인을 학습 과제 선택에서 찾고, mocap 프레임마다 목표 포즈가 주어지는 motion tracking으로 갈아탄 전신 제어 foundation model. 파라미터 1.2M→42M·100M+ 프레임·21,000 GPU hours로 밀어 test-content 성공률 99.6%(MPJPE-L 23.8mm)를 얻고, 속도 추종 specialist OpenHomie의 생존율 43.0%를 범용 트래커로 98.5%까지 끌어올렸다. robot·human·hybrid 세 입력을 FSQ로 묶은 universal token을 VLA 행동 공간으로 쓰면 SMPL 포즈 직접 예측(27%)보다 성공률이 68%로 올라간다 (2025, paper)
+- [[physical-ai/nvlabs-gr00t-wholebodycontrol|GR00T-WholeBodyControl (repo)]] — SONIC의 공식 구현. Isaac Lab 학습 코드, Jetson Orin용 C++/TensorRT 배포 스택, Unitree G1 체크포인트 2종(200ms·80ms lookahead), VR teleoperation 데이터 수집 파이프라인이 한 monorepo에 있고 GR00T N1.5/N1.6이 쓴 이전 세대 decoupled WBC와 MotionBricks 프리뷰가 함께 산다. 코드 Apache-2.0 / 가중치 NVIDIA Open Model License (2026, repo)
+- [[physical-ai/nvlabs-2026-gear-sonic-project-page|GEAR-SONIC 프로젝트 페이지]] — SONIC 공식 데모 사이트. 텍스트는 abstract뿐이고 실질 내용이 영상이라, MPJPE 수치로는 판단하기 어려운 걸음걸이·모달리티 전환·페달 밟기의 동작 품질을 육안으로 확인하는 용도 (2026, article)
 
 ## Agents (agents)
 
