@@ -56,6 +56,8 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 
 VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하는 방법.
 
+- [[physical-ai/hou-2026-world-model-for-robot-learning|World Model for Robot Learning (Survey)]] — NTU MARS 주도로 Berkeley·Stanford·Oxford 등 9개 기관이 함께 쓴 43페이지 서베이. 정책 결합 방식 5분류(IDM·single-backbone·MoE/MoT·unified VLA·latent), 학습된 시뮬레이터 역할, 로봇 비디오 world model 4단계로 문헌을 가르고, 병목이 "그럴듯한 미래"에서 "행동에 인과적으로 정렬된 실행 가능한 미래"로 옮겨갔다고 진단한다 (2026, paper)
+
 ## Agents (agents)
 
 Agentic 시스템, tool use, planning, LangGraph 등.
