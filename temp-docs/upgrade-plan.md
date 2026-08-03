@@ -713,12 +713,147 @@ UI 문구는 `선수` 하나(2자)뿐이라 문체 가이드 직접 점검으로
 - overview 본문의 `## 이 페이지의 한계`가 "지금은 자료가 없다"를 세 곳(요약·현황 표·한계)에서 반복한다. 자료가 들어오면 중복을 줄일 지점이다
 - 태그 6종이 새로 생겼는데 전부 페이지 1개짜리다. `/tags/vla/` 같은 페이지가 이 로드맵 하나만 담는 게 어색하지 않은지 — 자료가 들어오기 전 씨앗으로 둔 판단이다
 
-### Phase 7 — 디자인 문서 개정과 검증
+### Phase 7 — 디자인 문서 개정과 검증 ✅ 완료 (2026-08-03)
 
-- [ ] `DESIGN.md` v3.0 — frontmatter `colors`에 도메인 토큰 추가, `components`에 태그 페이지·그래프 페이지·스텝 컴포넌트 추가
-- [ ] `DESIGN.md`의 "The Signal Principle"을 "도메인당 강조색 1개, 전역 크롬은 아쿠아 고정"으로 개정하고 Don'ts의 두 번째 강조색 금지 항목을 개정 이유와 함께 갱신
-- [ ] `DESIGN.md` Known Gaps 갱신
-- [ ] 전체 빌드·프리뷰 검증 (아래 검증 절차)
+- [x] `DESIGN.md` v3.0 — frontmatter `colors`에 도메인 토큰 추가, `components`에 태그 페이지·그래프 페이지·스텝 컴포넌트 추가
+- [x] `DESIGN.md`의 "The Signal Principle"을 "도메인당 강조색 1개, 전역 크롬은 아쿠아 고정"으로 개정하고 Don'ts의 두 번째 강조색 금지 항목을 개정 이유와 함께 갱신
+- [x] `DESIGN.md` Known Gaps 갱신
+- [x] 전체 빌드·프리뷰 검증 (아래 검증 절차)
+
+#### 실행 기록
+
+변경 파일은 `DESIGN.md` 하나다(+178 / −28). 코드는 건드리지 않았다.
+
+문서 언어부터 확인했다. `DESIGN.md`는 영문 문서이고 한글은 식별자(`## 학습 경로`·`태그`·`그래프`·`원문 · 소스`) 34자뿐이다. 그래서 신규 산문도 영문으로 썼고 `humanize-korean`은 대상이 아니다 — 한글 산문 1,000자 기준은 애초에 적용되지 않는다.
+
+frontmatter는 `version: 2.0 → 3.0`, `updated: 2026-08-03` 신설, `description` 전면 재작성이다. `colors`에 `signal-physical`·`signal-physical-dim`을 다크·라이트 4개 키로 넣었고, 카테고리 목록·기제·단일 소스를 담은 `domains:` 블록을 새로 뒀다. `components`는 16개 → 26개다. 신규 10개는 `band-empty`·`search-facets`·`tags-page`·`tag-cloud`·`tag-detail`·`wiki-tags`·`graph-explorer`·`graph-status`·`graph-list`·`study-path`이고, 값은 전부 `styles.css`·`templates.mjs`에서 실제로 읽은 것이다(캔버스 높이 `clamp(22rem,60vh,40rem)`, 태그 클라우드 4단계 임계값 `1/≥2/≥5/≥10`, `.study-n` 2rem→1.6rem 등). 기존 `site-header`·`home-filter` note도 실제 마크업에 맞춰 고쳤다 — 헤더에 `태그`·`그래프`가 늘었고 필터 칩이 `data-domain`을 든다.
+
+**Signal Principle 개정의 논리.** "강조색은 아쿠아 하나"를 "도메인당 강조색 하나"로 바꾸되, 화면 어느 지점에서도 강조색이 하나라는 성질은 유지된다는 점을 논지의 축으로 삼았다. 바뀐 건 강조색의 개수가 아니라 *어느 색인지를 스코프가 정한다*는 부분이다. 문서에 세 가지를 근거로 적었다. 기제는 토큰 재지정 한 블록이고 컴포넌트는 `var(--signal)`만 읽는다는 것, 스코프가 붙는 지점을 표로 열거한 것(`<main>` / 밴드 / 필터 칩 / 태그 그룹 / 그래프 그룹, 그리고 헤더·푸터·검색 모달은 **절대 안 붙음**), 크롬 제외가 관례가 아니라 구조라는 것 — `layout()`에서 헤더·푸터가 `<main>`의 형제라 도메인 스코프가 닿을 수 없다.
+
+**Don'ts는 지우지 않고 이력을 남겼다.** 첫 항목이 v2.0까지 절대 금지였음을 인용하고, 그 금지가 막으려던 실패 모드(상태색→카테고리색→브랜드색이 쌓여 강조가 무의미해지는 표류)를 적은 뒤, 무엇이 바뀌어 예외가 생겼는지를 썼다 — 저장소가 두 주제를 담게 됐고 앰버는 그 사실 하나만 인코딩한다. 이어서 새 금지선 4개를 별도 항목으로 세웠다. 세 번째 강조색 금지 / 한 도메인에 두 번째 색 금지, 전역 크롬 착색 금지, 컴포넌트가 `--signal-physical`을 직접 읽는 것 금지(캔버스 스크립트만 예외 — cascade가 안 되므로), 색 판정용 카테고리 목록 하드코딩 금지(Phase 5가 지운 중복). Iteration Guide에도 항목 3을 새로 넣어 도메인 추가 시 손댈 두 지점을 못박았다.
+
+Known Gaps는 4개 묶음으로 재편했다. Accessibility / Structure and scale / Token hygiene / **Resolved in v3.0**이다. 마지막 묶음에 캔버스 카테고리 목록 이중 관리(Phase 5 해소)와 태그가 장식이었던 문제(Phase 4 해소)를 취소선으로 남겼다.
+
+라이트 아쿠아 미달은 Phase 2 수치를 그대로 옮기되 직접 재계산해 대조했다 — `#0fb89b`는 bg 2.37 · surface 2.52 · surface-2 2.26으로 4.5:1도 3:1도 못 넘는다. 신규 앰버가 전 조합 통과(다크 7.97~9.66 · 라이트 4.53~5.04)라 "새로 넣은 색이 접근성이 좋고 기존 색이 아니다"라는 구도를 문서에 명시했다. 손대지 않은 이유(주 강조색 재선정은 도메인 추가의 부수 효과일 수 없다)와 수정 시 필요한 값도 적었는데, **초안에 쓴 `#0a8f78`이 실제로는 3.63~4.03이라 4.5:1을 못 넘긴다는 걸 검산에서 잡아 `#0d7a68`(4.72~5.25)로 고쳤다.** 문서가 통과 못 하는 값을 해법으로 제시할 뻔했다.
+
+Phase 4~6의 미해결 항목 중 디자인 관점에서 살아 있는 것은 Known Gaps로 승격했다 — 706개 태그 클라우드 길이(70%가 1회짜리), 카드 stretched-link 구조 변경의 회귀 위험, 561~700px 헤더 밀집(v3.0에서 버튼 2개 증가), 그래프 도메인 범례 부재, `## 학습 경로`에 산문을 쓰면 사이트에서 사라지는 제약, 그리고 기존 계획서 Known Gaps에 있던 이미지 `width`/`height` 누락(CLS).
+
+**"Pending Visual Review" 절을 새로 뒀다.** 이 세션이 헤드리스라 판정할 수 없는 10개 항목을 "open, not passed"로 명시했다. 통과했다고 적지 않았다.
+
+##### 부수 수정 1건 (기존 결함)
+
+`DESIGN.md` frontmatter가 js-yaml로 파싱되지 않았다. `description`이 따옴표 없는 plain scalar인데 본문에 `role: Space Grotesk`처럼 콜론+공백이 들어 있어서다. `git show HEAD:DESIGN.md`로 대조해 **v2.0에서도 이미 깨져 있던 기존 결함**임을 확인했다. 빌드가 이 파일을 읽지 않아(`site/lib`·`build.mjs`·워크플로 전수 grep에서 `DESIGN` 참조 0건) 무해했지만, 이번에 기계가 읽을 만한 `domains:` 구조를 넣었으므로 `description` 값을 큰따옴표로 감쌌다. 값 문자열은 한 글자도 안 바뀌었고(내부에 `"`·`\` 없음을 assert로 확인) 이후 `gray-matter`로 정상 파싱된다.
+
+#### 전체 검증
+
+```
+[build] BASE='(local)'  ROOT=/Users/kmyu/Desktop/project/ai-wiki
+[content] wiki pages: 122  ·  catalog entries: 122  ·  sections: 8
+[tags] tags: 706  ·  page-tag links: 1322  ·  merged slugs: 3
+[tags]   merged 'rag' ← rag , RAG (대표 표기 'rag')
+[tags]   merged 'swe-bench' ← SWE-bench , swe-bench (대표 표기 'SWE-bench')
+[tags]   merged 'skillsbench' ← SkillsBench , skillsbench (대표 표기 'SkillsBench')
+[study] study_path 선언 페이지: 1  ·  단계: 2  ·  미해석 참조: 0  ✓
+[graph] nodes: 122  ·  edges: 628
+[build] copied wiki/assets → dist/assets
+[build] copied site chrome + fonts → dist/static
+[render] pages rendered: 122
+[render] tag pages rendered: 706 (+ /tags/ index)
+[render] graph page rendered: 7 category groups
+[render] about page rendered
+[links] unresolved wikilinks: 0  ✓
+[build] done.
+```
+
+`dates.mjs self-check ✓`.
+
+| 항목 | Phase 6 | Phase 7 |
+|---|---|---|
+| wiki pages / catalog / sections | 122 / 122 / 8 | 122 / 122 / 8 |
+| graph nodes / edges | 122 / 628 | 122 / 628 |
+| pages rendered | 122 | 122 |
+| 태그 / page-tag links / merged | 706 / 1,322 / 3 | 706 / 1,322 / 3 |
+| 태그 페이지 | 706 (+ 인덱스) | 706 (+ 인덱스) |
+| study_path 페이지 / 단계 / 미해석 | 1 / 2 / 0 | 1 / 2 / 0 |
+| dist HTML | 832 | 832 |
+| unresolved wikilinks / `[about] WARN` | 0 / 0 | 0 / 0 |
+| 카테고리 불일치 / 중복 stem / 카탈로그 고아 / 미인덱스 | 0 | 0 |
+| Pagefind pages / words / filters / sorts | 122 / 34,274 / 2 / 0 | 122 / 34,274 / 2 / 0 |
+
+**전 수치 동일. 경고 신규 0건.** 문서만 고쳤으니 그래야 맞다.
+
+`BASE=/ai-wiki` 빌드도 경고 0이고 `data-graph="/ai-wiki/graph.json"` · `data-base="/ai-wiki/"` · 헤더 `/ai-wiki/tags/`·`/ai-wiki/graph/` · `src="/ai-wiki/static/js/graph-core.js"`·`graph-explorer.js` · 학습 경로 단계 링크 `/ai-wiki/llms/...`·`/ai-wiki/agents/...`가 모두 접두된다. 홈·그래프·태그 인덱스에서 미접두 잔여 0건. 확인 후 기본 빌드로 되돌렸다.
+
+프리뷰(4173) 200 확인 16경로: `/` `/about/` `/graph/` `/graph.json` `/tags/` `/tags/rag/` `/tags/vla/` `/tags/physical-ai/` `/tags/swe-bench/` `/overviews/physical-ai-overview/` `/agents/lee-hoyeon-2026-harness-engineering/` `/llms/cai-2026-vlm3-vision-language-models/` `/pagefind/pagefind.js` `/pagefind/pagefind-entry.json` `/static/js/graph-core.js` `/static/js/graph-explorer.js`. 확인 후 서버 종료.
+
+오케스트레이터 재검증: 빌드 콘솔과 `dates.mjs self-check ✓`가 위와 동일하다. `gray-matter`로 `DESIGN.md` frontmatter를 실제 파싱해 `version: 3` · `updated: 2026-08-03` · colors 22키(`signal-physical` 계열 포함) · `domains:` 블록 존재 · components 26개를 확인했다. Don'ts 첫 항목에 v2.0 금지 원문 인용과 개정 이유가 남아 있고 새 금지선 4개가 뒤따른다. `git status`는 `M DESIGN.md` 한 줄이다.
+
+##### 계획서 "프리뷰에서 확인할 것" 9개 항목별 판정
+
+| # | 항목 | 판정 | 근거 |
+|---|---|---|---|
+| 1 | 홈 3번째 밴드 = Physical AI · 앰버 · 준비 중 | **정적 확인** (색은 육안) | 밴드 순서가 recent → database → llms → **physical-ai** → agents…로 `index.md` 순서 그대로다(카테고리 밴드 기준 3번째, 렌더 섹션 기준 4번째). 마크업 `<section class="band band-empty" id="physical-ai" data-band="physical-ai" data-domain="physical">`에 `band-empty-note` 1건 |
+| 2 | 필터 칩 physical-ai 클릭 · `#physical-ai` 해시 진입 | **정적 확인** (동작은 육안) | 칩 `<a class="filter-chip" href="#physical-ai" data-filter="physical-ai" data-domain="physical" role="button" aria-pressed="false">` 존재, 앵커 대상 밴드 실재. JS 없이도 앵커 점프가 성립 |
+| 3 | 히어로 캔버스 physical 노드 색 | **확인 불가 — 자료 대기** | physical-ai 페이지 0개라 `graph.json`에 `domain:'physical'` 노드가 없다. dist 전체에서 `data-domain="physical"`이 나오는 파일은 `index.html`(빈 밴드+칩) 하나뿐. Phase 8 이후 항목 |
+| 4 | wiki → 태그 칩 → 태그 페이지 → 카드 → 원 페이지 왕복 | **정적 확인 (완전)** | `applications/dnotitia-akb`가 `/tags/{slug}/` 링크를 하단 `nav.wiki-tags`로 내보내고, `/tags/pgvector/`가 `class="card-link" href="/applications/dnotitia-akb/"`로 되돌아온다 |
+| 5 | `/tags/` `/graph/` 직접 접근 + BASE 빌드 경로 | **정적 확인 (완전)** | 위 200 목록 + BASE 접두 검증. `/graph/`에 `role="img"` · 필터 칩 8개(전체+7) · `graph-group` 7개 |
+| 6 | ⌘K 카테고리 패싯이 결과를 줄이는지 | **부분 정적** (실제 축소는 육안) | Pagefind가 filters 2를 인덱싱하고 `dist/pagefind/filter/`에 인덱스 파일 2개가 나온다. `data-pagefind-filter="category:*"` 페이지 수가 Agents 49 · Applications 31 · Database 25 · Overviews 10 · LLMs 3 · Etc 2 · Evaluations 2 = **122**로 전 페이지를 겹침 없이 분할한다. `search.js`에 `pagefind.filters()`·`facet-chip`·`totalFilters` 참조 9건 |
+| 7 | 다크·라이트 토글 · 두 테마 앰버 대비비 | **대비비 정적 재계산 / 토글은 육안** | WCAG 2.x 상대휘도로 직접 재계산: 앰버 다크 9.66/8.81/7.97 · 라이트 4.74/5.04/4.53 전부 통과, 아쿠아 라이트 2.37/2.52/2.26 미달(Known Gaps 등재) |
+| 8 | 640 / 1024 / 1080px 브레이크포인트 | **육안 필요** | CSS 미디어쿼리 존재는 확인했으나 레이아웃 판정은 렌더링 필요 |
+| 9 | About 분류 목록의 physical-ai 링크 | **정적 확인 (완전)** | `dist/about/index.html`에 `<a class="wikilink" href="/#physical-ai">Physical AI</a>`, BASE 빌드에서 `/ai-wiki/#physical-ai`로 접두 |
+
+##### `deploy.yml` 경로 트리거 확인 (계획서 530행 검증)
+
+파일을 열어 확인했다. `on.push.paths`는 `wiki/**` · `index.md` · `README.md` · `CLAUDE.md` · `site/**` · `.github/workflows/deploy.yml` 6개다. 계획서가 주장한 `wiki/**`·`index.md`·`site/**`는 실제로 들어 있고 워크플로 수정은 불필요하다.
+
+다만 **Phase 7 변경만으로는 배포가 트리거되지 않는다.** `DESIGN.md`도 `temp-docs/**`도 목록에 없다. 이건 의도된 동작이다(주석이 "문서 전용 변경은 무시"라고 적고 있다). Phase 5·6 푸시에서 `site/**`·`wiki/**`·`index.md`가 이미 나갔으므로 사이트 배포는 그때 걸렸다. Phase 7 커밋 이후 재배포가 필요하면 `workflow_dispatch`로 수동 실행한다.
+
+#### 남은 사람 확인 항목 (Phase 2~7 누적)
+
+전부 `DESIGN.md`의 "Pending Visual Review" 절에 영문으로도 남겼다.
+
+**최우선 — 회귀 위험 순**
+
+- **카드 stretched-link 구조 변경**(Phase 4). 다크·라이트에서 카드 전체 클릭, 호버 보더 + `translateY(-2px)`, 키보드 Tab 포커스(`:focus-visible` → `:focus-within` 전환), 칩만 눌렀을 때 카드가 아니라 태그 페이지로 가는지
+- **그래프 배치 육안 확인**(Phase 5). 클러스터가 읽히는지, FR 상수(`k`·`TEMP 0.16`·`GRAV 2.0`·300 iteration) 조정 필요 여부
+- **스텝 컴포넌트 육안 확인**(Phase 6). 번호 원이 리딩 컬럼 왼쪽 여백에 앉는 위치, 위아래 hairline이 `.prose` 다른 요소와 충돌하는지
+
+**레이아웃·브레이크포인트**
+
+- 561~700px 헤더 밀집. Phase 4에서 태그 버튼, Phase 5에서 그래프 버튼이 늘어 워드마크와 붙는지 — ≤560px 붕괴 임계값을 올려야 할 수 있다
+- 640 / 1024 / 1080px에서 태그 인덱스·태그 상세·그래프 페이지·스텝 레이아웃
+- 640px 이하 스텝: 번호 원 1.6rem, 들여쓰기 `--space-8`. 제목이 두 줄로 감길 때 baseline 어긋남
+- 빈 밴드 안내 박스 세로 여백(`--space-6` 상하)이 카드 그리드 자리와 비교해 허전한지
+- ⌘K 패싯 줄이 모달 `max-height:70vh`를 얼마나 먹는지, 640px 이하에서 칩 7개가 몇 줄로 감기는지
+- 모바일 360px 그래프 겹침 18쌍. 노드 반경 하한 `0.72`나 캔버스 높이 `clamp(18rem,52vh,26rem)` 조정 여부
+- 축별 정규화로 1440px 같은 넓은 화면에서 타원이 과하게 퍼지는지
+
+**색·대비**
+
+- 다크·라이트 육안 확인 전반. 라이트 앰버가 4.53~5.04로 통과선에 가깝다
+- 빈 밴드 점선 보더가 `--signal-dim`(라이트 알파 0.18)이라 실제로 보이는지
+- 캔버스 호버 라벨이 다크·라이트 양쪽에서 읽히는지, 긴 제목 클리핑
+- **라이트 아쿠아 `#0fb89b` 미달을 고칠지 여부.** 고친다면 `#0d7a68` 수준까지 어둡게 가야 하고 활성 칩 채움색까지 같이 어두워진다 — 사이트 인상이 바뀌는 결정
+
+**콘텐츠 대기 (Phase 8 이후)**
+
+- 히어로 캔버스에서 앰버 노드가 구분되는지, `globalAlpha 0.55`가 적절한지
+- 활성 필터 칩(`color: var(--bg)` on 앰버)이 physical 도메인에서 읽히는지
+- physical wiki 페이지에서 헤더·푸터·검색 모달이 아쿠아를 유지하는지
+- `.tag-cloud-item[data-size='4']`가 physical 그룹에서 앰버로 나오는지
+- core 태그 페이지에 physical 페이지 카드가 섞였을 때 카드가 아쿠아로 나오는 게 어색한지
+- physical 페이지가 학습 경로를 선언했을 때 번호 원·링크 호버가 앰버로 나오는지
+- 그래프 도메인 범례를 넣을지 — 색만으로 충분한지
+- 새로 생긴 태그 6종이 전부 페이지 1개짜리다. `/tags/vla/`가 로드맵 하나만 담는 게 어색하지 않은지
+
+**정책 판단**
+
+- `## 학습 경로` 섹션에 산문을 쓰면 사이트에서 사라진다. 이 관례를 `CLAUDE.md`에 적을지
+- 706개 태그 클라우드에 빈도 하한을 두고 접을지
+- 학습 경로 단계 제목이 `index.md` 표시명을 따르는데, 표시명 없는 페이지는 frontmatter `title` 전문이 그대로 나온다
+- `.study-prereq`가 flex라 선수 페이지 3개 이상이면 여러 줄로 감긴다 — 미실측
+- 터치 두 번 탭 규칙이 상태줄 링크만으로 발견 가능한지
+- overview 본문의 `## 이 페이지의 한계`가 "자료 없음"을 세 곳에서 반복한다
 
 ### Phase 8 — 첫 physical-ai 자료 적재
 
