@@ -61,8 +61,11 @@
     --muted: #8a93a3;
     --faint: #5a6373;
     --hairline: #232a38;
-    --signal: #5eead4; /* luminous aqua — 단일 강조 */
+    --signal: #5eead4; /* luminous aqua — core 도메인 강조 */
     --signal-dim: rgba(94, 234, 212, 0.25); /* edge/glow/selection */
+    /* physical 도메인 강조 (amber). 대비비 dark bg 9.66:1 / surface 8.81:1 */
+    --signal-physical: #f0a868;
+    --signal-physical-dim: rgba(240, 168, 104, 0.25);
 
     /* 타입스케일 (모듈러 ~1.2, rem) */
     --text-xs: 0.78rem;
@@ -109,7 +112,18 @@
     --hairline: #e3e7ee;
     --signal: #0fb89b;
     --signal-dim: rgba(15, 184, 155, 0.18);
+    /* 대비비 light bg 4.74:1 / surface 5.04:1 / surface-2 4.53:1 */
+    --signal-physical: #a85b12;
+    --signal-physical-dim: rgba(168, 91, 18, 0.18);
     color-scheme: light;
+  }
+
+  /* 도메인 강조색 스코프 전환. 컴포넌트가 전부 --signal을 읽으므로 토큰만 바꾸면
+     카드 보더·호버·칩·캔버스 노드가 함께 따라온다. 헤더·푸터·검색 모달 같은
+     전역 크롬은 이 셀렉터 바깥이라 아쿠아를 유지한다. */
+  [data-domain='physical'] {
+    --signal: var(--signal-physical);
+    --signal-dim: var(--signal-physical-dim);
   }
 }
 

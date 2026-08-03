@@ -12,6 +12,7 @@
 
 import { href, absUrl, SITE } from './config.mjs';
 import { escapeHtml } from './markdown.mjs';
+import { domainOf } from './domains.mjs';
 
 const GH_URL = `https://github.com/${SITE.repo}`;
 
@@ -20,8 +21,10 @@ const FOUC_SCRIPT = `(function(){try{var t=localStorage.getItem('theme');if(!t)t
 
 // ── 공유 셸 ───────────────────────────────────────────────────────────────────
 //
-// opts: { title, description?, body, mainClass?, head?, scripts?:[src,...], path? }
+// opts: { title, description?, body, mainClass?, head?, scripts?:[src,...], path?, domain? }
 //   - path: 페이지의 논리 경로('/', '/about/', '/agents/x/') — OG/canonical 절대 URL 생성용.
+//   - domain: 'core' | 'physical' — <main>에 data-domain 으로 붙어 강조색 토큰을 스코프한다.
+//     헤더·푸터는 <main> 바깥이라 언제나 아쿠아다.
 export function layout(opts) {
   const {
     title,
@@ -31,6 +34,7 @@ export function layout(opts) {
     head = '',
     scripts = [],
     path = '/',
+    domain = '',
   } = opts;
   const pageTitle = title === SITE.title ? title : `${title} · ${SITE.title}`;
   const canonical = absUrl(path);
@@ -72,7 +76,7 @@ ${head}
 <body>
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 ${header()}
-<main id="main"${mainClass ? ` class="${mainClass}"` : ''}>
+<main id="main"${mainClass ? ` class="${mainClass}"` : ''}${domain ? ` data-domain="${escapeHtml(domain)}"` : ''}>
 ${body}
 </main>
 ${footer()}
@@ -189,7 +193,7 @@ export function home(data) {
       : []),
     ...visible.map(
       (s) =>
-        `<a class="filter-chip" href="#${escapeHtml(s.slug)}" data-filter="${escapeHtml(s.slug)}" role="button" aria-pressed="false">${escapeHtml(s.label)}<span class="filter-count">${s.pages.length}</span></a>`
+        `<a class="filter-chip" href="#${escapeHtml(s.slug)}" data-filter="${escapeHtml(s.slug)}" data-domain="${escapeHtml(domainOf(s.slug))}" role="button" aria-pressed="false">${escapeHtml(s.label)}<span class="filter-count">${s.pages.length}</span></a>`
     ),
   ].join('\n      ');
   const filterBar = `<nav class="home-filter" aria-label="카테고리 필터">
@@ -200,7 +204,7 @@ export function home(data) {
 
   const bandSection = (s, extraClass = '') => {
     const cards = s.pages.map((p) => card(p, degree, adjacency.get(p.id))).join('\n');
-    return `<section class="band${extraClass ? ` ${extraClass}` : ''}" id="${escapeHtml(s.slug)}" data-band="${escapeHtml(s.slug)}" aria-labelledby="band-${escapeHtml(s.slug)}">
+    return `<section class="band${extraClass ? ` ${extraClass}` : ''}" id="${escapeHtml(s.slug)}" data-band="${escapeHtml(s.slug)}" data-domain="${escapeHtml(domainOf(s.slug))}" aria-labelledby="band-${escapeHtml(s.slug)}">
   <div class="band-head">
     <h2 class="band-name" id="band-${escapeHtml(s.slug)}">${escapeHtml(s.label)}</h2>
     <span class="band-count">${s.pages.length}</span>
@@ -340,6 +344,7 @@ ${tocItems}
     description: page.desc || SITE.description,
     body,
     mainClass: 'wiki',
+    domain: domainOf(page.category),
     path: `/${page.category}/${page.stem}/`,
     scripts: ['/static/js/reader.js'],
   });

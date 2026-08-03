@@ -215,16 +215,75 @@ humanize-korean은 strict 5인 파이프라인 대신 monolith fast path로 돌�
 
 페이지 0개인 physical-ai 섹션은 새 경고를 만들지 않았다. 현재는 홈에서 밴드가 걸러져 보이지 않으며, 이걸 "준비 중" 상태로 바꾸는 건 Phase 3의 몫이다.
 
-### Phase 2 — 도메인 2색
+### Phase 2 — 도메인 2색 ✅ 완료 (2026-08-03)
 
-- [ ] `site/lib/domains.mjs` 신설 — `CATEGORY_DOMAIN` 맵 + `domainOf(category)`, 기본 `'core'`
-- [ ] `styles.css` `@layer tokens`에 `--signal-physical`·`--signal-physical-dim` 다크/라이트 추가
-- [ ] `[data-domain='physical']` 오버라이드 블록 추가
-- [ ] `templates.mjs`: 홈 밴드 `<section class="band">`에 `data-domain` 부여
-- [ ] `templates.mjs`: `layout()`/`wiki()`에서 `page.category` → `data-domain`을 콘텐츠 셸에 부여
-- [ ] `templates.mjs`: 홈 필터 칩에 도메인 속성 부여
-- [ ] `constellation.js`: 두 signal 토큰을 읽어 `node.category` 기준으로 노드 색 분기
-- [ ] 다크·라이트 각각 대비비 측정 후 최종 색값 확정
+- [x] `site/lib/domains.mjs` 신설 — `CATEGORY_DOMAIN` 맵 + `domainOf(category)`, 기본 `'core'`
+- [x] `styles.css` `@layer tokens`에 `--signal-physical`·`--signal-physical-dim` 다크/라이트 추가
+- [x] `[data-domain='physical']` 오버라이드 블록 추가
+- [x] `templates.mjs`: 홈 밴드 `<section class="band">`에 `data-domain` 부여
+- [x] `templates.mjs`: `layout()`/`wiki()`에서 `page.category` → `data-domain`을 콘텐츠 셸에 부여
+- [x] `templates.mjs`: 홈 필터 칩에 도메인 속성 부여
+- [x] `constellation.js`: 두 signal 토큰을 읽어 `node.category` 기준으로 노드 색 분기
+- [x] 다크·라이트 각각 대비비 측정 후 최종 색값 확정
+
+#### 실행 기록
+
+`site/lib/domains.mjs`(28줄)가 카테고리→도메인 매핑의 단일 소스다. `DOMAINS`·`CATEGORY_DOMAIN`·`DEFAULT_DOMAIN`·`domainOf()`를 export하고 미등록 카테고리는 `core`로 떨어진다.
+
+`styles.css`는 토큰 4개와 오버라이드 한 블록만 늘었다. 다크 `--signal-physical: #f0a868` / `--signal-physical-dim: rgba(240,168,104,0.25)`, 라이트 `#a85b12` / `rgba(168,91,18,0.18)`. 새 컴포넌트는 만들지 않았다 — 기존 컴포넌트가 전부 `--signal`을 읽으므로 카드 보더·호버·칩이 자동으로 따라온다.
+
+`templates.mjs`는 `layout()`에 `domain` 옵션을 받아 `<main id="main">`에 속성을 건다. 헤더·푸터·검색 모달이 `<main>` 바깥이라 전역 크롬의 아쿠아 유지가 구조로 보장된다. 홈 밴드와 카테고리 필터 칩에도 같은 속성을 붙였고, 도메인이 없는 전체·최근 칩은 뺐다.
+
+`constellation.js`는 브라우저에 번들러 없이 그대로 실려 `domains.mjs`를 import할 수 없다. `PHYSICAL_CATEGORIES` 로컬 배열을 두고 단일 소스가 `domains.mjs`임을 주석에 적었다. 노드 색은 core가 종전대로 허브만 아쿠아·나머지 faint인데, physical은 초기 degree가 낮아 같은 규칙을 쓰면 도메인 색이 아예 안 보인다. 그래서 physical은 항상 앰버로 칠하되 허브가 아니면 `globalAlpha 0.55`를 준다.
+
+#### 대비비 측정
+
+계획서 후보값을 그대로 확정했다. 조정 없이 전 조합에서 4.5:1을 넘겼다. WCAG 2.x 상대휘도 공식을 노드 스크립트로 직접 계산했고 배경은 `styles.css`의 실제 토큰 값이다.
+
+| 테마 | 전경 | 배경 | 대비비 | 4.5:1 | 3:1 |
+|---|---|---|---|---|---|
+| dark | `#f0a868` | `--bg #0b0e14` | 9.66 | PASS | PASS |
+| dark | `#f0a868` | `--surface #141923` (카드) | 8.81 | PASS | PASS |
+| dark | `#f0a868` | `--surface-2 #1b2230` (칩) | 7.97 | PASS | PASS |
+| dark | `--bg #0b0e14` on `#f0a868` | signal 배경 (활성 칩·NEW 뱃지) | 9.66 | PASS | PASS |
+| light | `#a85b12` | `--bg #f7f8fa` | 4.74 | PASS | PASS |
+| light | `#a85b12` | `--surface #ffffff` (카드) | 5.04 | PASS | PASS |
+| light | `#a85b12` | `--surface-2 #f1f3f7` (칩) | 4.53 | PASS | PASS |
+| light | `--bg #f7f8fa` on `#a85b12` | signal 배경 | 4.74 | PASS | PASS |
+
+`-dim` 토큰은 반투명 오버레이(엣지·글로우·selection·blockquote 좌측선)라 단독 대비 기준 대상이 아니다. 합성 후 대비는 다크 1.64~1.70 · 라이트 1.26~1.28로 기존 아쿠아 dim과 같은 수준이다. 실제 UI 보더인 `.card:hover`·`.filter-chip.is-active`는 `--signal`을 직접 쓰므로 위 표의 통과값이 적용된다.
+
+측정 중 기존 문제가 하나 드러났다. 현행 라이트 아쿠아 `#0fb89b`는 세 배경 모두에서 2.26~2.52라 4.5:1은 물론 3:1도 못 넘긴다. 앰버가 아쿠아보다 접근성이 좋은 셈이다. Phase 2 범위 밖이라 손대지 않았고 Phase 7의 `DESIGN.md` Known Gaps에 올린다.
+
+#### 빌드 검증 (Phase 1 대비)
+
+```
+[content] wiki pages: 121  ·  catalog entries: 121  ·  sections: 8
+[graph] nodes: 121  ·  edges: 626
+[render] pages rendered: 121
+[links] unresolved wikilinks: 0  ✓
+[build] done.
+```
+
+`dates.mjs self-check ✓`. 모든 수치가 Phase 1과 동일하고 경고는 하나도 늘지 않았다.
+
+`dist/` grep 검증: 홈 밴드 8개·필터 칩 7개·wiki 페이지 121개 전부 `data-domain="core"`가 찍혔다. 홈과 About의 `<main>`은 도메인 중립이라 속성이 없다. physical-ai는 페이지가 0개라 홈에서 밴드·칩이 걸러져 `data-domain="physical"`이 실제 산출물에 나오지 않는다(Phase 3에서 해결). 대신 가짜 physical-ai 섹션·페이지를 렌더해 코드 경로를 직접 확인했고 세 지점 모두 정상이다.
+
+```
+밴드   : <section class="band" id="physical-ai" data-band="physical-ai" data-domain="physical" ...>
+필터칩 : <a class="filter-chip" href="#physical-ai" data-filter="physical-ai" data-domain="physical" ...>
+wiki셸 : <main id="main" class="wiki" data-domain="physical">
+```
+
+`BASE=/ai-wiki` 빌드도 경고 0이고 자산 경로가 `/ai-wiki/static/...`, `data-graph="/ai-wiki/graph.json"`으로 정상 접두된다. 확인 후 기본 빌드로 되돌렸다.
+
+#### 남은 사람 확인 항목
+
+- `npm run preview` 다크·라이트 육안 확인. 라이트 앰버가 4.53~5.04로 통과선에 가까워 실제 화면 느낌을 봐야 한다
+- physical-ai 페이지가 생긴 뒤 히어로 캔버스에서 앰버 노드가 구분돼 보이는지, `globalAlpha 0.55`가 적절한지
+- 활성 필터 칩(`color: var(--bg)` on 앰버 배경)이 physical 도메인에서 읽히는지
+- physical wiki 페이지에서 헤더·푸터·검색 모달이 아쿠아를 유지하는지
+- `constellation.js`의 `PHYSICAL_CATEGORIES`가 `domains.mjs`와 이중 관리다. Phase 5에서 `graph.json` 노드에 `domain` 필드를 넣어 한쪽으로 합치는 걸 검토한다
 
 ### Phase 3 — 빈 카테고리 준비 중 상태
 
