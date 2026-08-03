@@ -1,0 +1,288 @@
+# AI Wiki — Physical AI 도입 및 사이트 업그레이드 계획
+
+지금 wiki에 쌓인 121개 페이지는 전부 LLM 소프트웨어 쪽이다. RAG, 에이전트 하네스, 평가 프레임워크. `robot`·`embodied`·`VLA`·`sim2real` 키워드로 `wiki/`와 `sources/`를 전수 조사했지만 실제 physical AI 자료는 0건이었다. 히트한 것들은 "구체화"의 체화, NYT 기자 이름 Isaac, BRIGHT 벤치마크의 Robotics 스플릿 같은 오탐이다. 유일하게 인접한 페이지가 `wiki/llms/cai-2026-vlm3-vision-language-models.md` 하나다.
+
+physical AI를 본격적으로 공부하면 이 저장소는 성격이 다른 두 도메인을 담게 된다. 카테고리를 한 줄 추가하는 것으로는 부족하고 분류 규칙·태그 어휘·사이트의 시각 체계가 두 도메인을 구분할 수 있어야 한다. 목표는 셋이다. 자료가 들어오기 전에 분류 뼈대를 세워 두는 것, 홈에서 두 도메인이 눈으로 구분되게 하는 것, 자료가 늘었을 때 길을 찾을 네비게이션(태그·그래프·학습 경로)을 미리 깔아 두는 것.
+
+원본 콘텐츠는 단일 소스로 유지하며 사이트는 읽기 전용 렌더러라는 원칙은 그대로다.
+
+---
+
+## 사전 조사에서 확인한 사실
+
+- 카테고리는 사이트 코드에 하드코딩돼 있지 않다. `index.md`의 `## Label (slug)` 헤더가 유일한 등록처이고(`site/lib/content.mjs:23`의 `SECTION_RE`), 홈 밴드 순서도 파일 순서 그대로다(`content.mjs:156`).
+- 슬러그 정규식이 `[a-z0-9-]+`이라 `physical-ai`는 파서 수정 없이 통과한다.
+- 사이트 코드에서 카테고리 목록을 문자로 적어 둔 곳은 `site/lib/about.mjs:67` 한 줄뿐이다.
+- 페이지가 0개인 섹션은 홈·필터·통계에서 통째로 걸러진다(`site/lib/templates.mjs:162`, `site/build.mjs:130`).
+- 밴드에 `id="{slug}"`와 `data-band="{slug}"`가 이미 붙어 있어(`templates.mjs:203`) 도메인 스타일 훅으로 바로 쓸 수 있다.
+- `DESIGN.md`가 "두 번째 강조색을 넣지 말 것 — 아쿠아가 강조 체계 전부"를 금지 항목으로 적어 뒀다. 도메인 색 분리는 이 문서를 고쳐야 정당해진다.
+- 태그가 655종 쌓였는데 카드에 앞의 2개만 칩으로 나오고 인덱스도 필터도 없다(`templates.mjs:139-142`).
+- 기존 드리프트: `wiki/database/`의 `lumer-2025-rethinking-retrieval-from-traditional-retrieval`, `sguys99-langchain-study-vectorless-rag` 2건이 `index.md`에 빠져 있다.
+
+---
+
+## 확정된 결정 사항
+
+| 항목 | 결정 |
+|---|---|
+| 분류 구조 | 단일 `physical-ai` 카테고리 + 통제된 태그로 세분화. 하위 폴더·사전 분할 없음 |
+| 분할 트리거 | `wiki/physical-ai/`가 40페이지를 넘으면 분할 재검토 (CLAUDE.md에 명시) |
+| 시딩 | 실제 자료 ingest로 채운다. 그전까지는 `.gitkeep` + 홈에 "준비 중" 밴드 |
+| index.md 위치 | `## LLMs (llms)` 바로 다음, `## Agents (agents)` 앞 |
+| 디자인 방향 | 도메인 2색. 아쿠아 유지, physical 도메인만 `[data-domain]` 스코프로 `--signal` 오버라이드 |
+| 추가 기능 | 태그 인덱스·필터 / 학습 경로(Study Path) / 전체 그래프 페이지 |
+| raw 유형 | 신규 추가 없음. 시뮬레이터·데이터셋은 `repos`, 코스는 `lectures`로 흡수 |
+| 미채택 | index.md 드리프트 CI 강제(경고 유지), 전면 리디자인, 하위 폴더 중첩 |
+
+**작업 제약**: 커밋·푸시는 명시적 지시를 받고 한다. 새로 쓰는 한글 산문(`index.md` 설명문, wiki 본문, CLAUDE.md 추가분)은 `humanize-korean`을 거친다.
+
+---
+
+## 설계
+
+### 1. 분류 체계 — 한 카테고리, 태그로 나눈다
+
+`wiki/physical-ai/` 하나만 만들고 세부 주제는 태그로 가른다. 지금 자료가 0개라 경계를 미리 그으면 오분류만 생긴다. 태그는 나중에 폴더로 승격하기 쉬운 형태라 되돌릴 여지도 남는다.
+
+**통제 어휘 (canonical tags)** — 모든 physical-ai 페이지는 도메인 루트 태그 `physical-ai`를 달고, 아래에서 1~3개를 고른다.
+
+```
+vla · world-model · robot-learning · imitation-learning · rl-control
+manipulation · locomotion · humanoid · mobile-robot · autonomous-driving · drone
+sim2real · simulator · 3d-perception · spatial-reasoning · slam · teleoperation
+robot-dataset · benchmark · edge-inference · hardware · safety
+```
+
+기존 태그 풀에 `graph-rag`/`graphrag`처럼 표기가 갈린 사례가 있으니 이 목록은 한 가지 표기만 허용한다. 목록은 CLAUDE.md에 표로 넣고, 새 태그를 쓸 때는 목록에 먼저 추가한다.
+
+**분류 판단 규칙** — CLAUDE.md의 "방법 기준 분류" 원칙을 physical AI에 맞게 구체화한다.
+
+> 방법의 핵심에 물리 세계와의 상호작용(센서 입력, 액추에이터 출력, 시뮬레이터, 실체 로봇·차량)이 있으면 `physical-ai`. 물리 도메인을 소재로 쓰지만 방법이 순수 언어·검색이면 원래 카테고리를 유지한다.
+>
+> - RT-2, OpenVLA, Diffusion Policy → `physical-ai`
+> - 로봇 매뉴얼 RAG의 검색 성능 평가 → `evaluations`
+> - 순수 VLM 아키텍처 논문(VLM3 등) → `llms` 유지, physical-ai 허브에서 상호 링크
+
+### 2. 도메인 2색 — 토큰 오버라이드 하나로 끝낸다
+
+기존 컴포넌트가 전부 `--signal` 토큰을 읽고 있어서 토큰만 스코프별로 바꾸면 카드 보더·호버·칩·캔버스 노드까지 자동으로 따라온다. 새 CSS 컴포넌트를 만들 필요가 없다.
+
+```
+core 도메인     database · llms · agents · evaluations · applications · etc · overviews  → aqua (현행)
+physical 도메인  physical-ai                                                             → amber (신규)
+```
+
+- 신규 모듈 `site/lib/domains.mjs`에 `CATEGORY_DOMAIN` 맵과 `domainOf(category)`를 둔다. 기본값 `'core'`. 카테고리→도메인 매핑을 한 군데로 모은다.
+- `site/assets/css/styles.css`의 `@layer tokens`에 `--signal-physical`·`--signal-physical-dim`을 다크·라이트 각각 추가하고 `[data-domain='physical'] { --signal: var(--signal-physical); --signal-dim: var(--signal-physical-dim); }` 한 블록을 둔다.
+- 색 후보는 다크 `#F0A868`, 라이트 `#A85B12`. 실제 값은 대비비 측정 후 확정한다(본문 텍스트 4.5:1, UI 보더 3:1).
+- 적용 지점은 홈 밴드(`templates.mjs:203`), wiki 페이지 셸(`layout()`에 `page.category` 기반 속성 전달), 홈 필터 칩.
+- 헤더·푸터·검색 모달 같은 전역 크롬은 아쿠아를 유지한다. 도메인 색은 콘텐츠 영역에만 써서 "지금 어느 도메인을 보고 있는지"를 알리는 신호로만 남긴다.
+- `site/assets/js/constellation.js:15-18`이 `getComputedStyle`로 토큰을 읽는다. `graph.json` 노드에 이미 `category`가 있으므로 두 토큰을 모두 읽어 노드 색을 도메인별로 칠하게 확장한다.
+
+### 3. 빈 카테고리 "준비 중" 상태
+
+자료 0개로 시작하므로 밴드가 홈에서 사라진다. `index.md`에 섹션이 선언돼 있으면 페이지가 없어도 밴드를 렌더하되 카드 그리드 대신 한 줄 안내를 보여준다. `templates.mjs:162`와 `build.mjs:130`의 `filter(s => s.pages.length)`가 "선언됐지만 비어 있음"을 통과시키게 바꾸고, 홈 통계의 페이지 수에서는 뺀다.
+
+`about.mjs:67`의 `[[physical-ai]]` 링크도 이 처리가 있어야 해석된다. 없으면 빌드에 `[about] WARN unresolved links`가 뜬다.
+
+### 4. 태그 인덱스·필터
+
+- 빌드에서 전 페이지 `tags:`를 모아 태그→페이지 맵을 만든다. `slugify`는 `site/lib/markdown.mjs`에 이미 있으니 재사용한다.
+- 산출물은 `dist/tags/index.html`(빈도순 태그 클라우드, 도메인별 그룹)과 `dist/tags/{slug}/index.html`(해당 태그 페이지 목록, 기존 `card()` 재사용).
+- 카드의 태그 칩과 wiki 페이지 메타의 태그를 태그 페이지로 링크한다. 지금은 링크 없는 장식이다.
+- 검색 패싯: wiki 아티클에 `data-pagefind-filter="category"`·`data-pagefind-filter="tag"`를 붙이고 `site/assets/js/search.js`의 결과 위에 카테고리 필터 줄을 추가한다.
+- 표시 상한은 카드 칩 2개를 그대로 두고, wiki 페이지 하단에 전체 태그를 노출한다.
+
+### 5. 전체 그래프 페이지
+
+`dist/graph.json`이 이미 나오고 있어 렌더러만 추가하면 된다.
+
+- `dist/graph/index.html` + `site/assets/js/graph-explorer.js`. 헤더 네비에 진입점을 넣는다.
+- 노드 색은 도메인 토큰, 크기는 degree. 카테고리 칩 필터는 `site/assets/js/filter.js`의 해시 동기화 패턴을 따른다.
+- 클릭하면 해당 wiki 페이지로 이동하고 호버하면 이웃을 강조한다. 히어로 캔버스 로직에서 공통 부분을 뽑아 쓴다.
+- 노드 121개에 앞으로의 증가를 더해도 캔버스 2D로 충분하다. 라이브러리를 새로 넣지 않는다(현재 사이트는 무의존 바닐라).
+
+### 6. 학습 경로 (Study Path)
+
+overview 페이지에 읽는 순서를 선언하고 사이트가 단계 UI로 렌더한다. 마크다운 관례보다 frontmatter가 링크 검증에 유리하다.
+
+```yaml
+study_path:
+  - id: physical-ai/{stem}
+    note: "왜 여기서 읽는지 한 줄"
+    prereq: ["llms/{stem}"]      # 옵션
+```
+
+- `site/lib/content.mjs`에서 파싱하고 기존 `resolve()`로 각 `id`를 해석한다. 깨진 참조는 빌드 콘솔에 리포트한다(기존 broken-link 리포트와 같은 방식, 빌드 실패는 아님).
+- `templates.mjs`에 `studyPathSection()`을 추가해 번호가 붙은 단계 목록으로 렌더한다. 단계마다 제목·한 줄 이유·선수 지식 링크.
+- Obsidian에서는 frontmatter라 본문에 안 보인다. 그래서 wiki 본문에도 같은 순서를 `## 학습 경로` 섹션의 wikilink 목록으로 한 번 더 쓴다. 사람이 읽는 쪽이 본문, 기계가 읽는 쪽이 frontmatter다.
+
+---
+
+## 단계별 작업 계획 (체크리스트)
+
+### Phase 0 — 기준선 ✅ 완료 (2026-08-03)
+
+- [x] 이 문서를 `temp-docs/upgrade-plan.md`에 기록
+- [x] `cd site && npm ci && npm run build` — 현재 콘솔 경고(카테고리 불일치·미인덱스·깨진 링크)를 기준선으로 캡처
+- [x] `node lib/dates.mjs --check` 통과 확인
+- [x] `npm run preview`로 현재 화면 상태 확인 (다크·라이트 각각) — 헤드리스라 HTTP 200 + 테마 토큰 정적 확인으로 대체, 육안 확인은 사람 몫으로 남김
+
+#### 기준선 기록 (Phase 1~7 비교 기준)
+
+빌드 콘솔 전문:
+
+```
+[build] BASE='(local)'  ROOT=/Users/kmyu/Desktop/project/ai-wiki
+[content] wiki pages: 121  ·  catalog entries: 119  ·  sections: 7
+[content] WARN index.md 카탈로그에 없는 페이지 (2): database/lumer-2025-rethinking-retrieval-from-traditional-retrieval, database/sguys99-langchain-study-vectorless-rag
+[graph] nodes: 121  ·  edges: 626
+[build] copied wiki/assets → dist/assets
+[build] copied site chrome + fonts → dist/static
+[render] pages rendered: 121
+[render] about page rendered
+[links] unresolved wikilinks: 0  ✓
+[build] done.
+```
+
+| 경고 종류 | 기준선 |
+|---|---|
+| 카테고리 불일치 (`content.mjs:47-51`) | 0건 |
+| 중복 stem (`content.mjs:79`) | 0건 |
+| 카탈로그에 있으나 파일 없음 (`build.mjs:45`) | 0건 |
+| index.md 미인덱스 (`build.mjs:49`) | **2건** — `database/lumer-2025-rethinking-retrieval-from-traditional-retrieval`, `database/sguys99-langchain-study-vectorless-rag` |
+| `[about] WARN unresolved links` | 0건 |
+| `[links] unresolved wikilinks` | 0건 |
+| 폰트/KaTeX 자산 미발견 | 0건 |
+
+통계: wiki 페이지 121 · 카탈로그 119 · 섹션 7 · 그래프 노드 121/엣지 626 · dist HTML 123개(46 MB) · 태그 distinct **701종**(계획서 본문의 655는 낡은 값) / 총 1,308회.
+
+카테고리별 파일 수: agents 49 · applications 31 · database 25 · overviews 9 · llms 3 · etc 2 · evaluations 2.
+
+`node lib/dates.mjs --check` → `dates.mjs self-check ✓` (exit 0).
+
+preview(4173): `/` 200 · `/about/` 200 · `/graph.json` 200 · `/pagefind/pagefind.js` 200 · 개별 wiki 페이지 200. Pagefind는 121페이지·34,084단어를 인덱싱했고 **filters 0 · sorts 0** — Phase 4의 `data-pagefind-filter` 도입 전 기준선이다.
+
+CSS 토큰 현황: 다크 `--signal: #5eead4` / 라이트 `--signal: #0fb89b`, `--signal` 참조 40여 곳. `--signal-physical` 계열과 `[data-domain]` 셀렉터는 아직 없음(Phase 2 신설 대상).
+
+`about.mjs`의 분류 목록은 아직 `[[physical-ai]]`를 포함하지 않아 unresolved 0이다. Phase 3의 빈 카테고리 처리 없이 링크만 추가하면 경고가 뜬다는 계획서 예측이 코드상 확인됐다.
+
+사람 확인이 남은 항목: 다크·라이트 육안 확인, 앰버 대비비 실측 최종 판단, 640/1024/1080px 브레이크포인트 레이아웃.
+
+### Phase 1 — 분류 체계 확장
+
+- [ ] `wiki/physical-ai/.gitkeep` 생성 (`wiki/etc/`·`wiki/evaluations/` 선례를 따름)
+- [ ] `index.md`: `## LLMs (llms)` 섹션 다음에 `## Physical AI (physical-ai)` + 설명 한 줄 추가. 엔트리는 아직 없음
+- [ ] `CLAUDE.md:56-62` 저장소 구조 트리에 `physical-ai/` 추가
+- [ ] `CLAUDE.md:97-103` 카테고리 표에 physical-ai 행 추가
+- [ ] `CLAUDE.md:119` frontmatter enum에 `physical-ai` 추가 + 누락돼 있던 `overviews` 같이 보강
+- [ ] `CLAUDE.md`에 physical-ai 판단 규칙 문단 추가 (설계 1절)
+- [ ] `CLAUDE.md`에 통제 태그 어휘 표 + 40페이지 분할 트리거 추가
+- [ ] `CLAUDE.md`에 `study_path` frontmatter 키 스키마 문서화
+- [ ] `README.md:61-67` 구조 트리, `README.md:105` enum, `README.md:419` 커스터마이징 표, `README.md:487` 부트스트랩 프롬프트 갱신
+- [ ] 신규 한글 산문에 `humanize-korean` 적용
+- [ ] 기존 드리프트 정리: `wiki/database/` 미인덱스 2건을 `index.md`에 추가
+
+### Phase 2 — 도메인 2색
+
+- [ ] `site/lib/domains.mjs` 신설 — `CATEGORY_DOMAIN` 맵 + `domainOf(category)`, 기본 `'core'`
+- [ ] `styles.css` `@layer tokens`에 `--signal-physical`·`--signal-physical-dim` 다크/라이트 추가
+- [ ] `[data-domain='physical']` 오버라이드 블록 추가
+- [ ] `templates.mjs`: 홈 밴드 `<section class="band">`에 `data-domain` 부여
+- [ ] `templates.mjs`: `layout()`/`wiki()`에서 `page.category` → `data-domain`을 콘텐츠 셸에 부여
+- [ ] `templates.mjs`: 홈 필터 칩에 도메인 속성 부여
+- [ ] `constellation.js`: 두 signal 토큰을 읽어 `node.category` 기준으로 노드 색 분기
+- [ ] 다크·라이트 각각 대비비 측정 후 최종 색값 확정
+
+### Phase 3 — 빈 카테고리 준비 중 상태
+
+- [ ] `content.mjs`: `index.md`에 선언됐지만 페이지 0개인 섹션을 `declaredEmpty` 플래그로 표시
+- [ ] `templates.mjs:162` / `build.mjs:130`의 `filter(s => s.pages.length)` 조정
+- [ ] 밴드 빈 상태 마크업 + `styles.css`에 최소 스타일
+- [ ] 홈 통계·필터 칩 카운트에서 빈 카테고리가 빠지는지 확인
+- [ ] `site/lib/about.mjs:67` 분류 목록에 `[[physical-ai]]` 추가 후 unresolved 경고가 사라지는지 확인
+
+### Phase 4 — 태그 인덱스·필터
+
+- [ ] `content.mjs`: 태그→페이지 인덱스 생성 (`slugify` 재사용)
+- [ ] `templates.mjs`: `tagIndex()`·`tag()` 추가 (본문 목록은 기존 `card()` 재사용)
+- [ ] `build.mjs`: `dist/tags/index.html` + `dist/tags/{slug}/index.html` 렌더
+- [ ] 카드 칩·wiki 페이지 태그를 태그 페이지로 링크
+- [ ] wiki 아티클에 `data-pagefind-filter` 부여
+- [ ] `search.js`에 카테고리 패싯 필터 UI 추가
+- [ ] 헤더 또는 푸터에 태그 인덱스 진입점 추가
+
+### Phase 5 — 전체 그래프 페이지
+
+- [ ] `constellation.js`에서 그래프 그리기 공통 로직 분리
+- [ ] `site/assets/js/graph-explorer.js` 작성 (도메인 색·degree 크기·호버 이웃 강조·클릭 이동)
+- [ ] `templates.mjs`에 `graphPage()` + `build.mjs`에서 `dist/graph/index.html` 렌더
+- [ ] 카테고리 칩 필터 + 해시 동기화 (`filter.js` 패턴)
+- [ ] 헤더 네비에 진입점 추가
+- [ ] 모바일에서의 동작·성능 확인
+
+### Phase 6 — 학습 경로
+
+- [ ] `content.mjs`: `study_path` 파싱 + `resolve()`로 각 단계 검증, 깨진 참조는 빌드 콘솔 리포트
+- [ ] `templates.mjs`: `studyPathSection()` 렌더 (번호 단계 · 한 줄 이유 · 선수 지식 링크)
+- [ ] `styles.css`에 스텝 컴포넌트 스타일
+- [ ] `wiki/overviews/physical-ai-overview.md` 작성 — 학습 로드맵 겸 MOC 허브. frontmatter `study_path` + 본문 `## 학습 경로` wikilink 목록 병기
+- [ ] `index.md` overviews 섹션에 엔트리 추가
+
+### Phase 7 — 디자인 문서 개정과 검증
+
+- [ ] `DESIGN.md` v3.0 — frontmatter `colors`에 도메인 토큰 추가, `components`에 태그 페이지·그래프 페이지·스텝 컴포넌트 추가
+- [ ] `DESIGN.md`의 "The Signal Principle"을 "도메인당 강조색 1개, 전역 크롬은 아쿠아 고정"으로 개정하고 Don'ts의 두 번째 강조색 금지 항목을 개정 이유와 함께 갱신
+- [ ] `DESIGN.md` Known Gaps 갱신
+- [ ] 전체 빌드·프리뷰 검증 (아래 검증 절차)
+
+### Phase 8 — 첫 physical-ai 자료 적재
+
+- [ ] 첫 자료(논문 PDF·repo·강의) 확보
+- [ ] CLAUDE.md의 6-step 파이프라인대로 ingest — raw → Step 2.5 도식 추출 → sources → 큐레이션 확인 → wiki
+- [ ] `index.md` physical-ai 섹션에 엔트리 추가 → 준비 중 밴드가 카드 그리드로 전환되는지 확인
+- [ ] overview 허브의 `study_path`에 편입
+
+---
+
+## 검증 방법 (Verification)
+
+```bash
+cd site
+npm run build                      # 콘솔: 카테고리 불일치 0, unresolved 링크가 Phase 0 기준선 대비 늘지 않음
+node lib/dates.mjs --check         # 날짜 파서 자체 점검
+npm run preview                    # http://localhost:4173 (pagefind 인덱스 포함)
+```
+
+프리뷰에서 확인할 것:
+
+- 홈 3번째 밴드가 `Physical AI`이고 앰버 색이며, 자료 적재 전에는 준비 중 상태로 나온다
+- 필터 칩에서 physical-ai를 눌렀을 때, 그리고 `#physical-ai` 해시로 직접 들어갔을 때의 동작
+- 히어로 캔버스에서 physical 노드가 다른 색으로 보인다 (자료 적재 후)
+- 아무 wiki 페이지 → 태그 칩 클릭 → 태그 페이지 → 카드에서 다시 원 페이지로 왕복
+- `/tags/`, `/graph/` 직접 접근, 그리고 `BASE=/ai-wiki`로 빌드했을 때 경로가 깨지지 않는지
+- ⌘K 검색에서 카테고리 패싯이 결과를 실제로 줄이는지
+- 다크·라이트 토글, 두 테마에서 앰버 대비비
+- 640 / 1024 / 1080px 브레이크포인트에서 신규 페이지 레이아웃
+- About 페이지 분류 목록에 physical-ai가 있고 링크가 살아 있는지
+
+배포는 `main` 푸시 시 `.github/workflows/deploy.yml`이 자동으로 처리한다. 경로 트리거에 `wiki/**`·`index.md`·`site/**`가 이미 들어 있어 워크플로 수정은 필요 없다.
+
+---
+
+## 원문 보존 원칙
+
+- 원본 자료(`raw/`)는 불변, `sources/`·`wiki/`가 단일 소스, 사이트는 읽기 전용 렌더러다. 이 방향을 뒤집지 않는다.
+- 사이트에 새 런타임 의존성을 넣지 않는다. 바닐라 JS + 4개 빌드 의존성 구성을 유지한다.
+- The Four Rules는 그대로다. 사용자가 자료 수집을 명시적으로 지시한 경우 외에 웹을 조회하지 않는다.
+- 새로 쓰는 한글 산문은 `humanize-korean`을 거친다.
+
+---
+
+## Known Gaps (의도적 보류)
+
+- **index.md 드리프트 CI 강제** — 이번엔 빌드 경고로만 둔다. Phase 1에서 기존 누락 2건은 손으로 채운다.
+- ⚠️ **이미지 `width`/`height`** — `markdown.mjs`의 `transformFigures()`가 치수를 안 넣어 도식 많은 페이지에 레이아웃 이동(CLS)이 있다. 이번 범위 밖.
+- **태그 정규화** — `graph-rag`/`graphrag` 같은 기존 중복은 그대로 둔다. 통제 어휘는 physical-ai에만 적용한다.
+- **홈·About 페이지 검색 미인덱스** — `data-pagefind-body`가 wiki 아티클에만 있다. 유지.
+- **하위 폴더 중첩** — physical-ai가 40페이지를 넘기 전까지 검토하지 않는다.
