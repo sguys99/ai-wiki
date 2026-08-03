@@ -1803,3 +1803,98 @@
     }
   }
 }
+
+/* ── components (Phase 6: 학습 경로 스텝) ──────────────────────────────────────── */
+@layer components {
+  /* 위키 본문(.prose) 안, `## 학습 경로` 헤딩 바로 아래에 들어간다. 번호는 마커 대신
+   * .study-n 으로 직접 찍으므로 list-style 을 끈다. 색은 전부 기존 토큰이라
+   * physical 도메인 페이지에서는 [data-domain='physical'] 오버라이드를 그대로 받는다. */
+  .study-path {
+    list-style: none;
+    margin: var(--space-6) 0;
+    padding: 0;
+  }
+  .study-step {
+    position: relative;
+    margin: 0;
+    padding: var(--space-4) 0 var(--space-4) var(--space-12);
+    border-bottom: var(--hairline-w) solid var(--hairline);
+  }
+  .study-step:first-child {
+    border-top: var(--hairline-w) solid var(--hairline);
+  }
+  .study-n {
+    position: absolute;
+    left: 0;
+    top: var(--space-4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--signal);
+    background: var(--surface);
+    border: var(--hairline-w) solid var(--signal-dim);
+    border-radius: 50%;
+  }
+  .study-link {
+    display: inline-block;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    line-height: var(--leading-tight);
+  }
+  .study-link:hover,
+  .study-link:focus-visible {
+    color: var(--signal);
+    text-decoration: underline;
+    text-decoration-color: var(--signal);
+  }
+  .study-note {
+    margin: var(--space-2) 0 0;
+    color: var(--muted);
+    font-size: var(--text-sm);
+    line-height: var(--leading-body);
+  }
+  .study-prereq {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin: var(--space-2) 0 0;
+    font-size: var(--text-sm);
+  }
+  .study-prereq-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--faint);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-sm);
+    padding: 0 0.4em;
+  }
+  .study-prereq-link {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .study-prereq-link:hover,
+  .study-prereq-link:focus-visible {
+    color: var(--signal);
+    text-decoration: underline;
+  }
+  .study-prereq .sep {
+    color: var(--faint);
+  }
+
+  @media (max-width: 560px) {
+    .study-step {
+      padding-left: var(--space-8);
+    }
+    .study-n {
+      width: 1.6rem;
+      height: 1.6rem;
+      font-size: var(--text-xs);
+    }
+  }
+}

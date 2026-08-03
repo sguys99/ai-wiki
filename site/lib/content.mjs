@@ -68,6 +68,10 @@ async function loadWikiPages(root) {
       source: fm.source || null,
       rawPath: fm.raw_path || null,
       figures: Array.isArray(fm.figures) ? fm.figures : [],
+      // 학습 경로 선언(overview 페이지 옵션). 원본은 여기서 보관만 하고,
+      // 실제 해석은 카탈로그 머지가 끝난 뒤 resolveStudyPaths() 가 studyPath 에 채운다.
+      studyPathRaw: Array.isArray(fm.study_path) ? fm.study_path : [],
+      studyPath: [],
       // 카탈로그 머지에서 채움:
       display: fm.title || stem,
       desc: null,
@@ -218,6 +222,76 @@ export function tagsOf(page, tagIndex) {
   return out;
 }
 
+// ── 학습 경로 (study_path) ────────────────────────────────────────────────────
+//
+// overview 페이지 frontmatter 의 study_path 를 해석한다.
+//
+//   study_path:
+//     - id: physical-ai/{stem}
+//       note: "왜 여기서 읽는지 한 줄"
+//       prereq: ["llms/{stem}"]      # 옵션 (문자열 하나도 허용)
+//
+// 각 id 는 위키링크와 같은 resolve() 로 푼다. 다만 링크와 달리 앵커·카테고리·GitHub source
+// 처럼 페이지가 아닌 대상은 단계가 될 수 없어서 r.id 가 있는 경우(=그래프 노드=위키 페이지)만
+// 해석된 것으로 본다. 깨진 참조는 렌더를 막지 않고 미해석 표기 + 빌드 콘솔 리포트로 남긴다
+// (기존 broken-link 리포트와 같은 방식 — 빌드는 실패시키지 않는다).
+
+// 단계 표기 정규화. 문자열 하나만 적은 축약형도 받는다.
+function normalizeStep(raw) {
+  if (typeof raw === 'string') return { id: raw.trim(), note: '', prereq: [] };
+  if (!raw || typeof raw !== 'object') return null;
+  const id = String(raw.id ?? '').trim();
+  if (!id) return null;
+  const prereqRaw = raw.prereq == null ? [] : Array.isArray(raw.prereq) ? raw.prereq : [raw.prereq];
+  return {
+    id,
+    note: raw.note == null ? '' : String(raw.note).trim(),
+    prereq: prereqRaw.map((p) => String(p).trim()).filter(Boolean),
+  };
+}
+
+export function resolveStudyPaths(pages, resolve) {
+  const broken = []; // { id, targets:[...] } — 선언 페이지별
+  let stepCount = 0;
+  let pageCount = 0;
+
+  const refOf = (ref) => {
+    const r = resolve(ref);
+    const target = r.ok && r.id ? pages.get(r.id) : null;
+    if (!target) return { ref, ok: false, id: null, url: null, title: ref };
+    return {
+      ref,
+      ok: true,
+      id: target.id,
+      url: target.url,
+      title: target.display || target.title,
+      category: target.category,
+    };
+  };
+
+  for (const page of pages.values()) {
+    if (!page.studyPathRaw.length) continue;
+    const missing = [];
+    const steps = [];
+    page.studyPathRaw.forEach((raw) => {
+      const step = normalizeStep(raw);
+      if (!step) return;
+      const target = refOf(step.id);
+      if (!target.ok) missing.push(step.id);
+      const prereq = step.prereq.map(refOf);
+      for (const p of prereq) if (!p.ok) missing.push(p.ref);
+      steps.push({ n: steps.length + 1, note: step.note, ...target, prereq });
+    });
+    if (!steps.length) continue;
+    page.studyPath = steps;
+    pageCount++;
+    stepCount += steps.length;
+    if (missing.length) broken.push({ id: page.id, targets: missing });
+  }
+
+  return { pageCount, stepCount, broken };
+}
+
 // ── 머지 ─────────────────────────────────────────────────────────────────────
 
 export async function loadContent(root, addedDates = new Map()) {
@@ -282,13 +356,18 @@ export async function loadContent(root, addedDates = new Map()) {
   for (const page of pages.values())
     if (!categories.has(page.category)) categories.set(page.category, page.category);
 
+  // 학습 경로는 카탈로그 머지 뒤에 푼다 — 단계 제목이 카탈로그 display 를 따르기 때문.
+  const resolveLink = makeResolver(pages, byStem, categories);
+  const studyPaths = resolveStudyPaths(pages, resolveLink);
+
   return {
     pages,
     byStem,
     sections,
     categories,
     tagIndex: buildTagIndex(pages),
-    resolve: makeResolver(pages, byStem, categories),
+    resolve: resolveLink,
+    studyPaths,
     warnings,
     missingFile,
     missingFromIndex,

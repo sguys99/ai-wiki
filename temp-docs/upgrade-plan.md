@@ -586,13 +586,132 @@ physical 도메인 경로는 Phase 2 선례대로 임시 페이지를 만들어 
 - 도메인 범례를 안 넣었다. physical 자료가 들어온 뒤 색만으로 충분한지 판단
 - reduced-motion 사용자에게는 원래 정지 화면이라 차이가 없다. 다만 첫 렌더 13ms 동안의 빈 화면이 눈에 띄는지
 
-### Phase 6 — 학습 경로
+### Phase 6 — 학습 경로 ✅ 완료 (2026-08-03)
 
-- [ ] `content.mjs`: `study_path` 파싱 + `resolve()`로 각 단계 검증, 깨진 참조는 빌드 콘솔 리포트
-- [ ] `templates.mjs`: `studyPathSection()` 렌더 (번호 단계 · 한 줄 이유 · 선수 지식 링크)
-- [ ] `styles.css`에 스텝 컴포넌트 스타일
-- [ ] `wiki/overviews/physical-ai-overview.md` 작성 — 학습 로드맵 겸 MOC 허브. frontmatter `study_path` + 본문 `## 학습 경로` wikilink 목록 병기
-- [ ] `index.md` overviews 섹션에 엔트리 추가
+- [x] `content.mjs`: `study_path` 파싱 + `resolve()`로 각 단계 검증, 깨진 참조는 빌드 콘솔 리포트
+- [x] `templates.mjs`: `studyPathSection()` 렌더 (번호 단계 · 한 줄 이유 · 선수 지식 링크)
+- [x] `styles.css`에 스텝 컴포넌트 스타일
+- [x] `wiki/overviews/physical-ai-overview.md` 작성 — 학습 로드맵 겸 MOC 허브. frontmatter `study_path` + 본문 `## 학습 경로` wikilink 목록 병기
+- [x] `index.md` overviews 섹션에 엔트리 추가
+
+#### 실행 기록
+
+변경 파일 6개에 신규 위키 페이지 1개다. 새 런타임 의존성은 없다.
+
+`content.mjs`는 페이지 모델에 `studyPathRaw`(frontmatter 원본)와 `studyPath`(해석 결과)를 더하고, `resolveStudyPaths(pages, resolve)`를 새로 export한다. 해석은 카탈로그 머지가 끝난 뒤에 돈다 — 단계 제목이 `page.display`, 즉 `index.md`의 표시명을 따르기 때문이다. 위키링크와 같은 `resolve()`를 쓰되 `r.id`가 있는 경우, 그러니까 실제 위키 페이지인 경우만 해석된 것으로 본다. 앵커·카테고리 밴드·GitHub source 링크는 `ok: true`지만 페이지가 아니라 학습 단계가 될 수 없다. `id`만 적은 문자열 축약형과 `prereq`에 문자열 하나만 적은 형태도 받는다.
+
+`markdown.mjs`에 `spliceStudyPath()`를 넣고 `renderMarkdown`에 `studyPath` 옵션을 추가했다. **본문·컴포넌트 중복은 "헤딩은 남기고 목록만 교체"로 풀었다.** 사이트가 둘 다 출력하면 같은 내용이 두 번 나오는데, 섹션을 통째로 걷어내면 목차 항목과 `#학습-경로` 앵커가 사라지고 컴포넌트가 본문 어디에 놓일지도 잃는다. `## 학습 경로` 헤딩 줄은 그대로 두고 그 아래부터 다음 헤딩 직전까지를 컴포넌트 HTML로 갈아끼우면 목차·앵커·본문 위치가 전부 유지된다. 헤딩이 없으면 본문 끝에 붙여 frontmatter만 쓴 페이지도 컴포넌트가 나온다. 삽입은 `transformFigures`·`protectCurrency` 뒤에 해서 주입한 HTML이 그 변환을 다시 타지 않는다. 코드펜스 안의 `## 학습 경로` 예시는 건드리지 않는다. 다만 그 섹션에 목록 말고 산문을 적으면 사이트에서는 안 보인다 — 이번 페이지는 그 문단을 헤딩 위로 올려 뒀다.
+
+두 군데서 걸렸다가 고쳤다. 헤딩 정규식을 `/^##\s+학습\s*경로\b/`로 썼는데 `\b`가 ASCII `\w` 기준이라 한글 뒤에서 경계를 못 잡아 매칭이 통째로 실패했다(컴포넌트가 본문 끝에 붙었다). `(?:\s|$)`로 바꿨다. 그리고 컴포넌트 HTML에 들여쓰기와 빈 줄이 있어 marked가 HTML 블록을 빈 줄에서 끊고 나머지 4칸 들여쓴 줄을 코드블록으로 잡았다. 지금은 줄 앞 공백도 빈 줄도 없이 낸다.
+
+`templates.mjs`의 `studyPathSection(steps)`는 헤딩 없이 `<ol class="study-path">`만 만든다. 번호는 `<span class="study-n">`으로 직접 찍고(`list-style: none`이라 마커가 없다) 제목·한 줄 이유·선수 지식 링크가 그 아래 붙는다. `prereq`가 없으면 그 문단 자체를 안 낸다. 해석 실패한 참조는 링크 대신 `.wikilink-missing`으로 두는데 깨진 위키링크와 같은 처리다. `markdown.mjs`가 `templates.mjs`를 import하면 순환이라 HTML 문자열을 옵션으로 넘기는 방향으로 뒀다.
+
+`build.mjs`는 `[study]` 리포트 한 줄과 `studyPathSection(page.studyPath)` 전달을 맡는다. 리포트는 선언 페이지가 하나도 없으면 아예 안 찍는다.
+
+`styles.css`는 `@layer components` 블록 하나(95줄)를 새로 열었다. 색은 전부 기존 토큰이라 `[data-domain='physical']` 오버라이드가 그대로 걸린다 — physical 카테고리 페이지가 학습 경로를 선언하면 번호 원과 링크 호버가 앰버로 나온다. base 레이어의 `ul, ol`·`li` 규칙은 레이어 순서상 components가 이긴다.
+
+**study_path 구성은 계획서가 권장한 (A)를 골랐다.** 실재하는 인접 페이지 둘로 2단계를 깔았고, 2단계에 1단계를 `prereq`로 걸어 선수 지식 렌더 경로까지 실제 산출물에서 검증했다. 후보를 다시 훑어 `wiki/llms/cai-2026-vlm3-vision-language-models`(VLM3, 3D 인식) 외에 `wiki/agents/zou-2026-task-focused-memorization-multimodal-agents`(TaskMem, 1인칭 스트림 기억)를 찾았다. 계획서 3행의 전수 조사 결과대로 실제 physical AI 자료는 여전히 0건이고, 이 둘도 물리 상호작용을 다루지 않는다. 그래서 본문과 frontmatter 양쪽에서 "로봇 논문이 아니라 인접 자료"임을 명시했고 `## 이 페이지의 한계`에 같은 내용을 한 번 더 적었다. `robot`·`embodied`·`VLA`·`sim2real` 재검색 히트 3건은 전부 오탐이었다(BRIGHT 벤치마크의 Robotics 스플릿, 표 컬럼명, `robots.txt`).
+
+**overview frontmatter는 기존 9개 페이지의 관례를 그대로 따랐다.** 전수 확인 결과 `wiki/overviews/`의 어느 페이지도 `raw_path`·`raw_filename`을 쓰지 않는다 — 합성 페이지라 대응하는 raw 원본이 없어서다. 공통 키 중 `title`·`type: overview`·`year`·`category: overviews`·`source_collection`·`tags`만 채우고, 합성한 source가 있으면 `sources:` 목록을 더한다. 이 페이지도 같은 형태로 `source_collection: synthesis` + `sources:` 2건을 썼다. `content.mjs`는 `raw_path` 없음을 null로 받고 `sourcesSection()`이 해당 링크만 건너뛴다.
+
+`index.md`는 Overviews 섹션 맨 끝에 한 줄 추가했다. 태그는 통제 어휘에서 `physical-ai`·`vla`·`world-model`·`robot-learning`·`sim2real`을 골랐고 `roadmap`·`overview`·`synthesis`를 더했다. 이 페이지 카테고리가 `overviews`라 태그 인덱스의 도메인 다수결에서는 Core 그룹으로 간다.
+
+##### 한글 산문 처리
+
+본문이 4,134자라 `humanize-korean`을 실제로 호출했다. `register: wiki` → **strict 5인 파이프라인**으로 라우팅됐다(run_id 2026-08-03-002). Phase 1이 1,392자에 monolith fast path를, Phase 3~5가 300자 미만이라 문체 가이드 직접 점검을 택한 것과 같은 비례 판단이다.
+
+| 항목 | 값 |
+|---|---|
+| 변경률 | **6.63%** (Levenshtein 274 / 4,134자) · 1차 7.28% → 2차 부분 롤백 후 |
+| 등급 | **A** (S1 잔존 0 · 과윤문 시그널 0) |
+| 원문 밀도 | ai_tell_density 4.18% · severity_weighted_score 9.0 |
+| 탐지 → 해소 | 11건(S1 5 · S2 6) → 11건 전부 |
+| 지표 | C-11 연결어미 뒤 쉼표 8→0 · 본문 볼드 6→0 · `~라는 점에서` 1→0 · 정의형 문단 진입 8→3 |
+
+wiki 밴드(20~35%)는 하회했다. `naturalness-reviewer`가 저윤문이 아니라 **저탐지**로 판정했다(confidence high) — 초안을 CLAUDE.md 문체 가이드대로 썼더니 A(번역투)·D(상투구)·E(리듬) 카테고리가 0건이고 탐지 11건 중 9건이 C(구조) 한 축에 몰렸다. S1 5건은 전부 쉼표 1자 삭제라 산술적으로 밴드를 채울 수 없다. 밴드를 채우려고 멀쩡한 문장을 건드리는 게 register=wiki가 막으려는 실패 모드라 "사유 있는 N/A"로 기록했다. 문체 가이드를 생성 시점에 적용하면 후속 humanize 부담이 준다는 CLAUDE.md의 전제가 수치로 확인된 셈이다.
+
+검증 2인은 각각 다른 걸 잡았다. `content-fidelity-auditor`는 **conditional_pass** — 영문·숫자 토큰 다중집합 완전 일치, wikilink·백틱·헤딩·표·목록 기호·빈 줄 위치 전부 무변화, 저장소 유무 판정과 분류 판정 4건은 byte-identical이었다. 다만 `처리하는 경로를 보여준다는 점에서` → `처리하니`가 VLM3의 기여를 "경로 제시"에서 "실제 수행"으로 올렸다고 롤백을 지시했다. THE FOUR RULES가 걸린 문서라 층위 상승도 내용 변경으로 봤다. `naturalness-reviewer`는 **B / rollback_and_rewrite(partial)** — 문학체 어휘 드리프트와 신규 비유는 0건이지만, '앞으로 채울 자리' 불릿 6개의 구분자가 4:2로 갈렸고(`term — 설명`은 AI 티가 아니라 glossary 관용 형식) 종결을 다르게 만들려는 필러가 하나 들어갔다고 지적했다. 2차는 이 3줄만 고쳤고 나머지 10건은 재작업을 금지했다.
+
+frontmatter `note:` 두 값은 윤문 결과와 본문 목록 문장이 그대로 일치해 손대지 않았다. 본문 `## 학습 경로` 목록과 frontmatter `study_path`의 순서도 같다.
+
+UI 문구는 `선수` 하나(2자)뿐이라 문체 가이드 직접 점검으로 갈음했다. 연결어미 뒤 쉼표 — 해당 없음. 기계적 병렬 — 없음. 명사 볼드 — 없음. 콜론 부제 — 없음. 문두 접속사 — 없음. 어휘 — `prerequisite`의 일반 기술 문서 표기다.
+
+#### 빌드 검증 (Phase 5 대비)
+
+```
+[build] BASE='(local)'  ROOT=/Users/kmyu/Desktop/project/ai-wiki
+[content] wiki pages: 122  ·  catalog entries: 122  ·  sections: 8
+[tags] tags: 706  ·  page-tag links: 1322  ·  merged slugs: 3
+[tags]   merged 'rag' ← rag , RAG (대표 표기 'rag')
+[tags]   merged 'swe-bench' ← SWE-bench , swe-bench (대표 표기 'SWE-bench')
+[tags]   merged 'skillsbench' ← SkillsBench , skillsbench (대표 표기 'SkillsBench')
+[study] study_path 선언 페이지: 1  ·  단계: 2  ·  미해석 참조: 0  ✓
+[graph] nodes: 122  ·  edges: 628
+[build] copied wiki/assets → dist/assets
+[build] copied site chrome + fonts → dist/static
+[render] pages rendered: 122
+[render] tag pages rendered: 706 (+ /tags/ index)
+[render] graph page rendered: 7 category groups
+[render] about page rendered
+[links] unresolved wikilinks: 0  ✓
+[build] done.
+```
+
+`dates.mjs self-check ✓`. `[study]` 한 줄이 늘었고 정보성 로그다. **경고는 하나도 늘지 않았다.**
+
+| 항목 | Phase 5 | Phase 6 | 변화 이유 |
+|---|---|---|---|
+| wiki pages / catalog / sections | 121 / 121 / 8 | **122 / 122 / 8** | overview 1개 추가 + `index.md` 엔트리 |
+| graph nodes / edges | 121 / 626 | **122 / 628** | 새 노드 1개, VLM3·TaskMem 링크 2개 |
+| pages rendered | 121 | **122** | 위와 동일 |
+| 태그 | 700 / 1,314 links | **706 / 1,322 links** | 신규 6종(`physical-ai`·`vla`·`world-model`·`robot-learning`·`sim2real`·`roadmap`) |
+| 태그 페이지 | 700 (+ 인덱스) | **706 (+ 인덱스)** | 위와 동일 |
+| dist HTML | 825 | **832** (52 MB) | 위키 1 + 태그 6 |
+| Pagefind pages / words | 121 / 34,084 | **122 / 34,274** | 새 페이지 본문 |
+| Pagefind filters / sorts | 2 / 0 | 2 / 0 | 변화 없음 |
+| unresolved wikilinks / `[about] WARN` | 0 / 0 | 0 / 0 | — |
+| 카테고리 불일치 / 중복 stem / 카탈로그 고아 / 미인덱스 | 0 | 0 | — |
+| merged slugs | 3 | 3 | 신규 태그 충돌 없음 |
+
+`dist/overviews/physical-ai-overview/index.html` 마크업:
+
+```html
+<h2 id="학습-경로">학습 경로</h2>
+<ol class="study-path">
+<li class="study-step"><span class="study-n">1</span><a class="study-link" href="/llms/cai-...">VLM3 (Native 3D Learners)</a><p class="study-note">…</p></li>
+<li class="study-step"><span class="study-n">2</span><a class="study-link" href="/agents/zou-...">TaskMem (Task-Focused Memorization)</a><p class="study-note">…</p><p class="study-prereq"><span class="study-prereq-label">선수</span><a class="study-prereq-link" href="/llms/cai-...">VLM3 (Native 3D Learners)</a></p></li>
+</ol>
+```
+
+헤딩이 남아 목차 rail·모바일 `<details>` 양쪽에 `href="#학습-경로"`가 들어갔다. 본문 목록의 wikilink 2개는 사이트에서 사라졌고(남은 wikilink 5개 = 표 2 + 관련 페이지 3) `.md` 원문에는 그대로라 Obsidian은 목록으로 읽는다. 그래프 엣지는 `page.body` 기준이라 splice와 무관하게 2개가 만들어졌다. `class="study-path"`가 붙은 산출물은 이 한 페이지뿐이라 study_path 없는 121개는 마크업이 그대로다.
+
+**깨진 참조 테스트** — `study_path` 맨 앞에 `physical-ai/rt-2-does-not-exist`(+ `prereq: physical-ai/also-missing`)를 일부러 넣고 빌드했다.
+
+```
+[study] study_path 선언 페이지: 1  ·  단계: 3  ·  미해석 참조: 2
+[study]   WARN overviews/physical-ai-overview: physical-ai/rt-2-does-not-exist | physical-ai/also-missing
+[render] pages rendered: 122
+[links] unresolved wikilinks: 0  ✓
+```
+
+빌드는 성공(exit 0)했고 나머지 단계는 정상 렌더됐다. 깨진 단계는 `<span class="study-link wikilink-missing" title="미해석 학습 경로 참조">physical-ai/rt-2-does-not-exist</span>`로 나가고 prereq도 같은 처리다. 확인 후 백업에서 되돌려 `미해석 참조: 0 ✓`로 복귀한 것까지 확인했다.
+
+`BASE=/ai-wiki` 빌드에서 `href="/ai-wiki/llms/cai-.../"`·`href="/ai-wiki/agents/zou-.../"`로 단계 링크와 선수 링크가 모두 접두된다. 경고 0. 확인 후 기본 빌드로 되돌렸다.
+
+프리뷰(4173) 200 확인: `/` `/overviews/physical-ai-overview/` `/graph/` `/tags/` `/about/` `/tags/physical-ai/` `/tags/vla/`. Pagefind는 122페이지·34,274단어·filters 2를 인덱싱했다. 확인 후 서버 종료.
+
+오케스트레이터 재검증: 빌드 콘솔이 위와 동일하고 `dates.mjs self-check ✓`. `dist` HTML 832개, `dist/overviews/physical-ai-overview/index.html`에 `class="study-step"` 2개. 인용된 두 페이지(`wiki/llms/cai-2026-vlm3-vision-language-models.md`·`wiki/agents/zou-2026-task-focused-memorization-multimodal-agents.md`)가 실재함을 파일 존재로 확인했다 — THE FOUR RULES상 저장소에 없는 자료를 인용하지 않았다. `_workspace/`(humanize 산출물)는 `.gitignore:7`에 이미 걸려 있어 커밋에 들어가지 않는다.
+
+#### 남은 사람 확인 항목
+
+- **스텝 컴포넌트 육안 확인이 최우선이다.** 다크·라이트에서 번호 원(`--surface` 배경 + `--signal-dim` 보더)이 본문 리딩 컬럼 왼쪽 여백(`--space-12`)에 제대로 앉는지, 위아래 hairline이 `.prose`의 다른 요소와 충돌하지 않는지
+- 640px 이하에서 번호 원이 1.6rem으로 줄고 들여쓰기가 `--space-8`로 좁아진다. 제목이 두 줄로 감길 때 번호와 첫 줄 baseline이 어긋나 보이는지
+- `.study-prereq`가 flex라 선수 페이지가 3개 이상이면 라벨과 링크가 여러 줄로 감긴다. 지금은 1개뿐이라 실측이 안 됐다
+- physical 도메인 페이지가 학습 경로를 선언했을 때 번호 원과 링크 호버가 앰버로 나오는지. 지금 이 페이지는 `overviews`라 아쿠아다(Phase 8 이후 확인 대상)
+- `## 학습 경로` 섹션에 목록 말고 산문을 적으면 사이트에서 통째로 사라진다. 지금은 그 문단을 헤딩 위로 올려 뒀지만, 앞으로 이 관례를 CLAUDE.md에 한 줄 적을지 판단이 필요하다
+- 학습 경로 단계 제목이 `index.md`의 표시명을 따라간다. 카탈로그 표시명이 짧게 정리돼 있으면 단계 목록이 읽기 좋지만, 표시명이 없는 페이지는 frontmatter `title` 전문이 그대로 나온다
+- overview 본문의 `## 이 페이지의 한계`가 "지금은 자료가 없다"를 세 곳(요약·현황 표·한계)에서 반복한다. 자료가 들어오면 중복을 줄일 지점이다
+- 태그 6종이 새로 생겼는데 전부 페이지 1개짜리다. `/tags/vla/` 같은 페이지가 이 로드맵 하나만 담는 게 어색하지 않은지 — 자료가 들어오기 전 씨앗으로 둔 판단이다
 
 ### Phase 7 — 디자인 문서 개정과 검증
 

@@ -446,6 +446,42 @@ ${list}
   });
 }
 
+// ── 학습 경로 (study_path) ────────────────────────────────────────────────────
+//
+// overview 페이지 frontmatter 의 study_path 를 번호 단계로 렌더한다. 헤딩은 본문의
+// `## 학습 경로` 를 그대로 쓰므로(markdown.mjs 의 spliceStudyPath) 여기서는 목록만 낸다.
+// 해석 실패한 참조는 링크 대신 미해석 표기로 두고 빌드 콘솔이 따로 리포트한다 —
+// 위키링크가 깨졌을 때와 같은 처리다.
+//
+// steps: content.mjs 의 resolveStudyPaths 결과
+//   [{ n, ok, url, title, note, prereq:[{ ok, url, title, ref }] }]
+export function studyPathSection(steps) {
+  if (!steps || !steps.length) return '';
+
+  const refLink = (r, cls) =>
+    r.ok
+      ? `<a class="${cls}" href="${escapeHtml(r.url)}">${escapeHtml(r.title)}</a>`
+      : `<span class="${cls} wikilink-missing" title="미해석 학습 경로 참조">${escapeHtml(r.title)}</span>`;
+
+  // 이 HTML은 markdown 본문에 그대로 끼워 넣는다(markdown.mjs 의 spliceStudyPath).
+  // 빈 줄이 있으면 marked 가 HTML 블록을 거기서 끊고, 4칸 들여쓰기는 코드블록으로 잡힌다 —
+  // 그래서 줄 앞 공백도 빈 줄도 두지 않는다.
+  const items = steps
+    .map((s) => {
+      const note = s.note ? `<p class="study-note">${escapeHtml(s.note)}</p>` : '';
+      const prereq =
+        s.prereq && s.prereq.length
+          ? `<p class="study-prereq"><span class="study-prereq-label">선수</span>${s.prereq
+              .map((p) => refLink(p, 'study-prereq-link'))
+              .join('<span class="sep"> · </span>')}</p>`
+          : '';
+      return `<li class="study-step"><span class="study-n">${s.n}</span>${refLink(s, 'study-link')}${note}${prereq}</li>`;
+    })
+    .join('\n');
+
+  return `<ol class="study-path">\n${items}\n</ol>`;
+}
+
 // ── About 페이지 ──────────────────────────────────────────────────────────────
 //
 // README/CLAUDE.md 에서 추출한 철학·THE FOUR RULES·3-tier 파이프라인을 리딩 컬럼에 렌더.

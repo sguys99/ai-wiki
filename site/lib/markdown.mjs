@@ -158,6 +158,63 @@ export function extractWikiTargets(src) {
   return targets;
 }
 
+// ── 학습 경로 섹션 대체 ────────────────────────────────────────────────────────
+//
+// study_path 가 선언된 페이지는 본문에도 같은 순서를 `## 학습 경로` 의 wikilink 목록으로
+// 한 번 더 적는다(Obsidian 은 frontmatter 를 본문에 보여주지 않는다). 사이트가 둘을 다
+// 출력하면 같은 내용이 두 번 나오므로, 헤딩은 그대로 두고 그 아래 목록만 frontmatter 로
+// 렌더한 단계 컴포넌트로 갈아끼운다. 헤딩이 남아 있어 목차·앵커·본문 위치가 유지된다.
+//
+// 헤딩을 못 찾으면 본문 끝에 붙인다 — frontmatter 만 있고 본문 섹션을 안 쓴 페이지도
+// 컴포넌트는 나오게 한다. 코드펜스 안의 `## 학습 경로` 예시는 건드리지 않는다.
+// `## 학습 경로` / `## 학습 경로 (Study Path)` 둘 다 받는다. 한글은 \w 가 아니라
+// 단어 경계(\b)로 끝을 잡을 수 없어 뒤에 오는 문자로 직접 제한한다.
+const STUDY_HEADING_RE = /^##\s+학습\s*경로(?:\s|$)/;
+
+function spliceStudyPath(src, html) {
+  const lines = src.split('\n');
+  const out = [];
+  let inFence = false;
+  let fenceTok = '';
+  let skipping = false;
+  let found = false;
+
+  for (const line of lines) {
+    const fence = line.match(/^\s*(```+|~~~+)/);
+    if (fence) {
+      const tok = fence[1][0];
+      if (!inFence) {
+        inFence = true;
+        fenceTok = tok;
+      } else if (tok === fenceTok) {
+        inFence = false;
+      }
+      if (!skipping) out.push(line);
+      continue;
+    }
+    if (inFence) {
+      if (!skipping) out.push(line);
+      continue;
+    }
+
+    if (skipping) {
+      if (/^#{1,6}\s/.test(line)) skipping = false;
+      else continue;
+    }
+
+    if (!found && STUDY_HEADING_RE.test(line)) {
+      found = true;
+      skipping = true;
+      out.push(line, '', html, '');
+      continue;
+    }
+    out.push(line);
+  }
+
+  if (!found) out.push('', html, '');
+  return out.join('\n');
+}
+
 function wikilinkExtension(resolve, broken) {
   return {
     name: 'wikilink',
@@ -184,12 +241,15 @@ function wikilinkExtension(resolve, broken) {
 }
 
 // 본문 → { html, toc:[{depth,id,text}], broken:[target,...] }
-export function renderMarkdown(body, { resolve, hrefFn }) {
+// studyPath: 학습 경로 단계 컴포넌트 HTML(옵션) — 본문의 `## 학습 경로` 목록을 이걸로 대체.
+export function renderMarkdown(body, { resolve, hrefFn, studyPath = '' }) {
   const toc = [];
   const broken = [];
   const slugCount = new Map();
 
-  const pre = transformFigures(protectCurrency(body), hrefFn);
+  let pre = transformFigures(protectCurrency(body), hrefFn);
+  // figure/통화 전처리 뒤에 끼운다 — 주입한 HTML이 그 변환을 다시 타지 않도록.
+  if (studyPath) pre = spliceStudyPath(pre, studyPath);
   const md = new Marked({ gfm: true, breaks: false });
 
   // 수식 렌더: $…$ (인라인) / $$…$$ (디스플레이) → KaTeX HTML. 잘못된 LaTeX는 빌드를 깨지 않고

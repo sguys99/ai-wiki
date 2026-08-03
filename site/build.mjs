@@ -16,7 +16,7 @@ import { loadContent, tagsOf } from './lib/content.mjs';
 import { addedDates } from './lib/dates.mjs';
 import { buildGraph } from './lib/graph.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
-import { home, wiki, about, tagIndex, tag, graphPage } from './lib/templates.mjs';
+import { home, wiki, about, tagIndex, tag, graphPage, studyPathSection } from './lib/templates.mjs';
 import { domainOf } from './lib/domains.mjs';
 import { prevNext } from './lib/nav.mjs';
 import { aboutMarkdown, ABOUT_INTRO } from './lib/about.mjs';
@@ -61,6 +61,16 @@ async function main() {
     console.log(`[tags]   merged '${c.slug}' ← ${c.variants.join(' , ')} (대표 표기 '${c.label}')`);
   const tagsFor = (page) => tagsOf(page, tagIdx);
 
+  // 2.7) 학습 경로 — overview frontmatter 의 study_path 를 페이지로 해석한 결과.
+  //      깨진 참조는 빌드를 실패시키지 않고 리포트만 한다(깨진 위키링크와 같은 취급).
+  const sp = content.studyPaths;
+  if (sp.pageCount) {
+    console.log(
+      `[study] study_path 선언 페이지: ${sp.pageCount}  ·  단계: ${sp.stepCount}  ·  미해석 참조: ${sp.broken.reduce((n, b) => n + b.targets.length, 0)}${sp.broken.length ? '' : '  ✓'}`
+    );
+    for (const b of sp.broken) console.log(`[study]   WARN ${b.id}: ${b.targets.join(' | ')}`);
+  }
+
   // 3) 그래프 빌드 → graph.json
   const graph = buildGraph(pages, resolveLink);
   await writeFile(
@@ -98,7 +108,11 @@ async function main() {
   const brokenByPage = []; // { id, targets:[...] }
   let rendered = 0;
   for (const page of pages.values()) {
-    const { html, toc, broken } = renderMarkdown(page.body, { resolve: resolveLink, hrefFn: href });
+    const { html, toc, broken } = renderMarkdown(page.body, {
+      resolve: resolveLink,
+      hrefFn: href,
+      studyPath: studyPathSection(page.studyPath),
+    });
     if (broken.length) brokenByPage.push({ id: page.id, targets: broken });
 
     // 관련 페이지: 무방향 직접 이웃 → degree 내림차순(동률은 제목순). 그래프 노드=위키 페이지.
