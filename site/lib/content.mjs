@@ -12,6 +12,7 @@ import { join, basename, relative, sep } from 'node:path';
 import matter from 'gray-matter';
 import { href, SITE, RECENT_DAYS } from './config.mjs';
 import { slugify } from './markdown.mjs';
+import { domainOf } from './domains.mjs';
 
 // index.md 카탈로그 한 줄 정규식.
 //   - [[category/stem|display]] — 설명 ... (YYYY, type)
@@ -133,6 +134,90 @@ async function loadCatalog(root) {
   return sections;
 }
 
+// ── 태그 인덱스 ───────────────────────────────────────────────────────────────
+//
+// 전 페이지의 frontmatter `tags:` 를 모아 태그 → 페이지 맵을 만든다. 키는 markdown.mjs 의
+// slugify 로 낸 슬러그다(같은 규칙을 헤딩 앵커와 공유).
+//
+// 표기 흔들림 흡수: 슬러그가 같은 변형(RAG / rag)은 한 태그로 합친다. 태그 정규화 자체는
+// 이번 범위가 아니라서 graph-rag / graphrag 처럼 슬러그가 다른 중복은 그대로 남는다.
+// 합쳐진 원 표기는 variants 에 남겨 추적 가능하게 두고, 대표 표기는 최다 빈도 →
+// 동률이면 코드포인트 순으로 고른다.
+//
+// 도메인 판정은 다수결이다. 그 태그를 단 페이지의 절반을 넘는 쪽이 physical 이면 physical,
+// 아니면 core. 한 페이지만 걸쳐도 physical 로 넘기면 benchmark 처럼 양쪽이 같이 쓰는
+// 일반 태그가 core 클라우드에서 사라진다.
+export function buildTagIndex(pages) {
+  const bySlug = new Map();
+
+  for (const page of pages.values()) {
+    for (const rawTag of page.tags) {
+      const label = String(rawTag).trim();
+      if (!label) continue;
+      const slug = slugify(label);
+      if (!slug) continue;
+      let entry = bySlug.get(slug);
+      if (!entry) {
+        entry = {
+          slug,
+          label,
+          url: href(`/tags/${slug}/`),
+          variants: new Map(), // 원 표기 → 등장 횟수
+          pages: [],
+        };
+        bySlug.set(slug, entry);
+      }
+      entry.variants.set(label, (entry.variants.get(label) || 0) + 1);
+      if (!entry.pages.some((p) => p.id === page.id)) entry.pages.push(page);
+    }
+  }
+
+  const collisions = [];
+  for (const entry of bySlug.values()) {
+    const variants = [...entry.variants.entries()].sort(
+      (a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0)
+    );
+    entry.label = variants[0][0];
+    entry.variantLabels = variants.map(([v]) => v);
+    if (variants.length > 1) {
+      collisions.push({ slug: entry.slug, label: entry.label, variants: entry.variantLabels });
+    }
+    entry.count = entry.pages.length;
+
+    const physical = entry.pages.filter((p) => domainOf(p.category) === 'physical').length;
+    entry.domain = physical * 2 > entry.pages.length ? 'physical' : 'core';
+
+    entry.pages.sort(
+      (a, b) =>
+        Date.parse(b.added) - Date.parse(a.added) ||
+        (a.display || a.title).localeCompare(b.display || b.title, 'ko')
+    );
+  }
+
+  // 빈도 내림차순 → 동률은 표기순. 태그 클라우드와 태그 페이지가 같은 순서를 쓴다.
+  const tags = [...bySlug.values()].sort(
+    (a, b) => b.count - a.count || a.label.localeCompare(b.label, 'ko')
+  );
+
+  return { tags, bySlug, collisions };
+}
+
+// 페이지 하나의 태그를 태그 인덱스 엔트리로 바꾼다(슬러그 병합 반영, 원 순서 유지).
+// 같은 페이지가 표기만 다른 두 변형을 달고 있으면 한 번만 남는다.
+export function tagsOf(page, tagIndex) {
+  const out = [];
+  const seen = new Set();
+  for (const rawTag of page.tags || []) {
+    const slug = slugify(String(rawTag).trim());
+    if (!slug || seen.has(slug)) continue;
+    const entry = tagIndex.bySlug.get(slug);
+    if (!entry) continue;
+    seen.add(slug);
+    out.push(entry);
+  }
+  return out;
+}
+
 // ── 머지 ─────────────────────────────────────────────────────────────────────
 
 export async function loadContent(root, addedDates = new Map()) {
@@ -202,6 +287,7 @@ export async function loadContent(root, addedDates = new Map()) {
     byStem,
     sections,
     categories,
+    tagIndex: buildTagIndex(pages),
     resolve: makeResolver(pages, byStem, categories),
     warnings,
     missingFile,

@@ -688,10 +688,22 @@
     transition: border-color var(--dur) var(--ease),
       transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
   }
+  /* 카드는 <div> 이고 제목 링크(.card-link)가 ::after 로 카드 전면을 덮어 클릭 영역이 된다.
+     그래야 태그 칩을 실제 링크로 둘 수 있다(앵커 중첩 금지). 포커스 링은 제목 링크가 받는다. */
   .card:hover,
-  .card:focus-visible {
+  .card:focus-within {
     border-color: var(--signal);
     transform: translateY(-2px);
+  }
+  .card-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .card-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
   }
   .card-tag {
     font-family: var(--font-mono);
@@ -734,6 +746,9 @@
     gap: var(--space-1);
     flex-wrap: wrap;
     justify-content: flex-end;
+    /* .card-link::after 위로 올려 칩 자체 링크가 클릭을 받게 한다 */
+    position: relative;
+    z-index: 1;
   }
   .chip {
     font-family: var(--font-mono);
@@ -742,6 +757,13 @@
     background: var(--surface-2);
     border-radius: var(--radius-sm);
     padding: 0.1em 0.5em;
+    text-decoration: none;
+    transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+  }
+  a.chip:hover,
+  a.chip:focus-visible {
+    color: var(--signal);
+    background: color-mix(in srgb, var(--signal-dim) 60%, var(--surface-2));
   }
 
   /* ── 최근 추가 밴드 · NEW 뱃지 ── */
@@ -1460,6 +1482,7 @@
 
   /* ── 모바일 내비 (≤560px): 인라인 About 숨김 · 햄버거 노출 · 시트 표시 ── */
   @media (max-width: 560px) {
+    .nav-tags,
     .nav-about,
     .nav-github {
       display: none;
@@ -1490,6 +1513,176 @@
     .site-menu a:hover {
       background: var(--surface-2);
       color: var(--signal);
+    }
+  }
+}
+
+/* ── components (Phase 4: 태그 인덱스 · 태그 페이지 · 위키 태그 · 검색 패싯) ────────── */
+@layer components {
+  /* ── 위키 본문 하단 태그 목록 ── */
+  /* 카드 칩은 2개 상한이라 전체 태그는 여기서만 보인다. */
+  .wiki-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-8);
+    padding-top: var(--space-4);
+    border-top: var(--hairline-w) solid var(--hairline);
+  }
+  .wiki-tags-label {
+    color: var(--faint);
+  }
+  .wiki-tags .chip {
+    font-size: var(--text-sm);
+    padding: 0.2em 0.6em;
+  }
+
+  /* ── 태그 인덱스 · 태그 상세 공통 셸 ── */
+  .tags-page {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-4) 0;
+  }
+  .tags-head {
+    margin-bottom: var(--space-8);
+  }
+  .tags-title {
+    margin: var(--space-2) 0 0;
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+  }
+  .tag-detail-title {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    color: var(--signal);
+  }
+  .tags-lede {
+    max-width: var(--measure);
+    margin: var(--space-4) 0 0;
+    color: var(--muted);
+    line-height: var(--leading-body);
+  }
+  .tags-stat {
+    margin: var(--space-3) 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--faint);
+  }
+  .tag-variants {
+    max-width: var(--measure);
+    margin: var(--space-2) 0 0;
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .tag-variants code {
+    font-family: var(--font-mono);
+    font-size: 0.95em;
+  }
+
+  /* ── 태그 클라우드 ── */
+  /* 그룹 <section> 이 data-domain 을 들고 있어 --signal 오버라이드가 그대로 걸린다. */
+  .tag-group {
+    margin-bottom: var(--space-12);
+  }
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-6);
+  }
+  .tag-cloud-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-1);
+    font-family: var(--font-mono);
+    color: var(--muted);
+    background: var(--surface);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: var(--space-1) var(--space-3);
+    text-decoration: none;
+    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .tag-cloud-item:hover,
+  .tag-cloud-item:focus-visible {
+    color: var(--text);
+    border-color: var(--signal);
+  }
+  .tag-cloud-n {
+    font-size: var(--text-xs);
+    color: var(--faint);
+  }
+  /* 빈도 4단계 — 1회짜리 롱테일이 대부분이라 연속 스케일은 차이가 안 보인다. */
+  .tag-cloud-item[data-size='1'] {
+    font-size: var(--text-xs);
+  }
+  .tag-cloud-item[data-size='2'] {
+    font-size: var(--text-sm);
+  }
+  .tag-cloud-item[data-size='3'] {
+    font-size: var(--text-base);
+    color: var(--text);
+  }
+  .tag-cloud-item[data-size='4'] {
+    font-size: var(--text-lg);
+    color: var(--signal);
+    border-color: var(--signal-dim);
+  }
+
+  /* ── 검색 모달 카테고리 패싯 ── */
+  /* 결과 위 한 줄. search.js 가 Pagefind filters() 결과로 채운다. */
+  .search-facets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-4);
+    border-bottom: var(--hairline-w) solid var(--hairline);
+  }
+  .search-facets[hidden] {
+    display: none;
+  }
+  .facet-chip {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    background: var(--surface-2);
+    border: var(--hairline-w) solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 0.2em 0.6em;
+    cursor: pointer;
+    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  }
+  .facet-chip:hover:not(:disabled) {
+    color: var(--text);
+    border-color: var(--signal);
+  }
+  .facet-chip.is-active {
+    color: var(--bg);
+    background: var(--signal);
+    border-color: var(--signal);
+  }
+  .facet-chip:disabled {
+    color: var(--faint);
+    cursor: default;
+    opacity: 0.55;
+  }
+  .facet-n {
+    margin-left: 0.35em;
+    color: var(--faint);
+  }
+  .facet-chip.is-active .facet-n {
+    color: color-mix(in srgb, var(--bg) 70%, var(--signal));
+  }
+
+  /* 모바일: 태그 헤더 여백 축소 */
+  @media (max-width: 560px) {
+    .tags-page {
+      padding-top: var(--space-6);
+    }
+    .tags-head {
+      margin-bottom: var(--space-6);
     }
   }
 }

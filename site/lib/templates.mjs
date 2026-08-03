@@ -16,6 +16,20 @@ import { domainOf } from './domains.mjs';
 
 const GH_URL = `https://github.com/${SITE.repo}`;
 
+// 태그 인덱스 도메인 그룹 표기. domains.mjs 의 도메인 키 → 화면 라벨/설명.
+const DOMAIN_GROUPS = [
+  {
+    domain: 'core',
+    label: 'Core',
+    desc: 'LLM 소프트웨어 쪽 카테고리에서 쓴 태그입니다.',
+  },
+  {
+    domain: 'physical',
+    label: 'Physical AI',
+    desc: '물리 세계와 상호작용하는 방법을 다룬 페이지의 태그입니다.',
+  },
+];
+
 // index.md 에 선언만 돼 있고 페이지가 아직 0개인 카테고리 밴드의 안내문.
 // 밴드에는 이 문장 위에 index.md 섹션 설명(band-desc)이 이미 붙으므로,
 // 여기서는 "왜 비었는지 · 언제 채워지는지"만 말한다.
@@ -107,6 +121,7 @@ function header() {
     <button type="button" class="nav-btn" data-search-trigger data-pagefind="${escapeHtml(href('/pagefind/pagefind.js'))}" aria-label="검색" title="검색 (Ctrl/⌘ K)">
       <span class="nav-btn-ico" aria-hidden="true">⌕</span><span class="nav-btn-label">검색</span><kbd class="nav-kbd">⌘K</kbd>
     </button>
+    <a class="nav-btn nav-tags" href="${href('/tags/')}">태그</a>
     <a class="nav-btn nav-about" href="${href('/about/')}">About</a>
     <a class="nav-btn nav-github" href="${escapeHtml(GH_URL)}" target="_blank" rel="noopener" aria-label="GitHub 저장소" title="GitHub 저장소">
       <svg class="nav-github-ico" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -118,6 +133,7 @@ function header() {
   </nav>
   <div id="site-menu" class="site-menu" hidden>
     <a href="${href('/')}">홈</a>
+    <a href="${href('/tags/')}">태그</a>
     <a href="${href('/about/')}">About</a>
     <a href="${escapeHtml(GH_URL)}" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
@@ -141,34 +157,41 @@ function footer() {
 //
 // page: content.mjs 페이지 모델 (+ catalog 머지). degree: 그래프 연결 수.
 // links: 이웃 id 배열(undirected) — 카드 hover 시 연결 카드 하이라이트용 data 속성.
-function card(page, degree, links) {
+// cardTags: content.mjs 의 태그 인덱스 엔트리 배열 — 앞의 2개만 칩으로 나가고 각각 태그
+//   페이지로 링크된다. 카드 전체가 <a> 였으면 칩을 링크로 만들 수 없어(중첩 앵커 금지)
+//   컨테이너를 <div> 로 바꾸고 제목 링크를 카드 전면으로 늘린다(.card-link::after).
+function card(page, degree, links, cardTags = []) {
   const type = (page.catalogType || page.type || '').toUpperCase();
   const year = page.catalogYear || page.year || '';
   const tag = [type, year].filter(Boolean).join('·');
   const deg = degree.get(page.id) || 0;
-  const chips = (page.tags || [])
+  const chips = cardTags
     .slice(0, 2)
-    .map((t) => `<span class="chip">${escapeHtml(t)}</span>`)
+    .map(
+      (t) =>
+        `<a class="chip" href="${escapeHtml(t.url)}">${escapeHtml(t.label)}</a>`
+    )
     .join('');
   const dataLinks = (links || []).join(' ');
 
-  return `<a class="card" href="${escapeHtml(page.url)}" data-id="${escapeHtml(page.id)}" data-links="${escapeHtml(dataLinks)}">
+  return `<div class="card" data-id="${escapeHtml(page.id)}" data-links="${escapeHtml(dataLinks)}">
   ${page.isNew ? '<span class="card-new">NEW</span>' : ''}
   ${tag ? `<span class="card-tag">${escapeHtml(tag)}</span>` : ''}
-  <h3 class="card-title">${escapeHtml(page.display || page.title)}</h3>
+  <h3 class="card-title"><a class="card-link" href="${escapeHtml(page.url)}">${escapeHtml(page.display || page.title)}</a></h3>
   ${page.desc ? `<p class="card-desc">${escapeHtml(page.desc)}</p>` : ''}
   <span class="card-foot">
     <span class="card-deg" title="연결 ${deg}개">↳ ${deg}</span>
     ${chips ? `<span class="card-chips">${chips}</span>` : ''}
   </span>
-</a>`;
+</div>`;
 }
 
 // ── 홈 ────────────────────────────────────────────────────────────────────────
 //
-// data: { sections, degree, adjacency:Map(id→[ids]), stats:{pages,links,categories}, graphHref }
+// data: { sections, degree, adjacency:Map(id→[ids]), stats:{pages,links,categories}, graphHref,
+//         tagsFor:(page)=>[tagEntry,...] }
 export function home(data) {
-  const { sections, recent, degree, adjacency, stats, graphHref } = data;
+  const { sections, recent, degree, adjacency, stats, graphHref, tagsFor = () => [] } = data;
   // 페이지가 있는 섹션 + index.md 에 선언만 된 빈 섹션(자료 대기 상태).
   // 빈 섹션은 카드 그리드 대신 한 줄 안내를 단 밴드로 나간다.
   const visible = sections.filter((s) => s.pages.length || s.declaredEmpty);
@@ -217,7 +240,7 @@ export function home(data) {
     const inner = isEmpty
       ? `  <p class="band-empty-note">${escapeHtml(BAND_EMPTY_NOTE)}</p>`
       : `  <div class="card-grid">
-${s.pages.map((p) => card(p, degree, adjacency.get(p.id))).join('\n')}
+${s.pages.map((p) => card(p, degree, adjacency.get(p.id), tagsFor(p))).join('\n')}
   </div>
   <button type="button" class="band-more" data-more="${escapeHtml(s.slug)}" hidden>+ 더 보기</button>`;
     const cls = ['band', extraClass, isEmpty ? 'band-empty' : ''].filter(Boolean).join(' ');
@@ -241,6 +264,105 @@ ${inner}
     mainClass: 'home',
     path: '/',
     scripts: ['/static/js/constellation.js', '/static/js/filter.js'],
+  });
+}
+
+// ── 태그 인덱스 (/tags/) ──────────────────────────────────────────────────────
+//
+// 빈도순 태그 클라우드를 도메인(core / physical)별로 나눠 보여준다. 도메인 판정 규칙은
+// content.mjs 의 buildTagIndex 주석 참고 — 그 태그를 단 페이지의 다수결이다.
+// 각 그룹 <section> 에 data-domain 을 걸어 Phase 2 의 강조색 오버라이드를 그대로 받는다.
+
+// 클라우드 글자 크기 단계. 빈도 분포가 롱테일(대부분 1회)이라 연속 스케일 대신 4단계.
+function tagSize(count) {
+  if (count >= 10) return 4;
+  if (count >= 5) return 3;
+  if (count >= 2) return 2;
+  return 1;
+}
+
+function tagCloud(tags) {
+  return `<div class="tag-cloud">
+${tags
+  .map(
+    (t) =>
+      `      <a class="tag-cloud-item" href="${escapeHtml(t.url)}" data-size="${tagSize(t.count)}">${escapeHtml(t.label)}<span class="tag-cloud-n">${t.count}</span></a>`
+  )
+  .join('\n')}
+    </div>`;
+}
+
+// data: { tags:[entry,...], totalPages }
+export function tagIndex(data) {
+  const { tags, totalPages } = data;
+  const groups = DOMAIN_GROUPS.map((g) => ({
+    ...g,
+    tags: tags.filter((t) => t.domain === g.domain),
+  })).filter((g) => g.tags.length);
+
+  const sections = groups
+    .map(
+      (g) => `  <section class="tag-group" data-domain="${escapeHtml(g.domain)}" aria-labelledby="tag-group-${escapeHtml(g.domain)}">
+    <div class="band-head">
+      <h2 class="band-name" id="tag-group-${escapeHtml(g.domain)}">${escapeHtml(g.label)}</h2>
+      <span class="band-count">${g.tags.length}</span>
+      <p class="band-desc">${escapeHtml(g.desc)}</p>
+    </div>
+    ${tagCloud(g.tags)}
+  </section>`
+    )
+    .join('\n');
+
+  const body = `<div class="tags-page">
+  <header class="tags-head">
+    <p class="eyebrow">태그 인덱스</p>
+    <h1 class="tags-title">태그</h1>
+    <p class="tags-lede">위키 페이지 frontmatter 의 태그를 모았습니다. 글자 크기는 쓰인 횟수이고 대소문자만 다른 표기는 한 항목으로 합쳤습니다.</p>
+    <p class="tags-stat">태그 ${tags.length}개 · 페이지 ${totalPages}개</p>
+  </header>
+${sections}
+</div>`;
+
+  return layout({
+    title: '태그',
+    description: `${SITE.title} 태그 인덱스 — 태그 ${tags.length}개`,
+    body,
+    mainClass: 'tags',
+    path: '/tags/',
+  });
+}
+
+// ── 태그 상세 (/tags/{slug}/) ─────────────────────────────────────────────────
+//
+// 해당 태그를 단 페이지 목록. 홈과 같은 card() 를 그대로 쓴다.
+// entry: content.mjs 태그 인덱스 엔트리. data: { degree, adjacency, tagsFor }
+export function tag(entry, data) {
+  const { degree, adjacency, tagsFor = () => [] } = data;
+
+  const variants =
+    entry.variantLabels && entry.variantLabels.length > 1
+      ? `<p class="tag-variants">표기 변형을 한 태그로 묶었습니다 — ${entry.variantLabels.map((v) => `<code>${escapeHtml(v)}</code>`).join(' · ')}</p>`
+      : '';
+
+  const body = `<div class="tags-page">
+  <header class="tags-head">
+    <p class="eyebrow"><a href="${href('/tags/')}">태그 인덱스</a></p>
+    <h1 class="tags-title tag-detail-title">${escapeHtml(entry.label)}</h1>
+    <p class="tags-stat">페이지 ${entry.count}개</p>
+    ${variants}
+  </header>
+  <div class="card-grid">
+${entry.pages.map((p) => card(p, degree, adjacency.get(p.id), tagsFor(p))).join('\n')}
+  </div>
+</div>`;
+
+  return layout({
+    title: `태그: ${entry.label}`,
+    description: `'${entry.label}' 태그가 달린 위키 페이지 ${entry.count}개`,
+    body,
+    mainClass: 'tags tag-detail',
+    domain: entry.domain,
+    path: `/tags/${entry.slug}/`,
   });
 }
 
@@ -273,13 +395,14 @@ export function about(html, intro) {
 // ── 위키(절) 페이지 ───────────────────────────────────────────────────────────
 //
 // 리딩 컬럼(~72ch) + 데스크톱 우측 TOC rail(scrollspy) + 상단 진행바 + 페이지 헤더.
-// data: { html, toc, degree:Map, categoryLabel, neighbors, prev, next }
+// data: { html, toc, degree:Map, categoryLabel, neighbors, prev, next, tags }
 //   - degree: 그래프 연결 수(↳ N links 메타)
 //   - categoryLabel: 카테고리 eyebrow 표기(index.md 섹션 라벨, 폴백은 slug)
 //   - neighbors: 직접 링크된 페이지 목록(degree 내림차순) — 하단 관련 페이지 그래프/목록
 //   - prev/next: 같은 카테고리(카탈로그 순서) 인접 페이지
+//   - tags: 태그 인덱스 엔트리 배열 — 본문 아래 전체 노출(카드 칩은 2개 상한, 여기는 전량)
 export function wiki(page, html, toc, data = {}) {
-  const { degree, categoryLabel, neighbors = [], prev = null, next = null } = data;
+  const { degree, categoryLabel, neighbors = [], prev = null, next = null, tags = [] } = data;
   const deg = (degree && degree.get(page.id)) || 0;
   const catLabel = categoryLabel || page.category;
   const type = (page.catalogType || page.type || '').toUpperCase();
@@ -342,12 +465,27 @@ ${tocItems}
   </details>`
     : '';
 
+  // 페이지 전체 태그 — 본문 끝. Pagefind 필터 마커(data-pagefind-filter)를 겸하므로
+  // data-pagefind-body 안쪽(=article)에 둔다. 바깥(wiki-foot)에 두면 인덱싱에서 빠진다.
+  const tagList = tags.length
+    ? `<nav class="wiki-tags" aria-label="이 페이지의 태그">
+      <span class="wiki-tags-label eyebrow">태그</span>
+      ${tags
+        .map(
+          (t) =>
+            `<a class="chip" href="${escapeHtml(t.url)}" data-pagefind-filter="tag:${escapeHtml(t.label)}">${escapeHtml(t.label)}</a>`
+        )
+        .join('\n      ')}
+    </nav>`
+    : '';
+
   const body = `<div class="reading-bar" aria-hidden="true"><i></i></div>
 <div class="wiki-grid">
   ${tocMobile}
-  <article class="wiki-article prose" data-pagefind-body>
+  <article class="wiki-article prose" data-pagefind-body data-pagefind-filter="category:${escapeHtml(catLabel)}">
     ${header}
     ${html}
+    ${tagList}
   </article>
   ${tocRail}
   ${foot}

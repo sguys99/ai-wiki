@@ -12,11 +12,11 @@ import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
 import { BASE, href, RECENT_COUNT } from './lib/config.mjs';
-import { loadContent } from './lib/content.mjs';
+import { loadContent, tagsOf } from './lib/content.mjs';
 import { addedDates } from './lib/dates.mjs';
 import { buildGraph } from './lib/graph.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
-import { home, wiki, about } from './lib/templates.mjs';
+import { home, wiki, about, tagIndex, tag } from './lib/templates.mjs';
 import { prevNext } from './lib/nav.mjs';
 import { aboutMarkdown, ABOUT_INTRO } from './lib/about.mjs';
 
@@ -48,6 +48,17 @@ async function main() {
     console.log(
       `[content] WARN index.md 카탈로그에 없는 페이지 (${content.missingFromIndex.length}): ${content.missingFromIndex.join(', ')}`
     );
+
+  // 2.5) 태그 인덱스 — 전 페이지 tags: → slug 기준 태그→페이지 맵.
+  //      슬러그가 겹치는 표기 변형은 한 태그로 합치고 그 내역을 콘솔에 남긴다.
+  const tagIdx = content.tagIndex;
+  const tagPageLinks = tagIdx.tags.reduce((n, t) => n + t.count, 0);
+  console.log(
+    `[tags] tags: ${tagIdx.tags.length}  ·  page-tag links: ${tagPageLinks}  ·  merged slugs: ${tagIdx.collisions.length}`
+  );
+  for (const c of tagIdx.collisions)
+    console.log(`[tags]   merged '${c.slug}' ← ${c.variants.join(' , ')} (대표 표기 '${c.label}')`);
+  const tagsFor = (page) => tagsOf(page, tagIdx);
 
   // 3) 그래프 빌드 → graph.json
   const graph = buildGraph(pages, resolveLink);
@@ -117,6 +128,7 @@ async function main() {
         neighbors,
         prev,
         next,
+        tags: tagsFor(page),
       })
     );
     rendered++;
@@ -139,8 +151,32 @@ async function main() {
 
   await writeFile(
     join(DIST, 'index.html'),
-    home({ sections, recent, degree: graph.degree, adjacency, stats, graphHref: href('/graph.json') })
+    home({
+      sections,
+      recent,
+      degree: graph.degree,
+      adjacency,
+      stats,
+      graphHref: href('/graph.json'),
+      tagsFor,
+    })
   );
+
+  // 6.2) 태그 인덱스 + 태그별 페이지.
+  await mkdir(join(DIST, 'tags'), { recursive: true });
+  await writeFile(
+    join(DIST, 'tags', 'index.html'),
+    tagIndex({ tags: tagIdx.tags, totalPages: totalPages })
+  );
+  for (const entry of tagIdx.tags) {
+    const outDir = join(DIST, 'tags', entry.slug);
+    await mkdir(outDir, { recursive: true });
+    await writeFile(
+      join(outDir, 'index.html'),
+      tag(entry, { degree: graph.degree, adjacency, tagsFor })
+    );
+  }
+  console.log(`[render] tag pages rendered: ${tagIdx.tags.length} (+ /tags/ index)`);
 
   // 6.5) About — README/CLAUDE.md 철학·THE FOUR RULES·3-tier 파이프라인.
   //      위키 본문과 같은 렌더 경로(renderMarkdown) → [[category]] 위키링크가 홈 밴드 앵커로 해석.

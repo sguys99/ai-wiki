@@ -360,15 +360,118 @@ wiki셸 : <main id="main" class="wiki" data-domain="physical">
 - 640 / 1024px에서 안내 박스 세로 여백(`--space-6` 상하)이 카드 그리드 자리와 비교해 허전하지 않은지
 - 필터 칩에서 Physical AI를 눌렀을 때 sticky 필터바 아래 안내 한 줄만 남는 화면. Phase 8에서 첫 자료가 들어오면 카드 그리드로 자동 전환된다
 
-### Phase 4 — 태그 인덱스·필터
+### Phase 4 — 태그 인덱스·필터 ✅ 완료 (2026-08-03)
 
-- [ ] `content.mjs`: 태그→페이지 인덱스 생성 (`slugify` 재사용)
-- [ ] `templates.mjs`: `tagIndex()`·`tag()` 추가 (본문 목록은 기존 `card()` 재사용)
-- [ ] `build.mjs`: `dist/tags/index.html` + `dist/tags/{slug}/index.html` 렌더
-- [ ] 카드 칩·wiki 페이지 태그를 태그 페이지로 링크
-- [ ] wiki 아티클에 `data-pagefind-filter` 부여
-- [ ] `search.js`에 카테고리 패싯 필터 UI 추가
-- [ ] 헤더 또는 푸터에 태그 인덱스 진입점 추가
+- [x] `content.mjs`: 태그→페이지 인덱스 생성 (`slugify` 재사용)
+- [x] `templates.mjs`: `tagIndex()`·`tag()` 추가 (본문 목록은 기존 `card()` 재사용)
+- [x] `build.mjs`: `dist/tags/index.html` + `dist/tags/{slug}/index.html` 렌더
+- [x] 카드 칩·wiki 페이지 태그를 태그 페이지로 링크
+- [x] wiki 아티클에 `data-pagefind-filter` 부여
+- [x] `search.js`에 카테고리 패싯 필터 UI 추가
+- [x] 헤더 또는 푸터에 태그 인덱스 진입점 추가
+
+#### 실행 기록
+
+신규 파일 없이 5개를 고쳤다. `content.mjs`에 `buildTagIndex(pages)`·`tagsOf(page, tagIndex)`를 넣고 `loadContent()` 반환에 `tagIndex`를 실었다. `slugify`는 `markdown.mjs`에서 import했고 새로 만들지 않았다. `templates.mjs`에 `tagIndex()`·`tag()`·`tagCloud()`·`tagSize()`를 추가했다. `build.mjs`는 `[tags]` 콘솔 리포트와 두 종류의 태그 페이지 렌더를 맡는다. `search.js`에 카테고리 패싯 UI, `styles.css`에 카드 stretched link·칩 링크 상태·태그 인덱스·클라우드·태그 상세·위키 태그 목록·검색 패싯 스타일이 들어갔다.
+
+기존 토큰만 썼고 Phase 2의 `[data-domain]` 오버라이드와 충돌하지 않는다. 태그 그룹 `<section>`과 태그 상세 `<main>`이 `data-domain`을 들고 있어 physical 태그는 자동으로 앰버가 된다.
+
+자료구조는 이렇다.
+
+```
+{ tags: [entry…빈도 desc], bySlug: Map(slug→entry), collisions: [...] }
+entry = { slug, label, url, variants:Map(원표기→횟수), variantLabels, pages, count, domain }
+```
+
+`count`는 페이지 수이고 페이지 안에서 중복된 태그는 1회로 센다. distinct 703 raw → 700 slug, page-tag 링크 1,314.
+
+**도메인 그룹은 다수결로 판정한다.** 그 태그를 단 페이지 중 physical이 절반을 넘으면 `physical`, 아니면 `core`(동률 포함). "하나라도 physical이면 physical" 규칙을 안 쓴 이유는 `benchmark`처럼 양쪽이 같이 쓰는 일반 태그가 크로스오버 한 건만으로 core 클라우드에서 사라지기 때문이다. `vla`·`sim2real` 같은 physical 전용 태그는 어느 규칙에서도 physical로 간다. 지금은 physical-ai 페이지가 0개라 렌더되는 그룹이 Core 하나뿐이고 빈 그룹은 렌더하지 않는다.
+
+#### 슬러그 충돌 — 3건 병합
+
+대표 표기는 최다 빈도, 동률이면 코드포인트 순으로 고른다. 버려진 표기도 `variantLabels`에 남아 태그 상세 페이지에 "표기 변형을 한 태그로 묶었습니다 — `A` · `B`"로 노출된다.
+
+| slug | 병합된 표기 | 대표 |
+|---|---|---|
+| `rag` | rag(26) · RAG(2) | `rag` |
+| `swe-bench` | SWE-bench(1) · swe-bench(1) | `SWE-bench` |
+| `skillsbench` | SkillsBench(1) · skillsbench(1) | `SkillsBench` |
+
+계획서 Known Gaps대로 `graph-rag`/`graphrag`처럼 슬러그가 아예 다른 중복은 손대지 않았다.
+
+#### 카드 구조 변경
+
+`card()`가 `<a>`에서 `<div>` + 제목 stretched link 구조로 바뀌었다. 앵커 중첩이 금지라 카드 안의 태그 칩을 실제 링크로 만들려면 이 구조가 필요했다. `.card-link::after`가 `inset: 0`으로 카드 전면을 덮어 클릭 영역이 되고, 칩은 `position: relative; z-index: 1`로 그 위에 올라가 자기 링크로 클릭을 받는다. 호버·포커스는 `:focus-visible` 대신 `:focus-within`으로 바뀌었다. `filter.js`의 접기와 `constellation.js`의 이웃 하이라이트는 셀렉터가 `.card`라 코드상 영향이 없다.
+
+#### Pagefind filters 0 → 2
+
+`category`(7값: Agents 49 · Applications 31 · Database 25 · Overviews 9 · LLMs 3 · Etc 2 · Evaluations 2)와 `tag`(700값)가 잡힌다. 인덱스 페이지 수·단어 수는 121 / 34,084 그대로다 — `data-pagefind-body`는 wiki 아티클에만 유지했다.
+
+`search.js` 패싯은 모달을 열 때 `pagefind.filters()`를 1회 호출해 `전체` + 카테고리 칩을 렌더한다. 칩을 누르면 `search(q, { filters: { category: [값] } })`로 재검색하고, 칩 숫자는 응답의 `totalFilters.category`로 갱신하며 0인 칩은 `disabled`가 된다. 검색어 없이 패싯만 있으면 `search(null, …)` filter-only 모드로 그 카테고리를 나열한다. 이때 Pagefind가 `totalFilters`를 전부 0으로 돌려주는 걸 실측으로 확인해서, 그 경우엔 인덱스 전체 수로 대체했다. 안 그러면 다른 칩이 전부 비활성이 된다. 모달을 닫았다 열면 패싯은 `전체`로 초기화된다.
+
+`category:Physical AI`처럼 공백이 있는 값도 Pagefind가 정상 색인·조회하는 걸 합성 사이트로 미리 확인했다(Phase 8 대비). 새 런타임 의존성은 없다.
+
+#### 빌드 검증 (Phase 3 대비)
+
+```
+[content] wiki pages: 121  ·  catalog entries: 121  ·  sections: 8
+[tags] tags: 700  ·  page-tag links: 1314  ·  merged slugs: 3
+[tags]   merged 'rag' ← rag , RAG (대표 표기 'rag')
+[tags]   merged 'swe-bench' ← SWE-bench , swe-bench (대표 표기 'SWE-bench')
+[tags]   merged 'skillsbench' ← SkillsBench , skillsbench (대표 표기 'SkillsBench')
+[graph] nodes: 121  ·  edges: 626
+[render] pages rendered: 121
+[render] tag pages rendered: 700 (+ /tags/ index)
+[links] unresolved wikilinks: 0  ✓
+[build] done.
+```
+
+`dates.mjs self-check ✓`. `[tags]` 3줄은 신규 정보성 로그이고 경고는 하나도 늘지 않았다.
+
+| 항목 | Phase 3 | Phase 4 |
+|---|---|---|
+| wiki pages / catalog / sections | 121 / 121 / 8 | 121 / 121 / 8 |
+| graph nodes / edges | 121 / 626 | 121 / 626 |
+| pages rendered | 121 | 121 |
+| 태그 페이지 | — | **700 (+ 인덱스 1)** |
+| unresolved wikilinks / `[about] WARN` | 0 / 0 | 0 / 0 |
+| 카테고리 불일치 / 중복 stem / 카탈로그 고아 / 미인덱스 | 0 | 0 |
+| 홈 hero pages / categories · 밴드 수 | 121 / 8 · 9 | 121 / 8 · 9 |
+| dist HTML | 123 | **824** (52 MB) |
+| Pagefind filters / sorts | 0 / 0 | **2 / 0** |
+| Pagefind pages / words | 121 / 34,084 | 121 / 34,084 |
+
+클라우드 크기 단계는 size4(≥10회) 8개 · size3(≥5) 40 · size2(≥2) 158 · size1 494다.
+
+오케스트레이터 재검증: `dist` HTML 824개 · `dist/tags` 701개 디렉터리. 홈 카드가 `<div class="card">` + `<a class="card-link">` 구조이고 칩이 `<a class="chip" href="/tags/{slug}/">`로 나간다. wiki 페이지에 `data-pagefind-filter="category:Agents"`와 태그별 `tag:{slug}` 속성이 붙고 하단 `<nav class="wiki-tags" aria-label="이 페이지의 태그">`가 전체 태그를 노출한다. 태그 인덱스는 `<section class="tag-group" data-domain="core">` 한 그룹이다. `BASE=/ai-wiki` 빌드에서 `/ai-wiki/tags/{slug}/`와 헤더 `/ai-wiki/tags/`가 정상 접두되고, 확인 후 기본 빌드로 되돌렸다.
+
+프리뷰 200 확인: `/` `/tags/` `/tags/rag/` `/tags/claude-code/` `/tags/swe-bench/` `/tags/skillsbench/` `/about/` `/pagefind/pagefind.js` `/pagefind/pagefind-entry.json`. 왕복도 확인했다 — `/tags/pgvector/` 카드 → `/applications/dnotitia-akb/` → 그 페이지 하단 `pgvector` 칩 → 다시 태그 페이지.
+
+#### 신규 한글 UI 문구
+
+| 위치 | 문구 |
+|---|---|
+| 헤더 nav / 모바일 시트 | `태그` |
+| `/tags/` eyebrow · h1 | `태그 인덱스` · `태그` |
+| `/tags/` lede | `위키 페이지 frontmatter 의 태그를 모았습니다. 글자 크기는 쓰인 횟수이고 대소문자만 다른 표기는 한 항목으로 합쳤습니다.` |
+| `/tags/` 통계 | `태그 {n}개 · 페이지 {m}개` |
+| Core 그룹 desc | `LLM 소프트웨어 쪽 카테고리에서 쓴 태그입니다.` |
+| Physical 그룹 desc | `물리 세계와 상호작용하는 방법을 다룬 페이지의 태그입니다.` |
+| 태그 상세 | `태그 인덱스`(링크) · `페이지 {n}개` · `표기 변형을 한 태그로 묶었습니다 — {A} · {B}` |
+| 위키 태그 라벨 | `태그` |
+| 검색 패싯 | `전체` · `{n}개 결과 · {카테고리}` · `결과 없음` |
+| aria-label | `카테고리 필터` · `이 페이지의 태그` |
+
+총 300자 미만이라 Phase 1·3과 같은 비례 판단으로 humanize-korean 파이프라인은 돌리지 않고 CLAUDE.md 문체 가이드로 직접 점검했다. 연결어미 뒤 쉼표·기계적 병렬·명사 볼드·콜론 부제·문두 접속사 모두 해당 없다.
+
+#### 남은 사람 확인 항목
+
+- **카드 구조 변경이 가장 큰 회귀 위험이다.** 다크·라이트에서 카드 전체 클릭, 호버 시 보더·`translateY(-2px)`, 키보드 Tab 포커스, 칩만 눌렀을 때 카드가 아니라 태그 페이지로 가는지 확인
+- 700개 태그 클라우드의 실제 스크롤 길이. 크기 1단계가 494개라 하단이 길다. 빈도 하한을 두고 접을지 판단
+- ⌘K 검색에서 패싯 줄이 모달 높이(`max-height:70vh`)를 얼마나 잡아먹는지, 640px 이하에서 칩 7개가 몇 줄로 감기는지
+- 561~700px 구간 헤더. nav 버튼이 하나 늘어 검색+⌘K 배지와 같이 놓였을 때 워드마크와 붙지 않는지
+- `.tag-cloud-item[data-size='4']`가 `--signal`이라 physical 그룹에서 앰버로 나온다. Phase 8 이후 확인 대상
+- 태그 페이지의 `.card` 도메인 스코프는 태그 그룹 도메인을 따른다. core 태그 페이지에 physical 페이지 카드가 섞이면 카드가 아쿠아로 나온다. 의도한 동작이지만 자료가 들어온 뒤 어색한지 봐야 한다
 
 ### Phase 5 — 전체 그래프 페이지
 
