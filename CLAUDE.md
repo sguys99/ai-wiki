@@ -15,7 +15,8 @@ AI 관련 기술자료(papers, repos, articles, reports, videos, books, lectures
 이 네 가지 규칙이 시스템의 핵심이다. 환각(hallucination)을 막고 모든 주장이 추적 가능(traceable)하도록 보장한다.
 
 1. **웹 검색 금지.** `WebSearch`, `WebFetch`로 빈틈을 메우지 않는다. 이 wiki의 존재 이유는 모든 답변이 우리가 실제로 보유한 자료에 근거한다는 점이다.
-   - **예외 (자료 수집에 한함)**: 사용자가 *명시적으로* "이 URL의 본문을 `raw/articles/`에 저장해줘" 같은 자료 수집을 지시한 경우에만 `WebFetch`를 사용해 원본을 가져올 수 있다. Q&A·overview 생성·wiki 갱신 등 **답변 흐름**에서는 절대 호출하지 않는다.
+   - **예외 (자료 수집에 한함)**: 사용자가 *명시적으로* "이 URL의 본문을 `raw/articles/`에 저장해줘" 같은 자료 수집을 지시한 경우에만 원본을 가져올 수 있다. Q&A·overview 생성·wiki 갱신 등 **답변 흐름**에서는 절대 호출하지 않는다.
+   - 이 예외의 승인된 수단은 **`scripts/fetch_article.py`** (또는 repo README 취득)다. `WebFetch`는 기사 수집에 쓰지 않는다 — 추출기가 아니라 요약기라서 원문 전문이 `raw/`에 남지 않고, 이는 "`raw/`는 원본 그대로의 불변 아카이브"라는 3-tier 전제와 어긋난다.
 2. **wiki를 먼저 참조한다.** `sources/`와 `wiki/`만이 진실의 원천(source of truth)이다.
 3. **wiki가 충분하지 않으면 `raw/`의 원본을 다시 읽는다.** `raw/{type}/{stem}.{ext}`로 가서 더 많은 세부를 추출한 뒤 wiki를 갱신한다.
 4. **wiki에 해당 주제 자료가 없으면 그렇다고 말한다.** 사용자에게 *"해당 주제에 대한 자료가 없습니다 — 원본 자료(PDF · URL · transcript 등)를 제공해 주세요"*라고 답한다. 임의로 보완하지 않는다.
@@ -459,11 +460,28 @@ tags: []
 
 ### Articles
 
-**Step 1** — 사용자가 본문을 직접 `raw/articles/{stem}.md`로 저장한다. **rule #1(웹 검색 금지)** 에 따라 에이전트가 자동으로 fetch하지 않는다. 원본 URL은 frontmatter `url`에 기록한다.
+**Step 1 (기본 경로)** — 사용자가 URL로 수집을 지시하면 `scripts/fetch_article.py`를 쓴다. Step 1·2·2.5를 한 번에 처리하고 거기서 멈춘다 — `sources/`·`wiki/`·`index.md`는 건드리지 않고 git commit도 하지 않는다. 자세한 절차는 `ingest-article` 스킬 참고.
 
-**Step 2** — 저장된 `.md` 본문을 그대로 LLM 입력으로 사용한다.
+```bash
+.venv/bin/python scripts/fetch_article.py "<URL>" --dry-run            # stem 제안
+.venv/bin/python scripts/fetch_article.py "<URL>" --stem <stem> --crop  # 실제 수집
+```
 
-**Step 2.5 (이미지 사용자 수동)** — article 원본의 도식·차트·스크린샷은 사용자가 본문 저장 시 함께 `raw/articles/{stem}-figures/`에 PNG로 저장한다 (예: `fig01.png`, `fig02.png`). rule #1로 에이전트는 자동 fetch ❌. 사용자가 저장하지 않은 article은 figures 없이 그대로 진행한다 (Step 3에서 `figures:` 키 생략). sources의 `figures:` frontmatter에는 `strategy: manual` 으로 표기한다.
+추출은 무료 경로부터 내려가는 4단 사다리다: `jina`(r.jina.ai, 키 불필요) → `chrome`(로컬 Chrome) → `profile`(본인 로그인 세션, `--profile` 명시 시에만) → `firecrawl`(`FIRECRAWL_API_KEY` 있을 때만). 성공한 tier는 frontmatter `extractor_tier`에 기록된다. Jina 무료 티어는 rate limit이 잦아 chrome 폴백이 자주 발동하는데, 정상 동작이다.
+
+**Step 1 (폴백)** — 사다리가 전부 막히면 사용자가 본문을 직접 `raw/articles/{stem}.md`로 저장한다. 원본 URL은 frontmatter `url`에 기록한다.
+
+**Step 2** — 저장된 `.md` 본문을 그대로 LLM 입력으로 사용한다. 본문은 원문 그대로 두며 요약·번역·윤문하지 않는다. (`.claude/hooks/humanize-reminder.sh`는 `Write`/`Edit` 도구에만 걸리고 스크립트는 Bash로 파일을 쓰므로 발동하지 않는다 — 의도된 동작이다. `raw/`의 기사 본문은 원저자의 원문이라 윤문 대상이 아니다.)
+
+**Step 2.5 (이미지)** — 스크립트가 세 가지를 함께 수집해 `raw/articles/{stem}-figures/`에 넣고 `figures.json` 매니페스트를 쓴다:
+
+| 산출물 | strategy | 설명 |
+|---|---|---|
+| `figNN.{ext}` | `fetched` | 본문 `<img>` 원본 다운로드. 확장자는 `Content-Type`으로 판정 (URL 확장자는 신뢰하지 않는다) |
+| `page-full.png` | `screenshot` | 전체 페이지 캡처. 6,000px 초과 시 상단만 남기고 절단 |
+| `cropNN.png` | `crop` | `--crop` 지정 시 도식 영역별 캡처 |
+
+사용자가 직접 PNG를 넣는 기존 방식도 그대로 유효하며, 이 경우 `strategy: manual`로 표기한다. 도식이 없는 article은 `figures:` 키를 생략한다.
 
 ### Reports
 
@@ -592,17 +610,24 @@ Step 4    큐레이션 사본  → wiki/assets/{stem}/ + 본문 ![[]] 임베드
 |---|---|---|---|
 | Papers / Reports(PDF) / Books / Lectures(slides) | `pymupdf` | page-region + embedded 폴백 | 자동 |
 | Repos | `find` | in-place 후보 나열 | 자동 (큐레이션 수동) |
-| Articles | — | 사용자가 PNG 직접 저장 | 수동 (rule #1) |
+| Articles | `scripts/fetch_article.py` | 원본 img 다운로드 + 전체 스크린샷 + 도식 크롭 | 자동 (사용자 수동 저장도 유효) |
 | Videos | `ffmpeg` | 사용자 timestamp + 키프레임 캡처 | 수동 timestamp |
 
 상세 명령은 위 유형별 섹션의 "Step 2.5" 참조.
 
 ### 환경
 
+의존성은 `pyproject.toml`이 관리한다. 최초 1회:
+
 ```bash
-# 최초 1회 (부트스트랩에서 자동 수행됨)
-uv pip install --python .venv/bin/python pymupdf   # PDF 도식 추출 (필수)
-brew install ffmpeg                                # videos 처리 시점에만 (옵션)
+uv venv .venv --python 3.12
+uv sync          # pypdf, pymupdf, playwright, beautifulsoup4, yt-dlp
+```
+
+`playwright`는 `channel="chrome"`으로 **시스템에 설치된 Chrome을 그대로 구동**하므로 `playwright install`(브라우저 ~150MB 다운로드)은 필요 없다.
+
+```bash
+brew install ffmpeg    # videos 처리 시점에만 (옵션)
 ```
 
 ---

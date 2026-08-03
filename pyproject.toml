@@ -7,4 +7,9 @@ requires-python = ">=3.12"
 dependencies = [
     "pypdf>=6.11.0",
     "yt-dlp>=2026.3.17",
+    # PDF 도식 추출 (CLAUDE.md Step 2.5) — 이전까지 선언 누락
+    "pymupdf>=1.24",
+    # 웹 기사 수집 (scripts/fetch_article.py) — L2/L3 렌더링·스크린샷·크롭
+    "playwright>=1.49",
+    "beautifulsoup4>=4.12",
 ]
