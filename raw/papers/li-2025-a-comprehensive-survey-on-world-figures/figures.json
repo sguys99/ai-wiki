@@ -1,0 +1,92 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig01.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig01.png",
+    "page": 2,
+    "caption": "Fig. 1 presents an overview of the structure and taxonomy of",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig02.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig02.png",
+    "page": 3,
+    "caption": "Fig. 1. Structure of this survey. The figure classifies world models along three axes and illustrates representative methods for each, providing a unified view of",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig03.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig03.png",
+    "page": 4,
+    "caption": "TABLE I\nA SUMMARY OF REPRESENTATIVE WORLD MODELS IN ROBOTICS AND GENERAL-PURPOSE DOMAINS.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig04.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig04.png",
+    "page": 5,
+    "caption": "TABLE II\nA SUMMARY OF REPRESENTATIVE WORLD MODELS FOR THE AUTONOMOUS DRIVING DOMAIN.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig05.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig05.png",
+    "page": 12,
+    "caption": "TABLE III\nAN OVERVIEW OF DATA RESOURCES FOR TRAINING AND EVALUATING EMBODIED WORLD MODELS.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig06.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig06.png",
+    "page": 14,
+    "caption": "TABLE IV\nPERFORMANCE COMPARISON OF VIDEO GENERATION ON THE",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig07.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig07.png",
+    "page": 15,
+    "caption": "TABLE V\nPERFORMANCE COMPARISON OF 4D OCCUPANCY FORECASTING ON THE OCC3D-NUSCENES BENCHMARK1.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig08.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig08.png",
+    "page": 15,
+    "caption": "TABLE VI\nPERFORMANCE COMPARISON ON THE DMC BENCHMARK1.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig09.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig09.png",
+    "page": 15,
+    "caption": "TABLE VII\nPERFORMANCE COMPARISON FOR MANIPULATION TASKS ON RLBENCH.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig10.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig10.png",
+    "page": 16,
+    "caption": "TABLE VIII\nPERFORMANCE COMPARISON FOR OPEN-LOOP PLANNING ON THE NUSCENES VALIDATION SPLIT1.",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
