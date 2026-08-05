@@ -268,6 +268,7 @@ Sec 8이 꼽는 여섯 가지에 더해 **서베이 자체의 한계**도 있다
 ## 관련 페이지 (Related Pages)
 
 - [[llms/cai-2026-vlm3-vision-language-models]] — 표준 VLM이 3D를 네이티브로 배운다는 주장. 이 서베이 Sec 3.6이 말하는 픽셀을 거치지 않는 예측 표현과 같은 방향이다. VLM3가 다루는 metric depth·camera pose 같은 능력은 world model이 물리 세계를 접지할 때 바탕이 되는 지각 능력이기도 하다.
+- [[physical-ai/zhang-2024-vision-and-language-navigation-today]] — world model을 로봇 학습이 아니라 navigation 축에서 다룬 자매 서베이. 정책 결합 방식 5분류의 자리에 history/memory·generalization ability 두 challenge가 들어선다
 
 ## 외부 참조
 

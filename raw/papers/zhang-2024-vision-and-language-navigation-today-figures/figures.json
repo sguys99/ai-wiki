@@ -1,0 +1,29 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/zhang-2024-vision-and-language-navigation-today/fig01.png",
+    "raw": "raw/papers/zhang-2024-vision-and-language-navigation-today-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: Organizing challenges and solutions in VLN",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/zhang-2024-vision-and-language-navigation-today/fig02.png",
+    "raw": "raw/papers/zhang-2024-vision-and-language-navigation-today-figures/fig02.png",
+    "page": 3,
+    "caption": "We present a hierarchical and fine-grained taxonomy in Figure 2 to discuss challenges, solutions, and future",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/zhang-2024-vision-and-language-navigation-today/fig03.png",
+    "raw": "raw/papers/zhang-2024-vision-and-language-navigation-today-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 2: VLN challenges and solutions within the framework of world model, human model, and VLN",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
