@@ -1,0 +1,200 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig01.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: A high-level overview of RT-1’s architecture, dataset, and evaluation.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig02.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig02.png",
+    "page": 4,
+    "caption": "Fig. 2 (d)). To collect data and evaluate our method, we use three kitchen-based environments: two",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig03.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 2: (a) Robot classroom where we collect data at scale; (b) a real office kitchen, one of the two",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig04.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig04.png",
+    "page": 5,
+    "caption": "in Fig. 3. In the following we describe the components of the model, following the top-to-bottom",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig05.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig05.png",
+    "page": 6,
+    "caption": "Figure 3: The architecture diagram of RT-1. The instruction is transformed into a USE embedding",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig06.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig06.png",
+    "page": 7,
+    "caption": "robot classrooms, shown in Fig. 2. More details on data collection are in Appendix C.2.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig07.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig07.png",
+    "page": 8,
+    "caption": "real kitchens. The training environment, shown in Fig. 2 (a), consists of partial counters while the",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig08.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig08.png",
+    "page": 9,
+    "caption": "depicted in Fig. 4.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig09.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig09.png",
+    "page": 10,
+    "caption": "objects in Fig. 5. We also present additional trajectory examples for different generalization tests in",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig10.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig10.png",
+    "page": 10,
+    "caption": "preparing a snack and fetching a lost object in the real kitchen are depicted in the last row of Fig. 4.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig11.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig11.png",
+    "page": 10,
+    "caption": "Example trajectories for different levels are presented in the Appendix in Fig. 11.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig12.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig12.png",
+    "page": 11,
+    "caption": "Figure 5: Example evaluation trajectories for RT-1 across various instructions.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig13.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig13.png",
+    "page": 13,
+    "caption": "Figure 6: In Table 5, RT-1 is trained with data from two robotics platforms and learns to generalize",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig14.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig14.png",
+    "page": 20,
+    "caption": "We present the Model Card for RT-1 in Fig. 7.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig15.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig15.png",
+    "page": 21,
+    "caption": "Figure 7: Model Card for RT-1.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig16.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig16.png",
+    "page": 22,
+    "caption": "tions in Fig. 8.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig17.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig17.png",
+    "page": 23,
+    "caption": "Figure 9 shows the growth of data, number of tasks, and the success rate of the policy over time. The",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig18.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig18.png",
+    "page": 23,
+    "caption": "Examples of these difficulty settings and policy evaluation rollouts are shown in Figure 12.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig19.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig19.png",
+    "page": 24,
+    "caption": "in Figure 10.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig20.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig20.png",
+    "page": 24,
+    "caption": "Examples of these instructions are presented in Fig. 11.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig21.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig21.png",
+    "page": 26,
+    "caption": "Figure 12: “Distractors” evaluations focus on diversifying initial scene configurations well beyond",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig22.png",
+    "raw": "raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig22.png",
+    "page": 31,
+    "caption": "at hand, which may be the cause of poor distractor performance for Gato. Figure 13 visualizes",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
