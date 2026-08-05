@@ -1,0 +1,146 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig01.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 | RT-2 overview: we represent robot actions as another language, which can be cast into text tokens and",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig02.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig02.png",
+    "page": 3,
+    "caption": "Some example highlights are shown in Figure 2. The model is able to re-purpose pick and place",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig03.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 2 | RT-2 is able to generalize to a variety of real-world situations that require reasoning, symbol",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig04.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig04.png",
+    "page": 7,
+    "caption": "Figure 3 | Example generalization scenarios used for evaluation in Figures 4 and 6b and Tables 4 and 6.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig05.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig05.png",
+    "page": 8,
+    "caption": "Figure 3 shows example generalization evaluations, which are split into unseen categories (objects,",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig06.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig06.png",
+    "page": 8,
+    "caption": "Figure 4 | Overall performance of two instantiations of RT-2 and baselines across seen training tasks as well as",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig07.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig07.png",
+    "page": 9,
+    "caption": "Figure 5 | Real-world out-of-distribution behaviors in the",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig08.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig08.png",
+    "page": 9,
+    "caption": "such interactions in Figure 2. We find through our explorations that RT-2 inherits novel capabilities",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig09.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig09.png",
+    "page": 10,
+    "caption": "Figure 6 | Quantitative performance of RT-2 across (6a) emergent skills and (6b) size and training ablations.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig10.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig10.png",
+    "page": 10,
+    "caption": "model. Rollouts of RT-2 with chain-of-thought reasoning are shown in Figure 7 and in Appendix I.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig11.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig11.png",
+    "page": 11,
+    "caption": "Figure 7 | Rollouts of RT-2 with chain-of-thought reasoning, where RT-2 generates both a plan and an action.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig12.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig12.png",
+    "page": 22,
+    "caption": "Figure 8 | An overview of some of the evaluation scenarios used to study the emergent capabilities of RT-2.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig13.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig13.png",
+    "page": 23,
+    "caption": "In Fig. 9 we provide examples of a notable type of failure case in the Language Table setting, with the",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig14.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig14.png",
+    "page": 24,
+    "caption": "E, as described in Sec. 4.4, in Figure 10.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig15.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig15.png",
+    "page": 25,
+    "caption": "Figure 10 | Additional examples of RT-2 with chain-of-thought reasoning",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig16.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig16.png",
+    "page": 26,
+    "caption": "scenarios if shown in Figure 3.",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
