@@ -34,7 +34,7 @@ ai-wiki/
 ├── raw/                    # 원본 자료 (cp, never symlink)
 │   ├── papers/             # arXiv 등 논문 PDF
 │   │   ├── {stem}.pdf
-│   │   └── {stem}-figures/ # 도식·차트 전수 아카이브 (불변, Step 2.5)
+│   │   └── {stem}-figures/ # 정밀 크롭 아카이브 + _overlay/ 확인용 (Step 2.5)
 │   ├── repos/              # 주요 OSS 스냅샷 (langgraph, vllm, ragas 등)
 │   │   └── {org-repo}/     # repo 내 기존 assets/img/를 in-place 참조 (별도 -figures/ ❌)
 │   ├── articles/           # 블로그·뉴스 (Karpathy, Lilian Weng, Sebastian Raschka 등)
@@ -156,17 +156,22 @@ figures: []                            # 옵션 — 도식/차트 후보 (스키
 
 ```yaml
 figures:
-  - id: fig02                                          # PDF figure 순서 또는 manual ID
+  - id: fig02                                          # 논문 라벨과 일치 (Figure 2 → fig02, Table 2 → tab02)
+    label: Figure 2                                    # 원본 라벨 그대로 (로마 숫자면 "Table IV")
+    kind: figure                                       # figure | table
     file: assets/{stem}/fig02.png                      # wiki 루트 기준 상대경로 (Obsidian 임베드용)
     raw: raw/papers/{stem}-figures/fig02.png           # 원본(전수 아카이브) 경로
-    caption: "GraphRAG 인덱싱 파이프라인 (paper Figure 1)"
+    caption: "GraphRAG 인덱싱 파이프라인"
     page: 4                                            # PDF만 (article/repo/video는 생략)
-    strategy: page-region                              # page-region | embedded | manual | keyframe
+    bbox_norm: [0.104, 0.098, 0.909, 0.395]            # 0~1 정규화. --bbox 로 다시 자를 때 쓴다
+    strategy: caption-region                           # 아래 표 참고
+    low_confidence: true                               # 옵션 — 면적비가 커서 사람이 봐야 한다
     curated: true                                      # true → wiki 본문에 임베드, false → 아카이브에만 존재
 ```
 
 - 전체 figure 후보를 frontmatter에 남기고 `curated: true`만 wiki 본문에 임베드 — 트레이서빌리티 유지.
-- `strategy`: `page-region`(PyMuPDF 페이지 크롭) / `embedded`(image XObject 폴백) / `manual`(article·repo 사용자 수집) / `keyframe`(ffmpeg).
+- `strategy` 허용값: `caption-region` · `table-region` · `column-band` · `page-region` · `manual`(`--bbox` 지정) · `legacy-page-region`(마이그레이션 이전 전면 캡처) · `fetched`·`screenshot`·`crop`(articles) · `keyframe`(videos).
+- `figures.json`에는 `bbox`(PDF point 좌표)·`dpi`·`area_frac`·`overlay` 키도 함께 들어간다. frontmatter에는 사람이 볼 것만 옮긴다.
 
 ### 유형별 추가 키
 
@@ -262,15 +267,17 @@ front-matter는 위 스키마를 따르고 (Step 2.5에서 도식을 추출했�
 
 | id | page | caption | strategy | 추천 |
 |---|---|---|---|---|
-| fig01 | 1 | "GraphRAG 전체 아키텍처" | page-region | ★ wiki 권장 (architecture) |
-| fig02 | 4 | "Indexing pipeline 세부" | page-region | ★ wiki 권장 (method) |
-| fig03 | 7 | "벤치마크 결과 막대그래프" | page-region | ★ wiki 권장 (result) |
-| fig04 | 11 | "Appendix 부수 다이어그램" | embedded | (선택) |
+| fig01 | 1 | "GraphRAG 전체 아키텍처" | caption-region | ★ wiki 권장 (architecture) |
+| fig02 | 4 | "Indexing pipeline 세부" | caption-region | ★ wiki 권장 (method) |
+| tab01 | 7 | "Podcast/News 코퍼스 벤치마크" | table-region | ★ wiki 권장 (result) |
+| fig04 | 11 | "Appendix 부수 다이어그램" | column-band | (확인 필요) |
 ```
+
+스크립트가 이 표의 초안을 stdout으로 뽑아준다. 캡션은 원문 영어 그대로이므로, 옮길 때 실제 이미지를 보고 한글로 다시 쓴다. id가 논문 라벨과 일치하므로 `대응` 열 같은 수동 매핑은 필요 없다.
 
 ### 공통 Step 3.5 — 사용자 confirm
 
-사용자가 "fig01, fig02, fig05를 wiki에 넣어줘"처럼 지정하면, 에이전트는 `sources/{stem}.md` frontmatter에서 해당 id의 `curated: true`로 변경한다 (`wiki/{category}/{stem}.md`도 동일하게).
+사용자가 "fig01, fig02, tab01을 wiki에 넣어줘"처럼 지정하면, 에이전트는 `sources/{stem}.md` frontmatter에서 해당 id의 `curated: true`로 변경한다 (`wiki/{category}/{stem}.md`도 동일하게).
 
 ### 공통 Step 4 — `wiki/{category}/{stem}.md` 작성 + 이미지 사본 + `index.md` 갱신
 
@@ -348,81 +355,47 @@ print(text[:12000])
 " "/path/to/paper.pdf"
 ```
 
-**Step 2.5 (이미지 추출)** — `pymupdf`로 figure를 `raw/papers/{stem}-figures/`에 추출. 전략은 **(ii) page-region 우선 + (i) embedded 폴백**:
-
-> **환경**: `.venv`에 `pymupdf`가 필요하다 (`uv pip install --python .venv/bin/python pymupdf`). 이미 부트스트랩에서 설치되어 있으면 생략.
+**Step 2.5 (이미지 추출)** — `scripts/extract_figures.py`가 캡션을 앵커로 삼아 figure·table 영역만 잘라낸다. `--dry-run`으로 검출표를 먼저 보고, 추출한 뒤 오버레이로 확인하는 2단계다.
 
 ```bash
-# 최초 1회
-# uv pip install --python .venv/bin/python pymupdf
-
-STEM="vaswani-2017-attention-is-all-you-need"   # 예시
-PDF="raw/papers/${STEM}.pdf"
-OUT="raw/papers/${STEM}-figures"
-mkdir -p "$OUT"
-
-.venv/bin/python3 - <<PY
-import pymupdf, re, json, os
-from pathlib import Path
-pdf = pymupdf.open("$PDF")
-out = Path("$OUT")
-manifest = []
-fig_idx = 0
-cap_re = re.compile(r"(Figure|Fig\.|그림)\s+(\d+)[\.:\s]", re.IGNORECASE)
-
-# (ii) page-region: 페이지를 200 DPI로 렌더하고 캡션이 발견된 페이지를 통째로 저장
-#       (정확한 bbox 크롭은 페이지 레이아웃 의존성이 커, MVP는 캡션이 등장한 페이지의 통째 PNG로 시작)
-seen_pages = set()
-for pno, page in enumerate(pdf):
-    text = page.get_text("text")
-    for m in cap_re.finditer(text):
-        fig_no = m.group(2)
-        if (pno, fig_no) in seen_pages:
-            continue
-        seen_pages.add((pno, fig_no))
-        fig_idx += 1
-        fname = f"fig{fig_idx:02d}.png"
-        pix = page.get_pixmap(dpi=200)
-        pix.save(str(out / fname))
-        line_start = text.rfind("\n", 0, m.start()) + 1
-        line_end = text.find("\n", m.end())
-        caption = text[line_start:line_end if line_end > 0 else m.end()+200].strip()[:300]
-        manifest.append({
-            "id": f"fig{fig_idx:02d}",
-            "file": f"assets/${STEM}/{fname}",
-            "raw": f"raw/papers/${STEM}-figures/{fname}",
-            "page": pno + 1,
-            "caption": caption,
-            "strategy": "page-region",
-            "curated": False,
-        })
-
-# (i) embedded 폴백: 캡션이 안 잡힌 경우 (manifest 비었으면) image XObject로 시도
-if not manifest:
-    for pno, page in enumerate(pdf):
-        for img in page.get_images(full=True):
-            xref = img[0]
-            base = pdf.extract_image(xref)
-            fig_idx += 1
-            ext = base["ext"]
-            fname = f"fig{fig_idx:02d}.{ext}"
-            (out / fname).write_bytes(base["image"])
-            manifest.append({
-                "id": f"fig{fig_idx:02d}",
-                "file": f"assets/${STEM}/{fname}",
-                "raw": f"raw/papers/${STEM}-figures/{fname}",
-                "page": pno + 1,
-                "caption": "",
-                "strategy": "embedded",
-                "curated": False,
-            })
-
-(out / "figures.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
-print(f"extracted {len(manifest)} figures to {out}")
-PY
+.venv/bin/python scripts/extract_figures.py <stem> --dry-run     # 검출표만
+.venv/bin/python scripts/extract_figures.py <stem>               # 실제 추출
 ```
 
-> **MVP 메모**: 현재 (ii)는 "캡션이 등장한 페이지의 통째 200 DPI PNG"로 단순화. 페이지 안에 figure가 여러 개 있거나 한 figure가 두 페이지에 걸치는 경우는 사용자가 wiki/assets/로 cp 할 때 수동 크롭(Preview·macOS 단축키 ⌘⇧4 등) 권장. bbox 정밀 크롭이 자주 필요해지면 `pdffigures2` 또는 layout-detection 모델 연동을 helper 스크립트로 분리한다.
+산출물은 `raw/papers/{stem}-figures/`에 들어간다. `figNN.png`·`tabNN.png`(300 DPI 크롭), `figures.json`(매니페스트), `_overlay/pNN.png`(검출 영역을 빨간 사각형으로 표시한 확인용 — git 추적 제외).
+
+**id는 논문 라벨과 일치한다.** Figure 3 → `fig03`, Table 2 → `tab02`. IEEE식 로마 숫자(Table IV)도 `tab04`로 정규화한다. 그래서 예전처럼 `(paper Figure N)` 대응 주석을 손으로 달 필요가 없다.
+
+검출은 캡션마다 폴백 사다리를 내려가고, 어디서 나왔는지는 `strategy`에 남는다.
+
+| strategy | 뜻 |
+|---|---|
+| `caption-region` | 캡션에서 바깥으로 자라며 여백에서 멈춰 그래픽을 감쌌다 |
+| `table-region` | 가로 괘선 뭉치 / `find_tables()` / 캡션에 붙은 텍스트 덩어리 |
+| `column-band` | 그래픽을 못 찾아 캡션 위 여백 밴드를 통째로 잡았다 |
+| `page-region` | 전부 실패 — 페이지 전체 |
+| `manual` | `--bbox`로 사람이 지정했다 |
+
+**확인과 보정** — 추출 후 `_overlay/pNN.png`를 열어 빨간 사각형이 도식을 제대로 감쌌는지 본다. `column-band`·`page-region`·`low_confidence`는 스크립트가 마지막에 "⚠ 확인 필요"로 짚어준다. 틀린 것만 0~1 정규화 좌표로 다시 자른다.
+
+```bash
+.venv/bin/python scripts/extract_figures.py <stem> --force \
+    --bbox fig03=4:0.10,0.28,0.90,0.62
+```
+
+`--bbox`의 id가 검출 목록에 없으면 새 항목으로 추가된다 — 스크립트가 놓친 도식을 손으로 넣는 경로다.
+
+| 옵션 | 뜻 |
+|---|---|
+| `--type` | `papers`(기본) · `reports` · `books` · `lectures` |
+| `--dry-run` | 검출표만 출력하고 파일은 안 쓴다 |
+| `--force` | 기존 `-figures/`를 덮어쓴다 (기본은 중단) |
+| `--bbox ID=PAGE:x0,y0,x1,y1` | 수동 크롭. 반복 지정 가능 |
+| `--overlay-only` | 오버레이만 다시 만든다 |
+| `--page-shots` | 검출된 페이지의 전면 렌더도 `page-pNN.png`로 남긴다 |
+| `--dpi` | 크롭 해상도 (기본 300) |
+
+캡션이 `Figure N` 꼴이 아닌 자료(슬라이드 덱, 한글 제품 소개서 등)는 "캡션을 하나도 못 찾았다"로 멈춘다. 그때는 `--bbox`로 직접 지정하거나 사용자가 PNG를 수동 저장한다.
 
 ### Repos
 
@@ -489,7 +462,13 @@ tags: []
 
 **Step 2** — PDF는 `pypdf`로 추출, `.md`는 그대로 사용.
 
-**Step 2.5 (이미지 추출)** — PDF reports는 **papers의 Step 2.5와 동일한 pymupdf 스니펫** 사용 (`PDF`·`OUT` 경로만 `raw/reports/{stem}.pdf`·`raw/reports/{stem}-figures/`로 교체). 웹 reports(.md)는 articles와 동일하게 사용자 수동 저장.
+**Step 2.5 (이미지 추출)** — PDF reports는 papers와 같은 스크립트에 `--type reports`만 붙인다.
+
+```bash
+.venv/bin/python scripts/extract_figures.py <stem> --type reports --dry-run
+```
+
+웹 reports(.md)는 articles와 동일하게 사용자 수동 저장.
 
 ### Videos
 
@@ -540,7 +519,7 @@ print(text[:12000])
 " "raw/books/{stem}.pdf"
 ```
 
-**Step 2.5 (이미지 추출)** — papers의 Step 2.5 pymupdf 스니펫과 동일 (경로만 `raw/books/{stem}.pdf` → `raw/books/{stem}-figures/`). chapters 모드에서는 챕터별로 별도 호출: `raw/books/{stem}/ch01.pdf` → `raw/books/{stem}/ch01-figures/` 처럼 챕터 stem에 `-figures/` suffix를 붙인다. sources 도 챕터별로 분리되므로 (`sources/{stem}-ch01.md` 등) figures 키도 챕터별 source에 들어간다.
+**Step 2.5 (이미지 추출)** — `--type books`로 papers와 같은 스크립트를 쓴다. chapters 모드에서는 챕터별로 따로 부른다 — `raw/books/{stem}/ch01.pdf` → `raw/books/{stem}/ch01-figures/` 처럼 챕터 stem에 `-figures/` suffix가 붙는다. sources도 챕터별로 분리되므로 (`sources/{stem}-ch01.md` 등) figures 키도 챕터별 source에 들어간다.
 
 > **분류 팁**: 책은 보통 한 카테고리에 들어가지만, 실무 도서(예: AI Engineering)는 여러 카테고리에 걸친다. 챕터 분할 모드에서는 챕터별로 다른 카테고리에 wiki 페이지를 두고, overview 페이지에서 묶는 것을 권장한다.
 
@@ -562,7 +541,7 @@ raw/lectures/karpathy-2023-zero-to-hero/
 - transcript/notes (.md) → 그대로 사용
 - code → README + 디렉토리 트리 + 핵심 파일 헤더 (repos와 동일)
 
-**Step 2.5 (이미지 추출)** — 슬라이드 PDF가 도식의 주된 출처. papers의 Step 2.5 pymupdf 스니펫을 슬라이드 PDF에 적용 (경로: `raw/lectures/{stem}/slides/*.pdf` → `raw/lectures/{stem}-figures/`). 슬라이드 자체가 figure-like이므로 캡션 매칭이 안 잡혀 (i) embedded 폴백이 자주 발동할 수 있음 — 무방. transcript에서 강조된 슬라이드 번호를 사용자가 큐레이션 시점에 지정한다.
+**Step 2.5 (이미지 추출)** — 슬라이드 PDF가 도식의 주된 출처다. `--type lectures`로 슬라이드 PDF에 적용한다 (경로: `raw/lectures/{stem}/slides/*.pdf` → `raw/lectures/{stem}-figures/`). 슬라이드는 캡션이 `Figure N` 꼴이 아닌 경우가 많아 "캡션을 못 찾았다"로 멈추기 쉽다 — 그때는 `--bbox`로 필요한 슬라이드 영역을 직접 지정한다. transcript에서 강조된 슬라이드 번호를 사용자가 큐레이션 시점에 알려준다.
 
 `source: {stem}.md`는 코스 한 권 단위로 작성한다. 강의가 너무 길면 모듈/섹션 단위로 분할해 `sources/{stem}-mod{N}.md`로 만들 수 있다 (책의 chapters 모드와 동일).
 
@@ -578,17 +557,19 @@ raw/lectures/karpathy-2023-zero-to-hero/
 - `type` 키는 `raw/`의 하위 폴더명과 정확히 일치해야 한다 (예: `type: paper` ↔ `raw/papers/`, `type: book` ↔ `raw/books/`, `type: lecture` ↔ `raw/lectures/`). type은 단수형(paper/book/lecture), 폴더명은 복수형(papers/books/lectures).
 - **멀티파일 패키지** (강의 코스, 챕터 분할 도서)의 경우 `raw_path`가 디렉토리(예: `raw/lectures/{stem}/`)를 가리키고, `raw_filename`은 디렉토리명(`{stem}/`) 또는 대표 파일명(`README.md` 등)으로 기록한다. 챕터 분할 도서는 source 파일별로 `raw_path`가 해당 챕터 PDF를 가리킨다.
 - **`{stem}-figures/` 디렉토리는 raw의 일부로 불변 취급** (Step 2.5의 출력 아카이브). 사용자가 수동으로 추가/교체할 수 있지만, 자동 파이프라인이 사후 삭제·재생성하지 않는다 (`figures.json`이 source-of-truth manifest). `repos`만 예외 — repo 내 기존 `assets/`·`img/`를 in-place 참조하고 별도 `-figures/` 폴더를 만들지 않는다.
+- 다만 `extract_figures.py --force`는 이 디렉토리를 통째로 다시 만든다. **사람이 지시할 때만 쓴다.** 2026-08 정밀 크롭 전환에서 `scripts/remap_figures.py`로 기존 19개 stem을 한 번 재생성했고, 그때 새 검출과 잇지 못한 항목은 `{stem}-figures/legacy/`에 옛 전면 캡처 그대로 남겼다.
 
 ---
 
 ## Image & Figure Handling
 
-자료에 포함된 도식·다이어그램·차트를 wiki에 임베드하여 Obsidian 열람 시 시각 정보를 제공한다. **forward-only** — 기존 sources/wiki는 손대지 않고, 앞으로 ingest 하는 자료부터 적용한다.
+자료에 포함된 도식·다이어그램·차트를 wiki에 임베드하여 Obsidian 열람 시 시각 정보를 제공한다.
 
 ### 흐름 요약
 
 ```
-Step 2.5  자동 전수 추출  → raw/{type}/{stem}-figures/   (불변 아카이브)
+Step 2.5  캡션 앵커 크롭  → raw/{type}/{stem}-figures/   (fig/tab + _overlay + figures.json)
+          오버레이 확인   → 틀린 것만 --bbox 로 재크롭
 Step 3    LLM 후보 추천  → sources/{stem}.md의 "## 8. 그림 후보" 섹션
 Step 3.5  사용자 confirm → 해당 fig id의 curated: true
 Step 4    큐레이션 사본  → wiki/assets/{stem}/ + 본문 ![[]] 임베드
@@ -596,19 +577,20 @@ Step 4    큐레이션 사본  → wiki/assets/{stem}/ + 본문 ![[]] 임베드
 
 ### 핵심 원칙
 
-1. **하이브리드 선별**: 자동 전수 아카이브 (loss 없음) + LLM 후보 + 사용자 확정. 자동 임베드 ❌.
-2. **저장 분리**: `raw/{type}/{stem}-figures/`는 전수 아카이브(불변), `wiki/assets/{stem}/`는 큐레이션 사본만 (Obsidian-friendly).
-3. **PDF 추출 전략**: (ii) page-region 우선 → 캡션 미매칭 시 (i) embedded image XObject 폴백. `pymupdf` 사용.
-4. **Obsidian 임베드**: `![[assets/{stem}/figNN.png]]` + 다음 줄에 `*Figure N: caption*`. shortlink(`![[figNN]]`)는 동명 충돌 위험 → 항상 상대경로.
-5. **sources는 텍스트만**: `sources/`에는 이미지 임베드 ❌. `figures:` frontmatter + "## 8. 그림 후보" 텍스트 메타만.
-6. **트레이서빌리티**: 큐레이션에서 빠진 후보도 frontmatter에 `curated: false`로 남긴다 — 미래에 재선택 가능.
-7. **자료에 도식 없음**: `figures:` 키 자체를 생략 (빈 리스트도 OK).
+1. **하이브리드 선별**: 자동 검출 + 사람의 오버레이 확인 + LLM 후보 + 사용자 확정. 자동 임베드 ❌.
+2. **저장 분리**: `raw/{type}/{stem}-figures/`는 전수 아카이브, `wiki/assets/{stem}/`는 큐레이션 사본만 (Obsidian-friendly).
+3. **PDF 추출 전략**: 캡션을 앵커로 삼는 `scripts/extract_figures.py`. 페이지 통째가 아니라 도식 영역만 자른다. 검출이 틀리면 `--bbox`로 고친다.
+4. **id는 논문 라벨**: `fig03` = Figure 3, `tab02` = Table 2. 사람이 대응표를 손으로 만들 일이 없다.
+5. **Obsidian 임베드**: `![[assets/{stem}/figNN.png]]` + 다음 줄에 `*Figure N: caption*`. shortlink(`![[figNN]]`)는 동명 충돌 위험 → 항상 상대경로.
+6. **sources는 텍스트만**: `sources/`에는 이미지 임베드 ❌. `figures:` frontmatter + "## 8. 그림 후보" 텍스트 메타만.
+7. **트레이서빌리티**: 큐레이션에서 빠진 후보도 frontmatter에 `curated: false`로 남긴다 — 미래에 재선택 가능.
+8. **자료에 도식 없음**: `figures:` 키 자체를 생략 (빈 리스트도 OK).
 
 ### 유형별 도구·전략 (요약표)
 
 | 유형 | Step 2.5 도구 | 전략 | 자동/수동 |
 |---|---|---|---|
-| Papers / Reports(PDF) / Books / Lectures(slides) | `pymupdf` | page-region + embedded 폴백 | 자동 |
+| Papers / Reports(PDF) / Books / Lectures(slides) | `scripts/extract_figures.py` | caption-region · table-region → column-band → page-region | 자동 (오버레이 확인 + `--bbox` 보정) |
 | Repos | `find` | in-place 후보 나열 | 자동 (큐레이션 수동) |
 | Articles | `scripts/fetch_article.py` | 원본 img 다운로드 + 전체 스크린샷 + 도식 크롭 | 자동 (사용자 수동 저장도 유효) |
 | Videos | `ffmpeg` | 사용자 timestamp + 키프레임 캡처 | 수동 timestamp |

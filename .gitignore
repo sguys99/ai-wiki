@@ -21,3 +21,6 @@ dist/
 site/node_modules/
 # Pagefind 인덱스 (빌드 시 생성)
 dist/pagefind/
+
+# figure 검증용 오버레이 — extract_figures.py --overlay-only 로 언제든 다시 만든다
+raw/**/_overlay/

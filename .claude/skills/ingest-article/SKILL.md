@@ -1,7 +1,7 @@
 ---
 name: ingest-article
 version: "1.0.0"
-description: URL 하나로 웹 기사·블로그·LinkedIn/X 포스트의 본문 전문과 이미지를 raw/articles/ 에 수집하는 스킬 (CLAUDE.md Articles Step 1 ~ 2.5). 트리거 — "이 URL 기사로 수집해줘", "이 링크 wiki에 넣어줘", "이 주소 ingest", "기사 가져와서 wiki 작성", "이 글 raw에 저장해줘", "URL 넣으면 기사랑 이미지 캡처해줘". WebFetch 로는 원문 전문이 남지 않으므로(요약기라서) 기사 수집에는 항상 이 스킬을 쓴다. PDF 논문·유튜브 자막·GitHub README 수집은 해당 없음 — CLAUDE.md 의 papers/videos/repos 절차를 따를 것.
+description: URL 하나로 웹 기사·블로그·LinkedIn/X 포스트의 본문 전문과 이미지를 raw/articles/ 에 수집하는 스킬 (CLAUDE.md Articles Step 1 ~ 2.5). 트리거 — "이 URL 기사로 수집해줘", "이 링크 wiki에 넣어줘", "이 주소 ingest", "기사 가져와서 wiki 작성", "이 글 raw에 저장해줘", "URL 넣으면 기사랑 이미지 캡처해줘". WebFetch 로는 원문 전문이 남지 않으므로(요약기라서) 기사 수집에는 항상 이 스킬을 쓴다. PDF 논문·리포트·도서·강의 슬라이드는 해당 없음 — `ingest-paper` 를 쓸 것. 유튜브 자막·GitHub README 는 CLAUDE.md 의 videos/repos 절차를 따를 것.
 ---
 
 # Article Ingest — URL → raw/articles/
