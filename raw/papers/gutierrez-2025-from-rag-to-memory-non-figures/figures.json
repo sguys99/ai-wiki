@@ -1,47 +1,515 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/gutierrez-2025-from-rag-to-memory-non/fig01.png",
     "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig01.png",
     "page": 2,
     "caption": "Figure 1. Evaluation of continual learning capabilities across three key dimensions: factual memory (NaturalQuestions, PopQA), sense-",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      49.44,
+      59.4,
+      547.45,
+      269.84
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.075,
+      0.8945,
+      0.3407
+    ],
+    "dpi": 300,
+    "area_frac": 0.216,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p02.png"
   },
   {
     "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
     "file": "assets/gutierrez-2025-from-rag-to-memory-non/fig02.png",
     "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig02.png",
     "page": 4,
-    "caption": "Figure 2. HippoRAG 2 methodology. For offline indexing, we use an LLM to extract open KG triples from passages, with synonym",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 2. HippoRAG 2 methodology . For offline indexing, we use an LLM to extract open KG triples from passages, with synonym",
+    "bbox": [
+      51.2,
+      62.63,
+      537.71,
+      238.38
+    ],
+    "bbox_norm": [
+      0.0837,
+      0.0791,
+      0.8786,
+      0.301
+    ],
+    "dpi": 300,
+    "area_frac": 0.176,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p04.png"
   },
   {
     "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
     "file": "assets/gutierrez-2025-from-rag-to-memory-non/fig03.png",
     "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig03.png",
     "page": 8,
     "caption": "Figure 3. Continual learning experiment: We partition the NQ",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      301.44,
+      61.06,
+      547.43,
+      266.4
+    ],
+    "bbox_norm": [
+      0.4925,
+      0.0771,
+      0.8945,
+      0.3364
+    ],
+    "dpi": 300,
+    "area_frac": 0.104,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p08.png"
   },
   {
     "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
     "file": "assets/gutierrez-2025-from-rag-to-memory-non/fig04.png",
     "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig04.png",
     "page": 14,
     "caption": "Figure 4. LLM prompts for triple filtering (recognition memory).",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      84.64,
+      61.06,
+      509.69,
+      710.72
+    ],
+    "bbox_norm": [
+      0.1383,
+      0.0771,
+      0.8328,
+      0.8974
+    ],
+    "dpi": 300,
+    "area_frac": 0.57,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p14.png"
   },
   {
     "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
     "file": "assets/gutierrez-2025-from-rag-to-memory-non/fig05.png",
     "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig05.png",
     "page": 15,
     "caption": "Figure 5. An example of HippoRAG 2 pipeline.",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      113.81,
+      130.64,
+      480.54,
+      628.57
+    ],
+    "bbox_norm": [
+      0.186,
+      0.165,
+      0.7852,
+      0.7937
+    ],
+    "dpi": 300,
+    "area_frac": 0.377,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab01.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab01.png",
+    "page": 6,
+    "caption": "Table 1. Dataset statistics",
+    "bbox": [
+      102.63,
+      85.84,
+      492.01,
+      138.03
+    ],
+    "bbox_norm": [
+      0.1677,
+      0.1084,
+      0.8039,
+      0.1743
+    ],
+    "dpi": 300,
+    "area_frac": 0.042,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab02.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab02.png",
+    "page": 7,
+    "caption": "Table 2. QA performance (F1 scores) on RAG benchmarks using Llama-3.3-70B-Instruct as the QA reader. No retrieval means evaluating",
+    "bbox": [
+      49.44,
+      81.33,
+      547.44,
+      334.19
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1027,
+      0.8945,
+      0.422
+    ],
+    "dpi": 300,
+    "area_frac": 0.26,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab03.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab03.png",
+    "page": 7,
+    "caption": "Table 3. Retrieval performance (passage recall@5) on RAG benchmarks. * denotes the report from the original paper. The compared",
+    "bbox": [
+      51.61,
+      131.36,
+      547.44,
+      337.03
+    ],
+    "bbox_norm": [
+      0.0843,
+      0.1659,
+      0.8945,
+      0.4255
+    ],
+    "dpi": 300,
+    "area_frac": 0.21,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab04.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab04.png",
+    "page": 8,
+    "caption": "Table 4. Ablations. We report passage recall@5 on multi-hop QA",
+    "bbox": [
+      49.44,
+      79.31,
+      544.07,
+      206.07
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1001,
+      0.889,
+      0.2602
+    ],
+    "dpi": 300,
+    "area_frac": 0.129,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab05.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab05.png",
+    "page": 8,
+    "caption": "Table 5. Reset probability factor. Passage recall@5 with different weight factors for passage nodes on our MuSiQue dev set and NaturalQuestions (NQ) dev set, where each set has 1 , 000 queries.",
+    "bbox": [
+      49.44,
+      79.31,
+      544.07,
+      206.07
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1001,
+      0.889,
+      0.2602
+    ],
+    "dpi": 300,
+    "area_frac": 0.129,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab06.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab06.png",
+    "page": 9,
+    "caption": "Table 6. We show exemplary retrieval results (the title of passages) from HippoRAG 2 and NV-Embed-v2 on different types of questions.",
+    "bbox": [
+      49.44,
+      98.63,
+      545.25,
+      203.77
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1245,
+      0.8909,
+      0.2573
+    ],
+    "dpi": 300,
+    "area_frac": 0.108,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab07.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab07.png",
+    "page": 9,
+    "caption": "Table 7. Robust to different dense retrievers. Passage recall@5",
+    "bbox": [
+      49.44,
+      98.63,
+      545.25,
+      203.77
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1245,
+      0.8909,
+      0.2573
+    ],
+    "dpi": 300,
+    "area_frac": 0.108,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab08.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab08.png",
+    "page": 16,
+    "caption": "Table 8. QA performance (EM / F1 scores) on RAG benchmarks. No retrieval means evaluating the parametric knowledge of the readers.",
+    "bbox": [
+      49.44,
+      98.55,
+      545.69,
+      322.81
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1244,
+      0.8917,
+      0.4076
+    ],
+    "dpi": 300,
+    "area_frac": 0.23,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab09.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab09.png",
+    "page": 17,
+    "caption": "Table 9. Passage recall@2 / @5 on RAG benchmarks. * denotes the report from the original paper while we reproduce the HippoRAG",
+    "bbox": [
+      49.44,
+      98.63,
+      545.24,
+      307.79
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1245,
+      0.8909,
+      0.3886
+    ],
+    "dpi": 300,
+    "area_frac": 0.214,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab10.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab10.png",
+    "page": 18,
+    "caption": "Table 10. Knowledge graph statistics using different LLMs for OpenIE. The nodes and triples are counted based on unique values.",
+    "bbox": [
+      49.44,
+      105.81,
+      545.03,
+      328.0
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1336,
+      0.8906,
+      0.4141
+    ],
+    "dpi": 300,
+    "area_frac": 0.227,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab11.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab11.png",
+    "page": 18,
+    "caption": "Table 11. Two examples from MuSiQue where passage recall@5 is less than 1.0.",
+    "bbox": [
+      49.44,
+      391.76,
+      545.27,
+      708.77
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.4946,
+      0.891,
+      0.8949
+    ],
+    "dpi": 300,
+    "area_frac": 0.324,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab12.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab12.png",
+    "page": 19,
+    "caption": "Table 12. We report the computational resource requirements (indexing tokens, indexing time, time per query, GPU memory requirements",
+    "bbox": [
+      49.44,
+      109.55,
+      545.45,
+      193.34
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1383,
+      0.8913,
+      0.2441
+    ],
+    "dpi": 300,
+    "area_frac": 0.086,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab13.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab13.png",
+    "page": 19,
+    "caption": "Table 13. Hyperparameters set on HippoRAG 2",
+    "bbox": [
+      226.54,
+      262.25,
+      370.34,
+      324.4
+    ],
+    "bbox_norm": [
+      0.3702,
+      0.3311,
+      0.6051,
+      0.4096
+    ],
+    "dpi": 300,
+    "area_frac": 0.018,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/gutierrez-2025-from-rag-to-memory-non/tab14.png",
+    "raw": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab14.png",
+    "page": 19,
+    "caption": "Table 14. Hyperparameters set on GraphRAG and LightRAG",
+    "bbox": [
+      171.52,
+      468.43,
+      425.35,
+      590.36
+    ],
+    "bbox_norm": [
+      0.2803,
+      0.5915,
+      0.695,
+      0.7454
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/_overlay/p19.png"
   }
 ]

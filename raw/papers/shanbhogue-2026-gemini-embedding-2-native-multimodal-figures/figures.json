@@ -1,0 +1,299 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/shanbhogue-2026-gemini-embedding-2-native-multimodal/fig01.png",
+    "raw": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 | Conceptual overview of the Gemini Embedding 2 workflow. The model natively processes heterogeneous inputs—text, images, video, audio, documents, and their combinations—mapping them into a single, unified high-dimensional vector space where cross-modal semantic relationships are preserved.",
+    "bbox": [
+      53.14,
+      46.26,
+      539.28,
+      304.07
+    ],
+    "bbox_norm": [
+      0.0893,
+      0.055,
+      0.9059,
+      0.3612
+    ],
+    "dpi": 300,
+    "area_frac": 0.25,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/shanbhogue-2026-gemini-embedding-2-native-multimodal/fig02.png",
+    "raw": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2 | Gemini Embedding 2 shows strong performance across multimodal retrieval tasks spanning image, text, video, and document modalities. ∗ MTEB number is reported for Voyage-3.5 since Voyage-3.5-multimodal does not report MTEB.",
+    "bbox": [
+      91.65,
+      79.04,
+      503.63,
+      490.74
+    ],
+    "bbox_norm": [
+      0.154,
+      0.0939,
+      0.846,
+      0.5829
+    ],
+    "dpi": 300,
+    "area_frac": 0.338,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/shanbhogue-2026-gemini-embedding-2-native-multimodal/fig03.png",
+    "raw": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/fig03.png",
+    "page": 12,
+    "caption": "Figure 3 | Comparing Pre-Fine-Tuning (PFT) and Fine-Tuning (FT) checkpoints on multimodal evals.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      257.55
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3059
+    ],
+    "dpi": 300,
+    "area_frac": 0.172,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/shanbhogue-2026-gemini-embedding-2-native-multimodal/tab01.png",
+    "raw": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1 | Comparison of embedding models on retrieval benchmarks. Our model shows strong performance across a variety of unimodal, cross-modal, and multimodal retrieval tasks. † : Average over intersection of tasks where the metrics are available for all models. Modality abbreviations: V=Video, A=Au",
+    "bbox": [
+      56.36,
+      59.61,
+      538.91,
+      406.73
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0708,
+      0.9053,
+      0.4831
+    ],
+    "dpi": 300,
+    "area_frac": 0.334,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/shanbhogue-2026-gemini-embedding-2-native-multimodal/tab02.png",
+    "raw": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/tab02.png",
+    "page": 8,
+    "caption": "Table 2 | Comparison of multimodal and text-only embedding models on the Massive Text Embedding Benchmark, MTEB(Multilingual), MTEB Code v1, and CoIR benchmarks. Modality abbreviations: V=Video, A=Audio, I=Image, T=Text. ∗ : only self-reported the aggregated MTEB(Multilingual) mean score. † : voyage",
+    "bbox": [
+      56.36,
+      59.61,
+      538.91,
+      328.91
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0708,
+      0.9053,
+      0.3907
+    ],
+    "dpi": 300,
+    "area_frac": 0.259,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/shanbhogue-2026-gemini-embedding-2-native-multimodal/tab03.png",
+    "raw": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/tab03.png",
+    "page": 9,
+    "caption": "Table 3 | Results on the passage retrieval split of the MSEB benchmark. Utilizing native audio input consistently enhances retrieval performance over the ASR baseline, yielding robust gains in both intra-lingual and cross-lingual generalization setups.",
+    "bbox": [
+      56.01,
+      59.61,
+      540.65,
+      711.81
+    ],
+    "bbox_norm": [
+      0.0941,
+      0.0708,
+      0.9082,
+      0.8455
+    ],
+    "dpi": 300,
+    "area_frac": 0.631,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/shanbhogue-2026-gemini-embedding-2-native-multimodal/tab04.png",
+    "raw": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/tab04.png",
+    "page": 10,
+    "caption": "Table 4 | Image-to-Text Retrieval (R@5) performance across various Specialized Domains.",
+    "bbox": [
+      56.36,
+      59.61,
+      538.91,
+      268.15
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0708,
+      0.9053,
+      0.3185
+    ],
+    "dpi": 300,
+    "area_frac": 0.201,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/shanbhogue-2026-gemini-embedding-2-native-multimodal/tab05.png",
+    "raw": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/tab05.png",
+    "page": 11,
+    "caption": "Table 5 | Results on selected MTEB Code v1 tasks using synthetic datasets. Ablation models exclude souping.",
+    "bbox": [
+      56.36,
+      59.61,
+      538.91,
+      150.88
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0708,
+      0.9053,
+      0.1792
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/shanbhogue-2026-gemini-embedding-2-native-multimodal/tab06.png",
+    "raw": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/tab06.png",
+    "page": 12,
+    "caption": "Table 6 | Summary of video metrics ( NDCG@10 in %) for fine-tuned and souped models. The Δ columns indicate absolute percentage point differences relative to the Gemini Embedding 2 baseline. Adding targeted data improves in-domain performance but can slightly degrade out-of-domain tasks (e.g., YouCo",
+    "bbox": [
+      59.0,
+      280.93,
+      537.74,
+      434.71
+    ],
+    "bbox_norm": [
+      0.0991,
+      0.3337,
+      0.9033,
+      0.5163
+    ],
+    "dpi": 300,
+    "area_frac": 0.147,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/shanbhogue-2026-gemini-embedding-2-native-multimodal/tab07.png",
+    "raw": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/tab07.png",
+    "page": 18,
+    "caption": "Table 7 | Full results of Gemini Embedding 2 on MTEB (Multilingual).",
+    "bbox": [
+      133.31,
+      111.35,
+      460.35,
+      613.93
+    ],
+    "bbox_norm": [
+      0.2239,
+      0.1323,
+      0.7733,
+      0.7292
+    ],
+    "dpi": 300,
+    "area_frac": 0.328,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/shanbhogue-2026-gemini-embedding-2-native-multimodal/tab08.png",
+    "raw": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/tab08.png",
+    "page": 19,
+    "caption": "Table 8 | Full results of Gemini Embedding 2 on MTEB(Code).",
+    "bbox": [
+      179.52,
+      309.48,
+      415.76,
+      508.89
+    ],
+    "bbox_norm": [
+      0.3016,
+      0.3676,
+      0.6984,
+      0.6045
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal-figures/_overlay/p19.png"
+  }
+]

@@ -11,55 +11,96 @@ authors: "Xinqing Li, Xin He, Le Zhang, Min Wu, Xiaoli Li, Yun Liu"
 arxiv_id: "2510.16732"
 tags: [physical-ai, world-model, robot-learning, autonomous-driving, benchmark]
 figures:
-  - id: fig02
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig02.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig02.png
+  - id: fig01
+    label: Figure 1
+    kind: figure
+    file: assets/li-2025-a-comprehensive-survey-on-world/fig01.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig01.png
     caption: "서베이 전체 구조와 3축 분류 도해 — 기능(decision-coupled/general-purpose) · 시간(sequential/global) · 공간(GLV/TFS/SLG/DRR) (Figure 1, p.3)"
     page: 3
-    strategy: page-region
+    bbox_norm: [0.0801, 0.0631, 0.9036, 0.4553]
+    strategy: caption-region
     curated: true
     note: "wiki/assets 사본은 도식 영역만 재렌더(clip 0.055~0.455, 220 DPI). raw는 전체 페이지 원형 유지"
-  - id: fig03
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig03.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig03.png
-    caption: "로보틱스·범용 도메인 대표 world model 56편 분류표 (Table I, p.4)"
+  - id: tab01
+    label: Table I
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab01.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab01.png
+    caption: "로보틱스·범용 도메인 대표 world model 56편 분류표 — Taxonomy 3축 약어, backbone, 데이터 플랫폼, 모달리티, 실제 로봇 검증 여부 (Table I, p.4)"
     page: 4
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0984, 0.9298, 0.7378]
+    strategy: table-region
     curated: true
-  - id: fig04
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig04.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig04.png
-    caption: "자율주행 도메인 대표 world model 32편 분류표 (Table II, p.5)"
+  - id: tab02
+    label: Table II
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab02.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab02.png
+    caption: "자율주행 도메인 대표 world model 32편 분류표 — CARLA·nuScenes·Occ3D·OpenDV 등 플랫폼과 입력 모달리티 (Table II, p.5)"
     page: 5
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0989, 0.9298, 0.5177]
+    strategy: table-region
     curated: true
-  - id: fig05
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig05.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig05.png
-    caption: "데이터 자원 개괄 24종 (Table III, p.12)"
+  - id: tab03
+    label: Table III
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab03.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab03.png
+    caption: "데이터 자원 개괄 — 시뮬레이션 플랫폼 5 · 인터랙티브 벤치마크 6 · 오프라인 데이터셋 10 · 실제 로봇 3 (Table III, p.12)"
     page: 12
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0984, 0.9298, 0.4191]
+    strategy: table-region
     curated: false
-  - id: fig06
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig06.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig06.png
-    caption: "nuScenes 비디오 생성 FID/FVD 비교 18종 (Table IV, p.14)"
+  - id: tab04
+    label: Table IV
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab04.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab04.png
+    caption: "nuScenes 비디오 생성 FID/FVD 비교 18종 — DrivePhysica FID 4.0, MiLA FVD 14.9 (Table IV, p.14)"
     page: 14
-    strategy: page-region
+    bbox_norm: [0.5, 0.111, 0.9298, 0.3687]
+    strategy: table-region
     curated: false
-  - id: fig07
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig07.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig07.png
-    caption: "Occ3D-nuScenes(Table V) · DMC(Table VI) · RLBench(Table VII) 합본 페이지"
+  - id: tab05
+    label: Table V
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab05.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab05.png
+    caption: "Occ3D-nuScenes 4D occupancy forecasting(Table V) · DMC(Table VI) · RLBench(Table VII)가 함께 실린 p.15"
     page: 15
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0984, 0.9298, 0.3951]
+    strategy: table-region
     curated: false
-  - id: fig10
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig10.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig10.png
+  - id: tab06
+    label: Table VI
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab06.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab06.png
+    caption: "(중복) fig07과 동일한 p.15 이미지 — Table VI 캡션에 재매칭된 결과"
+    page: 15
+    bbox_norm: [0.0702, 0.4633, 0.9298, 0.6183]
+    strategy: table-region
+    curated: false
+  - id: tab07
+    label: Table VII
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab07.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab07.png
+    caption: "(중복) fig07과 동일한 p.15 이미지 — Table VII 캡션에 재매칭된 결과"
+    page: 15
+    bbox_norm: [0.5, 0.4633, 0.9298, 0.6183]
+    strategy: table-region
+    curated: false
+  - id: tab08
+    label: Table VIII
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab08.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab08.png
     caption: "nuScenes open-loop planning L2 오차·충돌률 22종 비교 (Table VIII, p.16)"
     page: 16
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0984, 0.9298, 0.3834]
+    strategy: table-region
     curated: false
 ---
 
@@ -79,7 +120,7 @@ world model의 범위는 좁게 잡았다. 정적 장면 서술자와 제어 가
 
 ## 방법론 및 아키텍처 (Methodology and Architecture)
 
-![[assets/li-2025-a-comprehensive-survey-on-world/fig02.png]]
+![[assets/li-2025-a-comprehensive-survey-on-world/fig01.png]]
 *Figure 1: 서베이 구조와 3축 분류 — 기능(decision-coupled/general-purpose) · 시간(sequential/global) · 공간(GLV/TFS/SLG/DRR) (Li 2025, p.3)*
 
 decision-coupled 모델은 dynamics를 특정 제어 목표에 밀착시킨다. 결합도가 높으면 샘플 효율과 closed-loop 성능이 올라가는 반면 학습 분포를 벗어나면 일반화가 약하다. general-purpose 모델은 task-agnostic 시뮬레이터라 전이가 쉽다. 문제는 pretraining 목적과 downstream 제어가 어긋난다는 점이다. 별도 완화 없이는 취약한 행동이 나온다.
@@ -97,7 +138,7 @@ decision-coupled 모델은 dynamics를 특정 제어 목표에 밀착시킨다. 
 
 ## 3축으로 본 문헌 지도 (Literature Map)
 
-![[assets/li-2025-a-comprehensive-survey-on-world/fig03.png]]
+![[assets/li-2025-a-comprehensive-survey-on-world/tab01.png]]
 *Table I: 로보틱스·범용 도메인 56편 — 3축 약어, backbone, 데이터 플랫폼, 모달리티, 실제 로봇 검증 여부 (Li 2025, p.4)*
 
 Dec/Seq/GLV 조합은 RSSM 계보가 채운다. PlaNet이 결정적 메모리와 확률 성분을 섞은 RSSM을 세웠고 Dreamer·DreamerV2·DreamerV3가 뒤를 이었다. 파생 연구는 대개 decoder를 손봤는데 Dreaming은 contrastive로 재구성을 없앴고 DreamerPro는 prototype 예측으로 바꿔 시각적 방해 요소에 덜 흔들리게 했다. 최근 흐름의 공통 주제는 전이 가능성이다. PreLAR의 implicit action abstraction, SENSEI의 VLM 유래 semantic reward, ReDRAW의 residual latent 보정이 sim-to-real이라는 같은 문제를 다르게 푼다.
@@ -108,7 +149,7 @@ Dec/Seq/GLV 조합은 RSSM 계보가 채운다. PlaNet이 결정적 메모리와
 
 iVideoGPT는 대규모 상호작용 비디오로 action-free 예측을 pretrain했고 Genie는 discrete latent action으로 사용자가 조작할 수 있는 환경을 학습했다. general-purpose 진영은 이렇게 Gen/Seq/TFS와 Gen/Glo/TFS에 몰려 있다. JEPA 계보에서는 V-JEPA가 픽셀 재구성 없이 가려진 시공간 영역의 latent feature를 예측했고 V-JEPA 2가 인터넷 규모로 스케일하며 로봇 데이터로 post-training해 계획까지 갔다. V-JEPA 2.1은 visible·masked 토큰 양쪽에 dense prediction을 걸었다. diffusion 쪽은 Sora가 비디오를 spacetime patch로 통일했고 Cosmos 3가 언어·이미지·비디오·오디오·행동을 mixture-of-transformers로 묶어 omnimodal world model을 Physical AI의 범용 backbone으로 세우려 한다.
 
-![[assets/li-2025-a-comprehensive-survey-on-world/fig04.png]]
+![[assets/li-2025-a-comprehensive-survey-on-world/tab02.png]]
 *Table II: 자율주행 도메인 32편 — CARLA·nuScenes·Occ3D·OpenDV 등 플랫폼과 입력 모달리티 (Li 2025, p.5)*
 
 자율주행 표에서 눈에 띄는 건 SLG 쏠림이다. 32편 중 절반 이상이 BEV·voxel 격자를 쓴다. 지도형 계획과 multi-view 융합이 필요한 도메인 특성이 그대로 드러난다. 로보틱스 표에서 TFS가 다수인 것과 대비된다.

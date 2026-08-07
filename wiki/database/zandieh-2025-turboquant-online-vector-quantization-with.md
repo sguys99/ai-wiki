@@ -12,40 +12,75 @@ arxiv_id: "2504.19874"
 tags: [vector-quantization, product-quantization, kv-cache, ann-search, embedding-compression, qjl, johnson-lindenstrauss, lloyd-max, distortion-rate, data-oblivious, shannon-lower-bound, inner-product, google-research]
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/zandieh-2025-turboquant-online-vector-quantization-with/fig01.png
     raw: raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig01.png
     caption: "Inner product 추정 오차 분포 — TurboQuant_prod(모든 bit-width 불편) vs TurboQuant_mse(bit-width 증가 시 bias 소멸) (paper Figure 1, p.16)"
     page: 16
-    strategy: page-region
+    bbox_norm: [0.106, 0.0817, 0.894, 0.4378]
+    strategy: caption-region
     curated: true
   - id: fig02
+    label: Figure 2
+    kind: figure
     file: assets/zandieh-2025-turboquant-online-vector-quantization-with/fig02.png
     raw: raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig02.png
     caption: "b=2 bit에서 inner-product 오차 분산 — Qprod는 평균 inner product와 무관하게 일정, Qmse는 평균 inner product가 커질수록 bias 증가 (paper Figure 2, p.17)"
     page: 17
-    strategy: page-region
+    bbox_norm: [0.106, 0.0817, 0.9584, 0.4378]
+    strategy: caption-region
     curated: true
   - id: fig03
+    label: Figure 3
+    kind: figure
     file: assets/zandieh-2025-turboquant-online-vector-quantization-with/fig03.png
     raw: raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig03.png
     caption: "Inner-product error / MSE의 이론적 상·하한 대비 실측 — bit-width별로 lower bound에 근접 (paper Figure 3, p.18)"
     page: 18
-    strategy: page-region
+    bbox_norm: [0.1701, 0.1001, 0.8239, 0.3527]
+    strategy: caption-region
     curated: true
   - id: fig04
+    label: Figure 4
+    kind: figure
     file: assets/zandieh-2025-turboquant-online-vector-quantization-with/fig04.png
     raw: raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig04.png
     caption: "Needle-In-A-Haystack (Llama-3.1-8B-Instruct, 0.25 압축비) — TurboQuant 0.997 = Full-Precision, SnapKV/PyramidKV/KIVI/PolarQuant 능가 (paper Figure 4, p.19)"
     page: 19
-    strategy: page-region
+    bbox_norm: [0.1158, 0.0749, 0.9352, 0.409]
+    strategy: caption-region
     curated: true
   - id: fig05
+    label: Figure 5
+    kind: figure
     file: assets/zandieh-2025-turboquant-online-vector-quantization-with/fig05.png
     raw: raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig05.png
     caption: "ANN search Recall@1@k — GloVe(d=200)·OpenAI3(d=1536·3072)에서 PQ·RabitQ 대비 우위 (paper Figure 5, p.21)"
     page: 21
-    strategy: page-region
+    bbox_norm: [0.1255, 0.1001, 0.9148, 0.2756]
+    strategy: caption-region
     curated: true
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/zandieh-2025-turboquant-online-vector-quantization-with/tab01.png
+    raw: raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/tab01.png
+    caption: "Table 1: LongBench-V1 [ 10 ] results of various KV cache compression methods on Llama - 3 . 1 - 8B - Instruct ."
+    page: 20
+    bbox_norm: [0.1162, 0.0767, 0.9099, 0.2713]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/zandieh-2025-turboquant-online-vector-quantization-with/tab02.png
+    raw: raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/tab02.png
+    caption: "Table 2: Quantization time (in seconds) for different approaches across various dimensions using 4-bit quantization."
+    page: 20
+    bbox_norm: [0.2421, 0.3341, 0.7579, 0.4183]
+    strategy: table-region
+    curated: false
 ---
 
 ## 요약 (Summary)

@@ -20,53 +20,226 @@ authors: "Mert Cemri, Melissa Z. Pan, Shuyi Yang, Lakshya A Agrawal, Bhavya Chop
 arxiv_id: "2503.13657"
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig01.png
     raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig01.png
-    caption: "Figure 1: MAST 분류체계 - 14개 실패 모드 × 3개 카테고리 전체 구조"
+    caption: "Figure 1: MAST 분류체계 - 14개 실패 모드를 3개 카테고리로 클러스터링한 전체 구조 (Pre-Execution / Execution / Post-Execution 단계 매핑 포함)"
     page: 2
-    strategy: page-region
+    bbox_norm: [0.1521, 0.0807, 0.8666, 0.355]
+    strategy: caption-region
+    curated: true
+  - id: fig02
+    label: Figure 2
+    kind: figure
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig02.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig02.png
+    caption: "Figure 2: MAST-Data 구축 방법론 워크플로우 - GT 분석 → 분류체계 개발 → IAA 검증(κ=0.88) → LLM annotator 캘리브레이션 → 1642 trace 라벨링"
+    page: 5
+    bbox_norm: [0.1735, 0.095, 0.8461, 0.2002]
+    strategy: caption-region
     curated: true
   - id: fig03
+    label: Figure 3
+    kind: figure
     file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig03.png
     raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig03.png
-    caption: "Figure 2: MAST-Data 구축 방법론 워크플로우"
-    page: 5
-    strategy: page-region
+    caption: "Figure 3: FM-2.4 Information Withholding 실제 사례 - Phone Agent가 username이 phone_number여야 함을 Supervisor에게 알리지 않아 로그인 반복 실패"
+    page: 6
+    bbox_norm: [0.1925, 0.0682, 0.8154, 0.1903]
+    strategy: caption-region
     curated: true
   - id: fig04
+    label: Figure 4
+    kind: figure
     file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig04.png
     raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig04.png
-    caption: "Figure 3: FM-2.4 Information Withholding 실제 사례"
-    page: 6
-    strategy: page-region
+    caption: "Figure 4: 7개 MAS 프레임워크별 실패 분포 (210 traces) - System Design 41.8% / Inter-Agent Misalignment 36.9% / Task Verification 21.3%"
+    page: 8
+    bbox_norm: [0.1659, 0.2318, 0.8362, 0.7997]
+    strategy: caption-region
     curated: true
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig05.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig05.png
+    caption: "false positive (Figure 5 텍스트 참조)"
+    page: 19
+    bbox_norm: [0.3284, 0.1569, 0.6716, 0.3869]
+    strategy: caption-region
+    curated: false
   - id: fig06
+    label: Figure 6
+    kind: figure
     file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig06.png
     raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig06.png
-    caption: "Figure 4: 7개 MAS 프레임워크별 실패 분포"
-    page: 8
-    strategy: page-region
-    curated: true
+    caption: "Figure 6 (Appendix E): 3개 실패 카테고리 간 상관관계 매트릭스 (낮은 상관 0.17-0.32 - 카테고리 독립성 입증)"
+    page: 22
+    bbox_norm: [0.3284, 0.2917, 0.6716, 0.5109]
+    strategy: caption-region
+    curated: false
   - id: fig07
+    label: Figure 7
+    kind: figure
     file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig07.png
     raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig07.png
-    caption: "Figure 5 (Appendix B): 6개 MAS 프레임워크 작업 성공률"
-    page: 19
-    strategy: page-region
+    caption: "Figure 7 (Appendix E): 14개 fine-grained 실패 모드 간 상관관계 매트릭스 (최대 0.63)"
+    page: 22
+    bbox_norm: [0.2637, 0.5481, 0.7363, 0.8792]
+    strategy: caption-region
+    curated: false
+  - id: fig08
+    label: Figure 8
+    kind: figure
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig08.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig08.png
+    caption: "false positive (Figure 8 텍스트 참조)"
+    page: 23
+    bbox_norm: [0.1667, 0.0833, 0.8333, 0.2722]
+    strategy: caption-region
+    curated: false
+  - id: fig09
+    label: Figure 9
+    kind: figure
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig09.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig09.png
+    caption: "Figure 9 (Appendix F): MetaGPT vs ChatDev 비교 (GPT-4o) - MetaGPT는 FC1/FC2에서 60-68% 적은 실패, 그러나 FC3 검증 실패는 1.56배 많음"
+    page: 23
+    bbox_norm: [0.1667, 0.3257, 0.8333, 0.5145]
+    strategy: caption-region
     curated: true
+  - id: fig10
+    label: Figure 10
+    kind: figure
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig10.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig10.png
+    caption: "Figure 10 (Appendix H): AG2 prompt/topology 개입 효과 - topology 변경이 prompt 변경보다 더 큰 실패 감소"
+    page: 28
+    bbox_norm: [0.199, 0.0833, 0.8009, 0.2765]
+    strategy: caption-region
+    curated: false
   - id: fig11
+    label: Figure 11
+    kind: figure
     file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig11.png
     raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig11.png
-    caption: "Figure 8 + Figure 9 (Appendix F): LLM 선택과 MAS 아키텍처가 실패 분포에 미치는 영향"
-    page: 23
-    strategy: page-region
+    caption: "Figure 11 (Appendix H): ChatDev prompt/topology 개입 효과 - 동일하게 topology 변경이 더 효과적"
+    page: 28
+    bbox_norm: [0.199, 0.3213, 0.801, 0.5145]
+    strategy: caption-region
+    curated: false
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/tab01.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab01.png
+    caption: "Table 1: MAST-Data configuration details. HE: Human Evaluated (Task completions rates are checked by humans), HA: Human Annotated (Failure modes are annotated by humans), LA: LLM Annotated (Failure modes are annotated by LLM-as-a-Judge)."
+    page: 3
+    bbox_norm: [0.1879, 0.2519, 0.8121, 0.6071]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/tab02.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab02.png
+    caption: "Table 2: Performance of LLM-as-a-judge pipeline"
+    page: 6
+    bbox_norm: [0.2985, 0.5613, 0.6978, 0.6348]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/tab03.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab03.png
+    caption: "Table 3: Overview of MAS covered in MAST-Data"
+    page: 19
+    bbox_norm: [0.1675, 0.5255, 0.8247, 0.8209]
+    strategy: table-region
+    curated: false
+  - id: tab04
+    label: Table 4
+    kind: table
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/tab04.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab04.png
+    caption: "Table 4: Solution Strategies vs. Failure Category in Multi-Agent Systems"
+    page: 26
+    bbox_norm: [0.1765, 0.2972, 0.8235, 0.4505]
+    strategy: table-region
+    curated: false
+  - id: tab05
+    label: Table 5
+    kind: table
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/tab05.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab05.png
+    caption: "Table 5: Case Studies Accuracy Comparison. This table presents the performance accuracies (in percentages) for various scenarios in our case studies. The header rows group results by strategy: AG2 and ChatDev. Under AG2, GSM-Plus results are reported using GPT-4 and GPT-4o; under ChatDev, results fo"
+    page: 27
+    bbox_norm: [0.1707, 0.5235, 0.8293, 0.6381]
+    strategy: table-region
+    curated: false
+  - id: tab06
+    label: Table 6
+    kind: table
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/tab06.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab06.png
+    caption: "Table 6: Failure Mode Occurrences in 400 Traces with Open-Source Models. Results are grouped by model family (Qwen vs. CodeLlama) and development framework (ChatDev vs. MetaGPT)."
+    page: 29
+    bbox_norm: [0.2801, 0.1202, 0.7162, 0.4202]
+    strategy: table-region
+    curated: false
+  - id: tab07
+    label: Table 7
+    kind: table
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/tab07.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab07.png
+    caption: "Table 7: Failure mode occurrence rates for ChatDev and MetaGPT on successful and unsuccessful examples."
+    page: 29
+    bbox_norm: [0.1759, 0.7754, 0.8204, 0.9068]
+    strategy: table-region
+    curated: false
+  - id: tab08
+    label: Table 8
+    kind: table
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/tab08.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab08.png
+    caption: "Table 8: Failure Category Rates on Different Benchmarks"
+    page: 30
+    bbox_norm: [0.1667, 0.2585, 0.8445, 0.352]
+    strategy: table-region
+    curated: false
+  - id: tab09
+    label: Table 9
+    kind: table
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/tab09.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab09.png
+    caption: "Table 9: Average failure cost by MAS framework."
+    page: 30
+    bbox_norm: [0.3581, 0.4909, 0.6383, 0.6448]
+    strategy: table-region
+    curated: false
+  - id: fig07
+    label: (legacy)
+    kind: figure
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig07.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/legacy/fig07.png
+    caption: "Figure 5 (Appendix B): 6개 MAS 프레임워크 작업 성공률 - AppWorld 13.3% ~ AG2 59.0%"
+    page: 19
+    bbox_norm: [0.0, 0.0, 1.0, 1.0]
+    strategy: legacy-page-region
+    low_confidence: true
     curated: true
-  - id: fig12
-    file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig12.png
-    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig12.png
-    caption: "Figure 9 (Appendix F): MetaGPT vs ChatDev 비교 (fig11과 동일 page 23 렌더)"
+  - id: fig11
+    label: (legacy)
+    kind: figure
+    file: assets/cemri-2025-why-do-multi-agent-llm-systems/fig11.png
+    raw: raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/legacy/fig11.png
+    caption: "Figure 8 (Appendix F): GPT-4o vs Claude 3.7 Sonnet 실패 모드 비교 (MetaGPT, ProgramDev-v2) - GPT-4o가 FC1에서 39% 적게 실패"
     page: 23
-    strategy: page-region
+    bbox_norm: [0.0, 0.0, 1.0, 1.0]
+    strategy: legacy-page-region
+    low_confidence: true
     curated: true
 ---
 
@@ -102,14 +275,14 @@ Multi-Agent LLM Systems(MAS) 7개 SOTA 프레임워크에서 모은 1642개 실�
 
 ### 데이터 구축 워크플로우
 
-![[assets/cemri-2025-why-do-multi-agent-llm-systems/fig03.png]]
+![[assets/cemri-2025-why-do-multi-agent-llm-systems/fig02.png]]
 *Figure 2: MAST-Data 구축 5단계 - trace 수집 → Grounded Theory 기반 실패 식별 → 3 라운드 IAA(κ=0.88) → o1 LLM annotator 캘리브레이션(κ=0.77) → 1642 trace 라벨링 (Cemri 2025, p.5)*
 
 자원 투입은 expert 6인 × 20시간/인의 GT 분석, IAA 합의 회의 10시간, 그리고 OpenManus·Magentic-One·MMLU·GAIA로의 일반화 검증.
 
 ### Information Withholding 실제 사례
 
-![[assets/cemri-2025-why-do-multi-agent-llm-systems/fig04.png]]
+![[assets/cemri-2025-why-do-multi-agent-llm-systems/fig03.png]]
 *Figure 3: FM-2.4 Information Withholding trace 예시 - Phone Agent가 username 필드가 phone_number여야 한다는 API 요구를 Supervisor Agent에 전달하지 않고, Supervisor 역시 clarification을 구하지 않아 로그인 시도가 반복 실패한다 (Cemri 2025, p.6)*
 
 이 trace는 FC2의 **theory of mind 붕괴** 사례다. 메시지 포맷 표준화(MCP, A2A)만으로는 해결되지 않는다.
@@ -129,7 +302,7 @@ Multi-Agent LLM Systems(MAS) 7개 SOTA 프레임워크에서 모은 1642개 실�
 
 ### 7개 MAS 실패 분포
 
-![[assets/cemri-2025-why-do-multi-agent-llm-systems/fig06.png]]
+![[assets/cemri-2025-why-do-multi-agent-llm-systems/fig04.png]]
 *Figure 4: 210개 trace에서 MAST 라벨로 본 시스템별 실패 분포. AppWorld는 premature termination(FM-3.1) 비중이 큰 반면 OpenManus는 step repetition(FM-1.3), HyperAgent는 incorrect verification(FM-3.3)이 지배적이다 (Cemri 2025, p.8)*
 
 시스템 아키텍처에 따라 실패 프로파일이 뚜렷이 갈리며, **one-size-fits-all 해법이 없다**.

@@ -1,20 +1,137 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/rodrigues-2026-mcp-server-architecture-patterns/fig01.png",
     "raw": "raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/fig01.png",
     "page": 6,
-    "caption": "Fig. 1: MCP 전송 지연 (p50/p95/p99, 로그 스케일) — stdio/loopback은 측정값, cross-host 3행은 network-RTT 캘리브레이션 모델값",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Fig. 1. MCP transport latency ( p 50 / p 95 / p 99 , log scale) by configuration; row labels indicate measured vs. modeled .",
+    "bbox": [
+      305.98,
+      44.54,
+      569.03,
+      168.64
+    ],
+    "bbox_norm": [
+      0.5,
+      0.0562,
+      0.9298,
+      0.2129
+    ],
+    "dpi": 300,
+    "area_frac": 0.067,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/_overlay/p06.png"
   },
   {
     "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
     "file": "assets/rodrigues-2026-mcp-server-architecture-patterns/fig02.png",
     "raw": "raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/fig02.png",
     "page": 6,
-    "caption": "Fig. 2: context 내 tool 수 vs. 선택 정확도·지연 (Haiku 4.5 / Sonnet 4, 버킷당 N=200, ANSYR 프로덕션 로그). 음영은 권장 범위(≤10 tools)",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Fig. 2. Tool count vs. accuracy and latency (Claude Haiku 4.5 and Claude Sonnet 4; N b = 200 requests per bucket from ANSYR production logs). Shaded region marks the recommended range ( ≤ 10 tools per context).",
+    "bbox": [
+      305.98,
+      198.6,
+      569.03,
+      305.14
+    ],
+    "bbox_norm": [
+      0.5,
+      0.2508,
+      0.9298,
+      0.3853
+    ],
+    "dpi": 300,
+    "area_frac": 0.058,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table I",
+    "kind": "table",
+    "file": "assets/rodrigues-2026-mcp-server-architecture-patterns/tab01.png",
+    "raw": "raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/tab01.png",
+    "page": 2,
+    "caption": "TABLE I E ACH MCP PATTERN HAS A CLASSICAL ANCESTOR ; THE CONTRIBUTION",
+    "bbox": [
+      42.96,
+      81.8,
+      568.44,
+      368.37
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.1033,
+      0.9288,
+      0.4651
+    ],
+    "dpi": 300,
+    "area_frac": 0.311,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/_overlay/p02.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table II",
+    "kind": "table",
+    "file": "assets/rodrigues-2026-mcp-server-architecture-patterns/tab02.png",
+    "raw": "raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/tab02.png",
+    "page": 2,
+    "caption": "TABLE II E NUMERATED CORPUS OF FIFTEEN MCP SERVERS USED TO DERIVE THE",
+    "bbox": [
+      306.58,
+      92.08,
+      568.44,
+      368.37
+    ],
+    "bbox_norm": [
+      0.5009,
+      0.1163,
+      0.9288,
+      0.4651
+    ],
+    "dpi": 300,
+    "area_frac": 0.149,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/_overlay/p02.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table III",
+    "kind": "table",
+    "file": "assets/rodrigues-2026-mcp-server-architecture-patterns/tab03.png",
+    "raw": "raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/tab03.png",
+    "page": 6,
+    "caption": "TABLE III MCP T RANSPORT L ATENCY . R OWS LABELLED measured ARE END - TO - END LOOPBACK MEASUREMENTS (N = 100 CALLS + 10 WARM - UP ). R OWS LABELLED modeled ARE LOOPBACK OVERHEAD PLUS A",
+    "bbox": [
+      47.37,
+      80.01,
+      566.73,
+      140.94
+    ],
+    "bbox_norm": [
+      0.0774,
+      0.101,
+      0.926,
+      0.178
+    ],
+    "dpi": 300,
+    "area_frac": 0.065,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/_overlay/p06.png"
   }
 ]

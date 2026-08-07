@@ -1,0 +1,164 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/zhang-2026-leanrag-knowledge-graph-based-generation/fig01.png",
+    "raw": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: Comparison of typical LLM retrieval-augmented generation frameworks.",
+    "bbox": [
+      48.0,
+      48.0,
+      564.02,
+      354.4
+    ],
+    "bbox_norm": [
+      0.0784,
+      0.0606,
+      0.9216,
+      0.4475
+    ],
+    "dpi": 300,
+    "area_frac": 0.326,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/zhang-2026-leanrag-knowledge-graph-based-generation/fig02.png",
+    "raw": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Overview of the LeanRAG framework.",
+    "bbox": [
+      49.26,
+      49.16,
+      563.06,
+      246.18
+    ],
+    "bbox_norm": [
+      0.0805,
+      0.0621,
+      0.92,
+      0.3108
+    ],
+    "dpi": 300,
+    "area_frac": 0.209,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/zhang-2026-leanrag-knowledge-graph-based-generation/fig03.png",
+    "raw": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3: Comparison in retrieval tokens across four datasets",
+    "bbox": [
+      331.89,
+      60.41,
+      547.65,
+      235.99
+    ],
+    "bbox_norm": [
+      0.5423,
+      0.0763,
+      0.8948,
+      0.298
+    ],
+    "dpi": 300,
+    "area_frac": 0.078,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/zhang-2026-leanrag-knowledge-graph-based-generation/tab01.png",
+    "raw": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1: Evaluation scores (1–10 scale) of LeanRAG compared to baseline methods, assessed by an LLM",
+    "bbox": [
+      49.9,
+      48.4,
+      562.1,
+      255.07
+    ],
+    "bbox_norm": [
+      0.0815,
+      0.0611,
+      0.9185,
+      0.3221
+    ],
+    "dpi": 300,
+    "area_frac": 0.218,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/zhang-2026-leanrag-knowledge-graph-based-generation/tab02.png",
+    "raw": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/tab02.png",
+    "page": 7,
+    "caption": "Table 2: Win rates (%) between LeanRAG and LeanRAG w/o Relation (Left: LeanRAG; Right: w/o Relation)",
+    "bbox": [
+      48.0,
+      378.51,
+      562.58,
+      585.18
+    ],
+    "bbox_norm": [
+      0.0784,
+      0.4779,
+      0.9192,
+      0.7389
+    ],
+    "dpi": 300,
+    "area_frac": 0.219,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/zhang-2026-leanrag-knowledge-graph-based-generation/tab03.png",
+    "raw": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/tab03.png",
+    "page": 7,
+    "caption": "Table 3: Necessity analysis of textual context",
+    "bbox": [
+      314.92,
+      378.51,
+      562.58,
+      585.18
+    ],
+    "bbox_norm": [
+      0.5146,
+      0.4779,
+      0.9192,
+      0.7389
+    ],
+    "dpi": 300,
+    "area_frac": 0.106,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation-figures/_overlay/p07.png"
+  }
+]

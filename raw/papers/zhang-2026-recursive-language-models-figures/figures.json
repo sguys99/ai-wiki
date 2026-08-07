@@ -1,218 +1,515 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig01.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig01.png",
     "page": 1,
-    "caption": "Figure 1: A comparison of GPT-5 and a corresponding RLM(recursion depth=1) using GPT-5 on",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 1: A comparison of GPT-5 and a corresponding RLM(recursion depth=1) using GPT-5 on three long-context tasks of increasing complexity: S-NIAH , OOLONG , and OOLONG-Pairs . For each task, we scale the input length from 2 13 to 2 20 . GPT-5 performance degrades significantly as a function of bot",
+    "bbox": [
+      111.9,
+      454.94,
+      500.1,
+      569.34
+    ],
+    "bbox_norm": [
+      0.1828,
+      0.5744,
+      0.8172,
+      0.7189
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p01.png"
   },
   {
     "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig02.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig02.png",
     "page": 2,
-    "caption": "Figure 2: A Recursive Language Model (RLM) treats prompts as part of the environment. It loads the",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 2: A Recursive Language Model (RLM) treats prompts as part of the environment. It loads the input prompt as a variable inside a REPL environment E and writes code to peek into, decompose, and invoke itself recursively over programmatic snippets of the variable.",
+    "bbox": [
+      151.5,
+      220.39,
+      460.49,
+      452.49
+    ],
+    "bbox_norm": [
+      0.2475,
+      0.2783,
+      0.7524,
+      0.5713
+    ],
+    "dpi": 300,
+    "area_frac": 0.148,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p02.png"
   },
   {
     "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig03.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig03.png",
-    "page": 4,
-    "caption": "3This helps explain the patterns seen in Figure 1 earlier: GPT-5 scales effectively on the S-NIAH task, where the needle size",
-    "strategy": "page-region",
-    "curated": false
+    "page": 8,
+    "caption": "Figure 3: (a) We show how rejection fine-tuning Qwen3-8B on distilled RLM(Qwen3-Coder-480B- A35B) trajectories improves performance on the benchmarks in Table 1. (b) On MRCRv2 [Vodrahalli et al., 2024], RL training RLM(Qwen3-4B-0527-Instruct) on the 64k sequence length, 2-needle split generalizes to",
+    "bbox": [
+      102.0,
+      177.93,
+      510.0,
+      285.51
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2247,
+      0.8333,
+      0.3605
+    ],
+    "dpi": 300,
+    "area_frac": 0.091,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p08.png"
   },
   {
     "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig04.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig04.png",
-    "page": 6,
-    "caption": "RLM performance degrade as input contexts grow in Figure 1.",
-    "strategy": "page-region",
-    "curated": false
+    "page": 8,
+    "caption": "Figure 4: (a) On OOLONG, we report the performance of RLM(GPT-5) by varying the in-context examples provided in the system prompt. For each rollout, we categorize the first task decomposition attempt made by the RLM. (b) From the RLM(depth=1) runs in Table 1, we report, bucketed by correct or incorr",
+    "bbox": [
+      102.0,
+      489.03,
+      510.0,
+      610.46
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.6175,
+      0.8333,
+      0.7708
+    ],
+    "dpi": 300,
+    "area_frac": 0.102,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p08.png"
   },
   {
     "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig05.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig05.png",
-    "page": 7,
-    "caption": "the same order of magnitude of cost as GPT-5 (see Figure 16 in Appendix F). In §5, we explore the",
-    "strategy": "page-region",
-    "curated": false
+    "page": 16,
+    "caption": "Figure 5: We plot statistics for the RLM trajectories on LongBenchPro that were collected and filtered to train RLM-Qwen3-8B . The left plots show the unfiltered trajectories, and right plots show the post-filtering trajectories.",
+    "bbox": [
+      102.0,
+      410.26,
+      510.01,
+      589.94
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.518,
+      0.8333,
+      0.7449
+    ],
+    "dpi": 300,
+    "area_frac": 0.151,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p16.png"
   },
   {
     "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig06.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig06.png",
-    "page": 7,
-    "caption": "comparable to most other baselines, including standard coding agents. Furthermore, in Figure 11 in",
-    "strategy": "page-region",
-    "curated": false
+    "page": 17,
+    "caption": "Figure 6: The post-trained RLM-Qwen3-8B is significantly more efficient during its RLM trajectory compared to the base model, in addition to its performance boost.",
+    "bbox": [
+      161.4,
+      66.0,
+      450.59,
+      211.3
+    ],
+    "bbox_norm": [
+      0.2637,
+      0.0833,
+      0.7363,
+      0.2668
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p17.png"
   },
   {
     "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig07.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig07.png",
-    "page": 8,
-    "caption": "all tasks. Furthermore, its inference costs are much lower and more than 3× faster (see Figure 6 in",
-    "strategy": "page-region",
-    "curated": false
+    "page": 30,
+    "caption": "Figure 7: We plot the performance and API cost per answer of various methods using GPT-5 on 20 random queries in BrowseComp-Plus given increasing numbers of documents in context. Only the iterative methods (RLM, ReAct) maintain reasonable performance at 100+ documents.",
+    "bbox": [
+      102.0,
+      380.22,
+      510.01,
+      558.84
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4801,
+      0.8333,
+      0.7056
+    ],
+    "dpi": 300,
+    "area_frac": 0.15,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p30.png"
   },
   {
     "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig08.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig08.png",
-    "page": 8,
-    "caption": "Figure 3: (a) We show how rejection fine-tuning Qwen3-8B on distilled RLM(Qwen3-Coder-480B-",
-    "strategy": "page-region",
-    "curated": false
+    "page": 31,
+    "caption": "Figure 8: RLMs have common patterns in their trajectories when solving tasks. (a) We frequently observed RLMs filtering and interacting with their context through regex code. (b) We found that RLMs can effectively decompose their context through recursive sub-calls (c) On long-output tasks, RLMs are",
+    "bbox": [
+      105.96,
+      139.59,
+      506.05,
+      368.82
+    ],
+    "bbox_norm": [
+      0.1731,
+      0.1763,
+      0.8269,
+      0.4657
+    ],
+    "dpi": 300,
+    "area_frac": 0.189,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p31.png"
   },
   {
     "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig09.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig09.png",
-    "page": 8,
-    "caption": "Figure 4: (a) On OOLONG, we report the performance of RLM(GPT-5) by varying the in-context",
-    "strategy": "page-region",
-    "curated": false
+    "page": 40,
+    "caption": "Figure 9: For GPT-5 and Qwen3-Coder-480B-A35B-Instruct, we plot how the RLM(recursion depth=1) compares to other baselines using the same models. For all tasks where at least one method gets the answer correct, we show how many only the RLM got correct in green, how many both got correct in gray, an",
+    "bbox": [
+      102.0,
+      159.45,
+      509.99,
+      324.51
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2013,
+      0.8333,
+      0.4097
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p40.png"
   },
   {
     "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig10.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig10.png",
-    "page": 16,
-    "caption": "Figure 5: We plot statistics for the RLM trajectories on LongBenchPro that were collected and filtered",
-    "strategy": "page-region",
-    "curated": false
+    "page": 40,
+    "caption": "Figure 10: For each task in Table 1, we plot the average number of sub-calls made during an RLM(depth=1) trajectory for each task, grouped by whether it got the task correct or incorrect.",
+    "bbox": [
+      102.0,
+      456.68,
+      510.01,
+      599.41
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.5766,
+      0.8333,
+      0.7568
+    ],
+    "dpi": 300,
+    "area_frac": 0.12,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p40.png"
   },
   {
     "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig11.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig11.png",
-    "page": 16,
-    "caption": "Below, we provide plots for the runtime speed-up of training in Figure 6.",
-    "strategy": "page-region",
-    "curated": false
+    "page": 41,
+    "caption": "Figure 11: Cost of RLM and baselines described in §3.2 plotted at the 25th, 50th, 75th, and 95th percentile of total API cost. We observe comparable or even lower costs for RLMs at the 50th percentile, but sharp increases at the tail end due to potentially long RLM trajectories.",
+    "bbox": [
+      102.0,
+      161.01,
+      509.99,
+      353.92
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2033,
+      0.8333,
+      0.4469
+    ],
+    "dpi": 300,
+    "area_frac": 0.162,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p41.png"
   },
   {
     "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig12.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig12.png",
-    "page": 17,
-    "caption": "Figure 6: The post-trained RLM-Qwen3-8B is significantly more efficient during its RLM trajectory",
-    "strategy": "page-region",
-    "curated": false
+    "page": 41,
+    "caption": "Figure 12: Plotted quartiles of the runtime for methods and baselines around GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2. We plot the 25th, 50th, 75th, and 95th percentiles.",
+    "bbox": [
+      121.8,
+      400.05,
+      490.21,
+      625.51
+    ],
+    "bbox_norm": [
+      0.199,
+      0.5051,
+      0.801,
+      0.7898
+    ],
+    "dpi": 300,
+    "area_frac": 0.171,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p41.png"
   },
   {
     "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig13.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig13.png",
-    "page": 30,
-    "caption": "Figure 7: We plot the performance and API cost per answer of various methods using GPT-5 on 20",
-    "strategy": "page-region",
-    "curated": false
+    "page": 42,
+    "caption": "Figure 13: Plotted quartiles of the runtime for methods and baselines around Qwen3-Coder-480B- A35B-Instruct across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2. We plot the 25th, 50th, 75th, and 95th percentiles.",
+    "bbox": [
+      121.8,
+      66.15,
+      490.21,
+      291.62
+    ],
+    "bbox_norm": [
+      0.199,
+      0.0835,
+      0.801,
+      0.3682
+    ],
+    "dpi": 300,
+    "area_frac": 0.171,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p42.png"
   },
   {
     "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig14.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig14.png",
-    "page": 31,
-    "caption": "Figure 8: RLMs have common patterns in their trajectories when solving tasks. (a) We frequently",
-    "strategy": "page-region",
-    "curated": false
+    "page": 42,
+    "caption": "Figure 14: Histogram of the API costs for GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2.",
+    "bbox": [
+      102.0,
+      327.59,
+      510.0,
+      697.05
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4136,
+      0.8333,
+      0.8801
+    ],
+    "dpi": 300,
+    "area_frac": 0.311,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p42.png"
   },
   {
     "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig15.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig15.png",
-    "page": 40,
-    "caption": "Figure 9: For GPT-5 and Qwen3-Coder-480B-A35B-Instruct, we plot how the RLM(recursion",
-    "strategy": "page-region",
-    "curated": false
+    "page": 43,
+    "caption": "Figure 15: Histogram of the API costs for Qwen3-Coder-480B across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2.",
+    "bbox": [
+      102.0,
+      80.01,
+      510.01,
+      445.45
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.101,
+      0.8333,
+      0.5624
+    ],
+    "dpi": 300,
+    "area_frac": 0.308,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p43.png"
   },
   {
     "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
     "file": "assets/zhang-2026-recursive-language-models/fig16.png",
     "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig16.png",
-    "page": 40,
-    "caption": "Figure 10: For each task in Table 1, we plot the average number of sub-calls made during an",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig17",
-    "file": "assets/zhang-2026-recursive-language-models/fig17.png",
-    "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig17.png",
-    "page": 40,
-    "caption": "and baselines at quartiles in Figure 11.",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig18",
-    "file": "assets/zhang-2026-recursive-language-models/fig18.png",
-    "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig18.png",
-    "page": 41,
-    "caption": "Figure 11: Cost of RLM and baselines described in §3.2 plotted at the 25th, 50th, 75th, and 95th",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig19",
-    "file": "assets/zhang-2026-recursive-language-models/fig19.png",
-    "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig19.png",
-    "page": 41,
-    "caption": "Figure 12: Plotted quartiles of the runtime for methods and baselines around GPT-5 across OOLONG,",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig20",
-    "file": "assets/zhang-2026-recursive-language-models/fig20.png",
-    "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig20.png",
-    "page": 42,
-    "caption": "Figure 13: Plotted quartiles of the runtime for methods and baselines around Qwen3-Coder-480B-",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig21",
-    "file": "assets/zhang-2026-recursive-language-models/fig21.png",
-    "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig21.png",
-    "page": 42,
-    "caption": "Figure 14: Histogram of the API costs for GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig22",
-    "file": "assets/zhang-2026-recursive-language-models/fig22.png",
-    "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig22.png",
-    "page": 43,
-    "caption": "Figure 15: Histogram of the API costs for Qwen3-Coder-480B across OOLONG, OOLONG-Pairs,",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig23",
-    "file": "assets/zhang-2026-recursive-language-models/fig23.png",
-    "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig23.png",
     "page": 43,
     "caption": "Figure 16: We plot the API cost in USD for the runs in Figure 1.",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      102.0,
+      498.24,
+      510.01,
+      694.1
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.6291,
+      0.8334,
+      0.8764
+    ],
+    "dpi": 300,
+    "area_frac": 0.165,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p43.png"
   },
   {
-    "id": "fig24",
-    "file": "assets/zhang-2026-recursive-language-models/fig24.png",
-    "raw": "raw/papers/zhang-2026-recursive-language-models-figures/fig24.png",
-    "page": 43,
-    "caption": "Figure 16: We plot the API cost in USD for the runs in Figure 1.",
-    "strategy": "page-region",
-    "curated": false
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/zhang-2026-recursive-language-models/tab01.png",
+    "raw": "raw/papers/zhang-2026-recursive-language-models-figures/tab01.png",
+    "page": 6,
+    "caption": "Table 1: Performance comparison of different methods across long-context benchmarks of varying complexity. In gray is the average API cost ± the standard deviation of each method on each task. ∗ indicates runs where a method (sometimes) ran into input context limits. Provider costs were computed und",
+    "bbox": [
+      102.0,
+      249.15,
+      510.02,
+      552.02
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.3146,
+      0.8334,
+      0.697
+    ],
+    "dpi": 300,
+    "area_frac": 0.255,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/zhang-2026-recursive-language-models/tab02.png",
+    "raw": "raw/papers/zhang-2026-recursive-language-models-figures/tab02.png",
+    "page": 7,
+    "caption": "Table 2: Solve rate on L ONG C O T- MINI [Motwani et al., 2026], a difficult long reasoning benchmark that frontier models struggle to solve. We select the best performing model from the paper (GPT-5.2) and compare to an RLM with and without decomposition hints (prompt provided in Appendix C.3).",
+    "bbox": [
+      102.0,
+      518.62,
+      510.0,
+      577.37
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.6548,
+      0.8333,
+      0.729
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/zhang-2026-recursive-language-models/tab03.png",
+    "raw": "raw/papers/zhang-2026-recursive-language-models-figures/tab03.png",
+    "page": 24,
+    "caption": "Table 3: Solve rate on L ONG C O T- MINI [Motwani et al., 2026], a difficult long reasoning benchmark that frontier models struggle to solve. We adapt a similar set of decomposition hints provided to the RLM in Table 2 (without sub-calling details), and find the model often gets confused or makes mo",
+    "bbox": [
+      101.69,
+      359.09,
+      510.0,
+      459.9
+    ],
+    "bbox_norm": [
+      0.1662,
+      0.4534,
+      0.8333,
+      0.5807
+    ],
+    "dpi": 300,
+    "area_frac": 0.085,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-recursive-language-models-figures/_overlay/p24.png"
   }
 ]

@@ -20,19 +20,55 @@ tags:
   - agents
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/rodrigues-2026-mcp-server-architecture-patterns/fig01.png
     raw: raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/fig01.png
     caption: "Fig. 1: MCP 전송 지연 (p50/p95/p99, 로그 스케일) — stdio/loopback은 측정값, cross-host 3행은 network-RTT 캘리브레이션 모델값"
     page: 6
-    strategy: page-region
+    bbox_norm: [0.5, 0.0562, 0.9298, 0.2129]
+    strategy: caption-region
     curated: true
   - id: fig02
+    label: Figure 2
+    kind: figure
     file: assets/rodrigues-2026-mcp-server-architecture-patterns/fig02.png
     raw: raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/fig02.png
     caption: "Fig. 2: context 내 tool 수 vs. 선택 정확도·지연 (Haiku 4.5 / Sonnet 4, 버킷당 N=200, ANSYR 프로덕션 로그). 음영은 권장 범위(≤10 tools)"
     page: 6
-    strategy: page-region
+    bbox_norm: [0.5, 0.2508, 0.9298, 0.3853]
+    strategy: caption-region
     curated: true
+  - id: tab01
+    label: Table I
+    kind: table
+    file: assets/rodrigues-2026-mcp-server-architecture-patterns/tab01.png
+    raw: raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/tab01.png
+    caption: "TABLE I E ACH MCP PATTERN HAS A CLASSICAL ANCESTOR ; THE CONTRIBUTION"
+    page: 2
+    bbox_norm: [0.0702, 0.1033, 0.9288, 0.4651]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table II
+    kind: table
+    file: assets/rodrigues-2026-mcp-server-architecture-patterns/tab02.png
+    raw: raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/tab02.png
+    caption: "TABLE II E NUMERATED CORPUS OF FIFTEEN MCP SERVERS USED TO DERIVE THE"
+    page: 2
+    bbox_norm: [0.5009, 0.1163, 0.9288, 0.4651]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table III
+    kind: table
+    file: assets/rodrigues-2026-mcp-server-architecture-patterns/tab03.png
+    raw: raw/papers/rodrigues-2026-mcp-server-architecture-patterns-figures/tab03.png
+    caption: "TABLE III MCP T RANSPORT L ATENCY . R OWS LABELLED measured ARE END - TO - END LOOPBACK MEASUREMENTS (N = 100 CALLS + 10 WARM - UP ). R OWS LABELLED modeled ARE LOOPBACK OVERHEAD PLUS A"
+    page: 6
+    bbox_norm: [0.0774, 0.101, 0.926, 0.178]
+    strategy: table-region
+    curated: false
 ---
 
 ## 한 줄 요약 (One-line Summary)

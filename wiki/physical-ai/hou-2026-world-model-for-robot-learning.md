@@ -12,102 +12,124 @@ arxiv_id: "2605.00080"
 tags: [physical-ai, world-model, robot-learning, vla]
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/hou-2026-world-model-for-robot-learning/fig01.png
     raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig01.png
     caption: "서베이 전체 구성 — Sec 3(정책), Sec 4(시뮬레이터), Sec 5(로봇 비디오) 세 축 (Figure 1, p.2)"
     page: 2
-    strategy: page-region
+    bbox_norm: [0.0798, 0.0697, 0.982, 0.4175]
+    strategy: caption-region
     curated: true
   - id: fig02
+    label: Figure 2
+    kind: figure
     file: assets/hou-2026-world-model-for-robot-learning/fig02.png
     raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig02.png
     caption: "2023.1~2026.3 대표 연구의 시간축 진화 — 상단 world model for policy, 하단 world model as simulator (Figure 2, p.3)"
     page: 3
-    strategy: page-region
+    bbox_norm: [0.0696, 0.073, 0.9596, 0.4084]
+    strategy: caption-region
     curated: true
   - id: fig03
+    label: Figure 3
+    kind: figure
     file: assets/hou-2026-world-model-for-robot-learning/fig03.png
     raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig03.png
-    caption: "(오탐) 본문 교차참조 'Figure 2 highlights…'가 줄머리에 와서 잡힌 p.4 — 도식 없음"
-    page: 4
-    strategy: page-region
-    curated: false
-  - id: fig04
-    file: assets/hou-2026-world-model-for-robot-learning/fig04.png
-    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig04.png
-    caption: "Sec 3의 5개 아키텍처 패러다임 비교표 — 대표 연구·추론 시 future generation·backbone·coupling style (Table 1, p.8)"
-    page: 8
-    strategy: page-region
-    curated: true
-  - id: fig05
-    file: assets/hou-2026-world-model-for-robot-learning/fig05.png
-    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig05.png
     caption: "정책으로서의 world model 3대 아키텍처 — (a) IDM-style (b) Single-backbone (c) MoT-style (Figure 3, p.10)"
     page: 10
-    strategy: page-region
+    bbox_norm: [0.092, 0.073, 0.9518, 0.2731]
+    strategy: caption-region
     curated: true
-  - id: fig06
-    file: assets/hou-2026-world-model-for-robot-learning/fig06.png
-    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig06.png
+  - id: fig04
+    label: Figure 4
+    kind: figure
+    file: assets/hou-2026-world-model-for-robot-learning/fig04.png
+    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig04.png
     caption: "MLLM 기반 두 경로 — (a) Unified VLA (b) Latent world modeling policy (Figure 4, p.13)"
     page: 13
-    strategy: page-region
+    bbox_norm: [0.1455, 0.0785, 0.855, 0.2747]
+    strategy: caption-region
     curated: true
-  - id: fig07
-    file: assets/hou-2026-world-model-for-robot-learning/fig07.png
-    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig07.png
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/hou-2026-world-model-for-robot-learning/fig05.png
+    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig05.png
     caption: "시뮬레이터로서의 두 용도 — (a) RL용 학습된 시뮬레이터 (b) 후보 행동 채점(validation) (Figure 5, p.16)"
     page: 16
-    strategy: page-region
+    bbox_norm: [0.1448, 0.082, 0.8554, 0.2628]
+    strategy: caption-region
     curated: true
-  - id: fig08
-    file: assets/hou-2026-world-model-for-robot-learning/fig08.png
-    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig08.png
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/hou-2026-world-model-for-robot-learning/fig06.png
+    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig06.png
     caption: "로봇 비디오 world model 통합 관점 — 상상 엔진 → action 조건화 → structure 조건화 (Figure 6, p.19)"
     page: 19
-    strategy: page-region
+    bbox_norm: [0.106, 0.073, 0.8939, 0.2347]
+    strategy: caption-region
     curated: true
-  - id: fig09
-    file: assets/hou-2026-world-model-for-robot-learning/fig09.png
-    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig09.png
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/hou-2026-world-model-for-robot-learning/tab01.png
+    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/tab01.png
+    caption: "Sec 3의 5개 아키텍처 패러다임 비교표 — 대표 연구·추론 시 future generation·backbone·coupling style (Table 1, p.8)"
+    page: 8
+    bbox_norm: [0.106, 0.0996, 0.9023, 0.6598]
+    strategy: table-region
+    curated: true
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/hou-2026-world-model-for-robot-learning/tab02.png
+    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/tab02.png
     caption: "Sec 5의 4개 capability regime별 대표 기법 비교표 (Table 2, p.20)"
     page: 20
-    strategy: page-region
+    bbox_norm: [0.1055, 0.1414, 0.894, 0.5664]
+    strategy: table-region
     curated: false
-  - id: fig10
-    file: assets/hou-2026-world-model-for-robot-learning/fig10.png
-    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig10.png
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/hou-2026-world-model-for-robot-learning/tab03.png
+    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/tab03.png
     caption: "world model 학습용 대표 데이터셋의 핵심 속성 — cross-embodiment·action·3D·language·multimodal (Table 3, p.26)"
     page: 26
-    strategy: page-region
+    bbox_norm: [0.1293, 0.1137, 0.8707, 0.5362]
+    strategy: table-region
     curated: false
-  - id: fig11
-    file: assets/hou-2026-world-model-for-robot-learning/fig11.png
-    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig11.png
+  - id: tab04
+    label: Table 4
+    kind: table
+    file: assets/hou-2026-world-model-for-robot-learning/tab04.png
+    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/tab04.png
     caption: "같은 데이터셋을 world-modeling capability 기준으로 재배열한 표 (Table 4, p.27)"
     page: 27
-    strategy: page-region
+    bbox_norm: [0.106, 0.0999, 0.894, 0.574]
+    strategy: table-region
     curated: false
-  - id: fig12
-    file: assets/hou-2026-world-model-for-robot-learning/fig12.png
-    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig12.png
+  - id: tab05
+    label: Table 5
+    kind: table
+    file: assets/hou-2026-world-model-for-robot-learning/tab05.png
+    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/tab05.png
     caption: "LIBERO 4-suite 대표 성적을 아키텍처 패러다임별로 묶은 표 (Table 5, p.28)"
     page: 28
-    strategy: page-region
+    bbox_norm: [0.1975, 0.2935, 0.7979, 0.5922]
+    strategy: table-region
     curated: true
-  - id: fig13
-    file: assets/hou-2026-world-model-for-robot-learning/fig13.png
-    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig13.png
-    caption: "(오탐) 본문 'Table 5 focuses on…'이 줄머리에 와서 잡힌 p.28 재캡처 — fig12와 같은 페이지"
-    page: 28
-    strategy: page-region
-    curated: false
-  - id: fig14
-    file: assets/hou-2026-world-model-for-robot-learning/fig14.png
-    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/fig14.png
+  - id: tab06
+    label: Table 6
+    kind: table
+    file: assets/hou-2026-world-model-for-robot-learning/tab06.png
+    raw: raw/papers/hou-2026-world-model-for-robot-learning-figures/tab06.png
     caption: "RoboTwin·CALVIN·SIMPLER 계열 대표 성적표 (Table 6, p.29)"
     page: 29
-    strategy: page-region
+    bbox_norm: [0.145, 0.1275, 0.855, 0.5165]
+    strategy: table-region
     curated: false
 ---
 
@@ -162,12 +184,12 @@ world model의 일반형은 `p(x_{t+1:t+H} | x_t, a_{t:t+H-1}, l)`이다. 상태
 
 ### 정책과 결합하는 다섯 가지 방식
 
-![[assets/hou-2026-world-model-for-robot-learning/fig04.png]]
+![[assets/hou-2026-world-model-for-robot-learning/tab01.png]]
 *Table 1: Sec 3의 아키텍처 5분류. 추론 시 미래 생성 여부·backbone 계열(VGM·UMM·MLLM)·결합 방식 세 축으로 41건을 배치한다 (Hou et al. 2026, p.8)*
 
 연구는 predict-then-act로 분리하던 방식에서 벗어나 예측 제어를 정책 안으로 통합하는 쪽으로 가고 있다. 다만 저자들은 이 진행이 "비디오 사전학습 backbone이 VLM·latent·구조·심볼 대안보다 본질적으로 우월하다"는 뜻은 아니라고 명시한다. 어떤 예측 기반(substrate)이 가장 잘 통하는지는 아직 실증으로 답이 안 났다.
 
-![[assets/hou-2026-world-model-for-robot-learning/fig05.png]]
+![[assets/hou-2026-world-model-for-robot-learning/fig03.png]]
 *Figure 3: 앞의 세 아키텍처. (a) IDM-style은 비디오 생성 후 IDM이 행동 복원, (b) Single-backbone은 관측·행동 토큰을 공유 backbone에서 처리, (c) MoT-style은 전문가를 분리한 채 joint attention으로 결합 (Hou et al. 2026, p.10)*
 
 **IDM-style (분리형).** world model이 과제 조건부 미래 관측을 만들고 별도 정책 모듈이 실행 행동을 추론한다. UniPi가 원형이다. 후속 연구는 정책에 어떤 형태의 미래를 보여줄지를 다시 설계하는 쪽으로 진화했다. VPP·Video2Act는 픽셀 rollout을 버리고 비디오 diffusion의 잠재 공간에서 제어 관련 특징만 뽑아 별도 action head에 주입한다. TC-IDM·LVP는 도구 중심 기하 궤적이나 재타깃 가능한 visual plan 같은 실행 지향 중간물로 추상화 수준을 한 단계 더 올렸다. 모듈성과 재사용 가능한 비디오 prior를 얻는 대신 생성된 미래의 충실도가 성능 상한을 정하고 행동과 어긋난 예측에서 오차가 누적된다.
@@ -176,7 +198,7 @@ world model의 일반형은 `p(x_{t+1:t+H} | x_t, a_{t:t+H-1}, l)`이다. 상태
 
 **MoE/MoT.** 완전 파라미터 공유가 늘 최적은 아니라는 가정에서 출발한다. 비디오 예측과 행동 생성은 시간 주파수·표현 스케일·최적화 요구가 다르기 때문이다. Motus는 이해·비디오 생성·행동 전문가를 둔 Mixture-of-Transformers로 이 설계를 가장 직접 표현한다. Fast-WAM의 결론은 흥미롭다. 주된 이득은 추론 시 명시적 미래 상상보다 학습 시 비디오 co-training에서 온다고 본다.
 
-![[assets/hou-2026-world-model-for-robot-learning/fig06.png]]
+![[assets/hou-2026-world-model-for-robot-learning/fig04.png]]
 *Figure 4: MLLM 기반 두 경로. (a) Unified VLA는 행동과 함께 textual reasoning·visual prediction 같은 미래 지향 출력을 내고, (b) Latent world modeling은 미래 이미지를 명시적으로 예측하는 대신 압축된 world representation을 내부에 만든다 (Hou et al. 2026, p.13)*
 
 **Unified VLA.** 명시적 비디오 world model 없이도 같은 multimodal 정책 backbone 안에서 미래 지향 예측 구조를 배운다. 미래 이미지를 직접 예측하는 계열(GR-1, UP-VLA, WorldVLA), 잠재·암묵적 미래 모델링(DreamVLA, UniVLA, CoWVLA), multi-expert 통합 모델(F1, InternVLA-A1, HALO, TriVLA)로 갈린다. WorldVLA는 미래 이미지 예측을 필수 추론 출력으로 두지 않고 주로 joint training 신호로 쓴다.
@@ -185,7 +207,7 @@ world model의 일반형은 `p(x_{t+1:t+H} | x_t, a_{t:t+H-1}, l)`이다. 상태
 
 ### 시뮬레이터로서의 world model
 
-![[assets/hou-2026-world-model-for-robot-learning/fig07.png]]
+![[assets/hou-2026-world-model-for-robot-learning/fig05.png]]
 *Figure 5: 두 가지 용도. (a) RL 설정에서 world model은 정책 개선용 상상 전이를 만드는 학습된 시뮬레이터가 되고, (b) validation 설정에서는 후보 행동의 상상된 결과를 채점해 결정 시점 선택을 돕는다 (Hou et al. 2026, p.16)*
 
 실물 로봇 RL은 느리고 비싸고 리셋이 어렵고 위험할 수 있다. 순수 모방 학습은 데모 품질에 갇히고 실패로부터 배우기 어렵다. 그래서 학습된 시뮬레이터 안의 상상 rollout으로 실제 상호작용을 대체한다. world model `p_φ`가 상상 전이를 만들고 필요하면 보상·종료 신호까지 제공한다. 정책은 GRPO 계열 목적 함수로 개선된다.
@@ -198,7 +220,7 @@ world model의 일반형은 `p(x_{t+1:t+H} | x_t, a_{t:t+H-1}, l)`이다. 상태
 
 ### 로봇 비디오 world model의 네 단계
 
-![[assets/hou-2026-world-model-for-robot-learning/fig08.png]]
+![[assets/hou-2026-world-model-for-robot-learning/fig06.png]]
 *Figure 6: Sec 5의 통합 관점. 핵심 객체(5.1) 위에 상상 기반 감독(5.2), action 조건화를 통한 인과 정렬(5.3), structure 조건화를 통한 물리 일관성(5.4)이 쌓이고, 5.5는 재사용 가능한 world-model 인터페이스로의 전환을 다룬다 (Hou et al. 2026, p.19)*
 
 | 단계 | 초점 | 대표 |
@@ -228,7 +250,7 @@ closed-loop 층에서는 픽셀 정확도보다 rank consistency·value fidelity
 
 ### LIBERO 4-suite
 
-![[assets/hou-2026-world-model-for-robot-learning/fig12.png]]
+![[assets/hou-2026-world-model-for-robot-learning/tab05.png]]
 *Table 5: LIBERO 4-suite 성적을 아키텍처 패러다임별로 묶은 표. Cosmos Policy·LingBot-VA가 98.5로 최상위 (Hou et al. 2026, p.28)*
 
 | 그룹 | 기법 | Spatial | Object | Goal | Long | Avg |

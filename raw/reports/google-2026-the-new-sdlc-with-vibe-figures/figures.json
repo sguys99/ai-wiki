@@ -1,101 +1,272 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/google-2026-the-new-sdlc-with-vibe/fig01.png",
     "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig01.png",
     "page": 8,
     "caption": "Figure 1: From Autocomplete to Autonomy",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      64.94,
+      125.16,
+      547.06,
+      410.95
+    ],
+    "bbox_norm": [
+      0.1061,
+      0.158,
+      0.8939,
+      0.5189
+    ],
+    "dpi": 300,
+    "area_frac": 0.284,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/_overlay/p08.png"
   },
   {
     "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
     "file": "assets/google-2026-the-new-sdlc-with-vibe/fig02.png",
     "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig02.png",
     "page": 10,
     "caption": "Figure 2: The Agent Loop - Perceive, plan, act, observe, iterate.",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      66.0,
+      394.96,
+      546.0,
+      671.17
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.4987,
+      0.8922,
+      0.8474
+    ],
+    "dpi": 300,
+    "area_frac": 0.274,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/_overlay/p10.png"
   },
   {
     "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
     "file": "assets/google-2026-the-new-sdlc-with-vibe/fig03.png",
     "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig03.png",
-    "page": 13,
-    "caption": "Table 1: The Spectrum from Vibe Coding to Agentic Engineering",
-    "strategy": "page-region",
-    "curated": false
+    "page": 14,
+    "caption": "Figure 3: The Vibe Coding to Agentic Engineering Spectrum",
+    "bbox": [
+      65.0,
+      135.93,
+      547.0,
+      374.66
+    ],
+    "bbox_norm": [
+      0.1062,
+      0.1716,
+      0.8938,
+      0.4731
+    ],
+    "dpi": 300,
+    "area_frac": 0.237,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/_overlay/p14.png"
   },
   {
     "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
     "file": "assets/google-2026-the-new-sdlc-with-vibe/fig04.png",
     "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig04.png",
-    "page": 14,
-    "caption": "Figure 3: The Vibe Coding to Agentic Engineering Spectrum",
-    "strategy": "page-region",
-    "curated": false
+    "page": 17,
+    "caption": "Figure 4: Context Engineering — Static vs. Dynamic",
+    "bbox": [
+      65.75,
+      125.17,
+      546.25,
+      381.01
+    ],
+    "bbox_norm": [
+      0.1074,
+      0.158,
+      0.8926,
+      0.4811
+    ],
+    "dpi": 300,
+    "area_frac": 0.254,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/_overlay/p17.png"
   },
   {
     "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
     "file": "assets/google-2026-the-new-sdlc-with-vibe/fig05.png",
     "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig05.png",
-    "page": 17,
-    "caption": "Figure 4: Context Engineering — Static vs. Dynamic",
-    "strategy": "page-region",
-    "curated": false
+    "page": 20,
+    "caption": "Figure 5: Traditional SDLC vs. AI-Driven SDLC",
+    "bbox": [
+      64.87,
+      126.0,
+      547.13,
+      373.53
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1591,
+      0.894,
+      0.4716
+    ],
+    "dpi": 300,
+    "area_frac": 0.246,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/_overlay/p20.png"
   },
   {
     "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
     "file": "assets/google-2026-the-new-sdlc-with-vibe/fig06.png",
     "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig06.png",
-    "page": 20,
-    "caption": "Figure 5: Traditional SDLC vs. AI-Driven SDLC",
-    "strategy": "page-region",
-    "curated": false
+    "page": 25,
+    "caption": "Figure 6: The Factory Model Developer designs the system -> agents produce the code -> tests verify",
+    "bbox": [
+      66.0,
+      206.57,
+      546.0,
+      484.65
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.2608,
+      0.8922,
+      0.6119
+    ],
+    "dpi": 300,
+    "area_frac": 0.275,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/_overlay/p25.png"
   },
   {
     "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
     "file": "assets/google-2026-the-new-sdlc-with-vibe/fig07.png",
     "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig07.png",
-    "page": 25,
-    "caption": "Figure 6: The Factory Model Developer designs the system -> agents produce the code -> tests verify",
-    "strategy": "page-region",
-    "curated": false
+    "page": 27,
+    "caption": "Figure 7: Harness Anatomy | Agent = Model + Harness",
+    "bbox": [
+      64.99,
+      215.96,
+      545.44,
+      543.03
+    ],
+    "bbox_norm": [
+      0.1062,
+      0.2727,
+      0.8912,
+      0.6856
+    ],
+    "dpi": 300,
+    "area_frac": 0.324,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/_overlay/p27.png"
   },
   {
     "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
     "file": "assets/google-2026-the-new-sdlc-with-vibe/fig08.png",
     "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig08.png",
-    "page": 27,
-    "caption": "Figure 7: Harness Anatomy | Agent = Model + Harness",
-    "strategy": "page-region",
-    "curated": false
+    "page": 32,
+    "caption": "Figure 8: Conductor vs. Orchestrator (Two modes of working with AI Agents)",
+    "bbox": [
+      64.95,
+      124.93,
+      547.05,
+      468.64
+    ],
+    "bbox_norm": [
+      0.1061,
+      0.1577,
+      0.8939,
+      0.5917
+    ],
+    "dpi": 300,
+    "area_frac": 0.342,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/_overlay/p32.png"
   },
   {
     "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
     "file": "assets/google-2026-the-new-sdlc-with-vibe/fig09.png",
     "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig09.png",
-    "page": 32,
-    "caption": "Figure 8: Conductor vs. Orchestrator (Two modes of working with AI Agents)",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig10",
-    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig10.png",
-    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig10.png",
-    "page": 38,
-    "caption": "Snippet 1: Agents CLI Setup and Build.",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig11",
-    "file": "assets/google-2026-the-new-sdlc-with-vibe/fig11.png",
-    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig11.png",
     "page": 40,
     "caption": "Figure 9: The Economics of AI Development",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      64.98,
+      124.85,
+      547.02,
+      357.1
+    ],
+    "bbox_norm": [
+      0.1062,
+      0.1576,
+      0.8938,
+      0.4509
+    ],
+    "dpi": 300,
+    "area_frac": 0.231,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/_overlay/p40.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/google-2026-the-new-sdlc-with-vibe/tab01.png",
+    "raw": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/tab01.png",
+    "page": 13,
+    "caption": "Table 1: The Spectrum from Vibe Coding to Agentic Engineering",
+    "bbox": [
+      65.99,
+      126.25,
+      546.28,
+      493.21
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.1594,
+      0.8926,
+      0.6227
+    ],
+    "dpi": 300,
+    "area_frac": 0.364,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/reports/google-2026-the-new-sdlc-with-vibe-figures/_overlay/p13.png"
   }
 ]

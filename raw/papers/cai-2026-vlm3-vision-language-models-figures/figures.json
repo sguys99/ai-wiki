@@ -1,0 +1,191 @@
+[
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/cai-2026-vlm3-vision-language-models/fig02.png",
+    "raw": "raw/papers/cai-2026-vlm3-vision-language-models-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2 VLM 3 overview . Given the input images, VLM 3 first resizes them so that the focal length is 1000 pixels. This solves camera ambiguity without the need for adding extra VLM encoders/modules. To refer to an object or pixel, VLM 3 simply uses text with the pixel range normalized to [0, 2000)",
+    "bbox": [
+      48.27,
+      12.54,
+      555.87,
+      250.13
+    ],
+    "bbox_norm": [
+      0.0789,
+      0.0158,
+      0.9083,
+      0.3158
+    ],
+    "dpi": 300,
+    "area_frac": 0.249,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-vlm3-vision-language-models-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/cai-2026-vlm3-vision-language-models/fig03.png",
+    "raw": "raw/papers/cai-2026-vlm3-vision-language-models-figures/fig03.png",
+    "page": 9,
+    "caption": "Figure 3 Visualizations . Consistent with the quantitative results, VLM 3 works across diverse tasks with both single and multi-view inputs, and both indoor and outdoor scenes. The bounding boxes in object-level 3D understanding are rendered only for visualization purposes. The model sees only the r",
+    "bbox": [
+      65.25,
+      58.07,
+      552.94,
+      416.2
+    ],
+    "bbox_norm": [
+      0.1066,
+      0.0733,
+      0.9035,
+      0.5255
+    ],
+    "dpi": 300,
+    "area_frac": 0.36,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-vlm3-vision-language-models-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/cai-2026-vlm3-vision-language-models/tab01.png",
+    "raw": "raw/papers/cai-2026-vlm3-vision-language-models-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1 Comparison with VLMs. VLM 3 enables standard VLMs to master diverse single and multi-view 3D understanding tasks. For single view tasks, VLM 3 demonstrates SOTA performance in both pixel-level metric depth estimation and object-level spatial reasoning at both qualitative level and quantitati",
+    "bbox": [
+      64.87,
+      91.26,
+      548.42,
+      395.28
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1152,
+      0.8961,
+      0.4991
+    ],
+    "dpi": 300,
+    "area_frac": 0.303,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-vlm3-vision-language-models-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/cai-2026-vlm3-vision-language-models/tab02.png",
+    "raw": "raw/papers/cai-2026-vlm3-vision-language-models-figures/tab02.png",
+    "page": 8,
+    "caption": "Table 2 Comparison with expert vision models. Without heavy data-augmentation, change of standard VLM architecture and training losses, VLM 3 achieves comparable performance to expert vision models. In metric depth estimation , VLM 3 matches the accuracy of MoGe-2 and UnidepthV2. In pixel correspond",
+    "bbox": [
+      137.87,
+      125.14,
+      469.72,
+      260.59
+    ],
+    "bbox_norm": [
+      0.2253,
+      0.158,
+      0.7675,
+      0.329
+    ],
+    "dpi": 300,
+    "area_frac": 0.093,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-vlm3-vision-language-models-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/cai-2026-vlm3-vision-language-models/tab03.png",
+    "raw": "raw/papers/cai-2026-vlm3-vision-language-models-figures/tab03.png",
+    "page": 10,
+    "caption": "Table 3 Analysis. Left: text-based pixel reference performs similarly well as visual prompting. Mid: weighting datasets based on their sizes is a good baseline for large scale training, while further tuning still have large improvement room. Right: small models are sufficient to reach SOTA.",
+    "bbox": [
+      67.53,
+      100.78,
+      544.48,
+      175.7
+    ],
+    "bbox_norm": [
+      0.1103,
+      0.1272,
+      0.8897,
+      0.2218
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-vlm3-vision-language-models-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/cai-2026-vlm3-vision-language-models/tab04.png",
+    "raw": "raw/papers/cai-2026-vlm3-vision-language-models-figures/tab04.png",
+    "page": 15,
+    "caption": "Table 4 Hyper-parameters.",
+    "bbox": [
+      67.91,
+      145.6,
+      544.09,
+      215.34
+    ],
+    "bbox_norm": [
+      0.111,
+      0.1838,
+      0.889,
+      0.2719
+    ],
+    "dpi": 300,
+    "area_frac": 0.069,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-vlm3-vision-language-models-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/cai-2026-vlm3-vision-language-models/tab05.png",
+    "raw": "raw/papers/cai-2026-vlm3-vision-language-models-figures/tab05.png",
+    "page": 15,
+    "caption": "Table 5 Training data statistics.",
+    "bbox": [
+      67.76,
+      243.61,
+      544.25,
+      637.84
+    ],
+    "bbox_norm": [
+      0.1107,
+      0.3076,
+      0.8893,
+      0.8054
+    ],
+    "dpi": 300,
+    "area_frac": 0.388,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-vlm3-vision-language-models-figures/_overlay/p15.png"
+  }
+]

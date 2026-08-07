@@ -11,68 +11,195 @@ authors: "Alex L. Zhang, Tim Kraska, Omar Khattab"
 arxiv_id: "2512.24601"
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/zhang-2026-recursive-language-models/fig01.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig01.png
     caption: "Figure 1 — GPT-5 vs RLM(GPT-5, depth=1) 길이·복잡도 스케일링 (S-NIAH/OOLONG/OOLONG-Pairs, 2^13~2^20 토큰)"
     page: 1
-    strategy: page-region
+    bbox_norm: [0.1828, 0.5744, 0.8172, 0.7189]
+    strategy: caption-region
     curated: true
   - id: fig02
+    label: Figure 2
+    kind: figure
     file: assets/zhang-2026-recursive-language-models/fig02.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig02.png
     caption: "Figure 2 — RLM 전체 아키텍처 다이어그램 (REPL 환경 E + 재귀 sub-LM 호출)"
     page: 2
-    strategy: page-region
+    bbox_norm: [0.2475, 0.2783, 0.7524, 0.5713]
+    strategy: caption-region
     curated: true
-  - id: fig08
-    file: assets/zhang-2026-recursive-language-models/fig08.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig08.png
+  - id: fig03
+    label: Figure 3
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig03.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig03.png
     caption: "Figure 3 — (a) RLM-Qwen3-8B 파인튜닝 결과 (4개 벤치마크), (b) MRCRv2 길이 일반화 (64k 2-needle 학습 → 1M 8-needle 평가)"
     page: 8
-    strategy: page-region
+    bbox_norm: [0.1667, 0.2247, 0.8333, 0.3605]
+    strategy: caption-region
     curated: true
-  - id: fig09
-    file: assets/zhang-2026-recursive-language-models/fig09.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig09.png
+  - id: fig04
+    label: Figure 4
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig04.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig04.png
     caption: "Figure 4 — (a) OOLONG에서 RLM(GPT-5)의 첫 decomposition 시도 분포, (b) RLM 트래젝토리의 syntax error 비율"
     page: 8
-    strategy: page-region
+    bbox_norm: [0.1667, 0.6175, 0.8333, 0.7708]
+    strategy: caption-region
     curated: true
-  - id: fig12
-    file: assets/zhang-2026-recursive-language-models/fig12.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig12.png
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig05.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig05.png
+    caption: "Figure 5 — LongBenchPro RLM trajectory 통계 (필터링 전후)"
+    page: 16
+    bbox_norm: [0.1667, 0.518, 0.8333, 0.7449]
+    strategy: caption-region
+    curated: true
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig06.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig06.png
     caption: "Figure 6 — 파인튜닝된 RLM-Qwen3-8B의 runtime 효율 (3~9.6× 가속)"
     page: 17
-    strategy: page-region
+    bbox_norm: [0.2637, 0.0833, 0.7363, 0.2668]
+    strategy: caption-region
     curated: true
-  - id: fig13
-    file: assets/zhang-2026-recursive-language-models/fig13.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig13.png
+  - id: fig07
+    label: Figure 7
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig07.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig07.png
     caption: "Figure 7 — BrowseComp-Plus 문서 수에 따른 RLM·base·CodeAct·ReAct 성능·비용 (10~1000 docs)"
     page: 30
-    strategy: page-region
+    bbox_norm: [0.1667, 0.4801, 0.8333, 0.7056]
+    strategy: caption-region
     curated: true
-  - id: fig14
-    file: assets/zhang-2026-recursive-language-models/fig14.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig14.png
+  - id: fig08
+    label: Figure 8
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig08.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig08.png
     caption: "Figure 8 — RLM 트래젝토리의 3가지 공통 패턴 (regex 필터, 재귀 sub-call decomposition, output stitching)"
     page: 31
-    strategy: page-region
+    bbox_norm: [0.1731, 0.1763, 0.8269, 0.4657]
+    strategy: caption-region
     curated: true
-  - id: fig15
-    file: assets/zhang-2026-recursive-language-models/fig15.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig15.png
+  - id: fig09
+    label: Figure 9
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig09.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig09.png
     caption: "Figure 9 — RLM(depth=1) vs 다른 baseline의 task-level win/tie/loss 비교"
     page: 40
-    strategy: page-region
+    bbox_norm: [0.1667, 0.2013, 0.8333, 0.4097]
+    strategy: caption-region
     curated: true
-  - id: fig16
-    file: assets/zhang-2026-recursive-language-models/fig16.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig16.png
+  - id: fig10
+    label: Figure 10
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig10.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig10.png
     caption: "Figure 10 — task별 sub-call 횟수 (correct vs incorrect, model별)"
     page: 40
-    strategy: page-region
+    bbox_norm: [0.1667, 0.5766, 0.8333, 0.7568]
+    strategy: caption-region
     curated: true
+  - id: fig11
+    label: Figure 11
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig11.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig11.png
+    caption: "Figure 11: Cost of RLM and baselines described in §3.2 plotted at the 25th, 50th, 75th, and 95th percentile of total API cost. We observe comparable or even lower costs for RLMs at the 50th percentile, but sharp increases at the tail end due to potentially long RLM trajectories."
+    page: 41
+    bbox_norm: [0.1667, 0.2033, 0.8333, 0.4469]
+    strategy: caption-region
+    curated: false
+  - id: fig12
+    label: Figure 12
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig12.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig12.png
+    caption: "Figure 12: Plotted quartiles of the runtime for methods and baselines around GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2. We plot the 25th, 50th, 75th, and 95th percentiles."
+    page: 41
+    bbox_norm: [0.199, 0.5051, 0.801, 0.7898]
+    strategy: caption-region
+    curated: false
+  - id: fig13
+    label: Figure 13
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig13.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig13.png
+    caption: "Figure 13: Plotted quartiles of the runtime for methods and baselines around Qwen3-Coder-480B- A35B-Instruct across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2. We plot the 25th, 50th, 75th, and 95th percentiles."
+    page: 42
+    bbox_norm: [0.199, 0.0835, 0.801, 0.3682]
+    strategy: caption-region
+    curated: false
+  - id: fig14
+    label: Figure 14
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig14.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig14.png
+    caption: "Figure 14: Histogram of the API costs for GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2."
+    page: 42
+    bbox_norm: [0.1667, 0.4136, 0.8333, 0.8801]
+    strategy: caption-region
+    curated: false
+  - id: fig15
+    label: Figure 15
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig15.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig15.png
+    caption: "Figure 15: Histogram of the API costs for Qwen3-Coder-480B across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2."
+    page: 43
+    bbox_norm: [0.1667, 0.101, 0.8333, 0.5624]
+    strategy: caption-region
+    curated: false
+  - id: fig16
+    label: Figure 16
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig16.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig16.png
+    caption: "Figure 16: We plot the API cost in USD for the runs in Figure 1."
+    page: 43
+    bbox_norm: [0.1667, 0.6291, 0.8334, 0.8764]
+    strategy: caption-region
+    curated: false
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/zhang-2026-recursive-language-models/tab01.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/tab01.png
+    caption: "Table 1: Performance comparison of different methods across long-context benchmarks of varying complexity. In gray is the average API cost ± the standard deviation of each method on each task. ∗ indicates runs where a method (sometimes) ran into input context limits. Provider costs were computed und"
+    page: 6
+    bbox_norm: [0.1667, 0.3146, 0.8334, 0.697]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/zhang-2026-recursive-language-models/tab02.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/tab02.png
+    caption: "Table 2: Solve rate on L ONG C O T- MINI [Motwani et al., 2026], a difficult long reasoning benchmark that frontier models struggle to solve. We select the best performing model from the paper (GPT-5.2) and compare to an RLM with and without decomposition hints (prompt provided in Appendix C.3)."
+    page: 7
+    bbox_norm: [0.1667, 0.6548, 0.8333, 0.729]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/zhang-2026-recursive-language-models/tab03.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/tab03.png
+    caption: "Table 3: Solve rate on L ONG C O T- MINI [Motwani et al., 2026], a difficult long reasoning benchmark that frontier models struggle to solve. We adapt a similar set of decomposition hints provided to the RLM in Table 2 (without sub-calling details), and find the model often gets confused or makes mo"
+    page: 24
+    bbox_norm: [0.1662, 0.4534, 0.8333, 0.5807]
+    strategy: table-region
+    curated: false
 ---
 
 ## 한 줄 요약 (One-line Summary)

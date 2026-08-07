@@ -12,75 +12,195 @@ authors: "Alex L. Zhang, Tim Kraska, Omar Khattab"
 arxiv_id: "2512.24601"
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/zhang-2026-recursive-language-models/fig01.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig01.png
     caption: "Figure 1 — GPT-5 vs RLM(GPT-5, depth=1) 길이·복잡도 스케일링 (S-NIAH/OOLONG/OOLONG-Pairs, 2^13~2^20 토큰)"
     page: 1
-    strategy: page-region
+    bbox_norm: [0.1828, 0.5744, 0.8172, 0.7189]
+    strategy: caption-region
     curated: true
   - id: fig02
+    label: Figure 2
+    kind: figure
     file: assets/zhang-2026-recursive-language-models/fig02.png
     raw: raw/papers/zhang-2026-recursive-language-models-figures/fig02.png
     caption: "Figure 2 — RLM 전체 아키텍처 다이어그램 (REPL 환경 E + 재귀 sub-LM 호출)"
     page: 2
-    strategy: page-region
+    bbox_norm: [0.2475, 0.2783, 0.7524, 0.5713]
+    strategy: caption-region
     curated: true
-  - id: fig08
-    file: assets/zhang-2026-recursive-language-models/fig08.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig08.png
-    caption: "Figure 3 — (a) RLM-Qwen3-8B 파인튜닝 결과, (b) MRCRv2 길이 일반화 (64k 2-needle 학습 → 1M 8-needle 평가)"
+  - id: fig03
+    label: Figure 3
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig03.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig03.png
+    caption: "Figure 3 — (a) RLM-Qwen3-8B 파인튜닝 결과 (4개 벤치마크), (b) MRCRv2 길이 일반화 (64k 2-needle 학습 → 1M 8-needle 평가)"
     page: 8
-    strategy: page-region
+    bbox_norm: [0.1667, 0.2247, 0.8333, 0.3605]
+    strategy: caption-region
     curated: true
-  - id: fig09
-    file: assets/zhang-2026-recursive-language-models/fig09.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig09.png
+  - id: fig04
+    label: Figure 4
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig04.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig04.png
     caption: "Figure 4 — (a) OOLONG에서 RLM(GPT-5)의 첫 decomposition 시도 분포, (b) RLM 트래젝토리의 syntax error 비율"
     page: 8
-    strategy: page-region
+    bbox_norm: [0.1667, 0.6175, 0.8333, 0.7708]
+    strategy: caption-region
     curated: true
-  - id: fig10
-    file: assets/zhang-2026-recursive-language-models/fig10.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig10.png
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig05.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig05.png
     caption: "Figure 5 — LongBenchPro RLM trajectory 통계 (필터링 전후)"
     page: 16
-    strategy: page-region
+    bbox_norm: [0.1667, 0.518, 0.8333, 0.7449]
+    strategy: caption-region
     curated: true
-  - id: fig12
-    file: assets/zhang-2026-recursive-language-models/fig12.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig12.png
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig06.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig06.png
     caption: "Figure 6 — 파인튜닝된 RLM-Qwen3-8B의 runtime 효율 (3~9.6× 가속)"
     page: 17
-    strategy: page-region
+    bbox_norm: [0.2637, 0.0833, 0.7363, 0.2668]
+    strategy: caption-region
     curated: true
-  - id: fig13
-    file: assets/zhang-2026-recursive-language-models/fig13.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig13.png
+  - id: fig07
+    label: Figure 7
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig07.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig07.png
     caption: "Figure 7 — BrowseComp-Plus 문서 수에 따른 RLM·base·CodeAct·ReAct 성능·비용 (10~1000 docs)"
     page: 30
-    strategy: page-region
+    bbox_norm: [0.1667, 0.4801, 0.8333, 0.7056]
+    strategy: caption-region
     curated: true
-  - id: fig14
-    file: assets/zhang-2026-recursive-language-models/fig14.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig14.png
+  - id: fig08
+    label: Figure 8
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig08.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig08.png
     caption: "Figure 8 — RLM 트래젝토리의 3가지 공통 패턴 (regex 필터, 재귀 sub-call decomposition, output stitching)"
     page: 31
-    strategy: page-region
+    bbox_norm: [0.1731, 0.1763, 0.8269, 0.4657]
+    strategy: caption-region
     curated: true
-  - id: fig15
-    file: assets/zhang-2026-recursive-language-models/fig15.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig15.png
+  - id: fig09
+    label: Figure 9
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig09.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig09.png
     caption: "Figure 9 — RLM(depth=1) vs 다른 baseline의 task-level win/tie/loss 비교"
     page: 40
-    strategy: page-region
+    bbox_norm: [0.1667, 0.2013, 0.8333, 0.4097]
+    strategy: caption-region
     curated: true
-  - id: fig16
-    file: assets/zhang-2026-recursive-language-models/fig16.png
-    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig16.png
+  - id: fig10
+    label: Figure 10
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig10.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig10.png
     caption: "Figure 10 — task별 sub-call 횟수 (correct vs incorrect, model별)"
     page: 40
-    strategy: page-region
+    bbox_norm: [0.1667, 0.5766, 0.8333, 0.7568]
+    strategy: caption-region
     curated: true
+  - id: fig11
+    label: Figure 11
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig11.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig11.png
+    caption: "Figure 11: Cost of RLM and baselines described in §3.2 plotted at the 25th, 50th, 75th, and 95th percentile of total API cost. We observe comparable or even lower costs for RLMs at the 50th percentile, but sharp increases at the tail end due to potentially long RLM trajectories."
+    page: 41
+    bbox_norm: [0.1667, 0.2033, 0.8333, 0.4469]
+    strategy: caption-region
+    curated: false
+  - id: fig12
+    label: Figure 12
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig12.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig12.png
+    caption: "Figure 12: Plotted quartiles of the runtime for methods and baselines around GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2. We plot the 25th, 50th, 75th, and 95th percentiles."
+    page: 41
+    bbox_norm: [0.199, 0.5051, 0.801, 0.7898]
+    strategy: caption-region
+    curated: false
+  - id: fig13
+    label: Figure 13
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig13.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig13.png
+    caption: "Figure 13: Plotted quartiles of the runtime for methods and baselines around Qwen3-Coder-480B- A35B-Instruct across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2. We plot the 25th, 50th, 75th, and 95th percentiles."
+    page: 42
+    bbox_norm: [0.199, 0.0835, 0.801, 0.3682]
+    strategy: caption-region
+    curated: false
+  - id: fig14
+    label: Figure 14
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig14.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig14.png
+    caption: "Figure 14: Histogram of the API costs for GPT-5 across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2."
+    page: 42
+    bbox_norm: [0.1667, 0.4136, 0.8333, 0.8801]
+    strategy: caption-region
+    curated: false
+  - id: fig15
+    label: Figure 15
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig15.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig15.png
+    caption: "Figure 15: Histogram of the API costs for Qwen3-Coder-480B across OOLONG, OOLONG-Pairs, CodeQA, and BrowseComp+ (1K) for all methods described in §3.2."
+    page: 43
+    bbox_norm: [0.1667, 0.101, 0.8333, 0.5624]
+    strategy: caption-region
+    curated: false
+  - id: fig16
+    label: Figure 16
+    kind: figure
+    file: assets/zhang-2026-recursive-language-models/fig16.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/fig16.png
+    caption: "Figure 16: We plot the API cost in USD for the runs in Figure 1."
+    page: 43
+    bbox_norm: [0.1667, 0.6291, 0.8334, 0.8764]
+    strategy: caption-region
+    curated: false
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/zhang-2026-recursive-language-models/tab01.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/tab01.png
+    caption: "Table 1: Performance comparison of different methods across long-context benchmarks of varying complexity. In gray is the average API cost ± the standard deviation of each method on each task. ∗ indicates runs where a method (sometimes) ran into input context limits. Provider costs were computed und"
+    page: 6
+    bbox_norm: [0.1667, 0.3146, 0.8334, 0.697]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/zhang-2026-recursive-language-models/tab02.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/tab02.png
+    caption: "Table 2: Solve rate on L ONG C O T- MINI [Motwani et al., 2026], a difficult long reasoning benchmark that frontier models struggle to solve. We select the best performing model from the paper (GPT-5.2) and compare to an RLM with and without decomposition hints (prompt provided in Appendix C.3)."
+    page: 7
+    bbox_norm: [0.1667, 0.6548, 0.8333, 0.729]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/zhang-2026-recursive-language-models/tab03.png
+    raw: raw/papers/zhang-2026-recursive-language-models-figures/tab03.png
+    caption: "Table 3: Solve rate on L ONG C O T- MINI [Motwani et al., 2026], a difficult long reasoning benchmark that frontier models struggle to solve. We adapt a similar set of decomposition hints provided to the RLM in Table 2 (without sub-calling details), and find the model often gets confused or makes mo"
+    page: 24
+    bbox_norm: [0.1662, 0.4534, 0.8333, 0.5807]
+    strategy: table-region
+    curated: false
 ---
 
 ## 요약 (Summary)
@@ -172,7 +292,7 @@ while True:
 
 ### BrowseComp-Plus에서 문서 수에 따른 스케일링
 
-![[assets/zhang-2026-recursive-language-models/fig13.png]]
+![[assets/zhang-2026-recursive-language-models/fig07.png]]
 *Figure 7: 문서 수를 10 → 1000으로 늘리면 GPT-5 base·CodeAct·Pre-query BM25는 100 docs부터 모두 무너지지만, RLM(GPT-5)만 1000 docs에서 100%를 유지한다. 비용도 RLM이 log-linear로 완만하게 증가 (Zhang 2026, p.30).*
 
 ### LongCoT-mini reasoning (long-context와 무관한 multi-step task)
@@ -187,10 +307,10 @@ decomposition hint를 GPT-5.2 base에 직접 주면 오히려 28.6%로 떨어진
 
 ### RLM-Qwen3-8B 사후학습
 
-![[assets/zhang-2026-recursive-language-models/fig08.png]]
+![[assets/zhang-2026-recursive-language-models/fig03.png]]
 *Figure 3: (a) RLM-Qwen3-8B (post-trained, 빗금)는 base Qwen3-8B의 RLM(파랑) 대비 4개 task에서 모두 크게 향상. CodeQA 4 → 26, OOLONG 0 → 24. (b) MRCRv2 64k/2-needle split에서 RL training만으로 1M/8-needle split으로 일반화 — Gemini 3.1 Pro(점선) 수준에 도달 (Zhang 2026, p.8).*
 
-![[assets/zhang-2026-recursive-language-models/fig12.png]]
+![[assets/zhang-2026-recursive-language-models/fig06.png]]
 *Figure 6: 학습된 RLM-Qwen3-8B는 runtime도 3.2× ~ 9.6× 빨라진다 — sub-call 횟수와 mistake가 모두 줄어든 결과 (Zhang 2026, p.17).*
 
 학습 레시피는 단순하다 (Appendix A).
@@ -202,29 +322,29 @@ decomposition hint를 GPT-5.2 base에 직접 주면 오히려 28.6%로 떨어진
 
 핵심 가설: **"RLM root LM은 결국 reasoning model이고, leaf sub-call은 일반 LLM 요청이다 → root만 잘 학습해도 충분"**. 이 가정이 맞다면 RLM 학습은 일반 reasoning 학습으로 환원되어 작은 모델로도 빠르게 가능하다.
 
-![[assets/zhang-2026-recursive-language-models/fig10.png]]
+![[assets/zhang-2026-recursive-language-models/fig05.png]]
 *Figure 5: LongBenchPro에서 수집한 RLM 트래젝토리의 필터링 전후 통계 — 턴 수 분포(상)와 turn당 토큰 수(하). 필터링 후 평균 5턴, 8k input·900 output 토큰 수준으로 다듬어졌다 (Zhang 2026, p.16).*
 
 ## RLM 트래젝토리 분석 (RLM Trajectory Analysis)
 
 ### 3가지 공통 행동 패턴
 
-![[assets/zhang-2026-recursive-language-models/fig14.png]]
+![[assets/zhang-2026-recursive-language-models/fig08.png]]
 *Figure 8: RLM이 task를 풀 때 보이는 3가지 공통 패턴. (a) regex 코드로 키워드 매칭 후 window snippet 추출, (b) 6개 카테고리 분류를 sub-LM에 위임하고 root는 결과만 보관, (c) sub-LM 결과를 dict로 stitch해 단일 LM 컨텍스트로는 불가능한 출력 길이 생성 (Zhang 2026, p.31).*
 
 ### Decomposition 선택의 영향
 
-![[assets/zhang-2026-recursive-language-models/fig09.png]]
+![[assets/zhang-2026-recursive-language-models/fig04.png]]
 *Figure 4: (a) RLM(GPT-5)의 첫 task decomposition 시도 분포 — in-context 예시 1개만 추가해도 correct rollout이 11개 → 30개로 늘고, 예시가 task와 무관해도 효과적이다. (b) RLM(Qwen3-Coder) 트래젝토리는 GPT-5보다 syntax error가 압도적으로 많고, correct rollout에서도 마찬가지다 — Qwen3-Coder가 depth↑에서 성능이 깎이는 원인 (Zhang 2026, p.8).*
 
 ### Sub-call 사용량 — model별 행태 차이
 
-![[assets/zhang-2026-recursive-language-models/fig16.png]]
+![[assets/zhang-2026-recursive-language-models/fig10.png]]
 *Figure 10: task별 평균 sub-call 횟수 (correct vs incorrect). Qwen3-Coder는 OOLONG에서 correct rollout 510회 — GPT-5(30회)의 17배. "everything에 sub-call" 경향이 강하고, incorrect rollout이 일반적으로 더 많은 sub-call을 쓴다(헤맴) (Zhang 2026, p.40).*
 
 ### RLM의 task-level 우위
 
-![[assets/zhang-2026-recursive-language-models/fig15.png]]
+![[assets/zhang-2026-recursive-language-models/fig09.png]]
 *Figure 9: GPT-5·Qwen3-Coder 각각에 대해 RLM(depth=1) vs 다른 baseline의 task-level win/tie/loss. GPT-5에서는 RLM이 모든 baseline을 큰 차이로 앞선다 (Zhang 2026, p.40).*
 
 ## 한계와 향후 과제 (Limitations and Future Work)

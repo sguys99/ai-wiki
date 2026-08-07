@@ -12,102 +12,214 @@ arxiv_id: "2503.14734"
 tags: [physical-ai, vla, humanoid, robot-dataset]
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig01.png
     raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig01.png
     caption: "Data Pyramid — 웹 데이터·human video(하단) → 합성 데이터(중간) → 실제 로봇 데이터(상단)"
     page: 2
-    strategy: page-region
+    bbox_norm: [0.4949, 0.1393, 0.9006, 0.3219]
+    strategy: caption-region
     curated: true
   - id: fig02
+    label: Figure 2
+    kind: figure
     file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig02.png
     raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig02.png
     caption: "GR00T N1 Model Overview — VLM(System 2) → DiT(System 1) dual-system 개요"
     page: 3
-    strategy: page-region
+    bbox_norm: [0.0908, 0.0939, 0.9219, 0.3996]
+    strategy: caption-region
     curated: true
-  - id: fig04
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig04.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig04.png
+  - id: fig03
+    label: Figure 3
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig03.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig03.png
     caption: "GR00T N1 Model Architecture — Eagle-2 VLM + cross-attention DiT blocks + embodiment별 state/action encoder"
     page: 4
-    strategy: page-region
+    bbox_norm: [0.0936, 0.0905, 0.9187, 0.402]
+    strategy: caption-region
     curated: true
-  - id: fig07
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig07.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig07.png
+  - id: fig04
+    label: Figure 4
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig04.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig04.png
     caption: "Latent Actions — 8개 embodiment(로봇·인간)에서 같은 latent action이 같은 동작에 대응"
     page: 6
-    strategy: page-region
+    bbox_norm: [0.1144, 0.0939, 0.8858, 0.2976]
+    strategy: caption-region
     curated: true
-  - id: fig08
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig08.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig08.png
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig05.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig05.png
     caption: "Synthetically Generated Videos — 동일 초기 프레임에서 프롬프트만 바꿔 만든 counterfactual 궤적"
     page: 7
-    strategy: page-region
+    bbox_norm: [0.1121, 0.0939, 0.8832, 0.6558]
+    strategy: caption-region
     curated: true
-  - id: fig09
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig09.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig09.png
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig06.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig06.png
     caption: "Data Collection via Teleoperation — Manus Glove+VIVE / Apple Vision Pro / Leap Motion 3안과 retargeting"
     page: 10
-    strategy: page-region
+    bbox_norm: [0.0924, 0.0522, 0.9819, 0.274]
+    strategy: caption-region
     curated: false
-  - id: fig10
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig10.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig10.png
+  - id: fig07
+    label: Figure 7
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig07.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig07.png
     caption: "Simulation Tasks — RoboCasa / DexMimicGen / GR-1 tabletop 3개 벤치마크 예시"
     page: 11
-    strategy: page-region
+    bbox_norm: [0.0947, 0.0939, 0.9053, 0.3102]
+    strategy: caption-region
     curated: false
-  - id: fig12
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig12.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig12.png
+  - id: fig08
+    label: Figure 8
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig08.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig08.png
     caption: "Real-World Tasks — pre-training 평가 2종과 post-training 4범주(pick-and-place·articulated·industrial·coordination)"
     page: 13
-    strategy: page-region
+    bbox_norm: [0.0871, 0.0885, 0.934, 0.6327]
+    strategy: caption-region
     curated: false
-  - id: fig13
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig13.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig13.png
+  - id: fig09
+    label: Figure 9
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig09.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig09.png
     caption: "Neural Trajectories Ablations — RoboCasa 3개 데이터 구간과 실제 로봇 저데이터 구간의 co-training 이득"
     page: 16
-    strategy: page-region
+    bbox_norm: [0.0867, 0.0863, 0.9056, 0.2996]
+    strategy: caption-region
     curated: true
-  - id: fig16
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig16.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig16.png
+  - id: fig10
+    label: Figure 10
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig10.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig10.png
     caption: "Figure 10 — demonstration 수(30/100/300)별 시뮬레이션 성공률 막대그래프"
     page: 20
-    strategy: page-region
+    bbox_norm: [0.0947, 0.5483, 0.9053, 0.7471]
+    strategy: caption-region
     curated: true
-  - id: fig19
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig19.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig19.png
+  - id: fig11
+    label: Figure 11
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig11.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig11.png
     caption: "Figure 11 — pre-trained 체크포인트의 좌→우 손 handover 정성 롤아웃"
     page: 21
-    strategy: page-region
+    bbox_norm: [0.0892, 0.0891, 0.9052, 0.1941]
+    strategy: caption-region
     curated: false
-  - id: fig20
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig20.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig20.png
+  - id: fig12
+    label: Figure 12
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig12.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig12.png
     caption: "Figure 12 — post-trained GR00T N1 vs Diffusion Policy 롤아웃 비교"
     page: 21
-    strategy: page-region
+    bbox_norm: [0.0872, 0.2567, 0.9052, 0.595]
+    strategy: caption-region
     curated: false
-  - id: fig21
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig21.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig21.png
+  - id: fig13
+    label: Figure 13
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig13.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig13.png
     caption: "Figure 13 — neural trajectory 생성의 4가지 능력(multi-view grid·multi-round·액체·img2img 초기프레임)"
     page: 22
-    strategy: page-region
+    bbox_norm: [0.1277, 0.088, 0.9792, 0.7739]
+    strategy: caption-region
     curated: false
-  - id: fig22
-    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig22.png
-    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig22.png
+  - id: fig14
+    label: Figure 14
+    kind: figure
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/fig14.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/fig14.png
     caption: "Figure 14 — 사전학습에 쓴 7개 human egocentric video 데이터셋 샘플"
     page: 25
-    strategy: page-region
+    bbox_norm: [0.1065, 0.1644, 0.8967, 0.7928]
+    strategy: caption-region
+    curated: false
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab01.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab01.png
+    caption: "Table 1: Training Data Generation. Our data generation strategies leverage different data sources. The latent- action learning technique is broadly applied to diverse video datasets. Neural trajectories can be generated from datasets containing robot actions, while simulation trajectories rely on a "
+    page: 9
+    bbox_norm: [0.151, 0.297, 0.849, 0.3803]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab02.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab02.png
+    caption: "Table 2: Simulation Results. Average success rate across three simulation benchmarks, using 100 demonstra- tions per task. GR00T N1 outperforms both baselines, especially on the GR-1 task where it outperforms by more than 17 %."
+    page: 15
+    bbox_norm: [0.266, 0.5367, 0.734, 0.62]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab03.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab03.png
+    caption: "Table 3: Real-World Results. Average policy success rate on real-world tasks with the GR-1 humanoid robots. GR00T N1 beats the diffusion policy baseline and shows strong results even with very little data."
+    page: 15
+    bbox_norm: [0.0947, 0.757, 0.9053, 0.9368]
+    strategy: table-region
+    curated: false
+  - id: tab04
+    label: Table 4
+    kind: table
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab04.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab04.png
+    caption: "Table 4: Simulation Evaluation Results with Models Trained with Different Dataset Sizes."
+    page: 26
+    bbox_norm: [0.0947, 0.1204, 0.9053, 0.9368]
+    strategy: table-region
+    curated: false
+  - id: tab05
+    label: Table 5
+    kind: table
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab05.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab05.png
+    caption: "Table 5: Success rate on real-world tasks with the GR-1 humanoid robot."
+    page: 27
+    bbox_norm: [0.2107, 0.1534, 0.7893, 0.5592]
+    strategy: table-region
+    curated: false
+  - id: tab06
+    label: Table 6
+    kind: table
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab06.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab06.png
+    caption: "Table 6: Training hyperparameters. Pre- and post-training use the same hyperparameters unless specified."
+    page: 27
+    bbox_norm: [0.2197, 0.6474, 0.7757, 0.8727]
+    strategy: table-region
+    curated: false
+  - id: tab07
+    label: Table 7
+    kind: table
+    file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab07.png
+    raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab07.png
+    caption: "Table 7: Pre-training Dataset Statistics"
+    page: 28
+    bbox_norm: [0.0947, 0.3548, 0.9053, 0.9368]
+    strategy: table-region
     curated: false
 ---
 
@@ -151,7 +263,7 @@ adaptive layer norm으로 denoising step을 조건화하는 DiT 변종이다. se
 
 embodiment마다 state·action 차원이 다른 문제는 embodiment별 MLP projector로 푼다. π0 계열은 mixture-of-experts로 VLM과 액션 모델을 잇지만 여기서는 단순 cross-attention을 쓴다. 저자들은 덕분에 VLM과 액션 모델 아키텍처를 자유롭게 고를 수 있다고 말한다.
 
-![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig04.png]]
+![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig03.png]]
 *Figure 3: GR00T N1 Model Architecture (NVIDIA 2025, p.4)*
 
 ### 라벨 없는 데이터에 라벨 붙이기
@@ -160,14 +272,14 @@ Human egocentric video와 neural trajectory에는 VQ-VAE를 학습해 latent act
 
 모든 이종 데이터에 같은 VQ-VAE를 학습시키니 latent action 공간이 공유된다. 로봇 8종과 인간 embodiment에서 "오른팔을 왼쪽으로"라는 같은 latent action이 일관되게 대응된다.
 
-![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig07.png]]
+![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig04.png]]
 *Figure 4: Latent Actions — 여러 embodiment에서 같은 latent action이 같은 동작에 대응 (NVIDIA 2025, p.6)*
 
 ### 데이터 증식 두 경로
 
 비디오 생성 모델을 자체 teleoperation 88시간으로 파인튜닝해 neural trajectory를 만든다. 초기 프레임과 새 언어 프롬프트를 주면 실제로 수집하지 않은 counterfactual 상황이 나온다. 88시간이 827시간으로 늘었다. 다양성 확보에 상용 multimodal LLM을 두 번 쓴다. 초기 프레임에서 객체를 검출해 물리적으로 가능한 "pick up {object} from {A} to {B}" 조합을 만들게 한다. 그다음 생성된 비디오를 8프레임으로 다운샘플해 지시를 안 따른 것을 걸러내는 판정자로도 쓴다.
 
-![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig08.png]]
+![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig05.png]]
 *Figure 5: Synthetically Generated Videos — 같은 초기 프레임에서 프롬프트만 바꾼 counterfactual 궤적 (NVIDIA 2025, p.7)*
 
 시뮬레이션 데이터는 DexMimicGen이 담당한다. 사람 데모 수십 개를 객체 중심 subtask로 쪼갠 뒤 객체 위치에 맞춰 변환·재생하고 성공한 것만 남긴다. 사전·사후학습 합쳐 780,000개 궤적을 만들었다. 사람 데모로 환산하면 6,500시간, 연속 9개월에 해당하는 양을 11시간에 확보했다.
@@ -190,7 +302,7 @@ RoboCasa Kitchen 24태스크, DexMimicGen 9태스크, GR-1 Tabletop 24태스크�
 
 GR-1 태스크의 격차가 17%p를 넘는다.
 
-![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig16.png]]
+![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig10.png]]
 *Figure 10: 태스크당 데모 수(30/100/300)별 시뮬레이션 성공률 (NVIDIA 2025, p.20)*
 
 ### 실로봇
@@ -212,7 +324,7 @@ GR-1 휴머노이드에서 Diffusion Policy와 비교한다.
 
 RoboCasa에서 태스크당 3k, 실로봇에서 100개 neural trajectory를 1:1로 co-train하면 실제 궤적만 쓴 GR00T N1보다 오른다. 30/100/300 데이터 구간에서 각각 +4.2%p, +8.8%p, +6.8%p, 실로봇 GR-1 8태스크 평균 +5.8%p다.
 
-![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig13.png]]
+![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig09.png]]
 *Figure 9: Neural Trajectories Ablations (NVIDIA 2025, p.16)*
 
 데이터가 적은 30 구간에서는 LAPA(latent action)가 IDM을 약간 앞선다. 100·300으로 갈수록 차이가 벌어진다. IDM 학습 데이터가 늘면 pseudo-action이 실제 액션에 가까워져서라는 설명이다. GR-1은 상대적으로 고데이터 구간이라 실로봇 co-training에는 IDM 액션만 썼다.

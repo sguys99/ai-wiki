@@ -1,128 +1,542 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig01.png",
     "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig01.png",
     "page": 2,
-    "caption": "Figure 1: MAST: A Taxonomy of MAS Failure Modes. The inter-agent conversation stages indicate",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 1: MAST : A Taxonomy of MAS Failure Modes . The inter-agent conversation stages indicate when a failure typically occurs within the end-to-end MAS execution pipeline. A failure mode spanning multiple stages signifies that the underlying issue can manifest or have implications across these dif",
+    "bbox": [
+      93.06,
+      63.92,
+      530.34,
+      281.14
+    ],
+    "bbox_norm": [
+      0.1521,
+      0.0807,
+      0.8666,
+      0.355
+    ],
+    "dpi": 300,
+    "area_frac": 0.196,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p02.png"
   },
   {
     "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
     "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig02.png",
     "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig02.png",
-    "page": 2,
-    "caption": "Figure 5 (Appendix B). Furthermore, there is no clear consensus on how to build robust and reliable",
-    "strategy": "page-region",
-    "curated": false
+    "page": 5,
+    "caption": "Figure 2: Methodological workflow for constructing the MAST-Data dataset, involving the empirical identification of failure modes, the development of MAST , iterative refinement through inter-annotator agreement studies ( κ = 0 . 88 ), and the creation of a scalable LLM annotation pipeline. This fig",
+    "bbox": [
+      106.16,
+      75.2,
+      517.83,
+      158.54
+    ],
+    "bbox_norm": [
+      0.1735,
+      0.095,
+      0.8461,
+      0.2002
+    ],
+    "dpi": 300,
+    "area_frac": 0.071,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p05.png"
   },
   {
     "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
     "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig03.png",
     "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig03.png",
-    "page": 5,
-    "caption": "Figure 2: Methodological workflow for constructing the MAST-Data dataset, involving the empirical",
-    "strategy": "page-region",
-    "curated": false
+    "page": 6,
+    "caption": "Figure 3: Visualization of a trace segment in MAST-Data . This illustrates an agent-to-agent conversa- tion exhibiting Failure Mode 2.4: Information Withholding. The Phone Agent fails to communicate API requirements (username format) to the Supervisor Agent, who also fails to seek clarification, lea",
+    "bbox": [
+      117.81,
+      54.03,
+      499.02,
+      150.74
+    ],
+    "bbox_norm": [
+      0.1925,
+      0.0682,
+      0.8154,
+      0.1903
+    ],
+    "dpi": 300,
+    "area_frac": 0.076,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p06.png"
   },
   {
     "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
     "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig04.png",
     "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig04.png",
-    "page": 6,
-    "caption": "Figure 3: Visualization of a trace segment in MAST-Data. This illustrates an agent-to-agent conversa-",
-    "strategy": "page-region",
-    "curated": false
+    "page": 8,
+    "caption": "Figure 4: Distribution of failure in MAST-Data with MAST labels on total 210 traces. This plot visualizes the failure distributions of the first 30 traces for each system. As the specific tasks and benchmarks may differ across the MAS configurations shown, these results are intended to illustrate sy",
+    "bbox": [
+      101.53,
+      183.62,
+      511.74,
+      633.37
+    ],
+    "bbox_norm": [
+      0.1659,
+      0.2318,
+      0.8362,
+      0.7997
+    ],
+    "dpi": 300,
+    "area_frac": 0.381,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p08.png"
   },
   {
     "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
     "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig05.png",
     "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig05.png",
-    "page": 7,
-    "caption": "input (FM-2.5, 1.90%), or mismatches between reasoning and action (FM-2.6, 13.2%). Figure 3\nillustrates information withholding (FM-2.4). Diagnosing FC2 failures can be complex, as similar",
-    "strategy": "page-region",
-    "curated": false
+    "page": 19,
+    "caption": "Figure 5: Failure rates of six popular Multi-Agent LLM Systems with GPT-4o and Claude-3.7-Sonnet. Performances are measured on different benchmarks, therefore they are not directly comparable.",
+    "bbox": [
+      201.0,
+      124.29,
+      411.0,
+      306.45
+    ],
+    "bbox_norm": [
+      0.3284,
+      0.1569,
+      0.6716,
+      0.3869
+    ],
+    "dpi": 300,
+    "area_frac": 0.079,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p19.png"
   },
   {
     "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
     "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig06.png",
     "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig06.png",
-    "page": 8,
-    "caption": "Figure 4: Distribution of failure in MAST-Data with MAST labels on total 210 traces. This plot",
-    "strategy": "page-region",
-    "curated": false
+    "page": 22,
+    "caption": "Figure 6: MAS failure modes correlation matrix",
+    "bbox": [
+      201.0,
+      230.99,
+      411.0,
+      404.63
+    ],
+    "bbox_norm": [
+      0.3284,
+      0.2917,
+      0.6716,
+      0.5109
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p22.png"
   },
   {
     "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
     "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig07.png",
     "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig07.png",
-    "page": 19,
-    "caption": "Figure 5: Failure rates of six popular Multi-Agent LLM Systems with GPT-4o and Claude-3.7-Sonnet.",
-    "strategy": "page-region",
-    "curated": false
+    "page": 22,
+    "caption": "Figure 7: MAS failure modes correlation matrix",
+    "bbox": [
+      161.4,
+      434.11,
+      450.6,
+      696.32
+    ],
+    "bbox_norm": [
+      0.2637,
+      0.5481,
+      0.7363,
+      0.8792
+    ],
+    "dpi": 300,
+    "area_frac": 0.156,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p22.png"
   },
   {
     "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
     "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig08.png",
     "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig08.png",
-    "page": 21,
-    "caption": "analyses of MAS architectures and underlying LLMs presented in Figure 8.",
-    "strategy": "page-region",
-    "curated": false
+    "page": 23,
+    "caption": "Figure 8: Comparison on MAST failure modes and categories on ProgramDev-v2 dataset explained in Section D to analyze LLM choice effect. MetaGPT is used for both cases with GPT-4o and Claude-3.7-Sonnet on two comparative cases.",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      215.56
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.2722
+    ],
+    "dpi": 300,
+    "area_frac": 0.126,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p23.png"
   },
   {
     "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
     "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig09.png",
     "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig09.png",
-    "page": 22,
-    "caption": "Figure 6 shows low correlations (0.17-0.32). This suggests that the categories capture distinct aspects",
-    "strategy": "page-region",
-    "curated": false
+    "page": 23,
+    "caption": "Figure 9: Comparison on MAST failure modes and categories on ProgramDev-v2 dataset explained in Section D to analyze MAS architecture effect. GPT-4o is used on two comparative cases, one using ChatDev and the other on MetaGPT.",
+    "bbox": [
+      102.0,
+      257.93,
+      509.99,
+      407.49
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.3257,
+      0.8333,
+      0.5145
+    ],
+    "dpi": 300,
+    "area_frac": 0.126,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p23.png"
   },
   {
     "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
     "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig10.png",
     "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig10.png",
-    "page": 22,
-    "caption": "Figure 7: MAS failure modes correlation matrix",
-    "strategy": "page-region",
-    "curated": false
+    "page": 28,
+    "caption": "Figure 10: Effect of prompt and topology interventions on AG2 as captured by MAST using the automated LLM-as-a-Judge",
+    "bbox": [
+      121.8,
+      66.0,
+      490.18,
+      219.02
+    ],
+    "bbox_norm": [
+      0.199,
+      0.0833,
+      0.8009,
+      0.2765
+    ],
+    "dpi": 300,
+    "area_frac": 0.116,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p28.png"
   },
   {
     "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
     "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig11.png",
     "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig11.png",
-    "page": 23,
-    "caption": "Figure 8: Comparison on MAST failure modes and categories on ProgramDev-v2 dataset explained",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig12",
-    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig12.png",
-    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig12.png",
-    "page": 23,
-    "caption": "Figure 9: Comparison on MAST failure modes and categories on ProgramDev-v2 dataset explained in",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig13",
-    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig13.png",
-    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig13.png",
     "page": 28,
-    "caption": "Figure 10: Effect of prompt and topology interventions on AG2 as captured by MAST using the",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 11: Effect of prompt and topology interventions on ChatDev as captured by MAST using the automated LLM-as-a-Judge",
+    "bbox": [
+      121.8,
+      254.5,
+      490.19,
+      407.52
+    ],
+    "bbox_norm": [
+      0.199,
+      0.3213,
+      0.801,
+      0.5145
+    ],
+    "dpi": 300,
+    "area_frac": 0.116,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p28.png"
   },
   {
-    "id": "fig14",
-    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/fig14.png",
-    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/fig14.png",
-    "page": 28,
-    "caption": "Figure 11: Effect of prompt and topology interventions on ChatDev as captured by MAST using the",
-    "strategy": "page-region",
-    "curated": false
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/tab01.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab01.png",
+    "page": 3,
+    "caption": "Table 1: MAST-Data configuration details. HE: Human Evaluated (Task completions rates are checked by humans), HA: Human Annotated (Failure modes are annotated by humans), LA: LLM Annotated (Failure modes are annotated by LLM-as-a-Judge).",
+    "bbox": [
+      114.98,
+      199.47,
+      497.02,
+      480.86
+    ],
+    "bbox_norm": [
+      0.1879,
+      0.2519,
+      0.8121,
+      0.6071
+    ],
+    "dpi": 300,
+    "area_frac": 0.222,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p03.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/tab02.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab02.png",
+    "page": 6,
+    "caption": "Table 2: Performance of LLM-as-a-judge pipeline",
+    "bbox": [
+      182.7,
+      444.54,
+      427.06,
+      502.76
+    ],
+    "bbox_norm": [
+      0.2985,
+      0.5613,
+      0.6978,
+      0.6348
+    ],
+    "dpi": 300,
+    "area_frac": 0.029,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/tab03.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab03.png",
+    "page": 19,
+    "caption": "Table 3: Overview of MAS covered in MAST-Data",
+    "bbox": [
+      102.54,
+      416.23,
+      504.73,
+      650.14
+    ],
+    "bbox_norm": [
+      0.1675,
+      0.5255,
+      0.8247,
+      0.8209
+    ],
+    "dpi": 300,
+    "area_frac": 0.194,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/tab04.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab04.png",
+    "page": 26,
+    "caption": "Table 4: Solution Strategies vs. Failure Category in Multi-Agent Systems",
+    "bbox": [
+      108.04,
+      235.42,
+      503.96,
+      356.8
+    ],
+    "bbox_norm": [
+      0.1765,
+      0.2972,
+      0.8235,
+      0.4505
+    ],
+    "dpi": 300,
+    "area_frac": 0.099,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/tab05.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab05.png",
+    "page": 27,
+    "caption": "Table 5: Case Studies Accuracy Comparison. This table presents the performance accuracies (in percentages) for various scenarios in our case studies. The header rows group results by strategy: AG2 and ChatDev. Under AG2, GSM-Plus results are reported using GPT-4 and GPT-4o; under ChatDev, results fo",
+    "bbox": [
+      104.44,
+      414.61,
+      507.56,
+      505.35
+    ],
+    "bbox_norm": [
+      0.1707,
+      0.5235,
+      0.8293,
+      0.6381
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p27.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/tab06.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab06.png",
+    "page": 29,
+    "caption": "Table 6: Failure Mode Occurrences in 400 Traces with Open-Source Models. Results are grouped by model family (Qwen vs. CodeLlama) and development framework (ChatDev vs. MetaGPT).",
+    "bbox": [
+      171.44,
+      95.19,
+      438.32,
+      332.79
+    ],
+    "bbox_norm": [
+      0.2801,
+      0.1202,
+      0.7162,
+      0.4202
+    ],
+    "dpi": 300,
+    "area_frac": 0.131,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p29.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/tab07.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab07.png",
+    "page": 29,
+    "caption": "Table 7: Failure mode occurrence rates for ChatDev and MetaGPT on successful and unsuccessful examples.",
+    "bbox": [
+      107.67,
+      614.12,
+      502.09,
+      718.21
+    ],
+    "bbox_norm": [
+      0.1759,
+      0.7754,
+      0.8204,
+      0.9068
+    ],
+    "dpi": 300,
+    "area_frac": 0.085,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p29.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/tab08.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab08.png",
+    "page": 30,
+    "caption": "Table 8: Failure Category Rates on Different Benchmarks",
+    "bbox": [
+      102.0,
+      204.7,
+      516.82,
+      278.8
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2585,
+      0.8445,
+      0.352
+    ],
+    "dpi": 300,
+    "area_frac": 0.063,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p30.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/cemri-2025-why-do-multi-agent-llm-systems/tab09.png",
+    "raw": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/tab09.png",
+    "page": 30,
+    "caption": "Table 9: Average failure cost by MAS framework.",
+    "bbox": [
+      219.13,
+      388.76,
+      390.63,
+      510.68
+    ],
+    "bbox_norm": [
+      0.3581,
+      0.4909,
+      0.6383,
+      0.6448
+    ],
+    "dpi": 300,
+    "area_frac": 0.043,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cemri-2025-why-do-multi-agent-llm-systems-figures/_overlay/p30.png"
   }
 ]

@@ -1,29 +1,83 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/zhang-2024-vision-and-language-navigation-today/fig01.png",
     "raw": "raw/papers/zhang-2024-vision-and-language-navigation-today-figures/fig01.png",
     "page": 2,
-    "caption": "Figure 1: Organizing challenges and solutions in VLN",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 1: Organizing challenges and solutions in VLN using LAW framework (Hu & Shu, 2023).",
+    "bbox": [
+      300.0,
+      121.66,
+      546.29,
+      320.57
+    ],
+    "bbox_norm": [
+      0.4902,
+      0.1536,
+      0.8926,
+      0.4048
+    ],
+    "dpi": 300,
+    "area_frac": 0.101,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2024-vision-and-language-navigation-today-figures/_overlay/p02.png"
   },
   {
     "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
     "file": "assets/zhang-2024-vision-and-language-navigation-today/fig02.png",
     "raw": "raw/papers/zhang-2024-vision-and-language-navigation-today-figures/fig02.png",
-    "page": 3,
-    "caption": "We present a hierarchical and fine-grained taxonomy in Figure 2 to discuss challenges, solutions, and future",
-    "strategy": "page-region",
-    "curated": false
+    "page": 5,
+    "caption": "Figure 2: VLN challenges and solutions within the framework of world model, human model, and VLN agent. We discuss history and memory in the world model, ambiguous instructions in the human model, generalization ability in them both. For the VLN agent, we discuss methods for grounding and reasoning,",
+    "bbox": [
+      66.0,
+      75.86,
+      546.0,
+      306.41
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.0958,
+      0.8922,
+      0.3869
+    ],
+    "dpi": 300,
+    "area_frac": 0.228,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2024-vision-and-language-navigation-today-figures/_overlay/p05.png"
   },
   {
-    "id": "fig03",
-    "file": "assets/zhang-2024-vision-and-language-navigation-today/fig03.png",
-    "raw": "raw/papers/zhang-2024-vision-and-language-navigation-today-figures/fig03.png",
-    "page": 5,
-    "caption": "Figure 2: VLN challenges and solutions within the framework of world model, human model, and VLN",
-    "strategy": "page-region",
-    "curated": false
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/zhang-2024-vision-and-language-navigation-today/tab01.png",
+    "raw": "raw/papers/zhang-2024-vision-and-language-navigation-today-figures/tab01.png",
+    "page": 3,
+    "caption": "Table 1: A summary of existing VLN benchmarks, taxonomized based on several key aspects: the world in which navigation occurs, the type of human interaction involved, the action space and tasks assigned to the VLN agent , and the methods of dataset collection. For the world , we consider their domai",
+    "bbox": [
+      76.28,
+      78.06,
+      535.75,
+      312.15
+    ],
+    "bbox_norm": [
+      0.1246,
+      0.0986,
+      0.8754,
+      0.3941
+    ],
+    "dpi": 300,
+    "area_frac": 0.222,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2024-vision-and-language-navigation-today-figures/_overlay/p03.png"
   }
 ]

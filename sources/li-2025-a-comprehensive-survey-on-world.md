@@ -11,75 +11,95 @@ arxiv_id: "2510.16732"
 tags: [physical-ai, world-model, robot-learning, autonomous-driving, benchmark]
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/li-2025-a-comprehensive-survey-on-world/fig01.png
     raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig01.png
-    caption: "(오탐) 본문 교차참조 'Fig. 1 presents an overview…'가 줄머리에 잡힌 p.2 — 도식 없음"
-    page: 2
-    strategy: page-region
-    curated: false
-  - id: fig02
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig02.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig02.png
     caption: "서베이 전체 구조와 3축 분류 도해 — 기능(decision-coupled/general-purpose) · 시간(sequential/global) · 공간(GLV/TFS/SLG/DRR) (Figure 1, p.3)"
     page: 3
-    strategy: page-region
+    bbox_norm: [0.0801, 0.0631, 0.9036, 0.4553]
+    strategy: caption-region
     curated: true
     note: "wiki/assets 사본은 도식 영역만 재렌더(clip 0.055~0.455, 220 DPI). raw는 전체 페이지 원형 유지"
-  - id: fig03
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig03.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig03.png
+  - id: tab01
+    label: Table I
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab01.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab01.png
     caption: "로보틱스·범용 도메인 대표 world model 56편 분류표 — Taxonomy 3축 약어, backbone, 데이터 플랫폼, 모달리티, 실제 로봇 검증 여부 (Table I, p.4)"
     page: 4
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0984, 0.9298, 0.7378]
+    strategy: table-region
     curated: true
-  - id: fig04
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig04.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig04.png
+  - id: tab02
+    label: Table II
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab02.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab02.png
     caption: "자율주행 도메인 대표 world model 32편 분류표 — CARLA·nuScenes·Occ3D·OpenDV 등 플랫폼과 입력 모달리티 (Table II, p.5)"
     page: 5
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0989, 0.9298, 0.5177]
+    strategy: table-region
     curated: true
-  - id: fig05
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig05.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig05.png
+  - id: tab03
+    label: Table III
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab03.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab03.png
     caption: "데이터 자원 개괄 — 시뮬레이션 플랫폼 5 · 인터랙티브 벤치마크 6 · 오프라인 데이터셋 10 · 실제 로봇 3 (Table III, p.12)"
     page: 12
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0984, 0.9298, 0.4191]
+    strategy: table-region
     curated: false
-  - id: fig06
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig06.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig06.png
+  - id: tab04
+    label: Table IV
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab04.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab04.png
     caption: "nuScenes 비디오 생성 FID/FVD 비교 18종 — DrivePhysica FID 4.0, MiLA FVD 14.9 (Table IV, p.14)"
     page: 14
-    strategy: page-region
+    bbox_norm: [0.5, 0.111, 0.9298, 0.3687]
+    strategy: table-region
     curated: false
-  - id: fig07
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig07.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig07.png
+  - id: tab05
+    label: Table V
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab05.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab05.png
     caption: "Occ3D-nuScenes 4D occupancy forecasting(Table V) · DMC(Table VI) · RLBench(Table VII)가 함께 실린 p.15"
     page: 15
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0984, 0.9298, 0.3951]
+    strategy: table-region
     curated: false
-  - id: fig08
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig08.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig08.png
+  - id: tab06
+    label: Table VI
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab06.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab06.png
     caption: "(중복) fig07과 동일한 p.15 이미지 — Table VI 캡션에 재매칭된 결과"
     page: 15
-    strategy: page-region
+    bbox_norm: [0.0702, 0.4633, 0.9298, 0.6183]
+    strategy: table-region
     curated: false
-  - id: fig09
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig09.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig09.png
+  - id: tab07
+    label: Table VII
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab07.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab07.png
     caption: "(중복) fig07과 동일한 p.15 이미지 — Table VII 캡션에 재매칭된 결과"
     page: 15
-    strategy: page-region
+    bbox_norm: [0.5, 0.4633, 0.9298, 0.6183]
+    strategy: table-region
     curated: false
-  - id: fig10
-    file: assets/li-2025-a-comprehensive-survey-on-world/fig10.png
-    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig10.png
+  - id: tab08
+    label: Table VIII
+    kind: table
+    file: assets/li-2025-a-comprehensive-survey-on-world/tab08.png
+    raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab08.png
     caption: "nuScenes open-loop planning L2 오차·충돌률 22종 비교 (Table VIII, p.16)"
     page: 16
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0984, 0.9298, 0.3834]
+    strategy: table-region
     curated: false
 ---
 

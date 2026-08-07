@@ -1,128 +1,569 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig01.png",
     "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig01.png",
     "page": 2,
-    "caption": "Figure 1: SONIC enables diverse humanoid tasks through a universal control policy that handles diverse input",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 1: SONIC enables diverse humanoid tasks through a universal control policy that handles diverse input modalities and control interfaces.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      511.51
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.6076
+    ],
+    "dpi": 300,
+    "area_frac": 0.416,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p02.png"
+  },
+  {
+    "id": "figs1",
+    "label": "Figure S1",
+    "kind": "figure",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/figs1.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs1.png",
+    "page": 30,
+    "caption": "Figure S1: Out-of-distribution motion sequences from the test-content split. Top four rows: unseen motions successfully tracked (hip-hop dance, stage bow, sword lunge, roundhouse kick). Bottom two rows: unseen motions where tracking fails (zombie crawl, cross-legged sit).",
+    "bbox": [
+      56.36,
+      221.95,
+      538.9,
+      574.11
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.2636,
+      0.9053,
+      0.6819
+    ],
+    "dpi": 300,
+    "area_frac": 0.339,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p30.png"
   },
   {
     "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
     "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig02.png",
     "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig02.png",
-    "page": 3,
-    "caption": "teleoperation (Sec. 2.4), and loco-manipulation (Sec. 2.5), shown in Fig. 1.",
-    "strategy": "page-region",
-    "curated": false
+    "page": 4,
+    "caption": "Figure 2: Scaling (a–c): Effect of scaling data size, model size, and compute on success rate and MPJPE for test-content (novel motion content, OOD) and test-repetition (held-out takes of motion types seen during training). Shaded regions denote ± 1 standard deviation across multiple seeds (6 evalua",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      563.63
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.6695
+    ],
+    "dpi": 300,
+    "area_frac": 0.467,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p04.png"
+  },
+  {
+    "id": "figs2",
+    "label": "Figure S2",
+    "kind": "figure",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/figs2.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs2.png",
+    "page": 32,
+    "caption": "Figure S2: Representative motions from the 123-sequence real-world evaluation set. All shown motions are successfully tracked on the physical Unitree G1 robot.",
+    "bbox": [
+      56.36,
+      119.77,
+      538.89,
+      488.48
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.1423,
+      0.9053,
+      0.5802
+    ],
+    "dpi": 300,
+    "area_frac": 0.355,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p32.png"
   },
   {
     "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
     "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig03.png",
     "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig03.png",
-    "page": 4,
-    "caption": "Figure 2: Scaling (a–c): Effect of scaling data size, model size, and compute on success rate and MPJPE for test-content (novel motion",
-    "strategy": "page-region",
-    "curated": false
+    "page": 7,
+    "caption": "Figure 3: Top two rows: interactive navigation switching between different velocities, directions, and styles. Middle two rows: interactive squatting, kneeling, and crawling at arbitrary heights. Bottom two rows: responsive interactive boxing motions.",
+    "bbox": [
+      61.07,
+      79.03,
+      534.22,
+      644.41
+    ],
+    "bbox_norm": [
+      0.1026,
+      0.0939,
+      0.8974,
+      0.7654
+    ],
+    "dpi": 300,
+    "area_frac": 0.534,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p07.png"
+  },
+  {
+    "id": "figs3",
+    "label": "Figure S3",
+    "kind": "figure",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/figs3.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs3.png",
+    "page": 32,
+    "caption": "Figure S3: Robustness test: an approximately 11 kg (25 lb) object is dropped onto the robot from above head height during policy execution. The robot absorbs the impact, maintains balance, and continues tracking. No recovery module or policy adaptation is used.",
+    "bbox": [
+      56.36,
+      599.79,
+      538.91,
+      676.29
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.7124,
+      0.9053,
+      0.8033
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p32.png"
   },
   {
     "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
     "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig04.png",
     "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig04.png",
-    "page": 5,
-    "caption": "Scaling Up Motion Tracking. In Fig. 2 (top row), we analyze scaling along three axes. For data size, we compare",
-    "strategy": "page-region",
-    "curated": false
+    "page": 8,
+    "caption": "Figure 4: Video teleoperation, multi-modal control, and VR whole-body teleoperation.",
+    "bbox": [
+      26.37,
+      79.04,
+      595.28,
+      516.65
+    ],
+    "bbox_norm": [
+      0.0443,
+      0.0939,
+      1.0,
+      0.6137
+    ],
+    "dpi": 300,
+    "area_frac": 0.497,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p08.png"
+  },
+  {
+    "id": "figs4",
+    "label": "Figure S4",
+    "kind": "figure",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/figs4.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs4.png",
+    "page": 34,
+    "caption": "Figure S4: OpenHomie velocity tracking evaluation vs. compute scale. Left: mean velocity tracking error (m/s). Right: survival rate (%).",
+    "bbox": [
+      103.42,
+      79.04,
+      491.88,
+      295.47
+    ],
+    "bbox_norm": [
+      0.1737,
+      0.0939,
+      0.8263,
+      0.351
+    ],
+    "dpi": 300,
+    "area_frac": 0.168,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p34.png"
   },
   {
     "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
     "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig05.png",
     "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig05.png",
-    "page": 6,
-    "caption": "walking, injured walking, happy walking, and stealth walking, as shown in the first two rows of Fig. 3. The",
-    "strategy": "page-region",
-    "curated": false
+    "page": 10,
+    "caption": "Figure 5: VLA-driven loco-manipulation tasks. (a) Apple-to-plate pick-and-place via 3-point interface. (b) Carrot pickup. (c) Scrub pickup. (d) Open trash can by stepping on pedal. (e) Soda can to trash can: pick up, navigate, step on pedal, throw. (f) Drill and box relocation: pick up drill, place ",
+    "bbox": [
+      56.36,
+      91.53,
+      538.91,
+      527.72
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.1087,
+      0.9053,
+      0.6268
+    ],
+    "dpi": 300,
+    "area_frac": 0.42,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p10.png"
+  },
+  {
+    "id": "figs5",
+    "label": "Figure S5",
+    "kind": "figure",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/figs5.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs5.png",
+    "page": 36,
+    "caption": "Figure S5: Overview of the deployment architecture of SONIC .",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      343.12
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.4076
+    ],
+    "dpi": 300,
+    "area_frac": 0.254,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p36.png"
   },
   {
     "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
     "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig06.png",
     "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig06.png",
-    "page": 7,
-    "caption": "Figure 3: Top two rows: interactive navigation switching between different velocities, directions, and styles.",
-    "strategy": "page-region",
-    "curated": false
+    "page": 13,
+    "caption": "Figure 6: Random samples from our motion dataset.",
+    "bbox": [
+      56.36,
+      79.02,
+      538.88,
+      593.47
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.7049
+    ],
+    "dpi": 300,
+    "area_frac": 0.495,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p13.png"
   },
   {
     "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
     "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig07.png",
     "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig07.png",
-    "page": 7,
-    "caption": "As shown in Fig. 4 (top), SONIC also supports a real-time, multi-modal control framework, enabled by our",
-    "strategy": "page-region",
-    "curated": false
+    "page": 14,
+    "caption": "Figure 7: SONIC enables universal humanoid motion tracking through a universal control policy that handles diverse motion commands and modalities. Specialized encoders process robot, human, and hybrid motion commands into a universal token that drives robot control and motion decoders. This multi-en",
+    "bbox": [
+      56.36,
+      79.04,
+      538.9,
+      246.2
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.2924
+    ],
+    "dpi": 300,
+    "area_frac": 0.161,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p14.png"
   },
   {
     "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
     "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig08.png",
     "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig08.png",
-    "page": 8,
-    "caption": "Figure 4: Video teleoperation, multi-modal control, and VR whole-body teleoperation.",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig09",
-    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig09.png",
-    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig09.png",
-    "page": 10,
-    "caption": "Figure 5: VLA-driven loco-manipulation tasks. (a) Apple-to-plate pick-and-place via 3-point interface. (b) Carrot pickup. (c) Scrub",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig10",
-    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig10.png",
-    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig10.png",
-    "page": 12,
-    "caption": "seen in Fig. 6. The source dataset contains approximately 700 hours of human motion. After retargeting to the",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig11",
-    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig11.png",
-    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig11.png",
-    "page": 12,
-    "caption": "Fig. 7 provides an overview of our approach, SONIC, a universal humanoid motion tracking framework that",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig12",
-    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig12.png",
-    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig12.png",
-    "page": 13,
-    "caption": "Figure 6: Random samples from our motion dataset.",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig13",
-    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig13.png",
-    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig13.png",
-    "page": 14,
-    "caption": "Figure 7: SONIC enables universal humanoid motion tracking through a universal control policy that",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig14",
-    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/fig14.png",
-    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig14.png",
     "page": 19,
-    "caption": "Figure 8: Latent space alignment with and without consistency losses, visualized on a crawling motion. (a–b)",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 8: Latent space alignment with and without consistency losses, visualized on a crawling motion. (a–b) Diagonal L2 distance between encoder pairs. (c–d) Cross-encoder distance matrices. With consistency losses, matching frames produce aligned tokens; without them, alignment breaks down.",
+    "bbox": [
+      68.13,
+      79.04,
+      527.16,
+      457.85
+    ],
+    "bbox_norm": [
+      0.1144,
+      0.0939,
+      0.8856,
+      0.5438
+    ],
+    "dpi": 300,
+    "area_frac": 0.347,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/tab01.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab01.png",
+    "page": 10,
+    "caption": "Table 1: VLA task success rates using the universal motion token action space. The GR00T N1.5 model is fine-tuned on teleoperated data and evaluated across five whole-body loco-manipulation tasks (object pickup variants share the same policy and are averaged as one task for the 5-task mean). Success",
+    "bbox": [
+      137.31,
+      589.16,
+      457.97,
+      692.18
+    ],
+    "bbox_norm": [
+      0.2307,
+      0.6998,
+      0.7693,
+      0.8222
+    ],
+    "dpi": 300,
+    "area_frac": 0.066,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tabs1",
+    "label": "Table S1",
+    "kind": "table",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/tabs1.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs1.png",
+    "page": 31,
+    "caption": "Table S1: Universal control policy architecture and hyperparameters.",
+    "bbox": [
+      56.36,
+      59.61,
+      538.91,
+      224.78
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0708,
+      0.9053,
+      0.267
+    ],
+    "dpi": 300,
+    "area_frac": 0.159,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p31.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/tab02.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab02.png",
+    "page": 12,
+    "caption": "Table 2: Dataset split statistics and main/sub-category distribution. Each main category (e.g., Locomotion, Dance) contains many sub-categories describing specific motion types (e.g., “hip-hop slide,” “injured-leg jog”). Test-content evaluates generalization to novel sub-categories : its sub-categor",
+    "bbox": [
+      150.04,
+      414.93,
+      445.23,
+      603.13
+    ],
+    "bbox_norm": [
+      0.2521,
+      0.4929,
+      0.7479,
+      0.7164
+    ],
+    "dpi": 300,
+    "area_frac": 0.111,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tabs2",
+    "label": "Table S2",
+    "kind": "table",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/tabs2.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs2.png",
+    "page": 31,
+    "caption": "Table S2: Training hyperparameters.",
+    "bbox": [
+      167.7,
+      247.45,
+      427.57,
+      459.16
+    ],
+    "bbox_norm": [
+      0.2817,
+      0.2939,
+      0.7183,
+      0.5454
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p31.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/tab03.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab03.png",
+    "page": 18,
+    "caption": "Table 3: VLA action space ablation: task completion success rate using universal motion tokens vs. explicit SMPL poses. The FSQ token interface provides a compact, structured action space that is substantially easier for the VLA to learn. The gap widens on more complex tasks—on soda-can-to-trash-can",
+    "bbox": [
+      181.41,
+      79.44,
+      413.86,
+      154.06
+    ],
+    "bbox_norm": [
+      0.3048,
+      0.0944,
+      0.6952,
+      0.183
+    ],
+    "dpi": 300,
+    "area_frac": 0.035,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tabs3",
+    "label": "Table S3",
+    "kind": "table",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/tabs3.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs3.png",
+    "page": 33,
+    "caption": "Table S3: Reward design. Superscript 𝑔 : goal/target; 𝑝 : current state; ℬ : tracked body links; 𝒦 : VR keypoints (head, both wrists, both ankles); “rel”: relative to root frame.",
+    "bbox": [
+      101.92,
+      311.72,
+      493.36,
+      495.81
+    ],
+    "bbox_norm": [
+      0.1712,
+      0.3703,
+      0.8288,
+      0.5889
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p33.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/tab04.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab04.png",
+    "page": 20,
+    "caption": "Table 4: Ablation results. (a) FSQ outperforms VQ-VAE by 8.7 mm MPJPE-L on test-content. (b) Higher quantizer capacity improves performance; token dimension matters more than levels. (c) All encoders maintain > 99.2% success; the human encoder shows only +0.6 mm gap from the robot encoder.",
+    "bbox": [
+      103.04,
+      79.44,
+      492.24,
+      249.05
+    ],
+    "bbox_norm": [
+      0.1731,
+      0.0944,
+      0.8269,
+      0.2958
+    ],
+    "dpi": 300,
+    "area_frac": 0.132,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tabs4",
+    "label": "Table S4",
+    "kind": "table",
+    "file": "assets/luo-2025-sonic-supersizing-motion-tracking/tabs4.png",
+    "raw": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs4.png",
+    "page": 33,
+    "caption": "Table S4: Domain randomization parameters applied during training. 𝒰 [ · ] : uniform distribution.",
+    "bbox": [
+      101.92,
+      311.72,
+      493.36,
+      495.81
+    ],
+    "bbox_norm": [
+      0.1712,
+      0.3703,
+      0.8288,
+      0.5889
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/_overlay/p33.png"
   }
 ]

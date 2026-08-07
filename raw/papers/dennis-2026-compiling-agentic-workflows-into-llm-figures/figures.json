@@ -1,0 +1,380 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/fig01.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/fig01.png",
+    "page": 3,
+    "caption": "Figure 1: Architectural comparison. Left : Surface orchestration interposes an orchestrator between user and LLM, injecting instructions and parsing outputs every turn. Right : The subterranean approach uses the orchestrator only during training data generation; at runtime, the procedure is compiled",
+    "bbox": [
+      123.05,
+      90.43,
+      488.95,
+      261.8
+    ],
+    "bbox_norm": [
+      0.2011,
+      0.1142,
+      0.7989,
+      0.3306
+    ],
+    "dpi": 300,
+    "area_frac": 0.129,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/fig02.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/fig02.png",
+    "page": 17,
+    "caption": "Figure 2: Travel booking flowchart (14 nodes, 3 decision hubs, 3 terminal states). Multi-way decision hubs route among 4–6 alternatives based on conversation state.",
+    "bbox": [
+      164.08,
+      133.58,
+      447.97,
+      627.55
+    ],
+    "bbox_norm": [
+      0.2681,
+      0.1687,
+      0.732,
+      0.7924
+    ],
+    "dpi": 300,
+    "area_frac": 0.289,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/fig03.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/fig03.png",
+    "page": 18,
+    "caption": "Figure 3: Zoom technical support flowchart (14 nodes, 3 decision hubs, 3 terminal states).",
+    "bbox": [
+      162.95,
+      161.38,
+      449.0,
+      610.62
+    ],
+    "bbox_norm": [
+      0.2663,
+      0.2038,
+      0.7337,
+      0.771
+    ],
+    "dpi": 300,
+    "area_frac": 0.265,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/fig04.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/fig04.png",
+    "page": 19,
+    "caption": "Figure 4: Insurance claims processing flowchart (55 nodes, 6 decision hubs, 5 terminal states).",
+    "bbox": [
+      108.52,
+      94.92,
+      577.36,
+      677.04
+    ],
+    "bbox_norm": [
+      0.1773,
+      0.1198,
+      0.9434,
+      0.8548
+    ],
+    "dpi": 300,
+    "area_frac": 0.563,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/tab01.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/tab01.png",
+    "page": 5,
+    "caption": "Table 1: Quality scores—Travel Booking ( n = 200 , Claude Sonnet 4.5 judge, 1–5 scale). Bold indicates best per criterion. 95% bootstrap CIs and pairwise significance tests in Appendix B.",
+    "bbox": [
+      164.98,
+      94.19,
+      447.02,
+      176.67
+    ],
+    "bbox_norm": [
+      0.2696,
+      0.1189,
+      0.7304,
+      0.2231
+    ],
+    "dpi": 300,
+    "area_frac": 0.048,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/tab02.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/tab02.png",
+    "page": 6,
+    "caption": "Table 2: Quality scores—Zoom Support ( n = 200 , Claude Sonnet 4.5 judge, 1–5 scale). Bold indicates best per criterion. 95% bootstrap CIs and pairwise significance tests in Appendix B.",
+    "bbox": [
+      188.31,
+      94.19,
+      423.69,
+      176.67
+    ],
+    "bbox_norm": [
+      0.3077,
+      0.1189,
+      0.6923,
+      0.2231
+    ],
+    "dpi": 300,
+    "area_frac": 0.04,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/tab03.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/tab03.png",
+    "page": 6,
+    "caption": "Table 3: Insurance claims processing (55 nodes, 6 decision hubs, n = 200 , Claude Sonnet 4.5 judge). The 8B compiled model achieves 92–98% of in-context quality at 462 × less cost. 95% bootstrap CIs and pairwise significance tests in Appendix B.",
+    "bbox": [
+      188.31,
+      94.19,
+      423.69,
+      176.67
+    ],
+    "bbox_norm": [
+      0.3077,
+      0.1189,
+      0.6923,
+      0.2231
+    ],
+    "dpi": 300,
+    "area_frac": 0.04,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/tab04.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/tab04.png",
+    "page": 7,
+    "caption": "Table 4: Efficiency comparison across domains ( n = 200 per condition). Wall-clock time includes all LLM calls (generation + routing for LG Orch). The subterranean agent’s self-hosted inference eliminates the network round-trips of an external API; the LangGraph orchestrator’s time grows with proced",
+    "bbox": [
+      161.05,
+      116.01,
+      450.95,
+      218.87
+    ],
+    "bbox_norm": [
+      0.2632,
+      0.1465,
+      0.7368,
+      0.2763
+    ],
+    "dpi": 300,
+    "area_frac": 0.062,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/tab05.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/tab05.png",
+    "page": 7,
+    "caption": "Table 5: Failure rates across domains (conversations with task success ≤ 3 , n = 200 per condition). The compiled model achieves lower failure rates than the LangGraph orchestrator in travel and insurance; Zoom rates are comparable.",
+    "bbox": [
+      132.73,
+      278.46,
+      479.27,
+      341.02
+    ],
+    "bbox_norm": [
+      0.2169,
+      0.3516,
+      0.7831,
+      0.4306
+    ],
+    "dpi": 300,
+    "area_frac": 0.045,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/tab06.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/tab06.png",
+    "page": 8,
+    "caption": "Table 6: Inference cost per conversation across domains. API costs assume Claude Sonnet 4.5 pricing ($3/M input, $15/M output). Self-hosted cost assumes Qwen3-8B on a reserved A100 80GB at $2.50/hr via vLLM, yielding a ∼ 65 × per-token cost reduction. The IC/Sub ratio compounds this with a token vol",
+    "bbox": [
+      142.56,
+      353.54,
+      469.44,
+      416.1
+    ],
+    "bbox_norm": [
+      0.2329,
+      0.4464,
+      0.7671,
+      0.5254
+    ],
+    "dpi": 300,
+    "area_frac": 0.042,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/tab07.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/tab07.png",
+    "page": 15,
+    "caption": "Table 7: Pairwise comparisons—Travel Booking ( n = 200 ). W : Wilcoxon signed-rank (paired). Significance after Holm–Bonferroni: ∗ p < . 05 , ∗∗ p < . 01 , ∗∗∗ p < . 001 .",
+    "bbox": [
+      129.13,
+      185.25,
+      482.87,
+      345.89
+    ],
+    "bbox_norm": [
+      0.211,
+      0.2339,
+      0.789,
+      0.4367
+    ],
+    "dpi": 300,
+    "area_frac": 0.117,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/tab08.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/tab08.png",
+    "page": 15,
+    "caption": "Table 8: Pairwise comparisons—Zoom Support ( n = 200 ). U : Mann-Whitney (unpaired, cross-run). Significance after Holm–Bonferroni: ∗ p < . 05 , ∗∗ p < . 01 , ∗∗∗ p < . 001 .",
+    "bbox": [
+      129.13,
+      185.25,
+      482.87,
+      345.89
+    ],
+    "bbox_norm": [
+      0.211,
+      0.2339,
+      0.789,
+      0.4367
+    ],
+    "dpi": 300,
+    "area_frac": 0.117,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/tab09.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/tab09.png",
+    "page": 15,
+    "caption": "Table 9: Pairwise comparisons—Insurance Claims (55 nodes, n = 200 ). U : Mann-Whitney (unpaired, cross-run). Significance after Holm–Bonferroni: ∗ p < . 05 , ∗∗ p < . 01 , ∗∗∗ p < . 001 .",
+    "bbox": [
+      129.13,
+      532.06,
+      482.87,
+      647.65
+    ],
+    "bbox_norm": [
+      0.211,
+      0.6718,
+      0.789,
+      0.8177
+    ],
+    "dpi": 300,
+    "area_frac": 0.084,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/dennis-2026-compiling-agentic-workflows-into-llm/tab10.png",
+    "raw": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/tab10.png",
+    "page": 16,
+    "caption": "Table 10: GPT-4.1 judge replication ( n = 200 per condition per domain). Cf. Tables 1–3 (Claude Sonnet 4.5 judge).",
+    "bbox": [
+      161.92,
+      94.19,
+      450.08,
+      286.71
+    ],
+    "bbox_norm": [
+      0.2646,
+      0.1189,
+      0.7354,
+      0.362
+    ],
+    "dpi": 300,
+    "area_frac": 0.114,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/dennis-2026-compiling-agentic-workflows-into-llm-figures/_overlay/p16.png"
+  }
+]

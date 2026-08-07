@@ -12,39 +12,116 @@ arxiv_id: "2605.23904"
 tags: [agent-skills, self-evolving, text-space-optimization, prompt-optimization, held-out-gate, claude-code, codex, benchmark]
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/yang-2026-skillopt-executive-strategy-for/fig01.png
     raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/fig01.png
+    caption: "Figure 1 — SkillOpt 개요. Skill Space를 손실 지형으로 그려 bounded skill edits(안정)와 ad hoc updates(불안정)를 대비하고, held-out selection gate가 검증 개선 편집만 수용함을 보인다. 우측 표는 딥러닝 ↔ 텍스트공간 최적화 유추(parameter↔skill document, learning rate↔edit budget 등)."
     page: 2
-    caption: "Figure 1 — SkillOpt 개요. Skill Space를 손실 지형으로 그려 bounded skill edits(안정)와 ad hoc updates(불안정)를 대비하고, held-out selection gate가 검증 개선 편집만 수용함을 보인다. 우측 표는 딥러닝 ↔ 텍스트공간 최적화 유추."
-    strategy: page-region
-    curated: true
-  - id: fig02
-    file: assets/yang-2026-skillopt-executive-strategy-for/fig02.png
-    raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/fig02.png
-    page: 4
-    caption: "Figure 2 — SkillOpt 파이프라인. rollout batch → minibatch reflection → add/delete/replace 편집 → merge → edit budget 랭킹 → validation gate → best_skill.md. 하단은 epoch-wise slow/meta update."
-    strategy: page-region
+    bbox_norm: [0.0, 0.0103, 0.9877, 0.355]
+    strategy: caption-region
     curated: true
   - id: fig03
+    label: Figure 3
+    kind: figure
     file: assets/yang-2026-skillopt-executive-strategy-for/fig03.png
     raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/fig03.png
+    caption: "Figure 3 — epoch checkpoint별 train rollout / selection best / unseen test 성능 추이 (SpreadsheetBench·SearchQA·LiveMath). validation gate가 일반화되는 checkpoint를 고르는지 보여준다."
     page: 12
-    caption: "Figure 3 — epoch checkpoint별 train rollout / selection best / unseen test 성능 추이 (SpreadsheetBench·SearchQA·LiveMath)."
-    strategy: page-region
+    bbox_norm: [0.1351, 0.0669, 0.865, 0.2938]
+    strategy: caption-region
     curated: true
   - id: fig04
+    label: Figure 4
+    kind: figure
     file: assets/yang-2026-skillopt-executive-strategy-for/fig04.png
     raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/fig04.png
-    page: 14
-    caption: "(오탐: 실제 도식 아님) p.14의 Table 5(optimizer strength) + Table 6(cost·edit economy) 표 페이지."
-    strategy: page-region
-    curated: false
-  - id: fig05
-    file: assets/yang-2026-skillopt-executive-strategy-for/fig05.png
-    raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/fig05.png
+    caption: "(오탐: 실제 도식 아님) p.14의 Table 5(optimizer strength) + Table 6(compactness·edit economy·cost/pt) 표 페이지. 본문 'shown in Figure 4.' 상호참조에 캡션 정규식이 매칭됨."
     page: 15
-    caption: "Figure 4 — benchmark별 대표 학습 규칙 1개씩. best_skill.md에서 그대로 발췌한, instance-specific이 아닌 procedural 규칙들."
-    strategy: page-region
+    bbox_norm: [0.1139, 0.0672, 0.8861, 0.2595]
+    strategy: caption-region
+    curated: false
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/yang-2026-skillopt-executive-strategy-for/tab01.png
+    raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/tab01.png
+    caption: "Table 1 Main results on held-out test splits. Scores are percentages; within each model–harness block, bold marks the best measured entry and underlining marks the second-best entry for each benchmark. Blue cells denote SkillOpt , and small green/red subscripts show the absolute change relative to t"
+    page: 7
+    bbox_norm: [0.1042, 0.0675, 0.8976, 0.8539]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/yang-2026-skillopt-executive-strategy-for/tab02.png
+    raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/tab02.png
+    caption: "Table 2 Hyperparameter analysis for the text optimizer. Each panel changes one scalar or scheduling factor from the default setting unless noted. Panel (a) fixes the split to 4 : 1 : 5 train/selection/test; the 1-example, 20%, 40%, and 80% rows use subsets of the training partition, and the 100% row"
+    page: 8
+    bbox_norm: [0.1122, 0.0759, 0.8847, 0.2296]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/yang-2026-skillopt-executive-strategy-for/tab03.png
+    raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/tab03.png
+    caption: "Table 3 Component ablations for learning-rate form, rejected buffer, and epoch-wise slow/meta update. Light-blue rows mark the default setting within each component group; the learning-rate group uses the default lr=4 setting. Bold values mark the best measured result within that group and benchmark"
+    page: 8
+    bbox_norm: [0.1351, 0.2993, 0.8649, 0.4385]
+    strategy: table-region
+    curated: false
+  - id: tab04
+    label: Table 4
+    kind: table
+    file: assets/yang-2026-skillopt-executive-strategy-for/tab04.png
+    raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/tab04.png
+    caption: "Table 4 Transfer of optimized skills across three axes. (a) Cross-model : a skill optimized for the source model is deployed on the target model. (b) Cross-harness : a skill trained inside the source harness is evaluated inside the target harness, all on GPT–5.5. (c) Cross-benchmark : the source ben"
+    page: 9
+    bbox_norm: [0.1235, 0.0676, 0.8765, 0.3834]
+    strategy: table-region
+    curated: false
+  - id: tab05
+    label: Table 5
+    kind: table
+    file: assets/yang-2026-skillopt-executive-strategy-for/tab05.png
+    raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/tab05.png
+    caption: "Table 5 Effect of optimizer strength. Each (benchmark, target) pair is optimized either by a strong frontier optimizer (GPT–5.5, bolded) or by a target-matched optimizer that shares the target model; everything else in the SkillOpt loop is held fixed. Gains over the target’s no-skill baseline are sh"
+    page: 14
+    bbox_norm: [0.1381, 0.0675, 0.8619, 0.1632]
+    strategy: table-region
+    curated: false
+  - id: tab06
+    label: Table 6
+    kind: table
+    file: assets/yang-2026-skillopt-executive-strategy-for/tab06.png
+    raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/tab06.png
+    caption: "Table 6 Cost and edit economy of the GPT–5.5 / GPT–5.5 (student / teacher) skill runs. Initial and final best_skill.md lengths are in tokens; Edits is the number of accepted bounded updates; Cost / pt is training tokens per absolute test-point gain. One representative learned rule per benchmark is s"
+    page: 14
+    bbox_norm: [0.214, 0.247, 0.786, 0.3612]
+    strategy: table-region
+    curated: false
+  - id: fig02
+    label: (legacy)
+    kind: figure
+    file: assets/yang-2026-skillopt-executive-strategy-for/fig02.png
+    raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/legacy/fig02.png
+    caption: "Figure 2 — SkillOpt 파이프라인. rollout batch → minibatch reflection(성공/실패) → add/delete/replace 편집 → batch-level merge → edit budget 랭킹/클립 → validation gate → best_skill.md. 하단은 epoch-wise slow/meta update(improvements·regressions·persistent failures·stable successes)."
+    page: 4
+    bbox_norm: [0.0, 0.0, 1.0, 1.0]
+    strategy: legacy-page-region
+    low_confidence: true
+    curated: true
+  - id: fig05
+    label: (legacy)
+    kind: figure
+    file: assets/yang-2026-skillopt-executive-strategy-for/fig05.png
+    raw: raw/papers/yang-2026-skillopt-executive-strategy-for-figures/legacy/fig05.png
+    caption: "Figure 4 — benchmark별 대표 학습 규칙 1개씩(SearchQA·SpreadsheetBench·OfficeQA·DocVQA·LiveMath·ALFWorld). best_skill.md에서 그대로 발췌한, instance-specific이 아닌 procedural 규칙들."
+    page: 15
+    bbox_norm: [0.0, 0.0, 1.0, 1.0]
+    strategy: legacy-page-region
+    low_confidence: true
     curated: true
 ---
 

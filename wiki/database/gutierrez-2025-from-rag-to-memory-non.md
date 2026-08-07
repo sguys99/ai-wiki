@@ -12,39 +12,194 @@ arxiv_id: "2502.14802"
 tags: [rag, knowledge-graph, continual-learning, memory, pagerank, hipporag]
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/gutierrez-2025-from-rag-to-memory-non/fig01.png
     raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig01.png
     caption: "HippoRAG 2 vs 기존 방법 3차원 평가 결과 (factual, sense-making, associativity)"
     page: 2
-    strategy: page-region
+    bbox_norm: [0.0808, 0.075, 0.8945, 0.3407]
+    strategy: caption-region
     curated: true
   - id: fig02
+    label: Figure 2
+    kind: figure
     file: assets/gutierrez-2025-from-rag-to-memory-non/fig02.png
     raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig02.png
     caption: "HippoRAG 2 전체 아키텍처 — offline indexing과 online retrieval 파이프라인"
     page: 4
-    strategy: page-region
+    bbox_norm: [0.0837, 0.0791, 0.8786, 0.301]
+    strategy: caption-region
     curated: true
   - id: fig03
+    label: Figure 3
+    kind: figure
     file: assets/gutierrez-2025-from-rag-to-memory-non/fig03.png
     raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig03.png
     caption: "Continual learning 실험: corpus 확장 시 HippoRAG 2 vs NV-Embed-v2 성능 추이"
     page: 8
-    strategy: page-region
+    bbox_norm: [0.4925, 0.0771, 0.8945, 0.3364]
+    strategy: caption-region
     curated: true
   - id: fig04
+    label: Figure 4
+    kind: figure
     file: assets/gutierrez-2025-from-rag-to-memory-non/fig04.png
     raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig04.png
     caption: "Triple Filter LLM 프롬프트 (recognition memory) — few-shot 예시 포함"
     page: 14
-    strategy: page-region
+    bbox_norm: [0.1383, 0.0771, 0.8328, 0.8974]
+    strategy: caption-region
     curated: false
   - id: fig05
+    label: Figure 5
+    kind: figure
     file: assets/gutierrez-2025-from-rag-to-memory-non/fig05.png
     raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/fig05.png
     caption: "HippoRAG 2 파이프라인 예시 — Erik Hort 질문으로 query-to-triple~PPR 전 과정"
     page: 15
-    strategy: page-region
+    bbox_norm: [0.186, 0.165, 0.7852, 0.7937]
+    strategy: caption-region
+    curated: false
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab01.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab01.png
+    caption: "Table 1. Dataset statistics"
+    page: 6
+    bbox_norm: [0.1677, 0.1084, 0.8039, 0.1743]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab02.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab02.png
+    caption: "Table 2. QA performance (F1 scores) on RAG benchmarks using Llama-3.3-70B-Instruct as the QA reader. No retrieval means evaluating"
+    page: 7
+    bbox_norm: [0.0808, 0.1027, 0.8945, 0.422]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab03.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab03.png
+    caption: "Table 3. Retrieval performance (passage recall@5) on RAG benchmarks. * denotes the report from the original paper. The compared"
+    page: 7
+    bbox_norm: [0.0843, 0.1659, 0.8945, 0.4255]
+    strategy: table-region
+    curated: false
+  - id: tab04
+    label: Table 4
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab04.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab04.png
+    caption: "Table 4. Ablations. We report passage recall@5 on multi-hop QA"
+    page: 8
+    bbox_norm: [0.0808, 0.1001, 0.889, 0.2602]
+    strategy: table-region
+    curated: false
+  - id: tab05
+    label: Table 5
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab05.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab05.png
+    caption: "Table 5. Reset probability factor. Passage recall@5 with different weight factors for passage nodes on our MuSiQue dev set and NaturalQuestions (NQ) dev set, where each set has 1 , 000 queries."
+    page: 8
+    bbox_norm: [0.0808, 0.1001, 0.889, 0.2602]
+    strategy: table-region
+    curated: false
+  - id: tab06
+    label: Table 6
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab06.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab06.png
+    caption: "Table 6. We show exemplary retrieval results (the title of passages) from HippoRAG 2 and NV-Embed-v2 on different types of questions."
+    page: 9
+    bbox_norm: [0.0808, 0.1245, 0.8909, 0.2573]
+    strategy: table-region
+    curated: false
+  - id: tab07
+    label: Table 7
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab07.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab07.png
+    caption: "Table 7. Robust to different dense retrievers. Passage recall@5"
+    page: 9
+    bbox_norm: [0.0808, 0.1245, 0.8909, 0.2573]
+    strategy: table-region
+    curated: false
+  - id: tab08
+    label: Table 8
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab08.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab08.png
+    caption: "Table 8. QA performance (EM / F1 scores) on RAG benchmarks. No retrieval means evaluating the parametric knowledge of the readers."
+    page: 16
+    bbox_norm: [0.0808, 0.1244, 0.8917, 0.4076]
+    strategy: table-region
+    curated: false
+  - id: tab09
+    label: Table 9
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab09.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab09.png
+    caption: "Table 9. Passage recall@2 / @5 on RAG benchmarks. * denotes the report from the original paper while we reproduce the HippoRAG"
+    page: 17
+    bbox_norm: [0.0808, 0.1245, 0.8909, 0.3886]
+    strategy: table-region
+    curated: false
+  - id: tab10
+    label: Table 10
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab10.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab10.png
+    caption: "Table 10. Knowledge graph statistics using different LLMs for OpenIE. The nodes and triples are counted based on unique values."
+    page: 18
+    bbox_norm: [0.0808, 0.1336, 0.8906, 0.4141]
+    strategy: table-region
+    curated: false
+  - id: tab11
+    label: Table 11
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab11.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab11.png
+    caption: "Table 11. Two examples from MuSiQue where passage recall@5 is less than 1.0."
+    page: 18
+    bbox_norm: [0.0808, 0.4946, 0.891, 0.8949]
+    strategy: table-region
+    curated: false
+  - id: tab12
+    label: Table 12
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab12.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab12.png
+    caption: "Table 12. We report the computational resource requirements (indexing tokens, indexing time, time per query, GPU memory requirements"
+    page: 19
+    bbox_norm: [0.0808, 0.1383, 0.8913, 0.2441]
+    strategy: table-region
+    curated: false
+  - id: tab13
+    label: Table 13
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab13.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab13.png
+    caption: "Table 13. Hyperparameters set on HippoRAG 2"
+    page: 19
+    bbox_norm: [0.3702, 0.3311, 0.6051, 0.4096]
+    strategy: table-region
+    curated: false
+  - id: tab14
+    label: Table 14
+    kind: table
+    file: assets/gutierrez-2025-from-rag-to-memory-non/tab14.png
+    raw: raw/papers/gutierrez-2025-from-rag-to-memory-non-figures/tab14.png
+    caption: "Table 14. Hyperparameters set on GraphRAG and LightRAG"
+    page: 19
+    bbox_norm: [0.2803, 0.5915, 0.695, 0.7454]
+    strategy: table-region
     curated: false
 ---
 

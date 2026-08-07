@@ -1,74 +1,353 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig01.png",
     "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig01.png",
     "page": 2,
-    "caption": "Figure 1: Structured skill composition with SkillComposer. (A) Large skill libraries create a composition bottleneck. To",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 1: Structured skill composition with SkillComposer . (A) Large skill libraries create a composition bottleneck. To solve complex tasks, an agent must decide not only which skills to use, but also their exact count and execution order. (B) Existing paradigms: directly exposing the agent to all",
+    "bbox": [
+      49.44,
+      61.06,
+      612.0,
+      210.58
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.0771,
+      1.0,
+      0.2659
+    ],
+    "dpi": 300,
+    "area_frac": 0.174,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p02.png"
   },
   {
     "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
     "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig02.png",
     "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig02.png",
     "page": 4,
     "caption": "Figure 2: Example of selecting an ordered skill sequence from a large skill library given a task and environment.",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      58.2,
+      61.26,
+      538.68,
+      225.29
+    ],
+    "bbox_norm": [
+      0.0951,
+      0.0773,
+      0.8802,
+      0.2845
+    ],
+    "dpi": 300,
+    "area_frac": 0.163,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p04.png"
   },
   {
     "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
     "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig03.png",
     "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig03.png",
     "page": 5,
-    "caption": "Figure 3: SkillComposer method overview. (A) Given a task, environment context, and compact metadata from a fixed",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 3: SkillComposer method overview. (A) Given a task, environment context, and compact metadata from a fixed skill library, SkillComposer encodes the task–library context and predicts a variable-length ordered sequence of skill indexes. (B) The autoregressive decoder produces contextual skill l",
+    "bbox": [
+      73.74,
+      61.06,
+      523.17,
+      316.04
+    ],
+    "bbox_norm": [
+      0.1205,
+      0.0771,
+      0.8549,
+      0.399
+    ],
+    "dpi": 300,
+    "area_frac": 0.236,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p05.png"
   },
   {
     "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
     "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig04.png",
     "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig04.png",
-    "page": 5,
-    "caption": "the flood-analysis task in Figure 2 as an example, the skill composing model reads the task x, the",
-    "strategy": "page-region",
-    "curated": false
+    "page": 8,
+    "caption": "Figure 4: Cardinality robustness on the in-distribution test split. Set F1 stratified by gold cardinality k , with the macro- averaged mean on the right.",
+    "bbox": [
+      292.44,
+      489.75,
+      547.44,
+      661.73
+    ],
+    "bbox_norm": [
+      0.4778,
+      0.6184,
+      0.8945,
+      0.8355
+    ],
+    "dpi": 300,
+    "area_frac": 0.09,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p08.png"
   },
   {
     "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
     "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig05.png",
     "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig05.png",
-    "page": 8,
-    "caption": "cardinality calibration separately in Figure 4. Set F1 is the order-agnostic F1 between predicted and gold",
-    "strategy": "page-region",
-    "curated": false
+    "page": 10,
+    "caption": "Figure 5: (a) Test Set F1 across the ( α, β ) decoding-weight grid; the surface is smooth and bowl-shaped around the val- selected operating point. (b) Compute–accuracy frontier on the synthetic test split: SkillComposer w/ Qwen3-Embedding is Pareto-optimal among predicted- k methods, sitting above ",
+    "bbox": [
+      49.44,
+      61.06,
+      547.44,
+      219.7
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.0771,
+      0.8945,
+      0.2774
+    ],
+    "dpi": 300,
+    "area_frac": 0.163,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p10.png"
   },
   {
     "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
     "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig06.png",
     "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig06.png",
-    "page": 10,
-    "caption": "Figure 5: (a) Test Set F1 across the (α, β) decoding-weight grid; the surface is smooth and bowl-shaped around the val-",
-    "strategy": "page-region",
-    "curated": false
+    "page": 16,
+    "caption": "Figure 6: Single-skill synthesis prompt (Gemini 2.5 Flash). Five tasks per call ensure scenario diversity at fixed cost; difficulty is balanced 2/2/1 across easy/medium/hard.",
+    "bbox": [
+      49.44,
+      217.9,
+      547.45,
+      598.09
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.2751,
+      0.8945,
+      0.7552
+    ],
+    "dpi": 300,
+    "area_frac": 0.391,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p16.png"
   },
   {
     "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
     "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig07.png",
     "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig07.png",
-    "page": 16,
-    "caption": "Figure 6: Single-skill synthesis prompt (Gemini 2.5 Flash). Five tasks per call ensure scenario diversity at",
-    "strategy": "page-region",
-    "curated": false
+    "page": 17,
+    "caption": "Figure 7: Multi-skill synthesis prompt (Gemini 2.5 Pro). Ordering constraints from dependency edges are injected verbatim when present; otherwise, Gemini proposes an execution order with rationale.",
+    "bbox": [
+      49.44,
+      227.86,
+      547.45,
+      588.13
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.2877,
+      0.8945,
+      0.7426
+    ],
+    "dpi": 300,
+    "area_frac": 0.37,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p17.png"
   },
   {
-    "id": "fig08",
-    "file": "assets/zhao-2026-generative-skill-composition-for-llm/fig08.png",
-    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig08.png",
-    "page": 17,
-    "caption": "Figure 7: Multi-skill synthesis prompt (Gemini 2.5 Pro). Ordering constraints from dependency edges",
-    "strategy": "page-region",
-    "curated": false
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/tab01.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab01.png",
+    "page": 9,
+    "caption": "Table 1: Skill prediction quality (%). Left: in-distribution synthetic test ( n =494 ). Right: real-task holdout ( n =65 ); trained models are retrained on the real-task-removed partition. Best non-oracle result in bold ; second best underlined ; oracle- cardinality retrievers (in italics ) are repo",
+    "bbox": [
+      49.44,
+      102.69,
+      547.44,
+      359.78
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1297,
+      0.8945,
+      0.4543
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/tab02.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab02.png",
+    "page": 9,
+    "caption": "Table 2: Downstream task performance on SkillsBench. Pass rate follows the paper-binary protocol, Tok. is the average input prompt tokens per non-errored trial. Best non-oracle result in bold ; second best underlined.",
+    "bbox": [
+      294.89,
+      547.86,
+      547.44,
+      677.0
+    ],
+    "bbox_norm": [
+      0.4818,
+      0.6917,
+      0.8945,
+      0.8548
+    ],
+    "dpi": 300,
+    "area_frac": 0.067,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/tab03.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab03.png",
+    "page": 10,
+    "caption": "Table 3: Model component ablation.",
+    "bbox": [
+      365.34,
+      397.01,
+      547.45,
+      507.9
+    ],
+    "bbox_norm": [
+      0.597,
+      0.5013,
+      0.8945,
+      0.6413
+    ],
+    "dpi": 300,
+    "area_frac": 0.042,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/tab04.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab04.png",
+    "page": 10,
+    "caption": "Table 4: Decode-time retrieval prior ablation.",
+    "bbox": [
+      379.17,
+      633.16,
+      506.82,
+      719.33
+    ],
+    "bbox_norm": [
+      0.6196,
+      0.7994,
+      0.8281,
+      0.9082
+    ],
+    "dpi": 300,
+    "area_frac": 0.023,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/tab05.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab05.png",
+    "page": 15,
+    "caption": "Table 5: Skill dependency graph used for grounding multi-skill synthesis.",
+    "bbox": [
+      186.17,
+      128.87,
+      410.71,
+      212.75
+    ],
+    "bbox_norm": [
+      0.3042,
+      0.1627,
+      0.6711,
+      0.2686
+    ],
+    "dpi": 300,
+    "area_frac": 0.039,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/zhao-2026-generative-skill-composition-for-llm/tab06.png",
+    "raw": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab06.png",
+    "page": 19,
+    "caption": "Table 6: Per-layer Set F1 on the synthetic test split (%, deterministic baselines only). Trained-model rows are omitted because the per-layer canonical predictions were not saved with matching record IDs; rerunning inference on the canonical checkpoints is left to a future revision.",
+    "bbox": [
+      76.33,
+      402.95,
+      520.55,
+      522.54
+    ],
+    "bbox_norm": [
+      0.1247,
+      0.5088,
+      0.8506,
+      0.6598
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/_overlay/p19.png"
   }
 ]

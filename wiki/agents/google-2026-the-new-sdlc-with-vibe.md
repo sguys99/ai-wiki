@@ -13,60 +13,104 @@ authors: "Addy Osmani, Shubham Saboo, Sokratis Kartakis"
 tags: [vibe-coding, agentic-engineering, harness-engineering, context-engineering, sdlc, coding-agents, agent-skills, conductor-orchestrator, factory-model, token-economy, capex-opex, model-routing, agents-cli, adk, mcp, a2a]
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/google-2026-the-new-sdlc-with-vibe/fig01.png
     raw: raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig01.png
-    page: 8
     caption: "From Autocomplete to Autonomy — autocomplete → inline → chat → coding agents → autonomous agents (2021~2026)"
-    strategy: page-region
+    page: 8
+    bbox_norm: [0.1061, 0.158, 0.8939, 0.5189]
+    strategy: caption-region
     curated: true
+  - id: fig02
+    label: Figure 2
+    kind: figure
+    file: assets/google-2026-the-new-sdlc-with-vibe/fig02.png
+    raw: raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig02.png
+    caption: "The Agent Loop — Perceive → Plan → Act(Tools) → Observe → iterate (self-correcting)"
+    page: 10
+    bbox_norm: [0.1078, 0.4987, 0.8922, 0.8474]
+    strategy: caption-region
+    curated: false
   - id: fig03
+    label: Figure 3
+    kind: figure
     file: assets/google-2026-the-new-sdlc-with-vibe/fig03.png
     raw: raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig03.png
-    page: 13
-    caption: "Table 1 — 6개 축으로 본 Vibe Coding → Structured AI-Assisted → Agentic Engineering 스펙트럼"
-    strategy: page-region
+    caption: "The Vibe Coding to Agentic Engineering Spectrum — 차별점은 AI 사용 여부가 아니라 output 검증 방식"
+    page: 14
+    bbox_norm: [0.1062, 0.1716, 0.8938, 0.4731]
+    strategy: caption-region
     curated: true
   - id: fig04
+    label: Figure 4
+    kind: figure
     file: assets/google-2026-the-new-sdlc-with-vibe/fig04.png
     raw: raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig04.png
-    page: 14
-    caption: "The Vibe Coding to Agentic Engineering Spectrum — 차별점은 AI 사용 여부가 아니라 output 검증 방식"
-    strategy: page-region
+    caption: "Context Engineering — Static(항상 로드, 고비용) vs Dynamic(온디맨드, 저비용) 컨텍스트 6종"
+    page: 17
+    bbox_norm: [0.1074, 0.158, 0.8926, 0.4811]
+    strategy: caption-region
     curated: true
   - id: fig05
+    label: Figure 5
+    kind: figure
     file: assets/google-2026-the-new-sdlc-with-vibe/fig05.png
     raw: raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig05.png
-    page: 17
-    caption: "Context Engineering — Static(항상 로드, 고비용) vs Dynamic(온디맨드, 저비용) 컨텍스트 6종"
-    strategy: page-region
+    caption: "Traditional SDLC vs AI-Driven SDLC — 같은 단계, 다른 병목·비율 (sprint 주 단위 → iteration 분·시간 단위)"
+    page: 20
+    bbox_norm: [0.106, 0.1591, 0.894, 0.4716]
+    strategy: caption-region
     curated: true
   - id: fig06
+    label: Figure 6
+    kind: figure
     file: assets/google-2026-the-new-sdlc-with-vibe/fig06.png
     raw: raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig06.png
-    page: 20
-    caption: "Traditional SDLC vs AI-Driven SDLC — 같은 단계, 다른 병목·비율 (sprint 주 단위 → iteration 분·시간 단위)"
-    strategy: page-region
+    caption: "The Factory Model — 개발자는 시스템을 설계, 에이전트가 코드 생산, 테스트가 output 검증 (Developer Zone / Agent Factory Floor)"
+    page: 25
+    bbox_norm: [0.1078, 0.2608, 0.8922, 0.6119]
+    strategy: caption-region
+    curated: false
+  - id: fig07
+    label: Figure 7
+    kind: figure
+    file: assets/google-2026-the-new-sdlc-with-vibe/fig07.png
+    raw: raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig07.png
+    caption: "Harness Anatomy — Agent = Model(~10%) + Harness(~90%). LLM을 감싸는 동심원 계층 (프레임워크·개발자 인터페이스·클라우드)"
+    page: 27
+    bbox_norm: [0.1062, 0.2727, 0.8912, 0.6856]
+    strategy: caption-region
     curated: true
   - id: fig08
+    label: Figure 8
+    kind: figure
     file: assets/google-2026-the-new-sdlc-with-vibe/fig08.png
     raw: raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig08.png
-    page: 27
-    caption: "Harness Anatomy — Agent = Model(~10%) + Harness(~90%). LLM을 감싸는 동심원 계층 (프레임워크·개발자 인터페이스·클라우드)"
-    strategy: page-region
+    caption: "Conductor vs Orchestrator — 실시간·동기·IDE(fine-grained) vs 비동기·고수준·멀티에이전트(delegation)"
+    page: 32
+    bbox_norm: [0.1061, 0.1577, 0.8939, 0.5917]
+    strategy: caption-region
     curated: true
   - id: fig09
+    label: Figure 9
+    kind: figure
     file: assets/google-2026-the-new-sdlc-with-vibe/fig09.png
     raw: raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig09.png
-    page: 32
-    caption: "Conductor vs Orchestrator — 실시간·동기·IDE(fine-grained) vs 비동기·고수준·멀티에이전트(delegation)"
-    strategy: page-region
-    curated: true
-  - id: fig11
-    file: assets/google-2026-the-new-sdlc-with-vibe/fig11.png
-    raw: raw/reports/google-2026-the-new-sdlc-with-vibe-figures/fig11.png
-    page: 40
     caption: "The Economics of AI Development — Vibe Coding(Low CapEx·High OpEx) vs Agentic Engineering(High CapEx·Low OpEx), crossover point"
-    strategy: page-region
+    page: 40
+    bbox_norm: [0.1062, 0.1576, 0.8938, 0.4509]
+    strategy: caption-region
+    curated: true
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/google-2026-the-new-sdlc-with-vibe/tab01.png
+    raw: raw/reports/google-2026-the-new-sdlc-with-vibe-figures/tab01.png
+    caption: "Table 1 — 6개 축으로 본 Vibe Coding → Structured AI-Assisted → Agentic Engineering 스펙트럼"
+    page: 13
+    bbox_norm: [0.1078, 0.1594, 0.8926, 0.6227]
+    strategy: table-region
     curated: true
 ---
 
@@ -107,10 +151,10 @@ Addy Osmani·Shubham Saboo·Sokratis Kartakis가 쓴 Google 백서(2026-05, 51�
 | 적정 범위 | 프로토타입·스크립트·해커톤 | 기존 코드베이스 내 기능 | 프로덕션·팀 규모 |
 | 리스크 | 높음(폐기용 OK) | 중간 | 낮음(전 단계 검증) |
 
-![[assets/google-2026-the-new-sdlc-with-vibe/fig03.png]]
+![[assets/google-2026-the-new-sdlc-with-vibe/tab01.png]]
 *Table 1: 6개 축으로 본 스펙트럼 (Osmani et al. 2026, p.13)*
 
-![[assets/google-2026-the-new-sdlc-with-vibe/fig04.png]]
+![[assets/google-2026-the-new-sdlc-with-vibe/fig03.png]]
 *Figure 3: 적정 위치는 stakes가 결정한다 — 주말 프로토타입은 순수 vibe coding, 금융 거래 API는 agentic engineering. 실력은 "어디에 선을 그을지 아는 것" (Osmani et al. 2026, p.14)*
 
 ### Context Engineering — Static vs Dynamic
@@ -124,7 +168,7 @@ Addy Osmani·Shubham Saboo·Sokratis Kartakis가 쓴 Google 백서(2026-05, 51�
 
 dynamic context 관리에서 가장 강력한 패턴은 Agent Skills다. progressive disclosure 덕분에 에이전트는 시작할 때 메타데이터만 보고, task가 맞으면 전체 지시를, 필요할 때만 심화 참조를 로드한다. 그래서 경량 제너럴리스트가 수십 개 전문 역할을 짊어지면서도 지금 쓰는 하나의 토큰만 낸다. 이 패턴 하나로 네 가지 고질병(프롬프트 과부하로 인한 context rot, LLM의 절차 기억 부재, 멀티에이전트 운영 오버헤드, 툴·벤더 이식성)이 한꺼번에 풀린다.
 
-![[assets/google-2026-the-new-sdlc-with-vibe/fig05.png]]
+![[assets/google-2026-the-new-sdlc-with-vibe/fig04.png]]
 *Figure 4: 6종 컨텍스트를 static(고비용·항상)과 dynamic(저비용·온디맨드)으로 배치하는 결정 — "무엇을 어디에?" (Osmani et al. 2026, p.17)*
 
 ### 새 SDLC — 단계별 변화
@@ -138,7 +182,7 @@ AI는 사이클을 극적이되 불균등하게 압축한다. 결과는 빨라�
 - **코드 리뷰/배포**: AI가 1차 리뷰어(버그·스타일·보안·성능)로 인간의 인지 부담을 덜어준다. 다만 인간 리뷰를 대체하진 않는다. 배포 파이프라인도 AI-aware로 헬스 모니터링·자동 롤백·리스크 예측을 한다.
 - **유지보수/진화**: 가장 과소평가된 변화다. "너무 위험해서 못 건드리던" 레거시를 안전하게 리팩터하고 현대화하며, 프레임워크 마이그레이션이나 deprecated API 갱신처럼 과거엔 미뤄지던 일이 실제로 일어난다.
 
-![[assets/google-2026-the-new-sdlc-with-vibe/fig06.png]]
+![[assets/google-2026-the-new-sdlc-with-vibe/fig05.png]]
 *Figure 5: Traditional vs AI-Driven SDLC — 같은 단계지만 병목과 비율이 다르다. sprint 주 단위 → iteration 분·시간 단위, 명세 품질이 새 병목 (Osmani et al. 2026, p.20)*
 
 ### The Factory Model
@@ -162,7 +206,7 @@ AI는 사이클을 극적이되 불균등하게 압축한다. 결과는 빨라�
 
 SDLC 단계별 하네스의 역할: ① 요구사항·계획·아키텍처 = 하네스 설정·보정(rule 파일·툴·불변 규칙 정의) → ② 구현 = 하네스 실행(샌드박스·툴 경계) → ③ 테스트·QA = 피드백 루프(orchestration이 실패 output을 모델로 되돌려 think→act→observe) → ④ 리뷰·배포·유지보수 = 관측(훅으로 하드코딩 비밀번호 커밋 차단, observability로 드리프트·비용 감사).
 
-![[assets/google-2026-the-new-sdlc-with-vibe/fig08.png]]
+![[assets/google-2026-the-new-sdlc-with-vibe/fig07.png]]
 *Figure 7: Harness Anatomy — Agent = Model(~10%) + Harness(~90%). LLM을 감싸는 동심원(프레임워크 → 개발자 인터페이스 → 클라우드). "모델은 엔진, 하네스는 차·도로·교통법규" (Osmani et al. 2026, p.27)*
 
 ### Conductor vs Orchestrator
@@ -179,7 +223,7 @@ SDLC 단계별 하네스의 역할: ① 요구사항·계획·아키텍처 = 하
 
 오케스트레이터 모드는 다른 스킬셋(명세·분해·평가·시스템 설계)을 요구한다. 여기서 마주치는 것이 80% 문제다. AI가 기능의 약 80%를 빠르게 짜지만, 나머지 20%(엣지 케이스·에러 처리·통합점·미묘한 정확성)는 현재 모델이 결여한 깊은 맥락 지식을 요구한다. AI 에러도 문법 실수에서 개념적 실패(잘못된 비즈니스 로직 가정, 모호성에 대한 확인 미요청, 엣지 케이스 누락)로 진화했다. "코드가 맞아 보이고" 기본 테스트를 통과하는 탓에 탐지하기가 더 어렵다. 이를 잘 헤쳐 나가는 개발자는 AI가 잘하는 일(잘 명세된 task의 빠른 구현)에 AI를 쓰고, 자기 주의는 AI가 약한 곳(모호한 요구·아키텍처 트레이드오프·정확성 검증)에 남긴다.
 
-![[assets/google-2026-the-new-sdlc-with-vibe/fig09.png]]
+![[assets/google-2026-the-new-sdlc-with-vibe/fig08.png]]
 *Figure 8: Conductor(실시간·동기·IDE, fine-grained) vs Orchestrator(비동기·고수준·멀티에이전트, delegation). 대부분의 개발자는 둘 사이를 유동적으로 오간다 (Osmani et al. 2026, p.32)*
 
 ### 코딩 에이전트의 3자리
@@ -203,7 +247,7 @@ SDLC 단계별 하네스의 역할: ① 요구사항·계획·아키텍처 = 하
 - **하네스 효과**: Terminal Bench 2.0에서 모델 불변·하네스만으로 Top 30 밖 → Top 5. LangChain 시스템 프롬프트·툴·미들웨어만 +13.7점.
 - **경제학**: crossover point에서 vibe coding은 기능당 3~10배 비싸진다. 그래프 표기로 vibe = 12% CapEx·높은 OpEx, agentic = 높은 CapEx·12% OpEx.
 
-![[assets/google-2026-the-new-sdlc-with-vibe/fig11.png]]
+![[assets/google-2026-the-new-sdlc-with-vibe/fig09.png]]
 *Figure 9: The Economics of AI Development — vibe coding(Low CapEx·High OpEx)은 초반 speed to first output이 강점이나 crossover point 뒤로 토큰 번·유지보수세·보안 리메디에이션이 복리로 쌓인다. agentic engineering(High CapEx·Low OpEx)은 상류 투자 후 marginal cost가 급락 (Osmani et al. 2026, p.40)*
 
 ### 경제학 — 세 가지 레버

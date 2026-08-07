@@ -1,92 +1,245 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/li-2025-a-comprehensive-survey-on-world/fig01.png",
     "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig01.png",
-    "page": 2,
-    "caption": "Fig. 1 presents an overview of the structure and taxonomy of",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig02",
-    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig02.png",
-    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig02.png",
     "page": 3,
-    "caption": "Fig. 1. Structure of this survey. The figure classifies world models along three axes and illustrates representative methods for each, providing a unified view of",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Fig. 1. Structure of this survey. The figure classifies world models along three axes and illustrates representative methods for each, providing a unified view of the field. Figure design inspired in part by [ 12 ], [ 14 ], [ 22 ], [ 23 ].",
+    "bbox": [
+      49.0,
+      50.0,
+      553.0,
+      360.57
+    ],
+    "bbox_norm": [
+      0.0801,
+      0.0631,
+      0.9036,
+      0.4553
+    ],
+    "dpi": 300,
+    "area_frac": 0.323,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/_overlay/p03.png"
   },
   {
-    "id": "fig03",
-    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig03.png",
-    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig03.png",
+    "id": "tab01",
+    "label": "Table I",
+    "kind": "table",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/tab01.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab01.png",
     "page": 4,
-    "caption": "TABLE I\nA SUMMARY OF REPRESENTATIVE WORLD MODELS IN ROBOTICS AND GENERAL-PURPOSE DOMAINS.",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "TABLE I A SUMMARY OF REPRESENTATIVE WORLD MODELS IN ROBOTICS AND GENERAL - PURPOSE DOMAINS .",
+    "bbox": [
+      42.96,
+      77.96,
+      569.03,
+      584.37
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0984,
+      0.9298,
+      0.7378
+    ],
+    "dpi": 300,
+    "area_frac": 0.55,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/_overlay/p04.png"
   },
   {
-    "id": "fig04",
-    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig04.png",
-    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig04.png",
+    "id": "tab02",
+    "label": "Table II",
+    "kind": "table",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/tab02.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab02.png",
     "page": 5,
-    "caption": "TABLE II\nA SUMMARY OF REPRESENTATIVE WORLD MODELS FOR THE AUTONOMOUS DRIVING DOMAIN.",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "TABLE II A SUMMARY OF REPRESENTATIVE WORLD MODELS FOR THE AUTONOMOUS DRIVING DOMAIN .",
+    "bbox": [
+      42.96,
+      78.3,
+      569.05,
+      410.01
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0989,
+      0.9298,
+      0.5177
+    ],
+    "dpi": 300,
+    "area_frac": 0.36,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/_overlay/p05.png"
   },
   {
-    "id": "fig05",
-    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig05.png",
-    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig05.png",
+    "id": "tab03",
+    "label": "Table III",
+    "kind": "table",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/tab03.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab03.png",
     "page": 12,
-    "caption": "TABLE III\nAN OVERVIEW OF DATA RESOURCES FOR TRAINING AND EVALUATING EMBODIED WORLD MODELS.",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "TABLE III A N OVERVIEW OF DATA RESOURCES FOR TRAINING AND EVALUATING EMBODIED WORLD MODELS .",
+    "bbox": [
+      42.96,
+      77.96,
+      569.04,
+      331.92
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0984,
+      0.9298,
+      0.4191
+    ],
+    "dpi": 300,
+    "area_frac": 0.276,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/_overlay/p12.png"
   },
   {
-    "id": "fig06",
-    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig06.png",
-    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig06.png",
+    "id": "tab04",
+    "label": "Table IV",
+    "kind": "table",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/tab04.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab04.png",
     "page": 14,
-    "caption": "TABLE IV\nPERFORMANCE COMPARISON OF VIDEO GENERATION ON THE",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "TABLE IV P ERFORMANCE COMPARISON OF VIDEO GENERATION ON THE",
+    "bbox": [
+      305.98,
+      87.91,
+      569.04,
+      292.03
+    ],
+    "bbox_norm": [
+      0.5,
+      0.111,
+      0.9298,
+      0.3687
+    ],
+    "dpi": 300,
+    "area_frac": 0.111,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/_overlay/p14.png"
   },
   {
-    "id": "fig07",
-    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig07.png",
-    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig07.png",
+    "id": "tab05",
+    "label": "Table V",
+    "kind": "table",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/tab05.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab05.png",
     "page": 15,
-    "caption": "TABLE V\nPERFORMANCE COMPARISON OF 4D OCCUPANCY FORECASTING ON THE OCC3D-NUSCENES BENCHMARK1.",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "TABLE V P ERFORMANCE COMPARISON OF 4D OCCUPANCY FORECASTING ON THE O CC 3D- NU S CENES BENCHMARK 1 .",
+    "bbox": [
+      42.96,
+      77.96,
+      569.04,
+      312.95
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0984,
+      0.9298,
+      0.3951
+    ],
+    "dpi": 300,
+    "area_frac": 0.255,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/_overlay/p15.png"
   },
   {
-    "id": "fig08",
-    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig08.png",
-    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig08.png",
+    "id": "tab06",
+    "label": "Table VI",
+    "kind": "table",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/tab06.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab06.png",
     "page": 15,
-    "caption": "TABLE VI\nPERFORMANCE COMPARISON ON THE DMC BENCHMARK1.",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "TABLE VI P ERFORMANCE COMPARISON ON THE DMC BENCHMARK 1 .",
+    "bbox": [
+      42.96,
+      366.9,
+      569.04,
+      489.73
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.4633,
+      0.9298,
+      0.6183
+    ],
+    "dpi": 300,
+    "area_frac": 0.133,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/_overlay/p15.png"
   },
   {
-    "id": "fig09",
-    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig09.png",
-    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig09.png",
+    "id": "tab07",
+    "label": "Table VII",
+    "kind": "table",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/tab07.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab07.png",
     "page": 15,
-    "caption": "TABLE VII\nPERFORMANCE COMPARISON FOR MANIPULATION TASKS ON RLBENCH.",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "TABLE VII P ERFORMANCE COMPARISON FOR MANIPULATION TASKS ON RLB ENCH .",
+    "bbox": [
+      305.98,
+      366.9,
+      569.04,
+      489.73
+    ],
+    "bbox_norm": [
+      0.5,
+      0.4633,
+      0.9298,
+      0.6183
+    ],
+    "dpi": 300,
+    "area_frac": 0.067,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/_overlay/p15.png"
   },
   {
-    "id": "fig10",
-    "file": "assets/li-2025-a-comprehensive-survey-on-world/fig10.png",
-    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/fig10.png",
+    "id": "tab08",
+    "label": "Table VIII",
+    "kind": "table",
+    "file": "assets/li-2025-a-comprehensive-survey-on-world/tab08.png",
+    "raw": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab08.png",
     "page": 16,
-    "caption": "TABLE VIII\nPERFORMANCE COMPARISON FOR OPEN-LOOP PLANNING ON THE NUSCENES VALIDATION SPLIT1.",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "TABLE VIII P ERFORMANCE COMPARISON FOR OPEN - LOOP PLANNING ON THE NU S CENES VALIDATION SPLIT 1 .",
+    "bbox": [
+      42.96,
+      77.96,
+      569.03,
+      303.66
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0984,
+      0.9298,
+      0.3834
+    ],
+    "dpi": 300,
+    "area_frac": 0.245,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2025-a-comprehensive-survey-on-world-figures/_overlay/p16.png"
   }
 ]

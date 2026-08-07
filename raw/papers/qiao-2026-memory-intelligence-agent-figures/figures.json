@@ -1,0 +1,464 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/qiao-2026-memory-intelligence-agent/fig01.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 (a). Comparisons between frontier LLMs and their MIA-enhanced counterparts on the LiveVQA (multimodal) dataset. (b). Comparisons between frontier LLMs and their MIA-enhanced counterparts on the HotpotQA (text-only) dataset. (c). Comparisons between MIA based on Qwen2.5-VL-7B Executor with l",
+    "bbox": [
+      82.26,
+      61.85,
+      525.38,
+      291.33
+    ],
+    "bbox_norm": [
+      0.1344,
+      0.0781,
+      0.8585,
+      0.3678
+    ],
+    "dpi": 300,
+    "area_frac": 0.21,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p02.png",
+    "duplicate_pages": [
+      4
+    ]
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/qiao-2026-memory-intelligence-agent/fig02.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2 A deep research process of MIA to tackle a complex and multi-hop question.",
+    "bbox": [
+      90.73,
+      49.27,
+      521.27,
+      382.91
+    ],
+    "bbox_norm": [
+      0.1483,
+      0.0622,
+      0.8517,
+      0.4835
+    ],
+    "dpi": 300,
+    "area_frac": 0.296,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/qiao-2026-memory-intelligence-agent/fig03.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 3 Reasoning process of MIA consists of three parts: Inputs & Retrieval is for retrieving memory context similar to the inputs; Research Process is for driving Planner-Executor collaboration via a planning-execution-reflection loop; Outputs & Storage is for compressing search trajectories into",
+    "bbox": [
+      100.14,
+      49.27,
+      511.9,
+      304.09
+    ],
+    "bbox_norm": [
+      0.1636,
+      0.0622,
+      0.8364,
+      0.384
+    ],
+    "dpi": 300,
+    "area_frac": 0.216,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/qiao-2026-memory-intelligence-agent/fig04.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/fig04.png",
+    "page": 7,
+    "caption": "Figure 4 Prompt for Memory Manager to extract image caption and workflow.",
+    "bbox": [
+      53.54,
+      24.18,
+      559.75,
+      236.97
+    ],
+    "bbox_norm": [
+      0.0875,
+      0.0305,
+      0.9146,
+      0.2992
+    ],
+    "dpi": 300,
+    "area_frac": 0.222,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/qiao-2026-memory-intelligence-agent/fig05.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/fig05.png",
+    "page": 9,
+    "caption": "Figure 5 The Executor is activated during the first-stage RL training and frozen in the test-time RL process, while the Planner is activated during both the second-stage RL training and the test-time RL process. The memory framework of MIA during exploration: (1) generating multiple plan rollouts; (",
+    "bbox": [
+      76.62,
+      57.78,
+      535.39,
+      298.86
+    ],
+    "bbox_norm": [
+      0.1252,
+      0.073,
+      0.8748,
+      0.3774
+    ],
+    "dpi": 300,
+    "area_frac": 0.228,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/qiao-2026-memory-intelligence-agent/fig06.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/fig06.png",
+    "page": 11,
+    "caption": "Figure 6 A novel unsupervised evaluation framework that mimics the rigorous peer-review process of scientific venues.",
+    "bbox": [
+      69.57,
+      57.78,
+      542.44,
+      240.44
+    ],
+    "bbox_norm": [
+      0.1137,
+      0.073,
+      0.8863,
+      0.3036
+    ],
+    "dpi": 300,
+    "area_frac": 0.178,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/qiao-2026-memory-intelligence-agent/fig07.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/fig07.png",
+    "page": 15,
+    "caption": "Figure 7 Left: Reward curves in each batch of Planner and Executor during the training stage. Middle: Response length in each batch of Planner and Executor during the training stage. Right: Response length in each batch of Planner during the TTL stage.",
+    "bbox": [
+      64.98,
+      276.39,
+      549.98,
+      460.4
+    ],
+    "bbox_norm": [
+      0.1062,
+      0.349,
+      0.8987,
+      0.5813
+    ],
+    "dpi": 300,
+    "area_frac": 0.184,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/qiao-2026-memory-intelligence-agent/fig08.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/fig08.png",
+    "page": 16,
+    "caption": "Figure 8 Comparisons between SOTA LLMs with MIA (the green area: MIA) and without MIA (the blue area: ReAct).",
+    "bbox": [
+      327.23,
+      181.94,
+      529.62,
+      379.41
+    ],
+    "bbox_norm": [
+      0.5347,
+      0.2297,
+      0.8654,
+      0.4791
+    ],
+    "dpi": 300,
+    "area_frac": 0.082,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/qiao-2026-memory-intelligence-agent/fig09.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/fig09.png",
+    "page": 17,
+    "caption": "Figure 9 Tool call distribution analysis. Each dot represents an individual task execution (gray indicates failures; colored indicates successful runs). The scatter and half-violin plots illustrate the frequency of tool calls among successful executions.",
+    "bbox": [
+      64.87,
+      15.05,
+      547.13,
+      241.41
+    ],
+    "bbox_norm": [
+      0.106,
+      0.019,
+      0.894,
+      0.3048
+    ],
+    "dpi": 300,
+    "area_frac": 0.225,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/qiao-2026-memory-intelligence-agent/tab01.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/tab01.png",
+    "page": 8,
+    "caption": "Table 1 Executor Training Rollout Process.",
+    "bbox": [
+      64.44,
+      285.6,
+      548.63,
+      742.88
+    ],
+    "bbox_norm": [
+      0.1053,
+      0.3606,
+      0.8965,
+      0.938
+    ],
+    "dpi": 300,
+    "area_frac": 0.457,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/qiao-2026-memory-intelligence-agent/tab02.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/tab02.png",
+    "page": 9,
+    "caption": "Table 2 Planner Training Rollout Process.",
+    "bbox": [
+      64.44,
+      455.83,
+      547.93,
+      742.88
+    ],
+    "bbox_norm": [
+      0.1053,
+      0.5755,
+      0.8953,
+      0.938
+    ],
+    "dpi": 300,
+    "area_frac": 0.286,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/qiao-2026-memory-intelligence-agent/tab03.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/tab03.png",
+    "page": 14,
+    "caption": "Table 3 Overall evaluation results on multimodal datasets for Deep Research Agent. Bold denotes the highest score in each column. Underline indicates the second-highest score in each column.",
+    "bbox": [
+      64.5,
+      90.06,
+      549.12,
+      742.88
+    ],
+    "bbox_norm": [
+      0.1054,
+      0.1137,
+      0.8973,
+      0.938
+    ],
+    "dpi": 300,
+    "area_frac": 0.653,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/qiao-2026-memory-intelligence-agent/tab04.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/tab04.png",
+    "page": 15,
+    "caption": "Table 4 Overall evaluation results on text-only datasets for Deep Research Agent. Bold denotes the highest score in each column. Underline indicates the second-highest score in each column.",
+    "bbox": [
+      90.89,
+      90.06,
+      521.11,
+      261.82
+    ],
+    "bbox_norm": [
+      0.1485,
+      0.1137,
+      0.8515,
+      0.3306
+    ],
+    "dpi": 300,
+    "area_frac": 0.152,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/qiao-2026-memory-intelligence-agent/tab05.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/tab05.png",
+    "page": 17,
+    "caption": "Table 5 Ablation study results on multimodal datasets. Bold denotes the highest score in each column.",
+    "bbox": [
+      64.44,
+      297.87,
+      547.94,
+      742.88
+    ],
+    "bbox_norm": [
+      0.1053,
+      0.3761,
+      0.8953,
+      0.938
+    ],
+    "dpi": 300,
+    "area_frac": 0.444,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/qiao-2026-memory-intelligence-agent/tab06.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/tab06.png",
+    "page": 18,
+    "caption": "Table 6 Ablation study results on text-only datasets. Bold denotes the highest score in each column.",
+    "bbox": [
+      103.43,
+      79.1,
+      508.57,
+      224.56
+    ],
+    "bbox_norm": [
+      0.169,
+      0.0999,
+      0.831,
+      0.2835
+    ],
+    "dpi": 300,
+    "area_frac": 0.122,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/qiao-2026-memory-intelligence-agent/tab07.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/tab07.png",
+    "page": 19,
+    "caption": "Table 7 MIA’s self-evolution results in an unsupervised setting. The Planner consistently uses Qwen3-8B.",
+    "bbox": [
+      64.64,
+      79.1,
+      549.22,
+      742.88
+    ],
+    "bbox_norm": [
+      0.1056,
+      0.0999,
+      0.8974,
+      0.938
+    ],
+    "dpi": 300,
+    "area_frac": 0.664,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/qiao-2026-memory-intelligence-agent/tab08.png",
+    "raw": "raw/papers/qiao-2026-memory-intelligence-agent-figures/tab08.png",
+    "page": 27,
+    "caption": "Table 8 Dataset settings used in this work.",
+    "bbox": [
+      137.35,
+      79.1,
+      472.41,
+      259.83
+    ],
+    "bbox_norm": [
+      0.2244,
+      0.0999,
+      0.7719,
+      0.3281
+    ],
+    "dpi": 300,
+    "area_frac": 0.125,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/qiao-2026-memory-intelligence-agent-figures/_overlay/p27.png"
+  }
+]

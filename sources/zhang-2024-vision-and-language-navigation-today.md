@@ -11,25 +11,34 @@ arxiv_id: "2407.07035"
 tags: [physical-ai, world-model, mobile-robot, spatial-reasoning]
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/zhang-2024-vision-and-language-navigation-today/fig01.png
     raw: raw/papers/zhang-2024-vision-and-language-navigation-today-figures/fig01.png
     caption: "LAW framework로 본 VLN 구조 — world model · human model · VLN agent 삼분과 그 사이를 잇는 grounding & reasoning / planning / dialogue (Figure 1, p.2)"
     page: 2
-    strategy: page-region
+    bbox_norm: [0.4902, 0.1536, 0.8926, 0.4048]
+    strategy: caption-region
     curated: true
   - id: fig02
+    label: Figure 2
+    kind: figure
     file: assets/zhang-2024-vision-and-language-navigation-today/fig02.png
     raw: raw/papers/zhang-2024-vision-and-language-navigation-today-figures/fig02.png
-    caption: "VLN 벤치마크 24종 분류표 — world(domain·environment) · human(turn·format·granularity) · agent(type·action space·other) · dataset collection(text·route) 축 (Table 1, p.3). 캡션 정규식이 본문 교차참조를 잡은 자리라 자동 캡션은 오탐이었고 실제 내용은 Table 1"
-    page: 3
-    strategy: page-region
-    curated: true
-  - id: fig03
-    file: assets/zhang-2024-vision-and-language-navigation-today/fig03.png
-    raw: raw/papers/zhang-2024-vision-and-language-navigation-today-figures/fig03.png
     caption: "서베이 전체 taxonomy — 세 모델별 challenge 5개와 그 아래 해법 13갈래, foundation model의 역할 4분류(Data and Knowledge · Representation · Decision Making · Task Learning), 미래 과제 5항 (Figure 2, p.5)"
     page: 5
-    strategy: page-region
+    bbox_norm: [0.1078, 0.0958, 0.8922, 0.3869]
+    strategy: caption-region
+    curated: true
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/zhang-2024-vision-and-language-navigation-today/tab01.png
+    raw: raw/papers/zhang-2024-vision-and-language-navigation-today-figures/tab01.png
+    caption: "VLN 벤치마크 24종 분류표 — world(domain·environment) · human(turn·format·granularity) · agent(type·action space·other) · dataset collection(text·route) 축 (Table 1, p.3). 캡션 정규식이 본문 교차참조를 잡은 자리라 자동 캡션은 오탐이었고 실제 내용은 Table 1"
+    page: 3
+    bbox_norm: [0.1246, 0.0986, 0.8754, 0.3941]
+    strategy: table-region
     curated: true
 ---
 

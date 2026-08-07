@@ -1,146 +1,434 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig01.png",
     "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig01.png",
     "page": 2,
-    "caption": "Figure 1 | RT-2 overview: we represent robot actions as another language, which can be cast into text tokens and",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 1 | RT-2 overview: we represent robot actions as another language, which can be cast into text tokens and trained together with Internet-scale vision-language datasets. During inference, the text tokens are de-tokenized into robot actions, enabling closed loop control. This allows us to lever",
+    "bbox": [
+      59.94,
+      78.48,
+      552.85,
+      261.5
+    ],
+    "bbox_norm": [
+      0.1007,
+      0.0932,
+      0.9287,
+      0.3106
+    ],
+    "dpi": 300,
+    "area_frac": 0.18,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p02.png"
   },
   {
     "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
     "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig02.png",
     "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig02.png",
-    "page": 3,
-    "caption": "Some example highlights are shown in Figure 2. The model is able to re-purpose pick and place",
-    "strategy": "page-region",
-    "curated": false
+    "page": 5,
+    "caption": "Figure 2 | RT-2 is able to generalize to a variety of real-world situations that require reasoning, symbol understanding, and human recognition. We study these challenging scenarios in detail in Section 4 .",
+    "bbox": [
+      58.71,
+      158.54,
+      536.58,
+      534.53
+    ],
+    "bbox_norm": [
+      0.0986,
+      0.1883,
+      0.9014,
+      0.6349
+    ],
+    "dpi": 300,
+    "area_frac": 0.359,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p05.png"
   },
   {
     "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
     "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig03.png",
     "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig03.png",
-    "page": 5,
-    "caption": "Figure 2 | RT-2 is able to generalize to a variety of real-world situations that require reasoning, symbol",
-    "strategy": "page-region",
-    "curated": false
+    "page": 7,
+    "caption": "Figure 3 | Example generalization scenarios used for evaluation in Figures 4 and 6b and Tables 4 and 6 .",
+    "bbox": [
+      46.64,
+      516.88,
+      540.49,
+      630.72
+    ],
+    "bbox_norm": [
+      0.0783,
+      0.6139,
+      0.908,
+      0.7492
+    ],
+    "dpi": 300,
+    "area_frac": 0.112,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p07.png"
   },
   {
     "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
     "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig04.png",
     "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig04.png",
-    "page": 7,
-    "caption": "Figure 3 | Example generalization scenarios used for evaluation in Figures 4 and 6b and Tables 4 and 6.",
-    "strategy": "page-region",
-    "curated": false
+    "page": 8,
+    "caption": "Figure 4 | Overall performance of two instantiations of RT-2 and baselines across seen training tasks as well as unseen evaluations measuring generalization to novel objects, novel backgrounds, and novel environments. Appendix Table 4 details the full results.",
+    "bbox": [
+      56.36,
+      197.78,
+      538.92,
+      322.58
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.2349,
+      0.9053,
+      0.3832
+    ],
+    "dpi": 300,
+    "area_frac": 0.12,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p08.png"
   },
   {
     "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
     "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig05.png",
     "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig05.png",
-    "page": 8,
-    "caption": "Figure 3 shows example generalization evaluations, which are split into unseen categories (objects,",
-    "strategy": "page-region",
-    "curated": false
+    "page": 9,
+    "caption": "Figure 5 | Real-world out-of-distribution behaviors in the Language Table environment. Identical RT-2-PaLI-3B model checkpoint is used as in Tab. 1 .",
+    "bbox": [
+      72.0,
+      79.04,
+      333.37,
+      157.79
+    ],
+    "bbox_norm": [
+      0.1209,
+      0.0939,
+      0.56,
+      0.1874
+    ],
+    "dpi": 300,
+    "area_frac": 0.041,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p09.png"
   },
   {
     "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
     "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig06.png",
     "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig06.png",
-    "page": 8,
-    "caption": "Figure 4 | Overall performance of two instantiations of RT-2 and baselines across seen training tasks as well as",
-    "strategy": "page-region",
-    "curated": false
+    "page": 10,
+    "caption": "Figure 6 | Quantitative performance of RT-2 across ( 6a ) emergent skills and ( 6b ) size and training ablations. Appendix Tables 5 and 6 detail the full numerical results.",
+    "bbox": [
+      58.8,
+      79.04,
+      537.16,
+      248.24
+    ],
+    "bbox_norm": [
+      0.0988,
+      0.0939,
+      0.9024,
+      0.2949
+    ],
+    "dpi": 300,
+    "area_frac": 0.162,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p10.png"
   },
   {
     "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
     "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig07.png",
     "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig07.png",
-    "page": 9,
-    "caption": "Figure 5 | Real-world out-of-distribution behaviors in the",
-    "strategy": "page-region",
-    "curated": false
+    "page": 11,
+    "caption": "Figure 7 | Rollouts of RT-2 with chain-of-thought reasoning, where RT-2 generates both a plan and an action.",
+    "bbox": [
+      56.36,
+      79.04,
+      542.85,
+      345.83
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9119,
+      0.4108
+    ],
+    "dpi": 300,
+    "area_frac": 0.259,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p11.png"
   },
   {
     "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
     "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig08.png",
     "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig08.png",
-    "page": 9,
-    "caption": "such interactions in Figure 2. We find through our explorations that RT-2 inherits novel capabilities",
-    "strategy": "page-region",
-    "curated": false
+    "page": 22,
+    "caption": "Figure 8 | An overview of some of the evaluation scenarios used to study the emergent capabilities of RT-2. They focus on three broad categories, which are (a) reasoning, (b) symbol understanding, and (c) human recognition. The visualized instructions are a subset of the full instructions, which are",
+    "bbox": [
+      58.71,
+      79.04,
+      536.91,
+      324.14
+    ],
+    "bbox_norm": [
+      0.0986,
+      0.0939,
+      0.902,
+      0.385
+    ],
+    "dpi": 300,
+    "area_frac": 0.234,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p22.png"
   },
   {
     "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
     "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig09.png",
     "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig09.png",
-    "page": 10,
-    "caption": "Figure 6 | Quantitative performance of RT-2 across (6a) emergent skills and (6b) size and training ablations.",
-    "strategy": "page-region",
-    "curated": false
+    "page": 23,
+    "caption": "Figure 9 | Qualitative example failure cases in the real-world failing to generalize to unseen object dynamics .",
+    "bbox": [
+      51.85,
+      248.84,
+      542.28,
+      485.41
+    ],
+    "bbox_norm": [
+      0.0871,
+      0.2956,
+      0.911,
+      0.5766
+    ],
+    "dpi": 300,
+    "area_frac": 0.232,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p23.png"
   },
   {
     "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
     "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig10.png",
     "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig10.png",
-    "page": 10,
-    "caption": "model. Rollouts of RT-2 with chain-of-thought reasoning are shown in Figure 7 and in Appendix I.",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig11",
-    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig11.png",
-    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig11.png",
-    "page": 11,
-    "caption": "Figure 7 | Rollouts of RT-2 with chain-of-thought reasoning, where RT-2 generates both a plan and an action.",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig12",
-    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig12.png",
-    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig12.png",
-    "page": 22,
-    "caption": "Figure 8 | An overview of some of the evaluation scenarios used to study the emergent capabilities of RT-2.",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig13",
-    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig13.png",
-    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig13.png",
-    "page": 23,
-    "caption": "In Fig. 9 we provide examples of a notable type of failure case in the Language Table setting, with the",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig14",
-    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig14.png",
-    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig14.png",
-    "page": 24,
-    "caption": "E, as described in Sec. 4.4, in Figure 10.",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig15",
-    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig15.png",
-    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig15.png",
     "page": 25,
     "caption": "Figure 10 | Additional examples of RT-2 with chain-of-thought reasoning",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      58.71,
+      295.3,
+      536.61,
+      524.88
+    ],
+    "bbox_norm": [
+      0.0986,
+      0.3508,
+      0.9015,
+      0.6235
+    ],
+    "dpi": 300,
+    "area_frac": 0.219,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p25.png"
   },
   {
-    "id": "fig16",
-    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig16.png",
-    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig16.png",
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab01.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab01.png",
+    "page": 9,
+    "caption": "Table 1 | Performance on the simulated Language-Table tasks ( Lynch and Ser- manet , 2020 ).",
+    "bbox": [
+      340.46,
+      86.77,
+      525.61,
+      157.36
+    ],
+    "bbox_norm": [
+      0.5719,
+      0.1031,
+      0.883,
+      0.1869
+    ],
+    "dpi": 300,
+    "area_frac": 0.026,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab02.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab02.png",
     "page": 26,
-    "caption": "scenarios if shown in Figure 3.",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Table 2 | Natural language instructions used for evaluations testing controlled distribution shifts along the dimension of novel objects, novel environments, and novel backgrounds. For each category, we introduce evaluation settings with smaller distribution shifts as well as larger distribution shi",
+    "bbox": [
+      91.46,
+      79.47,
+      503.81,
+      727.87
+    ],
+    "bbox_norm": [
+      0.1537,
+      0.0944,
+      0.8463,
+      0.8646
+    ],
+    "dpi": 300,
+    "area_frac": 0.533,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab03.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab03.png",
+    "page": 22,
+    "caption": "Table 3 | Natural language instructions used for quantitative emergent evalutions.",
+    "bbox": [
+      79.7,
+      364.21,
+      515.58,
+      706.23
+    ],
+    "bbox_norm": [
+      0.1339,
+      0.4326,
+      0.8661,
+      0.8389
+    ],
+    "dpi": 300,
+    "area_frac": 0.297,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab04.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab04.png",
+    "page": 23,
+    "caption": "Table 4 | Overall performance of two instantiations of RT-2 and baselines across seen training tasks as well as unseen evaluations measuring generalization to novel objects, novel backgrounds, and novel environments.",
+    "bbox": [
+      57.09,
+      619.85,
+      535.97,
+      724.56
+    ],
+    "bbox_norm": [
+      0.0959,
+      0.7363,
+      0.9004,
+      0.8606
+    ],
+    "dpi": 300,
+    "area_frac": 0.1,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab05.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab05.png",
+    "page": 24,
+    "caption": "Table 5 | Performance of RT-2 and baselines on quantitative emergent evaluations.",
+    "bbox": [
+      56.03,
+      59.61,
+      540.74,
+      234.02
+    ],
+    "bbox_norm": [
+      0.0941,
+      0.0708,
+      0.9084,
+      0.278
+    ],
+    "dpi": 300,
+    "area_frac": 0.169,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab06.png",
+    "raw": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab06.png",
+    "page": 24,
+    "caption": "Table 6 | Ablations of RT-2 showcasing the impact of parameter count and training strategy on generalization.",
+    "bbox": [
+      85.86,
+      349.26,
+      507.2,
+      444.04
+    ],
+    "bbox_norm": [
+      0.1442,
+      0.4148,
+      0.852,
+      0.5274
+    ],
+    "dpi": 300,
+    "area_frac": 0.08,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/_overlay/p24.png"
   }
 ]

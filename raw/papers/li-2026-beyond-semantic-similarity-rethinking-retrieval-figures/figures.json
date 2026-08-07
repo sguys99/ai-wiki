@@ -1,0 +1,353 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/fig01.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Pareto frontier of performance vs. cost on BrowseComp-Plus, comparing two paradigms: retrieval ( Qwen3-Embed-8B retriever) and our proposed direct corpus interaction (two DCI-Agents ⋆ and ⋆ ) . The x-axis shows the estimated API cost over the entire evaluation set.",
+    "bbox": [
+      110.65,
+      528.42,
+      498.86,
+      664.69
+    ],
+    "bbox_norm": [
+      0.1808,
+      0.6672,
+      0.8151,
+      0.8393
+    ],
+    "dpi": 300,
+    "area_frac": 0.109,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/fig02.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Two retrieval interfaces for agentic search. ( Left ) Retriever-mediated retrieval relies on offline indexing over a corpus and a retriever: the agent queries the retriever and reasons over the returned top- k candidates. ( Right ) In contrast , direct corpus interaction bypasses preproces",
+    "bbox": [
+      102.0,
+      66.0,
+      509.94,
+      207.28
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8332,
+      0.2617
+    ],
+    "dpi": 300,
+    "area_frac": 0.119,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/fig03.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 3: Visualization of runtime context-management strategies for long-horizon DCI. We use three mechanisms (i.e., tool-result truncation, history compaction, and summarization) to mitigate context pressure while preserving the search trajectory structure.",
+    "bbox": [
+      105.96,
+      65.99,
+      506.04,
+      252.59
+    ],
+    "bbox_norm": [
+      0.1731,
+      0.0833,
+      0.8269,
+      0.3189
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/fig04.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/fig04.png",
+    "page": 9,
+    "caption": "Figure 4: Left: Results on all 830 BrowseComp-Plus questions with the Sonnet 4.6 backbone, comparing DCI-Agent-CC to the retrieval agent using Qwen3-Embedding-8B as the retriever. Right: Distribution of tool calls and Bash intents across all DCI-Agent-CC runs, illustrating how the dominant Bash tool",
+    "bbox": [
+      102.0,
+      66.0,
+      510.0,
+      239.54
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3025
+    ],
+    "dpi": 300,
+    "area_frac": 0.146,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/fig05.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/fig05.png",
+    "page": 10,
+    "caption": "Figure 5: Corpus-scaling results for DCI-Agent- CC on a BrowseComp-Plus subset ( n = 100).",
+    "bbox": [
+      101.75,
+      121.94,
+      511.74,
+      577.94
+    ],
+    "bbox_norm": [
+      0.1663,
+      0.154,
+      0.8362,
+      0.7297
+    ],
+    "dpi": 300,
+    "area_frac": 0.386,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/fig06.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/fig06.png",
+    "page": 21,
+    "caption": "Figure 6: Distribution of Bash command patterns in DCI-Agent-Lite trajectories across 100 cases (3,168 commands total). The ratios aggregate command usage across both correct and incorrect runs and show that the agent relies primarily on compositional search operators such as rg | head and rg | rg ,",
+    "bbox": [
+      150.26,
+      66.0,
+      459.25,
+      252.88
+    ],
+    "bbox_norm": [
+      0.2455,
+      0.0833,
+      0.7504,
+      0.3193
+    ],
+    "dpi": 300,
+    "area_frac": 0.119,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/tab01.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/tab01.png",
+    "page": 5,
+    "caption": "Table 1: Runtime context-management profiles.",
+    "bbox": [
+      280.07,
+      501.52,
+      503.93,
+      584.0
+    ],
+    "bbox_norm": [
+      0.4576,
+      0.6332,
+      0.8234,
+      0.7374
+    ],
+    "dpi": 300,
+    "area_frac": 0.038,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/tab02.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/tab02.png",
+    "page": 8,
+    "caption": "Table 2: Accuracy on multi-hop QA benchmarks. ∆ Avg. denotes the improvement in average accuracy over ASearcher-Local-14B, the strongest retrieval-agent baseline. Bold and underlined entries mark the best and second-best results in each column, respectively.",
+    "bbox": [
+      114.21,
+      106.1,
+      495.55,
+      252.48
+    ],
+    "bbox_norm": [
+      0.1866,
+      0.134,
+      0.8097,
+      0.3188
+    ],
+    "dpi": 300,
+    "area_frac": 0.115,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/tab03.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/tab03.png",
+    "page": 8,
+    "caption": "Table 3: NDCG@10 on IR ranking benchmarks. ∆ Avg. denotes the improvement in average accuracy over ReasonRank-32B, the strongest conventional retrieval baseline. Bold and underlined entries mark the best and second-best results in each column, respectively.",
+    "bbox": [
+      114.91,
+      291.99,
+      494.85,
+      473.1
+    ],
+    "bbox_norm": [
+      0.1878,
+      0.3687,
+      0.8086,
+      0.5974
+    ],
+    "dpi": 300,
+    "area_frac": 0.142,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/tab04.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/tab04.png",
+    "page": 10,
+    "caption": "Table 4: Trajectory analysis on a BrowseComp-Plus subset ( n = 100). As mentioned in § 3.3 , coverage is computed over per–gold-document hit lists using three aggregations: any , mean (recall), and all ; Avg. localization averages the best segment-level localization score across matched gold documen",
+    "bbox": [
+      102.0,
+      121.94,
+      508.07,
+      208.31
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.154,
+      0.8302,
+      0.263
+    ],
+    "dpi": 300,
+    "area_frac": 0.072,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/tab05.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/tab05.png",
+    "page": 10,
+    "caption": "Table 5: Tool-profile ablation on a BrowseComp- Plus subset ( n = 100). Bold denotes the best result.",
+    "bbox": [
+      307.2,
+      522.86,
+      505.74,
+      605.22
+    ],
+    "bbox_norm": [
+      0.502,
+      0.6602,
+      0.8264,
+      0.7642
+    ],
+    "dpi": 300,
+    "area_frac": 0.034,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/tab06.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/tab06.png",
+    "page": 11,
+    "caption": "Table 6: DCI-Agent-Lite (GPT-5.4 nano) context-management ablation on a BrowseComp-Plus subset ( n = 100). Retained cov. is the fraction of gold evidence documents remaining in the final conversation state. Parenthesized deltas in Retained cov. and Acc. are computed relative to the L0 baseline. Bold",
+    "bbox": [
+      157.39,
+      121.99,
+      452.37,
+      209.26
+    ],
+    "bbox_norm": [
+      0.2572,
+      0.154,
+      0.7392,
+      0.2642
+    ],
+    "dpi": 300,
+    "area_frac": 0.053,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/li-2026-beyond-semantic-similarity-rethinking-retrieval/tab07.png",
+    "raw": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/tab07.png",
+    "page": 19,
+    "caption": "Table 7: Retrieval corpus statistics. Avg. len. is the mean document length measured in whitespace- split words.",
+    "bbox": [
+      120.6,
+      100.17,
+      489.16,
+      222.51
+    ],
+    "bbox_norm": [
+      0.1971,
+      0.1265,
+      0.7993,
+      0.2809
+    ],
+    "dpi": 300,
+    "area_frac": 0.093,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval-figures/_overlay/p19.png"
+  }
+]

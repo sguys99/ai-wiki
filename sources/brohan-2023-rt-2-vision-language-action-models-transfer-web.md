@@ -12,74 +12,164 @@ url: "https://robotics-transformer2.github.io"
 tags: [physical-ai, vla, manipulation, robot-learning]
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig01.png
     raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig01.png
     caption: "RT-2 개요 — 로봇 액션을 텍스트 토큰으로 표현해 인터넷 규모 VQA와 함께 co-fine-tune하고, 추론 때 de-tokenize해 closed-loop 제어 (paper Figure 1)"
     page: 2
-    strategy: page-region
+    bbox_norm: [0.1007, 0.0932, 0.9287, 0.3106]
+    strategy: caption-region
     curated: true
-  - id: fig03
-    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig03.png
-    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig03.png
+  - id: fig02
+    label: Figure 2
+    kind: figure
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig02.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig02.png
     caption: "RT-2가 일반화하는 실세계 상황 15종 — 추론·기호 이해·인물 인식 (move banana to Germany 등) (paper Figure 2)"
     page: 5
-    strategy: page-region
+    bbox_norm: [0.0986, 0.1883, 0.9014, 0.6349]
+    strategy: caption-region
     curated: true
-  - id: fig04
-    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig04.png
-    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig04.png
+  - id: fig03
+    label: Figure 3
+    kind: figure
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig03.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig03.png
     caption: "일반화 평가 시나리오 — (a) unseen objects (b) unseen backgrounds (c) unseen environments (paper Figure 3)"
     page: 7
-    strategy: page-region
+    bbox_norm: [0.0783, 0.6139, 0.908, 0.7492]
+    strategy: caption-region
     curated: false
-  - id: fig06
-    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig06.png
-    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig06.png
+  - id: fig04
+    label: Figure 4
+    kind: figure
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig04.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig04.png
     caption: "seen·unseen 전반 성능 막대그래프 — RT-2 두 종 vs RT-1·MOO·VC-1·R3M (paper Figure 4)"
     page: 8
-    strategy: page-region
+    bbox_norm: [0.0947, 0.2349, 0.9053, 0.3832]
+    strategy: caption-region
     curated: true
-  - id: fig07
-    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig07.png
-    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig07.png
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig05.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig05.png
     caption: "Language-Table 시뮬레이션의 실세계 OOD 동작 (새 밀기 태스크·처음 보는 객체 targeting) (paper Figure 5)"
     page: 9
-    strategy: page-region
+    bbox_norm: [0.1209, 0.0939, 0.56, 0.1874]
+    strategy: caption-region
     curated: false
-  - id: fig09
-    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig09.png
-    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig09.png
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig06.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig06.png
     caption: "(6a) emergent skill 평가 비교 (6b) 파라미터 수·학습 전략 ablation 막대그래프 (paper Figure 6)"
     page: 10
-    strategy: page-region
+    bbox_norm: [0.0988, 0.0939, 0.9024, 0.2949]
+    strategy: caption-region
     curated: true
-  - id: fig11
-    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig11.png
-    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig11.png
+  - id: fig07
+    label: Figure 7
+    kind: figure
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig07.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig07.png
     caption: "chain-of-thought 롤아웃 — plan과 action을 함께 생성 (즉석 망치로 돌 고르기 등) (paper Figure 7)"
     page: 11
-    strategy: page-region
+    bbox_norm: [0.0947, 0.0939, 0.9119, 0.4108]
+    strategy: caption-region
     curated: true
-  - id: fig12
-    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig12.png
-    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig12.png
+  - id: fig08
+    label: Figure 8
+    kind: figure
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig08.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig08.png
     caption: "emergent 능력 평가 장면 3범주 — reasoning·symbol understanding·human recognition (paper Figure 8, Appendix)"
     page: 22
-    strategy: page-region
+    bbox_norm: [0.0986, 0.0939, 0.902, 0.385]
+    strategy: caption-region
     curated: false
-  - id: fig13
-    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig13.png
-    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig13.png
+  - id: fig09
+    label: Figure 9
+    kind: figure
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig09.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig09.png
     caption: "Language-Table 실패 사례 — unseen object dynamics 일반화 실패 + 전체 성능 Table 4 (paper Figure 9, Appendix)"
     page: 23
-    strategy: page-region
+    bbox_norm: [0.0871, 0.2956, 0.911, 0.5766]
+    strategy: caption-region
     curated: false
-  - id: fig15
-    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig15.png
-    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig15.png
+  - id: fig10
+    label: Figure 10
+    kind: figure
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig10.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/fig10.png
     caption: "chain-of-thought 추가 롤아웃 예시 (paper Figure 10, Appendix)"
     page: 25
-    strategy: page-region
+    bbox_norm: [0.0986, 0.3508, 0.9015, 0.6235]
+    strategy: caption-region
+    curated: false
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab01.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab01.png
+    caption: "Table 1 | Performance on the simulated Language-Table tasks ( Lynch and Ser- manet , 2020 )."
+    page: 9
+    bbox_norm: [0.5719, 0.1031, 0.883, 0.1869]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab02.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab02.png
+    caption: "Table 2 | Natural language instructions used for evaluations testing controlled distribution shifts along the dimension of novel objects, novel environments, and novel backgrounds. For each category, we introduce evaluation settings with smaller distribution shifts as well as larger distribution shi"
+    page: 26
+    bbox_norm: [0.1537, 0.0944, 0.8463, 0.8646]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab03.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab03.png
+    caption: "Table 3 | Natural language instructions used for quantitative emergent evalutions."
+    page: 22
+    bbox_norm: [0.1339, 0.4326, 0.8661, 0.8389]
+    strategy: table-region
+    curated: false
+  - id: tab04
+    label: Table 4
+    kind: table
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab04.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab04.png
+    caption: "Table 4 | Overall performance of two instantiations of RT-2 and baselines across seen training tasks as well as unseen evaluations measuring generalization to novel objects, novel backgrounds, and novel environments."
+    page: 23
+    bbox_norm: [0.0959, 0.7363, 0.9004, 0.8606]
+    strategy: table-region
+    curated: false
+  - id: tab05
+    label: Table 5
+    kind: table
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab05.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab05.png
+    caption: "Table 5 | Performance of RT-2 and baselines on quantitative emergent evaluations."
+    page: 24
+    bbox_norm: [0.0941, 0.0708, 0.9084, 0.278]
+    strategy: table-region
+    curated: false
+  - id: tab06
+    label: Table 6
+    kind: table
+    file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab06.png
+    raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab06.png
+    caption: "Table 6 | Ablations of RT-2 showcasing the impact of parameter count and training strategy on generalization."
+    page: 24
+    bbox_norm: [0.1442, 0.4148, 0.852, 0.5274]
+    strategy: table-region
     curated: false
 ---
 

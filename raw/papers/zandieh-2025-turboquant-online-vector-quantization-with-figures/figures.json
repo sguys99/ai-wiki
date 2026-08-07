@@ -1,47 +1,191 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/fig01.png",
     "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig01.png",
     "page": 16,
-    "caption": "Figure 1: Error distribution of TurboQuantprod and TurboQuantmse for Inner Product Estima-",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 1: Error distribution of TurboQuant prod and TurboQuant mse for Inner Product Estima- tion.",
+    "bbox": [
+      64.87,
+      64.73,
+      547.11,
+      346.72
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0817,
+      0.894,
+      0.4378
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/_overlay/p16.png"
   },
   {
     "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
     "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/fig02.png",
     "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig02.png",
     "page": 17,
-    "caption": "Figure 2: The variance of Inner-product error remains constant for TurboQuantprod, while in",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 2: The variance of Inner-product error remains constant for TurboQuant prod , while in TurboQuant mse increases with the average inner product. Bit-width is b = 2.",
+    "bbox": [
+      64.87,
+      64.73,
+      586.52,
+      346.72
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0817,
+      0.9584,
+      0.4378
+    ],
+    "dpi": 300,
+    "area_frac": 0.303,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/_overlay/p17.png"
   },
   {
     "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
     "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/fig03.png",
     "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig03.png",
     "page": 18,
-    "caption": "Figure 3: Comparison of inner-product error and MSE against theoretical bounds across different",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 3: Comparison of inner-product error and MSE against theoretical bounds across different bit ratios.",
+    "bbox": [
+      104.1,
+      79.28,
+      504.25,
+      279.37
+    ],
+    "bbox_norm": [
+      0.1701,
+      0.1001,
+      0.8239,
+      0.3527
+    ],
+    "dpi": 300,
+    "area_frac": 0.165,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/_overlay/p18.png"
   },
   {
     "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
     "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/fig04.png",
     "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig04.png",
     "page": 19,
-    "caption": "Figure 4: Evaluation of Llama-3.1-8B-Instruct on the “Needle-In-A-Haystack” test, where a",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 4: Evaluation of Llama-3.1-8B-Instruct on the “Needle-In-A-Haystack” test, where a model must retrieve a hidden sentence from long-context sequences. While some methods struggle with recall, TurboQuant , despite being more than 4 × quantized, achieves the same exact perfor- mance as the uncom",
+    "bbox": [
+      70.84,
+      59.35,
+      572.31,
+      323.94
+    ],
+    "bbox_norm": [
+      0.1158,
+      0.0749,
+      0.9352,
+      0.409
+    ],
+    "dpi": 300,
+    "area_frac": 0.274,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/_overlay/p19.png"
   },
   {
     "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
     "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/fig05.png",
     "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/fig05.png",
     "page": 21,
     "caption": "Figure 5: Recall comparison on different datasets with different embedding dimensions.",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      76.82,
+      79.27,
+      559.88,
+      218.24
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.1001,
+      0.9148,
+      0.2756
+    ],
+    "dpi": 300,
+    "area_frac": 0.138,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/tab01.png",
+    "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/tab01.png",
+    "page": 20,
+    "caption": "Table 1: LongBench-V1 [ 10 ] results of various KV cache compression methods on Llama - 3 . 1 - 8B - Instruct .",
+    "bbox": [
+      71.13,
+      60.73,
+      556.84,
+      214.87
+    ],
+    "bbox_norm": [
+      0.1162,
+      0.0767,
+      0.9099,
+      0.2713
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/zandieh-2025-turboquant-online-vector-quantization-with/tab02.png",
+    "raw": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/tab02.png",
+    "page": 20,
+    "caption": "Table 2: Quantization time (in seconds) for different approaches across various dimensions using 4-bit quantization.",
+    "bbox": [
+      148.15,
+      264.62,
+      463.85,
+      331.26
+    ],
+    "bbox_norm": [
+      0.2421,
+      0.3341,
+      0.7579,
+      0.4183
+    ],
+    "dpi": 300,
+    "area_frac": 0.043,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zandieh-2025-turboquant-online-vector-quantization-with-figures/_overlay/p20.png"
   }
 ]

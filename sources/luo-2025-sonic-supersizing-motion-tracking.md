@@ -11,102 +11,214 @@ arxiv_id: "2511.07820"
 tags: [physical-ai, humanoid, imitation-learning, vla]
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/luo-2025-sonic-supersizing-motion-tracking/fig01.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig01.png
     caption: "하나의 정책이 다루는 입력·인터페이스 전경 — 영상 teleoperation, VR 전신/키포인트, kinematic planner, 텍스트·음악 제어, VLA 자율 실행 (Figure 1, p.2)"
     page: 2
-    strategy: page-region
+    bbox_norm: [0.0947, 0.0939, 0.9053, 0.6076]
+    strategy: caption-region
     curated: true
+  - id: figs1
+    label: Figure S1
+    kind: figure
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/figs1.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs1.png
+    caption: "Figure S1: Out-of-distribution motion sequences from the test-content split. Top four rows: unseen motions successfully tracked (hip-hop dance, stage bow, sword lunge, roundhouse kick). Bottom two rows: unseen motions where tracking fails (zombie crawl, cross-legged sit)."
+    page: 30
+    bbox_norm: [0.0947, 0.2636, 0.9053, 0.6819]
+    strategy: caption-region
+    curated: false
   - id: fig02
+    label: Figure 2
+    kind: figure
     file: assets/luo-2025-sonic-supersizing-motion-tracking/fig02.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig02.png
-    caption: "(오탐) 본문 교차참조 'shown in Fig. 1'이 잡힌 p.3 — 도식 없음"
-    page: 3
-    strategy: page-region
-    curated: false
-  - id: fig03
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig03.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig03.png
     caption: "12패널 종합 결과 — (a-c) 데이터·모델·compute 3축 스케일링, (d-g) 트래커 베이스라인 비교, (h-j) OpenHomie 속도추종 비교, (k-l) sim2real 전이 (Figure 2, p.4)"
     page: 4
-    strategy: page-region
+    bbox_norm: [0.0947, 0.0939, 0.9053, 0.6695]
+    strategy: caption-region
     curated: true
-  - id: fig04
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig04.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig04.png
-    caption: "(오탐) 본문 교차참조 'In Fig. 2 (top row)'가 잡힌 p.5 — 도식 없음"
-    page: 5
-    strategy: page-region
+  - id: figs2
+    label: Figure S2
+    kind: figure
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/figs2.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs2.png
+    caption: "Figure S2: Representative motions from the 123-sequence real-world evaluation set. All shown motions are successfully tracked on the physical Unitree G1 robot."
+    page: 32
+    bbox_norm: [0.0947, 0.1423, 0.9053, 0.5802]
+    strategy: caption-region
     curated: false
-  - id: fig05
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig05.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig05.png
-    caption: "(오탐) 본문 교차참조 'as shown in ... Fig. 3'이 잡힌 p.6 — 도식 없음"
-    page: 6
-    strategy: page-region
-    curated: false
-  - id: fig06
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig06.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig06.png
+  - id: fig03
+    label: Figure 3
+    kind: figure
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig03.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig03.png
     caption: "kinematic planner의 인터랙티브 제어 — 속도·방향·스타일 전환 내비게이션, 임의 높이의 스쿼트·무릎보행·기어가기, 반응형 복싱 (Figure 3, p.7)"
     page: 7
-    strategy: page-region
+    bbox_norm: [0.1026, 0.0939, 0.8974, 0.7654]
+    strategy: caption-region
     curated: true
-  - id: fig07
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig07.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig07.png
-    caption: "(오탐) 본문 교차참조 'As shown in Fig. 4 (top)'이 잡힌 p.7 — Figure 3과 같은 페이지"
-    page: 7
-    strategy: page-region
+  - id: figs3
+    label: Figure S3
+    kind: figure
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/figs3.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs3.png
+    caption: "Figure S3: Robustness test: an approximately 11 kg (25 lb) object is dropped onto the robot from above head height during policy execution. The robot absorbs the impact, maintains balance, and continues tracking. No recovery module or policy adaptation is used."
+    page: 32
+    bbox_norm: [0.0947, 0.7124, 0.9053, 0.8033]
+    strategy: caption-region
     curated: false
-  - id: fig08
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig08.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig08.png
+  - id: fig04
+    label: Figure 4
+    kind: figure
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig04.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig04.png
     caption: "영상 teleoperation, 텍스트·음악 멀티모달 제어, VR 전신 teleoperation의 시간축 전환 (Figure 4, p.8)"
     page: 8
-    strategy: page-region
+    bbox_norm: [0.0443, 0.0939, 1.0, 0.6137]
+    strategy: caption-region
     curated: false
-  - id: fig09
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig09.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig09.png
+  - id: figs4
+    label: Figure S4
+    kind: figure
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/figs4.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs4.png
+    caption: "Figure S4: OpenHomie velocity tracking evaluation vs. compute scale. Left: mean velocity tracking error (m/s). Right: survival rate (%)."
+    page: 34
+    bbox_norm: [0.1737, 0.0939, 0.8263, 0.351]
+    strategy: caption-region
+    curated: false
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig05.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig05.png
     caption: "VLA 주도 loco-manipulation 5개 과제의 시간축 롤아웃과 성공률 표 — 페달 밟아 쓰레기통 열기, 캔 버리기 등 (Figure 5 + Table 1, p.10)"
     page: 10
-    strategy: page-region
+    bbox_norm: [0.0947, 0.1087, 0.9053, 0.6268]
+    strategy: caption-region
     curated: true
-  - id: fig10
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig10.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig10.png
-    caption: "(오탐) 본문 교차참조 'seen in Fig. 6'이 잡힌 p.12 — 도식 없음"
-    page: 12
-    strategy: page-region
+  - id: figs5
+    label: Figure S5
+    kind: figure
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/figs5.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs5.png
+    caption: "Figure S5: Overview of the deployment architecture of SONIC ."
+    page: 36
+    bbox_norm: [0.0947, 0.0939, 0.9053, 0.4076]
+    strategy: caption-region
     curated: false
-  - id: fig11
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig11.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig11.png
-    caption: "(오탐) 본문 교차참조 'Fig. 7 provides an overview'가 잡힌 p.12 — 도식 없음"
-    page: 12
-    strategy: page-region
-    curated: false
-  - id: fig12
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig12.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig12.png
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig06.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig06.png
     caption: "학습에 쓴 모션 데이터셋의 무작위 샘플 (Figure 6, p.13)"
     page: 13
-    strategy: page-region
+    bbox_norm: [0.0947, 0.0939, 0.9053, 0.7049]
+    strategy: caption-region
     curated: false
-  - id: fig13
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig13.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig13.png
+  - id: fig07
+    label: Figure 7
+    kind: figure
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig07.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig07.png
     caption: "SONIC 아키텍처 — robot/hybrid/human 3개 encoder → quantizer → universal token → robot control decoder + robot motion decoder (Figure 7, p.14)"
     page: 14
-    strategy: page-region
+    bbox_norm: [0.0947, 0.0939, 0.9053, 0.2924]
+    strategy: caption-region
     curated: true
-  - id: fig14
-    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig14.png
-    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig14.png
+  - id: fig08
+    label: Figure 8
+    kind: figure
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/fig08.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/fig08.png
     caption: "consistency loss 유무에 따른 latent space 정렬 — 기어가기 모션의 encoder 쌍 간 L2 거리 평균 0.57 대 4.23 (Figure 8, p.19)"
     page: 19
-    strategy: page-region
+    bbox_norm: [0.1144, 0.0939, 0.8856, 0.5438]
+    strategy: caption-region
+    curated: false
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/tab01.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab01.png
+    caption: "Table 1: VLA task success rates using the universal motion token action space. The GR00T N1.5 model is fine-tuned on teleoperated data and evaluated across five whole-body loco-manipulation tasks (object pickup variants share the same policy and are averaged as one task for the 5-task mean). Success"
+    page: 10
+    bbox_norm: [0.2307, 0.6998, 0.7693, 0.8222]
+    strategy: table-region
+    curated: false
+  - id: tabs1
+    label: Table S1
+    kind: table
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/tabs1.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs1.png
+    caption: "Table S1: Universal control policy architecture and hyperparameters."
+    page: 31
+    bbox_norm: [0.0947, 0.0708, 0.9053, 0.267]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/tab02.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab02.png
+    caption: "Table 2: Dataset split statistics and main/sub-category distribution. Each main category (e.g., Locomotion, Dance) contains many sub-categories describing specific motion types (e.g., “hip-hop slide,” “injured-leg jog”). Test-content evaluates generalization to novel sub-categories : its sub-categor"
+    page: 12
+    bbox_norm: [0.2521, 0.4929, 0.7479, 0.7164]
+    strategy: table-region
+    curated: false
+  - id: tabs2
+    label: Table S2
+    kind: table
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/tabs2.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs2.png
+    caption: "Table S2: Training hyperparameters."
+    page: 31
+    bbox_norm: [0.2817, 0.2939, 0.7183, 0.5454]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/tab03.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab03.png
+    caption: "Table 3: VLA action space ablation: task completion success rate using universal motion tokens vs. explicit SMPL poses. The FSQ token interface provides a compact, structured action space that is substantially easier for the VLA to learn. The gap widens on more complex tasks—on soda-can-to-trash-can"
+    page: 18
+    bbox_norm: [0.3048, 0.0944, 0.6952, 0.183]
+    strategy: table-region
+    curated: false
+  - id: tabs3
+    label: Table S3
+    kind: table
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/tabs3.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs3.png
+    caption: "Table S3: Reward design. Superscript 𝑔 : goal/target; 𝑝 : current state; ℬ : tracked body links; 𝒦 : VR keypoints (head, both wrists, both ankles); “rel”: relative to root frame."
+    page: 33
+    bbox_norm: [0.1712, 0.3703, 0.8288, 0.5889]
+    strategy: table-region
+    curated: false
+  - id: tab04
+    label: Table 4
+    kind: table
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/tab04.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab04.png
+    caption: "Table 4: Ablation results. (a) FSQ outperforms VQ-VAE by 8.7 mm MPJPE-L on test-content. (b) Higher quantizer capacity improves performance; token dimension matters more than levels. (c) All encoders maintain > 99.2% success; the human encoder shows only +0.6 mm gap from the robot encoder."
+    page: 20
+    bbox_norm: [0.1731, 0.0944, 0.8269, 0.2958]
+    strategy: table-region
+    curated: false
+  - id: tabs4
+    label: Table S4
+    kind: table
+    file: assets/luo-2025-sonic-supersizing-motion-tracking/tabs4.png
+    raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs4.png
+    caption: "Table S4: Domain randomization parameters applied during training. 𝒰 [ · ] : uniform distribution."
+    page: 33
+    bbox_norm: [0.1712, 0.3703, 0.8288, 0.5889]
+    strategy: table-region
     curated: false
 ---
 

@@ -1,0 +1,272 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/zhang-2026-your-embedding-model-is-smarter/fig01.png",
+    "raw": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Standard single-vector embedding models (Qwen3-VL-Embedding-8B in this figure) com- press sequences into single token representations, which often results in losing local information and underutilizing the remaining hidden states. While existing multi-vector approaches require expensive re",
+    "bbox": [
+      102.0,
+      250.8,
+      557.34,
+      473.44
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.3167,
+      0.9107,
+      0.5978
+    ],
+    "dpi": 300,
+    "area_frac": 0.209,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/zhang-2026-your-embedding-model-is-smarter/fig02.png",
+    "raw": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/fig02.png",
+    "page": 5,
+    "caption": "Figure 2: Controlled local-evidence toy benchmark. Each query specifies a local code–marker binding. The hard negative has the same layout, codes, colors, and shapes as the positive report, but the codes are reassigned so that no code remains paired with its original marker.",
+    "bbox": [
+      0.0,
+      42.66,
+      612.0,
+      202.1
+    ],
+    "bbox_norm": [
+      0.0,
+      0.0539,
+      1.0,
+      0.2552
+    ],
+    "dpi": 300,
+    "area_frac": 0.201,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/zhang-2026-your-embedding-model-is-smarter/fig03.png",
+    "raw": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/fig03.png",
+    "page": 9,
+    "caption": "Figure 3: Qualitative visualization of SMART on image-to-image retrieval. Each row shows the query, a failed result from the original single-vector retriever, and the correct result retrieved by SMART. Colored boxes visualize the local evidence used by SMART. Each selected query patch is matched to ",
+    "bbox": [
+      102.0,
+      66.0,
+      512.29,
+      238.15
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8371,
+      0.3007
+    ],
+    "dpi": 300,
+    "area_frac": 0.146,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/zhang-2026-your-embedding-model-is-smarter/fig04.png",
+    "raw": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/fig04.png",
+    "page": 14,
+    "caption": "Figure 4: Additional qualitative examples where the original single-vector retriever fails but SMART retrieves the correct candidate. The single-vector model can select images that are globally plausible but miss localized visual evidence, while SMART improves retrieval by adding token-level matchin",
+    "bbox": [
+      102.0,
+      66.0,
+      509.94,
+      177.84
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8332,
+      0.2245
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/zhang-2026-your-embedding-model-is-smarter/fig05.png",
+    "raw": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/fig05.png",
+    "page": 14,
+    "caption": "Figure 5: Token-level visualization of SMART. For selected query image tokens, we show the top- 5 candidate-image tokens. The highlighted regions illustrate that SMART’s late-interaction score captures localized visual evidence rather than only global image similarity.",
+    "bbox": [
+      0.0,
+      233.86,
+      612.0,
+      342.49
+    ],
+    "bbox_norm": [
+      0.0,
+      0.2953,
+      1.0,
+      0.4324
+    ],
+    "dpi": 300,
+    "area_frac": 0.137,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/zhang-2026-your-embedding-model-is-smarter/tab01.png",
+    "raw": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/tab01.png",
+    "page": 6,
+    "caption": "Table 1: Average per-task performance on MMEB-V2. We report Recall@1 for image and video retrieval tasks and NDCG@5 for visual document retrieval tasks. Applying training-free SMART achieves consistent improvement over all dense retrieval tasks and generalizes across different backbones, including t",
+    "bbox": [
+      102.0,
+      116.01,
+      512.81,
+      290.55
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1465,
+      0.8379,
+      0.3669
+    ],
+    "dpi": 300,
+    "area_frac": 0.148,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/zhang-2026-your-embedding-model-is-smarter/tab02.png",
+    "raw": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/tab02.png",
+    "page": 7,
+    "caption": "Table 2: Results of training SMART adapters when evaluated on MMEB-V2’s visdoc subset. In the SMART columns, ✓ denotes SMART hybrid scoring s hybrid . ✗ s denotes no SMART with single- vector scoring only, while ✗ m denotes no SMART with late-interaction/multi-vector scoring only. ✓ † means freezing",
+    "bbox": [
+      102.0,
+      117.4,
+      510.03,
+      296.72
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1482,
+      0.8334,
+      0.3746
+    ],
+    "dpi": 300,
+    "area_frac": 0.151,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/zhang-2026-your-embedding-model-is-smarter/tab03.png",
+    "raw": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/tab03.png",
+    "page": 8,
+    "caption": "Table 3: Results of training and converting single-vector models when evaluated on the visdoc subset. ✗ s denotes no SMART with single-vector scoring only, while ✗ m denotes no SMART with late-interaction/multi-vector scoring only. ✓ denotes SMART hybrid scoring s hybrid and ✓ † means extended train",
+    "bbox": [
+      102.0,
+      116.65,
+      510.01,
+      215.52
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1473,
+      0.8334,
+      0.2721
+    ],
+    "dpi": 300,
+    "area_frac": 0.083,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/zhang-2026-your-embedding-model-is-smarter/tab04.png",
+    "raw": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/tab04.png",
+    "page": 10,
+    "caption": "Table 4: Layer-wise analysis on visual-document retrieval tasks. We compare using the same layer X for both pooled and token-level readouts with keeping the original last-layer pooled score fixed while varying only the hidden layer X used for late interaction.",
+    "bbox": [
+      104.3,
+      105.12,
+      507.72,
+      226.87
+    ],
+    "bbox_norm": [
+      0.1704,
+      0.1327,
+      0.8296,
+      0.2864
+    ],
+    "dpi": 300,
+    "area_frac": 0.101,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/zhang-2026-your-embedding-model-is-smarter/tab05.png",
+    "raw": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/tab05.png",
+    "page": 14,
+    "caption": "Table 5: Results of training models with SoTA when evaluated on MMEB-V2’s visdoc subset. ✗ s denotes no SMART with single-vector scoring only, while ✗ m denotes no SMART with late- interaction/multi-vector scoring only. ✓ denotes SMART hybrid scoring s hybrid and ✓ † means LoRA with s hybrid .",
+    "bbox": [
+      102.0,
+      539.29,
+      510.02,
+      646.88
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.6809,
+      0.8334,
+      0.8168
+    ],
+    "dpi": 300,
+    "area_frac": 0.091,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-your-embedding-model-is-smarter-figures/_overlay/p14.png"
+  }
+]

@@ -1,0 +1,812 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/fig01.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 Architecture of TaskMem with a running example illustrating its operation. The memorization policy online updates memory generation based on real tasks from the environment, producing task-relevant content.",
+    "bbox": [
+      86.72,
+      71.95,
+      521.93,
+      266.22
+    ],
+    "bbox_norm": [
+      0.1417,
+      0.0908,
+      0.8528,
+      0.3361
+    ],
+    "dpi": 300,
+    "area_frac": 0.174,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/fig02.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2 Two-phase training in TaskMem: Phase One optimizes the memorization policy for fundamental capabilities; Phase Two optimizes the policy to generate task-relevant content.",
+    "bbox": [
+      111.89,
+      71.95,
+      500.1,
+      243.58
+    ],
+    "bbox_norm": [
+      0.1828,
+      0.0908,
+      0.8172,
+      0.3075
+    ],
+    "dpi": 300,
+    "area_frac": 0.137,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/fig03.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/fig03.png",
+    "page": 7,
+    "caption": "Figure 3 Comparison of training performance under three settings: TaskMem, TaskMem without the richness reward (w/o richness), and TaskMem without NSR control (w/o NSR control). (a) and (b) show reward trajectories during",
+    "bbox": [
+      64.87,
+      263.18,
+      547.1,
+      357.68
+    ],
+    "bbox_norm": [
+      0.106,
+      0.3323,
+      0.894,
+      0.4516
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/fig04.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/fig04.png",
+    "page": 8,
+    "caption": "Figure 4 Phase Two training dynamics for the object recognition task on VideoMME, using five questions from the streaming task as environment feedback. (a) training improves task relevance on the validation set; (b) memory quality remains stable; (c) adapter norm increases steadily with training ste",
+    "bbox": [
+      86.72,
+      269.61,
+      521.94,
+      386.02
+    ],
+    "bbox_norm": [
+      0.1417,
+      0.3404,
+      0.8528,
+      0.4874
+    ],
+    "dpi": 300,
+    "area_frac": 0.105,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/fig05.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/fig05.png",
+    "page": 9,
+    "caption": "Figure 5 Ablation study on adapter placement across layers on the object recognition task from VideoMME, evaluated by accuracy, non-redundancy rate, and win ratio.",
+    "bbox": [
+      86.72,
+      71.95,
+      521.95,
+      203.73
+    ],
+    "bbox_norm": [
+      0.1417,
+      0.0909,
+      0.8529,
+      0.2572
+    ],
+    "dpi": 300,
+    "area_frac": 0.118,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab01.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab01.png",
+    "page": 8,
+    "caption": "Table 1 Comparison of Phase Two training methods against Phase One across quality metrics (accuracy and non- redundancy) and task-relevance metrics (loss/tie/win ratios). Phase Two methods include full-parameter training, 40-step adapter training, and a scaled 10-step adapter with weights multiplied",
+    "bbox": [
+      79.64,
+      574.53,
+      535.39,
+      650.87
+    ],
+    "bbox_norm": [
+      0.1301,
+      0.7254,
+      0.8748,
+      0.8218
+    ],
+    "dpi": 300,
+    "area_frac": 0.072,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab02.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab02.png",
+    "page": 10,
+    "caption": "Table 2 Results on VideoMME, EgoLife, and EgoTempo. Best results are in bold, and second-best results are underlined.",
+    "bbox": [
+      64.36,
+      76.53,
+      548.79,
+      518.29
+    ],
+    "bbox_norm": [
+      0.1052,
+      0.0966,
+      0.8967,
+      0.6544
+    ],
+    "dpi": 300,
+    "area_frac": 0.442,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab03.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab03.png",
+    "page": 11,
+    "caption": "Table 3 Ablation study of Phase One and Phase Two training.",
+    "bbox": [
+      64.51,
+      131.25,
+      548.51,
+      443.73
+    ],
+    "bbox_norm": [
+      0.1054,
+      0.1657,
+      0.8963,
+      0.5603
+    ],
+    "dpi": 300,
+    "area_frac": 0.312,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab04.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab04.png",
+    "page": 11,
+    "caption": "Table 4 Adapter analysis on object recognition task.",
+    "bbox": [
+      309.41,
+      327.58,
+      543.9,
+      412.16
+    ],
+    "bbox_norm": [
+      0.5056,
+      0.4136,
+      0.8887,
+      0.5204
+    ],
+    "dpi": 300,
+    "area_frac": 0.041,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab05.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab05.png",
+    "page": 11,
+    "caption": "Table 5 Qualitative comparison of episodic memory generations before and after the Phase Two training. Yellow highlights indicate additional fine-grained details generated after training.",
+    "bbox": [
+      63.21,
+      590.52,
+      548.09,
+      684.48
+    ],
+    "bbox_norm": [
+      0.1033,
+      0.7456,
+      0.8956,
+      0.8642
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab06.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab06.png",
+    "page": 14,
+    "caption": "Table 6 A complete episodic memory example on a long video. Square-bracketed tokens (e.g. [face_1] ) are used for entity tracking. The question is shown before the generated memory to demonstrate that the memory preserves sufficient task-relevant information to answer the question correctly. The exa",
+    "bbox": [
+      63.7,
+      196.93,
+      548.52,
+      680.43
+    ],
+    "bbox_norm": [
+      0.1041,
+      0.2486,
+      0.8963,
+      0.8591
+    ],
+    "dpi": 300,
+    "area_frac": 0.484,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab07.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab07.png",
+    "page": 24,
+    "caption": "Table 7 Prompt used for automatic speech recognition.",
+    "bbox": [
+      64.87,
+      302.78,
+      547.13,
+      671.98
+    ],
+    "bbox_norm": [
+      0.106,
+      0.3823,
+      0.894,
+      0.8485
+    ],
+    "dpi": 300,
+    "area_frac": 0.367,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab08.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab08.png",
+    "page": 25,
+    "caption": "Table 8 Prompt used for automatic speaker identification.",
+    "bbox": [
+      64.87,
+      72.45,
+      547.13,
+      369.92
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0915,
+      0.894,
+      0.4671
+    ],
+    "dpi": 300,
+    "area_frac": 0.296,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab09.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab09.png",
+    "page": 27,
+    "caption": "Table 9 The hyperparameters used in GSPO training.",
+    "bbox": [
+      204.92,
+      205.79,
+      403.76,
+      295.91
+    ],
+    "bbox_norm": [
+      0.3348,
+      0.2598,
+      0.6597,
+      0.3736
+    ],
+    "dpi": 300,
+    "area_frac": 0.037,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p27.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab10.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab10.png",
+    "page": 28,
+    "caption": "Table 10 The hyperparameters used in DPO training.",
+    "bbox": [
+      225.58,
+      560.44,
+      383.1,
+      639.21
+    ],
+    "bbox_norm": [
+      0.3686,
+      0.7076,
+      0.626,
+      0.8071
+    ],
+    "dpi": 300,
+    "area_frac": 0.026,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab11.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab11.png",
+    "page": 29,
+    "caption": "Table 11 Results for each task in VideoMME.",
+    "bbox": [
+      79.43,
+      108.31,
+      531.23,
+      317.9
+    ],
+    "bbox_norm": [
+      0.1298,
+      0.1368,
+      0.868,
+      0.4014
+    ],
+    "dpi": 300,
+    "area_frac": 0.195,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p29.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab12.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab12.png",
+    "page": 29,
+    "caption": "Table 12 Results for each task in EgoLife.",
+    "bbox": [
+      79.43,
+      97.94,
+      526.8,
+      403.13
+    ],
+    "bbox_norm": [
+      0.1298,
+      0.1237,
+      0.8608,
+      0.509
+    ],
+    "dpi": 300,
+    "area_frac": 0.282,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p29.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab13.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab13.png",
+    "page": 29,
+    "caption": "Table 13 Results for each task in EgoTempo.",
+    "bbox": [
+      78.68,
+      556.85,
+      531.66,
+      651.17
+    ],
+    "bbox_norm": [
+      0.1286,
+      0.7031,
+      0.8687,
+      0.8222
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p29.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab14.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab14.png",
+    "page": 30,
+    "caption": "Table 14 VideoMME results under different answer generators. We keep the generated memories fixed and only replace the model used to answer questions from memory.",
+    "bbox": [
+      133.75,
+      104.35,
+      474.93,
+      191.81
+    ],
+    "bbox_norm": [
+      0.2185,
+      0.1318,
+      0.776,
+      0.2422
+    ],
+    "dpi": 300,
+    "area_frac": 0.062,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p30.png"
+  },
+  {
+    "id": "tab15",
+    "label": "Table 15",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab15.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab15.png",
+    "page": 30,
+    "caption": "Table 15 Comparison of memory generations between FOMO and w/o richness reward . Yellow highlights indicate additional details provided by our model. For privacy protection, human faces in the illustrative video frames are masked only for visualization in this paper; the model is trained and evaluat",
+    "bbox": [
+      64.51,
+      484.14,
+      548.51,
+      717.99
+    ],
+    "bbox_norm": [
+      0.1054,
+      0.6113,
+      0.8963,
+      0.9066
+    ],
+    "dpi": 300,
+    "area_frac": 0.234,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p30.png"
+  },
+  {
+    "id": "tab16",
+    "label": "Table 16",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab16.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab16.png",
+    "page": 32,
+    "caption": "Table 16 Hard case caused by missing fine-grained evidence in the generated memory.",
+    "bbox": [
+      64.51,
+      93.37,
+      549.06,
+      698.42
+    ],
+    "bbox_norm": [
+      0.1054,
+      0.1179,
+      0.8972,
+      0.8818
+    ],
+    "dpi": 300,
+    "area_frac": 0.605,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p32.png"
+  },
+  {
+    "id": "tab17",
+    "label": "Table 17",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab17.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab17.png",
+    "page": 33,
+    "caption": "Table 17 Hard case caused by incorrect or misleading information in the generated memory.",
+    "bbox": [
+      64.2,
+      309.29,
+      549.01,
+      697.15
+    ],
+    "bbox_norm": [
+      0.1049,
+      0.3905,
+      0.8971,
+      0.8802
+    ],
+    "dpi": 300,
+    "area_frac": 0.388,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p33.png"
+  },
+  {
+    "id": "tab18",
+    "label": "Table 18",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab18.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab18.png",
+    "page": 34,
+    "caption": "Table 18 Hard case where the generated memory captures local visual cues but fails to integrate their relational and temporal structure.",
+    "bbox": [
+      64.2,
+      415.89,
+      548.54,
+      718.07
+    ],
+    "bbox_norm": [
+      0.1049,
+      0.5251,
+      0.8963,
+      0.9067
+    ],
+    "dpi": 300,
+    "area_frac": 0.302,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p34.png"
+  },
+  {
+    "id": "tab19",
+    "label": "Table 19",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab19.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab19.png",
+    "page": 36,
+    "caption": "Table 19 The prompt for generating episodic memory.",
+    "bbox": [
+      64.87,
+      285.38,
+      547.13,
+      714.1
+    ],
+    "bbox_norm": [
+      0.106,
+      0.3603,
+      0.894,
+      0.9016
+    ],
+    "dpi": 300,
+    "area_frac": 0.427,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p36.png"
+  },
+  {
+    "id": "tab20",
+    "label": "Table 20",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab20.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab20.png",
+    "page": 37,
+    "caption": "Table 20 The prompt for generating episodic memory with task prompts.",
+    "bbox": [
+      64.87,
+      333.2,
+      547.13,
+      654.58
+    ],
+    "bbox_norm": [
+      0.106,
+      0.4207,
+      0.894,
+      0.8265
+    ],
+    "dpi": 300,
+    "area_frac": 0.32,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p37.png"
+  },
+  {
+    "id": "tab21",
+    "label": "Table 21",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab21.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab21.png",
+    "page": 37,
+    "caption": "Table 21 The prompt for correctness of episodic memory.",
+    "bbox": [
+      64.87,
+      333.2,
+      547.13,
+      654.58
+    ],
+    "bbox_norm": [
+      0.106,
+      0.4207,
+      0.894,
+      0.8265
+    ],
+    "dpi": 300,
+    "area_frac": 0.32,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p37.png"
+  },
+  {
+    "id": "tab22",
+    "label": "Table 22",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab22.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab22.png",
+    "page": 38,
+    "caption": "Table 22 The prompt for redundancy of episodic memory.",
+    "bbox": [
+      64.87,
+      72.45,
+      547.13,
+      441.65
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0915,
+      0.894,
+      0.5576
+    ],
+    "dpi": 300,
+    "area_frac": 0.367,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p38.png"
+  },
+  {
+    "id": "tab23",
+    "label": "Table 23",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab23.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab23.png",
+    "page": 39,
+    "caption": "Table 23 The prompt for the richness of episodic memory.",
+    "bbox": [
+      64.87,
+      127.24,
+      547.13,
+      352.98
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1607,
+      0.894,
+      0.4457
+    ],
+    "dpi": 300,
+    "area_frac": 0.225,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p39.png"
+  },
+  {
+    "id": "tab24",
+    "label": "Table 24",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab24.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab24.png",
+    "page": 39,
+    "caption": "Table 24 Prompt for task-relevance comparison of episodic memories.",
+    "bbox": [
+      64.87,
+      386.81,
+      547.13,
+      706.29
+    ],
+    "bbox_norm": [
+      0.106,
+      0.4884,
+      0.894,
+      0.8918
+    ],
+    "dpi": 300,
+    "area_frac": 0.318,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p39.png"
+  },
+  {
+    "id": "tab25",
+    "label": "Table 25",
+    "kind": "table",
+    "file": "assets/zou-2026-task-focused-memorization-multimodal-agents/tab25.png",
+    "raw": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/tab25.png",
+    "page": 40,
+    "caption": "Table 25 The QA test prompts for VideoMME, EgoLife, and EgoTempo.",
+    "bbox": [
+      64.87,
+      78.88,
+      547.13,
+      381.4
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0996,
+      0.894,
+      0.4816
+    ],
+    "dpi": 300,
+    "area_frac": 0.301,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zou-2026-task-focused-memorization-multimodal-agents-figures/_overlay/p40.png"
+  }
+]

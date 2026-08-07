@@ -12,32 +12,194 @@ arxiv_id: "2402.14207"
 tags: [storm, long-form-generation, pre-writing, multi-perspective, question-asking, rag, grounded-writing, dspy, wikipedia, outline]
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig01.png
     raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig01.png
     caption: "Wikipedia-like 글쓰기 개요 — pre-writing 단계와 Direct Prompting(A)/Perspective-Guided(B)/Conversational(C) 질문 비교 (paper Figure 1)"
     page: 1
-    strategy: page-region
+    bbox_norm: [0.5134, 0.2541, 0.8798, 0.6203]
+    strategy: caption-region
     curated: true
-  - id: fig03
-    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig03.png
-    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig03.png
+  - id: fig02
+    label: Figure 2
+    kind: figure
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig02.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig02.png
     caption: "STORM 전체 파이프라인 — 관점 발견(①②) → 시뮬레이션 대화(③-⑥) → outline 생성(⑦⑧) (paper Figure 2)"
     page: 4
-    strategy: page-region
+    bbox_norm: [0.128, 0.077, 0.8698, 0.3105]
+    strategy: caption-region
     curated: true
-  - id: fig07
-    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig07.png
-    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig07.png
+  - id: fig03
+    label: Figure 3
+    kind: figure
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig03.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig03.png
     caption: "Wikipedia 편집자 10명의 STORM 유용성 설문 결과 (paper Figure 3)"
     page: 8
-    strategy: page-region
+    bbox_norm: [0.109, 0.077, 0.4939, 0.2061]
+    strategy: caption-region
     curated: false
-  - id: fig10
-    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig10.png
-    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig10.png
+  - id: fig04
+    label: Figure 4
+    kind: figure
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig04.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig04.png
+    caption: "Figure 4: Evolution of reference count in the Wikipedia article editing process."
+    page: 14
+    bbox_norm: [0.109, 0.2048, 0.4934, 0.4142]
+    strategy: caption-region
+    curated: false
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig05.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig05.png
+    caption: "Figure 5: Distribution of edit counts for Wikipedia arti- cles in our experiments ( n = 100 )."
+    page: 14
+    bbox_norm: [0.5042, 0.077, 0.8894, 0.2537]
+    strategy: caption-region
+    curated: false
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig06.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig06.png
     caption: "인용 미지원 문장의 오류 유형 분포 파이차트 (paper Figure 6)"
     page: 17
-    strategy: page-region
+    bbox_norm: [0.5067, 0.6331, 0.8802, 0.8546]
+    strategy: caption-region
+    curated: false
+  - id: fig07
+    label: Figure 7
+    kind: figure
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig07.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/fig07.png
+    caption: "Figure 7: Screenshot of the web application for evaluating the grounded article."
+    page: 22
+    bbox_norm: [0.109, 0.3477, 0.8896, 0.6284]
+    strategy: caption-region
+    curated: false
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab01.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab01.png
+    caption: "Table 1: Comparison of different Wikipedia generation setups in existing literature. Generating one paragraph does not need an article outline."
+    page: 3
+    bbox_norm: [0.109, 0.0754, 0.8942, 0.1888]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab02.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab02.png
+    caption: "Table 2: Results of automatic article quality evaluation. † denotes significant differences ( p < 0 . 05 ) from a paired t -test between STORM and the best baseline, i.e. , oRAG. The rubric grading uses a 1-5 scale."
+    page: 6
+    bbox_norm: [0.109, 0.0775, 0.8873, 0.2001]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab03.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab03.png
+    caption: "Table 3: Results of outline quality evaluation (%). † de- notes significant differences ( p < 0 . 05 ) from a paired t -test between STORM and baselines."
+    page: 6
+    bbox_norm: [0.109, 0.2467, 0.4922, 0.4621]
+    strategy: table-region
+    curated: false
+  - id: tab04
+    label: Table 4
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab04.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab04.png
+    caption: "Table 4: Citation quality judged by Mistral 7B-Instruct."
+    page: 7
+    bbox_norm: [0.109, 0.1467, 0.891, 0.2021]
+    strategy: table-region
+    curated: false
+  - id: tab05
+    label: Table 5
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab05.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab05.png
+    caption: "Table 5: Average number of unique references ( |R| ) collected using different methods."
+    page: 7
+    bbox_norm: [0.109, 0.1467, 0.891, 0.2021]
+    strategy: table-region
+    curated: false
+  - id: tab06
+    label: Table 6
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab06.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab06.png
+    caption: "Table 6: Human evaluation results on 20 pairs of articles generated by STORM and oRAG . Each pair of articles is evaluated by two Wikipedia editors. The ratings are given on a scale between 1 and 7, with values ≥ 4 indicating good quality (see Table 10 ). We conduct paired t -test and report the p -"
+    page: 7
+    bbox_norm: [0.5042, 0.0774, 0.891, 0.2021]
+    strategy: table-region
+    curated: false
+  - id: tab07
+    label: Table 7
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab07.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab07.png
+    caption: "Table 7: Statistics of the dataset used in our experiments."
+    page: 14
+    bbox_norm: [0.1365, 0.0775, 0.4646, 0.1741]
+    strategy: table-region
+    curated: false
+  - id: tab08
+    label: Table 8
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab08.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab08.png
+    caption: "Table 8: Scoring rubrics on a 1-5 scale for the evaluator LLM."
+    page: 18
+    bbox_norm: [0.109, 0.1658, 0.8881, 0.4707]
+    strategy: table-region
+    curated: false
+  - id: tab09
+    label: Table 9
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab09.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab09.png
+    caption: "Table 9: Examples of different error types of unsupported sentences."
+    page: 18
+    bbox_norm: [0.109, 0.6694, 0.8883, 0.8103]
+    strategy: table-region
+    curated: false
+  - id: tab10
+    label: Table 10
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab10.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab10.png
+    caption: "Table 10: Scoring rubrics on a 1-7 scale for human evaluation."
+    page: 20
+    bbox_norm: [0.109, 0.2266, 0.8879, 0.7495]
+    strategy: table-region
+    curated: false
+  - id: tab11
+    label: Table 11
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab11.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab11.png
+    caption: "Table 11: Summary of major issues found on articles produced by STORM."
+    page: 21
+    bbox_norm: [0.1793, 0.2634, 0.8811, 0.7134]
+    strategy: table-region
+    curated: false
+  - id: tab12
+    label: Table 12
+    kind: table
+    file: assets/shao-2024-assisting-in-writing-wikipedia-like-articles/tab12.png
+    raw: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles-figures/tab12.png
+    caption: "Table 12: STORM’s generated article for “Taylor Hawkins”. “#”, “##” indicate the section title and subsection title respectively. Numbers in brackets indicate the cited references."
+    page: 27
+    bbox_norm: [0.0971, 0.0, 0.9133, 0.3867]
+    strategy: column-band
     curated: false
 ---
 
@@ -59,7 +221,7 @@ STORM은 주제(topic) 하나만 주어졌을 때 참고문헌도 outline도 없
 
 STORM은 두 가설 위에 서 있다: **(1) 다양한 관점은 다양한 질문을 낳는다**, **(2) 심층 질문은 반복적 리서치를 요구한다**.
 
-![[assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig03.png]]
+![[assets/shao-2024-assisting-in-writing-wikipedia-like-articles/fig02.png]]
 *Figure 2: STORM 전체 파이프라인. 관련 문서를 survey해 관점을 도출하고(①②), 각 관점의 writer가 expert에게 질문하는 대화를 시뮬레이션하며(③-⑥), 내부 지식과 대화를 종합해 outline을 만든다(⑦⑧) (Shao 2024, p.4)*
 
 **① 관점 유도 질문 (Perspective-Guided Question Asking)** — 입력 토픽 $t$로 관련 토픽 목록을 만들고, Wikipedia API로 그 문서들의 목차(ToC)를 모아 컨텍스트로 삼아 $N$개 관점 $P = \{p_1, ..., p_N\}$을 도출한다. 기본 사실이 빠지지 않도록 $p_0$("basic fact writer")를 항상 넣는다. 각 관점은 병렬로 질문 생성을 이끈다. 예컨대 "이벤트 기획자" 관점은 개회식의 "교통 준비"나 "예산"을 묻고, 일반인은 기본 정보만 묻는다.

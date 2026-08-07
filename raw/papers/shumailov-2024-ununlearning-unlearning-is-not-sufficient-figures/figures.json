@@ -1,0 +1,56 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/shumailov-2024-ununlearning-unlearning-is-not-sufficient/fig01.png",
+    "raw": "raw/papers/shumailov-2024-ununlearning-unlearning-is-not-sufficient-figures/fig01.png",
+    "page": 4,
+    "caption": "Figure 1 | We broadly separate the knowledge into two main types: axioms and theorems to represent given facts and derived knowledge respectively. In the example above we assume that all theorems are defined in terms of underlying axioms, where some axioms are shared by different theorems. While unl",
+    "bbox": [
+      103.42,
+      98.04,
+      491.84,
+      337.28
+    ],
+    "bbox_norm": [
+      0.1737,
+      0.1165,
+      0.8262,
+      0.4006
+    ],
+    "dpi": 300,
+    "area_frac": 0.185,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shumailov-2024-ununlearning-unlearning-is-not-sufficient-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/shumailov-2024-ununlearning-unlearning-is-not-sufficient/fig02.png",
+    "raw": "raw/papers/shumailov-2024-ununlearning-unlearning-is-not-sufficient-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2 | The figure demonstrates the concept of un unlearning . Here, the model that at first possess impermissible bomb making knowledge. The defender uses exact unlearning to remove all instances of usage of the term bomb , making the model incapable of providing bomb recipes, since it does not ",
+    "bbox": [
+      79.89,
+      449.0,
+      515.38,
+      666.12
+    ],
+    "bbox_norm": [
+      0.1342,
+      0.5333,
+      0.8658,
+      0.7912
+    ],
+    "dpi": 300,
+    "area_frac": 0.189,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/shumailov-2024-ununlearning-unlearning-is-not-sufficient-figures/_overlay/p04.png"
+  }
+]

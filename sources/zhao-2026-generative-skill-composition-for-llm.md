@@ -22,60 +22,134 @@ arxiv_id: "2606.32025"
 url: "https://skill-composer.github.io/"
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/zhao-2026-generative-skill-composition-for-llm/fig01.png
     raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig01.png
     caption: "Figure 1: (A) 대형 skill library가 만드는 composition bottleneck (B) direct reasoning·retrieval vs. SkillComposer의 ordered executable plan (C) 더 나은 plan이 더 높은 task success로 이어짐"
     page: 2
-    strategy: page-region
+    bbox_norm: [0.0808, 0.0771, 1.0, 0.2659]
+    strategy: caption-region
     curated: true
   - id: fig02
+    label: Figure 2
+    kind: figure
     file: assets/zhao-2026-generative-skill-composition-for-llm/fig02.png
     raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig02.png
     caption: "Figure 2: 196-skill library에서 task+environment를 받아 순서 있는 skill index 시퀀스 (s104, s184, s55 → nws-flood-thresholds, usgs-data-download, flood-detection)를 예측하는 구체 예시"
     page: 4
-    strategy: page-region
+    bbox_norm: [0.0951, 0.0773, 0.8802, 0.2845]
+    strategy: caption-region
     curated: true
   - id: fig03
+    label: Figure 3
+    kind: figure
     file: assets/zhao-2026-generative-skill-composition-for-llm/fig03.png
     raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig03.png
     caption: "Figure 3: SkillComposer 3-컴포넌트 개요 — (A) frozen text encoder (B) auxiliary cardinality·set head를 단 autoregressive decoder (C) retrieval prior를 fuse하는 retrieval-augmented decoding"
     page: 5
-    strategy: page-region
+    bbox_norm: [0.1205, 0.0771, 0.8549, 0.399]
+    strategy: caption-region
     curated: true
   - id: fig04
+    label: Figure 4
+    kind: figure
     file: assets/zhao-2026-generative-skill-composition-for-llm/fig04.png
     raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig04.png
-    caption: "false positive (본문 Figure 2 참조 텍스트가 있는 method overview 페이지, fig03과 동일 페이지 렌더)"
-    page: 5
-    strategy: page-region
-    curated: false
-  - id: fig05
-    file: assets/zhao-2026-generative-skill-composition-for-llm/fig05.png
-    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig05.png
     caption: "Figure 4: gold cardinality k별 Set F1 (in-distribution). SkillComposer가 k=1 버킷(over-emission이 가장 크게 벌 받는 구간)에서 우세해 macro-avg 최고"
     page: 8
-    strategy: page-region
+    bbox_norm: [0.4778, 0.6184, 0.8945, 0.8355]
+    strategy: caption-region
     curated: true
-  - id: fig06
-    file: assets/zhao-2026-generative-skill-composition-for-llm/fig06.png
-    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig06.png
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/zhao-2026-generative-skill-composition-for-llm/fig05.png
+    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig05.png
     caption: "Figure 5: (a) α·β decoding-weight 민감도 격자 (bowl-shaped) (b) trainable params vs. 정확도 — SkillComposer Pareto-optimal (~154× 적은 파라미터) (c) inference latency vs. 정확도"
     page: 10
-    strategy: page-region
+    bbox_norm: [0.0808, 0.0771, 0.8945, 0.2774]
+    strategy: caption-region
     curated: true
-  - id: fig07
-    file: assets/zhao-2026-generative-skill-composition-for-llm/fig07.png
-    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig07.png
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/zhao-2026-generative-skill-composition-for-llm/fig06.png
+    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig06.png
     caption: "Figure 6: single-skill synthesis 프롬프트 (Gemini 2.5 Flash) — 호출당 5개 task, skill 이름 직접 언급 금지 (Appendix B)"
     page: 16
-    strategy: page-region
+    bbox_norm: [0.0808, 0.2751, 0.8945, 0.7552]
+    strategy: caption-region
     curated: false
-  - id: fig08
-    file: assets/zhao-2026-generative-skill-composition-for-llm/fig08.png
-    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig08.png
+  - id: fig07
+    label: Figure 7
+    kind: figure
+    file: assets/zhao-2026-generative-skill-composition-for-llm/fig07.png
+    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/fig07.png
     caption: "Figure 7: multi-skill synthesis 프롬프트 (Gemini 2.5 Pro) — dependency edge에서 유래한 ordering 제약을 verbatim 주입 (Appendix B)"
     page: 17
-    strategy: page-region
+    bbox_norm: [0.0808, 0.2877, 0.8945, 0.7426]
+    strategy: caption-region
+    curated: false
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/zhao-2026-generative-skill-composition-for-llm/tab01.png
+    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab01.png
+    caption: "Table 1: Skill prediction quality (%). Left: in-distribution synthetic test ( n =494 ). Right: real-task holdout ( n =65 ); trained models are retrained on the real-task-removed partition. Best non-oracle result in bold ; second best underlined ; oracle- cardinality retrievers (in italics ) are repo"
+    page: 9
+    bbox_norm: [0.0808, 0.1297, 0.8945, 0.4543]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/zhao-2026-generative-skill-composition-for-llm/tab02.png
+    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab02.png
+    caption: "Table 2: Downstream task performance on SkillsBench. Pass rate follows the paper-binary protocol, Tok. is the average input prompt tokens per non-errored trial. Best non-oracle result in bold ; second best underlined."
+    page: 9
+    bbox_norm: [0.4818, 0.6917, 0.8945, 0.8548]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/zhao-2026-generative-skill-composition-for-llm/tab03.png
+    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab03.png
+    caption: "Table 3: Model component ablation."
+    page: 10
+    bbox_norm: [0.597, 0.5013, 0.8945, 0.6413]
+    strategy: table-region
+    curated: false
+  - id: tab04
+    label: Table 4
+    kind: table
+    file: assets/zhao-2026-generative-skill-composition-for-llm/tab04.png
+    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab04.png
+    caption: "Table 4: Decode-time retrieval prior ablation."
+    page: 10
+    bbox_norm: [0.6196, 0.7994, 0.8281, 0.9082]
+    strategy: table-region
+    curated: false
+  - id: tab05
+    label: Table 5
+    kind: table
+    file: assets/zhao-2026-generative-skill-composition-for-llm/tab05.png
+    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab05.png
+    caption: "Table 5: Skill dependency graph used for grounding multi-skill synthesis."
+    page: 15
+    bbox_norm: [0.3042, 0.1627, 0.6711, 0.2686]
+    strategy: table-region
+    curated: false
+  - id: tab06
+    label: Table 6
+    kind: table
+    file: assets/zhao-2026-generative-skill-composition-for-llm/tab06.png
+    raw: raw/papers/zhao-2026-generative-skill-composition-for-llm-figures/tab06.png
+    caption: "Table 6: Per-layer Set F1 on the synthetic test split (%, deterministic baselines only). Trained-model rows are omitted because the per-layer canonical predictions were not saved with matching record IDs; rerunning inference on the canonical checkpoints is left to a future revision."
+    page: 19
+    bbox_norm: [0.1247, 0.5088, 0.8506, 0.6598]
+    strategy: table-region
     curated: false
 ---
 

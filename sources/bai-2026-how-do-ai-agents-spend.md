@@ -20,102 +20,164 @@ authors: "Longju Bai, Zhemin Huang, Xingyao Wang, Jiao Sun, Rada Mihalcea, Erik 
 arxiv_id: "2604.22750"
 figures:
   - id: fig01
+    label: Figure 1
+    kind: figure
     file: assets/bai-2026-how-do-ai-agents-spend/fig01.png
     raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig01.png
     caption: "Figure 1: agentic coding vs. code reasoning vs. code chat — 평균 토큰 사용량·비용·input/output 비율 (agentic이 input 토큰 폭증으로 압도적)"
     page: 1
-    strategy: page-region
-    curated: false
+    bbox_norm: [0.1918, 0.6562, 0.7938, 0.8087]
+    strategy: caption-region
+    curated: true
   - id: fig02
+    label: Figure 2
+    kind: figure
     file: assets/bai-2026-how-do-ai-agents-spend/fig02.png
     raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig02.png
-    caption: "false positive (본문 Figure 1 참조 텍스트)"
-    page: 3
-    strategy: page-region
-    curated: false
-  - id: fig03
-    file: assets/bai-2026-how-do-ai-agents-spend/fig03.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig03.png
     caption: "Figure 2: 토큰 비용은 문제 간·동일 문제 반복 실행 간 모두 큰 분산 (가장 비싼 문제가 가장 싼 문제보다 ~7M 토큰 더 소비)"
     page: 4
-    strategy: page-region
-    curated: false
-  - id: fig04
-    file: assets/bai-2026-how-do-ai-agents-spend/fig04.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig04.png
+    bbox_norm: [0.1662, 0.1003, 0.8333, 0.2955]
+    strategy: caption-region
+    curated: true
+  - id: fig03
+    label: Figure 3
+    kind: figure
+    file: assets/bai-2026-how-do-ai-agents-spend/fig03.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig03.png
     caption: "Figure 3: 토큰 많이 쓴 문제가 오히려 정확도 낮음 + 정확도는 중간 비용에서 정점 후 포화 (inverse test-time scaling)"
     page: 5
-    strategy: page-region
-    curated: false
-  - id: fig05
-    file: assets/bai-2026-how-do-ai-agents-spend/fig05.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig05.png
+    bbox_norm: [0.1667, 0.1003, 0.8333, 0.293]
+    strategy: caption-region
+    curated: true
+  - id: fig04
+    label: Figure 4
+    kind: figure
+    file: assets/bai-2026-how-do-ai-agents-spend/fig04.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig04.png
     caption: "Figure 4: 고비용 실행은 동일 파일에 대한 반복 view·modify와 연관 (비효율적 탐색이 컨텍스트 팽창)"
     page: 5
-    strategy: page-region
+    bbox_norm: [0.1667, 0.3974, 0.8333, 0.5902]
+    strategy: caption-region
     curated: false
-  - id: fig06
-    file: assets/bai-2026-how-do-ai-agents-spend/fig06.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig06.png
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/bai-2026-how-do-ai-agents-spend/fig05.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig05.png
     caption: "Figure 5: 전문가 난이도 평가는 실제 토큰 소비의 약한 예측자 (Kendall τb=0.32, 분포 대폭 겹침)"
     page: 6
-    strategy: page-region
+    bbox_norm: [0.1667, 0.1003, 0.8333, 0.2617]
+    strategy: caption-region
     curated: false
-  - id: fig07
-    file: assets/bai-2026-how-do-ai-agents-spend/fig07.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig07.png
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/bai-2026-how-do-ai-agents-spend/fig06.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig06.png
     caption: "Figure 6: 모델별 토큰 효율 차이 — success/failure subset 모두에서 순위 유지 (효율은 모델 고유 특성). GPT-5 최저비용, Kimi-K2 최고비용·최저정확도"
     page: 7
-    strategy: page-region
-    curated: false
-  - id: fig08
-    file: assets/bai-2026-how-do-ai-agents-spend/fig08.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig08.png
+    bbox_norm: [0.1667, 0.1003, 0.8333, 0.3025]
+    strategy: caption-region
+    curated: true
+  - id: fig07
+    label: Figure 7
+    kind: figure
+    file: assets/bai-2026-how-do-ai-agents-spend/fig07.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig07.png
     caption: "Figure 7: 파일 view·modify 액션의 overall vs. repeated 횟수 — 저비용 모델(GPT-5)은 적고 반복 적음, 고비용 모델은 ~50% 반복"
     page: 8
-    strategy: page-region
+    bbox_norm: [0.2314, 0.1003, 0.7686, 0.3107]
+    strategy: caption-region
     curated: false
-  - id: fig09
-    file: assets/bai-2026-how-do-ai-agents-spend/fig09.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig09.png
+  - id: fig08
+    label: Figure 8
+    kind: figure
+    file: assets/bai-2026-how-do-ai-agents-spend/fig08.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig08.png
     caption: "Figure 8: phase별(Setup·Explore·Fix·Validate·Closeout) 토큰량·비용 — cache-read input이 모든 단계에서 지배"
     page: 9
-    strategy: page-region
-    curated: false
-  - id: fig11
-    file: assets/bai-2026-how-do-ai-agents-spend/fig11.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig11.png
+    bbox_norm: [0.2293, 0.2468, 0.7707, 0.4337]
+    strategy: caption-region
+    curated: true
+  - id: fig09
+    label: Figure 9
+    kind: figure
+    file: assets/bai-2026-how-do-ai-agents-spend/fig09.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig09.png
     caption: "Figure 9: round별 토큰-비용 동역학(astropy-7336) — cache-read는 안정적 누적, 비용 스파이크는 새 컨텍스트 주입 액션에서 발생"
     page: 10
-    strategy: page-region
+    bbox_norm: [0.1828, 0.1003, 0.8171, 0.2994]
+    strategy: caption-region
     curated: false
-  - id: fig12
-    file: assets/bai-2026-how-do-ai-agents-spend/fig12.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig12.png
+  - id: fig10
+    label: Figure 10
+    kind: figure
+    file: assets/bai-2026-how-do-ai-agents-spend/fig10.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig10.png
     caption: "Figure 10: 자기예측 성능(Pearson r)과 오버헤드 — 최고 0.39, input 예측이 output보다 어려움"
     page: 11
-    strategy: page-region
+    bbox_norm: [0.2056, 0.1003, 0.7428, 0.3058]
+    strategy: caption-region
     curated: false
-  - id: fig13
-    file: assets/bai-2026-how-do-ai-agents-spend/fig13.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig13.png
+  - id: fig11
+    label: Figure 11
+    kind: figure
+    file: assets/bai-2026-how-do-ai-agents-spend/fig11.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig11.png
     caption: "Figure 11: 예측 vs. 실제 토큰 사용량 — 모든 모델이 체계적으로 과소추정(대각선 아래), input에서 특히 심함"
     page: 12
-    strategy: page-region
-    curated: false
-  - id: fig14
-    file: assets/bai-2026-how-do-ai-agents-spend/fig14.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig14.png
+    bbox_norm: [0.1667, 0.1003, 0.8333, 0.2553]
+    strategy: caption-region
+    curated: true
+  - id: fig12
+    label: Figure 12
+    kind: figure
+    file: assets/bai-2026-how-do-ai-agents-spend/fig12.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig12.png
     caption: "Figure 12: output-token 분석 (Appendix A) — input 결과와 동일 경향, 고비용에서 정확도 하락·반복 액션 증가"
     page: 16
-    strategy: page-region
+    bbox_norm: [0.1661, 0.2712, 0.8358, 0.7153]
+    strategy: caption-region
     curated: false
-  - id: fig15
-    file: assets/bai-2026-how-do-ai-agents-spend/fig15.png
-    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig15.png
+  - id: fig13
+    label: Figure 13
+    kind: figure
+    file: assets/bai-2026-how-do-ai-agents-spend/fig13.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/fig13.png
     caption: "Figure 13: in-context 예시 없는 자기예측 (Appendix D) — 과소추정 지속·심화, 상관 크게 저하"
     page: 26
-    strategy: page-region
+    bbox_norm: [0.1667, 0.3177, 0.8333, 0.4858]
+    strategy: caption-region
+    curated: false
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/bai-2026-how-do-ai-agents-spend/tab01.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/tab01.png
+    caption: "Table 1: Phases of agent trajectories. Percentages are computed over all rounds across Sonnet-4.5 runs."
+    page: 9
+    bbox_norm: [0.2583, 0.265, 0.768, 0.4168]
+    strategy: table-region
+    curated: false
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/bai-2026-how-do-ai-agents-spend/tab02.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/tab02.png
+    caption: "Table 2: Six representative rounds from the trajectory in Figure 9 , grouped by their dominant cost source. Input-heavy rounds are driven by new content returned from tool calls; output- heavy rounds are driven by the agent’s own reasoning and generation."
+    page: 10
+    bbox_norm: [0.1725, 0.37, 0.8304, 0.4695]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/bai-2026-how-do-ai-agents-spend/tab03.png
+    raw: raw/papers/bai-2026-how-do-ai-agents-spend-figures/tab03.png
+    caption: "Table 3 further shows that correlation with real token usage degrades substantially without the in-context example. These results indicate that the downward bias is not caused by example-induced anchoring; instead, the demonstration improves calibration, while the underlying difficulty of anticipati"
+    page: 26
+    bbox_norm: [0.1662, 0.1352, 0.836, 0.2536]
+    strategy: table-region
     curated: false
 ---
 

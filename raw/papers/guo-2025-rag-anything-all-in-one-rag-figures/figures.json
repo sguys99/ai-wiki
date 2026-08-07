@@ -1,0 +1,488 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig01.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig01.png",
+    "page": 4,
+    "caption": "Figure 1: Overview of our proposed universal RAG framework RAG-Anything.",
+    "bbox": [
+      101.64,
+      49.63,
+      510.35,
+      259.55
+    ],
+    "bbox_norm": [
+      0.1661,
+      0.0627,
+      0.8339,
+      0.3277
+    ],
+    "dpi": 300,
+    "area_frac": 0.177,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig02.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig02.png",
+    "page": 9,
+    "caption": "Figure 2: Performance evaluation across documents of varying lengths.",
+    "bbox": [
+      102.0,
+      75.86,
+      510.01,
+      180.29
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.2276
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig03.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig03.png",
+    "page": 10,
+    "caption": "Figure 3: Multi-panel figure interpretation case. The query requires identifying cluster separation patterns from the style-space panel, while avoiding confusion from the adjacent content-space panel.",
+    "bbox": [
+      101.57,
+      75.43,
+      510.31,
+      170.6
+    ],
+    "bbox_norm": [
+      0.166,
+      0.0952,
+      0.8338,
+      0.2154
+    ],
+    "dpi": 300,
+    "area_frac": 0.08,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig04.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig04.png",
+    "page": 10,
+    "caption": "Figure 4: Financial table navigation case. The query involves locating the specific intersection of “Wages and salaries” row and “2020” column amid similar terminological entries.",
+    "bbox": [
+      101.56,
+      274.84,
+      517.89,
+      362.62
+    ],
+    "bbox_norm": [
+      0.166,
+      0.347,
+      0.8462,
+      0.4579
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig05.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig05.png",
+    "page": 13,
+    "caption": "Figure 5: Visual reasoning case. RAG-Anything correctly identifies \"-S-A\" as the lowest accuracy configuration, while baselines misinterpret spatial relationships.",
+    "bbox": [
+      101.51,
+      564.67,
+      510.35,
+      671.99
+    ],
+    "bbox_norm": [
+      0.1659,
+      0.713,
+      0.8339,
+      0.8485
+    ],
+    "dpi": 300,
+    "area_frac": 0.091,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig06.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig06.png",
+    "page": 14,
+    "caption": "Figure 6: Tabular navigation case. RAG-Anything locates the highest AUPRC value (0.506), while the compared approaches struggle with structural ambiguity.",
+    "bbox": [
+      101.57,
+      203.04,
+      510.35,
+      303.69
+    ],
+    "bbox_norm": [
+      0.166,
+      0.2564,
+      0.8339,
+      0.3835
+    ],
+    "dpi": 300,
+    "area_frac": 0.085,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig07.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig07.png",
+    "page": 15,
+    "caption": "Figure 7: Vision analysis prompt for context-aware image interpretation and knowledge extraction.",
+    "bbox": [
+      102.0,
+      75.86,
+      510.0,
+      366.05
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.4622
+    ],
+    "dpi": 300,
+    "area_frac": 0.244,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig08.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig08.png",
+    "page": 15,
+    "caption": "Figure 8: Table analysis prompt for structured content decomposition and semantic understanding.",
+    "bbox": [
+      102.0,
+      395.87,
+      510.0,
+      686.06
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4998,
+      0.8333,
+      0.8662
+    ],
+    "dpi": 300,
+    "area_frac": 0.244,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig09.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig09.png",
+    "page": 16,
+    "caption": "Figure 9: Equation analysis prompt for mathematical expression interpretation and integration.",
+    "bbox": [
+      102.0,
+      75.86,
+      510.0,
+      355.91
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.4494
+    ],
+    "dpi": 300,
+    "area_frac": 0.236,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig10.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig10.png",
+    "page": 16,
+    "caption": "Figure 10: Accuracy evaluation prompt for consistent factual assessment across question types.",
+    "bbox": [
+      102.0,
+      360.25,
+      510.0,
+      657.62
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4549,
+      0.8333,
+      0.8303
+    ],
+    "dpi": 300,
+    "area_frac": 0.25,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig11.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig11.png",
+    "page": 17,
+    "caption": "Figure 11: Cross-modal noise case. All methods fail to retrieve the correct answer from the specified image, instead retrieving noisy textual evidence that misaligns with the structured visual content.",
+    "bbox": [
+      101.59,
+      320.66,
+      510.29,
+      425.35
+    ],
+    "bbox_norm": [
+      0.166,
+      0.4049,
+      0.8338,
+      0.5371
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/fig12.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/fig12.png",
+    "page": 17,
+    "caption": "Figure 12: Ambiguous table structure case. All methods fail to correctly parse the confusing table layout with merged cells and unclear column boundaries, leading to incorrect data extraction.",
+    "bbox": [
+      101.52,
+      455.53,
+      510.42,
+      558.11
+    ],
+    "bbox_norm": [
+      0.1659,
+      0.5752,
+      0.834,
+      0.7047
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/tab01.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1: Statistics of Experimental Datasets.",
+    "bbox": [
+      102.0,
+      86.38,
+      510.68,
+      142.94
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1091,
+      0.8344,
+      0.1805
+    ],
+    "dpi": 300,
+    "area_frac": 0.048,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/tab02.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/tab02.png",
+    "page": 8,
+    "caption": "Table 2: Accuracy (%) on DocBench Dataset. Performance results with best scores highlighted in dark blue and second-best in light blue . Domain categories include Academia (Aca.), Finance (Fin.), Government (Gov.), Legal Documents (Law), and News Articles (News). Document types are categorized as Te",
+    "bbox": [
+      104.65,
+      126.48,
+      507.35,
+      224.55
+    ],
+    "bbox_norm": [
+      0.171,
+      0.1597,
+      0.829,
+      0.2835
+    ],
+    "dpi": 300,
+    "area_frac": 0.081,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/tab03.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/tab03.png",
+    "page": 8,
+    "caption": "Table 3: Accuracy (%) on MMLongBench across different domains and overall performance. Best re- sults are highlighted in dark blue and second-best in light blue .. Domain categories include Research Reports/Introductions (Res.), Tutorials/Workshops (Tut.), Academic Papers (Acad.), Guidebooks (Guid.)",
+    "bbox": [
+      104.72,
+      278.16,
+      507.29,
+      378.36
+    ],
+    "bbox_norm": [
+      0.1711,
+      0.3512,
+      0.8289,
+      0.4777
+    ],
+    "dpi": 300,
+    "area_frac": 0.083,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/tab04.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/tab04.png",
+    "page": 9,
+    "caption": "Table 4: Ablation study results on DocBench. The “Chunk-only” variant bypasses dual-graph construction and relies solely on traditional chunk-based retrieval, while “w/o Reranker” eliminates cross-modal reranking but preserves the core graph-based architecture.",
+    "bbox": [
+      104.69,
+      238.12,
+      507.33,
+      325.56
+    ],
+    "bbox_norm": [
+      0.1711,
+      0.3007,
+      0.829,
+      0.4111
+    ],
+    "dpi": 300,
+    "area_frac": 0.073,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/tab05.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/tab05.png",
+    "page": 13,
+    "caption": "Table 5: Document type distribution and statistics for the DocBench benchmark.",
+    "bbox": [
+      190.49,
+      245.06,
+      421.51,
+      311.2
+    ],
+    "bbox_norm": [
+      0.3113,
+      0.3094,
+      0.6887,
+      0.3929
+    ],
+    "dpi": 300,
+    "area_frac": 0.032,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/guo-2025-rag-anything-all-in-one-rag/tab06.png",
+    "raw": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/tab06.png",
+    "page": 13,
+    "caption": "Table 6: Document type distribution and statistics for the MMLongBench benchmark.",
+    "bbox": [
+      152.5,
+      335.59,
+      459.5,
+      401.73
+    ],
+    "bbox_norm": [
+      0.2492,
+      0.4237,
+      0.7508,
+      0.5072
+    ],
+    "dpi": 300,
+    "area_frac": 0.042,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/guo-2025-rag-anything-all-in-one-rag-figures/_overlay/p13.png"
+  }
+]

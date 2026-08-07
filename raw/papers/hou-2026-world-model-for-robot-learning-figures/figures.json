@@ -1,128 +1,329 @@
 [
   {
     "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
     "file": "assets/hou-2026-world-model-for-robot-learning/fig01.png",
     "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig01.png",
     "page": 2,
-    "caption": "Figure 1 Overview of the organization of this survey. Section 3 reviews how world models are coupled with robot policies",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 1 Overview of the organization of this survey. Section 3 reviews how world models are coupled with robot policies from an architectural perspective. Section 4 examines world models as simulators from an application perspective. Section 5 focuses on robotic video world models and organizes the",
+    "bbox": [
+      48.83,
+      55.21,
+      600.99,
+      330.62
+    ],
+    "bbox_norm": [
+      0.0798,
+      0.0697,
+      0.982,
+      0.4175
+    ],
+    "dpi": 300,
+    "area_frac": 0.314,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p02.png"
   },
   {
     "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
     "file": "assets/hou-2026-world-model-for-robot-learning/fig02.png",
     "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig02.png",
     "page": 3,
-    "caption": "Figure 2 Temporal evolution of representative works on world models for robotic policy learning. The upper branch",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 2 Temporal evolution of representative works on world models for robotic policy learning. The upper branch summarizes the progression of worldmodelforpolicymethods , showing a trend from early decoupled video-generation-plus- IDM pipelines toward tighter integration through single-backbone, M",
+    "bbox": [
+      42.59,
+      57.78,
+      587.25,
+      323.43
+    ],
+    "bbox_norm": [
+      0.0696,
+      0.073,
+      0.9596,
+      0.4084
+    ],
+    "dpi": 300,
+    "area_frac": 0.299,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p03.png"
   },
   {
     "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
     "file": "assets/hou-2026-world-model-for-robot-learning/fig03.png",
     "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig03.png",
-    "page": 4,
-    "caption": "Figure 2 highlights two closely related trends in the recent literature. On the policy side, early decoupled",
-    "strategy": "page-region",
-    "curated": false
+    "page": 10,
+    "caption": "Figure 3 Representative architectural paradigms for using world models as policies. (a) IDM-style. A video generation model first predicts future observations, and an inverse dynamics model then recovers actions from the predicted visual trajectory, yielding a decoupled predict-then-act pipeline. (b",
+    "bbox": [
+      56.32,
+      57.78,
+      582.5,
+      216.26
+    ],
+    "bbox_norm": [
+      0.092,
+      0.073,
+      0.9518,
+      0.2731
+    ],
+    "dpi": 300,
+    "area_frac": 0.172,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p10.png"
   },
   {
     "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
     "file": "assets/hou-2026-world-model-for-robot-learning/fig04.png",
     "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig04.png",
-    "page": 8,
-    "caption": "Table 1 Comparison of architectural paradigms for world-model-based policies in Sec. 3.",
-    "strategy": "page-region",
-    "curated": false
+    "page": 13,
+    "caption": "Figure4 Two MLLM-based routes for internalizing world modeling into policy learning. (a)UnifiedVision-Language-Action model. A unified multimodal model jointly processes observation and language, and is trained to produce action together with auxiliary future-oriented outputs such as textual reasoni",
+    "bbox": [
+      89.04,
+      62.18,
+      523.28,
+      217.57
+    ],
+    "bbox_norm": [
+      0.1455,
+      0.0785,
+      0.855,
+      0.2747
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p13.png"
   },
   {
     "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
     "file": "assets/hou-2026-world-model-for-robot-learning/fig05.png",
     "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig05.png",
-    "page": 10,
-    "caption": "Figure 3 Representative architectural paradigms for using world models as policies. (a) IDM-style. A video generation",
-    "strategy": "page-region",
-    "curated": false
+    "page": 16,
+    "caption": "Figure 5 Two uses of world models for policy learning. (a) In the reinforcement-learning setting, the world model serves as a learned simulator that produces imagined transitions for policy improvement. (b) In the validation setting, the world model scores imagined consequences of candidate actions ",
+    "bbox": [
+      88.62,
+      64.91,
+      523.51,
+      208.17
+    ],
+    "bbox_norm": [
+      0.1448,
+      0.082,
+      0.8554,
+      0.2628
+    ],
+    "dpi": 300,
+    "area_frac": 0.129,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p16.png"
   },
   {
     "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
     "file": "assets/hou-2026-world-model-for-robot-learning/fig06.png",
     "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig06.png",
-    "page": 13,
-    "caption": "Figure 4 Two MLLM-based routes for internalizing world modeling into policy learning. (a)UnifiedVision-Language-Action",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig07",
-    "file": "assets/hou-2026-world-model-for-robot-learning/fig07.png",
-    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig07.png",
-    "page": 16,
-    "caption": "Figure 5 Two uses of world models for policy learning. (a) In the reinforcement-learning setting, the world model serves",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig08",
-    "file": "assets/hou-2026-world-model-for-robot-learning/fig08.png",
-    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig08.png",
     "page": 19,
-    "caption": "Figure 6 Unified view of robotic video world models. Section 5.1 defines the core object as a robotic video world",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Figure 6 Unified view of robotic video world models. Section 5.1 defines the core object as a robotic video world model that predicts future observations in visual space. Building on this core, Section 5.2 uses the predicted future as an imagination engine for supervision, Section 5.3 introduces act",
+    "bbox": [
+      64.87,
+      57.78,
+      547.07,
+      185.9
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.8939,
+      0.2347
+    ],
+    "dpi": 300,
+    "area_frac": 0.127,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p19.png"
   },
   {
-    "id": "fig09",
-    "file": "assets/hou-2026-world-model-for-robot-learning/fig09.png",
-    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig09.png",
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/hou-2026-world-model-for-robot-learning/tab01.png",
+    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/tab01.png",
+    "page": 8,
+    "caption": "Table 1 Comparison of architectural paradigms for world-model-based policies in Sec. 3 .",
+    "bbox": [
+      64.87,
+      78.9,
+      552.23,
+      522.6
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0996,
+      0.9023,
+      0.6598
+    ],
+    "dpi": 300,
+    "area_frac": 0.446,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/hou-2026-world-model-for-robot-learning/tab02.png",
+    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/tab02.png",
     "page": 20,
-    "caption": "Table 2 Comparison of representative methods in Sec. 5, grouped by the four capability regimes discussed in Sec. 5.",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Table 2 Comparison of representative methods in Sec. 5 , grouped by the four capability regimes discussed in Sec. 5. Checkboxes indicate whether a feature is explicitly supported or emphasized by the original paper. Here, Foundation- scale is reserved for methods that explicitly build on or present ",
+    "bbox": [
+      64.55,
+      111.98,
+      547.13,
+      448.55
+    ],
+    "bbox_norm": [
+      0.1055,
+      0.1414,
+      0.894,
+      0.5664
+    ],
+    "dpi": 300,
+    "area_frac": 0.335,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p20.png"
   },
   {
-    "id": "fig10",
-    "file": "assets/hou-2026-world-model-for-robot-learning/fig10.png",
-    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig10.png",
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/hou-2026-world-model-for-robot-learning/tab03.png",
+    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/tab03.png",
     "page": 26,
-    "caption": "Table 3 Core attributes of representative datasets/resources for embodied world model training. Benchmark-only",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Table 3 Core attributes of representative datasets/resources for embodied world model training. Benchmark-only resources discussed in the evaluation section are excluded.",
+    "bbox": [
+      79.13,
+      90.06,
+      532.87,
+      424.69
+    ],
+    "bbox_norm": [
+      0.1293,
+      0.1137,
+      0.8707,
+      0.5362
+    ],
+    "dpi": 300,
+    "area_frac": 0.313,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p26.png"
   },
   {
-    "id": "fig11",
-    "file": "assets/hou-2026-world-model-for-robot-learning/fig11.png",
-    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig11.png",
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/hou-2026-world-model-for-robot-learning/tab04.png",
+    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/tab04.png",
     "page": 27,
     "caption": "Table 4 Relevance of representative datasets/resources to embodied world-modeling capabilities.",
-    "strategy": "page-region",
-    "curated": false
+    "bbox": [
+      64.87,
+      79.1,
+      547.13,
+      454.62
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0999,
+      0.894,
+      0.574
+    ],
+    "dpi": 300,
+    "area_frac": 0.374,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p27.png"
   },
   {
-    "id": "fig12",
-    "file": "assets/hou-2026-world-model-for-robot-learning/fig12.png",
-    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig12.png",
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/hou-2026-world-model-for-robot-learning/tab05.png",
+    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/tab05.png",
     "page": 28,
-    "caption": "Table 5 Representative results on the LIBERO standard 4-suite benchmark, grouped by how world modeling is integrated",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Table5 Representative results on the LIBERO standard 4-suite benchmark, grouped by how world modeling is integrated with policy learning. Methods with no directly reported number under the standard Spatial/Object/Goal/Long protocol are omitted.",
+    "bbox": [
+      120.89,
+      232.47,
+      488.29,
+      468.99
+    ],
+    "bbox_norm": [
+      0.1975,
+      0.2935,
+      0.7979,
+      0.5922
+    ],
+    "dpi": 300,
+    "area_frac": 0.179,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p28.png",
+    "duplicate_pages": [
+      28
+    ]
   },
   {
-    "id": "fig13",
-    "file": "assets/hou-2026-world-model-for-robot-learning/fig13.png",
-    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig13.png",
-    "page": 28,
-    "caption": "Table 5 focuses on the LIBERO (Liu et al., 2023a) standard 4-suite setting. We retain the breakdown into",
-    "strategy": "page-region",
-    "curated": false
-  },
-  {
-    "id": "fig14",
-    "file": "assets/hou-2026-world-model-for-robot-learning/fig14.png",
-    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/fig14.png",
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/hou-2026-world-model-for-robot-learning/tab06.png",
+    "raw": "raw/papers/hou-2026-world-model-for-robot-learning-figures/tab06.png",
     "page": 29,
-    "caption": "Table 6 Representative results on RoboTwin, CALVIN, and SIMPLER-style benchmarks, grouped by how world",
-    "strategy": "page-region",
-    "curated": false
+    "caption": "Table 6 Representative results on RoboTwin, CALVIN, and SIMPLER-style benchmarks, grouped by how world modeling is integrated with policy learning. Methods with no directly reported number under the corresponding protocols are omitted.",
+    "bbox": [
+      88.77,
+      101.02,
+      523.23,
+      409.09
+    ],
+    "bbox_norm": [
+      0.145,
+      0.1275,
+      0.855,
+      0.5165
+    ],
+    "dpi": 300,
+    "area_frac": 0.276,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hou-2026-world-model-for-robot-learning-figures/_overlay/p29.png"
   }
 ]
