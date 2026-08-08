@@ -1,0 +1,18 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/kim-2026-silicon-valley-rfm-part-1/page-full.png",
+    "raw": "raw/articles/kim-2026-silicon-valley-rfm-part-1-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/kim-2026-silicon-valley-rfm-part-1/crop01.png",
+    "raw": "raw/articles/kim-2026-silicon-valley-rfm-part-1-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
