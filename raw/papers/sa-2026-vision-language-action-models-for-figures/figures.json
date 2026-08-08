@@ -1,0 +1,137 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig01.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig01.png",
+    "page": 1,
+    "caption": "and factories often require two-handed dexterity. Fig. 1 shows",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig02.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig02.png",
+    "page": 5,
+    "caption": "Fig. 2: Which way of producing an action plan suits which degree of two-arm agreement. Rows are the coupling regimes of",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig03.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig03.png",
+    "page": 7,
+    "caption": "mechanism. Fig. 3 places them chronologically, Fig. 2 shows",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig04.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig04.png",
+    "page": 7,
+    "caption": "mechanism. Fig. 3 places them chronologically, Fig. 2 shows",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig05.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig05.png",
+    "page": 7,
+    "caption": "the survey’s organization, Fig. 4 contrasts the mechanisms, and",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig06.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig06.png",
+    "page": 8,
+    "caption": "Figure 02 @ BMW: 1 250 h",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig07.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig07.png",
+    "page": 8,
+    "caption": "Fig. 3: Milestones on a uniform time axis: research releases (blue), dual-arm hardware and collection interfaces (orange), and",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig08.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig08.png",
+    "page": 11,
+    "caption": "dual-arm demonstrations come from. Fig. 5 traces the full path.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig09.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig09.png",
+    "page": 13,
+    "caption": "Fig. 4: Four action-head mechanisms sharing one backbone; only the head differs, and each choice sets a latency budget",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig10.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig10.png",
+    "page": 13,
+    "caption": "Fig. 5: The training pipeline, showing what feeds each stage (green) and what protects it (red). Data sources differ by orders of",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig11.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig11.png",
+    "page": 25,
+    "caption": "Fig. 6: The same generation of policies, measured four ways.",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig12.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig12.png",
+    "page": 25,
+    "caption": "their reported scale, and Fig. 1 shows four of these settings,",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig13.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig13.png",
+    "page": 26,
+    "caption": "contact-rich manipulation (Section VIII-B). Fig. 1 (top right)",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig14.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig14.png",
+    "page": 27,
+    "caption": "stands. Fig. 6 makes the central measurement problem con-",
+    "strategy": "page-region",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/sa-2026-vision-language-action-models-for/fig15.png",
+    "raw": "raw/papers/sa-2026-vision-language-action-models-for-figures/fig15.png",
+    "page": 28,
+    "caption": "Figure\n02\n(Helix) [188]",
+    "strategy": "page-region",
+    "curated": false
+  }
+]
