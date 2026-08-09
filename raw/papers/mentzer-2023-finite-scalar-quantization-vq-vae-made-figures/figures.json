@@ -1,0 +1,327 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/fig01.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: FSQ (left): the final encoder layer projects to d dimensions ( d = 3 shown). We bound each dimension of the encoder output z to L values ( L = 3 shown), and then round to integers, resulting in the quantized ˆ z , the nearest point in this hypercube. VQ (right) : The final encoder layer pr",
+    "bbox": [
+      136.63,
+      89.42,
+      458.52,
+      191.72
+    ],
+    "bbox_norm": [
+      0.2233,
+      0.1129,
+      0.7492,
+      0.2421
+    ],
+    "dpi": 300,
+    "area_frac": 0.068,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/fig02.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2: Left : VQ made simple: comparing implementation and optimization of VQ vs. FSQ. Right : Bounding z with f , and rounding the output, shown for a single channel with L = 5 .",
+    "bbox": [
+      107.98,
+      75.86,
+      507.5,
+      192.58
+    ],
+    "bbox_norm": [
+      0.1764,
+      0.0958,
+      0.8293,
+      0.2432
+    ],
+    "dpi": 300,
+    "area_frac": 0.096,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/fig03.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 3: Characteristics and trade-offs for VQ and FSQ for 128 × 128 ImageNet. We see that Reconstruction FID correlates with codebook size for FSQ, and improves as we scale the codebook size. FSQ gets better Sampling FID and higher codebook usage for codebook size exceeding 2 10 , while the metric",
+    "bbox": [
+      140.35,
+      75.86,
+      469.17,
+      311.67
+    ],
+    "bbox_norm": [
+      0.2293,
+      0.0958,
+      0.7666,
+      0.3935
+    ],
+    "dpi": 300,
+    "area_frac": 0.16,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/fig04.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/fig04.png",
+    "page": 6,
+    "caption": "Figure 4: M ASK GIT results on ImageNet 256. Top: We show the best classifier-free guidance (CFG) setting for each MaskGIT model. As a reference, we show the well established diffusion based ADM model ( Dhariwal & Nichol , 2021 ). Bottom Left: Precision vs. Recall for various CFG weights. Bottom Rig",
+    "bbox": [
+      103.98,
+      163.98,
+      508.68,
+      308.09
+    ],
+    "bbox_norm": [
+      0.1699,
+      0.207,
+      0.8312,
+      0.389
+    ],
+    "dpi": 300,
+    "area_frac": 0.12,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/fig05.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/fig05.png",
+    "page": 7,
+    "caption": "Figure 5: Non-cherry-picked samples from our FSQ (top) and VQ (bottom) MaskGIT models for 4 imagenet classes ( 330 , 320 , 510 , 454 ). We show two samples per model per category. Both models get very comparable sample quality, as reflected by the metrics in Fig. 4 .",
+    "bbox": [
+      102.0,
+      75.86,
+      510.0,
+      186.36
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.2353
+    ],
+    "dpi": 300,
+    "area_frac": 0.093,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/fig06.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/fig06.png",
+    "page": 9,
+    "caption": "Figure 6: Samples from UViM for the depth estimation task. Other tasks in Appendix A.2 . We observe that VQ and FSQ lead to comparable samples. VQ without splitting leads to jagged edges.",
+    "bbox": [
+      102.0,
+      75.86,
+      510.0,
+      215.72
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.2724
+    ],
+    "dpi": 300,
+    "area_frac": 0.118,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/fig07.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/fig07.png",
+    "page": 14,
+    "caption": "Figure 7: Visualization for panoptic segmentation (first two rows) and colorization (last two rows).",
+    "bbox": [
+      102.19,
+      75.86,
+      509.82,
+      504.41
+    ],
+    "bbox_norm": [
+      0.167,
+      0.0958,
+      0.833,
+      0.6369
+    ],
+    "dpi": 300,
+    "area_frac": 0.36,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/fig08.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/fig08.png",
+    "page": 15,
+    "caption": "Figure 8: Analyzing representations: we take two random images A, B from the validation set (first two columns). We compare stitching the top half of A to the bottom half of B in pixel space (center) to stitching the corresponding representations obtained by the FSQ-GAN and VQ-GAN (last two columns)",
+    "bbox": [
+      121.8,
+      75.86,
+      490.22,
+      389.17
+    ],
+    "bbox_norm": [
+      0.199,
+      0.0958,
+      0.801,
+      0.4914
+    ],
+    "dpi": 300,
+    "area_frac": 0.238,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/fig09.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/fig09.png",
+    "page": 15,
+    "caption": "Figure 9: Analysing “fake” representations: Left 3 columns : randomly sampling codes according to the marginal histogram, for FSQ (top) and VQ (bottom). Right 3 columns : Creating a representation sharing code across all spatial location, where we pick the 3 most common codes according to the margin",
+    "bbox": [
+      101.75,
+      460.27,
+      510.37,
+      590.48
+    ],
+    "bbox_norm": [
+      0.1663,
+      0.5811,
+      0.8339,
+      0.7456
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/fig10.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/fig10.png",
+    "page": 16,
+    "caption": "Figure 10: Exploring different configurations of quantization levels per channel L . The color and marker indicate the smallest L i used for a given model (see legend).",
+    "bbox": [
+      220.8,
+      593.06,
+      391.2,
+      701.82
+    ],
+    "bbox_norm": [
+      0.3608,
+      0.7488,
+      0.6392,
+      0.8861
+    ],
+    "dpi": 300,
+    "area_frac": 0.038,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/tab01.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/tab01.png",
+    "page": 4,
+    "caption": "Table 1: Recommended sets of FSQ levels L to approximately match a given codebook size |C| .",
+    "bbox": [
+      73.56,
+      665.62,
+      532.32,
+      714.05
+    ],
+    "bbox_norm": [
+      0.1202,
+      0.8404,
+      0.8698,
+      0.9016
+    ],
+    "dpi": 300,
+    "area_frac": 0.046,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p04.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/mentzer-2023-finite-scalar-quantization-vq-vae-made/tab02.png",
+    "raw": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/tab02.png",
+    "page": 8,
+    "caption": "Table 2: UV I M results for the three tasks. For each, we show results in the corresponding metric averaged over three runs with std. dev. (as in UViM). We show the numbers reported by the reference GitHub repository, as well as one well established baseline per task. For our models, we show Codeboo",
+    "bbox": [
+      149.16,
+      76.26,
+      462.84,
+      315.86
+    ],
+    "bbox_norm": [
+      0.2437,
+      0.0963,
+      0.7563,
+      0.3988
+    ],
+    "dpi": 300,
+    "area_frac": 0.155,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made-figures/_overlay/p08.png"
+  }
+]
