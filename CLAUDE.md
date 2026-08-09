@@ -8,6 +8,8 @@ AI 관련 기술자료(papers, repos, articles, reports, videos, books, lectures
 
 **언어 정책 (Language Policy)**: `CLAUDE.md`의 지시문과 `sources/`·`wiki/`의 본문은 **한글**로 작성한다. 단, 식별자(YAML key, 카테고리명, 파일명 stem, 폴더명)와 기술 용어(RAG, Transformer, embedding, fine-tuning 등)는 **영문**으로 유지한다. 섹션 헤딩은 `## 요약 (Summary)` 형식으로 한글 + 영문 병기를 권장한다. 사용자와의 대화는 어느 언어로든 가능하다.
 
+전문 용어의 canonical 표기는 도메인 용어집 `wiki/overviews/glossary-{physical-ai,agents,llms}.md`가 SSOT다. 용어집에 등재된 원어는 한글로 직역하지 않고(policy → "정책" ❌), 문서당 첫 등장 시 괄호 병기 없이 서술형 한글 풀이를 한 문장 둔다 (예: "control frequency는 로봇이 1초에 몇 번 새로운 action을 갱신하는지를 뜻한다"). 원어에는 조사를 그대로 붙인다("policy가 observation을 받아"). 용어집이 한글 canonical로 지정한 용어(임베딩·토큰·강화학습 등)는 그 한글만 쓴다. 준수 여부는 `scripts/lint_terms.py`가 검사한다.
+
 ---
 
 ## THE FOUR RULES (위반 금지)
@@ -244,9 +246,11 @@ Step 3.5  사용자 confirm — wiki에 넣을 fig ID 지정 → curated: true
 Step 4    wiki/{category}/{stem}.md 작성 + curated figure를 wiki/assets/{stem}/로 cp + 본문 임베드 + index.md 갱신
 ```
 
+Step 3~4(sources·wiki 작성)는 `write-wiki` 스킬을 사용한다. 스킬이 도메인 용어집 로드, 전문 용어 표기 규칙, 첫 등장 풀이 스타일, 작성 후 lint 검증을 담당한다.
+
 ### 공통 Step 3 — `sources/{stem}.md` 작성
 
-front-matter는 위 스키마를 따르고 (Step 2.5에서 도식을 추출했다면 `figures:` 리스트 채움 — 이 단계에서는 모든 항목 `curated: false`), 본문은 다음 한글 헤딩으로 구성한다 (영문 기술용어는 인라인 유지).
+front-matter는 위 스키마를 따르고 (Step 2.5에서 도식을 추출했다면 `figures:` 리스트 채움 — 이 단계에서는 모든 항목 `curated: false`), 본문은 다음 한글 헤딩으로 구성한다 (전문 용어 표기는 `write-wiki` 스킬과 도메인 용어집을 따른다).
 
 ```markdown
 ## 한 줄 요약 (One-line Summary)
@@ -324,7 +328,8 @@ cp raw/papers/{stem}-figures/fig05.png wiki/assets/{stem}/
 - **콜론 부제 헤딩 회피**: "X: Y" 형식 헤딩을 반복하지 않는다. 짧은 평서 헤딩으로.
 - **연결어미 뒤 쉼표 자제**: "-고, / -며, / -지만, / -어서," 직후 쉼표를 남발하지 않는다(AI 티 최상위 신호, C-11).
 - **문단 흐름**: 모든 문단을 "요약 문장 → 부연" 틀로 열지 않는다. 일부 문단은 사례·수치·질문으로 시작해 리듬을 준다. 문두 접속사("또한·따라서·즉·나아가")는 최소화.
-- **불변**: 사실·수치·고유명사·인용·YAML key·파일명·영문 기술용어(RAG·Transformer 등)는 문체와 무관하게 그대로.
+- **전문 용어 원어 유지**: 도메인 용어집(`wiki/overviews/glossary-*.md`) 등재 용어는 canonical 표기만 쓴다. 직역("정책·보상·관측·궤적")과 표기 흔들림("관측/관찰", "워크플로/워크플로우") 금지. 첫 등장 시 서술형 풀이 한 문장, 괄호 병기는 하지 않는다.
+- **불변**: 사실·수치·고유명사·인용·YAML key·파일명·영문 기술용어(RAG·Transformer 등)·용어집 canonical 표기는 문체와 무관하게 그대로.
 
 > 이 가이드는 안티-AI-티 규칙(`references/ai-tell-taxonomy.md`)의 부분집합을 생성 단계로 앞당긴 것이다. 완전 판정·교정은 humanize-korean strict가 수행한다.
 
