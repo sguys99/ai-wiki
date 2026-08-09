@@ -1,0 +1,1060 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig01.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1. Diffusion models with transformer backbones achieve state-of-the-art image quality. We show selected samples from two of our class-conditional DiT-XL/2 models trained on ImageNet at 512 × 512 and 256 × 256 resolution, respectively.",
+    "bbox": [
+      43.71,
+      142.14,
+      551.37,
+      484.58
+    ],
+    "bbox_norm": [
+      0.0714,
+      0.1795,
+      0.9009,
+      0.6118
+    ],
+    "dpi": 300,
+    "area_frac": 0.359,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig02.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig02.png",
+    "page": 2,
+    "caption": "Figure 2. ImageNet generation with Diffusion Transformers (DiTs). Bubble area indicates the ﬂops of the diffusion model. Left: FID-50K (lower is better) of our DiT models at 400K training iterations. Performance steadily improves in FID as model ﬂops increase. Right: Our best model, DiT-XL/2, is com",
+    "bbox": [
+      44.11,
+      66.0,
+      551.11,
+      271.65
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.0833,
+      0.9005,
+      0.343
+    ],
+    "dpi": 300,
+    "area_frac": 0.215,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig03.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig03.png",
+    "page": 3,
+    "caption": "Figure 3. The Diffusion Transformer (DiT) architecture. Left: We train conditional latent DiT models. The input latent is decomposed into patches and processed by several DiT blocks. Right: Details of our DiT blocks. We experiment with variants of standard transformer blocks that incorporate conditi",
+    "bbox": [
+      44.11,
+      55.04,
+      559.86,
+      287.13
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.0695,
+      0.9148,
+      0.3625
+    ],
+    "dpi": 300,
+    "area_frac": 0.247,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig04.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig04.png",
+    "page": 4,
+    "caption": "Figure 4. Input speciﬁcations for DiT. Given patch size p × p , a spatial representation (the noised latent from the VAE) of shape I × I × C is “patchiﬁed” into a sequence of length T = ( I/p ) 2",
+    "bbox": [
+      314.67,
+      66.0,
+      539.29,
+      255.18
+    ],
+    "bbox_norm": [
+      0.5142,
+      0.0833,
+      0.8812,
+      0.3222
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig05.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig05.png",
+    "page": 5,
+    "caption": "Figure 5. Comparing different conditioning strategies. adaLN- Zero outperforms cross-attention and in-context conditioning at all stages of training.",
+    "bbox": [
+      55.92,
+      66.0,
+      280.55,
+      237.47
+    ],
+    "bbox_norm": [
+      0.0914,
+      0.0833,
+      0.4584,
+      0.2998
+    ],
+    "dpi": 300,
+    "area_frac": 0.079,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig06.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig06.png",
+    "page": 6,
+    "caption": "Figure 6. Scaling the DiT model improves FID at all stages of training. We show FID-50K over training iterations for 12 of our DiT models. Top row: We compare FID holding patch size constant. Bottom row: We compare FID holding model size constant. Scaling the transformer backbone yields better gener",
+    "bbox": [
+      44.11,
+      66.0,
+      551.12,
+      263.62
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.0833,
+      0.9005,
+      0.3329
+    ],
+    "dpi": 300,
+    "area_frac": 0.207,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p06.png",
+    "duplicate_pages": [
+      8
+    ]
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig07.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig07.png",
+    "page": 7,
+    "caption": "Figure 7. Increasing transformer forward pass Gﬂops increases sample quality. Best viewed zoomed-in. We sample from all 12 of our DiT models after 400K training steps using the same input latent noise and class label. Increasing the Gﬂops in the model—either by increasing transformer depth/width or ",
+    "bbox": [
+      44.11,
+      54.67,
+      551.98,
+      684.02
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.069,
+      0.9019,
+      0.8637
+    ],
+    "dpi": 300,
+    "area_frac": 0.659,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig08.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig08.png",
+    "page": 8,
+    "caption": "Figure 8. Transformer Gﬂops are strongly correlated with FID. We plot the Gﬂops of each of our DiT models and each model’s FID-50K after 400K training steps.",
+    "bbox": [
+      44.11,
+      63.59,
+      292.36,
+      252.78
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.0803,
+      0.4777,
+      0.3192
+    ],
+    "dpi": 300,
+    "area_frac": 0.097,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig09.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig09.png",
+    "page": 8,
+    "caption": "Figure 9. Larger DiT models use large compute more efﬁ- ciently. We plot FID as a function of total training compute.",
+    "bbox": [
+      302.86,
+      65.49,
+      551.63,
+      254.18
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.0827,
+      0.9014,
+      0.3209
+    ],
+    "dpi": 300,
+    "area_frac": 0.097,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig10.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig10.png",
+    "page": 9,
+    "caption": "Figure 10. Scaling-up sampling compute does not compensate for a lack of model compute. For each of our DiT models trained for 400K iterations, we compute FID-10K using [16, 32, 64, 128, 256, 1000] sampling steps. For each number of steps, we plot the FID as well as the Gﬂops used to sample each ima",
+    "bbox": [
+      302.86,
+      66.0,
+      551.11,
+      235.5
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.0833,
+      0.9005,
+      0.2973
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig11.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig11.png",
+    "page": 12,
+    "caption": "Figure 11. Additional selected samples from our 512 × 512 and 256 × 256 resolution DiT-XL/2 models. We use a classiﬁer-free guidance scale of 6.0 for the 512 × 512 model and 4.0 for the 256 × 256 model. Both models use the ft-EMA VAE decoder.",
+    "bbox": [
+      43.71,
+      75.72,
+      551.37,
+      418.16
+    ],
+    "bbox_norm": [
+      0.0714,
+      0.0956,
+      0.9009,
+      0.528
+    ],
+    "dpi": 300,
+    "area_frac": 0.359,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig12.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig12.png",
+    "page": 14,
+    "caption": "Figure 12. DiT scaling behavior on several generative modeling metrics. Left: We plot model performance as a function of total training compute for FID, sFID, Inception Score, Precision and Recall. Right: We plot model performance at 400K training steps for all 12 DiT variants against transformer Gﬂ",
+    "bbox": [
+      44.11,
+      65.73,
+      551.11,
+      651.15
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.083,
+      0.9005,
+      0.8222
+    ],
+    "dpi": 300,
+    "area_frac": 0.612,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig13.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig13.png",
+    "page": 15,
+    "caption": "Figure 13. Training loss curves for all DiT models. We plot the loss over training for all DiT models (the sum of the noise prediction mean-squared error and D KL ). We also highlight early training behavior. Note that scaled-up DiT models exhibit lower training losses.",
+    "bbox": [
+      55.24,
+      65.63,
+      537.48,
+      698.4
+    ],
+    "bbox_norm": [
+      0.0903,
+      0.0829,
+      0.8782,
+      0.8818
+    ],
+    "dpi": 300,
+    "area_frac": 0.63,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig14.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig14.png",
+    "page": 16,
+    "caption": "Figure 14. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “arctic wolf” (270)",
+    "bbox": [
+      44.11,
+      114.9,
+      292.37,
+      630.91
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.1451,
+      0.4777,
+      0.7966
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig15.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig15.png",
+    "page": 16,
+    "caption": "Figure 15. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “volcano” (980)",
+    "bbox": [
+      302.86,
+      114.9,
+      551.12,
+      630.91
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.1451,
+      0.9005,
+      0.7966
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig16.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig16.png",
+    "page": 17,
+    "caption": "Figure 16. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “husky” (250)",
+    "bbox": [
+      44.11,
+      126.86,
+      292.37,
+      642.87
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.1602,
+      0.4777,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig17.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig17.png",
+    "page": 17,
+    "caption": "Figure 17. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “sulphur-crested cockatoo” (89)",
+    "bbox": [
+      302.86,
+      126.86,
+      551.12,
+      642.87
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.1602,
+      0.9005,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig18.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig18.png",
+    "page": 18,
+    "caption": "Figure 18. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “cliff drop-off” (972)",
+    "bbox": [
+      44.11,
+      126.86,
+      292.37,
+      642.87
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.1602,
+      0.4777,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig19.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig19.png",
+    "page": 18,
+    "caption": "Figure 19. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “balloon” (417)",
+    "bbox": [
+      302.86,
+      126.86,
+      551.12,
+      642.87
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.1602,
+      0.9005,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig20",
+    "label": "Figure 20",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig20.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig20.png",
+    "page": 19,
+    "caption": "Figure 20. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “lion” (291)",
+    "bbox": [
+      44.11,
+      126.86,
+      292.37,
+      642.87
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.1602,
+      0.4777,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig21",
+    "label": "Figure 21",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig21.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig21.png",
+    "page": 19,
+    "caption": "Figure 21. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “otter” (360)",
+    "bbox": [
+      302.86,
+      126.86,
+      551.12,
+      642.87
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.1602,
+      0.9005,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig22",
+    "label": "Figure 22",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig22.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig22.png",
+    "page": 20,
+    "caption": "Figure 22. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 2.0 Class label = “red panda” (387)",
+    "bbox": [
+      44.11,
+      126.86,
+      292.37,
+      642.87
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.1602,
+      0.4777,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig23",
+    "label": "Figure 23",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig23.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig23.png",
+    "page": 20,
+    "caption": "Figure 23. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 2.0 Class label = “panda” (388)",
+    "bbox": [
+      302.86,
+      126.86,
+      551.12,
+      642.87
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.1602,
+      0.9005,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig24",
+    "label": "Figure 24",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig24.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig24.png",
+    "page": 21,
+    "caption": "Figure 24. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 1.5 Class label = “coral reef” (973)",
+    "bbox": [
+      44.11,
+      126.86,
+      292.37,
+      642.87
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.1602,
+      0.4777,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig25",
+    "label": "Figure 25",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig25.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig25.png",
+    "page": 21,
+    "caption": "Figure 25. Uncurated 512 × 512 DiT-XL/2 samples. Classiﬁer-free guidance scale = 1.5 Class label = “macaw” (88)",
+    "bbox": [
+      302.86,
+      126.86,
+      551.12,
+      642.87
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.1602,
+      0.9005,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig26",
+    "label": "Figure 26",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig26.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig26.png",
+    "page": 22,
+    "caption": "Figure 26. Uncurated 256 × 256 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “macaw” (88)",
+    "bbox": [
+      44.11,
+      126.86,
+      292.37,
+      642.87
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.1602,
+      0.4777,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig27",
+    "label": "Figure 27",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig27.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig27.png",
+    "page": 22,
+    "caption": "Figure 27. Uncurated 256 × 256 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “dog sled” (537)",
+    "bbox": [
+      302.86,
+      126.86,
+      551.12,
+      642.87
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.1602,
+      0.9005,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig28",
+    "label": "Figure 28",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig28.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig28.png",
+    "page": 23,
+    "caption": "Figure 28. Uncurated 256 × 256 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “arctic fox” (279)",
+    "bbox": [
+      44.11,
+      126.86,
+      292.37,
+      642.87
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.1602,
+      0.4777,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p23.png"
+  },
+  {
+    "id": "fig29",
+    "label": "Figure 29",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig29.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig29.png",
+    "page": 23,
+    "caption": "Figure 29. Uncurated 256 × 256 DiT-XL/2 samples. Classiﬁer-free guidance scale = 4.0 Class label = “loggerhead sea turtle” (33)",
+    "bbox": [
+      302.86,
+      126.86,
+      551.12,
+      642.87
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.1602,
+      0.9005,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p23.png"
+  },
+  {
+    "id": "fig30",
+    "label": "Figure 30",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig30.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig30.png",
+    "page": 24,
+    "caption": "Figure 30. Uncurated 256 × 256 DiT-XL/2 samples. Classiﬁer-free guidance scale = 2.0 Class label = “golden retriever” (207)",
+    "bbox": [
+      44.11,
+      126.86,
+      292.37,
+      642.87
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.1602,
+      0.4777,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig31",
+    "label": "Figure 31",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig31.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig31.png",
+    "page": 24,
+    "caption": "Figure 31. Uncurated 256 × 256 DiT-XL/2 samples. Classiﬁer-free guidance scale = 2.0 Class label = “lake shore” (975)",
+    "bbox": [
+      302.86,
+      126.86,
+      551.12,
+      642.87
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.1602,
+      0.9005,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig32",
+    "label": "Figure 32",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig32.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig32.png",
+    "page": 25,
+    "caption": "Figure 32. Uncurated 256 × 256 DiT-XL/2 samples. Classiﬁer-free guidance scale = 1.5 Class label = “space shuttle” (812)",
+    "bbox": [
+      44.11,
+      126.86,
+      292.37,
+      642.87
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.1602,
+      0.4777,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig33",
+    "label": "Figure 33",
+    "kind": "figure",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/fig33.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/fig33.png",
+    "page": 25,
+    "caption": "Figure 33. Uncurated 256 × 256 DiT-XL/2 samples. Classiﬁer-free guidance scale = 1.5 Class label = “ice cream” (928)",
+    "bbox": [
+      302.86,
+      126.86,
+      551.12,
+      642.87
+    ],
+    "bbox_norm": [
+      0.4949,
+      0.1602,
+      0.9005,
+      0.8117
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/tab01.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/tab01.png",
+    "page": 5,
+    "caption": "Table 1. Details of DiT models. We follow ViT [ 10 ] model con- ﬁgurations for the Small (S), Base (B) and Large (L) variants; we also introduce an XLarge (XL) conﬁg as our largest model.",
+    "bbox": [
+      310.6,
+      66.36,
+      545.4,
+      136.95
+    ],
+    "bbox_norm": [
+      0.5075,
+      0.0838,
+      0.8912,
+      0.1729
+    ],
+    "dpi": 300,
+    "area_frac": 0.034,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/tab02.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/tab02.png",
+    "page": 9,
+    "caption": "Table 2. Benchmarking class-conditional image generation on ImageNet 256 × 256. DiT-XL/2 achieves state-of-the-art FID.",
+    "bbox": [
+      21.54,
+      61.32,
+      296.7,
+      243.6
+    ],
+    "bbox_norm": [
+      0.0352,
+      0.0774,
+      0.4848,
+      0.3076
+    ],
+    "dpi": 300,
+    "area_frac": 0.103,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/tab03.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/tab03.png",
+    "page": 9,
+    "caption": "Table 3. Benchmarking class-conditional image generation on ImageNet 512 × 512. Note that prior work [ 9 ] measures Precision and Recall using 1000 real samples for 512 × 512 resolution; for consistency, we do the same.",
+    "bbox": [
+      21.54,
+      279.12,
+      296.7,
+      402.0
+    ],
+    "bbox_norm": [
+      0.0352,
+      0.3524,
+      0.4848,
+      0.5076
+    ],
+    "dpi": 300,
+    "area_frac": 0.07,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/tab04.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/tab04.png",
+    "page": 13,
+    "caption": "Table 4. Details of all DiT models. We report detailed information about every DiT model in our paper. Note that FID-50K here is computed without classiﬁer-free guidance. Parameter and ﬂop counts exclude the VAE model which contains 84M parameters across the encoder and decoder. For both the 256 × 2",
+    "bbox": [
+      61.42,
+      66.32,
+      535.6,
+      277.91
+    ],
+    "bbox_norm": [
+      0.1004,
+      0.0837,
+      0.8752,
+      0.3509
+    ],
+    "dpi": 300,
+    "area_frac": 0.207,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/tab05.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/tab05.png",
+    "page": 13,
+    "caption": "Table 5. Decoder ablation. We tested different pre-trained VAE decoder weights available at https://huggingface.co/ stabilityai/sd-vae-ft-mse . Different pre-trained de- coder weights yield comparable results on ImageNet 256 × 256 .",
+    "bbox": [
+      304.43,
+      466.86,
+      553.89,
+      559.14
+    ],
+    "bbox_norm": [
+      0.4974,
+      0.5895,
+      0.9051,
+      0.706
+    ],
+    "dpi": 300,
+    "area_frac": 0.047,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/peebles-2022-scalable-diffusion-models-with-transformers/tab06.png",
+    "raw": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/tab06.png",
+    "page": 13,
+    "caption": "Table 6. Gﬂop counts for baseline diffusion models that use U- Net backbones. Note that we only count Flops for DDPM com- ponents.",
+    "bbox": [
+      304.43,
+      466.86,
+      553.89,
+      559.14
+    ],
+    "bbox_norm": [
+      0.4974,
+      0.5895,
+      0.9051,
+      0.706
+    ],
+    "dpi": 300,
+    "area_frac": 0.047,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peebles-2022-scalable-diffusion-models-with-transformers-figures/_overlay/p13.png"
+  }
+]
