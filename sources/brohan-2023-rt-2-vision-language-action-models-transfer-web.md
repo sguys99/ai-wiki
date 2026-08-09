@@ -175,7 +175,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-RT-2는 인터넷 규모로 학습한 vision-language model을 로봇 궤적 데이터와 함께 co-fine-tune해 로봇 액션을 직접 출력하도록 만든 모델이다. 액션을 텍스트 토큰으로 적어 자연어 토큰과 똑같이 다루는 게 핵심이다. 이렇게 만든 모델 계열을 vision-language-action(VLA) 모델이라 부른다. 웹 사전학습 덕분에 로봇 데이터에 없던 객체·지시·추론으로 일반화가 크게 늘고 emergent 능력이 나타난다.
+RT-2는 인터넷 규모로 학습한 vision-language model을 로봇 trajectory 데이터와 함께 co-fine-tune해 로봇 액션을 직접 출력하도록 만든 모델이다. trajectory는 observation과 action이 시간순으로 이어진 실행 기록이다. 액션을 텍스트 토큰으로 적어 자연어 토큰과 똑같이 다루는 게 핵심이다. 이렇게 만든 모델 계열을 vision-language-action(VLA) 모델이라 부른다. pre-training은 대규모 일반 데이터로 모델의 기반 능력을 먼저 학습하는 단계인데, 웹 pre-training 덕분에 로봇 데이터에 없던 객체·지시·추론으로 일반화가 크게 늘고 emergent 능력이 나타난다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -187,7 +187,7 @@ RT-2는 인터넷 규모로 학습한 vision-language model을 로봇 궤적 데
 
 ## 2. 주요 기여 (Key Contributions)
 
-VLA라는 범주를 세운 논문이다. 로봇 액션을 또 하나의 언어로 보고 텍스트 토큰으로 적으면, 이미 있는 VLM을 새 파라미터나 새 아키텍처 없이 그대로 파인튜닝해 정책으로 쓸 수 있다. 처음부터 vision-language-action 구조를 설계하거나(Gato) VLM을 정책에 끼워 넣는(CLIPort) 기존 방식과 다르게, 사전학습에 이미 들어간 막대한 연산을 그대로 물려받는다.
+VLA라는 범주를 세운 논문이다. 로봇 액션을 또 하나의 언어로 보고 텍스트 토큰으로 적으면, 이미 있는 VLM을 새 파라미터나 새 아키텍처 없이 그대로 파인튜닝해 policy로 쓸 수 있다. policy는 현재 observation을 받아 다음 action을 정하는 함수를 말한다. 처음부터 vision-language-action 구조를 설계하거나(Gato) VLM을 policy에 끼워 넣는(CLIPort) 기존 방식과 다르게, pre-training에 이미 들어간 막대한 연산을 그대로 물려받는다.
 
 핵심 레시피는 co-fine-tuning이다. 로봇 데이터만으로 파인튜닝하는 대신 원래 웹 데이터를 배치에 계속 섞어 함께 학습한다. 이렇게 하면 모델이 웹에서 배운 추상적 시각 개념과 로봇의 저수준 액션에 동시에 노출된다. 일반화와 emergent 능력이 여기서 나온다.
 
@@ -210,7 +210,7 @@ VLA라는 범주를 세운 논문이다. 로봇 액션을 또 하나의 언어�
 
 ### co-fine-tuning
 
-학습 배치마다 로봇 데이터와 웹 데이터의 비율을 조절하되 로봇 쪽 샘플링 가중을 높인다. RT-2-PaLI-X는 로봇 데이터가 학습 혼합의 약 50%, RT-2-PaLM-E는 약 66%를 차지한다. ablation에서 co-fine-tuning이 일반화를 크게 끌어올리는데 원래 웹 데이터를 계속 곁에 두면 파인튜닝 중에도 VLM이 사전학습에서 배운 개념을 덜 잊기 때문이다.
+학습 배치마다 로봇 데이터와 웹 데이터의 비율을 조절하되 로봇 쪽 샘플링 가중을 높인다. RT-2-PaLI-X는 로봇 데이터가 학습 혼합의 약 50%, RT-2-PaLM-E는 약 66%를 차지한다. ablation에서 co-fine-tuning이 일반화를 크게 끌어올리는데 원래 웹 데이터를 계속 곁에 두면 파인튜닝 중에도 VLM이 pre-training에서 배운 개념을 덜 잊기 때문이다.
 
 ### output constraint
 
@@ -226,7 +226,7 @@ PaLI-X는 이미지를 ViT-22B로 처리하고 32B encoder-decoder(UL2 계열, 5
 
 ### 데이터 (Appendix B)
 
-웹 데이터의 큰 축은 WebLI다. 109개 언어의 약 10B image-text 쌍을 cross-modal 유사도 상위 10%로 걸러 1B 예제로 쓰고 여기에 여러 captioning·VQA 데이터셋을 더한다. 로봇 데이터는 RT-1의 것을 그대로 쓴다. 로봇 13대로 17개월간 office kitchen에서 모은 시연이고 각 궤적에 7종 스킬("Pick Object", "Move Object Near Object", "Place Object Upright", "Knock Object Over", "Open/Close Drawer", "Place into Receptacle" 등) 중 하나를 자연어 지시로 붙였다.
+웹 데이터의 큰 축은 WebLI다. 109개 언어의 약 10B image-text 쌍을 cross-modal 유사도 상위 10%로 걸러 1B 예제로 쓰고 여기에 여러 captioning·VQA 데이터셋을 더한다. 로봇 데이터는 RT-1의 것을 그대로 쓴다. 로봇 13대로 17개월간 office kitchen에서 모은 시연이고 각 trajectory에 7종 스킬("Pick Object", "Move Object Near Object", "Place Object Upright", "Knock Object Over", "Open/Close Drawer", "Place into Receptacle" 등) 중 하나를 자연어 지시로 붙였다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -247,11 +247,11 @@ PaLM-E판은 어려운 시나리오에서 앞서고 PaLI-X판은 쉬운 쪽에�
 
 ### Language-Table 시뮬레이션 (Table 1)
 
-open-source Language-Table 환경에서 작은 PaLI-3B를 co-fine-tune한 정책이 90±10을 낸다. LAVA 77, RT-1 74, BC-Zero 72를 크게 웃돈다. 다른 로봇·시뮬레이션에서도 VLM 사전학습이 이득이라는 추가 근거다.
+open-source Language-Table 환경에서 작은 PaLI-3B를 co-fine-tune한 policy가 90±10을 낸다. LAVA 77, RT-1 74, BC-Zero 72를 크게 웃돈다. 다른 로봇·시뮬레이션에서도 VLM pre-training이 이득이라는 추가 근거다.
 
 ### emergent 능력 (Table 5)
 
-emergent 능력을 세 범주로 나눈다. symbol understanding은 로봇 데이터에 없던 기호로 옮기는 능력("move apple to 3", "push coke can on top of heart")이다. reasoning은 시각 추론·수학("move X near the sum of two plus one")·다국어를 포함한다. human recognition은 "move the coke can to the person with glasses" 같은 인물 중심 지시다. 최고 성능 RT-2-PaLI-X는 평균 60으로 RT-1(17)의 3배를 넘는다. 더 작은 PaLM-E판이 수학 추론에서는 앞서는데 PaLM-E의 사전학습 혼합이 계산에 더 강한 모델을 만들었기 때문으로 본다.
+emergent 능력을 세 범주로 나눈다. symbol understanding은 로봇 데이터에 없던 기호로 옮기는 능력("move apple to 3", "push coke can on top of heart")이다. reasoning은 시각 추론·수학("move X near the sum of two plus one")·다국어를 포함한다. human recognition은 "move the coke can to the person with glasses" 같은 인물 중심 지시다. 최고 성능 RT-2-PaLI-X는 평균 60으로 RT-1(17)의 3배를 넘는다. 더 작은 PaLM-E판이 수학 추론에서는 앞서는데 PaLM-E의 pre-training 혼합이 계산에 더 강한 모델을 만들었기 때문으로 본다.
 
 ### ablation (Table 6)
 
@@ -259,11 +259,11 @@ emergent 능력을 세 범주로 나눈다. symbol understanding은 로봇 데�
 
 ### chain-of-thought 추론
 
-PaLM-E판을 수백 gradient step만 추가로 파인튜닝해 "Plan" 단계를 넣게 한다. 데이터를 "Instruction: I'm hungry. Plan: pick rxbar chocolate. Action: 1 128 124 ..."처럼 자연어 계획 뒤에 액션 토큰이 오도록 증강한다. 이 계획 단계가 VQA(시각 추론)와 조작(액션 생성) 사이의 다리 역할을 한다. 정성적으로 더 복잡한 명령을 처리하는데 LLM·VLM을 planner로 쓰는 흐름과 저수준 정책을 한 VLA 안에 합칠 수 있다는 초기 근거다.
+PaLM-E판을 수백 gradient step만 추가로 파인튜닝해 "Plan" 단계를 넣게 한다. 데이터를 "Instruction: I'm hungry. Plan: pick rxbar chocolate. Action: 1 128 124 ..."처럼 자연어 계획 뒤에 액션 토큰이 오도록 증강한다. 이 계획 단계가 VQA(시각 추론)와 조작(액션 생성) 사이의 다리 역할을 한다. 정성적으로 더 복잡한 명령을 처리하는데 LLM·VLM을 planner로 쓰는 흐름과 저수준 policy를 한 VLA 안에 합칠 수 있다는 초기 근거다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
-새 물리 동작 자체는 배우지 못한다. 웹 사전학습은 의미·시각 개념의 일반화를 넓히지만 로봇의 물리 스킬은 여전히 로봇 데이터 분포 안에 갇힌다. 모델이 하는 일은 아는 스킬을 새로운 방식으로 배치하는 것이다. 저자들은 데이터가 스킬 축에서 충분히 다양하지 않아서라고 보고 사람 영상 같은 새 데이터 수집 방식을 후속 방향으로 든다.
+새 물리 동작 자체는 배우지 못한다. 웹 pre-training은 의미·시각 개념의 일반화를 넓히지만 로봇의 물리 스킬은 여전히 로봇 데이터 분포 안에 갇힌다. 모델이 하는 일은 아는 스킬을 새로운 방식으로 배치하는 것이다. 저자들은 데이터가 스킬 축에서 충분히 다양하지 않아서라고 보고 사람 영상 같은 새 데이터 수집 방식을 후속 방향으로 든다.
 
 계산 비용도 높다. 고빈도 제어가 필요한 상황에서는 실시간 추론이 병목이 될 수 있어 quantization·distillation을 후속 과제로 짚는다. RT-2를 만들 재료가 되는 VLM 자체가 아직 소수라는 점도 한계로 든다. 오픈소스 모델이 늘고 상용 모델이 파인튜닝 API를 열기를 기대한다.
 
@@ -273,9 +273,9 @@ PaLM-E판을 수백 gradient step만 추가로 파인튜닝해 "Plan" 단계를 
 
 VLM은 크게 두 계열이다. CLIP처럼 두 모달리티의 공통 임베딩을 배우는 representation 학습 계열과, {vision, text} → {text}로 자유 형식 텍스트를 내는 visual language model 계열(Flamingo·PaLI·PaLM-E)이다. RT-2는 후자를 쓴다. 언어를 생성하는 VLM을 쓰는 덕분에 언어 태스크와 액션 태스크가 모델 가중치를 완전히 공유하고 액션 전용 레이어를 따로 두지 않는다.
 
-로봇 학습에서 사전학습은 오래된 주제다. 대개 visual representation(ImageNet 분류·robotics용 목적함수)이나 language model(지시 인코더·상위 planner)을 사전학습해 썼다. RT-2는 그 대신 세계에 대한 풍부하고 grounded된 지식을 담은 VLM을 쓴다. CLIPort와 MOO도 VLM을 조작 정책에 통합하지만 2D 액션 공간이나 보정된 카메라 같은 구조 제약을 둔다. RT-2에는 그런 제약이 없다.
+로봇 학습에서 pre-training은 오래된 주제다. 대개 visual representation(ImageNet 분류·robotics용 목적함수)이나 language model(지시 인코더·상위 planner)을 pre-training해 썼다. RT-2는 그 대신 세계에 대한 풍부하고 grounded된 지식을 담은 VLM을 쓴다. CLIPort와 MOO도 VLM을 조작 policy에 통합하지만 2D action space나 보정된 카메라 같은 구조 제약을 둔다. RT-2에는 그런 제약이 없다.
 
-이 저장소 안에서 RT-2는 [[physical-ai/brohan-2022-rt-1-robotics-transformer-for-real-world]]의 직접 후속이다. RT-1의 로봇 데이터와 액션 이산화를 물려받되 backbone을 대형 VLM으로 키운 것이 RT-2다. [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]은 "사전학습 모델을 로봇 데이터로 파인튜닝해 VLA를 만든다"는 계보(RT-1·RT-2·π0·OpenVLA)의 후속으로 스스로를 자리매김한다. 정책과 world model의 결합은 [[physical-ai/hou-2026-world-model-for-robot-learning]] 서베이가, VLM backbone 축은 [[llms/cai-2026-vlm3-vision-language-models]]가 다룬다.
+이 저장소 안에서 RT-2는 [[physical-ai/brohan-2022-rt-1-robotics-transformer-for-real-world]]의 직접 후속이다. RT-1의 로봇 데이터와 액션 이산화를 물려받되 backbone을 대형 VLM으로 키운 것이 RT-2다. [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]은 "pre-training된 모델을 로봇 데이터로 파인튜닝해 VLA를 만든다"는 계보(RT-1·RT-2·π0·OpenVLA)의 후속으로 스스로를 자리매김한다. policy와 world model의 결합은 [[physical-ai/hou-2026-world-model-for-robot-learning]] 서베이가, VLM backbone 축은 [[llms/cai-2026-vlm3-vision-language-models]]가 다룬다.
 
 ## 7. 용어집 (Glossary)
 
@@ -283,10 +283,10 @@ VLM은 크게 두 계열이다. CLIP처럼 두 모달리티의 공통 임베딩�
 - **co-fine-tuning**: 로봇 데이터만 파인튜닝하지 않고 원래 웹 데이터를 배치에 섞어 함께 파인튜닝하는 방식. RT-2 일반화의 핵심.
 - **action tokenization / discretization**: 연속 액션을 256 bin으로 이산화해 정수 토큰 문자열로 표현하는 것. RT-1에서 이어받았다.
 - **symbol tuning**: 기존 토큰의 의미를 다른 것(여기서는 액션 bin)으로 덮어써 학습하는 기법. PaLM-E의 액션 어휘 구성에 쓰인다.
-- **emergent capability**: 로봇 데이터에 없었는데 웹 사전학습에서 전이돼 나타난 능력. 기호 이해·추론·인물 인식.
+- **emergent capability**: 로봇 데이터에 없었는데 웹 pre-training에서 전이돼 나타난 능력. 기호 이해·추론·인물 인식.
 - **chain-of-thought (CoT)**: 액션 앞에 자연어 "Plan" 단계를 두어 다단 추론을 유도하는 방식.
 - **behavior cloning**: 시연을 그대로 모방하도록 학습하는 것. RT-2의 next-token prediction 손실이 여기 해당한다.
-- **closed-loop control**: 관측→액션→새 관측을 반복하며 피드백으로 제어하는 것. RT-2는 de-tokenize한 액션으로 이 루프를 돈다.
+- **closed-loop control**: observation→action→새 observation을 반복하며 피드백으로 제어하는 것. RT-2는 de-tokenize한 액션으로 이 루프를 돈다.
 - **PaLI-X / PaLM-E**: RT-2가 backbone으로 쓴 두 VLM. 각각 encoder-decoder(ViT-22B+32B), decoder-only(ViT-4B+LLM) 구조.
 - **WebLI**: 109개 언어 약 10B image-text 쌍의 웹 데이터셋. 상위 10%를 걸러 1B로 co-fine-tuning에 쓴다.
 

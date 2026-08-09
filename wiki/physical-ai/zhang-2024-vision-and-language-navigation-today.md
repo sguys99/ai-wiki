@@ -78,7 +78,7 @@ history encoding은 재귀 갱신 state token(단일 `[CLS]` 토큰, 가변 길�
 
 ### VLN agent
 
-planning은 graph 기반(방문 노드의 frontier에서 global action 추출)과 LLM 기반(NavGPT·MapGPT·DiscussNav·SayNav)으로 갈린다. 에이전트 backbone은 Seq2Seq LSTM에서 Transformer를 거쳐 foundation model로 이동했다. VLM을 그대로 쓰는 계열과 시각 관측을 텍스트로 바꿔 LLM에 넣는 계열이 지금은 함께 쓰인다.
+planning은 graph 기반(방문 노드의 frontier에서 global action 추출)과 LLM 기반(NavGPT·MapGPT·DiscussNav·SayNav)으로 갈린다. 에이전트 backbone은 Seq2Seq LSTM에서 Transformer를 거쳐 foundation model로 이동했다. VLM을 그대로 쓰는 계열과 시각 observation을 텍스트로 바꿔 LLM에 넣는 계열이 지금은 함께 쓰인다. observation은 에이전트가 매 스텝 받는 센서 입력을 말한다.
 
 ## 결과 (Results)
 
@@ -91,5 +91,5 @@ R2R의 instruction-trajectory 쌍이 최단 경로로 편향돼 실제 navigatio
 ## 관련 페이지 (Related Pages)
 
 - [[physical-ai/li-2025-a-comprehensive-survey-on-world]] — world model을 로보틱스·자율주행·범용 비디오 축에서 다룬 자매 서베이. 이 논문은 navigation 축을 더해 world model 좌표계를 보완한다
-- [[physical-ai/hou-2026-world-model-for-robot-learning]] — 정책 결합 방식 5분류로 로봇 학습을 좁게 파는 서베이. VLN agent의 backbone 진화(LSTM→Transformer→foundation model) 논의와 겹쳐 읽을 만하다
+- [[physical-ai/hou-2026-world-model-for-robot-learning]] — policy 결합 방식 5분류로 로봇 학습을 좁게 파는 서베이. VLN agent의 backbone 진화(LSTM→Transformer→foundation model) 논의와 겹쳐 읽을 만하다
 - [[overviews/physical-ai-overview]] — physical-ai 카테고리의 분류 기준과 학습 경로 허브

@@ -79,9 +79,9 @@ VLA 문헌 200편 이상을 양팔(bimanual) 조작이라는 렌즈로 7개 축(
 
 ### VLA 정식화와 양팔 문제
 
-정책은 πθ: O × L × Q → A로, 이미지·언어 지시·고유수용(proprioception)을 받아 행동을 낸다. VLA를 이전 visuomotor 정책과 구분하는 건 계산하는 사상이 아니라 표현이 어디서 오느냐다. 로봇 데이터를 보기 전에 인터넷 규모 image-text로 학습된 backbone을 거친다. 정책을 encoder·backbone·action head로 분해하면 흥미로운 설계 질문은 head가 무엇이냐로 좁혀진다.
+policy는 observation을 받아 다음 action을 정하는 함수를 말한다. 여기서는 πθ: O × L × Q → A로 두고 이미지·언어 지시·고유수용(proprioception)을 받아 action을 낸다. VLA를 이전 visuomotor policy와 구분하는 건 계산하는 사상이 아니라 표현이 어디서 오느냐다. 로봇 데이터를 보기 전에 인터넷 규모 image-text로 학습된 backbone을 거친다. policy를 encoder·backbone·action head로 분해하면 흥미로운 설계 질문은 head가 무엇이냐로 좁혀진다.
 
-Action chunking은 한 관측에서 연속 행동 블록 At = (at, …, at+H−1) ∈ R^(H×da)를 예측하는 기법이다(ACT에서 도입, 이제 거의 보편). 이득은 둘이다. 비싼 forward pass 한 번을 H step에 분산하는 경제성, 그리고 블록을 한꺼번에 내놓아 시간적으로 일관된 계획에 모델을 묶는 표현력. 대가는 개방 루프(open-loop) 시간이다.
+Action chunking은 한 observation에서 연속 action 블록 At = (at, …, at+H−1) ∈ R^(H×da)를 예측하는 기법이다(ACT에서 도입, 이제 거의 보편). observation은 매 스텝 policy가 받는 센서 입력이다. 이득은 둘이다. 비싼 forward pass 한 번을 H step에 분산하는 경제성, 그리고 블록을 한꺼번에 내놓아 시간적으로 일관된 계획에 모델을 묶는 표현력. 대가는 개방 루프(open-loop) 시간이다.
 
 두 팔을 더하면 문제가 정량·정성 양쪽에서 바뀐다. 한 step 행동이 a^bi = [a^L; a^R]로 이어붙어 7관절 팔 두 개 + 그리퍼면 da=16, H=50이면 한 번에 일관되게 생성할 800차원 객체가 된다. 정성적으로 더 어려운 지점은 두 팔이 함께 쥔 물체를 통해 결합된다는 데 있다. 그 결합도는 과제마다 다르다.
 
@@ -110,7 +110,7 @@ Fig. 2가 핵심 결론이다. Independent·loosely coupled 행에서는 거의 
 세 단계 관례가 자리잡았다 — backbone 상속 → 로봇 pre-train → 좁은 과제 적응. 진짜 이견은 적응이 pre-training을 훼손하는 걸 어떻게 막느냐, 그리고 자율 경험을 이어붙일지다.
 - pre-training은 두 번 일어난다 — 상속된 web image-text(공짜), 그리고 로봇 데이터(OXE 등). π0는 flow-matching 손실과 language-modeling 손실을 함께 둔 co-training(Eq. 12)으로 언어 역량을 지킨다. 일관된 발견은 "breadth beats volume".
 - 적응 시 retention 기법 — 데이터 혼합(π0 ~50:50), Knowledge Insulation(backbone을 action-expert gradient에서 격리하고 discrete action token으로 감독), LoRA.
-- RL로 imitation 천장을 넘음 — RECAP(π*0.6)이 핵심. 정책이 자율 실행하고 VLM이 결과를 판정, 성공 episode를 학습셋에 넣고 재적합(Algorithm 1). hand-designed reward 병목을 없앤 게 load-bearing.
+- RL로 imitation 천장을 넘음 — RECAP(π*0.6)이 핵심. policy가 자율 실행하고 VLM이 결과를 판정, 성공 episode를 학습셋에 넣고 재적합(Algorithm 1). hand-designed reward 병목을 없앤 게 load-bearing.
 - 데이터 수집 경제학 — ALOHA 양방향 teleop(<$20K, 50~100 demos/hr), UMI 핸드헬드(<$5K, ~110/hr, 로봇 없이 어디서나), 자율 수집(4~12 episodes/hr, 무인 24시간). 결정적 변수는 양이 아니라 분포다.
 
 ### 행동 표현과 실시간 실행 (Section VII)
@@ -143,16 +143,16 @@ Fig. 2가 핵심 결론이다. Independent·loosely coupled 행에서는 거의 
 저자가 세 지속적 난점과 세 연구 방향을 명시한다.
 
 지속적 난점:
-- 접촉과 힘 — force 피드백 없는 위치 공간 정책은 tight coupling이 요구하는 힘을 조절 못하고 동시 접촉 수가 늘수록 난이도 상승.
+- 접촉과 힘 — force 피드백 없는 위치 공간 policy는 tight coupling이 요구하는 힘을 조절 못하고 동시 접촉 수가 늘수록 난이도 상승.
 - 평가 — 공용 양팔 벤치마크가 없어 방법 간 비교가 임시 과제셋에 기대고 통상 10~50 trial의 신뢰구간이 주장되는 차이보다 넓다.
-- 데이터 — 양팔 시연이 로봇 학습에서 가장 비싼 데이터, 데이터가 못 덮은 구성에서 정책이 저하, 자율 실습 대안은 분 단위 credit assignment에 막힘.
+- 데이터 — 양팔 시연이 로봇 학습에서 가장 비싼 데이터, 데이터가 못 덮은 구성에서 policy가 저하, 자율 실습 대안은 분 단위 credit assignment에 막힘.
 
 연구 방향:
 1. 공용 양팔 벤치마크 — 결합 영역 × 물체 종류 × 지평 세 축을 동시에 덮고 주장 차이를 가를 만큼 큰 trial 수를 고정. 연구가 아니라 커뮤니티 조율이 막는 유일한 방향이라 첫째로 둠.
 2. dexterity · force · multi-modal sensing 통합 — 다지 손(40+차원), 촉각/force 채널, 이벤트 표시하는 audio. 셋이 서로 있을 때 가장 유용하므로 한 문제. 시뮬레이션이 데이터 취득처이자 난점 집중처(접촉·변형이 가장 부실).
 3. 배치를 견디는 safety·reliability 논증 — rate limit·action clipping은 실패율 상한을 못 준다. runtime monitoring, constrained generation, 팔 간·인간과의 증명 가능한 회피 필요. 자율 경험 학습과 few-shot 적응이 유망하되 둘 다 안전 논증 가용성에 의존.
 
-증거 도달 범위 caveat(반복 강조): tightly coupled 결과가 거의 π family 한 계열, 공용 프로토콜 없음, 전부 자기보고·3자 감사 없음. joint vs decomposed 정책을 같은 tight 과제·같은 프로토콜에서 비교한 연구가 아직 없음.
+증거 도달 범위 caveat(반복 강조): tightly coupled 결과가 거의 π family 한 계열, 공용 프로토콜 없음, 전부 자기보고·3자 감사 없음. joint vs decomposed policy를 같은 tight 과제·같은 프로토콜에서 비교한 연구가 아직 없음.
 
 ## 6. 관련 연구 (Related Work)
 
@@ -160,19 +160,19 @@ Fig. 2가 핵심 결론이다. Independent·loosely coupled 행에서는 거의 
 
 이 wiki 안의 인접 자료:
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] — GR00T N1. 본 서베이가 open-weight dual-system 대표로 인용(N1.7 revision은 accelerator별 지연표 공개, 31~173ms). GR00T N1이 이 서베이 Table III·XIV·XII의 한 행.
-- [[physical-ai/hou-2026-world-model-for-robot-learning]] · [[physical-ai/li-2025-a-comprehensive-survey-on-world]] — world model 서베이 2종. 본 서베이 Section X-D(world model as data engine·future prediction)와 주제가 겹침. 병목이 "그럴듯한 미래 → 행동에 정렬된 실행 가능한 미래"로 옮겨갔다는 진단이 여기 compounding-error·haptic 미접지 한계와 맞물린다.
-- [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] — SONIC. whole-body humanoid 제어(locomotion 축). 본 서베이는 aerial·legged를 manipulator와 정책/레시피를 공유할 때만 포함하므로 직접 대상은 아니지만 universal action token(FSQ)·humanoid 배치 맥락이 인접.
+- [[physical-ai/hou-2026-world-model-for-robot-learning]] · [[physical-ai/li-2025-a-comprehensive-survey-on-world]] — world model 서베이 2종. 본 서베이 Section X-D(world model as data engine·future prediction)와 주제가 겹침. 병목이 "그럴듯한 미래 → action에 aligned된 실행 가능한 미래"로 옮겨갔다는 진단이 여기 compounding-error·haptic 미접지 한계와 맞물린다.
+- [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] — SONIC. whole-body humanoid 제어(locomotion 축). 본 서베이는 aerial·legged를 manipulator와 policy/레시피를 공유할 때만 포함하므로 직접 대상은 아니지만 universal action token(FSQ)·humanoid 배치 맥락이 인접.
 - [[physical-ai/zhang-2024-vision-and-language-navigation-today]] — VLN 서베이. embodied AI의 navigation 축. 본 서베이는 manipulation 축에서 같은 개념(world/human model, language grounding)을 다룸.
 - [[overviews/physical-ai-overview]] — physical-ai 허브. (이 자료가 들어오면서 "자료 0건" 전제는 이미 해소됨 — 허브 갱신 후보.)
 
 ## 7. 용어집 (Glossary)
 
-- **VLA (Vision-Language-Action model)**: 시각·언어·행동을 하나의 학습된 정책 안에 둔 모델. 인터넷 규모 VLM backbone에서 시맨틱을 상속.
+- **VLA (Vision-Language-Action model)**: 시각·언어·행동을 하나의 학습된 policy 안에 둔 모델. 인터넷 규모 VLM backbone에서 시맨틱을 상속.
 - **coupling tightness**: 두 팔이 공유 물체를 통해 얼마나 강하게 결합되는지 (independent / loosely coupled / tightly coupled). 이 서베이의 조직 축.
-- **action chunking**: 한 관측에서 H개 연속 행동 블록을 예측(ACT). H=50 @ 50Hz ≈ 1초 ≈ 한 조작 phase.
+- **action chunking**: 한 observation에서 H개 연속 action 블록을 예측(ACT). H=50 @ 50Hz ≈ 1초 ≈ 한 조작 phase.
 - **flow matching**: straight-line 변위로 벡터장을 회귀 학습하는 생성 방식. near-straight 경로라 K≈10 step으로 충분해 실시간 예산에 들어감.
 - **diffusion (DDPM/DDIM)**: 노이즈에서 chunk로 역노이징. 표현력 강하나 K=50~100 step으로 느림.
-- **RECAP**: RL from Autonomous Capability. 정책이 자율 실행 → VLM 판정 → 성공 episode로 재적합. hand-designed reward 제거. π*0.6과 함께 도입.
+- **RECAP**: RL from Autonomous Capability. policy가 자율 실행 → VLM 판정 → 성공 episode로 재적합. hand-designed reward 제거. π*0.6과 함께 도입.
 - **FAST**: DCT+BPE 기반 action 토큰화. 양팔 chunk 13.2× 압축, 학습 5× 빠름.
 - **RTC / BID / TTAC**: real-time chunking(실행 중 다음 chunk 생성) / bidirectional decoding(추론 시 후보 선택) / training-time action conditioning(prefix 조건을 학습에 넣음). 지연-반응성 트레이드 관리 3종.
 - **Knowledge Insulation (KI)**: backbone을 action-expert gradient에서 격리하고 discrete action token으로 감독 — 언어 역량 보존.

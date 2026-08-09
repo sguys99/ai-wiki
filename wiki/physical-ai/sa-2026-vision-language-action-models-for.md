@@ -83,7 +83,7 @@ Chef Robotics의 Inkyu Sa가 단독으로 쓴 35페이지 서베이. VLA(Vision-
 
 ### VLA 정식화
 
-정책은 πθ: O × L × Q → A로, 이미지·언어 지시·고유수용(proprioception)을 받아 행동을 낸다. VLA를 이전 visuomotor 정책과 구분하는 건 계산하는 사상이 아니라 표현이 어디서 오느냐다. 로봇 데이터를 보기 전에 인터넷 규모 image-text로 학습된 backbone을 거치므로, 물체가 무엇인지·손잡이가 잡을 수 있음을·"왼쪽"이 위치를 제약함을 로봇 궤적에서 배울 필요가 없다.
+policy는 observation을 받아 다음 action을 정하는 함수를 말한다. 여기서는 πθ: O × L × Q → A로 두고 이미지·언어 지시·고유수용(proprioception)을 받아 action을 낸다. VLA를 이전 visuomotor policy와 구분하는 건 계산하는 사상이 아니라 표현이 어디서 오느냐다. 로봇 데이터를 보기 전에 인터넷 규모 image-text로 학습된 backbone을 거치므로, 물체가 무엇인지·손잡이가 잡을 수 있음을·"왼쪽"이 위치를 제약함을 로봇 trajectory에서 배울 필요가 없다. trajectory는 observation과 action이 시간순으로 이어진 실행 기록이다.
 
 두 팔을 더하면 문제가 커진다. 한 step 행동이 a = [a^L; a^R]로 이어붙어, 7관절 팔 두 개 + 그리퍼면 da=16, chunk 지평 H=50이면 한 번에 일관되게 생성할 800차원 객체가 된다. 단일 팔에 충분하던 생성 용량이 여기서도 충분하다는 보장은 없다.
 
@@ -127,7 +127,7 @@ head가 backbone 활성을 모터 명령으로 바꾸는 방식이 이 서베이
 ![[assets/sa-2026-vision-language-action-models-for/fig10.png]]
 *Figure 5: 각 단계에 무엇이 들어가고(초록) 무엇이 그 단계를 보호하는지(빨강). 데이터 비용이 자릿수 단위로 다르다 — 상속된 web 데이터는 공짜, 두 팔 시연은 시간당 50~110개. retention 기법(데이터 혼합·layer freeze·outcome filter)이 레시피를 나누는 실질 차이다 (Sa 2026, p.13).*
 
-breadth가 volume을 이긴다는 게 첫 발견이다. embodiment·환경·과제의 다양성이 raw episode 수보다 일반화를 잘 예측한다. 적응 단계에서는 pre-training 역량을 지키는 게 관건이라, 데이터 혼합(π0 ~50:50)이나 Knowledge Insulation(backbone을 action-expert gradient에서 격리)으로 방어한다. 남은 하나는 imitation의 낮은 천장이다. 두 팔 teleop이 느리고 조심스러운 탓인데, 이 천장을 넘긴 유일한 메커니즘이 RECAP류의 자율 경험 학습이다. RECAP은 정책이 자율 실행하고 VLM이 결과를 판정해 성공 episode만 학습에 넣는 루프로, hand-designed reward 병목을 없앴다.
+breadth가 volume을 이긴다는 게 첫 발견이다. embodiment·환경·과제의 다양성이 raw episode 수보다 일반화를 잘 예측한다. 적응 단계에서는 pre-training 역량을 지키는 게 관건이라, 데이터 혼합(π0 ~50:50)이나 Knowledge Insulation(backbone을 action-expert gradient에서 격리)으로 방어한다. 남은 하나는 imitation의 낮은 천장이다. 두 팔 teleop이 느리고 조심스러운 탓인데, 이 천장을 넘긴 유일한 메커니즘이 RECAP류의 자율 경험 학습이다. RECAP은 policy가 자율 실행하고 VLM이 결과를 판정해 성공 episode만 학습에 넣는 루프로, hand-designed reward 병목을 없앴다.
 
 ### 행동 표현과 실시간 실행
 
@@ -164,10 +164,10 @@ flow-matching head가 가장 강한 두 팔 결과를 낸다. π0가 shirt foldi
 | TinyVLA | 1B | ~40ms | RTX4090, consumer급 |
 | SmolVLA | 450M | ~18ms | <1GB |
 
-가장 눈에 띄는 발견은 측정 문제다. 같은 세대 정책이 시뮬레이션에서 97.1%, task-specific 실로봇 30과제에서 43.7%, generalist로는 17.7%인데, 생산 라인이 요구하는 신뢰도는 shift당 99% 초과다. 세 측정이 프로토콜이 달라 엄밀히 비교되진 않지만 함의된 신뢰도가 약 2자릿수 벌어진다는 게 핵심이다.
+가장 눈에 띄는 발견은 측정 문제다. 같은 세대 policy가 시뮬레이션에서 97.1%, task-specific 실로봇 30과제에서 43.7%, generalist로는 17.7%인데, 생산 라인이 요구하는 신뢰도는 shift당 99% 초과다. 세 측정이 프로토콜이 달라 엄밀히 비교되진 않지만 함의된 신뢰도가 약 2자릿수 벌어진다는 게 핵심이다.
 
 ![[assets/sa-2026-vision-language-action-models-for/fig11.png]]
-*Figure 6: 같은 세대 정책을 네 방식으로 잰 값. sim 97.1 / real task-specific 43.7 / real generalist 17.7 / production KPI 99. 왼쪽 셋은 프로토콜이 달라 비교 불가지만 스프레드 자체가 벤치마크 숫자만으로는 안 보이는 신뢰도 격차를 드러낸다 (Sa 2026, p.25).*
+*Figure 6: 같은 세대 policy를 네 방식으로 잰 값. sim 97.1 / real task-specific 43.7 / real generalist 17.7 / production KPI 99. 왼쪽 셋은 프로토콜이 달라 비교 불가지만 스프레드 자체가 벤치마크 숫자만으로는 안 보이는 신뢰도 격차를 드러낸다 (Sa 2026, p.25).*
 
 배치 기록은 벤치마크가 못 담는 차원을 더한다. 배치 규모와 VLA 성격이 반비례한다는 점이 특히 그렇다. 최대 규모 배치(Chef Robotics 10^8 servings, Ambi 250,000 production hours, Amazon Vulcan 500,000 orders)는 좁고 언어 조건화가 아니며 가장 VLA-native한 산업 배치(Figure 02/Helix @ BMW)가 ~1,250시간에 그친다.
 
@@ -183,7 +183,7 @@ flow-matching head가 가장 강한 두 팔 결과를 낸다. π0가 shirt foldi
 
 ## 한계와 3대 연구 방향 (Limitations and Future Work)
 
-저자가 꼽는 지속적 난점은 접촉·평가·데이터다. force 채널 없는 위치 공간 정책은 tight coupling이 요구하는 힘을 조절하지 못하고 동시 접촉 수가 늘수록 어려워진다. 평가 쪽은 공용 양팔 벤치마크가 없어 비교가 임시 과제셋에 기대고 통상 10~50 trial의 신뢰구간이 주장되는 차이보다 넓다. 데이터는 두 팔 시연이 가장 비싸고 자율 실습 대안마저 분 단위 credit assignment에 막힌다.
+저자가 꼽는 지속적 난점은 접촉·평가·데이터다. force 채널 없는 위치 공간 policy는 tight coupling이 요구하는 힘을 조절하지 못하고 동시 접촉 수가 늘수록 어려워진다. 평가 쪽은 공용 양팔 벤치마크가 없어 비교가 임시 과제셋에 기대고 통상 10~50 trial의 신뢰구간이 주장되는 차이보다 넓다. 데이터는 두 팔 시연이 가장 비싸고 자율 실습 대안마저 분 단위 credit assignment에 막힌다.
 
 연구 방향은 이렇게 이어진다.
 
@@ -191,13 +191,13 @@ flow-matching head가 가장 강한 두 팔 결과를 낸다. π0가 shirt foldi
 2. dexterity · force · multi-modal sensing 통합 — 다지 손(40+차원), 촉각/force 채널, 이벤트를 표시하는 audio. 셋이 서로 있을 때 가장 유용하므로 한 문제이고 시뮬레이션이 데이터 취득처이자 난점 집중처다(접촉·변형이 가장 부실하게 모사된다).
 3. 배치를 견디는 safety·reliability 논증 — rate limit·action clipping은 실패율 상한을 주지 못한다. runtime monitoring, constrained generation, 팔 간·인간과의 증명 가능한 회피가 필요하다.
 
-증거 도달 범위에 대한 caveat가 서베이 전체에 반복된다. tightly coupled 결과를 보고한 시스템이 거의 π family 한 계열이고 공용 프로토콜이 없으며 수치가 전부 자기보고이고 3자 감사가 없다. joint 정책과 decomposed 정책을 같은 tight 과제·같은 프로토콜에서 비교한 연구도 아직 없어, head 사이의 순위는 증거가 시사하는 바지 증명된 바가 아니다.
+증거 도달 범위에 대한 caveat가 서베이 전체에 반복된다. tightly coupled 결과를 보고한 시스템이 거의 π family 한 계열이고 공용 프로토콜이 없으며 수치가 전부 자기보고이고 3자 감사가 없다. joint policy와 decomposed policy를 같은 tight 과제·같은 프로토콜에서 비교한 연구도 아직 없어, head 사이의 순위는 증거가 시사하는 바지 증명된 바가 아니다.
 
 ## 관련 페이지 (Related Pages)
 
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] — GR00T N1. 이 서베이가 open-weight dual-system 대표로 인용하며 N1.7 revision은 accelerator별 지연(31~173ms)을 공개해 "on-robot 두 팔 추론이 지금 얼마인가"의 기준점이 된다. Table III·XIV·XII의 한 행.
-- [[physical-ai/hou-2026-world-model-for-robot-learning]] — World Model for Robot Learning 서베이. 이 서베이 X-D장(world model as data engine·future prediction)과 겹친다. 병목이 "그럴듯한 미래 → 행동에 정렬된 실행 가능한 미래"로 옮겨갔다는 진단이, 여기 compounding-error·haptic 미접지 한계와 맞물린다.
+- [[physical-ai/hou-2026-world-model-for-robot-learning]] — World Model for Robot Learning 서베이. 이 서베이 X-D장(world model as data engine·future prediction)과 겹친다. 병목이 "그럴듯한 미래 → action에 aligned된 실행 가능한 미래"로 옮겨갔다는 진단이, 여기 compounding-error·haptic 미접지 한계와 맞물린다.
 - [[physical-ai/li-2025-a-comprehensive-survey-on-world]] — Embodied AI world model 서베이. 로보틱스·자율주행·범용 비디오를 한 좌표계에 올린 축(결합도·시간 전개·장면 형식)이, 이 서베이의 결합도 축과 상보적이다.
-- [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] — SONIC. whole-body humanoid 제어(locomotion 축). 이 서베이는 legged/aerial을 manipulator와 정책·레시피를 공유할 때만 다루므로 직접 대상은 아니지만 universal action token(FSQ)과 humanoid 배치 맥락이 인접하다.
+- [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] — SONIC. whole-body humanoid 제어(locomotion 축). 이 서베이는 legged/aerial을 manipulator와 policy·레시피를 공유할 때만 다루므로 직접 대상은 아니지만 universal action token(FSQ)과 humanoid 배치 맥락이 인접하다.
 - [[physical-ai/zhang-2024-vision-and-language-navigation-today]] — VLN 서베이. embodied AI의 navigation 축에서 world/human model·language grounding 같은 개념을 다룬다. 이 서베이는 같은 개념을 manipulation 축에서 본다.
 - [[overviews/physical-ai-overview]] — physical-ai 허브. VLA·world model·robot learning 자료가 쌓이면서 이 페이지가 허브의 manipulation 기준점 역할을 한다.
