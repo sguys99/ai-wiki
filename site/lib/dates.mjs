@@ -8,27 +8,55 @@
 
 import { spawnSync } from 'node:child_process';
 
-// git log 출력(최신 커밋 우선)을 파싱해 Map(relPath → ISO date) 반환.
-// 커스텀 포맷 '@<ISO>' 줄이 커밋 경계, 그 아래 파일 경로 줄들이 그 커밋에서 add 된 파일.
-// 각 파일이 "처음 등장"(=가장 최근 add)한 날짜를 채택한다.
+const isWikiMd = (p) => p.startsWith('wiki/') && p.endsWith('.md');
+
+// git log(--name-status) 출력을 파싱해 Map(현재 relPath → 최초 add ISO date) 반환.
+// 커스텀 포맷 '@<ISO>' 줄이 커밋 경계, 그 아래 status 줄이 그 커밋의 변경.
+//   'A\t<path>'            → 파일 추가
+//   'R###\t<old>\t<new>'   → 재분류/이동(rename). --diff-filter=A 는 이걸 놓쳐
+//                            새 경로가 now-fallback 되므로 여기서 명시적으로 승계한다.
+// 커밋은 최신순이라 oldest→newest 로 뒤집어 순회하며 "최초 add일"을 채택하고,
+// rename 시 옛 경로의 add일을 새 경로로 물려준다.
 export function parseAddedLog(stdout) {
-  const map = new Map();
-  let date = null;
+  const commits = [];
+  let cur = null;
   for (const line of stdout.split('\n')) {
     if (line.startsWith('@')) {
-      date = line.slice(1).trim();
-    } else if (line.startsWith('wiki/') && line.endsWith('.md')) {
-      if (date && !map.has(line)) map.set(line, date);
+      cur = { date: line.slice(1).trim(), ops: [] };
+      commits.push(cur);
+    } else if (cur && line) {
+      const parts = line.split('\t');
+      const status = parts[0];
+      if (status === 'A' && isWikiMd(parts[1] || '')) {
+        cur.ops.push({ t: 'A', path: parts[1] });
+      } else if (status[0] === 'R' && isWikiMd(parts[2] || '')) {
+        cur.ops.push({ t: 'R', old: parts[1], neo: parts[2] });
+      }
+    }
+  }
+
+  const map = new Map();
+  for (let i = commits.length - 1; i >= 0; i--) {
+    const { date, ops } = commits[i];
+    for (const op of ops) {
+      if (op.t === 'A') {
+        if (!map.has(op.path)) map.set(op.path, date);
+      } else {
+        map.set(op.neo, map.get(op.old) || date); // 원래 add일 승계
+        map.delete(op.old);
+      }
     }
   }
   return map;
 }
 
 // root 저장소에서 wiki/**/*.md 의 추가일 Map(relPath → ISO)을 얻는다. 실패 시 빈 Map.
+// --diff-filter=AR + --name-status 로 add 와 rename 을 함께 읽어, 재분류로 경로가 바뀐
+// 파일도 최초 add일을 유지한다(그렇지 않으면 호출측에서 now 로 폴백돼 "최근 추가" 최상단에 뜬다).
 export function addedDates(root) {
   const res = spawnSync(
     'git',
-    ['log', '--diff-filter=A', '--format=@%aI', '--name-only', '--', 'wiki'],
+    ['log', '--diff-filter=AR', '-M', '--name-status', '--format=@%aI', '--', 'wiki'],
     { cwd: root, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }
   );
   if (res.status !== 0 || !res.stdout) return new Map();
@@ -39,20 +67,22 @@ export function addedDates(root) {
 if (process.argv[1] && process.argv[1].endsWith('dates.mjs') && process.argv.includes('--check')) {
   const assert = (await import('node:assert/strict')).default;
   const sample = [
+    // 최신 커밋: old-paper 를 database→etc 로 재분류(rename) + new-overview 추가
     '@2026-07-05T10:00:00+09:00',
-    'wiki/overviews/new-overview.md',
-    'wiki/database/new-paper.md',
+    'A\twiki/overviews/new-overview.md',
+    'R099\twiki/database/old-paper.md\twiki/etc/old-paper.md',
     '',
+    // 옛 커밋: old-paper 최초 add, README(=wiki 밖)는 무시
     '@2026-01-01T09:00:00+09:00',
-    'wiki/database/old-paper.md',
-    'wiki/database/new-paper.md', // 오래된 커밋에도 등장하지만 최신이 우선 → 무시
-    'README.md',                  // wiki 밖 → 무시
+    'A\twiki/database/old-paper.md',
+    'A\tREADME.md',
   ].join('\n');
   const m = parseAddedLog(sample);
   assert.equal(m.get('wiki/overviews/new-overview.md'), '2026-07-05T10:00:00+09:00');
-  assert.equal(m.get('wiki/database/new-paper.md'), '2026-07-05T10:00:00+09:00'); // 최신 add 채택
-  assert.equal(m.get('wiki/database/old-paper.md'), '2026-01-01T09:00:00+09:00');
-  assert.equal(m.has('README.md'), false);
-  assert.equal(m.size, 3);
+  // 재분류돼도 최초 add일(2026-01-01)을 새 경로가 승계한다
+  assert.equal(m.get('wiki/etc/old-paper.md'), '2026-01-01T09:00:00+09:00');
+  assert.equal(m.has('wiki/database/old-paper.md'), false); // 옛 경로는 제거
+  assert.equal(m.has('README.md'), false);                  // wiki 밖 → 무시
+  assert.equal(m.size, 2);
   console.log('dates.mjs self-check ✓');
 }
