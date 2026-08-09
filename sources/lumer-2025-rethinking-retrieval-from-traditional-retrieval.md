@@ -37,8 +37,8 @@ figures:
     raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab01.png
     caption: "hierarchical node tree 생성 preprocessing 비용 — 한 기업의 10-Q/10-K 기준 세 모델 비교 (GPT-4o 10-K $30.62)"
     page: 5
-    bbox_norm: [0.1137, 0.1529, 0.8657, 0.2746]
-    strategy: table-region
+    bbox_norm: [0.1109, 0.1544, 0.4922, 0.2269]
+    strategy: manual
     curated: true
   - id: tab02
     label: Table 2
@@ -245,7 +245,7 @@ Summary inclusion은 navigation context를 풍부하게 하지만 cost가 6.3× 
 |---|---|---|---|---|
 | fig01 | 3 | hierarchical node tree 구조 예시 (JSON) | column-band | ★ wiki (method) |
 | fig02 | 4 | small-to-big retrieval — target chunk 인접 확장 | caption-region | ★ wiki (method) |
-| tab01 | 5 | hierarchical node tree 생성 preprocessing 비용 (3 모델) | table-region | ★ wiki (cost) |
+| tab01 | 5 | hierarchical node tree 생성 preprocessing 비용 (3 모델) | manual | ★ wiki (cost) |
 | tab02 | 5 | summary 포함 preprocessing 성능 | table-region | 아카이브 (ablation 세부) |
 | tab03 | 5 | summary 미포함 preprocessing 성능 | manual | 아카이브 (ablation 세부) |
 | tab04 | 6 | cross-encoder reranking 파라미터별 성능 | table-region | ★ wiki (result) |

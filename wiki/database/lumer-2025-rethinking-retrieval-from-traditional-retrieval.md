@@ -38,8 +38,8 @@ figures:
     raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab01.png
     caption: "hierarchical node tree 생성 preprocessing 비용 — 한 기업의 10-Q/10-K 기준 세 모델 비교 (GPT-4o 10-K $30.62)"
     page: 5
-    bbox_norm: [0.1137, 0.1529, 0.8657, 0.2746]
-    strategy: table-region
+    bbox_norm: [0.1109, 0.1544, 0.4922, 0.2269]
+    strategy: manual
     curated: true
   - id: tab02
     label: Table 2
