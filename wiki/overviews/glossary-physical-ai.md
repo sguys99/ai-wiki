@@ -1,0 +1,70 @@
+---
+title: "용어집 — Physical AI (Terminology Glossary)"
+type: overview
+year: 2026
+category: overviews
+source_collection: synthesis
+glossary_domain: physical-ai
+applies_to: [physical-ai, overviews, etc]
+tags: [glossary, terminology, physical-ai, synthesis]
+---
+
+## 표기 원칙 (Conventions)
+
+이 페이지는 physical-ai 도메인 전문 용어의 canonical 표기를 정하는 SSOT다. `sources/`와 `wiki/`의 한글 산문을 쓸 때 아래 표를 따른다.
+
+- 전문 용어는 원어를 그대로 쓰고, 문서당 첫 등장 시 괄호 없이 서술형 한글 풀이를 한 문장 둔다. 예: "control frequency는 로봇이 1초에 몇 번 새로운 action을 갱신하는지를 뜻한다."
+- 원어에는 한글 조사를 그대로 붙인다: "policy가", "reward를", "world model이".
+- canonical 표기가 한글(음차·표준 번역)인 용어는 그 한글만 쓴다. 표에 없는 표기 흔들림을 만들지 않는다.
+- 금지 표기 열은 `scripts/lint_terms.py`의 검사 대상이다. `—`이면 지침만 있고 기계 검사는 없다. 복수 항목은 `·`로 구분하며 리터럴 부분 문자열로 검사된다(조사가 붙어도 잡힌다).
+- 이 용어집은 frontmatter `applies_to`에 적힌 category의 파일에만 적용된다. "정책·행동·관측" 같은 단어가 다른 도메인에서 일반 의미(운영 정책 등)로 쓰이는 것까지 막지 않기 위해서다.
+- 오탐이 큰 일반어는 단독으로 등재하지 않고 복합어·조사 결합형만 등재한다 (예: 행동 → `행동 공간·행동 토큰`).
+
+## 용어 표 (Term Table)
+
+| 원어 | canonical 표기 | 금지 표기 | 첫 등장 풀이 예문 | 비고 |
+|---|---|---|---|---|
+| policy | policy | 정책 | policy는 현재 observation을 받아 다음 action을 정하는 함수를 말한다 | RL 핵심 용어. physical-ai 문맥에서는 거의 항상 RL policy라 단독 금지 |
+| reward | reward | 보상 | reward는 policy가 얼마나 잘했는지를 알려주는 스칼라 신호다 | reward function·reward hacking 등 파생어도 원어 |
+| observation | observation | 관측 | observation은 매 timestep에 policy가 받는 센서 입력이다 | 일반어 "관찰"은 lint 제외 — 다만 RL observation 의미로는 쓰지 않는다 |
+| action | action | 행동 시퀀스·행동 토큰·행동 청킹·행동 정책 | action은 policy가 출력하는 제어 명령이다 | 단독 "행동"은 일반어라 복합어만 금지. "행동 공간"은 action space 행 |
+| action space | action space | 행동 공간 | action space는 로봇이 낼 수 있는 action의 집합이다 | action 행과 중복이지만 명시 |
+| trajectory | trajectory | 궤적 | trajectory는 observation과 action이 시간순으로 이어진 실행 기록이다 | |
+| episode | episode | — | episode는 과제 시작부터 종료까지의 한 실행 단위다 | 음차 "에피소드"도 피하고 원어 권장 (지침) |
+| rollout | rollout | — | rollout은 policy를 실행해 trajectory를 만들어내는 과정이다 | |
+| world model | world model | 세계 모델·월드 모델 | world model은 환경의 동역학을 학습해 미래를 예측하는 모델이다 | |
+| latent | latent | 잠재 공간·잠재 변수·잠재 상태·잠재 표현 | latent는 관측되지 않는 내부 표현 공간을 가리킨다 | "잠재력" 같은 일반어 보호를 위해 복합어만 금지 |
+| alignment / aligned | alignment | 에 정렬된·와 정렬된 | action에 alignment된 예측이란 실행 가능한 미래를 뜻한다 | "행동에 정렬된" 직역 실사례 차단. 정렬(sort) 의미 보호 위해 조사 결합형만 |
+| imitation learning | imitation learning | 모방 학습·모방학습 | imitation learning은 시연 데이터를 흉내 내 policy를 학습하는 방법이다 | |
+| behavioral cloning | behavioral cloning | 행동 복제·행동 모사 | behavioral cloning은 시연의 observation→action 쌍을 지도학습으로 흉내 낸다 | |
+| teleoperation | teleoperation | 원격 조작·원격조작 | teleoperation은 사람이 로봇을 원격으로 움직여 시연을 만드는 방식이다 | 이미 원어로 정착 (22회) |
+| demonstration | demonstration | — | demonstration은 사람이 만들어준 모범 실행 데이터다 | "시연"은 일반어라 지침만 — 데이터 문맥에서는 원어 권장 |
+| end-effector | end-effector | 말단 장치·엔드 이펙터 | end-effector는 로봇 팔 끝에서 물체와 접촉하는 부분이다 | 음차도 금지, 원어 고정 |
+| gripper | 그리퍼 | — | 그리퍼는 물체를 집는 end-effector의 한 형태다 | 음차 정착 |
+| manipulation | manipulation | — | manipulation은 팔과 손으로 물체를 다루는 과제 영역이다 | "조작"은 일반어라 지침만 — 과제 분류 문맥에서는 원어 권장 |
+| locomotion | locomotion | — | locomotion은 다리로 이동하는 과제 영역이다 | |
+| whole-body control | whole-body control | 전신 제어·전신제어 | whole-body control은 균형과 이동을 포함해 몸 전체를 함께 제어하는 문제다 | |
+| grasping | grasping | 파지 | grasping은 물체를 안정적으로 쥐는 동작이다 | |
+| affordance | affordance | 행동 유도성·어포던스 | affordance는 물체가 허용하는 상호작용 가능성을 뜻한다 | |
+| proprioception | proprioception | 고유수용감각 | proprioception은 관절 각도 같은 로봇 자신의 상태 감각 입력이다 | |
+| value function | value function | 가치 함수 | value function은 상태가 앞으로 받을 reward의 기대값을 추정한다 | |
+| dynamics | dynamics | — | dynamics는 상태가 action에 따라 어떻게 변하는지의 규칙이다 | "동역학"은 표준 번역이라 병용 허용 (지침) |
+| control frequency | control frequency | 제어 주파수 | control frequency는 로봇이 1초에 몇 번 새로운 action을 갱신하는지를 뜻한다 | WikiDocs 예문의 원형 |
+| sim2real | sim2real | — | sim2real은 시뮬레이션에서 학습한 policy를 실기기로 옮기는 문제다 | 태그 어휘와 일치 |
+| domain randomization | domain randomization | 도메인 무작위화 | domain randomization은 시뮬레이션 파라미터를 흔들어 sim2real 간극을 줄이는 기법이다 | |
+| motion tracking | motion tracking | 동작 추적 | motion tracking은 mocap 목표 포즈를 프레임 단위로 따라가게 학습하는 과제다 | |
+| retargeting | retargeting | — | retargeting은 사람 동작 데이터를 로봇 형상에 맞게 변환하는 과정이다 | |
+| waypoint | waypoint | 경유점 | waypoint는 경로를 이루는 중간 목표 지점이다 | |
+| reinforcement learning | 강화학습 | 강화 학습 | — | 표준 번역 허용, 붙여쓰기로 고정. 약어 RL 병용 가능 |
+| supervised learning | 지도학습 | 지도 학습 | — | 표준 번역 허용, 붙여쓰기로 고정 |
+| state | 상태 | — | — | 표준 번역 허용 |
+
+## 신규 용어 추가 절차 (Growth Loop)
+
+sources·wiki 작성 중 이 표에 없는 전문 용어를 만나면 본문에는 원어 + 첫 등장 풀이로 즉시 쓰고, Step 3.5 confirm 시점에 "용어집 추가 후보"로 함께 보고한다. 사용자가 승인하면 이 표에 행을 추가하고 같은 커밋에 포함한다. 자세한 절차는 `write-wiki` 스킬을 따른다.
+
+## 관련 페이지 (Related Pages)
+
+- [[overviews/glossary-llms]] — 모델 학습 일반 용어 (pre-training, fine-tuning 등). physical-ai 페이지에도 함께 적용된다
+- [[overviews/glossary-agents]] — agentic 시스템 용어
+- [[overviews/physical-ai-overview]] — 도메인 허브
