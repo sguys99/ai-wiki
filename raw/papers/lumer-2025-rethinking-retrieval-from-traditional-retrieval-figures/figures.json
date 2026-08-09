@@ -1,0 +1,166 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/fig01.png",
+    "raw": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/fig01.png",
+    "page": 3,
+    "caption": "Figure 1: Example hierarchical node tree structure for a Federal Reserve annual report. Each node contains a title, page range (start index, end index), and unique identifier, with nested nodes representing document subsections.",
+    "bbox": [
+      292.99,
+      0.0,
+      537.62,
+      494.92
+    ],
+    "bbox_norm": [
+      0.4922,
+      0.0,
+      0.9031,
+      0.5879
+    ],
+    "dpi": 300,
+    "area_frac": 0.242,
+    "strategy": "column-band",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/fig02.png",
+    "raw": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Small-to-big retrieval strategy. The system re- trieves a target chunk at index idx through vector search, then expands context by including neighboring chunks ( idx − 2, idx − 1, idx + 1, idx + 2) before providing the com- bined context to the LLM for answer generation.",
+    "bbox": [
+      302.99,
+      88.68,
+      527.61,
+      200.36
+    ],
+    "bbox_norm": [
+      0.509,
+      0.1053,
+      0.8863,
+      0.238
+    ],
+    "dpi": 300,
+    "area_frac": 0.05,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/_overlay/p04.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab01.png",
+    "raw": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab01.png",
+    "page": 5,
+    "caption": "Table 1: Preprocessing cost comparison for one company’s SEC Form 10-Q and Form-10K different language mod- els for hierarchical node tree generation. Token counts and model costs are reported for average 10-Q and 10-K filings.",
+    "bbox": [
+      66.0,
+      130.0,
+      293.0,
+      191.0
+    ],
+    "bbox_norm": [
+      0.1109,
+      0.1544,
+      0.4922,
+      0.2269
+    ],
+    "dpi": 300,
+    "area_frac": 0.0276,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/_overlay/p05.png",
+    "override": true
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab02.png",
+    "raw": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab02.png",
+    "page": 5,
+    "caption": "Table 2: Preprocessing performance with node-level sum- mary inclusion. Metrics show increased token consumption and cost but richer contextual information for hierarchical traversal. Model costs shown for OpenAI GPT-4o, Google Gemini 2.5 Flash, and OpenAI GPT-4.1 mini.",
+    "bbox": [
+      315.3,
+      138.69,
+      515.3,
+      231.19
+    ],
+    "bbox_norm": [
+      0.5297,
+      0.1647,
+      0.8657,
+      0.2746
+    ],
+    "dpi": 300,
+    "area_frac": 0.037,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab03.png",
+    "raw": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab03.png",
+    "page": 5,
+    "caption": "Table 3: Preprocessing performance without summary in- clusion. Lower token consumption and cost but less con- textual richness for node traversal reasoning. Model costs shown for OpenAI GPT-4o, Google Gemini 2.5 Flash, and OpenAI GPT-4.1 mini.",
+    "bbox": [
+      306.52,
+      276.03,
+      523.89,
+      389.06
+    ],
+    "bbox_norm": [
+      0.5149,
+      0.3279,
+      0.8801,
+      0.4621
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab04.png",
+    "raw": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab04.png",
+    "page": 6,
+    "caption": "Table 4: Cross-encoder reranking performance across parameter settings compared to baseline vector retrieval without rerank- ing. Bold indicates optimal parameter setting balancing MRR and latency. The optimal (10, 5) setting achieves MRR@5 of 0.750 compared to baseline of 0.160, representing an abs",
+    "bbox": [
+      157.76,
+      118.76,
+      437.55,
+      251.64
+    ],
+    "bbox_norm": [
+      0.265,
+      0.1411,
+      0.735,
+      0.2989
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/_overlay/p06.png"
+  }
+]

@@ -3,13 +3,74 @@ title: "Rethinking Retrieval: From Traditional Retrieval Augmented Generation to
 type: paper
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/2511.18177v1.pdf
-raw_filename: "2511.18177v1.pdf"
+raw_path: /home/sguys99/project/ai-wiki/raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval.pdf
+raw_filename: "lumer-2025-rethinking-retrieval-from-traditional-retrieval.pdf"
 source_collection: external
 source: lumer-2025-rethinking-retrieval-from-traditional-retrieval.md
 authors: "Elias Lumer, Matt Melich, Olivia Zino, Elena Kim, Sara Dieter, Pradeep Honaganahalli Basavaraju, Vamse Kumar Subbiah, James A. Burke, Roberto Hernandez (PricewaterhouseCoopers U.S.)"
 arxiv_id: "2511.18177"
 tags: [rag, financial-qa, vector-rag, vectorless-rag, pageindex, hierarchical-node, cross-encoder-reranking, small-to-big, agentic-rag, sec-filings, evaluation, cohere-rerank, azure-ai-search]
+figures:
+  - id: fig01
+    label: Figure 1
+    kind: figure
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/fig01.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/fig01.png
+    caption: "hierarchical node-based RAG의 node tree 구조 예시 — 문서를 title·page range(start/end index)·node_id를 가진 중첩 노드로 표현한 JSON"
+    page: 3
+    bbox_norm: [0.4922, 0.0, 0.9031, 0.5879]
+    strategy: column-band
+    curated: true
+  - id: fig02
+    label: Figure 2
+    kind: figure
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/fig02.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/fig02.png
+    caption: "small-to-big retrieval — vector search로 찾은 target chunk(idx)를 인접 chunk(idx±1, idx±2)로 확장해 LLM에 전달"
+    page: 4
+    bbox_norm: [0.509, 0.1053, 0.8863, 0.238]
+    strategy: caption-region
+    curated: true
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab01.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab01.png
+    caption: "hierarchical node tree 생성 preprocessing 비용 — 한 기업의 10-Q/10-K 기준 세 모델 비교 (GPT-4o 10-K $30.62)"
+    page: 5
+    bbox_norm: [0.1137, 0.1529, 0.8657, 0.2746]
+    strategy: table-region
+    curated: true
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab02.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab02.png
+    caption: "node-level summary 포함 시 preprocessing 성능 — token·latency·모델별 cost"
+    page: 5
+    bbox_norm: [0.5297, 0.1647, 0.8657, 0.2746]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab03.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab03.png
+    caption: "summary 미포함 시 preprocessing 성능 — 낮은 token·cost, 대신 navigation context 빈약"
+    page: 5
+    bbox_norm: [0.5149, 0.3279, 0.8801, 0.4621]
+    strategy: manual
+    curated: false
+  - id: tab04
+    label: Table 4
+    kind: table
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab04.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab04.png
+    caption: "cross-encoder reranking 파라미터별 성능 — (10,5)에서 MRR@5 0.160→0.750, Recall@5 1.00"
+    page: 6
+    bbox_norm: [0.265, 0.1411, 0.735, 0.2989]
+    strategy: table-region
+    curated: true
 ---
 
 ## 요약 (Summary)
@@ -47,6 +108,9 @@ PricewaterhouseCoopers U.S.의 Elias Lumer 외 8인이 1,200 SEC 10-K/10-Q/8-K f
 - Node tree generator 3종 비교: **GPT-4o**(coherence 최고로 선택) > GPT-4.1 mini > Gemini 2.5 Flash(compatibility 이슈).
 - Query time: LLM이 hierarchy를 traversal → relevant node 선택 → 해당 page range를 context로 retrieval. **Embedding 없음**.
 
+![[assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/fig01.png]]
+*Figure 1: hierarchical node tree 구조 예시 — 문서를 title·page range·node_id를 가진 중첩 노드로 표현한 JSON (Lumer 2025, p.3)*
+
 ### Enhancement C — Cross-encoder reranking (vector RAG 위에 적용)
 
 - `Cohere rerank-english-v3.0` — query-chunk pair jointly encode.
@@ -55,6 +119,9 @@ PricewaterhouseCoopers U.S.의 Elias Lumer 외 8인이 1,200 SEC 10-K/10-Q/8-K f
 ### Enhancement D — Small-to-big retrieval
 
 - Target chunk + immediate neighbors(±1) augmentation. Sync vs async(인접 chunk 병렬 fetch) 비교.
+
+![[assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/fig02.png]]
+*Figure 2: small-to-big retrieval — vector search로 찾은 target chunk(idx)를 인접 chunk(idx±1, idx±2)로 확장해 LLM에 전달 (Lumer 2025, p.4)*
 
 ### Evaluation framework
 
@@ -86,6 +153,9 @@ PricewaterhouseCoopers U.S.의 Elias Lumer 외 8인이 1,200 SEC 10-K/10-Q/8-K f
 
 **모든 reranking 설정이 perfect Recall@5(1.00)** — reranker가 ranking + coverage를 모두 향상. $k_{init} \geq 50$은 diminishing returns.
 
+![[assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab04.png]]
+*Table 4: cross-encoder reranking 파라미터별 성능 — 굵게 표시된 (10,5)에서 MRR@5 0.160→0.750(+59%p), Recall@5 1.00, latency 2.02s (Lumer 2025, p.6)*
+
 ### Small-to-big retrieval (50Q)
 
 | Variant | Win rate | Extra latency | Per-query cost |
@@ -100,6 +170,9 @@ Per company (Table 1):
 - GPT-4o: 10-Q $7.21, **10-K $30.62**
 - GPT-4.1 mini: 10-Q $4.23, 10-K $22.27
 - Gemini 2.5 Flash: 10-Q $0.99, **10-K $5.94 (GPT-4o 대비 19%)**
+
+![[assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab01.png]]
+*Table 1: hierarchical node tree 생성 preprocessing 비용 — 한 기업의 10-Q/10-K 기준 세 모델 비교 (Lumer 2025, p.5)*
 
 Per filing summary ablation (GPT-4o, 10-K):
 - Without summary: $0.97 (300k tokens, 126s latency)

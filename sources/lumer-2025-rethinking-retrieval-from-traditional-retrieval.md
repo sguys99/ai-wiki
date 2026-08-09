@@ -3,12 +3,73 @@ title: "Rethinking Retrieval: From Traditional Retrieval Augmented Generation to
 type: paper
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/2511.18177v1.pdf
-raw_filename: "2511.18177v1.pdf"
+raw_path: /home/sguys99/project/ai-wiki/raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval.pdf
+raw_filename: "lumer-2025-rethinking-retrieval-from-traditional-retrieval.pdf"
 source_collection: external
 authors: "Elias Lumer, Matt Melich, Olivia Zino, Elena Kim, Sara Dieter, Pradeep Honaganahalli Basavaraju, Vamse Kumar Subbiah, James A. Burke, Roberto Hernandez (PricewaterhouseCoopers U.S.)"
 arxiv_id: "2511.18177"
 tags: [rag, financial-qa, vector-rag, vectorless-rag, pageindex, hierarchical-node, cross-encoder-reranking, small-to-big, agentic-rag, sec-filings, evaluation, cohere-rerank, azure-ai-search]
+figures:
+  - id: fig01
+    label: Figure 1
+    kind: figure
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/fig01.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/fig01.png
+    caption: "hierarchical node-based RAG의 node tree 구조 예시 — 문서를 title·page range(start/end index)·node_id를 가진 중첩 노드로 표현한 JSON"
+    page: 3
+    bbox_norm: [0.4922, 0.0, 0.9031, 0.5879]
+    strategy: column-band
+    curated: true
+  - id: fig02
+    label: Figure 2
+    kind: figure
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/fig02.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/fig02.png
+    caption: "small-to-big retrieval — vector search로 찾은 target chunk(idx)를 인접 chunk(idx±1, idx±2)로 확장해 LLM에 전달"
+    page: 4
+    bbox_norm: [0.509, 0.1053, 0.8863, 0.238]
+    strategy: caption-region
+    curated: true
+  - id: tab01
+    label: Table 1
+    kind: table
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab01.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab01.png
+    caption: "hierarchical node tree 생성 preprocessing 비용 — 한 기업의 10-Q/10-K 기준 세 모델 비교 (GPT-4o 10-K $30.62)"
+    page: 5
+    bbox_norm: [0.1137, 0.1529, 0.8657, 0.2746]
+    strategy: table-region
+    curated: true
+  - id: tab02
+    label: Table 2
+    kind: table
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab02.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab02.png
+    caption: "node-level summary 포함 시 preprocessing 성능 — token·latency·모델별 cost"
+    page: 5
+    bbox_norm: [0.5297, 0.1647, 0.8657, 0.2746]
+    strategy: table-region
+    curated: false
+  - id: tab03
+    label: Table 3
+    kind: table
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab03.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab03.png
+    caption: "summary 미포함 시 preprocessing 성능 — 낮은 token·cost, 대신 navigation context 빈약"
+    page: 5
+    bbox_norm: [0.5149, 0.3279, 0.8801, 0.4621]
+    strategy: manual
+    curated: false
+  - id: tab04
+    label: Table 4
+    kind: table
+    file: assets/lumer-2025-rethinking-retrieval-from-traditional-retrieval/tab04.png
+    raw: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval-figures/tab04.png
+    caption: "cross-encoder reranking 파라미터별 성능 — (10,5)에서 MRR@5 0.160→0.750, Recall@5 1.00"
+    page: 6
+    bbox_norm: [0.265, 0.1411, 0.735, 0.2989]
+    strategy: table-region
+    curated: true
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -177,3 +238,16 @@ Summary inclusion은 navigation context를 풍부하게 하지만 cost가 6.3× 
 - **Corrective RAG (CRAG, Yan 2024)**: retrieval 결과의 품질을 평가하고 부정확하면 query rewrite/web search 등으로 보정하는 RAG.
 - **LLM-as-a-judge (pairwise)**: 두 시스템의 답변을 LLM이 비교해서 승자를 고르고, 다수의 query에 걸쳐 win rate을 집계하는 평가 방법. Zheng 2023.
 - **SEC 10-K / 10-Q / 8-K**: 미국 SEC 공시 양식 — annual report (100–300p) / quarterly report (30–80p) / material events.
+
+## 8. 그림 후보 (Figure Candidates)
+
+| id | page | caption | strategy | 추천 |
+|---|---|---|---|---|
+| fig01 | 3 | hierarchical node tree 구조 예시 (JSON) | column-band | ★ wiki (method) |
+| fig02 | 4 | small-to-big retrieval — target chunk 인접 확장 | caption-region | ★ wiki (method) |
+| tab01 | 5 | hierarchical node tree 생성 preprocessing 비용 (3 모델) | table-region | ★ wiki (cost) |
+| tab02 | 5 | summary 포함 preprocessing 성능 | table-region | 아카이브 (ablation 세부) |
+| tab03 | 5 | summary 미포함 preprocessing 성능 | manual | 아카이브 (ablation 세부) |
+| tab04 | 6 | cross-encoder reranking 파라미터별 성능 | table-region | ★ wiki (result) |
+
+> tab03은 자동 검출이 tab02와 동일 영역을 잡아 `--bbox`로 재크롭했다(strategy: manual). tab02·tab03은 preprocessing ablation 세부라 아카이브에만 보존하고, 본문에는 fig01·fig02·tab01·tab04를 임베드한다.
