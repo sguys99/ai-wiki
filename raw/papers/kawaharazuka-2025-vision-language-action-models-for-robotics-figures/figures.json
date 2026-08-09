@@ -1,0 +1,272 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/kawaharazuka-2025-vision-language-action-models-for-robotics/fig01.png",
+    "raw": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/fig01.png",
+    "page": 2,
+    "caption": "FIGURE 1. Structure of this survey. Section II outlines the key challenges in developing Vision-Language-Action (VLA) models. Section III and Section IV review the evolution of VLA strategies, architectures, and modality-specific design choices. Section V categorizes training strategies and practica",
+    "bbox": [
+      30.17,
+      7.36,
+      545.4,
+      328.93
+    ],
+    "bbox_norm": [
+      0.0524,
+      0.0094,
+      0.9469,
+      0.4201
+    ],
+    "dpi": 300,
+    "area_frac": 0.367,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/kawaharazuka-2025-vision-language-action-models-for-robotics/fig02.png",
+    "raw": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/fig02.png",
+    "page": 4,
+    "caption": "FIGURE 2. Timeline of major Vision–Language–Action (VLA) models. This figure summarizes the historical progression of representative VLA models shown in Section III : from early CNN-based models (e.g., CLIPort [ 15 ]), to real-world scalable policies leveraging pre-trained VLM backbones (e.g., RT-1 ",
+    "bbox": [
+      30.17,
+      7.36,
+      545.4,
+      339.73
+    ],
+    "bbox_norm": [
+      0.0524,
+      0.0094,
+      0.9469,
+      0.4339
+    ],
+    "dpi": 300,
+    "area_frac": 0.38,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/kawaharazuka-2025-vision-language-action-models-for-robotics/fig03.png",
+    "raw": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/fig03.png",
+    "page": 6,
+    "caption": "FIGURE 3. Structure of Section IV and Section V . The figure summarizes key components of VLA models. The center illustrates core architectural types, including sensorimotor models, world models, and affordance-based models. The left side depicts the input and output modalities—vision, language, act",
+    "bbox": [
+      30.17,
+      7.36,
+      545.4,
+      274.7
+    ],
+    "bbox_norm": [
+      0.0524,
+      0.0094,
+      0.9469,
+      0.3509
+    ],
+    "dpi": 300,
+    "area_frac": 0.305,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/kawaharazuka-2025-vision-language-action-models-for-robotics/fig04.png",
+    "raw": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/fig04.png",
+    "page": 7,
+    "caption": "FIGURE 4. Architecture of sensorimotor models for VLA. This figure categorizes seven representative architectures used in recent VLA research. (1) Transformer + Discrete Action Token : A standard transformer processes tokenized inputs to predict discrete actions. (2) Transformer + Diffusion Action H",
+    "bbox": [
+      30.17,
+      7.36,
+      545.41,
+      397.76
+    ],
+    "bbox_norm": [
+      0.0524,
+      0.0094,
+      0.9469,
+      0.508
+    ],
+    "dpi": 300,
+    "area_frac": 0.446,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/kawaharazuka-2025-vision-language-action-models-for-robotics/fig05.png",
+    "raw": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/fig05.png",
+    "page": 8,
+    "caption": "FIGURE 5. Design patterns for incorporating world models in VLA. (1) Using world models in conjunction with inverse dynamics models to generate actions. (2) Leveraging world models to learn latent action representations, particularly from human videos; the resulting latent tokens are then used for V",
+    "bbox": [
+      0.0,
+      0.0,
+      547.66,
+      266.59
+    ],
+    "bbox_norm": [
+      0.0,
+      0.0,
+      0.9508,
+      0.3405
+    ],
+    "dpi": 300,
+    "area_frac": 0.324,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/kawaharazuka-2025-vision-language-action-models-for-robotics/fig06.png",
+    "raw": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/fig06.png",
+    "page": 10,
+    "caption": "FIGURE 6. Design patterns for incorporating affordance-based models in VLA. (1) Predicting affordances and subsequently generating actions conditioned on the predicted affordances; (2) Extracting affordances from human demonstration videos and learning latent representations to guide action generati",
+    "bbox": [
+      30.17,
+      7.36,
+      545.4,
+      245.71
+    ],
+    "bbox_norm": [
+      0.0524,
+      0.0094,
+      0.9469,
+      0.3138
+    ],
+    "dpi": 300,
+    "area_frac": 0.272,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/kawaharazuka-2025-vision-language-action-models-for-robotics/fig07.png",
+    "raw": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/fig07.png",
+    "page": 14,
+    "caption": "FIGURE 7. Approaches to integrating RL with VLA models. (1) RL is used to fine-tune VLA models to enhance their performance. (2) VLA models serve as high-level policies, while RL policies handle low-level control.",
+    "bbox": [
+      29.7,
+      7.36,
+      285.84,
+      183.64
+    ],
+    "bbox_norm": [
+      0.0516,
+      0.0094,
+      0.4963,
+      0.2346
+    ],
+    "dpi": 300,
+    "area_frac": 0.1,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/kawaharazuka-2025-vision-language-action-models-for-robotics/fig08.png",
+    "raw": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/fig08.png",
+    "page": 17,
+    "caption": "FIGURE 8. Structure of Section VI and Section VII : robots used VLA research — including manipulator, hand/gripper, mobile robot, quadruped robot, and humanoid robot; data collection methods — including teleoperation, proxy devices, and human data collection; publicly available dataset — including h",
+    "bbox": [
+      30.17,
+      7.36,
+      545.41,
+      350.55
+    ],
+    "bbox_norm": [
+      0.0524,
+      0.0094,
+      0.9469,
+      0.4477
+    ],
+    "dpi": 300,
+    "area_frac": 0.392,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/kawaharazuka-2025-vision-language-action-models-for-robotics/tab01.png",
+    "raw": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/tab01.png",
+    "page": 19,
+    "caption": "TABLE 1. Recent real-world robot datasets used in VLA research. Here, Skill denote atomic action primitives (e.g., pick, place, reach), whereas Task correspond to instruction-level goals. All statistics are reported as in the original papers; the table is adapted from prior works [ 11 ], [ 330 ], [ ",
+    "bbox": [
+      30.17,
+      84.67,
+      545.4,
+      217.02
+    ],
+    "bbox_norm": [
+      0.0524,
+      0.1081,
+      0.9469,
+      0.2772
+    ],
+    "dpi": 300,
+    "area_frac": 0.151,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/kawaharazuka-2025-vision-language-action-models-for-robotics/tab02.png",
+    "raw": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/tab02.png",
+    "page": 23,
+    "caption": "TABLE 2. Benchmarks for VLA evaluation. This table shows various simulation environments used for evaluating VLA models with their key characteristics. Task types include Navigation (Nav), Manipulation (Manip), and Whole-Body Control (WBC). Observation modalities include RGB-D (RGB + Depth), S (Sema",
+    "bbox": [
+      30.17,
+      93.04,
+      545.4,
+      316.4
+    ],
+    "bbox_norm": [
+      0.0524,
+      0.1188,
+      0.9469,
+      0.4041
+    ],
+    "dpi": 300,
+    "area_frac": 0.255,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics-figures/_overlay/p23.png"
+  }
+]
