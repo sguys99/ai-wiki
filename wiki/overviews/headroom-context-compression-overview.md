@@ -68,7 +68,7 @@ Input → CacheAligner → ContentRouter → {SmartCrusher | CodeCompressor | Ko
 
 ## 언제 쓰지 말아야 하나 (When NOT to Use)
 
-Tosea와 저장소가 공통으로 자인하는 반례가 있다. 가끔만 쓰거나, 프롬프트가 짧거나, 단일 제공자 네이티브 compaction으로 충분하거나, 로컬 프로세스를 못 돌리는 sandbox거나, 매번 전체 원문이 필요하면 얻는 게 적다. 고위험 워크플로우는 압축이 모델이 보는 내용을 바꿀 수 있으니 품질 검증이 필수다.
+Tosea와 저장소가 공통으로 자인하는 반례가 있다. 가끔만 쓰거나, 프롬프트가 짧거나, 단일 제공자 네이티브 compaction으로 충분하거나, 로컬 프로세스를 못 돌리는 sandbox거나, 매번 전체 원문이 필요하면 얻는 게 적다. 고위험 워크플로는 압축이 모델이 보는 내용을 바꿀 수 있으니 품질 검증이 필수다.
 
 ## 읽는 순서 (Reading Path)
 

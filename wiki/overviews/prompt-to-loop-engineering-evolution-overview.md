@@ -45,9 +45,9 @@ AI 코딩 에이전트를 다루는 방식은 지난 4년 동안 **무엇을 최
 
 ### 단계 1: Prompt Engineering — 지시 한 줄을 잘 쓰는 법
 
-출발점은 잘 쓴 지시 한 줄이다. [[agents/patel-2026-i-taught-myself-claude-code]]가 프롬프팅의 원전으로 꼽는 다섯 가지, 곧 **ReAct**(추론+행동), **Chain-of-Thought**(단계적 사고), **Toolformer**(도구 사용), **Reflexion**(자기반성), **Generative Agents**(기억+계획)가 이 단계의 기법 어휘를 이룬다. [[agents/anthropic-2025-effective-context-engineering-for-ai]]는 prompt engineering을 "프롬프트(특히 system prompt)를 잘 쓰는 법"으로 정의하고, 이를 뒤 단계와 견주는 기준선으로 삼는다. 한계도 뚜렷하다. 한 번 쓰고 끝나는 단일 턴 관점이라, 여러 턴을 도는 에이전트에는 부족하다.
+출발점은 잘 쓴 지시 한 줄이다. [[agents/patel-2026-i-taught-myself-claude-code]]가 프롬프팅의 원전으로 꼽는 다섯 가지, 곧 **ReAct**(추론+행동), **Chain-of-Thought**(단계적 사고), **Toolformer**(tool use), **Reflexion**(자기반성), **Generative Agents**(기억+계획)가 이 단계의 기법 어휘를 이룬다. [[agents/anthropic-2025-effective-context-engineering-for-ai]]는 prompt engineering을 "프롬프트(특히 system prompt)를 잘 쓰는 법"으로 정의하고, 이를 뒤 단계와 견주는 기준선으로 삼는다. 한계도 뚜렷하다. 한 번 쓰고 끝나는 단일 턴 관점이라, 여러 턴을 도는 에이전트에는 부족하다.
 
-### 단계 2: Context Engineering — 문맥 창 전체를 큐레이션한다
+### 단계 2: Context Engineering — context window 전체를 큐레이션한다
 
 [[agents/anthropic-2025-effective-context-engineering-for-ai]] (Anthropic Applied AI, 2025)가 이 전환을 분명히 했다. 핵심 명제는 하나다. LLM의 **attention budget은 유한**하므로, 좋은 context engineering이란 "원하는 결과의 확률을 최대화하는 high-signal 토큰의 **최소 집합**"을 찾는 일이라는 것이다.
 
