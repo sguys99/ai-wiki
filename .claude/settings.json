@@ -39,6 +39,11 @@
             "type": "command",
             "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/humanize-reminder.sh\" 2>/dev/null",
             "statusMessage": "humanize 윤문 체크"
+          },
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/lint-terms-reminder.sh\" 2>/dev/null",
+            "statusMessage": "용어 lint 체크"
           }
         ]
       }
