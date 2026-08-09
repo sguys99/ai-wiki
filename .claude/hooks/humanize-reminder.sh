@@ -48,6 +48,7 @@ if is_wiki_register:
         "- 이 파일은 wiki/·sources/ 기술 산문이므로 humanize-korean을 **`register: wiki` (strict 모드)** 로 실행하세요. "
         "strict 5인 파이프라인이 독립 탐지·자연성 리뷰로 티 잔존과 과윤문(문학체 어휘)을 둘 다 잡고, "
         "변경률 밴드 20~35%로 문단 흐름까지 복원합니다. Fast Path(monolith)는 wiki 산문에 부적합합니다.\n"
+        "- 윤문 전 대상 category의 도메인 용어집(wiki/overviews/glossary-*.md)을 로드하세요.\n"
     )
 else:
     register_line = (
@@ -61,7 +62,7 @@ msg = (
     "다음을 지키세요:\n"
     "- 아직 이 파일을 이번 턴에 윤문하지 않았다면 아래 지침대로 실행하세요.\n"
     + register_line +
-    "- 의미 불변: 사실·수치·고유명사·인용·YAML frontmatter key·파일명·영문 기술용어(RAG, Transformer 등)는 절대 변경 금지. 산문 문체·리듬만 다듬습니다.\n"
+    "- 의미 불변: 사실·수치·고유명사·인용·YAML frontmatter key·파일명·영문 기술용어(RAG, Transformer 등)와 wiki/overviews/glossary-*.md 등재 canonical 표기는 절대 변경 금지. 반대로 용어집 등재어의 한글 직역(정책·보상·관측 등)을 발견하면 원어로 복원하세요(B-5). 산문 문체·리듬만 다듬습니다.\n"
     "- 이미 이번 턴에 윤문을 마친 파일이면 추가 작업 없이 넘어가세요(중복 윤문 방지)."
 )
 

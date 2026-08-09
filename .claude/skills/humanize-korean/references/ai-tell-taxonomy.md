@@ -170,7 +170,7 @@ J. 시각 장식 남용 — J-1~J-4
 ### B-2. 영어 용어 비번역 [S2]
 - 패턴: `pipeline`, `framework`, `leverage`, `seamless`, `robust` 등 한국어로 쓸 수 있는데 영어 그대로.
 - 예: "이 **framework**를 **leverage**하여" → "이 체계를 활용해"
-- 예외: 고유명사·업계 표준 용어(Transformer, API, SDK 등)는 유지.
+- 예외: 고유명사·업계 표준 용어(Transformer, API, SDK 등)는 유지. `register: wiki`에서 용어집 등재 용어는 B-5가 우선한다 — 한국어로 옮기지 않는다.
 
 ### B-3. 과도한 영어 인용구 [S2]
 - 패턴: 영어 문장을 인용문으로 그대로 박아넣고 번역도 병기
@@ -179,6 +179,13 @@ J. 시각 장식 남용 — J-1~J-4
 ### B-4. "~라고 알려진", "~로 일컬어지는" [S3]
 - 패턴: 영어 `known as / so-called` 직역
 - 예: "**'AGI'라고 알려진** 범용 인공지능" → "범용 인공지능(AGI)"
+
+### B-5. 전문 용어 한글 직역 (기술 위키 register) [S2]
+- 패턴: 도메인 전문 용어를 한국어로 직역해 원어 개념이 흐려짐. `policy → 정책`, `reward → 보상`, `observation → 관측/관찰`(표기 흔들림), `trajectory → 궤적`, `aligned → ~에 정렬된` 등.
+- 예: "**정책**이 **관측**을 받아 **보상**을 최대화한다" → "policy가 observation을 받아 reward를 최대화한다"
+- 처방: `wiki/overviews/glossary-*.md`의 canonical 표기로 복원. 문서 첫 등장이면 서술형 한글 풀이 한 문장을 유지·보강한다.
+- 예외: 용어집이 한글 canonical로 지정한 용어(임베딩·토큰·강화학습·가중치 등)와 용어집 비등재 일반어는 대상 아님.
+- 적용 범위: `register: wiki`(`sources/`·`wiki/`) 한정. 일반 칼럼·블로그 윤문에는 B-2가 그대로 우선한다. 기계 검사는 `scripts/lint_terms.py`가 수행.
 
 ---
 
