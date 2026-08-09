@@ -225,16 +225,16 @@ figures:
 
 ## 요약 (Summary)
 
-NVIDIA GEAR가 27명을 붙여 만든 humanoid 전신 제어 foundation model. 논문의 출발 질문은 "humanoid 제어는 왜 스케일링되지 않았나"이고, 답은 모델도 compute도 아니라 학습 과제였다고 말한다. locomotion처럼 시나리오마다 reward를 새로 짜야 하는 과제로는 앞으로 걷기에서 얻은 신호가 춤이나 기상 동작에 쓰이지 않는다. 그래서 저자들은 mocap 프레임마다 목표 포즈가 주어지는 motion tracking을 기본 과제로 삼았다.
+NVIDIA GEAR가 27명을 붙여 만든 humanoid whole-body control foundation model. whole-body control은 균형과 이동을 포함해 몸 전체를 함께 제어하는 문제다. 논문의 출발 질문은 "humanoid 제어는 왜 스케일링되지 않았나"이고, 답은 모델도 compute도 아니라 학습 과제였다고 말한다. locomotion처럼 시나리오마다 reward를 새로 짜야 하는 과제로는 앞으로 걷기에서 얻은 신호가 춤이나 기상 동작에 쓰이지 않는다. 그래서 저자들은 mocap 프레임마다 목표 포즈가 주어지는 motion tracking을 기본 과제로 삼았다.
 
-규모는 파라미터 1.2M→42M, 모션 100M+ 프레임(611시간), 21,000 GPU hours(128 GPU × 7일)다. 여기에 두 겹의 응용층을 올렸다. 실시간 kinematic planner가 사용자 의도를 짧은 참조 모션으로 바꿔 내비게이션·게임패드 제어를 받아낸다. robot·human·hybrid 세 입력을 FSQ로 양자화한 universal token space는 VR teleoperation과 VLA 추론을 같은 정책에 밀어넣는다. 이 token을 행동 공간으로 쓴 GR00T N1.5가 페달을 밟아 쓰레기통을 열고 캔을 버리는 전신 loco-manipulation을 자율로 해낸다.
+규모는 파라미터 1.2M→42M, 모션 100M+ 프레임(611시간), 21,000 GPU hours(128 GPU × 7일)다. 여기에 두 겹의 응용층을 올렸다. 실시간 kinematic planner가 사용자 의도를 짧은 참조 모션으로 바꿔 내비게이션·게임패드 제어를 받아낸다. robot·human·hybrid 세 입력을 FSQ로 양자화한 universal token space는 VR teleoperation과 VLA 추론을 같은 policy에 밀어넣는다. policy는 observation을 받아 다음 action을 정하는 함수이고, action space는 그 policy가 낼 수 있는 action의 집합이다. 이 token을 action space로 쓴 GR00T N1.5가 페달을 밟아 쓰레기통을 열고 캔을 버리는 전신 loco-manipulation을 자율로 해낸다.
 
 ![[assets/luo-2025-sonic-supersizing-motion-tracking/fig01.png]]
-*Figure 1: 하나의 정책이 다루는 입력·인터페이스 전경 — 영상 teleoperation, VR 전신/키포인트, kinematic planner, 텍스트·음악 제어, VLA 자율 실행 (Luo 2025, p.2)*
+*Figure 1: 하나의 policy가 다루는 입력·인터페이스 전경 — 영상 teleoperation, VR 전신/키포인트, kinematic planner, 텍스트·음악 제어, VLA 자율 실행 (Luo 2025, p.2)*
 
 ## 주요 기여 (Key Contributions)
 
-기여는 세 갈래다. 우선 motion tracking이 데이터·모델·compute 세 축 모두에서 우호적인 스케일링 곡선을 그린다는 것을 21,000 GPU hours·100M 프레임 규모로 실측했다. 여기에 실시간 kinematic motion planner를 붙여 트래커를 목표지향 과제로 연결했다. 마지막이 세 입력 포맷을 하나의 quantized latent로 모으는 universal token space다. 같은 정책이 VR teleoperation과 VLA 추론을 동시에 받게 만든 설계로, 손과 발을 함께 써야 하는 동작까지 VLA가 자율로 수행한다.
+기여는 세 갈래다. 우선 motion tracking이 데이터·모델·compute 세 축 모두에서 우호적인 스케일링 곡선을 그린다는 것을 21,000 GPU hours·100M 프레임 규모로 실측했다. 여기에 실시간 kinematic motion planner를 붙여 트래커를 목표지향 과제로 연결했다. 마지막이 세 입력 포맷을 하나의 quantized latent로 모으는 universal token space다. 같은 policy가 VR teleoperation과 VLA 추론을 동시에 받게 만든 설계로, 손과 발을 함께 써야 하는 동작까지 VLA가 자율로 수행한다.
 
 motion tracking이 스케일링되는 이유를 저자들은 supervision의 밀도로 설명한다. 프레임마다 명시적 목표 포즈가 있으니 데이터가 커져도 학습 신호가 묽어지지 않는다. AMP·ASE 같은 adversarial imitation은 반대다. 다양성이 커질수록 discriminator의 판별 과제가 어려워지고 피드백이 부실해져 mode collapse로 간다.
 
@@ -253,7 +253,7 @@ motion tracking이 스케일링되는 이유를 저자들은 supervision의 밀�
 ![[assets/luo-2025-sonic-supersizing-motion-tracking/fig07.png]]
 *Figure 7: SONIC 아키텍처 — robot/hybrid/human 3개 encoder → quantizer → universal token → robot control decoder + robot motion decoder (Luo 2025, p.14)*
 
-PPO로 학습하고 Isaac Lab에서 돌린다. 상태는 proprioception 10스텝 히스토리와 motion command로, 전부 로봇 로컬 프레임에 6D 회전 표현을 쓴다. 행동은 관절 목표 위치이고 PD 제어기가 추종한다.
+PPO로 학습하고 Isaac Lab에서 돌린다. 상태는 proprioception 10스텝 히스토리와 motion command로, 전부 로봇 로컬 프레임에 6D 회전 표현을 쓴다. action은 관절 목표 위치이고 PD 제어기가 추종한다.
 
 구조의 핵심은 세 encoder를 하나의 latent로 모으는 것이다. robot motion encoder는 미래 프레임의 관절 위치·속도를, human motion encoder는 SMPL 3D 관절 위치를, hybrid encoder는 상체 sparse keypoint(머리·양손)와 하체 로봇 모션을 받는다. 마지막 것이 VR 3-point teleoperation에 대응한다. 세 출력은 Finite Scalar Quantization으로 양자화되어 universal token이 된다. 토큰 2개, 기본 설정 FSQ-32-32이고 VLA 쪽에는 64차원으로 노출된다. VQ-VAE 대신 FSQ를 쓴 이유는 codebook collapse가 없다는 점이다 — 8,447개 sub-category라는 다양성에서 codebook 미사용 구간은 실제 위험이다.
 
@@ -266,13 +266,13 @@ PPO로 학습하고 Isaac Lab에서 돌린다. 상태는 proprioception 10스텝
 ![[assets/luo-2025-sonic-supersizing-motion-tracking/fig03.png]]
 *Figure 3: kinematic planner의 인터랙티브 제어 — 속도·방향·스타일 전환 내비게이션, 임의 높이의 스쿼트·무릎보행·기어가기, 반응형 복싱 (Luo 2025, p.7)*
 
-planner는 계획을 autoregressive motion in-betweening으로 푼다. 0.8~2.4초 구간의 양 끝 keyframe을 context와 target으로 두고 latent 토큰열에서 masked token prediction으로 confidence 높은 토큰부터 확정해 나간다. root 궤적은 critically damped spring model이 만드는데, 저자들은 planner가 이 모델 없이도 대체로 동작한다고 하면서도 6.0m/s에서 −6.0m/s로 급반전하는 비현실적 명령을 걸러주는 안전장치로서의 값은 인정한다.
+planner는 계획을 autoregressive motion in-betweening으로 푼다. 0.8~2.4초 구간의 양 끝 keyframe을 context와 target으로 두고 latent 토큰열에서 masked token prediction으로 confidence 높은 토큰부터 확정해 나간다. root trajectory는 critically damped spring model이 만드는데, 저자들은 planner가 이 모델 없이도 대체로 동작한다고 하면서도 6.0m/s에서 −6.0m/s로 급반전하는 비현실적 명령을 걸러주는 안전장치로서의 값은 인정한다.
 
 효율이 눈에 띈다. 스킬 하나당 대표 클립 한 개만으로 25개 이상의 스킬·스타일을 재학습 없이 다룬다.
 
 ### 배포
 
-추론은 전부 Jetson Orin 온보드에서 TensorRT와 CUDA Graph로 돌아간다. 정책 forward 1–2ms, 모션 생성 약 12ms다. 정책 추론 50Hz, 명령 스트리밍 500Hz, 조작자 입력 100Hz, kinematic planning 10Hz의 네 루프가 동시에 돈다. 활성 encoder만 바꾸면 키보드·게임패드·VR·네트워크 스트림을 재학습 없이 갈아탄다.
+추론은 전부 Jetson Orin 온보드에서 TensorRT와 CUDA Graph로 돌아간다. policy forward 1–2ms, 모션 생성 약 12ms다. policy 추론 50Hz, 명령 스트리밍 500Hz, 조작자 입력 100Hz, kinematic planning 10Hz의 네 루프가 동시에 돈다. 활성 encoder만 바꾸면 키보드·게임패드·VR·네트워크 스트림을 재학습 없이 갈아탄다.
 
 ## 결과 (Results)
 
@@ -300,9 +300,9 @@ sim2real은 123개 모션 시퀀스로 검증했고 성공률이 100.0%에서 99
 | Drill and box relocation | whole-body | 300 traj | 10 | 70% |
 | 5개 과제 평균 | | | | 75% |
 
-가장 어려운 soda can 과제는 다섯 스킬의 연쇄다. 테이블로 걸어가 한 손으로 캔을 들고, 쓰레기통으로 이동해 한 발로 페달을 밟아 뚜껑을 열면서 다른 발로 균형을 잡고, 캔을 던져 넣는다. 상체 제어와 locomotion을 분리하는 행동 공간에서는 만들기 어려운 동작이다.
+가장 어려운 soda can 과제는 다섯 스킬의 연쇄다. 테이블로 걸어가 한 손으로 캔을 들고, 쓰레기통으로 이동해 한 발로 페달을 밟아 뚜껑을 열면서 다른 발로 균형을 잡고, 캔을 던져 넣는다. 상체 제어와 locomotion을 분리하는 action space에서는 만들기 어려운 동작이다.
 
-### 행동 공간이 만든 차이
+### action space가 만든 차이
 
 ablation 중 가장 큰 폭이 여기서 나온다. VLA가 FSQ 토큰을 예측할 때와 SMPL 전신 포즈를 직접 예측할 때(81차원)를 견주면 평균 68% 대 27%다. 과제가 복잡할수록 격차가 커져 soda can 과제에서는 60% 대 0%가 된다. 고차원 연속 포즈 공간에서는 작은 예측 오차가 큰 추종 실패로 증폭된다는 게 저자들의 설명이다. quantizer 선택도 같은 방향으로 지지된다. FSQ가 VQ-VAE를 test-content MPJPE-L에서 8.7mm 앞선다(26.6mm 대 35.3mm).
 
@@ -318,5 +318,5 @@ encoder 셋은 모두 99.2% 이상을 유지하며 입력 포맷이 다른 human
 
 - [[physical-ai/nvlabs-gr00t-wholebodycontrol]] — 이 논문의 공식 구현. 학습 코드·C++ 배포 스택·G1 체크포인트 2종이 들어 있어 여기 적은 방법론을 실행 가능한 형태로 확인할 수 있다
 - [[physical-ai/nvlabs-2026-gear-sonic-project-page]] — 프로젝트 페이지. MPJPE 수치로는 판단하기 어려운 동작의 질을 영상으로 남긴 곳
-- [[physical-ai/hou-2026-world-model-for-robot-learning]] — robot learning 서베이. SONIC은 world model 없이 dense mocap supervision으로 가는 경로라서, 서베이가 정리한 "행동에 인과적으로 정렬된 미래 예측" 계열과 대비해 읽으면 두 접근의 분기점이 보인다
+- [[physical-ai/hou-2026-world-model-for-robot-learning]] — robot learning 서베이. SONIC은 world model 없이 dense mocap supervision으로 가는 경로라서, 서베이가 정리한 "action에 인과적으로 aligned된 미래 예측" 계열과 대비해 읽으면 두 접근의 분기점이 보인다
 - [[overviews/physical-ai-overview]] — physical-ai 카테고리의 분류 기준과 학습 경로 허브

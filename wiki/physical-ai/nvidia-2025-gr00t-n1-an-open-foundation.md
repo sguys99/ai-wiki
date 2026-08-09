@@ -227,7 +227,7 @@ figures:
 
 NVIDIA가 공개한 휴머노이드용 VLA foundation model. Eagle-2 VLM이 10Hz로 상황을 해석하고 flow-matching DiT가 120Hz로 모터 액션을 낸다. 두 모듈을 dual-system으로 묶어 end-to-end로 함께 학습한다.
 
-이 논문의 실질 기여는 아키텍처보다 데이터에 있다. 휴머노이드에는 인터넷 규모 데이터셋이 없고 로봇별 데이터는 서로 호환되지 않는 "데이터 섬"으로 흩어져 있다. GR00T N1은 이 섬들을 data pyramid로 쌓는다. 웹 데이터와 human video가 바닥, 시뮬레이션·비디오 생성 데이터가 중간, 실로봇 teleoperation 궤적이 꼭대기다. 아래로 갈수록 양이 많고 embodiment 특수성이 낮다.
+이 논문의 실질 기여는 아키텍처보다 데이터에 있다. 휴머노이드에는 인터넷 규모 데이터셋이 없고 로봇별 데이터는 서로 호환되지 않는 "데이터 섬"으로 흩어져 있다. GR00T N1은 이 섬들을 data pyramid로 쌓는다. 웹 데이터와 human video가 바닥, 시뮬레이션·비디오 생성 데이터가 중간, 실로봇 teleoperation trajectory가 꼭대기다. trajectory는 observation과 action이 시간순으로 이어진 실행 기록을 말한다. 아래로 갈수록 양이 많고 embodiment 특수성이 낮다.
 
 ![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig01.png]]
 *Figure 1: Data Pyramid (NVIDIA 2025, p.2)*
@@ -240,9 +240,9 @@ NVIDIA가 공개한 휴머노이드용 VLA foundation model. Eagle-2 VLM이 10Hz
 
 VLM 기반 추론 모듈(System 2)과 DiT 기반 액션 모듈(System 1)이 하나의 학습 프레임워크 안에 들어간다. 두 모듈을 느슨하게 이어붙인 파이프라인이 아니라 학습 중 함께 최적화하는 compositional 모델이다.
 
-사전학습에는 human video와 시뮬레이션·neural 생성 데이터, 실로봇 데모를 섞어 쓴다.
+pre-training은 대규모 일반 데이터로 모델의 기반 능력을 먼저 학습하는 단계다. 여기에는 human video와 시뮬레이션·neural 생성 데이터, 실로봇 데모를 섞어 쓴다.
 
-탁상 단일 팔부터 dexterous hand를 단 휴머노이드까지 한 체크포인트가 커버한다. 단일 가중치로 여러 embodiment를 지원하는 다중 태스크 language-conditioned 정책이고 소량 데이터로 post-training하면 새 태스크에 빠르게 적응한다.
+탁상 단일 팔부터 dexterous hand를 단 휴머노이드까지 한 체크포인트가 커버한다. policy는 observation을 받아 다음 action을 정하는 함수를 말한다. GR00T N1은 단일 가중치로 여러 embodiment를 지원하는 다중 태스크 language-conditioned policy이고 소량 데이터로 post-training하면 새 태스크에 빠르게 적응한다.
 
 ## 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -280,13 +280,13 @@ Human egocentric video와 neural trajectory에는 VQ-VAE를 학습해 latent act
 비디오 생성 모델을 자체 teleoperation 88시간으로 파인튜닝해 neural trajectory를 만든다. 초기 프레임과 새 언어 프롬프트를 주면 실제로 수집하지 않은 counterfactual 상황이 나온다. 88시간이 827시간으로 늘었다. 다양성 확보에 상용 multimodal LLM을 두 번 쓴다. 초기 프레임에서 객체를 검출해 물리적으로 가능한 "pick up {object} from {A} to {B}" 조합을 만들게 한다. 그다음 생성된 비디오를 8프레임으로 다운샘플해 지시를 안 따른 것을 걸러내는 판정자로도 쓴다.
 
 ![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig05.png]]
-*Figure 5: Synthetically Generated Videos — 같은 초기 프레임에서 프롬프트만 바꾼 counterfactual 궤적 (NVIDIA 2025, p.7)*
+*Figure 5: Synthetically Generated Videos — 같은 초기 프레임에서 프롬프트만 바꾼 counterfactual trajectory (NVIDIA 2025, p.7)*
 
-시뮬레이션 데이터는 DexMimicGen이 담당한다. 사람 데모 수십 개를 객체 중심 subtask로 쪼갠 뒤 객체 위치에 맞춰 변환·재생하고 성공한 것만 남긴다. 사전·사후학습 합쳐 780,000개 궤적을 만들었다. 사람 데모로 환산하면 6,500시간, 연속 9개월에 해당하는 양을 11시간에 확보했다.
+시뮬레이션 데이터는 DexMimicGen이 담당한다. 사람 데모 수십 개를 객체 중심 subtask로 쪼갠 뒤 객체 위치에 맞춰 변환·재생하고 성공한 것만 남긴다. pre-training과 post-training을 합쳐 780,000개 trajectory를 만들었다. 사람 데모로 환산하면 6,500시간, 연속 9개월에 해당하는 양을 11시간에 확보했다.
 
 ### 학습 규모
 
-H100 클러스터에서 단일 모델에 최대 1024 GPU를 쓴다. GR00T-N1-2B 사전학습에 약 50,000 H100 GPU 시간이 들었다. 반대쪽 숫자도 논문에 적혀 있다. A6000 한 장으로 adapter와 DiT만 튜닝하면 batch size 200까지, vision encoder까지 튜닝하면 16까지 올라간다.
+H100 클러스터에서 단일 모델에 최대 1024 GPU를 쓴다. GR00T-N1-2B pre-training에 약 50,000 H100 GPU 시간이 들었다. 반대쪽 숫자도 논문에 적혀 있다. A6000 한 장으로 adapter와 DiT만 튜닝하면 batch size 200까지, vision encoder까지 튜닝하면 16까지 올라간다.
 
 ## 결과 (Results)
 
@@ -318,22 +318,22 @@ GR-1 휴머노이드에서 Diffusion Policy와 비교한다.
 
 10% 데이터로 학습한 GR00T N1(42.6%)이 전체 데이터로 학습한 Diffusion Policy(46.4%)와 3.8%p 차이다. 데이터 효율이 이 표의 핵심이다.
 
-사전학습 체크포인트만으로도 두 태스크를 재봤다. 왼손으로 잡아 오른손에 넘겨 선반에 놓아야 하는 bimanual 상황에서 76.6%(11.5/15), 처음 보는 객체를 처음 보는 컨테이너에 넣는 상황에서 73.3%(11/15)다.
+pre-training 체크포인트만으로도 두 태스크를 재봤다. 왼손으로 잡아 오른손에 넘겨 선반에 놓아야 하는 bimanual 상황에서 76.6%(11.5/15), 처음 보는 객체를 처음 보는 컨테이너에 넣는 상황에서 73.3%(11/15)다.
 
 ### neural trajectory co-training
 
-RoboCasa에서 태스크당 3k, 실로봇에서 100개 neural trajectory를 1:1로 co-train하면 실제 궤적만 쓴 GR00T N1보다 오른다. 30/100/300 데이터 구간에서 각각 +4.2%p, +8.8%p, +6.8%p, 실로봇 GR-1 8태스크 평균 +5.8%p다.
+RoboCasa에서 태스크당 3k, 실로봇에서 100개 neural trajectory를 1:1로 co-train하면 실제 trajectory만 쓴 GR00T N1보다 오른다. 30/100/300 데이터 구간에서 각각 +4.2%p, +8.8%p, +6.8%p, 실로봇 GR-1 8태스크 평균 +5.8%p다.
 
 ![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig09.png]]
 *Figure 9: Neural Trajectories Ablations (NVIDIA 2025, p.16)*
 
 데이터가 적은 30 구간에서는 LAPA(latent action)가 IDM을 약간 앞선다. 100·300으로 갈수록 차이가 벌어진다. IDM 학습 데이터가 늘면 pseudo-action이 실제 액션에 가까워져서라는 설명이다. GR-1은 상대적으로 고데이터 구간이라 실로봇 co-training에는 IDM 액션만 썼다.
 
-### 사후학습이 사전학습 능력을 지운 사례
+### post-training이 pre-training 능력을 지운 사례
 
-정성 관찰 하나가 기억할 만하다. 사전학습 체크포인트에 "빨간 사과를 바구니에 놓아라"를 주고 사과를 왼손 쪽에 일부러 두면, 동작이 다소 거칠긴 해도 왼손으로 집어 오른손에 넘긴 뒤 바구니에 넣는다. 그런데 post-trained 체크포인트는 같은 상황에서 실패한다. post-training 데이터가 전부 오른손 단독이고 손 간 전달이 없어서 그 능력을 잃었다.
+정성 관찰 하나가 기억할 만하다. pre-training 체크포인트에 "빨간 사과를 바구니에 놓아라"를 주고 사과를 왼손 쪽에 일부러 두면, 동작이 다소 거칠긴 해도 왼손으로 집어 오른손에 넘긴 뒤 바구니에 넣는다. 그런데 post-trained 체크포인트는 같은 상황에서 실패한다. post-training 데이터가 전부 오른손 단독이고 손 간 전달이 없어서 그 능력을 잃었다.
 
-논문은 이 관찰을 정량 평가하지 않았다. 그래도 좁은 post-training 데이터가 사전학습이 준 일반화를 덮어쓸 수 있다는 신호로 읽을 만하다.
+논문은 이 관찰을 정량 평가하지 않았다. 그래도 좁은 post-training 데이터가 pre-training이 준 일반화를 덮어쓸 수 있다는 신호로 읽을 만하다.
 
 ## 한계 (Limitations)
 
@@ -345,17 +345,17 @@ RoboCasa에서 태스크당 3k, 실로봇에서 100개 neural trajectory를 1:1�
 
 GR00T N1은 physical-ai 카테고리에서 VLA 계보의 기준점 역할을 한다. 조작(manipulation) 쪽 dual-system VLA의 원형이다. 이후 NVIDIA 스택이 여기서 갈라져 나간다.
 
-전신 제어 계보와 견주면 분업이 뚜렷하다. [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]과 [[physical-ai/nvlabs-gr00t-wholebodycontrol]]은 휴머노이드의 balance·locomotion·전신 모션을 담당한다. GR00T N1은 그 위에 얹히는 조작 정책을 다룬다. 저장소의 GR00T-WholeBodyControl README가 "GR00T N1.5·N1.6이 Decoupled WBC를 썼다"고 적은 대목이 두 계보의 접점이다. N1은 그 조작 정책의 첫 공개 세대다.
+whole-body control 계보와 견주면 분업이 뚜렷하다. whole-body control은 균형과 이동을 포함해 몸 전체를 함께 제어하는 문제다. [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]과 [[physical-ai/nvlabs-gr00t-wholebodycontrol]]은 휴머노이드의 balance·locomotion·전신 모션을 담당한다. GR00T N1은 그 위에 얹히는 조작 policy를 다룬다. 저장소의 GR00T-WholeBodyControl README가 "GR00T N1.5·N1.6이 Decoupled WBC를 썼다"고 적은 대목이 두 계보의 접점이다. N1은 그 조작 policy의 첫 공개 세대다.
 
-neural trajectory는 world model 논의와 곧바로 이어진다. [[physical-ai/hou-2026-world-model-for-robot-learning]] 서베이는 정책과 world model의 결합 방식을 5분류한다. GR00T N1의 비디오 생성 증강은 그중 latent·IDM 결합에 해당한다. 서베이가 진단한 병목("그럴듯한 미래"에서 "행동에 인과적으로 정렬된 실행 가능한 미래"로)이 이 논문의 LAPA 대 IDM 비교와 정확히 같은 문제를 가리킨다. 생성 영상이 그럴듯해도 액션 라벨이 실제 동역학에 정렬되지 않으면 전이가 약해진다.
+neural trajectory는 world model 논의와 곧바로 이어진다. [[physical-ai/hou-2026-world-model-for-robot-learning]] 서베이는 policy와 world model의 결합 방식을 5분류한다. GR00T N1의 비디오 생성 증강은 그중 latent·IDM 결합에 해당한다. 서베이가 진단한 병목("그럴듯한 미래"에서 "action에 인과적으로 aligned된 실행 가능한 미래"로)이 이 논문의 LAPA 대 IDM 비교와 정확히 같은 문제를 가리킨다. 생성 영상이 그럴듯해도 액션 라벨이 실제 동역학에 aligned되지 않으면 전이가 약해진다.
 
 GR00T N1이 한계로 지목한 "더 강한 vision-language backbone"은 [[llms/cai-2026-vlm3-vision-language-models]]의 논의 대상이다.
 
 ## 관련 페이지 (Related Pages)
 
-- [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] — 같은 NVIDIA GEAR 계열의 전신 모션 트래킹. GR00T N1이 조작을 맡고 SONIC이 전신 제어를 맡는 분업 관계
+- [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] — 같은 NVIDIA GEAR 계열의 전신 모션 트래킹. GR00T N1이 조작을 맡고 SONIC이 whole-body control을 맡는 분업 관계
 - [[physical-ai/nvlabs-gr00t-wholebodycontrol]] — SONIC·Decoupled WBC 실행 스택. GR00T N1.5·N1.6이 쓴 컨트롤러 세대가 여기 들어 있다
 - [[physical-ai/nvlabs-2026-gear-sonic-project-page]] — GEAR SONIC 프로젝트 페이지
-- [[physical-ai/hou-2026-world-model-for-robot-learning]] — 정책·world model 결합 5분류. GR00T N1의 neural trajectory 증강이 latent·IDM 결합에 해당
+- [[physical-ai/hou-2026-world-model-for-robot-learning]] — policy·world model 결합 5분류. GR00T N1의 neural trajectory 증강이 latent·IDM 결합에 해당
 - [[llms/cai-2026-vlm3-vision-language-models]] — VLM 아키텍처. GR00T N1이 한계로 지목한 backbone 강화 축
 - [[overviews/physical-ai-overview]] — physical-ai 분류 기준과 학습 경로 허브

@@ -224,7 +224,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-NVIDIA GEAR가 motion tracking을 humanoid 제어의 확장 가능한 기본 과제로 놓고 파라미터 1.2M→42M, 모션 100M+ 프레임, 21,000 GPU hours까지 밀어붙여 만든 전신 제어 foundation model. 세 종류 입력을 FSQ 양자화된 universal token 하나로 모으는 encoder-decoder 설계 덕에 같은 정책이 gamepad·VR teleoperation·텍스트/음악·VLA 자율 실행을 모두 받는다.
+NVIDIA GEAR가 motion tracking을 humanoid 제어의 확장 가능한 기본 과제로 놓고 파라미터 1.2M→42M, 모션 100M+ 프레임, 21,000 GPU hours까지 밀어붙여 만든 whole-body control foundation model. 세 종류 입력을 FSQ 양자화된 universal token 하나로 모으는 encoder-decoder 설계 덕에 같은 policy가 gamepad·VR teleoperation·텍스트/음악·VLA 자율 실행을 모두 받는다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -238,9 +238,9 @@ NVIDIA GEAR가 motion tracking을 humanoid 제어의 확장 가능한 기본 과
 
 ## 2. 주요 기여 (Key Contributions)
 
-humanoid 제어가 스케일링되지 못한 이유를 저자들은 모델이나 compute가 아니라 학습 과제 자체에서 찾는다. locomotion 같은 과제는 시나리오마다 reward를 새로 설계해야 한다. 앞으로 걷기를 잘하게 만든 reward는 춤이나 기상 동작에 신호를 거의 주지 못한다. AMP·ASE·CALM 계열의 생성적 imitation은 목적함수를 통일했지만 데이터가 다양해질수록 discriminator가 mode collapse에 빠진다. 반면 motion tracking은 mocap 프레임마다 목표 포즈가 명시되므로 reward engineering 없이 dense supervision을 얻는다. 데이터가 커져도 신호의 밀도가 떨어지지 않는다는 게 결정적이다.
+whole-body control은 균형과 이동을 포함해 몸 전체를 함께 제어하는 문제다. 이 humanoid 제어가 스케일링되지 못한 이유를 저자들은 모델이나 compute가 아니라 학습 과제 자체에서 찾는다. reward는 policy가 얼마나 잘했는지를 알려주는 스칼라 신호인데, locomotion 같은 과제는 시나리오마다 이 reward를 새로 설계해야 한다. 앞으로 걷기를 잘하게 만든 reward는 춤이나 기상 동작에 신호를 거의 주지 못한다. AMP·ASE·CALM 계열의 생성적 imitation은 목적함수를 통일했지만 데이터가 다양해질수록 discriminator가 mode collapse에 빠진다. 반면 motion tracking은 mocap 프레임마다 목표 포즈가 명시되므로 reward engineering 없이 dense supervision을 얻는다. 데이터가 커져도 신호의 밀도가 떨어지지 않는다는 게 결정적이다.
 
-기여는 세 갈래다. 우선 motion tracking이 데이터·모델·compute 세 축 모두에서 우호적인 스케일링 곡선을 그린다는 것을 21,000 GPU hours·100M 프레임 규모로 실측했다. 여기에 실시간 kinematic motion planner를 붙여 트래커를 내비게이션·게임패드 제어 같은 목표지향 과제로 연결했다. 마지막이 robot·human·hybrid 세 입력 포맷을 하나의 quantized latent로 모으는 universal token space다. 같은 정책이 VR teleoperation과 VLA 추론을 동시에 받게 만든 설계로, 이 인터페이스 위에서 손과 발을 함께 써야 하는 전신 loco-manipulation을 VLA가 자율로 수행한다.
+기여는 세 갈래다. 우선 motion tracking이 데이터·모델·compute 세 축 모두에서 우호적인 스케일링 곡선을 그린다는 것을 21,000 GPU hours·100M 프레임 규모로 실측했다. 여기에 실시간 kinematic motion planner를 붙여 트래커를 내비게이션·게임패드 제어 같은 목표지향 과제로 연결했다. 마지막이 robot·human·hybrid 세 입력 포맷을 하나의 quantized latent로 모으는 universal token space다. policy는 현재 observation을 받아 다음 action을 정하는 함수를 말한다. 같은 policy가 VR teleoperation과 VLA 추론을 동시에 받게 만든 설계로, 이 인터페이스 위에서 손과 발을 함께 써야 하는 전신 loco-manipulation을 VLA가 자율로 수행한다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -252,9 +252,9 @@ humanoid 제어가 스케일링되지 못한 이유를 저자들은 모델이나
 
 ### universal control policy
 
-MDP로 정식화하고 PPO로 학습한다. 상태는 proprioception과 motion command 두 덩이로, proprioception은 관절 위치·속도, root 각속도, root 프레임의 중력 벡터, 직전 행동을 10스텝 히스토리로 이어붙인다. 히스토리를 넣는 이유는 정책에 선행 동작(anticipatory behavior)의 근거를 주기 위해서다. 모든 값은 로봇 로컬 프레임에서 표현하고 회전은 6D representation을 쓴다. 행동은 관절 목표 위치이고 각 관절의 PD 제어기가 이를 추종한다.
+MDP로 정식화하고 PPO로 학습한다. 상태는 proprioception과 motion command 두 덩이로, proprioception은 관절 위치·속도, root 각속도, root 프레임의 중력 벡터, 직전 action을 10스텝 히스토리로 이어붙인다. 히스토리를 넣는 이유는 policy에 선행 동작(anticipatory behavior)의 근거를 주기 위해서다. 모든 값은 로봇 로컬 프레임에서 표현하고 회전은 6D representation을 쓴다. action은 관절 목표 위치이고 각 관절의 PD 제어기가 이를 추종한다.
 
-reward는 추종항과 페널티항의 합이다. 추종항은 root 위치·방향, root 상대 링크 위치·방향, 링크 선속도·각속도의 오차를 줄인다. 여기에 머리·양 손목·양 발목의 end-effector 위치 보상을 따로 더했다. 머리와 손목의 각속도에 걸리는 anti-shake 페널티와 발 가속도 페널티가 접촉을 매끄럽게 만든다. domain randomization은 마찰·반발 계수, 첫 프레임 관절 위치, base 무게중심에 걸리고 root 속도에 주기적 외력을 넣는다. 목표 motion command 자체에도 교란을 주는데, 이 항목이 planner 출력의 노이즈에 대한 강건성의 근거가 된다.
+reward는 추종항과 페널티항의 합이다. 추종항은 root 위치·방향, root 상대 링크 위치·방향, 링크 선속도·각속도의 오차를 줄인다. 여기에 머리·양 손목·양 발목의 end-effector 위치 reward를 따로 더했다. 머리와 손목의 각속도에 걸리는 anti-shake 페널티와 발 가속도 페널티가 접촉을 매끄럽게 만든다. domain randomization은 마찰·반발 계수, 첫 프레임 관절 위치, base 무게중심에 걸리고 root 속도에 주기적 외력을 넣는다. 목표 motion command 자체에도 교란을 주는데, 이 항목이 planner 출력의 노이즈에 대한 강건성의 근거가 된다.
 
 핵심은 encoder-quantizer-decoder 구조다. 세 encoder가 서로 다른 입력을 공통 latent로 보낸다. robot motion encoder는 미래 $F_r$ 프레임의 관절 위치·속도를, human motion encoder는 SMPL 3D 관절 위치를, hybrid encoder는 현재 프레임의 상체 sparse keypoint(머리·양손)와 하체 로봇 모션을 받는다. 마지막 것이 VR 3-point teleoperation에 대응한다. 세 encoder는 모두 MLP다.
 
@@ -262,7 +262,7 @@ latent는 Finite Scalar Quantization(FSQ)으로 양자화되어 universal token�
 
 디코더는 둘이다. robot control decoder $\mathcal{D}_c$는 토큰과 proprioception을 받아 모터 명령을 낸다. robot motion decoder $\mathcal{D}_r$는 토큰만 받아 로봇 모션 명령을 복원해 보조 감독을 준다. 입력이 human motion일 때 $\mathcal{D}_r$의 복원 손실이 사실상 human→robot retargeting loss로 작동한다. 이게 런타임 명시적 retargeting을 생략할 수 있는 근거다.
 
-손실은 네 항의 합 $\mathcal{L} = \mathcal{L}_{ppo} + \mathcal{L}_{recon} + \mathcal{L}_{token} + \mathcal{L}_{cycle}$ 이다. $\mathcal{L}_{recon}$은 세 입력 각각의 토큰에서 로봇 모션을 복원하는 오차, $\mathcal{L}_{token}$은 세 encoder 출력 쌍마다 걸리는 정렬 손실, $\mathcal{L}_{cycle}$은 human 토큰에서 복원한 로봇 모션을 다시 인코딩한 $\mathcal{E}_r(\mathcal{D}_r(z_h))$와 원래 $z_r$ 사이의 순환 일관성 손실이다. 네 손실을 한 루프에서 함께 최적화한다. critic만 특권 정보(base 선속도, 전체 링크 상태, 노이즈 없는 관측)를 보는 asymmetric actor-critic 구조다. 양자화와 RL을 엮었을 때의 학습 불안정은 어느 모델 규모에서도 관찰되지 않았고 오히려 보조 손실이 latent를 정규화해 PPO 최적화를 안정화했다는 게 저자들의 보고다. 샘플링은 데이터셋을 고정 길이 bin으로 나눠 실패율(상한 적용)에 비례해 가중하는 bin-based adaptive 방식이다.
+손실은 네 항의 합 $\mathcal{L} = \mathcal{L}_{ppo} + \mathcal{L}_{recon} + \mathcal{L}_{token} + \mathcal{L}_{cycle}$ 이다. $\mathcal{L}_{recon}$은 세 입력 각각의 토큰에서 로봇 모션을 복원하는 오차, $\mathcal{L}_{token}$은 세 encoder 출력 쌍마다 걸리는 정렬 손실, $\mathcal{L}_{cycle}$은 human 토큰에서 복원한 로봇 모션을 다시 인코딩한 $\mathcal{E}_r(\mathcal{D}_r(z_h))$와 원래 $z_r$ 사이의 순환 일관성 손실이다. 네 손실을 한 루프에서 함께 최적화한다. critic만 특권 정보(base 선속도, 전체 링크 상태, 노이즈 없는 observation)를 보는 asymmetric actor-critic 구조다. 양자화와 RL을 엮었을 때의 학습 불안정은 어느 모델 규모에서도 관찰되지 않았고 오히려 보조 손실이 latent를 정규화해 PPO 최적화를 안정화했다는 게 저자들의 보고다. 샘플링은 데이터셋을 고정 길이 bin으로 나눠 실패율(상한 적용)에 비례해 가중하는 bin-based adaptive 방식이다.
 
 ### 생성형 kinematic planner
 
@@ -270,7 +270,7 @@ planner는 트래커와 같은 데이터로 학습한 대규모 latent 생성 �
 
 계획은 latent 공간에서 이뤄진다. 연속 모션을 downsampling rate 4로 토큰열로 인코딩한 뒤, sparse한 제약(시작·목표 keyframe)에서 전체 토큰열을 한 번에 예측하는 대신 masked token prediction으로 confidence 높은 토큰부터 확정해 나간다. 추론 시 확정 비율은 코사인 스케줄 $1 - \cos(\frac{\pi}{2}\cdot\frac{L}{L_{max}})$을 따른다.
 
-root 궤적은 critically damped spring model로 만든다. pelvis의 x·y 위치와 투영 heading 각도 세 값에 적용하고 damping 계수는 위치 $5\ln 2$, heading $20\ln 2$이다. 저자들은 planner가 damping 계수 선택에 강건하고 사실 spring model 없이도 대체로 동작한다고 말한다. 그러면서도 6.0m/s에서 −6.0m/s로 급반전하는 비현실적 명령을 걸러주는 안전장치로서의 값은 인정한다. 스킬별 keyframe은 스타일에 맞는 클립에서 가장 표현적인 구간(펀치라면 팔이 최대로 뻗은 프레임)을 고르거나 원하는 높이에 따라 온라인으로 라이브러리에서 검색한다. 스킬 하나당 대표 클립 한 개로 25개 이상의 스킬·스타일을 재학습 없이 다룬다.
+root trajectory는 critically damped spring model로 만든다. pelvis의 x·y 위치와 투영 heading 각도 세 값에 적용하고 damping 계수는 위치 $5\ln 2$, heading $20\ln 2$이다. 저자들은 planner가 damping 계수 선택에 강건하고 사실 spring model 없이도 대체로 동작한다고 말한다. 그러면서도 6.0m/s에서 −6.0m/s로 급반전하는 비현실적 명령을 걸러주는 안전장치로서의 값은 인정한다. 스킬별 keyframe은 스타일에 맞는 클립에서 가장 표현적인 구간(펀치라면 팔이 최대로 뻗은 프레임)을 고르거나 원하는 높이에 따라 온라인으로 라이브러리에서 검색한다. 스킬 하나당 대표 클립 한 개로 25개 이상의 스킬·스타일을 재학습 없이 다룬다.
 
 ### 멀티모달·teleoperation·VLA 연결
 
@@ -282,7 +282,7 @@ VLA는 GR00T N1.5를 teleoperation 데이터로 파인튜닝해 붙였다. 행�
 
 ### 배포
 
-추론은 전부 Jetson Orin GPU 온보드에서 TensorRT와 CUDA Graph로 돌아가며 정책 forward 1–2ms, 모션 생성 약 12ms다. 정책 추론 50Hz, 명령 스트리밍 500Hz, 조작자 입력 100Hz, kinematic planning 10Hz의 네 루프가 동시에 돈다. 활성 encoder만 바꾸면 키보드·게임패드·VR·네트워크 스트림 사이를 재학습 없이 갈아탄다. 실물 실험은 전부 가장 큰 42M 모델로 했다.
+추론은 전부 Jetson Orin GPU 온보드에서 TensorRT와 CUDA Graph로 돌아가며 policy forward 1–2ms, 모션 생성 약 12ms다. policy 추론 50Hz, 명령 스트리밍 500Hz, 조작자 입력 100Hz, kinematic planning 10Hz의 네 루프가 동시에 돈다. 활성 encoder만 바꾸면 키보드·게임패드·VR·네트워크 스트림 사이를 재학습 없이 갈아탄다. 실물 실험은 전부 가장 큰 42M 모델로 했다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -294,7 +294,7 @@ VLA는 GR00T N1.5를 teleoperation 데이터로 파인튜닝해 붙였다. 행�
 
 GMT, Any2Track, BeyondMimic과 MuJoCo에서 같은 종료 조건으로 비교해 SONIC이 98.7%를 얻는다. 다만 세 베이스라인의 학습 데이터와 retargeting 파이프라인이 서로 달라(Any2Track·BeyondMimic은 LaFAN, GMT는 AMASS) 저자들도 이 비교를 데이터가 맞춰진 벤치마크가 아니라 cross-dataset 일반화와 스케일 효과의 증거로 읽어야 한다고 명시한다.
 
-속도 추종 specialist인 OpenHomie와의 대조가 더 날카롭다. 범용 트래커인 SONIC이 생존율 98.5%인데 특화 정책인 OpenHomie가 43.0%다. 게다가 OpenHomie는 8 GPU를 넘어서면 성능이 정체하는 반면 SONIC은 compute를 더 넣을수록 계속 개선된다. 저자들은 이를 데이터 다양성이 범용 트래커에 주는 이득이 특화가 좁은 정책에 주는 이득보다 크다는 근거로 든다.
+속도 추종 specialist인 OpenHomie와의 대조가 더 날카롭다. 범용 트래커인 SONIC이 생존율 98.5%인데 특화 policy인 OpenHomie가 43.0%다. 게다가 OpenHomie는 8 GPU를 넘어서면 성능이 정체하는 반면 SONIC은 compute를 더 넣을수록 계속 개선된다. 저자들은 이를 데이터 다양성이 범용 트래커에 주는 이득이 특화가 좁은 policy에 주는 이득보다 크다는 근거로 든다.
 
 ### sim2real
 
@@ -314,15 +314,15 @@ GR00T N1.5로 다섯 과제를 평가했고 시행당 부분 점수 없는 이�
 | Drill and box relocation | whole-body | 300 traj | 10 | 70% |
 | 5개 과제 평균 | | | | 75% |
 
-가장 어려운 soda can 과제는 다섯 스킬의 연쇄다. 테이블로 걸어가 한 손으로 캔을 들고, 쓰레기통으로 이동해 한 발로 페달을 밟아 뚜껑을 열면서 다른 발로 균형을 잡고, 캔을 던져 넣는다. 상체 제어와 locomotion을 분리하는 행동 공간에서는 만들기 어려운 종류의 동작이다.
+가장 어려운 soda can 과제는 다섯 스킬의 연쇄다. 테이블로 걸어가 한 손으로 캔을 들고, 쓰레기통으로 이동해 한 발로 페달을 밟아 뚜껑을 열면서 다른 발로 균형을 잡고, 캔을 던져 넣는다. action space는 policy가 낼 수 있는 action의 집합이다. 상체 제어와 locomotion을 분리하는 action space에서는 만들기 어려운 종류의 동작이다.
 
 ### ablation
 
-행동 공간 비교가 가장 큰 폭을 보인다. VLA가 FSQ 토큰을 예측할 때와 SMPL 전신 포즈를 직접 예측할 때(81차원)를 견주면 평균 68% 대 27%로 42포인트 차이가 난다. 과제가 복잡할수록 격차가 커진다. carrot pickup은 75% 대 60%인데 soda can 과제에서는 60% 대 0%다. 고차원 연속 포즈 공간에서는 작은 예측 오차가 큰 추종 실패로 증폭된다는 게 저자들의 설명이다.
+action space 비교가 가장 큰 폭을 보인다. VLA가 FSQ 토큰을 예측할 때와 SMPL 전신 포즈를 직접 예측할 때(81차원)를 견주면 평균 68% 대 27%로 42포인트 차이가 난다. 과제가 복잡할수록 격차가 커진다. carrot pickup은 75% 대 60%인데 soda can 과제에서는 60% 대 0%다. 고차원 연속 포즈 공간에서는 작은 예측 오차가 큰 추종 실패로 증폭된다는 게 저자들의 설명이다.
 
 양자화기 설계에서는 FSQ가 VQ-VAE(4 head, codebook 512, 토큰 2개)를 test-content MPJPE-L에서 8.7mm 앞선다(26.6mm 대 35.3mm). 용량 스윕은 compute 제약으로 32 GPU에서 돌렸다. 레벨보다 토큰 차원의 영향이 커서 양자화 granularity보다 표현 용량이 더 중요하다는 결론이 나온다. FSQ-32-32가 기본값이다.
 
-encoder 셋은 모두 99.2% 이상을 유지한다. robot encoder 99.6%·23.8mm, human encoder 99.6%·24.4mm, hybrid encoder 99.2%·26.5mm로, 입력 포맷이 다른 human encoder의 격차가 0.6mm에 그친다. hybrid가 2.7mm 뒤진 건 상체 sparse keypoint만 보는 부분 관측성 때문이다. consistency loss를 빼면 encoder 간 발산이 8배로 커진다(기어가기 모션에서 평균 L2 0.57→4.23). VLA가 토큰을 직접 예측하는 구조이므로 이 정렬은 서로 다른 인터페이스로 모은 데이터가 같은 latent 공간에 놓이도록 보장하는 전제 조건이다.
+encoder 셋은 모두 99.2% 이상을 유지한다. robot encoder 99.6%·23.8mm, human encoder 99.6%·24.4mm, hybrid encoder 99.2%·26.5mm로, 입력 포맷이 다른 human encoder의 격차가 0.6mm에 그친다. hybrid가 2.7mm 뒤진 건 상체 sparse keypoint만 주어지는 제한된 observation 때문이다. consistency loss를 빼면 encoder 간 발산이 8배로 커진다(기어가기 모션에서 평균 L2 0.57→4.23). VLA가 토큰을 직접 예측하는 구조이므로 이 정렬은 서로 다른 인터페이스로 모은 데이터가 같은 latent 공간에 놓이도록 보장하는 전제 조건이다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
@@ -340,11 +340,11 @@ encoder 셋은 모두 99.2% 이상을 유지한다. robot encoder 99.6%·23.8mm,
 - **MPJPE-L**: local(root 상대) mean per-joint position error. 14개 body link(pelvis·무릎·발목·torso·팔꿈치·손목)에서 mm 단위로 계산
 - **test-content / test-repetition**: 학습에 없던 sub-category만 모은 분할과, sub-category는 겹치되 클립이 다른 분할. 각각 새 동작 내용과 새 수행에 대한 일반화를 잰다
 - **FSQ (Finite Scalar Quantization)**: 학습된 codebook 없이 차원별 고정 레벨로 latent를 양자화하는 방식. codebook collapse가 없고 straight-through 그래디언트가 깔끔하다
-- **universal token**: robot·human·hybrid 세 입력이 공통으로 매핑되는 양자화 latent. VLA의 행동 공간으로도 쓰인다
+- **universal token**: robot·human·hybrid 세 입력이 공통으로 매핑되는 양자화 latent. VLA의 action space로도 쓰인다
 - **hybrid motion**: 상체 sparse keypoint(머리·양손)와 하체 로봇 모션을 합친 명령 형식. VR 3-point teleoperation에 대응
 - **motion in-betweening**: 시작과 목표 keyframe이 주어졌을 때 중간 구간을 채우는 생성 과제. planner의 정식화
-- **critically damped spring model**: 과도한 진동 없이 목표에 수렴하는 감쇠 모델. root 위치와 heading 궤적 생성에 사용
-- **asymmetric actor-critic**: critic만 특권 시뮬레이션 정보를 보고 actor는 배포 시 얻을 수 있는 관측만 쓰는 학습 구조
+- **critically damped spring model**: 과도한 진동 없이 목표에 수렴하는 감쇠 모델. root 위치와 heading trajectory 생성에 사용
+- **asymmetric actor-critic**: critic만 특권 시뮬레이션 정보를 보고 actor는 배포 시 얻을 수 있는 observation만 쓰는 학습 구조
 - **SMPL**: 인체 형상·포즈의 파라메트릭 모델. human motion encoder의 입력 포맷
 - **BONES-SEED**: 이 데이터셋 중 공개된 부분. 522명 배우, 142,220 시퀀스, 약 288시간, SOMA·Unitree G1 포맷
 
@@ -356,7 +356,7 @@ Step 3.5 확정: **fig01·fig03·fig06·fig09·fig13** 5종을 `curated: true`�
 
 | id | page | caption | strategy | 추천 |
 |---|---|---|---|---|
-| fig01 | 2 | 하나의 정책이 다루는 입력·인터페이스 전경 (Figure 1) | page-region | ★ wiki 권장 (overview) |
+| fig01 | 2 | 하나의 policy가 다루는 입력·인터페이스 전경 (Figure 1) | page-region | ★ wiki 권장 (overview) |
 | fig02 | 3 | (오탐) 교차참조 매칭 | page-region | ✗ |
 | fig03 | 4 | 12패널 종합 결과 — 스케일링·베이스라인·sim2real (Figure 2) | page-region | ★ wiki 권장 (result) |
 | fig04 | 5 | (오탐) 교차참조 매칭 | page-region | ✗ |

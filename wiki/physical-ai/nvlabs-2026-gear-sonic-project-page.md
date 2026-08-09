@@ -30,7 +30,7 @@ SONIC 논문의 공식 프로젝트 페이지. 텍스트로 남는 건 논문 ab
 
 ## 이 페이지에서 확인되는 것 (What the Page Shows)
 
-abstract가 서술로 요약한 항목은 논문 쪽과 같다. 스케일링 3축(파라미터 1.2M–42M, mocap 700시간에서 나온 100M+ 프레임, 21k GPU hours), 실시간 kinematic planner, VR teleoperation과 VLA를 하나의 정책으로 받는 통합 token space, 손발 협응이 필요한 자율 loco-manipulation이다. 성능 곡선이나 표는 실려 있지 않다.
+abstract가 서술로 요약한 항목은 논문 쪽과 같다. 스케일링 3축(파라미터 1.2M–42M, mocap 700시간에서 나온 100M+ 프레임, 21k GPU hours), 실시간 kinematic planner, VR teleoperation과 VLA를 하나의 policy로 받는 통합 token space, 손발 협응이 필요한 자율 loco-manipulation이다. 성능 곡선이나 표는 실려 있지 않다.
 
 정량 근거를 찾을 곳은 [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]이고, 실행 코드는 [[physical-ai/nvlabs-gr00t-wholebodycontrol]]이다. 세 자료를 함께 보면 역할이 갈린다. 논문이 방법과 수치, repo가 실행 가능한 스택, 이 페이지가 동작 품질의 육안 증거다.
 

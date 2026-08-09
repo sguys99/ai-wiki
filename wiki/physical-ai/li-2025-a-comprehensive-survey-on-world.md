@@ -116,7 +116,7 @@ world model의 범위는 좁게 잡았다. 정적 장면 서술자와 제어 가
 
 기존 서베이는 두 방식으로 갈렸다. Ding et al.과 Zhu et al.은 기능과 역량 기준으로 나눴고 Guan et al.·Feng et al.은 자율주행이라는 응용 도메인에 한정했다. 이 서베이의 차별점은 세 축을 세 도메인에 똑같이 적용한다는 데 있다.
 
-정식화는 POMDP다. 실제 상태가 관측되지 않으므로 잠재 상태를 one-step filtering posterior로 추론한다. 뼈대가 되는 분포는 dynamics prior · filtered posterior · reconstruction 셋이다. 로그 가능도를 직접 최대화할 수 없어 ELBO를 대신 쓴다. Markov 분해를 가정하면 ELBO가 재구성 항과 KL 정칙화 항으로 쪼개진다. 여기서 공통 학습 패러다임이 나온다. 가능도 항은 관측을 충실히 예측하게 하고 KL 항은 filtered posterior를 dynamics prior에 맞춘다. recurrent 모델이든 Transformer든 diffusion decoder든 이 구조는 그대로다.
+정식화는 POMDP다. 실제 상태가 직접 관찰되지 않으므로 latent 상태를 one-step filtering posterior로 추론한다. latent는 겉으로 드러나지 않는 내부 표현 공간을 가리킨다. 뼈대가 되는 분포는 dynamics prior · filtered posterior · reconstruction 셋이다. 로그 가능도를 직접 최대화할 수 없어 ELBO를 대신 쓴다. Markov 분해를 가정하면 ELBO가 재구성 항과 KL 정칙화 항으로 쪼개진다. 여기서 공통 학습 패러다임이 나온다. 가능도 항은 observation, 곧 매 timestep 에이전트가 받는 센서 입력을 충실히 예측하게 하고 KL 항은 filtered posterior를 dynamics prior에 맞춘다. recurrent 모델이든 Transformer든 diffusion decoder든 이 구조는 그대로다.
 
 ## 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -143,7 +143,7 @@ decision-coupled 모델은 dynamics를 특정 제어 목표에 밀착시킨다. 
 
 Dec/Seq/GLV 조합은 RSSM 계보가 채운다. PlaNet이 결정적 메모리와 확률 성분을 섞은 RSSM을 세웠고 Dreamer·DreamerV2·DreamerV3가 뒤를 이었다. 파생 연구는 대개 decoder를 손봤는데 Dreaming은 contrastive로 재구성을 없앴고 DreamerPro는 prototype 예측으로 바꿔 시각적 방해 요소에 덜 흔들리게 했다. 최근 흐름의 공통 주제는 전이 가능성이다. PreLAR의 implicit action abstraction, SENSEI의 VLM 유래 semantic reward, ReDRAW의 residual latent 보정이 sim-to-real이라는 같은 문제를 다르게 푼다.
 
-토큰 계열인 Dec/Seq/TFS에서는 MWM이 masked autoencoder로 시각 토큰을 RSSM dynamics에서 떼어냈고 IRIS·TWM은 discrete token으로 데이터 효율적 RL을 했다. LLM과 CoT를 끌어들이는 쪽도 있다. NavCoT는 내비게이션을 imagination·filtering·prediction으로 분해했고 MineDreamer는 Chain-of-Imagination으로 멀티모달 LLM이 미래 관측을 상상해 diffusion을 조종하게 했다.
+토큰 계열인 Dec/Seq/TFS에서는 MWM이 masked autoencoder로 시각 토큰을 RSSM dynamics에서 떼어냈고 IRIS·TWM은 discrete token으로 데이터 효율적 RL을 했다. LLM과 CoT를 끌어들이는 쪽도 있다. NavCoT는 내비게이션을 imagination·filtering·prediction으로 분해했고 MineDreamer는 Chain-of-Imagination으로 멀티모달 LLM이 미래 observation을 상상해 diffusion을 조종하게 했다.
 
 3D occupancy 예측이 몰린 곳은 Dec/Seq/SLG다. OccWorld·RenderWorld는 장면을 occupancy 토큰으로 이산화해 순차 예측하고 Drive-OccWorld·PreWorld는 volumetric feature를 직접 예보한다. 로보틱스 쪽에서는 EnerVerse가 chunk-wise autoregressive video diffusion과 sparse memory로 4D latent dynamics를 만들고 4DGS로 sim-to-real 간극을 줄인다.
 
@@ -178,8 +178,8 @@ nuScenes open-loop planning에서 평균 L2가 가장 낮은 쪽은 UniAD+DriveW
 
 ## 관련 페이지 (Related Pages)
 
-- [[physical-ai/hou-2026-world-model-for-robot-learning]] — 같은 시기에 나온 자매 서베이. 로봇 학습으로 초점을 좁혀 정책 결합 방식 5분류와 학습된 시뮬레이터 역할로 문헌을 나눈다. 이쪽이 로보틱스를 깊게 다룬다면 Li 2025는 자율주행과 범용 비디오까지 같은 축에 올려 넓게 본다. 두 편을 겹쳐 읽으면 같은 논문이 서로 다른 좌표에 찍히는 걸 볼 수 있다
+- [[physical-ai/hou-2026-world-model-for-robot-learning]] — 같은 시기에 나온 자매 서베이. 로봇 학습으로 초점을 좁혀 policy 결합 방식 5분류와 학습된 시뮬레이터 역할로 문헌을 나눈다. 이쪽이 로보틱스를 깊게 다룬다면 Li 2025는 자율주행과 범용 비디오까지 같은 축에 올려 넓게 본다. 두 편을 겹쳐 읽으면 같은 논문이 서로 다른 좌표에 찍히는 걸 볼 수 있다
 - [[physical-ai/zhang-2024-vision-and-language-navigation-today]] — world model을 로보틱스·자율주행·범용 비디오가 아니라 navigation 축에서 다룬 자매 서베이. 같은 개념이 세 번째 좌표에서는 history/memory와 generalization 두 challenge로 갈라진다
-- [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] — SONIC은 Table I·II에 없지만 이 분류에 놓으면 decision-coupled 계열의 humanoid 전신 제어에 해당한다
+- [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] — SONIC은 Table I·II에 없지만 이 분류에 놓으면 decision-coupled 계열의 humanoid whole-body control에 해당한다
 - [[physical-ai/nvlabs-gr00t-wholebodycontrol]] — SONIC 공식 구현. 서베이가 다루지 않는 배포·추론 스택 쪽 자료
 - [[overviews/physical-ai-overview]] — physical-ai 카테고리의 분류 기준과 학습 경로 허브

@@ -27,11 +27,11 @@ SONIC 논문을 실행 가능한 스택으로 내려놓은 NVIDIA의 공식 저�
 - 대응 논문: [[luo-2025-sonic-supersizing-motion-tracking]] (arXiv 2511.07820, BibTeX `luo2025sonic`)
 - 아카이브한 README 스냅샷: 2026-08-03 수집
 
-News 타임라인이 이 저장소의 성격을 잘 보여준다. 2025-11-12 최초 릴리스는 GR00T N1.5/N1.6용 decoupled WBC였고, 2026-02-19에 GEAR-SONIC(사전학습 체크포인트·C++ 추론·VR teleoperation)이 들어왔다. 이후 BONES-SEED 공개(2026-03-16), 웹 데모(2026-04-14), MotionBricks 프리뷰(2026-04-27), 학습 코드와 체크포인트 공개(2026-04-10), G1용 end-to-end VLA 워크플로(2026-05-07), 저지연 teleoperation 체크포인트(2026-06-16) 순으로 확장됐다. README의 TODO 목록은 항목 전부가 체크된 상태다.
+News 타임라인이 이 저장소의 성격을 잘 보여준다. 2025-11-12 최초 릴리스는 GR00T N1.5/N1.6용 decoupled WBC였고, 2026-02-19에 GEAR-SONIC(pre-training된 체크포인트·C++ 추론·VR teleoperation)이 들어왔다. 이후 BONES-SEED 공개(2026-03-16), 웹 데모(2026-04-14), MotionBricks 프리뷰(2026-04-27), 학습 코드와 체크포인트 공개(2026-04-10), G1용 end-to-end VLA 워크플로(2026-05-07), 저지연 teleoperation 체크포인트(2026-06-16) 순으로 확장됐다. README의 TODO 목록은 항목 전부가 체크된 상태다.
 
 ## 2. 주요 기여 (Key Contributions)
 
-논문 재현에 필요한 것을 실제로 다 풀어놓은 게 이 저장소의 값이다. 사전학습 정책 체크포인트, C++ 추론 스택, teleoperation 스택과 데모 스크립트, motion imitation·파인튜닝 학습 레시피, 대규모 데이터 수집 워크플로와 VLA 파인튜닝 스크립트, 전처리된 대규모 인체 모션 데이터셋이 모두 공개됐다.
+논문 재현에 필요한 것을 실제로 다 풀어놓은 게 이 저장소의 값이다. pre-training된 policy 체크포인트, C++ 추론 스택, teleoperation 스택과 데모 스크립트, motion imitation·파인튜닝 학습 레시피, 대규모 데이터 수집 워크플로와 VLA 파인튜닝 스크립트, 전처리된 대규모 인체 모션 데이터셋이 모두 공개됐다.
 
 세 프로젝트가 한 저장소를 공유한다. Decoupled WBC는 하체 RL과 상체 IK를 분리한 이전 세대 컨트롤러로 GR00T N1.5·N1.6이 쓴 것이다. GEAR-SONIC이 현재 세대 generalist 전신 컨트롤러이고, MotionBricks는 애니메이션·로보틱스용 실시간 latent 생성 모델의 프리뷰다. 같은 저장소 안에 세대가 겹쳐 있어 decoupled 방식과 통합 token 방식의 차이를 코드 수준에서 견줄 수 있다.
 
@@ -43,8 +43,8 @@ News 타임라인이 이 저장소의 성격을 잘 보여준다. 2025-11-12 최
 
 | 모델 | SMPL 참조 입력 | 용도 |
 |---|---|---|
-| Default SONIC (최초 릴리스) | 20ms 간격 미래 10프레임 ≈ 200ms lookahead | 범용 컨트롤러. motion tracking·planning·teleoperation과 기존 배포 호환. 미래참조 관측은 `step5` |
-| Low-latency teleoperation | 20ms 간격 미래 4프레임 ≈ 80ms lookahead | 반응성이 중요한 전신 teleoperation과 VLA 실행. 미래참조 관측은 `step1` |
+| Default SONIC (최초 릴리스) | 20ms 간격 미래 10프레임 ≈ 200ms lookahead | 범용 컨트롤러. motion tracking·planning·teleoperation과 기존 배포 호환. 미래참조 observation은 `step5` |
+| Low-latency teleoperation | 20ms 간격 미래 4프레임 ≈ 80ms lookahead | 반응성이 중요한 전신 teleoperation과 VLA 실행. 미래참조 observation은 `step1` |
 
 README가 굳이 못 박아 둔 단서가 하나 있다. lookahead 값은 컨트롤러에 제시되는 참조 구간(reference horizon)일 뿐 end-to-end teleoperation 지연 측정치가 아니다. 실제 지연에는 센싱·네트워크·전처리·추론이 더 들어간다. encoder·decoder·observation config는 세트로 함께 써야 한다.
 
@@ -80,7 +80,7 @@ README가 직접 경고하는 항목이 실무에서 걸릴 지점이다. Git LF
 
 ## 7. 용어집 (Glossary)
 
-- **WBC (Whole-Body Control)**: 상·하체를 함께 다루는 전신 제어. decoupled 방식은 하체 RL과 상체 IK를 분리하며 SONIC은 하나의 정책으로 통합한다
+- **WBC (Whole-Body Control)**: 균형과 이동을 포함해 몸 전체를 함께 제어하는 문제. decoupled 방식은 하체 RL과 상체 IK를 분리하며 SONIC은 하나의 policy로 통합한다
 - **reference lookahead**: 컨트롤러에 미리 보여주는 참조 모션 구간. 지연 측정치가 아니다
 - **3-point teleoperation**: 헤드셋과 양손 컨트롤러 3점만으로 상체를 지정하고 하체는 planner가 생성하는 방식
 - **Isaac Lab**: NVIDIA의 로봇 학습 프레임워크. SONIC 학습·평가 환경 (버전 2.3.2)

@@ -30,8 +30,8 @@ News 타임라인이 저장소의 성격을 잘 보여준다.
 | 시점 | 내용 |
 |---|---|
 | 2025-11-12 | 최초 릴리스 — GR00T N1.5/N1.6용 Decoupled WBC |
-| 2026-02-19 | GEAR-SONIC 공개 — 사전학습 체크포인트, C++ 추론, VR teleoperation, 문서 |
-| 2026-03-16 | BONES-SEED 공개 — 142K+ 모션(약 288시간), G1 MuJoCo 궤적 포함 |
+| 2026-02-19 | GEAR-SONIC 공개 — pre-training된 체크포인트, C++ 추론, VR teleoperation, 문서 |
+| 2026-03-16 | BONES-SEED 공개 — 142K+ 모션(약 288시간), G1 MuJoCo trajectory 포함 |
 | 2026-03-24 | C++ 추론 스택 갱신 — 모터 오류 모니터링, ZMQ 프로토콜 v4 (헤더 1280바이트) |
 | 2026-04-10 | SONIC 학습 코드·체크포인트 공개, 추가 embodiment 지원, VLA 데이터 수집 파이프라인 |
 | 2026-04-14 | 브라우저 웹 데모 (Kimodo text-to-motion 사용) |
@@ -47,8 +47,8 @@ README의 TODO 목록은 항목 전부가 체크된 상태다.
 
 | 모델 | SMPL 참조 입력 | 용도 |
 |---|---|---|
-| Default SONIC (최초 릴리스) | 20ms 간격 미래 10프레임 ≈ 200ms lookahead | 범용 컨트롤러. motion tracking·planning·teleoperation과 기존 배포 호환. 미래참조 관측은 `step5` |
-| Low-latency teleoperation | 20ms 간격 미래 4프레임 ≈ 80ms lookahead | 반응성이 중요한 전신 teleoperation과 VLA 실행. 미래참조 관측은 `step1` |
+| Default SONIC (최초 릴리스) | 20ms 간격 미래 10프레임 ≈ 200ms lookahead | 범용 컨트롤러. motion tracking·planning·teleoperation과 기존 배포 호환. 미래참조 observation은 `step5` |
+| Low-latency teleoperation | 20ms 간격 미래 4프레임 ≈ 80ms lookahead | 반응성이 중요한 전신 teleoperation과 VLA 실행. 미래참조 observation은 `step1` |
 
 README가 굳이 못 박아 둔 단서가 하나 있다. lookahead 값은 컨트롤러에 제시되는 참조 구간(reference horizon)일 뿐 end-to-end teleoperation 지연 측정치가 아니다. 실제 지연에는 센싱·네트워크·전처리·추론이 더 들어간다. encoder·decoder·observation config는 세트로 함께 써야 한다.
 

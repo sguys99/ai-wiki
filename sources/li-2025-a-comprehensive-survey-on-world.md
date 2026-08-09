@@ -129,13 +129,13 @@ world model의 정의도 좁혀 놓았다. 정적 장면 서술자, 그리고 �
 
 ### POMDP 정식화
 
-환경 상호작용은 POMDP로 둔다. t=0에 null action a₀를 정의해 dynamics를 균일하게 쓴다. 실제 상태 sₜ는 관측되지 않으므로 잠재 상태 zₜ를 one-step filtering posterior로 추론한다. 기본이 되는 분포는 셋이다.
+환경 상호작용은 POMDP로 둔다. t=0에 null action a₀를 정의해 dynamics를 균일하게 쓴다. observation은 매 timestep에 에이전트가 받는 센서 입력을 말한다. 실제 상태 sₜ는 직접 관찰되지 않으므로 latent 상태 zₜ를 one-step filtering posterior로 추론한다. latent는 이렇게 겉으로 드러나지 않는 내부 표현 공간을 가리킨다. 기본이 되는 분포는 셋이다.
 
 - Dynamics Prior: p_θ(zₜ | zₜ₋₁, aₜ₋₁)
 - Filtered Posterior: q_φ(zₜ | zₜ₋₁, aₜ₋₁, oₜ)
 - Reconstruction: p_θ(oₜ | zₜ)
 
-로그 가능도 log p_θ(o₁:T | a₀:T₋₁)는 직접 최대화할 수 없어서 ELBO를 대신 최적화한다. Markov 분해를 가정하면 ELBO가 재구성 항과 KL 정칙화 항으로 쪼개진다. 현대 world model의 공통 학습 패러다임이 여기서 나온다. 가능도 항은 관측을 충실히 예측하게 하고 KL 항은 filtered posterior를 dynamics prior에 맞춘다. recurrent 모델이든 Transformer든 diffusion decoder든 어느 쪽으로 인스턴스화해도 이 구조는 그대로다.
+로그 가능도 log p_θ(o₁:T | a₀:T₋₁)는 직접 최대화할 수 없어서 ELBO를 대신 최적화한다. Markov 분해를 가정하면 ELBO가 재구성 항과 KL 정칙화 항으로 쪼개진다. 현대 world model의 공통 학습 패러다임이 여기서 나온다. 가능도 항은 observation을 충실히 예측하게 하고 KL 항은 filtered posterior를 dynamics prior에 맞춘다. recurrent 모델이든 Transformer든 diffusion decoder든 어느 쪽으로 인스턴스화해도 이 구조는 그대로다.
 
 ### 축 1 — 기능 (decision coupling)
 
@@ -162,13 +162,13 @@ Sequential Simulation and Inference는 미래를 한 스텝씩 autoregressive하
 
 Dec/Seq/GLV는 RSSM 계보다. 출발점은 PlaNet이다. 결정적 메모리와 확률 성분을 섞은 RSSM을 세웠고 Dreamer·DreamerV2·DreamerV3가 뒤를 이었다. 파생 연구는 대개 decoder를 손봤다. Dreaming은 contrastive로 재구성을 없앴고 DreamerPro는 decoder를 prototype 예측으로 바꿔 시각적 방해 요소에 덜 흔들리게 했다. TransDreamer는 recurrent core를 Transformer로 교체한 TSSM을 냈고 GLAM은 Mamba 기반 병렬 프레임워크로 갔다. 최근 흐름의 공통 주제는 전이 가능성이다. PreLAR의 implicit action abstraction, SENSEI의 VLM 유래 semantic reward, ReDRAW의 residual latent 보정을 통한 sim-to-real 적응이 같은 문제를 서로 다르게 푼다.
 
-토큰 의존성을 축으로 삼는 Dec/Seq/TFS에서는 MWM이 masked autoencoder로 시각 토큰을 RSSM dynamics에서 떼어냈고 IRIS·TWM은 discrete token으로 데이터 효율적 RL을 했다. 자율주행 쪽에서는 DrivingWorld가 next-state와 next-token 예측을 짝지었다. Doe-1은 perception-description-action 토큰의 autoregressive 예측으로 closed-loop 주행을 정식화했다. DrivingGPT는 vision·action 토큰을 교차 배치해 world modeling과 궤적 계획을 모두 next-token prediction으로 캐스팅했다. LLM/CoT를 끌어들이는 쪽도 있다. NavCoT는 내비게이션을 imagination·filtering·prediction으로 분해했고 MineDreamer는 Chain-of-Imagination으로 멀티모달 LLM이 미래 관측을 상상해 diffusion을 조종하게 했다.
+토큰 의존성을 축으로 삼는 Dec/Seq/TFS에서는 MWM이 masked autoencoder로 시각 토큰을 RSSM dynamics에서 떼어냈고 IRIS·TWM은 discrete token으로 데이터 효율적 RL을 했다. 자율주행 쪽에서는 DrivingWorld가 next-state와 next-token 예측을 짝지었다. Doe-1은 perception-description-action 토큰의 autoregressive 예측으로 closed-loop 주행을 정식화했다. DrivingGPT는 vision·action 토큰을 교차 배치해 world modeling과 trajectory 계획을 모두 next-token prediction으로 캐스팅했다. LLM/CoT를 끌어들이는 쪽도 있다. NavCoT는 내비게이션을 imagination·filtering·prediction으로 분해했고 MineDreamer는 Chain-of-Imagination으로 멀티모달 LLM이 미래 observation을 상상해 diffusion을 조종하게 했다.
 
-3D occupancy 예측이 몰린 곳은 Dec/Seq/SLG다. OccWorld·RenderWorld는 장면을 occupancy 토큰으로 이산화해 순차 예측하고 Drive-OccWorld·PreWorld는 volumetric feature를 직접 예보한다. 로보틱스로 넘어오면 EnerVerse가 chunk-wise autoregressive video diffusion과 sparse memory로 4D latent dynamics를 만들고 4DGS로 sim-to-real 간극을 줄인다. PointWorld는 장면 상태와 로봇 행동을 3D point flow로 통일해 RGB-D 관측에서 MPC 기반 실제 로봇 조작을 돌린다.
+3D occupancy 예측이 몰린 곳은 Dec/Seq/SLG다. OccWorld·RenderWorld는 장면을 occupancy 토큰으로 이산화해 순차 예측하고 Drive-OccWorld·PreWorld는 volumetric feature를 직접 예보한다. 로보틱스로 넘어오면 EnerVerse가 chunk-wise autoregressive video diffusion과 sparse memory로 4D latent dynamics를 만들고 4DGS로 sim-to-real 간극을 줄인다. PointWorld는 장면 상태와 로봇 행동을 3D point flow로 통일해 RGB-D observation에서 MPC 기반 실제 로봇 조작을 돌린다.
 
-ManiGaussian은 현재 상태·행동 조건에서 per-point 변화를 예측해 미래 Gaussian 장면을 만든다. Dec/Seq/DRR 칸을 채우는 3DGS 계열의 출발점이다. ManiGaussian++는 leader-follower 계층 설계로 양팔 조작까지 넓혔다. DreMa는 GS와 물리 시뮬레이터를 붙여 imitation learning용 데이터 합성 디지털 트윈을 만들고 PIN-WM은 3DGS와 미분 가능 물리를 결합해 제한된 관측에서 물리 파라미터를 추정한다.
+ManiGaussian은 현재 상태·행동 조건에서 per-point 변화를 예측해 미래 Gaussian 장면을 만든다. Dec/Seq/DRR 칸을 채우는 3DGS 계열의 출발점이다. ManiGaussian++는 leader-follower 계층 설계로 양팔 조작까지 넓혔다. DreMa는 GS와 물리 시뮬레이터를 붙여 imitation learning용 데이터 합성 디지털 트윈을 만들고 PIN-WM은 3DGS와 미분 가능 물리를 결합해 제한된 observation에서 물리 파라미터를 추정한다.
 
-Gen/Seq/TFS와 Gen/Glo/TFS가 General-purpose 쪽의 중심이다. iVideoGPT는 대규모 상호작용 비디오로 action-free 예측을 pretrain했고 Genie는 discrete latent action과 spatiotemporal token으로 사용자가 조작할 수 있는 인터랙티브 환경을 학습했다. JEPA 계보에서는 V-JEPA가 가려진 시공간 영역의 latent feature를 예측하는 방식으로 픽셀 재구성 없이 표현을 배웠다. V-JEPA 2는 인터넷 규모 비디오로 스케일하며 로봇 상호작용 데이터로 post-training해 계획까지 갔다. V-JEPA 2.1은 visible·masked 토큰 양쪽에 dense prediction을 걸고 deep self-supervision과 image-video tokenizer를 더했다. diffusion 쪽에서는 Sora가 비디오를 spacetime patch로 통일했다. Cosmos 3는 언어·이미지·비디오·오디오·행동 시퀀스를 mixture-of-transformers로 묶어 omnimodal world model을 Physical AI의 범용 backbone으로 자리매김하려 한다.
+Gen/Seq/TFS와 Gen/Glo/TFS가 General-purpose 쪽의 중심이다. iVideoGPT는 대규모 상호작용 비디오로 action-free 예측을 pretrain했고 Genie는 discrete latent action과 spatiotemporal token으로 사용자가 조작할 수 있는 인터랙티브 환경을 학습했다. JEPA 계보에서는 V-JEPA가 가려진 시공간 영역의 latent feature를 예측하는 방식으로 픽셀 재구성 없이 표현을 배웠다. V-JEPA 2는 인터넷 규모 비디오로 스케일하며 로봇 상호작용 데이터로 post-training해 계획까지 갔다. V-JEPA 2.1은 visible·masked 토큰 양쪽에 dense prediction을 걸고 deep self-supervision과 image-video tokenizer를 더했다. diffusion 쪽에서는 Sora가 비디오를 spacetime patch로 통일했다. Cosmos 3는 언어·이미지·비디오·오디오·action 시퀀스를 mixture-of-transformers로 묶어 omnimodal world model을 Physical AI의 범용 backbone으로 자리매김하려 한다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -190,7 +190,7 @@ Occ3D-nuScenes 4D occupancy forecasting(Table V)은 과거 2초 occupancy로 이
 
 다만 논문 p.14 본문의 "COME (with GT ego) achieves the best average mIoU and per-horizon IoU"는 Table V와 어긋난다. mIoU 34.23은 최고가 맞지만(차순위 DTT-O 30.85) IoU 평균은 DTT-O가 74.58로 COME-O의 44.13보다 훨씬 높다. 원문 내부 불일치다.
 
-DMC(Table VI)는 64×64×3 픽셀 관측에서 1,000 스텝 누적 보상을 잰다. 500k 스텝의 HRSSM이 3개 과제 평균 938, 1M 스텝의 DisWM이 5개 과제 평균 879를 냈다. 다만 평가 프로토콜과 과제 부분집합이 제각각이라 일반화를 공정하게 판단하기 어렵다고 논문 스스로 적었다.
+DMC(Table VI)는 64×64×3 픽셀 observation에서 1,000 스텝 누적 reward를 잰다. 500k 스텝의 HRSSM이 3개 과제 평균 938, 1M 스텝의 DisWM이 5개 과제 평균 879를 냈다. 다만 평가 프로토콜과 과제 부분집합이 제각각이라 일반화를 공정하게 판단하기 어렵다고 논문 스스로 적었다.
 
 RLBench 조작(Table VII)에서는 VidMan이 18개 과제 평균 성공률 67%로 가장 높고 TesserAct가 10개 과제 63%로 뒤따른다. 여기에도 에피소드 예산·해상도·모달리티가 구현마다 달라 like-for-like 비교가 어렵다는 단서가 붙는다.
 
@@ -208,24 +208,24 @@ nuScenes open-loop planning(Table VIII)에서 평균 L2가 가장 낮은 쪽은 
 
 ## 6. 관련 연구 (Related Work)
 
-world model이라는 용어는 Ha와 Schmidhuber가 정착시켰고 Dreamer 계열이 imagination 기반 정책 최적화를 주류로 만들었다. 이 서베이는 그 계보 위에 Sora, V-JEPA 2 같은 범용 시뮬레이터 확장을 얹는다. 선행 서베이로는 기능 중심의 Ding et al.·Zhu et al., 자율주행 한정의 Guan et al.·Feng et al.을 인용한다. 인지과학 쪽 근거로는 Clark, Barsalou, Friston의 내부 모델 논의를 든다.
+world model이라는 용어는 Ha와 Schmidhuber가 정착시켰고 Dreamer 계열이 imagination 기반 policy 최적화를 주류로 만들었다. policy는 observation을 받아 다음 action을 정하는 함수를 말한다. 이 서베이는 그 계보 위에 Sora, V-JEPA 2 같은 범용 시뮬레이터 확장을 얹는다. 선행 서베이로는 기능 중심의 Ding et al.·Zhu et al., 자율주행 한정의 Guan et al.·Feng et al.을 인용한다. 인지과학 쪽 근거로는 Clark, Barsalou, Friston의 내부 모델 논의를 든다.
 
-저장소 안 인접 자료로는 같은 physical-ai 카테고리의 [[physical-ai/hou-2026-world-model-for-robot-learning]]이 가장 가깝다. 그쪽은 로봇 학습에 초점을 맞춰 정책 결합 방식 5분류와 학습된 시뮬레이터 역할로 문헌을 나눴다. 이 서베이는 자율주행과 범용 비디오까지 같은 3축에 올린다. [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]의 SONIC은 Table I·II에는 없지만 이 분류에 놓으면 decision-coupled 계열의 humanoid 전신 제어에 해당한다.
+저장소 안 인접 자료로는 같은 physical-ai 카테고리의 [[physical-ai/hou-2026-world-model-for-robot-learning]]이 가장 가깝다. 그쪽은 로봇 학습에 초점을 맞춰 policy 결합 방식 5분류와 학습된 시뮬레이터 역할로 문헌을 나눴다. 이 서베이는 자율주행과 범용 비디오까지 같은 3축에 올린다. [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]의 SONIC은 Table I·II에는 없지만 이 분류에 놓으면 decision-coupled 계열의 humanoid whole-body control에 해당한다.
 
 ## 7. 용어집 (Glossary)
 
-- POMDP: 부분 관측 마르코프 결정 과정. 실제 상태가 관측되지 않아 잠재 상태 추론이 필요한 설정
+- POMDP: Partially Observable Markov Decision Process. 실제 상태가 직접 관찰되지 않아 latent 상태 추론이 필요한 설정
 - ELBO: Evidence Lower Bound. 다루기 힘든 로그 가능도 대신 최적화하는 하한
-- RSSM: Recurrent State-Space Model. 결정적 메모리와 확률 성분을 섞은 PlaNet의 잠재 dynamics 모델
+- RSSM: Recurrent State-Space Model. 결정적 메모리와 확률 성분을 섞은 PlaNet의 latent dynamics 모델
 - TSSM: Transformer State-Space Model. RSSM의 recurrent core를 Transformer로 대체
 - IDM: Inverse Dynamics Model. 초기 상태에서 목표 상태로 가는 데 필요한 행동을 역으로 추론
-- JEPA: Joint-Embedding Predictive Architecture. 픽셀 재구성 없이 잠재 공간에서 가려진 영역을 예측
+- JEPA: Joint-Embedding Predictive Architecture. 픽셀 재구성 없이 latent 공간에서 가려진 영역을 예측
 - GLV / TFS / SLG / DRR: 이 서베이의 공간 표현 4분류 (Global Latent Vector / Token Feature Sequence / Spatial Latent Grid / Decomposed Rendering Representation)
 - BEV: Bird's-Eye View. 자율주행에서 흔한 조감 격자 표현
 - 3DGS / NeRF: 3D Gaussian Splatting / Neural Radiance Fields. 미분 가능 렌더링 기반 장면 표현
 - DiT: Diffusion Transformer
 - SSM: State Space Model. Mamba가 대표. 선형 시간 복잡도로 긴 시퀀스를 다룸
-- S2R: Sim-to-Real. 시뮬레이션에서 학습한 정책을 실제 로봇으로 옮기는 문제
+- S2R: Sim-to-Real. 시뮬레이션에서 학습한 policy를 실제 로봇으로 옮기는 문제
 - occupancy: 공간을 voxel로 나눠 free/occupied/unobserved를 라벨링한 3D 표현
 - FID / FVD: Fréchet Inception Distance / Fréchet Video Distance. 낮을수록 실제 분포에 가까움
 - RLVR: Reinforcement Learning with Verifiable Rewards
