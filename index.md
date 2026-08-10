@@ -48,8 +48,9 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 
 모델 아키텍처, pre-training, fine-tuning, foundation model 논문.
 
-- [[llms/mentzer-2023-finite-scalar-quantization-vq-vae-made|FSQ (VQ-VAE Made Simple)]] — VQ-VAE의 vector quantization을 각 latent 차원을 소수의 고정값으로 반올림하는 finite scalar quantization으로 대체. 보조 손실·codebook 관리 없이 사용률 100%에 이르고 MaskGIT·UViM에서 VQ와 대등 (2023, paper)
+- [[llms/lipman-2022-flow-matching-for-generative-modeling|Flow Matching]] — continuous normalizing flow를 시뮬레이션 없이 학습하는 방법. 목표 vector field에 신경망을 회귀시키고 conditional 구성으로 tractable하게 만든다(FM=CFM gradient 동일). diffusion을 특수 사례로 포함하며 optimal transport 경로를 쓰면 직선 경로로 더 빠른 학습·생성과 더 나은 FID를 얻는다. 이후 GR00T N1 등 로봇 policy action head의 기반 (2022, paper)
 - [[llms/peebles-2022-scalable-diffusion-models-with-transformers|DiT (Diffusion Transformers)]] — diffusion model의 U-Net backbone을 순수 Transformer로 교체. latent를 patch token으로 바꿔 처리하고, Gflops↔FID 상관 −0.93의 scaling 성질을 보여 ImageNet 256×256에서 FID 2.27 SOTA 달성. adaLN-Zero conditioning이 핵심. 이후 Stable Diffusion 3·Sora의 backbone 계보 (2022, paper)
+- [[llms/mentzer-2023-finite-scalar-quantization-vq-vae-made|FSQ (VQ-VAE Made Simple)]] — VQ-VAE의 vector quantization을 각 latent 차원을 소수의 고정값으로 반올림하는 finite scalar quantization으로 대체. 보조 손실·codebook 관리 없이 사용률 100%에 이르고 MaskGIT·UViM에서 VQ와 대등 (2023, paper)
 - [[llms/shumailov-2024-ununlearning-unlearning-is-not-sufficient|UnUnlearning]] — ICL 때문에 unlearning(exact 포함)만으로는 LLM 콘텐츠 규제가 불충분하다는 점을 짚은 논문 (2024, paper)
 - [[llms/cai-2026-vlm3-vision-language-models|VLM3 (Native 3D Learners)]] — Qwen3-VL-4B와 SFT 위에 focal length 통일, 픽셀 reference, data mixture 세 가지만 더해 네 개의 3D 비전 task에서 SOTA를 잡은 네이티브 학습 (2026, paper)
 - [[llms/9bow-2026-gpt-5-6-sol-terra-luna|OpenAI GPT-5.6 Sol·Terra·Luna 프리뷰 (9bow)]] — PyTorch Korea 9bow가 옮긴 OpenAI GPT-5.6 프리뷰 소식. 숫자=세대·천체 이름=능력 티어의 새 네이밍으로 Sol(플래그십)·Terra(균형)·Luna(경량) 3종을 가르고, 가격·Terminal-Bench 수치와 함께 미국 정부 협의형 계층 안전 스택·단계적 배포에 절반의 비중을 둔 2차 소식 글 (2026, article)
