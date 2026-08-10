@@ -15,6 +15,7 @@ _workspace/
 
 # Obsidian (per-session UI state — noisy; 다른 .obsidian 설정은 기기 간 공유 유지)
 .obsidian/workspace.json
+.obsidian/graph.json
 
 # 웹 빌드 산출물 (GitHub Pages — site/build.mjs 출력, Actions가 배포)
 dist/
