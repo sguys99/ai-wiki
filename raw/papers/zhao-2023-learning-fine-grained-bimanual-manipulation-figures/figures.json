@@ -1,0 +1,490 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/fig01.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/fig01.png",
+    "page": 1,
+    "caption": "Fig. 1: ALOHA",
+    "bbox": [
+      41.5,
+      152.3,
+      569.5,
+      329.47
+    ],
+    "bbox_norm": [
+      0.0678,
+      0.1923,
+      0.9305,
+      0.416
+    ],
+    "dpi": 300,
+    "area_frac": 0.193,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/fig03.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/fig03.png",
+    "page": 3,
+    "caption": "Fig. 3: Left: Camera viewpoints of the front, top, and two wrist cameras, together with an illustration of the bimanual workspace of ALOHA . Middle: Detailed view of the “handle and scissor” mechanism and custom grippers. Right: Technical spec of the ViperX 6dof robot [1].",
+    "bbox": [
+      26.87,
+      16.82,
+      605.67,
+      192.96
+    ],
+    "bbox_norm": [
+      0.0439,
+      0.0212,
+      0.9897,
+      0.2436
+    ],
+    "dpi": 300,
+    "area_frac": 0.21,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/fig04.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/fig04.png",
+    "page": 4,
+    "caption": "Fig. 4: Architecture of Action Chunking with Transformers (ACT) . We train ACT as a Conditional VAE (CVAE), which has an encoder and a decoder. Left: The encoder of the CVAE compresses action sequence and joint observation into z , the style variable. The encoder is discarded at test time. Right: Th",
+    "bbox": [
+      37.56,
+      4.24,
+      590.86,
+      181.63
+    ],
+    "bbox_norm": [
+      0.0614,
+      0.0053,
+      0.9655,
+      0.2293
+    ],
+    "dpi": 300,
+    "area_frac": 0.203,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/fig05.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/fig05.png",
+    "page": 4,
+    "caption": "Fig. 5: We employ both Action Chunking and Temporal Ensembling when applying actions, instead of interleaving observing and executing.",
+    "bbox": [
+      49.08,
+      215.76,
+      299.76,
+      378.24
+    ],
+    "bbox_norm": [
+      0.0802,
+      0.2724,
+      0.4898,
+      0.4776
+    ],
+    "dpi": 300,
+    "area_frac": 0.084,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/fig06.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/fig06.png",
+    "page": 7,
+    "caption": "Fig. 6: Real-World Task Deﬁnitions. For each of the 6 real-world tasks, we illustrate the initializations and the subtasks.",
+    "bbox": [
+      43.95,
+      49.15,
+      586.4,
+      731.71
+    ],
+    "bbox_norm": [
+      0.0718,
+      0.0621,
+      0.9582,
+      0.9239
+    ],
+    "dpi": 300,
+    "area_frac": 0.764,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/fig07.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/fig07.png",
+    "page": 8,
+    "caption": "Fig. 7: Simulated Task Deﬁnitions. For each of the 2 simulated tasks, we illustrate the initializations and the subtasks.",
+    "bbox": [
+      32.8,
+      34.21,
+      577.57,
+      140.42
+    ],
+    "bbox_norm": [
+      0.0536,
+      0.0432,
+      0.9437,
+      0.1773
+    ],
+    "dpi": 300,
+    "area_frac": 0.119,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/fig08.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/fig08.png",
+    "page": 10,
+    "caption": "Fig. 8: (a) We augment two baselines with action chunking, with different values of chunk size k on the x-axis, and success rate on the y-axis. Both methods signiﬁcantly beneﬁt from action chunking, suggesting that it is a generally useful technique. (b) Temporal Ensemble (TE) improves our method an",
+    "bbox": [
+      53.53,
+      54.91,
+      554.67,
+      185.45
+    ],
+    "bbox_norm": [
+      0.0875,
+      0.0693,
+      0.9063,
+      0.2342
+    ],
+    "dpi": 300,
+    "area_frac": 0.135,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/fig09.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/fig09.png",
+    "page": 15,
+    "caption": "Fig. 9: Teleoperation task examples with ALOHA . We include videos on the project website.",
+    "bbox": [
+      30.26,
+      18.68,
+      612.0,
+      388.67
+    ],
+    "bbox_norm": [
+      0.0494,
+      0.0236,
+      1.0,
+      0.4907
+    ],
+    "dpi": 300,
+    "area_frac": 0.444,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/fig10.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/fig10.png",
+    "page": 16,
+    "caption": "Fig. 10: Image observation examples for 5 real-world tasks. The 4 columns are [top camera, front camera, left wrist camera, right wrist camera] respectively. We rotate the front camera by 90 degree to capture more vertical space.",
+    "bbox": [
+      94.37,
+      48.0,
+      517.64,
+      384.56
+    ],
+    "bbox_norm": [
+      0.1542,
+      0.0606,
+      0.8458,
+      0.4856
+    ],
+    "dpi": 300,
+    "area_frac": 0.294,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/fig11.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/fig11.png",
+    "page": 17,
+    "caption": "Fig. 11: Detail architecture of Action Chunking with Transformers (ACT).",
+    "bbox": [
+      0.0,
+      48.0,
+      569.03,
+      634.98
+    ],
+    "bbox_norm": [
+      0.0,
+      0.0606,
+      0.9298,
+      0.8017
+    ],
+    "dpi": 300,
+    "area_frac": 0.689,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/fig12.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/fig12.png",
+    "page": 18,
+    "caption": "Fig. 12: The cable tie and cups for user study.",
+    "bbox": [
+      248.59,
+      47.99,
+      363.4,
+      134.64
+    ],
+    "bbox_norm": [
+      0.4062,
+      0.0606,
+      0.5938,
+      0.17
+    ],
+    "dpi": 300,
+    "area_frac": 0.021,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table I",
+    "kind": "table",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/tab01.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/tab01.png",
+    "page": 8,
+    "caption": "TABLE I: Success rate (%) for 2 simulated and 2 real-world tasks, comparing our method with 4 baselines. For the two simulated tasks, we report [training with scripted data | training with human data], with 3 seeds and 50 policy evaluations each. For the real-world tasks, we report training with hum",
+    "bbox": [
+      30.72,
+      150.82,
+      581.28,
+      268.94
+    ],
+    "bbox_norm": [
+      0.0502,
+      0.1904,
+      0.9498,
+      0.3396
+    ],
+    "dpi": 300,
+    "area_frac": 0.134,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table II",
+    "kind": "table",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/tab02.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/tab02.png",
+    "page": 8,
+    "caption": "TABLE II: Success rate (%) for the remaining 3 real-world tasks. We only compare with the best performing baseline BeT.",
+    "bbox": [
+      42.35,
+      392.57,
+      570.78,
+      731.92
+    ],
+    "bbox_norm": [
+      0.0692,
+      0.4957,
+      0.9326,
+      0.9241
+    ],
+    "dpi": 300,
+    "area_frac": 0.37,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table III",
+    "kind": "table",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/tab03.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/tab03.png",
+    "page": 18,
+    "caption": "TABLE III: Hyperparameters of ACT.",
+    "bbox": [
+      190.83,
+      150.75,
+      421.16,
+      257.92
+    ],
+    "bbox_norm": [
+      0.3118,
+      0.1903,
+      0.6882,
+      0.3257
+    ],
+    "dpi": 300,
+    "area_frac": 0.051,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table IV",
+    "kind": "table",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/tab04.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/tab04.png",
+    "page": 18,
+    "caption": "TABLE IV: Hyperparameters of BYOL, the feature extractor for VINN and BeT.",
+    "bbox": [
+      199.42,
+      354.85,
+      412.57,
+      470.98
+    ],
+    "bbox_norm": [
+      0.3258,
+      0.448,
+      0.6741,
+      0.5947
+    ],
+    "dpi": 300,
+    "area_frac": 0.051,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table V",
+    "kind": "table",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/tab05.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/tab05.png",
+    "page": 18,
+    "caption": "TABLE V: Hyperparameters of BeT.",
+    "bbox": [
+      199.42,
+      354.85,
+      412.57,
+      470.98
+    ],
+    "bbox_norm": [
+      0.3258,
+      0.448,
+      0.6741,
+      0.5947
+    ],
+    "dpi": 300,
+    "area_frac": 0.051,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table VI",
+    "kind": "table",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/tab06.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/tab06.png",
+    "page": 18,
+    "caption": "TABLE VI: Hyperparameters of VINN.",
+    "bbox": [
+      166.86,
+      541.01,
+      445.13,
+      693.01
+    ],
+    "bbox_norm": [
+      0.2726,
+      0.6831,
+      0.7273,
+      0.875
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table VII",
+    "kind": "table",
+    "file": "assets/zhao-2023-learning-fine-grained-bimanual-manipulation/tab07.png",
+    "raw": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/tab07.png",
+    "page": 18,
+    "caption": "TABLE VII: Hyperparameters of RT-1.",
+    "bbox": [
+      166.86,
+      541.01,
+      445.13,
+      693.01
+    ],
+    "bbox_norm": [
+      0.2726,
+      0.6831,
+      0.7273,
+      0.875
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/_overlay/p18.png"
+  }
+]
