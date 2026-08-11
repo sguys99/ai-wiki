@@ -1,0 +1,85 @@
+[
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/rasmussen-2025-zep-a-temporal-knowledge-graph/tab01.png",
+    "raw": "raw/papers/rasmussen-2025-zep-a-temporal-knowledge-graph-figures/tab01.png",
+    "page": 6,
+    "caption": "Table 1: Deep Memory Retrieval",
+    "bbox": [
+      197.88,
+      90.83,
+      411.84,
+      228.6
+    ],
+    "bbox_norm": [
+      0.3233,
+      0.1147,
+      0.6729,
+      0.2886
+    ],
+    "dpi": 300,
+    "area_frac": 0.061,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/rasmussen-2025-zep-a-temporal-knowledge-graph-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/rasmussen-2025-zep-a-temporal-knowledge-graph/tab02.png",
+    "raw": "raw/papers/rasmussen-2025-zep-a-temporal-knowledge-graph-figures/tab02.png",
+    "page": 7,
+    "caption": "Table 2: LongMemEval s",
+    "bbox": [
+      91.92,
+      298.92,
+      513.96,
+      409.92
+    ],
+    "bbox_norm": [
+      0.1502,
+      0.3774,
+      0.8398,
+      0.5176
+    ],
+    "dpi": 300,
+    "area_frac": 0.097,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/rasmussen-2025-zep-a-temporal-knowledge-graph-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/rasmussen-2025-zep-a-temporal-knowledge-graph/tab03.png",
+    "raw": "raw/papers/rasmussen-2025-zep-a-temporal-knowledge-graph-figures/tab03.png",
+    "page": 7,
+    "caption": "Table 3: LongMemEval s Question Type Breakdown",
+    "bbox": [
+      91.92,
+      461.28,
+      513.96,
+      679.2
+    ],
+    "bbox_norm": [
+      0.1502,
+      0.5824,
+      0.8398,
+      0.8576
+    ],
+    "dpi": 300,
+    "area_frac": 0.19,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/rasmussen-2025-zep-a-temporal-knowledge-graph-figures/_overlay/p07.png"
+  }
+]
