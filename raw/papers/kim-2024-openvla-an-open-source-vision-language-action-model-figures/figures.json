@@ -1,0 +1,628 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig01.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: We present OpenVLA, a 7B-parameter open-source vision-language-action model (VLA), trained on 970k robot episodes from the Open X-Embodiment dataset [ 1 ]. OpenVLA sets a new state of the art for generalist robot manipulation policies. It supports controlling multiple robots out of the box",
+    "bbox": [
+      87.89,
+      198.98,
+      509.54,
+      423.41
+    ],
+    "bbox_norm": [
+      0.1436,
+      0.2512,
+      0.8326,
+      0.5346
+    ],
+    "dpi": 300,
+    "area_frac": 0.195,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig02.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: OpenVLA model architecture. Given an image observation and a language instruction, the model predicts 7-dimensional robot control actions. The architecture consists of three key components: (1) a vision encoder that concatenates Dino V2 [ 25 ] and SigLIP [ 79 ] features, (2) a projector th",
+    "bbox": [
+      100.8,
+      67.47,
+      530.32,
+      224.31
+    ],
+    "bbox_norm": [
+      0.1647,
+      0.0852,
+      0.8665,
+      0.2832
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig03.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig03.png",
+    "page": 7,
+    "caption": "Figure 3: BridgeData V2 WidowX robot evaluation tasks and results. We evaluate OpenVLA and prior state-of-the-art generalist robot policies on a comprehensive suite of tasks covering several axes of generalization, as well as tasks that specifically assess language conditioning ability. OpenVLA achi",
+    "bbox": [
+      0.0,
+      66.0,
+      576.35,
+      242.05
+    ],
+    "bbox_norm": [
+      0.0,
+      0.0833,
+      0.9417,
+      0.3056
+    ],
+    "dpi": 300,
+    "area_frac": 0.209,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig04.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig04.png",
+    "page": 8,
+    "caption": "Figure 4: Google robot evaluation results. We evaluate generalist robot policies on in-distribution and out-of- distribution (OOD) tasks on the mobile manipulator used in RT-1 and RT-2 evaluations [ 2 , 7 ]. We find that Open- VLA and RT-2-X attain comparable performance and significantly outperform",
+    "bbox": [
+      289.68,
+      251.05,
+      521.49,
+      424.96
+    ],
+    "bbox_norm": [
+      0.4733,
+      0.317,
+      0.8521,
+      0.5366
+    ],
+    "dpi": 300,
+    "area_frac": 0.083,
+    "strategy": "column-band",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig05.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig05.png",
+    "page": 9,
+    "caption": "Figure 5: Adapting to new robot setups. We evaluate the state-of-the-art Diffusion Policy trained from scratch on seven Franka Emika Panda tasks (10–150 demonstrations each), as well as generalist robot policies Octo and OpenVLA fine-tuned on the same data. Diffusion Policy exhibits strong performan",
+    "bbox": [
+      0.0,
+      66.0,
+      591.05,
+      177.68
+    ],
+    "bbox_norm": [
+      0.0,
+      0.0833,
+      0.9658,
+      0.2243
+    ],
+    "dpi": 300,
+    "area_frac": 0.136,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig06.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig06.png",
+    "page": 10,
+    "caption": "Figure 6: OpenVLA inference speed for various GPUs. Both bfloat16 and int4 quantization achieve high throughput, especially on GPUs with Ada Lovelace architecture (RTX 4090, H100). Fur- ther speed-ups are possible with modern LLM inference frame- works like TensorRT-LLM [ 89 ]. ♠ : Model sharded acr",
+    "bbox": [
+      79.68,
+      449.4,
+      357.9,
+      569.9
+    ],
+    "bbox_norm": [
+      0.1302,
+      0.5674,
+      0.5848,
+      0.7196
+    ],
+    "dpi": 300,
+    "area_frac": 0.069,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig07.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig07.png",
+    "page": 22,
+    "caption": "Figure 7: BridgeData V2 WidowX robot evaluation tasks. We evaluate every generalist robot policy on 4 types out-of-distribution (OOD) generalization tasks: visual , motion , physical , and semantic (as defined in Section 5.1 ). Every pair of images shows the start state and an example end state afte",
+    "bbox": [
+      171.3,
+      66.0,
+      440.69,
+      636.9
+    ],
+    "bbox_norm": [
+      0.2799,
+      0.0833,
+      0.7201,
+      0.8042
+    ],
+    "dpi": 300,
+    "area_frac": 0.317,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig08.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig08.png",
+    "page": 25,
+    "caption": "Figure 8: Original BridgeData V2 sink environment tasks. Images from sample demonstrations in the sink environment from the original BridgeData V2 dataset reveal that all demonstrations in this environment were initialized such that the robot’s end-effector was positioned immediately above the targe",
+    "bbox": [
+      102.0,
+      347.17,
+      509.99,
+      535.85
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4383,
+      0.8333,
+      0.6766
+    ],
+    "dpi": 300,
+    "area_frac": 0.159,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig09.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig09.png",
+    "page": 27,
+    "caption": "Figure 9: Google robot evaluation tasks. We evaluate every generalist robot policy on in-distribution tasks and out-of-distribution (OOD) generalization tasks. OOD tasks involve unseen backgrounds, target objects, instructions/object relations, and semantic concepts (e.g., photos from the Internet t",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      416.2
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.5255
+    ],
+    "dpi": 300,
+    "area_frac": 0.295,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig10.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig10.png",
+    "page": 29,
+    "caption": "Figure 10: Franka-Tabletop fine-tuning tasks. Franka-Tabletop tasks used in the data-efficient adaptation experiments in Section 5.2 and described in detail in Fig. 10 are depicted above. The first three of six tasks, shown in the top three rows, only involve a single instruction, while the last thr",
+    "bbox": [
+      141.6,
+      188.67,
+      470.41,
+      639.33
+    ],
+    "bbox_norm": [
+      0.2314,
+      0.2382,
+      0.7686,
+      0.8072
+    ],
+    "dpi": 300,
+    "area_frac": 0.306,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig11.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig11.png",
+    "page": 31,
+    "caption": "Figure 11: Franka-DROID fine-tuning task. The “Wipe Table” task shown here is the final task used in the data-efficient adaptation experiments in Section 5.2 . The left image shows the initial conditions for an in-distribution trial. The right image shows an out-of-distribution trial in which unseen",
+    "bbox": [
+      181.2,
+      245.28,
+      430.79,
+      369.82
+    ],
+    "bbox_norm": [
+      0.2961,
+      0.3097,
+      0.7039,
+      0.4669
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p31.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab01.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab01.png",
+    "page": 10,
+    "caption": "Table 1: Parameter-efficient fine-tuning evaluation. LoRA fine- tuning achieves the best performance-compute trade-off, matching full fine-tuning performance while training only 1.4% of the model parameters. Mean success ± StdErr computed across 33 rollouts per approach on select Franka-Tabletop tas",
+    "bbox": [
+      251.04,
+      211.8,
+      562.92,
+      295.87
+    ],
+    "bbox_norm": [
+      0.4102,
+      0.2674,
+      0.9198,
+      0.3736
+    ],
+    "dpi": 300,
+    "area_frac": 0.054,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab02.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab02.png",
+    "page": 10,
+    "caption": "Table 2: Performance with quantized in- ference. 4-bit quantization matches the per- formance of bfloat16 inference (our default approach) while reducing the GPU memory footprint by more than half. Mean success ± StdErr computed across 8 representative BridgeData V2 tasks [ 6 ] and 80 rollouts per a",
+    "bbox": [
+      342.84,
+      474.74,
+      562.92,
+      560.4
+    ],
+    "bbox_norm": [
+      0.5602,
+      0.5994,
+      0.9198,
+      0.7076
+    ],
+    "dpi": 300,
+    "area_frac": 0.039,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab03.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab03.png",
+    "page": 21,
+    "caption": "Table 3: OpenVLA training data mixture using datasets from the Open X-Embodiment dataset [ 1 ], following [ 5 ] with a few additions.",
+    "bbox": [
+      201.86,
+      115.87,
+      410.14,
+      444.74
+    ],
+    "bbox_norm": [
+      0.3298,
+      0.1463,
+      0.6702,
+      0.5615
+    ],
+    "dpi": 300,
+    "area_frac": 0.141,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab04.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab04.png",
+    "page": 26,
+    "caption": "Table 4: Detailed BridgeData V2 WidowX evaluation results. We report performance on the full evaluation suite of 17 tasks (discussed in Section 5.1 ), including visual/motion/physical/semantic generalization tasks and language grounding tasks. Note that partial success (score of 0.5) is possible for",
+    "bbox": [
+      102.0,
+      223.23,
+      510.01,
+      386.74
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2819,
+      0.8333,
+      0.4883
+    ],
+    "dpi": 300,
+    "area_frac": 0.138,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab05.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab05.png",
+    "page": 26,
+    "caption": "Table 5: Full quantized inference results. Here we present the detailed version of the results shown in Table 2 .",
+    "bbox": [
+      102.0,
+      453.29,
+      510.02,
+      565.91
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.5723,
+      0.8334,
+      0.7145
+    ],
+    "dpi": 300,
+    "area_frac": 0.095,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab06.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab06.png",
+    "page": 28,
+    "caption": "Table 6: Detailed Google robot evaluation results. We report full evaluation results for Google robot evaluations discussed in Section 5.1 . Each generalist policy is evaluated with 60 rollouts across 12 tasks, covering both in-distribution and out-of-distribution (OOD) testing conditions. In the bo",
+    "bbox": [
+      102.0,
+      461.93,
+      510.01,
+      597.97
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.5832,
+      0.8333,
+      0.755
+    ],
+    "dpi": 300,
+    "area_frac": 0.115,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab07.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab07.png",
+    "page": 32,
+    "caption": "Table 7: Detailed data-efficient adaptation experiment results. Here we present the full breakdown of results summarized in Fig. 5 . We report the performance of Diffusion Policy trained from scratch on new robot tasks, as well as generalist policies fine-tuned on the same data. Each policy is teste",
+    "bbox": [
+      94.98,
+      157.15,
+      517.02,
+      299.04
+    ],
+    "bbox_norm": [
+      0.1552,
+      0.1984,
+      0.8448,
+      0.3776
+    ],
+    "dpi": 300,
+    "area_frac": 0.124,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p32.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab08.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab08.png",
+    "page": 32,
+    "caption": "Table 8: Detailed parameter-efficient fine-tuning experiment results. Here we present the detailed task performance results summarized in Table 1 .",
+    "bbox": [
+      94.98,
+      329.02,
+      517.02,
+      394.08
+    ],
+    "bbox_norm": [
+      0.1552,
+      0.4154,
+      0.8448,
+      0.4976
+    ],
+    "dpi": 300,
+    "area_frac": 0.057,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p32.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab09.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab09.png",
+    "page": 34,
+    "caption": "Table 9: BridgeData V2 WidowX ablation experiment results. We evaluate various methods on a subset of 8 representative tasks to assess the importance of different components of the OpenVLA model architecture and training scheme. OpenVLA-Bridge is a version of OpenVLA without OpenX training (it is tr",
+    "bbox": [
+      102.0,
+      142.97,
+      510.02,
+      243.75
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1805,
+      0.8334,
+      0.3078
+    ],
+    "dpi": 300,
+    "area_frac": 0.085,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p34.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab10.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab10.png",
+    "page": 35,
+    "caption": "Table 10: Fine-tuned vs. frozen vision encoder experiment results. We evaluate the performance of fine-tuning (“Fine-Tuned”) vs. freezing the vision encoder (“Frozen Vision”) in two VLA policies built on top of two different pretrained VLMs from the Prismatic VLMs [ 44 ] repository. BridgeData V2 Wi",
+    "bbox": [
+      102.0,
+      162.94,
+      510.0,
+      296.09
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2057,
+      0.8333,
+      0.3739
+    ],
+    "dpi": 300,
+    "area_frac": 0.112,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p35.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab11.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab11.png",
+    "page": 35,
+    "caption": "Table 11: Quantized inference experiment results with blocking control. We report the success rate and standard error of OpenVLA on various BridgeData V2 WidowX tasks with bfloat16 precision (the default approach), 8-bit quantization (int8), and 4-bit quantization (int4) at inference time. All avera",
+    "bbox": [
+      102.0,
+      598.81,
+      510.02,
+      712.06
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.7561,
+      0.8334,
+      0.8991
+    ],
+    "dpi": 300,
+    "area_frac": 0.095,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p35.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab12.png",
+    "raw": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/tab12.png",
+    "page": 37,
+    "caption": "Table 12: LIBERO simulation benchmark results. We report the success rate (SR) and standard error of each method for the four task suites in the LIBERO benchmark, averaged over three random seeds with 500 trials each. In addition, we show the ranking of each method within each task suite, where a ra",
+    "bbox": [
+      102.0,
+      579.92,
+      510.01,
+      629.35
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.7322,
+      0.8334,
+      0.7946
+    ],
+    "dpi": 300,
+    "area_frac": 0.042,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/_overlay/p37.png"
+  }
+]
