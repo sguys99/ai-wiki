@@ -1,0 +1,118 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/jo-2026-rt-2-vla-primer/fig01.png",
+    "raw": "raw/articles/jo-2026-rt-2-vla-primer-figures/fig01.png",
+    "caption": "RT-2 개요 Figure 1",
+    "source_url": "https://static.wikidocs.net/images/page/366370/gh_d9f997ae5df1.png",
+    "bytes": 489980,
+    "width": 1284,
+    "height": 694,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/jo-2026-rt-2-vla-primer/fig02.png",
+    "raw": "raw/articles/jo-2026-rt-2-vla-primer-figures/fig02.png",
+    "caption": "RT-2 일반화 시나리오 Figure 3",
+    "source_url": "https://static.wikidocs.net/images/page/366370/gh_eaa4c7dcdbe5.png",
+    "bytes": 395815,
+    "width": 1340,
+    "height": 368,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/jo-2026-rt-2-vla-primer/fig03.png",
+    "raw": "raw/articles/jo-2026-rt-2-vla-primer-figures/fig03.png",
+    "caption": "RT-2 일반화 결과 Figure 4",
+    "source_url": "https://static.wikidocs.net/images/page/366370/gh_a15b1a7c1115.png",
+    "bytes": 99538,
+    "width": 1328,
+    "height": 460,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/jo-2026-rt-2-vla-primer/fig04.png",
+    "raw": "raw/articles/jo-2026-rt-2-vla-primer-figures/fig04.png",
+    "caption": "RT-2 Language Table 결과 Table 1",
+    "source_url": "https://static.wikidocs.net/images/page/366370/gh_dd0674c7f94b.png",
+    "bytes": 267838,
+    "width": 1294,
+    "height": 348,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/jo-2026-rt-2-vla-primer/fig05.png",
+    "raw": "raw/articles/jo-2026-rt-2-vla-primer-figures/fig05.png",
+    "caption": "RT-2 emergent skill 예시 Figure 2",
+    "source_url": "https://static.wikidocs.net/images/page/366370/gh_0195eedf1401.png",
+    "bytes": 1169905,
+    "width": 1304,
+    "height": 1056,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/jo-2026-rt-2-vla-primer/fig06.png",
+    "raw": "raw/articles/jo-2026-rt-2-vla-primer-figures/fig06.png",
+    "caption": "RT-2 모델 크기와 co-fine-tuning Figure 6",
+    "source_url": "https://static.wikidocs.net/images/page/366370/gh_386e8dcaabe6.png",
+    "bytes": 134132,
+    "width": 1308,
+    "height": 564,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/jo-2026-rt-2-vla-primer/fig07.png",
+    "raw": "raw/articles/jo-2026-rt-2-vla-primer-figures/fig07.png",
+    "caption": "RT-2 Chain-of-Thought Figure 7",
+    "source_url": "https://static.wikidocs.net/images/page/366370/gh_de3eb7a22c4c.png",
+    "bytes": 815099,
+    "width": 1306,
+    "height": 752,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/jo-2026-rt-2-vla-primer/fig08.png",
+    "raw": "raw/articles/jo-2026-rt-2-vla-primer-figures/fig08.png",
+    "caption": "RT-2 emergent capability Figure 8",
+    "source_url": "https://static.wikidocs.net/images/page/366370/gh_477758977923.png",
+    "bytes": 861021,
+    "width": 1352,
+    "height": 774,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/jo-2026-rt-2-vla-primer/fig09.png",
+    "raw": "raw/articles/jo-2026-rt-2-vla-primer-figures/fig09.png",
+    "caption": "RT-2 emergent capability Table 3",
+    "source_url": "https://static.wikidocs.net/images/page/366370/gh_5723d755b058.png",
+    "bytes": 231179,
+    "width": 1248,
+    "height": 1008,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/jo-2026-rt-2-vla-primer/page-full.png",
+    "raw": "raw/articles/jo-2026-rt-2-vla-primer-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]
