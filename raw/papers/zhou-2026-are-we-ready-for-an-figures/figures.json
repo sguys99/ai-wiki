@@ -1,0 +1,463 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig01.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Typical Execution Workflows of Agent Memory.",
+    "bbox": [
+      313.04,
+      235.26,
+      562.92,
+      419.13
+    ],
+    "bbox_norm": [
+      0.5115,
+      0.2971,
+      0.9198,
+      0.5292
+    ],
+    "dpi": 300,
+    "area_frac": 0.095,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig02.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2: Memory Representation Methods.",
+    "bbox": [
+      312.26,
+      79.25,
+      563.92,
+      225.42
+    ],
+    "bbox_norm": [
+      0.5102,
+      0.1001,
+      0.9214,
+      0.2846
+    ],
+    "dpi": 300,
+    "area_frac": 0.076,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig03.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3: Memory Storage Methods.",
+    "bbox": [
+      49.13,
+      55.36,
+      562.88,
+      380.21
+    ],
+    "bbox_norm": [
+      0.0803,
+      0.0699,
+      0.9197,
+      0.4801
+    ],
+    "dpi": 300,
+    "area_frac": 0.344,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig04.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig04.png",
+    "page": 5,
+    "caption": "",
+    "bbox": [
+      36.84,
+      69.24,
+      305.88,
+      326.76
+    ],
+    "bbox_norm": [
+      0.0602,
+      0.0874,
+      0.4998,
+      0.4126
+    ],
+    "dpi": 300,
+    "area_frac": 0.143,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig05.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig05.png",
+    "page": 5,
+    "caption": "Figure 5: Memory Retrieval Methods.",
+    "bbox": [
+      312.32,
+      77.82,
+      560.5,
+      312.78
+    ],
+    "bbox_norm": [
+      0.5103,
+      0.0983,
+      0.9158,
+      0.3949
+    ],
+    "dpi": 300,
+    "area_frac": 0.12,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig06.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig06.png",
+    "page": 6,
+    "caption": "Figure 6: Memory Maintenance Methods. ▶ Generative Query Expansion . Unlike rigid function calling, this approach uses natural language generation to synthesize in- termediate clues or decompose complex intents before mapping them to the index (e.g., rewriting vague prompts into descriptive search s",
+    "bbox": [
+      311.95,
+      78.09,
+      562.02,
+      330.85
+    ],
+    "bbox_norm": [
+      0.5097,
+      0.0986,
+      0.9183,
+      0.4177
+    ],
+    "dpi": 300,
+    "area_frac": 0.13,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig07.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig07.png",
+    "page": 8,
+    "caption": "Figure 7: Effectiveness of Memory Systems over LoCoMo , MemoryAgentBench (LongMemEval) , LifeLongAgentBench (DB-Bench) .",
+    "bbox": [
+      53.62,
+      66.29,
+      561.63,
+      278.2
+    ],
+    "bbox_norm": [
+      0.0876,
+      0.0837,
+      0.9177,
+      0.3513
+    ],
+    "dpi": 300,
+    "area_frac": 0.222,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig08.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig08.png",
+    "page": 8,
+    "caption": "",
+    "bbox": [
+      300.0,
+      279.12,
+      575.16,
+      576.24
+    ],
+    "bbox_norm": [
+      0.4902,
+      0.3524,
+      0.9398,
+      0.7276
+    ],
+    "dpi": 300,
+    "area_frac": 0.169,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig09.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig09.png",
+    "page": 9,
+    "caption": "Figure 9: Ablation of LLM Backbones. experiments: (1) Update Robustness Comparison , which evaluates whether systems can absorb fact revisions and answer temporally grounded queries after updates; and (2) Backbone Robustness Abla- tion , which tests whether this behavior remains stable when only the",
+    "bbox": [
+      311.95,
+      42.25,
+      564.2,
+      148.26
+    ],
+    "bbox_norm": [
+      0.5097,
+      0.0534,
+      0.9219,
+      0.1872
+    ],
+    "dpi": 300,
+    "area_frac": 0.055,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig10.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig10.png",
+    "page": 10,
+    "caption": "Figure 10: (a) Context-length robustness on LongBench ; (b) Session-history growth on LongMemEval ; (c) Temporal evidence-distance drift on LoCoMo .",
+    "bbox": [
+      311.95,
+      77.68,
+      564.2,
+      259.27
+    ],
+    "bbox_norm": [
+      0.5097,
+      0.0981,
+      0.9219,
+      0.3274
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig11.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig11.png",
+    "page": 11,
+    "caption": "Figure 11: Operation Cost of Memory Systems.",
+    "bbox": [
+      43.8,
+      77.68,
+      300.04,
+      182.87
+    ],
+    "bbox_norm": [
+      0.0716,
+      0.0981,
+      0.4903,
+      0.2309
+    ],
+    "dpi": 300,
+    "area_frac": 0.056,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/zhou-2026-are-we-ready-for-an/fig12.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/fig12.png",
+    "page": 12,
+    "caption": "Figure 12: Ablation of Maintenance Strategies.",
+    "bbox": [
+      311.95,
+      172.46,
+      564.2,
+      277.79
+    ],
+    "bbox_norm": [
+      0.5097,
+      0.2177,
+      0.9219,
+      0.3507
+    ],
+    "dpi": 300,
+    "area_frac": 0.055,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/zhou-2026-are-we-ready-for-an/tab01.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/tab01.png",
+    "page": 4,
+    "caption": "Table 1: Taxonomy and Characteristics of Agent Memory Systems.",
+    "bbox": [
+      49.13,
+      55.36,
+      562.88,
+      256.74
+    ],
+    "bbox_norm": [
+      0.0803,
+      0.0699,
+      0.9197,
+      0.3242
+    ],
+    "dpi": 300,
+    "area_frac": 0.213,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p04.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/zhou-2026-are-we-ready-for-an/tab02.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/tab02.png",
+    "page": 9,
+    "caption": "Table 2: Robustness over Memory Update Settings.",
+    "bbox": [
+      50.68,
+      55.05,
+      563.55,
+      129.63
+    ],
+    "bbox_norm": [
+      0.0828,
+      0.0695,
+      0.9208,
+      0.1637
+    ],
+    "dpi": 300,
+    "area_frac": 0.079,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/zhou-2026-are-we-ready-for-an/tab03.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/tab03.png",
+    "page": 11,
+    "caption": "Table 3: Ablation of Representation and Storage Mechanisms.",
+    "bbox": [
+      311.95,
+      100.94,
+      562.59,
+      200.9
+    ],
+    "bbox_norm": [
+      0.5097,
+      0.1275,
+      0.9193,
+      0.2537
+    ],
+    "dpi": 300,
+    "area_frac": 0.052,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/zhou-2026-are-we-ready-for-an/tab04.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/tab04.png",
+    "page": 12,
+    "caption": "Table 4: Ablation of Memory Extraction Strategies.",
+    "bbox": [
+      51.82,
+      105.0,
+      563.55,
+      250.57
+    ],
+    "bbox_norm": [
+      0.0847,
+      0.1326,
+      0.9208,
+      0.3164
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/zhou-2026-are-we-ready-for-an/tab05.png",
+    "raw": "raw/papers/zhou-2026-are-we-ready-for-an-figures/tab05.png",
+    "page": 12,
+    "caption": "Table 5: Ablation of Retrieval and Routing Mechanisms.",
+    "bbox": [
+      315.5,
+      105.0,
+      563.55,
+      250.57
+    ],
+    "bbox_norm": [
+      0.5155,
+      0.1326,
+      0.9208,
+      0.3164
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhou-2026-are-we-ready-for-an-figures/_overlay/p12.png"
+  }
+]

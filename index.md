@@ -140,6 +140,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/wang-2026-cua-gym-scaling-verifiable-training-environments|CUA-Gym (Wang et al.)]] — 화면을 조작하는 에이전트를 RLVR로 훈련시킬 데이터를, 서로의 코드를 못 보는 Generator와 Discriminator에게 적대적으로 함께 만들게 한 홍콩대·Qwen Team 연구. 이 information barrier가 없으면 reward가 task 완수 대신 setup 절차를 검사하게 된다. 32,112개 튜플·110개 환경으로 학습한 A17B가 OSWorld-Verified 72.6%로 오픈소스 최고, 홀드아웃 WebArena에서도 오른다. 도식 7종 임베드 (2026, paper)
 - [[agents/xlang-ai-cua-gym|xlang-ai/CUA-Gym (repo)]] — 위 논문의 공식 코드. task 생성이 Claude Code 안에서 돌고, mock 웹 앱은 `/go?sid=` 세션 API로 상태를 주입·조회·리셋한다. 웹 task를 쓰려면 mock을 직접 배포해야 하며 모델 가중치는 아직 미공개 (2026, repo, Apache-2.0 / CC BY 4.0)
 - [[agents/xlangai-cua-gym-dataset|CUA-Gym Dataset (Hugging Face)]] — 같은 데이터의 배포판. parquet 메타데이터와 실행 번들 tar를 분리한 2층 구조이고, 현재 공개분은 10,910 task로 논문의 32,112개와 차이가 있다. 벤치마크로 쓰지 말라는 단서와 실행 샌드박싱 경고가 붙는다 (2026, repo, CC BY 4.0)
+- [[agents/zhou-2026-are-we-ready-for-an|Are We Ready For An Agent-Native Memory System?]] — LLM 에이전트 memory를 표현·저장/추출/검색·라우팅/유지 4모듈로 분해해 12개 시스템(MemGPT·Mem0·Zep·MemOS·MemoryOS·A-MEM 등)을 5개 workload·11개 데이터셋에서 통합 벤치마크한 SJTU·Tsinghua·MemTensor 연구. "만능 아키텍처는 없다"가 결론이다. graph 기반은 갱신·단일 사실 회상에 강하나 temporal reasoning에 약하고(Zep이 LLM Judge 48.0 최고), 고구조 시스템은 인덱스·질의 비용만 수십~수백 배일 뿐 정확도는 따라오지 않는다. 지역적 유지가 전역 재조직보다 비용 효율적이라는 지침도 함께 제시한다. taxonomy 표·모듈별 방법 도식·결과 등 도식 10종 임베드 (2026, paper)
 
 ## Evaluations (evaluations)
 
