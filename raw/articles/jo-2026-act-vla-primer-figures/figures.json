@@ -1,0 +1,130 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/jo-2026-act-vla-primer/fig01.png",
+    "raw": "raw/articles/jo-2026-act-vla-primer-figures/fig01.png",
+    "caption": "정밀 조작 예시",
+    "source_url": "https://static.wikidocs.net/images/page/366371/gh_4fb565d0c819.png",
+    "bytes": 245989,
+    "width": 685,
+    "height": 223,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/jo-2026-act-vla-primer/fig02.png",
+    "raw": "raw/articles/jo-2026-act-vla-primer-figures/fig02.png",
+    "caption": "ACT 입력 관측 구성",
+    "source_url": "https://static.wikidocs.net/images/page/366371/gh_311fd5f5e9c6.png",
+    "bytes": 85337,
+    "width": 797,
+    "height": 303,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/jo-2026-act-vla-primer/fig03.png",
+    "raw": "raw/articles/jo-2026-act-vla-primer-figures/fig03.png",
+    "caption": "Temporal Ensembling 구조",
+    "source_url": "https://static.wikidocs.net/images/page/366371/gh_acf94132ab25.png",
+    "bytes": 31838,
+    "width": 347,
+    "height": 283,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/jo-2026-act-vla-primer/fig04.png",
+    "raw": "raw/articles/jo-2026-act-vla-primer-figures/fig04.png",
+    "caption": "ACT 전체 구조와 CVAE",
+    "source_url": "https://static.wikidocs.net/images/page/366371/gh_18f10327d6a0.png",
+    "bytes": 107065,
+    "width": 1253,
+    "height": 337,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/jo-2026-act-vla-primer/fig05.png",
+    "raw": "raw/articles/jo-2026-act-vla-primer-figures/fig05.png",
+    "caption": "ACT Transformer 구조 개요",
+    "source_url": "https://static.wikidocs.net/images/page/366371/gh_b3ffa1e1155b.png",
+    "bytes": 93392,
+    "width": 1017,
+    "height": 273,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/jo-2026-act-vla-primer/fig06.png",
+    "raw": "raw/articles/jo-2026-act-vla-primer-figures/fig06.png",
+    "caption": "CVAE encoder 구조",
+    "source_url": "https://static.wikidocs.net/images/page/366371/gh_1a9e9701b774.png",
+    "bytes": 27453,
+    "width": 328,
+    "height": 268,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/jo-2026-act-vla-primer/fig07.png",
+    "raw": "raw/articles/jo-2026-act-vla-primer-figures/fig07.png",
+    "caption": "Policy network 구조",
+    "source_url": "https://static.wikidocs.net/images/page/366371/gh_5e9d5e7cc15e.png",
+    "bytes": 88667,
+    "width": 478,
+    "height": 286,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/jo-2026-act-vla-primer/fig08.png",
+    "raw": "raw/articles/jo-2026-act-vla-primer-figures/fig08.png",
+    "caption": "ResNet18 시각 특징 추출기",
+    "source_url": "https://static.wikidocs.net/images/page/366371/gh_900343e8217c.png",
+    "bytes": 1347741,
+    "width": 1448,
+    "height": 868,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/jo-2026-act-vla-primer/fig09.png",
+    "raw": "raw/articles/jo-2026-act-vla-primer-figures/fig09.png",
+    "caption": "Transformer decoder 구조",
+    "source_url": "https://static.wikidocs.net/images/page/366371/gh_b56ff8cd6850.png",
+    "bytes": 125151,
+    "width": 701,
+    "height": 273,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/jo-2026-act-vla-primer/fig10.png",
+    "raw": "raw/articles/jo-2026-act-vla-primer-figures/fig10.png",
+    "caption": "MLP 출력 헤드",
+    "source_url": "https://static.wikidocs.net/images/page/366371/gh_82fae2ff439b.png",
+    "bytes": 1062980,
+    "width": 1448,
+    "height": 858,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/jo-2026-act-vla-primer/page-full.png",
+    "raw": "raw/articles/jo-2026-act-vla-primer-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]
