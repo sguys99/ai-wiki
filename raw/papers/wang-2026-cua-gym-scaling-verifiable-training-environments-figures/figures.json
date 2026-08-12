@@ -1,0 +1,626 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/fig01.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/fig01.png",
+    "page": 3,
+    "caption": "Figure 1: Overview of the CUA-G YM data synthesis pipeline. From a task instruction and its grounded context, the Orchestrator provisions paired virtual machines and spawns two adversarially coupled agents. The Generator writes initial_setup.py and golden_patch.py to construct the initial and golden",
+    "bbox": [
+      64.87,
+      64.87,
+      530.36,
+      228.65
+    ],
+    "bbox_norm": [
+      0.109,
+      0.077,
+      0.891,
+      0.2716
+    ],
+    "dpi": 300,
+    "area_frac": 0.152,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/fig02.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Multi-agent pipeline for mock environment synthesis. From a target application seed, the Plan Agent drafts DESIGN.md and TODO.md specifying features, data schema, API protocol, and UI layout. The Dev Agent implements the single-page application from these specifications. The Web Agent then",
+    "bbox": [
+      64.87,
+      64.87,
+      530.34,
+      203.45
+    ],
+    "bbox_norm": [
+      0.109,
+      0.077,
+      0.8909,
+      0.2417
+    ],
+    "dpi": 300,
+    "area_frac": 0.129,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/fig03.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 3: State-injected environments in CUA-G YM -H UB . The same mail mock can be instantiated with distinct task-specific initial states: an empty inbox, a project-deadline state with pending coordination threads, and a high-volume backlog. Because all mutations and resets are scoped to a session",
+    "bbox": [
+      64.87,
+      64.87,
+      530.4,
+      183.06
+    ],
+    "bbox_norm": [
+      0.109,
+      0.0771,
+      0.891,
+      0.2174
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/fig04.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/fig04.png",
+    "page": 5,
+    "caption": "Figure 4: Training scaffold for long-horizon CUA trajectories. Instead of training on a single sliding window that drops older interaction state, trajectory slicing keeps recent multimodal observations active while collapsing earlier screenshots into deterministic placeholders. This preserves late-t",
+    "bbox": [
+      80.74,
+      483.46,
+      514.54,
+      635.27
+    ],
+    "bbox_norm": [
+      0.1356,
+      0.5743,
+      0.8644,
+      0.7546
+    ],
+    "dpi": 300,
+    "area_frac": 0.131,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/fig05.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/fig05.png",
+    "page": 6,
+    "caption": "Figure 5: Main results. ( a ) Per-domain success rates on OSWorld-Verified for CUA-G YM -A3B (red) versus its SFT-initialized base (gray, dashed); n denotes task count per domain, and trained per-domain scores use the run-4 checkpoint breakdown. Largest gains appear on libreoffice_calc , multi_apps ",
+    "bbox": [
+      64.87,
+      299.72,
+      530.41,
+      571.16
+    ],
+    "bbox_norm": [
+      0.109,
+      0.356,
+      0.891,
+      0.6784
+    ],
+    "dpi": 300,
+    "area_frac": 0.252,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/fig06.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/fig06.png",
+    "page": 7,
+    "caption": "Figure 6: CUA-G YM data and environments. (a) CUA-G YM spans 110 environments, including CUA- G YM -H UB web environments aligned with O*NET occupational categories [ 20 ]. (b) The 32,112 verified tuples cover application categories evenly (no category exceeds 21%) and are skewed toward harder (45%)",
+    "bbox": [
+      64.57,
+      64.87,
+      531.9,
+      363.22
+    ],
+    "bbox_norm": [
+      0.1085,
+      0.077,
+      0.8935,
+      0.4314
+    ],
+    "dpi": 300,
+    "area_frac": 0.278,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/fig07.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/fig07.png",
+    "page": 8,
+    "caption": "Figure 7: Data scaling of RL training on CUA-G YM . OSWorld-Verified score (left) and training reward (right) vs. RL training step on Qwen3.5-35B-A3B for three CUA-G YM training subsets (1.4K, 3K, 12K verified tuples), all initialized from the same SFT checkpoint (gray dashed line at 0.53). Faint li",
+    "bbox": [
+      64.87,
+      64.87,
+      530.42,
+      246.39
+    ],
+    "bbox_norm": [
+      0.109,
+      0.0771,
+      0.8911,
+      0.2927
+    ],
+    "dpi": 300,
+    "area_frac": 0.169,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/fig08.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/fig08.png",
+    "page": 8,
+    "caption": "Figure 8: Environment scaling under teacher dis- tillation. OSWorld-Verified score versus number of training environments at 100-step evaluation budgets. The broad setting (80 envs, 75 trajectories each) outperforms the narrow setting (10 envs, 300 each) despite using 4 × fewer trajectories per envi",
+    "bbox": [
+      300.71,
+      416.33,
+      530.41,
+      579.05
+    ],
+    "bbox_norm": [
+      0.5052,
+      0.4945,
+      0.891,
+      0.6878
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/fig09.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/fig09.png",
+    "page": 9,
+    "caption": "Figure 9: Emergent action batching during RL. Average tool calls per model step on CUA-G YM - A3B. The SFT-initialized policy emits approxi- mately one call per step; RL drives this to a sta- ble 1.4–1.9 band.",
+    "bbox": [
+      309.78,
+      162.13,
+      530.41,
+      372.39
+    ],
+    "bbox_norm": [
+      0.5204,
+      0.1926,
+      0.891,
+      0.4423
+    ],
+    "dpi": 300,
+    "area_frac": 0.093,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/fig10.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/fig10.png",
+    "page": 23,
+    "caption": "Figure 10: Landing-page screenshots of 32 representative released mock web applications, organized by thematic pair-of-rows: communication and meetings (rows 1–2), productivity and collaboration (rows 3–4), engineering and developer tooling (rows 5–6), and commerce / cloud / social (rows 7–8). Each ",
+    "bbox": [
+      64.87,
+      65.02,
+      531.01,
+      789.7
+    ],
+    "bbox_norm": [
+      0.109,
+      0.0772,
+      0.892,
+      0.938
+    ],
+    "dpi": 300,
+    "area_frac": 0.674,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab01.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab01.png",
+    "page": 17,
+    "caption": "Table 1: Access matrix enforcing the information barrier between Generator and Discriminator. The Discriminator’s only task-specific signal is the natural-language pair ( t , c ) and a state-only view of the two virtual machines, eliminating the reverse-engineering shortcut described in § 2.1 .",
+    "bbox": [
+      131.31,
+      65.27,
+      463.97,
+      205.02
+    ],
+    "bbox_norm": [
+      0.2206,
+      0.0775,
+      0.7794,
+      0.2435
+    ],
+    "dpi": 300,
+    "area_frac": 0.093,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab02.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab02.png",
+    "page": 21,
+    "caption": "Table 2: Mapping from O*NET SOC major groups to mock-application categories represented in CUA-",
+    "bbox": [
+      106.73,
+      482.19,
+      489.69,
+      721.99
+    ],
+    "bbox_norm": [
+      0.1793,
+      0.5728,
+      0.8226,
+      0.8576
+    ],
+    "dpi": 300,
+    "area_frac": 0.183,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab03.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab03.png",
+    "page": 22,
+    "caption": "Table 3: Full inventory of synthesized mock web applications, grouped by category.",
+    "bbox": [
+      95.44,
+      388.35,
+      500.78,
+      707.35
+    ],
+    "bbox_norm": [
+      0.1603,
+      0.4613,
+      0.8413,
+      0.8402
+    ],
+    "dpi": 300,
+    "area_frac": 0.258,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab04.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab04.png",
+    "page": 25,
+    "caption": "Table 4: Structural statistics across the 99 measured mock applications.",
+    "bbox": [
+      102.61,
+      65.27,
+      492.66,
+      128.22
+    ],
+    "bbox_norm": [
+      0.1724,
+      0.0775,
+      0.8276,
+      0.1523
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab05.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab05.png",
+    "page": 25,
+    "caption": "Table 5: Distribution of mock-application source-LOC. The bulk of mocks (91%) sit in the 2.5K–10K LOC band, consistent with the design constraint of a self-contained SPA implementing roughly 10–20 navigable views with a small typed in-memory schema. Outliers above 10K LOC (e.g., aws_console_mock , C",
+    "bbox": [
+      225.39,
+      149.7,
+      369.88,
+      242.55
+    ],
+    "bbox_norm": [
+      0.3786,
+      0.1778,
+      0.6214,
+      0.2881
+    ],
+    "dpi": 300,
+    "area_frac": 0.027,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab06.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab06.png",
+    "page": 31,
+    "caption": "Table 6: GSPO training hyperparameters for the runs reported in § 3.1 and § 4.1 .",
+    "bbox": [
+      96.14,
+      65.27,
+      500.63,
+      397.61
+    ],
+    "bbox_norm": [
+      0.1615,
+      0.0775,
+      0.841,
+      0.4723
+    ],
+    "dpi": 300,
+    "area_frac": 0.268,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p31.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab07.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab07.png",
+    "page": 32,
+    "caption": "Table 7: Top batched (length- ≥ 2) tool-call sequences per model step on the Qwen3.5-397B-A17B-scale RL checkpoint, aggregated over 1,105 test rollouts.",
+    "bbox": [
+      168.87,
+      559.35,
+      426.41,
+      712.01
+    ],
+    "bbox_norm": [
+      0.2837,
+      0.6644,
+      0.7163,
+      0.8457
+    ],
+    "dpi": 300,
+    "area_frac": 0.078,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p32.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab08.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab08.png",
+    "page": 33,
+    "caption": "Table 8: Solo rate of each tool action: counts of times the action appears alone in a model step versus its total occurrences across all batched and unbatched steps. Actions toward the bottom never appear alone, indicating they are exclusively batched as sub-components of larger gestures.",
+    "bbox": [
+      199.53,
+      207.9,
+      395.75,
+      370.48
+    ],
+    "bbox_norm": [
+      0.3352,
+      0.2469,
+      0.6648,
+      0.4401
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p33.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab09.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab09.png",
+    "page": 72,
+    "caption": "Table 9: Task counts per scenario in the released CUA-G YM corpus.",
+    "bbox": [
+      200.93,
+      230.6,
+      394.34,
+      363.29
+    ],
+    "bbox_norm": [
+      0.3375,
+      0.2739,
+      0.6625,
+      0.4315
+    ],
+    "dpi": 300,
+    "area_frac": 0.051,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p72.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab10.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab10.png",
+    "page": 72,
+    "caption": "Table 10 cross-tabulates task counts by domain and difficulty. Two patterns are visible. First, the corpus is skewed toward harder regimes overall: 44.6% of tasks are labeled hard and 37.7% medium , with only 17.7% easy —matching the design target articulated in § 2.2 . Second, this skew is most pro",
+    "bbox": [
+      172.36,
+      499.19,
+      422.92,
+      726.96
+    ],
+    "bbox_norm": [
+      0.2895,
+      0.5929,
+      0.7105,
+      0.8635
+    ],
+    "dpi": 300,
+    "area_frac": 0.114,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p72.png",
+    "duplicate_pages": [
+      72
+    ]
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab11.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab11.png",
+    "page": 73,
+    "caption": "Table 11: Top imperative verbs across the CUA-G YM task corpus, grouped by frequency band.",
+    "bbox": [
+      165.01,
+      162.11,
+      430.27,
+      274.88
+    ],
+    "bbox_norm": [
+      0.2772,
+      0.1926,
+      0.7228,
+      0.3265
+    ],
+    "dpi": 300,
+    "area_frac": 0.06,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p73.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab12.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab12.png",
+    "page": 73,
+    "caption": "Table 12: Top application pairs co-occurring in cross-app task instructions. Counts are per-pair (a four- way instruction increments all six pairs).",
+    "bbox": [
+      124.42,
+      410.41,
+      470.86,
+      503.26
+    ],
+    "bbox_norm": [
+      0.209,
+      0.4875,
+      0.791,
+      0.5978
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p73.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/wang-2026-cua-gym-scaling-verifiable-training-environments/tab13.png",
+    "raw": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/tab13.png",
+    "page": 74,
+    "caption": "Table 13: Word-length distribution of CUA-G YM task instructions.",
+    "bbox": [
+      183.95,
+      65.27,
+      411.33,
+      183.44
+    ],
+    "bbox_norm": [
+      0.309,
+      0.0775,
+      0.691,
+      0.2179
+    ],
+    "dpi": 300,
+    "area_frac": 0.054,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments-figures/_overlay/p74.png"
+  }
+]

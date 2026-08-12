@@ -137,6 +137,9 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/yongkyun-2026-cutting-llm-token-costs-with|Cutting LLM Token Costs with rtk, headroom, and caveman (Yongkyun)]] — headroom·rtk·caveman이 내세우는 60~90%대 토큰 절감을 저자 본인의 실제 Claude Code 세션(614M 토큰, $926 지출)에 재생해 본 실측 반론. 세 도구를 합쳐도 청구액의 3.7%만 줄어드는 이유를 분모·워크로드·가격 책정 세 겹의 간극으로 분해하고 "정직한 코드"와 "손상된 릴리스" 두 시나리오로 나눠 보안 리스크까지 짚는다. 도식 7종 임베드 (2026, article)
 - [[agents/rasmussen-2025-zep-a-temporal-knowledge-graph|Zep: Temporal Knowledge Graph for Agent Memory]] — 대화·업무 데이터를 bi-temporal knowledge graph로 합성하는 에이전트 메모리 서비스. 사실에 유효 기간을 붙여 모순되면 무효화하고 DMR·LongMemEval에서 MemGPT를 앞서며 context를 115k→1.6k로 줄여 latency를 약 90% 낮췄다. 결과 table 3종 임베드 (2025, paper)
 - [[agents/getzep-graphiti|getzep/graphiti (repo)]] — Zep 논문의 temporal context graph 엔진을 오픈소스로 공개한 구현체. 증분 갱신·hybrid 검색·bi-temporal fact invalidation을 `graphiti-core`로 배포하고 Neo4j·FalkorDB·Neptune 백엔드와 MCP 서버를 제공한다 (2025, repo, Apache-2.0)
+- [[agents/wang-2026-cua-gym-scaling-verifiable-training-environments|CUA-Gym (Wang et al.)]] — 화면을 조작하는 에이전트를 RLVR로 훈련시킬 데이터를, 서로의 코드를 못 보는 Generator와 Discriminator에게 적대적으로 함께 만들게 한 홍콩대·Qwen Team 연구. 이 information barrier가 없으면 reward가 task 완수 대신 setup 절차를 검사하게 된다. 32,112개 튜플·110개 환경으로 학습한 A17B가 OSWorld-Verified 72.6%로 오픈소스 최고, 홀드아웃 WebArena에서도 오른다. 도식 7종 임베드 (2026, paper)
+- [[agents/xlang-ai-cua-gym|xlang-ai/CUA-Gym (repo)]] — 위 논문의 공식 코드. task 생성이 Claude Code 안에서 돌고, mock 웹 앱은 `/go?sid=` 세션 API로 상태를 주입·조회·리셋한다. 웹 task를 쓰려면 mock을 직접 배포해야 하며 모델 가중치는 아직 미공개 (2026, repo, Apache-2.0 / CC BY 4.0)
+- [[agents/xlangai-cua-gym-dataset|CUA-Gym Dataset (Hugging Face)]] — 같은 데이터의 배포판. parquet 메타데이터와 실행 번들 tar를 분리한 2층 구조이고, 현재 공개분은 10,910 task로 논문의 32,112개와 차이가 있다. 벤치마크로 쓰지 말라는 단서와 실행 샌드박싱 경고가 붙는다 (2026, repo, CC BY 4.0)
 
 ## Evaluations (evaluations)
 
