@@ -1,0 +1,961 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig01.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: OSW ORLD is a first-of-its-kind scalable, real computer environment for multimodal agents, supporting task setup, execution-based evaluation, and interactive learning across operating systems. It can serve as a unified environment for evaluating open-ended computer tasks that involve arbit",
+    "bbox": [
+      89.96,
+      39.36,
+      527.96,
+      287.17
+    ],
+    "bbox_norm": [
+      0.147,
+      0.0497,
+      0.8627,
+      0.3626
+    ],
+    "dpi": 300,
+    "area_frac": 0.224,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig02.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Overview of the OSW ORLD environment infrastructure. The environment uses a configu- ration file for initializing tasks (highlighted in red), agent interaction, post-processing upon agent completion (highlighted in orange), retrieving files and information (highlighted in yellow), and exec",
+    "bbox": [
+      79.99,
+      26.34,
+      534.01,
+      248.48
+    ],
+    "bbox_norm": [
+      0.1307,
+      0.0333,
+      0.8726,
+      0.3137
+    ],
+    "dpi": 300,
+    "area_frac": 0.208,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig03.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig03.png",
+    "page": 8,
+    "caption": "Figure 3: Distribution of task instructions in OS- W ORLD based on the app domains and operation types to showcase the content intuitively.",
+    "bbox": [
+      296.94,
+      120.72,
+      504.78,
+      321.22
+    ],
+    "bbox_norm": [
+      0.4852,
+      0.1524,
+      0.8248,
+      0.4056
+    ],
+    "dpi": 300,
+    "area_frac": 0.086,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig04.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig04.png",
+    "page": 9,
+    "caption": "Figure 4: Human operation time and accuracy on OSW ORLD and WebArena.",
+    "bbox": [
+      296.94,
+      334.56,
+      517.02,
+      507.34
+    ],
+    "bbox_norm": [
+      0.4852,
+      0.4224,
+      0.8448,
+      0.6406
+    ],
+    "dpi": 300,
+    "area_frac": 0.078,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig05.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig05.png",
+    "page": 13,
+    "caption": "Figure 5: The effect of downsampling on the screenshot on performance with down-sampling ratios of 0.2, 0.4, 0.6 and 0.8 and run on a subset (10%) of examples.",
+    "bbox": [
+      106.61,
+      177.74,
+      315.06,
+      319.63
+    ],
+    "bbox_norm": [
+      0.1742,
+      0.2244,
+      0.5148,
+      0.4036
+    ],
+    "dpi": 300,
+    "area_frac": 0.061,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig06.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig06.png",
+    "page": 13,
+    "caption": "Figure 6: The length distribution of a11y tree as observation from sampled trajectories.",
+    "bbox": [
+      102.0,
+      435.0,
+      312.0,
+      537.0
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.5492,
+      0.5098,
+      0.678
+    ],
+    "dpi": 300,
+    "area_frac": 0.044,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig07.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig07.png",
+    "page": 13,
+    "caption": "Figure 7: The effect of length of history on perfor- mance with the history encoding length of 1, 2, 3, and > 3 and run on a subset (10%) of examples.",
+    "bbox": [
+      107.22,
+      557.9,
+      315.06,
+      699.79
+    ],
+    "bbox_norm": [
+      0.1752,
+      0.7044,
+      0.5148,
+      0.8836
+    ],
+    "dpi": 300,
+    "area_frac": 0.061,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig08.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig08.png",
+    "page": 14,
+    "caption": "Figure 8: Decline in performance due to window perturbations.",
+    "bbox": [
+      98.04,
+      178.54,
+      263.04,
+      311.71
+    ],
+    "bbox_norm": [
+      0.1602,
+      0.2254,
+      0.4298,
+      0.3936
+    ],
+    "dpi": 300,
+    "area_frac": 0.045,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig09.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig09.png",
+    "page": 15,
+    "caption": "Figure 9: The agent successfully understood the complex task instructions, extracted the subtitle file from the video, and generated a pure video without embedded subtitles.",
+    "bbox": [
+      76.89,
+      69.2,
+      612.0,
+      345.08
+    ],
+    "bbox_norm": [
+      0.1256,
+      0.0874,
+      1.0,
+      0.4357
+    ],
+    "dpi": 300,
+    "area_frac": 0.305,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig10.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig10.png",
+    "page": 16,
+    "caption": "Figure 10: Screenshots of the three examples mentioned in the quality analysis. The first line is an example of GPT-4V failing at a very simple task, the second line is one example where agents face more difficulty than humans, and the third line is one example that is more difficult for humans than",
+    "bbox": [
+      93.2,
+      53.9,
+      584.97,
+      295.37
+    ],
+    "bbox_norm": [
+      0.1523,
+      0.0681,
+      0.9558,
+      0.3729
+    ],
+    "dpi": 300,
+    "area_frac": 0.245,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig11.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig11.png",
+    "page": 24,
+    "caption": "Figure 11: Raw XML formatted accessibility tree visualization.",
+    "bbox": [
+      141.6,
+      66.0,
+      470.39,
+      236.93
+    ],
+    "bbox_norm": [
+      0.2314,
+      0.0833,
+      0.7686,
+      0.2992
+    ],
+    "dpi": 300,
+    "area_frac": 0.116,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig12.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig12.png",
+    "page": 24,
+    "caption": "Figure 12: Use Accerciser to visualize components in accessibility tree. This example shows the corresponding relationship between the “Print” button (which is a printer icon on the bar of the LibreOffice app as shown on the left) and the “Print” tree node (which is the “Print” of the Accerciser Acc",
+    "bbox": [
+      141.6,
+      254.51,
+      470.4,
+      444.71
+    ],
+    "bbox_norm": [
+      0.2314,
+      0.3214,
+      0.7686,
+      0.5615
+    ],
+    "dpi": 300,
+    "area_frac": 0.129,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig13.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig13.png",
+    "page": 29,
+    "caption": "Figure 13: Comparison of instructions distribution. All datasets are sampled to 300 to make a fair comparison. The hyper-parameters of t-SNE are randomly sampled for each plot.",
+    "bbox": [
+      107.43,
+      66.0,
+      504.56,
+      187.93
+    ],
+    "bbox_norm": [
+      0.1755,
+      0.0833,
+      0.8244,
+      0.2373
+    ],
+    "dpi": 300,
+    "area_frac": 0.1,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig14.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig14.png",
+    "page": 37,
+    "caption": "Figure 14: Showcase of example screenshots marked by SoM across different app GUI.",
+    "bbox": [
+      107.42,
+      314.33,
+      504.57,
+      469.88
+    ],
+    "bbox_norm": [
+      0.1755,
+      0.3969,
+      0.8245,
+      0.5933
+    ],
+    "dpi": 300,
+    "area_frac": 0.127,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p37.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig15.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig15.png",
+    "page": 38,
+    "caption": "Figure 15: Distribution of steps taken by the GPT-4V based agents across four different settings.",
+    "bbox": [
+      141.6,
+      66.0,
+      470.4,
+      289.2
+    ],
+    "bbox_norm": [
+      0.2314,
+      0.0833,
+      0.7686,
+      0.3652
+    ],
+    "dpi": 300,
+    "area_frac": 0.151,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p38.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig16.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig16.png",
+    "page": 40,
+    "caption": "Figure 16: The figure shows examples of usage errors in three types of software. The first row is for GIMP, the second row is for LibreOffice Calc, and the third row is for Google Chrome. Detailed code execution processes are provided below.",
+    "bbox": [
+      96.12,
+      66.0,
+      538.09,
+      522.79
+    ],
+    "bbox_norm": [
+      0.1571,
+      0.0833,
+      0.8792,
+      0.6601
+    ],
+    "dpi": 300,
+    "area_frac": 0.417,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p40.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig17.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig17.png",
+    "page": 44,
+    "caption": "Figure 17: The error shown in the figure is due to mouse click inaccuracies. The agent was supposed to click on the product category images of the Nike official store and follow the instructions to search for women’s jerseys priced over 60 dollars. However, due to a coordinate calculation error, it ",
+    "bbox": [
+      75.26,
+      85.24,
+      574.2,
+      330.83
+    ],
+    "bbox_norm": [
+      0.123,
+      0.1076,
+      0.9382,
+      0.4177
+    ],
+    "dpi": 300,
+    "area_frac": 0.253,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p44.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig18.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig18.png",
+    "page": 44,
+    "caption": "Figure 18: The error shown in the figure is due to inadequate handling of environmental noise. When the agent encounters web pages with cookies or pop-up ads, its unfamiliarity with the structure of such pages leads to attempts to interact directly with the web page without bypassing the cookies or ",
+    "bbox": [
+      91.58,
+      367.22,
+      556.97,
+      616.96
+    ],
+    "bbox_norm": [
+      0.1496,
+      0.4637,
+      0.9101,
+      0.779
+    ],
+    "dpi": 300,
+    "area_frac": 0.24,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p44.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig19.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig19.png",
+    "page": 45,
+    "caption": "Figure 19: Supplementary examples of tasks performed by humans and agents.",
+    "bbox": [
+      93.76,
+      89.13,
+      523.24,
+      324.15
+    ],
+    "bbox_norm": [
+      0.1532,
+      0.1125,
+      0.855,
+      0.4093
+    ],
+    "dpi": 300,
+    "area_frac": 0.208,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p45.png"
+  },
+  {
+    "id": "fig20",
+    "label": "Figure 20",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig20.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig20.png",
+    "page": 48,
+    "caption": "Figure 20: Screenshots of error example analysis of Claude-3 Opus.",
+    "bbox": [
+      97.46,
+      66.0,
+      526.92,
+      420.54
+    ],
+    "bbox_norm": [
+      0.1592,
+      0.0833,
+      0.861,
+      0.531
+    ],
+    "dpi": 300,
+    "area_frac": 0.314,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p48.png"
+  },
+  {
+    "id": "fig21",
+    "label": "Figure 21",
+    "kind": "figure",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/fig21.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/fig21.png",
+    "page": 51,
+    "caption": "Figure 21: A task showcase where the SoM-equipped agent tried to find interactive settings, while the screen-a11ytree-equipped agents directly modified the value in the setting.json file.",
+    "bbox": [
+      94.27,
+      66.0,
+      525.12,
+      503.97
+    ],
+    "bbox_norm": [
+      0.154,
+      0.0833,
+      0.858,
+      0.6363
+    ],
+    "dpi": 300,
+    "area_frac": 0.389,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p51.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab01.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab01.png",
+    "page": 5,
+    "caption": "Table 1: Examples of our annotated evaluation scripts, which involve retrieving data from configura- tion files, the environment, and the cloud, and executing functions to assess functional correctness and obtain results. The example-wise evaluation facilitates the diversity of tasks and reliable ev",
+    "bbox": [
+      103.88,
+      106.95,
+      508.14,
+      340.55
+    ],
+    "bbox_norm": [
+      0.1697,
+      0.135,
+      0.8303,
+      0.43
+    ],
+    "dpi": 300,
+    "area_frac": 0.195,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab02.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab02.png",
+    "page": 6,
+    "caption": "Table 2: Some examples of the mouse and keyboard ac- tions A in OSW ORLD . See App. A.3 for the complete list.",
+    "bbox": [
+      271.23,
+      104.68,
+      508.27,
+      230.12
+    ],
+    "bbox_norm": [
+      0.4432,
+      0.1322,
+      0.8305,
+      0.2906
+    ],
+    "dpi": 300,
+    "area_frac": 0.061,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab03.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab03.png",
+    "page": 8,
+    "caption": "Table 3: Key statistics in OSW ORLD . The “Supp. tasks” refers to the Windows- based tasks, that could only be used after activation due to copyright restrictions.",
+    "bbox": [
+      100.49,
+      189.62,
+      287.52,
+      322.01
+    ],
+    "bbox_norm": [
+      0.1642,
+      0.2394,
+      0.4698,
+      0.4066
+    ],
+    "dpi": 300,
+    "area_frac": 0.051,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab04.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab04.png",
+    "page": 9,
+    "caption": "Table 4: Comparison of different environments for benchmarking digital agents. The columns indicate: the number of task instances and templates (if applicable) where the task instantiated from templates through configurations (# Instances (# Templates)), whether they provide a controllable executabl",
+    "bbox": [
+      102.0,
+      160.56,
+      508.08,
+      348.71
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2027,
+      0.8302,
+      0.4403
+    ],
+    "dpi": 300,
+    "area_frac": 0.158,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab05.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab05.png",
+    "page": 10,
+    "caption": "Table 5: Success rates of baseline LLM and VLM agents on OSW ORLD , grouped by task categories: OS, Office (LibreOffice Calc, Impress, Writer), Daily (Chrome, VLC Player, Thunderbird), Profes- sional (VS Code and GIMP) and Workflow (tasks involving multiple apps), for gaining insights from interface",
+    "bbox": [
+      121.69,
+      102.02,
+      490.09,
+      428.43
+    ],
+    "bbox_norm": [
+      0.1988,
+      0.1288,
+      0.8008,
+      0.5409
+    ],
+    "dpi": 300,
+    "area_frac": 0.248,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab06.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab06.png",
+    "page": 12,
+    "caption": "Table 6: Success rate (SR) of GPT-4V (SoM) across different types of tasks.",
+    "bbox": [
+      327.92,
+      513.96,
+      507.72,
+      625.59
+    ],
+    "bbox_norm": [
+      0.5358,
+      0.6489,
+      0.8296,
+      0.7899
+    ],
+    "dpi": 300,
+    "area_frac": 0.041,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab07.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab07.png",
+    "page": 14,
+    "caption": "Table 7: Comparison of model performance and correlation across operating systems.",
+    "bbox": [
+      327.92,
+      509.93,
+      507.6,
+      563.85
+    ],
+    "bbox_norm": [
+      0.5358,
+      0.6439,
+      0.8294,
+      0.7119
+    ],
+    "dpi": 300,
+    "area_frac": 0.02,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab08.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab08.png",
+    "page": 26,
+    "caption": "Table 8: Action types and parameters defined in action space computer_13 , a variance we created for the potential reinforcement learning research based on our environment.",
+    "bbox": [
+      102.0,
+      105.9,
+      516.33,
+      336.48
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1337,
+      0.8437,
+      0.4248
+    ],
+    "dpi": 300,
+    "area_frac": 0.197,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab09.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab09.png",
+    "page": 27,
+    "caption": "Table 9: Task Example Resources",
+    "bbox": [
+      102.0,
+      199.41,
+      584.58,
+      701.97
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2518,
+      0.9552,
+      0.8863
+    ],
+    "dpi": 300,
+    "area_frac": 0.5,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p27.png",
+    "duplicate_pages": [
+      28
+    ]
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab10.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab10.png",
+    "page": 28,
+    "caption": "Table 10: Detailed statistics of OSW ORLD benchmark suite about examples number, average instruction tokens, infeasible instructions and integrated instructions.",
+    "bbox": [
+      103.81,
+      576.47,
+      508.19,
+      635.74
+    ],
+    "bbox_norm": [
+      0.1696,
+      0.7279,
+      0.8304,
+      0.8027
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab11.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab11.png",
+    "page": 28,
+    "caption": "Table 11: Detailed statistics of Windows analytic set benchmark suite. This set contains no infeasible tasks and integrated tasks.",
+    "bbox": [
+      202.78,
+      682.67,
+      409.22,
+      725.72
+    ],
+    "bbox_norm": [
+      0.3313,
+      0.862,
+      0.6687,
+      0.9163
+    ],
+    "dpi": 300,
+    "area_frac": 0.018,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab12.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab12.png",
+    "page": 31,
+    "caption": "Table 12: More Example Showcase from Each Subset of Domains.",
+    "bbox": [
+      102.0,
+      165.8,
+      544.5,
+      673.71
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2093,
+      0.8897,
+      0.8506
+    ],
+    "dpi": 300,
+    "area_frac": 0.464,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p31.png",
+    "duplicate_pages": [
+      32,
+      33,
+      34
+    ]
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab13.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab13.png",
+    "page": 36,
+    "caption": "Table 13: Criteria for keeping a11y tree nodes on Ubuntu and Windows platforms",
+    "bbox": [
+      103.86,
+      498.41,
+      508.13,
+      723.56
+    ],
+    "bbox_norm": [
+      0.1697,
+      0.6293,
+      0.8303,
+      0.9136
+    ],
+    "dpi": 300,
+    "area_frac": 0.188,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p36.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/xie-2024-osworld-benchmarking-multimodal-agents-for/tab14.png",
+    "raw": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/tab14.png",
+    "page": 39,
+    "caption": "Table 14: Detailed success rates of baseline LLM and VLM agents on OSW ORLD , divided by apps (domains): OS, LibreOffice Calc, LibreOffice Impress, LibreOffice Writer, Chrome, VLC Player, Thunderbird, VS Code, GIMP and Workflow which is comprehensive with multiple apps, for gaining insights from int",
+    "bbox": [
+      106.48,
+      117.01,
+      526.45,
+      478.35
+    ],
+    "bbox_norm": [
+      0.174,
+      0.1477,
+      0.8602,
+      0.604
+    ],
+    "dpi": 300,
+    "area_frac": 0.313,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xie-2024-osworld-benchmarking-multimodal-agents-for-figures/_overlay/p39.png"
+  }
+]
