@@ -1,0 +1,575 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig01.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: Aspire system overview. A coordinator spawns an actor agent (coding agent) per task, enabling parallel learning across tasks. Each actor refines and validates robot programs through iterative debugging with the robot execution engine , which exposes per-primitive multimodal traces for fail",
+    "bbox": [
+      56.36,
+      79.04,
+      541.36,
+      378.23
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9094,
+      0.4493
+    ],
+    "dpi": 300,
+    "area_frac": 0.29,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig02.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Robot execution engine. Trace-guided debugging on a BEHAVIOR-1K navigate-and-pick-up-radio task. (a) Ego-view keyframes and overlays show the robot locating the radio but failing to approach it. (b) The primitive trace localizes the failure to repeated PLANNING_ERROR s: candidate navigatio",
+    "bbox": [
+      56.36,
+      79.04,
+      538.88,
+      345.93
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.4109
+    ],
+    "dpi": 300,
+    "area_frac": 0.257,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p04.png",
+    "duplicate_pages": [
+      4
+    ]
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig03.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 3: Skill library. Aspire stores validated, agent-discovered repair knowledge as reusable in-context skills rather than a fixed set of human-written primitives. Top: representative entries show learned skills about localization disambiguation, motion-primitive construction, and navigation reco",
+    "bbox": [
+      33.25,
+      132.81,
+      545.86,
+      595.54
+    ],
+    "bbox_norm": [
+      0.0559,
+      0.1578,
+      0.917,
+      0.7074
+    ],
+    "dpi": 300,
+    "area_frac": 0.473,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig04.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig04.png",
+    "page": 8,
+    "caption": "Figure 4: Aspire improves over prior coding agents and end-to-end VLAs across three benchmark families. (a) Short-horizon manipulation on LIBERO-Pro; (b) contact-rich manipulation on Robosuite; (c) long-horizon mobile manipulation on BEHAVIOR-1K. Aspire evaluates one generated program per task acros",
+    "bbox": [
+      55.2,
+      79.04,
+      539.03,
+      537.65
+    ],
+    "bbox_norm": [
+      0.0927,
+      0.0939,
+      0.9055,
+      0.6386
+    ],
+    "dpi": 300,
+    "area_frac": 0.443,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig05.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig05.png",
+    "page": 9,
+    "caption": "Figure 5: Cross-task zero-shot transfer on LIBERO-Pro Long. Skills accumulated on LIBERO-90 improve zero-shot performance on held-out long-horizon tasks. Figure (a) compares the full 𝑁 =90 library with baselines. Figure (b) shows Pos/Task success as the size of the skill library increases. All succe",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      281.45
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3343
+    ],
+    "dpi": 300,
+    "area_frac": 0.195,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig06.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig06.png",
+    "page": 11,
+    "caption": "Figure 6: Robot execution engine and evolutionary search ablations on LIBERO-Pro. Figures (a) and (b) show stacked bars for position and task perturbations: the base system without the robot execution engine or evolutionary search, the gain from adding the robot execution engine, and the additional ",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      197.52
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.2346
+    ],
+    "dpi": 300,
+    "area_frac": 0.114,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig07.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig07.png",
+    "page": 17,
+    "caption": "Figure 7: Debugging skills. Representative skill-library entries that encode reusable debugging strategies, including failure signatures, when-to-apply guards, and validated repair sketches.",
+    "bbox": [
+      68.13,
+      171.63,
+      527.16,
+      331.56
+    ],
+    "bbox_norm": [
+      0.1144,
+      0.2039,
+      0.8856,
+      0.3938
+    ],
+    "dpi": 300,
+    "area_frac": 0.146,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig08.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig08.png",
+    "page": 17,
+    "caption": "Figure 8: Localization skills. Representative entries for grounding ambiguous language and object references into robust perception and localization routines.",
+    "bbox": [
+      68.13,
+      381.54,
+      527.16,
+      540.89
+    ],
+    "bbox_norm": [
+      0.1144,
+      0.4532,
+      0.8856,
+      0.6425
+    ],
+    "dpi": 300,
+    "area_frac": 0.146,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig09.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig09.png",
+    "page": 18,
+    "caption": "Figure 9: Navigation skills. Representative entries for recovering from motion-planning failures and selecting collision-aware approach poses.",
+    "bbox": [
+      68.13,
+      79.04,
+      527.16,
+      268.23
+    ],
+    "bbox_norm": [
+      0.1144,
+      0.0939,
+      0.8856,
+      0.3186
+    ],
+    "dpi": 300,
+    "area_frac": 0.173,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig10.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig10.png",
+    "page": 18,
+    "caption": "Figure 10: Strategic grasping skills. Representative entries for choosing task-appropriate grasp points and adapting grasp strategy to object geometry and scene context.",
+    "bbox": [
+      68.13,
+      318.22,
+      527.16,
+      492.43
+    ],
+    "bbox_norm": [
+      0.1144,
+      0.378,
+      0.8856,
+      0.5849
+    ],
+    "dpi": 300,
+    "area_frac": 0.16,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig11.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig11.png",
+    "page": 18,
+    "caption": "Figure 11: Motion-primitive skills. Representative entries for reusable low-level motion patterns, contact-rich alignment, and execution-time recovery.",
+    "bbox": [
+      68.13,
+      542.51,
+      527.16,
+      702.43
+    ],
+    "bbox_norm": [
+      0.1144,
+      0.6444,
+      0.8856,
+      0.8344
+    ],
+    "dpi": 300,
+    "area_frac": 0.146,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/fig12.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/fig12.png",
+    "page": 19,
+    "caption": "Figure 12: Scene-reasoning skills. Representative entries for reasoning over spatial relations, support surfaces, occlusions, and scene-level task constraints.",
+    "bbox": [
+      68.13,
+      79.04,
+      527.16,
+      238.97
+    ],
+    "bbox_norm": [
+      0.1144,
+      0.0939,
+      0.8856,
+      0.2838
+    ],
+    "dpi": 300,
+    "area_frac": 0.146,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/tab01.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/tab01.png",
+    "page": 10,
+    "caption": "Table 1: Real-robot cross-embodiment skill transfer. For each task, we compare real-robot debugging with and without retrieving a corresponding simulation-discovered skill from Aspire ’s library. Token counts are measured until the first successful real-robot program, or until the debugging budget i",
+    "bbox": [
+      47.57,
+      153.96,
+      548.89,
+      254.36
+    ],
+    "bbox_norm": [
+      0.0799,
+      0.1829,
+      0.9221,
+      0.3021
+    ],
+    "dpi": 300,
+    "area_frac": 0.1,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/tab02.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/tab02.png",
+    "page": 20,
+    "caption": "Table 2: LIBERO-Pro [Zhou et al., 2025] performance of OpenVLA [Kim et al., 2024], 𝜋 0 [Black et al., 2025], 𝜋 0 . 5 [Physical Intelligence et al., 2025], CaP-Agent0 [Fu et al., 2026], and Aspire on the libero-object , libero-goal , and libero-spatial benchmarks under initial position perturbations ",
+    "bbox": [
+      126.7,
+      245.5,
+      468.58,
+      350.74
+    ],
+    "bbox_norm": [
+      0.2128,
+      0.2916,
+      0.7872,
+      0.4166
+    ],
+    "dpi": 300,
+    "area_frac": 0.072,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/tab03.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/tab03.png",
+    "page": 20,
+    "caption": "Table 3: Robosuite [Zhu et al., 2020] performance of CaP-Agent0 [Fu et al., 2026] and Aspire on 7 manipulation tasks (100-trial held-out evaluation). Values are task success rates in [0 , 1]. Average is the unweighted mean across all 7 tasks.",
+    "bbox": [
+      160.68,
+      414.95,
+      429.84,
+      557.44
+    ],
+    "bbox_norm": [
+      0.2699,
+      0.4929,
+      0.7221,
+      0.6621
+    ],
+    "dpi": 300,
+    "area_frac": 0.077,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/tab04.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/tab04.png",
+    "page": 20,
+    "caption": "Table 4: BEHAVIOR-1K [Li et al., 2024] performance on two representative household tasks: Soda Can pick-up and Radio pick-up. Navigation and Task Success rates in [0 , 1] are reported separately; all numbers are on the 25-seed held-out evaluation (seeds 1–25); Aspire runs interactive block-by-block ",
+    "bbox": [
+      157.7,
+      631.31,
+      429.84,
+      719.92
+    ],
+    "bbox_norm": [
+      0.2649,
+      0.7499,
+      0.7221,
+      0.8551
+    ],
+    "dpi": 300,
+    "area_frac": 0.048,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/tab05.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/tab05.png",
+    "page": 21,
+    "caption": "Table 5: Macro-averaged zero-shot transfer of the Aspire skill library (accumulated on LIBERO-90) to LIBERO-Pro Long [Zhou et al., 2025]. 𝑁 denotes the number of LIBERO-90 tasks whose repair skills seed the library; no additional debugging is performed at test time. Columns report macro-averaged suc",
+    "bbox": [
+      151.65,
+      213.57,
+      443.63,
+      342.22
+    ],
+    "bbox_norm": [
+      0.2547,
+      0.2537,
+      0.7452,
+      0.4065
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/tab06.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/tab06.png",
+    "page": 21,
+    "caption": "Table 6: Zero-shot transfer of the Aspire skill library (accumulated on LIBERO-90) to LIBERO-Pro Long, per task and snapshot size 𝑁 (seeds 1–50, 𝑛 = 50). Pos : positional-perturbation variant. Task : semantic-perturbation variant.",
+    "bbox": [
+      135.75,
+      432.98,
+      459.53,
+      590.02
+    ],
+    "bbox_norm": [
+      0.228,
+      0.5143,
+      0.772,
+      0.7008
+    ],
+    "dpi": 300,
+    "area_frac": 0.101,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/tab07.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/tab07.png",
+    "page": 22,
+    "caption": "Table 7: LIBERO-Pro per-task ablation, Position perturbation (seeds 1–50, 𝑛 =50). Aspire w/o Robot execution engine and Evolutionary search : zero-shot Claude Opus 4.6 with 15 example programs. Aspire w/o Evolutionary search : Robot Execution Engine repaired program (Execution engine + skill library",
+    "bbox": [
+      134.84,
+      240.67,
+      460.44,
+      648.0
+    ],
+    "bbox_norm": [
+      0.2265,
+      0.2859,
+      0.7735,
+      0.7697
+    ],
+    "dpi": 300,
+    "area_frac": 0.265,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/tab08.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/tab08.png",
+    "page": 23,
+    "caption": "Table 8: LIBERO-Pro per-task ablation, Task perturbation (seeds 1–50, 𝑛 =50). Aspire w/o Robot execution engine and Evolutionary search : zero-shot Claude Opus 4.6 with 15 example programs. Aspire w/o Evolutionary search : Robot Execution Engine repaired program (Execution engine + skill library). E",
+    "bbox": [
+      134.84,
+      214.25,
+      460.44,
+      621.58
+    ],
+    "bbox_norm": [
+      0.2265,
+      0.2545,
+      0.7735,
+      0.7383
+    ],
+    "dpi": 300,
+    "area_frac": 0.265,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/lu-2026-aspire-agentic-skills-discovery-for/tab09.png",
+    "raw": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/tab09.png",
+    "page": 24,
+    "caption": "Table 9: Evolutionary search progress on selected LIBERO-Pro tasks. Each column shows the held-out success rate (seeds 1–50) of the best candidate at that iteration. Blank cells indicate search terminated early.",
+    "bbox": [
+      125.89,
+      160.05,
+      469.39,
+      268.5
+    ],
+    "bbox_norm": [
+      0.2115,
+      0.1901,
+      0.7885,
+      0.3189
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lu-2026-aspire-agentic-skills-discovery-for-figures/_overlay/p24.png"
+  }
+]

@@ -58,6 +58,9 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | reinforcement learning | 강화학습 | 강화 학습 | — | 표준 번역 허용, 붙여쓰기로 고정. 약어 RL 병용 가능 |
 | supervised learning | 지도학습 | 지도 학습 | — | 표준 번역 허용, 붙여쓰기로 고정 |
 | state | 상태 | — | — | 표준 번역 허용 |
+| embodiment | embodiment | — | embodiment는 로봇의 물리적 형상과 그에 딸린 제어 API 구성을 뜻한다 | cross-embodiment 전이가 이 도메인 반복 주제. "구현체"는 소프트웨어 reference implementation, "체화"는 embodied AI 표준 번역이라 둘 다 오탐이 커 지침만 둔다 |
+| code-as-policy | code-as-policy | 코드를 정책으로·코드 정책 | code-as-policy는 언어 모델이 perception·planning·control API를 조합해 실행 가능한 로봇 프로그램을 짜게 하는 제어 방식이다 | Liang 2023 이후 고유 기법명. CaP 약어 병용 가능 |
+| primitive | primitive | 원시 동작·기본 동작 | primitive는 로봇 API가 노출하는 최소 실행 단위를 가리킨다 | motion primitive·control primitive 등 복합어도 원어 |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 
