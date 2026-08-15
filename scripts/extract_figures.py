@@ -41,8 +41,10 @@ TYPES = ("papers", "reports", "books", "lectures")
 # 캡션은 라벨 + 번호 + 구분자로 시작한다. 구분자가 콜론·파이프거나 공백 2칸이면 캡션이
 # 확실하다. 공백 한 칸("Figure 1 Overview of …")인 venue 도 있는데, 그건 본문 속 참조와
 # 생김새가 같아서 폰트 크기를 추가로 본다 — split_captions() 참고.
+# 라벨 대소문자는 가리지 않는다 — LaTeX \textsc 캡션은 텍스트 레이어에 "FiguRe 1:" 처럼
+# 섞인 대소문자로 남는다 (lee 2026). 산문 오탐은 REF_RE 와 구분자·크기 검사가 막는다.
 CAPTION_RE = re.compile(
-    r"^\s*(Figure|Fig\.|FIGURE|Table|TABLE|그림|표)\s*"
+    r"^\s*((?i:Figure|Fig\.|Table)|그림|표)\s*"
     r"([A-Z]?\d+|[IVXLCDM]+)"
     r"(\s*[:|.∣–—-]|\s{2,}|\s|$)",
 )
