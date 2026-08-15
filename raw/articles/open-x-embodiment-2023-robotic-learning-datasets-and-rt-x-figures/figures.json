@@ -1,0 +1,94 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x/fig01.png",
+    "raw": "raw/articles/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x-figures/fig01.png",
+    "caption": "",
+    "source_url": "https://robotics-transformer-x.github.io/img/logos.png",
+    "bytes": 416608,
+    "width": 1609,
+    "height": 214,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x/fig02.png",
+    "raw": "raw/articles/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x-figures/fig02.png",
+    "caption": "",
+    "source_url": "https://robotics-transformer-x.github.io/img/overview.png",
+    "bytes": 1840009,
+    "width": 2040,
+    "height": 642,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x/fig03.png",
+    "raw": "raw/articles/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x-figures/fig03.png",
+    "caption": "",
+    "source_url": "https://robotics-transformer-x.github.io/img/data_analysis.png",
+    "bytes": 282628,
+    "width": 1460,
+    "height": 756,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x/fig04.png",
+    "raw": "raw/articles/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x-figures/fig04.png",
+    "caption": "",
+    "source_url": "https://robotics-transformer-x.github.io/img/algorithm.png",
+    "bytes": 287364,
+    "width": 1385,
+    "height": 343,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x/fig05.png",
+    "raw": "raw/articles/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x-figures/fig05.png",
+    "caption": "",
+    "source_url": "https://robotics-transformer-x.github.io/img/rt1x.png",
+    "bytes": 271878,
+    "width": 5752,
+    "height": 1160,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x/fig06.png",
+    "raw": "raw/articles/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x-figures/fig06.png",
+    "caption": "Image 1",
+    "source_url": "https://robotics-transformer-x.github.io/img/rt2x.png",
+    "bytes": 869892,
+    "width": 974,
+    "height": 890,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x/fig07.png",
+    "raw": "raw/articles/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x-figures/fig07.png",
+    "caption": "Image 2",
+    "source_url": "https://robotics-transformer-x.github.io/img/chart.png",
+    "bytes": 11876,
+    "width": 600,
+    "height": 371,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x/page-full.png",
+    "raw": "raw/articles/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]
