@@ -144,6 +144,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/xlang-ai-cua-gym|xlang-ai/CUA-Gym (repo)]] — 위 논문의 공식 코드. task 생성이 Claude Code 안에서 돌고, mock 웹 앱은 `/go?sid=` 세션 API로 상태를 주입·조회·리셋한다. 웹 task를 쓰려면 mock을 직접 배포해야 하며 모델 가중치는 아직 미공개 (2026, repo, Apache-2.0 / CC BY 4.0)
 - [[agents/xlangai-cua-gym-dataset|CUA-Gym Dataset (Hugging Face)]] — 같은 데이터의 배포판. parquet 메타데이터와 실행 번들 tar를 분리한 2층 구조이고, 현재 공개분은 10,910 task로 논문의 32,112개와 차이가 있다. 벤치마크로 쓰지 말라는 단서와 실행 샌드박싱 경고가 붙는다 (2026, repo, CC BY 4.0)
 - [[agents/zhou-2026-are-we-ready-for-an|Are We Ready For An Agent-Native Memory System?]] — LLM 에이전트 memory를 표현·저장/추출/검색·라우팅/유지 4모듈로 분해해 12개 시스템(MemGPT·Mem0·Zep·MemOS·MemoryOS·A-MEM 등)을 5개 workload·11개 데이터셋에서 통합 벤치마크한 SJTU·Tsinghua·MemTensor 연구. "만능 아키텍처는 없다"가 결론이다. graph 기반은 갱신·단일 사실 회상에 강하나 temporal reasoning에 약하고(Zep이 LLM Judge 48.0 최고), 고구조 시스템은 인덱스·질의 비용만 수십~수백 배일 뿐 정확도는 따라오지 않는다. 지역적 유지가 전역 재조직보다 비용 효율적이라는 지침도 함께 제시한다. taxonomy 표·모듈별 방법 도식·결과 등 도식 10종 임베드 (2026, paper)
+- [[agents/lee-2026-the-agent-loop-a-survey|The Agent Loop (Lee & Park)]] — 고려대·숭실대 2인이 쓴 59페이지 서베이. 분석 단위를 모델에서 agent loop로 옮기고 loop paradigm·mechanics·trained loop·스킬·harness·evaluation·safety 7개 기둥으로 문헌을 재배열한다. 루프가 가중치로 내재화되는 방향과 스킬·harness로 외부화되는 방향은 경쟁이 아니라 서로 바꿔 넣을 수 있는 같은 구조의 두 구현이고, 그래서 질문은 "루프를 누가 소유하는가"라는 것. 기둥마다 반증 결과를 함께 싣고 ALFWorld 50 task 통제 실험 네 건으로 직접 실측한다. 지배하는 루프는 없고(ReWOO는 싸지만 20%에서 막히고 ReAct가 효율 프런티어), 예산 손잡이는 어느 쪽도 큰 상수를 정당화하지 않으며, 스킬은 7B에 +12점이지만 14B에는 −4점 간섭이고, 오염 스킬은 정상 스킬과 경쟁할 땐 무력화되나 경쟁을 없애면 32B에서 62% hijack. 도식 14종 임베드 (2026, paper)
 
 ## Evaluations (evaluations)
 

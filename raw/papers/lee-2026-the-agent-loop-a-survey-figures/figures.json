@@ -1,0 +1,493 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/fig01.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/fig01.png",
+    "page": 4,
+    "caption": "FiguRe 1: The two directions of § 1 , read off the literature itself. Each band is one of five loop- and skill-related arXiv query groups, and its thickness is that group’s monthly count (3-month centred mean, 2022 to mid-2026). The chart is a diverging area: the hand-designed agent loop band is dra",
+    "bbox": [
+      59.48,
+      63.88,
+      535.8,
+      314.97
+    ],
+    "bbox_norm": [
+      0.0999,
+      0.0759,
+      0.9001,
+      0.3741
+    ],
+    "dpi": 300,
+    "area_frac": 0.239,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/fig02.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/fig02.png",
+    "page": 6,
+    "caption": "FiguRe 2: The perceive–reason–act cycle and the three terms this survey fixes: harness, policy, and skill library. The harness (dotted) is the code that realizes the loop: it runs the cycle, calls the policy (the model’s weights) at the reason step, mediates the environment and tools at the act step",
+    "bbox": [
+      145.48,
+      70.93,
+      449.8,
+      245.91
+    ],
+    "bbox_norm": [
+      0.2444,
+      0.0843,
+      0.7556,
+      0.2921
+    ],
+    "dpi": 300,
+    "area_frac": 0.106,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/fig03.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/fig03.png",
+    "page": 9,
+    "caption": "FiguRe 3: The field map of this survey. The agent loop (top) is organized into seven pillars, one per section: the control pillars (loop paradigms § 3 , loop mechanics § 4 ), the internalize direction (trained loops § 5 ), the externalize direction (skills § 6 , harnesses § 7 ), and the accountabili",
+    "bbox": [
+      70.2,
+      70.93,
+      522.15,
+      720.52
+    ],
+    "bbox_norm": [
+      0.1179,
+      0.0842,
+      0.8772,
+      0.8558
+    ],
+    "dpi": 300,
+    "area_frac": 0.586,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/fig04.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/fig04.png",
+    "page": 11,
+    "caption": "FiguRe 4: The loop zoo: six loop shapes drawn on one shared notation (legend at bottom). (a) Interleaved reasoning and action reasons before every step (Yao et al. 2022 ). (b) Plan-then-execute produces one up-front plan, executed without re-observation, optionally as a parallel DAG (Xu et al. 2023 ",
+    "bbox": [
+      70.59,
+      81.12,
+      523.38,
+      330.72
+    ],
+    "bbox_norm": [
+      0.1186,
+      0.0964,
+      0.8792,
+      0.3928
+    ],
+    "dpi": 300,
+    "area_frac": 0.226,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/fig05.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/fig05.png",
+    "page": 15,
+    "caption": "FiguRe 5: E3: a controlled budget sweep on the E2 suite (7B, 14B, 32B). (a) Raising the ReAct step cap K keeps buying success but concavely, so the marginal step pays less as K grows while tokens grow linearly; the two larger scales saturate together past K =20 . (b) Raising the Reflexion retry budg",
+    "bbox": [
+      64.87,
+      70.54,
+      530.41,
+      255.04
+    ],
+    "bbox_norm": [
+      0.109,
+      0.0838,
+      0.891,
+      0.3029
+    ],
+    "dpi": 300,
+    "area_frac": 0.171,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/fig06.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/fig06.png",
+    "page": 20,
+    "caption": "FiguRe 6: The skill lifecycle, loop-centric and adversarial. Procedural competence extracted from loop trajectories (left) passes through seven stages before it re-enters the loop as in-context procedure; representative systems sit above each stage and that stage’s documented failure mode sits below",
+    "bbox": [
+      74.06,
+      70.83,
+      524.58,
+      273.82
+    ],
+    "bbox_norm": [
+      0.1244,
+      0.0841,
+      0.8812,
+      0.3253
+    ],
+    "dpi": 300,
+    "area_frac": 0.182,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/fig07.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/fig07.png",
+    "page": 29,
+    "caption": "FiguRe 7: E2: the cost–accuracy frontier of three control loops across model scale. Each point is one (loop, scale) pair on a fixed 50-task ALFWorld suite; lines connect scales within a loop, scales are labelled directly (coincident points jointly, e.g. “14/32B”), and the x -axis is mean tokens per ",
+    "bbox": [
+      83.01,
+      70.54,
+      512.28,
+      293.92
+    ],
+    "bbox_norm": [
+      0.1394,
+      0.0838,
+      0.8606,
+      0.3491
+    ],
+    "dpi": 300,
+    "area_frac": 0.191,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/fig08.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/fig08.png",
+    "page": 30,
+    "caption": "FiguRe 8: Tokens per solved task (mean completion tokens divided by success rate) across loop and scale, derived from the E2 runs. Labels are success rates. ReWOO is cheapest per attempt everywhere but, because its success saturates near 12–20%, it is cheapest per success only up to 7B; past 14B the",
+    "bbox": [
+      96.61,
+      237.63,
+      498.67,
+      453.39
+    ],
+    "bbox_norm": [
+      0.1623,
+      0.2823,
+      0.8377,
+      0.5385
+    ],
+    "dpi": 300,
+    "area_frac": 0.173,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p30.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/fig09.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/fig09.png",
+    "page": 36,
+    "caption": "FiguRe 9: E5, the skill-poisoning probe, in three panels. (a) Mitigation: in a flat library where the redirect poison competes with five benign, task-relevant skills, the conflicting poison is overridden at every scale (32B fully clean, 0/45 ), there is no capability gradient, and benign task succes",
+    "bbox": [
+      53.53,
+      63.88,
+      535.8,
+      273.72
+    ],
+    "bbox_norm": [
+      0.0899,
+      0.0759,
+      0.9001,
+      0.3251
+    ],
+    "dpi": 300,
+    "area_frac": 0.202,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p36.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/tab01.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/tab01.png",
+    "page": 10,
+    "caption": "Table 1: How prior surveys cover the agent loop, scored across the seven axes this survey organizes around. A filled circle marks an organizing pillar with dedicated sections, a half circle a topic discussed but not made a pillar, and an empty circle a topic absent or mentioned only in passing; “Cov",
+    "bbox": [
+      102.91,
+      136.73,
+      492.36,
+      338.7
+    ],
+    "bbox_norm": [
+      0.1729,
+      0.1624,
+      0.8271,
+      0.4023
+    ],
+    "dpi": 300,
+    "area_frac": 0.157,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/tab02.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/tab02.png",
+    "page": 10,
+    "caption": "Table 2: The five loop paradigms as a design space. Each richer topology relaxes the reason-before-every-action default and buys capability only where its enabling assumption holds; where it fails, the added structure is paid for in the cost column and manifests as the failure mode. The whole sectio",
+    "bbox": [
+      83.29,
+      393.9,
+      500.08,
+      591.11
+    ],
+    "bbox_norm": [
+      0.1399,
+      0.4679,
+      0.8401,
+      0.7021
+    ],
+    "dpi": 300,
+    "area_frac": 0.164,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/tab03.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/tab03.png",
+    "page": 14,
+    "caption": "Table 3: The four loop-control mechanisms, each caught in one tension: the cheap, scalable, self-generated guard versus the costly, externally-grounded one. The recurring finding of this section is that the self-generated form is unreliable or gameable, so durable loops pay for the grounded form—and",
+    "bbox": [
+      103.35,
+      124.88,
+      492.16,
+      283.58
+    ],
+    "bbox_norm": [
+      0.1736,
+      0.1483,
+      0.8268,
+      0.3368
+    ],
+    "dpi": 300,
+    "area_frac": 0.123,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/tab04.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/tab04.png",
+    "page": 27,
+    "caption": "Table 4: Real-world agent frameworks and coding harnesses that define current practice (GitHub star counts verified via the GitHub API, 2026-07-10). These non-paper artifacts are increasingly where the loop and harness designs surveyed here are actually implemented; several of the highest-starred (O",
+    "bbox": [
+      105.51,
+      208.9,
+      491.29,
+      678.28
+    ],
+    "bbox_norm": [
+      0.1772,
+      0.2481,
+      0.8253,
+      0.8057
+    ],
+    "dpi": 300,
+    "area_frac": 0.361,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p27.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/tab05.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/tab05.png",
+    "page": 28,
+    "caption": "Table 5: Skill libraries, tool and skill registries, and prompt corpora (GitHub stars via API, 2026-07-10). The Agent Skills standard ( SKILL.md ), the Model Context Protocol registries, and the skills-as-methodology repositories standardize the externalized-competence half of the loop (§ 6 ); as wi",
+    "bbox": [
+      74.63,
+      124.88,
+      522.16,
+      366.32
+    ],
+    "bbox_norm": [
+      0.1254,
+      0.1483,
+      0.8772,
+      0.4351
+    ],
+    "dpi": 300,
+    "area_frac": 0.216,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/tab06.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/tab06.png",
+    "page": 30,
+    "caption": "Table 6: E2 results. Three control loops on a fixed 50-task ALFWorld valid_unseen suite (max 30 steps, greedy decoding) across five Qwen2.5-Instruct scales, harness and prompts held fixed. Each pair is success rate (%) and mean tokens per task; best success per scale in bold (the 1.5B row is a three",
+    "bbox": [
+      169.61,
+      131.23,
+      431.63,
+      234.99
+    ],
+    "bbox_norm": [
+      0.2849,
+      0.1559,
+      0.7251,
+      0.2791
+    ],
+    "dpi": 300,
+    "area_frac": 0.054,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p30.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/tab07.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/tab07.png",
+    "page": 31,
+    "caption": "Table 7: E4 skill ablation. An auto-distilled skill library (no human labels, distilled on valid_seen ) evaluated on the 50-task valid_unseen suite with the base model fixed across arms. “Steps” is mean environment steps, “Compl.” mean completion tokens per task, “Prompt” mean prompt tokens per task",
+    "bbox": [
+      144.61,
+      137.12,
+      446.51,
+      255.2
+    ],
+    "bbox_norm": [
+      0.2429,
+      0.1629,
+      0.7501,
+      0.3031
+    ],
+    "dpi": 300,
+    "area_frac": 0.071,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p31.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/tab08.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/tab08.png",
+    "page": 33,
+    "caption": "Table 8: Defense-in-depth for the loop. Each layer secures the loop against a different part of the injection-to-action threat, guarantees strictly less than it appears to, and leaves a residual risk that the next layer must cover—which is why the field is converging on their composition rather than",
+    "bbox": [
+      97.51,
+      112.93,
+      499.28,
+      282.59
+    ],
+    "bbox_norm": [
+      0.1638,
+      0.1341,
+      0.8387,
+      0.3357
+    ],
+    "dpi": 300,
+    "area_frac": 0.136,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p33.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/lee-2026-the-agent-loop-a-survey/tab09.png",
+    "raw": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/tab09.png",
+    "page": 35,
+    "caption": "Table 9: E5 skill-poisoning probe on the 45 eligible ALFWorld tasks (5 garbage-goal tasks excluded), base model fixed across arms, only the in-context library varies. put-ASR is the intent-level garbagecan-hijack sentinel (episodes emitting a garbage put at least once); the benign arm reads 0/45 at ",
+    "bbox": [
+      123.91,
+      196.61,
+      471.37,
+      397.4
+    ],
+    "bbox_norm": [
+      0.2082,
+      0.2335,
+      0.7919,
+      0.472
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lee-2026-the-agent-loop-a-survey-figures/_overlay/p35.png"
+  }
+]
