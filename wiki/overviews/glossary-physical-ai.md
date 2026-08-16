@@ -59,6 +59,9 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | supervised learning | 지도학습 | 지도 학습 | — | 표준 번역 허용, 붙여쓰기로 고정 |
 | state | 상태 | — | — | 표준 번역 허용 |
 | embodiment | embodiment | — | embodiment는 로봇의 물리적 형상과 그에 딸린 제어 API 구성을 뜻한다 | cross-embodiment 전이가 이 도메인 반복 주제. "구현체"는 소프트웨어 reference implementation, "체화"는 embodied AI 표준 번역이라 둘 다 오탐이 커 지침만 둔다 |
+| flow matching | flow matching | 플로우 매칭·흐름 정합 | flow matching은 noise에서 데이터로 향하는 vector field를 학습해 샘플을 만드는 생성 기법이다 | diffusion의 변형. π0 계열 VLA의 action 출력부 |
+| action chunking | action chunking | 행동 청킹·액션 청킹 | action chunking은 미래 여러 스텝의 action을 한 묶음으로 한 번에 예측하는 방식이다 | ACT에서 유래, π0는 H=50. action 행의 금지 표기와 짝을 이룬다 |
+| action expert | action expert | 행동 전문가 | action expert는 로봇 상태와 action 토큰만 처리하도록 분리한 별도 가중치 묶음이다 | π0 고유 구성. VLM backbone과 나란한 두 번째 전문가 |
 | code-as-policy | code-as-policy | 코드를 정책으로·코드 정책 | code-as-policy는 언어 모델이 perception·planning·control API를 조합해 실행 가능한 로봇 프로그램을 짜게 하는 제어 방식이다 | Liang 2023 이후 고유 기법명. CaP 약어 병용 가능 |
 | primitive | primitive | 원시 동작·기본 동작 | primitive는 로봇 API가 노출하는 최소 실행 단위를 가리킨다 | motion primitive·control primitive 등 복합어도 원어 |
 

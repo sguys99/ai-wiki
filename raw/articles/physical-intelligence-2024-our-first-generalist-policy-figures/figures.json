@@ -1,0 +1,22 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/physical-intelligence-2024-our-first-generalist-policy/fig01.png",
+    "raw": "raw/articles/physical-intelligence-2024-our-first-generalist-policy-figures/fig01.png",
+    "caption": "Illustration",
+    "source_url": "https://www.pi.website/_next/image?url=%2Fimages%2Frobots%2Frobot-2-lg.png&w=384&q=75",
+    "bytes": 9650,
+    "width": 262,
+    "height": 322,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/physical-intelligence-2024-our-first-generalist-policy/page-full.png",
+    "raw": "raw/articles/physical-intelligence-2024-our-first-generalist-policy-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]
