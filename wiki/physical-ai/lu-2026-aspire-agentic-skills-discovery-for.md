@@ -349,6 +349,7 @@ multimodal trace를 해석하고 수정을 짜고 탐색 후보를 내는 일은
 
 ## 관련 페이지 (Related Pages)
 
+- [[physical-ai/black-2025-pi05-a-vision-language-action-model-with]] — LIBERO-Pro 베이스라인 π₀.₅의 원 논문. 저쪽은 실기기 가정 환경에서 강하고 여기서는 교란 조건에 무너진다
 - [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]] — 이 논문이 베이스라인으로 쓴 end-to-end VLA. LIBERO-Pro 교란 조건에서 전 항목 0.00을 기록해, 학습된 policy와 생성된 프로그램의 강건성 격차를 보여주는 대조군이다
 - [[physical-ai/brohan-2023-rt-2-vision-language-action-models-transfer-web]] — VLA 노선의 원형. ASPIRE는 같은 과제를 정반대 방식(가중치가 아닌 코드)으로 푼다
 - [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics]] — VLA 종합 서베이. ASPIRE가 대비 대상으로 삼는 계보 전체를 정리한다

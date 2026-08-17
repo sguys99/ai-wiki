@@ -64,6 +64,10 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | action expert | action expert | 행동 전문가 | action expert는 로봇 상태와 action 토큰만 처리하도록 분리한 별도 가중치 묶음이다 | π0 고유 구성. VLM backbone과 나란한 두 번째 전문가 |
 | code-as-policy | code-as-policy | 코드를 정책으로·코드 정책 | code-as-policy는 언어 모델이 perception·planning·control API를 조합해 실행 가능한 로봇 프로그램을 짜게 하는 제어 방식이다 | Liang 2023 이후 고유 기법명. CaP 약어 병용 가능 |
 | primitive | primitive | 원시 동작·기본 동작 | primitive는 로봇 API가 노출하는 최소 실행 단위를 가리킨다 | motion primitive·control primitive 등 복합어도 원어 |
+| co-training | co-training | 공동 학습·병행 학습 | co-training은 성격이 다른 여러 데이터 원천을 하나의 학습 mixture에 함께 넣는 방식이다 | π0.5 레시피의 축. glossary-llms의 co-fine-tuning(RT-2)과 구분 — 이쪽은 웹 데이터에 한정하지 않는다 |
+| subtask | subtask | — | subtask는 high-level 추론이 텍스트로 내놓는 중간 단계 명령이다 | "하위 과제·부분 과제"는 기존 페이지에서 일반어로 쓰여 기계 검사에서 뺐다. 지침만 |
+| verbal instruction | verbal instruction | 구두 지시 | verbal instruction은 사람이 학습된 저수준 policy에 말로 subtask를 불러 과제를 끝내게 하며 모은 데이터다 | π0.5 고유 데이터 슬라이스(VI). 일반어 "언어 지시"는 지시 따르기 평가 문맥에서 널리 쓰여 금지 목록에서 뺐다 |
+| FAST tokenizer | FAST tokenizer | — | FAST tokenizer는 action chunk를 압축해 이산 토큰으로 적는 방식이다 | Pertsch 2025. π0-FAST·π0.5 pre-training이 이걸 쓴다. 약어 FAST 단독 병용 가능 |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 

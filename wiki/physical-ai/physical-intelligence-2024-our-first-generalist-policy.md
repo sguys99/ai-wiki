@@ -88,6 +88,7 @@ generalist robot policy가 아직 초기 단계라고 명시하면서 남은 연
 ## 관련 페이지 (Related Pages)
 
 - [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]] — 같은 내용의 논문. 아키텍처·학습 레시피·전체 실험이 여기 있다
+- [[physical-ai/physical-intelligence-2025-a-vla-with-open-world]] — 반년 뒤 같은 자리에 올라온 π0.5 발표문. 강조점이 action 표현에서 학습 데이터 구성으로 옮겨 간다
 - [[physical-ai/physical-intelligence-openpi]] — 같은 팀의 공개 구현. 블로그가 예고한 후속 모델(π0.5)까지 담겨 있다
 - [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]] — 블로그가 직접 링크한 비교 대상 중 하나
 - [[physical-ai/sa-2026-vision-language-action-models-for]] — 블로그가 향후 방향으로 꼽은 항목들이 실제로 어떻게 전개됐는지 보여 주는 서베이

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/physical-intelligence-2025-a-vla-with-open-world/fig01.jpg",
+    "raw": "raw/articles/physical-intelligence-2025-a-vla-with-open-world-figures/fig01.jpg",
+    "caption": "verbal instruction",
+    "source_url": "https://www.pi.website/_next/image?url=%2Fimages%2Fpi05%2Fverbal_instruction.jpg&w=828&q=75",
+    "bytes": 20524,
+    "width": 400,
+    "height": 300,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/physical-intelligence-2025-a-vla-with-open-world/fig02.jpg",
+    "raw": "raw/articles/physical-intelligence-2025-a-vla-with-open-world-figures/fig02.jpg",
+    "caption": "subtask command",
+    "source_url": "https://www.pi.website/_next/image?url=%2Fimages%2Fpi05%2Fsubtask_command.jpg&w=828&q=75",
+    "bytes": 16127,
+    "width": 400,
+    "height": 237,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/physical-intelligence-2025-a-vla-with-open-world/fig03.jpg",
+    "raw": "raw/articles/physical-intelligence-2025-a-vla-with-open-world-figures/fig03.jpg",
+    "caption": "object detection",
+    "source_url": "https://www.pi.website/_next/image?url=%2Fimages%2Fpi05%2Fobject_detection.jpg&w=828&q=75",
+    "bytes": 10671,
+    "width": 400,
+    "height": 301,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/physical-intelligence-2025-a-vla-with-open-world/fig04.jpg",
+    "raw": "raw/articles/physical-intelligence-2025-a-vla-with-open-world-figures/fig04.jpg",
+    "caption": "Multimodal Web Data",
+    "source_url": "https://www.pi.website/_next/image?url=%2Fimages%2Fpi05%2Fmultimodal_web_data.jpg&w=828&q=75",
+    "bytes": 19325,
+    "width": 400,
+    "height": 286,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/physical-intelligence-2025-a-vla-with-open-world/page-full.png",
+    "raw": "raw/articles/physical-intelligence-2025-a-vla-with-open-world-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]

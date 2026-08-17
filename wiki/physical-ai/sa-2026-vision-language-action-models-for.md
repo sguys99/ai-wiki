@@ -195,6 +195,7 @@ flow-matching head가 가장 강한 두 팔 결과를 낸다. π0가 shirt foldi
 
 ## 관련 페이지 (Related Pages)
 
+- [[physical-ai/black-2025-pi05-a-vision-language-action-model-with]] — 서베이가 hierarchical flow 대표로 꼽는 π0.5의 원 논문. 지시 따르기 94% / 과제 성공 83%의 출처
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] — GR00T N1. 이 서베이가 open-weight dual-system 대표로 인용하며 N1.7 revision은 accelerator별 지연(31~173ms)을 공개해 "on-robot 두 팔 추론이 지금 얼마인가"의 기준점이 된다. Table III·XIV·XII의 한 행.
 - [[physical-ai/hou-2026-world-model-for-robot-learning]] — World Model for Robot Learning 서베이. 이 서베이 X-D장(world model as data engine·future prediction)과 겹친다. 병목이 "그럴듯한 미래 → action에 aligned된 실행 가능한 미래"로 옮겨갔다는 진단이, 여기 compounding-error·haptic 미접지 한계와 맞물린다.
 - [[physical-ai/li-2025-a-comprehensive-survey-on-world]] — Embodied AI world model 서베이. 로보틱스·자율주행·범용 비디오를 한 좌표계에 올린 축(결합도·시간 전개·장면 형식)이, 이 서베이의 결합도 축과 상보적이다.

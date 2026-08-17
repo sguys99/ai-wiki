@@ -280,6 +280,7 @@ action 표현은 다른 두 논문에서 가져왔다. action chunking은 [[phys
 
 ## 관련 페이지 (Related Pages)
 
+- [[physical-ai/black-2025-pi05-a-vision-language-action-model-with]] — 반년 뒤 후속. 이 페이지가 한계로 남긴 "데이터 구성 원칙 부재"에 ablation으로 답한다
 - [[physical-ai/physical-intelligence-2024-our-first-generalist-policy]] — 같은 저자진의 공식 블로그 해설. 과제별 raw 점수와 무편집 데모 영상이 여기 있다
 - [[physical-ai/physical-intelligence-openpi]] — 레퍼런스 구현. base checkpoint와 fine-tuning 파이프라인 공개
 - [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]] — 주 baseline이자 직전 세대 오픈소스 VLA. 이산 토큰 대 flow matching의 대조

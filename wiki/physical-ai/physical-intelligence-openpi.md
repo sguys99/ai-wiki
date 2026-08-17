@@ -89,13 +89,14 @@ config에서는 로봇 환경과 모델 사이의 입출력 매핑, 원본 데�
 
 physical-ai에서 이 페이지는 "논문을 실제로 돌려 보는 경로"에 해당한다. 오픈소스 VLA라는 자리는 [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model|OpenVLA]]가 앞서 차지했지만, openpi는 base 가중치를 여러 변형으로 공개하고 플랫폼별 expert checkpoint까지 붙인다. 여기가 다르다. 두 저장소를 나란히 보면 오픈소스 VLA의 공개 범위가 어디까지 넓어졌는지 알 수 있다.
 
-논문에 없는 정보도 담고 있다. π0-FAST와 π0.5는 원 논문 이후에 나온 모델이라 [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model|π0 논문]] 쪽에는 없다. 이 계열의 전체 전개는 [[physical-ai/sa-2026-vision-language-action-models-for|VLA 서베이]]가 π0 → π0.5 → π*0.6 → π0.7 순으로 정리한다. 서베이가 말하는 Knowledge Insulation이 여기 π0.5 설명에 그대로 나온다.
+논문에 없는 정보도 담고 있다. π0-FAST와 π0.5는 원 논문 이후에 나온 모델이라 [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model|π0 논문]] 쪽에는 없다. π0.5는 이제 [[physical-ai/black-2025-pi05-a-vision-language-action-model-with|자체 논문 페이지]]가 있는데, 학습 방식 설명이 서로 다르다. 논문은 FAST 이산 토큰 pre-training 뒤에 action expert를 붙이는 2단 레시피를 쓰고 이 저장소는 knowledge insulation을 든다. 둘을 함께 읽는 편이 안전하다. 이 계열의 전체 전개는 [[physical-ai/sa-2026-vision-language-action-models-for|VLA 서베이]]가 π0 → π0.5 → π*0.6 → π0.7 순으로 정리한다. 서베이가 말하는 Knowledge Insulation이 여기 π0.5 설명에 그대로 나온다.
 
 하드웨어 요구사항 표는 [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation|GR00T N1]]처럼 배포를 다루는 페이지와 함께 읽을 만하다. VLA를 실제로 돌릴 때 드는 비용의 실측치라서다.
 
 ## 관련 페이지 (Related Pages)
 
 - [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]] — 이 저장소가 구현하는 모델의 원 논문
+- [[physical-ai/black-2025-pi05-a-vision-language-action-model-with]] — checkpoint 3종 중 π0.5의 원 논문. 저장소 설명과 학습 방식 서술이 갈린다
 - [[physical-ai/physical-intelligence-2024-our-first-generalist-policy]] — 같은 팀의 공식 블로그 해설
 - [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]] — 오픈소스 VLA라는 자리가 겹치는 선행 저장소
 - [[physical-ai/sa-2026-vision-language-action-models-for]] — π0-FAST·π0.5를 포함한 π 계열 전체 계보

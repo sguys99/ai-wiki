@@ -1,0 +1,488 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig01.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig01.png",
+    "page": 1,
+    "caption": "Fig. 1: The π 0 . 5 model transfers knowledge from a heterogeneous range of data sources, including other robots, high-level subtask prediction, verbal instructions, and data from the web, in order to enable broad generalization across environments and objects. π 0 . 5 can control a mobile manipulat",
+    "bbox": [
+      42.96,
+      203.23,
+      569.03,
+      504.39
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.2566,
+      0.9298,
+      0.6369
+    ],
+    "dpi": 300,
+    "area_frac": 0.327,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig02.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig02.png",
+    "page": 2,
+    "caption": "Fig. 2: π 0 . 5 cleaning a new kitchen. The robot is tasked with cleaning a kitchen in a home that was not in the training data. The model is given general tasks (close the cabinets, put the items in the drawer, wipe the spill, and put the dishes in the sink), which it performs by both predicting su",
+    "bbox": [
+      6.32,
+      48.01,
+      569.04,
+      152.36
+    ],
+    "bbox_norm": [
+      0.0103,
+      0.0606,
+      0.9298,
+      0.1924
+    ],
+    "dpi": 300,
+    "area_frac": 0.121,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig03.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig03.png",
+    "page": 4,
+    "caption": "Fig. 3: Model overview. π 0 . 5 is trained in two stages. First, a pre-training stage combines all of the different data sources to produce an initial VLA with discrete tokens. This stage uses data from diverse robotic platforms, high-level semantic action prediction, and data from the web. Robotic ",
+    "bbox": [
+      42.96,
+      48.0,
+      569.04,
+      273.73
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.9298,
+      0.3456
+    ],
+    "dpi": 300,
+    "area_frac": 0.245,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig04.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig04.png",
+    "page": 6,
+    "caption": "Fig. 4: Examples from pre-training and post-training tasks. π 0 . 5 is pre-trained on data from mobile manipulators ( MM ), non-mobile robots in diverse environments ( ME ), and cross-embodiment data collected under laboratory conditions ( CE ), as well as high-level subtask prediction ( HL ), and m",
+    "bbox": [
+      32.44,
+      49.06,
+      568.48,
+      366.47
+    ],
+    "bbox_norm": [
+      0.053,
+      0.0619,
+      0.9289,
+      0.4627
+    ],
+    "dpi": 300,
+    "area_frac": 0.351,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig05.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig05.png",
+    "page": 7,
+    "caption": "Fig. 5: Robot system overview. We use two mobile manipulator platforms – each has four cameras (forward, backward, and both wrists), two 6 DoF arms with parallel jaw grippers, a mobile base, and a torso lift mechanism. The π 0 . 5 model controls the joints and grippers of each arm, base velocity, an",
+    "bbox": [
+      305.97,
+      48.0,
+      569.02,
+      210.72
+    ],
+    "bbox_norm": [
+      0.5,
+      0.0606,
+      0.9298,
+      0.2661
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig06.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig06.png",
+    "page": 8,
+    "caption": "Fig. 6: Evaluation environments. We evaluate π 0 . 5 in entirely new kitchens and bedrooms that were not seen during training, with novel objects, backgrounds, and layouts. We use a set of mock rooms for controlled, reproducible quantitative comparisons (left) and real homes for a realistic final ev",
+    "bbox": [
+      41.5,
+      48.0,
+      582.6,
+      207.69
+    ],
+    "bbox_norm": [
+      0.0678,
+      0.0606,
+      0.952,
+      0.2622
+    ],
+    "dpi": 300,
+    "area_frac": 0.178,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig07.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig07.png",
+    "page": 8,
+    "caption": "Fig. 7: Evaluation in real homes. We evaluated π 0 . 5 in three kitchens and three bedrooms in real homes that were not seen during training. We evaluate the tasks ‘items in drawer’, ‘laundry basket’, and ‘dishes in sink,’ and find π 0 . 5 to be successful at these tasks in these completely new, rea",
+    "bbox": [
+      42.96,
+      231.55,
+      569.03,
+      415.77
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.2924,
+      0.9298,
+      0.525
+    ],
+    "dpi": 300,
+    "area_frac": 0.2,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig08.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig08.png",
+    "page": 9,
+    "caption": "Fig. 8: Evaluating performance with different numbers of locations. Performance over the four test tasks — “dishes in sink”, “items in drawer”, “laundry basket”, “make bed” — improves with more training environments. The dashed green line and green bar show a baseline model that includes the test ho",
+    "bbox": [
+      42.96,
+      48.0,
+      306.02,
+      213.89
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.5,
+      0.2701
+    ],
+    "dpi": 300,
+    "area_frac": 0.09,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig09.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig09.png",
+    "page": 9,
+    "caption": "Fig. 9: Evaluating language following with different numbers of training locations. We evaluate language following rate and success rate for picking up user-indicated items and placing them into drawers or sinks, averaged over seen object categories (“in-distribution”) or unseen categories (“out-of-",
+    "bbox": [
+      305.97,
+      48.0,
+      569.03,
+      171.45
+    ],
+    "bbox_norm": [
+      0.5,
+      0.0606,
+      0.9298,
+      0.2165
+    ],
+    "dpi": 300,
+    "area_frac": 0.067,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig10.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig10.png",
+    "page": 10,
+    "caption": "Fig. 10: Training recipe ablations, mock homes. We evaluate variants of our model that exclude different parts of the training mixture on all four test tasks (10 trials per policy and task). Including cross-embodiment data, both in diverse environments (ME) and for diverse tasks in laboratory settin",
+    "bbox": [
+      55.51,
+      48.0,
+      293.46,
+      191.8
+    ],
+    "bbox_norm": [
+      0.0907,
+      0.0606,
+      0.4795,
+      0.2422
+    ],
+    "dpi": 300,
+    "area_frac": 0.071,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig11.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig11.png",
+    "page": 10,
+    "caption": "Fig. 11: Training recipe ablations, language following. Evaluating language following with in-distribution and out-of-distribution objects after training on different numbers of locations. Including web data (WD) is important for out- of-distribution (OOD) performance in particular. Cross-embodiment",
+    "bbox": [
+      42.96,
+      268.97,
+      306.02,
+      426.07
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.3396,
+      0.5,
+      0.538
+    ],
+    "dpi": 300,
+    "area_frac": 0.085,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig12.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig12.png",
+    "page": 10,
+    "caption": "Fig. 12: Comparing π 0 . 5 with other models. Our full model significantly outperforms both π 0 and π 0 -FAST+Flow in the mock home test environments.",
+    "bbox": [
+      305.97,
+      48.0,
+      569.03,
+      181.09
+    ],
+    "bbox_norm": [
+      0.5,
+      0.0606,
+      0.9298,
+      0.2287
+    ],
+    "dpi": 300,
+    "area_frac": 0.072,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig13.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig13.png",
+    "page": 11,
+    "caption": "Fig. 13: Evaluation of the high-level inference process. While the full π 0 . 5 model with high-level and low-level inference attains the best results, using only low-level inference (“implicit HL”) with the full π 0 . 5 model also benefits from the inclusion of high-level subtask examples in traini",
+    "bbox": [
+      42.96,
+      48.0,
+      306.01,
+      250.96
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.5,
+      0.3169
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig14.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig14.png",
+    "page": 18,
+    "caption": "Fig. 14: Example initial states of different language following experiments.",
+    "bbox": [
+      42.96,
+      430.31,
+      306.02,
+      521.31
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.5433,
+      0.5,
+      0.6582
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig15.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig15.png",
+    "page": 18,
+    "caption": "Fig. 15: Comparing π 0 . 5 with other models on language following. We evaluate language following capabilities of π 0 . 5 , π 0 , and π 0 -FAST+Flow, finding π 0 . 5 outperforms each, and π 0 by a wide margin.",
+    "bbox": [
+      42.96,
+      556.07,
+      306.01,
+      681.89
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.7021,
+      0.5,
+      0.861
+    ],
+    "dpi": 300,
+    "area_frac": 0.068,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig16.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig16.png",
+    "page": 18,
+    "caption": "Fig. 16: Per-task performance breakdown for training recipe ablations. We evaluate each training mixture variant on four representative household tasks: Items in Drawer, Dishes in Sink, Laundry Basket, and Make Bed. Removing cross-embodiment data (ME or CE) leads to significant degradation in specif",
+    "bbox": [
+      305.97,
+      48.0,
+      569.02,
+      184.16
+    ],
+    "bbox_norm": [
+      0.5,
+      0.0606,
+      0.9298,
+      0.2325
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig17.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig17.png",
+    "page": 19,
+    "caption": "Fig. 17: Per-task performance breakdown for high-level inference meth- ods. We evaluate the full π 0 . 5 model and various high-level inference baselines across four representative household tasks.",
+    "bbox": [
+      42.96,
+      48.0,
+      306.02,
+      207.42
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.5,
+      0.2619
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/black-2025-pi05-a-vision-language-action-model-with/fig18.png",
+    "raw": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/fig18.png",
+    "page": 19,
+    "caption": "Fig. 18: Example of the π 0 . 5 attention masking pattern.",
+    "bbox": [
+      305.97,
+      48.0,
+      569.03,
+      311.06
+    ],
+    "bbox_norm": [
+      0.5,
+      0.0606,
+      0.9298,
+      0.3928
+    ],
+    "dpi": 300,
+    "area_frac": 0.143,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/black-2025-pi05-a-vision-language-action-model-with-figures/_overlay/p19.png"
+  }
+]
