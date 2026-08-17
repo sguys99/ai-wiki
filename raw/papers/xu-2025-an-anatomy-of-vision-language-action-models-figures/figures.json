@@ -1,0 +1,300 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/xu-2025-an-anatomy-of-vision-language-action-models/fig01.png",
+    "raw": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/fig01.png",
+    "page": 1,
+    "caption": "Fig. 1: The structure of this survey in a pyramid format . Section 2 lays the foundational knowledge by deconstructing the core components of any VLA model. Building upon this, the second stage, Section 3 , traces the historical evolution of the field through its most representative works, providing",
+    "bbox": [
+      331.64,
+      356.6,
+      544.31,
+      654.98
+    ],
+    "bbox_norm": [
+      0.5419,
+      0.4503,
+      0.8894,
+      0.827
+    ],
+    "dpi": 300,
+    "area_frac": 0.131,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/xu-2025-an-anatomy-of-vision-language-action-models/fig02.png",
+    "raw": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/fig02.png",
+    "page": 5,
+    "caption": "Fig. 2: The timeline of VLA models, datasets, and evaluation benchmarks from 2022 to 2025 . The top row presents major VLA models introduced each year. The bottom row displays key datasets used to train and benchmarks to evaluate these models, grouped by release year.",
+    "bbox": [
+      45.2,
+      30.91,
+      561.47,
+      192.0
+    ],
+    "bbox_norm": [
+      0.0739,
+      0.039,
+      0.9174,
+      0.2424
+    ],
+    "dpi": 300,
+    "area_frac": 0.172,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/xu-2025-an-anatomy-of-vision-language-action-models/fig03.png",
+    "raw": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/fig03.png",
+    "page": 6,
+    "caption": "Fig. 3: Taxonomy of VLA challenges , encompassing 5 primary chal- lenges and 15 sub-challenges, with representative works listed. Please zoom in for more details.",
+    "bbox": [
+      42.96,
+      39.14,
+      310.78,
+      208.75
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0494,
+      0.5078,
+      0.2636
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/xu-2025-an-anatomy-of-vision-language-action-models/fig04.png",
+    "raw": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/fig04.png",
+    "page": 6,
+    "caption": "Fig. 4: The challenge of Multi-Modal Alignment and Physical World Modeling . First, Section 4.1.1 addresses the fundamental disalignment at the interface of information. Building upon this, Section 4.1.2 focuses on the construction of the world’s geometric and dynamic structure. Section 4.1.3 repres",
+    "bbox": [
+      43.08,
+      250.76,
+      311.05,
+      375.6
+    ],
+    "bbox_norm": [
+      0.0704,
+      0.3166,
+      0.5082,
+      0.4742
+    ],
+    "dpi": 300,
+    "area_frac": 0.069,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/xu-2025-an-anatomy-of-vision-language-action-models/fig05.png",
+    "raw": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/fig05.png",
+    "page": 9,
+    "caption": "Fig. 5: The Challenge of Instruction Following, Planning, and Robust Real-Time Execution . The flow begins with Section 4.2.1 , where the model understands what a human wants, even if the instructions are unclear or mixed with images. This understanding then moves to Section 4.2.2 , where big goals ",
+    "bbox": [
+      82.96,
+      40.02,
+      529.49,
+      191.67
+    ],
+    "bbox_norm": [
+      0.1355,
+      0.0505,
+      0.8652,
+      0.242
+    ],
+    "dpi": 300,
+    "area_frac": 0.14,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/xu-2025-an-anatomy-of-vision-language-action-models/fig06.png",
+    "raw": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/fig06.png",
+    "page": 11,
+    "caption": "Fig. 6: The Challenge of From Generalization to Continuous Adaptation . This diagram illustrates how VLA models operate continuously in dynamic, open-world environments, highlighting four key enabling strategies. Section 4.3.1 represents the initial ability to perform well in settings not seen durin",
+    "bbox": [
+      80.98,
+      38.78,
+      529.57,
+      190.44
+    ],
+    "bbox_norm": [
+      0.1323,
+      0.049,
+      0.8653,
+      0.2405
+    ],
+    "dpi": 300,
+    "area_frac": 0.14,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/xu-2025-an-anatomy-of-vision-language-action-models/fig07.png",
+    "raw": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/fig07.png",
+    "page": 13,
+    "caption": "Fig. 7: The challenge of Safety, Interpretability and Reliable Interac- tion . This diagram shows how VLA systems build human trust, broken into three key layers. Section 4.4.1 is about making sure the robot is physically safe and works reliably. Moving up, Section 4.4.2 focuses on helping humans un",
+    "bbox": [
+      265.63,
+      1.41,
+      612.0,
+      191.01
+    ],
+    "bbox_norm": [
+      0.434,
+      0.0018,
+      1.0,
+      0.2412
+    ],
+    "dpi": 300,
+    "area_frac": 0.135,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/xu-2025-an-anatomy-of-vision-language-action-models/fig08.png",
+    "raw": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/fig08.png",
+    "page": 14,
+    "caption": "Fig. 8: The challenge of Data Construction and Benchmarking Stan- dards . Section 4.5.1 addresses the critical bottleneck of acquiring and unifying diverse training resources to construct large-scale datasets. Section 4.5.2 focuses on the standardization and increasing complexity of assessment proto",
+    "bbox": [
+      306.74,
+      422.71,
+      569.13,
+      586.38
+    ],
+    "bbox_norm": [
+      0.5012,
+      0.5337,
+      0.93,
+      0.7404
+    ],
+    "dpi": 300,
+    "area_frac": 0.089,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tabs1",
+    "label": "Table S1",
+    "kind": "table",
+    "file": "assets/xu-2025-an-anatomy-of-vision-language-action-models/tabs1.png",
+    "raw": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/tabs1.png",
+    "page": 25,
+    "caption": "TABLE S1: An overview of representative embodied datasets . We exhibit different facets of these datasets, including embodiment, perspective, episodes, scenes, tasks&skills, and collection. More details are discussed in Section A2.2 .",
+    "bbox": [
+      42.0,
+      210.72,
+      576.32,
+      594.58
+    ],
+    "bbox_norm": [
+      0.0686,
+      0.2661,
+      0.9417,
+      0.7507
+    ],
+    "dpi": 300,
+    "area_frac": 0.423,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tabs2",
+    "label": "Table S2",
+    "kind": "table",
+    "file": "assets/xu-2025-an-anatomy-of-vision-language-action-models/tabs2.png",
+    "raw": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/tabs2.png",
+    "page": 26,
+    "caption": "TABLE S2: An overview of representative embodied benchmarks . We exhibit different facets of these benchmarks, including task type, evaluation metrics, and environment/platform. More details are discussed in Section A2.3 .",
+    "bbox": [
+      42.0,
+      252.86,
+      570.0,
+      558.2
+    ],
+    "bbox_norm": [
+      0.0686,
+      0.3193,
+      0.9314,
+      0.7048
+    ],
+    "dpi": 300,
+    "area_frac": 0.333,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tabs3",
+    "label": "Table S3",
+    "kind": "table",
+    "file": "assets/xu-2025-an-anatomy-of-vision-language-action-models/tabs3.png",
+    "raw": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/tabs3.png",
+    "page": 27,
+    "caption": "TABLE S3: An overview of VLA milestones . We exhibit different facets of these methods, including robot perception, brain, action, training strategy, primary dataset, and evaluation, which corresponding to the subsections in Section 3 .",
+    "bbox": [
+      42.0,
+      155.66,
+      582.34,
+      649.64
+    ],
+    "bbox_norm": [
+      0.0686,
+      0.1965,
+      0.9515,
+      0.8202
+    ],
+    "dpi": 300,
+    "area_frac": 0.551,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p27.png"
+  }
+]
