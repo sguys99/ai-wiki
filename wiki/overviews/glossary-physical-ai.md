@@ -68,6 +68,9 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | subtask | subtask | — | subtask는 high-level 추론이 텍스트로 내놓는 중간 단계 명령이다 | "하위 과제·부분 과제"는 기존 페이지에서 일반어로 쓰여 기계 검사에서 뺐다. 지침만 |
 | verbal instruction | verbal instruction | 구두 지시 | verbal instruction은 사람이 학습된 저수준 policy에 말로 subtask를 불러 과제를 끝내게 하며 모은 데이터다 | π0.5 고유 데이터 슬라이스(VI). 일반어 "언어 지시"는 지시 따르기 평가 문맥에서 널리 쓰여 금지 목록에서 뺐다 |
 | FAST tokenizer | FAST tokenizer | — | FAST tokenizer는 action chunk를 압축해 이산 토큰으로 적는 방식이다 | Pertsch 2025. π0-FAST·π0.5 pre-training이 이걸 쓴다. 약어 FAST 단독 병용 가능 |
+| world knowledge | world knowledge | 세계 지식 | world knowledge는 물체·행위·환경·예상되는 결과에 대해 모델이 미리 갖고 있는 사전 지식을 말한다 | Zhang 2026 서베이의 조직 축. 예측 장치인 world model과 구분해서 쓴다 |
+| multimodal grounding | multimodal grounding | 멀티모달 그라운딩·다중모달 그라운딩 | multimodal grounding은 언어로 된 지식을 이미지·영상·물체·공간 관계에 붙이는 단계다 | VLM·MLLM이 맡는 층. 음차도 표기 흔들림이라 원어로 고정 |
+| action grounding | action grounding | 행동 그라운딩·액션 그라운딩 | action grounding은 perception과 언어를 실행 가능한 action으로 잇는 단계다 | VLA가 맡는 층 |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 

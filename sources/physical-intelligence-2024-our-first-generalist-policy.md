@@ -54,7 +54,7 @@ figures:
 
 GPT-4V나 Gemini 같은 VLM은 웹의 텍스트와 이미지를 모델링하도록 학습돼 의미 지식을 잘 옮겨 오지만 출력이 이산 언어 토큰뿐이다. dexterous manipulation에는 초당 50회까지 모터 명령을 내보내야 한다. 그래서 pre-trained VLM에 flow matching으로 연속 action 출력을 붙였다. VLM을 고른 이유를 밝힌 이 대목이 블로그의 핵심이다. flow matching은 "diffusion model의 변형"이라고 한 줄로 정의한다. 파라미터 30억짜리 비교적 작은 VLM을 실시간 제어에 맞게 개조했다고만 밝히고 PaliGemma라는 이름은 논문에만 나온다.
 
-pre-training과 fine-tuning의 역할 분담도 LLM에 빗대 정리한다. pre-training이 물리 세계 지식을 가르치고 fine-tuning이 특정 과제를 잘하도록 밀어붙인다.
+pre-training과 fine-tuning의 역할 분담도 LLM에 빗대 정리한다. pre-training이 물리 세계에 대한 world knowledge를 가르치고 fine-tuning이 특정 과제를 잘하도록 밀어붙인다.
 
 데이터셋은 특정 응용을 풀려고 고르지 않았다. 모델이 물리적 상호작용을 두루 이해하게 만드는 데 목표를 뒀다. 그릇 치우기, 봉투에 물건 담기, 옷 개기, 케이블 정리, 상자 조립, 플러그 꽂기, 포장 용기에 음식 담기, 쓰레기 버리기가 그 목록이다.
 

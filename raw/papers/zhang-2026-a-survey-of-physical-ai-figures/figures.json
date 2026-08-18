@@ -1,0 +1,277 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/zhang-2026-a-survey-of-physical-ai/fig01.png",
+    "raw": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/fig01.png",
+    "page": 4,
+    "caption": "Figure 1. A roadmap from LLM-based world knowledge to Physical AI. LLMs provide semantic, commonsense, procedural, and causal priors, but these language-mediated priors must be grounded into multimodal perception, executable action, predictive world models, policy learning, and closed-loop embodied ",
+    "bbox": [
+      65.43,
+      105.13,
+      532.82,
+      218.58
+    ],
+    "bbox_norm": [
+      0.1099,
+      0.1249,
+      0.8951,
+      0.2596
+    ],
+    "dpi": 300,
+    "area_frac": 0.106,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/_overlay/p04.png"
+  },
+  {
+    "id": "taba1",
+    "label": "Table A1",
+    "kind": "table",
+    "file": "assets/zhang-2026-a-survey-of-physical-ai/taba1.png",
+    "raw": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/taba1.png",
+    "page": 13,
+    "caption": "Table A1. Scope boundary of this survey. We organize Physical AI as a roadmap from LLM-based world knowledge to grounded perception, action, world modeling, and embodied deployment, rather than as an exhaustive survey of all robotics or physical intelligence.",
+    "bbox": [
+      70.54,
+      113.97,
+      524.74,
+      397.37
+    ],
+    "bbox_norm": [
+      0.1185,
+      0.1354,
+      0.8815,
+      0.472
+    ],
+    "dpi": 300,
+    "area_frac": 0.257,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/_overlay/p13.png"
+  },
+  {
+    "id": "taba2",
+    "label": "Table A2",
+    "kind": "table",
+    "file": "assets/zhang-2026-a-survey-of-physical-ai/taba2.png",
+    "raw": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/taba2.png",
+    "page": 14,
+    "caption": "Table A2 clarifies this distinction. The goal of the comparison is not to claim that prior surveys are incomplete in their own scope. Rather, it shows that their organizing axes differ from ours. By making LLM-based world knowledge explicit, our survey connects the NLP and multimodal reasoning liter",
+    "bbox": [
+      65.43,
+      110.18,
+      529.84,
+      523.76
+    ],
+    "bbox_norm": [
+      0.1099,
+      0.1309,
+      0.8901,
+      0.6221
+    ],
+    "dpi": 300,
+    "area_frac": 0.383,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/_overlay/p14.png",
+    "duplicate_pages": [
+      14
+    ]
+  },
+  {
+    "id": "taba3",
+    "label": "Table A3",
+    "kind": "table",
+    "file": "assets/zhang-2026-a-survey-of-physical-ai/taba3.png",
+    "raw": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/taba3.png",
+    "page": 15,
+    "caption": "Table A3. Extended taxonomy of the roadmap from LLM-based world knowledge to Physical AI.",
+    "bbox": [
+      70.54,
+      209.76,
+      524.74,
+      552.96
+    ],
+    "bbox_norm": [
+      0.1185,
+      0.2492,
+      0.8815,
+      0.6568
+    ],
+    "dpi": 300,
+    "area_frac": 0.311,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/_overlay/p15.png"
+  },
+  {
+    "id": "taba4",
+    "label": "Table A4",
+    "kind": "table",
+    "file": "assets/zhang-2026-a-survey-of-physical-ai/taba4.png",
+    "raw": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/taba4.png",
+    "page": 16,
+    "caption": "Table A4. Extended taxonomy of world models for Physical AI. The categories are organized by prediction target and their function in the roadmap from LLM-based world knowledge to embodied action.",
+    "bbox": [
+      70.54,
+      140.8,
+      524.74,
+      446.12
+    ],
+    "bbox_norm": [
+      0.1185,
+      0.1672,
+      0.8815,
+      0.5299
+    ],
+    "dpi": 300,
+    "area_frac": 0.277,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/_overlay/p16.png"
+  },
+  {
+    "id": "taba5",
+    "label": "Table A5",
+    "kind": "table",
+    "file": "assets/zhang-2026-a-survey-of-physical-ai/taba5.png",
+    "raw": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/taba5.png",
+    "page": 18,
+    "caption": "Table A5. Evaluation protocols along the roadmap. Physical AI evaluation should shift from static recognition or offline prediction to closed-loop task completion, robustness, safety, recovery, and cross-embodiment generaliza- tion.",
+    "bbox": [
+      70.54,
+      113.97,
+      524.74,
+      511.96
+    ],
+    "bbox_norm": [
+      0.1185,
+      0.1354,
+      0.8815,
+      0.6081
+    ],
+    "dpi": 300,
+    "area_frac": 0.361,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/_overlay/p18.png"
+  },
+  {
+    "id": "taba6",
+    "label": "Table A6",
+    "kind": "table",
+    "file": "assets/zhang-2026-a-survey-of-physical-ai/taba6.png",
+    "raw": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/taba6.png",
+    "page": 19,
+    "caption": "Table A6. Representative frontier systems and closed or partially disclosed models. These systems motivate product-level and black-box evaluation protocols in addition to conventional academic benchmarks.",
+    "bbox": [
+      70.54,
+      154.73,
+      524.74,
+      486.97
+    ],
+    "bbox_norm": [
+      0.1185,
+      0.1838,
+      0.8815,
+      0.5784
+    ],
+    "dpi": 300,
+    "area_frac": 0.301,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/_overlay/p19.png"
+  },
+  {
+    "id": "taba7",
+    "label": "Table A7",
+    "kind": "table",
+    "file": "assets/zhang-2026-a-survey-of-physical-ai/taba7.png",
+    "raw": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/taba7.png",
+    "page": 20,
+    "caption": "Table A7. Representative failure modes along the roadmap from LLM-based world knowledge to Physical AI.",
+    "bbox": [
+      70.54,
+      88.33,
+      524.74,
+      425.57
+    ],
+    "bbox_norm": [
+      0.1185,
+      0.1049,
+      0.8815,
+      0.5055
+    ],
+    "dpi": 300,
+    "area_frac": 0.306,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/_overlay/p20.png"
+  },
+  {
+    "id": "taba8",
+    "label": "Table A8",
+    "kind": "table",
+    "file": "assets/zhang-2026-a-survey-of-physical-ai/taba8.png",
+    "raw": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/taba8.png",
+    "page": 22,
+    "caption": "Table A8. Extended analysis of challenges and future directions along the roadmap. The main paper summarizes these challenges with a small number of representative citations; this table provides additional evidence and connects each challenge to the corresponding interface mismatch.",
+    "bbox": [
+      70.54,
+      195.41,
+      524.74,
+      544.56
+    ],
+    "bbox_norm": [
+      0.1185,
+      0.2321,
+      0.8815,
+      0.6468
+    ],
+    "dpi": 300,
+    "area_frac": 0.316,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/_overlay/p22.png"
+  },
+  {
+    "id": "taba9",
+    "label": "Table A9",
+    "kind": "table",
+    "file": "assets/zhang-2026-a-survey-of-physical-ai/taba9.png",
+    "raw": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/taba9.png",
+    "page": 23,
+    "caption": "Table A9. Terminology used throughout the survey.",
+    "bbox": [
+      70.54,
+      88.33,
+      524.74,
+      284.06
+    ],
+    "bbox_norm": [
+      0.1185,
+      0.1049,
+      0.8815,
+      0.3374
+    ],
+    "dpi": 300,
+    "area_frac": 0.177,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-a-survey-of-physical-ai-figures/_overlay/p23.png"
+  }
+]
