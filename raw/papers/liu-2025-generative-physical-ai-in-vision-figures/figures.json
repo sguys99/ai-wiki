@@ -1,0 +1,250 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/liu-2025-generative-physical-ai-in-vision/fig01.png",
+    "raw": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/fig01.png",
+    "page": 1,
+    "caption": "Fig. 1. Overview of the progression of generative AI in vision and the role of physics-aware generation in building a world simulator. The figure shows the evolution from conventional focuses in generative tasks on semantic, temporal, and spatial understanding to incorporating interac- tivity and ph",
+    "bbox": [
+      309.73,
+      307.37,
+      566.23,
+      499.15
+    ],
+    "bbox_norm": [
+      0.5061,
+      0.3881,
+      0.9252,
+      0.6302
+    ],
+    "dpi": 300,
+    "area_frac": 0.101,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/liu-2025-generative-physical-ai-in-vision/fig02.png",
+    "raw": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/fig02.png",
+    "page": 2,
+    "caption": "Fig. 2. Examples of generated videos with poor and good physical awareness. Examples are from WISA [20] and Zhao et al [21].",
+    "bbox": [
+      30.11,
+      37.56,
+      581.89,
+      142.22
+    ],
+    "bbox_norm": [
+      0.0492,
+      0.0474,
+      0.9508,
+      0.1796
+    ],
+    "dpi": 300,
+    "area_frac": 0.119,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/liu-2025-generative-physical-ai-in-vision/fig03.png",
+    "raw": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/fig03.png",
+    "page": 3,
+    "caption": "Fig. 3. Illustration of six paradigms for integrating explicit physical simu- lation into generative models, highlighting structural differences in terms of the interaction between the generative process G and the physics simulation model P .",
+    "bbox": [
+      303.06,
+      168.24,
+      575.16,
+      550.9
+    ],
+    "bbox_norm": [
+      0.4952,
+      0.2124,
+      0.9398,
+      0.6956
+    ],
+    "dpi": 300,
+    "area_frac": 0.215,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/liu-2025-generative-physical-ai-in-vision/fig04.png",
+    "raw": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/fig04.png",
+    "page": 5,
+    "caption": "Fig. 4. Overview of key components in physical simulation relevant to physics-aware generation, i.e., physical materials, simulation methods, and physical engines. Physical materials define the types of entities being modeled with different assumptions and constraints, with illustrations generated b",
+    "bbox": [
+      44.77,
+      41.58,
+      567.2,
+      537.86
+    ],
+    "bbox_norm": [
+      0.0732,
+      0.0525,
+      0.9268,
+      0.6791
+    ],
+    "dpi": 300,
+    "area_frac": 0.535,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/liu-2025-generative-physical-ai-in-vision/fig05.png",
+    "raw": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/fig05.png",
+    "page": 7,
+    "caption": "Fig. 5. Structure of Paradigms, Ideas, and Methods in Physics-Aware Generation with Explicit Physical Simulation.",
+    "bbox": [
+      43.77,
+      37.82,
+      568.25,
+      473.75
+    ],
+    "bbox_norm": [
+      0.0715,
+      0.0478,
+      0.9285,
+      0.5982
+    ],
+    "dpi": 300,
+    "area_frac": 0.472,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/liu-2025-generative-physical-ai-in-vision/fig06.png",
+    "raw": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/fig06.png",
+    "page": 10,
+    "caption": "Fig. 6. Structure of Ideas and Methods in Physics-Aware Generation without Explicit Physical Simulation.",
+    "bbox": [
+      44.11,
+      37.84,
+      567.92,
+      220.64
+    ],
+    "bbox_norm": [
+      0.0721,
+      0.0478,
+      0.928,
+      0.2786
+    ],
+    "dpi": 300,
+    "area_frac": 0.198,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/liu-2025-generative-physical-ai-in-vision/tab01.png",
+    "raw": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/tab01.png",
+    "page": 3,
+    "caption": "",
+    "bbox": [
+      36.84,
+      35.18,
+      575.16,
+      150.94
+    ],
+    "bbox_norm": [
+      0.0602,
+      0.0444,
+      0.9398,
+      0.1906
+    ],
+    "dpi": 300,
+    "area_frac": 0.129,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/_overlay/p03.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/liu-2025-generative-physical-ai-in-vision/tab02.png",
+    "raw": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/tab02.png",
+    "page": 6,
+    "caption": "",
+    "bbox": [
+      35.62,
+      32.02,
+      578.22,
+      463.78
+    ],
+    "bbox_norm": [
+      0.0582,
+      0.0404,
+      0.9448,
+      0.5856
+    ],
+    "dpi": 300,
+    "area_frac": 0.483,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/liu-2025-generative-physical-ai-in-vision/tab03.png",
+    "raw": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/tab03.png",
+    "page": 12,
+    "caption": "",
+    "bbox": [
+      33.78,
+      641.06,
+      318.12,
+      744.94
+    ],
+    "bbox_norm": [
+      0.0552,
+      0.8094,
+      0.5198,
+      0.9406
+    ],
+    "dpi": 300,
+    "area_frac": 0.061,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/liu-2025-generative-physical-ai-in-vision-figures/_overlay/p12.png"
+  }
+]

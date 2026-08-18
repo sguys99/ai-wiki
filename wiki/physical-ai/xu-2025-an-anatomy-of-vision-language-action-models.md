@@ -200,6 +200,7 @@ Table S3에서 action 표현이 discrete(autoregressive)에서 continuous(DDPM·
 
 ## 관련 페이지 (Related Pages)
 
+- [[physical-ai/liu-2025-generative-physical-ai-in-vision]] — physics-aware generation 서베이. 이 서베이가 도전 과제 1에서 다루는 predictive world model을 생성 모델 쪽에서 확대하고, future direction으로 "VLA에 물리 추론을 명시적으로 주입"을 든다
 - [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics]] — 이 논문이 참고문헌 [8]로 인용한 full-stack 서베이. 아키텍처 7분류와 하드웨어·데이터 수집을 더 자세히 다룬다. 도전 과제 중심인 이 페이지와 서로 보완한다
 - [[physical-ai/hou-2026-world-model-for-robot-learning]] — 도전 과제 1의 최상위층인 predictive world model만 따로 다룬 서베이
 - [[physical-ai/brohan-2022-rt-1-robotics-transformer-for-real-world]] — 연표의 출발점. Transformer 기반 end-to-end 로봇 policy

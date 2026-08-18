@@ -182,4 +182,5 @@ nuScenes open-loop planning에서 평균 L2가 가장 낮은 쪽은 UniAD+DriveW
 - [[physical-ai/zhang-2024-vision-and-language-navigation-today]] — world model을 로보틱스·자율주행·범용 비디오가 아니라 navigation 축에서 다룬 자매 서베이. 같은 개념이 세 번째 좌표에서는 history/memory와 generalization 두 challenge로 갈라진다
 - [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] — SONIC은 Table I·II에 없지만 이 분류에 놓으면 decision-coupled 계열의 humanoid whole-body control에 해당한다
 - [[physical-ai/nvlabs-gr00t-wholebodycontrol]] — SONIC 공식 구현. 서베이가 다루지 않는 배포·추론 스택 쪽 자료
+- [[physical-ai/liu-2025-generative-physical-ai-in-vision]] — world model을 컴퓨터 비전 생성 쪽에서 접근한 서베이. 이 페이지가 "미래를 예측하는 모델"의 지형이라면 저쪽은 "물리적으로 그럴듯한 미래를 그려내는 모델"의 지형이고, 명시적 시뮬레이터를 쓰는지로 두 갈래를 낸다
 - [[overviews/physical-ai-overview]] — physical-ai 카테고리의 분류 기준과 학습 경로 허브

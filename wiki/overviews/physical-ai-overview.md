@@ -151,4 +151,6 @@ SONIC은 그 인과 정렬 문제를 우회하는 쪽에 가깝다. 미래를 �
 - [[physical-ai/nvlabs-2026-gear-sonic-project-page|GEAR-SONIC 프로젝트 페이지]] — 동작 품질의 영상 증거. 학습 경로 6단계.
 - [[physical-ai/nvlabs-gr00t-wholebodycontrol|GR00T-WholeBodyControl]] — 학습·배포 코드와 체크포인트. 학습 경로 7단계.
 - [[llms/cai-2026-vlm3-vision-language-models|VLM3: Vision Language Models Are Native 3D Learners]] — 3D 인식을 표준 VLM의 SFT로 푸는 논문. 학습 경로 1단계.
+- [[physical-ai/liu-2025-generative-physical-ai-in-vision|Generative Physical AI in Vision (Survey)]] — 생성 모델이 물리 법칙을 지키게 만드는 연구 지형. world model을 예측이 아니라 생성 쪽에서 본다.
+- [[physical-ai/9bow-2026-physics-aware-generation-world-simulator|물리를 이해하는 생성 모델과 월드 시뮬레이터 (9bow)]] — 위 서베이의 한글 해설.
 - [[agents/zou-2026-task-focused-memorization-multimodal-agents|TaskMem: Task-Focused Memorization for Multimodal Agents]] — 1인칭 스트림에서 기억할 내용을 학습하는 프레임워크. 학습 경로 2단계.

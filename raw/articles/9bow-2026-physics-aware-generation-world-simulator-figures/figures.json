@@ -1,0 +1,57 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/9bow-2026-physics-aware-generation-world-simulator/fig01.jpg",
+    "raw": "raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig01.jpg",
+    "caption": "물리를 이해하는 생성 모델: 이미지/영상/3D 생성에서 물리 인지 생성과 물리 시뮬레이션을 거쳐 월드 시뮬레이터로 나아가는 흐름 / Physics-aware generation toward a world simulator",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/1/5/1560541b60dceae64dfb9bb56437400b1d55a095_2_1028x685.jpeg",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/9bow-2026-physics-aware-generation-world-simulator/fig02.png",
+    "raw": "raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig02.png",
+    "caption": "이미지/영상/3D 생성과 상호작용 환경, 물리 인지 생성이 결합해 월드 모델로 수렴하는 과정을 보여 주는 개념도 / Progression of generative AI in vision toward a world simulator",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/3/f/3fd8e733fb005efc4c8aac2683849ef48c76ea15_2_1028x767.png",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/9bow-2026-physics-aware-generation-world-simulator/fig03.jpg",
+    "raw": "raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig03.jpg",
+    "caption": "물리 시뮬레이션의 세 가지 구성 요소: 강체와 유체 등 물리 재료, 물질점 방법 등 시뮬레이션 방법, Bullet과 Isaac Gym 등 물리 엔진 / Physical materials, simulation methods, and physics engines",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/6/6/6617e40623865f25b1f162747aa7927d69fe9c08_2_1028x980.jpeg",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/9bow-2026-physics-aware-generation-world-simulator/fig04.jpg",
+    "raw": "raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig04.jpg",
+    "caption": "생성 과정 G와 물리 시뮬레이션 P를 통합하는 여섯 가지 패러다임(Gen-to-Sim, Sim-in-Gen, Gen-and-Sim, Sim-Constrained Gen, Gen-Constrained Sim, Sim-evaluated Gen) 다이어그램 / Six paradigms of physics-aware generation with explicit simulation",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/8/5/85933c72638fa46f4ae01e7a47075e29faf7cc95_2_1028x1498.jpeg",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/9bow-2026-physics-aware-generation-world-simulator/fig05.jpg",
+    "raw": "raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig05.jpg",
+    "caption": "물리 인지가 나쁜 생성 영상과 좋은 생성 영상을 나란히 비교한 예시: 액체에 빠지는 공과 체조 동작 / Examples of generated videos with poor and good physical awareness",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/1/7/17be5ec7ffcf95330db4c54f454f5c5f07fb2572_2_1028x204.jpeg",
+    "strategy": "fetched",
+    "curated": false
+  }
+]
