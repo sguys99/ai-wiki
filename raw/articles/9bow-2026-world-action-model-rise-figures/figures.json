@@ -1,0 +1,454 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/9bow-2026-world-action-model-rise/fig01.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig01.jpg",
+    "caption": "World Action Model의 부상",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/original/3X/f/6/f605b5ecc58bcb5bff35383f2b5feab46b9a1d28.jpeg",
+    "bytes": 150717,
+    "width": 960,
+    "height": 540,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/9bow-2026-world-action-model-rise/fig02.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig02.jpg",
+    "caption": "VLM 기반 VLA와 비디오 백본 WAM, 일반화 조작 정책을 향한 두 가지 베팅",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/5/c/5c87f721d40703ef1957171587e30b66d195da66_2_1028x1008.jpeg",
+    "bytes": 238253,
+    "width": 1028,
+    "height": 1008,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/9bow-2026-world-action-model-rise/fig03.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig03.jpg",
+    "caption": "로보틱스 속 월드 모델 지형도, WAM은 비디오 월드 모델과 행동 조건부 월드 모델이 겹치는 지점에 위치",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/2/c/2ceb2a6c0a2e972d11250d0059f918ccb45dfb43_2_1028x509.jpeg",
+    "bytes": 66214,
+    "width": 1028,
+    "height": 509,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/9bow-2026-world-action-model-rise/fig04.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig04.jpg",
+    "caption": "Veo 3.1이 제로샷으로 생성한 토스터 레버 누르기 롤아웃, 로봇 정책으로 명시적으로 학습되지 않은 모델의 결과",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/5/b/5b2e1d8292a91b6f22604749db678ee5e4b808e5_2_1028x204.jpeg",
+    "bytes": 65209,
+    "width": 1028,
+    "height": 204,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/9bow-2026-world-action-model-rise/fig05.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig05.jpg",
+    "caption": "WAM 설계 공간 한눈에 보기, 패러다임과 행동 통합과 아키텍처의 세 축",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/d/4/d4938cc3a1cd3bc92c59bba4e131cbff3f6d3787_2_1028x414.jpeg",
+    "bytes": 64911,
+    "width": 1028,
+    "height": 414,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/9bow-2026-world-action-model-rise/fig06.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig06.jpg",
+    "caption": "역동역학 WAM의 추상적 구조, 비디오 모델이 먼저 미래 프레임을 생성하면 역동역학 헤드가 행동 시퀀스로 매핑",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/d/d/dd68b81a938678cbc9043ffc8ebefbc044071fae_2_1028x588.jpeg",
+    "bytes": 88874,
+    "width": 1028,
+    "height": 588,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/9bow-2026-world-action-model-rise/fig07.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig07.jpg",
+    "caption": "UniPi 개요, 텍스트 조건부 비디오 생성기가 미래 이미지 시퀀스를 만들면 별도의 역동역학 모듈이 연속 프레임에서 행동을 추출",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/a/8/a80ee3dc2ee83d0424266bedd584d7f48db7386b_2_1028x741.jpeg",
+    "bytes": 142275,
+    "width": 1028,
+    "height": 741,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/9bow-2026-world-action-model-rise/fig08.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig08.jpg",
+    "caption": "LingBot-VA 아키텍처, 미세조정된 Wan 2.2-5B 백본의 비디오 롤아웃에 조건부로 역동역학 행동을 예측",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/f/4/f4b91d187f1fc1db3830aac66105a28881f7f5ec_2_1028x379.jpeg",
+    "bytes": 95717,
+    "width": 1028,
+    "height": 379,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/9bow-2026-world-action-model-rise/fig09.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig09.jpg",
+    "caption": "공동 예측 WAM의 추상적 구조, 단일 모델이 행동 시퀀스와 상상된 미래 상태를 한 번에 출력",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/d/a/dae383009b23aa2fd5d5f33d5f975655775f04b1_2_1028x344.jpeg",
+    "bytes": 58744,
+    "width": 1028,
+    "height": 344,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/9bow-2026-world-action-model-rise/fig10.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig10.jpg",
+    "caption": "GR-1 아키텍처, 1단계는 비디오 예측으로 사전학습하고 2단계는 미래 프레임과 행동 청크에 대한 공동 목적으로 로봇 데이터에 미세조정",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/6/d/6d3167ff99ecb2a661c8e9db3b72084cff542266_2_1028x570.jpeg",
+    "bytes": 191403,
+    "width": 1028,
+    "height": 570,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/9bow-2026-world-action-model-rise/fig11.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig11.png",
+    "caption": "CALVIN ABC→D 벤치마크에서 다섯 개 중 평균 완료 서브태스크 수, GR-1의 역사적 결과와 현재 SOTA VLA 참조",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/3/1/31361dd17330db611b6d6521515b9d0147bf3c6a_2_1028x401.png",
+    "bytes": 22318,
+    "width": 1028,
+    "height": 401,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/9bow-2026-world-action-model-rise/fig12.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig12.jpg",
+    "caption": "DreamZero 아키텍처, 14B Wan 비디오 디퓨전 백본에서 초기화된 단일 모놀리식 트랜스포머가 비디오 토큰과 행동 토큰을 공동으로 디노이징",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/2/f/2f15f4211462d6ce5d4b9ce11cee171c4cbfea93_2_1028x574.jpeg",
+    "bytes": 80267,
+    "width": 1028,
+    "height": 574,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/9bow-2026-world-action-model-rise/fig13.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig13.jpg",
+    "caption": "2026년 4월 RoboArena 리더보드 스냅샷, DreamZero가 1750으로 Pi-0.5의 1622를 앞서는 모습",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/d/d/dd77ef8a474964ecf2b315905f3be4d02a53ef21_2_1028x870.jpeg",
+    "bytes": 97058,
+    "width": 1028,
+    "height": 870,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/9bow-2026-world-action-model-rise/fig14.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig14.jpg",
+    "caption": "GENIMA는 행동을 시각적 타깃으로 변환, 이미지 모델이 RGB 공간에서 관절 행동 타깃을 예측하면 컨트롤러가 로봇 명령으로 매핑",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/0/d/0de19bbfb396f5af8c2775c7c5385d087ae85208_2_1028x477.jpeg",
+    "bytes": 105372,
+    "width": 1028,
+    "height": 477,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/9bow-2026-world-action-model-rise/fig15.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig15.jpg",
+    "caption": "Cosmos Policy의 잠재 주입, 행동과 고유수용성과 가치 타깃을 같은 비디오 디노이징 인터페이스 안의 합성 잠재 프레임으로 표현",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/4/2/42b7be6b57da615e8cc2dead8e4d32ecc64476d1_2_1028x414.jpeg",
+    "bytes": 143496,
+    "width": 1028,
+    "height": 414,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/9bow-2026-world-action-model-rise/fig16.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig16.jpg",
+    "caption": "Play-LMP 아키텍처, 인식 네트워크가 궤적 윈도우를 잠재 계획으로 압축하고 추론 시 제안 네트워크가 현재 관측과 목표 이미지로부터 잠재 계획을 예측",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/9/a/9a600a092b3c7d8e175c9d949f3534d534bc8a9a_2_1028x721.jpeg",
+    "bytes": 193723,
+    "width": 1028,
+    "height": 721,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/9bow-2026-world-action-model-rise/fig17.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig17.jpg",
+    "caption": "Being-H0.7 잠재 월드-액션 아키텍처, 사후 분기가 관측된 행동을 잠재 토큰으로 압축하고 사전 분기가 빠른 테스트 시 정책 추론을 위해 그 토큰을 예측",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/2/1/214834ddfd35a1d1d4212da84c27a558bc462bf1_2_1028x356.jpeg",
+    "bytes": 100358,
+    "width": 1028,
+    "height": 356,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/9bow-2026-world-action-model-rise/fig18.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig18.jpg",
+    "caption": "계층형 아키텍처, 비디오 예측 단계와 행동 생성 단계가 분리되어 단방향으로 연결",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/8/4/84bf2f5ce249c33bfd40c567d3e954b736573f88_2_1028x586.jpeg",
+    "bytes": 99154,
+    "width": 1028,
+    "height": 586,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/9bow-2026-world-action-model-rise/fig19.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig19.jpg",
+    "caption": "모놀리식 트랜스포머, 하나의 트랜스포머가 비디오와 행동을 엔드투엔드로 함께 디노이징",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/6/f/6f098c50aa5f1f025d8d679db9b9e88a0db03bba_2_1028x706.jpeg",
+    "bytes": 112445,
+    "width": 1028,
+    "height": 706,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/9bow-2026-world-action-model-rise/fig20.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig20.jpg",
+    "caption": "Mixture-of-Transformers, 모달리티별 전문가가 공유 어텐션으로 결합",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/6/9/6953be98c5d3a64b89f19d6ebd6fc5729b79f035_2_1028x574.jpeg",
+    "bytes": 109446,
+    "width": 1028,
+    "height": 574,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/9bow-2026-world-action-model-rise/fig21.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig21.png",
+    "caption": "학습 레시피별 정규화된 조밀 코어 학습 연산량, 로그 스케일 ZFLOP 단위 비교",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/8/b/8bcdab4c6eb8b30e01f4b2021239a4a1e8695764_2_1028x565.png",
+    "bytes": 27094,
+    "width": 1028,
+    "height": 565,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/9bow-2026-world-action-model-rise/fig22.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig22.jpg",
+    "caption": "VLA 스타일과 WAM 스타일, 그리고 둘을 결합한 세 번째 보편 경로로의 수렴 가능성",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/4/8/487aee1dfbb01e080bfb8a0b05e75e340bd46030_2_1028x1028.jpeg",
+    "bytes": 294367,
+    "width": 1028,
+    "height": 1028,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig23",
+    "file": "assets/9bow-2026-world-action-model-rise/fig23.jpg",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/fig23.jpg",
+    "caption": "Motus 스타일 하이브리드 셋업, 비디오 모델링과 행동 생성을 별도 트랜스포머가 처리하되 어텐션과 텍스트 조건화를 공유",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/optimized/3X/c/f/cfc42a8eb2e5dfd271042f93432b7bd95e40bc2b_2_1028x565.jpeg",
+    "bytes": 121472,
+    "width": 1028,
+    "height": 565,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig24",
+    "file": "assets/9bow-2026-world-action-model-rise/page-full.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig25",
+    "file": "assets/9bow-2026-world-action-model-rise/crop01.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig26",
+    "file": "assets/9bow-2026-world-action-model-rise/crop02.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig27",
+    "file": "assets/9bow-2026-world-action-model-rise/crop03.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig28",
+    "file": "assets/9bow-2026-world-action-model-rise/crop04.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig29",
+    "file": "assets/9bow-2026-world-action-model-rise/crop05.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig30",
+    "file": "assets/9bow-2026-world-action-model-rise/crop06.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig31",
+    "file": "assets/9bow-2026-world-action-model-rise/crop07.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig32",
+    "file": "assets/9bow-2026-world-action-model-rise/crop08.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig33",
+    "file": "assets/9bow-2026-world-action-model-rise/crop09.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig34",
+    "file": "assets/9bow-2026-world-action-model-rise/crop10.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig35",
+    "file": "assets/9bow-2026-world-action-model-rise/crop11.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig36",
+    "file": "assets/9bow-2026-world-action-model-rise/crop12.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig37",
+    "file": "assets/9bow-2026-world-action-model-rise/crop13.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop13.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig38",
+    "file": "assets/9bow-2026-world-action-model-rise/crop14.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop14.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig39",
+    "file": "assets/9bow-2026-world-action-model-rise/crop15.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop15.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig40",
+    "file": "assets/9bow-2026-world-action-model-rise/crop16.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop16.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig41",
+    "file": "assets/9bow-2026-world-action-model-rise/crop17.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop17.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig42",
+    "file": "assets/9bow-2026-world-action-model-rise/crop18.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop18.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig43",
+    "file": "assets/9bow-2026-world-action-model-rise/crop19.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop19.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig44",
+    "file": "assets/9bow-2026-world-action-model-rise/crop20.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop20.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig45",
+    "file": "assets/9bow-2026-world-action-model-rise/crop21.png",
+    "raw": "raw/articles/9bow-2026-world-action-model-rise-figures/crop21.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

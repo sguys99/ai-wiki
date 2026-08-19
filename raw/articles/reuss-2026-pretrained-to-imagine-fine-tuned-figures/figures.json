@@ -1,0 +1,542 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/fig01.webp",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/fig01.webp",
+    "caption": "Visuomotor policy: language instruction and current observation in, action sequence out.",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/05/visuomotor_policy_simple.webp",
+    "bytes": 31536,
+    "width": 1788,
+    "height": 479,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/fig02.webp",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/fig02.webp",
+    "caption": "World model: current world state plus an action abstraction in, future image or latent out.",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/05/world_model_simple.webp",
+    "bytes": 30746,
+    "width": 1788,
+    "height": 479,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/fig03.webp",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/fig03.webp",
+    "caption": "The two current bets for generalist manipulation policies: VLM-based VLAs vs video-backbone WAMs.",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/05/Figure-1.-The-two-current-bets-for-generalist-manipulation-policies-VLM-based-VLAs-vs-video-backbone-WAMs.webp",
+    "bytes": 169040,
+    "width": 1975,
+    "height": 1937,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/fig04.webp",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/fig04.webp",
+    "caption": "Figure 4. World models in robotics. Action-conditioned world models (DreamDojo, Genie, JEPA-WM) predict future states from a learned action abstraction. Video world models (Cosmos-Predict, Wan, Veo) predict future video conditioned on language and a reference frame. World-Action Models (WAM) like DreamZero, LingBot-VA, UniPi, and mimic-Video sit at the intersection: they reuse a video or world-model backbone inside a robot policy that emits actions.",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/06/WAM-Figure.webp",
+    "bytes": 45282,
+    "width": 1781,
+    "height": 883,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/fig05.webp",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/fig05.webp",
+    "caption": "Figure 5. Context frame from a RoboArena toaster task in the DROID setup.",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/06/Figure-5.-Context-frame-from-a-RoboArena-toaster-task-in-the-DROID-setup.webp",
+    "bytes": 24630,
+    "width": 951,
+    "height": 768,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/fig06.webp",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/fig06.webp",
+    "caption": "Figure 6. Ground-truth rollout: robot pushes the toaster lever.",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/06/Figure-6.-Ground-truth-rollout-robot-pushes-the-toaster-lever.webp",
+    "bytes": 42204,
+    "width": 1585,
+    "height": 392,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/fig07.webp",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/fig07.webp",
+    "caption": "Figure 5. Veo 3.1 rollout for the reference task (pushing the toaster lever).",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/06/Figure-7.-Veo-3.1-rollout-for-the-reference-task-pushing-the-toaster-lever.webp",
+    "bytes": 41184,
+    "width": 1586,
+    "height": 316,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/fig08.webp",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/fig08.webp",
+    "caption": "Figure 6. Veo 3.1 rollout for the composed extension (lever push followed by orange pickup).",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/06/Figure-8.-Veo-3.1-rollout-for-the-composed-extension.webp",
+    "bytes": 39146,
+    "width": 1587,
+    "height": 314,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/fig09.gif",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/fig09.gif",
+    "caption": "Animated rollout of the full composed-extension sequence: lever push followed by orange pickup.",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/06/veo3_composed_extension-1.gif",
+    "bytes": 2638922,
+    "width": 800,
+    "height": 450,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/fig10.webp",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/fig10.webp",
+    "caption": "UniPi overview. A text-conditioned video generator produces a future image sequence from the current frame and language instruction; a separate inverse-dynamics module then extracts actions from consecutive frames",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/06/UniPi-overview.-A-text-conditioned-video-generator.webp",
+    "bytes": 65046,
+    "width": 1567,
+    "height": 1130,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/fig11.webp",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/fig11.webp",
+    "caption": "Figure 26. A Motus-style hybrid setup: video modeling and action generation are handled by separate transformers while sharing attention and text conditioning, pointing toward a unified VLA+WAM policy recipe.",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2026/06/A-Motus-style-hybrid-setup.webp",
+    "bytes": 79398,
+    "width": 1809,
+    "height": 995,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/page-full.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop01.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop02.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop03.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop04.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop05.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop06.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop07.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop08.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop09.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop10.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig23",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop11.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig24",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop12.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig25",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop13.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop13.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig26",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop14.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop14.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig27",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop15.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop15.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig28",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop16.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop16.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig29",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop17.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop17.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig30",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop18.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop18.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig31",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop19.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop19.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig32",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop20.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop20.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig33",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop21.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop21.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig34",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop22.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop22.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig35",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop23.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop23.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig36",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop24.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop24.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig37",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop25.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop25.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig38",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop26.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop26.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig39",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop27.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop27.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig40",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop28.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop28.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig41",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop29.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop29.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig42",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop30.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop30.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig43",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop31.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop31.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig44",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop32.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop32.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig45",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop33.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop33.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig46",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop34.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop34.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig47",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop35.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop35.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig48",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop36.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop36.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig49",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop37.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop37.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig50",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop38.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop38.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig51",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop39.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop39.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig52",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop40.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop40.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig53",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop41.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop41.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig54",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop42.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop42.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig55",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop43.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop43.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig56",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop44.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop44.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig57",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop45.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop45.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig58",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop46.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop46.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig59",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop47.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop47.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig60",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop48.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop48.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig61",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop49.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop49.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig62",
+    "file": "assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop50.png",
+    "raw": "raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop50.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
