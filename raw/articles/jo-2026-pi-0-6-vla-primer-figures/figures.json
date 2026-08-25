@@ -1,0 +1,82 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/jo-2026-pi-0-6-vla-primer/fig01.png",
+    "raw": "raw/articles/jo-2026-pi-0-6-vla-primer-figures/fig01.png",
+    "caption": "Reinforcement learning overview",
+    "source_url": "https://static.wikidocs.net/images/page/366375/gh_711acc6246e7.png",
+    "bytes": 58728,
+    "width": 720,
+    "height": 338,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/jo-2026-pi-0-6-vla-primer/fig02.png",
+    "raw": "raw/articles/jo-2026-pi-0-6-vla-primer-figures/fig02.png",
+    "caption": "Policy extraction comparison",
+    "source_url": "https://static.wikidocs.net/images/page/366375/gh_45f1ad000db2.png",
+    "bytes": 80289,
+    "width": 788,
+    "height": 441,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/jo-2026-pi-0-6-vla-primer/fig03.png",
+    "raw": "raw/articles/jo-2026-pi-0-6-vla-primer-figures/fig03.png",
+    "caption": "Pi-0.6 architecture",
+    "source_url": "https://static.wikidocs.net/images/page/366375/gh_24567b8b5f0a.png",
+    "bytes": 193121,
+    "width": 609,
+    "height": 618,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/jo-2026-pi-0-6-vla-primer/fig04.png",
+    "raw": "raw/articles/jo-2026-pi-0-6-vla-primer-figures/fig04.png",
+    "caption": "Pi-0.6 result 1",
+    "source_url": "https://static.wikidocs.net/images/page/366375/gh_9f6822cffde1.png",
+    "bytes": 174736,
+    "width": 1570,
+    "height": 500,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/jo-2026-pi-0-6-vla-primer/fig05.png",
+    "raw": "raw/articles/jo-2026-pi-0-6-vla-primer-figures/fig05.png",
+    "caption": "Pi-0.6 result 2",
+    "source_url": "https://static.wikidocs.net/images/page/366375/gh_07cc94c0f524.png",
+    "bytes": 174639,
+    "width": 1554,
+    "height": 448,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/jo-2026-pi-0-6-vla-primer/fig06.png",
+    "raw": "raw/articles/jo-2026-pi-0-6-vla-primer-figures/fig06.png",
+    "caption": "Pi-0.6 iterative improvement",
+    "source_url": "https://static.wikidocs.net/images/page/366375/gh_ce0a01774ccd.png",
+    "bytes": 192930,
+    "width": 809,
+    "height": 995,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/jo-2026-pi-0-6-vla-primer/page-full.png",
+    "raw": "raw/articles/jo-2026-pi-0-6-vla-primer-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]

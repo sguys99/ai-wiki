@@ -1,0 +1,353 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig01.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig01.png",
+    "page": 1,
+    "caption": "Fig. 1: R ECAP enables training VLAs with reward feedback and interventions. Our system starts with a pre-trained VLA that incorporates advantage conditioning , allowing the model to learn effectively from real-world experience. For each task, we deploy the model and collect both autonomous rollouts",
+    "bbox": [
+      42.96,
+      178.42,
+      569.04,
+      389.41
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.2253,
+      0.9298,
+      0.4917
+    ],
+    "dpi": 300,
+    "area_frac": 0.229,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig02.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig02.png",
+    "page": 2,
+    "caption": "Fig. 2: Some of the tasks learned by R ECAP . π ∗",
+    "bbox": [
+      42.96,
+      48.0,
+      568.98,
+      229.72
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.9297,
+      0.29
+    ],
+    "dpi": 300,
+    "area_frac": 0.197,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig03.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig03.png",
+    "page": 4,
+    "caption": "Fig. 3: Interaction between the π ∗",
+    "bbox": [
+      305.97,
+      48.0,
+      569.03,
+      258.43
+    ],
+    "bbox_norm": [
+      0.5,
+      0.0606,
+      0.9298,
+      0.3263
+    ],
+    "dpi": 300,
+    "area_frac": 0.114,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig04.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig04.png",
+    "page": 5,
+    "caption": "Fig. 4: Visualization of the value functions. We train a multi-task value function to predict the number of steps to success, normalized by maximum task length to ( − 1 , 0) , where 0 corresponds to successful completion. We visualize the value function output on a folding task that ﬁnished successf",
+    "bbox": [
+      35.32,
+      31.06,
+      576.59,
+      183.92
+    ],
+    "bbox_norm": [
+      0.0577,
+      0.0392,
+      0.9421,
+      0.2322
+    ],
+    "dpi": 300,
+    "area_frac": 0.171,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig05.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig05.png",
+    "page": 7,
+    "caption": "Fig. 5: The robot setup used in our experiments. π ∗",
+    "bbox": [
+      318.53,
+      48.0,
+      556.46,
+      200.35
+    ],
+    "bbox_norm": [
+      0.5205,
+      0.0606,
+      0.9093,
+      0.253
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig06.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig06.png",
+    "page": 8,
+    "caption": "Fig. 6: Illustrations of the tasks used in our experiments. Tasks include three different laundry variants, assembling boxes, and making coffee drinks with an espresso machine.",
+    "bbox": [
+      55.81,
+      48.0,
+      556.17,
+      241.34
+    ],
+    "bbox_norm": [
+      0.0912,
+      0.0606,
+      0.9088,
+      0.3047
+    ],
+    "dpi": 300,
+    "area_frac": 0.2,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig07.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig07.png",
+    "page": 9,
+    "caption": "Fig. 7: Throughput. We show the number of successfully completed tasks per hour for laundry (simple and diverse), espresso making, and box assembly. Error bars show standard error. This metric measures both success and speed. In all cases, R ECAP applied to π ∗",
+    "bbox": [
+      49.56,
+      48.0,
+      562.44,
+      194.32
+    ],
+    "bbox_norm": [
+      0.081,
+      0.0606,
+      0.919,
+      0.2454
+    ],
+    "dpi": 300,
+    "area_frac": 0.155,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig08.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig08.png",
+    "page": 9,
+    "caption": "Fig. 8: Success rates. We show the absolute success rates with standard error. Each stage of R ECAP improves performance across the tasks, with the challenging diverse laundry and espresso tasks seeing the largest gains success rate, corresponding to more than 2 × reduction in failure rates. For the",
+    "bbox": [
+      49.03,
+      227.15,
+      562.96,
+      354.83
+    ],
+    "bbox_norm": [
+      0.0801,
+      0.2868,
+      0.9199,
+      0.448
+    ],
+    "dpi": 300,
+    "area_frac": 0.135,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig09.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig09.png",
+    "page": 10,
+    "caption": "Fig. 9: Improvement in throughput over multiple iterations. Both tasks improve signiﬁcantly in throughput as we take more iterations of R ECAP , with box assembling ﬁrst dropping and then improving signiﬁcantly.",
+    "bbox": [
+      53.65,
+      48.0,
+      295.33,
+      196.18
+    ],
+    "bbox_norm": [
+      0.0877,
+      0.0606,
+      0.4826,
+      0.2477
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig10.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig10.png",
+    "page": 10,
+    "caption": "Fig. 10: Improvement in success rate over multiple iterations. The laundry task quickly reaches the maximum success rate (but continues to improve in throughput as shown in Figure 9 , while box assembly continues to improve.",
+    "bbox": [
+      44.65,
+      230.48,
+      304.33,
+      350.93
+    ],
+    "bbox_norm": [
+      0.073,
+      0.291,
+      0.4973,
+      0.4431
+    ],
+    "dpi": 300,
+    "area_frac": 0.065,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig11.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig11.png",
+    "page": 10,
+    "caption": "Fig. 11: Comparison of different policy extraction methods. R ECAP applied to π ∗",
+    "bbox": [
+      306.38,
+      48.0,
+      568.63,
+      165.5
+    ],
+    "bbox_norm": [
+      0.5006,
+      0.0606,
+      0.9291,
+      0.209
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig12.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig12.png",
+    "page": 10,
+    "caption": "Fig. 12: Failure mode removal. Here we apply R ECAP on a variant of the laundry task with one item but a very strict success criteria. R ECAP is particularly effective at removing failure modes that would be considered non successful under the strict criteria. Therefore, our method can also be used ",
+    "bbox": [
+      306.38,
+      203.22,
+      568.63,
+      363.79
+    ],
+    "bbox_norm": [
+      0.5006,
+      0.2566,
+      0.9291,
+      0.4593
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/amin-2025-pistar06-a-vla-that-learns/fig13.png",
+    "raw": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig13.png",
+    "page": 17,
+    "caption": "Fig. 13: Additional visualization of value function on ﬁve different tasks. Red parts highlight places where value drops, green parts highlight places where value increases, and yellow parts highlight oscillating value regions. Images show the corresponding frames and descriptions of the episode.",
+    "bbox": [
+      24.59,
+      28.97,
+      331.48,
+      512.5
+    ],
+    "bbox_norm": [
+      0.0402,
+      0.0366,
+      0.5416,
+      0.6471
+    ],
+    "dpi": 300,
+    "area_frac": 0.306,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/_overlay/p17.png"
+  }
+]
