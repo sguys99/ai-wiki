@@ -1,0 +1,355 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig01.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1 The overall framework of Agent Lightning v1.0.",
+    "bbox": [
+      62.46,
+      177.53,
+      526.87,
+      342.76
+    ],
+    "bbox_norm": [
+      0.1049,
+      0.2109,
+      0.8851,
+      0.4071
+    ],
+    "dpi": 300,
+    "area_frac": 0.153,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig02.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2 Comparison of traditional agentic RL and harnessed agentic RL. Both admit a POMDP formulation, but harnessed agentic RL adds harness state to the latent execution state and exposes the policy model to separately constructed model-call prompts. This change also shifts control and orchestrati",
+    "bbox": [
+      62.03,
+      56.36,
+      529.55,
+      181.93
+    ],
+    "bbox_norm": [
+      0.1042,
+      0.0669,
+      0.8896,
+      0.2161
+    ],
+    "dpi": 300,
+    "area_frac": 0.117,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig03.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3 A retokenization example. The word having sampled as the two tokens h and aving in call i ( top ) can be retokenized into different token boundaries, hav and ing , when the updated message history is",
+    "bbox": [
+      107.1,
+      51.25,
+      482.22,
+      154.17
+    ],
+    "bbox_norm": [
+      0.1799,
+      0.0609,
+      0.8101,
+      0.1831
+    ],
+    "dpi": 300,
+    "area_frac": 0.077,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig04.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig04.png",
+    "page": 7,
+    "caption": "Figure 4 Traditional agentic RL, where each rollout is one training sample ( left ), versus harnessed agentic RL, where a rollout can expand into a dynamic number of samples that inherit its reward ( right ).",
+    "bbox": [
+      62.03,
+      56.36,
+      533.23,
+      156.68
+    ],
+    "bbox_norm": [
+      0.1042,
+      0.0669,
+      0.8958,
+      0.1861
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig05.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig05.png",
+    "page": 8,
+    "caption": "Figure 5 An example batch with three rollouts of different sample counts and response lengths.",
+    "bbox": [
+      142.4,
+      56.36,
+      452.86,
+      162.63
+    ],
+    "bbox_norm": [
+      0.2392,
+      0.0669,
+      0.7607,
+      0.1932
+    ],
+    "dpi": 300,
+    "area_frac": 0.066,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig06.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig06.png",
+    "page": 10,
+    "caption": "Figure 6 Sync RL, async RL, and our collocated async RL. Collocated async RL shares the same GPUs between rollout and update while still avoiding the need to wait for the slowest rollout.",
+    "bbox": [
+      62.03,
+      56.36,
+      533.21,
+      227.29
+    ],
+    "bbox_norm": [
+      0.1042,
+      0.0669,
+      0.8957,
+      0.27
+    ],
+    "dpi": 300,
+    "area_frac": 0.161,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig07.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig07.png",
+    "page": 12,
+    "caption": "Figure 7 Search-agent training dynamics. From left to right: mean training reward and mean validation reward.",
+    "bbox": [
+      142.4,
+      56.36,
+      452.89,
+      186.66
+    ],
+    "bbox_norm": [
+      0.2392,
+      0.0669,
+      0.7608,
+      0.2217
+    ],
+    "dpi": 300,
+    "area_frac": 0.081,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig08.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig08.png",
+    "page": 12,
+    "caption": "Figure 8 General instruction-following agent training dynamics. From left to right: mean training reward and mean validation reward.",
+    "bbox": [
+      142.4,
+      220.35,
+      452.89,
+      350.65
+    ],
+    "bbox_norm": [
+      0.2392,
+      0.2617,
+      0.7608,
+      0.4165
+    ],
+    "dpi": 300,
+    "area_frac": 0.081,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig09.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig09.png",
+    "page": 13,
+    "caption": "Figure 9 Coding-agent training dynamics for Sample-level Advantage, Rollout-level Advantage, and Rollout-level Advantage + Rollout-level Norm. Left: validation reward. Right: policy entropy.",
+    "bbox": [
+      119.43,
+      56.36,
+      475.85,
+      194.19
+    ],
+    "bbox_norm": [
+      0.2006,
+      0.0669,
+      0.7994,
+      0.2307
+    ],
+    "dpi": 300,
+    "area_frac": 0.098,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig10.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig10.png",
+    "page": 14,
+    "caption": "Figure 10 Rollout-merging behavior for the Rollout-level Advantage + Rollout-level Norm run. Left: fraction of rollouts that yield exactly one training sample. Right: average number of training samples produced per rollout. Dashed lines mark the mean over training.",
+    "bbox": [
+      119.43,
+      56.36,
+      475.85,
+      210.43
+    ],
+    "bbox_norm": [
+      0.2006,
+      0.0669,
+      0.7994,
+      0.25
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig11.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig11.png",
+    "page": 19,
+    "caption": "Figure 11 The objects stored by the API Gateway.",
+    "bbox": [
+      176.84,
+      56.36,
+      418.43,
+      195.37
+    ],
+    "bbox_norm": [
+      0.2971,
+      0.0669,
+      0.7029,
+      0.2321
+    ],
+    "dpi": 300,
+    "area_frac": 0.067,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/fig12.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/fig12.png",
+    "page": 20,
+    "caption": "Figure 12 The Rollout Controller reconciles rollout status in the API Gateway with agent executions running as Kubernetes Jobs or local processes.",
+    "bbox": [
+      62.03,
+      263.28,
+      533.23,
+      410.95
+    ],
+    "bbox_norm": [
+      0.1042,
+      0.3127,
+      0.8958,
+      0.4881
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/he-2026-agent-lightning-v1-0-towards-harnessed/tab01.png",
+    "raw": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/tab01.png",
+    "page": 20,
+    "caption": "Table 1 API Gateway endpoints.",
+    "bbox": [
+      63.83,
+      56.8,
+      531.44,
+      240.98
+    ],
+    "bbox_norm": [
+      0.1072,
+      0.0675,
+      0.8928,
+      0.2862
+    ],
+    "dpi": 300,
+    "area_frac": 0.172,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed-figures/_overlay/p20.png"
+  }
+]
