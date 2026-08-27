@@ -1,0 +1,178 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/lionhong-2023-nav2-core-concepts/fig01.jpg",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/fig01.jpg",
+    "caption": "lifecycle이 활성화된 노드",
+    "source_url": "https://blog.kakaocdn.net/dna/bhUPSa/btsrTomFvQV/AAAAAAAAAAAAAAAAAAAAADOI7lK5rjJ4jZL2gBW33ZKZYjLBjlPDiVc02cVfJRce/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1788188399&allow_ip=&allow_referer=&signature=DSVrewiY35dcd1fHZla2zAVlVyE%3D",
+    "bytes": 27708,
+    "width": 1113,
+    "height": 533,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/lionhong-2023-nav2-core-concepts/fig02.jpg",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/fig02.jpg",
+    "caption": "lifecycle manager 예시",
+    "source_url": "https://blog.kakaocdn.net/dna/7EdzQ/btsrUoNt5pQ/AAAAAAAAAAAAAAAAAAAAAKrGi3h-a3OB5VjOFEv22FjCpmOPvBb4lRF4wgFC5EVH/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1788188399&allow_ip=&allow_referer=&signature=dvZg3S4mjPVeyttb%2BfEDvr4Vd7s%3D",
+    "bytes": 47102,
+    "width": 1280,
+    "height": 635,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/lionhong-2023-nav2-core-concepts/fig03.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/fig03.png",
+    "caption": "Nav2 Behavior Tree 구조 예시",
+    "source_url": "https://blog.kakaocdn.net/dna/cB2a5z/btsr4XIdT7r/AAAAAAAAAAAAAAAAAAAAAPfAyJp6T4ObKXSqSX7PCTt5U2gLH9zXuw9-fSaakc6s/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1788188399&allow_ip=&allow_referer=&signature=mdPlOIou8MiXQqdIsVLrkIq%2BM14%3D",
+    "bytes": 140735,
+    "width": 1715,
+    "height": 622,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/lionhong-2023-nav2-core-concepts/fig04.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/fig04.png",
+    "caption": "BT navigator와 연동되는 다양한 server들",
+    "source_url": "https://blog.kakaocdn.net/dna/c74Pc2/btssabGMpPs/AAAAAAAAAAAAAAAAAAAAAPIr50NWhlpVOviDqoxJNtfoZMwvnEwNzkOd3LAcWcB_/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1788188399&allow_ip=&allow_referer=&signature=1jUxzohYkEZVwFu54RHiC%2BR1Kxc%3D",
+    "bytes": 57295,
+    "width": 690,
+    "height": 459,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/lionhong-2023-nav2-core-concepts/fig05.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/fig05.png",
+    "caption": "map에 표현된 costmap",
+    "source_url": "https://blog.kakaocdn.net/dna/c0wQCv/btsr5ZtKKpe/AAAAAAAAAAAAAAAAAAAAACCrufuxR9y6q3ibehvb-xSMMI5Ip4d7ebytDUr7KDi0/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1788188399&allow_ip=&allow_referer=&signature=Suv%2FqIwoBN%2FutAp19BuFtFkzdPo%3D",
+    "bytes": 480056,
+    "width": 933,
+    "height": 681,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/lionhong-2023-nav2-core-concepts/fig06.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/fig06.png",
+    "caption": "최대 속도를 제한하는 코스트맵 필터",
+    "source_url": "https://blog.kakaocdn.net/dna/w7DK9/btsr61xUXY5/AAAAAAAAAAAAAAAAAAAAAOGl0rUoq0v7ZoaAJPRbPpk8yRR8h-HsJPwo4FRCz_8m/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1788188399&allow_ip=&allow_referer=&signature=oY7cLHB%2By62xP9BLAKNRaQt%2Flhk%3D",
+    "bytes": 134301,
+    "width": 784,
+    "height": 341,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/lionhong-2023-nav2-core-concepts/page-full.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop01.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop02.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop03.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop04.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop05.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop06.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop07.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop08.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop09.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop10.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop11.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/lionhong-2023-nav2-core-concepts/crop12.png",
+    "raw": "raw/articles/lionhong-2023-nav2-core-concepts-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

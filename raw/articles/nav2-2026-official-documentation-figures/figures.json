@@ -1,0 +1,106 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/nav2-2026-official-documentation/page-full.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/nav2-2026-official-documentation/crop01.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/nav2-2026-official-documentation/crop02.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/nav2-2026-official-documentation/crop03.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/nav2-2026-official-documentation/crop04.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/nav2-2026-official-documentation/crop05.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/nav2-2026-official-documentation/crop06.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/nav2-2026-official-documentation/crop07.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/nav2-2026-official-documentation/crop08.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/nav2-2026-official-documentation/crop09.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/nav2-2026-official-documentation/crop10.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/nav2-2026-official-documentation/crop11.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/nav2-2026-official-documentation/crop12.png",
+    "raw": "raw/articles/nav2-2026-official-documentation-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

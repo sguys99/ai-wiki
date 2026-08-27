@@ -1,0 +1,143 @@
+---
+title: "NAV2 - Nav2 Docs"
+type: article
+year: 2026
+category: physical-ai
+source: nav2-2026-official-documentation.md
+raw_path: raw/articles/nav2-2026-official-documentation.md
+raw_filename: "nav2-2026-official-documentation.md"
+source_collection: external
+author: "Open Navigation LLC"
+url: "https://docs.nav2.org/rolling/"
+publisher: "docs.nav2.org"
+tags: [physical-ai, mobile-robot]
+figures:
+  - id: fig01
+    kind: figure
+    file: assets/nav2-2026-official-documentation/page-full.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/page-full.png
+    caption: "docs.nav2.org 랜딩 페이지 전체 스크린샷"
+    strategy: screenshot
+    curated: false
+  - id: fig02
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop01.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop01.png
+    caption: "Nav2 로고"
+    strategy: crop
+    curated: false
+  - id: fig03
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop02.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop02.png
+    caption: "스폰서 로고 타일"
+    strategy: crop
+    curated: false
+  - id: fig04
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop03.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop03.png
+    caption: "스폰서 로고 타일"
+    strategy: crop
+    curated: false
+  - id: fig05
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop04.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop04.png
+    caption: "랜딩 페이지 요소 크롭"
+    strategy: crop
+    curated: false
+  - id: fig06
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop05.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop05.png
+    caption: "랜딩 페이지 요소 크롭"
+    strategy: crop
+    curated: false
+  - id: fig07
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop06.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop06.png
+    caption: "랜딩 페이지 요소 크롭"
+    strategy: crop
+    curated: false
+  - id: fig08
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop07.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop07.png
+    caption: "랜딩 페이지 요소 크롭"
+    strategy: crop
+    curated: false
+  - id: fig09
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop08.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop08.png
+    caption: "랜딩 페이지 요소 크롭"
+    strategy: crop
+    curated: false
+  - id: fig10
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop09.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop09.png
+    caption: "랜딩 페이지 요소 크롭"
+    strategy: crop
+    curated: false
+  - id: fig11
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop10.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop10.png
+    caption: "랜딩 페이지 요소 크롭"
+    strategy: crop
+    curated: false
+  - id: fig12
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop11.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop11.png
+    caption: "랜딩 페이지 요소 크롭"
+    strategy: crop
+    curated: false
+  - id: fig13
+    kind: figure
+    file: assets/nav2-2026-official-documentation/crop12.png
+    raw: raw/articles/nav2-2026-official-documentation-figures/crop12.png
+    caption: "랜딩 페이지 요소 크롭"
+    strategy: crop
+    curated: false
+---
+
+## 요약 (Summary)
+
+Nav2 공식 문서(docs.nav2.org rolling)의 랜딩 페이지다. 프로젝트의 자기 정의와 제공 기능 목록, ROS 2 배포판별 지원 상태가 여기 실려 있다. 하위 문서(Getting Started·Concepts·Configuration·Plugins)로 가는 목차도 겸한다. 발행 조직은 Open Navigation LLC로, Nav2 프로젝트의 리더십·유지보수를 맡는다.
+
+## 주요 기여 (Key Contributions)
+
+- Nav2를 "ROS Navigation Stack의 전문 지원 후속작"으로 규정한다. 자율주행 차량에 쓰이는 종류의 기술을 모바일·수상 로봇용으로 최적화해 내렸고 전 세계 300개 이상 기업이 쓰는 production-grade framework이라는 것이 공식 소개다.
+- 적용 범위를 넓게 잡는다. 거의 모든 로봇 kinematics·dynamics, 실내외, 임의 센서 구성을 지원한다. A→B 이동만이 아니라 중간 pose, 물체 추종, complete coverage navigation 같은 과제 유형도 표현할 수 있다.
+- Behavior Tree로 독립 모듈 서버들을 조율한다는 아키텍처 요지를 명시한다. task server가 경로 계산·제어·behavior를 각각 맡고 BT와는 action server나 service 같은 ROS 인터페이스로 통신한다. 로봇 하나가 여러 BT를 바꿔 쓰며 다양한 과제를 수행한다.
+
+## 방법론 및 아키텍처 (Methodology and Architecture)
+
+랜딩 페이지의 제공 도구 목록이 길다. 지도는 로드·서빙·저장하고 그 위에서 localization을 수행하며 초기 지도는 SLAM이 만든다. 경로 쪽은 대형 로봇도 기구학적으로 실행 가능한 전체 경로 계획, 충돌 회피를 겸한 경로 추종 제어, 경로 smoothing이다. 센서 데이터는 환경 모델로 변환하고 로봇 행동은 Behavior Tree로 구성하며 실패나 인간 개입 상황에는 사전 정의 behavior를 둔다. 여기에 waypoint 순차 추종과 서버 lifecycle 관리·watchdog이 더해지고 동적 plugin 로딩과 원시 센서 데이터 기반 충돌 임박 감시, Python3 API, 출력 속도 smoother까지 갖춘다. 시작용 plugin 묶음도 함께 제공한다. 전체 목록은 Navigation Plugins 페이지에 있다.
+
+배포판 지원 상태 표도 랜딩 페이지의 실질 정보다.
+
+| ROS 2 배포판 | 상태 |
+|---|---|
+| Rolling Ridley | Development |
+| Lyrical Lynx | Active Support |
+| Kilted Kaiju | Maintained |
+| Jazzy Jalisco | Active Support |
+| Iron Irwini | End of Life |
+| Humble Hawksbill | Maintained |
+| Galactic Geochelone | End of Life |
+
+## 결과 (Results)
+
+벤치마크는 없다. "300개 이상 기업이 신뢰", "15년의 유산 위에 구축"이라는 채택 지표가 공식 문구로 제시된다.
+
+랜딩 페이지 한 장이라 개념 설명·설정법·plugin 목록 같은 실질 내용은 하위 문서에 있다. 개념 쪽은 [[physical-ai/lionhong-2023-nav2-core-concepts]]가 상당 부분을 한국어로 옮겨 놓았다. 페이지의 도식은 로고·스폰서·배포판 타일뿐이라 wiki에 임베드할 아키텍처 다이어그램이 없다. 아키텍처 그림은 [[physical-ai/yhoons-2024-ros2-nav2-intro]]의 fig02가 공식 다이어그램이다.
+
+## 관련 페이지 (Related Pages)
+
+- [[physical-ai/ros-navigation-navigation2]] — 소스 repo. 인용 논문 목록(Marathon 2 등)은 repo README 쪽에 있다
+- [[physical-ai/yhoons-2024-ros2-nav2-intro]] · [[physical-ai/lionhong-2023-nav2-core-concepts]] — 한국어 해설 글

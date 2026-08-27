@@ -1,0 +1,66 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/yhoons-2024-ros2-nav2-intro/fig01.png",
+    "raw": "raw/articles/yhoons-2024-ros2-nav2-intro-figures/fig01.png",
+    "caption": "",
+    "source_url": "https://blog.kakaocdn.net/dna/xnU9v/btsJvSXQjaB/AAAAAAAAAAAAAAAAAAAAAM8Lc0LC2U185pwNuKdFskac8f6FbGMYGkBR7s32E7me/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1788188399&allow_ip=&allow_referer=&signature=OfG15Qel3l38VPfAuTyHrUb3LHg%3D",
+    "bytes": 88981,
+    "width": 533,
+    "height": 801,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/yhoons-2024-ros2-nav2-intro/fig02.png",
+    "raw": "raw/articles/yhoons-2024-ros2-nav2-intro-figures/fig02.png",
+    "caption": "",
+    "source_url": "https://blog.kakaocdn.net/dna/bLcMNY/btsJucwM0Lo/AAAAAAAAAAAAAAAAAAAAAH4jesNJtX9sHS031SGM7PiHfiW8KcpP9mgL0PvaXFwa/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1788188399&allow_ip=&allow_referer=&signature=UMwvNWQMjdHCS8bGFDtNe0SpXQE%3D",
+    "bytes": 68937,
+    "width": 960,
+    "height": 600,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/yhoons-2024-ros2-nav2-intro/page-full.png",
+    "raw": "raw/articles/yhoons-2024-ros2-nav2-intro-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/yhoons-2024-ros2-nav2-intro/crop01.png",
+    "raw": "raw/articles/yhoons-2024-ros2-nav2-intro-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/yhoons-2024-ros2-nav2-intro/crop02.png",
+    "raw": "raw/articles/yhoons-2024-ros2-nav2-intro-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/yhoons-2024-ros2-nav2-intro/crop03.png",
+    "raw": "raw/articles/yhoons-2024-ros2-nav2-intro-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/yhoons-2024-ros2-nav2-intro/crop04.png",
+    "raw": "raw/articles/yhoons-2024-ros2-nav2-intro-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
