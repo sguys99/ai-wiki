@@ -1,0 +1,273 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/xu-2020-fast-lio-a-fast-robust-lidar-inertial/fig01.png",
+    "raw": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/fig01.png",
+    "page": 1,
+    "caption": "Fig. 1. Our LiDAR-inertial navigation system runs on a Livox AVIA LiDAR 3 and a DJI Manifold 2-C onboard computer 4 , all on a customized small-scale quadrotor UAV (280 mm wheelbase). The RGB camera is not used in our algorithm, but only for visualization. Video is available at https://youtu.be/iYCY",
+    "bbox": [
+      307.2,
+      155.6,
+      563.99,
+      304.88
+    ],
+    "bbox_norm": [
+      0.502,
+      0.1965,
+      0.9216,
+      0.3849
+    ],
+    "dpi": 300,
+    "area_frac": 0.079,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/xu-2020-fast-lio-a-fast-robust-lidar-inertial/fig02.png",
+    "raw": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/fig02.png",
+    "page": 3,
+    "caption": "Fig. 2. System overview of FAST-LIO. (a): the overall pipeline; (b): the forward and backward propagation.",
+    "bbox": [
+      49.55,
+      48.47,
+      562.47,
+      184.43
+    ],
+    "bbox_norm": [
+      0.081,
+      0.0612,
+      0.9191,
+      0.2329
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/xu-2020-fast-lio-a-fast-robust-lidar-inertial/fig03.png",
+    "raw": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/fig03.png",
+    "page": 6,
+    "caption": "Fig. 3. During the ﬂight experiment, the UAV is automatically ﬂying in a circle path with 1.8 m radius and 1.4 m height. The circle path is conducted repeatedly for 4 times with different periods (6-10 s ). The yaw command of the UAV maintains constant during the ﬂight. In the end, the UAV is manual",
+    "bbox": [
+      307.2,
+      117.41,
+      563.99,
+      235.12
+    ],
+    "bbox_norm": [
+      0.502,
+      0.1482,
+      0.9216,
+      0.2969
+    ],
+    "dpi": 300,
+    "area_frac": 0.062,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/xu-2020-fast-lio-a-fast-robust-lidar-inertial/fig04.png",
+    "raw": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/fig04.png",
+    "page": 7,
+    "caption": "Fig. 4. The angular velocity and acceleration in the indoor experiments.",
+    "bbox": [
+      48.0,
+      130.39,
+      304.68,
+      232.91
+    ],
+    "bbox_norm": [
+      0.0784,
+      0.1646,
+      0.4978,
+      0.2941
+    ],
+    "dpi": 300,
+    "area_frac": 0.054,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/xu-2020-fast-lio-a-fast-robust-lidar-inertial/fig05.png",
+    "raw": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/fig05.png",
+    "page": 7,
+    "caption": "Fig. 5. The Mapping results of different LIO packages in an indoor environment with large rotation speed.",
+    "bbox": [
+      307.2,
+      48.0,
+      564.0,
+      281.32
+    ],
+    "bbox_norm": [
+      0.502,
+      0.0606,
+      0.9216,
+      0.3552
+    ],
+    "dpi": 300,
+    "area_frac": 0.124,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/xu-2020-fast-lio-a-fast-robust-lidar-inertial/fig06.png",
+    "raw": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/fig06.png",
+    "page": 7,
+    "caption": "Fig. 6. Mapping results of the Main Building, University of Hong Kong. The LiDAR platform, the same one in Fig. 1, is handheld randomly walking to scan the building. In order to show the drift, the experiment are started and ended at the same place.",
+    "bbox": [
+      307.2,
+      311.83,
+      563.99,
+      446.31
+    ],
+    "bbox_norm": [
+      0.502,
+      0.3937,
+      0.9215,
+      0.5635
+    ],
+    "dpi": 300,
+    "area_frac": 0.071,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/xu-2020-fast-lio-a-fast-robust-lidar-inertial/fig07.png",
+    "raw": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/fig07.png",
+    "page": 8,
+    "caption": "Fig. 7. Comparison between LINS [21] and FAST-LIO. The data is from [21] and is collected by a Velodyne VLP-16 LiDAR and an Xsens MTiG- 710 IMU, the green straight line in the center is the odometry output.",
+    "bbox": [
+      48.0,
+      48.0,
+      304.78,
+      230.54
+    ],
+    "bbox_norm": [
+      0.0784,
+      0.0606,
+      0.498,
+      0.2911
+    ],
+    "dpi": 300,
+    "area_frac": 0.097,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table I",
+    "kind": "table",
+    "file": "assets/xu-2020-fast-lio-a-fast-robust-lidar-inertial/tab01.png",
+    "raw": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/tab01.png",
+    "page": 3,
+    "caption": "TABLE I S OME I MPORTANT N OTATIONS",
+    "bbox": [
+      27.66,
+      211.8,
+      296.7,
+      370.32
+    ],
+    "bbox_norm": [
+      0.0452,
+      0.2674,
+      0.4848,
+      0.4676
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/_overlay/p03.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table II",
+    "kind": "table",
+    "file": "assets/xu-2020-fast-lio-a-fast-robust-lidar-inertial/tab02.png",
+    "raw": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/tab02.png",
+    "page": 6,
+    "caption": "TABLE II T HE RUNNING TIMES OF TWO K ALMAN GAIN FORMULAS",
+    "bbox": [
+      308.92,
+      77.53,
+      562.28,
+      117.63
+    ],
+    "bbox_norm": [
+      0.5048,
+      0.0979,
+      0.9188,
+      0.1485
+    ],
+    "dpi": 300,
+    "area_frac": 0.021,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table III",
+    "kind": "table",
+    "file": "assets/xu-2020-fast-lio-a-fast-robust-lidar-inertial/tab03.png",
+    "raw": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/tab03.png",
+    "page": 7,
+    "caption": "TABLE III C OMPARISON OF PROCESSING TIME FOR A L I DAR SCAN AT 10 Hz",
+    "bbox": [
+      70.49,
+      77.96,
+      279.52,
+      126.03
+    ],
+    "bbox_norm": [
+      0.1152,
+      0.0984,
+      0.4567,
+      0.1591
+    ],
+    "dpi": 300,
+    "area_frac": 0.021,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2020-fast-lio-a-fast-robust-lidar-inertial-figures/_overlay/p07.png"
+  }
+]

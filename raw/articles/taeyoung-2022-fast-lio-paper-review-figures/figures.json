@@ -1,0 +1,142 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/fig01.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/fig01.png",
+    "caption": "",
+    "source_url": "https://user-images.githubusercontent.com/41863759/183591460-254ff2f4-0888-49d0-8542-75f5a306a6cf.png",
+    "bytes": 137229,
+    "width": 873,
+    "height": 350,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/fig02.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/fig02.png",
+    "caption": "",
+    "source_url": "https://user-images.githubusercontent.com/41863759/183597611-960fb30a-2402-45eb-94e2-b32bbd4cfb87.png",
+    "bytes": 99758,
+    "width": 663,
+    "height": 399,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/fig03.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/fig03.png",
+    "caption": "",
+    "source_url": "https://user-images.githubusercontent.com/41863759/184074612-73c29afe-5f36-4a96-9e60-d95b14eb2869.png",
+    "bytes": 44927,
+    "width": 702,
+    "height": 424,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/fig04.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/fig04.png",
+    "caption": "",
+    "source_url": "https://user-images.githubusercontent.com/41863759/184083246-20b02126-befb-4235-b09d-68aa193e46d6.png",
+    "bytes": 75237,
+    "width": 482,
+    "height": 376,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/fig05.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/fig05.png",
+    "caption": "",
+    "source_url": "https://user-images.githubusercontent.com/41863759/184084253-c87aabf1-186b-44f0-998a-ca57f5dfda52.png",
+    "bytes": 45063,
+    "width": 707,
+    "height": 226,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/fig06.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/fig06.png",
+    "caption": "",
+    "source_url": "https://user-images.githubusercontent.com/41863759/184086245-9b490947-cbcf-447b-a8cf-2eaea04e2628.png",
+    "bytes": 157602,
+    "width": 739,
+    "height": 560,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/fig07.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/fig07.png",
+    "caption": "",
+    "source_url": "https://user-images.githubusercontent.com/41863759/184117028-242337e8-75c1-49dd-8dd3-ab1ea4903b57.png",
+    "bytes": 274235,
+    "width": 717,
+    "height": 471,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/page-full.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/crop01.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/crop02.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/crop03.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/crop04.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/crop05.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/taeyoung-2022-fast-lio-paper-review/crop06.png",
+    "raw": "raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
