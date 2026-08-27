@@ -1,0 +1,602 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig01.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig01.png",
+    "page": 4,
+    "caption": "Fig. 1. System overview of FAST-LIO2.",
+    "bbox": [
+      43.78,
+      50.89,
+      568.81,
+      189.0
+    ],
+    "bbox_norm": [
+      0.0715,
+      0.0643,
+      0.9294,
+      0.2386
+    ],
+    "dpi": 300,
+    "area_frac": 0.15,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig02.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig02.png",
+    "page": 5,
+    "caption": "Fig. 2. The measurement model.",
+    "bbox": [
+      55.84,
+      57.68,
+      217.61,
+      152.92
+    ],
+    "bbox_norm": [
+      0.0912,
+      0.0728,
+      0.3556,
+      0.1931
+    ],
+    "dpi": 300,
+    "area_frac": 0.032,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig03.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig03.png",
+    "page": 6,
+    "caption": "Fig. 3. 2D demonstration of map region management. In (a), the blue rectangle is the initial map region with length L . The red circle is the initial detection area centered at the initial LiDAR position p 0 . In (b), the detection area (dashed red circle) moves to a new position p ′ (circle with so",
+    "bbox": [
+      306.68,
+      314.89,
+      569.01,
+      458.38
+    ],
+    "bbox_norm": [
+      0.5011,
+      0.3976,
+      0.9298,
+      0.5788
+    ],
+    "dpi": 300,
+    "area_frac": 0.078,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig04.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig04.png",
+    "page": 9,
+    "caption": "Fig. 4. Re-building an unbalanced sub-tree",
+    "bbox": [
+      42.96,
+      50.07,
+      306.02,
+      142.05
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0632,
+      0.5,
+      0.1794
+    ],
+    "dpi": 300,
+    "area_frac": 0.05,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig05.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig05.png",
+    "page": 12,
+    "caption": "Fig. 5. Data structure comparison over different tree size.",
+    "bbox": [
+      30.72,
+      305.26,
+      310.16,
+      548.52
+    ],
+    "bbox_norm": [
+      0.0502,
+      0.3854,
+      0.5068,
+      0.6926
+    ],
+    "dpi": 300,
+    "area_frac": 0.14,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig06.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig06.png",
+    "page": 14,
+    "caption": "Fig. 6. Three different platforms: (a) 280 mm wheelbase small scale quadrotor UAV carrying a forward-looking Livox Avia LiDAR, (b) handheld platforms, (c) 750 mm wheelbase quadrotor UAV carrying a down-facing Livox Avia LiDAR. All three platforms carry the same DJI Manifold- 2C onboard computer. The",
+    "bbox": [
+      305.98,
+      50.07,
+      569.03,
+      123.59
+    ],
+    "bbox_norm": [
+      0.5,
+      0.0632,
+      0.9298,
+      0.156
+    ],
+    "dpi": 300,
+    "area_frac": 0.04,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig07.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig07.png",
+    "page": 15,
+    "caption": "Fig. 7. Large-scale scene experiment.",
+    "bbox": [
+      42.96,
+      286.93,
+      306.01,
+      535.88
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.3623,
+      0.5,
+      0.6766
+    ],
+    "dpi": 300,
+    "area_frac": 0.135,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig08.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig08.png",
+    "page": 15,
+    "caption": "Fig. 8. The processing time for each LiDAR scan of FAST-LIO and FAST- LIO2.",
+    "bbox": [
+      304.47,
+      438.02,
+      572.63,
+      610.12
+    ],
+    "bbox_norm": [
+      0.4975,
+      0.5531,
+      0.9357,
+      0.7703
+    ],
+    "dpi": 300,
+    "area_frac": 0.095,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig09.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig09.png",
+    "page": 16,
+    "caption": "Fig. 9. The ﬂip experiment. (a) the small scale UAV; (b) the onboard camera showing ﬁrst person view (FPV) images during the ﬂip; (c) the third person view images of the UAV during the ﬂip; (d) the estimated UAV pose with FAST-LIO2.",
+    "bbox": [
+      33.78,
+      29.64,
+      305.88,
+      170.74
+    ],
+    "bbox_norm": [
+      0.0552,
+      0.0374,
+      0.4998,
+      0.2156
+    ],
+    "dpi": 300,
+    "area_frac": 0.079,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig10.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig10.png",
+    "page": 16,
+    "caption": "Fig. 10. The actual environment and the 3D map built by FAST-LIO2 during the ﬂip.",
+    "bbox": [
+      30.72,
+      193.58,
+      312.0,
+      342.6
+    ],
+    "bbox_norm": [
+      0.0502,
+      0.2444,
+      0.5098,
+      0.4326
+    ],
+    "dpi": 300,
+    "area_frac": 0.086,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig11.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig11.png",
+    "page": 16,
+    "caption": "Fig. 11. The attitude, position, angular velocity and linear velocity in the UAV ﬂip experiments.",
+    "bbox": [
+      303.06,
+      29.64,
+      602.7,
+      257.86
+    ],
+    "bbox_norm": [
+      0.4952,
+      0.0374,
+      0.9848,
+      0.3256
+    ],
+    "dpi": 300,
+    "area_frac": 0.141,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig12.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig12.png",
+    "page": 16,
+    "caption": "Fig. 12. The mapping results of FAST-LIO2 in the fast motion handheld experiment.",
+    "bbox": [
+      299.84,
+      270.65,
+      612.0,
+      443.7
+    ],
+    "bbox_norm": [
+      0.4899,
+      0.3417,
+      1.0,
+      0.5602
+    ],
+    "dpi": 300,
+    "area_frac": 0.111,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig13.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig13.png",
+    "page": 17,
+    "caption": "Fig. 13. The attitude, position, angular velocity and linear velocity in the fast motion handheld experiments.",
+    "bbox": [
+      17.51,
+      37.59,
+      331.12,
+      255.67
+    ],
+    "bbox_norm": [
+      0.0286,
+      0.0475,
+      0.5411,
+      0.3228
+    ],
+    "dpi": 300,
+    "area_frac": 0.141,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/fig14.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/fig14.png",
+    "page": 17,
+    "caption": "Fig. 14. Real-time mapping results with FAST-LIO2 for airborne mapping. The data is collected in the Hong Kong Wetland Park by a UAV with a down- facing Livox Avia LiDAR. The ﬂight heights are 30 m (a), 30 m (b) and 50 m (c).",
+    "bbox": [
+      42.96,
+      280.82,
+      306.01,
+      446.19
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.3546,
+      0.5,
+      0.5634
+    ],
+    "dpi": 300,
+    "area_frac": 0.09,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table I",
+    "kind": "table",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/tab01.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/tab01.png",
+    "page": 7,
+    "caption": "TABLE I A TTRIBUTES I NITIALIZATION OF A N EW T REE N ODE TO I NSERT",
+    "bbox": [
+      312.81,
+      85.05,
+      563.4,
+      210.94
+    ],
+    "bbox_norm": [
+      0.5111,
+      0.1074,
+      0.9206,
+      0.2663
+    ],
+    "dpi": 300,
+    "area_frac": 0.065,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table II",
+    "kind": "table",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/tab02.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/tab02.png",
+    "page": 11,
+    "caption": "TABLE II T HE D ATASETS FOR B ENCHMARK",
+    "bbox": [
+      42.96,
+      78.36,
+      306.49,
+      163.84
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0989,
+      0.5008,
+      0.2069
+    ],
+    "dpi": 300,
+    "area_frac": 0.046,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table III",
+    "kind": "table",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/tab03.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/tab03.png",
+    "page": 12,
+    "caption": "TABLE III T HE C OMPARISON OF A VERAGE T IME C ONSUMPTION P ER S CAN ON I NCREMENTAL U PDATES , k NN S EARCH AND T OTAL T IME",
+    "bbox": [
+      49.08,
+      82.7,
+      578.22,
+      305.38
+    ],
+    "bbox_norm": [
+      0.0802,
+      0.1044,
+      0.9448,
+      0.3856
+    ],
+    "dpi": 300,
+    "area_frac": 0.243,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table IV",
+    "kind": "table",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/tab04.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/tab04.png",
+    "page": 13,
+    "caption": "TABLE IV A BSOLUTE TRANSLATIONAL ERRORS (RMSE, METERS ) IN SEQUENCES WITH GOOD QUALITY GROUND TRUTH",
+    "bbox": [
+      54.19,
+      79.68,
+      557.81,
+      184.2
+    ],
+    "bbox_norm": [
+      0.0886,
+      0.1006,
+      0.9114,
+      0.2326
+    ],
+    "dpi": 300,
+    "area_frac": 0.109,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table V",
+    "kind": "table",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/tab05.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/tab05.png",
+    "page": 14,
+    "caption": "TABLE V E ND TO END ERRORS ( METERS )",
+    "bbox": [
+      49.39,
+      79.68,
+      301.26,
+      128.95
+    ],
+    "bbox_norm": [
+      0.0807,
+      0.1006,
+      0.4923,
+      0.1628
+    ],
+    "dpi": 300,
+    "area_frac": 0.026,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table VI",
+    "kind": "table",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/tab06.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/tab06.png",
+    "page": 15,
+    "caption": "TABLE VI T HE A VERAGE P ROCESSING T IME PER S CAN B ENCHMARK IN M ILLISECONDS",
+    "bbox": [
+      63.22,
+      78.36,
+      548.79,
+      276.42
+    ],
+    "bbox_norm": [
+      0.1033,
+      0.0989,
+      0.8967,
+      0.349
+    ],
+    "dpi": 300,
+    "area_frac": 0.198,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table VII",
+    "kind": "table",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/tab07.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/tab07.png",
+    "page": 15,
+    "caption": "TABLE VII M EAN T IME C ONSUMPTION IN M ILISECONDS BY I NDIVIDUAL",
+    "bbox": [
+      322.41,
+      324.19,
+      564.95,
+      597.31
+    ],
+    "bbox_norm": [
+      0.5268,
+      0.4093,
+      0.9231,
+      0.7542
+    ],
+    "dpi": 300,
+    "area_frac": 0.137,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table VIII",
+    "kind": "table",
+    "file": "assets/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry/tab08.png",
+    "raw": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/tab08.png",
+    "page": 18,
+    "caption": "TABLE VIII D ETAILS OF ALL THE SEQUENCES FOR THE B ENCHMARK",
+    "bbox": [
+      49.08,
+      67.66,
+      293.64,
+      463.78
+    ],
+    "bbox_norm": [
+      0.0802,
+      0.0854,
+      0.4798,
+      0.5856
+    ],
+    "dpi": 300,
+    "area_frac": 0.2,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry-figures/_overlay/p18.png"
+  }
+]

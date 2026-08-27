@@ -71,6 +71,15 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | world knowledge | world knowledge | 세계 지식 | world knowledge는 물체·행위·환경·예상되는 결과에 대해 모델이 미리 갖고 있는 사전 지식을 말한다 | Zhang 2026 서베이의 조직 축. 예측 장치인 world model과 구분해서 쓴다 |
 | multimodal grounding | multimodal grounding | 멀티모달 그라운딩·다중모달 그라운딩 | multimodal grounding은 언어로 된 지식을 이미지·영상·물체·공간 관계에 붙이는 단계다 | VLM·MLLM이 맡는 층. 음차도 표기 흔들림이라 원어로 고정 |
 | action grounding | action grounding | 행동 그라운딩·액션 그라운딩 | action grounding은 perception과 언어를 실행 가능한 action으로 잇는 단계다 | VLA가 맡는 층 |
+| costmap | costmap | 코스트맵 | costmap은 로봇 주변 환경을 이동 가능 영역·장애물·팽창 비용으로 표현한 2D 격자 지도다 | Nav2 환경 표현. global/local 두 층. costmap filter·layer 등 파생도 원어 |
+| behavior tree | Behavior Tree | 행동 트리·비헤이비어 트리 | Behavior Tree는 로봇의 의사결정을 트리 구조의 노드 조합으로 관리하는 제어 구조다 | 약어 BT 병용 가능. Nav2 조율 축 |
+| action server | action server | 액션 서버 | action server는 오래 걸리는 작업을 요청받아 실행하며 feedback과 최종 결과를 돌려주는 ROS 2 통신 방식이다 | ROS 2 용어 |
+| lifecycle node | lifecycle node | 생명 주기 노드·라이프사이클 노드 | lifecycle node는 configure·activate 같은 상태 전이를 명시적으로 관리하는 ROS 2 노드다 | lifecycle manager도 원어 |
+| localization | localization | 로컬라이제이션 | localization은 로봇이 지도 안에서 자기 위치를 추정하는 문제다 | "위치 추정"은 일반어라 지침만 — localization 의미로는 원어 권장 |
+| odometry | odometry | 오도메트리·주행기록계 | odometry는 바퀴·IMU 등으로 이동량을 누적해 로봇의 상대 위치를 추정하는 방법이다 | odom frame·visual odometry·LIO·VIO 등 파생도 원어. loop closure 없는 순수 추정이라는 점에서 SLAM과 구분 |
+| point cloud | point cloud | 점군·포인트 클라우드 | point cloud는 LiDAR 등이 반환한 3D point의 집합이다 | FAST-LIO2 계열 SLAM 자료의 기본 입력 표현 |
+| kNN search | kNN search | 최근접 이웃 탐색 | kNN search는 질의점에서 가장 가까운 k개의 point를 찾는 연산이다 | k-nearest neighbor. scan 정합과 map 질의의 병목 지점 |
+| solid-state LiDAR | solid-state LiDAR | 고체형 LiDAR·솔리드 스테이트 LiDAR | solid-state LiDAR는 회전 기구 없이 프리즘이나 MEMS로 주사하는 신형 LiDAR다 | FoV가 좁고 scanning pattern이 비반복적이라 feature 기반 방법과 잘 안 맞는다 |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 
