@@ -30,7 +30,7 @@ figures:
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/topology-overview.png
     caption: "Storefront 예제 vault를 프로젝트 허브로 연 macOS 앱. 도메인과 관계, 그리고 도메인별 capability·element 개수를 나열한 INDEX"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig02
     file: assets/wlsdks-ontology-atlas/docs-workspace.png
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/docs-workspace.png
@@ -42,13 +42,13 @@ figures:
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/agent-connect.png
     caption: "Agents 화면 — 이 컴퓨터에서 발견된 코딩 에이전트, 대화·연결 점검, 선택한 폴더에 한정된 3단계 MCP 연결 흐름"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig04
     file: assets/wlsdks-ontology-atlas/topology-focus.png
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/topology-focus.png
     caption: "Cart Session을 선택한 map — 무관한 개념은 흐려지고 typed parent 관계만 남으며, 오른쪽 inspector가 Ask agent·Edit·More·evidence를 연다"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig05
     file: assets/wlsdks-ontology-atlas/three-dimensional-views.png
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/three-dimensional-views.png
@@ -60,13 +60,13 @@ figures:
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/relation-review.png
     caption: "map 옆의 관계 리뷰 — source, 관계 타입, target, 이유, 그리고 쓰기 확정 전에 바뀔 dependencies·relation notes 필드"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig07
     file: assets/wlsdks-ontology-atlas/history-review.png
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/history-review.png
     caption: "History 화면 — 커밋되지 않은 개념 변경 하나, 그 Markdown diff, 현지 시각 커밋 시간, 명시적 커밋 동작"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig08
     file: assets/wlsdks-ontology-atlas/graph-insights.png
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/graph-insights.png
@@ -88,6 +88,9 @@ figures:
 파일 하나가 노드 하나이고, frontmatter가 자기 종류와 무엇을 가리키는지 선언한다. 종류와 관계 타입이 작은 고정 집합이라 폴더는 읽을 수 있는 데서 그치지 않고 계산 가능해진다. Atlas는 이걸 그래프로 컴파일해 노트 도구가 답하지 못하는 질문을 받는다. 이걸 바꾸면 뭐가 깨지는지, blast radius가 어디까지인지, 두 대상을 잇는 경로가 무엇인지, 무엇이 끊겼고 낡았는지.
 
 읽는 쪽이 둘이라는 게 이 제품의 축이다. 에이전트는 MCP로 그 질문을 던지고 사람은 같은 답을 map으로 읽는다. 에이전트가 쓴 것은 전부 Markdown 파일의 한 줄로 떨어지므로 판정은 git diff가 한다. README가 "사람만 쓰는 위키는 쓰인 그 주에 썩고, 에이전트만 쓰는 저장소는 판단할 사람이 없어 드리프트한다"고 적은 자리가 그 지점이다.
+
+![[assets/wlsdks-ontology-atlas/topology-overview.png]]
+*Figure 1: Storefront 예제 vault를 프로젝트 허브로 연 화면. 도메인과 관계를 map으로 두고, INDEX가 도메인마다 capability·element 개수를 함께 센다 (wlsdks 2026, README §The journey).*
 
 ## 주요 기여 (Key Contributions)
 
@@ -153,6 +156,12 @@ capabilities/return-request --dependencies--> capabilities/refund
 
 vault가 한 번도 써 본 적 없는 모양이면 `new_schema_pattern · review_new_schema`로 돌아온다. 드리프트하는 에이전트가 쓰고 난 뒤가 아니라 쓰기 전에 눈에 띈다는 게 이 판정의 값이다.
 
+![[assets/wlsdks-ontology-atlas/relation-review.png]]
+*Figure 2: 관계 하나를 고쳐 쓰기 직전의 리뷰. source·타입·target·이유와 실제로 바뀔 frontmatter 필드를 보여 주고, 여기서 확정해야만 Markdown 파일이 바뀐다 (wlsdks 2026, README §5).*
+
+![[assets/wlsdks-ontology-atlas/history-review.png]]
+*Figure 3: 사람이 썼든 CLI·에이전트가 썼든 변경은 History에 diff로 먼저 선다. 읽고 나서야 이력이 된다 (wlsdks 2026, README §6).*
+
 ### 모르는 것을 초록으로 칠하지 않는다
 
 blast radius는 한 노드를 바꿀 때 파급이 닿는 범위를 뜻한다. Atlas는 승인된 의존 선언만 따라가고 폴더 구조를 인과적 확신으로 바꾸지 않는다.
@@ -173,7 +182,13 @@ do not read unknown as low risk.
 
 Map, Architecture, Docs, Insights, Projects, Agents, Git History가 모두 같은 폴더를 읽는다. 노드를 고르면 무관한 것이 흐려지고 노드를 inspector 뒤로 숨기지 않은 채 레코드가 열린다. 공간 해석은 Flat·Dome·Cloud 셋으로 갈라 두고 섞지 않으며, 뷰를 바꿔도 그래프는 그대로다. Projects 화면은 손으로 유지하는 값이 하나도 없다. frontmatter에 `project:` 키가 없고 런타임이 containment 그래프를 걸어 커버리지를 파생시킨다.
 
+![[assets/wlsdks-ontology-atlas/topology-focus.png]]
+*Figure 4: 노드를 고르면 무관한 것이 흐려지고 typed parent 관계는 남는다. 같은 사실이 사람에게는 시각적 위계로, 에이전트에게는 evidence와 동작으로 동시에 쓰인다 (wlsdks 2026, README §3).*
+
 MCP 연결은 경로를 먼저 보여 주고, 확인하면 없는 파일만 만들고, 마지막에 `mcp-verify`로 실제 서버 프로세스와 vault 계약을 증명하는 순서다. 파일이 있다는 사실을 살아 있는 연결로 제시하지 않는다는 원칙이 이 3단계에 걸려 있다. 서버는 stdio로 말해서 에이전트가 필요할 때 띄우고 끝나면 사라지며, 포트를 열지 않고 네트워크 요청도 하지 않는다.
+
+![[assets/wlsdks-ontology-atlas/agent-connect.png]]
+*Figure 5: Agents 화면. 이 컴퓨터에서 발견된 코딩 에이전트를 보여 주고, 선택한 폴더로 범위를 묶은 3단계 MCP 연결을 안내한다 (wlsdks 2026, README §2).*
 
 ## 결과 (Results)
 

@@ -29,7 +29,7 @@ figures:
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/topology-overview.png
     caption: "Storefront 예제 vault를 프로젝트 허브로 연 macOS 앱. 도메인과 관계, 그리고 도메인별 capability·element 개수를 나열한 INDEX"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig02
     file: assets/wlsdks-ontology-atlas/docs-workspace.png
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/docs-workspace.png
@@ -41,13 +41,13 @@ figures:
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/agent-connect.png
     caption: "Agents 화면 — 이 컴퓨터에서 발견된 코딩 에이전트, 대화·연결 점검, 선택한 폴더에 한정된 3단계 MCP 연결 흐름"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig04
     file: assets/wlsdks-ontology-atlas/topology-focus.png
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/topology-focus.png
     caption: "Cart Session을 선택한 map — 무관한 개념은 흐려지고 typed parent 관계만 남으며, 오른쪽 inspector가 Ask agent·Edit·More·evidence를 연다"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig05
     file: assets/wlsdks-ontology-atlas/three-dimensional-views.png
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/three-dimensional-views.png
@@ -59,13 +59,13 @@ figures:
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/relation-review.png
     caption: "map 옆의 관계 리뷰 — source, 관계 타입, target, 이유, 그리고 쓰기 확정 전에 바뀔 dependencies·relation notes 필드"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig07
     file: assets/wlsdks-ontology-atlas/history-review.png
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/history-review.png
     caption: "History 화면 — 커밋되지 않은 개념 변경 하나, 그 Markdown diff, 현지 시각 커밋 시간, 명시적 커밋 동작"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig08
     file: assets/wlsdks-ontology-atlas/graph-insights.png
     raw: https://raw.githubusercontent.com/wlsdks/ontology-atlas/main/docs/assets/readme/graph-insights.png
@@ -259,7 +259,7 @@ README가 직접 든 비교 대상은 셋이다. [Basic Memory](https://github.c
 
 ## 8. 그림 후보 (Figure Candidates)
 
-repo라 자동 추출을 돌리지 않았다. 아래는 README 본문이 임베드한 제품 스크린샷의 GitHub 원본 URL 목록이며, 전부 `strategy: manual`·`curated: false` 상태다.
+repo라 자동 추출을 돌리지 않았다. 아래는 README 본문이 임베드한 제품 스크린샷 목록이고 전부 `strategy: manual`이며, `raw`는 GitHub 원본 URL을 가리킨다. ★ 표시한 다섯(fig01·fig03·fig04·fig06·fig07)은 큐레이션을 거쳐 `curated: true`로 wiki 본문에 들어갔고 나머지 넷은 아카이브에만 남는다.
 
 | id | 파일 | caption | strategy | 추천 |
 |---|---|---|---|---|
