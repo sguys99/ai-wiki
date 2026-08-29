@@ -45,11 +45,11 @@ figures:
     curated: true
 ---
 
-# claude-obsidian — Karpathy LLM Wiki를 2분 안에 가동하는 Claude Code 플러그인 + Obsidian 볼트
+# claude-obsidian — Karpathy LLM Wiki를 2분 안에 가동하는 Claude Code 플러그인 + Obsidian vault
 
 ## 요약 (Summary)
 
-Daniel Agrici가 만든 Claude Code 플러그인 겸 Obsidian 볼트다. Karpathy의 [LLM Wiki 패턴](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)을 두 환경(Claude Code 스킬 15개 + Obsidian 볼트 구조)에 정착시켜, 소스를 떨구면 자동으로 정리되고 질문하면 페이지를 인용해 답하는 자기조직 PKM을 표준화한 reference 구현체다. 본 ai-wiki도 같은 계보에 서 있어 직접 비교할 가치가 크다.
+Daniel Agrici가 만든 Claude Code 플러그인 겸 Obsidian vault다. Karpathy의 [LLM Wiki 패턴](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)을 두 환경(Claude Code 스킬 15개 + Obsidian vault 구조)에 정착시켜, 소스를 떨구면 자동으로 정리되고 질문하면 페이지를 인용해 답하는 자기조직 PKM을 표준화한 reference 구현체다. 본 ai-wiki도 같은 계보에 서 있어 직접 비교할 가치가 크다.
 
 - **저자**: Daniel Agrici (`agricidaniel.com`)
 - **라이선스**: MIT
@@ -102,7 +102,7 @@ consumer 스킬(`wiki-ingest`, `save`, `autoresearch`)은 라우터만 호출하
 - **Per-file granularity** — 서로 다른 페이지는 그대로 병렬.
 - **Age-based staleness** — 기본 60초. 크래시한 writer가 60초 안에 자동 해제된다.
 - **v1.9.1 hardening** — SessionStart에 `wiki-lock.sh clear-stale --max-age 3600`이 걸려 세션 재시작 시 고아 락이 자동 reap된다.
-- **v1.9.1 symlink canonicalization** — `validate_path()`가 `python3 os.path.realpath`로 캐노니컬화 후 `commonpath(VAULT_ROOT, ...)` 검사를 거쳐 볼트 밖으로 빠지는 심볼릭 링크 경로를 거부한다.
+- **v1.9.1 symlink canonicalization** — `validate_path()`가 `python3 os.path.realpath`로 캐노니컬화 후 `commonpath(VAULT_ROOT, ...)` 검사를 거쳐 vault 밖으로 빠지는 심볼릭 링크 경로를 거부한다.
 
 ![[assets/agricidaniel-claude-obsidian/multi-writer-locking.svg]]
 *Figure 2: Multi-writer safety — 두 writer가 같은 페이지를 잡으려 할 때 한쪽만 acquire하고 다른 쪽은 다음 패스에서 재시도한다. v1.6의 잠재 데이터 손상 경로를 닫았다 (Agrici 2026, v1.7 Compound Vault).*
@@ -157,7 +157,7 @@ Obsidian CLI  →  mcp-obsidian  →  mcpvault  →  filesystem (always-availabl
 - **에이전트 호환성** — Agent Skills 호환을 표방하지만 production verification은 Claude Code에서만 이뤄졌다. Codex CLI / Cursor / Windsurf / Gemini CLI / Goose는 experimental.
 - **API egress 신뢰 모델** — contextual-prefix tier는 `--allow-egress`로만 켜지지만, 한 번 켠 뒤에는 페이지 본문이 Anthropic API로 흘러간다는 점을 사용자가 인지해야 한다.
 - **DragonScale 미평가** — opt-in 메커니즘 4종은 코드만 있고 외부 비교 데이터가 없다.
-- **자동 동기화 없음** — 볼트는 plain markdown 폴더. Obsidian Sync / Obsidian Git / Syncthing / iCloud / Dropbox 별도 페어링 필요.
+- **자동 동기화 없음** — vault는 plain markdown 폴더. Obsidian Sync / Obsidian Git / Syncthing / iCloud / Dropbox 별도 페어링 필요.
 
 ## 관련 페이지 (Related Pages)
 

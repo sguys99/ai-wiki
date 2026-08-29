@@ -32,7 +32,7 @@ tags: [llm-wiki, karpathy, knowledge-management, obsidian, claude-code, ingest-q
     - 차세대 모델 무력화? → 1M context도 20~30만 토큰부터 degradation
     - **벤치마크/프로덕션 부재** → hybrid RAG·BM25+rerank·GraphRAG·NotebookLM 대비 우위 증거 0; 권한·다중사용자·감사·롤백·버저닝·동시성·컴플라이언스 미해결
     - 인지적 부작용 → *"사고 위임에 의한 새로운 기술 부채"*, "지속적인 뇌의 공백"
-7. **한국어 사용자 9가지 실전 팁 (본 ai-wiki 운영 정책의 출처)** — 9.1 영어 kebab-case 파일명 + 한국어 H1 / 9.2 한국어 교착어 검색 한계 / 9.3 Obsidian 볼트 ↔ Claude Code 연동 / 9.4 CLAUDE.md 필수 항목 / **9.5 MCP 서버가 게임 체인저 (50+ page 임계점)** / 9.6 RAG 보완재 = 1차 wiki + 2차 raw / 9.7 *"index.md/log.md 먼저 읽어"* 스키마 박기 / 9.8 ingest 수만~십수만 토큰 / 9.9 9-항목 Lint 프롬프트 verbatim.
+7. **한국어 사용자 9가지 실전 팁 (본 ai-wiki 운영 정책의 출처)** — 9.1 영어 kebab-case 파일명 + 한국어 H1 / 9.2 한국어 교착어 검색 한계 / 9.3 Obsidian vault ↔ Claude Code 연동 / 9.4 CLAUDE.md 필수 항목 / **9.5 MCP 서버가 게임 체인저 (50+ page 임계점)** / 9.6 RAG 보완재 = 1차 wiki + 2차 raw / 9.7 *"index.md/log.md 먼저 읽어"* 스키마 박기 / 9.8 ingest 수만~십수만 토큰 / 9.9 9-항목 Lint 프롬프트 verbatim.
 8. **6+ 구현 사례 인용** — Farzapedia(취소선 처리됐지만 raw 보존, 일기+Notes+iMessage 2,500건 → 400 doc, **에이전트 활용 목적**, RAG 1년 실패 후 파일시스템 직접 탐색) + nashsu/llm_wiki(취소선, 2-step CoT Ingest · 4-Signal Relevance ×3.0/×4.0/×1.5/×1.0 · 4-phase Pipeline 60/20/5/15 예산) + Astro-Han · dragon1086 · joonan30 · OpenKB.
 9. **RAG 실무자 적용 가이드** — 적합: 자기주도 학습·면접 준비·클라이언트 케이스·arXiv 정리. 신중: Legal/Compliance·프로덕션 검색·빠르게 변하는 데이터. 기존 GraphRAG/멀티홉/계층 요약/하이브리드 검색과 자연 연결, Karpathy 기여는 **워크플로우와 철학** 측면.
 
@@ -75,7 +75,7 @@ tags: [llm-wiki, karpathy, knowledge-management, obsidian, claude-code, ingest-q
 |---|---|---|
 | 9.1 | 영어 kebab-case + 한국어 H1 | ✅ 모든 stem이 영어, frontmatter title은 영문 원어 |
 | 9.2 | 한국어 교착어 검색 한계 | 부분 적용 — index.md 한국어 + frontmatter 영문 tags |
-| 9.3 | Obsidian 볼트 ↔ Claude Code 직접 연결 | ✅ repo가 그 자체로 볼트 + Claude Code 세션 |
+| 9.3 | Obsidian vault ↔ Claude Code 직접 연결 | ✅ repo가 그 자체로 vault + Claude Code 세션 |
 | 9.4 | CLAUDE.md 필수 항목 | ✅ THE FOUR RULES + 4-step + naming + YAML + language policy |
 | 9.5 | MCP 서버 게임 체인저 (50+ page) | ❌ 미도입 — 본 wiki는 ~30 page 시점에서 임계점 인근 |
 | 9.6 | RAG 보완재 (1차 wiki + 2차 raw) | ✅ rule #3 "wiki 부족 시 raw 다시 읽기" |

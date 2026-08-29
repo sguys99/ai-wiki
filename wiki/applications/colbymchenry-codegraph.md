@@ -17,7 +17,7 @@ version: "0.9.8 (cloned 2026-06-02)"
 
 ## 요약 (Summary)
 
-**CodeGraph**는 tree-sitter로 20+ 언어의 코드를 정적 추출해 symbol·edge·file을 **SQLite + FTS5 knowledge graph**로 저장하고, **MCP 서버**를 통해 Claude Code · Cursor · Codex CLI · opencode · Hermes Agent · Gemini CLI · Antigravity IDE · Kiro 8종 코딩 에이전트에게 `search · context · trace · callers · callees · impact · node · explore · files · status` 10개 도구로 노출하는 **로컬-퍼스트 코드 인텔리전스 라이브러리·CLI·MCP 서버**(MIT, Colby Mchenry, npm `@colbymchenry/codegraph` v0.9.8)다.
+**CodeGraph**는 tree-sitter로 20+ 언어의 코드를 정적 추출해 symbol·edge·file을 **SQLite + FTS5 knowledge graph**로 저장하고, **MCP 서버**를 통해 Claude Code · Cursor · Codex CLI · opencode · Hermes Agent · Gemini CLI · Antigravity IDE · Kiro 8종 코딩 에이전트에게 `search · context · trace · callers · callees · impact · node · explore · files · status` 10개 도구로 노출하는 **local-first 코드 인텔리전스 라이브러리·CLI·MCP 서버**(MIT, Colby Mchenry, npm `@colbymchenry/codegraph` v0.9.8)다.
 
 공식 벤치마크(7 OSS repo × Opus 4.8 headless × n=4 median, 2026-05-29 재검증)는 평균 **25% cheaper · 57% fewer tokens · 23% faster · 62% fewer tool calls**, 그리고 같은 팀의 인터랙티브 A/B(2026-05-24, n=3)는 **main-session context가 16× 큰 레포에서도 ~47k로 scale-invariant**임을 보고한다. 100% 로컬 — API key·외부 호출·임베딩·LLM 요약 없음, Node 자체 번들이라 사용자 Node 설치도 불필요.
 
@@ -25,7 +25,7 @@ version: "0.9.8 (cloned 2026-06-02)"
 
 ## 주요 기여 (Key Contributions)
 
-1. **로컬-퍼스트 code-intelligence MCP 서버.** Anthropic 외부 호출·임베딩 없이 tree-sitter + SQLite WAL + FTS5만으로 코딩 에이전트가 "이 함수가 어디서 호출되는가 / 변경의 영향 반경 / X에서 Y로 도달하는 경로" 같은 **구조·플로우 질문**을 grep/Read 루프 없이 답한다. `node_modules`·`vendor`·`dist`·`.gitignore` 자동 제외, 1 MB 초과 파일 스킵.
+1. **local-first code-intelligence MCP 서버.** Anthropic 외부 호출·임베딩 없이 tree-sitter + SQLite WAL + FTS5만으로 코딩 에이전트가 "이 함수가 어디서 호출되는가 / 변경의 영향 반경 / X에서 Y로 도달하는 경로" 같은 **구조·플로우 질문**을 grep/Read 루프 없이 답한다. `node_modules`·`vendor`·`dist`·`.gitignore` 자동 제외, 1 MB 초과 파일 스킵.
 
 2. **20+ 언어 트리시터 추출.** TS/JS/Python/Go/Rust/Java/C#/PHP/Ruby/C/C++/Objective-C/Swift/Kotlin/Scala/Dart/Lua/Luau/Svelte/Vue/Liquid/Pascal·Delphi. `src/extraction/languages/`에 19개 언어 파일. WASM 그래머는 `src/extraction/wasm/`. 무거운 파싱은 `parse-worker.ts`로 off-main-thread.
 

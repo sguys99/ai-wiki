@@ -110,7 +110,7 @@ llm-wiki (로컬)
 
 - [[applications/datasciencedojo-2026-llm-wiki-by-andrej-karpathy]] — Karpathy LLM Wiki Gist의 영어권 25~35분 입문 가이드. *진입 25분 ↔ 본 자료의 31일 성숙*으로 양 끝을 잇는다.
 - [[applications/kmyu-2026-llm-wiki-pattern-synthesis]] — 본 ai-wiki 소유자의 LLM Wiki 패턴 한국어 종합 정리. *~100 sources 천장* 논의가 본 자료의 3,955페이지 운영과 흥미로운 대비.
-- [[applications/agricidaniel-claude-obsidian]] — Karpathy 패턴을 Claude Code 스킬 15개 + Obsidian 볼트 + hybrid retrieval로 구현한 reference. *15 skills + retrieval ↔ 567줄 AGENTS.md + 5 외부 시스템*의 구조 대 운영 대비.
+- [[applications/agricidaniel-claude-obsidian]] — Karpathy 패턴을 Claude Code 스킬 15개 + Obsidian vault + hybrid retrieval로 구현한 reference. *15 skills + retrieval ↔ 567줄 AGENTS.md + 5 외부 시스템*의 구조 대 운영 대비.
 - [[applications/kmyu-2026-akb-llmwiki-gbrain-comparison]] — AKB·llmwiki·GBrain 6축 5점 척도 비교. 본 자료가 "llmwiki"의 31일 실증 사례.
 - [[applications/dnotitia-akb]] — Dnotitia MCP-first agent knowledge base. *MCP 통합 5개*의 제품화 사상.
 - [[applications/lum1104-understand-anything]] — 임의 코드베이스를 7단계 파이프라인으로 분석. *논문 코퍼스 진화 ↔ 코드 코퍼스 분석*의 도메인 대비.

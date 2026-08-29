@@ -16,7 +16,7 @@ version: "0.9.8 (cloned 2026-06-02)"
 
 ## 한 줄 요약 (One-line Summary)
 
-CodeGraph는 tree-sitter로 20+ 언어의 코드를 파싱해 symbol·edge·file을 SQLite(FTS5) knowledge graph로 저장하고, MCP 서버를 통해 Claude Code·Cursor·Codex CLI·opencode·Hermes Agent·Gemini CLI·Antigravity IDE·Kiro 8종 코딩 에이전트에게 `search · context · trace · callers · callees · impact · node · explore · files · status` 10개 도구로 노출하는 **로컬-퍼스트 코드 인텔리전스 라이브러리·CLI·MCP 서버**로, 7개 OSS 벤치마크(Opus 4.8, n=4 median)에서 **25% cheaper · 57% fewer tokens · 23% faster · 62% fewer tool calls**를 보고했다.
+CodeGraph는 tree-sitter로 20+ 언어의 코드를 파싱해 symbol·edge·file을 SQLite(FTS5) knowledge graph로 저장하고, MCP 서버를 통해 Claude Code·Cursor·Codex CLI·opencode·Hermes Agent·Gemini CLI·Antigravity IDE·Kiro 8종 코딩 에이전트에게 `search · context · trace · callers · callees · impact · node · explore · files · status` 10개 도구로 노출하는 **local-first 코드 인텔리전스 라이브러리·CLI·MCP 서버**로, 7개 OSS 벤치마크(Opus 4.8, n=4 median)에서 **25% cheaper · 57% fewer tokens · 23% faster · 62% fewer tool calls**를 보고했다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -35,7 +35,7 @@ CodeGraph는 tree-sitter로 20+ 언어의 코드를 파싱해 symbol·edge·file
 
 ## 2. 주요 기여 (Key Contributions)
 
-1. **로컬-퍼스트 code-intelligence MCP 서버.** Anthropic 외부 API 호출·임베딩·LLM 요약 없이, tree-sitter 정적 추출 + SQLite WAL + FTS5만으로 코딩 에이전트가 "이 함수가 어디서 호출되는가/이 변경의 영향 반경/X에서 Y로 도달하는 경로" 같은 **구조·플로우 질문**을 grep/Read 루프 없이 답하도록 한다. 100% 로컬, no API keys, `node_modules`·`vendor`·`dist`·`.gitignore` 자동 제외.
+1. **local-first code-intelligence MCP 서버.** Anthropic 외부 API 호출·임베딩·LLM 요약 없이, tree-sitter 정적 추출 + SQLite WAL + FTS5만으로 코딩 에이전트가 "이 함수가 어디서 호출되는가/이 변경의 영향 반경/X에서 Y로 도달하는 경로" 같은 **구조·플로우 질문**을 grep/Read 루프 없이 답하도록 한다. 100% 로컬, no API keys, `node_modules`·`vendor`·`dist`·`.gitignore` 자동 제외.
 2. **20+ 언어 트리시터 추출.** TypeScript/JavaScript/Python/Go/Rust/Java/C#/PHP/Ruby/C/C++/Objective-C/Swift/Kotlin/Scala/Dart/Lua/Luau/Svelte/Vue/Liquid/Pascal·Delphi. `src/extraction/languages/` 디렉토리에 언어별 파일 하나씩. WASM 그래머는 `src/extraction/wasm/`에 번들, `parse-worker.ts`로 무거운 파싱을 별 thread offload.
 3. **14+ 웹 프레임워크 route → handler 매핑.** `src/resolution/frameworks/`에 Django(`path/re_path/include`, CBV `.as_view()`), Flask, FastAPI, Express, NestJS(`@Controller`+`@Get/@Post`, GraphQL `@Resolver`, `@MessagePattern`, `@SubscribeMessage`), Laravel, Drupal(`*.routing.yml` + `hook_*` impls), Rails, Spring, Gin/chi/gorilla/mux, Axum/actix/Rocket, ASP.NET, Vapor, React Router, SvelteKit, Vue/Nuxt, Cargo workspaces. `route` 노드와 `references` edge로 URL pattern ↔ handler 연결.
 4. **Dynamic-dispatch synthesis — flow가 graph에 end-to-end로 존재하도록.** Static tree-sitter는 콜백·옵저버·EventEmitter·React re-render 같은 indirect call을 놓치기 때문에 flow가 끊겨 agent가 grep/Read로 복원해야 한다. CodeGraph의 `src/resolution/callback-synthesizer.ts`가 **whole-graph pass**로 다음 채널을 합성한다 (모두 `provenance:'heuristic'` + `metadata.synthesizedBy:<channel>` 태그):

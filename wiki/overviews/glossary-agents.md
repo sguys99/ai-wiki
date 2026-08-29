@@ -49,6 +49,9 @@ agents 도메인(agentic 시스템·tool use·harness·loop engineering) 전문 
 | progressive disclosure | progressive disclosure | 점진적 공개 | progressive disclosure는 필요한 시점에만 정보를 단계적으로 노출하는 설계다 | |
 | trajectory | trajectory | — | agent 문맥의 trajectory는 세션 하나의 실행 기록 전체다 | physical-ai 용어집과 달리 이 도메인은 일반어 "궤적"(진화 궤적 등)이 있어 지침만 |
 | loop engineering | loop engineering | 루프 엔지니어링 공학 | loop engineering은 에이전트를 도는 루프 자체를 설계 대상으로 삼는 관점이다 | 고유 기법명 |
+| vault | vault | 볼트 | vault는 에이전트와 사람이 같이 읽고 쓰는 Markdown 파일 폴더를 뜻한다 | 영문 174회 대 "볼트" 19회로 영문이 우세해 vault로 고정. Obsidian 원문 절 제목 인용은 lint-ignore |
+| local-first | local-first | 로컬-퍼스트·로컬 퍼스트 | local-first는 데이터 원본을 사용자 디스크에 두고 서버 없이 도는 설계다 | 표기 흔들림(영문 10회 대 로컬-퍼스트 4회)을 영문으로 고정 |
+| ontology | ontology | 온톨로지 | ontology는 도메인의 개체 종류와 관계 타입을 고정된 집합으로 정의한 구조다 | "온톨로지"는 physical-ai의 물리 상식 분류 문맥에 이미 쓰여 있고, 이 용어집의 applies_to가 그 카테고리를 제외하므로 충돌하지 않는다 |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 

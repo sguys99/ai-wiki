@@ -216,7 +216,7 @@ OKLCH 5색 팔레트(테라코타 p1 / 모스 p2 / 사프란 p3 / 멀버리 p4 /
 
 - **[[applications/datasciencedojo-2026-llm-wiki-by-andrej-karpathy]]** — Karpathy LLM Wiki Gist(2026-04-04)의 영어권 25~35분 입문 튜토리얼. *6-step 워크플로우 + 3 verbatim 프롬프트*. 본 자료가 **PI 연구실 31일 운영 실측**이라면, 그쪽은 **단일 사용자 25~35분 진입**이다. 함께 읽으면 *진입 → 31일 성숙*의 양 끝이 이어진다.
 - **[[applications/kmyu-2026-llm-wiki-pattern-synthesis]]** — 본 ai-wiki 소유자 kmyu99의 Karpathy LLM Wiki 패턴 한국어 종합 정리. *~100 sources 수백 page까지 OK, 이상은 qmd/BM25+벡터+rerank 필요*의 천장 논의가 본 자료의 3,955 페이지 운영과 흥미롭게 대비된다.
-- **[[applications/agricidaniel-claude-obsidian]]** — Karpathy LLM Wiki 패턴을 Claude Code 스킬 15개와 Obsidian 볼트로 정착시킨 reference 구현체. Compound Vault refoundation(per-file advisory lock + BM25·contextual-prefix·cosine rerank). 본 자료가 *AGENTS.md 단일 매뉴얼 + 5 외부 시스템*의 운영 측면이라면, 그쪽은 *15 skills + hybrid retrieval*의 구조 측면이다.
+- **[[applications/agricidaniel-claude-obsidian]]** — Karpathy LLM Wiki 패턴을 Claude Code 스킬 15개와 Obsidian vault로 정착시킨 reference 구현체. Compound Vault refoundation(per-file advisory lock + BM25·contextual-prefix·cosine rerank). 본 자료가 *AGENTS.md 단일 매뉴얼 + 5 외부 시스템*의 운영 측면이라면, 그쪽은 *15 skills + hybrid retrieval*의 구조 측면이다.
 - **[[applications/kmyu-2026-akb-llmwiki-gbrain-comparison]]** — AKB·llmwiki·GBrain 6축 5점 척도 비교. 본 자료가 "llmwiki"의 31일 실증 사례에 해당한다.
 - **[[applications/dnotitia-akb]]** — Dnotitia의 MCP-first agent knowledge base(Git bare repo + Postgres + vector store). 본 자료의 *MCP를 통한 External 5 통합*과 같은 사상의 제품화 버전이다.
 - **[[applications/lum1104-understand-anything]]** — 임의 코드베이스 7단계 분석 → knowledge graph + 가이드 투어. 본 자료의 *논문 코퍼스 31일 진화 → 분석 백로그*에 대응되는 *코드 코퍼스* 버전이다.

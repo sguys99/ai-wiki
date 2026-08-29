@@ -76,7 +76,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-Daniel Agrici가 만든 Claude Code 플러그인 겸 Obsidian 볼트. Karpathy의 LLM Wiki 패턴을 두 환경(Claude Code 스킬 15개 + Obsidian 볼트 구조)에 정착시켜, 소스를 떨구면 자동으로 정리되고 질문하면 페이지를 인용해 답하는 자기조직 PKM을 표준화한 reference 구현체다.
+Daniel Agrici가 만든 Claude Code 플러그인 겸 Obsidian vault. Karpathy의 LLM Wiki 패턴을 두 환경(Claude Code 스킬 15개 + Obsidian vault 구조)에 정착시켜, 소스를 떨구면 자동으로 정리되고 질문하면 페이지를 인용해 답하는 자기조직 PKM을 표준화한 reference 구현체다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -177,7 +177,7 @@ fi
 - **Age-based staleness**: 기본 60초. 크래시한 writer가 60초 안에 자동 해제된다.
 - **PostToolUse 훅이 잠금 보유 시 git add 지연** → torn commit 방지.
 - **v1.9.1 hardening**: SessionStart에 `wiki-lock.sh clear-stale --max-age 3600`가 걸려 세션 재시작 시 고아 락이 자동 reap된다.
-- **v1.9.1 symlink canonicalization**: `validate_path()`가 `python3 os.path.realpath`로 캐노니컬화 후 `commonpath(VAULT_ROOT, ...)` 검사. 볼트 밖으로 빠지는 심볼릭 링크 경로를 거부한다.
+- **v1.9.1 symlink canonicalization**: `validate_path()`가 `python3 os.path.realpath`로 캐노니컬화 후 `commonpath(VAULT_ROOT, ...)` 검사. vault 밖으로 빠지는 심볼릭 링크 경로를 거부한다.
 
 ### 3.4 Hybrid Retrieval (v1.7+, opt-in)
 
@@ -217,7 +217,7 @@ Obsidian CLI  →  mcp-obsidian  →  mcpvault  →  filesystem (always-availabl
 1. **Log folds** — 과거 entry의 rollup
 2. **Deterministic page addresses** — counter-based unique ID (`.vault-meta/address-counter.txt`)
 3. **Semantic tiling lint** — ollama로 chunk-boundary 검증 (`scripts/tiling-check.py`, `.vault-meta/tiling-thresholds.json`)
-4. **Boundary-first autoresearch** — 볼트의 frontier(gap-adjacent 페이지)부터 연구 타겟으로 선택
+4. **Boundary-first autoresearch** — vault의 frontier(gap-adjacent 페이지)부터 연구 타겟으로 선택
 
 Optional이지만, GBrain의 typed-edge KG나 AKB의 vault격리·MCP 도구와 같은 메모리 운영 추상화 카테고리와 비교하면 흥미로운 변종이다.
 
@@ -238,7 +238,7 @@ Optional이지만, GBrain의 typed-edge KG나 AKB의 vault격리·MCP 도구와 
 
 - **단일 테넌트 가정**: SECURITY.md의 "Threat model: single-tenant vault" 섹션이 cross-process lock release, auto-commit hook scope, filesystem-permission trust boundary 세 가지 설계 선택이 멀티 테넌트가 아님을 명시한다.
 - **에이전트 호환성**: Agent Skills 호환을 표방하지만 production verification은 Claude Code에서만 이루어진다. OpenAI Codex CLI / Cursor / Windsurf / Gemini CLI / Goose는 experimental.
-- **자동 동기화 없음**: 볼트는 plain markdown 폴더라, Obsidian Sync / Obsidian Git / Syncthing / iCloud / Dropbox를 별도로 페어링해야 한다.
+- **자동 동기화 없음**: vault는 plain markdown 폴더라, Obsidian Sync / Obsidian Git / Syncthing / iCloud / Dropbox를 별도로 페어링해야 한다.
 - **저자 자가 평가 의존**: 경쟁 비교표(Smart Connections, Copilot 대비)와 compass 7축 점수가 저자 자평이라 외부 벤치가 부족하다.
 - **API egress 신뢰 모델**: contextual-prefix tier는 `--allow-egress` consent flag로만 켜지지만, 한 번 켜지면 페이지 본문이 Anthropic API로 흘러간다는 점을 사용자가 인지해야 한다 (cache telemetry는 정수만 로깅하도록 v1.9.2에서 정정됨).
 - **DragonScale 미평가**: opt-in 메커니즘 4종(log folds, deterministic address, tiling lint, frontier autoresearch)은 코드만 있고 외부 비교 데이터가 없다.
@@ -272,9 +272,9 @@ Optional이지만, GBrain의 typed-edge KG나 AKB의 vault격리·MCP 도구와 
 - **Compound Vault**: claude-obsidian의 v1.7+ refoundation을 가리키는 저자 용어. 본 ai-wiki에 누적되는 wiki와 같은 *"지식이 복리로 쌓이는"* 구조를 코드 + 락 + 트랜스포트 + 검색 4축으로 강화한 것이다.
 - **Hot cache**: 최근 컨텍스트(약 500단어) 캐시. 매 세션 종료 시 갱신되며, 다음 세션 시작 시 첫 읽기 대상이다.
 - **Methodology Mode**: LYT / PARA / Zettelkasten / Generic. *"어떻게 정리할지"*를 결정하며, `.vault-meta/mode.json`이 single source다.
-- **Vault Use Case**: Website / GitHub / Business / Personal / Research / Book·Course. *"무엇을 위한 볼트인지"*를 결정하며, methodology와 직교 합성된다.
+- **Vault Use Case**: Website / GitHub / Business / Personal / Research / Book·Course. *"무엇을 위한 vault인지"*를 결정하며, methodology와 직교 합성된다.
 - **Per-file advisory lock**: `scripts/wiki-lock.sh`가 `sha1(vault-relative-path)`로 키잉, `STALE_AFTER_SEC=60`. cross-process release 허용.
-- **Transport**: 볼트에 쓰기 위한 채널. cli → mcp-obsidian → mcpvault → filesystem 폴백.
+- **Transport**: vault에 쓰기 위한 채널. cli → mcp-obsidian → mcpvault → filesystem 폴백.
 - **Hybrid retrieval**: BM25 (sparse) + contextual-prefix (Anthropic API, consent-gated) + cosine rerank (local ollama).
 - **Contextual prefix**: 페이지 본문을 Anthropic API로 보내 prefix를 생성, BM25 인덱싱·rerank 품질을 끌어올리는 보조 표상으로, Anthropic 2024-09 연구에서 차용했다.
 - **Six-cut + agent kernel**: AgriciDaniel/best-practices 리포에서 정의한 코드 리뷰 디스플린. `agents/verifier.md`가 staged diff에 적용한다.
