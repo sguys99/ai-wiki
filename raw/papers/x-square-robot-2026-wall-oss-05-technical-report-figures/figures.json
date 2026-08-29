@@ -1,0 +1,596 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig01.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 Wall-OSS-0.5 capability overview. The figure summarizes Wall-OSS-0.5 along three axes: pretrained model’s real-robot behavior, downstream adaptation, and embodied multimodal understanding. Panels (a)–(h) show examples of the evaluated real-robot tasks and their instructions: (a) open the po",
+    "bbox": [
+      66.0,
+      71.97,
+      546.0,
+      481.22
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.0909,
+      0.8922,
+      0.6076
+    ],
+    "dpi": 300,
+    "area_frac": 0.405,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig02.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2 Gradient-bridged co-training and MoT routing in Wall-OSS-0.5. Three complementary objectives shape the pretrained policy: multimodal cross-entropy (CE) preserves grounded vision-language knowledge, action-token CE provides the gradient bridge that adapts the VLM backbone toward control, and",
+    "bbox": [
+      66.0,
+      71.97,
+      546.0,
+      325.25
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.0909,
+      0.8922,
+      0.4107
+    ],
+    "dpi": 300,
+    "area_frac": 0.251,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig03.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 3 Overview of Vision-Aligned RVQ Action Tokenizer. Our framework compresses observation-conditioned delta action sequences into multi-level discrete tokens via residual vector quantization. By incorporating auxiliary visual-action and future-observation objectives, the tokenizer serves as a s",
+    "bbox": [
+      66.0,
+      71.98,
+      545.95,
+      234.57
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.0909,
+      0.8921,
+      0.2962
+    ],
+    "dpi": 300,
+    "area_frac": 0.161,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig04.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig04.png",
+    "page": 9,
+    "caption": "Figure 4 Robot manipulation data landscape used for pretraining. Left: retained dataset subsets and trajectory composition, including self-collected robot manipulation data, RoboMIND v1 ( 22 ), RoboMIND v2.0 ( 23 ), AgiBotWorld Beta ( 24 ), RoboCOIN ( 40 ), RoboChallenge ( 41 ), Galaxea Open-World (",
+    "bbox": [
+      66.0,
+      71.98,
+      546.01,
+      278.35
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.0909,
+      0.8922,
+      0.3515
+    ],
+    "dpi": 300,
+    "area_frac": 0.204,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig05.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig05.png",
+    "page": 11,
+    "caption": "Figure 5 Embodied bridge data construction and task taxonomy. Bridge samples are generated from action trajectories and organized into object, spatial, scene, and task understanding objectives, aligning multimodal supervision with executable robot behavior.",
+    "bbox": [
+      66.01,
+      282.44,
+      546.01,
+      630.03
+    ],
+    "bbox_norm": [
+      0.1079,
+      0.3566,
+      0.8922,
+      0.7955
+    ],
+    "dpi": 300,
+    "area_frac": 0.344,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig06.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig06.png",
+    "page": 13,
+    "caption": "Figure 6 Zero-shot real-robot evaluation trends across pretraining checkpoints. (a) Average task progress for seen and unseen tasks shows an overall upward trend despite checkpoint-level fluctuations, with held-out tasks reaching 53.6 at the 400k checkpoint. (b) Category-level curves show how capabi",
+    "bbox": [
+      50.89,
+      51.85,
+      568.15,
+      246.15
+    ],
+    "bbox_norm": [
+      0.0832,
+      0.0655,
+      0.9284,
+      0.3108
+    ],
+    "dpi": 300,
+    "area_frac": 0.207,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig07.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig07.png",
+    "page": 16,
+    "caption": "Figure 7 Multi-task fine-tuning scaling results on real-robot tasks. The figure compares models fine-tuned on progressively larger task sets (5, 10, and 19 tasks) and reports average task progress on the shared 5 simple-task subset, the shared 10-task subset, and the 9 newly added out-of-distributio",
+    "bbox": [
+      66.0,
+      71.98,
+      546.06,
+      345.04
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.0909,
+      0.8923,
+      0.4357
+    ],
+    "dpi": 300,
+    "area_frac": 0.27,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig08.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig08.png",
+    "page": 17,
+    "caption": "Figure 8 Multimodal capability changes from co-training, measured relative to the backbone Qwen2.5-VL-3B.",
+    "bbox": [
+      39.36,
+      46.93,
+      594.66,
+      292.13
+    ],
+    "bbox_norm": [
+      0.0643,
+      0.0593,
+      0.9717,
+      0.3688
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig09.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig09.png",
+    "page": 18,
+    "caption": "Figure 9 Multimodal understanding visualization comparison in embodied scenes (Wall-OSS-0.5 vs. Qwen2.5-VL-3B).",
+    "bbox": [
+      89.4,
+      71.98,
+      522.6,
+      463.58
+    ],
+    "bbox_norm": [
+      0.1461,
+      0.0909,
+      0.8539,
+      0.5853
+    ],
+    "dpi": 300,
+    "area_frac": 0.35,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig10.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig10.png",
+    "page": 19,
+    "caption": "Figure 10 Training strategy comparison. (a) Co-training achieves the best from-scratch performance (70k steps). (b) Co-training advantages persist during fine-tuning.",
+    "bbox": [
+      70.25,
+      71.98,
+      541.7,
+      292.56
+    ],
+    "bbox_norm": [
+      0.1148,
+      0.0909,
+      0.8851,
+      0.3694
+    ],
+    "dpi": 300,
+    "area_frac": 0.215,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig11.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig11.png",
+    "page": 20,
+    "caption": "Figure 11 action-space loss vs. velocity-space loss on LIBERO.",
+    "bbox": [
+      56.01,
+      56.08,
+      345.3,
+      263.29
+    ],
+    "bbox_norm": [
+      0.0915,
+      0.0708,
+      0.5642,
+      0.3324
+    ],
+    "dpi": 300,
+    "area_frac": 0.124,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/fig12.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/fig12.png",
+    "page": 20,
+    "caption": "Figure 12 Vision-Aligned RVQ Action Tokenizer vs. FAST tokenizer under identical co-training settings. Action task values are average task progress over 4 real-robot tasks (max 100), with RVQ leading on every task individually.",
+    "bbox": [
+      66.0,
+      367.37,
+      546.0,
+      594.8
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.4639,
+      0.8922,
+      0.751
+    ],
+    "dpi": 300,
+    "area_frac": 0.225,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/tab01.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/tab01.png",
+    "page": 11,
+    "caption": "Table 1 Open-source multimodal data organized by category.",
+    "bbox": [
+      66.2,
+      130.35,
+      545.81,
+      560.61
+    ],
+    "bbox_norm": [
+      0.1082,
+      0.1646,
+      0.8918,
+      0.7078
+    ],
+    "dpi": 300,
+    "area_frac": 0.426,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/tab02.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/tab02.png",
+    "page": 13,
+    "caption": "Table 2 Average task progress across pretraining checkpoints for seen and unseen zero-shot evaluation tasks.",
+    "bbox": [
+      70.68,
+      350.66,
+      541.32,
+      426.52
+    ],
+    "bbox_norm": [
+      0.1155,
+      0.4427,
+      0.8845,
+      0.5385
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/tab03.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/tab03.png",
+    "page": 14,
+    "caption": "Table 3 Highlighted zero-shot tasks at the 400k checkpoint (task progress ≥ 60). Unseen tasks are bolded; deformable tasks are particularly notable for generalization. Full per-task results in Section A.1 .",
+    "bbox": [
+      70.68,
+      417.27,
+      541.32,
+      533.3
+    ],
+    "bbox_norm": [
+      0.1155,
+      0.5269,
+      0.8845,
+      0.6734
+    ],
+    "dpi": 300,
+    "area_frac": 0.113,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/tab04.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/tab04.png",
+    "page": 15,
+    "caption": "Table 4 Real-robot fine-tuning baseline comparison. Values are average task progress per category (max 100). Per-task details in Section A.3 .",
+    "bbox": [
+      150.1,
+      104.26,
+      461.9,
+      174.38
+    ],
+    "bbox_norm": [
+      0.2453,
+      0.1316,
+      0.7547,
+      0.2202
+    ],
+    "dpi": 300,
+    "area_frac": 0.045,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/tab05.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/tab05.png",
+    "page": 29,
+    "caption": "Table 5 Seen tasks zero-shot per-task progress. Bold indicates the highest task progress across checkpoints for each task.",
+    "bbox": [
+      66.0,
+      201.26,
+      546.0,
+      381.99
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.2541,
+      0.8922,
+      0.4823
+    ],
+    "dpi": 300,
+    "area_frac": 0.179,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p29.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/tab06.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/tab06.png",
+    "page": 29,
+    "caption": "Table 6 Unseen tasks zero-shot per-task progress. Bold indicates the highest task progress across checkpoints for each task.",
+    "bbox": [
+      66.0,
+      201.26,
+      546.0,
+      381.99
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.2541,
+      0.8922,
+      0.4823
+    ],
+    "dpi": 300,
+    "area_frac": 0.179,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p29.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/tab07.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/tab07.png",
+    "page": 30,
+    "caption": "Table 7 Multimodal understanding benchmark detailed scores. Embodied Grounding is an internally constructed benchmark; evaluation samples are directly sampled and annotated from robot action dataset trajectories.",
+    "bbox": [
+      66.0,
+      104.26,
+      546.0,
+      290.94
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.1316,
+      0.8922,
+      0.3674
+    ],
+    "dpi": 300,
+    "area_frac": 0.185,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p30.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/tab08.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/tab08.png",
+    "page": 30,
+    "caption": "Table 8 Fine-tuning evaluation per-task results. Values are task progress (max 100); bold indicates row maximum. All three models use their respective official pretrained weights, fine-tuned and evaluated under identical data ( ∼ 500 trajectories per task) and protocols.",
+    "bbox": [
+      66.0,
+      372.05,
+      546.0,
+      569.7
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.4698,
+      0.8922,
+      0.7193
+    ],
+    "dpi": 300,
+    "area_frac": 0.196,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p30.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/tab09.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/tab09.png",
+    "page": 31,
+    "caption": "Table 9 Multi-task fine-tuning per-task detailed results. Values are task progress (max 100). Dashes indicate the task was not included in that configuration.",
+    "bbox": [
+      66.0,
+      130.12,
+      546.0,
+      371.6
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.1643,
+      0.8922,
+      0.4692
+    ],
+    "dpi": 300,
+    "area_frac": 0.239,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p31.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/x-square-robot-2026-wall-oss-05-technical-report/tab10.png",
+    "raw": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/tab10.png",
+    "page": 32,
+    "caption": "Table 10 Real-robot evaluation task descriptions and scoring rules.",
+    "bbox": [
+      66.0,
+      92.6,
+      547.23,
+      717.49
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.1169,
+      0.8942,
+      0.9059
+    ],
+    "dpi": 300,
+    "area_frac": 0.62,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/x-square-robot-2026-wall-oss-05-technical-report-figures/_overlay/p32.png"
+  }
+]

@@ -1,0 +1,272 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/zhai-2025-igniting-vlms-toward-the-embodied/fig01.png",
+    "raw": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 Current VLMs lack a sufficient understanding of space and action within embodied AI. This deficiency stems from a mismatch between the capabilities of existing pre-trained VLMs and the specific knowledge required for embodied tasks. WALL-OSS unleashes the embodied potential of VLMs, leading",
+    "bbox": [
+      64.87,
+      57.0,
+      547.06,
+      230.0
+    ],
+    "bbox_norm": [
+      0.106,
+      0.072,
+      0.8939,
+      0.2904
+    ],
+    "dpi": 300,
+    "area_frac": 0.172,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/zhai-2025-igniting-vlms-toward-the-embodied/fig02.png",
+    "raw": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2 Different paradigms for transferring VLMs to action modeling. The blue parts denote the initialized weights inherited from the pretrained VLM backbone. DAM and CAM refer to Discrete Action Modeling and Continuous Action Modeling, respectively, while VL denotes Vision–Language, and SA denote",
+    "bbox": [
+      111.89,
+      57.78,
+      500.02,
+      173.28
+    ],
+    "bbox_norm": [
+      0.1828,
+      0.073,
+      0.817,
+      0.2188
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/zhai-2025-igniting-vlms-toward-the-embodied/fig03.png",
+    "raw": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3 Architecture of WALL-OSS .",
+    "bbox": [
+      88.0,
+      446.12,
+      524.0,
+      672.53
+    ],
+    "bbox_norm": [
+      0.1438,
+      0.5633,
+      0.8562,
+      0.8491
+    ],
+    "dpi": 300,
+    "area_frac": 0.204,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/zhai-2025-igniting-vlms-toward-the-embodied/fig04.png",
+    "raw": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/fig04.png",
+    "page": 5,
+    "caption": "Figure 4 Overview of training and inference pipeline.",
+    "bbox": [
+      111.89,
+      135.0,
+      500.1,
+      274.7
+    ],
+    "bbox_norm": [
+      0.1828,
+      0.1705,
+      0.8172,
+      0.3468
+    ],
+    "dpi": 300,
+    "area_frac": 0.112,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/zhai-2025-igniting-vlms-toward-the-embodied/fig05.png",
+    "raw": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/fig05.png",
+    "page": 7,
+    "caption": "Figure 5 Overview of the multisource dataset. Left: composition across three sources (self-collected actions, open-source actions, and multimodal VQA). Middle (top to bottom): example images from self-collected actions, open-source actions, and multimodal VQA. Top-right: our representative robot har",
+    "bbox": [
+      67.91,
+      57.0,
+      588.03,
+      301.56
+    ],
+    "bbox_norm": [
+      0.111,
+      0.072,
+      0.9608,
+      0.3808
+    ],
+    "dpi": 300,
+    "area_frac": 0.262,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/zhai-2025-igniting-vlms-toward-the-embodied/fig06.png",
+    "raw": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/fig06.png",
+    "page": 9,
+    "caption": "Figure 6 Overview of evaluation tasks used during fine-tuning. Top: single-instruction tasks (Pick-Up-Waste, Place-by- Color, Instruction-Pick-Place, Pick-Place-Cup). Bottom: long-horizon and reasoning tasks (Set-Table, Block-Spell, Tidy-Bedroom).",
+    "bbox": [
+      64.87,
+      102.0,
+      547.07,
+      640.0
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1288,
+      0.8939,
+      0.8081
+    ],
+    "dpi": 300,
+    "area_frac": 0.535,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/zhai-2025-igniting-vlms-toward-the-embodied/fig07.png",
+    "raw": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/fig07.png",
+    "page": 11,
+    "caption": "Figure 7 Performance comparison with state-of-the-art policies across all evaluation tasks. Left: In-distribution (ID) performance comparison. Right: Out-of-distribution (OOD) performance",
+    "bbox": [
+      67.91,
+      531.5,
+      540.77,
+      694.71
+    ],
+    "bbox_norm": [
+      0.111,
+      0.6711,
+      0.8836,
+      0.8772
+    ],
+    "dpi": 300,
+    "area_frac": 0.159,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/zhai-2025-igniting-vlms-toward-the-embodied/tab01.png",
+    "raw": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/tab01.png",
+    "page": 8,
+    "caption": "Table 1 Summary of open-source datasets used in our corpus. Names are shown explicitly; citations appended where available.",
+    "bbox": [
+      67.49,
+      55.65,
+      544.53,
+      148.4
+    ],
+    "bbox_norm": [
+      0.1103,
+      0.0703,
+      0.8897,
+      0.1874
+    ],
+    "dpi": 300,
+    "area_frac": 0.091,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/zhai-2025-igniting-vlms-toward-the-embodied/tab02.png",
+    "raw": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/tab02.png",
+    "page": 11,
+    "caption": "Table 2 Embodied VQA benchmark results comparing WALL-OSS with the baseline Qwen2.5-VL-3B model across three evaluation categories.",
+    "bbox": [
+      156.18,
+      57.78,
+      455.82,
+      103.65
+    ],
+    "bbox_norm": [
+      0.2552,
+      0.073,
+      0.7448,
+      0.1309
+    ],
+    "dpi": 300,
+    "area_frac": 0.028,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/zhai-2025-igniting-vlms-toward-the-embodied/tab03.png",
+    "raw": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/tab03.png",
+    "page": 14,
+    "caption": "Table 3 Instruction-following accuracy in block-spell task.",
+    "bbox": [
+      193.43,
+      58.18,
+      418.57,
+      124.32
+    ],
+    "bbox_norm": [
+      0.3161,
+      0.0735,
+      0.6839,
+      0.157
+    ],
+    "dpi": 300,
+    "area_frac": 0.031,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/_overlay/p14.png"
+  }
+]

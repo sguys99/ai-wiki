@@ -1,0 +1,46 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/x2robot-2025-wall-oss-project-page/fig01.jpg",
+    "raw": "raw/articles/x2robot-2025-wall-oss-project-page-figures/fig01.jpg",
+    "caption": "",
+    "source_url": "https://x2robot.com/_next/image?url=%2Fapi%2Fimages%2Ffile%2F01.jpg&w=3840&q=75",
+    "bytes": 59600,
+    "width": 2138,
+    "height": 712,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/x2robot-2025-wall-oss-project-page/fig02.png",
+    "raw": "raw/articles/x2robot-2025-wall-oss-project-page-figures/fig02.png",
+    "caption": "",
+    "source_url": "https://x2robot.com/_next/image?url=%2Fapi%2Fimages%2Ffile%2Fm0.png&w=3840&q=75",
+    "bytes": 69995,
+    "width": 1481,
+    "height": 750,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/x2robot-2025-wall-oss-project-page/fig03.jpg",
+    "raw": "raw/articles/x2robot-2025-wall-oss-project-page-figures/fig03.jpg",
+    "caption": "",
+    "source_url": "https://x2robot.com/_next/image?url=%2Fapi%2Fimages%2Ffile%2F02.jpg&w=3840&q=75",
+    "bytes": 122824,
+    "width": 1236,
+    "height": 756,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/x2robot-2025-wall-oss-project-page/page-full.png",
+    "raw": "raw/articles/x2robot-2025-wall-oss-project-page-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]
