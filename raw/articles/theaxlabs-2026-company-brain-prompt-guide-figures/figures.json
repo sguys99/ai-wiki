@@ -1,0 +1,62 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/theaxlabs-2026-company-brain-prompt-guide/fig01.png",
+    "raw": "raw/articles/theaxlabs-2026-company-brain-prompt-guide-figures/fig01.png",
+    "caption": "컴퍼니 브레인 만드는 법 — 바로 복사해 쓰는 프롬프트 6종",
+    "source_url": "https://rqquzjgqvgeyjzfgoieq.supabase.co/storage/v1/object/public/blog-images/1787792408761-a4a3ca8719a5cdb1.png",
+    "bytes": 1886832,
+    "width": 1536,
+    "height": 1024,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/theaxlabs-2026-company-brain-prompt-guide/page-full.png",
+    "raw": "raw/articles/theaxlabs-2026-company-brain-prompt-guide-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/theaxlabs-2026-company-brain-prompt-guide/crop01.png",
+    "raw": "raw/articles/theaxlabs-2026-company-brain-prompt-guide-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/theaxlabs-2026-company-brain-prompt-guide/crop02.png",
+    "raw": "raw/articles/theaxlabs-2026-company-brain-prompt-guide-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/theaxlabs-2026-company-brain-prompt-guide/crop03.png",
+    "raw": "raw/articles/theaxlabs-2026-company-brain-prompt-guide-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/theaxlabs-2026-company-brain-prompt-guide/crop04.png",
+    "raw": "raw/articles/theaxlabs-2026-company-brain-prompt-guide-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/theaxlabs-2026-company-brain-prompt-guide/crop05.png",
+    "raw": "raw/articles/theaxlabs-2026-company-brain-prompt-guide-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
