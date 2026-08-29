@@ -1,0 +1,166 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/fig01.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/fig01.png",
+    "caption": "",
+    "source_url": "https://generalistai.com/assets/pages/blog/gen-1.5/assets/images/generalist-gen1p5-cover-frame.png",
+    "bytes": 2889486,
+    "width": 1826,
+    "height": 782,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/page-full.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop01.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop02.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop03.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop04.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop05.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop06.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop07.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop08.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop09.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop10.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop11.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop12.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop13.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop13.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop14.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop14.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop15.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop15.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop16.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop16.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop17.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop17.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/generalist-ai-2026-gen-1-5-embodied-foundation/crop18.png",
+    "raw": "raw/articles/generalist-ai-2026-gen-1-5-embodied-foundation-figures/crop18.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
