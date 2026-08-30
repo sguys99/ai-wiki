@@ -234,7 +234,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 미분류, 횡단(cross-cutting) 주제.
 
 - [[etc/rahman-2026-a-practical-guide-to-becoming|AI-Native Engineer 실전 가이드 (Shah Rahman, ByteByteGo)]] — Meta Ads ML 총괄 Shah Rahman의 에세이. 엔지니어가 오케스트레이터로 정체성을 옮길 때 필요한 4 Core Practices와 ADLC 운영 프레임 (2026, article)
-- [[etc/google-okf|Open Knowledge Format (OKF)]] — 데이터·시스템을 둘러싼 지식을 YAML frontmatter markdown으로 표현하는 Google의 벤더 중립 포맷. 포맷 자체가 기여이고, 생산(BigQuery+Gemini reference agent)·소비(자기완결 HTML visualizer)는 PoC. 이 ai-wiki와 같은 계보 (2026, repo)
+- [[etc/google-okf|Open Knowledge Format (OKF)]] — 데이터·시스템을 둘러싼 지식을 YAML frontmatter markdown으로 표현하는 Google의 벤더 중립 포맷(SPEC v0.2, Apache-2.0). 에이전트가 계속 고쳐 쓰는 코퍼스를 전제로 출처(`sources` + 신뢰도 신호)·신뢰(`generated`·`verified`에서 유도하는 trust tier)·수명주기(`status`·`stale_after`)를 frontmatter 1급 항목으로 올렸고, 수치를 계산하는 승인된 방법을 실어 실행 결과를 결정적 코드로 검사하는 Attested Computation 타입을 새로 뒀다. 신뢰 점수는 저장하지 않고 신호만 남긴다. 포맷 자체가 기여이고 생산(BigQuery+Gemini reference agent)·소비(자기완결 HTML visualizer)는 PoC. 이 ai-wiki와 같은 계보 (2026, repo)
 
 ## Overviews (overviews)
 

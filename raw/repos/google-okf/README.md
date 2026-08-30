@@ -3,19 +3,20 @@ title: "Open Knowledge Format (OKF)"
 type: repo
 year: 2026
 category: etc
-raw_path: raw/repos/google-okf.md
-raw_filename: "google-okf.md"
+raw_path: raw/repos/google-okf/
+raw_filename: "google-okf/"
 source_collection: external
 org: "GoogleCloudPlatform"
-repo: "knowledge-catalog"
-url: "https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf"
-license: "미확인 (repo 내 LICENSE 파일 미발견)"
-tags: [okf, knowledge-format, metadata, data-catalog, markdown, yaml-frontmatter, bigquery, gemini, agent, visualizer]
+repo: "open-knowledge-format"
+url: "https://github.com/GoogleCloudPlatform/open-knowledge-format"
+license: "Apache-2.0 (LICENSE.md)"
+spec_version: "0.2"
+tags: [okf, knowledge-format, metadata, data-catalog, markdown, yaml-frontmatter, provenance, trust, attestation, bigquery, gemini, agent, visualizer]
 ---
 
 # Open Knowledge Format (OKF)
 
-### 📖 [Read the Open Knowledge Format v0.1 specification → SPEC.md](SPEC.md)
+### 📖 [Read the Open Knowledge Format v0.2 specification → SPEC.md](SPEC.md)
 
 > **This repository is primarily about the [Open Knowledge Format
 > (OKF)](SPEC.md).**
@@ -48,6 +49,8 @@ tags: [okf, knowledge-format, metadata, data-catalog, markdown, yaml-frontmatter
 >   public dataset ([viz.html](bundles/stackoverflow/viz.html))
 > - [`bundles/crypto_bitcoin/`](bundles/crypto_bitcoin/) — Bitcoin
 >   blocks/transactions ([viz.html](bundles/crypto_bitcoin/viz.html))
+> - [`bundles/acme_retail/`](bundles/acme_retail/) — Acme Retail
+>   ([viz.html](bundles/acme_retail/viz.html))
 
 ## Why OKF?
 
@@ -67,8 +70,14 @@ properties that are hard to get from a service-owned metadata store:
   your metadata.
 - **Mixes structured and unstructured data deliberately.** Use frontmatter
   for the few fields you want to query, filter, or index on (`type`,
-  `resource`, `tags`, `timestamp`); use the markdown body for the prose,
-  schemas, and example queries that LLMs and humans actually read.
+  `resource`, `tags`, `generated`, `status`); use the markdown body for the
+  prose, schemas, and example queries that LLMs and humans actually read.
+- **Trust, provenance, and freshness are first-class.** v0.2 puts queryable
+  signals in frontmatter — where a concept came from (`sources` with per-source
+  credibility signals), who produced and confirmed it (`generated`, `verified`,
+  from which consumers derive a trust tier), and whether it is still current
+  (`status`, `stale_after`) — so an agent-maintained corpus stays trustable
+  without any bespoke runtime.
 - **Minimally opinionated, freely extensible.** A small set of required
   keys ensures interoperability, but bundles can carry arbitrary extra
   frontmatter keys and arbitrary body sections without breaking
@@ -225,21 +234,3 @@ once at generation time and serialized into the file.
 ```
 .venv/bin/pytest
 ```
-
----
-
-## SPEC.md 발췌 (Open Knowledge Format v0.1 — Full Specification)
-
-> 아래는 저장소의 `SPEC.md`에서 추출한 핵심 사실이다 (WebFetch 요약 경유 — 원문 그대로가 아닌 축약).
-
-**Core Definition** — OKF는 "an open, human- and agent-friendly format for representing knowledge — the metadata, context, and curated insight that surrounds data and systems". 구조는 의도적으로 단순: YAML frontmatter를 가진 markdown 파일들의 디렉토리. *"If you can `cat` a file, you can read OKF; if you can `git clone` a repo, you can ship it."*
-
-**Frontmatter Requirements** — `type` (required, 개념 종류 식별). 권장(recommended): `title`, `description`, `resource`, `tags`, `timestamp`.
-
-**Bundle Structure** — 계층적 디렉토리 + 개념 문서(`.md`). 예약 파일명(reserved): `index.md`(디렉토리 리스팅), `log.md`(시간순 업데이트 로그).
-
-**Cross-linking** — 두 링크 형식 지원: (1) absolute bundle-relative (권장, `/`로 시작), (2) 표준 relative markdown 경로.
-
-**Key Design Principle (permissive consumption)** — *"Consumers MUST NOT reject a bundle because of missing optional fields, unknown type values, or broken cross-links."* Body는 표준 markdown, 관용 헤딩 `# Schema`, `# Examples`, `# Citations` 사용.
-
-**Conformance & Versioning** — 적합(conformant) bundle 요건: 모든 non-reserved `.md`에 파싱 가능한 YAML frontmatter + 비어있지 않은 `type` 필드. 현재 버전 **0.1 (draft)**. minor = 하위호환 추가, major = breaking change (SemVer).
