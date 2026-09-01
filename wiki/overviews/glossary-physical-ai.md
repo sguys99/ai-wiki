@@ -80,6 +80,10 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | point cloud | point cloud | 점군·포인트 클라우드 | point cloud는 LiDAR 등이 반환한 3D point의 집합이다 | FAST-LIO2 계열 SLAM 자료의 기본 입력 표현 |
 | kNN search | kNN search | 최근접 이웃 탐색 | kNN search는 질의점에서 가장 가까운 k개의 point를 찾는 연산이다 | k-nearest neighbor. scan 정합과 map 질의의 병목 지점 |
 | solid-state LiDAR | solid-state LiDAR | 고체형 LiDAR·솔리드 스테이트 LiDAR | solid-state LiDAR는 회전 기구 없이 프리즘이나 MEMS로 주사하는 신형 LiDAR다 | FoV가 좁고 scanning pattern이 비반복적이라 feature 기반 방법과 잘 안 맞는다 |
+| dual-system VLA | dual-system VLA | 이중 시스템·듀얼 시스템 | dual-system VLA는 느린 대형 모델과 빠른 경량 policy를 서로 다른 주기로 함께 돌리는 VLA 구조다 | Cui 2025의 판정 기준은 System 1이 실시간 perception 입력을 직접 받는지 여부. 이 기준으로 π0·GR00T N1은 제외된다. System 1 / System 2 표기도 원어 고정 |
+| CLIP loss | CLIP loss | — | CLIP loss는 대형 모델 출력을 아래층이 받는 텍스트 임베딩 공간에 맞추는 대조 정렬 손실이다 | dual-system 연결에 쓰일 때의 용법. fine-tuning에서는 필수지만 prompt tuning에서는 없는 쪽이 낫다 (Cui 2025) |
+| projector pre-alignment | projector pre-alignment | 프로젝터 사전 정렬 | projector pre-alignment는 위아래를 잇는 MLP projector를 먼저 따로 학습시켜 두 feature 공간을 맞추는 1단계다 | 생략하면 dual-system 성공률이 0으로 떨어진다 (Cui 2025 Table 6). 2단계 학습의 전제 |
+| multimodal reasoning learning | multimodal reasoning learning | 멀티모달 추론 학습 | multimodal reasoning learning은 latent에서 position·rotation·개폐를 직접 예측하게 해 대형 모델이 시각 입력을 실제로 쓰도록 강제하는 보조 과제다 | OpenHelix 고유 명명. 추가 데이터 없이 붙는다 |
 | visuomotor policy | visuomotor policy | 시각-운동 정책·시각운동 정책 | visuomotor policy는 이미지를 직접 받아 모터 명령을 내는 policy를 말한다 | dual-system VLA의 System 1이 이 형태다. Helix는 80M Transformer, GR00T N1은 flow-matching DiT |
 | hindsight instruction | hindsight instruction | 사후 지시문·사후 지시 | hindsight instruction은 이미 수집된 영상을 보고 그 동작을 시킬 만한 지시문을 되물어 사후에 붙인 자연어 라벨이다 | Figure AI 2025(Helix)가 auto-labeling VLM으로 생성. teleoperation 데이터에 언어 조건을 붙이는 저비용 경로 |
 
