@@ -1,0 +1,126 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/fig01.gif",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/fig01.gif",
+    "caption": "Image of two robots in a factory lifting objects with both arms.",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2025/03/nvidia-isaac-gr00t-n1-featured.gif",
+    "bytes": 9283727,
+    "width": 800,
+    "height": 450,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/fig02.gif",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/fig02.gif",
+    "caption": "A GIF shows a humanoid robot in a kitchen lifting and placing a dragonfruit from a cutting board to a plate.",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2025/03/gr00t-n1-object-manipulation.gif",
+    "bytes": 10309992,
+    "width": 800,
+    "height": 450,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/fig03.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/fig03.png",
+    "caption": "A diagram shows a robot workflow with image, text, and action tokens turned into object manipulation.",
+    "source_url": "https://developer-blogs.nvidia.com/wp-content/uploads/2025/03/gr00t-n1-model-architecture-1024x576.png",
+    "bytes": 88146,
+    "width": 1024,
+    "height": 576,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/page-full.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop01.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop02.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop03.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop04.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop05.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop06.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop07.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop08.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop09.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop10.png",
+    "raw": "raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
