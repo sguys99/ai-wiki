@@ -1,0 +1,22 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/9bow-2025-helix-generalist-humanoid-vla/fig01.jpeg",
+    "raw": "raw/articles/9bow-2025-helix-generalist-humanoid-vla-figures/fig01.jpeg",
+    "caption": "",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/original/2X/c/c20eeac33aefbf11b22f0ac152dd3be8336849e9.jpeg",
+    "bytes": 59413,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/9bow-2025-helix-generalist-humanoid-vla/fig02.jpeg",
+    "raw": "raw/articles/9bow-2025-helix-generalist-humanoid-vla-figures/fig02.jpeg",
+    "caption": "",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/original/2X/f/fdcb1255f31e5ec467f1760b9537a03242ab23d9.jpeg",
+    "bytes": 21223,
+    "strategy": "fetched",
+    "curated": false
+  }
+]

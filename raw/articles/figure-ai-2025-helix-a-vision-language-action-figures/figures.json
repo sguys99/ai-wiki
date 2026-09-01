@@ -1,0 +1,70 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/figure-ai-2025-helix-a-vision-language-action/fig01.webp",
+    "raw": "raw/articles/figure-ai-2025-helix-a-vision-language-action-figures/fig01.webp",
+    "caption": "",
+    "source_url": "https://images.ctfassets.net/qx5k8y1u9drj/3iC6I99o9zVebi4YAct58Z/c0f52b7200aee4c9638fe9fb1d9a5788/NEW_SCALING_LAWS.png?fm=webp&w=3840&q=70",
+    "bytes": 142176,
+    "width": 3840,
+    "height": 2161,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/figure-ai-2025-helix-a-vision-language-action/page-full.png",
+    "raw": "raw/articles/figure-ai-2025-helix-a-vision-language-action-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/figure-ai-2025-helix-a-vision-language-action/crop01.png",
+    "raw": "raw/articles/figure-ai-2025-helix-a-vision-language-action-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/figure-ai-2025-helix-a-vision-language-action/crop02.png",
+    "raw": "raw/articles/figure-ai-2025-helix-a-vision-language-action-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/figure-ai-2025-helix-a-vision-language-action/crop03.png",
+    "raw": "raw/articles/figure-ai-2025-helix-a-vision-language-action-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/figure-ai-2025-helix-a-vision-language-action/crop04.png",
+    "raw": "raw/articles/figure-ai-2025-helix-a-vision-language-action-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/figure-ai-2025-helix-a-vision-language-action/crop05.png",
+    "raw": "raw/articles/figure-ai-2025-helix-a-vision-language-action-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/figure-ai-2025-helix-a-vision-language-action/crop06.png",
+    "raw": "raw/articles/figure-ai-2025-helix-a-vision-language-action-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
