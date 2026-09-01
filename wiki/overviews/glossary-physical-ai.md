@@ -29,6 +29,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | observation | observation | 관측 | observation은 매 timestep에 policy가 받는 센서 입력이다 | 일반어 "관찰"은 lint 제외 — 다만 RL observation 의미로는 쓰지 않는다 |
 | action | action | 행동 시퀀스·행동 토큰·행동 청킹·행동 정책 | action은 policy가 출력하는 제어 명령이다 | 단독 "행동"은 일반어라 복합어만 금지. "행동 공간"은 action space 행 |
 | action space | action space | 행동 공간 | action space는 로봇이 낼 수 있는 action의 집합이다 | action 행과 중복이지만 명시 |
+| relative EEF action space | relative EEF action space | 상대 말단 좌표계·상대 EEF 행동 공간 | relative EEF action space는 action을 절대 목표 pose가 아니라 현재 pose로부터의 변화량으로 적는 표현이다 | EEF는 end-effector 약어. GR00T N1.7이 사람·로봇 데이터에 공통으로 깔아 cross-embodiment 전이와 human video pre-training의 전제로 삼는다 |
 | trajectory | trajectory | 궤적 | trajectory는 observation과 action이 시간순으로 이어진 실행 기록이다 | |
 | episode | episode | — | episode는 과제 시작부터 종료까지의 한 실행 단위다 | 음차 "에피소드"도 피하고 원어 권장 (지침) |
 | rollout | rollout | — | rollout은 policy를 실행해 trajectory를 만들어내는 과정이다 | |
@@ -59,8 +60,10 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | supervised learning | 지도학습 | 지도 학습 | — | 표준 번역 허용, 붙여쓰기로 고정 |
 | state | 상태 | — | — | 표준 번역 허용 |
 | embodiment | embodiment | — | embodiment는 로봇의 물리적 형상과 그에 딸린 제어 API 구성을 뜻한다 | cross-embodiment 전이가 이 도메인 반복 주제. "구현체"는 소프트웨어 reference implementation, "체화"는 embodied AI 표준 번역이라 둘 다 오탐이 커 지침만 둔다 |
+| embodiment tag | embodiment tag | embodiment 태그·구현체 태그 | embodiment tag는 어떤 로봇의 데이터인지 가리키는 문자열 키로, state·action 배열을 해석할 modality config를 고른다 | GR00T·LeRobot 양쪽이 쓴다. 대소문자를 구분하지 않고 pretrain/posttrain tag로 나뉜다 |
 | flow matching | flow matching | 플로우 매칭·흐름 정합 | flow matching은 noise에서 데이터로 향하는 vector field를 학습해 샘플을 만드는 생성 기법이다 | diffusion의 변형. π0 계열 VLA의 action 출력부 |
 | action chunking | action chunking | 행동 청킹·액션 청킹 | action chunking은 미래 여러 스텝의 action을 한 묶음으로 한 번에 예측하는 방식이다 | ACT에서 유래, π0는 H=50. action 행의 금지 표기와 짝을 이룬다 |
+| execution horizon | execution horizon | 실행 지평·실행 horizon | execution horizon은 예측한 action 중 policy 호출 한 번에 실제로 실행하는 개수다 | action chunking과 짝을 이룬다. GR00T N1.7이 `--action-horizon`을 이 이름으로 개명해 예측 horizon과 구분했다 |
 | action expert | action expert | 행동 전문가 | action expert는 로봇 상태와 action 토큰만 처리하도록 분리한 별도 가중치 묶음이다 | π0 고유 구성. VLM backbone과 나란한 두 번째 전문가 |
 | code-as-policy | code-as-policy | 코드를 정책으로·코드 정책 | code-as-policy는 언어 모델이 perception·planning·control API를 조합해 실행 가능한 로봇 프로그램을 짜게 하는 제어 방식이다 | Liang 2023 이후 고유 기법명. CaP 약어 병용 가능 |
 | primitive | primitive | 원시 동작·기본 동작 | primitive는 로봇 API가 노출하는 최소 실행 단위를 가리킨다 | motion primitive·control primitive 등 복합어도 원어 |
