@@ -336,4 +336,5 @@ OpenVLA는 physical-ai에서 VLA 계보의 "오픈소스 기준점"이다. RT-2�
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] — VLA-via-finetuning 계보의 후속. 단일 backbone → dual-system, 추론 병목 대응
 - [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics]] — VLA 서베이. OpenVLA를 VLM fine-tuning형 대표로 분류
 - [[llms/cai-2026-vlm3-vision-language-models]] — VLM 아키텍처. OpenVLA 성능을 좌우하는 backbone·vision encoder 축
+- [[physical-ai/learnopencv-2025-vision-language-action-models-vla]] — OpenVLA를 한 절로 압축한 튜토리얼. dual vision encoder·255 action 토큰·Franka Panda 5Hz를 간추리고 `openvla/openvla-7b` 체크포인트로 `predict_action`까지 가는 최소 추론 경로를 붙였다
 - [[overviews/physical-ai-overview]] — physical-ai 분류 기준과 학습 경로 허브

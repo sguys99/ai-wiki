@@ -295,4 +295,5 @@ MLLM(PT) + Policy(P)만으로는 CALVIN-E가 1.72다. 보조 과제를 넣으면
 - [[physical-ai/brohan-2022-rt-1-robotics-transformer-for-real-world]] — HiRT가 System 1으로 쓰는 policy head
 - [[physical-ai/xu-2025-an-anatomy-of-vision-language-action-models]] — VLA 서베이. System 2 반성 층을 향후 방향으로 제안한다
 - [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics]] — full-stack VLA 서베이. action head 분류에서 이 논문의 policy 선택 논의와 겹친다
+- [[physical-ai/learnopencv-2025-vision-language-action-models-vla]] — dual-system을 훨씬 느슨하게 쓰는 사례. GR00T N1과 Helix를 나란히 이 틀의 대표로 놓는데, 이 논문의 기준(System 1이 실시간 perception 입력을 직접 받아야 한다)으로는 GR00T N1이 빠진다. 용어가 어떻게 헐거워지는지 보여주는 대조군
 - [[overviews/glossary-physical-ai]] — dual-system VLA · CLIP loss · projector pre-alignment · multimodal reasoning learning 표기

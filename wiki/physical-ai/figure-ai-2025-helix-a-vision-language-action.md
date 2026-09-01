@@ -137,4 +137,5 @@ teleoperation은 사람이 로봇을 원격으로 움직여 시연을 만드는 
 - [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]] — 같은 토큰화 계열의 오픈소스 구현
 - [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]] — 연속 action 출력이라는 같은 선택을 flow matching으로 푼 쪽
 - [[physical-ai/sa-2026-vision-language-action-models-for]] — Figure 02/Helix의 BMW 배치 실적을 기록한 서베이
+- [[physical-ai/learnopencv-2025-vision-language-action-models-vla]] — 이 발표문을 통째로 인용한 영어 튜토리얼. S2 7B·S1 80M·200Hz 수치가 여기서 왔고, 초기 Figure 로봇의 GPT-4o 구동과 OpenAI 협업 종료라는 배경을 덧붙인다
 - [[overviews/glossary-physical-ai]] — 이 페이지의 전문 용어 canonical 표기

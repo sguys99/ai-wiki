@@ -164,4 +164,5 @@ SmolVLA는 LeRobot 팀 자신이 낸 VLA인데 이 wiki에는 아직 `raw/papers
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] — GR00T N1.7의 앞 세대 foundation model
 - [[physical-ai/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x]] — 로봇 데이터 형식 통일의 선행 사례
 - [[physical-ai/reuss-2026-pretrained-to-imagine-fine-tuned]] — world model 갈래가 놓인 흐름
+- [[physical-ai/learnopencv-2025-vision-language-action-models-vla]] — 이 프레임워크를 실제로 굴려 보는 튜토리얼. 저장소 clone부터 `lerobot/pi0` 체크포인트로 pusht·aloha 평가, 커스텀 데이터셋 fine-tuning까지 명령 단위로 적혀 있다
 - [[overviews/physical-ai-overview]] — 도메인 허브
