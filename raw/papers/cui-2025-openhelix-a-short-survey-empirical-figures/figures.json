@@ -1,0 +1,410 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/fig01.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/fig01.png",
+    "page": 3,
+    "caption": "Figure 1. Key Design of Dual-System VLAs. It mainly includes: MMLM Selection, Policy Selection, Latent Feature Representation Selection, MLLM Training Strategy, Policy Training Strategy, Dual-System Integration Strategy, and Dual-System Asynchronous Strategy.",
+    "bbox": [
+      41.74,
+      46.27,
+      565.37,
+      283.2
+    ],
+    "bbox_norm": [
+      0.0682,
+      0.0584,
+      0.9238,
+      0.3576
+    ],
+    "dpi": 300,
+    "area_frac": 0.256,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/fig02.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2. Three Different Evaluation Environments.",
+    "bbox": [
+      313.56,
+      110.42,
+      559.9,
+      194.72
+    ],
+    "bbox_norm": [
+      0.5123,
+      0.1394,
+      0.9149,
+      0.2459
+    ],
+    "dpi": 300,
+    "area_frac": 0.043,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/fig03.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3. Three Different MLLM Training Strategy.",
+    "bbox": [
+      52.5,
+      54.04,
+      559.49,
+      206.11
+    ],
+    "bbox_norm": [
+      0.0858,
+      0.0682,
+      0.9142,
+      0.2602
+    ],
+    "dpi": 300,
+    "area_frac": 0.159,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/fig04.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/fig04.png",
+    "page": 8,
+    "caption": "Figure 4. Evaluations on hierarchical inference. We evaluate the performance of the dual system on the CALVIN benchmark, with inference steps set to 1 and 60, respectively.“Steps\" refers to the inference steps of action policy during a single MLLM inference step. The longest environmental steps of t",
+    "bbox": [
+      89.62,
+      64.01,
+      522.3,
+      180.0
+    ],
+    "bbox_norm": [
+      0.1464,
+      0.0808,
+      0.8534,
+      0.2273
+    ],
+    "dpi": 300,
+    "area_frac": 0.104,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/fig05.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/fig05.png",
+    "page": 8,
+    "caption": "Figure 5. Evaluation on the shortcoming of existing dual systems. From top to bottom, the first row displays the input to the MLLM. The second row visualizes a special scenario where, at environment step 3, the blue block is manually shifted to the left. In the third row, we present the top 10 words",
+    "bbox": [
+      52.5,
+      231.83,
+      559.5,
+      536.94
+    ],
+    "bbox_norm": [
+      0.0858,
+      0.2927,
+      0.9142,
+      0.678
+    ],
+    "dpi": 300,
+    "area_frac": 0.319,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/fig06.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/fig06.png",
+    "page": 9,
+    "caption": "Figure 6. Overview of our proposed Dual System VLA.",
+    "bbox": [
+      300.0,
+      161.9,
+      554.96,
+      302.21
+    ],
+    "bbox_norm": [
+      0.4902,
+      0.2044,
+      0.9068,
+      0.3816
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/fig07.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/fig07.png",
+    "page": 10,
+    "caption": "Figure 7. Detailed framework. (a) The high-level MLLM (left) takes third-view RGB o ′ , task instruction l , and a learnable token <ACT> as input. After processing through the Large Language Model (LLM), we extract the feature embedding from the final layer of the <ACT> token as the latent goal for ",
+    "bbox": [
+      89.62,
+      66.0,
+      522.27,
+      298.5
+    ],
+    "bbox_norm": [
+      0.1464,
+      0.0833,
+      0.8534,
+      0.3769
+    ],
+    "dpi": 300,
+    "area_frac": 0.208,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/tab01.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/tab01.png",
+    "page": 2,
+    "caption": "Table 1. Methods Comparisons of Dual-System VLAs . Here, L, R, P, D, T, and PC represent different modalities: Language, RGB, Proprioception, Depth, Tactile, and Point Cloud, respectively. FT denotes fine-tuning. Pretrain and Scratch denote fine-tuning a pre-trained policy head and training a policy",
+    "bbox": [
+      54.69,
+      109.19,
+      557.31,
+      218.57
+    ],
+    "bbox_norm": [
+      0.0894,
+      0.1379,
+      0.9106,
+      0.276
+    ],
+    "dpi": 300,
+    "area_frac": 0.113,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p02.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/tab02.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/tab02.png",
+    "page": 5,
+    "caption": "Table 2. Evaluation of single system in CALVIN-D environment.",
+    "bbox": [
+      61.52,
+      95.29,
+      289.49,
+      161.43
+    ],
+    "bbox_norm": [
+      0.1005,
+      0.1203,
+      0.473,
+      0.2038
+    ],
+    "dpi": 300,
+    "area_frac": 0.031,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/tab03.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/tab03.png",
+    "page": 5,
+    "caption": "Table 3. Comparison of different training strategies for the low-level policy in standard CALVIN environment.",
+    "bbox": [
+      54.74,
+      192.47,
+      302.04,
+      258.61
+    ],
+    "bbox_norm": [
+      0.0894,
+      0.243,
+      0.4935,
+      0.3265
+    ],
+    "dpi": 300,
+    "area_frac": 0.034,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/tab04.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/tab04.png",
+    "page": 6,
+    "caption": "Table 4. Comparison of different training strategies for the high-level MLLM in CALVIN environment.",
+    "bbox": [
+      63.83,
+      255.29,
+      545.93,
+      343.34
+    ],
+    "bbox_norm": [
+      0.1043,
+      0.3223,
+      0.892,
+      0.4335
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/tab05.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/tab05.png",
+    "page": 7,
+    "caption": "Table 5. Further MLLM training experiments in CALVIN and CALVIN-E environment.",
+    "bbox": [
+      58.55,
+      84.33,
+      551.21,
+      199.31
+    ],
+    "bbox_norm": [
+      0.0957,
+      0.1065,
+      0.9007,
+      0.2517
+    ],
+    "dpi": 300,
+    "area_frac": 0.117,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/tab06.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/tab06.png",
+    "page": 7,
+    "caption": "Table 6. Performance of different projector initialization in CALVIN environment. Here, Pre-alignment refers to training the projector prior to training the MLLM.",
+    "bbox": [
+      49.08,
+      229.22,
+      554.96,
+      344.98
+    ],
+    "bbox_norm": [
+      0.0802,
+      0.2894,
+      0.9068,
+      0.4356
+    ],
+    "dpi": 300,
+    "area_frac": 0.121,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/tab07.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/tab07.png",
+    "page": 9,
+    "caption": "Table 7. Comparison of the using method of MLLM.",
+    "bbox": [
+      73.11,
+      84.33,
+      536.65,
+      161.43
+    ],
+    "bbox_norm": [
+      0.1195,
+      0.1065,
+      0.8769,
+      0.2038
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/cui-2025-openhelix-a-short-survey-empirical/tab08.png",
+    "raw": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/tab08.png",
+    "page": 11,
+    "caption": "Table 8. Results on CALVIN ABC-D: We report both success rates and average task completion length (out of 5 tasks) per evaluation sequence. MLLM (PT) denotes our proposed prompt tuning method for MLLM training. Policy(P) indicates loading from a pretrained policy model. Asy(10) represents inference ",
+    "bbox": [
+      74.77,
+      105.25,
+      534.99,
+      242.0
+    ],
+    "bbox_norm": [
+      0.1222,
+      0.1329,
+      0.8742,
+      0.3056
+    ],
+    "dpi": 300,
+    "area_frac": 0.13,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cui-2025-openhelix-a-short-survey-empirical-figures/_overlay/p11.png"
+  }
+]

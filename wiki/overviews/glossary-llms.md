@@ -50,6 +50,8 @@ tags: [glossary, terminology, llms, synthesis]
 | VLM / VLA | VLM / VLA | — | VLM은 vision-language model, VLA는 vision-language-action model의 약어다 | 약어 그대로 |
 | in-context learning | in-context learning | 문맥 내 학습 | in-context learning은 가중치 갱신 없이 프롬프트 안의 예시만으로 과제를 배우는 능력이다 | 약어 ICL 병용 가능 |
 | next-token prediction | next-token prediction | — | next-token prediction은 이전 토큰들로 다음 토큰을 맞히는 학습 목표다 | "다음 토큰 예측"은 병용 허용 (지침) |
+| MLLM | MLLM | 멀티모달 대형 언어 모델·다중모달 LLM | MLLM은 이미지와 텍스트를 함께 받아 처리하는 대형 언어 모델을 가리킨다 | 약어 그대로. VLM과 거의 같은 뜻이지만 로보틱스 dual-system 문헌은 MLLM 표기를 쓴다 |
+| prompt tuning | prompt tuning | 프롬프트 튜닝 | prompt tuning은 모델 파라미터를 전부 얼린 채 어휘에 추가한 토큰의 임베딩만 학습시키는 방식이다 | LoRA와 달리 원래 가중치를 하나도 안 건드린다. dual-system VLA에서 일반화 보존에 유리 (Cui 2025) |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 

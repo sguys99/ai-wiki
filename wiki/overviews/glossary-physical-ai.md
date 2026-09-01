@@ -80,6 +80,8 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | point cloud | point cloud | 점군·포인트 클라우드 | point cloud는 LiDAR 등이 반환한 3D point의 집합이다 | FAST-LIO2 계열 SLAM 자료의 기본 입력 표현 |
 | kNN search | kNN search | 최근접 이웃 탐색 | kNN search는 질의점에서 가장 가까운 k개의 point를 찾는 연산이다 | k-nearest neighbor. scan 정합과 map 질의의 병목 지점 |
 | solid-state LiDAR | solid-state LiDAR | 고체형 LiDAR·솔리드 스테이트 LiDAR | solid-state LiDAR는 회전 기구 없이 프리즘이나 MEMS로 주사하는 신형 LiDAR다 | FoV가 좁고 scanning pattern이 비반복적이라 feature 기반 방법과 잘 안 맞는다 |
+| visuomotor policy | visuomotor policy | 시각-운동 정책·시각운동 정책 | visuomotor policy는 이미지를 직접 받아 모터 명령을 내는 policy를 말한다 | dual-system VLA의 System 1이 이 형태다. Helix는 80M Transformer, GR00T N1은 flow-matching DiT |
+| hindsight instruction | hindsight instruction | 사후 지시문·사후 지시 | hindsight instruction은 이미 수집된 영상을 보고 그 동작을 시킬 만한 지시문을 되물어 사후에 붙인 자연어 라벨이다 | Figure AI 2025(Helix)가 auto-labeling VLM으로 생성. teleoperation 데이터에 언어 조건을 붙이는 저비용 경로 |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 
