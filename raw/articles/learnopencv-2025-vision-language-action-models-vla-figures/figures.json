@@ -1,0 +1,498 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/fig01.gif",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/fig01.gif",
+    "caption": "",
+    "source_url": "https://cdn.learnopencv.com/wp-content/uploads/2025/04/04082207/Vision-Language-Action-Models-Robot-Control.gif",
+    "bytes": 4443882,
+    "width": 768,
+    "height": 432,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/fig02.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/fig02.png",
+    "caption": "RT-2 Google Co Finetuning in a Closed loop control for robot actions",
+    "source_url": "https://robotics-transformer2.github.io/img/fig1.png",
+    "bytes": 548370,
+    "width": 1300,
+    "height": 1247,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/fig03.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/fig03.png",
+    "caption": "RT-2 takes in images as patches through a ViT Encoder and language instruction with a LLM to generate Robot action",
+    "source_url": "https://robotics-transformer2.github.io/img/fig2.png",
+    "bytes": 316254,
+    "width": 1860,
+    "height": 1256,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/fig04.webp",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/fig04.webp",
+    "caption": "Sequence of robot action include the translation and rotational changes",
+    "source_url": "https://lh3.googleusercontent.com/kXU5F9WVMd1eaTuwwU-QB3HbbDy1A6YPZQ-kdM65mRCpFwNgNEp34xJrfqW60iQYtBhxfBWuGNex8RoEOTR4_oDpJv_Qj4tUp0A_WcFTch5aJ-QD=w1070-rw",
+    "bytes": 19310,
+    "width": 1070,
+    "height": 217,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/fig05.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/fig05.png",
+    "caption": "RT-2 working examples",
+    "source_url": "https://robotics-transformer2.github.io/img/CoT5.png",
+    "bytes": 701200,
+    "width": 1101,
+    "height": 587,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/fig06.jpg",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/fig06.jpg",
+    "caption": "OpenVLA Model Architecture using Llama 2 7B with Dual Vision Encoder Dinov2 and SIgLIP to predict 7D Robot Action including position orientation and gripper state",
+    "source_url": "https://openvla.github.io/static/images/openvla_model.jpg",
+    "bytes": 94732,
+    "width": 1250,
+    "height": 463,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/fig07.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/fig07.png",
+    "caption": "Aloha teleoperation with human in the loop bimanual as colloborator.",
+    "source_url": "https://aloha-2.github.io/assets/topdown_collab_highres.png",
+    "bytes": 1559870,
+    "width": 2500,
+    "height": 1229,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/fig08.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/fig08.png",
+    "caption": "Working of π0: Physical Intelligence generating continuous action sequence using DCT",
+    "source_url": "https://cdn-uploads.huggingface.co/production/uploads/640e21ef3c82bd463ee5a76d/w3p752hK9lyXH1HHYQfde.png",
+    "bytes": 160415,
+    "width": 1848,
+    "height": 688,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/fig09.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/fig09.png",
+    "caption": "Benchmarks of π0: Physical Intelligence compared to OpenVLA and Octo",
+    "source_url": "https://paper-assets.alphaxiv.org/figures/2410.24164/x4.png",
+    "bytes": 87150,
+    "width": 1661,
+    "height": 949,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/fig10.jpg",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/fig10.jpg",
+    "caption": "Satya Mallick",
+    "source_url": "https://opencv.org/university/wp-content/uploads/sites/4/2023/04/Dr-Satya.jpg",
+    "bytes": 17778,
+    "width": 425,
+    "height": 425,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/page-full.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop01.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop02.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop03.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop04.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop05.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop06.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop07.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop08.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop09.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop10.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop11.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig23",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop12.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig24",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop13.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop13.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig25",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop14.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop14.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig26",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop15.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop15.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig27",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop16.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop16.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig28",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop17.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop17.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig29",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop18.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop18.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig30",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop19.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop19.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig31",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop20.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop20.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig32",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop21.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop21.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig33",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop22.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop22.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig34",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop23.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop23.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig35",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop24.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop24.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig36",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop25.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop25.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig37",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop26.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop26.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig38",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop27.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop27.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig39",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop28.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop28.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig40",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop29.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop29.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig41",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop30.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop30.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig42",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop31.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop31.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig43",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop32.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop32.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig44",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop33.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop33.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig45",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop34.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop34.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig46",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop35.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop35.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig47",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop36.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop36.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig48",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop37.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop37.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig49",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop38.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop38.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig50",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop39.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop39.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig51",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop40.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop40.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig52",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop41.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop41.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig53",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop42.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop42.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig54",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop43.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop43.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig55",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop44.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop44.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig56",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop45.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop45.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig57",
+    "file": "assets/learnopencv-2025-vision-language-action-models-vla/crop46.png",
+    "raw": "raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop46.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
