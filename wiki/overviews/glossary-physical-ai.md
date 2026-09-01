@@ -25,6 +25,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | 원어 | canonical 표기 | 금지 표기 | 첫 등장 풀이 예문 | 비고 |
 |---|---|---|---|---|
 | policy | policy | 정책 | policy는 현재 observation을 받아 다음 action을 정하는 함수를 말한다 | RL 핵심 용어. physical-ai 문맥에서는 거의 항상 RL policy라 단독 금지 |
+| generalist policy | generalist policy | — | generalist policy는 과제별 fine-tuning 없이 하나의 모델로 여러 downstream 과제를 푸는 policy다 | Octo·OpenVLA·π0 계열의 공통 목표. "범용 정책·일반 정책" 직역은 policy 행의 금지 표기가 이미 잡는다 |
 | reward | reward | 보상 | reward는 policy가 얼마나 잘했는지를 알려주는 스칼라 신호다 | reward function·reward hacking 등 파생어도 원어 |
 | observation | observation | 관측 | observation은 매 timestep에 policy가 받는 센서 입력이다 | 일반어 "관찰"은 lint 제외 — 다만 RL observation 의미로는 쓰지 않는다 |
 | action | action | 행동 시퀀스·행동 토큰·행동 청킹·행동 정책 | action은 policy가 출력하는 제어 명령이다 | 단독 "행동"은 일반어라 복합어만 금지. "행동 공간"은 action space 행 |
@@ -64,6 +65,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | flow matching | flow matching | 플로우 매칭·흐름 정합 | flow matching은 noise에서 데이터로 향하는 vector field를 학습해 샘플을 만드는 생성 기법이다 | diffusion의 변형. π0 계열 VLA의 action 출력부 |
 | action chunking | action chunking | 행동 청킹·액션 청킹 | action chunking은 미래 여러 스텝의 action을 한 묶음으로 한 번에 예측하는 방식이다 | ACT에서 유래, π0는 H=50. action 행의 금지 표기와 짝을 이룬다 |
 | execution horizon | execution horizon | 실행 지평·실행 horizon | execution horizon은 예측한 action 중 policy 호출 한 번에 실제로 실행하는 개수다 | action chunking과 짝을 이룬다. GR00T N1.7이 `--action-horizon`을 이 이름으로 개명해 예측 horizon과 구분했다 |
+| action tokenization | action tokenization | 액션 토큰화 | action tokenization은 연속값인 제어 명령을 정해진 구간으로 나눠 이산 토큰으로 바꾸는 기법이다 | RT-2가 세우고 OpenVLA가 오픈소스로 옮긴 표준 기법. 한글 직역 "행동 토큰화"는 action 행이 이미 잡는다 |
 | action expert | action expert | 행동 전문가 | action expert는 로봇 상태와 action 토큰만 처리하도록 분리한 별도 가중치 묶음이다 | π0 고유 구성. VLM backbone과 나란한 두 번째 전문가 |
 | code-as-policy | code-as-policy | 코드를 정책으로·코드 정책 | code-as-policy는 언어 모델이 perception·planning·control API를 조합해 실행 가능한 로봇 프로그램을 짜게 하는 제어 방식이다 | Liang 2023 이후 고유 기법명. CaP 약어 병용 가능 |
 | primitive | primitive | 원시 동작·기본 동작 | primitive는 로봇 API가 노출하는 최소 실행 단위를 가리킨다 | motion primitive·control primitive 등 복합어도 원어 |
