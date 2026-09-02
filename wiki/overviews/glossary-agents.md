@@ -52,6 +52,9 @@ agents 도메인(agentic 시스템·tool use·harness·loop engineering) 전문 
 | vault | vault | 볼트 | vault는 에이전트와 사람이 같이 읽고 쓰는 Markdown 파일 폴더를 뜻한다 | 영문 174회 대 "볼트" 19회로 영문이 우세해 vault로 고정. Obsidian 원문 절 제목 인용은 lint-ignore |
 | local-first | local-first | 로컬-퍼스트·로컬 퍼스트 | local-first는 데이터 원본을 사용자 디스크에 두고 서버 없이 도는 설계다 | 표기 흔들림(영문 10회 대 로컬-퍼스트 4회)을 영문으로 고정 |
 | ontology | ontology | 온톨로지 | ontology는 도메인의 개체 종류와 관계 타입을 고정된 집합으로 정의한 구조다 | "온톨로지"는 physical-ai의 물리 상식 분류 문맥에 이미 쓰여 있고, 이 용어집의 applies_to가 그 카테고리를 제외하므로 충돌하지 않는다 |
+| distractor | distractor | 교란 도구·방해 도구 | distractor는 task에 함께 노출되지만 풀이에는 필요 없는 도구다 | tool use 평가 문헌의 공통 용어. physical-ai의 시각 distractor와 표기가 같다 (Bandi 2026) |
+| claim | claim | — | claim은 정답이라면 최종 답에 담겨 있어야 하는 원자적 사실 진술이다 | "주장"은 일반어라 오탐이 커서 지침만. 채점 단위 문맥에서는 원어 권장 (Bandi 2026) |
+| coverage | coverage | — | coverage는 task의 claim 점수를 평균낸 값이다 | "커버리지"는 테스트·개념 커버리지 등 다른 문맥에 이미 쓰여 지침만. claim 채점 문맥에서는 원어 (Bandi 2026) |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 
