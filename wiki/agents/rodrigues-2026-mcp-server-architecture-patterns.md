@@ -148,4 +148,5 @@ in-host 전송(stdio, loopback http)은 1 ms 미만이라 stdio와 streamable-ht
 - [[agents/dennis-2026-compiling-agentic-workflows-into-llm]] — agentic 워크플로를 compile하는 접근. Tool Orchestrator가 워크플로를 서버측 composite tool로 캡슐화하는 것과 대비되는 client측 전략
 - [[agents/qiao-2026-memory-intelligence-agent]] — 에이전트 메모리. Stateful Session Server의 서버측 세션 상태와 에이전트 장기 메모리의 경계를 함께 보면 좋다
 - [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]] — Direct Corpus Interaction. retrieval-over-tools(scoped Proxy Aggregator)와 마찬가지로 "무엇을 context에 노출할지"를 검색 문제로 보는 관점
+- [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for]] — 같은 MCP 계층을 클라이언트 쪽에서 평가한 벤치마크. 이 논문의 Vague Description anti-pattern이 거기서는 distractor 사이의 도구 발견 문제로 측정된다
 

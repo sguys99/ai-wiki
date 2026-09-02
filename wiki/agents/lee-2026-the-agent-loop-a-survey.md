@@ -354,3 +354,4 @@ E2~E5는 모두 벤치마크 하나(ALFWorld), 모델 계열 하나(Qwen2.5-Inst
 - [[agents/anthropic-2025-effective-context-engineering-for-ai]] — §4.4·§7.4가 근거로 삼는 context engineering 원전
 - [[agents/anthropic-2025-equipping-agents-for-the-real]] — §6이 산업 표준으로 지목하는 Agent Skills·SKILL.md 발표
 - [[agents/osmani-2026-loop-engineering]] — 같은 전환을 실무 관점에서 loop engineering으로 부르는 에세이
+- [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for]] — agent loop의 정지 조건을 실측한 벤치마크. 상위 모델의 조기 종료가 최대 42.8%로 나타나 loop 설계 문제를 수치로 보여준다

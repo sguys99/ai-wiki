@@ -501,3 +501,4 @@ OSWorld는 computer-use agent 평가의 기준점이 됐고 이후 연구는 대
 - [[evaluations/xlang-ai-osworld]] — 공식 구현체. provider 추상화와 OSWorld-Verified 개정 내역
 - [[agents/wang-2026-cua-gym-scaling-verifiable-training-environments]] — OSWorld를 평가 대상으로 삼아 학습 환경을 합성한 후속 연구
 - [[overviews/glossary-agents]] — agent 도메인 용어 canonical 표기
+- [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for]] — 채점 설계가 대비되는 agent 벤치마크. OSWorld는 task마다 실행 채점 스크립트를, MCP-Atlas는 원자 claim 목록을 붙였다

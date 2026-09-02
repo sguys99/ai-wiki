@@ -337,6 +337,7 @@ topology 변경이 prompt 변경보다 일관되게 효과가 컸다. 다만 Cha
 - [[agents/dennis-2026-compiling-agentic-workflows-into-llm]] — agent workflow 컴파일과 MAS 설계가 맞닿는 지점
 - [[agents/qiao-2026-memory-intelligence-agent]] — FC2 해결을 위한 agent memory 관점
 - [[agents/zhang-2026-recursive-language-models]] — single-agent vs MAS 비교 맥락
+- [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for]] — MCP tool use 벤치마크의 11종 실패 분류. MAST와 마찬가지로 실패를 유형화했고, 인지 계열이 63.3%로 도구 호출 계열을 앞선다
 
 <!-- HUMANIZE-SUMMARY v1.6.1
 run_id: 2026-06-11-002
