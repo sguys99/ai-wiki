@@ -91,6 +91,9 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | multimodal reasoning learning | multimodal reasoning learning | 멀티모달 추론 학습 | multimodal reasoning learning은 latent에서 position·rotation·개폐를 직접 예측하게 해 대형 모델이 시각 입력을 실제로 쓰도록 강제하는 보조 과제다 | OpenHelix 고유 명명. 추가 데이터 없이 붙는다 |
 | visuomotor policy | visuomotor policy | 시각-운동 정책·시각운동 정책 | visuomotor policy는 이미지를 직접 받아 모터 명령을 내는 policy를 말한다 | dual-system VLA의 System 1이 이 형태다. Helix는 80M Transformer, GR00T N1은 flow-matching DiT |
 | hindsight instruction | hindsight instruction | 사후 지시문·사후 지시 | hindsight instruction은 이미 수집된 영상을 보고 그 동작을 시킬 만한 지시문을 되물어 사후에 붙인 자연어 라벨이다 | Figure AI 2025(Helix)가 auto-labeling VLM으로 생성. teleoperation 데이터에 언어 조건을 붙이는 저비용 경로 |
+| world foundation model | world foundation model | 세계 기반 모델·월드 파운데이션 모델·세계 파운데이션 모델 | world foundation model은 여러 downstream Physical AI 환경으로 fine-tuning될 것을 전제로 학습한 범용 world model이다 | 약어 WFM 병용 가능. NVIDIA Cosmos 2025가 세운 이름. world model 행과 glossary-llms의 foundation model 행을 합친 복합어라 표기가 흔들리기 쉬워 따로 고정한다 |
+| perturbation | perturbation | 섭동 | perturbation은 world model이 미래를 예측할 때 함께 받는 현재 입력으로, action·텍스트·무작위 입력을 한 이름으로 묶는다 | Cosmos 형식화의 c(t). 조건 입력의 종류를 가리지 않는다는 뜻이 담겨 직역하면 의미가 좁아진다. "교란"은 벤치마크 교란(LIBERO-Pro 등) 문맥에서 이미 널리 쓰여 기계 검사에서 뺐다 — 지침만 |
+| physics alignment | physics alignment | 물리 정렬·물리 정합 | physics alignment는 시뮬레이터로 만든 물리적으로 옳은 영상을 정답 삼아 생성 결과가 물리 법칙을 지키는지 재는 평가 축이다 | NVIDIA Cosmos 2025가 도입한 평가 이름. glossary-llms의 alignment(가치 정렬) 행과는 다른 문맥이다 |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 
