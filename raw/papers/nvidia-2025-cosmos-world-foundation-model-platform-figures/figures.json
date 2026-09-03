@@ -1,0 +1,1487 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig01.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: Cosmos World Foundation Models . Pre-trained Cosmos WFMs generate high-quality 3D consistent videos with accurate physics. The Cosmos suite of models includes both diffusion and autoregressive transformer models, which are trained using continuous and discrete latent representations of vid",
+    "bbox": [
+      56.36,
+      91.71,
+      538.9,
+      680.06
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.1089,
+      0.9053,
+      0.8078
+    ],
+    "dpi": 300,
+    "area_frac": 0.566,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig02.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2: Pre-trained WFMs are world model generalists that are trained with large-scale, diverse video datasets capturing different aspects of real-world physics. These pre-trained world foundation models can be specialized to a target Physical AI setup through post-training. Usually, the datasets ",
+    "bbox": [
+      58.71,
+      79.04,
+      536.55,
+      349.83
+    ],
+    "bbox_norm": [
+      0.0986,
+      0.0939,
+      0.9013,
+      0.4155
+    ],
+    "dpi": 300,
+    "area_frac": 0.258,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig03.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3: A world foundation model (WFM) 𝒲 is a model that generates the future state of the world 𝑥 𝑡 +1 based on the past observations 𝑥 0: 𝑡 and current perturbation 𝑐 𝑡 .",
+    "bbox": [
+      148.31,
+      331.22,
+      446.47,
+      399.91
+    ],
+    "bbox_norm": [
+      0.2491,
+      0.3934,
+      0.75,
+      0.475
+    ],
+    "dpi": 300,
+    "area_frac": 0.041,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig04.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig04.png",
+    "page": 5,
+    "caption": "Figure 4: Cosmos World Foundation Model Platform consists of several major components: video curator, video tokenizer, pre-trained world foundation model, world foundation model post-training samples, and guardrail.",
+    "bbox": [
+      58.71,
+      190.77,
+      536.55,
+      306.29
+    ],
+    "bbox_norm": [
+      0.0986,
+      0.2266,
+      0.9013,
+      0.3638
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig05.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig05.png",
+    "page": 6,
+    "caption": "Figure 5: Cosmos Video Curator contains five major steps: 1) split, 2) filtering, 3) annotation, 4) dedup, and 5) sharding . The split step divides a long video into shots and transcribes them into clips. The filtering step removes clips that are of little value to world foundation model building. T",
+    "bbox": [
+      58.71,
+      314.76,
+      536.55,
+      430.28
+    ],
+    "bbox_norm": [
+      0.0986,
+      0.3739,
+      0.9013,
+      0.5111
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig06.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig06.png",
+    "page": 11,
+    "caption": "Figure 6: Video tokenization pipeline . An input video is encoded into tokens, which are usually much more compact than the input video. The decoder then reconstructs the input video from the tokens. Tokenizer training is about learning the encoder and decoder to maximally preserve the visual inform",
+    "bbox": [
+      58.71,
+      409.89,
+      536.55,
+      525.41
+    ],
+    "bbox_norm": [
+      0.0986,
+      0.4869,
+      0.9013,
+      0.6241
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig07.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig07.png",
+    "page": 12,
+    "caption": "Figure 7: Visualization of continuous and discrete tokenizers . Tokens along spatial ( 𝐻 𝑠 𝐻𝑊 × 𝑊 𝑠 𝐻𝑊 ) and temporal ( 1 + 𝑇",
+    "bbox": [
+      121.27,
+      82.02,
+      453.47,
+      247.65
+    ],
+    "bbox_norm": [
+      0.2037,
+      0.0974,
+      0.7618,
+      0.2942
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig08.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig08.png",
+    "page": 13,
+    "caption": "Figure 8: Comparison of continuous (left) and discrete (right) tokenizers in terms of spatio-temporal compression rate (log scale) versus reconstruction quality (PSNR) . Each solid point represents a tokenizer configuration, illustrating the trade-off between compression rate and quality. Notably, o",
+    "bbox": [
+      58.5,
+      79.04,
+      536.77,
+      279.41
+    ],
+    "bbox_norm": [
+      0.0983,
+      0.0939,
+      0.9017,
+      0.3319
+    ],
+    "dpi": 300,
+    "area_frac": 0.191,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig09.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig09.png",
+    "page": 14,
+    "caption": "Figure 9: Overall Cosmos Tokenizer architecture illustrating the integration of temporal causality and an encoder-decoder structure . Temporal causality (left) processes sequential inputs, while the encoder-decoder (right) leverages wavelet transforms and causal operations to capture spatial and tem",
+    "bbox": [
+      56.58,
+      197.14,
+      539.39,
+      398.18
+    ],
+    "bbox_norm": [
+      0.0951,
+      0.2342,
+      0.9061,
+      0.473
+    ],
+    "dpi": 300,
+    "area_frac": 0.194,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig10.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig10.png",
+    "page": 15,
+    "caption": "Figure 10: Example videos from TokenBench . This figure shows diverse examples, including egocentric, driving, robotic manipulation, and web videos.",
+    "bbox": [
+      56.36,
+      182.28,
+      538.92,
+      459.38
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.2165,
+      0.9053,
+      0.5457
+    ],
+    "dpi": 300,
+    "area_frac": 0.267,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig11.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig11.png",
+    "page": 20,
+    "caption": "Figure 11: Overall architecture of Cosmos-Predict1 World Foundation Model . The model processes an input video through the encoder of the Cosmos-Tokenize1-CV8 × 8 × 8-720p to obtain latent representations, which are subsequently perturbed with Gaussian noise. These representations are then transform",
+    "bbox": [
+      56.36,
+      145.9,
+      538.91,
+      419.32
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.1733,
+      0.9053,
+      0.4981
+    ],
+    "dpi": 300,
+    "area_frac": 0.263,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig12.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig12.png",
+    "page": 25,
+    "caption": "Figure 12: Generated videos from Cosmos-Predict1-7B-Text2world and Cosmos-Predict1-14B-Text2world. Both the Text2World models produce videos of high visual quality, motion dynamics and text alignment. Notably, compared to the 7B model, the 14B model demonstrates an enhanced ability to capture finer ",
+    "bbox": [
+      56.65,
+      166.49,
+      537.47,
+      351.57
+    ],
+    "bbox_norm": [
+      0.0952,
+      0.1978,
+      0.9029,
+      0.4176
+    ],
+    "dpi": 300,
+    "area_frac": 0.178,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig13.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig13.png",
+    "page": 26,
+    "caption": "Figure 13: Generated videos from Cosmos-Predict1-7B-Video2world and Cosmos-Predict1-14B- Video2world. The top two rows show 5-second videos generated by the models, conditioned on the first 9",
+    "bbox": [
+      56.65,
+      90.11,
+      537.47,
+      441.74
+    ],
+    "bbox_norm": [
+      0.0952,
+      0.107,
+      0.9029,
+      0.5247
+    ],
+    "dpi": 300,
+    "area_frac": 0.337,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p26.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig14.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig14.png",
+    "page": 28,
+    "caption": "Figure 14: Architecture of Cosmos-Predict1-Video2World Model. The pipeline begins by encoding input video through the encoder of Cosmos-Tokenize1-DV8 × 16 × 16-720p to generate discrete tokens, which are transformed into learned embeddings. These embeddings are processed through repeated transformer",
+    "bbox": [
+      68.13,
+      79.04,
+      527.15,
+      334.87
+    ],
+    "bbox_norm": [
+      0.1144,
+      0.0939,
+      0.8856,
+      0.3978
+    ],
+    "dpi": 300,
+    "area_frac": 0.234,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p28.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig15.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig15.png",
+    "page": 33,
+    "caption": "Figure 15: Cosmos diffusion decoder training . During training, each input video is tokenized twice: one through the target discrete tokenizer (DV8 × 16 × 16) and the other through a less-constrained continuous tokenizer (CV8 × 8 × 8). The discrete token video is used as the conditional input to the",
+    "bbox": [
+      58.71,
+      79.04,
+      536.55,
+      272.2
+    ],
+    "bbox_norm": [
+      0.0986,
+      0.0939,
+      0.9013,
+      0.3233
+    ],
+    "dpi": 300,
+    "area_frac": 0.184,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p33.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig16.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig16.png",
+    "page": 33,
+    "caption": "Figure 16: Cosmos diffusion decoder inference . During inference, the output video token from a Cosmos- Predict1 model is conditionally inputted to the denoiser.",
+    "bbox": [
+      58.71,
+      312.69,
+      536.55,
+      505.84
+    ],
+    "bbox_norm": [
+      0.0986,
+      0.3714,
+      0.9013,
+      0.6008
+    ],
+    "dpi": 300,
+    "area_frac": 0.184,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p33.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig17.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig17.png",
+    "page": 34,
+    "caption": "Figure 17: Generated videos from Cosmos Autoregressive World Foundation Models. The top two rows are the video generation results with 4B and 12B models, while the bottom two rows are the Video2World results with a text prompt. We observe that the 12B and 13B models shows sharper videos and better m",
+    "bbox": [
+      56.65,
+      78.49,
+      537.49,
+      451.18
+    ],
+    "bbox_norm": [
+      0.0952,
+      0.0932,
+      0.9029,
+      0.5359
+    ],
+    "dpi": 300,
+    "area_frac": 0.358,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p34.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig18.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig18.png",
+    "page": 35,
+    "caption": "Figure 18: Diffusion decoder comparison . In the top panel, we show the video generation results with Cosmos-Predict1-13B-Video2World model. In the bottom panel, we show the enhanced video after the output from the autoregressive model is passed through the diffusion decoder. We observe that the aut",
+    "bbox": [
+      57.83,
+      78.48,
+      537.45,
+      271.77
+    ],
+    "bbox_norm": [
+      0.0971,
+      0.0932,
+      0.9029,
+      0.3228
+    ],
+    "dpi": 300,
+    "area_frac": 0.185,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p35.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig19.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig19.png",
+    "page": 35,
+    "caption": "Figure 19: Failure cases of Cosmos Autogressive WFMs . We observe failure cases in generated videos in which some objects (shown in red) unexpectedly appear from below.",
+    "bbox": [
+      57.82,
+      342.86,
+      534.76,
+      448.86
+    ],
+    "bbox_norm": [
+      0.0971,
+      0.4073,
+      0.8983,
+      0.5332
+    ],
+    "dpi": 300,
+    "area_frac": 0.101,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p35.png"
+  },
+  {
+    "id": "fig20",
+    "label": "Figure 20",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig20.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig20.png",
+    "page": 38,
+    "caption": "Figure 20: Physics-scenario rollouts in simulation vs . pre-trained WFM. We demonstrate three exemplar scenarios of increasing complexity as obtained from the reference (physically correct) simulation (first row in each group) and Cosmos-Predict1-7B-Video2World rollouts (second row in each group). W",
+    "bbox": [
+      57.03,
+      181.18,
+      537.37,
+      600.74
+    ],
+    "bbox_norm": [
+      0.0958,
+      0.2152,
+      0.9027,
+      0.7136
+    ],
+    "dpi": 300,
+    "area_frac": 0.402,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p38.png"
+  },
+  {
+    "id": "fig21",
+    "label": "Figure 21",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig21.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig21.png",
+    "page": 42,
+    "caption": "Figure 21: Qualitative comparison of camera control models . Given the input frame and camera tra- jectory (color-coded temporally from red to violet), we compare Cosmos-Predict1-7B-Video2World-Sample- CameraCond against CamCo ( Xu et al. , 2024 ) on the generated future frames as well as the re-est",
+    "bbox": [
+      38.3,
+      71.82,
+      538.14,
+      669.61
+    ],
+    "bbox_norm": [
+      0.0643,
+      0.0853,
+      0.904,
+      0.7954
+    ],
+    "dpi": 300,
+    "area_frac": 0.596,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p42.png"
+  },
+  {
+    "id": "fig22",
+    "label": "Figure 22",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig22.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig22.png",
+    "page": 44,
+    "caption": "Figure 22: Cosmos-Predict1-7B-Video2World-Sample-CameraCond results with joystick control . For each input frame (left-most column), we apply 4 different camera trajectories created with joystick-like control: moving forward , moving backward , rotating left , and rotating right . We visualize frame",
+    "bbox": [
+      56.36,
+      83.29,
+      538.86,
+      701.42
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0989,
+      0.9052,
+      0.8331
+    ],
+    "dpi": 300,
+    "area_frac": 0.595,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p44.png"
+  },
+  {
+    "id": "fig23",
+    "label": "Figure 23",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig23.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig23.png",
+    "page": 45,
+    "caption": "Figure 23: Cosmos-Predict1-7B-Video2World-Sample-CameraCond results with different seeds. We show the capability of simulating diverse futures with our camera control model given the same input image and camera condition. For each group, we apply the same input frame and camera condition created wit",
+    "bbox": [
+      59.79,
+      79.04,
+      535.48,
+      680.75
+    ],
+    "bbox_norm": [
+      0.1004,
+      0.0939,
+      0.8995,
+      0.8086
+    ],
+    "dpi": 300,
+    "area_frac": 0.571,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p45.png"
+  },
+  {
+    "id": "fig24",
+    "label": "Figure 24",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig24.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig24.png",
+    "page": 46,
+    "caption": "Figure 24: Human evaluation results for instruction-based video prediction on Cosmos-1X dataset . The results show that compared with the baseline model (VideoLDM-instruction), our fine-tuned models (Cosmos- Predict1-7B-Video2World-Sample-Instruction and Cosmos-Predict1-5B-Video2World-Sample-Instruc",
+    "bbox": [
+      55.62,
+      430.7,
+      540.41,
+      663.62
+    ],
+    "bbox_norm": [
+      0.0934,
+      0.5116,
+      0.9078,
+      0.7883
+    ],
+    "dpi": 300,
+    "area_frac": 0.225,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p46.png"
+  },
+  {
+    "id": "fig25",
+    "label": "Figure 25",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig25.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig25.png",
+    "page": 47,
+    "caption": "Figure 25: Instruction-based video prediction samples on the Cosmos-1X dataset . The left are the results of Cosmos-Predict1-7B-Video2World-Sample-Instruction model, and the right are the results of Cosmos-Predict1- 5B-Video2World-Sample-Instruction model.",
+    "bbox": [
+      57.35,
+      78.59,
+      538.7,
+      281.08
+    ],
+    "bbox_norm": [
+      0.0963,
+      0.0933,
+      0.905,
+      0.3339
+    ],
+    "dpi": 300,
+    "area_frac": 0.194,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p47.png"
+  },
+  {
+    "id": "fig26",
+    "label": "Figure 26",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig26.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig26.png",
+    "page": 47,
+    "caption": "Figure 26: Action-based next-frame prediction samples on the Bridge dataset . The left is the results of the Cosmos-Predict1-7B-Video2World-Sample-ActionCond model, and the right is the results of the Cosmos- Predict1-5B-Video2World-Sample-ActionCond model. As shown, the predicted video frames close",
+    "bbox": [
+      56.65,
+      339.02,
+      538.05,
+      479.0
+    ],
+    "bbox_norm": [
+      0.0952,
+      0.4027,
+      0.9039,
+      0.569
+    ],
+    "dpi": 300,
+    "area_frac": 0.134,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p47.png"
+  },
+  {
+    "id": "fig27",
+    "label": "Figure 27",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig27.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig27.png",
+    "page": 50,
+    "caption": "Figure 27: Text-conditioned samples generated by Cosmos-Predict1-7B-Text2World-Sample-MultiView, extended to 8 seconds by Cosmos-Predict1-7B-Video2World-Sample-MultiView . This figure visualizes all six camera views in a group, with each row corresponding to a specific timestamp. The left example de",
+    "bbox": [
+      56.81,
+      79.04,
+      538.43,
+      480.86
+    ],
+    "bbox_norm": [
+      0.0954,
+      0.0939,
+      0.9045,
+      0.5712
+    ],
+    "dpi": 300,
+    "area_frac": 0.386,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p50.png"
+  },
+  {
+    "id": "fig28",
+    "label": "Figure 28",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig28.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig28.png",
+    "page": 51,
+    "caption": "Figure 28: Text-conditioned samples generated by Cosmos-Predict1-7B-Text2World-Sample-MultiView are extended to 8 seconds by Cosmos-Predict1-7B-Video2World-Sample-MultiView . The post-trained world model effectively preserves its generalization ability. In the left example, the ego car is driving to",
+    "bbox": [
+      56.81,
+      79.04,
+      538.43,
+      456.95
+    ],
+    "bbox_norm": [
+      0.0954,
+      0.0939,
+      0.9045,
+      0.5428
+    ],
+    "dpi": 300,
+    "area_frac": 0.363,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p51.png"
+  },
+  {
+    "id": "fig29",
+    "label": "Figure 29",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig29.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig29.png",
+    "page": 53,
+    "caption": "Figure 29: Trajectory-conditioned generated samples from Cosmos-Predict1-7B-Text2World-Sample- MultiView-TrajectoryCond . Given the trajectory inputs on the left-most column, we generate multiview videos that follow the given trajectory. We visualize the front camera view in this figure.",
+    "bbox": [
+      56.46,
+      78.58,
+      540.0,
+      426.69
+    ],
+    "bbox_norm": [
+      0.0949,
+      0.0933,
+      0.9071,
+      0.5068
+    ],
+    "dpi": 300,
+    "area_frac": 0.336,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p53.png"
+  },
+  {
+    "id": "fig30",
+    "label": "Figure 30",
+    "kind": "figure",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/fig30.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/fig30.png",
+    "page": 54,
+    "caption": "Figure 30: Cosmos Guardrail overview . Cosmos Guardrail contains pre-Guard and post-Guard, where pre- Guard blocks inputs based on Aegis ( Ghosh et al. , 2024 ) and keywords, while post-Guard blocks outputs based on a video content safety classifier and blurs output faces.",
+    "bbox": [
+      58.71,
+      79.04,
+      536.55,
+      194.56
+    ],
+    "bbox_norm": [
+      0.0986,
+      0.0939,
+      0.9013,
+      0.2311
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p54.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab01.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab01.png",
+    "page": 8,
+    "caption": "Table 1: Comparison of splitting algorithms on different datasets.",
+    "bbox": [
+      56.5,
+      92.39,
+      538.77,
+      272.16
+    ],
+    "bbox_norm": [
+      0.0949,
+      0.1097,
+      0.9051,
+      0.3233
+    ],
+    "dpi": 300,
+    "area_frac": 0.173,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab02.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab02.png",
+    "page": 8,
+    "caption": "Table 2: Transcoding performance with different software settings.",
+    "bbox": [
+      56.36,
+      653.55,
+      538.91,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.7763,
+      0.9053,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.123,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab03.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab03.png",
+    "page": 10,
+    "caption": "Table 3: Inference throughput comparison of VILA on a single H100 GPU.",
+    "bbox": [
+      55.9,
+      319.1,
+      540.58,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0939,
+      0.379,
+      0.9081,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.447,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab04.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab04.png",
+    "page": 12,
+    "caption": "Table 4: Comparison of different visual tokenizers and their capabilities.",
+    "bbox": [
+      55.9,
+      394.24,
+      540.57,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0939,
+      0.4683,
+      0.9081,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.375,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab05.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab05.png",
+    "page": 16,
+    "caption": "Table 5: Evaluation of continuous video (CV) tokenizers on DAVIS and TokenBench.",
+    "bbox": [
+      56.36,
+      92.39,
+      539.83,
+      223.12
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.1097,
+      0.9069,
+      0.265
+    ],
+    "dpi": 300,
+    "area_frac": 0.126,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab06.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab06.png",
+    "page": 16,
+    "caption": "Table 6: Evaluation of discrete video (DV) tokenizers on DAVIS and TokenBench.",
+    "bbox": [
+      55.53,
+      238.42,
+      540.86,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0933,
+      0.2832,
+      0.9086,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.526,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab07.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab07.png",
+    "page": 17,
+    "caption": "Table 7: Evaluation of continuous image (CI) tokenizers on various image datasets.",
+    "bbox": [
+      56.36,
+      92.39,
+      547.49,
+      201.21
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.1097,
+      0.9197,
+      0.239
+    ],
+    "dpi": 300,
+    "area_frac": 0.107,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab08.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab08.png",
+    "page": 17,
+    "caption": "Table 8: Evaluation of discrete image (DI) tokenizers on various image datasets.",
+    "bbox": [
+      56.36,
+      225.47,
+      542.6,
+      356.2
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.2678,
+      0.9115,
+      0.4231
+    ],
+    "dpi": 300,
+    "area_frac": 0.127,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab09.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab09.png",
+    "page": 17,
+    "caption": "Table 9: Runtime performance comparison of tokenizers. Time is reported per image or per video frame.",
+    "bbox": [
+      55.53,
+      370.9,
+      540.3,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0933,
+      0.4406,
+      0.9076,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.397,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab10.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab10.png",
+    "page": 18,
+    "caption": "Table 10: Maps of Cosmos World Foundation Model. We have two sets of WFMs. One is based on diffusion models, while the other is based on autoregressive models. For each family, we build two base models and two derivative models. To achieve the best generation quality, we also build a prompt upsample",
+    "bbox": [
+      55.97,
+      442.08,
+      540.58,
+      781.68
+    ],
+    "bbox_norm": [
+      0.094,
+      0.5251,
+      0.9081,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.328,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab11.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab11.png",
+    "page": 21,
+    "caption": "Table 11: Configuration details of Cosmos-Predict1 models.",
+    "bbox": [
+      55.9,
+      393.55,
+      540.58,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0939,
+      0.4675,
+      0.9081,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.375,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab12.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab12.png",
+    "page": 22,
+    "caption": "Table 12: Stages of progressive training and their specifications.",
+    "bbox": [
+      55.53,
+      345.43,
+      540.57,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0933,
+      0.4103,
+      0.9081,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.422,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab13.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab13.png",
+    "page": 24,
+    "caption": "Table 13: Cosmos-Diffusion transformer FLOPs and activation memory. The table provides the computational",
+    "bbox": [
+      56.75,
+      91.39,
+      538.52,
+      149.22
+    ],
+    "bbox_norm": [
+      0.0953,
+      0.1086,
+      0.9047,
+      0.1772
+    ],
+    "dpi": 300,
+    "area_frac": 0.056,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab14.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab14.png",
+    "page": 30,
+    "caption": "Table 14: Configuration details of Cosmos-Predict1 models.",
+    "bbox": [
+      55.9,
+      249.2,
+      539.16,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0939,
+      0.296,
+      0.9057,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.513,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p30.png"
+  },
+  {
+    "id": "tab15",
+    "label": "Table 15",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab15.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab15.png",
+    "page": 31,
+    "caption": "Table 15: Impact of Medusa head number on average token throughput and number of forward passes. The experiments are conducted on 8 × H100 GPUs and 50 unseen test videos of 640 × 1024 resolution.",
+    "bbox": [
+      55.9,
+      371.14,
+      539.1,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0939,
+      0.4408,
+      0.9056,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.396,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p31.png"
+  },
+  {
+    "id": "tab16",
+    "label": "Table 16",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab16.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab16.png",
+    "page": 32,
+    "caption": "Table 16: Performance analysis of Cosmos Autoregressive Models on test videos of 640 × 1024 resolution.",
+    "bbox": [
+      56.36,
+      101.36,
+      529.24,
+      281.12
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.1204,
+      0.8891,
+      0.3339
+    ],
+    "dpi": 300,
+    "area_frac": 0.17,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p32.png"
+  },
+  {
+    "id": "tab17",
+    "label": "Table 17",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab17.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab17.png",
+    "page": 32,
+    "caption": "Table 17: Decoding throughput of Cosmos-Predict1-4B with low-resolution adaptation, benchmarked on 8 ×",
+    "bbox": [
+      55.53,
+      372.51,
+      540.58,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0933,
+      0.4425,
+      0.9081,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.396,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p32.png"
+  },
+  {
+    "id": "tab18",
+    "label": "Table 18",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab18.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab18.png",
+    "page": 36,
+    "caption": "Table 18: Failure rate analysis of Cosmos Autoregressive models.",
+    "bbox": [
+      55.9,
+      101.36,
+      540.57,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0939,
+      0.1204,
+      0.9081,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.658,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p36.png"
+  },
+  {
+    "id": "tab19",
+    "label": "Table 19",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab19.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab19.png",
+    "page": 37,
+    "caption": "Table 19: Evaluation of 3D consistency on base Cosmos models.",
+    "bbox": [
+      55.9,
+      92.39,
+      540.3,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0939,
+      0.1097,
+      0.9076,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.666,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p37.png"
+  },
+  {
+    "id": "tab20",
+    "label": "Table 20",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab20.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab20.png",
+    "page": 39,
+    "caption": "Table 20: Physics alignment results. We compare different variants of Cosmos WFMs in terms of accurate future prediction of a physical scenario using the pixel-level, feature-level, and object-level metrics. Metrics are calculated over 33 frames, the maximum length supported by the autoregressive va",
+    "bbox": [
+      55.9,
+      125.27,
+      540.5,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0939,
+      0.1488,
+      0.908,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.635,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p39.png"
+  },
+  {
+    "id": "tab21",
+    "label": "Table 21",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab21.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab21.png",
+    "page": 40,
+    "caption": "Table 21: A map of Post-trained WFMs discussed in Sec. 6 .",
+    "bbox": [
+      55.9,
+      360.21,
+      540.51,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0939,
+      0.4279,
+      0.908,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.408,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p40.png"
+  },
+  {
+    "id": "tab22",
+    "label": "Table 22",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab22.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab22.png",
+    "page": 43,
+    "caption": "Table 22: Quantitative comparison of post-trained WFM with camera control.",
+    "bbox": [
+      55.9,
+      92.39,
+      540.58,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0939,
+      0.1097,
+      0.9081,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.667,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p43.png"
+  },
+  {
+    "id": "tab23",
+    "label": "Table 23",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab23.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab23.png",
+    "page": 48,
+    "caption": "Table 23: Evaluation of action-based next-frame prediction on Bridge dataset.",
+    "bbox": [
+      55.9,
+      212.86,
+      540.58,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0939,
+      0.2528,
+      0.9081,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.55,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p48.png"
+  },
+  {
+    "id": "tab24",
+    "label": "Table 24",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab24.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab24.png",
+    "page": 52,
+    "caption": "Table 24: Evaluation on post-trained multi-view world models for multi-view driving video generation.",
+    "bbox": [
+      66.65,
+      101.36,
+      525.85,
+      239.1
+    ],
+    "bbox_norm": [
+      0.112,
+      0.1204,
+      0.8834,
+      0.284
+    ],
+    "dpi": 300,
+    "area_frac": 0.126,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p52.png"
+  },
+  {
+    "id": "tab25",
+    "label": "Table 25",
+    "kind": "table",
+    "file": "assets/nvidia-2025-cosmos-world-foundation-model-platform/tab25.png",
+    "raw": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab25.png",
+    "page": 52,
+    "caption": "Table 25: Trajectory consistency evaluation on post-trained multi-view world models for multi-view driving",
+    "bbox": [
+      55.69,
+      273.73,
+      540.5,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0936,
+      0.3251,
+      0.908,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.491,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/_overlay/p52.png"
+  }
+]
