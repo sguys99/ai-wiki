@@ -1,0 +1,516 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig01.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: Overview of GR-1. GR-1 is first pre-trained on the task of video prediction with a large- scale video dataset. It is then finetuned on robot data to learn multi-task visual robot manipulation.",
+    "bbox": [
+      111.9,
+      75.86,
+      500.03,
+      298.59
+    ],
+    "bbox_norm": [
+      0.1828,
+      0.0958,
+      0.817,
+      0.377
+    ],
+    "dpi": 300,
+    "area_frac": 0.178,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig02.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Encoders and Decoders. (a) Language encoder. (b) Robot state encoder. (c) Image encoder. (d) Image decoder. (e) Action decoder.",
+    "bbox": [
+      121.8,
+      615.56,
+      490.15,
+      718.12
+    ],
+    "bbox_norm": [
+      0.199,
+      0.7772,
+      0.8009,
+      0.9067
+    ],
+    "dpi": 300,
+    "area_frac": 0.078,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig03.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3: CALVIN Benchmark Results. We show examples of multi-task learning trained on ABCD → D split.",
+    "bbox": [
+      111.9,
+      372.38,
+      500.05,
+      457.02
+    ],
+    "bbox_norm": [
+      0.1828,
+      0.4702,
+      0.8171,
+      0.577
+    ],
+    "dpi": 300,
+    "area_frac": 0.068,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig04.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig04.png",
+    "page": 7,
+    "caption": "Figure 4: The positions of the sliding door, LED, bulb, light switch, and but- ton are different across the four environments.",
+    "bbox": [
+      394.86,
+      227.64,
+      537.22,
+      356.06
+    ],
+    "bbox_norm": [
+      0.6452,
+      0.2874,
+      0.8778,
+      0.4496
+    ],
+    "dpi": 300,
+    "area_frac": 0.038,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig05.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig05.png",
+    "page": 8,
+    "caption": "Figure 5: Real Robot Experiments. We perform real robot experiments of object transportation and articulated object manipulation.",
+    "bbox": [
+      102.0,
+      75.86,
+      510.15,
+      171.88
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8336,
+      0.217
+    ],
+    "dpi": 300,
+    "area_frac": 0.081,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig06.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig06.png",
+    "page": 9,
+    "caption": "Figure 6: Video Prediction Results. The images in green boxes are ground-truth images; the images in blue boxes are predicted images.",
+    "bbox": [
+      103.98,
+      75.86,
+      508.02,
+      326.55
+    ],
+    "bbox_norm": [
+      0.1699,
+      0.0958,
+      0.8301,
+      0.4123
+    ],
+    "dpi": 300,
+    "area_frac": 0.209,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig07.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig07.png",
+    "page": 15,
+    "caption": "Figure 7: Ablation Studies. (a) We show the average length (averaged number of completed tasks in a row of 5) on CALVIN benchmark. (b) We show the success rates of picking and transporting in real robot experiments.",
+    "bbox": [
+      171.3,
+      75.86,
+      440.74,
+      190.86
+    ],
+    "bbox_norm": [
+      0.2799,
+      0.0958,
+      0.7202,
+      0.241
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig08.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig08.png",
+    "page": 18,
+    "caption": "Figure 8: Rollouts on CALVIN benchmark.",
+    "bbox": [
+      102.0,
+      202.27,
+      510.19,
+      588.47
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2554,
+      0.8337,
+      0.743
+    ],
+    "dpi": 300,
+    "area_frac": 0.325,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig09.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig09.png",
+    "page": 19,
+    "caption": "Figure 9: Real Robot Rollouts. The first five rows show object transportation rollouts. The last two rows show articulated object manipulation rollouts.",
+    "bbox": [
+      102.0,
+      192.03,
+      510.06,
+      587.76
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2425,
+      0.8334,
+      0.7421
+    ],
+    "dpi": 300,
+    "area_frac": 0.333,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig10.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig10.png",
+    "page": 20,
+    "caption": "Figure 10: Video Prediction Results on Calvin Benchmark. The images in green boxes are ground-truth images; the images in blue boxes are predicted images.",
+    "bbox": [
+      121.8,
+      81.64,
+      490.2,
+      698.16
+    ],
+    "bbox_norm": [
+      0.199,
+      0.1031,
+      0.801,
+      0.8815
+    ],
+    "dpi": 300,
+    "area_frac": 0.469,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig11.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig11.png",
+    "page": 21,
+    "caption": "Figure 11: Video Prediction Results of Object Transportation and Articulated Object Manip- ulation Experiments in Sec. 4. The images in green boxes are ground-truth images; the images in blue boxes are predicted images.",
+    "bbox": [
+      121.8,
+      76.16,
+      490.2,
+      692.68
+    ],
+    "bbox_norm": [
+      0.199,
+      0.0962,
+      0.801,
+      0.8746
+    ],
+    "dpi": 300,
+    "area_frac": 0.469,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/fig12.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/fig12.png",
+    "page": 22,
+    "caption": "Figure 12: Video Prediction Results of Pick-and-Place Experiments in Ablation Studies in Sec. A.4. The images in green boxes are ground-truth images; the images in blue boxes are pre- dicted images.",
+    "bbox": [
+      121.8,
+      76.16,
+      490.2,
+      692.68
+    ],
+    "bbox_norm": [
+      0.199,
+      0.0962,
+      0.801,
+      0.8746
+    ],
+    "dpi": 300,
+    "area_frac": 0.469,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/tab01.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/tab01.png",
+    "page": 6,
+    "caption": "Table 1: CALVIN Benchmark Results.",
+    "bbox": [
+      102.0,
+      97.18,
+      510.0,
+      370.98
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1227,
+      0.8333,
+      0.4684
+    ],
+    "dpi": 300,
+    "area_frac": 0.23,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/tab02.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/tab02.png",
+    "page": 8,
+    "caption": "Table 2: Real Robot Experiment Results.",
+    "bbox": [
+      104.04,
+      226.42,
+      507.96,
+      309.87
+    ],
+    "bbox_norm": [
+      0.17,
+      0.2859,
+      0.83,
+      0.3912
+    ],
+    "dpi": 300,
+    "area_frac": 0.07,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/tab03.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/tab03.png",
+    "page": 14,
+    "caption": "Table 3: Training Hyperparameters",
+    "bbox": [
+      179.6,
+      317.8,
+      432.4,
+      471.61
+    ],
+    "bbox_norm": [
+      0.2935,
+      0.4013,
+      0.7065,
+      0.5955
+    ],
+    "dpi": 300,
+    "area_frac": 0.08,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/tab04.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/tab04.png",
+    "page": 15,
+    "caption": "Table 4: Ablation Studies.",
+    "bbox": [
+      104.71,
+      306.62,
+      507.29,
+      481.83
+    ],
+    "bbox_norm": [
+      0.1711,
+      0.3871,
+      0.8289,
+      0.6084
+    ],
+    "dpi": 300,
+    "area_frac": 0.146,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/tab05.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/tab05.png",
+    "page": 16,
+    "caption": "Table 5: Ablation Studies on Video Prediction.",
+    "bbox": [
+      141.63,
+      165.09,
+      470.37,
+      264.98
+    ],
+    "bbox_norm": [
+      0.2314,
+      0.2084,
+      0.7686,
+      0.3346
+    ],
+    "dpi": 300,
+    "area_frac": 0.068,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/tab06.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/tab06.png",
+    "page": 16,
+    "caption": "Table 6: Examples of Unseen Language Instructions Generated by GPT-4 (OpenAI, 2023) for the Zero-Shot Unseen Language Generalization Experiment in CALVIN.",
+    "bbox": [
+      108.68,
+      469.33,
+      503.32,
+      639.58
+    ],
+    "bbox_norm": [
+      0.1776,
+      0.5926,
+      0.8224,
+      0.8076
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/wu-2023-unleashing-large-scale-video-generative/tab07.png",
+    "raw": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/tab07.png",
+    "page": 17,
+    "caption": "Table 7: Task Success Rates.",
+    "bbox": [
+      106.32,
+      111.58,
+      505.68,
+      721.06
+    ],
+    "bbox_norm": [
+      0.1737,
+      0.1409,
+      0.8263,
+      0.9104
+    ],
+    "dpi": 300,
+    "area_frac": 0.502,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2023-unleashing-large-scale-video-generative-figures/_overlay/p17.png"
+  }
+]
