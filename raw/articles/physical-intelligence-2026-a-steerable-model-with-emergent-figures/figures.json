@@ -1,0 +1,100 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/physical-intelligence-2026-a-steerable-model-with-emergent/page-full.png",
+    "raw": "raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig02.png",
+    "raw": "raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig02.png",
+    "caption": "current observation 1 (world model 데모 — 현재 관측)",
+    "source_url": "https://www.pi.website/images/pi07/current_1.png",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig03.png",
+    "raw": "raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig03.png",
+    "caption": "current observation 2",
+    "source_url": "https://www.pi.website/images/pi07/current_2.png",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig04.png",
+    "raw": "raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig04.png",
+    "caption": "current observation 3",
+    "source_url": "https://www.pi.website/images/pi07/current_3.png",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig05.png",
+    "raw": "raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig05.png",
+    "caption": "current observation 4",
+    "source_url": "https://www.pi.website/images/pi07/current_4.png",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig06.png",
+    "raw": "raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig06.png",
+    "caption": "current observation 5",
+    "source_url": "https://www.pi.website/images/pi07/current_5.png",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig07.png",
+    "raw": "raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig07.png",
+    "caption": "world model이 생성한 subgoal image 1",
+    "source_url": "https://www.pi.website/images/pi07/subgoal_1.png",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig08.png",
+    "raw": "raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig08.png",
+    "caption": "world model이 생성한 subgoal image 2",
+    "source_url": "https://www.pi.website/images/pi07/subgoal_2.png",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig09.png",
+    "raw": "raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig09.png",
+    "caption": "world model이 생성한 subgoal image 3",
+    "source_url": "https://www.pi.website/images/pi07/subgoal_3.png",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig10.png",
+    "raw": "raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig10.png",
+    "caption": "world model이 생성한 subgoal image 4",
+    "source_url": "https://www.pi.website/images/pi07/subgoal_4.png",
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig11.png",
+    "raw": "raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig11.png",
+    "caption": "world model이 생성한 subgoal image 5",
+    "source_url": "https://www.pi.website/images/pi07/subgoal_5.png",
+    "strategy": "fetched",
+    "curated": false
+  }
+]

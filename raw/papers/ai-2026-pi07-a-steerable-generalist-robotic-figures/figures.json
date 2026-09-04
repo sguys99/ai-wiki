@@ -1,0 +1,601 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig01.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig01.png",
+    "page": 1,
+    "caption": "Fig. 1: We introduce π 0 . 7 , a steerable generalist robot foundation model that can perform dexterous tasks across many tasks, environments, and robots. π 0 . 7 is trained with diverse prompts that contain not only the task description, but detailed language, generated subgoal images, and episode ",
+    "bbox": [
+      42.96,
+      241.49,
+      569.02,
+      574.38
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.3049,
+      0.9298,
+      0.7252
+    ],
+    "dpi": 300,
+    "area_frac": 0.361,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig02.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig02.png",
+    "page": 4,
+    "caption": "Fig. 2: Architecture overview. The π 0 . 7 model is a 5B-parameter VLA consisting of a 4B VLM backbone, a MEM -style video history encoder and a 860M parameter action expert. The model’s context includes multiple distinct modalities, including language commands, episode metadata that describes the d",
+    "bbox": [
+      40.86,
+      48.0,
+      569.02,
+      316.11
+    ],
+    "bbox_norm": [
+      0.0668,
+      0.0606,
+      0.9298,
+      0.3991
+    ],
+    "dpi": 300,
+    "area_frac": 0.292,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig03.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig03.png",
+    "page": 6,
+    "caption": "Fig. 3: Prompt overview. π 0 . 7 uses diverse modalities of context in the prompt, including: subtask instructions, subgoal images, and episode metadata. We train the model with dropout for each component, and then prompt the model ﬂexibly combining modalities. For example, when using the UR5e biman",
+    "bbox": [
+      107.22,
+      48.0,
+      504.76,
+      351.69
+    ],
+    "bbox_norm": [
+      0.1752,
+      0.0606,
+      0.8248,
+      0.4441
+    ],
+    "dpi": 300,
+    "area_frac": 0.249,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig04.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig04.png",
+    "page": 7,
+    "caption": "Fig. 4: Illustrations of some of the robots in our experiments. We evaluate π 0 . 7 on a variety of robots, including bimanual mobile manipulators (left), static bimanual robots (middle), and a bimanual UR5e setup (right) that we use for cross-embodiment experiments.",
+    "bbox": [
+      284.22,
+      464.92,
+      612.0,
+      632.67
+    ],
+    "bbox_norm": [
+      0.4644,
+      0.587,
+      1.0,
+      0.7988
+    ],
+    "dpi": 300,
+    "area_frac": 0.113,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig05.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig05.png",
+    "page": 8,
+    "caption": "Fig. 5: Illustration of selected evaluation tasks. We evaluate π 0 . 7 on a number of tasks, and two of the more longer-horizon ones are visualized here. For some tasks such as “Take Out Trash”, we provide a coarse instruction like “take out the trash” and π 0 . 7 performs the full long-horizon task",
+    "bbox": [
+      48.95,
+      0.0,
+      572.64,
+      214.3
+    ],
+    "bbox_norm": [
+      0.08,
+      0.0,
+      0.9357,
+      0.2706
+    ],
+    "dpi": 300,
+    "area_frac": 0.232,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig06.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig06.png",
+    "page": 9,
+    "caption": "Fig. 6: Out-of-the-box dexterity: π 0 . 7 can perform a wide range of highly dexterous tasks directly out of the box. We consider tasks from π ∗",
+    "bbox": [
+      42.96,
+      48.0,
+      569.05,
+      408.93
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.9298,
+      0.5163
+    ],
+    "dpi": 300,
+    "area_frac": 0.392,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig07.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig07.png",
+    "page": 9,
+    "caption": "Fig. 7: Impact of prompt composition and evaluation data on out-of-the-box performance: We compare π 0 . 7 with two ablations: one that does not include episode metadata in the context, π 0 . 7 (no metadata), and another that does not include data from autonomous evaluation episodes during training,",
+    "bbox": [
+      42.96,
+      452.27,
+      569.04,
+      600.91
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.571,
+      0.9298,
+      0.7587
+    ],
+    "dpi": 300,
+    "area_frac": 0.161,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig08.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig08.png",
+    "page": 10,
+    "caption": "Fig. 8: Tasks that require memory: π 0 . 7 can also perform tasks that require explicitly keeping track of prior context, achieving similar or better performance compared to the specialist policies with memory ﬁne-tuned to some of the tasks in the MEM paper [ 37 ].",
+    "bbox": [
+      42.96,
+      48.0,
+      306.02,
+      130.38
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.5,
+      0.1646
+    ],
+    "dpi": 300,
+    "area_frac": 0.045,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig09.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig09.png",
+    "page": 11,
+    "caption": "Fig. 9: Broad instruction following in novel environments: We evaluate π 0 . 7 on 14 instruction following scenarios, each of which involve following a sequence of 3-6 open-ended instructions, across 4 unseen kitchen and 2 unseen bedroom environments. We report the instruction following success rate",
+    "bbox": [
+      42.96,
+      47.99,
+      569.03,
+      218.8
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.9298,
+      0.2763
+    ],
+    "dpi": 300,
+    "area_frac": 0.185,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig10.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig10.png",
+    "page": 11,
+    "caption": "Fig. 10: Following complex referential instructions: π 0 . 7 and prior models all succeed on the simpler re-arrangement instructions (instructions include “pick up the spoon”, “put the spoon to the left of the fork” and “put the spoon to the right of the fork”), but π 0 . 7 performs signiﬁcantly bet",
+    "bbox": [
+      29.55,
+      222.15,
+      306.01,
+      376.43
+    ],
+    "bbox_norm": [
+      0.0483,
+      0.2805,
+      0.5,
+      0.4753
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig11.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig11.png",
+    "page": 11,
+    "caption": "Fig. 11: Breaking dataset biases by following instructions: the improved language-following performance of π 0 . 7 enables it to break strong dataset biases. Prior models struggle on these data bias challenge tasks, which require following instructions that contradict the pattern in the data (e.g., ",
+    "bbox": [
+      42.96,
+      454.75,
+      338.05,
+      559.9
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.5742,
+      0.5524,
+      0.7069
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig12.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig12.png",
+    "page": 12,
+    "caption": "Fig. 12: Cross-embodiment transfer: Left: Both π 0 . 7 and prior models achieve strong cross-embodiment transfer directly out of the box on simpler re- arrangement or repositioning style tasks. For example, for the “Table Setting” task, data was collected with a variety of different robots, and the ",
+    "bbox": [
+      39.02,
+      48.0,
+      579.42,
+      261.44
+    ],
+    "bbox_norm": [
+      0.0638,
+      0.0606,
+      0.9468,
+      0.3301
+    ],
+    "dpi": 300,
+    "area_frac": 0.238,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig13.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig13.png",
+    "page": 12,
+    "caption": "Fig. 13: Cross-embodiment transfer produces emergent strategies adapted to the target embodiment. (a) On the source robot, human teleoperators use one arm to hold the bag open while the other performs insertion. On the UR5e target robot, π 0 . 7 instead discovers a single-arm pick-and-place strategy",
+    "bbox": [
+      42.96,
+      361.96,
+      313.89,
+      532.99
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.457,
+      0.5129,
+      0.673
+    ],
+    "dpi": 300,
+    "area_frac": 0.096,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig14.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig14.png",
+    "page": 13,
+    "caption": "Fig. 14: Example of language coaching: We can “teach” a new task to π 0 . 7 by providing step-by-step verbal instructions. Because of its language following ability, π 0 . 7 can perform new tasks successfully under user instruction, and these instructions can then by used to train a high-level polic",
+    "bbox": [
+      24.7,
+      43.81,
+      569.03,
+      141.25
+    ],
+    "bbox_norm": [
+      0.0404,
+      0.0553,
+      0.9298,
+      0.1783
+    ],
+    "dpi": 300,
+    "area_frac": 0.109,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig15.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig15.png",
+    "page": 13,
+    "caption": "Fig. 15: Coaching to perform new long-horizon tasks: Because π 0 . 7 can follow language instructions effectively, even for unfamiliar skills, it can be “coached” to perform a number of unseen, longer horizon tasks both when conditioned on language and generated subgoal images ( π 0 . 7 (GC)). Prior",
+    "bbox": [
+      39.9,
+      176.16,
+      307.1,
+      344.18
+    ],
+    "bbox_norm": [
+      0.0652,
+      0.2224,
+      0.5018,
+      0.4346
+    ],
+    "dpi": 300,
+    "area_frac": 0.093,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig16.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig16.png",
+    "page": 13,
+    "caption": "Fig. 16: Acquiring new autonomous capabilities with coaching: We can use the coaching episodes collected for a number of different unseen tasks to train a high-level policy to automatically prompt π 0 . 7 in accordance with the coaching episodes. This allows us to create fully autonomous policies fo",
+    "bbox": [
+      42.96,
+      397.91,
+      306.02,
+      513.62
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.5024,
+      0.5,
+      0.6485
+    ],
+    "dpi": 300,
+    "area_frac": 0.063,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig17.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig17.png",
+    "page": 13,
+    "caption": "Fig. 17: Performing new short-horizon tasks: π 0 . 7 can perform a number of new short-horizon tasks directly out of the box, including scooping rice into a rice cooker, spinning various objects such as a gear set and desk fan, and wiping down objects with a cloth, such as a ruler and headphones, de",
+    "bbox": [
+      301.84,
+      174.58,
+      570.88,
+      294.29
+    ],
+    "bbox_norm": [
+      0.4932,
+      0.2204,
+      0.9328,
+      0.3716
+    ],
+    "dpi": 300,
+    "area_frac": 0.066,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig18.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig18.png",
+    "page": 14,
+    "caption": "Fig. 18: Scaling of generalization performance with diverse context and data: Left: We ﬁnd that π 0 . 7 (with metadata) can continuously improve its performance when it is trained on larger datasets, even when the average quality of the data actually decreases. By contrast, without training on rich ",
+    "bbox": [
+      42.96,
+      48.0,
+      569.05,
+      190.18
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.9298,
+      0.2401
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig19.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig19.png",
+    "page": 22,
+    "caption": "Fig. 19: The π 0 . 7 model and its world model (for generating subgoal images) use several different nontrivial attention patterns during training and inference. From top left: in absence of image goals we use the same attention patterns as in π 0 . 5 , with global bidirectional attention between em",
+    "bbox": [
+      305.82,
+      47.82,
+      569.13,
+      286.29
+    ],
+    "bbox_norm": [
+      0.4997,
+      0.0604,
+      0.93,
+      0.3615
+    ],
+    "dpi": 300,
+    "area_frac": 0.13,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig20",
+    "label": "Figure 20",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig20.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig20.png",
+    "page": 23,
+    "caption": "Fig. 20: Joint vs. end-effector control for prior models on cross-embodiment tasks. We compare joint-space and end-effector (EE) control for baseline policies across a range of tasks, observing no substantial difference in performance between the two control modes.",
+    "bbox": [
+      85.8,
+      43.1,
+      520.08,
+      188.95
+    ],
+    "bbox_norm": [
+      0.1402,
+      0.0544,
+      0.8498,
+      0.2386
+    ],
+    "dpi": 300,
+    "area_frac": 0.131,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p23.png"
+  },
+  {
+    "id": "fig21",
+    "label": "Figure 21",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig21.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig21.png",
+    "page": 23,
+    "caption": "Fig. 21: Operator experience in the human subject study. Box plots show teleoperation experience (in hours) of the ten recruited operators across three categories: UR5e (target robot), the static bimanual robot (source robot), and all robots combined. The selected operators rank within the top 2% of",
+    "bbox": [
+      41.74,
+      212.59,
+      272.22,
+      368.74
+    ],
+    "bbox_norm": [
+      0.0682,
+      0.2684,
+      0.4448,
+      0.4656
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p23.png"
+  },
+  {
+    "id": "fig22",
+    "label": "Figure 22",
+    "kind": "figure",
+    "file": "assets/ai-2026-pi07-a-steerable-generalist-robotic/fig22.png",
+    "raw": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig22.png",
+    "page": 23,
+    "caption": "Fig. 22: Comparison of π 0 . 7 (GC) and human. We ﬁnd that π 0 . 7 (GC) achieves competitive performance compared to the human operators, in the shirt folding task with the UR5e bimanual platform.",
+    "bbox": [
+      41.74,
+      414.55,
+      272.22,
+      528.72
+    ],
+    "bbox_norm": [
+      0.0682,
+      0.5234,
+      0.4448,
+      0.6676
+    ],
+    "dpi": 300,
+    "area_frac": 0.054,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/_overlay/p23.png"
+  }
+]
