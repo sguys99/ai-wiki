@@ -233,6 +233,7 @@ state encoder에는 관절 상태와 그리퍼 상태 같은 robot state가 들�
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] — 이 페이지가 해설하는 원 논문. 시뮬레이션·실로봇 수치표, 데이터 생성 절차, 학습 인프라가 모두 그쪽에 있다. 입문으로 감을 잡은 뒤 넘어가는 순서를 권한다.
 - [[physical-ai/jo-2026-wall-oss-vla-primer]] — 같은 "모두의 로보틱스 - VLA 입문" 시리즈 03-11편. 수식을 단위로 뜯는 서술 방식이 이 편과 닮았다.
 - [[physical-ai/jo-2026-smolvla-vla-primer]] — 같은 시리즈 03-10편. SmolVLA가 π0의 self-attention과 GR00T N1의 cross-attention을 번갈아 쌓는 절충을 택한 배경을 함께 보면 좋다.
+- [[llms/chen-2025-eagle-25-boosting-long-context-post-training]] — System 2 자리에 들어가는 Eagle 계열의 다음 세대. 이 편이 설명하는 Eagle-2가 어떤 계보의 모델인지 확인할 수 있다.
 - [[llms/lipman-2022-flow-matching-for-generative-modeling]] — System 1의 학습과 추론이 기대는 생성 기법의 원 논문.
 - [[physical-ai/cui-2025-openhelix-a-short-survey-empirical]] — dual-system VLA에 판정 기준을 세운 서베이. System 1이 실시간 perception 입력을 직접 받아야 한다는 조건이라 GR00T N1은 그 목록에서 빠진다.
 - [[physical-ai/figure-ai-2025-helix-a-vision-language-action]] — 같은 dual-system 갈래의 다른 구현. 7-9Hz VLM과 200Hz visuomotor policy 조합이라 주기 설계를 비교해볼 만하다.

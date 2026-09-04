@@ -1,0 +1,491 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/fig01.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Performance comparison of Eagle 2.5 with leading vision-language models on the Video-MME benchmark. Eagle 2.5 demonstrates consistent improve- ment as the number of input frames increases.",
+    "bbox": [
+      282.23,
+      445.75,
+      538.91,
+      639.91
+    ],
+    "bbox_norm": [
+      0.4741,
+      0.5295,
+      0.9053,
+      0.7601
+    ],
+    "dpi": 300,
+    "area_frac": 0.099,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/fig02.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Tiling-based general multimodal system.",
+    "bbox": [
+      318.43,
+      78.19,
+      536.99,
+      197.95
+    ],
+    "bbox_norm": [
+      0.5349,
+      0.0929,
+      0.9021,
+      0.2351
+    ],
+    "dpi": 300,
+    "area_frac": 0.052,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/fig03.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3: Image area preservation. Compared to the tiling strategy (a) from InternVL Team ( 2024 ), our method (b) effectively retains a larger portion of the original image, especially for high-resolution inputs. This ensures that more comprehensive visual information is preserved, benefiting tasks",
+    "bbox": [
+      315.2,
+      418.39,
+      537.4,
+      519.6
+    ],
+    "bbox_norm": [
+      0.5295,
+      0.497,
+      0.9028,
+      0.6172
+    ],
+    "dpi": 300,
+    "area_frac": 0.045,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/fig04.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/fig04.png",
+    "page": 7,
+    "caption": "Figure 4: Comparison of video duration between open-source data and Eagle-Video-110K.",
+    "bbox": [
+      269.02,
+      430.1,
+      542.94,
+      601.22
+    ],
+    "bbox_norm": [
+      0.4519,
+      0.5109,
+      0.9121,
+      0.7141
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/fig05.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/fig05.png",
+    "page": 8,
+    "caption": "Figure 5: Overview of our video annotation framework combining bottom-up clip-level and top-down story-level approaches. The diagram illustrates our dual annotation strategy. In the bottom-up approach (left), short video clips are processed by GPT-4o to generate clip-level QA pairs enhanced with tim",
+    "bbox": [
+      56.0,
+      79.46,
+      538.9,
+      204.49
+    ],
+    "bbox_norm": [
+      0.0941,
+      0.0944,
+      0.9053,
+      0.2429
+    ],
+    "dpi": 300,
+    "area_frac": 0.12,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/fig06.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/fig06.png",
+    "page": 11,
+    "caption": "Figure 6: The impact of Eagle-Video-110K dataset and different post-training schedules on the performance of Video-MME.",
+    "bbox": [
+      329.28,
+      291.97,
+      538.91,
+      444.34
+    ],
+    "bbox_norm": [
+      0.5532,
+      0.3468,
+      0.9053,
+      0.5278
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab01.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1: Video, multi-page document, and long text dataset used in Eagle-2.5.",
+    "bbox": [
+      56.36,
+      59.61,
+      538.92,
+      327.96
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0708,
+      0.9053,
+      0.3896
+    ],
+    "dpi": 300,
+    "area_frac": 0.258,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab02.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab02.png",
+    "page": 9,
+    "caption": "Table 2: Comparison with SoTA models on Various Video Benchmarks . We sample each video at 2 FPS by default and disable tiling, and limit the minimum sampling frame number to 8 frames. Among them, the maximum frame number of Video-MME is 512, and the others are 256. Perception-Test turns on tiling t",
+    "bbox": [
+      56.36,
+      59.61,
+      538.91,
+      244.13
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0708,
+      0.9053,
+      0.29
+    ],
+    "dpi": 300,
+    "area_frac": 0.178,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab03.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab03.png",
+    "page": 9,
+    "caption": "Table 3: Comparison with SoTA models on Various Image Benchmarks. The avg score is computed as the average of all benchmark scores, with OCRBench score divided by 10.",
+    "bbox": [
+      58.15,
+      301.8,
+      538.91,
+      454.15
+    ],
+    "bbox_norm": [
+      0.0977,
+      0.3585,
+      0.9053,
+      0.5394
+    ],
+    "dpi": 300,
+    "area_frac": 0.146,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab04.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab04.png",
+    "page": 10,
+    "caption": "Table 4: Impact of long-context data on performance of image benchmarks.",
+    "bbox": [
+      56.36,
+      59.61,
+      538.92,
+      153.23
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0708,
+      0.9053,
+      0.182
+    ],
+    "dpi": 300,
+    "area_frac": 0.09,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab05.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab05.png",
+    "page": 10,
+    "caption": "Table 5: The impact of image data and pretraining on the performance of video benchmarks. S1/S1.5 de- notes the stage-1 and stage-1.5 similar to Eagle2 Au- thors ( 2025 ).",
+    "bbox": [
+      56.36,
+      175.12,
+      538.45,
+      240.34
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.208,
+      0.9045,
+      0.2855
+    ],
+    "dpi": 300,
+    "area_frac": 0.063,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab06.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab06.png",
+    "page": 10,
+    "caption": "Table 6: The impact of information-first sampling on performance of image and video benchmarks. The baseline is equipped with IAP and ADS strategy.",
+    "bbox": [
+      306.22,
+      175.12,
+      538.45,
+      240.34
+    ],
+    "bbox_norm": [
+      0.5144,
+      0.208,
+      0.9045,
+      0.2855
+    ],
+    "dpi": 300,
+    "area_frac": 0.03,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab07.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab07.png",
+    "page": 11,
+    "caption": "Table 7: The impact of Eagle-Video-110K dataset and different post-training schedules on the performance of video benchmarks.",
+    "bbox": [
+      305.75,
+      120.32,
+      538.99,
+      192.71
+    ],
+    "bbox_norm": [
+      0.5136,
+      0.1429,
+      0.9055,
+      0.2289
+    ],
+    "dpi": 300,
+    "area_frac": 0.034,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab08.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab08.png",
+    "page": 12,
+    "caption": "Table 8: The proposed progressive training settings.",
+    "bbox": [
+      47.57,
+      522.71,
+      548.89,
+      694.67
+    ],
+    "bbox_norm": [
+      0.0799,
+      0.6209,
+      0.9221,
+      0.8251
+    ],
+    "dpi": 300,
+    "area_frac": 0.172,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab09.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab09.png",
+    "page": 13,
+    "caption": "Table 9: Performance on the SlideVQA benchmark. The ANLS Score refers to Approximate Normalized Levenshtein Similarity.",
+    "bbox": [
+      65.9,
+      79.24,
+      523.18,
+      130.71
+    ],
+    "bbox_norm": [
+      0.1107,
+      0.0941,
+      0.8789,
+      0.1553
+    ],
+    "dpi": 300,
+    "area_frac": 0.047,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab10.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab10.png",
+    "page": 13,
+    "caption": "Table 10: Performance on the MMLongBench-Doc.",
+    "bbox": [
+      316.79,
+      79.24,
+      523.18,
+      130.71
+    ],
+    "bbox_norm": [
+      0.5322,
+      0.0941,
+      0.8789,
+      0.1553
+    ],
+    "dpi": 300,
+    "area_frac": 0.021,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab11.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab11.png",
+    "page": 17,
+    "caption": "Table 11: Dataset used in Eagle 2.5 for Stage 1 and Stage1.5. Dataset in Magenta is internal data.",
+    "bbox": [
+      58.47,
+      608.78,
+      537.42,
+      684.97
+    ],
+    "bbox_norm": [
+      0.0982,
+      0.7231,
+      0.9028,
+      0.8136
+    ],
+    "dpi": 300,
+    "area_frac": 0.073,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/chen-2025-eagle-25-boosting-long-context-post-training/tab12.png",
+    "raw": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/tab12.png",
+    "page": 18,
+    "caption": "Table 12: Question type categories and their descriptions",
+    "bbox": [
+      56.36,
+      59.61,
+      545.92,
+      691.35
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0708,
+      0.9171,
+      0.8212
+    ],
+    "dpi": 300,
+    "area_frac": 0.617,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-eagle-25-boosting-long-context-post-training-figures/_overlay/p18.png"
+  }
+]

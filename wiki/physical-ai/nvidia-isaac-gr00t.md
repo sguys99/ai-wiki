@@ -143,6 +143,7 @@ Cosmos-Reason2-2B가 gated 모델이라는 게 첫 관문이다. 베이스 체�
 
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] — 이 저장소가 구현하는 계열의 원 논문. dual-system 골격은 같지만 backbone과 action 표현이 N1.7에서 달라졌다
 - [[physical-ai/nvlabs-gr00t-wholebodycontrol]] — whole-body control 쪽 절반. N1.7부터 `UNITREE_G1_SONIC` tag로 두 계열이 맞물린다
+- [[llms/nvlabs-eagle]] — N1.7 이전 세대의 VLM backbone 공급처. N1부터 N1.6까지 Eagle 계열을 썼고 여기서 Cosmos-Reason2-2B로 갈아탔다
 - [[physical-ai/huggingface-lerobot]] — 데이터 형식의 바탕이자 `groot` policy type으로 N1.7을 싣는 반대 방향의 연결
 - [[physical-ai/openhelix-robot-awesome-dual-system-vla]] — System 1이 실시간 perception 입력을 직접 받아야 한다는 기준으로 GR00T를 dual-system VLA에서 배제한 목록
 - [[overviews/physical-ai-overview]] — physical-ai 카테고리 허브. GEAR·GR00T·SONIC·GEAR-SONIC 이름 구분표가 여기 있다

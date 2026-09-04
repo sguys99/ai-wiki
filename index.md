@@ -56,6 +56,8 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[llms/cai-2026-vlm3-vision-language-models|VLM3 (Native 3D Learners)]] — Qwen3-VL-4B와 SFT 위에 focal length 통일, 픽셀 reference, data mixture 세 가지만 더해 네 개의 3D 비전 task에서 SOTA를 잡은 네이티브 학습 (2026, paper)
 - [[llms/9bow-2026-gpt-5-6-sol-terra-luna|OpenAI GPT-5.6 Sol·Terra·Luna 프리뷰 (9bow)]] — PyTorch Korea 9bow가 옮긴 OpenAI GPT-5.6 프리뷰 소식. 숫자=세대·천체 이름=능력 티어의 새 네이밍으로 Sol(플래그십)·Terra(균형)·Luna(경량) 3종을 가르고, 가격·Terminal-Bench 수치와 함께 미국 정부 협의형 계층 안전 스택·단계적 배포에 절반의 비중을 둔 2차 소식 글 (2026, article)
 - [[llms/panfilov-2026-stealing-reasoning-traces-from-proprietary|Stealing Reasoning Traces from Proprietary LLM APIs]] — provider가 암호화해 클라이언트로 돌려주는 chain-of-thought 블록이 세션·사용자·모델을 넘어 호환된다는 점을 악용해, 강한 모델의 encrypted reasoning trace를 약한 형제 모델에 주입해 평문으로 받아낸다. distillation·secret 추출(315,320 trace에서 API 키·PII 복원)·jailbreak·prompt injection 네 벡터를 Anthropic·OpenAI·Google에 실증한 보안 논문 (2026, paper)
+- [[llms/chen-2025-eagle-25-boosting-long-context-post-training|Eagle 2.5]] — NVIDIA Eagle 계열의 long-context VLM. 압축 모듈을 붙이는 대신 텍스트를 먼저 확보하고 남은 예산으로만 시각 입력을 깎는 information-first sampling(IAP·ADS), 32K→64K→128K progressive post-training, chapter 기반 story-level 주석을 넣은 Eagle-Video-110K 셋으로 512프레임 Video-MME 72.4를 낸다. GPT-4o(71.9)를 넘고 프레임을 늘릴수록 성능이 계속 오른다. GR00T N1.5의 VLM backbone (2025, paper)
+- [[llms/nvlabs-eagle|NVlabs/EAGLE (repo)]] — Eagle 계열 네 세대(Eagle · Eagle 2 · Eagle 2.5 · LocateAnything)의 공식 저장소이자 model zoo. Eagle 2→GR00T N1, Eagle 2.5→N1.5, native resolution 변형→N1.6으로 이어지는 VLA backbone 채택 이력을 날짜로 기록하며, N1.7에서 Cosmos-Reason2-2B로 교체되며 계보가 끊긴다. 코드 Apache-2.0, 가중치는 비상업 research preview (2026, repo)
 
 ## Physical AI (physical-ai)
 

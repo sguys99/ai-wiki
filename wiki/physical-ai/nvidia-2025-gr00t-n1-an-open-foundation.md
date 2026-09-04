@@ -357,5 +357,6 @@ GR00T N1이 한계로 지목한 "더 강한 vision-language backbone"은 [[llms/
 - [[physical-ai/nvlabs-gr00t-wholebodycontrol]] — SONIC·Decoupled WBC 실행 스택. GR00T N1.5·N1.6이 쓴 컨트롤러 세대가 여기 들어 있다
 - [[physical-ai/nvlabs-2026-gear-sonic-project-page]] — GEAR SONIC 프로젝트 페이지
 - [[physical-ai/hou-2026-world-model-for-robot-learning]] — policy·world model 결합 5분류. GR00T N1의 neural trajectory 증강이 latent·IDM 결합에 해당
-- [[llms/cai-2026-vlm3-vision-language-models]] — VLM 아키텍처. GR00T N1이 한계로 지목한 backbone 강화 축
+- [[llms/chen-2025-eagle-25-boosting-long-context-post-training]] — System 2로 쓰인 Eagle 계열의 다음 세대 기술 보고서. GR00T N1.5의 backbone이 이쪽이다
+- [[llms/nvlabs-eagle]] — Eagle 계열 공식 저장소. N1·N1.5·N1.6의 backbone 채택 이력과 model zoo가 있다
 - [[overviews/physical-ai-overview]] — physical-ai 분류 기준과 학습 경로 허브
