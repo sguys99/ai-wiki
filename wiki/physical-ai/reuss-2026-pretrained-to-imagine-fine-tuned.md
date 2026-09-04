@@ -248,6 +248,7 @@ PyTorch KR 운영자 박정환(9bow)이 옮긴 전문 번역이 나와 있다. �
 
 ## 관련 페이지 (Related Pages)
 
+- [[physical-ai/wu-2023-unleashing-large-scale-video-generative]] — "미래를 상상하도록 pre-training하고 행하도록 fine-tuning한다"는 이 계보의 초기 사례. Ego4D 사람 영상으로 프레임 예측을 배운 뒤 같은 모델에 action 출력만 얹는다
 - [[physical-ai/hou-2026-world-model-for-robot-learning]] — 저자가 본문에서 직접 가리키는 NTU 서베이. 로보틱스 world model 전반의 조망이다
 - [[physical-ai/li-2025-a-comprehensive-survey-on-world]] — embodied AI world model 서베이. WAM을 world model 계보 안에 놓고 볼 때의 배경
 - [[physical-ai/black-2025-pi05-a-vision-language-action-model-with]] — RoboArena에서 DreamZero의 상대이자 VLA 쪽 현재 기준선

@@ -315,6 +315,7 @@ imitation learning이라 시연자를 넘어서기 어렵다. 일반화도 이�
 
 ## 관련 페이지 (Related Pages)
 
+- [[physical-ai/wu-2023-unleashing-large-scale-video-generative]] — GR-1이 CALVIN과 실기기 양쪽에서 RT-1을 비교 대상으로 삼는다. 같은 imitation learning 계열이지만 사람 영상 pre-training이 앞에 붙는다는 점이 갈림길이다.
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] — RT-1과 같은 계보의 후속 VLA foundation model. RT-1의 discrete action token 대신 flow-matching DiT(System 1)로 연속 행동을 내고 dual-system 구조로 확장한다. RT-1이 세운 "이미지+언어 → 행동" 뼈대를 휴머노이드·멀티 embodiment로 밀어붙인 판.
 - [[physical-ai/hou-2026-world-model-for-robot-learning]] — 로봇 학습 policy 결합 방식 5분류를 정리한 서베이. RT-1 같은 unified VLA/single-backbone policy가 이 분류의 한 축이다.
 - [[physical-ai/li-2025-a-comprehensive-survey-on-world]] — embodied AI world model 서베이. RT-1류의 decision-coupled policy를 좌표계에 놓고 본다.
