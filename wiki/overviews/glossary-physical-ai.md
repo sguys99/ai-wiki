@@ -94,6 +94,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | world foundation model | world foundation model | 세계 기반 모델·월드 파운데이션 모델·세계 파운데이션 모델 | world foundation model은 여러 downstream Physical AI 환경으로 fine-tuning될 것을 전제로 학습한 범용 world model이다 | 약어 WFM 병용 가능. NVIDIA Cosmos 2025가 세운 이름. world model 행과 glossary-llms의 foundation model 행을 합친 복합어라 표기가 흔들리기 쉬워 따로 고정한다 |
 | perturbation | perturbation | 섭동 | perturbation은 world model이 미래를 예측할 때 함께 받는 현재 입력으로, action·텍스트·무작위 입력을 한 이름으로 묶는다 | Cosmos 형식화의 c(t). 조건 입력의 종류를 가리지 않는다는 뜻이 담겨 직역하면 의미가 좁아진다. "교란"은 벤치마크 교란(LIBERO-Pro 등) 문맥에서 이미 널리 쓰여 기계 검사에서 뺐다 — 지침만 |
 | physics alignment | physics alignment | 물리 정렬·물리 정합 | physics alignment는 시뮬레이터로 만든 물리적으로 옳은 영상을 정답 삼아 생성 결과가 물리 법칙을 지키는지 재는 평가 축이다 | NVIDIA Cosmos 2025가 도입한 평가 이름. glossary-llms의 alignment(가치 정렬) 행과는 다른 문맥이다 |
+| video generative pre-training | video generative pre-training | 영상 생성 사전학습·비디오 생성 사전학습 | video generative pre-training은 언어 설명이 붙은 영상에서 미래 프레임을 맞히도록 모델을 먼저 학습시키는 단계다 | GR-1(Wu 2023)이 세운 이름. 로봇 trajectory 자체가 영상이라는 전제에서 출발해 GR-2·GR-3와 world-action model 계열로 이어진다. "사전학습" 직역은 glossary-llms의 pre-training 행이 이미 잡는다 |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 
