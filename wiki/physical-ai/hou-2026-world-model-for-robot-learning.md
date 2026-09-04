@@ -293,6 +293,7 @@ Sec 8이 꼽는 여섯 가지에 더해 **서베이 자체의 한계**도 있다
 - [[llms/cai-2026-vlm3-vision-language-models]] — 표준 VLM이 3D를 네이티브로 배운다는 주장. 이 서베이 Sec 3.6이 말하는 픽셀을 거치지 않는 예측 표현과 같은 방향이다. VLM3가 다루는 metric depth·camera pose 같은 능력은 world model이 물리 세계를 접지할 때 바탕이 되는 지각 능력이기도 하다.
 - [[physical-ai/zhang-2024-vision-and-language-navigation-today]] — world model을 로봇 학습이 아니라 navigation 축에서 다룬 자매 서베이. policy 결합 방식 5분류의 자리에 history/memory·generalization ability 두 challenge가 들어선다
 - [[physical-ai/liu-2025-generative-physical-ai-in-vision]] — 같은 world model 논의를 로봇 policy가 아니라 영상·3D 생성 쪽에서 다룬 서베이. 학습된 시뮬레이터 역할을 physics-aware generation이라는 이름으로 정리하고, 명시적 물리 엔진을 끼우는 여섯 배선을 구분한다
+- [[physical-ai/jo-2026-groot-n1-5-vla-primer]] — 이 서베이가 latent-space world modeling으로 분류한 FLARE와 imagination-based로 분류한 DreamGen이 실제로 한 모델(GR00T N1.5) 안에서 함께 쓰인 사례
 
 ## 외부 참조
 

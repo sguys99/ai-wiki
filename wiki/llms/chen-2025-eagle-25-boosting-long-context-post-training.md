@@ -289,7 +289,9 @@ information-first sampling을 하나씩 빼면 어디가 무너지는지 드러�
 
 Eagle 계열은 GR00T의 VLM backbone 공급처였다. 저장소 기록으로 Eagle 2가 GR00T N1의 System 2, Eagle 2.5가 GR00T N1.5, native resolution 변형 Eagle이 GR00T N1.6의 backbone이다. N1.7에서 `nvidia/Cosmos-Reason2-2B`로 갈아타면서 이 계보는 끊긴다.
 
-이름이 겹치는 지점에 주의가 필요하다. [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation|GR00T N1]]이 쓰는 Eagle-2는 SmolLM2와 SigLIP-2에서 fine-tuning한 소형 변형이고, [[llms/nvlabs-eagle|저장소 model zoo]]가 배포하는 Eagle2-1B/2B/9B는 Qwen2.5 기반이다. 같은 이름의 다른 조합이므로 backbone을 특정할 때는 어느 계보인지 확인해야 한다.
+N1.5가 이 모델을 그대로 쓴 것은 아니다. [[physical-ai/nvidia-2025-gr00t-n1-5-an-improved-open|GEAR Lab의 N1.5 발표 글]]에 따르면 Eagle 2.5에서 출발해 grounding과 물리 이해 쪽으로 다시 튜닝했고, pre-training과 fine-tuning 양쪽에서 VLM을 얼린 채 학습했다. backbone으로 쓴다는 말이 가중치를 그대로 얹는다는 뜻은 아닌 셈이다.
+
+이름이 겹치는 지점에도 주의가 필요하다. [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation|GR00T N1]]이 쓰는 Eagle-2는 SmolLM2와 SigLIP-2에서 fine-tuning한 소형 변형이고, [[llms/nvlabs-eagle|저장소 model zoo]]가 배포하는 Eagle2-1B/2B/9B는 Qwen2.5 기반이다. 같은 이름의 다른 조합이므로 backbone을 특정할 때는 어느 계보인지 확인해야 한다.
 
 이 논문이 VLA backbone으로서 의미를 갖는 이유는 결국 세 가지다. 영상 프레임을 늘려도 성능이 꺾이지 않으니 로봇의 시간축 관찰을 길게 넣을 여지가 생기고, 고해상도 tiling이 살아 있어 세밀한 장면 인식이 유지되며, 128K context window가 다중 카메라와 긴 지시문을 함께 담을 여유를 준다.
 
@@ -307,7 +309,9 @@ Eagle 계열은 GR00T의 VLM backbone 공급처였다. 저장소 기록으로 Ea
 
 - [[llms/nvlabs-eagle]] — 이 논문의 공식 저장소. 계보와 model zoo, GR00T 채택 이력이 거기 있다
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] — Eagle-2를 System 2로 쓴 VLA. 이 논문은 그 다음 세대인 N1.5의 backbone이다
+- [[physical-ai/nvidia-2025-gr00t-n1-5-an-improved-open]] — Eagle 2.5를 backbone으로 쓴 세대. 얼린 VLM·단순화한 adapter·FLARE 손실로 무엇이 달라졌는지가 거기 있다
 - [[physical-ai/nvidia-isaac-gr00t]] — N1.7에서 backbone이 Cosmos-Reason2-2B로 바뀐 후속 저장소
+- [[physical-ai/jo-2026-groot-n1-5-vla-primer]] — 이 논문을 backbone으로 채택한 N1.5의 한국어 해설. VLM을 pre-training 단계에서까지 frozen으로 둔 결정과 그 언어 이해 성적이 나온다
 - [[llms/cai-2026-vlm3-vision-language-models]] — 같은 "표준 VLM을 건드리지 않고 데이터·표현만 바꾼다"는 노선의 3D 판본
 - [[physical-ai/cui-2025-openhelix-a-short-survey-empirical]] — VLM을 System 2로 쓰는 dual-system VLA의 설계 공간 정리
 - [[overviews/glossary-llms]] — 용어 표기 기준

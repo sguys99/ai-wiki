@@ -1,0 +1,134 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/fig01.svg",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/fig01.svg",
+    "caption": "GR00T N1.5 Architecture Diagram",
+    "source_url": "https://research.nvidia.com/labs/gear/n1_5/architecture.svg",
+    "bytes": 669473,
+    "width": 0,
+    "height": 0,
+    "strategy": "fetched",
+    "curated": true
+  },
+  {
+    "id": "fig02",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/fig02.png",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/fig02.png",
+    "caption": "Grounding example 1",
+    "source_url": "https://research.nvidia.com/labs/gear/n1_5/grounding_example2.png",
+    "bytes": 1146700,
+    "width": 1280,
+    "height": 800,
+    "strategy": "fetched",
+    "curated": true
+  },
+  {
+    "id": "fig03",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/fig03.png",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/fig03.png",
+    "caption": "Grounding example 2",
+    "source_url": "https://research.nvidia.com/labs/gear/n1_5/grounding_example1.png",
+    "bytes": 967652,
+    "width": 1280,
+    "height": 800,
+    "strategy": "fetched",
+    "curated": true
+  },
+  {
+    "id": "fig04",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/fig04.png",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/fig04.png",
+    "caption": "Novel objects",
+    "source_url": "https://research.nvidia.com/labs/gear/n1_5/novel_objects.png",
+    "bytes": 3008869,
+    "width": 1536,
+    "height": 1024,
+    "strategy": "fetched",
+    "curated": true
+  },
+  {
+    "id": "fig05",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/fig05.jpg",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/fig05.jpg",
+    "caption": "",
+    "source_url": "https://research.nvidia.com/labs/gear/n1_5/g1_2of4.jpg",
+    "bytes": 1278407,
+    "width": 3139,
+    "height": 2350,
+    "strategy": "fetched",
+    "curated": true
+  },
+  {
+    "id": "fig06",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/fig06.jpg",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/fig06.jpg",
+    "caption": "",
+    "source_url": "https://research.nvidia.com/labs/gear/n1_5/g1_2of5.jpg",
+    "bytes": 1013055,
+    "width": 2858,
+    "height": 2140,
+    "strategy": "fetched",
+    "curated": true
+  },
+  {
+    "id": "fig07",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/page-full.png",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/crop01.png",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/crop02.png",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/crop03.png",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/crop04.png",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/crop05.png",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/nvidia-2025-gr00t-n1-5-an-improved-open/fig13.svg",
+    "raw": "raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/fig13.svg",
+    "caption": "Pretraining data distribution",
+    "source_url": "https://research.nvidia.com/labs/gear/n1_5/train_data_mix.svg",
+    "bytes": 5336,
+    "width": 800,
+    "height": 600,
+    "strategy": "fetched",
+    "curated": true
+  }
+]

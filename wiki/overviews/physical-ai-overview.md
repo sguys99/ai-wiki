@@ -70,20 +70,20 @@ study_path:
 
 ## 요약 (Summary)
 
-`wiki/physical-ai/`는 70개 페이지로 늘었다. 이 문서는 그 지도다. 무엇이 어디에 있고 어떤 순서로 읽으면 되는지, 분류 기준과 태그 어휘는 무엇인지를 모은다.
+`wiki/physical-ai/`는 72개 페이지로 늘었다. 이 문서는 그 지도다. 무엇이 어디에 있고 어떤 순서로 읽으면 되는지, 분류 기준과 태그 어휘는 무엇인지를 모은다.
 
-가장 먼저 눈에 띄는 건 카테고리가 실은 두 도메인이라는 점이다. 한쪽은 VLA와 foundation model 축으로 `vla` 태그가 붙은 페이지만 50개다. 다른 쪽은 고전 로보틱스 스택으로 LiDAR odometry 계열 6개와 Nav2 계열 4개가 자기들끼리만 링크를 주고받는다. 두 덩이 사이에는 상호 참조가 거의 없다. CLAUDE.md가 정한 40페이지 분할 검토선을 이미 넘겼으니 아래 "분할을 검토할 자리" 절에서 따로 다룬다.
+가장 먼저 눈에 띄는 건 카테고리가 실은 두 도메인이라는 점이다. 한쪽은 VLA와 foundation model 축으로 `vla` 태그가 붙은 페이지만 52개다. 다른 쪽은 고전 로보틱스 스택으로 LiDAR odometry 계열 6개와 Nav2 계열 4개가 자기들끼리만 링크를 주고받는다. 두 덩이 사이에는 상호 참조가 거의 없다. CLAUDE.md가 정한 40페이지 분할 검토선을 이미 넘겼으니 아래 "분할을 검토할 자리" 절에서 따로 다룬다.
 
 두 번째 특징은 자료가 낱개가 아니라 클러스터로 들어왔다는 것이다. 논문 하나를 놓고 원논문·공식 발표글·구현 저장소·한국어 해설을 함께 갖고 있는 프로젝트가 여럿이다. 겹마다 주는 게 달라서 이 중복은 낭비가 아니다. 이 점은 "클러스터로 쌓인다" 절에 정리했다.
 
 ## 클러스터로 쌓인다
 
-프로젝트 단위로 묶으면 카테고리의 모양이 드러난다. 아래 표에서 한 페이지가 두 묶음에 걸치는 경우가 있어 합계는 70과 정확히 맞지 않는다.
+프로젝트 단위로 묶으면 카테고리의 모양이 드러난다. 아래 표에서 한 페이지가 두 묶음에 걸치는 경우가 있어 합계는 72와 정확히 맞지 않는다.
 
 | 클러스터 | 페이지 | 무엇이 모여 있나 |
 |---|---|---|
 | π 계열 (Physical Intelligence) | 10 | 논문 4(π0·π0.5·π*0.6·π0.7) + 공식 발표글 4 + `openpi` 저장소 + 한국어 primer 1 |
-| GR00T·GEAR (NVIDIA) | 7 | N1 논문 + NVIDIA 개발자 블로그 + `Isaac-GR00T`(N1.7) + primer + SONIC 3부작 |
+| GR00T·GEAR (NVIDIA) | 9 | N1 논문 + N1.5 프로젝트 페이지 + NVIDIA 개발자 블로그 + `Isaac-GR00T`(N1.7) + primer 2(N1·N1.5) + SONIC 3부작 |
 | RT 계열 (Google) | 6 | RT-1·RT-2 논문 + primer 2 + 한국어 리뷰 영상 + Open X-Embodiment(RT-X) |
 | FAST-LIO 계열 | 6 | 논문 2 + 공식 저장소 + 한국어 리뷰 3(글 1·영상 2, Faster-LIO 포함) |
 | WALL-OSS (X Square Robot) | 5 | 논문 2 + `wall-x` 저장소 + 프로젝트 페이지 + primer |
@@ -98,7 +98,7 @@ study_path:
 
 같은 프로젝트를 여러 겹으로 갖는 게 왜 값이 있는지는 π 계열이 잘 보여준다. 논문은 방법과 ablation을 준다. 같은 날 올라온 공식 발표글에는 논문이 막대그래프로만 준 수치가 숫자로 적혀 있고 무편집 데모 영상이 붙는다. `openpi` 저장소에는 논문 이후에 나온 체크포인트와 배포 제약이 있다. 한국어 primer는 강화학습 예비 지식을 앞에 깔아 진입 문턱을 낮춘다. GR00T 클러스터도 같은 구조인데, 여기서는 저장소가 논문에 없는 GPU 사양과 Jetson 배포 스택을 담당한다.
 
-한국어 자료가 유독 두껍다는 것도 이 저장소의 성격이다. WikiDocs primer 8편(RT-1·RT-2·ACT·OpenVLA·π*0.6·SmolVLA·WALL-OSS·GR00T N1)이 VLA 본류를 거의 그대로 따라간다. 여기에 PyTorch KR 해설 2편, 로봇 엔지니어 채널 영상 2편, 실리콘밸리 RFM 연재 2편, SLAM·Nav2 한국어 자료 5편이 붙는다. 원논문을 열기 전에 들를 곳이 대부분의 주요 모델에 하나씩은 있다.
+한국어 자료가 유독 두껍다는 것도 이 저장소의 성격이다. WikiDocs primer 9편(RT-1·RT-2·ACT·OpenVLA·π*0.6·SmolVLA·WALL-OSS·GR00T N1·GR00T N1.5)이 VLA 본류를 거의 그대로 따라간다. 여기에 PyTorch KR 해설 2편, 로봇 엔지니어 채널 영상 2편, 실리콘밸리 RFM 연재 2편, SLAM·Nav2 한국어 자료 5편이 붙는다. 원논문을 열기 전에 들를 곳이 대부분의 주요 모델에 하나씩은 있다.
 
 ## 학습 경로
 
@@ -174,22 +174,22 @@ VLA와 직접 이어지지 않는다. 실기기를 굴리려면 필요한 층이
 
 physical-ai 페이지는 도메인 루트 태그 `physical-ai`를 달고 아래에서 1~3개를 고른다. 표기는 하나만 허용한다.
 
-| 묶음 | 태그 (괄호는 70개 페이지에서의 사용 횟수) |
+| 묶음 | 태그 (괄호는 72개 페이지에서의 사용 횟수) |
 |---|---|
-| 학습·제어 방법 | `vla`(50) · `robot-learning`(38) · `world-model`(13) · `imitation-learning`(8) · `rl-control`(3) |
-| 플랫폼·응용 | `manipulation`(35) · `humanoid`(12) · `mobile-robot`(8) · `drone`(2) · `autonomous-driving`(2) · `locomotion`(0) |
+| 학습·제어 방법 | `vla`(52) · `robot-learning`(39) · `world-model`(13) · `imitation-learning`(8) · `rl-control`(3) |
+| 플랫폼·응용 | `manipulation`(36) · `humanoid`(14) · `mobile-robot`(8) · `drone`(2) · `autonomous-driving`(2) · `locomotion`(0) |
 | 환경·인식 | `slam`(7) · `teleoperation`(3) · `simulator`(3) · `sim2real`(1) · `3d-perception`(1) · `spatial-reasoning`(1) |
 | 자원·운영 | `edge-inference`(8) · `benchmark`(8) · `robot-dataset`(5) · `hardware`(0) · `safety`(0) |
 
-분포가 한쪽으로 크게 쏠려 있다. `vla`가 50회로 전체의 71%라 발견 경로로서의 변별력이 거의 없다. `robot-learning`(38)도 사정이 같다. 반대로 `hardware`·`safety`·`locomotion` 셋은 한 번도 안 쓰였다. SONIC 계열이 locomotion을 다루는데도 `humanoid`·`teleoperation`으로 붙은 결과다.
+분포가 한쪽으로 크게 쏠려 있다. `vla`가 52회로 전체의 72%라 발견 경로로서의 변별력이 거의 없다. `robot-learning`(39)도 사정이 같다. 반대로 `hardware`·`safety`·`locomotion` 셋은 한 번도 안 쓰였다. SONIC 계열이 locomotion을 다루는데도 `humanoid`·`teleoperation`으로 붙은 결과다.
 
-1~3개 상한은 지켜지지 않고 있다. 70개 중 16개(23%)가 4개를 달았다. 대부분 `vla`+`robot-learning`+`manipulation`에 하나를 더한 조합이라, 상한을 넘긴 게 아니라 앞의 세 태그가 거의 자동으로 붙는 게 원인에 가깝다. 상한을 4로 올릴지, `vla`·`robot-learning`을 루트 태그처럼 취급해 카운트에서 뺄지는 CLAUDE.md를 고쳐야 하는 결정이라 여기서는 기록만 한다.
+1~3개 상한은 지켜지지 않고 있다. 72개 중 17개(24%)가 4개를 달았다. 대부분 `vla`+`robot-learning`+`manipulation`에 하나를 더한 조합이라, 상한을 넘긴 게 아니라 앞의 세 태그가 거의 자동으로 붙는 게 원인에 가깝다. 상한을 4로 올릴지, `vla`·`robot-learning`을 루트 태그처럼 취급해 카운트에서 뺄지는 CLAUDE.md를 고쳐야 하는 결정이라 여기서는 기록만 한다.
 
 통제 어휘 밖 태그는 한 건 있었다. 엥지유니버스 14편 리뷰가 `video`를 달고 있었는데 이건 태그가 아니라 `type` 값이라 지웠다.
 
 ## 분할을 검토할 자리
 
-CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분할을 다시 보라고 적어 뒀다. 지금 70개다.
+CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분할을 다시 보라고 적어 뒀다. 지금 72개다.
 
 나눌 선은 태그 분포가 이미 그려 준다.
 
@@ -205,15 +205,15 @@ CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분�
 
 | 항목 | 값 |
 |---|---|
-| `wiki/physical-ai/` 페이지 | 70 |
-| 자료 유형 | `article` 28 · `paper` 27 · `repo` 11 · `video` 4 |
-| 연도 분포 | 2026: 27 · 2025: 24 · 2024: 8 · 2023: 5 · 2022: 2 · 2021: 1 · 2020: 2 · 2018: 1 |
-| 한국어 자료 | 19 (WikiDocs primer 8 · PyTorch KR 2 · 영상 리뷰 4 · RFM 연재 2 · SLAM/Nav2 3) |
+| `wiki/physical-ai/` 페이지 | 72 |
+| 자료 유형 | `article` 30 · `paper` 27 · `repo` 11 · `video` 4 |
+| 연도 분포 | 2026: 28 · 2025: 25 · 2024: 8 · 2023: 5 · 2022: 2 · 2021: 1 · 2020: 2 · 2018: 1 |
+| 한국어 자료 | 20 (WikiDocs primer 9 · PyTorch KR 2 · 영상 리뷰 4 · RFM 연재 2 · SLAM/Nav2 3) |
 | 인접 카테고리 페이지 | [[llms/cai-2026-vlm3-vision-language-models]] · [[llms/chen-2025-eagle-25-boosting-long-context-post-training]] · [[llms/nvlabs-eagle]] · [[agents/zou-2026-task-focused-memorization-multimodal-agents]] |
-| 용어 SSOT | [[overviews/glossary-physical-ai]] (76개 용어) |
-| 홈 밴드 | `index.md`의 Physical AI 절에 70줄이 모두 올라 있다 |
+| 용어 SSOT | [[overviews/glossary-physical-ai]] (79개 용어) |
+| 홈 밴드 | `index.md`의 Physical AI 절에 72줄이 모두 올라 있다 |
 
-연도 분포에서 읽히는 게 하나 있다. 2026년 자료 27개는 한동안 한국어 primer와 서베이가 대부분이었는데, π0.7이 들어오면서 1차 연구도 섞이기 시작했다. 여전히 원논문의 무게중심은 2024~2025년이고 2026년은 그것을 정리·해설하는 층이 함께 두꺼워지는 해다.
+연도 분포에서 읽히는 게 하나 있다. 2026년 자료 28개는 한동안 한국어 primer와 서베이가 대부분이었는데, π0.7이 들어오면서 1차 연구도 섞이기 시작했다. 여전히 원논문의 무게중심은 2024~2025년이고 2026년은 그것을 정리·해설하는 층이 함께 두꺼워지는 해다.
 
 ## 앞으로 채울 자리
 
@@ -229,8 +229,8 @@ CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분�
 
 ## 이 페이지의 한계
 
-- 학습 경로는 70개 중 A 트랙 10개 + 곁길 4개 + B 트랙 5개 + C 트랙 10개만 배치한다. 나머지는 클러스터 표와 `index.md`로 찾아야 한다. 모든 페이지에 읽는 순서를 매기는 건 지도가 아니라 목록이 된다.
-- 클러스터 표의 페이지 수는 한 페이지가 두 묶음에 걸치는 경우를 중복으로 세서 합이 70과 맞지 않는다.
+- 학습 경로는 72개 중 A 트랙 10개 + 곁길 4개 + B 트랙 5개 + C 트랙 10개만 배치한다. 나머지는 클러스터 표와 `index.md`로 찾아야 한다. 모든 페이지에 읽는 순서를 매기는 건 지도가 아니라 목록이 된다.
+- 클러스터 표의 페이지 수는 한 페이지가 두 묶음에 걸치는 경우를 중복으로 세서 합이 72와 맞지 않는다.
 - A 트랙의 6번(ACT/ALOHA)과 7번(π0) 사이 순서는 취향이 갈릴 수 있다. action chunking을 먼저 보는 쪽을 택했는데 이산 토큰 계열을 끝까지 따라가고 싶으면 6번을 뒤로 미뤄도 된다.
 - 태그 통계와 분할 논의는 지금 시점의 스냅샷이다. 페이지가 늘면 다시 세야 한다.
 - 이 문서는 각 페이지의 요약을 다시 요약하지 않는다. 무엇이 어디 있는지와 어떤 순서로 읽는지까지가 범위이고, 내용은 각 페이지가 갖는다.

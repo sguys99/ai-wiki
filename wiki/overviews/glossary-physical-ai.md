@@ -100,6 +100,9 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | perturbation | perturbation | 섭동 | perturbation은 world model이 미래를 예측할 때 함께 받는 현재 입력으로, action·텍스트·무작위 입력을 한 이름으로 묶는다 | Cosmos 형식화의 c(t). 조건 입력의 종류를 가리지 않는다는 뜻이 담겨 직역하면 의미가 좁아진다. "교란"은 벤치마크 교란(LIBERO-Pro 등) 문맥에서 이미 널리 쓰여 기계 검사에서 뺐다 — 지침만 |
 | physics alignment | physics alignment | 물리 정렬·물리 정합 | physics alignment는 시뮬레이터로 만든 물리적으로 옳은 영상을 정답 삼아 생성 결과가 물리 법칙을 지키는지 재는 평가 축이다 | NVIDIA Cosmos 2025가 도입한 평가 이름. glossary-llms의 alignment(가치 정렬) 행과는 다른 문맥이다 |
 | video generative pre-training | video generative pre-training | 영상 생성 사전학습·비디오 생성 사전학습 | video generative pre-training은 언어 설명이 붙은 영상에서 미래 프레임을 맞히도록 모델을 먼저 학습시키는 단계다 | GR-1(Wu 2023)이 세운 이름. 로봇 trajectory 자체가 영상이라는 전제에서 출발해 GR-2·GR-3와 world-action model 계열로 이어진다. "사전학습" 직역은 glossary-llms의 pre-training 행이 이미 잡는다 |
+| latent action | latent action | 잠재 행동·잠재 동작 | latent action은 두 프레임 사이의 시각적 변화를 action 라벨 없이 부호화한 벡터다 | LAPA(Ye 2024)가 VQ-VAE로 세운 표현. GR00T N1의 latent action space와 DreamGen의 pseudo action 라벨링이 모두 이걸 쓴다. latent 행의 금지 표기와 짝을 이룬다 |
+| Inverse Dynamics Model | Inverse Dynamics Model | 역동역학 모델 | Inverse Dynamics Model은 두 프레임만 보고 그 사이를 채울 action chunk를 되짚어 예측하는 모델이다 | 약어 IDM 병용 가능. action 라벨이 없는 영상에 pseudo action을 붙이는 표준 경로. dynamics 행이 "동역학"을 병용 허용하는 것과 달리 이 복합어는 원어로 고정한다 |
+| neural trajectory | neural trajectory | 신경 궤적·뉴럴 궤적 | neural trajectory는 video world model이 만들어낸 합성 trajectory 데이터다 | DreamGen(Zhu 2025)이 세운 이름. GR00T N1.5 pre-training 데이터에 들어간다. robot state가 없어 상태 입력을 0으로 조건화해 쓴다. trajectory 행의 "궤적" 금지와 짝 |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 

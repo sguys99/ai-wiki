@@ -231,6 +231,7 @@ state encoder에는 관절 상태와 그리퍼 상태 같은 robot state가 들�
 ## 관련 페이지 (Related Pages)
 
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] — 이 페이지가 해설하는 원 논문. 시뮬레이션·실로봇 수치표, 데이터 생성 절차, 학습 인프라가 모두 그쪽에 있다. 입문으로 감을 잡은 뒤 넘어가는 순서를 권한다.
+- [[physical-ai/jo-2026-groot-n1-5-vla-primer]] — 같은 시리즈 다음 편(03-14). 여기서 세운 dual-system 구조를 그대로 두고 FLARE와 DreamGen이 얹히는 과정을 이어서 읽는다. 이 편에서 다룬 latent action space가 그쪽 pseudo action 라벨링으로 이어진다.
 - [[physical-ai/jo-2026-wall-oss-vla-primer]] — 같은 "모두의 로보틱스 - VLA 입문" 시리즈 03-11편. 수식을 단위로 뜯는 서술 방식이 이 편과 닮았다.
 - [[physical-ai/jo-2026-smolvla-vla-primer]] — 같은 시리즈 03-10편. SmolVLA가 π0의 self-attention과 GR00T N1의 cross-attention을 번갈아 쌓는 절충을 택한 배경을 함께 보면 좋다.
 - [[llms/chen-2025-eagle-25-boosting-long-context-post-training]] — System 2 자리에 들어가는 Eagle 계열의 다음 세대. 이 편이 설명하는 Eagle-2가 어떤 계보의 모델인지 확인할 수 있다.

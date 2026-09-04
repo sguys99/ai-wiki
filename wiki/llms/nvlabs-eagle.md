@@ -72,7 +72,9 @@ NVIDIA Research의 Eagle VLM 계열 공식 저장소다. 네 세대가 한 저�
 | 2025/06 | Eagle 2.5가 GR00T N1.5의 VLM backbone으로 채택 |
 | 2025/12 | native resolution 변형 Eagle이 GR00T N1.6의 VLM backbone으로 채택 |
 
-이름이 겹치는 지점을 짚어 둘 필요가 있다. [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation|GR00T N1]] 논문이 말하는 Eagle-2는 SmolLM2와 SigLIP-2에서 fine-tuning한 소형 변형이고, 이 저장소의 model zoo가 배포하는 Eagle2-1B/2B/9B는 Qwen2.5 기반이다. 같은 이름이 붙은 다른 조합이므로 backbone을 특정할 때 계보를 확인해야 한다.
+채택이 곧 가중치 재사용은 아니다. [[physical-ai/nvidia-2025-gr00t-n1-5-an-improved-open|N1.5]]는 Eagle 2.5에서 출발해 grounding과 물리 이해 쪽으로 다시 튜닝한 VLM을 얼린 채 썼다.
+
+이름이 겹치는 지점도 짚어 둘 필요가 있다. [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation|GR00T N1]] 논문이 말하는 Eagle-2는 SmolLM2와 SigLIP-2에서 fine-tuning한 소형 변형이고, 이 저장소의 model zoo가 배포하는 Eagle2-1B/2B/9B는 Qwen2.5 기반이다. 같은 이름이 붙은 다른 조합이므로 backbone을 특정할 때 계보를 확인해야 한다.
 
 계보는 N1.7에서 끊긴다. [[physical-ai/nvidia-isaac-gr00t|Isaac-GR00T]] 저장소 기준으로 N1.7의 VLM backbone은 `nvidia/Cosmos-Reason2-2B`다. Eagle이 GR00T를 떠받친 구간은 N1부터 N1.6까지다.
 
@@ -110,6 +112,7 @@ Eagle2.5-8B의 vision encoder 표기가 논문과 다르다. [[llms/chen-2025-ea
 
 - [[llms/chen-2025-eagle-25-boosting-long-context-post-training]] — 이 저장소가 배포하는 Eagle 2.5의 기술 보고서
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] — Eagle-2를 System 2로 쓴 VLA
+- [[physical-ai/nvidia-2025-gr00t-n1-5-an-improved-open]] — Eagle 2.5를 backbone으로 쓴 세대의 GEAR Lab 발표 글
 - [[physical-ai/nvidia-isaac-gr00t]] — N1.7에서 backbone이 Cosmos-Reason2-2B로 바뀐 후속 저장소
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform]] — README가 Eagle의 적용처로 함께 꼽는 world foundation model 플랫폼
 - [[physical-ai/cui-2025-openhelix-a-short-survey-empirical]] — VLM을 System 2로 쓰는 dual-system VLA의 설계 공간 정리
