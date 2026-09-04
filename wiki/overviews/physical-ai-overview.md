@@ -28,6 +28,9 @@ sources:
   - liu-2025-generative-physical-ai-in-vision.md
   - reuss-2026-pretrained-to-imagine-fine-tuned.md
   - luo-2025-sonic-supersizing-motion-tracking.md
+  - nvidia-2025-cosmos-world-foundation-model-platform.md
+  - wu-2023-unleashing-large-scale-video-generative.md
+  - ai-2026-pi07-a-steerable-generalist-robotic.md
   - xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry.md
   - ros-navigation-navigation2.md
 tags: [physical-ai, vla, world-model, roadmap, overview, synthesis]
@@ -67,15 +70,15 @@ study_path:
 
 ## 요약 (Summary)
 
-`wiki/physical-ai/`는 65개 페이지로 늘었다. 이 문서는 그 지도다. 무엇이 어디에 있고 어떤 순서로 읽으면 되는지, 분류 기준과 태그 어휘는 무엇인지를 모은다.
+`wiki/physical-ai/`는 70개 페이지로 늘었다. 이 문서는 그 지도다. 무엇이 어디에 있고 어떤 순서로 읽으면 되는지, 분류 기준과 태그 어휘는 무엇인지를 모은다.
 
-가장 먼저 눈에 띄는 건 카테고리가 실은 두 도메인이라는 점이다. 한쪽은 VLA와 foundation model 축으로 `vla` 태그가 붙은 페이지만 46개다. 다른 쪽은 고전 로보틱스 스택으로 LiDAR odometry 계열 6개와 Nav2 계열 4개가 자기들끼리만 링크를 주고받는다. 두 덩이 사이에는 상호 참조가 거의 없다. CLAUDE.md가 정한 40페이지 분할 검토선을 이미 넘겼으니 아래 "분할을 검토할 자리" 절에서 따로 다룬다.
+가장 먼저 눈에 띄는 건 카테고리가 실은 두 도메인이라는 점이다. 한쪽은 VLA와 foundation model 축으로 `vla` 태그가 붙은 페이지만 50개다. 다른 쪽은 고전 로보틱스 스택으로 LiDAR odometry 계열 6개와 Nav2 계열 4개가 자기들끼리만 링크를 주고받는다. 두 덩이 사이에는 상호 참조가 거의 없다. CLAUDE.md가 정한 40페이지 분할 검토선을 이미 넘겼으니 아래 "분할을 검토할 자리" 절에서 따로 다룬다.
 
 두 번째 특징은 자료가 낱개가 아니라 클러스터로 들어왔다는 것이다. 논문 하나를 놓고 원논문·공식 발표글·구현 저장소·한국어 해설을 함께 갖고 있는 프로젝트가 여럿이다. 겹마다 주는 게 달라서 이 중복은 낭비가 아니다. 이 점은 "클러스터로 쌓인다" 절에 정리했다.
 
 ## 클러스터로 쌓인다
 
-프로젝트 단위로 묶으면 카테고리의 모양이 드러난다. 아래 표에서 한 페이지가 두 묶음에 걸치는 경우가 있어 합계는 65와 정확히 맞지 않는다.
+프로젝트 단위로 묶으면 카테고리의 모양이 드러난다. 아래 표에서 한 페이지가 두 묶음에 걸치는 경우가 있어 합계는 70과 정확히 맞지 않는다.
 
 | 클러스터 | 페이지 | 무엇이 모여 있나 |
 |---|---|---|
@@ -86,8 +89,9 @@ study_path:
 | WALL-OSS (X Square Robot) | 5 | 논문 2 + `wall-x` 저장소 + 프로젝트 페이지 + primer |
 | Helix·dual-system | 4 | Figure 발표문 + 한국어 소개 + OpenHelix 논문 + Awesome-Dual-System-VLA |
 | Nav2 | 4 | 공식 저장소 + 공식 문서 + 한국어 개념 정리 2 |
+| GR-1 (ByteDance) | 2 | 논문 + 공식 저장소. 영상 생성 pre-training을 VLA로 잇는 계열의 원형 |
 | 서베이 | 9 | VLA 3(kawaharazuka·xu·sa) + world model 4(hou·li·liu·reuss) + VLN 1 + Physical AI 전체 1 |
-| 개별 모델·프레임워크 | — | OpenVLA·SmolVLA·ACT/ALOHA(각 논문+primer) · LeRobot · ASPIRE · GEN-1.5 |
+| 개별 모델·프레임워크 | — | OpenVLA·SmolVLA·ACT/ALOHA(각 논문+primer) · LeRobot · ASPIRE · GEN-1.5 · Cosmos WFM |
 | 계보 개괄 | 3 | engiuniverse 영상 2 + LearnOpenCV 튜토리얼 1 |
 | awesome 리스트 | 3 | keon · natnew · openhelix-robot |
 | 산업 현황 | 2 | 실리콘밸리 RFM 1·2편 |
@@ -121,8 +125,9 @@ VLA 본류를 따라가는 A 트랙이 기본이다. B와 C는 성격이 달라 
 
 1. [[physical-ai/hou-2026-world-model-for-robot-learning|World Model for Robot Learning (Survey)]] — policy 결합 5분류(IDM·single-backbone·MoE/MoT·unified VLA·latent)와 학습된 시뮬레이터 두 용도로 문헌을 가른다. 병목을 "그럴듯한 미래"가 아니라 "action에 인과적으로 alignment된 실행 가능한 미래"로 옮겨 잡는다.
 2. [[physical-ai/li-2025-a-comprehensive-survey-on-world|World Models for Embodied AI (Survey)]] — 로보틱스·자율주행·범용 비디오를 하나의 좌표계에 올린다. 결합도·시간 전개·장면 형식 세 축.
-3. [[physical-ai/reuss-2026-pretrained-to-imagine-fine-tuned|World-Action Models]] — VLM에서 출발하는 기존 VLA 옆에 영상 backbone에서 출발하는 두 번째 레시피가 자리 잡는 중이라는 지형도. A 트랙과 B 트랙이 만나는 지점이다.
+3. [[physical-ai/reuss-2026-pretrained-to-imagine-fine-tuned|World-Action Models]] — VLM에서 출발하는 기존 VLA 옆에 영상 backbone에서 출발하는 두 번째 레시피가 자리 잡는 중이라는 지형도. A 트랙과 B 트랙이 만나는 지점이다. 그 두 번째 레시피의 원형이 [[physical-ai/wu-2023-unleashing-large-scale-video-generative|GR-1]]로, Ego4D 1인칭 영상 80만 clip에 다음 프레임 예측을 먼저 학습시킨 뒤 같은 모델에 상태 입력과 action 출력만 얹는다.
 4. [[physical-ai/liu-2025-generative-physical-ai-in-vision|Generative Physical AI in Vision (Survey)]] — 생성 모델이 물리 법칙을 지키게 만드는 쪽. 한국어 해설은 [[physical-ai/9bow-2026-physics-aware-generation-world-simulator|PyTorch KR 2편]].
+5. [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform|Cosmos WFM Platform]] — 서베이 넷이 그려 둔 지형의 1차 구현. world foundation model을 데이터 큐레이션부터 tokenizer·pre-training·downstream fine-tuning까지 플랫폼 단위로 묶어 내놓는다. 앞의 분류가 실제 파이프라인에서 어떻게 생겼는지 확인하는 자리다.
 
 ### C 트랙 — 고전 로보틱스 스택
 
@@ -169,30 +174,30 @@ VLA와 직접 이어지지 않는다. 실기기를 굴리려면 필요한 층이
 
 physical-ai 페이지는 도메인 루트 태그 `physical-ai`를 달고 아래에서 1~3개를 고른다. 표기는 하나만 허용한다.
 
-| 묶음 | 태그 (괄호는 65개 페이지에서의 사용 횟수) |
+| 묶음 | 태그 (괄호는 70개 페이지에서의 사용 횟수) |
 |---|---|
-| 학습·제어 방법 | `vla`(46) · `robot-learning`(39) · `world-model`(10) · `imitation-learning`(7) · `rl-control`(3) |
-| 플랫폼·응용 | `manipulation`(31) · `humanoid`(12) · `mobile-robot`(8) · `drone`(2) · `autonomous-driving`(1) · `locomotion`(0) |
-| 환경·인식 | `slam`(7) · `teleoperation`(3) · `simulator`(2) · `sim2real`(1) · `3d-perception`(1) · `spatial-reasoning`(1) |
-| 자원·운영 | `edge-inference`(8) · `benchmark`(7) · `robot-dataset`(5) · `hardware`(0) · `safety`(0) |
+| 학습·제어 방법 | `vla`(50) · `robot-learning`(38) · `world-model`(13) · `imitation-learning`(8) · `rl-control`(3) |
+| 플랫폼·응용 | `manipulation`(35) · `humanoid`(12) · `mobile-robot`(8) · `drone`(2) · `autonomous-driving`(2) · `locomotion`(0) |
+| 환경·인식 | `slam`(7) · `teleoperation`(3) · `simulator`(3) · `sim2real`(1) · `3d-perception`(1) · `spatial-reasoning`(1) |
+| 자원·운영 | `edge-inference`(8) · `benchmark`(8) · `robot-dataset`(5) · `hardware`(0) · `safety`(0) |
 
-분포가 한쪽으로 크게 쏠려 있다. `vla`가 46회로 전체의 71%라 발견 경로로서의 변별력이 거의 없다. `robot-learning`(39)도 사정이 같다. 반대로 `hardware`·`safety`·`locomotion` 셋은 한 번도 안 쓰였다. SONIC 계열이 locomotion을 다루는데도 `humanoid`·`teleoperation`으로 붙은 결과다.
+분포가 한쪽으로 크게 쏠려 있다. `vla`가 50회로 전체의 71%라 발견 경로로서의 변별력이 거의 없다. `robot-learning`(38)도 사정이 같다. 반대로 `hardware`·`safety`·`locomotion` 셋은 한 번도 안 쓰였다. SONIC 계열이 locomotion을 다루는데도 `humanoid`·`teleoperation`으로 붙은 결과다.
 
-1~3개 상한은 지켜지지 않고 있다. 65개 중 17개(26%)가 4개를 달았다. 대부분 `vla`+`robot-learning`+`manipulation`에 하나를 더한 조합이라, 상한을 넘긴 게 아니라 앞의 세 태그가 거의 자동으로 붙는 게 원인에 가깝다. 상한을 4로 올릴지, `vla`·`robot-learning`을 루트 태그처럼 취급해 카운트에서 뺄지는 CLAUDE.md를 고쳐야 하는 결정이라 여기서는 기록만 한다.
+1~3개 상한은 지켜지지 않고 있다. 70개 중 16개(23%)가 4개를 달았다. 대부분 `vla`+`robot-learning`+`manipulation`에 하나를 더한 조합이라, 상한을 넘긴 게 아니라 앞의 세 태그가 거의 자동으로 붙는 게 원인에 가깝다. 상한을 4로 올릴지, `vla`·`robot-learning`을 루트 태그처럼 취급해 카운트에서 뺄지는 CLAUDE.md를 고쳐야 하는 결정이라 여기서는 기록만 한다.
 
 통제 어휘 밖 태그는 한 건 있었다. 엥지유니버스 14편 리뷰가 `video`를 달고 있었는데 이건 태그가 아니라 `type` 값이라 지웠다.
 
 ## 분할을 검토할 자리
 
-CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분할을 다시 보라고 적어 뒀다. 지금 65개다.
+CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분할을 다시 보라고 적어 뒀다. 지금 70개다.
 
 나눌 선은 태그 분포가 이미 그려 준다.
 
 | 묶음 | 페이지 | 성격 |
 |---|---|---|
-| VLA·foundation model | 약 50 | 학습된 policy가 중심. 서로 조밀하게 링크된다 |
+| VLA·foundation model | 약 54 | 학습된 policy가 중심. 서로 조밀하게 링크된다 |
 | 고전 로보틱스 스택 | 10 | FAST-LIO 6 + Nav2 4. 기하·필터·플래닝이 중심이고 위 묶음과 상호 참조가 거의 없다 |
-| world model·생성 | 6 | 예측·시뮬레이션 축. VLA 쪽과 서베이를 통해 이어진다 |
+| world model·생성 | 7 | 예측·시뮬레이션 축. VLA 쪽과 서베이를 통해 이어진다 |
 
 가장 명확한 후보는 고전 스택 10개다. 두 FAST-LIO 논문과 Nav2 문서가 VLA 페이지를 인용할 일이 없고 그 반대도 마찬가지다. 다만 10개는 폴더를 새로 파기엔 적은 수라 아직은 태그로 충분하다는 판단도 가능하다. VLA 묶음이 더 커져 다시 나눠야 할 때가 오면 그때는 계보 축(RT→OpenVLA→π→dual-system)과 서베이·해설 축으로 가르는 편이 자연스럽다. 실제 분할은 CLAUDE.md의 디렉터리 규약을 함께 고쳐야 해서 여기서는 선택지만 남긴다.
 
@@ -200,32 +205,32 @@ CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분�
 
 | 항목 | 값 |
 |---|---|
-| `wiki/physical-ai/` 페이지 | 65 |
-| 자료 유형 | `article` 27 · `paper` 24 · `repo` 10 · `video` 4 |
-| 연도 분포 | 2026: 25 · 2025: 23 · 2024: 7 · 2023: 4 · 2022: 2 · 2021: 1 · 2020: 2 · 2018: 1 |
+| `wiki/physical-ai/` 페이지 | 70 |
+| 자료 유형 | `article` 28 · `paper` 27 · `repo` 11 · `video` 4 |
+| 연도 분포 | 2026: 27 · 2025: 24 · 2024: 8 · 2023: 5 · 2022: 2 · 2021: 1 · 2020: 2 · 2018: 1 |
 | 한국어 자료 | 19 (WikiDocs primer 8 · PyTorch KR 2 · 영상 리뷰 4 · RFM 연재 2 · SLAM/Nav2 3) |
 | 인접 카테고리 페이지 | [[llms/cai-2026-vlm3-vision-language-models]] · [[agents/zou-2026-task-focused-memorization-multimodal-agents]] |
-| 용어 SSOT | [[overviews/glossary-physical-ai]] (67개 용어) |
-| 홈 밴드 | `index.md`의 Physical AI 절에 65줄이 모두 올라 있다 |
+| 용어 SSOT | [[overviews/glossary-physical-ai]] (76개 용어) |
+| 홈 밴드 | `index.md`의 Physical AI 절에 70줄이 모두 올라 있다 |
 
-연도 분포에서 읽히는 게 하나 있다. 2026년 자료 25개 중 상당수가 한국어 primer와 서베이다. 1차 연구는 2024~2025년에 몰려 있고 2026년은 그것을 정리·해설하는 층이 두꺼워진 해다.
+연도 분포에서 읽히는 게 하나 있다. 2026년 자료 27개는 한동안 한국어 primer와 서베이가 대부분이었는데, π0.7이 들어오면서 1차 연구도 섞이기 시작했다. 여전히 원논문의 무게중심은 2024~2025년이고 2026년은 그것을 정리·해설하는 층이 함께 두꺼워지는 해다.
 
 ## 앞으로 채울 자리
 
 - Octo — 계보에서 반복해 언급되는데 원본이 없다. Open X-Embodiment 위에서 diffusion head로 간 93M generalist policy라 OpenVLA와 나란히 놓으면 이산 토큰과 diffusion decoder의 대비가 선명해진다.
 - Diffusion Policy — action chunking과 함께 거의 모든 서베이가 인용하는데 원본이 없다. ACT와 π0 사이의 빈칸이다.
 - Gemini Robotics — 세 개괄 자료가 전부 다루지만 원본이 없다. 클라우드·온보드 분리 배치가 다른 곳에 없는 축이다.
-- world model 1차 논문 — 서베이 4편이 지형을 그려 뒀는데 정작 개별 구현 논문이 없다. 서베이가 인용한 대표 연구 하나를 넣으면 5분류가 실제 코드로 확인된다.
+- world model 1차 논문 — [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform|Cosmos WFM]]과 [[physical-ai/wu-2023-unleashing-large-scale-video-generative|GR-1]]이 들어오면서 절반은 채워졌다. 남은 빈칸은 latent 공간에서 미래를 굴리는 계열이다. hou 서베이의 policy 결합 5분류 중 latent 항목에 놓을 원본이 아직 없다.
 - `safety`·`hardware` — 태그는 있는데 자료가 없다. 로봇 안전 표준이나 실기기 하드웨어 자료가 들어오면 처음 붙는다.
 - `locomotion` — SONIC 계열이 실질적으로 다루지만 태그가 안 붙었다. 자료를 늘리기보다 기존 페이지의 태그를 다시 보는 쪽이 맞다.
-- 자율주행 — `autonomous-driving`이 1회뿐이고 그마저 world model 서베이의 한 절이다. 카테고리 정의에는 들어 있는데 실체가 없다.
+- 자율주행 — `autonomous-driving`은 2회로 늘었지만 둘 다 world model 자료의 응용 절이다(서베이 한 절, Cosmos의 downstream 하나). 카테고리 정의에는 들어 있는데 자율주행 자체를 다룬 1차 자료는 여전히 없다.
 
 새 자료는 CLAUDE.md의 6단계 파이프라인을 그대로 탄다. `raw/`에 원본을 복사하고 도식을 뽑은 뒤 `sources/`에 요약을 쓴다. 큐레이션을 확인하고 `wiki/physical-ai/`에 페이지를 만들고 `index.md`에 한 줄을 넣는다. 계보에서 자리가 분명한 자료면 이 페이지의 `study_path`와 A 트랙에도 단계를 끼워 넣는다.
 
 ## 이 페이지의 한계
 
-- 학습 경로는 65개 중 A 트랙 10개 + 곁길 3개 + B 트랙 4개 + C 트랙 8개만 배치한다. 나머지는 클러스터 표와 `index.md`로 찾아야 한다. 모든 페이지에 읽는 순서를 매기는 건 지도가 아니라 목록이 된다.
-- 클러스터 표의 페이지 수는 한 페이지가 두 묶음에 걸치는 경우를 중복으로 세서 합이 65와 맞지 않는다.
+- 학습 경로는 70개 중 A 트랙 10개 + 곁길 4개 + B 트랙 5개 + C 트랙 10개만 배치한다. 나머지는 클러스터 표와 `index.md`로 찾아야 한다. 모든 페이지에 읽는 순서를 매기는 건 지도가 아니라 목록이 된다.
+- 클러스터 표의 페이지 수는 한 페이지가 두 묶음에 걸치는 경우를 중복으로 세서 합이 70과 맞지 않는다.
 - A 트랙의 6번(ACT/ALOHA)과 7번(π0) 사이 순서는 취향이 갈릴 수 있다. action chunking을 먼저 보는 쪽을 택했는데 이산 토큰 계열을 끝까지 따라가고 싶으면 6번을 뒤로 미뤄도 된다.
 - 태그 통계와 분할 논의는 지금 시점의 스냅샷이다. 페이지가 늘면 다시 세야 한다.
 - 이 문서는 각 페이지의 요약을 다시 요약하지 않는다. 무엇이 어디 있는지와 어떤 순서로 읽는지까지가 범위이고, 내용은 각 페이지가 갖는다.
