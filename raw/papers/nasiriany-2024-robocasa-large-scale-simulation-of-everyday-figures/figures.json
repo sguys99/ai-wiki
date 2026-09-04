@@ -1,0 +1,353 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig01.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig01.png",
+    "page": 1,
+    "caption": "Fig. 1: Overview of RoboCasa. RoboCasa is a simulation framework for training generalist robot agents. Four pillars underlie RoboCasa: (1) Diverse assets, including 120 kitchen scenes and 2,500+ 3D objects, created with the aid of generative AI tools; (2) Cross-embodiment support for mobile manipula",
+    "bbox": [
+      42.96,
+      217.43,
+      568.98,
+      446.28
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.2745,
+      0.9297,
+      0.5635
+    ],
+    "dpi": 300,
+    "area_frac": 0.248,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig03.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig03.png",
+    "page": 4,
+    "caption": "Fig. 3: Kitchen Floor Plans. We consult home planning and architecture magazines and compile a list of common kitchen floor plans. Our floor plans take on a variety of shapes and sizes, from basic designs ( e.g. , one wall) to high-end ones ( e.g. , U-shaped w/ island).",
+    "bbox": [
+      42.96,
+      48.0,
+      596.52,
+      223.11
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.9747,
+      0.2817
+    ],
+    "dpi": 300,
+    "area_frac": 0.2,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig04.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig04.png",
+    "page": 4,
+    "caption": "Fig. 4: Examples of Interactable Appliances. Our simulation framework comes with dozens of appliances. Several types of appliances are articulated. For example, we can open and close doors on microwaves and twist knobs on stoves. Some appliances can undergo state changes, e.g. , when we turn the kno",
+    "bbox": [
+      305.97,
+      260.32,
+      569.01,
+      378.37
+    ],
+    "bbox_norm": [
+      0.5,
+      0.3287,
+      0.9298,
+      0.4777
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig05.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig05.png",
+    "page": 5,
+    "caption": "Fig. 5: Diverse High-Quality 3D Objects. RoboCasa offers 2,509 high- quality 3D objects across 153 diverse categories spanning vegetables, poultry, drinks, and more. Here we illustrate a small subset of these objects.",
+    "bbox": [
+      42.96,
+      52.98,
+      306.0,
+      206.19
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0669,
+      0.5,
+      0.2603
+    ],
+    "dpi": 300,
+    "area_frac": 0.083,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig06.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig06.png",
+    "page": 6,
+    "caption": "Fig. 6: Creating Diverse Tasks with Large Language Models. We employ LLMs to generate diverse tasks. First, we prompt GPT-4 to give diverse high-level kitchen activities. Subsequently, for each activity, we prompt GPT-4 (or Gemini 1.5) to suggest a diverse set of representative tasks. We illustrate ",
+    "bbox": [
+      42.12,
+      47.16,
+      569.04,
+      236.27
+    ],
+    "bbox_norm": [
+      0.0688,
+      0.0595,
+      0.9298,
+      0.2983
+    ],
+    "dpi": 300,
+    "area_frac": 0.206,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig07.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig07.png",
+    "page": 7,
+    "caption": "Fig. 7: Comparison between human demonstrations and machine-generated datasets. We present learning results across 24 atomic tasks spanning diverse robot skills. We compare training on four different multi-task datasets, including a human dataset with 50 demonstrations per task, a machine generated ",
+    "bbox": [
+      42.96,
+      48.0,
+      569.03,
+      189.91
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.9298,
+      0.2398
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig08.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig08.png",
+    "page": 7,
+    "caption": "Fig. 8: Learning Results on Composite Tasks. We learn single-task policies for five representative composite tasks. We compare learning these tasks from scratch with 50 human demonstrations versus fine-tuning a policy trained on machine-generated atomic task data. The fine-tuning method performs bet",
+    "bbox": [
+      333.08,
+      249.44,
+      541.93,
+      331.93
+    ],
+    "bbox_norm": [
+      0.5442,
+      0.3149,
+      0.8855,
+      0.4191
+    ],
+    "dpi": 300,
+    "area_frac": 0.036,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig09.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig09.png",
+    "page": 8,
+    "caption": "Fig. 9: Real-World Experiment Setup. We conduct experiments in a real- world kitchen environment with a Franka Emika Panda arm on a wheeled mobile platform. The two pictures illustrate two of the three evaluation tasks: (left) pick and place an object from the counter to the cabinet, and (right) pic",
+    "bbox": [
+      42.96,
+      48.0,
+      306.02,
+      142.58
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.5,
+      0.18
+    ],
+    "dpi": 300,
+    "area_frac": 0.051,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig10.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig10.png",
+    "page": 8,
+    "caption": "Fig. 10: Real Robot Evaluations. In a real-world kitchen domain with only a handful of demonstrations, we explore co-training policies with our simulation data. Compared to training policies exclusively on in-domain real- world demonstrations, co-training substantially improves policy performance.",
+    "bbox": [
+      313.19,
+      48.4,
+      561.81,
+      175.99
+    ],
+    "bbox_norm": [
+      0.5118,
+      0.0611,
+      0.918,
+      0.2222
+    ],
+    "dpi": 300,
+    "area_frac": 0.065,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig11.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig11.png",
+    "page": 14,
+    "caption": "Fig. 11: Atomic Tasks.",
+    "bbox": [
+      69.34,
+      53.84,
+      542.65,
+      708.71
+    ],
+    "bbox_norm": [
+      0.1133,
+      0.068,
+      0.8867,
+      0.8948
+    ],
+    "dpi": 300,
+    "area_frac": 0.639,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig12.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig12.png",
+    "page": 15,
+    "caption": "Fig. 12: Representative Composite Tasks Across 20 Kitchen Activites.",
+    "bbox": [
+      70.47,
+      142.18,
+      541.53,
+      620.36
+    ],
+    "bbox_norm": [
+      0.1151,
+      0.1795,
+      0.8848,
+      0.7833
+    ],
+    "dpi": 300,
+    "area_frac": 0.465,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/fig13.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/fig13.png",
+    "page": 16,
+    "caption": "Fig. 13: Multi-task Learning on Atomic Tasks: Full Results",
+    "bbox": [
+      85.05,
+      136.97,
+      523.46,
+      625.58
+    ],
+    "bbox_norm": [
+      0.139,
+      0.1729,
+      0.8553,
+      0.7899
+    ],
+    "dpi": 300,
+    "area_frac": 0.442,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table I",
+    "kind": "table",
+    "file": "assets/nasiriany-2024-robocasa-large-scale-simulation-of-everyday/tab01.png",
+    "raw": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/tab01.png",
+    "page": 3,
+    "caption": "TABLE I: Comparison to Popular Simulation Frameworks used in the Robot Learning Literature.",
+    "bbox": [
+      45.99,
+      48.43,
+      566.06,
+      239.94
+    ],
+    "bbox_norm": [
+      0.0751,
+      0.0612,
+      0.9249,
+      0.303
+    ],
+    "dpi": 300,
+    "area_frac": 0.205,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2024-robocasa-large-scale-simulation-of-everyday-figures/_overlay/p03.png"
+  }
+]

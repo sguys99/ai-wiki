@@ -356,6 +356,7 @@ GR00T N1이 한계로 지목한 "더 강한 vision-language backbone"은 [[llms/
 - [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] — 같은 NVIDIA GEAR 계열의 전신 모션 트래킹. GR00T N1이 조작을 맡고 SONIC이 whole-body control을 맡는 분업 관계
 - [[physical-ai/nvlabs-gr00t-wholebodycontrol]] — SONIC·Decoupled WBC 실행 스택. GR00T N1.5·N1.6이 쓴 컨트롤러 세대가 여기 들어 있다
 - [[physical-ai/nvlabs-2026-gear-sonic-project-page]] — GEAR SONIC 프로젝트 페이지
+- [[physical-ai/nasiriany-2024-robocasa-large-scale-simulation-of-everyday]] — 이 논문이 세 벤치마크 중 하나로 쓰는 RoboCasa Kitchen의 원 논문. neural trajectory co-training 실험의 30/100/300 데이터 구간도 그쪽 환경 정의 위에서 잰다
 - [[physical-ai/hou-2026-world-model-for-robot-learning]] — policy·world model 결합 5분류. GR00T N1의 neural trajectory 증강이 latent·IDM 결합에 해당
 - [[llms/chen-2025-eagle-25-boosting-long-context-post-training]] — System 2로 쓰인 Eagle 계열의 다음 세대 기술 보고서. GR00T N1.5의 backbone이 이쪽이다
 - [[llms/nvlabs-eagle]] — Eagle 계열 공식 저장소. N1·N1.5·N1.6의 backbone 채택 이력과 model zoo가 있다

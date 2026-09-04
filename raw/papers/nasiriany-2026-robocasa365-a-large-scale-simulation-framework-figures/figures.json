@@ -1,0 +1,570 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/fig01.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Overview of RoboCasa365. RoboCasa365 is a large-scale simulation framework for training and benchmarking generalist robots. RoboCasa365 includes 365 everyday tasks, 2500 diverse kitchen scenes, over 600 hours of human demonstration data, plus 1600 hours of synthetically generated demonstra",
+    "bbox": [
+      101.8,
+      450.58,
+      510.0,
+      677.65
+    ],
+    "bbox_norm": [
+      0.1663,
+      0.5689,
+      0.8333,
+      0.8556
+    ],
+    "dpi": 300,
+    "area_frac": 0.191,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/fig02.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Kitchen Scenes. Our simulation framework features 2,500 distinct kitchen scenes for pretraining (top, representative samples shown), and 10 distinct target kitchen scenes (bottom, all scenes shown).",
+    "bbox": [
+      102.0,
+      75.86,
+      510.01,
+      338.83
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8334,
+      0.4278
+    ],
+    "dpi": 300,
+    "area_frac": 0.221,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/fig03.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 3: Composite Tasks. RoboCasa365 features 300 composite tasks that involve a sequence of skills. We use large language models to generate a set of high-level activities, and for each activity, a set of task blueprints. There are 6 activity families (high-level categories) spanning 60 activitie",
+    "bbox": [
+      49.08,
+      69.24,
+      556.8,
+      297.46
+    ],
+    "bbox_norm": [
+      0.0802,
+      0.0874,
+      0.9098,
+      0.3756
+    ],
+    "dpi": 300,
+    "area_frac": 0.239,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/fig04.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/fig04.png",
+    "page": 6,
+    "caption": "Figure 4: Distribution of task lengths (by number of subtasks) and dataset episode lengths (by number of seconds). We observe a long tail of tasks and data representing long-horizon behaviors.",
+    "bbox": [
+      102.0,
+      425.79,
+      509.98,
+      587.91
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.5376,
+      0.8333,
+      0.7423
+    ],
+    "dpi": 300,
+    "area_frac": 0.136,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/fig05.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/fig05.png",
+    "page": 8,
+    "caption": "Figure 5: Foundation Model Training Results. Pre-training enables more effective learning of downstream tasks with significant gains in data ef- ficiency.",
+    "bbox": [
+      319.8,
+      311.56,
+      509.99,
+      454.24
+    ],
+    "bbox_norm": [
+      0.5226,
+      0.3934,
+      0.8333,
+      0.5735
+    ],
+    "dpi": 300,
+    "area_frac": 0.056,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/fig06.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/fig06.png",
+    "page": 10,
+    "caption": "Figure 6: Real-Robot Platform. Our real-world setup features a Panda robot arm in a real kitchen.",
+    "bbox": [
+      102.0,
+      181.98,
+      510.0,
+      338.09
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2298,
+      0.8333,
+      0.4269
+    ],
+    "dpi": 300,
+    "area_frac": 0.131,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/fig07.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/fig07.png",
+    "page": 18,
+    "caption": "Figure 7: Post-training Atomic-Seen Tasks (18)",
+    "bbox": [
+      102.0,
+      157.27,
+      512.53,
+      614.6
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1986,
+      0.8375,
+      0.776
+    ],
+    "dpi": 300,
+    "area_frac": 0.387,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/fig08.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/fig08.png",
+    "page": 19,
+    "caption": "Figure 8: Post-training Composite-Seen Tasks (16)",
+    "bbox": [
+      102.0,
+      89.72,
+      511.96,
+      702.08
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1133,
+      0.8365,
+      0.8865
+    ],
+    "dpi": 300,
+    "area_frac": 0.518,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/fig09.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/fig09.png",
+    "page": 20,
+    "caption": "Figure 9: Post-training Composite-Unseen Tasks (16)",
+    "bbox": [
+      102.15,
+      76.26,
+      509.85,
+      718.51
+    ],
+    "bbox_norm": [
+      0.1669,
+      0.0963,
+      0.8331,
+      0.9072
+    ],
+    "dpi": 300,
+    "area_frac": 0.54,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/fig10.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/fig10.png",
+    "page": 21,
+    "caption": "Figure 10: Camera Images. Camera images from three views (rendered at 256 × 256 resolution are fed into the model.)",
+    "bbox": [
+      141.6,
+      75.86,
+      470.39,
+      193.46
+    ],
+    "bbox_norm": [
+      0.2314,
+      0.0958,
+      0.7686,
+      0.2443
+    ],
+    "dpi": 300,
+    "area_frac": 0.08,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/tab01.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1: Multi-task Training Results. We compare state-of-the-art policy learning approaches on our human pretraining data across 300 tasks, and report task success rates (%) across seen and unseen tasks. We see that learning composite tasks is more challenging, and that performance suffers when eva",
+    "bbox": [
+      161.4,
+      342.62,
+      448.42,
+      416.2
+    ],
+    "bbox_norm": [
+      0.2637,
+      0.4326,
+      0.7327,
+      0.5255
+    ],
+    "dpi": 300,
+    "area_frac": 0.044,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/tab02.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/tab02.png",
+    "page": 8,
+    "caption": "Table 2: Foundation Model Training Results. Comparing the impact of training on pretraining and target datasets on learning downstream tasks. The performances are measured by average task success rates (%).",
+    "bbox": [
+      102.0,
+      33.15,
+      510.0,
+      156.1
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0419,
+      0.8333,
+      0.1971
+    ],
+    "dpi": 300,
+    "area_frac": 0.103,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/tab03.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/tab03.png",
+    "page": 9,
+    "caption": "Table 3: Lifelong Learning Results. We train across four phases with progressively longer horizon tasks. After each phase, we report task success rates (%) across all tasks seen in the current and previous phases.",
+    "bbox": [
+      161.39,
+      76.18,
+      448.61,
+      140.34
+    ],
+    "bbox_norm": [
+      0.2637,
+      0.0962,
+      0.733,
+      0.1772
+    ],
+    "dpi": 300,
+    "area_frac": 0.038,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/tab04.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/tab04.png",
+    "page": 9,
+    "caption": "Table 4: Pretraining Task Diversity Results. We report task success rates (%) and compare the downstream effects of training on different mixtures of pretraining data.",
+    "bbox": [
+      140.35,
+      396.93,
+      467.28,
+      513.94
+    ],
+    "bbox_norm": [
+      0.2293,
+      0.5012,
+      0.7635,
+      0.6489
+    ],
+    "dpi": 300,
+    "area_frac": 0.079,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/tab05.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/tab05.png",
+    "page": 10,
+    "caption": "Table 5: Real-world evaluations. Across four real-world tasks, we compare training on real-world data only versus training on a mixture of our simulation and real-world data. By additionally using simulation data, it outperforms training on real-world data only by an average task success rate of 18.",
+    "bbox": [
+      141.59,
+      376.37,
+      468.64,
+      426.81
+    ],
+    "bbox_norm": [
+      0.2314,
+      0.4752,
+      0.7658,
+      0.5389
+    ],
+    "dpi": 300,
+    "area_frac": 0.034,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/tab06.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/tab06.png",
+    "page": 16,
+    "caption": "Table 6: Inventory of fixtures and appliances",
+    "bbox": [
+      230.7,
+      535.27,
+      381.3,
+      702.77
+    ],
+    "bbox_norm": [
+      0.377,
+      0.6758,
+      0.623,
+      0.8873
+    ],
+    "dpi": 300,
+    "area_frac": 0.052,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/tab07.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/tab07.png",
+    "page": 21,
+    "caption": "Table 7: Dataset statistics across pretraining and target settings.",
+    "bbox": [
+      141.6,
+      280.33,
+      468.43,
+      335.1
+    ],
+    "bbox_norm": [
+      0.2314,
+      0.354,
+      0.7654,
+      0.4231
+    ],
+    "dpi": 300,
+    "area_frac": 0.037,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/tab08.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/tab08.png",
+    "page": 22,
+    "caption": "Table 8: Pretraining scene diversity results. Increasing the composition of scenes in pretraining data improves downstream task performance.",
+    "bbox": [
+      171.3,
+      424.07,
+      438.88,
+      479.26
+    ],
+    "bbox_norm": [
+      0.2799,
+      0.5354,
+      0.7171,
+      0.6051
+    ],
+    "dpi": 300,
+    "area_frac": 0.03,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/tab09.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/tab09.png",
+    "page": 23,
+    "caption": "Table 9: Evaluation of robustness under different perturbations.",
+    "bbox": [
+      111.89,
+      96.05,
+      498.48,
+      136.26
+    ],
+    "bbox_norm": [
+      0.1828,
+      0.1213,
+      0.8145,
+      0.1721
+    ],
+    "dpi": 300,
+    "area_frac": 0.032,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/tab10.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/tab10.png",
+    "page": 23,
+    "caption": "Table 10: Policy success rates (%) comparing full vs LoRA fine-tuning for GR00T N1.5.",
+    "bbox": [
+      131.7,
+      421.22,
+      478.29,
+      468.1
+    ],
+    "bbox_norm": [
+      0.2152,
+      0.5318,
+      0.7815,
+      0.591
+    ],
+    "dpi": 300,
+    "area_frac": 0.034,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/nasiriany-2026-robocasa365-a-large-scale-simulation-framework/tab11.png",
+    "raw": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/tab11.png",
+    "page": 25,
+    "caption": "Table 11: Foundation Model Training Results.",
+    "bbox": [
+      148.15,
+      110.75,
+      463.85,
+      681.04
+    ],
+    "bbox_norm": [
+      0.2421,
+      0.1398,
+      0.7579,
+      0.8599
+    ],
+    "dpi": 300,
+    "area_frac": 0.371,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nasiriany-2026-robocasa365-a-large-scale-simulation-framework-figures/_overlay/p25.png"
+  }
+]

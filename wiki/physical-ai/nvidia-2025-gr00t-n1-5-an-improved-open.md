@@ -252,6 +252,8 @@ GR-1이 아닌 다른 embodiment에서도 확인했다. Unitree G1으로 teleope
 - [[physical-ai/nvidia-2025-accelerate-generalist-humanoid-robot-development]] — N1 릴리스 공지. GPU 요구사항과 실무 절차 쪽
 - [[llms/chen-2025-eagle-25-boosting-long-context-post-training]] — N1.5의 VLM backbone인 Eagle 2.5 기술 보고서
 - [[llms/nvlabs-eagle]] — Eagle 계열 저장소. Eagle 2→N1, Eagle 2.5→N1.5, native resolution 변형→N1.6 채택 이력이 날짜로 기록돼 있다
+- [[physical-ai/nasiriany-2024-robocasa-large-scale-simulation-of-everyday]] — "RoboCasa 과제당 demo 30개 17.4 → 47.5"를 잰 시뮬레이션 환경의 원 논문
+- [[physical-ai/nasiriany-2026-robocasa365-a-large-scale-simulation-framework]] — 후속 벤치마크. GR00T N1.5를 π0·π0.5·Diffusion Policy와 같은 조건에서 재고 이후 실험의 기준 모델로 삼는다
 - [[physical-ai/hou-2026-world-model-for-robot-learning]] — FLARE가 속한 latent 공간 world modeling 흐름
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform]] — DreamGen이 바탕으로 삼은 영상 생성 기술
 - [[physical-ai/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x]] — pre-training mixture의 OpenXE와 이어지는 공개 데이터셋
