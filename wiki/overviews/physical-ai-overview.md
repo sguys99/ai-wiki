@@ -79,7 +79,7 @@ study_path:
 
 | 클러스터 | 페이지 | 무엇이 모여 있나 |
 |---|---|---|
-| π 계열 (Physical Intelligence) | 8 | 논문 3(π0·π0.5·π*0.6) + 공식 발표글 3 + `openpi` 저장소 + 한국어 primer 1 |
+| π 계열 (Physical Intelligence) | 10 | 논문 4(π0·π0.5·π*0.6·π0.7) + 공식 발표글 4 + `openpi` 저장소 + 한국어 primer 1 |
 | GR00T·GEAR (NVIDIA) | 7 | N1 논문 + NVIDIA 개발자 블로그 + `Isaac-GR00T`(N1.7) + primer + SONIC 3부작 |
 | RT 계열 (Google) | 6 | RT-1·RT-2 논문 + primer 2 + 한국어 리뷰 영상 + Open X-Embodiment(RT-X) |
 | FAST-LIO 계열 | 6 | 논문 2 + 공식 저장소 + 한국어 리뷰 3(글 1·영상 2, Faster-LIO 포함) |
@@ -113,7 +113,7 @@ VLA 본류를 따라가는 A 트랙이 기본이다. B와 C는 성격이 달라 
 9. [[physical-ai/cui-2025-openhelix-a-short-survey-empirical|OpenHelix]] — dual-system에 판정 기준을 세우고 설계 축 7개를 실험으로 확인한다. 용어가 헐거워지는 것을 막는 자리다.
 10. [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics|VLA full-stack 서베이]] — 여기까지 온 뒤 좌표계를 맞춘다. backbone×action head 7분류가 앞서 읽은 모델들을 제자리에 놓아 준다.
 
-곁길이 셋 있다. 규모를 줄이는 방향이 궁금하면 [[physical-ai/shukor-2025-smolvla-a-vision-language-action-model|SmolVLA]](450M·GPU 한 장), 학습 신호를 현장으로 옮기는 방향이면 [[physical-ai/amin-2025-pistar06-a-vla-that-learns|π*0.6]](RECAP), pre-training 자체를 policy로 쓰는 방향이면 [[physical-ai/x-square-robot-2026-wall-oss-05-technical-report|Wall-OSS-0.5]]다. 각각 앞에 한국어 primer가 하나씩 붙어 있다.
+곁길이 넷 있다. prompt에 무엇을 넣느냐로 데이터를 살리는 방향이면 [[physical-ai/ai-2026-pi07-a-steerable-generalist-robotic|π0.7]](episode metadata·subgoal image), 규모를 줄이는 방향이 궁금하면 [[physical-ai/shukor-2025-smolvla-a-vision-language-action-model|SmolVLA]](450M·GPU 한 장), 학습 신호를 현장으로 옮기는 방향이면 [[physical-ai/amin-2025-pistar06-a-vla-that-learns|π*0.6]](RECAP), pre-training 자체를 policy로 쓰는 방향이면 [[physical-ai/x-square-robot-2026-wall-oss-05-technical-report|Wall-OSS-0.5]]다. 뒤의 셋은 앞에 한국어 primer가 하나씩 붙어 있다.
 
 전체 계보를 30분 안에 훑고 싶으면 [[physical-ai/engiuniverse-2025-14-key-physical-ai-papers|엥지유니버스 14편 리뷰]]나 [[physical-ai/learnopencv-2025-vision-language-action-models-vla|LearnOpenCV 튜토리얼]]이 지름길이다. 다만 둘 다 개괄이라 수치 근거가 필요한 비교에는 원논문을 봐야 한다.
 

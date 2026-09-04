@@ -337,6 +337,7 @@ VLA 계보에서 보면 이산 토큰과 연속 표현이 여기서 한 모델 �
 ## 관련 페이지 (Related Pages)
 
 - [[physical-ai/physical-intelligence-2025-a-vla-with-open-world]] — 같은 날 올라온 공식 블로그. 언어 ablation 수치가 숫자로 적혀 있고 무편집 데모 영상이 있다
+- [[physical-ai/ai-2026-pi07-a-steerable-generalist-robotic]] — 두 세대 뒤. subtask instruction을 여기서 물려받아 subgoal image·episode metadata까지 prompt를 넓힌다
 - [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]] — 직전 세대. flow matching action expert와 cross-embodiment 학습의 출처
 - [[physical-ai/physical-intelligence-openpi]] — 레퍼런스 구현. π0.5 base checkpoint와 fine-tuning 파이프라인 공개
 - [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]] — 이산 토큰 계열 오픈소스 VLA

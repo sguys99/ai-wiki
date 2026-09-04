@@ -277,6 +277,7 @@ RT-2 이후 VLA 계보에서 강화학습은 오래 주변부에 있었다. [[ph
 
 ## 관련 페이지 (Related Pages)
 
+- [[physical-ai/ai-2026-pi07-a-steerable-generalist-robotic]] — 후속 세대 π0.7. 여기서 만든 RL specialist의 experience를 episode metadata와 함께 distillation해 하나의 generalist policy로 되돌린다
 - [[physical-ai/physical-intelligence-2025-a-vla-that-learns-from]] — 같은 날 올라온 공식 블로그. 배치 규모(에스프레소 18시간·빨래 50종·상자 59개)와 무편집 영상이 여기에 있다
 - [[physical-ai/jo-2026-pi-0-6-vla-primer]] — 이 논문의 한국어 입문 해설. 강화학습 기초부터 RECAP 수식 유도까지 풀어 쓴다
 - [[physical-ai/black-2025-pi05-a-vision-language-action-model-with]] — 직전 세대. π0.6의 바탕이 되는 co-training 레시피와 2단 추론의 출처

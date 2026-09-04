@@ -79,6 +79,7 @@ Physical Intelligence는 논문과 블로그를 같은 날 내는 패턴을 유�
 
 ## 관련 페이지 (Related Pages)
 
+- [[physical-ai/physical-intelligence-2026-a-steerable-model-with-emergent]] — 다음 세대 π0.7의 발표문. 같은 형식이고, RECAP experience를 strategy metadata로 흡수했다는 서술이 여기에 있다
 - [[physical-ai/amin-2025-pistar06-a-vla-that-learns]] — 같은 날 공개된 논문. 수식 유도·ablation·평가 기준이 여기에 있다
 - [[physical-ai/jo-2026-pi-0-6-vla-primer]] — 한국어 입문 해설. 강화학습 기초부터 RECAP 수식까지 풀어 쓴다
 - [[physical-ai/physical-intelligence-2025-a-vla-with-open-world]] — π0.5 블로그. 같은 형식의 직전 발표문
