@@ -3,7 +3,7 @@ title: "Are We Ready For An Agent-Native Memory System?"
 type: paper
 year: 2026
 category: agents
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/zhou-2026-are-we-ready-for-an.pdf
+raw_path: raw/papers/zhou-2026-are-we-ready-for-an.pdf
 raw_filename: "zhou-2026-are-we-ready-for-an.pdf"
 source_collection: external
 authors: "Wei Zhou, Xuanhe Zhou, Shaokun Han, Hongming Xu, Guoliang Li, Zhiyu Li, Feiyu Xiong, Fan Wu"

@@ -3,7 +3,7 @@ title: "Your Embedding Model is SMARTer Than You Think"
 type: paper
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/zhang-2026-your-embedding-model-is-smarter.pdf
+raw_path: raw/papers/zhang-2026-your-embedding-model-is-smarter.pdf
 raw_filename: "zhang-2026-your-embedding-model-is-smarter.pdf"
 source_collection: external
 source: zhang-2026-your-embedding-model-is-smarter.md

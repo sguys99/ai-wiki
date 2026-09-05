@@ -3,7 +3,7 @@ title: "RAG is no longer just \"vector search + LLM\""
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/pandey-2026-rag-is-no-longer-just.md
+raw_path: raw/articles/pandey-2026-rag-is-no-longer-just.md
 raw_filename: "pandey-2026-rag-is-no-longer-just.md"
 source_collection: external
 author: "Brij Kishore Pandey"

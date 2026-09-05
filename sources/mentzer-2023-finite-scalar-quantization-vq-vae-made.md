@@ -3,7 +3,7 @@ title: "Finite Scalar Quantization: VQ-VAE Made Simple"
 type: paper
 year: 2023
 category: llms
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made.pdf
+raw_path: raw/papers/mentzer-2023-finite-scalar-quantization-vq-vae-made.pdf
 raw_filename: "mentzer-2023-finite-scalar-quantization-vq-vae-made.pdf"
 source_collection: external
 authors: "Fabian Mentzer, David Minnen, Eirikur Agustsson, Michael Tschannen"

@@ -3,7 +3,7 @@ title: "SONIC: Supersizing Motion Tracking for Natural Humanoid Whole-Body Contr
 type: paper
 year: 2025
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/luo-2025-sonic-supersizing-motion-tracking.pdf
+raw_path: raw/papers/luo-2025-sonic-supersizing-motion-tracking.pdf
 raw_filename: "luo-2025-sonic-supersizing-motion-tracking.pdf"
 source_collection: external
 authors: "Zhengyi Luo, Ye Yuan, Tingwu Wang, Chenran Li, Fernando Castañeda, Sirui Chen, Zi-Ang Cao, Jiefeng Li, David Minor, Qingwei Ben, Jinhyung Park, David Sami, Zi Wang, Xingye Da, Runyu Ding, Cyrus Hogg, Lina Song, Edy Lim, Eugene Jeong, Tairan He, Haoru Xue, Wenli Xiao, Simon Yuen, Jan Kautz, Yan Chang, Umar Iqbal, Linxi \"Jim\" Fan, Yuke Zhu (NVIDIA)"

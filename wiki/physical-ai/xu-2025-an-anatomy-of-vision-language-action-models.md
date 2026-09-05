@@ -3,7 +3,7 @@ title: "An Anatomy of Vision-Language-Action Models: From Modules to Milestones 
 type: paper
 year: 2025
 category: physical-ai
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/xu-2025-an-anatomy-of-vision-language-action-models.pdf
+raw_path: raw/papers/xu-2025-an-anatomy-of-vision-language-action-models.pdf
 raw_filename: "xu-2025-an-anatomy-of-vision-language-action-models.pdf"
 source_collection: external
 source: xu-2025-an-anatomy-of-vision-language-action-models.md

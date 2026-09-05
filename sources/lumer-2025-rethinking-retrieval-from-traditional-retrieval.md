@@ -3,7 +3,7 @@ title: "Rethinking Retrieval: From Traditional Retrieval Augmented Generation to
 type: paper
 year: 2025
 category: database
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval.pdf
+raw_path: raw/papers/lumer-2025-rethinking-retrieval-from-traditional-retrieval.pdf
 raw_filename: "lumer-2025-rethinking-retrieval-from-traditional-retrieval.pdf"
 source_collection: external
 authors: "Elias Lumer, Matt Melich, Olivia Zino, Elena Kim, Sara Dieter, Pradeep Honaganahalli Basavaraju, Vamse Kumar Subbiah, James A. Burke, Roberto Hernandez (PricewaterhouseCoopers U.S.)"

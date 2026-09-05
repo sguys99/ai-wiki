@@ -3,7 +3,7 @@ title: "Computer Memory vs GBrain"
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/gajjar-2026-gbrain-vs-computer-memory.md
+raw_path: raw/articles/gajjar-2026-gbrain-vs-computer-memory.md
 raw_filename: "gajjar-2026-gbrain-vs-computer-memory.md"
 source_collection: external
 author: "Arth Gajjar"

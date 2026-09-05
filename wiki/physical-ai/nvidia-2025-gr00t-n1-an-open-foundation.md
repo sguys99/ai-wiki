@@ -4,7 +4,7 @@ type: paper
 year: 2025
 category: physical-ai
 source: nvidia-2025-gr00t-n1-an-open-foundation.md
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/nvidia-2025-gr00t-n1-an-open-foundation.pdf
+raw_path: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation.pdf
 raw_filename: "nvidia-2025-gr00t-n1-an-open-foundation.pdf"
 source_collection: external
 authors: "NVIDIA (contributor 목록은 논문 Appendix A)"

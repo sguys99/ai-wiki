@@ -3,7 +3,7 @@ title: "A Survey of Physical AI: A History from ChatGPT to World Models and Embo
 type: paper
 year: 2026
 category: physical-ai
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/zhang-2026-a-survey-of-physical-ai.pdf
+raw_path: raw/papers/zhang-2026-a-survey-of-physical-ai.pdf
 raw_filename: "zhang-2026-a-survey-of-physical-ai.pdf"
 source_collection: external
 source: zhang-2026-a-survey-of-physical-ai.md

@@ -3,7 +3,7 @@ title: "TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate
 type: paper
 year: 2025
 category: database
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/zandieh-2025-turboquant-online-vector-quantization-with.pdf
+raw_path: raw/papers/zandieh-2025-turboquant-online-vector-quantization-with.pdf
 raw_filename: "zandieh-2025-turboquant-online-vector-quantization-with.pdf"
 source_collection: external
 authors: "Amir Zandieh (Google Research), Majid Daliri (NYU), Majid Hadian (Google DeepMind), Vahab Mirrokni (Google Research)"

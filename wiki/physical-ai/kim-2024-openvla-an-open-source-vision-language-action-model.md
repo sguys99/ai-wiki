@@ -4,7 +4,7 @@ type: paper
 year: 2024
 category: physical-ai
 source: kim-2024-openvla-an-open-source-vision-language-action-model.md
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model.pdf
+raw_path: raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model.pdf
 raw_filename: "kim-2024-openvla-an-open-source-vision-language-action-model.pdf"
 source_collection: external
 authors: "Moo Jin Kim·Karl Pertsch·Siddharth Karamcheti (공동 1저자) 외 (Stanford·UC Berkeley·Toyota Research Institute·Google DeepMind·Physical Intelligence·MIT; 지도 Sergey Levine·Percy Liang·Chelsea Finn)"

@@ -4,7 +4,7 @@ type: paper
 year: 2025
 category: physical-ai
 source: black-2025-pi05-a-vision-language-action-model-with.md
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/black-2025-pi05-a-vision-language-action-model-with.pdf
+raw_path: raw/papers/black-2025-pi05-a-vision-language-action-model-with.pdf
 raw_filename: "black-2025-pi05-a-vision-language-action-model-with.pdf"
 source_collection: external
 authors: "Kevin Black·Noah Brown·Danny Driess·Chelsea Finn·Karol Hausman·Brian Ichter·Sergey Levine·Karl Pertsch·Lucy Xiaoyang Shi·Quan Vuong 외 (Physical Intelligence, 총 35인)"

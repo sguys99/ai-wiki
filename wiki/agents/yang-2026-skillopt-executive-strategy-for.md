@@ -4,7 +4,7 @@ type: paper
 year: 2026
 category: agents
 source: yang-2026-skillopt-executive-strategy-for.md
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/yang-2026-skillopt-executive-strategy-for.pdf
+raw_path: raw/papers/yang-2026-skillopt-executive-strategy-for.pdf
 raw_filename: "yang-2026-skillopt-executive-strategy-for.pdf"
 source_collection: external
 authors: "Yifan Yang, Ziyang Gong, Weiquan Huang, Qihao Yang, Ziwei Zhou, Zisu Huang, Yan Li, Xuemei Gao, Qi Dai, Bei Liu, Kai Qiu, Yuqing Yang, Dongdong Chen, Xue Yang, Chong Luo"

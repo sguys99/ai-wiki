@@ -3,7 +3,7 @@ title: "Vectorless RAG: PageIndex"
 type: article
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/geeksforgeeks-2026-vectorless-rag-pageindex.md
+raw_path: raw/articles/geeksforgeeks-2026-vectorless-rag-pageindex.md
 raw_filename: "geeksforgeeks-2026-vectorless-rag-pageindex.md"
 source: geeksforgeeks-2026-vectorless-rag-pageindex.md
 source_collection: external

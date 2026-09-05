@@ -3,7 +3,7 @@ title: "MCP Server Architecture Patterns for LLM-Integrated Applications"
 type: paper
 year: 2026
 category: agents
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/rodrigues-2026-mcp-server-architecture-patterns.pdf
+raw_path: raw/papers/rodrigues-2026-mcp-server-architecture-patterns.pdf
 raw_filename: "rodrigues-2026-mcp-server-architecture-patterns.pdf"
 source_collection: external
 authors: "Carson Rodrigues, Oysturn Vas"

@@ -3,7 +3,7 @@ title: "Physical AI 연구 한 번에 살펴보기 2편: 물리를 이해하는 
 type: article
 year: 2026
 category: physical-ai
-raw_path: /home/sguys99/project/ai-wiki/raw/articles/9bow-2026-physics-aware-generation-world-simulator.md
+raw_path: raw/articles/9bow-2026-physics-aware-generation-world-simulator.md
 raw_filename: "9bow-2026-physics-aware-generation-world-simulator.md"
 source_collection: external
 author: "9bow (박정환)"

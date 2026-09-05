@@ -3,7 +3,7 @@ title: "LightRAG: Simple and Fast Retrieval-Augmented Generation"
 type: paper
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/guo-2025-lightrag-simple-and-fast.pdf
+raw_path: raw/papers/guo-2025-lightrag-simple-and-fast.pdf
 raw_filename: "guo-2025-lightrag-simple-and-fast.pdf"
 source_collection: external
 authors: "Zirui Guo, Lianghao Xia, Yanhua Yu, Tu Ao, Chao Huang"

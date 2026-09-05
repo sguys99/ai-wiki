@@ -4,7 +4,7 @@ type: paper
 year: 2021
 category: physical-ai
 source: xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry.md
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry.pdf
+raw_path: raw/papers/xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry.pdf
 raw_filename: "xu-2021-fast-lio2-fast-direct-lidar-inertial-odometry.pdf"
 source_collection: external
 authors: "Wei Xu, Yixi Cai, Dongjiao He, Jiarong Lin, Fu Zhang"

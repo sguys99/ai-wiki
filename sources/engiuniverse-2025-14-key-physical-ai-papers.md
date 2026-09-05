@@ -3,7 +3,7 @@ title: "Physical AI 핵심 논문 14편 리뷰 | 2025년까지의 기술 흐름 
 type: video
 year: 2025
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/videos/engiuniverse-2025-14-key-physical-ai-papers.md
+raw_path: raw/videos/engiuniverse-2025-14-key-physical-ai-papers.md
 raw_filename: "engiuniverse-2025-14-key-physical-ai-papers.md"
 source_collection: external
 channel: "엥지유니버스 | 로봇 엔지니어"

@@ -3,7 +3,7 @@ title: "AKB 제품 소개 — 에이전트를 위한 올인원 지식베이스 (
 type: report
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/reports/dnotitia-2026-akb-product-introduction.pdf
+raw_path: raw/reports/dnotitia-2026-akb-product-introduction.pdf
 raw_filename: "dnotitia-2026-akb-product-introduction.pdf"
 source_collection: external
 org: "Dnotitia"

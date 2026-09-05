@@ -3,7 +3,7 @@ title: "World Model for Robot Learning: A Comprehensive Survey"
 type: paper
 year: 2026
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/hou-2026-world-model-for-robot-learning.pdf
+raw_path: raw/papers/hou-2026-world-model-for-robot-learning.pdf
 raw_filename: "hou-2026-world-model-for-robot-learning.pdf"
 source_collection: external
 source: hou-2026-world-model-for-robot-learning.md

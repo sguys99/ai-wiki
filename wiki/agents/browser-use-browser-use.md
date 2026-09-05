@@ -3,7 +3,7 @@ title: "Browser Use — Make websites accessible for AI agents"
 type: repo
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/browser-use-browser-use.md
+raw_path: raw/repos/browser-use-browser-use.md
 raw_filename: "browser-use-browser-use.md"
 source_collection: external
 source: browser-use-browser-use.md

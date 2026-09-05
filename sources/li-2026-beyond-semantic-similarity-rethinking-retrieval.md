@@ -3,7 +3,7 @@ title: "Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via 
 type: paper
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval.pdf
+raw_path: raw/papers/li-2026-beyond-semantic-similarity-rethinking-retrieval.pdf
 raw_filename: "li-2026-beyond-semantic-similarity-rethinking-retrieval.pdf"
 source_collection: external
 tags: [retrieval, agentic-search, RAG, vectorless, terminal-tools, grep, BrowseComp-Plus, BRIGHT, BEIR, deep-research]

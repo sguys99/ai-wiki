@@ -3,7 +3,7 @@ title: "Graphify — Knowledge Graphs for AI Coding Assistants"
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/shamsi-2026-graphify-knowledge-graphs-for-ai.md
+raw_path: raw/articles/shamsi-2026-graphify-knowledge-graphs-for-ai.md
 raw_filename: "shamsi-2026-graphify-knowledge-graphs-for-ai.md"
 source_collection: external
 author: "Safi Shamsi"

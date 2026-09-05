@@ -3,7 +3,7 @@ title: "GR00T N1: An Open Foundation Model for Generalist Humanoid Robots"
 type: paper
 year: 2025
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/nvidia-2025-gr00t-n1-an-open-foundation.pdf
+raw_path: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation.pdf
 raw_filename: "nvidia-2025-gr00t-n1-an-open-foundation.pdf"
 source_collection: external
 authors: "NVIDIA (contributor 목록은 논문 Appendix A)"

@@ -3,7 +3,7 @@ title: "From Local to Global: A GraphRAG Approach to Query-Focused Summarization
 type: article
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/dsba-2025-graphrag-paper-review.pdf
+raw_path: raw/articles/dsba-2025-graphrag-paper-review.pdf
 raw_filename: "dsba-2025-graphrag-paper-review.pdf"
 source_collection: external
 author: "김도윤 (Kim Doyoon)"

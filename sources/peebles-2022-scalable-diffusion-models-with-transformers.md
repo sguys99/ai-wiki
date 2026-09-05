@@ -3,7 +3,7 @@ title: "Scalable Diffusion Models with Transformers"
 type: paper
 year: 2022
 category: llms
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/peebles-2022-scalable-diffusion-models-with-transformers.pdf
+raw_path: raw/papers/peebles-2022-scalable-diffusion-models-with-transformers.pdf
 raw_filename: "peebles-2022-scalable-diffusion-models-with-transformers.pdf"
 source_collection: external
 authors: "William Peebles (UC Berkeley), Saining Xie (New York University)"

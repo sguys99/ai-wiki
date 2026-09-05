@@ -3,7 +3,7 @@ title: "RAG vs Graph RAG vs Agentic RAG (Alex Xu, LinkedIn)"
 type: article
 year: 2026
 category: applications
-raw_path: /Users/sguys99/Desktop/project/ai-wiki/raw/articles/alex-xu-2026-rag-vs-graph-rag-vs.md
+raw_path: raw/articles/alex-xu-2026-rag-vs-graph-rag-vs.md
 raw_filename: "alex-xu-2026-rag-vs-graph-rag-vs.md"
 source: alex-xu-2026-rag-vs-graph-rag-vs.md
 source_collection: external

@@ -3,7 +3,7 @@ title: "Agent Lightning v1.0: Towards Harnessed Agentic RL"
 type: paper
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed.pdf
+raw_path: raw/papers/he-2026-agent-lightning-v1-0-towards-harnessed.pdf
 raw_filename: "he-2026-agent-lightning-v1-0-towards-harnessed.pdf"
 source_collection: external
 authors: "Zhiyuan He, Siwei Zhang, Zhiwen Zhou, Yuqing Yang, Yu Kang, Yuge Zhang, Luna K. Qiu, Tin Yan Tsui, Jiahang Xu, Chong Luo"

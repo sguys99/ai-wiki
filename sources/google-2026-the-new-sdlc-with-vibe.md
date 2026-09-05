@@ -3,7 +3,7 @@ title: "The New SDLC With Vibe Coding: From ad-hoc prompting to Agentic Engineer
 type: report
 year: 2026
 category: agents
-raw_path: /Users/sguys99/Desktop/project/ai-wiki/raw/reports/google-2026-the-new-sdlc-with-vibe.pdf
+raw_path: raw/reports/google-2026-the-new-sdlc-with-vibe.pdf
 raw_filename: "google-2026-the-new-sdlc-with-vibe.pdf"
 source_collection: external
 org: "Google"

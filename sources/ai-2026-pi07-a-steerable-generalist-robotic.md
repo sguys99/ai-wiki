@@ -3,7 +3,7 @@ title: "π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Cap
 type: paper
 year: 2026
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/ai-2026-pi07-a-steerable-generalist-robotic.pdf
+raw_path: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic.pdf
 raw_filename: "ai-2026-pi07-a-steerable-generalist-robotic.pdf"
 source_collection: external
 authors: "Physical Intelligence (성 알파벳순 87인 공저 — Bo Ai·Ali Amin·Ashwin Balakrishna·Kevin Black·Danny Driess·Chelsea Finn·Karol Hausman·Brian Ichter·Sergey Levine·Suraj Nair·Karl Pertsch·Lucy Xiaoyang Shi·Jost Tobias Springenberg·Marcel Torne·Quan Vuong 등)"

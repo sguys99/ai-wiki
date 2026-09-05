@@ -3,7 +3,7 @@ title: "xlang-ai/CUA-Gym"
 type: repo
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/xlang-ai-cua-gym.md
+raw_path: raw/repos/xlang-ai-cua-gym.md
 raw_filename: "xlang-ai-cua-gym.md"
 source_collection: external
 source: xlang-ai-cua-gym.md

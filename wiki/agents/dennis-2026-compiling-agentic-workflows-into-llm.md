@@ -3,7 +3,7 @@ title: "Compiling Agentic Workflows into LLM Weights"
 type: paper
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/dennis-2026-compiling-agentic-workflows-into-llm.pdf
+raw_path: raw/papers/dennis-2026-compiling-agentic-workflows-into-llm.pdf
 raw_filename: "dennis-2026-compiling-agentic-workflows-into-llm.pdf"
 source: dennis-2026-compiling-agentic-workflows-into-llm.md
 source_collection: external

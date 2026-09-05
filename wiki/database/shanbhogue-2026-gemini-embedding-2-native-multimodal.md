@@ -3,7 +3,7 @@ title: "Gemini Embedding 2: A Native Multimodal Embedding Model from Gemini"
 type: paper
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal.pdf
+raw_path: raw/papers/shanbhogue-2026-gemini-embedding-2-native-multimodal.pdf
 raw_filename: "shanbhogue-2026-gemini-embedding-2-native-multimodal.pdf"
 source: shanbhogue-2026-gemini-embedding-2-native-multimodal.md
 source_collection: external

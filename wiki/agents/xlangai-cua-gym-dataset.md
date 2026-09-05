@@ -3,7 +3,7 @@ title: "CUA-Gym Dataset (xlangai/CUA-Gym)"
 type: repo
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/xlangai-cua-gym-dataset.md
+raw_path: raw/repos/xlangai-cua-gym-dataset.md
 raw_filename: "xlangai-cua-gym-dataset.md"
 source_collection: external
 source: xlangai-cua-gym-dataset.md

@@ -3,7 +3,7 @@ title: "How Do AI Agents Spend Your Money? Analyzing and Predicting Token Consum
 type: paper
 year: 2026
 category: agents
-raw_path: /Users/sguys99/Desktop/project/ai-wiki/raw/papers/bai-2026-how-do-ai-agents-spend.pdf
+raw_path: raw/papers/bai-2026-how-do-ai-agents-spend.pdf
 raw_filename: "bai-2026-how-do-ai-agents-spend.pdf"
 source_collection: external
 tags:

@@ -3,7 +3,7 @@ title: "Garry Tan's GBrain Explained (TechWealth Hub)"
 type: video
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/videos/techwealth-hub-2026-garry-tan-gbrain-explained.md
+raw_path: raw/videos/techwealth-hub-2026-garry-tan-gbrain-explained.md
 raw_filename: "techwealth-hub-2026-garry-tan-gbrain-explained.md"
 source: techwealth-hub-2026-garry-tan-gbrain-explained.md
 source_collection: external

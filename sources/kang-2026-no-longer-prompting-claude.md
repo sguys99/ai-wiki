@@ -3,7 +3,7 @@ title: "더 이상 Claude를 프롬프팅하지 않습니다 — 하지만 프�
 type: article
 year: 2026
 category: agents
-raw_path: /Users/sguys99/Desktop/project/ai-wiki/raw/articles/kang-2026-no-longer-prompting-claude.md
+raw_path: raw/articles/kang-2026-no-longer-prompting-claude.md
 raw_filename: "kang-2026-no-longer-prompting-claude.md"
 source_collection: external
 author: "Sujin Kang (강수진)"

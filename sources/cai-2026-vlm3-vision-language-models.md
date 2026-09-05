@@ -3,7 +3,7 @@ title: "VLM3: Vision Language Models Are Native 3D Learners"
 type: paper
 year: 2026
 category: llms
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/cai-2026-vlm3-vision-language-models.pdf
+raw_path: raw/papers/cai-2026-vlm3-vision-language-models.pdf
 raw_filename: "cai-2026-vlm3-vision-language-models.pdf"
 source_collection: external
 authors: "Zhipeng Cai, Zhuang Liu, Yunyang Xiong, Zechun Liu, Vikas Chandra, Yangyang Shi"

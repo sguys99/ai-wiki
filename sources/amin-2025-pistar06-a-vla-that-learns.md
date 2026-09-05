@@ -3,7 +3,7 @@ title: "π*0.6: a VLA That Learns From Experience"
 type: paper
 year: 2025
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/amin-2025-pistar06-a-vla-that-learns.pdf
+raw_path: raw/papers/amin-2025-pistar06-a-vla-that-learns.pdf
 raw_filename: "amin-2025-pistar06-a-vla-that-learns.pdf"
 source_collection: external
 authors: "Physical Intelligence (Ali Amin·Ashwin Balakrishna·Kevin Black·Danny Driess·Chelsea Finn·Karol Hausman·Brian Ichter·Sergey Levine·Suraj Nair·Karl Pertsch·Lucy Xiaoyang Shi·Jost Tobias Springenberg·Quan Vuong 등 총 57인)"

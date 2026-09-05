@@ -3,7 +3,7 @@ title: "Beyond the Prompt: Claude Code — 설정·메모리·워크플로우 �
 type: article
 year: 2026
 category: agents
-raw_path: /home/sguys99/project/ai-wiki/raw/articles/patel-2026-beyond-the-prompt-claude-code.md
+raw_path: raw/articles/patel-2026-beyond-the-prompt-claude-code.md
 raw_filename: "patel-2026-beyond-the-prompt-claude-code.md"
 source_collection: external
 author: "Arpan Patel"

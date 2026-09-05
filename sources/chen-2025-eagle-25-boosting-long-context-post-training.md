@@ -3,7 +3,7 @@ title: "Eagle 2.5: Boosting Long-Context Post-Training for Frontier Vision-Langu
 type: paper
 year: 2025
 category: llms
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/chen-2025-eagle-25-boosting-long-context-post-training.pdf
+raw_path: raw/papers/chen-2025-eagle-25-boosting-long-context-post-training.pdf
 raw_filename: "chen-2025-eagle-25-boosting-long-context-post-training.pdf"
 source_collection: external
 authors: "Guo Chen, Zhiqi Li, Shihao Wang, Jindong Jiang, Yicheng Liu, Lidong Lu, De-An Huang, Wonmin Byeon, Matthieu Le, Tuomas Rintamaki, Tyler Poon, Max Ehrlich, Tong Lu, Limin Wang, Bryan Catanzaro, Jan Kautz, Andrew Tao, Zhiding Yu, Guilin Liu"

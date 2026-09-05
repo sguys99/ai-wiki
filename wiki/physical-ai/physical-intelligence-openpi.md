@@ -4,7 +4,7 @@ type: repo
 year: 2025
 category: physical-ai
 source: physical-intelligence-openpi.md
-raw_path: /home/sguys99/project/ai-wiki/raw/repos/physical-intelligence-openpi.md
+raw_path: raw/repos/physical-intelligence-openpi.md
 raw_filename: "physical-intelligence-openpi.md"
 source_collection: external
 org: "Physical-Intelligence"

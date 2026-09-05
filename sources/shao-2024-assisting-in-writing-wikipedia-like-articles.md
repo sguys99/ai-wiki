@@ -3,7 +3,7 @@ title: "Assisting in Writing Wikipedia-like Articles From Scratch with Large Lan
 type: paper
 year: 2024
 category: agents
-raw_path: /Users/sguys99/Desktop/project/ai-wiki/raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles.pdf
+raw_path: raw/papers/shao-2024-assisting-in-writing-wikipedia-like-articles.pdf
 raw_filename: "shao-2024-assisting-in-writing-wikipedia-like-articles.pdf"
 source_collection: external
 authors: "Yijia Shao, Yucheng Jiang, Theodore A. Kanell, Peter Xu, Omar Khattab, Monica S. Lam"

@@ -4,7 +4,7 @@ type: paper
 year: 2025
 category: physical-ai
 source: kawaharazuka-2025-vision-language-action-models-for-robotics.md
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics.pdf
+raw_path: raw/papers/kawaharazuka-2025-vision-language-action-models-for-robotics.pdf
 raw_filename: "kawaharazuka-2025-vision-language-action-models-for-robotics.pdf"
 source_collection: external
 authors: "Kento Kawaharazuka, Jihoon Oh, Jun Yamada, Ingmar Posner, Yuke Zhu"

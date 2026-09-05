@@ -4,7 +4,7 @@ type: article
 year: 2026
 category: agents
 source: kang-2026-no-longer-prompting-claude.md
-raw_path: /Users/sguys99/Desktop/project/ai-wiki/raw/articles/kang-2026-no-longer-prompting-claude.md
+raw_path: raw/articles/kang-2026-no-longer-prompting-claude.md
 raw_filename: "kang-2026-no-longer-prompting-claude.md"
 source_collection: external
 author: "Sujin Kang (강수진)"

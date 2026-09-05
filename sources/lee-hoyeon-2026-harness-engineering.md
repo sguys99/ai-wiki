@@ -3,7 +3,7 @@ title: "Harness Engineering — AI가 잘 일하는 환경을 설계하는 기�
 type: article
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/lee-hoyeon-2026-harness-engineering.pdf
+raw_path: raw/articles/lee-hoyeon-2026-harness-engineering.pdf
 raw_filename: "lee-hoyeon-2026-harness-engineering.pdf"
 source_collection: external
 author: "이호연 (Hoyeon Lee)"

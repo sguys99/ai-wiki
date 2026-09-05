@@ -3,7 +3,7 @@ title: "PageIndex: Next-Generation Vectorless, Reasoning-based RAG"
 type: article
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/zhang-2025-pageindex-vectorless-reasoning-rag.md
+raw_path: raw/articles/zhang-2025-pageindex-vectorless-reasoning-rag.md
 raw_filename: "zhang-2025-pageindex-vectorless-reasoning-rag.md"
 source_collection: external
 author: "Mingtian Zhang, Yu Tang and PageIndex Team"

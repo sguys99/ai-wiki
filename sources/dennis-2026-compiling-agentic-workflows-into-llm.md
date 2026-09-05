@@ -3,7 +3,7 @@ title: "Compiling Agentic Workflows into LLM Weights: Near-Frontier Quality at T
 type: paper
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/dennis-2026-compiling-agentic-workflows-into-llm.pdf
+raw_path: raw/papers/dennis-2026-compiling-agentic-workflows-into-llm.pdf
 raw_filename: "dennis-2026-compiling-agentic-workflows-into-llm.pdf"
 source_collection: external
 tags: [agent-compilation, subterranean-agent, fine-tuning, langgraph, in-context-prompting, qwen, procedural-knowledge, task-oriented-dialogue, full-fine-tuning, agents]

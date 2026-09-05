@@ -3,7 +3,7 @@ title: "Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabil
 type: paper
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/lin-2026-harness-updating-is-not-harness-benefit.pdf
+raw_path: raw/papers/lin-2026-harness-updating-is-not-harness-benefit.pdf
 raw_filename: "lin-2026-harness-updating-is-not-harness-benefit.pdf"
 source_collection: external
 source: lin-2026-harness-updating-is-not-harness-benefit.md

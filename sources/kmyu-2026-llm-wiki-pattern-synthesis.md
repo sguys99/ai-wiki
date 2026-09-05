@@ -3,7 +3,7 @@ title: "LLM wiki — Karpathy의 LLM Wiki 패턴과 한국어 커뮤니티 토�
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/kmyu-2026-llm-wiki-pattern-synthesis.md
+raw_path: raw/articles/kmyu-2026-llm-wiki-pattern-synthesis.md
 raw_filename: "kmyu-2026-llm-wiki-pattern-synthesis.md"
 source_collection: external
 author: "kmyu99 (Notion 페이지 소유자)"

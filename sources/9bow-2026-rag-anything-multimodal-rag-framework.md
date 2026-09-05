@@ -3,7 +3,7 @@ title: "RAG-Anything: 멀티모달 올인원 RAG 프레임워크"
 type: article
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/9bow-2026-rag-anything-multimodal-rag-framework.md
+raw_path: raw/articles/9bow-2026-rag-anything-multimodal-rag-framework.md
 raw_filename: "9bow-2026-rag-anything-multimodal-rag-framework.md"
 source_collection: external
 author: "9bow (박정환)"

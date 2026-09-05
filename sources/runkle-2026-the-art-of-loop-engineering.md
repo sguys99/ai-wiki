@@ -3,7 +3,7 @@ title: "The Art of Loop Engineering"
 type: article
 year: 2026
 category: agents
-raw_path: /home/sguys99/project/ai-wiki/raw/articles/runkle-2026-the-art-of-loop-engineering.md
+raw_path: raw/articles/runkle-2026-the-art-of-loop-engineering.md
 raw_filename: "runkle-2026-the-art-of-loop-engineering.md"
 source_collection: external
 author: "Sydney Runkle"

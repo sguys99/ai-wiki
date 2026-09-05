@@ -3,7 +3,7 @@ title: "Hermes + GBrain: A Complete Setup Guide"
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/mantena-2026-hermes-gbrain-setup-vps.md
+raw_path: raw/articles/mantena-2026-hermes-gbrain-setup-vps.md
 raw_filename: "mantena-2026-hermes-gbrain-setup-vps.md"
 source_collection: external
 author: "Sudhir Mantena"

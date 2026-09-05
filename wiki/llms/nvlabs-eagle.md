@@ -3,7 +3,7 @@ title: "Eagle: Frontier Vision-Language Models with Data-Centric Strategies"
 type: repo
 year: 2026
 category: llms
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/nvlabs-eagle.md
+raw_path: raw/repos/nvlabs-eagle.md
 raw_filename: "nvlabs-eagle.md"
 source_collection: external
 source: nvlabs-eagle.md

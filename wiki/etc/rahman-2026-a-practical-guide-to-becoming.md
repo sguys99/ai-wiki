@@ -3,7 +3,7 @@ title: "A Practical Guide to Becoming an AI-Native Engineer (Shah Rahman, ByteBy
 type: article
 year: 2026
 category: etc
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/rahman-2026-a-practical-guide-to-becoming.md
+raw_path: raw/articles/rahman-2026-a-practical-guide-to-becoming.md
 raw_filename: "rahman-2026-a-practical-guide-to-becoming.md"
 source_collection: external
 source: rahman-2026-a-practical-guide-to-becoming.md

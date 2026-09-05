@@ -3,7 +3,7 @@ title: "UnUnlearning: Unlearning is not sufficient for content regulation in adv
 type: paper
 year: 2024
 category: llms
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/shumailov-2024-ununlearning-unlearning-is-not-sufficient.pdf
+raw_path: raw/papers/shumailov-2024-ununlearning-unlearning-is-not-sufficient.pdf
 raw_filename: "shumailov-2024-ununlearning-unlearning-is-not-sufficient.pdf"
 source_collection: external
 source: shumailov-2024-ununlearning-unlearning-is-not-sufficient.md

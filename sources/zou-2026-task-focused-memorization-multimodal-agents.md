@@ -3,7 +3,7 @@ title: "Task-Focused Memorization for Multimodal Agents"
 type: paper
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/zou-2026-task-focused-memorization-multimodal-agents.pdf
+raw_path: raw/papers/zou-2026-task-focused-memorization-multimodal-agents.pdf
 raw_filename: "zou-2026-task-focused-memorization-multimodal-agents.pdf"
 source_collection: external
 authors: "Tao Zou, Yichen He, Tian Qiu, Yuan Lin, Hang Li"

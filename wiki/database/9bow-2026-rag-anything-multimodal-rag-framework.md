@@ -3,7 +3,7 @@ title: "RAG-Anything 한국어 소개글 (PyTorchKR, 2026)"
 type: article
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/9bow-2026-rag-anything-multimodal-rag-framework.md
+raw_path: raw/articles/9bow-2026-rag-anything-multimodal-rag-framework.md
 raw_filename: "9bow-2026-rag-anything-multimodal-rag-framework.md"
 source_collection: external
 source: 9bow-2026-rag-anything-multimodal-rag-framework.md

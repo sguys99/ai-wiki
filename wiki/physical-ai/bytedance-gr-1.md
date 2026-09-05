@@ -4,7 +4,7 @@ type: repo
 year: 2024
 category: physical-ai
 source: bytedance-gr-1.md
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/bytedance-gr-1.md
+raw_path: raw/repos/bytedance-gr-1.md
 raw_filename: "bytedance-gr-1.md"
 source_collection: external
 org: "bytedance"

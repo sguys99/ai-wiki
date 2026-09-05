@@ -3,7 +3,7 @@ title: "World Model for Robot Learning: A Comprehensive Survey"
 type: paper
 year: 2026
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/hou-2026-world-model-for-robot-learning.pdf
+raw_path: raw/papers/hou-2026-world-model-for-robot-learning.pdf
 raw_filename: "hou-2026-world-model-for-robot-learning.pdf"
 source_collection: external
 authors: "Bohan Hou, Gen Li, Jindou Jia, Tuo An, Xinying Guo, Sicong Leng, Haoran Geng, Yanjie Ze, Tatsuya Harada, Philip Torr, Oier Mees, Marc Pollefeys, Zhuang Liu, Jiajun Wu, Pieter Abbeel, Jitendra Malik, Yilun Du, Jianfei Yang"

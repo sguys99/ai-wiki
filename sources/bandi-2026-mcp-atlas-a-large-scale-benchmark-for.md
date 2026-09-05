@@ -3,7 +3,7 @@ title: "MCP-Atlas: A Large-Scale Benchmark for Tool-Use Competency with Real MCP
 type: paper
 year: 2026
 category: evaluations
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/bandi-2026-mcp-atlas-a-large-scale-benchmark-for.pdf
+raw_path: raw/papers/bandi-2026-mcp-atlas-a-large-scale-benchmark-for.pdf
 raw_filename: "bandi-2026-mcp-atlas-a-large-scale-benchmark-for.pdf"
 source_collection: external
 authors: "Chaithanya Bandi, Razvan-Gabriel Dumitru, Ben Hertzberg, Divyansh Agarwal, Geobio Boo, Tejas Polakam, Sami Hassaan, Jeff Da, HiJae Kim, Vipul Gupta, Manasi Sharma, Andrew Park, Martin Dimakis, Ernesto Gabriel Hernández Montoya, Dan Rambado, Ivan Salazar, Rafael Cruz, MohammadHossein Rezaei, Chetan Rane, Ben Levin, Daniel Yue Zhang, Brad Kenstler, Bing Liu"

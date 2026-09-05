@@ -3,7 +3,7 @@ title: "GBrain Review: An Honest Assessment (Vectorize)"
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/vectorize-2026-gbrain-review-honest-assessment.md
+raw_path: raw/articles/vectorize-2026-gbrain-review-honest-assessment.md
 raw_filename: "vectorize-2026-gbrain-review-honest-assessment.md"
 source: vectorize-2026-gbrain-review-honest-assessment.md
 source_collection: external

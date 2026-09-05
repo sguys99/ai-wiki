@@ -3,7 +3,7 @@ title: "Cosmos World Foundation Model Platform for Physical AI"
 type: paper
 year: 2025
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/nvidia-2025-cosmos-world-foundation-model-platform.pdf
+raw_path: raw/papers/nvidia-2025-cosmos-world-foundation-model-platform.pdf
 raw_filename: "nvidia-2025-cosmos-world-foundation-model-platform.pdf"
 source_collection: external
 source: nvidia-2025-cosmos-world-foundation-model-platform.md

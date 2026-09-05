@@ -3,7 +3,7 @@ title: "Karpathy LLM Wiki 패턴 — 한국어 종합 정리 (kmyu99 Notion)"
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/kmyu-2026-llm-wiki-pattern-synthesis.md
+raw_path: raw/articles/kmyu-2026-llm-wiki-pattern-synthesis.md
 raw_filename: "kmyu-2026-llm-wiki-pattern-synthesis.md"
 source: kmyu-2026-llm-wiki-pattern-synthesis.md
 source_collection: external

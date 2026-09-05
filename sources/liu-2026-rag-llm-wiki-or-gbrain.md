@@ -3,7 +3,7 @@ title: "RAG, LLM Wiki, or Gbrain? How Your Agent Remembers Changes Everything"
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/liu-2026-rag-llm-wiki-or-gbrain.md
+raw_path: raw/articles/liu-2026-rag-llm-wiki-or-gbrain.md
 raw_filename: "liu-2026-rag-llm-wiki-or-gbrain.md"
 source_collection: external
 author: "Yanli Liu"

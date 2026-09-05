@@ -3,7 +3,7 @@ title: "The Agent Loop: A Survey of Control Strategies, Skills, and Harnesses fo
 type: paper
 year: 2026
 category: agents
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/lee-2026-the-agent-loop-a-survey.pdf
+raw_path: raw/papers/lee-2026-the-agent-loop-a-survey.pdf
 raw_filename: "lee-2026-the-agent-loop-a-survey.pdf"
 source_collection: external
 authors: "Jungseob Lee (Korea University), Chanjun Park (Soongsil University, 교신저자)"

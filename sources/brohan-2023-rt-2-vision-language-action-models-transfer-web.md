@@ -3,7 +3,7 @@ title: "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Co
 type: paper
 year: 2023
 category: physical-ai
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web.pdf
+raw_path: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web.pdf
 raw_filename: "brohan-2023-rt-2-vision-language-action-models-transfer-web.pdf"
 source_collection: external
 authors: "Anthony Brohan 외 (Google DeepMind, 저자 알파벳순; 교신저자 Yevgen Chebotar·Tianhe Yu·Karol Hausman; 기여 목록은 Appendix A)"

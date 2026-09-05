@@ -4,7 +4,7 @@ type: article
 year: 2026
 category: database
 source: 9bow-2026-turbovec-turboquant-rust-vector-index.md
-raw_path: /home/sguys99/project/ai-wiki/raw/articles/9bow-2026-turbovec-turboquant-rust-vector-index.md
+raw_path: raw/articles/9bow-2026-turbovec-turboquant-rust-vector-index.md
 raw_filename: "9bow-2026-turbovec-turboquant-rust-vector-index.md"
 source_collection: external
 author: "9bow (박정환)"

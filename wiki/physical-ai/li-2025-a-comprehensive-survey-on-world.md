@@ -3,7 +3,7 @@ title: "A Comprehensive Survey on World Models for Embodied AI"
 type: paper
 year: 2025
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/li-2025-a-comprehensive-survey-on-world.pdf
+raw_path: raw/papers/li-2025-a-comprehensive-survey-on-world.pdf
 raw_filename: "li-2025-a-comprehensive-survey-on-world.pdf"
 source_collection: external
 source: li-2025-a-comprehensive-survey-on-world.md

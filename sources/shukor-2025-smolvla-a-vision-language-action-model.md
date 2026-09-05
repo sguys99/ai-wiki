@@ -3,7 +3,7 @@ title: "SmolVLA: A vision-language-action model for affordable and efficient rob
 type: paper
 year: 2025
 category: physical-ai
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/shukor-2025-smolvla-a-vision-language-action-model.pdf
+raw_path: raw/papers/shukor-2025-smolvla-a-vision-language-action-model.pdf
 raw_filename: "shukor-2025-smolvla-a-vision-language-action-model.pdf"
 source_collection: external
 authors: "Mustafa Shukor·Dana Aubakirova·Francesco Capuano·Remi Cadene (core) 외 Pepijn Kooijmans·Steven Palma·Adil Zouitine·Michel Aractingi·Caroline Pascal·Martino Russi·Andres Marafioti·Simon Alibert·Matthieu Cord·Thomas Wolf (Hugging Face·Sorbonne University·valeo.ai·ENS Paris-Saclay, 총 14인)"

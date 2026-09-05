@@ -3,7 +3,7 @@ title: "[Paper Review] Graph based RAG"
 type: video
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/videos/dsba-2026-paper-review-graph-based-rag.md
+raw_path: raw/videos/dsba-2026-paper-review-graph-based-rag.md
 raw_filename: "dsba-2026-paper-review-graph-based-rag.md"
 supplementary_raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/dsba-2026-paper-review-graph-based-rag.pdf
 supplementary_raw_filename: "dsba-2026-paper-review-graph-based-rag.pdf"

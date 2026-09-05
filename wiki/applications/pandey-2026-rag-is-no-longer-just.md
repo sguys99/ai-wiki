@@ -3,7 +3,7 @@ title: "RAG는 더 이상 vector search + LLM이 아니다 — 5가지 productio
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/pandey-2026-rag-is-no-longer-just.md
+raw_path: raw/articles/pandey-2026-rag-is-no-longer-just.md
 raw_filename: "pandey-2026-rag-is-no-longer-just.md"
 source: pandey-2026-rag-is-no-longer-just.md
 source_collection: external

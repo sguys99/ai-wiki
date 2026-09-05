@@ -3,7 +3,7 @@ title: "CUA-Gym: Scaling Verifiable Training Environments and Tasks for Computer
 type: paper
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments.pdf
+raw_path: raw/papers/wang-2026-cua-gym-scaling-verifiable-training-environments.pdf
 raw_filename: "wang-2026-cua-gym-scaling-verifiable-training-environments.pdf"
 source_collection: external
 source: wang-2026-cua-gym-scaling-verifiable-training-environments.md

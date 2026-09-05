@@ -3,7 +3,7 @@ title: "Vision-Language-Action (VLA) Models for Bimanual Manipulation and Their 
 type: paper
 year: 2026
 category: physical-ai
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/sa-2026-vision-language-action-models-for.pdf
+raw_path: raw/papers/sa-2026-vision-language-action-models-for.pdf
 raw_filename: "sa-2026-vision-language-action-models-for.pdf"
 source_collection: external
 authors: "Inkyu Sa (Chef Robotics)"

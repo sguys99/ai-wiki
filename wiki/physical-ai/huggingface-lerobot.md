@@ -4,7 +4,7 @@ type: repo
 year: 2026
 category: physical-ai
 source: huggingface-lerobot.md
-raw_path: /home/sguys99/project/ai-wiki/raw/repos/huggingface-lerobot.md
+raw_path: raw/repos/huggingface-lerobot.md
 raw_filename: "huggingface-lerobot.md"
 source_collection: external
 org: "huggingface"

@@ -4,7 +4,7 @@ type: repo
 year: 2026
 category: physical-ai
 source: nvlabs-gr00t-wholebodycontrol.md
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/nvlabs-gr00t-wholebodycontrol.md
+raw_path: raw/repos/nvlabs-gr00t-wholebodycontrol.md
 raw_filename: "nvlabs-gr00t-wholebodycontrol.md"
 source_collection: external
 org: "NVlabs"

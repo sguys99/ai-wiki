@@ -3,7 +3,7 @@ title: "π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Cap
 type: paper
 year: 2026
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/ai-2026-pi07-a-steerable-generalist-robotic.pdf
+raw_path: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic.pdf
 raw_filename: "ai-2026-pi07-a-steerable-generalist-robotic.pdf"
 source_collection: external
 source: ai-2026-pi07-a-steerable-generalist-robotic.md

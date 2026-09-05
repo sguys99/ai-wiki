@@ -3,7 +3,7 @@ title: "RAG, LLM Wiki, or GBrain? — 3-축 결정 프레임워크 (Liu)"
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/liu-2026-rag-llm-wiki-or-gbrain.md
+raw_path: raw/articles/liu-2026-rag-llm-wiki-or-gbrain.md
 raw_filename: "liu-2026-rag-llm-wiki-or-gbrain.md"
 source: liu-2026-rag-llm-wiki-or-gbrain.md
 source_collection: external

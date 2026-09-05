@@ -3,7 +3,7 @@ title: "Vision-and-Language Navigation Today and Tomorrow: A Survey in the Era o
 type: paper
 year: 2024
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/zhang-2024-vision-and-language-navigation-today.pdf
+raw_path: raw/papers/zhang-2024-vision-and-language-navigation-today.pdf
 raw_filename: "zhang-2024-vision-and-language-navigation-today.pdf"
 source_collection: external
 authors: "Yue Zhang, Ziqiao Ma, Jialu Li, Yanyuan Qiao, Zun Wang, Joyce Chai, Qi Wu, Mohit Bansal, Parisa Kordjamshidi"

@@ -3,7 +3,7 @@ title: "π0.5: a VLA with Open-World Generalization"
 type: article
 year: 2025
 category: physical-ai
-raw_path: /home/sguys99/project/ai-wiki/raw/articles/physical-intelligence-2025-a-vla-with-open-world.md
+raw_path: raw/articles/physical-intelligence-2025-a-vla-with-open-world.md
 raw_filename: "physical-intelligence-2025-a-vla-with-open-world.md"
 source_collection: external
 author: "Physical Intelligence"

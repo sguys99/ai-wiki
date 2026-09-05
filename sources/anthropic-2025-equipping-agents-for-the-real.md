@@ -3,7 +3,7 @@ title: "Equipping agents for the real world with Agent Skills"
 type: article
 year: 2025
 category: agents
-raw_path: /home/sguys99/project/ai-wiki/raw/articles/anthropic-2025-equipping-agents-for-the-real.md
+raw_path: raw/articles/anthropic-2025-equipping-agents-for-the-real.md
 raw_filename: "anthropic-2025-equipping-agents-for-the-real.md"
 source_collection: external
 author: "Anthropic"

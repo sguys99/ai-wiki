@@ -3,7 +3,7 @@ title: "71.5배 토큰 절감, Graphify가 LLM 토큰 비용은 낮추고 답변
 type: video
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/videos/todaycode-2026-graphify-llm-token-reduction-wiki.md
+raw_path: raw/videos/todaycode-2026-graphify-llm-token-reduction-wiki.md
 raw_filename: "todaycode-2026-graphify-llm-token-reduction-wiki.md"
 source: todaycode-2026-graphify-llm-token-reduction-wiki.md
 source_collection: external

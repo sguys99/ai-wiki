@@ -3,7 +3,7 @@ title: "From Local to Global: A GraphRAG Approach to Query-Focused Summarization
 type: paper
 year: 2024
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/edge-2024-from-local-to-global.pdf
+raw_path: raw/papers/edge-2024-from-local-to-global.pdf
 raw_filename: "edge-2024-from-local-to-global.pdf"
 source_collection: external
 authors: "Darren Edge, Ha Trinh, Newman Cheng, Joshua Bradley, Alex Chao, Apurva Mody, Steven Truitt, Dasha Metropolitansky, Robert Osazuwa Ness, Jonathan Larson"

@@ -3,7 +3,7 @@ title: "High-Resolution Image Synthesis with Latent Diffusion Models"
 type: paper
 year: 2022
 category: llms
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/rombach-2022-high-resolution-image-synthesis-with-latent.pdf
+raw_path: raw/papers/rombach-2022-high-resolution-image-synthesis-with-latent.pdf
 raw_filename: "rombach-2022-high-resolution-image-synthesis-with-latent.pdf"
 source_collection: external
 authors: "Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, Björn Ommer"

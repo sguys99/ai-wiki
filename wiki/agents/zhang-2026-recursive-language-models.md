@@ -3,7 +3,7 @@ title: "Recursive Language Models (RLM)"
 type: paper
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/zhang-2026-recursive-language-models.pdf
+raw_path: raw/papers/zhang-2026-recursive-language-models.pdf
 raw_filename: "zhang-2026-recursive-language-models.pdf"
 source: zhang-2026-recursive-language-models.md
 source_collection: external

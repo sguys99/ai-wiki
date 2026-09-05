@@ -3,7 +3,7 @@ title: "Flow Matching for Generative Modeling"
 type: paper
 year: 2022
 category: llms
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/lipman-2022-flow-matching-for-generative-modeling.pdf
+raw_path: raw/papers/lipman-2022-flow-matching-for-generative-modeling.pdf
 raw_filename: "lipman-2022-flow-matching-for-generative-modeling.pdf"
 source_collection: external
 source: lipman-2022-flow-matching-for-generative-modeling.md

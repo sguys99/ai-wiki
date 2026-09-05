@@ -3,7 +3,7 @@ title: "LeanRAG — Knowledge-Graph-Based Generation with Semantic Aggregation a
 type: paper
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation.pdf
+raw_path: raw/papers/zhang-2026-leanrag-knowledge-graph-based-generation.pdf
 raw_filename: "zhang-2026-leanrag-knowledge-graph-based-generation.pdf"
 source_collection: external
 source: zhang-2026-leanrag-knowledge-graph-based-generation.md

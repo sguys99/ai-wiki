@@ -4,7 +4,7 @@ type: repo
 year: 2026
 category: agents
 source: agentskills-agentskills.md
-raw_path: /home/sguys99/project/ai-wiki/raw/repos/agentskills-agentskills.md
+raw_path: raw/repos/agentskills-agentskills.md
 raw_filename: "agentskills-agentskills.md"
 source_collection: external
 org: "agentskills"

@@ -3,7 +3,7 @@ title: "Generative Skill Composition for LLM Agents"
 type: paper
 year: 2026
 category: agents
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/zhao-2026-generative-skill-composition-for-llm.pdf
+raw_path: raw/papers/zhao-2026-generative-skill-composition-for-llm.pdf
 raw_filename: "zhao-2026-generative-skill-composition-for-llm.pdf"
 source_collection: external
 tags:

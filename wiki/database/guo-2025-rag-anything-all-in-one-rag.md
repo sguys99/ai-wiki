@@ -3,7 +3,7 @@ title: "RAG-Anything — All-in-One Multimodal RAG Framework (arXiv 2025-10)"
 type: paper
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/guo-2025-rag-anything-all-in-one-rag.pdf
+raw_path: raw/papers/guo-2025-rag-anything-all-in-one-rag.pdf
 raw_filename: "guo-2025-rag-anything-all-in-one-rag.pdf"
 source_collection: external
 source: guo-2025-rag-anything-all-in-one-rag.md

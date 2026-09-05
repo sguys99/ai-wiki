@@ -4,7 +4,7 @@ type: paper
 year: 2023
 category: physical-ai
 source: zhao-2023-learning-fine-grained-bimanual-manipulation.md
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation.pdf
+raw_path: raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation.pdf
 raw_filename: "zhao-2023-learning-fine-grained-bimanual-manipulation.pdf"
 source_collection: external
 authors: "Tony Z. Zhao (Stanford), Vikash Kumar (Meta), Sergey Levine (UC Berkeley), Chelsea Finn (Stanford)"

@@ -3,7 +3,7 @@ title: "또 새로운 용어? Loop Engineering — Claude Code, RLM, Dynamic Wor
 type: article
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/lee-jeongmin-2026-loop-engineering-claude-code.md
+raw_path: raw/articles/lee-jeongmin-2026-loop-engineering-claude-code.md
 raw_filename: "lee-jeongmin-2026-loop-engineering-claude-code.md"
 source_collection: external
 author: "Jeongmin Lee (LinkedIn 핸들 jyoung105)"

@@ -3,7 +3,7 @@ title: "A Field Guide to Fable: Finding Your Unknowns (trq212, 2026)"
 type: article
 year: 2026
 category: agents
-raw_path: /Users/sguys99/Desktop/project/ai-wiki/raw/articles/trq212-2026-a-field-guide-to-fable.md
+raw_path: raw/articles/trq212-2026-a-field-guide-to-fable.md
 raw_filename: "trq212-2026-a-field-guide-to-fable.md"
 source_collection: external
 source: trq212-2026-a-field-guide-to-fable.md

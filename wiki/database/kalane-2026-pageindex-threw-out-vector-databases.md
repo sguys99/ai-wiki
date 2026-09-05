@@ -3,7 +3,7 @@ title: "PageIndex: The RAG Framework That Threw Out Vector Databases and Still H
 type: article
 year: 2026
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/kalane-2026-pageindex-threw-out-vector-databases.md
+raw_path: raw/articles/kalane-2026-pageindex-threw-out-vector-databases.md
 raw_filename: "kalane-2026-pageindex-threw-out-vector-databases.md"
 source: kalane-2026-pageindex-threw-out-vector-databases.md
 source_collection: external

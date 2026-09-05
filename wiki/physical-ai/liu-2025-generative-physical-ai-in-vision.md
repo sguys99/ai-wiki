@@ -3,7 +3,7 @@ title: "Generative Physical AI in Vision: A Survey"
 type: paper
 year: 2025
 category: physical-ai
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/liu-2025-generative-physical-ai-in-vision.pdf
+raw_path: raw/papers/liu-2025-generative-physical-ai-in-vision.pdf
 raw_filename: "liu-2025-generative-physical-ai-in-vision.pdf"
 source_collection: external
 source: liu-2025-generative-physical-ai-in-vision.md

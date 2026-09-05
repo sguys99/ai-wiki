@@ -4,7 +4,7 @@ type: article
 year: 2024
 category: physical-ai
 source: physical-intelligence-2024-our-first-generalist-policy.md
-raw_path: /home/sguys99/project/ai-wiki/raw/articles/physical-intelligence-2024-our-first-generalist-policy.md
+raw_path: raw/articles/physical-intelligence-2024-our-first-generalist-policy.md
 raw_filename: "physical-intelligence-2024-our-first-generalist-policy.md"
 source_collection: external
 author: "Physical Intelligence"

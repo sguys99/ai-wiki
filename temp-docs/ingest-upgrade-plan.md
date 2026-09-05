@@ -121,18 +121,56 @@
 - [x] 파일럿 3편 기술문서체로 재작성 (본문 7,852 / 7,712 / 3,905자, lint 0건, 금지 어휘 잔존 0건)
 - [x] sources/brohan-2022-rt-1 잔여 위반 정리 (단위 표기, 실+명사 조어, k 표기)
 - [x] index.md 파일럿 항목 재점검
-- [ ] 사용자 재리뷰 (승인 전 배치 진행 금지) - 리뷰 대기 중
+- [x] 사용자 재리뷰 (2026-09-05 Phase 4 착수 지시로 승인 처리)
 
 ### Phase 4. 배치 재작성 (나머지 73편)
 
-- [ ] 배치 1: VLA primer 시리즈 나머지 7편 (jo-2026 계열)
-- [ ] 배치 2: RT, OpenVLA, π 계열 논문
-- [ ] 배치 3: NVIDIA GR00T, Cosmos 계열
-- [ ] 배치 4: survey류
-- [ ] 배치 5: SLAM, Nav2, repo류
-- [ ] 배치 6: 기타 article과 프로젝트 페이지
-- [ ] 얇은 논문 sources 재추출 보강 (12k 상한 피해 페이지)
-- [ ] index.md physical-ai 항목 전체 축소
+대상은 `wiki/physical-ai/` 76편 중 파일럿 3편을 제외한 73편이다. 배치가 큰 항목은 5~6편 단위 하위 배치로 나누고, 하위 배치 하나를 완료할 때마다 계획서를 갱신하고 커밋과 푸시를 수행한다. 각 페이지는 subagent 하나가 전담하며 sources와 raw를 다시 읽어 교재식으로 재구성한다.
+
+착수 시점 계량 기준선 (2026-09-05): 76개 파일, lint_style error 1,440건, warning 246건, 위반 파일 73개.
+
+#### 배치 0. 사전 정비
+
+- [x] raw_path 절대경로 정리 (wiki 66개, sources 67개 등 211개 파일의 맥 절대경로를 저장소 상대경로로 통일, 427개 raw_path 실존 검증 완료)
+
+#### 배치 1. VLA primer 시리즈 (jo-2026 계열 8편)
+
+- [ ] 1a: jo-2026-act, jo-2026-rt-2, jo-2026-openvla, jo-2026-smolvla
+- [ ] 1b: jo-2026-groot-n1, jo-2026-groot-n1-5, jo-2026-pi-0-6, jo-2026-wall-oss
+
+#### 배치 2. RT, OpenVLA, π 계열 (20편)
+
+- [ ] 2a RT와 OXE, ACT: brohan-2023-rt-2, open-x-embodiment-2023, kim-2024-openvla, zhao-2023-act, shukor-2025-smolvla
+- [ ] 2b π 논문: black-2024-pi0, black-2025-pi05, ai-2026-pi07, amin-2025-pistar06, physical-intelligence-openpi
+- [ ] 2c Physical Intelligence 공식 article 4편
+- [ ] 2d WALL-OSS 3편, Helix 2편, gen-1.5 1편
+
+#### 배치 3. NVIDIA GR00T, Cosmos, RoboCasa (13편)
+
+- [ ] 3a GR00T: nvidia-2025-gr00t-n1, gr00t-n1-5, nvidia-isaac-gr00t, nvlabs-gr00t-wholebodycontrol, nvidia-2025-accelerate
+- [ ] 3b Cosmos와 GEAR: nvidia-2025-cosmos, luo-2025-sonic, nvlabs-2026-gear-sonic-project-page, 9bow-2026-physics-aware
+- [ ] 3c RoboCasa: nasiriany-2024-robocasa, nasiriany-2026-robocasa365, robocasa-2026-project-page, robocasa-robocasa
+
+#### 배치 4. survey (9편)
+
+- [ ] 4a: xu-2025-anatomy, kawaharazuka-2025, sa-2026, cui-2025-openhelix, zhang-2026-survey-of-physical-ai
+- [ ] 4b: li-2025-world-survey, hou-2026-world-model, liu-2025-generative-physical-ai, zhang-2024-vln
+
+#### 배치 5. SLAM, Nav2, repo (14편)
+
+- [ ] 5a FAST-LIO 5편: xu-2020, xu-2021, airlab-2024, irasc-2024, taeyoung-2022
+- [ ] 5b Nav2 4편: nav2-2026-official-documentation, lionhong-2023, yhoons-2024, ros-navigation-navigation2
+- [ ] 5c repo와 awesome 5편: huggingface-lerobot, bytedance-gr-1, keon-awesome, natnew-awesome, openhelix-robot-awesome
+
+#### 배치 6. 기타 article과 논문 (9편)
+
+- [ ] 6a article 5편: engiuniverse 2편, learnopencv-2025, kim-2026-rfm part-1, part-2
+- [ ] 6b 논문 4편: lu-2026-aspire, reuss-2026, wu-2023-unleashing, zhai-2025-igniting
+
+#### 마무리 항목
+
+- [ ] 얇은 논문 sources 재추출 보강 (12k 상한 피해: xu-2020, xu-2021, nasiriany-2024-robocasa, brohan-2023-rt-2)
+- [ ] index.md physical-ai 항목 전체 축소 (1~2문장, 200자 이내)
 - [ ] wiki/overviews/physical-ai-overview.md 정합 갱신
 
 ### Phase 5. 검증과 마무리

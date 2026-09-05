@@ -3,7 +3,7 @@ title: "How OpenAI Built Its Data Agent"
 type: article
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/bytebytego-2026-how-openai-built-its-data.md
+raw_path: raw/articles/bytebytego-2026-how-openai-built-its-data.md
 raw_filename: "bytebytego-2026-how-openai-built-its-data.md"
 source: bytebytego-2026-how-openai-built-its-data.md
 source_collection: external

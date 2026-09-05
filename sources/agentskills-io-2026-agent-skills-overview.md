@@ -3,7 +3,7 @@ title: "Agent Skills Overview (agentskills.io)"
 type: article
 year: 2026
 category: agents
-raw_path: /home/sguys99/project/ai-wiki/raw/articles/agentskills-io-2026-agent-skills-overview.md
+raw_path: raw/articles/agentskills-io-2026-agent-skills-overview.md
 raw_filename: "agentskills-io-2026-agent-skills-overview.md"
 source_collection: external
 author: "Agent Skills community"

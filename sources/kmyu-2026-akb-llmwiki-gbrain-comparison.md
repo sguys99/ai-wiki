@@ -3,7 +3,7 @@ title: "AKB, llmwiki, GBrain 비교 및 AKB 발전 방향"
 type: report
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/reports/kmyu-2026-akb-llmwiki-gbrain-comparison.pdf
+raw_path: raw/reports/kmyu-2026-akb-llmwiki-gbrain-comparison.pdf
 raw_filename: "kmyu-2026-akb-llmwiki-gbrain-comparison.pdf"
 source_collection: external
 org: "kmyu"

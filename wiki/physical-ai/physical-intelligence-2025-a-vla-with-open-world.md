@@ -4,7 +4,7 @@ type: article
 year: 2025
 category: physical-ai
 source: physical-intelligence-2025-a-vla-with-open-world.md
-raw_path: /home/sguys99/project/ai-wiki/raw/articles/physical-intelligence-2025-a-vla-with-open-world.md
+raw_path: raw/articles/physical-intelligence-2025-a-vla-with-open-world.md
 raw_filename: "physical-intelligence-2025-a-vla-with-open-world.md"
 source_collection: external
 author: "Physical Intelligence"

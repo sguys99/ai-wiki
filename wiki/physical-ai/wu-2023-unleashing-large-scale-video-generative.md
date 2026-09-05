@@ -4,7 +4,7 @@ type: paper
 year: 2023
 category: physical-ai
 source: wu-2023-unleashing-large-scale-video-generative.md
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/wu-2023-unleashing-large-scale-video-generative.pdf
+raw_path: raw/papers/wu-2023-unleashing-large-scale-video-generative.pdf
 raw_filename: "wu-2023-unleashing-large-scale-video-generative.pdf"
 source_collection: external
 authors: "Hongtao Wu*, Ya Jing*, Chilam Cheang, Guangzeng Chen, Jiafeng Xu, Xinghang Li, Minghuan Liu, Hang Li, Tao Kong (ByteDance Research, * 동등 기여)"

@@ -3,7 +3,7 @@ title: "GR-1 — Unleashing Large-Scale Video Generative Pre-training for Visual
 type: repo
 year: 2024
 category: physical-ai
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/bytedance-gr-1.md
+raw_path: raw/repos/bytedance-gr-1.md
 raw_filename: "bytedance-gr-1.md"
 source_collection: external
 org: "bytedance"

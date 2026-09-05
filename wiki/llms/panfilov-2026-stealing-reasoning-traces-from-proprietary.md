@@ -4,7 +4,7 @@ type: paper
 year: 2026
 category: llms
 source: panfilov-2026-stealing-reasoning-traces-from-proprietary.md
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/panfilov-2026-stealing-reasoning-traces-from-proprietary.pdf
+raw_path: raw/papers/panfilov-2026-stealing-reasoning-traces-from-proprietary.pdf
 raw_filename: "panfilov-2026-stealing-reasoning-traces-from-proprietary.pdf"
 source_collection: external
 authors: "Alexander Panfilov, David Schmotz, Ilia Shumailov, Luca Beurer-Kellner, Joachim Schaeffer, Ameya Prabhu, Jonas Geiping, Maksym Andriushchenko"

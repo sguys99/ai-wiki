@@ -3,7 +3,7 @@ title: "Wall-OSS-0.5 Technical Report: Pretrain Once, Act Anywhere"
 type: paper
 year: 2026
 category: physical-ai
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/x-square-robot-2026-wall-oss-05-technical-report.pdf
+raw_path: raw/papers/x-square-robot-2026-wall-oss-05-technical-report.pdf
 raw_filename: "x-square-robot-2026-wall-oss-05-technical-report.pdf"
 source_collection: external
 authors: "X Square Robot Team — Ryan Yu·Pushi Zhang·Starrick Liu·Brae Liu·Miracle Kang·Shalfun Li 외 (총 27인, Project Lead Lucy Liang, 교신 Hao Wang)"

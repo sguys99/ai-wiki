@@ -4,7 +4,7 @@ type: paper
 year: 2025
 category: physical-ai
 source: zhai-2025-igniting-vlms-toward-the-embodied.md
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/zhai-2025-igniting-vlms-toward-the-embodied.pdf
+raw_path: raw/papers/zhai-2025-igniting-vlms-toward-the-embodied.pdf
 raw_filename: "zhai-2025-igniting-vlms-toward-the-embodied.pdf"
 source_collection: external
 authors: "Andy Zhai·Brae Liu·Bruno Fang·Chalse Cai·Ellie Ma·Ethan Yin·Hao Wang·Hugo Zhou·James Wang·Lights Shi·Lucy Liang 외 (X Square Robot, 총 20인)"

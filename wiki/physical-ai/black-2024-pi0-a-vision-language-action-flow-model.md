@@ -4,7 +4,7 @@ type: paper
 year: 2024
 category: physical-ai
 source: black-2024-pi0-a-vision-language-action-flow-model.md
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/black-2024-pi0-a-vision-language-action-flow-model.pdf
+raw_path: raw/papers/black-2024-pi0-a-vision-language-action-flow-model.pdf
 raw_filename: "black-2024-pi0-a-vision-language-action-flow-model.pdf"
 source_collection: external
 authors: "Kevin Black·Noah Brown·Danny Driess·Chelsea Finn·Karol Hausman·Brian Ichter·Sergey Levine·Karl Pertsch·Quan Vuong 외 (Physical Intelligence, 총 24인)"

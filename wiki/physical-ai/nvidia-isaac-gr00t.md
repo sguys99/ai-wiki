@@ -4,7 +4,7 @@ type: repo
 year: 2026
 category: physical-ai
 source: nvidia-isaac-gr00t.md
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/repos/nvidia-isaac-gr00t.md
+raw_path: raw/repos/nvidia-isaac-gr00t.md
 raw_filename: "nvidia-isaac-gr00t.md"
 source_collection: external
 org: "NVIDIA"

@@ -3,7 +3,7 @@ title: "LLM Wiki by Andrej Karpathy: Build a Compounding Knowledge Base — Data
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/datasciencedojo-2026-llm-wiki-by-andrej-karpathy.md
+raw_path: raw/articles/datasciencedojo-2026-llm-wiki-by-andrej-karpathy.md
 raw_filename: "datasciencedojo-2026-llm-wiki-by-andrej-karpathy.md"
 source_collection: external
 author: "Data Science Dojo Staff"

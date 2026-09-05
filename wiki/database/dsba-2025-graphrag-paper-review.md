@@ -3,7 +3,7 @@ title: "GraphRAG Paper Review (DSBA, 김도윤 2025-08-11)"
 type: article
 year: 2025
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/dsba-2025-graphrag-paper-review.pdf
+raw_path: raw/articles/dsba-2025-graphrag-paper-review.pdf
 raw_filename: "dsba-2025-graphrag-paper-review.pdf"
 source: dsba-2025-graphrag-paper-review.md
 source_collection: external

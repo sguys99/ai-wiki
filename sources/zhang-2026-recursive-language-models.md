@@ -3,7 +3,7 @@ title: "Recursive Language Models"
 type: paper
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/zhang-2026-recursive-language-models.pdf
+raw_path: raw/papers/zhang-2026-recursive-language-models.pdf
 raw_filename: "zhang-2026-recursive-language-models.pdf"
 source_collection: external
 tags: [long-context, inference-time-scaling, repl, recursive-sub-calls, agents, llm-scaffold, gpt-5, qwen3-coder, code-act, claude-code, oolong, browsecomp, fine-tuning, post-training, mit-csail]

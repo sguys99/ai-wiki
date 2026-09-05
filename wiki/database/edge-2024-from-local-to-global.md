@@ -3,7 +3,7 @@ title: "GraphRAG: From Local to Global"
 type: paper
 year: 2024
 category: database
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/edge-2024-from-local-to-global.pdf
+raw_path: raw/papers/edge-2024-from-local-to-global.pdf
 raw_filename: "edge-2024-from-local-to-global.pdf"
 source: edge-2024-from-local-to-global.md
 source_collection: external

@@ -4,7 +4,7 @@ type: paper
 year: 2022
 category: physical-ai
 source: brohan-2022-rt-1-robotics-transformer-for-real-world.md
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world.pdf
+raw_path: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world.pdf
 raw_filename: "brohan-2022-rt-1-robotics-transformer-for-real-world.pdf"
 source_collection: external
 authors: "Anthony Brohan 외 40여 명 (저자 알파벳순, Robotics at Google, Everyday Robots, Google Research Brain Team)"

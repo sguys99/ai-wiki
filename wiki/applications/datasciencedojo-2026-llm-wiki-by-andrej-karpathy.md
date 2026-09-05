@@ -3,7 +3,7 @@ title: "LLM Wiki by Karpathy: 25–35분 입문 튜토리얼 (Data Science Dojo)
 type: article
 year: 2026
 category: applications
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/datasciencedojo-2026-llm-wiki-by-andrej-karpathy.md
+raw_path: raw/articles/datasciencedojo-2026-llm-wiki-by-andrej-karpathy.md
 raw_filename: "datasciencedojo-2026-llm-wiki-by-andrej-karpathy.md"
 source: datasciencedojo-2026-llm-wiki-by-andrej-karpathy.md
 source_collection: external

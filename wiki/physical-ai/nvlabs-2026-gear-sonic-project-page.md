@@ -4,7 +4,7 @@ type: article
 year: 2026
 category: physical-ai
 source: nvlabs-2026-gear-sonic-project-page.md
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/nvlabs-2026-gear-sonic-project-page.md
+raw_path: raw/articles/nvlabs-2026-gear-sonic-project-page.md
 raw_filename: "nvlabs-2026-gear-sonic-project-page.md"
 source_collection: external
 author: "NVIDIA GEAR Lab"

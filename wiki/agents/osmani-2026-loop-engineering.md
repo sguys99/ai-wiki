@@ -3,7 +3,7 @@ title: "Loop Engineering (Addy Osmani, 2026-06-07)"
 type: article
 year: 2026
 category: agents
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/articles/osmani-2026-loop-engineering.md
+raw_path: raw/articles/osmani-2026-loop-engineering.md
 raw_filename: "osmani-2026-loop-engineering.md"
 source_collection: external
 source: osmani-2026-loop-engineering.md

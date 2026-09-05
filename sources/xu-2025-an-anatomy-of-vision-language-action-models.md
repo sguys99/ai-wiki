@@ -3,7 +3,7 @@ title: "An Anatomy of Vision-Language-Action Models: From Modules to Milestones 
 type: paper
 year: 2025
 category: physical-ai
-raw_path: /home/sguys99/project/ai-wiki/raw/papers/xu-2025-an-anatomy-of-vision-language-action-models.pdf
+raw_path: raw/papers/xu-2025-an-anatomy-of-vision-language-action-models.pdf
 raw_filename: "xu-2025-an-anatomy-of-vision-language-action-models.pdf"
 source_collection: external
 authors: "Chao Xu, Suyu Zhang, Yang Liu, Baigui Sun, Weihong Chen, Bo Xu, Qi Liu, Juncheng Wang, Shujun Wang, Shan Luo, Jan Peters, Athanasios V. Vasilakos, Stefanos Zafeiriou, Jiankang Deng"

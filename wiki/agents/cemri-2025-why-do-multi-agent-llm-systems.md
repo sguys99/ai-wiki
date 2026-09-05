@@ -4,7 +4,7 @@ type: paper
 year: 2025
 category: agents
 source: cemri-2025-why-do-multi-agent-llm-systems.md
-raw_path: /Users/kmyu/Desktop/project/ai-wiki/raw/papers/cemri-2025-why-do-multi-agent-llm-systems.pdf
+raw_path: raw/papers/cemri-2025-why-do-multi-agent-llm-systems.pdf
 raw_filename: "cemri-2025-why-do-multi-agent-llm-systems.pdf"
 source_collection: external
 tags:
