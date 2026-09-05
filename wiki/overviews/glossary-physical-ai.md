@@ -122,6 +122,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | sparse reward | sparse reward | 희소 보상 | sparse reward는 과제 성공 여부처럼 드물게만 주어지는 reward를 말한다 | reward 행의 "보상" 금지와 짝 |
 | policy extraction | policy extraction | 정책 추출 | policy extraction은 학습한 value function으로부터 실행할 policy를 뽑아내는 단계다 | policy 행의 "정책" 금지와 짝. π0.6의 RECAP 학습 루프에 등장한다 |
 | data pyramid | data pyramid | 데이터 피라미드 | data pyramid는 웹 데이터, 합성 데이터, 실제 로봇 데이터를 양이 많은 순으로 쌓아 함께 학습에 쓰는 데이터 전략이다 | GR00T N1이 세운 이름 |
+| simulator | 시뮬레이터 | — | 시뮬레이터는 물리 엔진으로 로봇과 환경의 상호작용을 계산해 실제 기기 없이 데이터를 만들고 policy를 평가하는 소프트웨어다 | 저장소 용례가 한글 153회 대 원어 57회로 한글 우세이고, glossary-llms의 benchmark(벤치마크, 음차 정착)와 같은 성격이라 한글로 고정한다. 고유명사(Isaac Sim, MuJoCo, robosuite)와 코드 식별자는 원어 그대로. 기계 검사 없이 지침만 둔다 (2026-09 등재) |
 | long-horizon | long-horizon | 장기 과제·장기 지평·롱 호라이즌 | long-horizon 과제는 여러 단계를 이어야 끝나는 긴 과제를 말한다 | 저장소에 원어 81회 대 번역어 51회로 갈려 있었다. subtask, action chunk와 함께 쓰이는 맥락이라 원어로 고정한다 (2026-09 등재) |
 
 ## 신규 용어 추가 절차 (Growth Loop)

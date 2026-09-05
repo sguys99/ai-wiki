@@ -149,7 +149,7 @@
 
 - [x] 3a GR00T: nvidia-2025-gr00t-n1, gr00t-n1-5, nvidia-isaac-gr00t, nvlabs-gr00t-wholebodycontrol, nvidia-2025-accelerate (본문 8,202→17,832 / 8,708→13,127 / 7,322→15,248 / 3,960→9,808 / 4,424→10,071자, 표 0~6개→11/10/10/6/11개, sources 문체 정비 동반, lint 0건). accelerate 페이지는 기존에 이미지 임베드로만 있던 벤치마크 3종을 본문 표로 복원했다
 - [x] 3b Cosmos와 GEAR: nvidia-2025-cosmos, luo-2025-sonic, nvlabs-2026-gear-sonic-project-page, 9bow-2026-physics-aware (본문 9,791→23,948 / 7,059→20,481 / 1,637→5,818 / 3,018→14,765자, 표 0~2개→17/15/4/11개, sources 문체 정비 동반, lint 0건). Cosmos는 frontmatter 564줄에서 124줄로 축소해 저장소 최악의 비대 사례를 해소했다
-- [ ] 3c RoboCasa: nasiriany-2024-robocasa, nasiriany-2026-robocasa365, robocasa-2026-project-page, robocasa-robocasa
+- [x] 3c RoboCasa: nasiriany-2024-robocasa, nasiriany-2026-robocasa365, robocasa-2026-project-page, robocasa-robocasa (본문 7,598→20,384 / 8,027→18,456 / 2,506→6,625 / 3,838→7,216자, 표 0~1개→12/12/5/5개, sources 문체 정비 동반, lint 0건). nasiriany-2024-robocasa는 PDF 40k 재추출로 sources를 7,162→17,027자로 보강해 "얇은 논문 sources" 항목을 함께 해소했다. 배치 3 전체(13편) 완료
 
 #### 배치 4. survey (9편)
 
@@ -212,13 +212,17 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 - [x] 파일럿 3편 sources 정비 (jo-2026-rt-1 51건, hku-mars-fast-lio 26건 치환. 헤딩 개수와 figures 항목 수 보존 확인)
 - [ ] `page-full.png` 임베드 정리 (physical-ai 8편: robocasa-2026-project-page, nav2-2026, lionhong-2023, yhoons-2024, learnopencv-2025, kim-2026-rfm 2편, reuss-2026. 전체 페이지 캡처는 도식이 아니라 레이아웃 기록이므로 curated에서 제외한다. 2026-09-06 브리프에 규칙 추가, 각 배치가 해당 stem 재작성 시 처리)
 - [ ] sources frontmatter figure caption 정비 (배치 초반에 지침이 없어 subagent마다 처리가 갈렸다. 2026-09-06 브리프에 정비 대상으로 명시했고, 이전 완료분 중 미정비분은 마지막에 일괄 처리한다)
-- [ ] frontmatter `title:` 키의 금지 기호 판단 (저장소 전체 89건, physical-ai 6건. 원어 제목 인용은 CLAUDE.md 불변 항목에 해당하나 "LeRobot — State-of-the-art..."처럼 우리가 이름과 설명을 이어 붙인 것은 우리 문장이다. 원어 인용과 우리 조합을 구분해 후자만 정리할지 마무리 시점에 결정)
-- [ ] frontmatter `authors:` 키의 중간점 21건 판단 (lint 대상 밖이나 표기 일관성 문제. 저자명 구분자 용도라 쉼표 전환 여부를 마무리 시점에 결정)
+- [ ] frontmatter 금지 기호 일괄 판단 (lint는 frontmatter를 검사하지 않아 전부 통과하지만 CLAUDE.md는 "제목과 본문 모두" 금지로 규정한다. 키별 현황: `title` 91건, `authors` 21건, `license` 8건, `author` 2건)
+  - `title`: 원어 제목 그대로인 것은 CLAUDE.md 불변 항목(인용)이라 손대지 않는다. "LeRobot — State-of-the-art..."처럼 우리가 이름과 설명을 이어 붙인 조합만 정리 대상 후보
+  - `authors`, `author`: 저자명 구분자 용도의 중간점. 쉼표 전환 여부 결정 필요
+  - `license`: "MIT (code) / CC BY 4.0 (assets·datasets)" 같은 조합. 우리 문장이므로 정리 대상
+- [ ] sources `## 8. 그림 후보` 표의 `★ wiki 권장` 마크와 실제 `curated` 플래그 정합 (재큐레이션으로 어긋난 사례가 배치 3b, 3c에서 확인됨)
+- [ ] sources `## 8. 그림 후보` 표의 id 정합 (luo-2025-sonic은 2026-08 정밀 크롭 전환 이전 번호 fig01~fig14, `page-region`이 남아 현재 frontmatter id와 어긋남)
 
 #### 마무리 항목
 
 - [x] sources 문체 정비 범위 확정 (2026-09-05 사용자 결정): 별도 배치를 두지 않고 각 배치 subagent가 wiki를 쓰면서 같은 stem의 sources도 함께 정리한다. 브리프 §2-B에 반영. sources의 번호 붙은 영문 병기 헤딩은 기존 규약대로 유지한다
-- [ ] 얇은 논문 sources 재추출 보강 (12k 상한 피해: xu-2020, xu-2021, nasiriany-2024-robocasa. brohan-2023-rt-2는 배치 2a에서 완료). 해당 배치가 그 stem을 재작성할 때 함께 처리한다
+- [ ] 얇은 논문 sources 재추출 보강 (12k 상한 피해: xu-2020, xu-2021은 배치 5a에서 처리. brohan-2023-rt-2는 배치 2a에서, nasiriany-2024-robocasa는 배치 3c에서 완료). 해당 배치가 그 stem을 재작성할 때 함께 처리한다
 - [ ] index.md physical-ai 항목 전체 축소 (1~2문장, 200자 이내)
 - [ ] wiki/overviews/physical-ai-overview.md 정합 갱신
 

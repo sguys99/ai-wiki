@@ -15,31 +15,31 @@ figures:
   - id: fig01
     file: assets/robocasa-robocasa/readme.webp
     raw: https://github.com/robocasa/robocasa/blob/main/docs/images/readme.webp
-    caption: "README 상단 배너 이미지 — 저장소 내 docs/images/readme.webp"
+    caption: "README 상단 배너 이미지 (저장소 내 docs/images/readme.webp)"
     strategy: manual
     curated: false
 ---
 
 ## 한 줄 요약 (One-line Summary)
 
-RoboCasa와 RoboCasa365의 공식 구현 저장소다. conda로 환경을 만들고 robosuite를 함께 설치한 뒤 약 10GB의 주방 asset을 내려받는 구조다. gym wrapper로 환경을 만들거나 데모 스크립트로 장면·물체·teleoperation을 둘러볼 수 있다. 코드는 MIT, asset과 dataset은 CC BY 4.0이다.
+RoboCasa와 RoboCasa365의 공식 구현 저장소다. conda로 환경을 만들고 robosuite를 함께 설치한 뒤 약 10GB의 주방 asset을 내려받는 구조다. gym wrapper로 환경을 만들거나 데모 스크립트로 장면과 물체, teleoperation을 둘러볼 수 있다. 코드는 MIT, asset과 dataset은 CC BY 4.0이다.
 
 ## 1. 자료 정보 (Document Information)
 
 - **저장소**: https://github.com/robocasa/robocasa
-- **소속**: UT Austin Robot Perception and Learning Lab·NVIDIA Research
-- **라이선스**: 코드 MIT, asset·dataset CC BY 4.0
+- **소속**: UT Austin Robot Perception and Learning Lab, NVIDIA Research
+- **라이선스**: 코드 MIT, asset과 dataset CC BY 4.0
 - **최신 릴리스**: v1.0.1 (2026-05-12). v1.0(2026-02-18)이 RoboCasa365 릴리스
-- **수집 범위**: README 전문. 과제·데이터셋·policy 학습 상세는 별도 문서 사이트로 넘긴다
+- **수집 범위**: README 전문. 과제와 데이터셋, policy 학습 상세는 별도 문서 사이트로 넘긴다
 - **한 줄 성격**: 설치와 첫 실행까지를 담은 진입 문서. 벤치마크 실행 절차는 여기 없다
 
 ## 2. 주요 기여 (Key Contributions)
 
-RoboCasa365의 네 기둥 요약과 설치 절차, 기본 사용법, 라이선스와 인용 정보가 README에 들어 있다.
+RoboCasa365의 네 가지 핵심 요소 요약과 설치 절차, 기본 사용법, 라이선스와 인용 정보가 README에 들어 있다.
 
-네 기둥 중 하나가 LLM 지원으로 만든 과제 365종이다. 주방 장면 2,500개 이상과 3D 물체 3,200개 이상이 또 하나다. 데이터는 사람 시연 600시간 이상에 자동 trajectory 생성 도구로 만든 로봇 데이터 1,600시간 이상이다. 남은 하나는 leaderboard 지원이다. Diffusion Policy·π·GR00T와 사용자 제출 모델을 여기에 세운다. trajectory는 observation과 action이 시간순으로 이어진 실행 기록이다.
+네 가지 핵심 요소 중 하나가 LLM 지원으로 만든 과제 365종이다. 주방 장면 2,500개 이상과 3D 물체 3,200개 이상이 또 하나다. 데이터는 사람 시연 600시간 이상에 자동 trajectory 생성 도구로 만든 로봇 데이터 1,600시간 이상이다. 남은 하나는 leaderboard 지원이다. Diffusion Policy, π, GR00T와 사용자 제출 모델을 여기에 세운다. trajectory는 observation과 action이 시간순으로 이어진 실행 기록이다.
 
-릴리스 이력이 짧게 붙어 있는데 여기서 읽을 것이 있다. 2026년 7월 항목은 target composite task 데이터셋에 프레임 단위 subtask 주석을 붙였다고 적는다. 매 timestep에 subtask 인덱스, atomic skill 이름, 단계 구분, 자연어 지시문이 붙어 계층적 policy 학습을 지원한다. 2026년 5월 v1.0.1은 모든 과제의 horizon 길이를 1.5배로 늘린 변경이라 평가를 돌리려면 최신 버전으로 올려야 한다고 명시한다.
+릴리스 이력이 짧게 붙어 있는데 여기서 읽을 것이 있다. 2026년 7월 항목은 target composite task 데이터셋에 프레임 단위 subtask 주석을 붙였다고 적는다. 매 timestep에 subtask 인덱스, atomic skill 이름, 단계 구분, 자연어 지시문(instruction)이 붙어 계층적 policy 학습을 지원한다. 2026년 5월 v1.0.1은 모든 과제의 horizon 길이를 1.5배로 늘린 변경이라 평가를 실행하려면 최신 버전으로 올려야 한다고 명시한다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -59,7 +59,7 @@ python -m robocasa.scripts.setup_macros
 python -m robocasa.scripts.download_kitchen_assets          # 약 10GB
 ```
 
-robosuite는 master 브랜치를 써야 한다고 굵게 강조돼 있다. numba·numpy 충돌이 나면 `conda install -c numba numba=0.56.4`로 고정하라는 안내가 붙는다.
+robosuite는 master 브랜치를 써야 한다고 굵게 강조돼 있다. numba와 numpy 충돌이 나면 `conda install -c numba numba=0.56.4`로 고정하라는 안내가 붙는다.
 
 ### 환경 생성
 
@@ -82,7 +82,7 @@ macOS에서는 이들 스크립트를 `python` 대신 `mjpython`으로 실행해
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
-성능 수치는 README에 없다. 과제·데이터셋·벤치마킹은 별도 문서 사이트(robocasa.ai/docs)로 넘기고 순위는 leaderboard 페이지로 넘긴다. 수치를 찾는 목적이라면 이 자료는 맞지 않는다.
+성능 수치는 README에 없다. 과제와 데이터셋, 벤치마킹은 별도 문서 사이트(robocasa.ai/docs)로 넘기고 순위는 leaderboard 페이지로 넘긴다. 수치를 찾는 목적이라면 이 자료는 맞지 않는다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
@@ -92,19 +92,19 @@ README가 다루는 범위가 설치와 첫 실행에 그친다. 데이터셋 �
 
 ## 6. 관련 연구 (Related Work)
 
-인용 목록은 자기 논문 두 편(RoboCasa365 ICLR 2026, RoboCasa RSS 2024)과 의존 패키지 robosuite다. 지원 policy 학습 방법으로 Diffusion Policy·π·GR00T를 든다.
+인용 목록은 자기 논문 두 편(RoboCasa365 ICLR 2026, RoboCasa RSS 2024)과 의존 패키지 robosuite다. 지원 policy 학습 방법으로 Diffusion Policy, π, GR00T를 든다.
 
 ## 7. 용어집 (Glossary)
 
-이 자료 고유 용어만 정리한다. 도메인 공통 용어는 [[overviews/glossary-physical-ai]]·[[overviews/glossary-llms]]에 위임한다.
+이 자료 고유 용어만 정리한다. 도메인 공통 용어는 [[overviews/glossary-physical-ai]]와 [[overviews/glossary-llms]]에 위임한다.
 
 - **robosuite**: RoboCasa의 백엔드가 되는 MuJoCo 기반 시뮬레이션 프레임워크. master 브랜치를 써야 한다.
 - **split 인자**: `gym.make`에 넘기는 `pretrain`/`target` 선택지. 논문의 장면 분할을 API로 노출한다.
-- **subtask 주석**: 2026년 7월 추가. 매 timestep에 subtask 인덱스·atomic skill 이름·단계 구분·자연어 지시문이 붙는다.
+- **subtask 주석**: 2026년 7월 추가. 매 timestep에 subtask 인덱스, atomic skill 이름, 단계 구분, 자연어 지시문이 붙는다.
 - **mjpython**: macOS에서 MuJoCo 뷰어를 띄우려면 써야 하는 실행 명령.
 
 ## 8. 그림 후보 (Figure Candidates)
 
 | id | caption | strategy | 추천 |
 |---|---|---|---|
-| fig01 | README 상단 배너 (`docs/images/readme.webp`) | manual | (선택 — repo 내 이미지는 자동 fetch하지 않는다) |
+| fig01 | README 상단 배너 (`docs/images/readme.webp`) | manual | (선택. repo 내 이미지는 자동 fetch하지 않는다) |
