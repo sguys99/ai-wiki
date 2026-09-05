@@ -141,7 +141,7 @@
 #### 배치 2. RT, OpenVLA, π 계열 (20편)
 
 - [x] 2a RT와 OXE, ACT: brohan-2023-rt-2, open-x-embodiment-2023, kim-2024-openvla, zhao-2023-act, shukor-2025-smolvla (본문 7,135→15,580 / 4,577→8,877 / 9,055→20,934 / 7,492→17,628 / 8,963→18,008자, 표 0~1개→8/5/14/12/15개, sources 문체 정비 동반, lint 0건). brohan-2023-rt-2는 PDF 40k 재추출로 sources를 8,948→15,086자로 보강해 "얇은 논문 sources" 항목을 함께 해소했다
-- [ ] 2b π 논문: black-2024-pi0, black-2025-pi05, ai-2026-pi07, amin-2025-pistar06, physical-intelligence-openpi
+- [x] 2b π 논문: black-2024-pi0, black-2025-pi05, ai-2026-pi07, amin-2025-pistar06, physical-intelligence-openpi (본문 10,213→18,502 / 10,088→16,685 / 8,409→20,267 / 9,517→16,391 / 5,345→10,580자, 표 0~2개→9/9/12/9/6개, sources 문체 정비 동반, lint 0건). 부수 수정: openpi에서 근거 없는 수치(off-board 지연 13ms)를 π0 논문 페이지와 대조해 삭제, π0.5에서 원문이 쓰지 않는 embodied VQA 표현을 원문 서술로 환원, 캡션 안 π*0.6의 별표가 italic 마커를 조기에 닫는 문제를 이스케이프로 처리
 - [ ] 2c Physical Intelligence 공식 article 4편
 - [ ] 2d WALL-OSS 3편, Helix 2편, gen-1.5 1편
 
@@ -187,6 +187,9 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 | flow matching | 미등재. π 계열과 GR00T 계열이 공유하는 핵심 개념 | 원어 canonical, "흐름 정합"을 금지 표기로 |
 | DiT | 미등재. 여러 페이지에서 이미 원어 사용 | 원어 canonical |
 | data pyramid | 미등재. GR00T 계열 고유 명명 | 원어 canonical, "데이터 피라미드"를 금지 표기로 |
+| steerability | 미등재. π0.7 논문 제목 용어이자 π 계열 전반에 재등장 (배치 2b 발견) | 원어 canonical, "조종 가능성", "제어 가능성"을 금지 표기로 |
+| throughput | 미등재. π*0.6과 π0.7 공통 지표 (배치 2b 발견) | 원어 canonical, "처리량"을 금지 표기로 |
+| task progress | 미등재. π 계열 평가 지표 표준. 이진 성공률이 아닌 부분 점수 (배치 2b 발견) | 원어 canonical, "과제 진행도"를 금지 표기로 |
 | advantage / advantage conditioning | 미등재. π0.6 계열 | 원어 canonical, "어드밴티지 조건화"를 금지 표기로 |
 | sparse reward / policy extraction / regularized RL | 미등재 | 원어 canonical, "희소 보상", "정책 추출", "정규화된 강화학습"을 금지 표기로 |
 | static router | 미등재 | 원어 canonical, "정적 라우터"를 금지 표기로 |
@@ -194,7 +197,8 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 #### 잔여 정비 항목 (배치와 함께 처리)
 
 - [x] 배치 1 완료분 8편의 sources 문체 정비 (중간점 233개, em dash 117개, 금지 어휘 71건 제거, 구조와 figures 항목 100% 보존)
-- [ ] 파일럿 3편 sources 정비 (jo-2026-rt-1, hku-mars-fast-lio는 미정비. brohan-2022-rt-1은 Phase 3-2에서 완료)
+- [x] 파일럿 3편 sources 정비 (jo-2026-rt-1 51건, hku-mars-fast-lio 26건 치환. 헤딩 개수와 figures 항목 수 보존 확인)
+- [ ] sources frontmatter figure caption 정비 (배치 초반에 지침이 없어 subagent마다 처리가 갈렸다. 2026-09-06 브리프에 정비 대상으로 명시했고, 이전 완료분 중 미정비분은 마지막에 일괄 처리한다)
 - [ ] frontmatter `authors:` 키의 중간점 21건 판단 (lint 대상 밖이나 표기 일관성 문제. 저자명 구분자 용도라 쉼표 전환 여부를 마무리 시점에 결정)
 
 #### 마무리 항목

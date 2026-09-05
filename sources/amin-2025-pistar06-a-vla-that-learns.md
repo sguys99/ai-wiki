@@ -144,7 +144,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-VLA가 실제 배치에서 스스로 쌓은 experience와 사람의 실시간 교정을 advantage conditioning으로 다시 학습에 넣는 강화학습 레시피가 RECAP이다. 에스프레소·상자 조립·빨래 개기에서 시간당 성공 횟수를 두 배 이상 올렸고, 그 산물이 π*0.6이다.
+VLA가 실제 배치에서 스스로 쌓은 experience와 사람의 실시간 교정을 advantage conditioning으로 다시 학습에 넣는 강화학습 레시피가 RECAP이다. 에스프레소와 상자 조립과 빨래 개기에서 시간당 성공 횟수를 두 배 이상 올렸고, 그 산물이 π*0.6이다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -159,9 +159,9 @@ VLA가 실제 배치에서 스스로 쌓은 experience와 사람의 실시간 �
 
 ## 2. 주요 기여 (Key Contributions)
 
-imitation learning으로 만든 VLA는 절반쯤 성공하기는 쉬워도 매번 성공하기가 어렵다. 시연 데이터를 흉내 내 policy를 학습하는 방법이라 그렇다. 로봇이 작은 실수를 하면 학습 데이터에 없던 상태로 밀려나고, 거기서 더 큰 실수가 나오는 compounding error가 쌓인다. 논문이 겨냥한 문제가 이 천장이다. 정적인 출력을 내는 LLM에는 없고 환경과 계속 주고받는 제어 문제에만 있는 병목이다.
+imitation learning으로 만든 VLA는 절반쯤 성공하기는 쉬워도 매번 성공하기가 어렵다. 시연 데이터(demonstration)를 흉내 내 policy를 학습하는 방법이라 그렇다. 로봇이 작은 실수를 하면 학습 데이터에 없던 상태로 밀려나고, 거기서 더 큰 실수가 나오는 compounding error가 쌓인다. 논문이 겨냥한 문제가 이 천장이다. 정적인 출력을 내는 LLM에는 없고 환경과 계속 주고받는 제어 문제에만 있는 병목이다.
 
-해법으로 내놓은 RECAP은 사람 demonstration으로 기본기를 잡는다. 자율 실행 중 전문가가 끼어들어 준 교정이 큰 실수를 잡고 로봇이 혼자 굴린 rollout이 세부를 다듬는다. 성격이 다른 데이터가 한 파이프라인에 들어가는 셈이다. 사람이 기술을 익히는 순서(교육 → 코칭 → 연습)에 대응시킨 구성이다.
+해법으로 내놓은 RECAP은 사람이 만든 시연 데이터로 기본기를 잡는다. 자율 실행 중 전문가가 끼어들어 준 교정이 큰 실수를 잡고 로봇이 혼자 굴린 rollout이 세부를 다듬는다. 성격이 다른 데이터가 한 파이프라인에 들어가는 셈이다. 사람이 기술을 익히는 순서(교육 → 코칭 → 연습)에 대응시킨 구성이다.
 
 핵심은 policy extraction 방식이다. policy extraction은 학습된 value function을 써서 더 나은 policy를 뽑아내는 단계를 말한다. 기존 방식인 policy gradient 계열은 flow matching처럼 log-likelihood를 다루기 어려운 모델에 붙이기 힘들다. AWR 계열은 나쁜 데이터를 버리거나 크게 깎아내려 데이터를 낭비한다. RECAP은 대신 advantage를 이진 지표로 바꿔 모델 입력에 넣고 전체 데이터를 지도학습으로 학습한다. 실행할 때는 지표를 항상 positive로 고정해 좋은 쪽 action만 뽑게 한다.
 
@@ -171,7 +171,7 @@ imitation learning으로 만든 VLA는 절반쯤 성공하기는 쉬워도 매�
 
 ### 세 개의 서브루틴이 도는 루프
 
-자율 rollout과 필요할 때 들어가는 사람 교정으로 데이터를 모으고, value function을 학습한 뒤, 그 value function으로 policy를 학습한다. RECAP이 반복하는 동작은 이 셋뿐이다. pre-training 단계에서는 뒤의 둘만 demonstration 전체에 대해 돌리고, 이후에는 셋을 순서대로 한 번 이상 반복한다.
+자율 rollout과 필요할 때 들어가는 사람 교정으로 데이터를 모으고, value function을 학습한 뒤, 그 value function으로 policy를 학습한다. RECAP이 반복하는 동작은 이 셋뿐이다. pre-training 단계에서는 뒤의 둘만 시연 데이터 전체에 대해 돌리고, 이후에는 셋을 순서대로 한 번 이상 반복한다.
 
 ```
 Vpre ← 전체 demonstration으로 학습
@@ -195,7 +195,7 @@ reward 설계가 특이하다. 성공하면 0, 실패로 끝나면 큰 음수 �
 
 ### advantage를 이진 지표로 바꿔 입력에 넣는다
 
-개선된 policy는 원래 π̂(a|o) ∝ π_ref(a|o)·p(I|A(o,a))^β 형태로 쓸 수 있다. 여기에 베이즈 정리를 적용하면 p(I|A) = π_ref(a|I,o)/π_ref(a|o)가 되고 대입하면 β=1일 때 π̂(a|o,ℓ) = π_ref(a|I,o,ℓ)로 정리된다. 개선 확률을 따로 모델링할 필요 없이 지표 I를 조건으로 받는 policy 하나만 학습하면 된다.
+개선된 policy는 원래 `π̂(a|o) ∝ π_ref(a|o) p(I|A(o,a))^β` 형태로 쓸 수 있다. 여기에 베이즈 정리를 적용하면 p(I|A) = π_ref(a|I,o)/π_ref(a|o)가 되고 대입하면 β=1일 때 π̂(a|o,ℓ) = π_ref(a|I,o,ℓ)로 정리된다. 개선 확률을 따로 모델링할 필요 없이 지표 I를 조건으로 받는 policy 하나만 학습하면 된다.
 
 I는 advantage가 과제별 임계값 ε_ℓ를 넘는지로 정한다. ε_ℓ는 해당 과제에서 value function이 낸 값의 30% 분위수로 잡는다. classifier-free guidance처럼 조건이 있을 때와 없을 때를 함께 학습해 두고 실행 시 I를 True로 고정한다. 학습 목표는 조건 없는 항과 조건 있는 항을 α로 섞은 negative log-likelihood다.
 
@@ -205,9 +205,9 @@ I는 advantage가 과제별 임계값 ε_ℓ를 넘는지로 정한다. ε_ℓ�
 
 ### π0.6과 π*0.6
 
-π0.6은 π0.5를 손본 모델이다. 여러 로봇 플랫폼의 데이터를 pre-training mixture에 더 넣었고 backbone VLM은 Gemma 3 4B로 올렸다. action expert는 860M 파라미터로 키웠다. action expert는 로봇 상태와 action 토큰만 처리하도록 분리한 별도 가중치 묶음이다. 학습은 Knowledge Insulation 레시피를 따른다. 연속 action 학습이 backbone의 언어·시각 지식을 훼손하지 않도록 action expert 쪽에서 stop gradient를 걸어 두는 방식이다.
+π0.6은 π0.5를 손본 모델이다. 여러 로봇 플랫폼의 데이터를 pre-training mixture에 더 넣었고 backbone VLM은 Gemma 3 4B로 올렸다. action expert는 860M 파라미터로 키웠다. action expert는 로봇 상태와 action 토큰만 처리하도록 분리한 별도 가중치 묶음이다. 학습은 Knowledge Insulation 레시피를 따른다. 연속 action 학습이 backbone의 언어와 시각 지식을 훼손하지 않도록 action expert 쪽에서 stop gradient를 걸어 두는 방식이다.
 
-모델은 π_θ(a_{t:t+H}, ℓ̂ | o_t, ℓ) 형태로 쓴다. o_t에는 카메라 이미지 여러 장과 관절 상태가 들어간다. ℓ에는 "make me an espresso" 같은 전체 프롬프트와 실행 방식을 조절하는 metadata가 함께 들어간다. 출력은 50Hz 관절각·그리퍼 명령의 chunk와 다음 subtask를 적은 텍스트다. subtask는 action보다 앞서 생성되므로 action 생성이 자연스럽게 subtask를 조건으로 받는다.
+모델은 π_θ(a_{t:t+H}, ℓ̂ | o_t, ℓ) 형태로 쓴다. o_t에는 카메라 이미지 여러 장과 관절 상태가 들어간다. ℓ에는 "make me an espresso" 같은 전체 프롬프트와 실행 방식을 조절하는 metadata가 함께 들어간다. 출력은 50Hz 관절각과 그리퍼 명령의 chunk와 다음 subtask를 적은 텍스트다. subtask는 action보다 앞서 생성되므로 action 생성이 자연스럽게 subtask를 조건으로 받는다.
 
 π*0.6이 여기에 더하는 것은 하나뿐이다. 이진화된 advantage 지표 I_t를 입력으로 받는 능력이다. value function은 같은 설계를 쓰되 backbone을 670M짜리 작은 Gemma 3로 줄였다. 크기가 작아 VLA 학습 중 실시간으로 돌려도 비용 부담이 크지 않다. 과적합을 막으려고 웹 multimodal 데이터를 소량 섞어 co-training한다.
 
@@ -221,15 +221,15 @@ I는 advantage가 과제별 임계값 ε_ℓ를 넘는지로 정한다. ε_ℓ�
 
 ### 평가 과제
 
-과제는 세 갈래에 변형을 두어 다섯 가지다.
+과제는 세 범주에 변형을 두어 다섯 가지다.
 
 | 과제 | 내용 | 성공 기준 |
 |---|---|---|
-| 빨래 (셔츠·반바지) | π0 논문의 표준 빨래 과제 | 200초 내 한 벌 개어 오른쪽 위에 쌓기 |
-| 빨래 (혼합 11종) | 수건·단추 셔츠·스웨터·청바지·양말 등 | 500초 내, 측정은 가장 어려운 단추 셔츠로 |
+| 빨래 (셔츠와 반바지) | π0 논문의 표준 빨래 과제 | 200초 내 한 벌 개어 오른쪽 위에 쌓기 |
+| 빨래 (혼합 11종) | 수건, 단추 셔츠, 스웨터, 청바지, 양말 등 | 500초 내, 측정은 가장 어려운 단추 셔츠로 |
 | 빨래 (실패 모드 제거) | 주황 티셔츠 한 장, 고정된 초기 상태 | 200초 내, 깃이 반드시 위를 향해야 통과 |
-| 에스프레소 (더블샷) | 포터필터 집기 → 분쇄 → 탬핑 → 장착 → 추출 → 서빙 | 200초 내, 포터필터 낙하·커피 흘림 없이 |
-| 상자 조립 | 납작한 골판지 접기 → 라벨 부착 → 크레이트 적재 | 600초 내 완성·적재 |
+| 에스프레소 (더블샷) | 포터필터 집기 → 분쇄 → 탬핑 → 장착 → 추출 → 서빙 | 200초 내, 포터필터 낙하나 커피 흘림 없이 |
+| 상자 조립 | 납작한 골판지 접기 → 라벨 부착 → 크레이트 적재 | 600초 내 완성과 적재 |
 
 throughput은 시간당 성공 횟수로 속도와 성공률을 한꺼번에 담는 지표다. success rate는 사람 평가자가 여러 품질 항목을 보고 매긴 성공 비율이다.
 
@@ -237,13 +237,13 @@ throughput은 시간당 성공 횟수로 속도와 성공률을 한꺼번에 담
 
 π0.5 pre-train, π0.6 pre-train(지도학습), π*0.6 offline RL pre-train, π*0.6 offline RL + SFT, 그리고 on-robot 데이터까지 태운 최종 π*0.6을 나란히 세웠다. 네 과제 전부에서 최종 모델이 앞선다.
 
-혼합 빨래와 에스프레소에서 throughput이 offline RL + SFT 대비 두 배 넘게 뛰고 실패율은 절반 가까이 준다. 에스프레소는 성공률이 40%에서 93%로 올라간다. 셔츠·반바지처럼 상대적으로 쉬운 과제는 SFT 단계에서 이미 성공률이 천장에 가깝지만 throughput은 33에서 60으로 계속 오른다. 성공률이 포화한 뒤에도 강화학습이 속도를 밀어 올린다.
+혼합 빨래와 에스프레소에서 throughput이 offline RL + SFT 대비 두 배 넘게 뛰고 실패율은 절반 가까이 준다. 에스프레소는 성공률이 40%에서 93%로 올라간다. 셔츠와 반바지처럼 상대적으로 쉬운 과제는 SFT 단계에서 이미 성공률이 천장에 가깝지만 throughput은 시간당 33회에서 60회로 계속 오른다. 성공률이 포화한 뒤에도 강화학습이 속도를 밀어 올린다.
 
-혼합 빨래를 뺀 나머지 과제에서 최종 성공률이 90%대에 들어간다. 사무실에서 에스프레소를 뽑고 공장에서 포장용 상자를 접는 실사용 수준이라고 저자들은 표현한다. 상자 조립은 집기·접기·라벨·쌓기 네 단계로 쪼개도 모든 단계에서 다른 모델보다 높고 남은 실패는 대부분 제한 시간 초과다.
+혼합 빨래를 뺀 나머지 과제에서 최종 성공률이 90%대에 들어간다. 사무실에서 에스프레소를 뽑고 공장에서 포장용 상자를 접는 실사용 수준이라고 저자들은 표현한다. 상자 조립은 집기와 접기와 라벨과 쌓기 네 단계로 나눠도 모든 단계에서 다른 모델보다 높고 남은 실패는 대부분 제한 시간 초과다.
 
 ### 반복 횟수의 효과
 
-셔츠·반바지 개기와 상자 조립으로 두 번의 반복을 돌렸다. 빨래는 사람 교정 없이 자율 데이터만 썼다. 반복당 로봇 4대에서 300 trajectory를 모았다. 상자 조립은 자율 600회와 개입 360회를 함께 모았다.
+셔츠와 반바지 개기와 상자 조립으로 두 번의 반복을 돌렸다. 빨래는 사람 교정 없이 자율 데이터만 썼다. 반복당 로봇 4대에서 300 trajectory를 모았다. 상자 조립은 자율 600회와 개입 360회를 함께 모았다.
 
 빨래는 throughput이 꾸준히 올라 전체 50% 개선을 냈고 성공률은 첫 반복만에 90%를 넘겨 포화했다. 상자 조립은 장기 과제라 첫 반복에서는 오히려 떨어졌다가 두 번째에서 2배로 뛴다. 성공률은 두 반복 내내 계속 오르고 최종적으로 접기와 라벨 단계 모두 90%쯤에 닿는다.
 
@@ -253,7 +253,7 @@ throughput은 시간당 성공 횟수로 속도와 성공률을 한꺼번에 담
 
 ### 특정 실패 모드 지우기
 
-셔츠를 일부러 실패하기 쉬운 자세로 깔아 두고 시작했다. 깃이 위를 향해야만 통과하는 엄격한 기준을 걸었다. offline RL + SFT는 23%에 그친다. 여기에 RECAP을 두 반복(반복당 600 trajectory) 적용하자 97%까지 오르고 속도도 빨라졌다. 개입 데이터도 추가 demonstration도 없이 강화학습만으로 특정 실수를 제거할 수 있다는 사례다.
+셔츠를 일부러 실패하기 쉬운 자세로 깔아 두고 시작했다. 깃이 위를 향해야만 통과하는 엄격한 기준을 걸었다. offline RL + SFT는 23%에 그친다. 여기에 RECAP을 두 반복(반복당 600 trajectory) 적용하자 97%까지 오르고 속도도 빨라졌다. 개입 데이터도 추가 시연 데이터도 없이 강화학습만으로 특정 실수를 제거할 수 있다는 사례다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
@@ -269,19 +269,19 @@ value function 추정 방식도 개선 여지로 남는다. on-policy Monte Carl
 
 VLA에 강화학습을 붙이는 시도도 따로 있다. PPO와 그 변형을 VLA fine-tuning에 직접 쓰는 계열, 잔차 policy만 학습하거나 action head만 손보는 계열, VLA가 제안한 action을 고르거나 다듬는 계열이 있다. 대부분 이산 action이나 단순한 가우시안 분포를 쓴다. 이 논문은 표현력 있는 flow matching VLA를 통째로 end-to-end 학습한다는 점에서 갈린다.
 
-value function과 VLA를 실기기에서 함께 학습한 선행 연구도 있다. calibrated Q-learning을 offline 시연에 적용한 사례, DPO로 사람 선호를 반영한 사례, PPO·REINFORCE에 완료 시간 value function을 쓴 사례가 나열된다. 저자들이 짚는 차이는 이렇다. diffusion·flow 기반 고용량 VLA를 지원한다는 점, advantage conditioning으로 on-policy 갱신을 피한다는 점, 평가 과제가 훨씬 복잡하고 길다는 점이다.
+value function과 VLA를 실제 기기에서 함께 학습한 선행 연구도 있다. calibrated Q-learning을 offline 시연에 적용한 사례, DPO로 사람 선호를 반영한 사례, PPO와 REINFORCE에 완료 시간 value function을 쓴 사례가 나열된다. 저자들이 짚는 차이는 이렇다. diffusion과 flow 기반 고용량 VLA를 지원한다는 점, advantage conditioning으로 on-policy 갱신을 피한다는 점, 평가 과제가 훨씬 복잡하고 길다는 점이다.
 
-reward·value·advantage를 policy 입력 조건으로 주는 계열이 남는다. 특히 classifier-free guidance를 쓰는 CFGRL이 직접적인 뿌리다. 이 논문은 그 방식을 대규모 generalist VLA의 pre-training과 fine-tuning 양쪽으로 확장했다.
+reward와 value와 advantage를 policy 입력 조건으로 주는 계열이 남는다. 특히 classifier-free guidance를 쓰는 CFGRL이 직접적인 뿌리다. 이 논문은 그 방식을 대규모 generalist VLA의 pre-training과 fine-tuning 양쪽으로 확장했다.
 
 ## 7. 용어집 (Glossary)
 
-- **RECAP**: RL with Experience and Corrections via Advantage-conditioned Policies. demonstration·자율 experience·전문가 개입을 advantage conditioning으로 묶는 강화학습 레시피.
+- **RECAP**: RL with Experience and Corrections via Advantage-conditioned Policies. 시연 데이터와 자율 experience와 전문가 개입을 advantage conditioning으로 묶는 강화학습 레시피.
 - **π*0.6 / π0.6**: 앞은 RECAP으로 학습한 강화학습 버전, 뒤는 지도학습으로 학습한 바탕 VLA. π0.6은 π0.5에 Gemma 3 4B backbone과 860M action expert를 얹은 개선판이다.
 - **advantage**: 어떤 action이 그 상태의 기대값보다 얼마나 나은지를 재는 값. A>0이면 평균보다 좋은 action이다.
 - **advantage conditioning**: advantage를 임계값으로 이진화해 policy 입력에 조건으로 넣고 실행 시 항상 positive로 고정해 좋은 action만 뽑게 하는 policy extraction 방식.
-- **policy extraction**: 학습된 value function을 써서 더 나은 policy를 뽑아내는 단계. AWR·policy gradient·advantage conditioning이 서로 다른 선택지다.
-- **offline RL**: 새 상호작용 없이 이미 모아 둔 데이터만으로 policy를 개선하는 강화학습 갈래. RECAP의 pre-training 단계가 여기 해당한다.
-- **Knowledge Insulation (KI)**: 연속 action 학습이 backbone의 언어·시각 지식을 훼손하지 않도록 action expert 쪽에 stop gradient를 거는 학습 레시피.
+- **policy extraction**: 학습된 value function을 써서 더 나은 policy를 뽑아내는 단계. AWR과 policy gradient와 advantage conditioning이 서로 다른 선택지다.
+- **offline RL**: 새 상호작용 없이 이미 모아 둔 데이터만으로 policy를 개선하는 강화학습의 한 가지. RECAP의 pre-training 단계가 여기 해당한다.
+- **Knowledge Insulation (KI)**: 연속 action 학습이 backbone의 언어와 시각 지식을 훼손하지 않도록 action expert 쪽에 stop gradient를 거는 학습 레시피.
 - **throughput**: 시간당 성공 횟수. 성공률과 속도를 한 지표로 묶어 실사용 가치에 가깝게 잰다.
 - **intervention (개입) / correction (교정)**: 자율 실행 중 전문 조작자가 teleoperation으로 넘겨받아 실수를 바로잡는 행위와 그때 남는 데이터.
 - **human-gated DAgger**: 사람이 개입 시점을 판단해 교정 데이터를 만드는 DAgger 변형. 이 논문의 개입 방식이 여기 속한다.
@@ -290,16 +290,16 @@ reward·value·advantage를 policy 입력 조건으로 주는 계열이 남는�
 
 | id | page | caption | strategy | 추천 |
 |---|---|---|---|---|
-| fig01 | 1 | RECAP 전체 루프 — 데이터·VLA·value function·배치가 도는 구조 | caption-region | ★ wiki 권장 (architecture) |
+| fig01 | 1 | RECAP 전체 루프. 데이터와 VLA와 value function과 배치가 이어지는 구조 | caption-region | ★ wiki 권장 (architecture) |
 | fig02 | 2 | 학습한 세 과제 실물 장면 | caption-region | (선택) |
 | fig03 | 4 | π*0.6 VLA와 value function 연결, advantage 이진화 지점 | caption-region | ★ wiki 권장 (architecture) |
-| fig04 | 5 | value function 시각화 — 성공·실패 episode의 값 추이 | caption-region | ★ wiki 권장 (method) |
+| fig04 | 5 | value function 시각화. 성공과 실패 episode의 값 추이 | caption-region | ★ wiki 권장 (method) |
 | fig05 | 7 | 양팔 로봇 셋업 | caption-region | (선택) |
-| fig06 | 8 | 평가 과제 다섯 종의 시작·성공·판정 기준 | caption-region | ★ wiki 권장 (실험 설정) |
+| fig06 | 8 | 평가 과제 다섯 종의 시작과 성공과 판정 기준 | caption-region | ★ wiki 권장 (실험 설정) |
 | fig07 | 9 | throughput 비교 | caption-region | ★ wiki 권장 (result) |
 | fig08 | 9 | success rate 비교 | caption-region | ★ wiki 권장 (result) |
 | fig09 | 10 | 반복 횟수별 throughput | caption-region | (선택) |
 | fig10 | 10 | 반복 횟수별 success rate | caption-region | (선택) |
-| fig11 | 10 | AWR·PPO와의 policy extraction 비교 | caption-region | ★ wiki 권장 (ablation) |
+| fig11 | 10 | AWR과 PPO와의 policy extraction 비교 | caption-region | ★ wiki 권장 (ablation) |
 | fig12 | 10 | 깃 방향 실패 모드 제거 | caption-region | ★ wiki 권장 (ablation) |
 | fig13 | 17 | Appendix 추가 value function 시각화 | caption-region | (선택) |
