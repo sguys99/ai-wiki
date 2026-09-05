@@ -55,7 +55,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig05.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig05.png
-    caption: "장기 과제 평가 예시 — 'take out the trash'처럼 한 줄 지시로 끝까지 가는 과제와, 학습 데이터에 없어 단계별 지시로 coaching해야 하는 'toasting a bagel'"
+    caption: "long-horizon 과제 평가 예시 — 'take out the trash'처럼 한 줄 지시로 끝까지 가는 과제와, 학습 데이터에 없어 단계별 지시로 coaching해야 하는 'toasting a bagel'"
     page: 8
     bbox_norm: [0.0800, 0.0000, 0.9357, 0.2706]
     strategy: caption-region
@@ -155,7 +155,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig15.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig15.png
-    caption: "장기 과제 coaching 결과 — 에어프라이어 넣기·빼기와 베이글 굽기. 지시를 따라가는 능력이 없는 이전 모델은 거의 진행하지 못한다"
+    caption: "long-horizon 과제 coaching 결과 — 에어프라이어 넣기·빼기와 베이글 굽기. 지시를 따라가는 능력이 없는 이전 모델은 거의 진행하지 못한다"
     page: 13
     bbox_norm: [0.0652, 0.2224, 0.5018, 0.4346]
     strategy: manual
@@ -325,9 +325,9 @@ memory가 필요한 과제도 시험한다. 머그 세 개 위치 바꾸기, 물
 
 미학습 단기 과제는 그대로 된다. 프렌치프레스 손잡이 누르기, 밥솥에 쌀 담기, 자와 헤드폰 같은 사무용품 닦기, 기어 세트와 탁상 선풍기 돌리기 모두 전용 데이터 없이 수행한다.
 
-장기 과제는 한 줄 지시로 안 된다. 에어프라이어로 고구마를 익히는 일은 5분 가까이 걸리고 여러 단계를 거친다. 대신 사람이 단계별로 말을 붙여 끌고 간다. "왼손으로 에어프라이어 손잡이를 잡아라", "왼손으로 열어라", "오른손으로 고구마를 집어라" 식이다. 에어프라이어 넣기와 빼기, 베이글 굽기 세 과제에서 π0.7은 coaching을 따라 끝까지 가지만, 지시를 따라가는 능력이 부족한 이전 모델은 거의 진행하지 못한다.
+long-horizon 과제는 한 줄 지시로 안 된다. 에어프라이어로 고구마를 익히는 일은 5분 가까이 걸리고 여러 단계를 거친다. 대신 사람이 단계별로 말을 붙여 끌고 간다. "왼손으로 에어프라이어 손잡이를 잡아라", "왼손으로 열어라", "오른손으로 고구마를 집어라" 식이다. 에어프라이어 넣기와 빼기, 베이글 굽기 세 과제에서 π0.7은 coaching을 따라 끝까지 가지만, 지시를 따라가는 능력이 부족한 이전 모델은 거의 진행하지 못한다.
 
-coaching 기록은 재활용된다. 그때 사람이 불러준 단계별 지시로 high-level policy를 학습시키면 사람 없이 돌아가는 자율 policy가 된다. 다섯 과제에서 coaching과 비슷한 진행도를 낸다. 저수준 action 데이터를 teleoperation으로 새로 모으지 않고 새 장기 과제를 얻는 경로다.
+coaching 기록은 재활용된다. 그때 사람이 불러준 단계별 지시로 high-level policy를 학습시키면 사람 없이 돌아가는 자율 policy가 된다. 다섯 과제에서 coaching과 비슷한 진행도를 낸다. 저수준 action 데이터를 teleoperation으로 새로 모으지 않고 새 long-horizon 과제를 얻는 경로다.
 
 ### 데이터를 키우면 좋아지는가
 
@@ -379,7 +379,7 @@ generalist manipulation policy 계보에서 π0.7의 위치는 명확하다. 처
 | fig02 | 4 | 아키텍처. backbone, action expert, high-level policy, world model | caption-region | ★ wiki 권장 (architecture) |
 | fig03 | 6 | prompt 구성 예시 두 과제 (식탁 차리기와 셔츠 개기) | caption-region | ★ wiki 권장 (method) |
 | fig04 | 7 | 실험에 쓴 로봇 세 종류 | caption-region | (확인 필요) |
-| fig05 | 8 | 장기 과제 평가 예시 (쓰레기 버리기와 베이글 굽기) | caption-region | (확인 필요) |
+| fig05 | 8 | long-horizon 과제 평가 예시 (쓰레기 버리기와 베이글 굽기) | caption-region | (확인 필요) |
 | fig06 | 9 | out-of-the-box 성능. RL/SFT specialist 대비 | caption-region | ★ wiki 권장 (result) |
 | fig07 | 9 | metadata와 평가 데이터 ablation | caption-region | (선택) |
 | fig08 | 10 | memory 과제 성능 | caption-region | (선택) |
@@ -389,7 +389,7 @@ generalist manipulation policy 계보에서 π0.7의 위치는 명확하다. 처
 | fig12 | 12 | cross-embodiment 전이. 재배치와 빨래 개기 | caption-region | ★ wiki 권장 (result) |
 | fig13 | 12 | 전이 과정의 전략 변화 | caption-region | (선택) |
 | fig14 | 13 | language coaching 예시 (에어프라이어) | caption-region | (선택) |
-| fig15 | 13 | 장기 과제 coaching 결과 | manual (재크롭) | ★ wiki 권장 (result) |
+| fig15 | 13 | long-horizon 과제 coaching 결과 | manual (재크롭) | ★ wiki 권장 (result) |
 | fig16 | 13 | coaching 데이터로 만든 자율 policy | caption-region | (선택) |
 | fig17 | 13 | 미학습 단기 과제 | manual (재크롭) | (선택) |
 | fig18 | 14 | 데이터 규모와 다양성 ablation | caption-region | ★ wiki 권장 (result) |

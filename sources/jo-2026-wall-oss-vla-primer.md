@@ -191,7 +191,7 @@ embodied VQA에서는 `<box>[x1,y1,x2,y2]`와 `<point>[x,y]` 두 태그의 쓰�
 
 평가 항목을 단일 지시, 장기, 추론 집약 셋으로 나누고 비교 대상을 Diffusion Policy와 π0로 든다. 베이스라인이 중간 단계 안내를 필요로 해서 사람이 미리 나눠 둔 subtask 목록을 GPT-4가 실시간으로 하나씩 불러 주는 방식으로 맞췄다는 실험 설계도 짚는다.
 
-숫자로는 처음 보는 물체에 대해 61% 이상의 task progress를 든다. 단일 지시 과제에서는 π0도 잘한다는 점을 인정하고, 갈리는 곳은 tidy-bedroom 같은 장기 과제와 block-spell 같은 추론 과제라고 정리한다. subtask를 나눠 주지 않았는데도 5분이 넘는 실행을 이어 간다는 데 무게를 둔다.
+숫자로는 처음 보는 물체에 대해 61% 이상의 task progress를 든다. 단일 지시 과제에서는 π0도 잘한다는 점을 인정하고, 갈리는 곳은 tidy-bedroom 같은 long-horizon 과제와 block-spell 같은 추론 과제라고 정리한다. subtask를 나눠 주지 않았는데도 5분이 넘는 실행을 이어 간다는 데 무게를 둔다.
 
 논문의 Table 2(Embodied VQA)와 Table 3(block-spell 지시 이행 정확도)은 이 글에 나오지 않는다. 숫자로 뒷받침되는 co-training 효과를 확인하려면 논문 쪽을 봐야 한다.
 

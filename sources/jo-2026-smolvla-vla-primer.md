@@ -167,11 +167,11 @@ Figure 5의 sync와 async 비교는 성공률 대신 속도로 읽는다. 성공
 
 먼저 걸리는 것이 데이터 출처다. pre-training 데이터가 주로 SO100 계열에서 모인 것이라 cross-embodiment 데이터로 보기 어렵다. 이를 SmolVLA만의 약점으로 두지 않고 로봇 데이터를 인터넷에서 수집할 수 없는 VLA 연구 전체의 문제로 규정한다.
 
-규모도 문제다. 약 2만 3천 개 trajectory로 학습했다. OpenVLA의 약 100만 개 trajectory와 비교하면 작은 규모다. 다양한 물체와 환경, 지시, 장기 과제, 새 플랫폼으로 확장할 때 각각 왜 더 많은 데이터가 필요한지를 표로 붙였다.
+규모도 문제다. 약 2만 3천 개 trajectory로 학습했다. OpenVLA의 약 100만 개 trajectory와 비교하면 작은 규모다. 다양한 물체와 환경, 지시, long-horizon 과제, 새 플랫폼으로 확장할 때 각각 왜 더 많은 데이터가 필요한지를 표로 붙였다.
 
 backbone 적합성도 짚는다. 일반 VLM은 이미지 설명과 문서 이해, OCR, 시각 질의응답에 맞춰 학습된다. 반면 로봇에 필요한 것은 잡을 수 있는 위치와 방향, affordance, 언어 지시의 action 변환, 접촉 결과 예측, 시간에 따른 상태 변화 이해다. 이 둘을 표로 대조한다. affordance는 물체가 허용하는 상호작용 가능성을 뜻한다.
 
-장기 과제로 가면 사정이 다르다. Pick-Place와 Stacking, Sorting은 짧은 조작 과제다. 책상 정리, 냉장고에서 음료 꺼내 컵에 따르기, 순서대로 조립하기 같은 작업이라면 계층적 policy, 장기 메모리, 실패 감지, 고수준 planning, human feedback이 더 필요하다고 본다. policy는 현재 observation을 받아 다음 action을 정하는 함수를 말한다. asynchronous inference가 반응성을 높이기는 하지만 장기 과제에서는 속도만으로 부족하다는 조건도 덧붙였다.
+long-horizon 과제로 가면 사정이 다르다. Pick-Place와 Stacking, Sorting은 짧은 조작 과제다. 책상 정리, 냉장고에서 음료 꺼내 컵에 따르기, 순서대로 조립하기 같은 작업이라면 계층적 policy, 장기 메모리, 실패 감지, 고수준 planning, human feedback이 더 필요하다고 본다. policy는 현재 observation을 받아 다음 action을 정하는 함수를 말한다. asynchronous inference가 반응성을 높이기는 하지만 long-horizon 과제에서는 속도만으로 부족하다는 조건도 덧붙였다.
 
 마지막은 학습 방식이다. imitation learning은 시연 데이터(demonstration)를 흉내 내 policy를 학습하는 방법인데 시연에 없는 상황에서 복구하기 어렵고 시연의 편향까지 함께 배운다. 물체가 늘 작업대 중앙에 있던 데이터로 배우면 가장자리에서 성능이 떨어진다. 그런 예를 든다. 강화학습이나 self-improvement가 대안이지만 실패 비용과 하드웨어 손상 위험 때문에 실제 기기 적용이 쉽지 않다는 점도 함께 적었다.
 

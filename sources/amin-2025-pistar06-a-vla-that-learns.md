@@ -165,7 +165,7 @@ imitation learning으로 만든 VLA는 절반쯤 성공하기는 쉬워도 매�
 
 핵심은 policy extraction 방식이다. policy extraction은 학습된 value function을 써서 더 나은 policy를 뽑아내는 단계를 말한다. 기존 방식인 policy gradient 계열은 flow matching처럼 log-likelihood를 다루기 어려운 모델에 붙이기 힘들다. AWR 계열은 나쁜 데이터를 버리거나 크게 깎아내려 데이터를 낭비한다. RECAP은 대신 advantage를 이진 지표로 바꿔 모델 입력에 넣고 전체 데이터를 지도학습으로 학습한다. 실행할 때는 지표를 항상 positive로 고정해 좋은 쪽 action만 뽑게 한다.
 
-규모도 기여로 든다. 개별 구성요소(DAgger식 개입, offline RL, advantage conditioning)는 선행 연구에 이미 있었다. 이들을 묶어 실제 배치 데이터로 대형 VLA를 개선한 결과를 보인 것은 이 논문이 처음이라고 저자들은 주장한다. 5~15분짜리 장기 과제에서 실패율을 절반으로 줄였다.
+규모도 기여로 든다. 개별 구성요소(DAgger식 개입, offline RL, advantage conditioning)는 선행 연구에 이미 있었다. 이들을 묶어 실제 배치 데이터로 대형 VLA를 개선한 결과를 보인 것은 이 논문이 처음이라고 저자들은 주장한다. 5~15분짜리 long-horizon 과제에서 실패율을 절반으로 줄였다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -245,7 +245,7 @@ throughput은 시간당 성공 횟수로 속도와 성공률을 한꺼번에 담
 
 셔츠와 반바지 개기와 상자 조립으로 두 번의 반복을 돌렸다. 빨래는 사람 교정 없이 자율 데이터만 썼다. 반복당 로봇 4대에서 300 trajectory를 모았다. 상자 조립은 자율 600회와 개입 360회를 함께 모았다.
 
-빨래는 throughput이 꾸준히 올라 전체 50% 개선을 냈고 성공률은 첫 반복만에 90%를 넘겨 포화했다. 상자 조립은 장기 과제라 첫 반복에서는 오히려 떨어졌다가 두 번째에서 2배로 뛴다. 성공률은 두 반복 내내 계속 오르고 최종적으로 접기와 라벨 단계 모두 90%쯤에 닿는다.
+빨래는 throughput이 꾸준히 올라 전체 50% 개선을 냈고 성공률은 첫 반복만에 90%를 넘겨 포화했다. 상자 조립은 long-horizon 과제라 첫 반복에서는 오히려 떨어졌다가 두 번째에서 2배로 뛴다. 성공률은 두 반복 내내 계속 오르고 최종적으로 접기와 라벨 단계 모두 90%쯤에 닿는다.
 
 ### policy extraction 방식 비교
 

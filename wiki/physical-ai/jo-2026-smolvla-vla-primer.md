@@ -288,7 +288,7 @@ SmolVLA는 이미 만들어진 VLM을 가져와 backbone으로 쓰는데, 일반
 
 affordance는 물체가 허용하는 상호작용 가능성을 뜻한다. SmolVLA는 작은 VLM을 효율적으로 활용했지만, 어떤 VLM을 backbone으로 고르느냐 그리고 로봇 환경에 맞는 pre-training이 따로 필요한지는 여전히 열린 문제로 남는다.
 
-### 장기 과제
+### long-horizon 과제
 
 SmolVLA가 좋은 결과를 낸 Pick-Place, Stacking, Sorting은 모두 비교적 짧은 조작 과제다. 반면 실제 서비스 로봇이 수행해야 하는 작업은 훨씬 길고 복잡하다.
 

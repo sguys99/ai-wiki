@@ -256,7 +256,7 @@ VLA Pt. 열은 로봇 데이터로 pre-training했는지를 가리키며, SmolVL
 | SmolVLA (0.45B) | 아니오 | 90 | 96 | 92 | 71 | 87.3 |
 | SmolVLA (2.25B) | 아니오 | 93 | 94 | 91 | 77 | 88.75 |
 
-같은 조건에서 비교하면 격차가 뚜렷하다. 로봇 데이터 pre-training 없는 π0(Paligemma-3B)가 71.8%인데 SmolVLA 0.45B는 87.3%로 15.5%p 앞서고, 로봇 데이터로 pre-training한 π0(86.0%)와도 파라미터 7분의 1로 대등하다. 다만 Object는 96% 대 86%로 SmolVLA가 앞서는 반면 장기 과제인 Long은 71% 대 73%로 π0가 근소하게 높아, 평균의 우위가 모든 범주로 이어지지는 않는다.
+같은 조건에서 비교하면 격차가 뚜렷하다. 로봇 데이터 pre-training 없는 π0(Paligemma-3B)가 71.8%인데 SmolVLA 0.45B는 87.3%로 15.5%p 앞서고, 로봇 데이터로 pre-training한 π0(86.0%)와도 파라미터 7분의 1로 대등하다. 다만 Object는 96% 대 86%로 SmolVLA가 앞서는 반면 long-horizon 과제인 Long은 71% 대 73%로 π0가 근소하게 높아, 평균의 우위가 모든 범주로 이어지지는 않는다.
 
 Meta-World에서는 격차가 더 벌어진다.
 
@@ -363,7 +363,7 @@ observation 갱신 주기 실험은 asynchronous inference의 근거가 된다. 
 | 모델 크기 | 0.5B 아래에 묶여 있어 접근성을 지키며 어디까지 키울지가 열린 문제다 |
 | backbone 선택 | 문서 읽기와 OCR 중심으로 pre-training된 VLM이 로봇 상호작용에 맞는지 검증되지 않았다 |
 | 데이터 결합 학습 | 로봇 데이터와 멀티모달 데이터를 함께 학습하면 일반화와 지시 따르기가 개선될 수 있다 |
-| 장기 과제 | 짧은 조작 과제에는 강하지만 긴 horizon에는 계층적 policy나 다단계 planning이 필요하다 |
+| long-horizon 과제 | 짧은 조작 과제에는 강하지만 긴 horizon에는 계층적 policy나 다단계 planning이 필요하다 |
 | 학습 패러다임 | 현재는 imitation learning 일변도이며 강화학습을 결합하면 긴 과제에서 이득이 있을 수 있다 |
 
 imitation learning은 시연 데이터를 흉내 내 policy를 학습하는 방법이다. SO101 fine-tuning이 되는 것은 보였지만 여러 embodiment를 섞어야 새 플랫폼 일반화가 제대로 될 것이라고 저자들은 본다.

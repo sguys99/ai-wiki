@@ -33,7 +33,7 @@ figures:
     caption: "current observation 2"
     source_url: "https://www.pi.website/images/pi07/current_2.png"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig04
     file: assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig04.png
     raw: raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig04.png
@@ -68,7 +68,7 @@ figures:
     caption: "world model이 생성한 subgoal image 2"
     source_url: "https://www.pi.website/images/pi07/subgoal_2.png"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig09
     file: assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig09.png
     raw: raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig09.png

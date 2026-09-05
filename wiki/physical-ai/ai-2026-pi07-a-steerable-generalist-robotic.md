@@ -66,7 +66,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig15.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig15.png
-    caption: "장기 과제 coaching 결과. 에어프라이어 넣기와 빼기, 베이글 굽기 세 과제에서 지시를 따라가는 능력이 부족한 이전 모델은 거의 진행하지 못한다"
+    caption: "long-horizon 과제 coaching 결과. 에어프라이어 넣기와 빼기, 베이글 굽기 세 과제에서 지시를 따라가는 능력이 부족한 이전 모델은 거의 진행하지 못한다"
     page: 13
     bbox_norm: [0.0652, 0.2224, 0.5018, 0.4346]
     strategy: manual
@@ -249,7 +249,7 @@ subgoal image 생성과 subtask instruction 생성은 별도 스레드에서 asy
 
 | 플랫폼 | 구성 | control frequency | 용도 |
 |---|---|---|---|
-| 양팔 이동형 manipulator | 6 DoF 팔 둘, 이동 base, 후방 카메라 추가 | 50Hz | 주방과 가정 환경 장기 과제 |
+| 양팔 이동형 manipulator | 6 DoF 팔 둘, 이동 base, 후방 카메라 추가 | 50Hz | 주방과 가정 환경 long-horizon 과제 |
 | BiPi 정적 양팔 | 가벼운 6 DoF 팔 둘 | 50Hz | 빨래 개기 등 데이터 수집의 주력 |
 | 양팔 UR5e | Robotiq 그리퍼, 긴 팔, 높은 관성 | 20Hz | cross-embodiment 전이 대상 |
 | 단완 시스템 | BiPi와 같은 팔 하나 | 50Hz | 일반화와 지시 따르기 실험 |
@@ -329,14 +329,14 @@ Table Setting이 가장 유리한 조건인 이유는 여러 종류의 로봇에
 
 미학습 단기 과제는 프렌치프레스 손잡이 누르기, 밥솥에 쌀 담기, 자와 헤드폰 같은 사무용품 닦기, 기어 세트와 탁상 선풍기 같은 회전체 돌리기 네 가지다. 어느 것도 전용 데이터를 모으지 않았는데 π0.7이 그대로 수행했고, 언어만 준 조건과 생성 subgoal image를 준 조건의 성능이 비슷했다.
 
-장기 과제는 한 줄 지시로 되지 않는다. 에어프라이어로 고구마를 익히는 과제는 5분 가까이 걸리고 여러 단계를 거치기 때문이다. 대신 사람이 "왼손으로 에어프라이어 손잡이를 잡아라", "왼손으로 열어라", "오른손으로 고구마를 집어라" 식으로 단계를 불러준다.
+long-horizon 과제는 한 줄 지시로 되지 않는다. 에어프라이어로 고구마를 익히는 과제는 5분 가까이 걸리고 여러 단계를 거치기 때문이다. 대신 사람이 "왼손으로 에어프라이어 손잡이를 잡아라", "왼손으로 열어라", "오른손으로 고구마를 집어라" 식으로 단계를 불러준다.
 
 ![[assets/ai-2026-pi07-a-steerable-generalist-robotic/fig15.png]]
 *Figure 15: 에어프라이어 넣기와 빼기, 베이글 굽기 세 과제의 coaching 결과다. 지시를 따라가는 능력이 부족한 이전 모델은 coaching을 받아도 거의 진행하지 못한다 (Physical Intelligence 2026, Figure 15).*
 
 세 과제 모두 action 수준 데이터가 학습에 전혀 없고 환경도 처음 보는 조건이다. π0.7은 coaching을 따라 끝까지 진행하지만 π0.5와 π0.6은 지시를 따라가는 능력 자체가 부족해 거의 진행하지 못한다.
 
-coaching 기록은 다시 학습 자원이 된다. 그때 사람이 불러준 단계별 지시로 high-level policy를 학습시키면, 로봇 observation과 과제 설명, 지난 subtask 이력을 받아 다음 subtask를 내놓는 모델이 된다. 다섯 과제에서 이 자율 policy가 사람이 실시간으로 coaching한 조건과 비슷한 진행도를 냈다. teleoperation으로 저수준 action 데이터를 새로 모으지 않고 새 장기 과제를 얻는 경로다.
+coaching 기록은 다시 학습 자원이 된다. 그때 사람이 불러준 단계별 지시로 high-level policy를 학습시키면, 로봇 observation과 과제 설명, 지난 subtask 이력을 받아 다음 subtask를 내놓는 모델이 된다. 다섯 과제에서 이 자율 policy가 사람이 실시간으로 coaching한 조건과 비슷한 진행도를 냈다. teleoperation으로 저수준 action 데이터를 새로 모으지 않고 새 long-horizon 과제를 얻는 경로다.
 
 ### 데이터 규모와 다양성 ablation
 

@@ -204,14 +204,14 @@ embodied VQA 데이터는 2D 좌표 형식의 정답을 쓴다. 텍스트로 된
 | 평가 항목 | 내용 |
 |---|---|
 | 단일 지시 과제(Single-instruction) | 기본적인 동작 정확도와 처음 보는 물체에 대한 적응력 |
-| 장기 과제(Long-horizon) | 5단계 이상의 순차 실행이 필요한 복잡한 과제 |
+| long-horizon | 5단계 이상의 순차 실행이 필요한 복잡한 과제 |
 | 추론 집약 과제(Reasoning) | 물리 조작에 앞서 고도의 논리적 추론이 선행되어야 하는 과제 |
 
 비교 대상은 Diffusion Policy와 π0다. 두 베이스라인은 WALL-OSS와 달리 중간 단계 안내를 필요로 하므로, 사람이 미리 나눠 둔 subtask 목록을 GPT-4가 실시간으로 하나씩 알려 주는 방식으로 조건을 맞췄다. 이 실험 설계를 원문이 짚어 둔 덕분에, 성능 차이가 subtask를 스스로 만드는 능력에서 나온다는 점이 분명해진다.
 
 전반적으로 WALL-OSS는 모든 과제에서 더 높은 성능을 보인다. 특히 학습 때 보지 못한 새로운 물체에 대해 전부 61% 이상의 task progress를 달성했다. 즉 열 번 시도하면 평균적으로 과제의 6할 이상을 진행한다는 뜻이며, General VQA로 VLM backbone의 추론 능력을 지켜 둔 결과가 실제 로봇 행동으로 전이됐음을 보여 준다.
 
-과제 종류별로 보면 차이가 나는 지점이 분명하다. Collect-Waste, Pick-Place-Cup, Place-by-color 같은 단일 지시 과제에서는 π0도 높은 성능을 낸다. 반면 장기 과제인 tidy-bedroom과 추론 집약 과제인 block-spell처럼 고수준 판단이 필요하고 5분 이상 이어지는 실행에서는 WALL-OSS가 뚜렷하게 앞선다. subtask를 나눠 지시하지 않았는데도 실행을 이어 간다는 점에서, 움직임만 배운 것이 아니라 현재 어느 단계인지 파악하는 능력까지 갖췄다고 원문은 해석한다.
+과제 종류별로 보면 차이가 나는 지점이 분명하다. Collect-Waste, Pick-Place-Cup, Place-by-color 같은 단일 지시 과제에서는 π0도 높은 성능을 낸다. 반면 long-horizon 과제인 tidy-bedroom과 추론 집약 과제인 block-spell처럼 고수준 판단이 필요하고 5분 이상 이어지는 실행에서는 WALL-OSS가 뚜렷하게 앞선다. subtask를 나눠 지시하지 않았는데도 실행을 이어 간다는 점에서, 움직임만 배운 것이 아니라 현재 어느 단계인지 파악하는 능력까지 갖췄다고 원문은 해석한다.
 
 논문의 Table 2(embodied VQA 벤치마크)와 Table 3(block-spell 지시 이행 정확도)은 이 해설에 나오지 않는다. co-training 효과의 정량 근거를 확인하려면 [[physical-ai/zhai-2025-igniting-vlms-toward-the-embodied]] 쪽을 참고한다.
 

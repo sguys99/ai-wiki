@@ -16,21 +16,21 @@ figures:
   - id: fig01
     file: assets/x2robot-2025-wall-oss-project-page/fig01.jpg
     raw: raw/articles/x2robot-2025-wall-oss-project-page-figures/fig01.jpg
-    caption: "ID·OOD task progress 비교 막대 — 논문 Figure 7과 같은 그림이다"
+    caption: "ID와 OOD task progress 비교 막대. 논문 Figure 7과 같은 그림이다"
     strategy: fetched
     curated: false
   - id: fig02
     file: assets/x2robot-2025-wall-oss-project-page/fig02.png
     raw: raw/articles/x2robot-2025-wall-oss-project-page-figures/fig02.png
-    caption: "WALL-OSS 전체 구조 — 논문 Figure 3과 같은 그림이다"
+    caption: "WALL-OSS 전체 구조. 논문 Figure 3과 같은 그림이다"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig03
     file: assets/x2robot-2025-wall-oss-project-page/fig03.jpg
     raw: raw/articles/x2robot-2025-wall-oss-project-page-figures/fig03.jpg
-    caption: "학습 corpus 구성 — 논문 Figure 5와 같은 그림이다"
+    caption: "학습 corpus 구성. 논문 Figure 5와 같은 그림이다"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig04
     file: assets/x2robot-2025-wall-oss-project-page/page-full.png
     raw: raw/articles/x2robot-2025-wall-oss-project-page-figures/page-full.png
@@ -50,11 +50,11 @@ WALL-OSS 논문의 공식 프로젝트 페이지다. abstract와 핵심 도식 �
 - 원본: `raw/articles/x2robot-2025-wall-oss-project-page.md` (26,185자)
 - 대응 논문: [[physical-ai/zhai-2025-igniting-vlms-toward-the-embodied]]
 
-수집 시 추출된 26,185자 중 실제 산문은 1,500자 남짓이다. 나머지는 페이지에 박힌 영상 플레이어의 자막 설정 UI 문자열이 반복된 것이다. 사이트 제목 태그가 "X Square Official Site X Square Robot WALL-A Large Operating Model Robot"이라 추출기가 잡은 제목도 페이지 내용과 어긋났고, frontmatter의 `title`은 실제 내용에 맞춰 다시 적었다.
+수집 시 추출된 26,185자 중 실제 산문은 3,300자 안팎이다. 나머지는 페이지에 박힌 영상 플레이어의 자막 설정 UI 문자열이 반복된 것이다. 사이트 제목 태그가 "X Square Official Site X Square Robot WALL-A Large Operating Model Robot"이라 추출기가 잡은 제목도 페이지 내용과 어긋났고, frontmatter의 `title`은 실제 내용에 맞춰 다시 적었다.
 
 ## 2. 주요 기여 (Key Contributions)
 
-새 내용은 없다. abstract가 논문과 한 글자 차이로 같고 EVALUATE·Model·DATA 세 절도 논문 문장을 줄인 것이다. 논문에 있는 "outperforms strong baselines"까지의 문장에서 "complex understanding and reasoning" 대목만 빠져 있다.
+새 내용은 없다. abstract가 논문과 한 글자 차이로 같고 EVALUATE, Model, DATA 세 절도 논문 문장을 줄인 것이다. 논문에 있는 "outperforms strong baselines"까지의 문장에서 "complex understanding and reasoning" 대목만 빠져 있다.
 
 이 페이지의 값은 영상에 있다. 논문 Figure 6이 정지 프레임 네댓 장으로 보여 주는 실행 과정을 30초 안팎 영상으로 실었다. Reasoning, Long-Horizon Planning and Action Robustness, Instruction Following 세 묶음으로 나뉘어 있고 각 묶음에 여러 편이 들어 있다. 로봇이 실제로 얼마나 빠르고 매끄럽게 움직이는지는 이 영상으로만 확인된다.
 
@@ -66,7 +66,7 @@ Model 절은 backbone이 Qwen2.5-VL-3B라는 것, 입력이 1인칭 카메라와
 
 DATA 절은 논문과 한 군데서 갈린다. 논문은 corpus가 10,000시간을 넘는다고 적는데 이 페이지는 "tens of thousands of hours"라고 쓴다. 같은 수치를 다르게 반올림한 것인지 페이지가 더 나중 시점의 규모를 적은 것인지는 두 자료만으로 판단할 수 없다. 수치를 인용할 때는 논문 쪽을 따르는 게 안전하다.
 
-Inspiration과 Integration 두 단계의 역할 분담은 논문과 같게 적혀 있다. 앞 단계는 embodied VQA·지시 이행·FAST 기반 이산 action prior를, 뒤 단계는 flow matching 기반 고빈도 연속 제어를 맡는다. FAST tokenizer는 action chunk를 압축해 이산 토큰으로 적는 방식이다.
+Inspiration과 Integration 두 단계의 역할 분담은 논문과 같게 적혀 있다. 앞 단계는 embodied VQA와 지시 이행과 FAST 기반 이산 action prior를, 뒤 단계는 flow matching 기반 고빈도 연속 제어를 맡는다. FAST tokenizer는 action chunk를 압축해 이산 토큰으로 적는 방식이다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -80,10 +80,10 @@ Overall 절에 한 문단이 있는데, 논문 5.2.6절의 결론 문장을 그�
 
 ## 6. 관련 연구 (Related Work)
 
-- WALL-OSS 논문 ([[physical-ai/zhai-2025-igniting-vlms-toward-the-embodied]]) — 이 페이지가 요약하는 원문. 수치·표·한계는 전부 그쪽에 있다
-- wall-x 저장소 ([[physical-ai/x-square-robot-wall-x]]) — 페이지 상단 배지에서 연결된다
-- 한국어 해설 ([[physical-ai/jo-2026-wall-oss-vla-primer]]) — 같은 논문을 수식 단위로 푼 입문 글
-- Wall-OSS-0.5 ([[physical-ai/x-square-robot-2026-wall-oss-05-technical-report]]) — 후속 모델. 프로젝트 페이지 주소가 x2robot.com/en/oss로 따로 있다
+- WALL-OSS 논문 ([[physical-ai/zhai-2025-igniting-vlms-toward-the-embodied]]): 이 페이지가 요약하는 원문. 수치와 표와 한계는 전부 논문 페이지에 있다
+- wall-x 저장소 ([[physical-ai/x-square-robot-wall-x]]): 페이지 상단 배지에서 연결된다
+- 한국어 해설 ([[physical-ai/jo-2026-wall-oss-vla-primer]]): 같은 논문을 수식 단위로 푼 입문 글
+- Wall-OSS-0.5 ([[physical-ai/x-square-robot-2026-wall-oss-05-technical-report]]): 후속 모델. 프로젝트 페이지 주소가 x2robot.com/en/oss로 따로 있다
 
 ## 7. 용어집 (Glossary)
 
@@ -95,9 +95,9 @@ Overall 절에 한 문단이 있는데, 논문 5.2.6절의 결론 문장을 그�
 
 | id | caption | strategy | 추천 |
 |---|---|---|---|
-| fig01 | ID·OOD task progress 막대 | fetched | (논문 Figure 7과 동일 — 논문 페이지에서 임베드) |
-| fig02 | WALL-OSS 전체 구조 | fetched | (논문 Figure 3과 동일) |
-| fig03 | 학습 corpus 구성 | fetched | (논문 Figure 5와 동일) |
+| fig01 | ID와 OOD task progress 막대 | fetched | (논문 Figure 7과 동일. 논문 페이지에서 임베드) |
+| fig02 | WALL-OSS 전체 구조 | fetched | ★ wiki 확정 (본문이 설명하지 않는 구조를 도식이 담는다) |
+| fig03 | 학습 corpus 구성 | fetched | ★ wiki 확정 (본문에 없는 구성비 57.5/33.1/9.4를 담는다) |
 | fig04 | 전체 페이지 스크린샷 | screenshot | (아카이브용) |
 
-세 도식이 모두 논문 figure와 같은 그림이라 wiki 본문에는 임베드하지 않는다. 필요할 때 논문 페이지 쪽 `assets/zhai-2025-igniting-vlms-toward-the-embodied/`를 본다. 페이지의 고유 자산인 영상은 수집 범위 밖이다.
+세 도식은 모두 논문 figure와 같은 그림이다. 그중 fig02와 fig03은 페이지 본문이 설명하지 않는 내용을 담고 있어 wiki에 임베드했고, 결과 막대인 fig01은 논문 페이지에서 임베드한다. 페이지의 고유 자산인 영상은 수집 범위 밖이다.
