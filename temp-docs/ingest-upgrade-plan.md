@@ -165,7 +165,7 @@
 #### 배치 6. 기타 article과 논문 (9편)
 
 - [x] 6a article과 video 5편: engiuniverse 2편, learnopencv-2025, kim-2026-rfm part-1, part-2 (본문 7,141→16,798 / 3,806→9,995 / 11,165→23,377 / 2,626→9,488 / 5,183→13,510자, 표 행 0~18개→64/47/91/58/66개, sources 문체 정비 동반, lint 0건)
-- [ ] 6b 논문 4편: lu-2026-aspire, reuss-2026, wu-2023-unleashing, zhai-2025-igniting
+- [x] 6b 논문 4편: lu-2026-aspire, reuss-2026, wu-2023-unleashing, zhai-2025-igniting (본문 10,137→21,470 / 9,820→29,865 / 5,982→18,014 / 7,712→21,151자, 표 행 0~8개→119/78/104/77개, sources 문체 정비 동반, lint 0건). **배치 6 전체(9편) 완료. Phase 4 재작성 73편 전량 완료.** 이 시점에 physical-ai wiki 76편과 대응 sources 76편이 모두 lint_style error 0건, lint_terms 경고 0건이다 (착수 시점 wiki error 1,440건 / 위반 파일 73개, sources error 1,567건 / 위반 파일 75개)
 
 #### 용어집 2차 갱신 대기 (배치 3~4 누적, 마무리 단계에 일괄 반영)
 
@@ -229,14 +229,14 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 
 - [x] 배치 1 완료분 8편의 sources 문체 정비 (중간점 233개, em dash 117개, 금지 어휘 71건 제거, 구조와 figures 항목 100% 보존)
 - [x] 파일럿 3편 sources 정비 (jo-2026-rt-1 51건, hku-mars-fast-lio 26건 치환. 헤딩 개수와 figures 항목 수 보존 확인)
-- [ ] `page-full.png` 임베드 정리 (8편 중 7편 완료. 남은 1편 reuss-2026은 배치 6b에서 처리)
+- [x] `page-full.png` 임베드 정리 완료 (physical-ai 8편 전부). 전체 페이지 캡처는 도식이 아니라 레이아웃 기록이므로 curated에서 제외하고, 대신 이미지를 판독해 본문 내용을 회수하는 방식으로 처리했다
 - [ ] sources frontmatter figure caption 정비 (배치 초반에 지침이 없어 subagent마다 처리가 갈렸다. 2026-09-06 브리프에 정비 대상으로 명시했고, 이전 완료분 중 미정비분은 마지막에 일괄 처리한다)
 - [ ] frontmatter 금지 기호 일괄 판단 (lint는 frontmatter를 검사하지 않아 전부 통과하지만 CLAUDE.md는 "제목과 본문 모두" 금지로 규정한다. 키별 현황: `title` 91건, `authors` 21건, `license` 8건, `author` 2건)
   - `title`: 원어 제목 그대로인 것은 CLAUDE.md 불변 항목(인용)이라 손대지 않는다. "LeRobot — State-of-the-art..."처럼 우리가 이름과 설명을 이어 붙인 조합만 정리 대상 후보
   - `authors`, `author`: 저자명 구분자 용도의 중간점. 쉼표 전환 여부 결정 필요
   - `license`: "MIT (code) / CC BY 4.0 (assets·datasets)" 같은 조합. 우리 문장이므로 정리 대상
 - [x] CLAUDE.md 분량 목표를 산문 기준으로 개정 (2026-09-06). 총 글자 수 기준이던 목표(논문 6,000~12,000자 등)와 "표를 적극 쓰라"는 지시가 서로 당겨 subagent마다 초과를 보고하고 산문 압축에 시간을 썼다. 완료분 실측 결과 본문의 20~30%가 표 마크업이고 산문 중앙값은 논문 13,500자, article 8,643자, repo 7,668자다. 목표를 산문 기준(논문 8,000~16,000자, article 5,000~12,000자, repo 4,000~8,000자)으로 바꾸고 1차 게이트 우선을 명시했다
-- [ ] `wiki/assets` 자산 중 raw에 대응 파일이 없는 41건 (physical-ai는 reuss-2026의 kr*.jpg 6건뿐이며 본문에서 실제 임베드 중이다. 나머지는 다른 카테고리로, 일부는 `scripts/build_loop_diagrams.py`가 생성한 SVG라 정상이다. "raw는 전수 아카이브, wiki/assets는 그 큐레이션 사본"이라는 전제와 어긋나므로 유형별로 정상/비정상 구분 필요)
+- [x] `wiki/assets` 자산 무결성 재조사 (2026-09-06 정정). 1차 조사에서 41건을 고아 자산으로 봤으나 `{stem}-figures/`만 탐색한 스캔의 오류였다. frontmatter의 `raw:` 필드를 정본으로 다시 조사하니 41건은 모두 정상 패턴이다 (repo 페이지의 GitHub 원격 URL 참조는 CLAUDE.md의 in-place 규약, `scripts/build_loop_diagrams.py`가 생성한 SVG는 raw 원본이 없는 것이 정상, legacy 아카이브 참조 20건은 2026-08 정밀 크롭 전환의 산물). **physical-ai 범위의 curated 자산 무결성 문제는 0건이다.** 특히 reuss-2026의 kr* 6건은 다른 stem(`9bow-2026-world-action-model-rise-figures`)의 아카이브를 재사용한 정상 참조이며 raw 파일이 모두 존재한다. 배치 6b subagent가 이 전제 오류를 잡아냈다
 - [ ] `lionhong-2023`의 `page-full.png`가 `figures.json`에 등재돼 있고 `wiki/assets`에 사본도 있으나 raw 디렉토리에 실파일이 없다
 - [ ] `sa-2026`의 raw fig09와 fig10이 동일 파일이다(md5 일치, page 13 전면 캡처). `wiki/assets/` 사본은 상단과 하단으로 수동 크롭돼 서로 다른데, raw와 어긋나 "wiki/assets는 raw의 큐레이션 사본"이라는 불변식이 깨져 있다. raw 쪽을 재크롭해 맞출지 결정 필요
 - [ ] `lint_terms.py` 부분 문자열 오탐 (배치 5c 발견). 금지 표기를 리터럴 부분 문자열로 검사해 더 긴 한국어 단어의 일부가 걸린다. 재현: `physical-ai` category 파일에 "방법 계보상의 위치"를 쓰면 "계**보상**의"가 `보상 → reward`로 잡힌다. 저장소 전수 조사 결과 실제 오탐 후보는 3종(`계보상`, `미접지`, `재관측`)뿐이고 모두 용어집 미적용 카테고리이거나 마스킹 구간이라 현재 경고 158건 중 오탐은 0건이다. 이번 73편에서 실제 발생은 1건. 제안: 3글자 이하 금지 표기 18종(파지, 관측, 접지, 보상, 증류, 점군, 정책, 볼트, 섭동, 궤적 등)에 대해 예외 문자열 목록을 스크립트 상수로 두는 방식. "앞 글자가 한글이면 제외"는 "누적보상" 같은 진짜 위반을 놓치므로 쓰지 않는다
