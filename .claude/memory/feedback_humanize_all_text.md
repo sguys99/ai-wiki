@@ -1,15 +1,18 @@
 ---
-name: 모든 한글 텍스트 humanize 윤문
-description: raw·sources·wiki·index 등 모든 한글 본문을 작성/수정할 때 별도 지시 없이도 humanize-korean 스킬로 윤문한다.
+name: 한글 텍스트 윤문 정책 (2026-09 개정)
+description: wiki·sources는 자동 humanize 제외 — 생성 시점 교재 문체 가이드 + lint가 담당. humanize는 명시 요청 시에만.
 type: feedback
 ---
 
-raw/·sources/·wiki/·index.md 등 이 저장소에 새로 쓰거나 고치는 모든 한글 텍스트는, 사용자의 별도 지시가 없어도 작성 후 `humanize-korean` 스킬로 윤문하여 AI 티(번역투·기계적 병렬·접속사 남발 등)를 제거한 자연스러운 한국어로 만든다.
+**2026-09-05 정책 개정.** wiki/·sources/·index.md에 저장할 때마다 `humanize-korean`으로 자동 윤문하던 기존 정책(2026-06-06)은 폐지됐다. 자동 윤문이 불릿·표·헤딩을 "AI 티"로 보고 산문으로 녹이고 변경률 20~35%를 강제해, 사용자가 제기한 wiki 품질 문제(줄글화, 압축, 상세도 부족)의 직접 원인이 됐기 때문이다 (진단: `temp-docs/ingest-upgrade-plan.md`).
 
-**Why:** 사용자가 위키 본문이 사람이 쓴 글처럼 자연스럽게 읽히길 원한다. 2026-06-06 `im-not-ai`(Humanize KR) 스킬 설치 직후 이를 상시 적용하라고 지시함.
+**현행 정책:**
+- `wiki/`·`sources/`·`index.md`: humanize 자동 실행 금지. 품질은 CLAUDE.md "wiki 교재 문체 가이드"(하다체 + 교재식 전개, 중간점·em dash 금지, 불릿·표 적극 사용)를 생성 시점부터 지키고, `scripts/lint_style.py` + `scripts/lint_terms.py`로 검증한다.
+- `raw/`: 원저자 원문이므로 어떤 윤문도 하지 않는다 (불변 아카이브).
+- humanize-korean은 사용자가 명시적으로 요청할 때만 실행하며, wiki/sources 파일에는 구조 요소(불릿·표·헤딩·임베드)를 삭제하지 않는 조건으로만 적용한다.
 
-**How to apply:**
-- wiki/sources/index 등 한글 본문 초안을 만든 뒤, 최종 저장 전에 humanize-korean으로 한 번 윤문(≤5,000자 Fast, 긴 글은 `--strict`).
-- 의미 불변 철칙 준수 — 사실·수치·고유명사·인용·YAML 식별자·기술 용어(RAG, Transformer 등 영문)는 절대 변경 금지. 문체·리듬만 다듬는다.
-- 코드·YAML frontmatter key·파일명 같은 식별자에는 적용하지 않는다(본문 산문에만).
-- 관련: [[커밋/푸시 금지]]
+**Why:** 사용자가 2026-09-05 wiki 품질 불만(직역투, 짧음, 줄글)을 제기했고 원인 분석 결과 자동 윤문 파이프라인이 주범으로 확정됨. 교재식(wikidocs 톤) 재구성이 새 목표다.
+
+**How to apply:** wiki/sources 파일을 쓰거나 고친 뒤 humanize를 호출하지 말 것. 대신 lint 두 개를 돌려 경고 0을 확인할 것.
+
+관련: [[커밋/푸시 금지]]

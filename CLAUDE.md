@@ -6,9 +6,9 @@ AI 관련 기술자료(papers, repos, articles, reports, videos, books, lectures
 원본 자료 (raw/) → sources/*.md (LLM 요약) → wiki/{category}/*.md (최종 페이지)
 ```
 
-**언어 정책 (Language Policy)**: `CLAUDE.md`의 지시문과 `sources/`·`wiki/`의 본문은 **한글**로 작성한다. 단, 식별자(YAML key, 카테고리명, 파일명 stem, 폴더명)와 기술 용어(RAG, Transformer, embedding, fine-tuning 등)는 **영문**으로 유지한다. 섹션 헤딩은 `## 요약 (Summary)` 형식으로 한글 + 영문 병기를 권장한다. 사용자와의 대화는 어느 언어로든 가능하다.
+**언어 정책 (Language Policy)**: `CLAUDE.md`의 지시문과 `sources/`·`wiki/`의 본문은 **한글**로 작성한다. 단, 식별자(YAML key, 카테고리명, 파일명 stem, 폴더명)와 기술 용어(RAG, Transformer, embedding, fine-tuning 등)는 **영문**으로 유지한다. 섹션 헤딩은 `## 요약`처럼 **한글 단독**으로 쓴다 (`## 요약 (Summary)` 식 영문 병기는 쓰지 않는다 — 문서 골격이 영어 번역판처럼 읽히는 원인이었다). 사용자와의 대화는 어느 언어로든 가능하다.
 
-전문 용어의 canonical 표기는 도메인 용어집 `wiki/overviews/glossary-{physical-ai,agents,llms}.md`가 SSOT다. 용어집에 등재된 원어는 한글로 직역하지 않고(policy → "정책" ❌), 문서당 첫 등장 시 괄호 병기 없이 서술형 한글 풀이를 한 문장 둔다 (예: "control frequency는 로봇이 1초에 몇 번 새로운 action을 갱신하는지를 뜻한다"). 원어에는 조사를 그대로 붙인다("policy가 observation을 받아"). 용어집이 한글 canonical로 지정한 용어(임베딩·토큰·강화학습 등)는 그 한글만 쓴다. 준수 여부는 `scripts/lint_terms.py`가 검사한다.
+전문 용어의 canonical 표기는 도메인 용어집 `wiki/overviews/glossary-{physical-ai,agents,llms}.md`가 SSOT다. 용어집에 등재된 원어는 한글로 직역하지 않고(policy → "정책" ❌), 문서당 첫 등장 시 괄호 병기 없이 서술형 한글 풀이를 한 문장 둔다 (예: "control frequency는 로봇이 1초에 몇 번 새로운 action을 갱신하는지를 뜻한다"). 원어에는 조사를 그대로 붙인다("policy가 observation을 받아"). 용어집이 한글 canonical로 지정한 용어(임베딩, 토큰, 강화학습, 시연 데이터, 지시문 등)는 그 한글만 쓰되, 개념 번역어(시연 데이터, 지시문처럼 원어를 옮긴 것)는 문서당 첫 등장 시 원어를 괄호 병기한다("시연 데이터(demonstration)"). 같은 문서에서 원어와 번역어를 섞어 쓰지 않는다. 준수 여부는 `scripts/lint_terms.py`가 검사한다.
 
 ---
 
@@ -171,7 +171,7 @@ figures:
     curated: true                                      # true → wiki 본문에 임베드, false → 아카이브에만 존재
 ```
 
-- 전체 figure 후보를 frontmatter에 남기고 `curated: true`만 wiki 본문에 임베드 — 트레이서빌리티 유지.
+- 전체 figure 후보는 **sources** frontmatter에 남기고, wiki frontmatter에는 `curated: true` 항목만 복제해 본문에 임베드한다 — 트레이서빌리티는 sources가 유지한다 (wiki frontmatter 비대화 방지).
 - `strategy` 허용값: `caption-region` · `table-region` · `column-band` · `page-region` · `manual`(`--bbox` 지정) · `legacy-page-region`(마이그레이션 이전 전면 캡처) · `fetched`·`screenshot`·`crop`(articles) · `keyframe`(videos).
 - `figures.json`에는 `bbox`(PDF point 좌표)·`dpi`·`area_frac`·`overlay` 키도 함께 들어간다. frontmatter에는 사람이 볼 것만 옮긴다.
 
@@ -246,7 +246,7 @@ Step 3.5  사용자 confirm — wiki에 넣을 fig ID 지정 → curated: true
 Step 4    wiki/{category}/{stem}.md 작성 + curated figure를 wiki/assets/{stem}/로 cp + 본문 임베드 + index.md 갱신
 ```
 
-Step 3~4(sources·wiki 작성)는 `write-wiki` 스킬을 사용한다. 스킬이 도메인 용어집 로드, 전문 용어 표기 규칙, 첫 등장 풀이 스타일, 작성 후 lint 검증을 담당한다.
+Step 3~4(sources·wiki 작성)는 `write-wiki` 스킬을 사용한다. 스킬이 도메인 용어집 로드, 전문 용어 표기 규칙, 교재식 구조와 문체 가이드, 작성 후 lint 검증(`lint_terms.py` + `lint_style.py`)을 담당한다.
 
 ### 공통 Step 3 — `sources/{stem}.md` 작성
 
@@ -263,6 +263,10 @@ front-matter는 위 스키마를 따르고 (Step 2.5에서 도식을 추출했�
 ## 7. 용어집 (Glossary)
 ## 8. 그림 후보 (Figure Candidates)        # Step 2.5에서 도식을 추출한 경우만
 ```
+
+> sources 템플릿의 번호 붙은 병기 헤딩은 기존 파일 216개와의 일관성을 위해 유지한다. 병기 폐지는 wiki 본문 헤딩에 적용된다.
+
+sources는 요약이지만 세부를 깎는 단계가 아니다. 실험 수치, ablation 결과, 한계의 세부 항목은 삭제하지 않고 보존한다. 중간점(`·`)과 em dash(`—`) 금지는 sources 본문에도 똑같이 적용된다.
 
 "## 8. 그림 후보" 섹션은 사용자가 빠르게 큐레이션 결정을 내릴 수 있도록 LLM이 다음 형식으로 추천 마크를 단다 (sources는 이미지 임베드 ❌ — 텍스트 메타만):
 
@@ -285,23 +289,51 @@ front-matter는 위 스키마를 따르고 (Step 2.5에서 도식을 추출했�
 
 ### 공통 Step 4 — `wiki/{category}/{stem}.md` 작성 + 이미지 사본 + `index.md` 갱신
 
-front-matter에 `source: {stem}.md` 추가, sources의 `figures:` 리스트 복제 (curated 플래그 그대로 유지). 본문 헤딩 예시:
+front-matter에 `source: {stem}.md`를 추가하고, sources의 `figures:` 리스트에서 **`curated: true` 항목만** 옮긴다. 전수 후보 아카이브는 sources frontmatter가 이미 들고 있으므로 트레이서빌리티는 유지되고, wiki frontmatter가 본문보다 커지는 비대화를 막는다.
+
+본문은 아래 교재식 골격을 기본으로 한다. 자료 성격에 따라 절을 더하거나 뺀다 (repo 소개면 "배경" 생략 가능, 해설 article이면 원문의 절 구성을 따라도 된다).
 
 ```markdown
-## 요약 (Summary)
-## 주요 기여 (Key Contributions)
-## 방법론 및 아키텍처 (Methodology and Architecture)
+## 요약
+
+한두 문단. 이 자료가 무엇이고 왜 중요한지.
+
+## 배경
+
+이 자료가 풀려는 문제와 등장 맥락. 어떤 한계를 출발점으로 삼았는지.
+
+## 핵심 개념
+
+본문 이해에 필요한 용어를 서술형 문장으로 풀이한다. 개념 하나에 문단 하나.
+
+## 방법
+
+### 하위 주제마다 ### 절을 나눈다
+
+항목 3개 이상 열거는 불릿으로, 비교와 분류는 표로 꺼낸다.
+
+| 구성 요소 | 역할 |
+|---|---|
+| ... | ... |
 
 ![[assets/{stem}/fig02.png]]
 *Figure 2: GraphRAG 인덱싱 파이프라인 (Edge 2024, p.4)*
 
-## 결과 (Results)
+## 결과
 
-![[assets/{stem}/fig03.png]]
-*Figure 3: Podcast/News 코퍼스 벤치마크 (Edge 2024, Table 1)*
+수치 비교는 표를 우선 사용하고, 표가 말하는 바를 산문 한두 문단으로 해석한다.
 
-## 관련 페이지 (Related Pages)
-- [[category/page]] — 관계 설명
+## 한계
+
+## 핵심 용어
+
+| 용어 | 뜻 |
+|---|---|
+| ... | sources 용어집에서 3~6개 선별해 옮긴다 |
+
+## 관련 페이지
+
+- [[category/page]]: 관계 설명
 ```
 
 큐레이션 사본 복사 (Step 4 마지막에 일괄):
@@ -314,24 +346,109 @@ cp raw/papers/{stem}-figures/fig02.png wiki/assets/{stem}/
 cp raw/papers/{stem}-figures/fig05.png wiki/assets/{stem}/
 ```
 
-`index.md`에는 해당 카테고리 아래 한 줄 항목을 추가한다.
+`index.md`에는 해당 카테고리 아래 한 줄 항목을 추가한다. 항목 설명은 **1~2문장, 200자 이내**로 제한한다. 세부 내용은 wiki 페이지가 담당하고 index는 카탈로그 역할만 한다 (기존에 항목이 수백 자로 자라 두 번째 wiki가 되는 문제가 있었다).
 
 > **Obsidian 임베드 syntax 주의**: `![[fig02]]` shortlink는 vault 내 동명 파일과 충돌 위험 → 항상 `![[assets/{stem}/figNN.png]]` 처럼 **상대경로 명시**로 통일한다. 캡션은 임베드 바로 아래 `*Figure N: ...*` 형식으로 한 줄 둔다.
 
-#### wiki 산문 문체 가이드 (Prose Style — 생성 시점 적용)
+#### wiki 교재 문체 가이드 (Prose Style — 생성 시점 적용)
 
-`sources/`·`wiki/`의 한글 산문을 처음 쓸 때부터 아래를 지키면 후속 humanize 부담이 크게 준다. 목표는 **평이한 기술 문서 register** — 사람인 엔지니어가 블로그·문서에 쓰는 담백한 문장이다. (사후 교정은 humanize-korean `register: wiki`(strict)가 맡지만, 초안이 이미 꾸민 글이면 20~35% 손질로도 다 못 고친다.)
+`wiki/`는 "이 페이지만 읽어도 핵심을 이해할 수 있는" 한국어 기술 문서를 지향한다. **구조와 상세도는 교재식**(개념 선행 풀이, 단계적 전개, 표와 불릿)을 따르되, **서술은 표준 기술문서체**로 쓴다. 칼럼, 블로그, 강의록의 말투(자문자답, 화자 개입, 극적 표현)를 쓰지 않는다. 종결어미는 하다체. `sources/`와 `wiki/`의 한글은 처음 쓸 때부터 아래를 지킨다. **humanize 자동 윤문은 이 두 폴더에 적용하지 않는다** (사용자가 명시 요청할 때만). 준수 여부는 `scripts/lint_style.py`와 `scripts/lint_terms.py`가 검사한다.
 
-- **흔한 어휘 우선**: 잘 안 쓰는 문어체·문학체 어휘를 피한다. "포개다·결이 다르다·복리로 쌓인다·파고들다·손을 대는 통로·무게가 실린다·격차를 벌린다" → "겹친다·성격이 다르다·계속 쌓인다·깊이 본다·건드리는 경로·비중이 크다·차이를 키운다". 고를 때 "일반 기술 문서에서 쓰는 말인가?"를 자문.
-- **기계적 병렬 회피**: "~하다면, ~는 ~한다" 대구, "(1)·(2)·(3)" 숫자 인덱싱, "첫째/둘째/셋째" 공식을 반복하지 않는다. 열거는 산문 흐름으로 녹인다.
-- **명사 강조 볼드 절제**: 문장 속 개념어를 **볼드**로 강조하는 습관을 줄인다. 볼드는 표·헤딩·핵심어 1~2개에만.
-- **콜론 부제 헤딩 회피**: "X: Y" 형식 헤딩을 반복하지 않는다. 짧은 평서 헤딩으로.
-- **연결어미 뒤 쉼표 자제**: "-고, / -며, / -지만, / -어서," 직후 쉼표를 남발하지 않는다(AI 티 최상위 신호, C-11).
-- **문단 흐름**: 모든 문단을 "요약 문장 → 부연" 틀로 열지 않는다. 일부 문단은 사례·수치·질문으로 시작해 리듬을 준다. 문두 접속사("또한·따라서·즉·나아가")는 최소화.
-- **전문 용어 원어 유지**: 도메인 용어집(`wiki/overviews/glossary-*.md`) 등재 용어는 canonical 표기만 쓴다. 직역("정책·보상·관측·궤적")과 표기 흔들림("관측/관찰", "워크플로/워크플로우") 금지. 첫 등장 시 서술형 풀이 한 문장, 괄호 병기는 하지 않는다.
-- **불변**: 사실·수치·고유명사·인용·YAML key·파일명·영문 기술용어(RAG·Transformer 등)·용어집 canonical 표기는 문체와 무관하게 그대로.
+**전개와 문단**
 
-> 이 가이드는 안티-AI-티 규칙(`references/ai-tell-taxonomy.md`)의 부분집합을 생성 단계로 앞당긴 것이다. 완전 판정·교정은 humanize-korean strict가 수행한다.
+- 문단은 1~3문장으로 짧게 끊고 문단 사이를 띄운다. 5문장 넘는 덩어리 문단을 만들지 않는다.
+- 문단은 두괄식으로 쓴다. 첫 문장이 문단의 주제를 담고 나머지가 뒷받침한다.
+- 결론을 먼저 서술하고 근거를 붙인다. **자문자답 금지**: "왜 ~일까?"로 질문을 던지고 답하는 구성을 쓰지 않는다.
+- 개념을 쓰기 전에 먼저 풀이한다. 배경, 개념, 본론, 요약 순서로 쌓아 올린다.
+- 긴 절 끝의 요약 문단은 유지하되 담화 표지 없이 평서문으로 시작한다. "정리하면 ~"이 아니라 "RT-1의 성능은 세 요소가 함께 만든 결과다"처럼 쓴다.
+- 문장 사이의 관계(인과, 대조, 부연, 예시)를 접속 표현으로 명시한다: 따라서, 반면, 즉, 예를 들어. 짧은 단정문("~다.")을 접속 없이 3개 이상 나열하지 않는다.
+- 지시어 "이/그"의 지시 대상은 직전 문장 안에서 확인되어야 한다. "이쪽/그쪽" 대신 대상을 명시한다 ("원 논문 페이지 참고").
+- 수치는 던져두지 말고 의미를 한 문장 붙인다 ("RT-1은 3Hz로 동작한다. 즉 1초에 3번 새로운 action을 낸다").
+- 원문에 비유나 예시가 있으면 살린다. 없으면 독자가 그림을 그릴 수 있는 예시를 자료 범위 안에서 만든다.
+
+**금지 서술 (칼럼, 블로그, 강의록 문체)**
+
+- 화자 개입 표현 금지: "한 줄로 말하면", "한 문장으로 줄이면", "~쪽 결론은 분명하다", "표에서 읽을 수 있는 것은 세 가지다" 등.
+- 극적, 구어적 동사 금지. 아래로 치환한다.
+
+| 금지 | 대체 |
+|---|---|
+| 무너지다 | 크게 하락하다 |
+| 급락하다 | 하락하다 |
+| 파괴적이다 | 영향이 가장 크다 |
+| 버티다 | 유지하다, 안정적으로 동작하다 |
+| 긁다 | 수집하다 |
+| 건지다 | 참고하다 |
+| 얹다 | 결합하다 |
+| 끼우다 | 삽입하다 |
+| 따지다 | 검토하다 |
+| 넣다 (기법 적용 의미) | 적용하다 |
+
+- 헤딩도 명사형 기술체로 쓴다. "부록에서 건질 것" ❌ → "부록의 주요 분석".
+
+**어휘 치환표 (한국어 기술문서에서 쓰지 않는 표현)**
+
+| 금지 | 대체 |
+|---|---|
+| 판 ("키운 판이다") | 버전, 변형 |
+| 축 ("네 축", "평가 축") | 항목, 기준, 측면 (`축`은 좌표축 의미로만) |
+| 벌 ("예제 두 벌") | 개, 종류 |
+| 갈래 ("네 갈래") | 가지 |
+| 기둥 ("두 기둥") | 핵심 요소 |
+| 돌다/돌리다 | 실행되다, 구동하다 |
+| 이쪽/그쪽 | 지시 대상을 명시 |
+| 차선 ("차선 대비") | 두 번째로 높은 모델 대비 |
+| 실+명사 조어 (실기기, 실오브젝트, 실데이터, 실로봇) | 실제 기기, 실제 물체, 실제 데이터, 실제 로봇 (단 "실세계", "실시간" 등 표준어는 유지) |
+
+**구조 요소 (적극 사용)**
+
+- 항목 3개 이상 열거는 문장에 압축하지 말고 불릿이나 표로 꺼낸다. 비교, 분류, 수치는 표 우선.
+- 긴 절은 `###` 하위 헤딩으로 나눈다. 헤딩은 한글 단독 명사형으로 쓰고 "X: Y" 콜론 부제 형식은 피한다.
+- 논문이나 survey 기반 페이지에 표가 하나도 없으면 구조화가 부족하다는 신호로 본다.
+
+**금지 기호**
+
+- 중간점(`·`) 금지. 키워드 나열은 "와/과", 쉼표, "/"를 쓴다. "CLIP·SigLIP·DINOv2"가 아니라 "CLIP, SigLIP, DINOv2"로 쓴다.
+- em dash(`—`) 전면 금지 (제목과 본문 모두). 쉼표, 괄호, 문장 분리로 대체한다.
+
+**용어 (단일 표기 원칙)**
+
+- 문서 생성 전 대상 도메인 용어집(`wiki/overviews/glossary-*.md`)을 로드해 표기를 확정하고, 문서 전체에서 하나의 표기만 쓴다. 원어와 번역어를 같은 문서에서 섞지 않는다.
+- 원어 canonical 용어(policy, action, observation, odometry, feature, extrinsic, ablation 등 원어가 표준인 개념): 괄호 병기 없이 첫 등장 시 서술형 풀이 한 문장을 둔다.
+- 번역어 canonical 용어(시연 데이터, 지시문 등): 첫 등장 시 원어를 괄호 병기하고("시연 데이터(demonstration)") 이후에는 한 표기만 쓴다.
+- 반쪽 번역 금지: "raw 점"처럼 용어의 절반만 번역하지 않는다. "raw point"로 쓰거나 완전한 번역어를 쓴다.
+- 한 문장에 영어 용어가 4개 이상이면 문장을 나누거나 번역어로 바꿔 밀도를 낮춘다.
+
+**수치와 표기**
+
+- 큰 수는 한국식 단위로 쓴다: 130k ❌ → 13만 개.
+- 본문 수치에 단위를 생략하지 않는다: "92에서 90으로" ❌ → "92%에서 90%로".
+- %(비율)와 %p(비율 차이)를 구분한다.
+
+**문장**
+
+- 흔한 어휘 우선: 잘 안 쓰는 문어체나 문학체 어휘를 피한다. "포개다, 결이 다르다, 복리로 쌓인다"보다 "겹친다, 성격이 다르다, 계속 쌓인다". 고를 때 "일반 기술 문서에서 쓰는 말인가?"를 자문한다.
+- "-고, / -며, / -지만, / -어서," 연결어미 직후 쉼표를 남발하지 않는다.
+- 명사 강조 볼드는 절제한다. 볼드는 표, 헤딩, 문서당 핵심어 한두 개에만.
+
+**상세도**
+
+- wiki는 sources의 압축본이 아니라 **교재식 재구성본**이다. 같은 stem의 sources 본문보다 짧아지지 않는 것을 기본으로 한다.
+- 대략의 본문 분량 목표: 논문 기반 6,000~12,000자, article 기반 4,000~10,000자 (원문 구조에 따름), repo 기반 2,000~5,000자.
+- sources의 용어집에서 3~6개를 골라 `## 핵심 용어` 표로 옮긴다. 실험 수치, ablation, 한계 세부는 삭제하지 않는다.
+
+**불변**
+
+- 사실, 수치, 고유명사, 인용, YAML key, 파일명, 영문 기술용어(RAG, Transformer 등), 용어집 canonical 표기는 문체와 무관하게 그대로 둔다.
+
+**생성 후 자체 검토**
+
+완성 후 다음을 검사하고 위반 시 수정한다.
+
+1. 금지 어휘(치환표)와 금지 표현(화자 개입, 극적 동사)이 남아 있는가
+2. 용어집과 다른 표기가 있는가 (원어와 번역어 혼용 포함)
+3. "왜 ~일까?" 자문자답 패턴이 남아 있는가
+4. 각 문단의 첫 문장이 문단 주제를 담고 있는가
 
 ---
 
@@ -339,7 +456,7 @@ cp raw/papers/{stem}-figures/fig05.png wiki/assets/{stem}/
 
 **Step 1** — PDF를 `raw/papers/`에 복사 (symlink 금지).
 
-**Step 2** — `pypdf`로 첫 ~15페이지, ~12,000자 추출 (LLM 요약에 충분):
+**Step 2** — `pypdf`로 첫 ~30페이지, ~40,000자 추출. 방법론뿐 아니라 실험 세부와 ablation까지 sources에 담기 위한 상한이다 (과거 12,000자 상한은 상세도 부족의 상류 원인이었다). 참고문헌과 부록만 있는 뒷부분은 자연히 잘려도 무방하다.
 
 > **환경**: 이 프로젝트는 Homebrew Python(PEP 668) 환경이라 `pip3 install pypdf`가 막힌다. 대신 프로젝트 `.venv`(uv로 생성, 부트스트랩에서 자동 수행)를 사용하고, PDF 추출은 `.venv/bin/python3`로 실행한다.
 
@@ -352,11 +469,11 @@ cp raw/papers/{stem}-figures/fig05.png wiki/assets/{stem}/
 import pypdf, sys
 reader = pypdf.PdfReader(sys.argv[1])
 text = ''
-for page in reader.pages[:15]:
+for page in reader.pages[:30]:
     t = page.extract_text()
     if t: text += t + '\n'
-    if len(text) > 12000: break
-print(text[:12000])
+    if len(text) > 40000: break
+print(text[:40000])
 " "/path/to/paper.pdf"
 ```
 
@@ -507,8 +624,8 @@ done
 
 **Step 2** — 추출 전략은 두 모드 중 선택 (frontmatter의 `extraction_mode`에 기록):
 
-- **`toc` (기본, 단일 source)**: 처음 5–10페이지에서 목차를 뽑은 뒤, 사용자가 지정한 핵심 챕터(또는 첫 1–2개 챕터)를 ~12,000자까지 `pypdf`로 추출. papers와 동일한 도구·환경 사용. 책 한 권 = `sources/{stem}.md` 한 개.
-- **`chapters` (챕터 분할)**: 챕터별로 분할된 PDF 각각을 ~12,000자씩 추출하여 **챕터별 source 다수 생성** (`sources/{stem}-ch01.md`, `{stem}-ch02.md`, ...). wiki는 각 챕터를 별도 페이지로 둘 수도, 합쳐서 한 페이지로 둘 수도 있고, 책 전체에 대한 `wiki/overviews/{stem}-overview.md`를 별도로 작성하는 것이 권장된다.
+- **`toc` (기본, 단일 source)**: 처음 5–10페이지에서 목차를 뽑은 뒤, 사용자가 지정한 핵심 챕터(또는 첫 1–2개 챕터)를 ~40,000자까지 `pypdf`로 추출. papers와 동일한 도구·환경 사용. 책 한 권 = `sources/{stem}.md` 한 개.
+- **`chapters` (챕터 분할)**: 챕터별로 분할된 PDF 각각을 ~40,000자씩 추출하여 **챕터별 source 다수 생성** (`sources/{stem}-ch01.md`, `{stem}-ch02.md`, ...). wiki는 각 챕터를 별도 페이지로 둘 수도, 합쳐서 한 페이지로 둘 수도 있고, 책 전체에 대한 `wiki/overviews/{stem}-overview.md`를 별도로 작성하는 것이 권장된다.
 
 ```bash
 # papers와 동일한 .venv/bin/python3 사용
@@ -516,11 +633,11 @@ done
 import pypdf, sys
 reader = pypdf.PdfReader(sys.argv[1])
 text = ''
-for page in reader.pages[:15]:
+for page in reader.pages[:30]:
     t = page.extract_text()
     if t: text += t + '\n'
-    if len(text) > 12000: break
-print(text[:12000])
+    if len(text) > 40000: break
+print(text[:40000])
 " "raw/books/{stem}.pdf"
 ```
 
@@ -588,7 +705,7 @@ Step 4    큐레이션 사본  → wiki/assets/{stem}/ + 본문 ![[]] 임베드
 4. **id는 논문 라벨**: `fig03` = Figure 3, `tab02` = Table 2. 사람이 대응표를 손으로 만들 일이 없다.
 5. **Obsidian 임베드**: `![[assets/{stem}/figNN.png]]` + 다음 줄에 `*Figure N: caption*`. shortlink(`![[figNN]]`)는 동명 충돌 위험 → 항상 상대경로.
 6. **sources는 텍스트만**: `sources/`에는 이미지 임베드 ❌. `figures:` frontmatter + "## 8. 그림 후보" 텍스트 메타만.
-7. **트레이서빌리티**: 큐레이션에서 빠진 후보도 frontmatter에 `curated: false`로 남긴다 — 미래에 재선택 가능.
+7. **트레이서빌리티**: 큐레이션에서 빠진 후보도 **sources** frontmatter에 `curated: false`로 남긴다 — 미래에 재선택 가능. wiki frontmatter에는 curated 항목만 복제한다.
 8. **자료에 도식 없음**: `figures:` 키 자체를 생략 (빈 리스트도 OK).
 
 ### 유형별 도구·전략 (요약표)

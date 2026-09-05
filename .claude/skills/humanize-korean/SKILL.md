@@ -24,9 +24,11 @@ humanize-korean v1.5 — {fast|strict} 모드 / run_id: {YYYY-MM-DD-NNN}
 
 ### 모드 결정
 - 사용자가 `--strict`·"정밀 모드"·"5인 파이프라인" 명시 → **strict**
-- **`register: wiki` (또는 대상 파일이 `wiki/`·`sources/` 하위) → strict 강제** (길이 무관, 자동 승급 + 1줄 고지). 이 저장소의 기술 위키 산문은 얕은 Fast Path로는 티가 남아, 독립 탐지·자연성 리뷰가 있는 strict로만 처리한다. §wiki register 참조.
+- **`register: wiki` (대상 파일이 `wiki/`·`sources/` 하위) → strict** (길이 무관, 자동 승급 + 1줄 고지). §wiki register 참조.
 - 입력 8,000자 초과 → **strict** (자동 승급 + 사용자에 1줄 고지)
 - 그 외 모두 → **fast (디폴트)**
+
+> **2026-09 적용 범위 변경**: `wiki/`·`sources/` 파일은 **자동 윤문 대상이 아니다**. 저장 시마다 이 스킬을 자동 실행하던 정책은 폐지됐다 (구조 파괴와 압축이 wiki 품질 문제의 원인이었음 — `temp-docs/ingest-upgrade-plan.md` 참고). 해당 폴더의 품질은 CLAUDE.md "wiki 교재 문체 가이드" + `scripts/lint_style.py`가 생성 시점에 담당한다. 이 스킬은 **사용자가 명시적으로 요청할 때만** wiki/sources 파일에 실행하며, 그때도 아래 wiki register의 구조 보존 원칙을 지킨다: 불릿·표·헤딩·이미지 임베드는 삭제하지 않는다 (교재 문체에서 구조 요소는 AI 티가 아니라 설계다).
 
 ### wiki register (기술 위키 전용)
 `register: wiki`는 이 저장소의 `wiki/`·`sources/` 기술 산문에 특화된 프로파일이다. 다음 4가지를 한 묶음으로 적용한다:

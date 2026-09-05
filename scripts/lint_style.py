@@ -1,0 +1,246 @@
+#!/usr/bin/env python3
+"""문체 lint — CLAUDE.md "wiki 교재 문체 가이드"의 기계 검사 가능한 규칙을 검사한다.
+
+sources/·wiki/ 한글 산문에서 다음을 잡는다:
+  [error]   중간점(·) 사용 — 키워드 나열은 와/과, 쉼표, 슬래시로
+  [error]   em dash(—) 사용 — 쉼표, 괄호, 문장 분리로 대체
+  [error]   wiki 본문 헤딩의 영문 병기 (예: "## 요약 (Summary)") — wiki/ 하위만 검사
+  [error]   자문자답 패턴 ("~일까?", "~을까?") — 결론 먼저 서술
+  [error]   화자 개입 표현 ("한 줄로 말하면", "정리하면" 등)
+  [warning] 금지 어휘 (갈래, 차선 대비, 이쪽/그쪽, 실기기 등 실+명사 조어, 돌아간다/돌린다)
+  [warning] 큰 수의 k 표기 (130k) — 한국식 단위(13만 개)로
+  [warning] 연결어미 뒤 쉼표("-고, / -며, / -지만,") 과다 — 밀도 기준 초과 시 경고
+  [warning] paper/report 기반 wiki 페이지에 표 없음 — 구조화 부족 신호
+
+사용:
+    python3 scripts/lint_style.py <file> [<file> ...]   # 지정 파일만
+    python3 scripts/lint_style.py --all                 # sources/ + wiki/ + index.md 전체
+    python3 scripts/lint_style.py --all --strict        # error 1건 이상이면 exit 1
+    python3 scripts/lint_style.py --json <file>         # 훅용 JSON 출력
+
+대상 파일 규약 (lint_terms.py와 동일한 방식):
+- frontmatter에 lint_style: false 가 있으면 파일 전체 제외 (원문 인용 보존용 — 남용 금지).
+- 줄에 <!-- lint-style: ignore --> 가 있으면 그 줄 제외.
+- <!-- lint-style: off --> ~ <!-- lint-style: on --> 블록 제외.
+- frontmatter·코드 펜스·인라인 코드·[[wikilink]]·URL 내부는 검사하지 않는다.
+- glossary-*.md 는 제외 (금지 표기 구분자로 ·를 쓰는 규약 파일).
+
+의존성: python3 표준 라이브러리만 (훅에서 .venv 없이 실행).
+"""
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+
+RE_INLINE_CODE = re.compile(r"`[^`]*`")
+RE_WIKILINK = re.compile(r"!?\[\[[^\]]*\]\]")
+RE_MD_LINK_TARGET = re.compile(r"\]\([^)]*\)")
+RE_URL = re.compile(r"https?://\S+")
+# 병기 괄호(라틴 문자/숫자만, 한글 없음)는 검사 제외 — "시연 데이터(demonstration)", "약 13만 개(130k)"
+# 단 괄호 안에 중간점·em dash가 있으면 마스킹하지 않는다 (금지 기호가 숨지 않게)
+RE_LATIN_PAREN = re.compile(r"\([A-Za-z0-9][^)가-힣·—]*\)")
+
+# 한글이 든 헤딩 + 괄호 안 영문 (예: "## 요약 (Summary)")
+RE_BILINGUAL_HEADING = re.compile(r"^#{1,6}\s+.*[가-힣].*\(\s*[A-Za-z][^)]*\)\s*$")
+# 연결어미 직후 쉼표
+RE_CONNECTIVE_COMMA = re.compile(r"(?:고|며|지만|어서|아서),\s")
+# 자문자답 ("~일까?", "~을까?", "~할까?")
+RE_SELF_QA = re.compile(r"(?:일|을|ㄹ|할)까\?")
+# 화자 개입 담화 표지
+SPEAKER_INTRUSION = ["한 줄로 말하면", "한 문장으로 줄이면", "한 마디로 말하면",
+                     "표에서 읽을 수 있는", "쪽 결론은", "정리하면"]
+# 금지 어휘 (기계 검사 가능한 부분집합 — 판/축/벌/기둥은 오탐이 커서 가이드로만 관리)
+RE_BANNED_VOCAB = [
+    (re.compile(r"갈래"), "갈래 → 가지"),
+    (re.compile(r"차선 대비"), "차선 대비 → 두 번째로 높은 모델 대비"),
+    (re.compile(r"이쪽|그쪽"), "이쪽/그쪽 → 지시 대상을 명시"),
+    (re.compile(r"실기기|실오브젝트|실데이터|실로봇"), "실+명사 조어 → 실제 기기, 실제 물체, 실제 데이터, 실제 로봇"),
+    (re.compile(r"(?<!되)돌아간다|(?<!되)돌린다"), "돌다/돌리다 → 실행되다, 구동하다"),
+]
+# 큰 수의 k 표기 (130k 등)
+RE_K_NUMBER = re.compile(r"\b[0-9][0-9,.]*k\b")
+
+# 연결어미 뒤 쉼표는 자연스러운 한국어에도 있으므로 절대 개수가 아니라 밀도로 판정한다.
+CONNECTIVE_COMMA_MIN_HITS = 8        # 이 미만이면 경고 안 함
+CONNECTIVE_COMMA_PER_1000 = 3.0      # 본문 1,000자당 이 밀도 초과 시 경고
+
+
+def parse_frontmatter(lines):
+    if not lines or lines[0].strip() != "---":
+        return {}, 0
+    fm = {}
+    for i, line in enumerate(lines[1:], start=1):
+        if line.strip() == "---":
+            return fm, i + 1
+        m = re.match(r"^([A-Za-z_][A-Za-z0-9_]*):\s*(.*)$", line)
+        if m:
+            fm[m.group(1)] = m.group(2).strip()
+    return fm, 0
+
+
+def collect_targets(root, args_files, scan_all):
+    targets = []
+    if scan_all:
+        targets += sorted(root.glob("sources/*.md"))
+        targets += sorted(root.glob("wiki/**/*.md"))
+        idx = root / "index.md"
+        if idx.exists():
+            targets.append(idx)
+    else:
+        targets = [Path(f).resolve() for f in args_files]
+    out = []
+    for p in targets:
+        rel = p.relative_to(root) if p.is_relative_to(root) else p
+        s = str(rel)
+        if s.startswith("raw/") or s.startswith("wiki/assets/"):
+            continue
+        if re.match(r"wiki/overviews/glossary-.*\.md$", s):
+            continue
+        out.append(p)
+    return out
+
+
+def mask(line):
+    for pattern in (RE_INLINE_CODE, RE_WIKILINK, RE_MD_LINK_TARGET, RE_URL, RE_LATIN_PAREN):
+        line = pattern.sub(lambda m: " " * len(m.group(0)), line)
+    return line
+
+
+def lint_file(path, root):
+    text = path.read_text(encoding="utf-8")
+    lines = text.splitlines()
+    fm, body_start = parse_frontmatter(lines)
+    if fm.get("lint_style", "").lower() == "false":
+        return []
+
+    rel = str(path.relative_to(root) if path.is_relative_to(root) else path)
+    is_wiki = rel.startswith("wiki/")
+    ftype = fm.get("type", "").strip().strip("'\"")
+
+    warnings = []
+    in_fence = False
+    off = False
+    connective_hits = []  # (lineno,)
+    has_table = False
+    body_chars = 0
+
+    for lineno, line in enumerate(lines, start=1):
+        if lineno <= body_start:
+            continue
+        stripped = line.strip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        if "lint-style: off" in line:
+            off = True
+            continue
+        if "lint-style: on" in line:
+            off = False
+            continue
+        if off or "lint-style: ignore" in line:
+            continue
+
+        if stripped.startswith("|"):
+            has_table = True
+
+        masked = mask(line)
+        body_chars += len(stripped)
+
+        if "·" in masked:
+            warnings.append({
+                "file": rel, "line": lineno, "severity": "error", "rule": "middot",
+                "msg": "중간점(·) 금지 — 와/과, 쉼표, 슬래시로 나열",
+            })
+        if "—" in masked:
+            warnings.append({
+                "file": rel, "line": lineno, "severity": "error", "rule": "emdash",
+                "msg": "em dash(—) 금지 — 쉼표, 괄호, 문장 분리로 대체",
+            })
+        if is_wiki and RE_BILINGUAL_HEADING.match(masked):
+            warnings.append({
+                "file": rel, "line": lineno, "severity": "error", "rule": "bilingual-heading",
+                "msg": "헤딩 영문 병기 금지 — 한글 단독 헤딩으로",
+            })
+        if RE_SELF_QA.search(masked):
+            warnings.append({
+                "file": rel, "line": lineno, "severity": "error", "rule": "self-qa",
+                "msg": "자문자답(\"~일까?\") 금지 — 결론을 먼저 서술하고 근거를 붙인다",
+            })
+        for phrase in SPEAKER_INTRUSION:
+            if phrase in masked:
+                warnings.append({
+                    "file": rel, "line": lineno, "severity": "error", "rule": "speaker-intrusion",
+                    "msg": f"화자 개입 표현(\"{phrase}\") 금지 — 평서문으로 재작성",
+                })
+        for pattern, hint in RE_BANNED_VOCAB:
+            if pattern.search(masked):
+                warnings.append({
+                    "file": rel, "line": lineno, "severity": "warning", "rule": "banned-vocab",
+                    "msg": f"금지 어휘 — {hint}",
+                })
+        if RE_K_NUMBER.search(masked):
+            warnings.append({
+                "file": rel, "line": lineno, "severity": "warning", "rule": "k-number",
+                "msg": "큰 수의 k 표기 — 한국식 단위로 (130k → 13만 개)",
+            })
+        for _ in RE_CONNECTIVE_COMMA.finditer(masked):
+            connective_hits.append(lineno)
+
+    density = (len(connective_hits) / body_chars * 1000) if body_chars else 0
+    if len(connective_hits) >= CONNECTIVE_COMMA_MIN_HITS and density > CONNECTIVE_COMMA_PER_1000:
+        warnings.append({
+            "file": rel, "line": connective_hits[0], "severity": "warning", "rule": "connective-comma",
+            "msg": f"연결어미 뒤 쉼표(-고, / -며, / -지만,)가 {len(connective_hits)}회, 1000자당 {density:.1f}회 — 줄이기",
+        })
+    if is_wiki and ftype in ("paper", "report") and not has_table:
+        warnings.append({
+            "file": rel, "line": body_start + 1, "severity": "warning", "rule": "no-table",
+            "msg": "paper/report 기반 페이지에 표가 없음 — 비교, 분류, 수치를 표로 구조화 검토",
+        })
+    return warnings
+
+
+def main():
+    ap = argparse.ArgumentParser(description="wiki 교재 문체 가이드 기반 문체 lint")
+    ap.add_argument("files", nargs="*", help="검사할 파일 (생략 시 --all 필요)")
+    ap.add_argument("--all", action="store_true", help="sources/ + wiki/ + index.md 전체 검사")
+    ap.add_argument("--strict", action="store_true", help="error 1건 이상이면 exit 1")
+    ap.add_argument("--json", action="store_true", help="JSON 출력 (훅용)")
+    args = ap.parse_args()
+
+    if not args.files and not args.all:
+        ap.error("검사할 파일을 지정하거나 --all 을 쓰세요.")
+
+    targets = collect_targets(REPO_ROOT, args.files, args.all)
+    all_warnings = []
+    for path in targets:
+        if not path.exists():
+            print(f"[lint_style] 파일 없음: {path}", file=sys.stderr)
+            continue
+        all_warnings += lint_file(path, REPO_ROOT)
+
+    errors = [w for w in all_warnings if w["severity"] == "error"]
+
+    if args.json:
+        print(json.dumps({"warnings": all_warnings, "count": len(all_warnings),
+                          "errors": len(errors)}, ensure_ascii=False))
+    else:
+        for w in all_warnings:
+            print(f"{w['file']}:{w['line']}: [{w['severity']}] {w['msg']} ({w['rule']})")
+        per_file = {}
+        for w in all_warnings:
+            per_file[w["file"]] = per_file.get(w["file"], 0) + 1
+        print(f"\n검사 파일 {len(targets)}개, error {len(errors)}건, warning {len(all_warnings) - len(errors)}건, 해당 파일 {len(per_file)}개")
+
+    if args.strict and errors:
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

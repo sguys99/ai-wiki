@@ -19,6 +19,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 - 금지 표기 열은 `scripts/lint_terms.py`의 검사 대상이다. `—`이면 지침만 있고 기계 검사는 없다. 복수 항목은 `·`로 구분하며 리터럴 부분 문자열로 검사된다(조사가 붙어도 잡힌다).
 - 이 용어집은 frontmatter `applies_to`에 적힌 category의 파일에만 적용된다. "정책·행동·관측" 같은 단어가 다른 도메인에서 일반 의미(운영 정책 등)로 쓰이는 것까지 막지 않기 위해서다.
 - 오탐이 큰 일반어는 단독으로 등재하지 않고 복합어·조사 결합형만 등재한다 (예: 행동 → `행동 공간·행동 토큰`).
+- canonical이 개념 번역어인 용어(시연 데이터, 지시문 등)는 문서당 첫 등장 시 원어를 괄호 병기하고("시연 데이터(demonstration)") 이후에는 한 표기만 쓴다. 같은 문서에서 원어와 번역어를 섞지 않는다. 라틴 문자만 든 괄호는 `lint_terms.py`가 마스킹하므로 병기가 금지 표기로 오탐되지 않는다. (2026-09 개정)
 
 ## 용어 표 (Term Table)
 
@@ -40,7 +41,8 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | imitation learning | imitation learning | 모방 학습·모방학습 | imitation learning은 시연 데이터를 흉내 내 policy를 학습하는 방법이다 | |
 | behavioral cloning | behavioral cloning | 행동 복제·행동 모사 | behavioral cloning은 시연의 observation→action 쌍을 지도학습으로 흉내 낸다 | |
 | teleoperation | teleoperation | 원격 조작·원격조작 | teleoperation은 사람이 로봇을 원격으로 움직여 시연을 만드는 방식이다 | 이미 원어로 정착 (22회) |
-| demonstration | demonstration | — | demonstration은 사람이 만들어준 모범 실행 데이터다 | "시연"은 일반어라 지침만 — 데이터 문맥에서는 원어 권장 |
+| demonstration | 시연 데이터 | demonstration | 시연 데이터(demonstration)는 사람이 만들어준 모범 실행 데이터다 | 2026-09 개정: 개념 번역어로 전환. 첫 등장 시 원어 병기 후 단일 표기. 병기 괄호는 lint가 마스킹한다 |
+| instruction | 지시문 | — | 지시문(instruction)은 로봇에게 과제를 지정하는 자연어 문장이다 | 2026-09 신설. 기계 검사 없음 — verbal instruction, hindsight instruction 같은 원어 canonical 복합어와 substring이 충돌한다. 혼용 여부는 write-wiki 자체 검토로 관리 |
 | end-effector | end-effector | 말단 장치·엔드 이펙터 | end-effector는 로봇 팔 끝에서 물체와 접촉하는 부분이다 | 음차도 금지, 원어 고정 |
 | gripper | 그리퍼 | — | 그리퍼는 물체를 집는 end-effector의 한 형태다 | 음차 정착 |
 | manipulation | manipulation | — | manipulation은 팔과 손으로 물체를 다루는 과제 영역이다 | "조작"은 일반어라 지침만 — 과제 분류 문맥에서는 원어 권장 |

@@ -42,6 +42,8 @@ RE_INLINE_CODE = re.compile(r"`[^`]*`")
 RE_WIKILINK = re.compile(r"!?\[\[[^\]]*\]\]")
 RE_MD_LINK_TARGET = re.compile(r"\]\([^)]*\)")
 RE_URL = re.compile(r"https?://\S+")
+# 번역어 첫 등장 병기 "시연 데이터(demonstration)"의 괄호 안(라틴 문자 시작, 한글 없음)은 검사 제외
+RE_LATIN_PAREN = re.compile(r"\([A-Za-z][^)가-힣·—]*\)")
 
 
 def parse_frontmatter(lines):
@@ -147,7 +149,7 @@ def collect_targets(root, args_files, scan_all):
 
 def mask(line):
     """검사 제외 구간을 공백으로 치환(offset 보존)."""
-    for pattern in (RE_INLINE_CODE, RE_WIKILINK, RE_MD_LINK_TARGET, RE_URL):
+    for pattern in (RE_INLINE_CODE, RE_WIKILINK, RE_MD_LINK_TARGET, RE_URL, RE_LATIN_PAREN):
         line = pattern.sub(lambda m: " " * len(m.group(0)), line)
     return line
 
