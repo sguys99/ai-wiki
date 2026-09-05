@@ -158,7 +158,7 @@
 
 #### 배치 5. SLAM, Nav2, repo (14편)
 
-- [ ] 5a FAST-LIO 5편: xu-2020, xu-2021, airlab-2024, irasc-2024, taeyoung-2022
+- [x] 5a FAST-LIO 5편: xu-2020, xu-2021, airlab-2024, irasc-2024, taeyoung-2022 (본문 3,963→17,561 / 4,723→21,733 / 1,785→7,990 / 2,037→10,562 / 2,155→11,535자, 표 행 0개→79/108/41/32/63개, sources 문체 정비 동반, lint 0건). xu-2020(6,018→11,913자)과 xu-2021(6,971→14,705자) sources를 재추출 보강해 "얇은 논문 sources" 항목을 모두 해소했다. xu-2021의 frontmatter 비중은 66%에서 10%로 떨어졌다
 - [ ] 5b Nav2 4편: nav2-2026-official-documentation, lionhong-2023, yhoons-2024, ros-navigation-navigation2
 - [ ] 5c repo와 awesome 5편: huggingface-lerobot, bytedance-gr-1, keon-awesome, natnew-awesome, openhelix-robot-awesome
 
@@ -182,6 +182,7 @@
 | task progress | 56회 | 과제 진행도 1회 | 거의 일관 |
 | pseudo-action | 9회 | 0회 | 이미 일관 |
 | steerability | 4회 | 0회 | 이미 일관 |
+| state | 원어 170회 | 상태 685회 | 용어집이 canonical을 `상태`로 두되 비고에 "표준 번역 허용"이라 적어 기계 검사가 없다. 배치 5a에서 `state estimation`, `error-state` 같은 복합어가 많은 논문 페이지는 원어로, 발표 요약 페이지는 한글로 각각 통일했다. CLAUDE.md 규칙이 **문서 내** 단일 표기라 둘 다 타당하다. 용어집 비고에 "복합어가 잦은 문서는 원어 통일 허용"을 명시할 것 |
 
 그 밖의 후보(kinematic planner, loco-manipulation, humanoid 표기 고정, Gaussian Splatting, Material Point Method, score distillation sampling, physics-aware generation, language coaching, open-world generalization, post-training, dual-process theory, latent goal, coupling tightness, takt time, MEM, reference lookahead, data pyramid 후속분)는 아래 표에 누적해 둔다.
 
@@ -237,13 +238,13 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 - [x] CLAUDE.md 분량 목표를 산문 기준으로 개정 (2026-09-06). 총 글자 수 기준이던 목표(논문 6,000~12,000자 등)와 "표를 적극 쓰라"는 지시가 서로 당겨 subagent마다 초과를 보고하고 산문 압축에 시간을 썼다. 완료분 실측 결과 본문의 20~30%가 표 마크업이고 산문 중앙값은 논문 13,500자, article 8,643자, repo 7,668자다. 목표를 산문 기준(논문 8,000~16,000자, article 5,000~12,000자, repo 4,000~8,000자)으로 바꾸고 1차 게이트 우선을 명시했다
 - [ ] `sa-2026`의 raw fig09와 fig10이 동일 파일이다(md5 일치, page 13 전면 캡처). `wiki/assets/` 사본은 상단과 하단으로 수동 크롭돼 서로 다른데, raw와 어긋나 "wiki/assets는 raw의 큐레이션 사본"이라는 불변식이 깨져 있다. raw 쪽을 재크롭해 맞출지 결정 필요
 - [ ] figure 크롭 품질 재검토 (배치 4a 발견). `xu-2025-anatomy`의 fig07은 `bbox_norm` y0가 0.0018이라 페이지 상단부터 잡혀 도식 위에 본문 텍스트가 절반 넘게 섞였다. `strategy: caption-region`이고 `low_confidence: false`라 스크립트 경고에 걸리지 않았다. `extract_figures.py --force --bbox fig07=13:...`로 재크롭 필요. 전체 raw에서 `page-region`이거나 `low_confidence`인 도식은 38건(sa-2026 15건, 그 외는 physical-ai 밖)
-- [ ] sources `## 8. 그림 후보` 표의 `★ wiki 권장` 마크와 실제 `curated` 플래그 정합 (재큐레이션으로 어긋난 사례가 배치 3b, 3c에서 확인됨)
+- [x] sources `## 8. 그림 후보` 표와 `curated` 플래그의 관계 확인 (2026-09-06). 전수 조사에서 33개 파일 83건이 어긋나 정합 작업 대상으로 보였으나, CLAUDE.md를 재확인한 결과 **표의 `추천` 열은 Step 3의 LLM 추천 기록이고 `curated`는 Step 3.5의 사용자 결정이라 역할이 다르다.** 둘이 어긋나는 것이 정상이므로 정합 작업 대상이 아니다. 브리프에도 "표의 추천 열은 건드리지 말 것"으로 정정했다. 다만 표 아래 산문이 현재 큐레이션과 정면으로 모순되는 경우(예: curated인데 "임베드하지 않는다"가 남음)는 해당 문장만 고친다
 - [ ] sources `## 8. 그림 후보` 표의 id 정합 (luo-2025-sonic은 2026-08 정밀 크롭 전환 이전 번호 fig01~fig14, `page-region`이 남아 현재 frontmatter id와 어긋남)
 
 #### 마무리 항목
 
 - [x] sources 문체 정비 범위 확정 (2026-09-05 사용자 결정): 별도 배치를 두지 않고 각 배치 subagent가 wiki를 쓰면서 같은 stem의 sources도 함께 정리한다. 브리프 §2-B에 반영. sources의 번호 붙은 영문 병기 헤딩은 기존 규약대로 유지한다
-- [ ] 얇은 논문 sources 재추출 보강 (12k 상한 피해: xu-2020, xu-2021은 배치 5a에서 처리. brohan-2023-rt-2는 배치 2a에서, nasiriany-2024-robocasa는 배치 3c에서 완료). 해당 배치가 그 stem을 재작성할 때 함께 처리한다
+- [x] 얇은 논문 sources 재추출 보강 완료. brohan-2023-rt-2(8,948→15,086자, 배치 2a), nasiriany-2024-robocasa(7,162→17,027자, 배치 3c), xu-2020(6,018→11,913자, 배치 5a), xu-2021(6,971→14,705자, 배치 5a). 모두 해당 wiki 재작성과 같은 작업에서 처리해 이미 쓴 페이지를 다시 손대는 일을 피했다. 해당 배치가 그 stem을 재작성할 때 함께 처리한다
 - [ ] index.md physical-ai 항목 전체 축소 (1~2문장, 200자 이내)
 - [ ] wiki/overviews/physical-ai-overview.md 정합 갱신
 

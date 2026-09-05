@@ -17,7 +17,7 @@ figures:
     raw: raw/articles/taeyoung-2022-fast-lio-paper-review-figures/fig01.png
     caption: "FAST-LIO 전체 파이프라인 (논문 Figure 2a 재게재)"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig02
     kind: figure
     file: assets/taeyoung-2022-fast-lio-paper-review/fig02.png
@@ -31,7 +31,7 @@ figures:
     raw: raw/articles/taeyoung-2022-fast-lio-paper-review-figures/fig03.png
     caption: "state vector 정의와 kinematic model 수식"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig04
     kind: figure
     file: assets/taeyoung-2022-fast-lio-paper-review/fig04.png
@@ -45,7 +45,7 @@ figures:
     raw: raw/articles/taeyoung-2022-fast-lio-paper-review-figures/fig05.png
     caption: "backward propagation 수식"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig06
     kind: figure
     file: assets/taeyoung-2022-fast-lio-paper-review/fig06.png
@@ -59,7 +59,7 @@ figures:
     raw: raw/articles/taeyoung-2022-fast-lio-paper-review-figures/fig07.png
     caption: "UAV 비행 실험 결과 (논문 Figure 3 재게재)"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig08
     kind: figure
     file: assets/taeyoung-2022-fast-lio-paper-review/fig08.png
@@ -93,11 +93,11 @@ FAST-LIO 논문을 한국어로 풀어 쓴 리뷰다. 논문은 forward/backward
 
 리뷰는 LiDAR pre-processing에서 출발한다. solid-state LiDAR의 점을 20ms 단위로 누적한다. planar feature는 LOAM 방식으로, edge feature는 LOAM-Livox 방식으로 뽑는다. 스캔 사이에 들어온 IMU 데이터만 쓰므로 LiDAR와 IMU를 굳이 시각 정렬하지 않는다.
 
-다음은 motion distortion 보정이다. 기존 LiDAR odometry는 등속 가정으로 보정하지만 LIO는 IMU 각속도·가속도로 state 변화를 직접 계산한다. forward propagation은 IMU 노이즈를 0으로 가정한 채 state와 covariance를 전파한다. covariance 전파에 쓰이는 모델은 error state dynamic model이다. backward propagation 쪽은 스캔 종료 시점 state와의 상대 pose로 모든 point cloud를 스캔 종료 프레임에 투영한다.
+다음은 motion distortion 보정이다. 기존 LiDAR odometry는 등속 가정으로 보정하지만 LIO는 IMU 각속도와 가속도로 state 변화를 직접 계산한다. forward propagation은 IMU 노이즈를 0으로 가정한 채 state와 covariance를 전파한다. covariance 전파에 쓰이는 모델은 error state dynamic model이다. backward propagation 쪽은 스캔 종료 시점 state와의 상대 pose로 모든 point cloud를 스캔 종료 프레임에 투영한다.
 
-state estimation에는 iterated error state Kalman filter를 쓴다. residual은 scan-to-map 매칭으로 구하고 edge는 edge끼리 plane은 plane끼리 KD-Tree에서 correspondence를 찾는다. measurement model에는 LiDAR ranging·beam-directing noise가 들어가며 Jacobian H는 first order approximation으로 얻는다. update는 error state가 threshold 아래로 수렴할 때까지 반복된다.
+state estimation에는 iterated error state Kalman filter를 쓴다. residual은 scan-to-map 매칭으로 구하고 edge는 edge끼리 plane은 plane끼리 KD-Tree에서 correspondence를 찾는다. measurement model에는 LiDAR ranging and beam-directing noise가 들어가며 Jacobian H는 first order approximation으로 얻는다. update는 error state가 threshold 아래로 수렴할 때까지 반복된다.
 
-map update는 optimal state로 얻은 feature point를 전역 프레임으로 변환해 map에 누적하는 단계다. 초기화는 몇 초 정지 상태에서 bias·noise covariance·중력 벡터를 얻으면 끝난다. LiDAR-IMU extrinsic은 기지로 가정한다.
+map update는 optimal state로 얻은 feature point를 전역 프레임으로 변환해 map에 누적하는 단계다. 초기화는 몇 초 정지 상태에서 bias와 noise covariance와 중력 벡터를 얻으면 끝난다. LiDAR-IMU extrinsic은 기지로 가정한다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -105,26 +105,26 @@ map update는 optimal state로 얻은 feature point를 전역 프레임으로 �
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
-- 실험·비교 분석은 다루지 않는다. 방법 이해용으로 읽으면 된다.
+- 실험과 비교 분석은 다루지 않는다. 방법 이해용으로 읽으면 된다.
 - 수식 이미지 다수가 원본 블로그 이미지로만 존재한다. 수집 시 도식 7장은 받았지만 수식 단독 이미지 11장은 후보에서 빠졌다. 필요하면 page-full.png 스크린샷이나 원문 URL로 본다.
 
 ## 6. 관련 연구 (Related Work)
 
 - 대상 논문: [[physical-ai/xu-2020-fast-lio-a-fast-robust-lidar-inertial]]
 - 저자의 IESKF(Iterated Error State Kalman Filter) 개념 포스팅이 선행 읽기로 연결된다 (수집 범위 밖)
-- 코드 저장소: [[physical-ai/hku-mars-fast-lio]] — 리뷰는 FAST-LIO 1.0 알고리즘을 보려면 commit 기록을 확인해야 한다고 짚는다 (현재 저장소는 FAST-LIO2 기준)
+- 코드 저장소: [[physical-ai/hku-mars-fast-lio]]. 리뷰는 FAST-LIO 1.0 알고리즘을 보려면 commit 기록을 확인해야 한다고 짚는다 (현재 저장소는 FAST-LIO2 기준)
 
 ## 7. 용어집 (Glossary)
 
-- IESKF (iterated error state Kalman filter) — error state를 추정 대상으로 삼고 update를 수렴까지 반복하는 Kalman filter 변형. 이 리뷰가 FAST-LIO 최적화의 뼈대로 지목하는 개념
-- scan-to-map matching — 새 스캔을 직전 스캔이 아니라 누적 map과 정합해 residual을 만드는 방식
-- extrinsic — LiDAR와 IMU 사이의 상대 자세·위치 변환. FAST-LIO는 기지로 가정한다
+- IESKF (iterated error state Kalman filter): error state를 추정 대상으로 삼고 update를 수렴까지 반복하는 Kalman filter 변형. 이 리뷰가 FAST-LIO 최적화의 뼈대로 지목하는 개념
+- scan-to-map matching: 새 스캔을 직전 스캔이 아니라 누적 map과 정합해 residual을 만드는 방식
+- extrinsic: LiDAR와 IMU 사이의 상대 자세와 위치 변환. FAST-LIO는 기지로 가정한다
 
 ## 8. 그림 후보 (Figure Candidates)
 
 | id | caption | strategy | 추천 |
 |---|---|---|---|
-| fig01 | 전체 파이프라인 (논문 Fig 2a 재게재) | fetched | (선택 — 논문 페이지 fig02와 중복) |
+| fig01 | 전체 파이프라인 (논문 Fig 2a 재게재) | fetched | (선택, 논문 페이지 fig02와 중복) |
 | fig02 | notation 표 재게재 | fetched | (선택) |
 | fig03 | state vector 정의 수식 | fetched | (선택) |
 | fig04 | forward/backward propagation 도식 | fetched | ★ wiki 권장 (method) |
