@@ -140,7 +140,7 @@
 
 #### 배치 2. RT, OpenVLA, π 계열 (20편)
 
-- [ ] 2a RT와 OXE, ACT: brohan-2023-rt-2, open-x-embodiment-2023, kim-2024-openvla, zhao-2023-act, shukor-2025-smolvla
+- [x] 2a RT와 OXE, ACT: brohan-2023-rt-2, open-x-embodiment-2023, kim-2024-openvla, zhao-2023-act, shukor-2025-smolvla (본문 7,135→15,580 / 4,577→8,877 / 9,055→20,934 / 7,492→17,628 / 8,963→18,008자, 표 0~1개→8/5/14/12/15개, sources 문체 정비 동반, lint 0건). brohan-2023-rt-2는 PDF 40k 재추출로 sources를 8,948→15,086자로 보강해 "얇은 논문 sources" 항목을 함께 해소했다
 - [ ] 2b π 논문: black-2024-pi0, black-2025-pi05, ai-2026-pi07, amin-2025-pistar06, physical-intelligence-openpi
 - [ ] 2c Physical Intelligence 공식 article 4편
 - [ ] 2d WALL-OSS 3편, Helix 2편, gen-1.5 1편
@@ -191,10 +191,16 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 | sparse reward / policy extraction / regularized RL | 미등재 | 원어 canonical, "희소 보상", "정책 추출", "정규화된 강화학습"을 금지 표기로 |
 | static router | 미등재 | 원어 canonical, "정적 라우터"를 금지 표기로 |
 
+#### 잔여 정비 항목 (배치와 함께 처리)
+
+- [x] 배치 1 완료분 8편의 sources 문체 정비 (중간점 233개, em dash 117개, 금지 어휘 71건 제거, 구조와 figures 항목 100% 보존)
+- [ ] 파일럿 3편 sources 정비 (jo-2026-rt-1, hku-mars-fast-lio는 미정비. brohan-2022-rt-1은 Phase 3-2에서 완료)
+- [ ] frontmatter `authors:` 키의 중간점 21건 판단 (lint 대상 밖이나 표기 일관성 문제. 저자명 구분자 용도라 쉼표 전환 여부를 마무리 시점에 결정)
+
 #### 마무리 항목
 
 - [x] sources 문체 정비 범위 확정 (2026-09-05 사용자 결정): 별도 배치를 두지 않고 각 배치 subagent가 wiki를 쓰면서 같은 stem의 sources도 함께 정리한다. 브리프 §2-B에 반영. sources의 번호 붙은 영문 병기 헤딩은 기존 규약대로 유지한다
-- [ ] 얇은 논문 sources 재추출 보강 (12k 상한 피해: xu-2020, xu-2021, nasiriany-2024-robocasa, brohan-2023-rt-2)
+- [ ] 얇은 논문 sources 재추출 보강 (12k 상한 피해: xu-2020, xu-2021, nasiriany-2024-robocasa. brohan-2023-rt-2는 배치 2a에서 완료). 해당 배치가 그 stem을 재작성할 때 함께 처리한다
 - [ ] index.md physical-ai 항목 전체 축소 (1~2문장, 200자 이내)
 - [ ] wiki/overviews/physical-ai-overview.md 정합 갱신
 

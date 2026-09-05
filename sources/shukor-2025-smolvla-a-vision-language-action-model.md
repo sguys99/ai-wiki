@@ -194,12 +194,12 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-SmolVLA는 Hugging Face가 낸 450M짜리 VLA다. 커뮤니티가 올린 481개 데이터셋 22.9K episode만으로 pre-training하고 GPU 한 장에서 학습해, LIBERO 87.3·SO100 실기기 78.3으로 7배 큰 π0를 앞선다. 추론과 실행을 분리한 asynchronous inference 스택을 함께 내놓아 같은 과제를 30% 빨리 끝낸다.
+SmolVLA는 Hugging Face가 낸 450M짜리 VLA다. 커뮤니티가 올린 481개 데이터셋 2만 2,900 episode만으로 pre-training하고 GPU 한 장에서 학습해, LIBERO 87.3%와 SO100 실제 로봇 78.3%로 7배 큰 π0를 앞선다. 추론과 실행을 분리한 asynchronous inference 스택을 함께 내놓아 같은 과제를 30% 빨리 끝낸다.
 
 ## 1. 자료 정보 (Document Information)
 
 - **제목**: SmolVLA: A vision-language-action model for affordable and efficient robotics
-- **저자**: Mustafa Shukor·Dana Aubakirova·Francesco Capuano·Remi Cadene이 core team이고 Andres Marafioti·Thomas Wolf 등 14인. Hugging Face가 주축이며 Sorbonne University·valeo.ai·ENS Paris-Saclay가 함께한다. Remi Cadene은 LeRobot 라이브러리의 저자다
+- **저자**: Mustafa Shukor, Dana Aubakirova, Francesco Capuano, Remi Cadene이 core team이고 Andres Marafioti, Thomas Wolf 등 14인. Hugging Face가 주축이며 Sorbonne University, valeo.ai, ENS Paris-Saclay가 함께한다. Remi Cadene은 LeRobot 라이브러리의 저자다
 - **발표**: arXiv 2506.01844v1 (2025-06-02), cs.LG
 - **분량**: 24페이지, Figure 5개 + Table 13개
 - **한 줄 성격**: π0가 세운 "VLM backbone + flow matching action expert" 구도를 그대로 가져오되, 모델을 7분의 1로 줄이고 학습 데이터를 자체 수집분에서 커뮤니티 공개분으로 갈아 끼운 저비용 VLA. 여기에 추론 지연을 감추는 실행 스택이 별도 기여로 붙는다
@@ -210,7 +210,7 @@ VLA 연구는 규모로 밀어붙이는 쪽으로 굳어져 왔다. OpenVLA가 7
 
 SmolVLA의 첫 축은 구조를 깎는 일이다. SmolVLM-2를 backbone으로 쓰되 language decoder의 뒤쪽 절반을 아예 버리고, 이미지 tiling을 끄고 pixel shuffle로 프레임당 visual 토큰을 64개로 묶는다. action expert의 hidden size도 VLM의 0.75배로 줄인다. 그 결과가 450M 파라미터이고 그중 약 100M이 action expert다. π0와 비교하면 학습이 40% 빠르고 메모리는 6분의 1을 쓴다.
 
-두 번째 축은 데이터다. Hugging Face에 올라온 커뮤니티 데이터셋 481개를 embodiment·episode 수·품질·프레임 커버리지로 걸러 22.9K episode, 10.6M 프레임을 모았다. OpenVLA가 쓴 약 100만 trajectory와 비교하면 한 자릿수 이상 작은 규모다. 다만 이 데이터는 그냥 쓸 수 있는 상태가 아니었다. 과제 설명이 `task desc` 같은 자리표시자이거나 `Hold`처럼 뜻이 안 통하는 경우가 많아 Qwen2.5-VL-3B-Instruct로 다시 붙였고, 카메라 이름이 제각각이라 top·wrist·side 순으로 손수 매핑해 `OBS_IMAGE_1`부터 번호를 다시 매겼다.
+두 번째 축은 데이터다. Hugging Face에 올라온 커뮤니티 데이터셋 481개를 embodiment 종류, episode 수, 품질, 프레임 커버리지로 걸러 2만 2,900 episode, 1,060만 프레임을 모았다. OpenVLA가 쓴 약 100만 trajectory와 비교하면 한 자릿수 이상 작은 규모다. 다만 이 데이터는 그냥 쓸 수 있는 상태가 아니었다. 과제 설명이 `task desc` 같은 자리표시자이거나 `Hold`처럼 뜻이 안 통하는 경우가 많아 Qwen2.5-VL-3B-Instruct로 다시 붙였고, 카메라 이름이 제각각이라 top, wrist, side 순으로 손수 매핑해 `OBS_IMAGE_1`부터 번호를 다시 매겼다.
 
 세 번째 축은 실행 방식이다. 보통의 VLA는 action chunk를 다 쓴 뒤에야 다음 observation을 넘긴다. 그동안 로봇은 멈춰 있다. SmolVLA는 chunk 예측과 chunk 소비를 RobotClient와 PolicyServer로 갈라 두고, 큐가 바닥나기 전에 다음 추론을 미리 건다. 이 스택은 SmolVLA에 묶이지 않고 chunk를 내놓는 어떤 policy에도 붙는다.
 
@@ -235,13 +235,13 @@ A_τ^t = τ·A_t + (1−τ)·ε,   ε ~ N(0, I),   u = ε − A_t
 
 `o_t`는 N번째 층에서 뽑은 VLM 특징이고 `A_t`는 시점 t부터 n스텝치 action chunk다. τ는 π0와 같이 Beta 분포에서 뽑는다. 추론에서는 flow 스텝을 10회로 고정한다.
 
-π0와 갈리는 지점은 VLM과 action expert를 잇는 방식이다. π0는 self-attention만, GR00T N1은 cross-attention만 쓴다. SmolVLA는 블록마다 둘 중 하나를 넣어 번갈아 쌓는다. cross-attention 블록에서는 action 토큰이 VLM의 key·value를 참조하고, self-attention 블록에서는 action 토큰끼리 본다. self-attention에는 causal mask를 씌워 chunk 안의 미래 action을 미리 못 보게 막는다. 실기기에서 self-attention이 chunk를 매끄럽게 만드는 효과가 특히 잘 드러났다고 적었다.
+π0와 갈리는 지점은 VLM과 action expert를 잇는 방식이다. π0는 self-attention만, GR00T N1은 cross-attention만 쓴다. SmolVLA는 블록마다 둘 중 하나를 넣어 번갈아 쌓는다. cross-attention 블록에서는 action 토큰이 VLM의 key와 value를 참조하고, self-attention 블록에서는 action 토큰끼리 본다. self-attention에는 causal mask를 씌워 chunk 안의 미래 action을 미리 못 보게 막는다. 실제 로봇에서 self-attention이 chunk를 매끄럽게 만드는 효과가 특히 잘 드러났다고 적었다.
 
 ### asynchronous inference
 
 여기가 논문의 두 번째 몸통이다. chunk 하나를 통째로 실행한 뒤 다음 observation을 보내는 방식을 저자들은 synchronous inference라 부른다. 연산은 n스텝에 한 번만 쓰지만 그 사이 로봇은 open-loop로 움직이고, 추론이 도는 동안에는 아예 멈춘다.
 
-async 쪽은 큐 잔량을 기준으로 돌아간다. 남은 action 수가 `|A_t|/n < g`로 떨어지면 새 observation을 찍어 PolicyServer로 보내고, 그 응답이 오면 겹치는 구간을 합쳐 큐를 갱신한다. 서버 왕복 시간을 `E[ℓ_S]`, 제어 주기를 Δt(30fps면 33ms)라 하면 `g ≥ E[ℓ_S]/(Δt·n)`을 만족하는 한 큐가 비지 않는다.
+async 쪽은 큐 잔량을 기준으로 실행된다. 남은 action 수가 `|A_t|/n < g`로 떨어지면 새 observation을 찍어 PolicyServer로 보내고, 그 응답이 오면 겹치는 구간을 합쳐 큐를 갱신한다. 서버 왕복 시간을 `E[ℓ_S]`, 제어 주기를 Δt(30fps면 33ms)라 하면 `g ≥ E[ℓ_S]/(Δt·n)`을 만족하는 한 큐가 비지 않는다.
 
 g 값이 만드는 세 가지 상태를 논문이 나눠 설명한다. g=0이면 큐를 다 비우고 나서 요청하니 왕복 시간만큼 로봇이 논다. g=1이면 매 스텝 observation을 보내므로 반응은 가장 빠르지만 제어 틱마다 forward pass가 한 번씩 필요해 저사양 하드웨어에서는 감당이 안 된다. 실제로 쓴 값은 0.7이다.
 
@@ -251,7 +251,7 @@ g 값이 만드는 세 가지 상태를 논문이 나눠 설명한다. g=0이면
 
 pre-training은 200,000 스텝, 전역 배치 256으로 돈다. 100스텝 warmup 뒤 cosine 스케줄로 1e-4에서 2.5e-6까지 내리고 AdamW(β1=0.9, β2=0.95)를 쓴다. 이미지는 VLM 입력 크기에 맞춰 512×512로 리사이즈한다. chunk 크기 n은 50이다. bfloat16과 `torch.compile()`을 쓰고 시퀀스 길이와 배치 크기를 고정하기 위해 배치에 안 맞는 잔여 프레임은 버린다. 배치를 키우려고 GPU 4장을 썼지만 모델이 작아 한 장으로도 학습된다. 프로젝트 전체가 쓴 연산은 약 30,000 GPU hours다.
 
-학습 대상은 action expert뿐이고 VLM은 얼려 둔다. 시뮬레이션 fine-tuning은 100,000 스텝에 배치 64, 실기기는 200,000 스텝이다. 저자들은 실제로는 훨씬 적은 스텝으로도 성능이 크게 떨어지지 않는다고 덧붙인다.
+학습 대상은 action expert뿐이고 VLM은 얼려 둔다. 시뮬레이션 fine-tuning은 100,000 스텝에 배치 64, 실제 로봇은 200,000 스텝이다. 저자들은 실제로는 훨씬 적은 스텝으로도 성능이 크게 떨어지지 않는다고 덧붙인다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -259,9 +259,9 @@ pre-training은 200,000 스텝, 전역 배치 256으로 돈다. 100스텝 warmup
 
 LIBERO에서 SmolVLA 0.45B가 평균 87.3이다. π0 3.3B가 86.0, OpenVLA 7B가 76.5, Octo가 75.1, Diffusion Policy가 72.4다. 여기서 눈여겨볼 항목은 VLA Pt. 열이다. π0와 OpenVLA는 로봇 데이터로 pre-training한 가중치에서 출발하는데 SmolVLA는 VLM에서만 초기화한다. 그 조건에서 로봇 데이터 pre-training 없는 π0(Paligemma-3B) 71.8을 크게 앞서고 로봇 pre-training을 거친 π0와 대등하다.
 
-Meta-World는 격차가 더 벌어진다. SmolVLA 0.45B가 57.3, π0 3.5B가 47.9, TinyVLA가 31.6, Diffusion Policy가 10.5다. 모델을 2.25B로 키우면 LIBERO 88.75·Meta-World 68.24까지 오르고, 0.24B로 줄여도 LIBERO 82.75를 낸다.
+Meta-World는 격차가 더 벌어진다. SmolVLA 0.45B가 57.3%, π0 3.5B가 47.9%, TinyVLA가 31.6%, Diffusion Policy가 10.5%다. 모델을 2.25B로 키우면 LIBERO 88.75%와 Meta-World 68.24%까지 오르고, 0.24B로 줄여도 LIBERO 82.75%를 낸다.
 
-### 실기기
+### 실제 로봇
 
 SO100 세 과제를 multi-task로 학습한 결과가 평균 78.3이다. π0 3.5B가 61.7, 과제별로 따로 학습한 ACT가 48.3이다. 과제별로 보면 Pick-Place는 π0가 100으로 앞서지만 Stacking에서 40 대 90, Sorting에서 45 대 70으로 뒤집힌다.
 
@@ -298,7 +298,7 @@ LIBERO에서 돌린 ablation이 설계 선택을 하나씩 검증한다.
 
 데이터 규모도 약 23K trajectory에 그쳐 OpenVLA의 100만 대와 비교가 안 된다. 모델 크기 역시 0.5B 아래에 묶여 있어서, 접근성을 지키면서 어디까지 키울 수 있는지가 열린 문제로 남는다.
 
-backbone 선택은 앞서 적은 대로 문서·OCR 중심으로 학습된 VLM이라 로봇 상호작용에 맞는지 검증되지 않았다. 로봇 데이터와 멀티모달 데이터를 함께 학습하는 방향, 계층적 policy나 다단계 planning으로 장기 과제를 다루는 방향도 미해결로 남긴다. 마지막으로 현재 방식이 imitation learning 일변도라 강화학습을 붙이면 특히 긴 과제에서 이득이 있을 것이라고 본다.
+backbone 선택은 앞서 적은 대로 문서 읽기와 OCR 중심으로 학습된 VLM이라 로봇 상호작용에 맞는지 검증되지 않았다. 로봇 데이터와 멀티모달 데이터를 함께 학습하는 방향, 계층적 policy나 다단계 planning으로 장기 과제를 다루는 방향도 미해결로 남긴다. 마지막으로 현재 방식이 imitation learning 일변도라 강화학습을 붙이면 특히 긴 과제에서 이득이 있을 것이라고 본다.
 
 여기에 논문이 명시하지 않은 지점 하나를 덧붙이면, async 모드에서 Sorting 성공률이 70에서 50으로 떨어진 사실이다. 임계값 g와 유사도 임계값 ε을 과제마다 다시 잡아야 하는지에 대한 분석은 없다.
 
@@ -306,22 +306,22 @@ backbone 선택은 앞서 적은 대로 문서·OCR 중심으로 학습된 VLM�
 
 계보로 보면 직계는 π0다. VLM backbone에 flow matching action expert를 붙이는 구도, action chunk를 내놓는 출력 형식, τ를 Beta 분포에서 뽑는 세부까지 그대로 따른다. 갈리는 곳은 두 전문가를 잇는 attention 방식과 규모다.
 
-action chunking 자체는 ACT에서 왔다. ACT는 CVAE 기반 80M policy로 이 논문에서 실기기 baseline으로 쓰인다. 이산 action 토큰 계열로는 RT-2와 OpenVLA가 배경에 있고, 저자들은 토큰화가 연속 제어에 걸리는 제약을 π0·DexVLA가 diffusion 계열 디코더로 풀었다고 정리한다. cross-attention만으로 두 전문가를 잇는 선택지는 GR00T N1에서 가져와 비교군으로 삼는다.
+action chunking 자체는 ACT에서 왔다. ACT는 CVAE 기반 80M policy로 이 논문에서 실제 로봇 baseline으로 쓰인다. 이산 action 토큰 계열로는 RT-2와 OpenVLA가 배경에 있고, 저자들은 토큰화가 연속 제어에 걸리는 제약을 π0와 DexVLA가 diffusion 계열 디코더로 풀었다고 정리한다. cross-attention만으로 두 전문가를 잇는 선택지는 GR00T N1에서 가져와 비교군으로 삼는다.
 
 효율 쪽 선행은 TinyVLA다. 1B 미만 모델을 scratch에서 학습했는데 로봇 데이터 대규모 pre-training이 없어 일반화가 약했다고 지적한다. SmolVLA는 같은 크기대에서 pre-training을 넣어 이 지점을 메운다.
 
 ## 7. 용어집 (Glossary)
 
-- **SmolVLA**: 이 논문이 내놓은 450M VLA. 0.24B·0.45B·2.25B 세 크기가 실험에 나오고 기본 모델은 0.45B다.
+- **SmolVLA**: 이 논문이 내놓은 450M VLA. 0.24B, 0.45B, 2.25B 세 크기가 실험에 나오고 기본 모델은 0.45B다.
 - **SmolVLM-2**: backbone으로 쓴 Hugging Face의 소형 VLM. SigLIP vision encoder와 SmolLM2 language decoder로 이뤄진다.
-- **community dataset**: 개인 실무자들이 저가 로봇으로 직접 모아 Hugging Face에 공개한 데이터셋. 표준 프로토콜을 따르는 학술 데이터셋과 달리 embodiment·제어 방식·카메라 시점·과제가 제각각이다.
-- **asynchronous inference**: chunk 예측과 chunk 실행을 RobotClient·PolicyServer로 분리해 병렬로 돌리는 실행 방식. 큐 잔량이 임계값 g 아래로 떨어지면 다음 추론을 건다.
+- **community dataset**: 개인 실무자들이 저가 로봇으로 직접 모아 Hugging Face에 공개한 데이터셋. 표준 프로토콜을 따르는 학술 데이터셋과 달리 embodiment, 제어 방식, 카메라 시점, 과제가 제각각이다.
+- **asynchronous inference**: chunk 예측과 chunk 실행을 RobotClient와 PolicyServer로 분리해 병렬로 진행하는 실행 방식. 큐 잔량이 임계값 g 아래로 떨어지면 다음 추론을 건다.
 - **pixel shuffle**: 인접 픽셀을 채널 축으로 접어 공간 해상도를 낮추는 연산. 프레임당 visual 토큰을 64개로 묶는 데 쓴다.
 - **layer skipping**: language decoder의 뒤쪽 L−N개 층을 학습 전에 버리고 앞 N개 층의 특징만 쓰는 방식. 여기서는 N=L/2.
 - **SO-100 / SO-101**: LeRobot 생태계의 3D 프린팅 6자유도 저가 로봇 팔. SO-101은 조립이 빠르고 모터가 달라 정밀 과제에 낫다.
-- **LeRobot**: 이 연구의 학습·배포 코드가 올라가 있는 PyTorch 기반 실기기 로보틱스 프레임워크.
+- **LeRobot**: 이 연구의 학습과 배포 코드가 올라가 있는 PyTorch 기반 실세계 로보틱스 프레임워크.
 
-도메인 공통 용어(policy·action chunking·flow matching·imitation learning 등)는 [[overviews/glossary-physical-ai]]와 [[overviews/glossary-llms]]를 따른다.
+도메인 공통 용어(policy, action chunking, flow matching, imitation learning 등)는 [[overviews/glossary-physical-ai]]와 [[overviews/glossary-llms]]를 따른다.
 
 ## 8. 그림 후보 (Figure Candidates)
 
@@ -329,14 +329,14 @@ action chunking 자체는 ACT에서 왔다. ACT는 CVAE 기반 80M policy로 이
 |---|---|---|---|---|
 | fig01 | 1 | SmolVLA 전체 구조 (VLM 절단 + action expert) | manual | ★ wiki 권장 (architecture) |
 | fig02 | 6 | asynchronous inference 스택 | caption-region | ★ wiki 권장 (method) |
-| fig03 | 7 | 임계값 g에 따른 action queue 길이 변화 | caption-region | (확인 필요 — 본문 설명으로 대체 가능) |
-| fig04 | 9 | 실기기 과제 4종 시작·종료 프레임 | caption-region | ★ wiki 권장 (setup) |
-| fig05 | 12 | sync 대 async 성능·시간·처리량 | manual | ★ wiki 권장 (result) |
+| fig03 | 7 | 임계값 g에 따른 action queue 길이 변화 | caption-region | (확인 필요, 본문 설명으로 대체 가능) |
+| fig04 | 9 | 실제 로봇 과제 4종 시작과 종료 프레임 | caption-region | ★ wiki 권장 (setup) |
+| fig05 | 12 | sync 대 async 성능, 시간, 처리량 | manual | ★ wiki 권장 (result) |
 | tab01 | 5 | community dataset 통계 481/22.9K/10.6M | table-region | (본문 수치로 충분) |
-| tab02 | 11 | LIBERO·Meta-World 성공률 | table-region | ★ wiki 권장 (result) |
-| tab03 | 11 | SO100 실기기 성공률 | table-region | ★ wiki 권장 (result) |
+| tab02 | 11 | LIBERO와 Meta-World 성공률 | table-region | ★ wiki 권장 (result) |
+| tab03 | 11 | SO100 실제 로봇 성공률 | table-region | ★ wiki 권장 (result) |
 | tab04 | 11 | SO101 in/out-of-distribution | table-region | (확인 필요) |
-| tab05 | 12 | pre-training·multi-task 효과 | table-region | ★ wiki 권장 (result) |
+| tab05 | 12 | pre-training과 multi-task 효과 | table-region | ★ wiki 권장 (result) |
 | tab06 | 13 | CA vs SA vs CA+SA | manual | ★ wiki 권장 (ablation) |
 | tab07 | 13 | bidirectional vs causal | table-region | (본문 표로 충분) |
 | tab08 | 13 | VLM 층 잘라내기 | manual | ★ wiki 권장 (ablation) |
