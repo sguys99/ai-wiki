@@ -147,7 +147,7 @@
 
 #### 배치 3. NVIDIA GR00T, Cosmos, RoboCasa (13편)
 
-- [ ] 3a GR00T: nvidia-2025-gr00t-n1, gr00t-n1-5, nvidia-isaac-gr00t, nvlabs-gr00t-wholebodycontrol, nvidia-2025-accelerate
+- [x] 3a GR00T: nvidia-2025-gr00t-n1, gr00t-n1-5, nvidia-isaac-gr00t, nvlabs-gr00t-wholebodycontrol, nvidia-2025-accelerate (본문 8,202→17,832 / 8,708→13,127 / 7,322→15,248 / 3,960→9,808 / 4,424→10,071자, 표 0~6개→11/10/10/6/11개, sources 문체 정비 동반, lint 0건). accelerate 페이지는 기존에 이미지 임베드로만 있던 벤치마크 3종을 본문 표로 복원했다
 - [ ] 3b Cosmos와 GEAR: nvidia-2025-cosmos, luo-2025-sonic, nvlabs-2026-gear-sonic-project-page, 9bow-2026-physics-aware
 - [ ] 3c RoboCasa: nasiriany-2024-robocasa, nasiriany-2026-robocasa365, robocasa-2026-project-page, robocasa-robocasa
 
@@ -192,6 +192,9 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 | task progress | 미등재. π 계열 평가 지표 표준. 이진 성공률이 아닌 부분 점수 (배치 2b 발견) | 원어 canonical, "과제 진행도"를 금지 표기로 |
 | language coaching | 미등재. π0.7 논문과 발표 글이 공유하는 기법명 (배치 2c 발견) | 원어 canonical, "언어 코칭"을 금지 표기로 |
 | long-horizon | **2026-09-06 등재 완료.** 원어 81회 대 번역어 51회(장기 과제 40, 장기 지평 9, 롱 호라이즌 2)로 갈려 있었다 | 원어 canonical로 등재하고 완료분 28건을 치환했다. 미완료 stem 12건은 해당 배치가 처리한다 |
+| pseudo-action | 미등재. Inverse Dynamics Model 행 설명에만 등장한다. GR00T N1과 DreamGen 계열에서 반복 (배치 3a 발견) | 원어 canonical, "가짜 action", "의사 행동"을 금지 표기로 |
+| reference lookahead | 미등재. SONIC 계열 (배치 3a 발견) | 원어 canonical. 컨트롤러에 미리 제시하는 참조 모션의 길이이며 지연 측정치가 아니라는 점을 비고에 명시 |
+| physical prompt / test-time training | 미등재. GEN-1.5 계열 (배치 2d 발견) | 원어 canonical, "물리 프롬프트", "테스트 시점 학습"을 금지 표기로 |
 | open-world generalization | 미등재 (배치 2b 발견) | 원어 canonical, "개방형 일반화", "오픈월드 일반화"를 금지 표기로 |
 | post-training | glossary-llms에 pre-training과 fine-tuning은 있으나 post-training이 없다 (배치 2b 발견) | glossary-llms에 원어 canonical로 등재, "사후학습", "후속학습"을 금지 표기로 |
 | advantage / advantage conditioning | 미등재. π0.6 계열 | 원어 canonical, "어드밴티지 조건화"를 금지 표기로 |

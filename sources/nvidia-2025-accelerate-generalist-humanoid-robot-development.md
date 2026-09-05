@@ -15,19 +15,19 @@ figures:
   - id: fig01
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/fig01.gif
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/fig01.gif
-    caption: "대표 이미지 — 창고에서 휴머노이드 두 대가 양팔로 물체를 다룬다 (GIF 9MB)"
+    caption: "대표 이미지. 창고에서 휴머노이드 두 대가 양팔로 물체를 다룬다 (GIF 9MB)"
     strategy: fetched
     curated: false
   - id: fig02
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/fig02.gif
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/fig02.gif
-    caption: "Figure 1 — 주방에서 용과를 도마에서 접시로 옮기는 조작 데모 (GIF 10MB)"
+    caption: "Figure 1. 주방에서 용과를 도마에서 접시로 옮기는 조작 데모 (GIF 10MB)"
     strategy: fetched
     curated: false
   - id: fig03
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/fig03.png
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/fig03.png
-    caption: "Figure 2 — GR00T N1 구조. 센서 토큰과 텍스트 토큰이 VLM(System 2)과 Diffusion Transformer(System 1)를 거쳐 action 토큰이 된다"
+    caption: "Figure 2. GR00T N1 구조. 센서 토큰과 텍스트 토큰이 VLM(System 2)과 Diffusion Transformer(System 1)를 거쳐 action 토큰이 된다"
     strategy: fetched
     curated: true
   - id: fig04
@@ -39,61 +39,61 @@ figures:
   - id: fig05
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop01.png
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop01.png
-    caption: "대표 이미지 크롭 — 우상단에 쿠키 배너 일부가 걸쳤다"
+    caption: "대표 이미지 크롭. 우상단에 쿠키 배너 일부가 걸쳤다"
     strategy: crop
     curated: false
   - id: fig06
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop02.png
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop02.png
-    caption: "Video 1 유튜브 임베드 — 쿠키 배너에 가렸다"
+    caption: "Video 1 유튜브 임베드. 쿠키 배너에 가렸다"
     strategy: crop
     curated: false
   - id: fig07
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop03.png
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop03.png
-    caption: "Figure 1 조작 데모 정지 이미지 + 원문 캡션 — 10MB GIF를 대신할 경량 PNG"
+    caption: "Figure 1 조작 데모 정지 이미지와 원문 캡션. 10MB GIF를 대신할 경량 PNG"
     strategy: crop
     curated: true
   - id: fig08
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop04.png
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop04.png
-    caption: "Figure 1 조작 데모 정지 이미지 (캡션 없는 판)"
+    caption: "Figure 1 조작 데모 정지 이미지 (캡션 없는 버전)"
     strategy: crop
     curated: false
   - id: fig09
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop05.png
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop05.png
-    caption: "Video 2 유튜브 임베드 — 쿠키 배너에 가렸다"
+    caption: "Video 2 유튜브 임베드. 쿠키 배너에 가렸다"
     strategy: crop
     curated: false
   - id: fig10
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop06.png
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop06.png
-    caption: "Figure 2 구조 도식 + 캡션 — 상단이 쿠키 배너에 가렸다"
+    caption: "Figure 2 구조 도식과 캡션. 상단이 쿠키 배너에 가렸다"
     strategy: crop
     curated: false
   - id: fig11
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop07.png
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop07.png
-    caption: "Figure 2 구조 도식 (캡션 없는 판) — 상단이 쿠키 배너에 가렸다"
+    caption: "Figure 2 구조 도식 (캡션 없는 버전). 상단이 쿠키 배너에 가렸다"
     strategy: crop
     curated: false
   - id: fig12
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop08.png
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop08.png
-    caption: "Table 1 — RoboCasa·DexMG·GR-1 시뮬레이션 벤치마크 평균 성공률"
+    caption: "Table 1. RoboCasa, DexMG, GR-1 시뮬레이션 벤치마크 평균 성공률"
     strategy: crop
     curated: true
   - id: fig13
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop09.png
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop09.png
-    caption: "Table 2 — GR-1 실기기 과제 성공률, 학습 데이터 10%"
+    caption: "Table 2. GR-1 실제 기기 과제 성공률, 학습 데이터 10%"
     strategy: crop
     curated: true
   - id: fig14
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/crop10.png
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/crop10.png
-    caption: "Table 3 — GR-1 실기기 과제 성공률, 전체 데이터"
+    caption: "Table 3. GR-1 실제 기기 과제 성공률, 전체 데이터"
     strategy: crop
     curated: true
 ---
@@ -116,7 +116,7 @@ NVIDIA Technical Blog에 2025년 3월 18일 올라온 글이다. 저자는 제�
 
 GR00T-N1-2B는 Hugging Face에서 받을 수 있다. 샘플 데이터셋과 PyTorch fine-tuning 스크립트는 `NVIDIA/Isaac-GR00T` GitHub repo에 있다고 명시한다. 학습에 쓴 데이터 일부는 Hugging Face의 NVIDIA physical AI dataset 컬렉션으로 공개했다. 이 repo는 이후 N1.7까지 이어져 [[physical-ai/nvidia-isaac-gr00t]]로 별도 정리돼 있다.
 
-post-training 최소 구성은 RTX A6000 한 장 또는 GeForce RTX 4090 한 장이다. 더 큰 작업에는 DGX Spark나 DGX H100을 권한다. 추론은 RTX A6000 또는 Jetson AGX Orin에서 돌아간다. GPU 사양이 이만큼 구체적으로 적힌 NVIDIA 자료는 많지 않다.
+post-training 최소 구성은 RTX A6000 한 장 또는 GeForce RTX 4090 한 장이다. 더 큰 작업에는 DGX Spark나 DGX H100을 권한다. 추론은 RTX A6000 또는 Jetson AGX Orin에서 실행된다. GPU 사양이 이만큼 구체적으로 적힌 NVIDIA 자료는 많지 않다.
 
 embodiment는 로봇의 물리적 형상과 그에 딸린 제어 API 구성을 가리킨다. 이 글은 검증된 embodiment도 이름으로 밝힌다. 하나의 가중치로 Fourier GR-1과 1X Neo에서 조작 동작을 낸다고 적었다.
 
@@ -124,25 +124,25 @@ embodiment는 로봇의 물리적 형상과 그에 딸린 제어 API 구성을 �
 
 ### dual-system 구성
 
-GR00T N1은 사람의 인지를 본뜬 두 계층으로 나뉜다. System 2는 NVIDIA-Eagle에 SmolLM-1.7B를 얹은 VLM으로 이미지와 언어 지시를 해석해 무엇을 할지 계획한다. System 1은 Diffusion Transformer가 맡아 그 계획을 연속적인 제어 명령으로 바꾼다. 두 계층은 느슨하게 이어붙인 게 아니라 post-training 단계에서 함께 최적화된다.
+GR00T N1은 사람의 인지를 본뜬 두 계층으로 나뉜다. System 2는 NVIDIA-Eagle에 SmolLM-1.7B를 결합한 VLM으로 이미지와 언어 지시를 해석해 무엇을 할지 계획한다. System 1은 Diffusion Transformer가 맡아 그 계획을 연속적인 제어 명령으로 바꾼다. 두 계층은 느슨하게 이어붙인 게 아니라 post-training 단계에서 함께 최적화된다.
 
 블로그는 backbone을 "NVIDIA-Eagle with SmolLM-1.7B"라고만 적었다. 논문은 SmolLM2와 SigLIP-2에서 fine-tuning한 Eagle-2로 명시해 표기가 서로 조금 다르다. 세부는 논문 쪽을 따른다.
 
-### 데이터 피라미드
+### data pyramid 전략
 
-학습 데이터를 양이 많고 embodiment 특수성이 낮은 순서로 3층에 쌓는다. 맨 아래에는 인터넷 규모 웹 데이터와 사람 영상이 깔린다. 사람과 물체가 상호작용하는 패턴, 과제의 의미 구조를 여기서 얻지만 로봇에 줄 모터 제어 신호가 없다. 중간층은 Omniverse가 만든 합성 데이터다. GPU 가속 덕에 실시간으로 무한히 뽑을 수 있다. 대신 sim2real 간극이 남는다. sim2real은 시뮬레이션에서 학습한 policy를 실기기로 옮기는 문제를 말한다. 꼭대기는 사람이 로봇을 원격으로 움직여 시연을 만드는 teleoperation 실로봇 데이터다. 비싸고 느린 대신 이 층이 간극을 실제로 메운다.
+학습 데이터를 양이 많고 embodiment 특수성이 낮은 순서로 3층에 쌓는다. 맨 아래에는 인터넷 규모 웹 데이터와 사람 영상이 깔린다. 사람과 물체가 상호작용하는 패턴, 과제의 의미 구조를 여기서 얻지만 로봇에 줄 모터 제어 신호가 없다. 중간층은 Omniverse가 만든 합성 데이터다. GPU 가속 덕에 실시간으로 무한히 뽑을 수 있다. 대신 sim2real 간극이 남는다. sim2real은 시뮬레이션에서 학습한 policy를 실제 기기로 옮기는 문제를 말한다. 꼭대기는 사람이 로봇을 원격으로 움직여 시연을 만드는 teleoperation으로 모은 실제 로봇 데이터다. 비싸고 느린 대신 이 층이 간극을 실제로 메운다.
 
 아래 두 층은 라벨이 없다. 이걸 학습에 넣는 수단으로 latent action training을 언급한다. 감독 신호 없이 대규모 사람 영상에서 배우게 하는 기법이라고만 적고 구현은 논문으로 넘긴다.
 
 ### 합성 데이터의 기여
 
-이 전략을 Isaac GR00T Blueprint로 돌렸을 때의 수치가 이 글에서 가장 자주 인용된다. 11시간 만에 synthetic trajectory 750,000개 이상을 만들었다. 사람 시연으로 환산하면 6,500시간, 쉬지 않고 9개월에 해당한다. 이 합성 데이터를 실데이터와 합치자 실데이터만 썼을 때보다 성능이 40% 올랐다.
+이 전략을 Isaac GR00T Blueprint로 실행했을 때의 수치가 이 글에서 가장 자주 인용된다. 11시간 만에 synthetic trajectory 750,000개 이상을 만들었다. 사람 시연으로 환산하면 6,500시간, 쉬지 않고 9개월에 해당한다. 이 합성 데이터를 실제 데이터와 합치자 실제 데이터만 썼을 때보다 성능이 40% 올랐다.
 
 논문 쪽은 pre-training과 post-training을 합쳐 780,000개로 적는다. 블로그가 "over 750K"로 내림한 것이라 서로 어긋난 값은 아니다. 인용할 때는 논문 숫자를 쓰는 편이 낫다.
 
 ### 다섯 단계 실무 절차
 
-먼저 로봇 시연 데이터를 영상·상태·action 세 쌍으로 묶어 GR00T 데이터셋 형식으로 만든다. 이 형식은 Hugging Face LeRobot과 호환된다. 검증 스크립트로 형식을 확인한 뒤 PyTorch 스크립트로 pre-training된 GR00T N1을 자기 데이터에 fine-tuning한다. 추론 스크립트는 로봇 컨트롤러나 시뮬레이션 환경에 붙여 실행한다. 과제 성공률은 평가 스크립트가 잰다.
+먼저 로봇 시연 데이터를 영상, 상태, action 세 쌍으로 묶어 GR00T 데이터셋 형식으로 만든다. 이 형식은 Hugging Face LeRobot과 호환된다. 검증 스크립트로 형식을 확인한 뒤 PyTorch 스크립트로 pre-training된 GR00T N1을 자기 데이터에 fine-tuning한다. 추론 스크립트는 로봇 컨트롤러나 시뮬레이션 환경에 붙여 실행한다. 과제 성공률은 평가 스크립트가 잰다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -154,7 +154,7 @@ GR00T N1은 사람의 인지를 본뜬 두 계층으로 나뉜다. System 2는 N
 | Diffusion Policy | 25.6% | 56.1% | 32.7% | 33.4% |
 | Isaac GR00T N1 2B | 32.1% | 66.5% | 50.0% | 45.0% |
 
-실기기 평가는 GR-1 휴머노이드의 탁상 조작 과제 네 묶음이다. 학습 데이터를 10%만 줬을 때 차이가 가장 크다.
+실제 기기 평가는 GR-1 휴머노이드의 탁상 조작 과제 네 묶음이다. 학습 데이터를 10%만 줬을 때 차이가 가장 크다.
 
 | 모델 | Pick-and-Place | Articulated | Industrial | Coordination | 평균 |
 |---|---|---|---|---|---|
@@ -185,9 +185,9 @@ wiki 안에서는 논문 페이지가 정본이다. dual-system 구조를 다른
 | 용어 | 뜻 |
 |---|---|
 | Isaac GR00T Blueprint | 합성 조작 데이터를 대량 생성하는 NVIDIA의 참조 워크플로. 11시간에 trajectory 750,000개 이상을 뽑은 근거 |
-| NVIDIA-Eagle | System 2가 쓰는 NVIDIA의 VLM 계열. 이 글은 SmolLM-1.7B를 얹었다고만 적었다. 논문은 Eagle-2로 명시한다 |
+| NVIDIA-Eagle | System 2가 쓰는 NVIDIA의 VLM 계열. 이 글은 SmolLM-1.7B를 결합했다고만 적었다. 논문은 Eagle-2로 명시한다 |
 | SimReady | Isaac Sim에서 물리 속성이 붙은 채로 바로 쓸 수 있게 준비된 3D 에셋 |
-| Fourier GR-1 / 1X Neo | GR00T N1이 하나의 가중치로 동작을 낸 휴머노이드 두 종. 실기기 벤치마크는 GR-1로 잰다 |
+| Fourier GR-1 / 1X Neo | GR00T N1이 하나의 가중치로 동작을 낸 휴머노이드 두 종. 실제 기기 벤치마크는 GR-1로 잰다 |
 | Jetson AGX Orin | 추론 배포 대상으로 지목된 엣지 모듈. 학습이 아니라 실행용이다 |
 | DGX Spark | 대규모 post-training 권장 구성으로 함께 언급된 데스크사이드 시스템 |
 
@@ -198,11 +198,11 @@ wiki 안에서는 논문 페이지가 정본이다. dual-system 구조를 다른
 | fig03 | Figure 2 구조 도식 (원본 PNG, 배너 없음) | fetched | ★ wiki 권장 (architecture) |
 | fig07 | Figure 1 조작 데모 정지 이미지 + 캡션 | crop | ★ wiki 권장 (demo, GIF 대체) |
 | fig12 | Table 1 시뮬레이션 벤치마크 | crop | ★ wiki 권장 (result) |
-| fig13 | Table 2 실기기 10% 데이터 | crop | ★ wiki 권장 (result) |
-| fig14 | Table 3 실기기 전체 데이터 | crop | ★ wiki 권장 (result) |
-| fig02 | Figure 1 조작 데모 원본 GIF | fetched | (선택 — 10MB라 Obsidian에서 무겁다) |
-| fig01 | 대표 이미지 GIF | fetched | (선택 — 9MB) |
+| fig13 | Table 2 실제 기기 10% 데이터 | crop | ★ wiki 권장 (result) |
+| fig14 | Table 3 실제 기기 전체 데이터 | crop | ★ wiki 권장 (result) |
+| fig02 | Figure 1 조작 데모 원본 GIF | fetched | (선택, 10MB라 Obsidian에서 무겁다) |
+| fig01 | 대표 이미지 GIF | fetched | (선택, 9MB) |
 | fig08 | 조작 데모 정지 이미지, 캡션 없음 | crop | (fig07과 중복) |
-| fig04 · fig05 · fig06 · fig09 · fig10 · fig11 | 전체 스크린샷·유튜브 임베드·쿠키 배너에 가린 도식 | screenshot · crop | 제외 |
+| fig04, fig05, fig06, fig09, fig10, fig11 | 전체 스크린샷, 유튜브 임베드, 쿠키 배너에 가린 도식 | screenshot / crop | 제외 |
 
-본문의 표 세 개는 텍스트로도 남아 있어 fig12~fig14는 시각 확인용이다. 논문 페이지가 이미 같은 수치를 표로 실었으니 중복이 부담이면 fig03·fig07만 가져가도 된다.
+본문의 표 세 개는 텍스트로도 남아 있어 fig12~fig14는 시각 확인용이다. 논문 페이지가 이미 같은 수치를 표로 실었으니 중복이 부담이면 fig03과 fig07만 가져가도 된다.
