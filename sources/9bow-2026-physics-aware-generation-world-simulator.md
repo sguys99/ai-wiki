@@ -17,7 +17,7 @@ figures:
     kind: figure
     file: assets/9bow-2026-physics-aware-generation-world-simulator/fig01.jpg
     raw: raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig01.jpg
-    caption: "글 대표 이미지 — 이미지·영상·3D 생성에서 물리 인지 생성과 물리 시뮬레이션을 거쳐 world simulator로 나아가는 흐름"
+    caption: "글 대표 이미지. 이미지와 영상과 3D 생성에서 물리 인지 생성과 물리 시뮬레이션을 거쳐 world simulator로 나아가는 흐름"
     strategy: fetched
     curated: true
   - id: fig02
@@ -25,7 +25,7 @@ figures:
     kind: figure
     file: assets/9bow-2026-physics-aware-generation-world-simulator/fig02.png
     raw: raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig02.png
-    caption: "논문 Figure 1 재수록 — 생성 AI가 상호작용성과 물리 인지 생성을 얻어 world model로 수렴하는 개념도"
+    caption: "논문 Figure 1 재수록. 생성 AI가 상호작용성과 물리 인지 생성을 얻어 world model로 수렴하는 개념도"
     strategy: fetched
     curated: false
   - id: fig03
@@ -33,7 +33,7 @@ figures:
     kind: figure
     file: assets/9bow-2026-physics-aware-generation-world-simulator/fig03.jpg
     raw: raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig03.jpg
-    caption: "논문 Figure 4 재수록 — 물리 재료·시뮬레이션 기법·물리 엔진 3축"
+    caption: "논문 Figure 4 재수록. 물리 재료와 시뮬레이션 기법과 물리 엔진 세 가지 구성 요소"
     strategy: fetched
     curated: false
   - id: fig04
@@ -41,7 +41,7 @@ figures:
     kind: figure
     file: assets/9bow-2026-physics-aware-generation-world-simulator/fig04.jpg
     raw: raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig04.jpg
-    caption: "논문 Figure 3 재수록 — PAG-E 여섯 패러다임 배선도"
+    caption: "논문 Figure 3 재수록. PAG-E 여섯 패러다임 배선도"
     strategy: fetched
     curated: false
   - id: fig05
@@ -49,7 +49,7 @@ figures:
     kind: figure
     file: assets/9bow-2026-physics-aware-generation-world-simulator/fig05.jpg
     raw: raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig05.jpg
-    caption: "논문 Figure 2 재수록 — 물리 인지가 나쁜 영상과 좋은 영상 대조"
+    caption: "논문 Figure 2 재수록. 물리 인지가 나쁜 영상과 좋은 영상 대조"
     strategy: fetched
     curated: false
 ---
@@ -60,7 +60,7 @@ PyTorch 한국 사용자 모임이 Physical AI 서베이 두 편을 묶어 소�
 
 ## 1. 자료 정보 (Document Information)
 
-- 제목: Physical AI 연구 한 번에 살펴보기 2편 — 물리를 이해하는 생성 모델과 월드 시뮬레이터
+- 제목: Physical AI 연구 한 번에 살펴보기 2편: 물리를 이해하는 생성 모델과 월드 시뮬레이터
 - 작성: 9bow (박정환), PyTorch 한국 사용자 모임
 - 게시: 2026-06-19, discuss.pytorch.kr 읽을거리 게시판
 - 원 논문: Liu 2025, Generative Physical AI in Vision: A Survey (arXiv 2501.10928)
@@ -70,10 +70,10 @@ PyTorch 한국 사용자 모임이 Physical AI 서베이 두 편을 묶어 소�
 
 ## 2. 주요 기여 (Key Contributions)
 
-- 서베이 골격을 한글로 정리했다. PS·PU·G·PUG·PAG-E·PAG-I 여섯 개념 정의와 Table 1 비교표를 한글 표로 옮겼다. 원 논문의 형식 정의를 그대로 따라가되 수식과 산문을 함께 붙인다.
+- 서베이 골격을 한글로 정리했다. PS, PU, G, PUG, PAG-E, PAG-I 여섯 개념 정의와 Table 1 비교표를 한글 표로 옮겼다. 원 논문의 형식 정의를 그대로 따라가되 수식과 산문을 함께 붙인다.
 - PAG-E 여섯 패러다임 해설: Gen-to-Sim부터 Sim-evaluated Gen까지 각각을 소절로 나누고 대표 방법마다 arXiv 링크를 걸었다. 논문 본문의 방법 나열을 읽기 좋은 순서로 재배치한 부분이다.
-- 평가 벤치마크 정리로는 PhyBench·PhyGenBench·VideoPhy·VideoPhy2·Physics-IQ·PisaBench·PhyCoBench의 규모와 채점 방식을 불릿으로 압축했다.
-- 1편에서 그린 "LLM의 world 지식 → grounding → action → 예측과 시뮬레이션 → embodied 배포" 로드맵 중 예측·시뮬레이션 칸을 이 서베이가 확대한 것이라고 시리즈 안에서 위치를 잡아준다. 두 서베이를 잇는 이 배치가 원 논문에는 없는 부분이다.
+- 평가 벤치마크 정리로는 PhyBench, PhyGenBench, VideoPhy, VideoPhy2, Physics-IQ, PisaBench, PhyCoBench의 규모와 채점 방식을 불릿으로 압축했다.
+- 1편에서 그린 "LLM의 world 지식 → grounding → action → 예측과 시뮬레이션 → embodied 배포" 로드맵 중 예측과 시뮬레이션 칸을 이 서베이가 확대한 것이라고 시리즈 안에서 위치를 잡아준다. 두 서베이를 잇는 이 배치가 원 논문에는 없는 부분이다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -81,7 +81,7 @@ PyTorch 한국 사용자 모임이 Physical AI 서베이 두 편을 묶어 소�
 
 - 개념 구분을 문장으로 풀었다. PAG-E와 PAG-I는 Table 1에서 "명시적 물리 모델" 행 하나로만 갈리고 "물리 세계 이해" 행은 둘 다 참이다. PUG는 물리 입출력도 명시적 모델도 없다. 이 둘을 표 아래 두 문장으로 짚는다. 원문 표만 봐서는 놓치기 쉽다.
 - Gaussian Splatting을 시뮬레이션과 잇는 이유: 장면을 입자처럼 다루기 때문에 물리 시뮬레이션과 결합이 자연스럽다. 그래서 PAG-E의 상당수가 가우시안을 시뮬레이션 요소로 재해석한다고 적는다. 원문은 NeRF와 Gaussian Splatting을 넓은 의미의 생성 모델로 포함시키는데 왜 그렇게 묶는지는 이 글이 한 문단으로 풀어 놓았다.
-- 확산 모델 계보를 배경으로 DDIM·DPM-Solver 같은 가속 샘플러와 latent diffusion, classifier-free guidance를 함께 든다.
+- 확산 모델 계보를 배경으로 DDIM과 DPM-Solver 같은 가속 샘플러와 latent diffusion, classifier-free guidance를 함께 든다.
 - 모델과 데이터셋을 키워도 분포 밖 물리 일반화가 나아지지 않았고 모델이 비슷한 학습 예시의 존재에 의존한다는 Kang 등의 발견을 특히 눈여겨볼 결과로 꼽아 "더 많은 데이터가 곧 더 나은 물리 이해는 아니다"라는 한 줄로 정리한다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
@@ -90,15 +90,15 @@ PyTorch 한국 사용자 모임이 Physical AI 서베이 두 편을 묶어 소�
 
 | 항목 | 글에 적힌 값 | 원 논문 대조 |
 |---|---|---|
-| Cosmos-Reason1 온톨로지 | 3개 대분류 · 16개 세부 범주 | 일치 (Table 3) |
+| Cosmos-Reason1 온톨로지 | 3개 대분류, 16개 세부 범주 | 일치 (Table 3) |
 | Cosmos-Reason1 문항 | 이진 2,828 + 객관식 2,909 = 5,737, 그중 604개가 영상 426편과 연결 | 일치 |
-| WISA-32K | 영상 약 32,000편 · 물리 현상 17종 | 일치 |
+| WISA-32K | 영상 약 32,000편, 물리 현상 17종 | 일치 |
 | PISA | 실제 361편 + Kubric 합성 60편 | 일치 |
-| PhyBench | 프롬프트 700개 · 시나리오 31개 · 4개 유형 | 일치 |
-| PhyGenBench | 프롬프트 160개 · 물리 법칙 27개 | 일치 |
-| VideoPhy / VideoPhy2 | 캡션 688개 · 모델 12종 / 행동 197종 · 프롬프트 3,940개 · 5점 리커트 | 일치 |
-| Physics-IQ | 실세계 영상 396편 · 이후 5초 예측 | 일치 |
-| PhyCoBench | 7개 범주 · 프롬프트 120개 | 일치 |
+| PhyBench | 프롬프트 700개, 시나리오 31개, 4개 유형 | 일치 |
+| PhyGenBench | 프롬프트 160개, 물리 법칙 27개 | 일치 |
+| VideoPhy / VideoPhy2 | 캡션 688개, 모델 12종 / 행동 197종, 프롬프트 3,940개, 5점 리커트 | 일치 |
+| Physics-IQ | 실세계 영상 396편, 이후 5초 예측 | 일치 |
+| PhyCoBench | 7개 범주, 프롬프트 120개 | 일치 |
 
 평가 지표를 사람 평가, VLM 기반 평가, 자동 정량 평가 셋으로 나눈 구성도 원문 6.2절 그대로다. 자동 지표로 trajectory L2, Chamfer Distance, IoU와 가중 IoU, MSE를 든다.
 
@@ -134,7 +134,7 @@ PyTorch 한국 사용자 모임이 Physical AI 서베이 두 편을 묶어 소�
 |---|---|---|---|---|
 | fig01 | 글 대표 이미지 | 물리 인지 생성에서 world simulator로 나아가는 흐름 | fetched | ★ wiki 권장 (이 글 고유) |
 | fig02 | 논문 Figure 1 | 생성 AI가 world model로 수렴하는 개념도 | fetched | (논문 페이지와 중복) |
-| fig03 | 논문 Figure 4 | 물리 시뮬레이션 3축 | fetched | (논문 페이지와 중복) |
+| fig03 | 논문 Figure 4 | 물리 시뮬레이션 세 가지 구성 요소 | fetched | (논문 페이지와 중복) |
 | fig04 | 논문 Figure 3 | PAG-E 여섯 패러다임 배선도 | fetched | (논문 페이지와 중복) |
 | fig05 | 논문 Figure 2 | 물리 인지 좋고 나쁜 영상 대조 | fetched | (논문 페이지와 중복) |
 

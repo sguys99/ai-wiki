@@ -16,7 +16,7 @@ figures:
   - id: fig01
     file: assets/nvlabs-2026-gear-sonic-project-page/page-full.png
     raw: raw/articles/nvlabs-2026-gear-sonic-project-page-figures/page-full.png
-    caption: "프로젝트 페이지 전체 캡처 — 영상 갤러리 구성 (원본 12,837px 중 상단 6,000px)"
+    caption: "프로젝트 페이지 전체 캡처. 영상 갤러리 구성 (원본 12,837px 중 상단 6,000px)"
     strategy: screenshot
     curated: false
 ---
@@ -28,7 +28,7 @@ SONIC 논문의 공식 프로젝트 페이지. 텍스트로는 abstract 하나�
 ## 1. 자료 정보 (Document Information)
 
 - URL: https://nvlabs.github.io/GEAR-SONIC/
-- 발행: NVIDIA GEAR Lab (nvlabs.github.io). 페이지에 발행일 표기 없음 — 수집 시점 2026-08-03 상태를 아카이브했다
+- 발행: NVIDIA GEAR Lab (nvlabs.github.io). 페이지에 발행일 표기 없음. 수집 시점 2026-08-03 상태를 아카이브했다
 - 추출 tier: `chrome` (jina는 403). 본문 1,596자, 이미지 후보 0개, 전체 페이지 캡처 1장
 - 대응 논문: [[luo-2025-sonic-supersizing-motion-tracking]] (arXiv 2511.07820)
 - 대응 코드: [[nvlabs-gr00t-wholebodycontrol]]
@@ -36,9 +36,9 @@ SONIC 논문의 공식 프로젝트 페이지. 텍스트로는 abstract 하나�
 
 ## 2. 주요 기여 (Key Contributions)
 
-이 페이지 자체의 기여는 논문과 별개로 없다. 수집된 텍스트는 논문 abstract 전문과 동일하다. 스케일링 3축(파라미터 1.2M–42M, mocap 700시간에서 나온 100M+ 프레임, 21k GPU hours), 실시간 kinematic planner, VR teleoperation과 VLA를 하나의 policy로 받는 통합 token space, 손발 협응이 필요한 자율 loco-manipulation을 언급한다.
+이 페이지 자체의 기여는 논문과 별개로 없다. 수집된 텍스트는 논문 abstract 전문과 동일하다. 규모 확대의 세 가지 항목(파라미터 120만에서 4,200만, mocap 700시간에서 나온 1억 프레임 이상, 2만 1,000 GPU hours), 실시간 kinematic planner, VR teleoperation과 VLA를 하나의 policy로 받는 통합 토큰 공간(unified token space), 손발 협응이 필요한 자율 loco-manipulation을 언급한다.
 
-자료로서의 값은 다른 데 있다. 논문의 정지 이미지와 MPJPE 수치로는 판단하기 어려운 동작의 질 — 걷기·달리기·기어가기의 매끄러움, 모달리티 전환의 이음새, 페달을 밟으며 균형을 잡는 순간 — 을 영상으로 남긴 곳이 여기다.
+자료로서의 값은 다른 데 있다. 논문의 정지 이미지와 MPJPE 수치로는 판단하기 어려운 동작의 질을 영상으로 남긴 곳이 여기다. 걷기와 달리기와 기어가기의 매끄러움, 모달리티 전환의 이음새, 페달을 밟으며 균형을 잡는 순간이 그 예다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -59,7 +59,7 @@ SONIC 논문의 공식 프로젝트 페이지. 텍스트로는 abstract 하나�
 ## 7. 용어집 (Glossary)
 
 - **GEAR**: Generalist Embodied Agent Research. SONIC과 GR00T 계열을 내는 NVIDIA 연구 조직
-- **project page**: 논문에 딸린 영상·데모 중심 웹페이지. 정량 결과보다 동작 품질을 보이는 용도
+- **project page**: 논문에 딸린 영상과 데모 중심 웹페이지. 정량 결과보다 동작 품질을 보이는 용도
 
 ## 8. 그림 후보 (Figure Candidates)
 

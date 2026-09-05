@@ -148,13 +148,13 @@
 #### 배치 3. NVIDIA GR00T, Cosmos, RoboCasa (13편)
 
 - [x] 3a GR00T: nvidia-2025-gr00t-n1, gr00t-n1-5, nvidia-isaac-gr00t, nvlabs-gr00t-wholebodycontrol, nvidia-2025-accelerate (본문 8,202→17,832 / 8,708→13,127 / 7,322→15,248 / 3,960→9,808 / 4,424→10,071자, 표 0~6개→11/10/10/6/11개, sources 문체 정비 동반, lint 0건). accelerate 페이지는 기존에 이미지 임베드로만 있던 벤치마크 3종을 본문 표로 복원했다
-- [ ] 3b Cosmos와 GEAR: nvidia-2025-cosmos, luo-2025-sonic, nvlabs-2026-gear-sonic-project-page, 9bow-2026-physics-aware
+- [x] 3b Cosmos와 GEAR: nvidia-2025-cosmos, luo-2025-sonic, nvlabs-2026-gear-sonic-project-page, 9bow-2026-physics-aware (본문 9,791→23,948 / 7,059→20,481 / 1,637→5,818 / 3,018→14,765자, 표 0~2개→17/15/4/11개, sources 문체 정비 동반, lint 0건). Cosmos는 frontmatter 564줄에서 124줄로 축소해 저장소 최악의 비대 사례를 해소했다
 - [ ] 3c RoboCasa: nasiriany-2024-robocasa, nasiriany-2026-robocasa365, robocasa-2026-project-page, robocasa-robocasa
 
 #### 배치 4. survey (9편)
 
 - [ ] 4a: xu-2025-anatomy, kawaharazuka-2025, sa-2026, cui-2025-openhelix, zhang-2026-survey-of-physical-ai
-- [ ] 4b: li-2025-world-survey, hou-2026-world-model, liu-2025-generative-physical-ai, zhang-2024-vln
+- [ ] 4b: li-2025-world-survey, hou-2026-world-model, liu-2025-generative-physical-ai, zhang-2024-vln. **주의**: 배치 3b에서 `9bow-2026-physics-aware-generation-world-simulator`(liu-2025 서베이의 한국어 해설)가 delta 문서에서 standalone으로 바뀌며 14,765자가 됐다. 원 서베이 페이지 liu-2025(9,885자)와 내용이 겹치고 분량이 역전돼 있으므로, liu-2025 재작성 시 원 서베이가 1차 출처로서 더 상세해야 하고 두 페이지의 역할 분담을 명시해야 한다
 
 #### 배치 5. SLAM, Nav2, repo (14편)
 
@@ -192,6 +192,11 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 | task progress | 미등재. π 계열 평가 지표 표준. 이진 성공률이 아닌 부분 점수 (배치 2b 발견) | 원어 canonical, "과제 진행도"를 금지 표기로 |
 | language coaching | 미등재. π0.7 논문과 발표 글이 공유하는 기법명 (배치 2c 발견) | 원어 canonical, "언어 코칭"을 금지 표기로 |
 | long-horizon | **2026-09-06 등재 완료.** 원어 81회 대 번역어 51회(장기 과제 40, 장기 지평 9, 롱 호라이즌 2)로 갈려 있었다 | 원어 canonical로 등재하고 완료분 28건을 치환했다. 미완료 stem 12건은 해당 배치가 처리한다 |
+| world simulator | 미등재. world model, world foundation model 행과 짝을 이룰 항목 (배치 3b 발견) | 원어 canonical, "월드 시뮬레이터", "세계 시뮬레이터"를 금지 표기로 |
+| physics-aware generation (PAG) | 미등재. Liu 2025 서베이의 조직 개념, 최소 2페이지 공유 (배치 3b 발견) | 원어 canonical, "물리 인지 생성"을 금지 표기로 |
+| Gaussian Splatting / Material Point Method / score distillation sampling | 미등재 (배치 3b 발견) | 원어 canonical, "가우시안 스플래팅", "물질점 방법", "점수 증류 샘플링"을 금지 표기로 |
+| kinematic planner / loco-manipulation | 미등재. 저장소 내 원어 각 9회, 번역어 0회 (배치 3b 발견) | 원어 canonical |
+| humanoid 표기 고정 | 원어 69회 대 "휴머노이드" 62회로 갈림. 통제 태그 어휘는 `humanoid` (배치 3b 발견) | 원어 canonical, "휴머노이드"를 금지 표기로 |
 | pseudo-action | 미등재. Inverse Dynamics Model 행 설명에만 등장한다. GR00T N1과 DreamGen 계열에서 반복 (배치 3a 발견) | 원어 canonical, "가짜 action", "의사 행동"을 금지 표기로 |
 | reference lookahead | 미등재. SONIC 계열 (배치 3a 발견) | 원어 canonical. 컨트롤러에 미리 제시하는 참조 모션의 길이이며 지연 측정치가 아니라는 점을 비고에 명시 |
 | physical prompt / test-time training | 미등재. GEN-1.5 계열 (배치 2d 발견) | 원어 canonical, "물리 프롬프트", "테스트 시점 학습"을 금지 표기로 |
@@ -205,6 +210,7 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 
 - [x] 배치 1 완료분 8편의 sources 문체 정비 (중간점 233개, em dash 117개, 금지 어휘 71건 제거, 구조와 figures 항목 100% 보존)
 - [x] 파일럿 3편 sources 정비 (jo-2026-rt-1 51건, hku-mars-fast-lio 26건 치환. 헤딩 개수와 figures 항목 수 보존 확인)
+- [ ] `page-full.png` 임베드 정리 (physical-ai 8편: robocasa-2026-project-page, nav2-2026, lionhong-2023, yhoons-2024, learnopencv-2025, kim-2026-rfm 2편, reuss-2026. 전체 페이지 캡처는 도식이 아니라 레이아웃 기록이므로 curated에서 제외한다. 2026-09-06 브리프에 규칙 추가, 각 배치가 해당 stem 재작성 시 처리)
 - [ ] sources frontmatter figure caption 정비 (배치 초반에 지침이 없어 subagent마다 처리가 갈렸다. 2026-09-06 브리프에 정비 대상으로 명시했고, 이전 완료분 중 미정비분은 마지막에 일괄 처리한다)
 - [ ] frontmatter `title:` 키의 금지 기호 판단 (저장소 전체 89건, physical-ai 6건. 원어 제목 인용은 CLAUDE.md 불변 항목에 해당하나 "LeRobot — State-of-the-art..."처럼 우리가 이름과 설명을 이어 붙인 것은 우리 문장이다. 원어 인용과 우리 조합을 구분해 후자만 정리할지 마무리 시점에 결정)
 - [ ] frontmatter `authors:` 키의 중간점 21건 판단 (lint 대상 밖이나 표기 일관성 문제. 저자명 구분자 용도라 쉼표 전환 여부를 마무리 시점에 결정)
