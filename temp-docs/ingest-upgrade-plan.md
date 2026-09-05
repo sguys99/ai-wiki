@@ -164,7 +164,7 @@
 
 #### 배치 6. 기타 article과 논문 (9편)
 
-- [ ] 6a article 5편: engiuniverse 2편, learnopencv-2025, kim-2026-rfm part-1, part-2
+- [x] 6a article과 video 5편: engiuniverse 2편, learnopencv-2025, kim-2026-rfm part-1, part-2 (본문 7,141→16,798 / 3,806→9,995 / 11,165→23,377 / 2,626→9,488 / 5,183→13,510자, 표 행 0~18개→64/47/91/58/66개, sources 문체 정비 동반, lint 0건)
 - [ ] 6b 논문 4편: lu-2026-aspire, reuss-2026, wu-2023-unleashing, zhai-2025-igniting
 
 #### 용어집 2차 갱신 대기 (배치 3~4 누적, 마무리 단계에 일괄 반영)
@@ -229,7 +229,7 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 
 - [x] 배치 1 완료분 8편의 sources 문체 정비 (중간점 233개, em dash 117개, 금지 어휘 71건 제거, 구조와 figures 항목 100% 보존)
 - [x] 파일럿 3편 sources 정비 (jo-2026-rt-1 51건, hku-mars-fast-lio 26건 치환. 헤딩 개수와 figures 항목 수 보존 확인)
-- [ ] `page-full.png` 임베드 정리 (8편 중 4편 완료: robocasa-2026-project-page, nav2-2026, lionhong-2023, yhoons-2024. 남은 4편 learnopencv-2025, kim-2026-rfm 2편, reuss-2026은 배치 6에서 처리)
+- [ ] `page-full.png` 임베드 정리 (8편 중 7편 완료. 남은 1편 reuss-2026은 배치 6b에서 처리)
 - [ ] sources frontmatter figure caption 정비 (배치 초반에 지침이 없어 subagent마다 처리가 갈렸다. 2026-09-06 브리프에 정비 대상으로 명시했고, 이전 완료분 중 미정비분은 마지막에 일괄 처리한다)
 - [ ] frontmatter 금지 기호 일괄 판단 (lint는 frontmatter를 검사하지 않아 전부 통과하지만 CLAUDE.md는 "제목과 본문 모두" 금지로 규정한다. 키별 현황: `title` 91건, `authors` 21건, `license` 8건, `author` 2건)
   - `title`: 원어 제목 그대로인 것은 CLAUDE.md 불변 항목(인용)이라 손대지 않는다. "LeRobot — State-of-the-art..."처럼 우리가 이름과 설명을 이어 붙인 조합만 정리 대상 후보
