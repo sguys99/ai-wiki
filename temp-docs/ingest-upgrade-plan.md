@@ -135,7 +135,7 @@
 
 #### 배치 1. VLA primer 시리즈 (jo-2026 계열 8편)
 
-- [ ] 1a: jo-2026-act, jo-2026-rt-2, jo-2026-openvla, jo-2026-smolvla
+- [x] 1a: jo-2026-act, jo-2026-rt-2, jo-2026-openvla, jo-2026-smolvla (본문 5,651→14,103 / 4,686→10,957 / 6,313→14,117 / 6,542→15,427자, 표 0개→11/5/7/15개, frontmatter figures를 curated만 남겨 축소, lint 0건)
 - [ ] 1b: jo-2026-groot-n1, jo-2026-groot-n1-5, jo-2026-pi-0-6, jo-2026-wall-oss
 
 #### 배치 2. RT, OpenVLA, π 계열 (20편)
@@ -166,6 +166,22 @@
 
 - [ ] 6a article 5편: engiuniverse 2편, learnopencv-2025, kim-2026-rfm part-1, part-2
 - [ ] 6b 논문 4편: lu-2026-aspire, reuss-2026, wu-2023-unleashing, zhai-2025-igniting
+
+#### 용어집 갱신 대기 (배치 진행 중 누적, 사용자 승인 필요)
+
+subagent가 재작성 중 발견한 표기 불일치와 미등재 용어다. 승인 시 `wiki/overviews/glossary-physical-ai.md`에 반영한다.
+
+| 항목 | 현황 | 제안 |
+|---|---|---|
+| `latent` 행 예문 자기모순 | 예문 "latent는 관측되지 않는 내부 표현 공간"의 "관측"이 같은 용어집 `observation` 행의 금지 표기라 lint_terms 경고를 유발한다 | 예문을 "latent는 겉으로 드러나지 않는 모델 내부의 표현 공간을 가리킨다"로 교체 (버그 수정) |
+| temporal ensembling | 미등재. 저장소에 Temporal Ensembling 24회, temporal ensemble 14회, temporal ensembling 5회, Temporal ensemble 1회로 4종 혼재 | 원어 canonical `temporal ensembling`으로 고정 |
+| compounding error | 미등재. 21회 사용, 표기는 이미 일관 | 원어 canonical로 등재 |
+| open-loop / closed-loop | 미등재. closed-loop 52회, open-loop 28회, 번역어 "폐루프" 6회 혼재 | 원어 canonical, "폐루프"와 "개루프"를 금지 표기로 |
+| asynchronous inference | 미등재. shukor-2025-smolvla는 원어, cui-2025-openhelix는 "비동기 추론"으로 갈림 | 원어 canonical, "비동기 추론"을 금지 표기로 |
+| emergent capability | 미등재 | 원어 canonical (원문의 "창발 능력" 병기는 wiki에서 쓰지 않음) |
+| layer skipping | 미등재. SmolVLA 계열 2개 파일에서 사용 | 원어 canonical |
+| skill distribution | 미등재 | 원어 canonical (선택) |
+| visual token reduction | 미등재 | 원어 canonical (선택) |
 
 #### 마무리 항목
 
