@@ -171,18 +171,29 @@
 
 배치 진행 중 발견한 미등재 용어와 표기 흔들림이다. **배치마다 등재하면 완료분을 되돌아가 고쳐야 해서 rework가 커진다.** 마무리 단계에서 한 번에 등재하고 저장소 전체를 한 번 훑는 편이 낫다고 판단해 대기시킨다. 그때까지 subagent에게는 "원어 단일 표기" 지시만 전달한다.
 
-저장소 실측 (2026-09-06):
+저장소 실측 (2026-09-06, 재작성 완료 후 physical-ai wiki + overviews + 대응 sources 범위):
 
 | 용어 | 원어 | 번역어 | 판단 |
 |---|---|---|---|
-| throughput | 76회 | 처리량 37회 | 실제 흔들림. 등재 시 완료분 절반을 되돌아가야 해 마무리로 미룸 |
-| world simulator | 13회 | 월드 시뮬레이터 5회 | 실제 흔들림. 5건 모두 9bow 한 stem에 몰려 있어 정리 비용 낮음 |
-| occupancy | 53회 | 점유 격자 0회 | 이미 일관. 등재만 하면 됨 |
-| physical prompt | 40회 | 0회 | 이미 일관. 등재만 하면 됨 |
-| task progress | 56회 | 과제 진행도 1회 | 거의 일관 |
-| pseudo-action | 9회 | 0회 | 이미 일관 |
-| steerability | 4회 | 0회 | 이미 일관 |
-| state | 원어 170회 | 상태 685회 | 용어집이 canonical을 `상태`로 두되 비고에 "표준 번역 허용"이라 적어 기계 검사가 없다. 배치 5a에서 `state estimation`, `error-state` 같은 복합어가 많은 논문 페이지는 원어로, 발표 요약 페이지는 한글로 각각 통일했다. CLAUDE.md 규칙이 **문서 내** 단일 표기라 둘 다 타당하다. 용어집 비고에 "복합어가 잦은 문서는 원어 통일 허용"을 명시할 것 |
+| humanoid | 213회 | 휴머노이드 95회 | **결정 필요.** 통제 태그 어휘는 `humanoid`이나 음차 "휴머노이드"도 한국어에서 표준에 가깝다. glossary-llms가 benchmark를 벤치마크(음차 정착)로 정한 선례가 있어 어느 쪽으로도 갈 수 있다. 등재 시 95건 정리 필요 |
+| post-training | 194회 | 사후학습 1회 | 사실상 일관. glossary-llms에 pre-training과 fine-tuning은 있으나 post-training이 없다. 등재만 하면 됨 |
+| throughput | 66회 | 처리량 30회 | 실제 흔들림. 등재 시 30건 정리 필요 |
+| task progress | 62회 | 과제 진행도 1회 | 거의 일관. π 계열 평가 지표로 성공률과 구분되는 개념이라 등재 가치 있음 |
+| occupancy | 55회 | 0회 | 이미 일관. 등재만 |
+| embodied VQA | 51회 | 체화 VQA 1회 | 거의 일관 |
+| physical prompt | 40회 | 1회 | 거의 일관 |
+| Gaussian Splatting | 33회 | 2회 | 거의 일관 |
+| kinematic planner | 24회 | 0회 | 이미 일관 |
+| loco-manipulation | 20회 | 0회 | 이미 일관 |
+| world simulator | 17회 | 월드 시뮬레이터 5회 | 흔들림. 5건 모두 9bow 한 stem에 몰려 정리 비용 낮음 |
+| language coaching | 14회 | 0회 | 이미 일관 |
+| pseudo-action | 9회 | 가짜 action 2회 | 반쪽 번역 2건 정리 필요 |
+| reference lookahead | 6회 | 0회 | 이미 일관 |
+| steerability | 4회 | 조종 가능성 5회 | 흔들림. 원어와 번역어가 비슷한 빈도 |
+| dual-process theory | 4회 | 이중 처리 이론 4회 | 흔들림 |
+| domain shift | 3회 | 0회 | 이미 일관 |
+
+정리 비용이 큰 것은 `humanoid`(95건)와 `throughput`(30건) 둘뿐이고 나머지 15종은 등재만 하면 된다. `humanoid`는 canonical을 원어로 할지 음차로 할지가 정책 판단이라 사용자 결정이 필요하다.
 
 그 밖의 후보(kinematic planner, loco-manipulation, humanoid 표기 고정, Gaussian Splatting, Material Point Method, score distillation sampling, physics-aware generation, language coaching, open-world generalization, post-training, dual-process theory, latent goal, coupling tightness, takt time, MEM, reference lookahead, data pyramid 후속분)는 아래 표에 누적해 둔다.
 
@@ -249,7 +260,7 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 - [x] sources 문체 정비 범위 확정 (2026-09-05 사용자 결정): 별도 배치를 두지 않고 각 배치 subagent가 wiki를 쓰면서 같은 stem의 sources도 함께 정리한다. 브리프 §2-B에 반영. sources의 번호 붙은 영문 병기 헤딩은 기존 규약대로 유지한다
 - [x] 얇은 논문 sources 재추출 보강 완료. brohan-2023-rt-2(8,948→15,086자, 배치 2a), nasiriany-2024-robocasa(7,162→17,027자, 배치 3c), xu-2020(6,018→11,913자, 배치 5a), xu-2021(6,971→14,705자, 배치 5a). 모두 해당 wiki 재작성과 같은 작업에서 처리해 이미 쓴 페이지를 다시 손대는 일을 피했다. 해당 배치가 그 stem을 재작성할 때 함께 처리한다
 - [x] index.md physical-ai 항목 전체 축소 (76개 항목 50,342자 → 14,161자, 72% 축소. 평균 661자 → 185자, 200자 초과 72개 → 0개, 구분자 `]] — ` 73개를 `]]: `로 교체, 중간점과 em dash 0건). 파일 전체는 93,564자 → 57,383자. physical-ai 절의 lint_style 위반 0건. 잔여 250건은 전부 다른 카테고리 절로 후속 과제 범위다. 부수 처리: 표시 이름(별칭)의 금지 기호 5건 정리(링크 해석에 무관), liu-2025 항목의 `lint-terms: ignore` 주석 제거(주석이 붙은 원인이던 표현이 새 설명에 없어 불필요), LeRobot policy 종수를 wiki 값 22종으로 정정
-- [ ] wiki/overviews/physical-ai-overview.md 정합 갱신
+- [x] wiki/overviews/physical-ai-overview.md 정합 갱신 (본문 14,673→23,773자, 표 행 50→93개, 중간점 140개와 em dash 38개 전량 제거, lint 0건). **커버리지 43편 → 76편(100%)**. 누락 33편을 무작정 나열하지 않고 서사 구조 안에 배치했고, 계열이 겹치는 자료는 역할 대응표로 묶었다 (π 계열 세대별, GR00T 세대별, 한국어 primer 9편 매핑, 서베이 10편 렌즈 비교). study_path 11개 항목과 prereq 10개는 유지하고 본문 `## 학습 경로` A 트랙을 frontmatter와 11단계로 1:1 맞췄다. 부수 수정: index.md의 overview 항목이 "65개"로 낡고 854자였던 것을 173자로 축소하며 76편으로 갱신
 
 ### Phase 5. 검증과 마무리
 
