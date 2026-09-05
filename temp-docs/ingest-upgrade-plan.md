@@ -154,7 +154,7 @@
 #### 배치 4. survey (9편)
 
 - [x] 4a: xu-2025-anatomy, kawaharazuka-2025, sa-2026, cui-2025-openhelix, zhang-2026-survey-of-physical-ai (본문 8,672→29,241 / 8,121→24,903 / 11,120→27,212 / 10,630→21,516 / 5,625→22,906자, 표 0~46행→128/128/111/88/74행, sources 문체 정비 동반, lint 0건). zhang-2026은 sources의 절반 수준이던 압축을 해소했고, 중간점 정리 규모가 컸다 (kawaharazuka 183개, zhang 149개, sa-2026 81개)
-- [ ] 4b: li-2025-world-survey, hou-2026-world-model, liu-2025-generative-physical-ai, zhang-2024-vln. **주의**: 배치 3b에서 `9bow-2026-physics-aware-generation-world-simulator`(liu-2025 서베이의 한국어 해설)가 delta 문서에서 standalone으로 바뀌며 14,765자가 됐다. 원 서베이 페이지 liu-2025(9,885자)와 내용이 겹치고 분량이 역전돼 있으므로, liu-2025 재작성 시 원 서베이가 1차 출처로서 더 상세해야 하고 두 페이지의 역할 분담을 명시해야 한다
+- [x] 4b: li-2025-world-survey, hou-2026-world-model, liu-2025-generative-physical-ai, zhang-2024-vln (본문 7,364→30,137 / 13,344→42,610 / 9,885→31,533 / 4,465→28,393자, 표 행 0~27개→182/207/136/113개, sources 문체 정비 동반, lint 0건). 배치 3b에서 생겼던 역할 분담 역전(해설 14,765자 대 원 서베이 9,885자)을 1차 출처를 31,533자로 보강해 해소했다. zhang-2024는 sources의 3분의 1이던 압축을 해소했다. 배치 4 전체(9편) 완료
 
 #### 배치 5. SLAM, Nav2, repo (14편)
 
@@ -167,7 +167,25 @@
 - [ ] 6a article 5편: engiuniverse 2편, learnopencv-2025, kim-2026-rfm part-1, part-2
 - [ ] 6b 논문 4편: lu-2026-aspire, reuss-2026, wu-2023-unleashing, zhai-2025-igniting
 
-#### 용어집 갱신 (2026-09-05 사용자 승인, 반영 완료)
+#### 용어집 2차 갱신 대기 (배치 3~4 누적, 마무리 단계에 일괄 반영)
+
+배치 진행 중 발견한 미등재 용어와 표기 흔들림이다. **배치마다 등재하면 완료분을 되돌아가 고쳐야 해서 rework가 커진다.** 마무리 단계에서 한 번에 등재하고 저장소 전체를 한 번 훑는 편이 낫다고 판단해 대기시킨다. 그때까지 subagent에게는 "원어 단일 표기" 지시만 전달한다.
+
+저장소 실측 (2026-09-06):
+
+| 용어 | 원어 | 번역어 | 판단 |
+|---|---|---|---|
+| throughput | 76회 | 처리량 37회 | 실제 흔들림. 등재 시 완료분 절반을 되돌아가야 해 마무리로 미룸 |
+| world simulator | 13회 | 월드 시뮬레이터 5회 | 실제 흔들림. 5건 모두 9bow 한 stem에 몰려 있어 정리 비용 낮음 |
+| occupancy | 53회 | 점유 격자 0회 | 이미 일관. 등재만 하면 됨 |
+| physical prompt | 40회 | 0회 | 이미 일관. 등재만 하면 됨 |
+| task progress | 56회 | 과제 진행도 1회 | 거의 일관 |
+| pseudo-action | 9회 | 0회 | 이미 일관 |
+| steerability | 4회 | 0회 | 이미 일관 |
+
+그 밖의 후보(kinematic planner, loco-manipulation, humanoid 표기 고정, Gaussian Splatting, Material Point Method, score distillation sampling, physics-aware generation, language coaching, open-world generalization, post-training, dual-process theory, latent goal, coupling tightness, takt time, MEM, reference lookahead, data pyramid 후속분)는 아래 표에 누적해 둔다.
+
+#### 용어집 1차 갱신 (2026-09-05 사용자 승인, 반영 완료)
 
 subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용어다. 17건 전부 `wiki/overviews/glossary-physical-ai.md`에 반영해 등재 용어가 80개에서 97개, 금지 표기가 103종에서 132종이 됐다. 신규 금지 표기로 기존 파일에서 새로 잡힌 위반은 각 배치가 그 stem을 재작성할 때 함께 해소한다.
 
