@@ -153,7 +153,7 @@
 
 #### 배치 4. survey (9편)
 
-- [ ] 4a: xu-2025-anatomy, kawaharazuka-2025, sa-2026, cui-2025-openhelix, zhang-2026-survey-of-physical-ai
+- [x] 4a: xu-2025-anatomy, kawaharazuka-2025, sa-2026, cui-2025-openhelix, zhang-2026-survey-of-physical-ai (본문 8,672→29,241 / 8,121→24,903 / 11,120→27,212 / 10,630→21,516 / 5,625→22,906자, 표 0~46행→128/128/111/88/74행, sources 문체 정비 동반, lint 0건). zhang-2026은 sources의 절반 수준이던 압축을 해소했고, 중간점 정리 규모가 컸다 (kawaharazuka 183개, zhang 149개, sa-2026 81개)
 - [ ] 4b: li-2025-world-survey, hou-2026-world-model, liu-2025-generative-physical-ai, zhang-2024-vln. **주의**: 배치 3b에서 `9bow-2026-physics-aware-generation-world-simulator`(liu-2025 서베이의 한국어 해설)가 delta 문서에서 standalone으로 바뀌며 14,765자가 됐다. 원 서베이 페이지 liu-2025(9,885자)와 내용이 겹치고 분량이 역전돼 있으므로, liu-2025 재작성 시 원 서베이가 1차 출처로서 더 상세해야 하고 두 페이지의 역할 분담을 명시해야 한다
 
 #### 배치 5. SLAM, Nav2, repo (14편)
@@ -216,6 +216,9 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
   - `title`: 원어 제목 그대로인 것은 CLAUDE.md 불변 항목(인용)이라 손대지 않는다. "LeRobot — State-of-the-art..."처럼 우리가 이름과 설명을 이어 붙인 조합만 정리 대상 후보
   - `authors`, `author`: 저자명 구분자 용도의 중간점. 쉼표 전환 여부 결정 필요
   - `license`: "MIT (code) / CC BY 4.0 (assets·datasets)" 같은 조합. 우리 문장이므로 정리 대상
+- [x] CLAUDE.md 분량 목표를 산문 기준으로 개정 (2026-09-06). 총 글자 수 기준이던 목표(논문 6,000~12,000자 등)와 "표를 적극 쓰라"는 지시가 서로 당겨 subagent마다 초과를 보고하고 산문 압축에 시간을 썼다. 완료분 실측 결과 본문의 20~30%가 표 마크업이고 산문 중앙값은 논문 13,500자, article 8,643자, repo 7,668자다. 목표를 산문 기준(논문 8,000~16,000자, article 5,000~12,000자, repo 4,000~8,000자)으로 바꾸고 1차 게이트 우선을 명시했다
+- [ ] `sa-2026`의 raw fig09와 fig10이 동일 파일이다(md5 일치, page 13 전면 캡처). `wiki/assets/` 사본은 상단과 하단으로 수동 크롭돼 서로 다른데, raw와 어긋나 "wiki/assets는 raw의 큐레이션 사본"이라는 불변식이 깨져 있다. raw 쪽을 재크롭해 맞출지 결정 필요
+- [ ] figure 크롭 품질 재검토 (배치 4a 발견). `xu-2025-anatomy`의 fig07은 `bbox_norm` y0가 0.0018이라 페이지 상단부터 잡혀 도식 위에 본문 텍스트가 절반 넘게 섞였다. `strategy: caption-region`이고 `low_confidence: false`라 스크립트 경고에 걸리지 않았다. `extract_figures.py --force --bbox fig07=13:...`로 재크롭 필요. 전체 raw에서 `page-region`이거나 `low_confidence`인 도식은 38건(sa-2026 15건, 그 외는 physical-ai 밖)
 - [ ] sources `## 8. 그림 후보` 표의 `★ wiki 권장` 마크와 실제 `curated` 플래그 정합 (재큐레이션으로 어긋난 사례가 배치 3b, 3c에서 확인됨)
 - [ ] sources `## 8. 그림 후보` 표의 id 정합 (luo-2025-sonic은 2026-08 정밀 크롭 전환 이전 번호 fig01~fig14, `page-region`이 남아 현재 frontmatter id와 어긋남)
 
