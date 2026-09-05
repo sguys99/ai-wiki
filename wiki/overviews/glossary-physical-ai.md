@@ -36,7 +36,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | episode | episode | — | episode는 과제 시작부터 종료까지의 한 실행 단위다 | 음차 "에피소드"도 피하고 원어 권장 (지침) |
 | rollout | rollout | — | rollout은 policy를 실행해 trajectory를 만들어내는 과정이다 | |
 | world model | world model | 세계 모델·월드 모델 | world model은 환경의 동역학을 학습해 미래를 예측하는 모델이다 | |
-| latent | latent | 잠재 공간·잠재 변수·잠재 상태·잠재 표현 | latent는 관측되지 않는 내부 표현 공간을 가리킨다 | "잠재력" 같은 일반어 보호를 위해 복합어만 금지 |
+| latent | latent | 잠재 공간·잠재 변수·잠재 상태·잠재 표현 | latent는 겉으로 드러나지 않는 모델 내부의 표현 공간을 가리킨다 | "잠재력" 같은 일반어 보호를 위해 복합어만 금지. 예문에 "관측"을 쓰면 observation 행의 금지 표기에 걸린다 (2026-09 수정) |
 | alignment / aligned | alignment | 에 정렬된·와 정렬된 | action에 alignment된 예측이란 실행 가능한 미래를 뜻한다 | "행동에 정렬된" 직역 실사례 차단. 정렬(sort) 의미 보호 위해 조사 결합형만 |
 | imitation learning | imitation learning | 모방 학습·모방학습 | imitation learning은 시연 데이터를 흉내 내 policy를 학습하는 방법이다 | |
 | behavioral cloning | behavioral cloning | 행동 복제·행동 모사 | behavioral cloning은 시연의 observation→action 쌍을 지도학습으로 흉내 낸다 | |
@@ -105,6 +105,23 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | latent action | latent action | 잠재 행동·잠재 동작 | latent action은 두 프레임 사이의 시각적 변화를 action 라벨 없이 부호화한 벡터다 | LAPA(Ye 2024)가 VQ-VAE로 세운 표현. GR00T N1의 latent action space와 DreamGen의 pseudo action 라벨링이 모두 이걸 쓴다. latent 행의 금지 표기와 짝을 이룬다 |
 | Inverse Dynamics Model | Inverse Dynamics Model | 역동역학 모델 | Inverse Dynamics Model은 두 프레임만 보고 그 사이를 채울 action chunk를 되짚어 예측하는 모델이다 | 약어 IDM 병용 가능. action 라벨이 없는 영상에 pseudo action을 붙이는 표준 경로. dynamics 행이 "동역학"을 병용 허용하는 것과 달리 이 복합어는 원어로 고정한다 |
 | neural trajectory | neural trajectory | 신경 궤적·뉴럴 궤적 | neural trajectory는 video world model이 만들어낸 합성 trajectory 데이터다 | DreamGen(Zhu 2025)이 세운 이름. GR00T N1.5 pre-training 데이터에 들어간다. robot state가 없어 상태 입력을 0으로 조건화해 쓴다. trajectory 행의 "궤적" 금지와 짝 |
+| flow matching | flow matching | 흐름 정합·플로우 매칭 | flow matching은 noise에서 목표 분포로 가는 연속 변환의 속도장을 학습하는 생성 기법이다 | π0 계열과 GR00T 계열이 action head 학습에 공유한다. dynamics 행의 "동역학"과 달리 번역어를 쓰지 않는다 |
+| DiT | DiT | 확산 트랜스포머 | DiT는 diffusion 모델의 denoising 신경망을 Transformer로 구현한 구조다 | Diffusion Transformer의 표준 약어. GR00T의 action head와 Cosmos의 diffusion WFM이 모두 이 계열이다 |
+| action chunk | action chunk | 행동 청크·동작 묶음 | action chunk는 policy가 한 번에 출력하는 여러 timestep 분량의 action 묶음이다 | action 행의 "행동 청킹" 금지와 짝. chunk size는 k 또는 H로 표기 |
+| temporal ensembling | temporal ensembling | 시간 앙상블·시계열 앙상블·템포럴 앙상블 | temporal ensembling은 서로 겹치는 여러 action chunk의 같은 시점 예측을 가중 평균해 실행하는 기법이다 | ACT(Zhao 2023)가 세운 이름. 저장소에 Temporal Ensembling, temporal ensemble 등 4종이 혼재해 소문자 원형으로 고정한다 (2026-09 등재) |
+| compounding error | compounding error | 누적 오차·복합 오차·오차 누적 | compounding error는 policy의 작은 예측 오차가 다음 입력을 어긋나게 만들어 시간이 갈수록 커지는 현상이다 | imitation learning의 근본 난점. action chunking과 temporal ensembling이 이걸 줄이려는 처방이다 |
+| open-loop | open-loop | 개루프·오픈 루프 | open-loop 실행은 한 번 계산한 action 묶음을 중간 피드백 없이 끝까지 내보내는 방식이다 | closed-loop와 짝. action chunk 실행 구간이 곧 open-loop 구간이다 |
+| closed-loop | closed-loop | 폐루프·클로즈드 루프 | closed-loop 제어는 매 timestep 새 observation을 받아 action을 다시 정하는 방식이다 | control frequency 논의의 전제. 저장소에 번역어 "폐루프"가 일부 남아 있어 원어로 고정한다 (2026-09 등재) |
+| asynchronous inference | asynchronous inference | 비동기 추론 | asynchronous inference는 policy의 다음 chunk 계산과 현재 chunk 실행을 겹쳐 돌려 대기 시간을 감추는 실행 방식이다 | SmolVLA가 처리량 개선 수단으로 쓴다. synchronous inference도 원어로 쓴다 |
+| emergent capability | emergent capability | 창발 능력·창발적 능력·발현 능력 | emergent capability는 학습 데이터에 없던 조합을 모델이 실행해내는 성질을 말한다 | RT-2가 symbol understanding, reasoning, human recognition 세 범주로 제시했다 |
+| layer skipping | layer skipping | 레이어 스킵·층 건너뛰기 | layer skipping은 backbone의 앞쪽 layer만 쓰고 나머지를 생략해 연산량을 줄이는 기법이다 | SmolVLA가 VLM의 절반 layer만 쓰는 근거 |
+| embodied VQA | embodied VQA | 체화 VQA·구현된 VQA | embodied VQA는 로봇 시점 이미지에 대해 조작 가능성이나 다음 단계를 묻고 답하게 하는 질의응답 과제다 | WALL-OSS, π0.5, GR00T 계열이 공유한다. 일반 VQA와 구분해 쓴다 |
+| weight drift | weight drift | 가중치 편향·가중치 표류·가중치 드리프트 | weight drift는 fine-tuning 중 모델 가중치가 pre-training 시점에서 멀어져 원래 능력을 잃는 현상이다 | WALL-OSS가 General VQA 데이터를 섞는 이유. 원문이 두 번역어를 혼용해 원어로 고정한다 (2026-09 등재) |
+| static router | static router | 정적 라우터 | static router는 입력 종류에 따라 처리 경로를 고정 규칙으로 나누는 분기 장치다 | WALL-OSS의 modality별 경로 분리에 쓰인다 |
+| advantage | advantage | 어드밴티지 | advantage는 어떤 action이 평균보다 얼마나 나은지를 나타내는 값이다 | value function 행과 짝. advantage conditioning은 이 값을 조건으로 주는 기법이며 "어드밴티지 조건화"를 쓰지 않는다 |
+| sparse reward | sparse reward | 희소 보상 | sparse reward는 과제 성공 여부처럼 드물게만 주어지는 reward를 말한다 | reward 행의 "보상" 금지와 짝 |
+| policy extraction | policy extraction | 정책 추출 | policy extraction은 학습한 value function으로부터 실행할 policy를 뽑아내는 단계다 | policy 행의 "정책" 금지와 짝. π0.6의 RECAP 학습 루프에 등장한다 |
+| data pyramid | data pyramid | 데이터 피라미드 | data pyramid는 웹 데이터, 합성 데이터, 실제 로봇 데이터를 양이 많은 순으로 쌓아 함께 학습에 쓰는 데이터 전략이다 | GR00T N1이 세운 이름 |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 

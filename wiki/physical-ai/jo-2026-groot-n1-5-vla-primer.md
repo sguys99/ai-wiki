@@ -82,7 +82,7 @@ GR00T N1은 휴머노이드 로봇용 VLA로서 의미 있는 결과를 냈지�
 - 새로운 행동이나 새로운 환경으로의 일반화 능력이 제한적이었다.
 - 합성 데이터를 만들 때 물리적 정확성과 다양성을 함께 확보하기 어려웠다.
 
-N1.5는 이 세 한계에 각각 대응하는 변경을 적용했다. VLM backbone을 공간 이해가 개선된 Eagle-2.5로 교체해 인식 병목을 줄였고, 미래의 시각적 변화를 모델 내부에서 예측하는 FLARE를 도입해 긴 시간 범위의 정밀한 조작을 노렸으며, 대규모 neural trajectory 합성 엔진인 DreamGen을 구축해 데이터 피라미드의 물리적 불일치 문제를 다뤘다.
+N1.5는 이 세 한계에 각각 대응하는 변경을 적용했다. VLM backbone을 공간 이해가 개선된 Eagle-2.5로 교체해 인식 병목을 줄였고, 미래의 시각적 변화를 모델 내부에서 예측하는 FLARE를 도입해 긴 시간 범위의 정밀한 조작을 노렸으며, 대규모 neural trajectory 합성 엔진인 DreamGen을 구축해 data pyramid의 물리적 불일치 문제를 다뤘다.
 
 구조 자체는 N1을 대체하지 않는다. N1의 dual-system VLA 구조를 유지한 채 더 강한 VLM backbone과 미래 예측 손실, 합성 데이터 전략을 추가한 것이 N1.5다. dual-system VLA는 느린 대형 모델과 빠른 경량 policy를 서로 다른 주기로 함께 구동하는 VLA 구조를 말한다. 따라서 N1.5를 읽을 때는 기존 구조 위에 어떤 예측 메커니즘과 데이터 파이프라인이 추가됐는지를 보는 것이 핵심이다.
 
@@ -124,7 +124,7 @@ future token은 DiT 입력 시퀀스에 새로 추가한 M개의 learnable 임�
 | 토큰 임베딩 | 그대로 LLM에 입력 | 이미지와 텍스트 토큰 임베딩에 layer normalization 추가 |
 | 손실 | flow matching 손실 | flow matching 손실에 FLARE alignment 손실을 추가 |
 | DiT 입력 | robot state q_t와 noised action chunk | 여기에 M개의 learnable future token을 추가 |
-| pre-training 데이터 | N1의 데이터 피라미드 | DreamGen이 만든 neural trajectory와 AgiBot-Beta를 추가 |
+| pre-training 데이터 | N1의 data pyramid | DreamGen이 만든 neural trajectory와 AgiBot-Beta를 추가 |
 
 표의 일곱 행은 크게 세 부류로 나뉜다. 앞의 네 행은 VLM backbone과 그 연결부를 손본 인식 쪽 변경이고, 다음 두 행은 FLARE 도입에 따른 학습 목표 변경이며, 마지막 한 행은 DreamGen이 만든 데이터가 들어온 결과다. 즉 N1.5의 변경은 인식, 학습 목표, 데이터라는 세 지점에 걸쳐 있다.
 
@@ -349,7 +349,7 @@ DreamGen 쪽 한계는 더 구체적이다. 생성 모델은 물리 엔진처럼
 
 ## 관련 페이지
 
-- [[physical-ai/jo-2026-groot-n1-vla-primer]]: 같은 시리즈 03-13편이자 이 편의 전제. dual-system 구조, flow matching 손실과 추론, 데이터 피라미드와 latent action space가 그 페이지에 있다. 먼저 읽어야 이 편의 변경점 목록이 읽힌다.
+- [[physical-ai/jo-2026-groot-n1-vla-primer]]: 같은 시리즈 03-13편이자 이 편의 전제. dual-system 구조, flow matching 손실과 추론, data pyramid와 latent action space가 그 페이지에 있다. 먼저 읽어야 이 편의 변경점 목록이 읽힌다.
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]: N1 원 논문. 이 편이 기준선으로 삼는 구조의 정량 결과와 데이터 생성 절차가 있다.
 - [[physical-ai/nvidia-2025-gr00t-n1-5-an-improved-open]]: NVIDIA GEAR의 N1.5 공식 프로젝트 페이지. 이 해설이 참고문헌 첫 줄로 드는 원 출처다.
 - [[llms/chen-2025-eagle-25-boosting-long-context-post-training]]: N1.5가 backbone으로 교체한 VLM의 원 논문. 공간 이해가 개선됐다는 한 문장의 근거를 확인할 수 있다.

@@ -167,9 +167,9 @@
 - [ ] 6a article 5편: engiuniverse 2편, learnopencv-2025, kim-2026-rfm part-1, part-2
 - [ ] 6b 논문 4편: lu-2026-aspire, reuss-2026, wu-2023-unleashing, zhai-2025-igniting
 
-#### 용어집 갱신 대기 (배치 진행 중 누적, 사용자 승인 필요)
+#### 용어집 갱신 (2026-09-05 사용자 승인, 반영 완료)
 
-subagent가 재작성 중 발견한 표기 불일치와 미등재 용어다. 승인 시 `wiki/overviews/glossary-physical-ai.md`에 반영한다.
+subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용어다. 17건 전부 `wiki/overviews/glossary-physical-ai.md`에 반영해 등재 용어가 80개에서 97개, 금지 표기가 103종에서 132종이 됐다. 신규 금지 표기로 기존 파일에서 새로 잡힌 위반은 각 배치가 그 stem을 재작성할 때 함께 해소한다.
 
 | 항목 | 현황 | 제안 |
 |---|---|---|
@@ -193,6 +193,7 @@ subagent가 재작성 중 발견한 표기 불일치와 미등재 용어다. 승
 
 #### 마무리 항목
 
+- [x] sources 문체 정비 범위 확정 (2026-09-05 사용자 결정): 별도 배치를 두지 않고 각 배치 subagent가 wiki를 쓰면서 같은 stem의 sources도 함께 정리한다. 브리프 §2-B에 반영. sources의 번호 붙은 영문 병기 헤딩은 기존 규약대로 유지한다
 - [ ] 얇은 논문 sources 재추출 보강 (12k 상한 피해: xu-2020, xu-2021, nasiriany-2024-robocasa, brohan-2023-rt-2)
 - [ ] index.md physical-ai 항목 전체 축소 (1~2문장, 200자 이내)
 - [ ] wiki/overviews/physical-ai-overview.md 정합 갱신
