@@ -159,7 +159,7 @@
 #### 배치 5. SLAM, Nav2, repo (14편)
 
 - [x] 5a FAST-LIO 5편: xu-2020, xu-2021, airlab-2024, irasc-2024, taeyoung-2022 (본문 3,963→17,561 / 4,723→21,733 / 1,785→7,990 / 2,037→10,562 / 2,155→11,535자, 표 행 0개→79/108/41/32/63개, sources 문체 정비 동반, lint 0건). xu-2020(6,018→11,913자)과 xu-2021(6,971→14,705자) sources를 재추출 보강해 "얇은 논문 sources" 항목을 모두 해소했다. xu-2021의 frontmatter 비중은 66%에서 10%로 떨어졌다
-- [ ] 5b Nav2 4편: nav2-2026-official-documentation, lionhong-2023, yhoons-2024, ros-navigation-navigation2
+- [x] 5b Nav2 4편: nav2-2026-official-documentation, lionhong-2023, yhoons-2024, ros-navigation-navigation2 (본문 2,069→9,096 / 3,753→15,757 / 2,244→8,928 / 2,482→9,322자, 표 행 0~11개→61/61/38/72개, sources 문체 정비 동반, lint 0건). 네 편이 같은 스택을 다뤄 공식 문서를 1차 출처로 두고 해설 2편은 개념과 입문, 저장소는 빌드와 패키지로 역할을 나눴다
 - [ ] 5c repo와 awesome 5편: huggingface-lerobot, bytedance-gr-1, keon-awesome, natnew-awesome, openhelix-robot-awesome
 
 #### 배치 6. 기타 article과 논문 (9편)
@@ -229,13 +229,15 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 
 - [x] 배치 1 완료분 8편의 sources 문체 정비 (중간점 233개, em dash 117개, 금지 어휘 71건 제거, 구조와 figures 항목 100% 보존)
 - [x] 파일럿 3편 sources 정비 (jo-2026-rt-1 51건, hku-mars-fast-lio 26건 치환. 헤딩 개수와 figures 항목 수 보존 확인)
-- [ ] `page-full.png` 임베드 정리 (physical-ai 8편: robocasa-2026-project-page, nav2-2026, lionhong-2023, yhoons-2024, learnopencv-2025, kim-2026-rfm 2편, reuss-2026. 전체 페이지 캡처는 도식이 아니라 레이아웃 기록이므로 curated에서 제외한다. 2026-09-06 브리프에 규칙 추가, 각 배치가 해당 stem 재작성 시 처리)
+- [ ] `page-full.png` 임베드 정리 (8편 중 4편 완료: robocasa-2026-project-page, nav2-2026, lionhong-2023, yhoons-2024. 남은 4편 learnopencv-2025, kim-2026-rfm 2편, reuss-2026은 배치 6에서 처리)
 - [ ] sources frontmatter figure caption 정비 (배치 초반에 지침이 없어 subagent마다 처리가 갈렸다. 2026-09-06 브리프에 정비 대상으로 명시했고, 이전 완료분 중 미정비분은 마지막에 일괄 처리한다)
 - [ ] frontmatter 금지 기호 일괄 판단 (lint는 frontmatter를 검사하지 않아 전부 통과하지만 CLAUDE.md는 "제목과 본문 모두" 금지로 규정한다. 키별 현황: `title` 91건, `authors` 21건, `license` 8건, `author` 2건)
   - `title`: 원어 제목 그대로인 것은 CLAUDE.md 불변 항목(인용)이라 손대지 않는다. "LeRobot — State-of-the-art..."처럼 우리가 이름과 설명을 이어 붙인 조합만 정리 대상 후보
   - `authors`, `author`: 저자명 구분자 용도의 중간점. 쉼표 전환 여부 결정 필요
   - `license`: "MIT (code) / CC BY 4.0 (assets·datasets)" 같은 조합. 우리 문장이므로 정리 대상
 - [x] CLAUDE.md 분량 목표를 산문 기준으로 개정 (2026-09-06). 총 글자 수 기준이던 목표(논문 6,000~12,000자 등)와 "표를 적극 쓰라"는 지시가 서로 당겨 subagent마다 초과를 보고하고 산문 압축에 시간을 썼다. 완료분 실측 결과 본문의 20~30%가 표 마크업이고 산문 중앙값은 논문 13,500자, article 8,643자, repo 7,668자다. 목표를 산문 기준(논문 8,000~16,000자, article 5,000~12,000자, repo 4,000~8,000자)으로 바꾸고 1차 게이트 우선을 명시했다
+- [ ] `wiki/assets` 자산 중 raw에 대응 파일이 없는 41건 (physical-ai는 reuss-2026의 kr*.jpg 6건뿐이며 본문에서 실제 임베드 중이다. 나머지는 다른 카테고리로, 일부는 `scripts/build_loop_diagrams.py`가 생성한 SVG라 정상이다. "raw는 전수 아카이브, wiki/assets는 그 큐레이션 사본"이라는 전제와 어긋나므로 유형별로 정상/비정상 구분 필요)
+- [ ] `lionhong-2023`의 `page-full.png`가 `figures.json`에 등재돼 있고 `wiki/assets`에 사본도 있으나 raw 디렉토리에 실파일이 없다
 - [ ] `sa-2026`의 raw fig09와 fig10이 동일 파일이다(md5 일치, page 13 전면 캡처). `wiki/assets/` 사본은 상단과 하단으로 수동 크롭돼 서로 다른데, raw와 어긋나 "wiki/assets는 raw의 큐레이션 사본"이라는 불변식이 깨져 있다. raw 쪽을 재크롭해 맞출지 결정 필요
 - [ ] figure 크롭 품질 재검토 (배치 4a 발견). `xu-2025-anatomy`의 fig07은 `bbox_norm` y0가 0.0018이라 페이지 상단부터 잡혀 도식 위에 본문 텍스트가 절반 넘게 섞였다. `strategy: caption-region`이고 `low_confidence: false`라 스크립트 경고에 걸리지 않았다. `extract_figures.py --force --bbox fig07=13:...`로 재크롭 필요. 전체 raw에서 `page-region`이거나 `low_confidence`인 도식은 38건(sa-2026 15건, 그 외는 physical-ai 밖)
 - [x] sources `## 8. 그림 후보` 표와 `curated` 플래그의 관계 확인 (2026-09-06). 전수 조사에서 33개 파일 83건이 어긋나 정합 작업 대상으로 보였으나, CLAUDE.md를 재확인한 결과 **표의 `추천` 열은 Step 3의 LLM 추천 기록이고 `curated`는 Step 3.5의 사용자 결정이라 역할이 다르다.** 둘이 어긋나는 것이 정상이므로 정합 작업 대상이 아니다. 브리프에도 "표의 추천 열은 건드리지 말 것"으로 정정했다. 다만 표 아래 산문이 현재 큐레이션과 정면으로 모순되는 경우(예: curated인데 "임베드하지 않는다"가 남음)는 해당 문장만 고친다
