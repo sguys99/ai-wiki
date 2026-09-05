@@ -136,7 +136,7 @@
 #### 배치 1. VLA primer 시리즈 (jo-2026 계열 8편)
 
 - [x] 1a: jo-2026-act, jo-2026-rt-2, jo-2026-openvla, jo-2026-smolvla (본문 5,651→14,103 / 4,686→10,957 / 6,313→14,117 / 6,542→15,427자, 표 0개→11/5/7/15개, frontmatter figures를 curated만 남겨 축소, lint 0건)
-- [ ] 1b: jo-2026-groot-n1, jo-2026-groot-n1-5, jo-2026-pi-0-6, jo-2026-wall-oss
+- [x] 1b: jo-2026-groot-n1, jo-2026-groot-n1-5, jo-2026-pi-0-6, jo-2026-wall-oss (본문 7,736→11,953 / 8,161→14,595 / 4,337→11,233 / 4,214→11,832자, 표 0개→11/11/5/9개, lint 0건). 부수 수정: sources/jo-2026-pi-0-6이 원문 결론 절을 "제목만 있고 본문이 비어 있다"고 잘못 기록한 것을 raw 대조로 바로잡음
 
 #### 배치 2. RT, OpenVLA, π 계열 (20편)
 
@@ -182,6 +182,14 @@ subagent가 재작성 중 발견한 표기 불일치와 미등재 용어다. 승
 | layer skipping | 미등재. SmolVLA 계열 2개 파일에서 사용 | 원어 canonical |
 | skill distribution | 미등재 | 원어 canonical (선택) |
 | visual token reduction | 미등재 | 원어 canonical (선택) |
+| weight drift | 미등재. 원문이 "가중치 편향"과 "가중치 표류"를 한 글 안에서 혼용 | 원어 canonical, 두 번역어를 금지 표기로 |
+| embodied VQA | 미등재. WALL-OSS, π0.5, GR00T 계열에 반복 등장 | 원어 canonical, "체화 VQA"를 금지 표기로 |
+| flow matching | 미등재. π 계열과 GR00T 계열이 공유하는 핵심 개념 | 원어 canonical, "흐름 정합"을 금지 표기로 |
+| DiT | 미등재. 여러 페이지에서 이미 원어 사용 | 원어 canonical |
+| data pyramid | 미등재. GR00T 계열 고유 명명 | 원어 canonical, "데이터 피라미드"를 금지 표기로 |
+| advantage / advantage conditioning | 미등재. π0.6 계열 | 원어 canonical, "어드밴티지 조건화"를 금지 표기로 |
+| sparse reward / policy extraction / regularized RL | 미등재 | 원어 canonical, "희소 보상", "정책 추출", "정규화된 강화학습"을 금지 표기로 |
+| static router | 미등재 | 원어 canonical, "정적 라우터"를 금지 표기로 |
 
 #### 마무리 항목
 
