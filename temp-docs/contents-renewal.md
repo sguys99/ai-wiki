@@ -31,6 +31,7 @@ physical-ai 카테고리는 ingest-upgrade-plan.md의 Phase 1~5로 wiki 76편과
 | 산문 글자 수 | 본문에서 표 줄, 이미지 임베드 줄, 캡션 줄, 코드 펜스를 뺀 문자 수 |
 | index.md 항목 길이 | 불릿 한 줄의 `- ` 접두를 포함한 문자 수 |
 | lint 건수 | 라인 단위 검출 건수. 한 줄에 규칙이 여럿 걸리면 각각 1건으로 센다 |
+| caption 정비 대상 | frontmatter `figures[].caption` 중 금지 기호를 쓰거나, 한글이 한 글자도 없거나, 같은 파일 안에서 중복된 것. 고유 (파일, 줄) 수로 센다. `scripts/audit_captions.py`가 계량한다 |
 
 세 정의는 완료된 physical-ai 값으로 역검증했다. 표 개수 정의로 `wiki/physical-ai/` 76편을 세면 737개, 편당 9.70개가 나와 ingest-upgrade-plan.md의 9.7개와 일치한다. 본문 글자 수 정의로는 `brohan-2022-rt-1-robotics-transformer-for-real-world`의 wiki 9,602자와 sources 9,778자가 그대로 재현된다. index.md 항목 길이 정의로는 정비를 마친 Physical AI 절 76항목의 최댓값이 정확히 200자다.
 
@@ -120,7 +121,7 @@ physical-ai 행의 154개 파일은 `wiki/physical-ai` 76편, 대응 sources 77�
 | 항목 | 5-A/5-B 기록 | 실측 보정 | 0-2 확정 | 원인 |
 |---|---|---|---|---|
 | bilingual-heading | 17건 | **906건** (미검출 889건) | 확정 (906건, 전량 wiki) | lint_style.py의 mask()가 라틴 괄호를 먼저 지운 뒤 헤딩을 검사하는 순서 결함 |
-| figures caption 정비 대상 | 532건 | **670건** | 확정 (금지 기호 532, 영어 전용 157, 중복 19) | 금지 기호 532건에 더해 영어 전용 caption 157건이 빠짐 |
+| figures caption 정비 대상 | 532건 | **670건** | Phase 1-7 재확정 (착수 700건: 금지 기호 532, 영어 전용 157, 중복 36) | 금지 기호 532건에 더해 영어 전용 caption 157건이 빠짐. 0-2의 670건과 차이 30건은 중복 정의 차이다. 금지 기호와 영어 전용은 두 측정이 정확히 일치하고, 중복만 19건 대 36건으로 갈린다. `scripts/audit_captions.py`의 정의(같은 파일 안 동일 문자열 전 occurrence)를 확정치로 둔다 |
 | figure 크롭 품질 잔여 약 23건 | stem 미상 | **단일 stem 23건**: `dnotitia-2026-akb-product-introduction` (fig01~23 전부 page-region) | 확정 (고아 sources 5편에 포함) | 이 stem은 wiki 페이지도 없는 고아 source라 크롭 재작업과 wiki 신설이 한 묶음 |
 | pseudo action 표기 흔들림 | 19건 대 9건 | 21건 대 12건, **전량 physical-ai와 용어집 안** | 미재측정 (Phase 7-2 착수 시점에 재확인) | 확산 작업과 독립인 소형 작업으로 분리 (Phase 7-2) |
 
@@ -405,7 +406,7 @@ Phase 7-3에서 아래 표를 채운다. 착수 열은 Phase 0-2의 재실측(�
 | 지표 | 착수 (0-2 재실측) | 최종 |
 |---|---|---|
 | lint_style error (전 저장소) | 9,202건 | 목표 0건 |
-| lint_style warning | 212건 | 목표 0건 |
+| lint_style warning | 212건 (Phase 1-7의 `axis-misuse` 신설로 306건이 된다. 파일럿 3편 해소분을 빼면 현재 300건) | 목표 0건 |
 | lint_terms 경고 | 270건 (0-2 재실측은 117건, Phase 0-3 용어집 3차 등재로 +153건) | 목표 0건 |
 | bilingual-heading (wiki) | 906건 | 0건 (sources 번호 병기 헤딩 보존 확인 동반) |
 | 중간점, em dash (본문) | 중간점 4,004건, em dash 4,280건 (발생 개수로는 9,805개와 4,510개) | 수식 곱셈 예외만 (건수와 위치 명기) |
@@ -414,10 +415,15 @@ Phase 7-3에서 아래 표를 채운다. 착수 열은 Phase 0-2의 재실측(�
 | `## 핵심 용어` 절 보유 (비-PAI) | 0 / 135 | 135 / 135 |
 | wiki가 sources보다 얇은 페이지 | 128편 | 0편 수렴 (예외는 사유 명기) |
 | wiki 본문 중앙값 (비-PAI) | 5,326자 (산문 4,147자) | physical-ai 완료치 14,156자 수준 |
-| figures caption 정비 대상 | 670건 (금지 기호 532, 영어 전용 157, 중복 19) | 0건 |
+| figures caption 정비 대상 | 682건 (금지 기호 532, 영어 전용 139, 중복 36. 착수 원측은 700건이고 파일럿 3편이 18건을 해소했다) | 0건 |
+| wiki-uncurated-figure (Phase 1-7 신설) | 210건 (agents 109, llms 41, evaluations 32, database 24, applications 4) | 0건 |
+| figures-missing (Phase 1-7 신설) | 12건 (database 6, agents 4, llms 2) | 0건 |
+| bare-wikilink (Phase 1-7 신설) | 143건 (sources 129, wiki 14) | 0건 |
+| link-unresolved (Phase 1-7 신설) | 1건 (`applications/karpathy-2024-software-3-llms`, 배치 B3 판단) | 0건 |
+| axis-misuse (Phase 1-7 신설) | 94건 (agents 50, applications 18, overviews 10, database 8, llms 4, evaluations 3, etc 1, physical-ai 0) | 0건 |
 | frontmatter 100줄 초과 | 18편 (최악 364줄/504줄 = 72%) | 잔여는 curated 비중으로 정상 판정 |
 | index.md 200자 초과 항목 | 101개 (비-physical-ai 148항목 중) | 0개 |
-| 고아 sources | 5편 | 0편 |
+| 고아 sources | 5편 (Phase 1-6 완료로 4편) | 0편 |
 | glossary-agents 등재 행 | 36행 | (3차, 4차 갱신 후 기록) |
 
 착수 열의 lint 건수는 라인 단위 검출 건수라 수정 대상 라인 수보다 많다. 전 저장소 경고 9,414건은 고유 (파일, 라인) 8,042줄에 걸쳐 있고, 그중 1,344줄에 규칙이 둘 이상 걸린다. 가장 흔한 겹침은 middot과 emdash가 같은 줄에 함께 있는 1,212줄이다. error 규칙만 보면 9,202건이 7,934줄에 몰려 있고, middot과 emdash 8,284건은 7,045줄이다.
