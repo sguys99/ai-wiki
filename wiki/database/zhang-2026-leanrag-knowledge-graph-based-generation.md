@@ -1,5 +1,5 @@
 ---
-title: "LeanRAG — Knowledge-Graph-Based Generation with Semantic Aggregation and Hierarchical Retrieval (AAAI-26)"
+title: "LeanRAG: Knowledge-Graph-Based Generation with Semantic Aggregation and Hierarchical Retrieval (AAAI-26)"
 type: paper
 year: 2026
 category: database

@@ -7,7 +7,7 @@ source: x-square-robot-2026-wall-oss-05-technical-report.md
 raw_path: raw/papers/x-square-robot-2026-wall-oss-05-technical-report.pdf
 raw_filename: "x-square-robot-2026-wall-oss-05-technical-report.pdf"
 source_collection: external
-authors: "X Square Robot Team — Ryan Yu·Pushi Zhang·Starrick Liu·Brae Liu·Miracle Kang·Shalfun Li 외 (총 27인, Project Lead Lucy Liang, 교신 Hao Wang)"
+authors: "X Square Robot Team: Ryan Yu, Pushi Zhang, Starrick Liu, Brae Liu, Miracle Kang, Shalfun Li 외 (총 27인, Project Lead Lucy Liang, 교신 Hao Wang)"
 arxiv_id: "2605.30877"
 url: "https://arxiv.org/abs/2605.30877"
 tags: [physical-ai, vla, manipulation, robot-learning, edge-inference]

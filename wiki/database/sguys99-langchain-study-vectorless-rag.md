@@ -1,5 +1,5 @@
 ---
-title: "sguys99/langchain-study/medium/3.vectorless-rag — Vectorless RAG (PageIndex 없이 직접 구현한 한글 reference)"
+title: "sguys99/langchain-study/medium/3.vectorless-rag: Vectorless RAG (PageIndex 없이 직접 구현한 한글 reference)"
 type: repo
 year: 2026
 category: database

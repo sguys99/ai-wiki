@@ -1,5 +1,5 @@
 ---
-title: "용어집 — Physical AI (Terminology Glossary)"
+title: "용어집: Physical AI (Terminology Glossary)"
 type: overview
 year: 2026
 category: overviews

@@ -1,5 +1,5 @@
 ---
-title: "LLM wiki — Karpathy의 LLM Wiki 패턴과 한국어 커뮤니티 토론 종합 정리 (kmyu99 Notion)"
+title: "LLM wiki: Karpathy의 LLM Wiki 패턴과 한국어 커뮤니티 토론 종합 정리 (kmyu99 Notion)"
 type: article
 year: 2026
 category: applications

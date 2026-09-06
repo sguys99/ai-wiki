@@ -1,5 +1,5 @@
 ---
-title: "용어집 — Agents (Terminology Glossary)"
+title: "용어집: Agents (Terminology Glossary)"
 type: overview
 year: 2026
 category: overviews

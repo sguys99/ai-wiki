@@ -1,5 +1,5 @@
 ---
-title: "RAG-Anything — All-in-One Multimodal RAG Framework (arXiv 2025-10)"
+title: "RAG-Anything: All-in-One Multimodal RAG Framework (arXiv 2025-10)"
 type: paper
 year: 2025
 category: database

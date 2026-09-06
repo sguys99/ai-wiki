@@ -1,5 +1,5 @@
 ---
-title: "From Local to Global: A GraphRAG Approach to Query-Focused Summarization — Paper Review (DSBA Lab Seminar)"
+title: "From Local to Global: A GraphRAG Approach to Query-Focused Summarization (Paper Review, DSBA Lab Seminar)"
 type: article
 year: 2025
 category: database
@@ -13,7 +13,7 @@ presentation_date: "2025-08-11"
 venue: "DSBA Lab Seminar (SNU 산업공학과)"
 language: "ko"
 slides_count: 43
-reviews_paper: "Edge et al. (2024) — arXiv 2404.16130 — From Local to Global: A GraphRAG Approach to Query-Focused Summarization"
+reviews_paper: "Edge et al. (2024), arXiv 2404.16130, From Local to Global: A GraphRAG Approach to Query-Focused Summarization"
 publisher: "DSBA Lab (SNU 산업공학과)"
 url: "https://github.com/microsoft/graphrag"
 tags: [graph-rag, paper-review, dsba, knowledge-graph, community-detection, leiden, sensemaking, lecture-deck, korean]

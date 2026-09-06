@@ -1,5 +1,5 @@
 ---
-title: "RAG, LLM Wiki, or GBrain? — 3-축 결정 프레임워크 (Liu)"
+title: "RAG, LLM Wiki, or GBrain? (3-축 결정 프레임워크, Liu)"
 type: article
 year: 2026
 category: applications

@@ -1,5 +1,5 @@
 ---
-title: "turbovec — Google TurboQuant for vector search (Rust + Python)"
+title: "turbovec: Google TurboQuant for vector search (Rust + Python)"
 type: repo
 year: 2026
 category: database

@@ -1,5 +1,5 @@
 ---
-title: "Wall-X — Building General-Purpose Robots Based on Embodied Foundation Model"
+title: "Wall-X: Building General-Purpose Robots Based on Embodied Foundation Model"
 type: repo
 year: 2025
 category: physical-ai

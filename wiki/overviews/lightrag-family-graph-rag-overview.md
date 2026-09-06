@@ -1,5 +1,5 @@
 ---
-title: "Graph-based RAG 계열 — GraphRAG 트렁크 (LightRAG · LeanRAG · RAG-Anything)"
+title: "Graph-based RAG 계열: GraphRAG 트렁크 (LightRAG, LeanRAG, RAG-Anything)"
 type: overview
 year: 2026
 category: overviews

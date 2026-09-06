@@ -10,7 +10,7 @@ source_collection: external
 author: "김도윤 (Kim Doyoon, SNU 산업공학과 DSBA 박사과정)"
 presentation_date: "2025-08-11"
 venue: "DSBA Lab Seminar"
-reviews_paper: "Edge et al. (2024) — From Local to Global: A GraphRAG Approach to Query-Focused Summarization"
+reviews_paper: "Edge et al. (2024), From Local to Global: A GraphRAG Approach to Query-Focused Summarization"
 tags: [graph-rag, paper-review, dsba, knowledge-graph, community-detection, leiden, sensemaking, korean, lecture-deck]
 ---
 

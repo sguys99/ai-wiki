@@ -10,7 +10,7 @@ source: nirdiamant-rag-techniques.md
 org: "NirDiamant"
 repo: "RAG_Techniques"
 url: "https://github.com/NirDiamant/RAG_Techniques"
-license: "Custom non-commercial (Nir Diamant) — 비상업 사용만 허용, 상업 사용은 별도 서면 허가 필요"
+license: "Custom non-commercial (Nir Diamant), 비상업 사용만 허용, 상업 사용은 별도 서면 허가 필요"
 tags: [rag, advanced-rag, agentic-rag, langchain, llamaindex, hyde, hype, semantic-chunking, proposition-chunking, fusion-retrieval, reranking, raptor, graph-rag, self-rag, corrective-rag, memorag, rag-evaluation, deepeval, grouse, cookbook, repo, oss]
 ---
 

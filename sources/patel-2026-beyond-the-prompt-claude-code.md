@@ -1,5 +1,5 @@
 ---
-title: "Beyond the Prompt: Claude Code — 설정·메모리·워크플로우 마스터리 실전 가이드 (Arpan Patel, 2026-05-26)"
+title: "Beyond the Prompt: Claude Code (설정, 메모리, 워크플로우 마스터리 실전 가이드, Arpan Patel 2026-05-26)"
 type: article
 year: 2026
 category: agents

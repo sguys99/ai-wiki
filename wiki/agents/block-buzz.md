@@ -1,5 +1,5 @@
 ---
-title: "Buzz — A workspace where humans and agents build together, on a relay you own"
+title: "Buzz: A workspace where humans and agents build together, on a relay you own"
 type: repo
 year: 2026
 category: agents

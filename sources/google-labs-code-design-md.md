@@ -1,5 +1,5 @@
 ---
-title: "DESIGN.md — A format specification for describing a visual identity to coding agents"
+title: "DESIGN.md: A format specification for describing a visual identity to coding agents"
 type: repo
 year: 2026
 category: agents

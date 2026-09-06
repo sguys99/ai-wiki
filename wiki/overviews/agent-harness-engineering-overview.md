@@ -1,5 +1,5 @@
 ---
-title: "Agent Harness Engineering — Skills · Loops · Verification 개괄"
+title: "Agent Harness Engineering: Skills, Loops, Verification 개괄"
 type: overview
 year: 2026
 category: overviews

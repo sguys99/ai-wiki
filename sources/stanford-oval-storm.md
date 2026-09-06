@@ -1,5 +1,5 @@
 ---
-title: "stanford-oval/storm — STORM & Co-STORM"
+title: "stanford-oval/storm: STORM & Co-STORM"
 type: repo
 year: 2024
 category: agents
@@ -9,7 +9,7 @@ source_collection: external
 org: "stanford-oval"
 repo: "storm"
 url: "https://github.com/stanford-oval/storm"
-license: "MIT (코드) · FreshWiki 데이터셋은 CC BY-SA"
+license: "MIT (코드), FreshWiki 데이터셋은 CC BY-SA"
 tags: [storm, co-storm, multi-agent, question-asking, retrieval, dspy, litellm, wikipedia-generation, knowledge-curation, stanford-oval]
 ---
 

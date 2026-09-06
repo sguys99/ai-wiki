@@ -7,7 +7,7 @@ source: black-2025-pi05-a-vision-language-action-model-with.md
 raw_path: raw/papers/black-2025-pi05-a-vision-language-action-model-with.pdf
 raw_filename: "black-2025-pi05-a-vision-language-action-model-with.pdf"
 source_collection: external
-authors: "Kevin Black·Noah Brown·Danny Driess·Chelsea Finn·Karol Hausman·Brian Ichter·Sergey Levine·Karl Pertsch·Lucy Xiaoyang Shi·Quan Vuong 외 (Physical Intelligence, 총 35인)"
+authors: "Kevin Black, Noah Brown, Danny Driess, Chelsea Finn, Karol Hausman, Brian Ichter, Sergey Levine, Karl Pertsch, Lucy Xiaoyang Shi, Quan Vuong 외 (Physical Intelligence, 총 35인)"
 arxiv_id: "2504.16054"
 url: "https://pi.website/blog/pi05"
 tags: [physical-ai, vla, manipulation, mobile-robot, robot-learning]

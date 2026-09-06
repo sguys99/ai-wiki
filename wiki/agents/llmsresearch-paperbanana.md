@@ -1,5 +1,5 @@
 ---
-title: "PaperBanana — Automated Academic Illustration for AI Scientists"
+title: "PaperBanana: Automated Academic Illustration for AI Scientists"
 type: repo
 year: 2026
 category: agents

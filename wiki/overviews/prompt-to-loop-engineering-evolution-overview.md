@@ -1,5 +1,5 @@
 ---
-title: "Prompt → Context → Harness → Loop Engineering — 4단계 진화 개괄"
+title: "Prompt → Context → Harness → Loop Engineering: 4단계 진화 개괄"
 type: overview
 year: 2026
 category: overviews

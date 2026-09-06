@@ -1,5 +1,5 @@
 ---
-title: "Loop Engineering — 코딩과 트레이딩을 관통하는 도메인 이식 개괄"
+title: "Loop Engineering: 코딩과 트레이딩을 관통하는 도메인 이식 개괄"
 type: overview
 year: 2026
 category: overviews

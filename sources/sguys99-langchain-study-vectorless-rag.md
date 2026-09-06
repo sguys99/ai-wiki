@@ -1,5 +1,5 @@
 ---
-title: "sguys99/langchain-study — medium/3.vectorless-rag (Vectorless RAG: A Reasoning-Based Document Retrieval System)"
+title: "sguys99/langchain-study: medium/3.vectorless-rag (Vectorless RAG: A Reasoning-Based Document Retrieval System)"
 type: repo
 year: 2026
 category: database

@@ -1,5 +1,5 @@
 ---
-title: "RoboCasa — 공식 구현 저장소 (RoboCasa365 v1.0.1)"
+title: "RoboCasa: 공식 구현 저장소 (RoboCasa365 v1.0.1)"
 type: repo
 year: 2026
 category: physical-ai
@@ -10,7 +10,7 @@ source_collection: external
 org: "robocasa"
 repo: "robocasa"
 url: "https://github.com/robocasa/robocasa"
-license: "MIT (code) / CC BY 4.0 (assets·datasets)"
+license: "MIT (code) / CC BY 4.0 (assets와 datasets)"
 tags: [physical-ai, simulator, benchmark, robot-dataset]
 ---
 

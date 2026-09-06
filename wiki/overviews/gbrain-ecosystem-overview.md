@@ -1,5 +1,5 @@
 ---
-title: "GBrain 생태계 — Markdown-first 에이전트 메모리 계열"
+title: "GBrain 생태계: Markdown-first 에이전트 메모리 계열"
 type: overview
 year: 2026
 category: overviews

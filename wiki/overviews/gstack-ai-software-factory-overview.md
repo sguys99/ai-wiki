@@ -1,5 +1,5 @@
 ---
-title: "gstack: 1인 개발자를 위한 AI 소프트웨어 팩토리 — 합성 overview"
+title: "gstack: 1인 개발자를 위한 AI 소프트웨어 팩토리 (합성 overview)"
 type: overview
 year: 2026
 category: overviews

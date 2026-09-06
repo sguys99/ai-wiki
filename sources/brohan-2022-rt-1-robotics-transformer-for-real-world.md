@@ -6,7 +6,7 @@ category: physical-ai
 raw_path: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world.pdf
 raw_filename: "brohan-2022-rt-1-robotics-transformer-for-real-world.pdf"
 source_collection: external
-authors: "Anthony Brohan 외 40여 명 (저자 알파벳순, Robotics at Google · Everyday Robots · Google Research Brain Team)"
+authors: "Anthony Brohan 외 40여 명 (저자 알파벳순, Robotics at Google, Everyday Robots, Google Research Brain Team)"
 arxiv_id: "2212.06817"
 url: "https://robotics-transformer1.github.io"
 tags: [physical-ai, vla, imitation-learning, manipulation]

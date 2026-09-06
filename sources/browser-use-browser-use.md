@@ -1,5 +1,5 @@
 ---
-title: "Browser Use — Make websites accessible for AI agents"
+title: "Browser Use: Make websites accessible for AI agents"
 type: repo
 year: 2026
 category: agents

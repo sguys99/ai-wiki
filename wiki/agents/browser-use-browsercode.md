@@ -1,5 +1,5 @@
 ---
-title: "BrowserCode (browser-use) — The browser-native agent"
+title: "BrowserCode (browser-use): The browser-native agent"
 type: repo
 year: 2026
 category: agents

@@ -242,7 +242,7 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 - [x] 파일럿 3편 sources 정비 (jo-2026-rt-1 51건, hku-mars-fast-lio 26건 치환. 헤딩 개수와 figures 항목 수 보존 확인)
 - [x] `page-full.png` 임베드 정리 완료 (physical-ai 8편 전부). 전체 페이지 캡처는 도식이 아니라 레이아웃 기록이므로 curated에서 제외하고, 대신 이미지를 판독해 본문 내용을 회수하는 방식으로 처리했다
 - [x] sources frontmatter figure caption 정비 (Phase 5-2에서 완료, 2026-09-06)
-- [ ] frontmatter 금지 기호 일괄 판단 (lint는 frontmatter를 검사하지 않아 전부 통과하지만 CLAUDE.md는 "제목과 본문 모두" 금지로 규정한다. 키별 현황: `title` 91건, `authors` 21건, `license` 8건, `author` 2건)
+- [x] frontmatter 금지 기호 일괄 판단 (Phase 5-3에서 완료, 2026-09-06. authors와 author는 쉼표 전환으로 사용자 결정)
   - `title`: 원어 제목 그대로인 것은 CLAUDE.md 불변 항목(인용)이라 손대지 않는다. "LeRobot — State-of-the-art..."처럼 우리가 이름과 설명을 이어 붙인 조합만 정리 대상 후보
   - `authors`, `author`: 저자명 구분자 용도의 중간점. 쉼표 전환 여부 결정 필요
   - `license`: "MIT (code) / CC BY 4.0 (assets·datasets)" 같은 조합. 우리 문장이므로 정리 대상
@@ -292,7 +292,7 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 
 - [x] 5-1. 용어집 2차 갱신 일괄 반영 (2026-09-06). glossary-physical-ai 신규 27개 등재(99→126개, 금지 표기 135→162종), glossary-llms에 post-training 등재(35→36개). 번역어 158건을 47개 파일에서 치환 (휴머노이드 94, 처리량 29, 물리 인지 생성 11, 제어와 조종 가능성 13, 이중 처리 이론 4 등). physical-ai 범위 lint_terms 0건, lint_style error 0건 복원. 주요 판단: 서베이 4편의 "제어 가능성"은 steerability가 아니라 controllability(생성된 미래가 명령 action을 따르는 정도)로 확인돼 별도 행으로 등재하고 구분을 비고에 명시했다. "가짜 action" 2건은 pseudo-action이 아니라 DiT 입력 noise라 문장을 다듬어 해소했다. 오탐 위험이 확실한 6개 용어(occupancy, kinematic planner 등)는 금지 표기 없이 지침만 등재했다. 잔여: pseudo action 하이픈 표기 흔들림 19건과 타 카테고리 "사후학습" 3건은 5-9 후속 과제로 기록한다
 - [x] 5-2. sources frontmatter figure caption 정비 (2026-09-06). physical-ai sources 77편의 figure 항목 828개 전수 조사, 정비 대상 131건(영어 원문 52, 중간점 25, em dash 77, 중복 제거)을 12개 파일에서 133건 재작성했다. wiki 측 308개 항목은 Phase 4 재작성 때 이미 정비돼 있어 sources만 미정비 상태였고, 통일 방향은 품질이 높은 wiki 캡션을 sources로 가져오는 쪽(28건)과 신규 작성(105건)으로 처리했다. YAML 파싱 440개 파일 전체 통과, diff는 caption 줄 133건에 국한, lint 회귀 0건. 캡션 안의 영어 인용문(도식에 찍힌 지시문 원문)과 article 자료의 원문 도식 번호 접두사는 보존했다. 부수 발견: `sources/9bow-2026-world-action-model-rise.md`는 wiki 페이지가 없는 77번째 physical-ai source라 Phase 4 범위(대응 sources 76편)에서 빠져 본문에 error 5건과 warning 3건이 남아 있다. 5-7에서 정비한다
-- [ ] 5-3. frontmatter 금지 기호 정리 (title 조합형, license 8건, authors와 author 23건 쉼표 전환)
+- [x] 5-3. frontmatter 금지 기호 정리 (2026-09-06). sources와 wiki 전체 frontmatter 전수 조사 후 98개 파일에서 123건 정리 (title 74, authors 22, papers_reviewed 20, license 8, author 2, institution 2, reviews_paper 2). title은 raw 원본 대조로 인용과 조합을 판정해 원문 제목 인용 23건(12개 stem)은 보존했고 조합 51건만 정리했다 (repo 이름과 GitHub 설명 조합 17건, 논문 제목 콜론을 em dash로 바꿨던 것 3건 되돌림, 원 제목에 우리 설명을 붙인 것 11건, overview와 glossary 등 자작 페이지 12건). YAML 파싱 98개 파일 통과, 변경은 frontmatter에 국한, lint 회귀 0건. 남긴 것: raw/ 내 frontmatter는 불변 규약대로 보존, 타 카테고리(physical-ai 외) sources와 wiki의 figures caption 532건은 이번 범위(physical-ai) 밖이라 5-9 후속 과제로 기록, ryancodrai-turbovec title은 근거가 약한 조합 판정이라 재검토 대상으로 표시
 - [ ] 5-4. figure 자산 정합 (lionhong-2023 raw 실파일 부재 해소, sa-2026 fig09/fig10 raw 재크롭, luo-2025-sonic 그림 후보 표 id 정합, xu-2025-anatomy fig07 재크롭, sa-2026 low_confidence 15건 검토)
 - [ ] 5-5. lint_terms.py 부분 문자열 오탐 개선 (3글자 이하 금지 표기의 예외 문자열 목록 상수)
 - [ ] 5-6. 개선 전후 계량 대비 기록 (중간점 1,801에서 0, em dash 702에서 0, 표 0개 페이지 45에서 0, wiki가 sources보다 얇은 69건에서 1건 등 최종 재실측)

@@ -1,5 +1,5 @@
 ---
-title: "Graph-based RAG (LightRAG · LeanRAG) — DSBA 세미나 정리"
+title: "Graph-based RAG (LightRAG, LeanRAG): DSBA 세미나 정리"
 type: video
 year: 2026
 category: database

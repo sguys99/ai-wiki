@@ -1,5 +1,5 @@
 ---
-title: "LLM Wiki — Karpathy LLM Knowledge Base 패턴의 한국어 레퍼런스 구현"
+title: "LLM Wiki: Karpathy LLM Knowledge Base 패턴의 한국어 레퍼런스 구현"
 type: repo
 year: 2026
 category: applications

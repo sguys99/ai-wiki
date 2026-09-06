@@ -1,5 +1,5 @@
 ---
-title: "Academic Research Skills (ARS) — Claude Code 학술 연구 파이프라인"
+title: "Academic Research Skills (ARS): Claude Code 학술 연구 파이프라인"
 type: repo
 year: 2026
 category: agents

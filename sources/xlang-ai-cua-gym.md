@@ -9,7 +9,7 @@ source_collection: external
 org: "xlang-ai"
 repo: "CUA-Gym"
 url: "https://github.com/xlang-ai/CUA-Gym"
-license: "Apache-2.0 (코드·파이프라인) / CC BY 4.0 (데이터셋)"
+license: "Apache-2.0 (코드와 파이프라인) / CC BY 4.0 (데이터셋)"
 tags: [computer-use-agents, gui-agents, rlvr, verifiable-rewards, environment-synthesis, mock-web-apps, claude-code, playwright]
 figures:
   - id: fig01

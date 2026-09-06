@@ -1,5 +1,5 @@
 ---
-title: "LLM Wiki by Andrej Karpathy: Build a Compounding Knowledge Base — Data Science Dojo 튜토리얼"
+title: "LLM Wiki by Andrej Karpathy: Build a Compounding Knowledge Base (Data Science Dojo 튜토리얼)"
 type: article
 year: 2026
 category: applications

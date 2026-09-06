@@ -1,5 +1,5 @@
 ---
-title: "Headroom — 에이전트 컨텍스트 압축 개괄 (repo + 4 소개글)"
+title: "Headroom: 에이전트 컨텍스트 압축 개괄 (repo + 4 소개글)"
 type: overview
 year: 2026
 category: overviews

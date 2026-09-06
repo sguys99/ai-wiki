@@ -1,5 +1,5 @@
 ---
-title: "LLM-Wiki Labs — 31일 Joonan Lab 운영 실측 케이스 스터디"
+title: "LLM-Wiki Labs: 31일 Joonan Lab 운영 실측 케이스 스터디"
 type: repo
 year: 2026
 category: applications
@@ -12,7 +12,7 @@ repo: "llm-wiki-labs"
 url: "https://github.com/joonan30/llm-wiki-labs"
 license: "MIT"
 authors: "Joon-Yong An (안준용)"
-institution: "Joonan Lab · Korea University"
+institution: "Joonan Lab, Korea University"
 publication_date: "2026-05-08"
 live_url: "https://joonan30.github.io/llm-wiki-labs/"
 tags: [llm-wiki, karpathy-pattern, case-study, ai-native-research, single-pi-lab, agents-md, claude-code, codex-cli, notion-mcp, slack-mcp, gmail-mcp, role-based-onboarding, compounding-wiki, agenda-backlog, paper-monitor, korean]

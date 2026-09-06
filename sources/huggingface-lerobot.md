@@ -1,5 +1,5 @@
 ---
-title: "LeRobot — State-of-the-art Machine Learning for Real-World Robotics in PyTorch"
+title: "LeRobot: State-of-the-art Machine Learning for Real-World Robotics in PyTorch"
 type: repo
 year: 2026
 category: physical-ai

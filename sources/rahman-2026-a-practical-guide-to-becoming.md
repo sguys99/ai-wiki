@@ -1,5 +1,5 @@
 ---
-title: "AI-Native Engineer 실전 가이드 — 4 Core Practices · ADLC · Guardrails (Shah Rahman, ByteByteGo 2026-06-02)"
+title: "AI-Native Engineer 실전 가이드: 4 Core Practices, ADLC, Guardrails (Shah Rahman, ByteByteGo 2026-06-02)"
 type: article
 year: 2026
 category: etc

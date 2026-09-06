@@ -1,5 +1,5 @@
 ---
-title: "graphify (Graphify-Labs) — Any input → knowledge graph + /graphify skill"
+title: "graphify (Graphify-Labs): Any input → knowledge graph + /graphify skill"
 type: repo
 year: 2026
 category: applications

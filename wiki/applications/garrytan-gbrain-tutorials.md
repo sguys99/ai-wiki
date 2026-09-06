@@ -1,5 +1,5 @@
 ---
-title: "garrytan/gbrain — docs/tutorials"
+title: "garrytan/gbrain: docs/tutorials"
 type: repo
 year: 2026
 category: applications

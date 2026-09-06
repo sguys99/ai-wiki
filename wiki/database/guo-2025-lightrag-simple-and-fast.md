@@ -1,5 +1,5 @@
 ---
-title: "LightRAG — Simple and Fast Retrieval-Augmented Generation (EMNLP 2025)"
+title: "LightRAG: Simple and Fast Retrieval-Augmented Generation (EMNLP 2025)"
 type: paper
 year: 2025
 category: database

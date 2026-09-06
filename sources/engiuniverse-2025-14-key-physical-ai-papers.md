@@ -17,16 +17,16 @@ caption_source: "youtube manual caption (ko), chaptered by uploader chapter mark
 papers_reviewed:
   - "RT-1: Robotics Transformer for Real-World Control at Scale (2022)"
   - "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control (2023)"
-  - "Octo: An Open-Source Generalist Robot Policy (2024) — arXiv:2405.12213"
-  - "OpenVLA: An Open-Source Vision-Language-Action Model (2024) — arXiv:2406.09246"
-  - "π0 (Pi0): A Vision-Language-Action Flow Model for General Robot Control (2024) — arXiv:2410.24164"
-  - "CogACT (2024) — arXiv:2411.19650"
-  - "RoboVLMs (2024) — arXiv:2412.14058"
-  - "Gemini Robotics (2025) — arXiv:2503.20020"
-  - "NVIDIA GR00T N1 (2025) — arXiv:2503.14734"
-  - "BitVLA (2025) — arXiv:2506.07530"
-  - "PD-VLA: Parallel Decoding VLA (2025) — arXiv:2503.02310"
-  - "RTC: Real-Time Chunking (2025) — arXiv:2506.07339"
+  - "Octo: An Open-Source Generalist Robot Policy (2024), arXiv:2405.12213"
+  - "OpenVLA: An Open-Source Vision-Language-Action Model (2024), arXiv:2406.09246"
+  - "π0 (Pi0): A Vision-Language-Action Flow Model for General Robot Control (2024), arXiv:2410.24164"
+  - "CogACT (2024), arXiv:2411.19650"
+  - "RoboVLMs (2024), arXiv:2412.14058"
+  - "Gemini Robotics (2025), arXiv:2503.20020"
+  - "NVIDIA GR00T N1 (2025), arXiv:2503.14734"
+  - "BitVLA (2025), arXiv:2506.07530"
+  - "PD-VLA: Parallel Decoding VLA (2025), arXiv:2503.02310"
+  - "RTC: Real-Time Chunking (2025), arXiv:2506.07339"
 tags: [physical-ai, vla, world-model, edge-inference]
 ---
 

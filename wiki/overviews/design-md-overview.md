@@ -1,5 +1,5 @@
 ---
-title: "DESIGN.md — 포맷 정의부터 production 트레이드오프까지"
+title: "DESIGN.md: 포맷 정의부터 production 트레이드오프까지"
 type: overview
 year: 2026
 category: overviews

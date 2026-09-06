@@ -1,5 +1,5 @@
 ---
-title: "Orca (stablyai) — The AI Orchestrator for 100x builders"
+title: "Orca (stablyai): The AI Orchestrator for 100x builders"
 type: repo
 year: 2026
 category: agents

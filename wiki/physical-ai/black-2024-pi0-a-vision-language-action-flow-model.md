@@ -7,7 +7,7 @@ source: black-2024-pi0-a-vision-language-action-flow-model.md
 raw_path: raw/papers/black-2024-pi0-a-vision-language-action-flow-model.pdf
 raw_filename: "black-2024-pi0-a-vision-language-action-flow-model.pdf"
 source_collection: external
-authors: "Kevin Black·Noah Brown·Danny Driess·Chelsea Finn·Karol Hausman·Brian Ichter·Sergey Levine·Karl Pertsch·Quan Vuong 외 (Physical Intelligence, 총 24인)"
+authors: "Kevin Black, Noah Brown, Danny Driess, Chelsea Finn, Karol Hausman, Brian Ichter, Sergey Levine, Karl Pertsch, Quan Vuong 외 (Physical Intelligence, 총 24인)"
 arxiv_id: "2410.24164"
 url: "https://www.pi.website/blog/pi0"
 tags: [physical-ai, vla, manipulation, robot-learning]

@@ -1,5 +1,5 @@
 ---
-title: "Loop Engineering — Claude Code · RLM · Dynamic Workflow (Jeongmin Lee, LinkedIn 2026-06-09)"
+title: "Loop Engineering — Claude Code, RLM, Dynamic Workflow (Jeongmin Lee, LinkedIn 2026-06-09)"
 type: article
 year: 2026
 category: agents

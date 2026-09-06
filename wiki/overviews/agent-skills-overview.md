@@ -1,5 +1,5 @@
 ---
-title: "Agent Skills — 설계 원전·오픈 표준·생태계 개괄"
+title: "Agent Skills: 설계 원전, 오픈 표준, 생태계 개괄"
 type: overview
 year: 2026
 category: overviews

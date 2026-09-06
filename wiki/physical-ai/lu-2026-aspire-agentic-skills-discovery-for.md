@@ -7,7 +7,7 @@ source: lu-2026-aspire-agentic-skills-discovery-for.md
 raw_path: raw/papers/lu-2026-aspire-agentic-skills-discovery-for.pdf
 raw_filename: "lu-2026-aspire-agentic-skills-discovery-for.pdf"
 source_collection: external
-authors: "Runyu Lu·Yubo Wu·Ethan Kou (공동 1저자) 외. NVIDIA·UMich·UIUC·UC Berkeley·CMU. 프로젝트 리드 Runyu Lu·Yuke Zhu·Linxi 'Jim' Fan·Guanzhi Wang"
+authors: "Runyu Lu, Yubo Wu, Ethan Kou (공동 1저자) 외. NVIDIA, UMich, UIUC, UC Berkeley, CMU. 프로젝트 리드 Runyu Lu, Yuke Zhu, Linxi 'Jim' Fan, Guanzhi Wang"
 url: "https://research.nvidia.com/labs/gear/aspire/"
 tags: [physical-ai, robot-learning, manipulation, sim2real]
 figures:

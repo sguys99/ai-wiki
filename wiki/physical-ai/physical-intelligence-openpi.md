@@ -1,5 +1,5 @@
 ---
-title: "openpi — Open-source models and packages for robotics (π₀ / π₀-FAST / π₀.₅)"
+title: "openpi: Open-source models and packages for robotics (π₀ / π₀-FAST / π₀.₅)"
 type: repo
 year: 2025
 category: physical-ai

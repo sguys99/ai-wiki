@@ -7,7 +7,7 @@ source: robocasa-2026-robocasa365-project-page.md
 raw_path: raw/articles/robocasa-2026-robocasa365-project-page.md
 raw_filename: "robocasa-2026-robocasa365-project-page.md"
 source_collection: external
-author: "RoboCasa Team (UT Austin·NVIDIA Research)"
+author: "RoboCasa Team (UT Austin, NVIDIA Research)"
 url: "https://robocasa.ai/"
 publisher: "robocasa.ai"
 fetched_at: "2026-09-04T18:32:37+0900"

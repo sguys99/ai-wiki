@@ -1,5 +1,5 @@
 ---
-title: "AKB 제품 소개 — 에이전트를 위한 올인원 지식베이스 (v4)"
+title: "AKB 제품 소개: 에이전트를 위한 올인원 지식베이스 (v4)"
 type: report
 year: 2026
 category: applications

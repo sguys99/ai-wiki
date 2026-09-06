@@ -1,5 +1,5 @@
 ---
-title: "RAG-Anything (HKUDS) — All-in-One Multimodal RAG OSS"
+title: "RAG-Anything (HKUDS): All-in-One Multimodal RAG OSS"
 type: repo
 year: 2025
 category: database

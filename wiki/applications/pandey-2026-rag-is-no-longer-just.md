@@ -1,5 +1,5 @@
 ---
-title: "RAG는 더 이상 vector search + LLM이 아니다 — 5가지 production RAG 아키텍처 (Pandey, LinkedIn)"
+title: "RAG는 더 이상 vector search + LLM이 아니다: 5가지 production RAG 아키텍처 (Pandey, LinkedIn)"
 type: article
 year: 2026
 category: applications

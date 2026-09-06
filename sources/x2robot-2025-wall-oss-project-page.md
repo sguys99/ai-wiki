@@ -1,5 +1,5 @@
 ---
-title: "WALL-OSS: Igniting VLMs toward the Embodied Space — X Square Robot 프로젝트 페이지"
+title: "WALL-OSS: Igniting VLMs toward the Embodied Space (X Square Robot 프로젝트 페이지)"
 type: article
 year: 2025
 category: physical-ai

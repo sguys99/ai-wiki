@@ -6,7 +6,7 @@ category: physical-ai
 raw_path: raw/papers/amin-2025-pistar06-a-vla-that-learns.pdf
 raw_filename: "amin-2025-pistar06-a-vla-that-learns.pdf"
 source_collection: external
-authors: "Physical Intelligence (Ali Amin·Ashwin Balakrishna·Kevin Black·Danny Driess·Chelsea Finn·Karol Hausman·Brian Ichter·Sergey Levine·Suraj Nair·Karl Pertsch·Lucy Xiaoyang Shi·Jost Tobias Springenberg·Quan Vuong 등 총 57인)"
+authors: "Physical Intelligence (Ali Amin, Ashwin Balakrishna, Kevin Black, Danny Driess, Chelsea Finn, Karol Hausman, Brian Ichter, Sergey Levine, Suraj Nair, Karl Pertsch, Lucy Xiaoyang Shi, Jost Tobias Springenberg, Quan Vuong 등 총 57인)"
 url: "https://www.pi.website/blog/pistar06"
 tags: [physical-ai, vla, rl-control, robot-learning, manipulation]
 figures:

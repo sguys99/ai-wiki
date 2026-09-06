@@ -1,5 +1,5 @@
 ---
-title: "GR-1 — Unleashing Large-Scale Video Generative Pre-training for Visual Robot Manipulation"
+title: "GR-1: Unleashing Large-Scale Video Generative Pre-training for Visual Robot Manipulation"
 type: repo
 year: 2024
 category: physical-ai

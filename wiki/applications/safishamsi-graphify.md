@@ -1,5 +1,5 @@
 ---
-title: "graphify (Safi Shamsi) — Any input → knowledge graph + /graphify skill across 21+ AI assistants"
+title: "graphify (Safi Shamsi): Any input → knowledge graph + /graphify skill across 21+ AI assistants"
 type: repo
 year: 2026
 category: applications
