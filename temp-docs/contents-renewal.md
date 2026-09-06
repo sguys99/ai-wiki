@@ -266,7 +266,15 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - index.md 항목을 573자에서 194자로 줄이고 구분자를 `]]: `로 통일했다.
   - 용어집 등재 후보 8건 누적 (등재하지 않음, Phase 7-1 소관): topology, trace, annotator, taxonomy, failure mode, theory of mind, verifier, Cohen's kappa. `trace`는 glossary-agents의 기존 `trajectory` 행과 역할이 겹쳐 정리가 필요하다.
   - 부수 발견 3건. (1) sources `## 8. 그림 후보` 표의 id가 2026-08 정밀 크롭 전환 이전 순번을 그대로 쓰고 있어 frontmatter와 어긋난다. `remap_figures.py`가 frontmatter만 갱신하고 본문 표를 손대지 않은 결과로 보이며, 해당 절을 가진 sources 112편에 같은 문제가 남아 있을 수 있다. 배치마다 그 stem 분량을 함께 고친다. (2) `HUMANIZE-SUMMARY` 주석 블록이 저장소에 10개 파일 남아 있고 그 안의 금지 기호가 lint error로 잡힌다. `sources/`와 `wiki/`는 humanize 제외 대상이라 남을 이유가 없으므로 배치에서 함께 제거한다. (3) 원 논문 Appendix F의 본문 수치와 Figure 9 막대값이 어긋난다 (1.56배 대 2.57배). wiki `## 한계` 절에 사실만 기록했다.
-- [ ] 1-2. agents article 파일럿: `osmani-2026-loop-engineering` (얇은 article sources를 raw 전문 재독으로 보강 없이 재작성하는 경로 검증)
+- [x] 1-2. agents article 파일럿: `osmani-2026-loop-engineering` (얇은 article sources를 raw 전문 재독으로 보강 없이 재작성하는 경로 검증)
+  - 완료 (2026-09-06). **검증 결론: 경로가 성립한다.** sources를 재추출하지 않고 raw 원문 전문(약 700단어)만 재독해 wiki 산문을 5,158자에서 7,326자로 늘렸고, 증가분은 수사가 아니라 원문에 있으나 sources가 압축하며 버린 세부다. wiki 본문 6,694자에서 9,061자, 표 2개에서 4개, 압축비 0.85에서 1.27이다.
+  - raw 재독으로 복원한 세부는 10항목이다. 자율 시스템의 네 가지 책임, 전통적 워크플로의 세 동작, worktree 격리가 막는 범위가 동시 편집의 기계적 실패로 한정된다는 단서, 커넥터의 경계가 파일시스템이라는 정의, 두 번째 서브에이전트의 평가 기준, 도구 중립성 대비, 구조적 사고 요구, comfortable passivity의 구체 서술, 면책 고지, 저자의 절 단위 전개 구조(표 하나로 뭉쳐 있던 것을 7개 절로 복원)다.
+  - 반대 방향 소득도 있다. sources와 wiki가 함께 적고 있던 "스킬이 토큰 낭비를 제거한다"는 주장이 raw에 없어(원문은 재유도 반복 제거만 말한다) 양쪽에서 정정했다. **raw 재독은 누락 복원뿐 아니라 근거 없는 주장 검출에도 쓰인다.**
+  - sources 본문은 7,834자에서 7,158자로 줄었다. 금지 기호를 쓴 병기 글로스와 중복 서술을 걷어낸 결과이고 실질 내용은 유지된다 (diff 67줄 추가 68줄 삭제로 거의 줄 단위 치환).
+  - 깨진 wikilink 1건을 고쳤다. sources와 wiki가 `[[agents/rahman-2026-a-practical-guide-to-becoming]]`을 링크했으나 실제 페이지는 `wiki/etc/`에 있다. `## 관련 페이지`의 링크 10개를 전수 실재 확인했다.
+  - lint_style, lint_terms, audit_captions 세 검사 전부 0건. index.md 항목 288자에서 189자. figures가 없는 자료라 `figures:` 키와 `## 8. 그림 후보` 절을 만들지 않았다 (규약대로).
+  - 용어집 등재 후보 5건 누적: verification distance, persistent state, comprehension debt, worktree, connector. `comfortable passivity`와 `control structure inversion`은 자료 고유 표현이라 파일별 `## 7. 용어집`에 남겼다.
+  - 개선 제안 3건 (Phase 7-5 후속 과제 후보). (1) wikilink 해석 여부를 검사하는 lint가 없어 category 이동 시 backlink가 조용히 깨진다. (2) `lint_style.py`의 금지 어휘 검사가 부분집합만 기계화돼 `축`, `포개다` 같은 표현은 자체 검토로만 잡힌다. `평가 축`, `N개 축`, `~ 축으로` 같은 좁은 패턴은 오탐 없이 기계화할 수 있다. (3) index.md 200자 게이트 측정 시 `grep -n`의 행번호 접두가 길이에 섞이므로 `grep -h`로 재야 한다.
 - [ ] 1-3. database paper 파일럿: `edge-2024-from-local-to-global` (GraphRAG 원논문). repo 경로는 physical-ai 파일럿(hku-mars-fast-lio)에서 검증돼 생략
 - [ ] 1-4. 사용자 리뷰 게이트 (승인 후 배치 진행)
 - [ ] 1-5. write-wiki 스킬 v2.2.1. 파일럿 전후 발췌로 비-physical-ai before/after 예시 2~3쌍 추가

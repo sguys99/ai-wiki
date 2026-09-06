@@ -14,98 +14,215 @@ publication_date: "2026-06-07"
 tags: [loop-engineering, claude-code, codex, anthropic, sub-agents, worktrees, skills, mcp, connectors, automations, slash-loop, slash-goal, peter-steinberger, boris-cherny, verification, comprehension-debt, paradigm-shift]
 ---
 
-## 요약 (Summary)
+## 요약
 
-Google Chrome 엔지니어링 매니저 **Addy Osmani**가 2026-06-07 개인 블로그에 올린 짧은 에세이다. **"prompting coding agents"에서 "designing loops that prompt your agents"로 넘어가는 패러다임 전환**에 *Loop Engineering*이라는 이름을 붙였다. Peter Steinberger와 Boris Cherny(Anthropic)가 던진 문구가 출발점이며, 글 전체는 그 시각을 **5 + 1 구성 요소 카탈로그**와 **3대 한계**로 압축한다.
+Google Chrome 엔지니어링 매니저 Addy Osmani가 2026년 6월 7일 개인 블로그에 올린 짧은 에세이다. 개발자가 AI 코딩 에이전트를 다루는 방식이 프롬프트 하나 단위에서 루프 하나 단위로 옮겨 가고 있다고 진단하고, 그 전환에 loop engineering이라는 이름을 붙인다.
 
-5 요소는 (1) **Automations**(scheduled discovery·triage가 작업을 표면화), (2) **Worktrees**(격리된 병렬 작업환경으로 파일 충돌 방지), (3) **Skills**(재유도 비용 제거를 위한 `SKILL.md`), (4) **Plugins/Connectors**(MCP로 issue tracker·staging API·notification 연결), (5) **Sub-agents**(implementation과 evaluation을 분리해 self-grading bias 제거)다. 여기에 **(6) persistent state**(markdown 또는 project board)가 session 간 메모리 부재를 메운다.
+loop engineering은 에이전트를 반복 구동하는 루프 자체를 설계 대상으로 삼는 관점이다. 설계자가 만들어야 할 산출물이 잘 다듬은 프롬프트 한 줄이 아니라, 정의된 목표를 향해 스스로 반복하는 시스템이라는 뜻이다.
 
-Claude Code의 두 슬래시 커맨드는 역할이 갈린다. `/loop`은 **cadence-based**(시간 주기), `/goal`은 **conditional completion**(조건 충족 시 종료 + 검증을 별도 모델에 위임)이다. 저자가 *"가장 영향력 큰 구조적 혁신"* 으로 꼽는 것은 sub-agent로 확보하는 **verification distance**다. 같은 모델이 제 작업을 후하게 평가하는 self-grading bias를 separate-instruction sub-agent가 차단한다.
+본문은 이 관점을 두 덩어리로 전개한다. 앞쪽은 기능하는 루프가 갖춰야 할 구성 요소 다섯 가지와 보조 요소 하나를 카탈로그로 제시하고, 요소마다 절을 하나씩 배정해 역할을 설명한다. 뒤쪽은 자동화가 사람에게서 걷어 가지 못하는 세 가지 부담을 짚고, 그래서 엔지니어의 책임이 어디에 남는지로 마무리한다.
 
-결론은 *"leverage 재배치"* 다. *"The leverage point relocated, but the responsibility for quality remained stationary—held exclusively by the engineer."* loop은 일을 없애지 않고 control point만 옮기며, 같은 loop이 한 엔지니어에게는 가속기로, 다른 엔지니어에게는 이해 회피 수단으로 작동한다.
+이 글은 의견 에세이다. 정량 벤치마크나 사례 측정치가 없고 검증 가능한 외부 인용도 두 건뿐이다. 따라서 loop engineering의 효과를 재는 근거가 아니라, 흩어져 있던 도구들을 하나의 설계 단위로 묶어 이름 붙인 프레임으로 읽는 것이 적절하다. 저자는 글 끝에 본문이 Google이나 소속 조직의 입장이 아닌 개인 견해라는 면책 고지를 달았다.
 
-> **2차 자료 주의**: 본문은 짧은 의견 에세이라 **정량 데이터·1차 출처 인용이 거의 없다**. *"Peter Steinberger·Boris Cherny"* attribution도 구체적 영상·URL·timestamp 없이 텍스트 인용만 달려 있다. *"5 essential components"* 의 경계 정의는 카탈로그 수준이라 connector vs plugin, skill vs prompt template의 정밀 구분은 본문에 없다. 본문이 거론하는 도구 기능(`/loop`·`/goal`·MCP·SKILL.md)은 2026-06 시점 Claude Code·Codex 기준이라 버전에 따라 달라질 수 있다.
+## 배경
 
-## 주요 기여 (Key Contributions)
+전환의 출발점은 기존 작업 방식의 한계다. 저자가 묘사하는 전통적 워크플로는 세 동작의 반복이다. 개발자가 프롬프트를 쓰고, 나온 출력을 검토하고, 다시 수정을 요청한다. 이 순환에서 판단과 진행의 주도권은 매 단계 사람에게 있고, 에이전트는 요청받은 한 걸음만 수행한다.
 
-1. **"Loop Engineering" 용어화** — Steinberger·Cherny가 던진 *"design loops that prompt your agents"* 라는 한 문장을 단일 패러다임 명사로 묶었다. prompt engineering의 다음 진화 단계로 자리매김.
-2. **5 + 1 구성 요소 카탈로그** — Automations · Worktrees · Skills · Plugins/Connectors · Sub-agents + Persistent state. *모든 functional loop이 갖춰야 할 최소 골격* 을 명시한다.
-3. **`/loop` vs `/goal` 분리** — cadence-based execution과 conditional completion(검증을 secondary model에 위임)으로 두 슬래시 커맨드의 의미 경계를 정리한다.
-4. **Sub-agent = verification distance** — implementation과 evaluation을 떼어놓는 일이 *"가장 영향력 큰 구조적 혁신"*. self-grading bias 차단.
-5. **Concrete loop 시나리오 1개** — daily automated triage → CI/issue/commit 점검 → persistent state 기록 → worktree에 fix-drafter + reviewer sub-agent 분기 → connector가 PR 자동 생성 → 미해결만 사람에게.
-6. **3대 한계 명명** — verification burden(인간 책임), comprehension debt(이해 격차 누적), comfortable passivity(편한 자동화의 인지적 disengagement).
-7. **"Control point shift" 결론** — loop은 일을 없애지 않고 control point만 옮기며, 결과를 가르는 것은 *engineer judgment*라는 비대칭 비유.
+이 방식이 자율 시스템에 자리를 내주고 있다는 것이 본문의 진단이다. 저자가 말하는 자율 시스템은 네 가지를 스스로 처리한다.
 
-## 방법론 및 아키텍처 (Methodology and Architecture)
+- 작업을 발견한다(discover work)
+- 작업을 위임한다(delegate tasks)
+- 결과를 평가한다(evaluate results)
+- 다음 단계를 결정한다(determine next steps)
 
-### 5+1 요소의 역할 분담
+네 항목의 공통점은 원래 사람이 쥐고 있던 판단이라는 것이다. 사람이 매번 다음 프롬프트를 공급하지 않아도 순환이 이어진다는 점에서 앞의 방식과 갈린다.
 
-| 요소 | 목적 | 구현 매핑 |
+이름의 출처는 Anthropic의 Peter Steinberger와 Boris Cherny다. 두 사람은 이 변화를 "prompting coding agents"가 아니라 "designing loops that prompt your agents"에 집중해야 한다는 문장으로 표현했고, Osmani는 그 문장을 loop engineering이라는 한 단어의 패러다임 명칭으로 굳혔다. 다만 본문에는 두 사람의 발언에 대한 구체적 URL이나 영상 링크가 붙어 있지 않다.
+
+## 핵심 개념
+
+loop engineering은 개별 프롬프트가 아니라 에이전트를 반복 구동하는 루프 자체를 설계 대상으로 삼는 접근이다. 설계 대상이 문장에서 시스템으로 바뀌므로, 품질을 좌우하는 것도 표현력이 아니라 구조 설계가 된다.
+
+verification distance는 구현을 맡은 에이전트와 평가를 맡은 에이전트를 떼어 놓아 확보하는 거리다. 같은 모델이 자기 산출물을 채점하면 후하게 매기는 편향이 생기므로, 지시문이 다른 별도 에이전트에 평가를 맡겨 그 편향을 차단한다.
+
+persistent state는 실행과 실행 사이에 정보를 남겨 두는 외부 저장소다. 모델은 세션 사이에 메모리를 갖지 않으므로, 마크다운 파일이나 프로젝트 보드에 발견 사항과 진행 상태를 적어 두어야 다음 실행이 앞선 실행의 결과 위에서 이어진다.
+
+comprehension debt는 배포된 시스템과 개발자의 이해 사이에 벌어지는 격차를 가리킨다. 코드 생성 속도가 빨라질수록 격차가 커지고, 생성된 변경을 적극적으로 검토하지 않으면 계속 누적된다.
+
+## 방법
+
+### 구성 요소 카탈로그
+
+저자는 기능하는 루프의 최소 골격으로 다섯 가지를 든다. 여기에 보조 요소 하나가 붙어 실제로는 여섯 가지가 된다.
+
+| 구성 요소 | 역할 | 구현 |
 |---|---|---|
-| **Automations** | "loop의 심장" — scheduled discovery·triage가 사람 개입 없이 작업을 표면화 | Claude Code `/loop` (cadence), `/goal` (conditional), Codex 앱의 recurring prompts |
-| **Worktrees** | 다중 에이전트의 동시 파일 수정 충돌 방지 | Git worktree — repo history는 공유하되 working directory는 격리 |
-| **Skills** | architectural decision·convention을 재유도하는 토큰 낭비 제거 | 양 플랫폼 공통 구조: `SKILL.md` + 보조 스크립트가 든 폴더 |
-| **Plugins / Connectors** | filesystem 너머의 외부 시스템과 통합 | MCP 프로토콜 — issue tracker 조회, staging API 호출, notification 트리거 |
-| **Sub-agents** | implementation과 evaluation 분리 → self-grading bias 제거 | 별도 instruction의 sub-agent. `/goal`은 내부적으로 stopping condition 평가를 별도 모델에 위임 |
-| **(6) Persistent state** | session 간 메모리 부재 보완 | markdown 파일 또는 project board에 findings·상태 기록 |
+| Automations | 예약된 발견과 분류를 사람 개입 없이 수행 | Claude Code의 `/loop`과 `/goal`, Codex 앱의 반복 프롬프트 |
+| Worktrees | 병렬 실행 에이전트 사이의 파일 충돌 차단 | Git worktree. 저장소 이력은 공유하고 작업 디렉토리는 분리 |
+| Skills | 프로젝트 지식을 문서로 고정해 재유도 반복 제거 | 두 플랫폼 공통 구조인 `SKILL.md` 파일과 보조 스크립트 폴더 |
+| Plugins와 Connectors | 파일시스템 바깥 시스템과의 통합 | MCP 기반 커넥터. 이슈 트래커 조회, staging API 호출, 알림 발송 |
+| Sub-agents | 구현 기능과 평가 기능의 분리 | 지시문이 다른 별도 서브에이전트 |
+| Persistent state | 실행 사이의 컨텍스트 보존 | 마크다운 파일 또는 프로젝트 보드 |
 
-### Concrete loop architecture (저자가 든 단일 시나리오)
+앞의 다섯은 루프를 성립시키는 필수 요소고, 여섯 번째는 모델이 세션 사이에 메모리를 갖지 않는다는 제약을 메우는 보완재다. 저자가 이 하나만 따로 떼어 여섯 번째로 부르는 이유도 성격이 다르기 때문이다.
+
+### 자동화
+
+automation은 루프의 심장에 해당한다. 정해진 주기마다 실행되어, 사람이 들여다보지 않아도 처리가 필요한 작업을 표면으로 끌어올리는 역할이다.
+
+Claude Code와 Codex 앱은 모두 정해진 간격의 반복 프롬프트를 지원한다. Claude Code는 이를 두 커맨드로 나눈다.
+
+| 커맨드 | 종료 기준 | 특징 |
+|---|---|---|
+| `/loop` | 주기 기반(cadence) | 정해진 시간 간격마다 실행한다 |
+| `/goal` | 조건 충족 기반(conditional completion) | 지정한 기준을 만족할 때까지 계속하고, 검증은 별도 모델에 위임한다 |
+
+두 커맨드의 차이는 언제 멈추는지에 있다. `/loop`은 시계가 멈춤을 정하고, `/goal`은 목표 달성 판정이 멈춤을 정한다. 그리고 그 판정을 자기 자신이 아니라 다른 모델에 맡긴다는 점에서 `/goal`은 뒤에 나올 서브에이전트 원리를 이미 내부에 담고 있다.
+
+### worktree
+
+worktree는 여러 에이전트가 동시에 실행될 때 생기는 파일 충돌을 막는다. 에이전트가 하나일 때는 문제가 되지 않지만, 여럿이 같은 저장소를 동시에 수정하면 같은 파일을 서로 덮어쓰는 상황이 생긴다.
+
+Git worktree는 저장소 이력을 공유하면서 작업 디렉토리만 분리한다. 각 에이전트가 자기 디렉토리에서 작업하므로 동일 파일에 대한 동시 수정이 발생하지 않는다.
+
+저자는 이 격리가 막아 주는 범위를 동시 편집의 기계적 실패로 한정한다. 즉 worktree는 파일 충돌이라는 물리적 사고를 없앨 뿐이고, 두 에이전트가 서로 어긋나는 설계 결정을 내리는 문제까지 해결하지는 않는다.
+
+### 스킬
+
+스킬은 프로젝트 고유 지식을 재사용 가능한 형식으로 적어 둔 문서다. 스킬이 없으면 에이전트는 실행할 때마다 아키텍처 결정과 코딩 관례를 코드에서 다시 유도해야 한다. 스킬은 그 반복 유도를 없앤다.
+
+Claude Code와 Codex 앱은 이 부분에서 동일한 구조를 쓴다. 지시문을 담은 `SKILL.md` 파일과 선택적 보조 스크립트를 한 폴더에 넣는 방식이다. 형식이 같으므로 한쪽에서 정리한 지식을 다른 쪽으로 옮기기 쉽다.
+
+### 커넥터
+
+커넥터는 에이전트의 작업 범위를 파일시스템 밖으로 넓힌다. 파일을 읽고 쓰는 데서 그치면 루프는 저장소 안에서만 완결되고, 실제 개발 과정의 나머지 절반인 이슈 관리와 배포 확인과 알림은 사람 몫으로 남는다.
+
+MCP 프로토콜 위에 올라간 커넥터가 그 경계를 넘는다. 본문이 드는 예는 세 가지다.
+
+- 이슈 트래커 조회
+- staging API 호출
+- 알림 발송
+
+이 연결이 있어야 작업이 끝났을 때 풀 리퀘스트 생성, 티켓 상태 갱신, 채널 알림까지 자동으로 이어진다. 따라서 커넥터는 루프의 산출물을 팀이 이미 쓰는 도구에 도달시키는 마지막 구간이다.
+
+### 서브에이전트
+
+저자가 가장 영향이 큰 구조적 혁신으로 꼽는 것은 구현과 평가를 분리하는 서브에이전트다. 서브에이전트는 상위 에이전트가 위임한 작업을 별도 지시문 아래 수행한다.
+
+분리가 필요한 이유는 자기 평가의 편향이다. 같은 모델이 자기가 만든 산출물을 채점하면 후한 점수를 준다. 지시문이 다른 에이전트에 평가를 맡기면 그 편향이 끊긴다.
+
+Claude Code의 `/goal`이 이 패턴을 내부적으로 적용한다. 종료 조건 판정을 독립된 모델에 배정하는 방식이라, 사용자가 서브에이전트를 직접 구성하지 않아도 같은 원리가 작동한다.
+
+### 상태 저장
+
+persistent state는 앞선 실행이 알아낸 것을 다음 실행에 전달한다. 모델에 세션 간 메모리가 없기 때문에, 저장소가 없으면 매 실행이 백지에서 다시 시작한다.
+
+저장 매체로 본문이 드는 것은 마크다운 파일과 프로젝트 보드 두 가지다. 둘 다 사람도 함께 읽고 쓸 수 있는 형식이라는 공통점이 있다.
+
+### 하루 단위 루프 시나리오
+
+본문은 여섯 요소가 어떻게 맞물리는지를 실행 시나리오 하나로 보여 준다. 하루에 한 번 자동 실행되는 분류 작업에서 시작해 풀 리퀘스트 생성까지 이어지는 흐름이다.
 
 ```
-[Daily automated run]
-    └─ Triage skill 실행
-        ├─ CI failures 조회
-        ├─ Open issues 조회
-        └─ Recent commits 조회
-    └─ findings를 persistent state에 기록
-    └─ actionable item 발견 시:
-        └─ 격리된 worktree spawn
-            ├─ Sub-agent #1: fix drafting
-            └─ Sub-agent #2: project standards·test suite 대비 review
-        └─ Connector 호출:
-            ├─ PR 자동 생성
+[하루 1회 자동 실행]
+    └─ triage 스킬 실행
+        ├─ CI 실패 검토
+        ├─ 열린 이슈 검토
+        └─ 최근 커밋 검토
+    └─ 발견 사항을 persistent state에 기록
+    └─ 조치가 필요한 항목이 있으면
+        └─ 격리된 worktree 생성
+            ├─ 서브에이전트 1: 수정안 작성
+            └─ 서브에이전트 2: 프로젝트 표준과 테스트 스위트 대비 검토
+        └─ 커넥터 호출
+            ├─ 풀 리퀘스트 자동 생성
             └─ 트래킹 시스템 갱신
-    └─ 미해결 항목 → 사람 리뷰 큐
+    └─ 해결되지 않은 항목은 사람 검토 큐로
 ```
 
-### Control structure inversion
+이 흐름에서 각 요소의 배치가 드러난다. automation이 시작을 만들고 스킬이 검토 절차를 제공한다. persistent state가 결과를 남기고 worktree가 작업 공간을 나눈다. 두 서브에이전트가 작성과 검토를 나눠 맡고 커넥터가 외부 시스템에 결과를 전달한다.
 
-| | 기존 (prompt engineering) | 이후 (loop engineering) |
+두 번째 서브에이전트의 평가 기준이 프로젝트 표준과 테스트 스위트라는 점이 중요하다. 평가가 모델의 주관적 판단이 아니라 이미 존재하는 객관적 기준에 걸리기 때문이다.
+
+마지막 줄도 이 설계의 성격을 보여 준다. 루프는 모든 것을 끝내지 않고 해결하지 못한 항목을 사람 검토 큐로 넘긴다. 사람은 매 단계가 아니라 잔여 항목에서만 개입한다.
+
+### 통제 구조의 역전
+
+이 시나리오가 보여 주는 변화를 저자는 통제 구조의 역전이라고 부른다. 설계자가 시스템을 한 번 만들고 나면, 이후 실행은 사람의 연속적 프롬프트 없이 에이전트가 담당한다.
+
+| 항목 | 기존 방식 | loop engineering |
 |---|---|---|
-| 개입 단위 | 매 prompt마다 작성·검토·수정 요청 | loop architecture를 1회 설계 |
-| Discovery | 사람이 작업을 정의 | automation이 작업을 표면화 |
-| Verification | 사람이 매 출력 검토 | sub-agent가 별도 instruction으로 평가, 사람은 최종 판단만 |
-| 시스템 정체성 | "더 잘 prompting하는 사람" | "더 잘 loop를 설계하는 engineer" |
+| 사람의 개입 단위 | 매 프롬프트마다 작성과 검토와 재요청 | 루프 구조를 한 번 설계 |
+| 작업 발견 | 사람이 무엇을 할지 정한다 | automation이 처리할 작업을 표면화한다 |
+| 결과 평가 | 사람이 매 출력을 검토한다 | 별도 지시문의 서브에이전트가 평가하고 사람은 잔여 항목만 본다 |
+| 요구되는 역량 | 프롬프트 표현력 | 구조 설계 능력 |
 
-## 결과 (Results)
+## 결과
 
-본문은 의견·정리 에세이라 **정량 벤치마크가 없다**. 검증 가능한 외부 사실 인용은 두 가지뿐이다.
+이 글에는 정량 결과가 없다. 처리량 증가나 결함률 감소 같은 측정치, 실험 설계, 비교군이 모두 제시되지 않는다.
 
-- Peter Steinberger·Boris Cherny(Anthropic)가 *"design loops that prompt your agents"* 라는 표현을 썼다는 attribution.
-- Claude Code와 Codex 앱이 recurring prompt를 지원한다는 도구 기능.
+본문에서 외부에 근거를 둔 진술은 두 가지뿐이다.
 
-throughput 향상이나 결함률 감소 같은 수치 비교는 없다. *Loop Engineering*의 효과는 본문에서 카탈로그·시나리오·논증으로만 풀이되고, 측정 가능한 메트릭으로 환산되지 않는다.
+- Peter Steinberger와 Boris Cherny가 "designing loops that prompt your agents"라는 표현을 썼다는 사실
+- Claude Code와 Codex 앱이 정해진 간격의 반복 프롬프트를 지원한다는 도구 기능
 
-## 한계 (Limitations)
+나머지 주장은 저자의 관찰을 정리한 단언이다. 구성 요소 다섯 가지의 목록, 세 가지 한계, 통제 구조 역전 진단에는 별도 출처가 붙어 있지 않다. 이 자료의 값은 측정된 효과가 아니라 분류와 명명에 있다.
 
-저자가 본문에서 직접 명명한 3가지.
+## 한계
 
-1. **Verification burden remains human responsibility.** unattended loop은 unattended mistake도 함께 낳는다. 보조 검증 sub-agent가 confidence를 보강해도 인간 judgment를 대신하지 못한다.
-2. **Comprehension erosion accelerates.** 코드 생성 속도가 빨라질수록 deployed system과 developer understanding 사이에 *"comprehension debt"* 가 쌓인다. 적극적 리뷰만이 그 누적을 막는다.
-3. **Comfortable passivity becomes dangerous.** loop 실행의 *seductive ease* 가 인지적 disengagement를 부르고, 그 결과 출력을 무비판적으로 받아들이게 된다.
+저자는 자동화가 사람에게 남기는 부담 세 가지를 명시한다.
 
-자료 자체의 한계는 [[sources/osmani-2026-loop-engineering|sources 5절]] 참조. 분량이 짧고 1차 출처 인용 trace가 약하며, *5 essential components* 의 경계 정의(connector vs plugin, skill vs prompt template)가 본문에 없다.
+### verification 부담
 
-## 핵심 통찰 (Key Insight)
+verification 책임은 사람에게 남는다. 사람이 지켜보지 않는 상태로 실행되는 루프는 사람이 지켜보지 않는 실수도 함께 만들어 낸다. 보조 검증 에이전트를 두면 신뢰도는 올라가지만 그것이 사람의 판단을 대체하지는 못한다.
 
-> *"The leverage point relocated, but the responsibility for quality remained stationary—held exclusively by the engineer."*
+### 이해의 침식
 
-같은 loop을 구현한 두 엔지니어가 정반대 결과를 낸다. 한 명은 *이해된 일을 가속*하고, 다른 한 명은 *이해를 회피*한다. 도구는 중립적이고, 결과를 가르는 것은 *engineer judgment*다. 이 비대칭이 본 자료의 가장 강한 결론이다.
+코드 생성이 빨라질수록 배포된 시스템과 개발자의 이해 사이 격차가 커진다. 이 comprehension debt는 개발자가 생성된 변경을 적극적으로 검토하지 않는 한 계속 늘어난다.
 
-## 관련 페이지 (Related Pages)
+### 편안한 수동성
 
-- [[agents/patel-2026-beyond-the-prompt-claude-code|Beyond the Prompt: Claude Code (Patel 2026-05-26)]] — 본 자료의 5요소(skills·subagents·worktree·MCP·`/goal`)를 한 단계 더 세밀하게 푼 실전 가이드. Boris Cherny의 *"give Claude a way to verify its own work"* 원칙(self-verification → 2~3x 품질)이 본 자료의 *sub-agent = verification distance*와 같은 정신.
-- [[agents/lee-hoyeon-2026-harness-engineering|Harness Engineering (이호연 2026)]] — *Prompt → Context → Harness Engineering* 3단계 진화 모델. Osmani의 *"Loop"* 은 Lee의 *"Harness"* 6축(구조·맥락·계획·실행·검증·개선) 중 **실행+개선** 축에 가깝다. 같은 그림을 다른 이름으로 본 자매 자료.
-- [[agents/lin-2026-harness-updating-is-not-harness-benefit|Harness Updating Is Not Harness Benefit (Lin 2026)]] — 하네스(loop) 변경을 가치 측정과 분리하라는 비판적 시각. Osmani가 경계한 *comfortable passivity* 와 같은 문제를 측정 관점에서 다룬다.
-- [[agents/dennis-2026-compiling-agentic-workflows-into-llm|Compiling Agentic Workflows into LLM (Dennis 2026)]] — agentic workflow를 *컴파일* 대상으로 본 시각. loop 설계를 형식화하려는 시도.
-- [[agents/rahman-2026-a-practical-guide-to-becoming|A Practical Guide to Becoming (Rahman 2026)]] — 에이전틱 개발 실무 가이드 전반. loop 구축의 인간 측면 배경.
+루프 실행의 편리함이 인지적 이탈을 부른다. 저자가 경고하는 상태는 출력을 검토 대상이 아니라 그대로 받아들일 진리로 대하는 태도다. 실행이 쉬울수록 이 태도로 미끄러지기 쉽다는 것이 문제의 핵심이다.
+
+### 자료 자체의 한계
+
+본문 밖에서 보면 자료 자체에도 제약이 있다.
+
+- 분량이 약 700 단어로 짧고 정량 데이터가 없어 loop engineering의 효과를 측정 가능한 지표로 환산하지 않는다.
+- Anthropic 두 사람에 대한 attribution 외에 1차 출처 링크가 노출되지 않아 인용 추적이 어렵다.
+- 구성 요소의 경계 정의가 느슨하다. 커넥터와 플러그인의 구분, 스킬과 프롬프트 템플릿의 구분이 카탈로그 수준에서만 처리된다.
+- 언급된 도구 기능은 2026년 6월 시점의 Claude Code와 Codex 앱 기준이라 버전에 따라 달라질 수 있다.
+
+## 엔지니어의 남은 역할
+
+저자의 결론은 루프가 일을 없애지 않는다는 것이다. 루프 설계는 지렛대이고, 지렛대가 하는 일은 작업을 소멸시키는 것이 아니라 통제 지점을 옮기는 것이다.
+
+같은 루프를 구현한 두 엔지니어가 정반대 결과에 도달할 수 있다는 대비가 이 주장의 근거다. 한 사람은 이미 이해한 작업을 가속하는 데 루프를 쓰고, 다른 한 사람은 이해 자체를 회피하는 데 쓴다. 도구는 중립적이며 결과를 가르는 것은 엔지니어의 판단이다.
+
+그래서 저자는 loop engineering으로의 이행이 지속적인 엔지니어링 규율을 요구한다고 본다. 루프를 설계하는 일은 개별 프롬프트를 다듬는 일보다 깊은 구조적 사고를 요구하기 때문이다.
+
+마지막 문장이 이 관점을 압축한다. 지렛대의 위치는 이동했지만 품질에 대한 책임은 제자리에 남았고, 그 책임은 여전히 엔지니어 한 사람에게 있다. 저자가 권하는 태도는 루프를 의도적으로 설계하되 실행을 개시하는 조작자가 아니라 엔지니어로 남으라는 것이다.
+
+## 핵심 용어
+
+| 용어 | 뜻 |
+|---|---|
+| loop engineering | 개별 프롬프트가 아니라 에이전트를 반복 구동하는 루프 자체를 설계 대상으로 삼는 접근 |
+| verification distance | 구현 에이전트와 평가 에이전트를 분리해 자기 평가 편향을 차단하는 구조 |
+| persistent state | 세션 간 메모리가 없는 모델을 위해 실행 결과를 남겨 두는 외부 저장소. 마크다운 파일이나 프로젝트 보드를 쓴다 |
+| comprehension debt | 배포된 시스템과 개발자의 이해 사이에 쌓이는 격차 |
+| comfortable passivity | 루프 실행의 편리함이 비판적 검토를 무디게 만드는 인지적 상태 |
+| `/loop`과 `/goal` | Claude Code의 두 자동화 커맨드. 앞은 주기 기반이고 뒤는 조건 충족 기반이며 종료 판정을 별도 모델에 맡긴다 |
+
+## 관련 페이지
+
+- [[overviews/prompt-to-loop-engineering-evolution-overview]]: 프롬프트에서 컨텍스트, harness, 루프로 이어지는 4단계 진화를 묶은 최상위 진입점. 이 페이지는 그 사다리의 마지막 칸에 놓인다.
+- [[overviews/loop-engineering-cross-domain-overview]]: 같은 프레임이 코딩 밖 도메인으로 옮겨가는지 검토한 개괄. 이 자료를 명명 자료로 삼는다.
+- [[agents/runkle-2026-the-art-of-loop-engineering]]: 같은 용어를 4단계 루프 스택으로 쌓은 자매 에세이. Osmani의 5+1이 루프를 무엇으로 채우는지라면 Runkle은 루프를 어떤 층위로 겹치는지를 다룬다.
+- [[agents/lee-jeongmin-2026-loop-engineering-claude-code]]: 이 자료의 구성 요소를 인용해 RLM 이론과 묶은 요약 포스트. 원출처가 이 페이지다.
+- [[agents/patel-2026-beyond-the-prompt-claude-code]]: 스킬, 서브에이전트, worktree, MCP, `/goal`을 실전 절차로 풀어쓴 가이드. Boris Cherny의 자기 검증 원칙이 이 자료의 verification distance와 같은 지향이다.
+- [[agents/lee-hoyeon-2026-harness-engineering]]: 프롬프트에서 컨텍스트, harness로 이어지는 3단계 진화 모델. 이 자료의 루프는 harness 6개 항목 중 실행과 개선에 해당한다.
+- [[agents/lin-2026-harness-updating-is-not-harness-benefit]]: harness 변경을 가치 측정에서 분리하라는 비판적 시각. 이 자료가 경계한 comfortable passivity를 측정 관점에서 다룬다.
+- [[agents/lee-2026-the-agent-loop-a-survey]]: 같은 전환을 제어 전략, 스킬, harness 항목으로 정리한 서베이. 에세이의 카탈로그를 학술 분류로 대조할 때 쓴다.
+- [[agents/dennis-2026-compiling-agentic-workflows-into-llm]]: 워크플로 자체를 컴파일 대상으로 본 시각. 루프 설계를 형식화하려는 시도다.
+- [[etc/rahman-2026-a-practical-guide-to-becoming]]: 에이전틱 개발 실무 가이드 전반. 루프 구축의 인간 측면 배경을 다룬다.
