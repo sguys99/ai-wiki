@@ -167,7 +167,7 @@
 - [x] 6a article과 video 5편: engiuniverse 2편, learnopencv-2025, kim-2026-rfm part-1, part-2 (본문 7,141→16,798 / 3,806→9,995 / 11,165→23,377 / 2,626→9,488 / 5,183→13,510자, 표 행 0~18개→64/47/91/58/66개, sources 문체 정비 동반, lint 0건)
 - [x] 6b 논문 4편: lu-2026-aspire, reuss-2026, wu-2023-unleashing, zhai-2025-igniting (본문 10,137→21,470 / 9,820→29,865 / 5,982→18,014 / 7,712→21,151자, 표 행 0~8개→119/78/104/77개, sources 문체 정비 동반, lint 0건). **배치 6 전체(9편) 완료. Phase 4 재작성 73편 전량 완료.** 이 시점에 physical-ai wiki 76편과 대응 sources 76편이 모두 lint_style error 0건, lint_terms 경고 0건이다 (착수 시점 wiki error 1,440건 / 위반 파일 73개, sources error 1,567건 / 위반 파일 75개)
 
-#### 용어집 2차 갱신 대기 (배치 3~4 누적, 마무리 단계에 일괄 반영)
+#### 용어집 2차 갱신 대기 (배치 3~4 누적, 마무리 단계에 일괄 반영) — Phase 5-1에서 반영 완료 (2026-09-06)
 
 배치 진행 중 발견한 미등재 용어와 표기 흔들림이다. **배치마다 등재하면 완료분을 되돌아가 고쳐야 해서 rework가 커진다.** 마무리 단계에서 한 번에 등재하고 저장소 전체를 한 번 훑는 편이 낫다고 판단해 대기시킨다. 그때까지 subagent에게는 "원어 단일 표기" 지시만 전달한다.
 
@@ -298,7 +298,7 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 - [x] 5-6. 개선 전후 계량 대비 기록 (2026-09-06). Phase 4와 같은 지표, 같은 방법론으로 재실측해 아래 "Phase 5 완료 계량" 절에 3열 대비(착수, Phase 4 완료, Phase 5 완료)로 기록했다. 열 지표 10종 전부 Phase 4 값 유지, 5-1~5-5 작업의 회귀 0건. 부수 정정: Phase 4 표의 lint_terms 착수 값 246건은 lint_style warning 값이 잘못 들어간 오기로, 실측 32건으로 정정하고 두 지표를 별도 행으로 분리했다
 - [x] 5-7. lint_terms.py와 lint_style.py 전체 통과 확인 (2026-09-06). 사전 정비로 wiki 페이지가 없어 Phase 4 범위에서 빠졌던 77번째 source(9bow-2026-world-action-model-rise)의 위반 8건을 전량 문장 구조 변경으로 해소했다 (신규 ignore 0건, 산문 축소 없음). 최종 통과: wiki/physical-ai 76편, physical-ai sources 77편, physical-ai-overview, index.md의 Physical AI 절 모두 lint_style error 0건, warning 0건, lint_terms 0건 (합계 154개 파일). 용어집 3종은 두 스크립트가 설계상 검사에서 제외한다 (금지 표기 구분자 규약 파일). 저장소 전체 기준선: lint_style error 8,313건과 warning 212건(285개 파일, emdash와 middot이 error의 99.6%), lint_terms 117건(워크플로우 100건이 최다). 전부 physical-ai 밖이며 경로별 분해는 5-9 후속 과제 절에 기록한다
 - [x] 5-8. 자동 메모리에 새 문체 정책 기록 (2026-09-06). 세션 자동 메모리에 2건 기록: wiki-style-policy(기술문서체 register, 금지 기호, lint 게이트, humanize 제외 — SSOT인 CLAUDE.md를 가리키는 요지 기록)와 physical-ai-lint-clean-state(154개 파일 0건 유지 조건, 타 카테고리 backlog는 의도된 잔여라 지시 없이 일괄 수정 금지, humanoid와 authors 등 사용자 결정). 이 항목은 저장소 밖 파일(메모리 디렉토리) 작성이라 subagent 위임 없이 오케스트레이터가 직접 수행했다
-- [ ] 5-9. 후속 과제 기록 (llms, agents 등 다른 카테고리 확산)
+- [x] 5-9. 후속 과제 기록 (2026-09-06). 이 문서 5절을 확산 기준선(경로별 lint 실측표)과 이월 항목 7건으로 확장했다. Phase 5 전 항목 완료
 
 #### Phase 5 완료 계량 (2026-09-06)
 
@@ -360,6 +360,37 @@ Phase 4 계량을 재현하면서 확인한 사항 네 가지를 남긴다.
 
 ## 5. 후속 과제 (이번 범위 밖)
 
-- llms, agents, database 등 다른 카테고리 페이지에 같은 기준 적용
-- 기존 sources 전체의 문체 소급 정비 (이번에는 physical-ai 재작성에 필요한 것만)
+Phase 5까지의 개선은 physical-ai 범위에 한정됐다. 아래는 후속 확산의 착수 기준선(2026-09-06 실측)과 개별 이월 항목이다.
+
+### 5-A. 타 카테고리 문체 확산 기준선
+
+저장소 전체 lint_style은 error 8,313건, warning 212건(285개 파일)이다. emdash 4,280건과 middot 4,004건이 error의 99.6%라 기계적 치환 비중이 크고, 실제 재작성 판단이 필요한 것은 bilingual-heading 17건, speaker-intrusion 9건, self-qa 3건과 warning 212건(banned-vocab 120, k-number 75 등)이다.
+
+| 경로 | 파일 | error | warning |
+|---|---|---|---|
+| sources (agents) | 64 | 1,709 | 39 |
+| wiki/agents | 61 | 1,387 | 48 |
+| sources (applications) | 33 | 1,309 | 34 |
+| sources (database) | 25 | 932 | 7 |
+| wiki/applications | 32 | 844 | 27 |
+| wiki/database | 25 | 712 | 10 |
+| wiki/overviews (9편, physical-ai-overview 제외) | 9 | 339 | 11 |
+| index.md (Physical AI 외 7개 절) | 1 | 245 | 3 |
+| sources (llms) | 10 | 231 | 7 |
+| sources (etc) | 2 | 156 | 0 |
+| wiki/llms | 10 | 144 | 11 |
+| sources (evaluations) | 5 | 112 | 6 |
+| wiki/etc | 2 | 104 | 0 |
+| wiki/evaluations | 5 | 89 | 9 |
+
+lint_terms 잔여는 117건이다: 워크플로우 100건(canonical 워크플로), 하위 에이전트 6건, 사후학습 3건(5-1의 post-training 등재로 새로 걸린 agents 카테고리 건), 프롬프트 튜닝 3건, 사전학습 계열 3건, 미세 조정 1건, 도구 사용 1건. 착수 규모는 sources agents 64개 파일과 wiki/agents 61개 파일이 가장 크다.
+
+### 5-B. 이월 항목
+
+- 타 카테고리 figures caption 532건(sources 279, wiki 253)의 한글 정비. Phase 5-2는 physical-ai만 처리했다
+- pseudo action(하이픈 없음) 19건 대 pseudo-action 9건의 표기 통일. 한글 금지 표기가 아니라 lint가 잡지 못한다
+- physical-ai 밖 figure 크롭 품질 잔여 약 23건 (page-region이거나 low_confidence)
+- ryancodrai-turbovec의 title 조합 판정 재검토 (Phase 5-3에서 근거가 약한 판정으로 표시)
+- raw/repos와 일부 raw/articles frontmatter의 금지 기호는 raw 불변 규약에 따라 보존했다. 신규 ingest부터 새 규칙을 적용하고 소급하지 않는다
+- 기존 sources 전체의 문체 소급 정비 (이번에는 physical-ai 대응분 77편만)
 - overview 페이지 전반의 study_path 연계 점검
