@@ -38,7 +38,7 @@ PyTorch 한국 사용자 모임 운영자 9bow가 Figure AI의 Helix 발표를 �
 
 ## 배경
 
-글은 Helix를 Figure AI의 이전 발표와 이어 놓는 데서 시작한다. Figure AI는 2024년 초 OpenAI와 협업해 휴머노이드 Figure 01을 공개했던 회사이고, Helix는 그 다음 발표에 해당한다.
+글은 Helix를 Figure AI의 이전 발표와 이어 놓는 데서 시작한다. Figure AI는 2024년 초 OpenAI와 협업해 humanoid Figure 01을 공개했던 회사이고, Helix는 그 다음 발표에 해당한다.
 
 문제 설정은 기존 로봇의 학습 비용이다. 새로운 작업 하나를 배우려면 막대한 양의 시뮬레이션과 데이터 수집이 필요했다는 점을 글은 출발점으로 삼는다. 반면 Helix는 하나의 신경망으로 여러 로봇 행동을 학습하고 처음 보는 물체도 즉시 다룬다고 소개한다.
 

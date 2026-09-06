@@ -288,10 +288,17 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 
 ### Phase 5. 검증과 마무리
 
-- [ ] 개선 전후 계량 대비 기록 (중간점 1,801에서 0, em dash 702에서 0, 표 0개 페이지 45에서 소수, wiki가 sources보다 얇은 69건에서 0건 목표)
-- [ ] lint_terms.py와 lint_style.py 전체 통과
-- [ ] 자동 메모리에 새 문체 정책 기록
-- [ ] 후속 과제 기록 (llms, agents 등 다른 카테고리 확산)
+2026-09-06 착수. 원래 체크리스트 4개에 더해, 계획서가 "마무리 단계 일괄 처리"로 미뤄둔 용어집 2차 갱신과 잔여 정비 미완료 항목을 이 Phase의 범위로 편입한다. 사용자 결정 3건 확정 (2026-09-06): humanoid는 원어 canonical로 등재하고 "휴머노이드" 95건을 치환한다, frontmatter의 authors 저자 구분자 중간점은 쉼표로 전환한다, sa-2026 fig09/fig10은 raw를 재크롭해 wiki/assets 사본과 일치시킨다.
+
+- [x] 5-1. 용어집 2차 갱신 일괄 반영 (2026-09-06). glossary-physical-ai 신규 27개 등재(99→126개, 금지 표기 135→162종), glossary-llms에 post-training 등재(35→36개). 번역어 158건을 47개 파일에서 치환 (휴머노이드 94, 처리량 29, 물리 인지 생성 11, 제어와 조종 가능성 13, 이중 처리 이론 4 등). physical-ai 범위 lint_terms 0건, lint_style error 0건 복원. 주요 판단: 서베이 4편의 "제어 가능성"은 steerability가 아니라 controllability(생성된 미래가 명령 action을 따르는 정도)로 확인돼 별도 행으로 등재하고 구분을 비고에 명시했다. "가짜 action" 2건은 pseudo-action이 아니라 DiT 입력 noise라 문장을 다듬어 해소했다. 오탐 위험이 확실한 6개 용어(occupancy, kinematic planner 등)는 금지 표기 없이 지침만 등재했다. 잔여: pseudo action 하이픈 표기 흔들림 19건과 타 카테고리 "사후학습" 3건은 5-9 후속 과제로 기록한다
+- [ ] 5-2. sources frontmatter figure caption 정비 (배치 초반 완료분의 미정비 caption 일괄 처리)
+- [ ] 5-3. frontmatter 금지 기호 정리 (title 조합형, license 8건, authors와 author 23건 쉼표 전환)
+- [ ] 5-4. figure 자산 정합 (lionhong-2023 raw 실파일 부재 해소, sa-2026 fig09/fig10 raw 재크롭, luo-2025-sonic 그림 후보 표 id 정합, xu-2025-anatomy fig07 재크롭, sa-2026 low_confidence 15건 검토)
+- [ ] 5-5. lint_terms.py 부분 문자열 오탐 개선 (3글자 이하 금지 표기의 예외 문자열 목록 상수)
+- [ ] 5-6. 개선 전후 계량 대비 기록 (중간점 1,801에서 0, em dash 702에서 0, 표 0개 페이지 45에서 0, wiki가 sources보다 얇은 69건에서 1건 등 최종 재실측)
+- [ ] 5-7. lint_terms.py와 lint_style.py 전체 통과 확인 (physical-ai 범위 0건, 타 카테고리 잔여 건수를 후속 과제 기초선으로 기록)
+- [ ] 5-8. 자동 메모리에 새 문체 정책 기록
+- [ ] 5-9. 후속 과제 기록 (llms, agents 등 다른 카테고리 확산)
 
 ## 5. 후속 과제 (이번 범위 밖)
 

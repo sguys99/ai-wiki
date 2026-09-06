@@ -58,7 +58,7 @@ figures:
 
 ## 요약
 
-GR00T N1.5는 NVIDIA GEAR Lab이 휴머노이드 로봇용 foundation model GR00T N1을 개선해 내놓은 후속 버전이고, 이 페이지는 그 공식 프로젝트 페이지를 정리한 것이다. 원문은 논문이 아니라 변경 사항과 벤치마크 수치, 영상 데모를 모아 둔 릴리스 노트에 가깝다. 저자 38명이 알파벳순으로 나열돼 있으며 Johan Bjorck, Linxi "Jim" Fan, Dieter Fox, Jan Kautz, Yuke Zhu 등 GR00T N1 논문과 겹치는 이름이 많다.
+GR00T N1.5는 NVIDIA GEAR Lab이 humanoid 로봇용 foundation model GR00T N1을 개선해 내놓은 후속 버전이고, 이 페이지는 그 공식 프로젝트 페이지를 정리한 것이다. 원문은 논문이 아니라 변경 사항과 벤치마크 수치, 영상 데모를 모아 둔 릴리스 노트에 가깝다. 저자 38명이 알파벳순으로 나열돼 있으며 Johan Bjorck, Linxi "Jim" Fan, Dieter Fox, Jan Kautz, Yuke Zhu 등 GR00T N1 논문과 겹치는 이름이 많다.
 
 N1.5가 바꾼 지점은 네 가지다. VLM을 고정하고 adapter를 단순화한 구조 변경, Eagle 2.5에서 다시 튜닝한 grounding 능력, flow matching 손실에 추가한 FLARE 손실, 그리고 DreamGen이 만든 합성 데이터의 투입이다. 이 변경으로 실제 GR-1 로봇에서 지시를 따른 비율이 46.6%에서 93.3%로, Unitree G1 post-training 성공률이 44.0%에서 98.8%로 올랐다.
 

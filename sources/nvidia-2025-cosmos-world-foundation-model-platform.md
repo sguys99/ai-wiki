@@ -335,7 +335,7 @@ figures:
     kind: table
     file: assets/nvidia-2025-cosmos-world-foundation-model-platform/tab03.png
     raw: raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab03.png
-    caption: "H100 1장에서의 VILA 캡셔닝 추론 처리량 비교 (Table 3, p.10)"
+    caption: "H100 1장에서의 VILA 캡셔닝 추론 throughput 비교 (Table 3, p.10)"
     page: 10
     bbox_norm: [0.0939, 0.379, 0.9081, 0.9285]
     strategy: table-region
@@ -455,7 +455,7 @@ figures:
     kind: table
     file: assets/nvidia-2025-cosmos-world-foundation-model-platform/tab15.png
     raw: raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab15.png
-    caption: "Medusa head 개수가 토큰 처리량과 forward pass 수에 미치는 영향 (Table 15, p.31)"
+    caption: "Medusa head 개수가 토큰 throughput과 forward pass 수에 미치는 영향 (Table 15, p.31)"
     page: 31
     bbox_norm: [0.0939, 0.4408, 0.9056, 0.9285]
     strategy: table-region
@@ -475,7 +475,7 @@ figures:
     kind: table
     file: assets/nvidia-2025-cosmos-world-foundation-model-platform/tab17.png
     raw: raw/papers/nvidia-2025-cosmos-world-foundation-model-platform-figures/tab17.png
-    caption: "저해상도 적응을 적용한 Cosmos-Predict1-4B 디코딩 처리량 (Table 17, p.32)"
+    caption: "저해상도 적응을 적용한 Cosmos-Predict1-4B 디코딩 throughput (Table 17, p.32)"
     page: 32
     bbox_norm: [0.0933, 0.4425, 0.9081, 0.9285]
     strategy: table-region
@@ -648,7 +648,7 @@ PhysX와 Isaac Sim으로 자유낙하, 경사면, U자 슬로프, 안정 적층,
 
 camera control은 DL3DV-10K에 GLOMAP으로 pose를 붙여 학습했고 Plücker 좌표를 latent에 이어 붙이는 방식으로 조건을 준다. CamCo와 비교하면 pose 추정 성공률 43.0% → 82.0%, 회전 오차 8.277° → 1.646°, 이동 오차 0.185 → 0.038, FID 57.49 → 14.30, FVD 433.24 → 120.49로 전 항목이 개선됐다. 학습은 DL3DV-10K, 평가는 RealEstate10K라 분포가 다른데도 그렇다.
 
-robot manipulation은 두 가지다. 지시문(instruction) 조건 영상 예측은 1X의 휴머노이드 EVE가 찍은 200시간 자체 데이터(Cosmos-1X)를 썼고, 평가자 10명이 23개 episode를 놓고 비교한 결과 전체 선호도가 78.3% 대 13.0%로 VideoLDM-Instruction을 앞섰다. action 조건 다음 프레임 예측은 Bridge 데이터셋 episode 2만 개를 쓰고 action을 그리퍼 좌표계 7차원으로 받는다. FVD가 IRASim-Action 593에서 7B 모델 190으로 떨어졌다.
+robot manipulation은 두 가지다. 지시문(instruction) 조건 영상 예측은 1X의 humanoid EVE가 찍은 200시간 자체 데이터(Cosmos-1X)를 썼고, 평가자 10명이 23개 episode를 놓고 비교한 결과 전체 선호도가 78.3% 대 13.0%로 VideoLDM-Instruction을 앞섰다. action 조건 다음 프레임 예측은 Bridge 데이터셋 episode 2만 개를 쓰고 action을 그리퍼 좌표계 7차원으로 받는다. FVD가 IRASim-Action 593에서 7B 모델 190으로 떨어졌다.
 
 자율주행은 NVIDIA 내부 RDS 데이터셋을 썼다. 6개 카메라로 찍은 20초 클립 약 360만 개, 시간으로 약 2만 시간이고 차량 밀도, 날씨, 조도, 속도, 도로 유형 같은 속성 태그로 분포를 맞춰 뽑았다. 6뷰를 동시에 생성하도록 고친 결과 FID 60.84 → 32.16, FVD 884.46 → 210.23이고, 뷰 내부 시간 일관성(TSE)은 1.24 → 0.68로 실제 영상 0.69에 붙었다. 뷰 사이 일관성(CSE)은 6.48 → 2.11로 실제 영상 1.71에는 아직 못 미친다. trajectory 조건을 추가하면 TSE 0.59, CSE 2.02로 조금 더 좋아진다.
 
@@ -684,7 +684,7 @@ world model 개념은 Ha와 Schmidhuber의 2018년 연구에서 왔고, 이후 �
 | diffusion decoder | discrete 토큰의 압축 왜곡을 continuous 공간으로 옮겨 보정하는 후처리 모델 |
 | physics alignment | 시뮬레이터로 만든 물리적으로 옳은 영상을 정답 삼아 생성 영상의 물리 준수를 재는 이 논문의 평가 방식 |
 | TokenBench / ShotBench | 각각 토크나이저 평가용 영상 세트와 shot 분할 알고리즘 평가용 벤치마크. 둘 다 NVlabs로 공개 |
-| Cosmos-1X / RDS | post-training용 자체 데이터. 앞은 1X 휴머노이드 EVE의 200시간 1인칭 영상, 뒤는 6뷰 주행 클립 약 360만 개 |
+| Cosmos-1X / RDS | post-training용 자체 데이터. 앞은 1X humanoid EVE의 200시간 1인칭 영상, 뒤는 6뷰 주행 클립 약 360만 개 |
 | pre-Guard / post-Guard | 입력 텍스트를 막는 단계와 출력 영상을 막는 단계 |
 | TSE / CSE | multi-view 생성 평가 지표. 뷰 하나의 시간 방향 Sampson error와 뷰 사이 Sampson error |
 | TAE / TFE | multi-view 주행 영상에서 trajectory 일치도를 재는 지표 |
@@ -725,7 +725,7 @@ world model 개념은 Ha와 Schmidhuber의 2018년 연구에서 왔고, 이후 �
 | fig30 | 54 | Cosmos Guardrail 구성. pre-Guard는 키워드 차단과 Aegis, post-Guard는 영상 안전 분류기와 얼굴 블러 | caption-region | ★ wiki 권장 (method, Guardrail) |
 | tab01 | 8 | shot 분할 알고리즘 비교. PySceneDetect, Panda70M, TransNetV2, AutoShot | table-region | (아카이브) |
 | tab02 | 8 | 소프트웨어 설정별 transcoding 성능 | table-region | (아카이브) |
-| tab03 | 10 | H100 1장에서의 VILA 캡셔닝 추론 처리량 비교 | table-region | (아카이브) |
+| tab03 | 10 | H100 1장에서의 VILA 캡셔닝 추론 throughput 비교 | table-region | (아카이브) |
 | tab04 | 12 | visual tokenizer 기능 비교. causal, image, video, joint, discrete, continuous | table-region | (아카이브) |
 | tab05 | 16 | continuous video 토크나이저 평가 (DAVIS와 TokenBench) | table-region | (아카이브) |
 | tab06 | 16 | discrete video 토크나이저 평가 (DAVIS와 TokenBench) | table-region | (아카이브) |
@@ -737,9 +737,9 @@ world model 개념은 Ha와 Schmidhuber의 2018년 연구에서 왔고, 이후 �
 | tab12 | 22 | 점진적 학습 단계와 각 단계 사양 | table-region | (아카이브) |
 | tab13 | 24 | Cosmos-Diffusion Transformer의 FLOPs와 활성값 메모리 | table-region | (아카이브) |
 | tab14 | 30 | autoregressive 계열 Cosmos-Predict1 모델 설정값 | table-region | (아카이브) |
-| tab15 | 31 | Medusa head 개수가 토큰 처리량과 forward pass 수에 미치는 영향 | table-region | (아카이브) |
+| tab15 | 31 | Medusa head 개수가 토큰 throughput과 forward pass 수에 미치는 영향 | table-region | (아카이브) |
 | tab16 | 32 | autoregressive 모델 성능 분석 (640x1024 테스트 영상) | table-region | (아카이브) |
-| tab17 | 32 | 저해상도 적응을 적용한 Cosmos-Predict1-4B 디코딩 처리량 | table-region | (아카이브) |
+| tab17 | 32 | 저해상도 적응을 적용한 Cosmos-Predict1-4B 디코딩 throughput | table-region | (아카이브) |
 | tab18 | 36 | autoregressive 모델 실패율. image 조건과 9프레임 video 조건 비교 | table-region | (아카이브) |
 | tab19 | 37 | 3D 일관성 평가. Sampson error, pose 추정 성공률, novel view 합성 품질 | table-region | ★ wiki 권장 (result, 3D 일관성) |
 | tab20 | 39 | physics alignment 결과. 픽셀, feature, 객체 수준 지표로 본 미래 예측 정확도 | table-region | ★ wiki 권장 (result, physics alignment) |

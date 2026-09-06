@@ -230,7 +230,7 @@ VLM을 그대로 쓸 수 없는 이유도 함께 제시한다. VLM은 웹의 의
 - [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]]: 같은 날 공개된 원 논문. 아키텍처와 학습 레시피, 전체 실험이 여기 있다
 - [[physical-ai/physical-intelligence-2025-a-vla-with-open-world]]: 반년 뒤 같은 자리에 올라온 π0.5 발표문. 강조점이 action 표현에서 학습 데이터 구성으로 옮겨 간다
 - [[physical-ai/physical-intelligence-2025-a-vla-that-learns-from]]: 자율 경험과 강화학습을 더한 π\*0.6 발표문. 이 글이 꼽은 self-improvement 전선의 후속이다
-- [[physical-ai/physical-intelligence-2026-a-steerable-model-with-emergent]]: 같은 계열의 최신 발표문. 조종 가능성과 emergent capability를 다룬다
+- [[physical-ai/physical-intelligence-2026-a-steerable-model-with-emergent]]: 같은 계열의 최신 발표문. steerability와 emergent capability를 다룬다
 - [[physical-ai/physical-intelligence-openpi]]: 같은 팀의 공개 구현. 블로그가 예고한 후속 모델까지 담겨 있다
 - [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]]: 블로그가 직접 링크한 비교 대상. 이산화된 action 토큰을 쓰는 직전 세대 오픈소스 VLA다
 - [[physical-ai/sa-2026-vision-language-action-models-for]]: 블로그가 향후 방향으로 꼽은 항목들이 실제로 어떻게 전개됐는지 보여 주는 서베이

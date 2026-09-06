@@ -105,7 +105,7 @@ compounding error는 policy의 작은 예측 오차가 다음 입력을 어긋�
 | 서베이 계열 | 주된 초점 | LLM world knowledge | VLA와 action grounding | world model | 비공개 시스템 |
 |---|---|---|---|---|---|
 | Physical AI 일반 | 개념, 응용, 산업 시스템, cyber-physical 관점 | Limited | Partial | Limited | Partial |
-| vision 중심 생성형 Physical AI | 물리 인지 생성, 시각 시뮬레이션, 물리적으로 근거 있는 computer vision | Limited | Limited | Partial | Partial |
+| vision 중심 생성형 Physical AI | physics-aware generation, 시각 시뮬레이션, 물리적으로 근거 있는 computer vision | Limited | Limited | Partial | Partial |
 | VLA와 로봇 foundation model | 로봇 policy, action 표현, embodied 제어 | Partial | Strong | Limited | Partial |
 | world model 중심 | 예측, latent dynamics, model-based planning, 시뮬레이션 | Limited | Partial | Strong | Partial |
 | 이 논문 | LLM world knowledge에서 Physical AI로 가는 로드맵 | Strong | Strong | Strong | Strong |
@@ -211,7 +211,7 @@ world model이라는 말이 강화학습, 영상 생성, 로보틱스, 자율주
 
 video 계열은 영상이 움직임과 시간 변화와 장면 변화를 그대로 드러내기 때문에 직관적이다. GAIA-1은 영상과 텍스트와 action 입력에서 자율주행의 미래를 모델링하고, UniSim은 이질적인 데이터에서 상호작용 시뮬레이터를 학습해 policy 학습에 쓰며, Genie는 라벨 없는 영상에서 생성형 상호작용 환경을 배운다. Cosmos는 world foundation model을 로보틱스와 자율주행과 합성 데이터 생성에 맞춰 조정 가능한 범용 world model로 내세운다.
 
-이 계열의 한계는 시각적 사실성이 물리적 정확성을 보장하지 않는다는 점이다. 생성된 rollout이 그럴듯해 보이면서도 물체 영속성, 접촉 제약, 조종 가능성, 인과 일관성을 어길 수 있다. 따라서 저자들은 유용한 video world model이라면 시간적 일관성, 조종 가능성, action 조건화, 물리적 타당성을 함께 갖춰야 한다고 조건을 건다.
+이 계열의 한계는 시각적 사실성이 물리적 정확성을 보장하지 않는다는 점이다. 생성된 rollout이 그럴듯해 보이면서도 물체 영속성, 접촉 제약, controllability, 인과 일관성을 어길 수 있다. controllability는 명령한 action에 따라 생성된 미래가 얼마나 정확히 달라지는지를 뜻한다. 따라서 저자들은 유용한 video world model이라면 시간적 일관성, controllability, action 조건화, 물리적 타당성을 함께 갖춰야 한다고 조건을 건다.
 
 latent 계열은 픽셀을 복원하는 대신 표현 공간에서 예측한다. 촘촘한 영상 생성은 연산 비용이 크고 제어와 무관한 시각 세부에 용량을 쓰기 쉬운 반면, latent 예측은 과제 관련 dynamics에 집중하기 때문에 planning과 policy learning과 long-horizon imagination에 유리하다. JEPA 계열은 예측 모델링이 전면 생성 복원이 아니라 표현 공간에서 일어나야 한다고 주장하고, V-JEPA 2는 자기지도 영상 표현 학습을 로봇 trajectory로 post-training해 action 조건부 latent world model로 잇는다.
 
@@ -248,7 +248,7 @@ world model과 LLM의 관계는 대체가 아니라 보완이다. LLM은 상위 
 | LLM | 근거 없는 물리 지식 환각, 과신하는 계획, 물리량 부재 | 기하, 접촉, 힘, 물체 상태 제약을 어기는 그럴듯한 언어 계획을 낸다 |
 | VLM과 MLLM | 의미 서술은 맞지만 촘촘한 grounding이 약함 | 물체를 짚어내도 자세, 깊이, 불확실성, 도달 가능성, action 조건부 dynamics를 추정하지 못한다 |
 | VLA | cross-embodiment 일반화 부진, 데이터 의존, 취약한 복구 | 같은 지시문이라도 로봇과 환경에 따라 다른 grasping, trajectory, 제어 전략이 필요하다 |
-| world model | 시각적으로는 그럴듯하나 물리적으로 어긋난 미래 | 사실적인 생성도 물체 영속성, 접촉, 중력, 조종 가능성, 인과 dynamics를 어길 수 있다 |
+| world model | 시각적으로는 그럴듯하나 물리적으로 어긋난 미래 | 사실적인 생성도 물체 영속성, 접촉, 중력, controllability, 인과 dynamics를 어길 수 있다 |
 | policy learning | 오프라인 성공, closed-loop 실패 | 데이터셋 상태에서는 옳은 action을 내도 compounding error나 실시간 교란 아래에서는 실패한다 |
 | embodied 시스템 | 센서, 보정, 지연, 컨트롤러, 하드웨어 고장 | 물리적 성능은 모델 정확도가 아니라 시스템 스택 전체에 달려 있다 |
 | 비공개 frontier 시스템 | 재현성 제약과 불완전한 공개 | 분야를 이끄는 제품 수준 시스템이 공정한 벤치마크나 ablation 비교에서 빠진다 |

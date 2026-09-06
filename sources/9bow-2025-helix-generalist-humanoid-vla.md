@@ -34,7 +34,7 @@ PyTorch 한국 사용자 모임의 9bow가 Figure AI의 Helix 발표를 한국�
 
 ## 1. 자료 정보 (Document Information)
 
-- **제목**: Helix: Figure AI가 공개한 범용 휴머노이드 제어를 위한 시각-언어-행동(VLA) 모델
+- **제목**: Helix: Figure AI가 공개한 범용 휴머노이드 제어를 위한 시각-언어-행동(VLA) 모델 <!-- lint-terms: ignore 원문 기사 제목 인용 -->
 - **저자**: 9bow (박정환), PyTorch 한국 사용자 모임 운영자
 - **발행**: 2025-02-23, https://discuss.pytorch.kr/t/helix-figure-ai-vla/6197
 - **성격**: [[figure-ai-2025-helix-a-vision-language-action]]의 한국어 소개. 원문 링크와 데모 영상 5편을 함께 싣는다

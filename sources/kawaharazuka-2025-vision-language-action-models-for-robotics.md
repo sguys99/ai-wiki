@@ -183,7 +183,7 @@ Section IX에서 8가지 미래 방향을 제시한다.
 
 ## 6. 관련 연구 (Related Work)
 
-기존 VLA 서베이 3종(Ma 2024, Sapkota 2025, Zhong 2025)이 action tokenization이나 아키텍처 진화에 집중한 것과 달리 이 논문은 하드웨어까지 아우르는 full-stack 관점을 표방한다. 계보의 출발점은 RT-1이고, RT-2가 VLA 범주를 세웠으며, OpenVLA가 오픈소스화, GR00T N1이 휴머노이드 foundation model로 확장했다. world model 계열(UniPi, GR-1, DreamGen)과 affordance 계열(VoxPoser, VRB), latent action 계열(LAPA, UniVLA)이 sensorimotor 모델을 보완한다.
+기존 VLA 서베이 3종(Ma 2024, Sapkota 2025, Zhong 2025)이 action tokenization이나 아키텍처 진화에 집중한 것과 달리 이 논문은 하드웨어까지 아우르는 full-stack 관점을 표방한다. 계보의 출발점은 RT-1이고, RT-2가 VLA 범주를 세웠으며, OpenVLA가 오픈소스화, GR00T N1이 humanoid foundation model로 확장했다. world model 계열(UniPi, GR-1, DreamGen)과 affordance 계열(VoxPoser, VRB), latent action 계열(LAPA, UniVLA)이 sensorimotor 모델을 보완한다.
 
 ## 7. 용어집 (Glossary)
 

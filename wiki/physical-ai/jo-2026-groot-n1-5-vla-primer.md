@@ -53,13 +53,13 @@ figures:
   - id: fig14
     file: assets/jo-2026-groot-n1-5-vla-primer/fig14.png
     raw: raw/articles/jo-2026-groot-n1-5-vla-primer-figures/fig14.png
-    caption: "language following rate가 46.6%에서 93.3%로, overall success rate가 43.3%에서 83.0%로 올랐다. 본문은 이 수치를 실제 휴머노이드 GR-1 평가 결과로 인용한다"
+    caption: "language following rate가 46.6%에서 93.3%로, overall success rate가 43.3%에서 83.0%로 올랐다. 본문은 이 수치를 실제 humanoid GR-1 평가 결과로 인용한다"
     strategy: fetched
     curated: true
   - id: fig16
     file: assets/jo-2026-groot-n1-5-vla-primer/fig16.png
     raw: raw/articles/jo-2026-groot-n1-5-vla-primer-figures/fig16.png
-    caption: "실제 휴머노이드 평가. 과일 2종 중 지정한 하나를 접시에 담는 과제가 44.0%에서 98.8%로 올랐고, 미학습 물체 5종 과제는 84.2%다. 세 열 모두 시연 데이터 1,000개 기준"
+    caption: "실제 humanoid 평가. 과일 2종 중 지정한 하나를 접시에 담는 과제가 44.0%에서 98.8%로 올랐고, 미학습 물체 5종 과제는 84.2%다. 세 열 모두 시연 데이터 1,000개 기준"
     strategy: fetched
     curated: true
 ---
@@ -76,7 +76,7 @@ N1.5의 공식 발표 내용과 정량 결과는 [[physical-ai/nvidia-2025-gr00t
 
 ## 배경
 
-GR00T N1은 휴머노이드 로봇용 VLA로서 의미 있는 결과를 냈지만 세 가지 한계를 남겼다. 해설은 이 한계를 N1.5의 출발점으로 제시한다.
+GR00T N1은 humanoid 로봇용 VLA로서 의미 있는 결과를 냈지만 세 가지 한계를 남겼다. 해설은 이 한계를 N1.5의 출발점으로 제시한다.
 
 - 과제 범위가 주로 짧은 tabletop 조작에 머물렀다.
 - 새로운 행동이나 새로운 환경으로의 일반화 능력이 제한적이었다.
@@ -279,10 +279,10 @@ RoboCasa에서의 차이가 가장 크다. 17.4에서 47.5로 약 2.7배가 되�
 
 pre-training 없이 scratch로 학습했을 때의 벤치마크도 함께 제시된다. Language table이 52.8%에서 93.2%로, Sim GR-1 Language가 36.4%에서 54.4%로 올랐다. 즉 지시문 조건이 붙은 과제에서 두 버전의 차이가 특히 크게 벌어진다.
 
-### 실제 휴머노이드 평가
+### 실제 humanoid 평가
 
 ![[assets/jo-2026-groot-n1-5-vla-primer/fig14.png]]
-*Figure 7: 실제 휴머노이드 GR-1 평가. language following rate와 overall success rate 모두 두 배 안팎으로 올랐다.*
+*Figure 7: 실제 humanoid GR-1 평가. language following rate와 overall success rate 모두 두 배 안팎으로 올랐다.*
 
 | 지표 | GR00T N1 | GR00T N1.5 |
 |---|---|---|
@@ -292,7 +292,7 @@ pre-training 없이 scratch로 학습했을 때의 벤치마크도 함께 제시
 해설은 93.3%를 "과일 두 개 중 지정한 하나를 골라 접시에 담는" 수준의 세밀한 지시를 거의 다 알아듣는다는 뜻으로 읽는다. 그리고 이 수치를 VLM을 학습 내내 frozen으로 둔 결정이 언어 이해력을 지키는 데 효과가 있었다는 근거로 삼는다.
 
 ![[assets/jo-2026-groot-n1-5-vla-primer/fig16.png]]
-*Figure 8: 실제 휴머노이드 과제별 성공률. 세 열 모두 시연 데이터 1,000개 기준이며, 세 번째 열은 미학습 물체 5종 과제다.*
+*Figure 8: 실제 humanoid 과제별 성공률. 세 열 모두 시연 데이터 1,000개 기준이며, 세 번째 열은 미학습 물체 5종 과제다.*
 
 | 과제 | 모델 | 성공률 |
 |---|---|---|

@@ -190,8 +190,8 @@ Companies 표 32개와 Research Labs & Initiatives 표 17개가 논문 밖 생�
 | ByteDance | VLA 모델 | GR-1, GR-2, CogACT |
 | World Labs | 공간 지능과 world model | Marble, RTFM |
 | Wayve | 주행용 embodied AI | GAIA-1, LINGO |
-| Figure AI | 휴머노이드 | Figure 01, Figure 02 |
-| Unitree | 사족보행 로봇과 휴머노이드 | H1, G1, Go2 |
+| Figure AI | humanoid | Figure 01, Figure 02 |
+| Unitree | 사족보행 로봇과 humanoid | H1, G1, Go2 |
 
 연구실 표는 방법과 기관을 잇는다. Stanford IRIS Lab에 Diffusion Policy와 MimicPlay, Stanford ILIAD에 ACT와 ALOHA, Berkeley RAIL에 Octo와 BridgeData와 R3M, Columbia Robotics에 Diffusion Policy와 CLIPort, Toyota Research Institute에 Prismatic VLMs와 OpenVLA가 각각 대응한다.
 

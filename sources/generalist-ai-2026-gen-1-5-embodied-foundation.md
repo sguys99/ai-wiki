@@ -226,7 +226,7 @@ Figure 2의 과제별 성공률을 표로 옮긴다. 왼쪽이 10 gradient step(
 | next action prediction error | pre-training 진척을 재는 검증 지표. 다음 action을 얼마나 못 맞히는지를 나타낸다 |
 | burstiness | 특정 항목이 시간적으로 몰려 등장하는 데이터 분포 성질. 언어 모델의 in-context learning 발현과 연결된 것으로 알려져 있고, 저자들이 물리 데이터에도 있을 가능성을 가설로 든다 |
 
-용어집 추가 후보: `physical prompt` / `physical prompting`(원어 유지, 금지 표기 "물리 프롬프트, 물리적 프롬프트"), `test-time training`(원어 유지, 금지 표기 "테스트 시점 학습, 추론 시 학습").
+용어집 추가 후보로 올렸던 `physical prompt` / `physical prompting`과 `test-time training`은 2026-09 용어집 갱신에서 원어 canonical로 등재됐다. 한글 직역은 모두 금지 표기이며 검사는 `lint_terms.py`가 맡는다.
 
 ## 8. 그림 후보 (Figure Candidates)
 

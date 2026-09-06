@@ -15,7 +15,7 @@ figures:
     kind: figure
     file: assets/liu-2025-generative-physical-ai-in-vision/fig01.png
     raw: raw/papers/liu-2025-generative-physical-ai-in-vision-figures/fig01.png
-    caption: "생성 AI가 의미 이해, 시간 이해, 공간 이해를 지나 상호작용성과 물리 인지 생성을 얻으며 world model로 수렴하는 흐름"
+    caption: "생성 AI가 의미 이해, 시간 이해, 공간 이해를 지나 상호작용성과 physics-aware generation을 얻으며 world model로 수렴하는 흐름"
     page: 1
     bbox_norm: [0.506, 0.388, 0.925, 0.630]
     strategy: caption-region

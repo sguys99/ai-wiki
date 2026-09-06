@@ -109,7 +109,7 @@ VLA를 다섯 유형으로 나눈 분류가 이 글 고유다. 다른 자료에�
 | Type-4 | 단일 VLM이 perception과 계획, 제어를 end-to-end로 | (원문에 예시 없음) |
 | Type-5 | VLM이 계획하고 diffusion이 실행 | GR00T N1, Octo |
 
-Kahneman의 이중 처리 이론을 빌린 System 1 / System 2 프레임도 그중 하나다. 이 틀로 2025년 4월 시점의 SOTA를 정렬한다. 느린 쪽이 VLM으로 장면을 읽고 subtask를 쪼갠다. 빠른 쪽은 Transformer decoder나 diffusion으로 모터 명령을 뽑는다. GR00T N1과 Helix가 이 틀의 대표다. π0은 그와 대비되는 단일 generalist policy 계열로 분류한다. generalist policy는 과제별 fine-tuning 없이 하나의 모델로 여러 downstream 과제를 푸는 policy를 말한다.
+Kahneman의 dual-process theory를 빌린 System 1 / System 2 프레임도 그중 하나다. dual-process theory는 인지를 빠르고 자동적인 System 1과 느리고 숙고적인 System 2로 나눠 보는 심리학 이론이다. 이 틀로 2025년 4월 시점의 SOTA를 정렬한다. 느린 쪽이 VLM으로 장면을 읽고 subtask를 쪼갠다. 빠른 쪽은 Transformer decoder나 diffusion으로 모터 명령을 뽑는다. GR00T N1과 Helix가 이 틀의 대표다. π0은 그와 대비되는 단일 generalist policy 계열로 분류한다. generalist policy는 과제별 fine-tuning 없이 하나의 모델로 여러 downstream 과제를 푸는 policy를 말한다.
 
 남은 하나는 실행 코드다. Octo 추론 노트북은 원본 예제가 깨져 있어 직접 고쳤다고 밝힌다. OpenVLA와 π0, GR00T N1은 공개 체크포인트를 그대로 불러 쓰는 최소 경로를 보여준다. π0 부분은 LeRobot 저장소를 clone해 `lerobot/pi0` 체크포인트로 pusht와 aloha 환경을 평가한다. 커스텀 데이터셋 fine-tuning까지 명령 단위로 적어뒀다.
 
@@ -155,11 +155,11 @@ Physical Intelligence의 π0은 PaliGemma 3B를 backbone으로 삼고 300M짜리
 
 ### Helix와 GR00T N1
 
-Helix는 공개돼 있지 않다. Figure AI가 휴머노이드 상반신 제어를 겨냥해 만든 VLA다. 멀티로봇 데이터 약 500시간을 지도학습으로 사용했고 구조는 dual-system이다. S2는 인터넷 규모로 pre-training된 7B 오픈웨이트 VLM이다. 단안 카메라 영상과 손목 자세, 손가락 위치를 vision-language 임베딩 공간에 투영한다. 여기에 자연어 명령을 합쳐 하나의 연속 latent 벡터로 압축한다. S1은 80M cross-attention encoder-decoder Transformer다. vision backbone은 다단 스케일 convolution이고 시뮬레이션 pre-training에서 초기화했다. 같은 이미지와 상태를 받되 더 높은 주기로 처리해 200Hz로 closed-loop 제어를 수행한다. 과제 조건 부여는 S2가 넘긴 latent 벡터를 S1 토큰 공간으로 투영해 vision feature와 이어붙이는 식이다.
+Helix는 공개돼 있지 않다. Figure AI가 humanoid 상반신 제어를 겨냥해 만든 VLA다. 멀티로봇 데이터 약 500시간을 지도학습으로 사용했고 구조는 dual-system이다. S2는 인터넷 규모로 pre-training된 7B 오픈웨이트 VLM이다. 단안 카메라 영상과 손목 자세, 손가락 위치를 vision-language 임베딩 공간에 투영한다. 여기에 자연어 명령을 합쳐 하나의 연속 latent 벡터로 압축한다. S1은 80M cross-attention encoder-decoder Transformer다. vision backbone은 다단 스케일 convolution이고 시뮬레이션 pre-training에서 초기화했다. 같은 이미지와 상태를 받되 더 높은 주기로 처리해 200Hz로 closed-loop 제어를 수행한다. 과제 조건 부여는 S2가 넘긴 latent 벡터를 S1 토큰 공간으로 투영해 vision feature와 이어붙이는 식이다.
 
 원문은 Helix의 특징 넷을 꼽는다. 여러 로봇이 실시간으로 협업할 수 있다. 머리 시선과 손목, 상체 자세, 손가락까지 상반신 전체를 고속으로 제어한 첫 VLA다. 과제별 fine-tuning 없이 분포 밖 상황에서도 동작한다. 로봇 위에서 전부 실행되며 BMW 공장에 상용 배치됐다. 초기 Figure 로봇은 GPT-4o로 구동됐다. 그런 대형 모델은 현실성이 없어 OpenAI와의 협업을 접고 자체 VLA를 만들었다는 배경도 덧붙인다.
 
-같은 설계 원칙을 NVIDIA GR00T N1이 따른다. 2B 오픈 foundation model이고 backbone은 eagle2_hg_model이다. Omniverse와 Cosmos 합성 데이터, 실제 휴머노이드 데이터를 함께 썼다. System 2가 vision과 언어로 물리 세계를 해석해 계획을 세운다. 그러면 System 1인 Diffusion Transformer가 denoising으로 120Hz의 매끄러운 모터 명령을 만든다. 코드 walkthrough에서 실제 출력 형태가 드러나는데 action은 관절마다 (16, N) 모양이다. 16은 예측 지평으로 t부터 t+15까지고 N은 자유도다. 팔은 어깨 pitch, roll, yaw에 팔꿈치 pitch, 손목 yaw, roll, pitch를 더해 7개다. 손은 손가락 5개와 엄지 굽힘까지 6개, 허리는 yaw, pitch, roll 3개다.
+같은 설계 원칙을 NVIDIA GR00T N1이 따른다. 2B 오픈 foundation model이고 backbone은 eagle2_hg_model이다. Omniverse와 Cosmos 합성 데이터, 실제 humanoid 데이터를 함께 썼다. System 2가 vision과 언어로 물리 세계를 해석해 계획을 세운다. 그러면 System 1인 Diffusion Transformer가 denoising으로 120Hz의 매끄러운 모터 명령을 만든다. 코드 walkthrough에서 실제 출력 형태가 드러나는데 action은 관절마다 (16, N) 모양이다. 16은 예측 지평으로 t부터 t+15까지고 N은 자유도다. 팔은 어깨 pitch, roll, yaw에 팔꿈치 pitch, 손목 yaw, roll, pitch를 더해 7개다. 손은 손가락 5개와 엄지 굽힘까지 6개, 허리는 yaw, pitch, roll 3개다.
 
 ### Gemini Robotics
 

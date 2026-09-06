@@ -141,7 +141,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-GR00T N1(NVIDIA 2025)을 처음 읽는 사람을 위한 한국어 입문 해설이다. "모두의 로보틱스 - VLA 입문" 시리즈 03-13편으로, 휴머노이드 데이터가 왜 모이지 않는지에서 출발해 dual-system 구조, flow matching 손실과 추론, data pyramid와 latent action space를 차례로 푼다.
+GR00T N1(NVIDIA 2025)을 처음 읽는 사람을 위한 한국어 입문 해설이다. "모두의 로보틱스 - VLA 입문" 시리즈 03-13편으로, humanoid 데이터가 왜 모이지 않는지에서 출발해 dual-system 구조, flow matching 손실과 추론, data pyramid와 latent action space를 차례로 푼다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -156,9 +156,9 @@ GR00T N1(NVIDIA 2025)을 처음 읽는 사람을 위한 한국어 입문 해설�
 
 해설이 논문에서 골라 잡은 항목은 네 가지다.
 
-문제 설정을 데이터 쪽으로 좁혀 읽는다. 휴머노이드 데이터가 부족한 이유를 값비싼 하드웨어와 teleoperation 비용으로 설명한다. 여기에 하드웨어 비호환성이 겹쳐 생기는 데이터 섬(Data Islands) 현상은 별도 항목으로 세운다. 로봇마다 구조와 센서, 자유도, 제어 방식이 달라 한쪽에서 모은 데이터를 다른 쪽이 못 쓰는 상태를 가리킨다.
+문제 설정을 데이터 쪽으로 좁혀 읽는다. humanoid 데이터가 부족한 이유를 값비싼 하드웨어와 teleoperation 비용으로 설명한다. 여기에 하드웨어 비호환성이 겹쳐 생기는 데이터 섬(Data Islands) 현상은 별도 항목으로 세운다. 로봇마다 구조와 센서, 자유도, 제어 방식이 달라 한쪽에서 모은 데이터를 다른 쪽이 못 쓰는 상태를 가리킨다.
 
-dual-system을 카너먼의 이중 처리 이론에서 끌어온다. 느린 추론(System 2)과 빠른 반응(System 1)이라는 인지 모델을 먼저 깔고 구조 설명으로 넘어가는 순서라, VLA 구조를 처음 보는 독자가 두 모듈의 역할 분담을 잡기 쉽다.
+dual-system을 카너먼의 dual-process theory에서 끌어온다. dual-process theory는 인지를 빠르고 자동적인 System 1과 느리고 숙고적인 System 2로 나눠 보는 심리학 이론이다. 느린 추론(System 2)과 빠른 반응(System 1)이라는 인지 모델을 먼저 깔고 구조 설명으로 넘어가는 순서라, VLA 구조를 처음 보는 독자가 두 모듈의 역할 분담을 잡기 쉽다.
 
 self-attention과 cross-attention을 왜 그 자리에 뒀는지를 따로 떼어 설명한다. 논문은 구조만 기술하고 넘어가는데, 해설은 두 attention의 역할을 각각 물리적 실현 가능성 점검과 목표 정렬로 읽는다. cross-attention을 고른 이유로는 연산량까지 든다. 논문에 없는 부연이라 그렇게 알고 읽어야 한다.
 
@@ -168,17 +168,17 @@ flow matching 손실의 기호를 하나씩 풀고 추론 과정을 직접 그�
 
 System 2는 pre-training된 Eagle-2 VLM이다. SmolLM2 LLM과 SigLIP-2 이미지 인코더에서 fine-tuning한 모델이다. 이미지 토큰은 사용자의 언어 지시 토큰과 함께 LLM으로 들어간다. control frequency는 로봇이 1초에 몇 번 새 action을 갱신하는지를 뜻하는데 System 2는 10Hz로 느리게 동작하며 추론 시간을 확보한다. 특이한 선택 하나는 출력을 어디서 뽑느냐다. 보통 VLM은 마지막 layer를 쓰지만 GR00T N1은 12번째 layer 결과를 쓴다. 속도가 빨라지고 과제 성공률도 더 높았다는 게 근거다.
 
-System 1은 Diffusion Transformer 기반이고 flow matching으로 학습한다. flow matching은 noise에서 데이터로 향하는 vector field를 학습해 샘플을 만드는 생성 기법이다. 120Hz로 동작을 생성하므로 움직이는 도중에도 즉각 반응할 수 있다. Eagle-2가 내놓은 토큰에는 cross-attention으로 붙는다. embodiment마다 다른 state와 action 차원은 별도 MLP 기반 encoder와 decoder로 흡수한다. embodiment는 로봇의 물리적 형상과 그에 딸린 제어 구성을 뜻하는데 탁상 매니퓰레이터와 휴머노이드가 같은 모델을 쓰려면 이 층이 필요하다.
+System 1은 Diffusion Transformer 기반이고 flow matching으로 학습한다. flow matching은 noise에서 데이터로 향하는 vector field를 학습해 샘플을 만드는 생성 기법이다. 120Hz로 동작을 생성하므로 움직이는 도중에도 즉각 반응할 수 있다. Eagle-2가 내놓은 토큰에는 cross-attention으로 붙는다. embodiment마다 다른 state와 action 차원은 별도 MLP 기반 encoder와 decoder로 흡수한다. embodiment는 로봇의 물리적 형상과 그에 딸린 제어 구성을 뜻하는데 탁상 매니퓰레이터와 humanoid가 같은 모델을 쓰려면 이 층이 필요하다.
 
 두 attention의 역할 분담이 이 해설에서 가장 공들인 대목이다. state encoder에는 관절 상태와 그리퍼 상태 같은 robot state가 들어가고 action encoder에는 noise가 섞인 action이 들어간다. 이 둘 사이에는 self-attention이 걸린다. 지금 팔이 이 위치에 있는데 이 action이 물리적으로 가능한지를 서로 참조해 확인하는 과정으로 읽는다. 반면 VLM 출력 토큰과는 cross-attention이다. VLM이 담고 있는 목표와 환경 정보에 방금 만든 동작의 뼈대를 맞추는 alignment 역할이다. 토큰 양이 많아 전부 self-attention으로 처리하면 연산 복잡도가 커지니 필요한 시각 정보만 골라 참조한다는 설명이 붙는다.
 
 학습 손실은 flow matching 식 하나다. A^τ_t = τA_t + (1−τ)ε로 정의된 중간 상태에서 모델이 예측한 방향 V_θ가 실제로 noise를 걷어내는 방향 ε−A_t와 얼마나 어긋나는지를 재고 그 차이를 줄이는 쪽으로 학습한다. τ=0이 무작위 noise, τ=1이 정답 action chunk다. 추론은 forward Euler 적분으로 수행한다. 무작위 noise에서 시작해 모델이 준 방향으로 1/K씩 이동한다. 논문 실험에서는 K=4가 가장 잘 맞았다. 4단계면 충분하다는 점이 120Hz를 가능하게 하는 조건이다.
 
-데이터 전략은 두 가지로 정리된다. 하나는 data pyramid다. 바닥은 웹 텍스트와 human video로, action 라벨은 없지만 세상에 대한 상식과 사람의 움직임 패턴을 준다. 중간은 물리 시뮬레이션(DexMimicGen)과 비디오 생성으로 만든 합성 데이터로, 실제 데이터의 10배 이상을 확보해 절대량을 채운다. 보간으로 실행 가능성을 확보하고 성공한 시연 데이터(demonstration)만 남긴다. 꼭대기는 실제 휴머노이드에서 모은 teleoperation 데이터다. 양은 가장 적지만 물리 법칙과 정밀한 조작을 완성한다.
+데이터 전략은 두 가지로 정리된다. 하나는 data pyramid다. 바닥은 웹 텍스트와 human video로, action 라벨은 없지만 세상에 대한 상식과 사람의 움직임 패턴을 준다. 중간은 물리 시뮬레이션(DexMimicGen)과 비디오 생성으로 만든 합성 데이터로, 실제 데이터의 10배 이상을 확보해 절대량을 채운다. 보간으로 실행 가능성을 확보하고 성공한 시연 데이터(demonstration)만 남긴다. 꼭대기는 실제 humanoid에서 모은 teleoperation 데이터다. 양은 가장 적지만 물리 법칙과 정밀한 조작을 완성한다.
 
 다른 하나는 latent action space다. action 라벨이 없는 human video를 쓰려면 라벨을 만들어야 하는데, VQ-VAE로 이 문제를 푼다. 현재 프레임 x1과 잠시 뒤 프레임 x2를 함께 넣으면 인코더가 x1에서 x2로 가려면 어떤 움직임이 필요한지를 스스로 찾아 latent action 벡터로 압축한다. 디코더가 x1과 그 벡터로 x2를 복원해내는지 확인하며 학습한다. 관절 각도 같은 명시적 라벨 없이 지도학습 신호를 만들어내는 셈이다. 해설은 이 방식을 시리즈 앞 편에서 다룬 DINO의 라벨 없는 학습에 빗대 소개한다.
 
-학습은 두 단계다. pre-training은 대규모 일반 데이터로 기반 능력을 먼저 쌓는 단계인데 여기서는 피라미드 전체를 섞는다. 바닥 데이터에는 실제 action이 없으니 학습된 latent action을 타깃으로 쓰고 GR-1 휴머노이드나 OpenX-Embodiment 같은 로봇 데이터에는 실제 action과 latent action을 함께 쓴다. post-training은 특정 하드웨어나 과제에 맞춰 fine-tuning하는 단계다. VLM backbone의 언어 부분은 frozen으로 두고 주로 꼭대기 데이터를 쓰며 데이터가 부족하면 비디오 생성으로 만든 neural trajectory를 1:1 비율로 섞는다.
+학습은 두 단계다. pre-training은 대규모 일반 데이터로 기반 능력을 먼저 쌓는 단계인데 여기서는 피라미드 전체를 섞는다. 바닥 데이터에는 실제 action이 없으니 학습된 latent action을 타깃으로 쓰고 GR-1 humanoid나 OpenX-Embodiment 같은 로봇 데이터에는 실제 action과 latent action을 함께 쓴다. post-training은 특정 하드웨어나 과제에 맞춰 fine-tuning하는 단계다. VLM backbone의 언어 부분은 frozen으로 두고 주로 꼭대기 데이터를 쓰며 데이터가 부족하면 비디오 생성으로 만든 neural trajectory를 1:1 비율로 섞는다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -209,7 +209,7 @@ System 1은 Diffusion Transformer 기반이고 flow matching으로 학습한다.
 ## 7. 용어집 (Glossary)
 
 - 데이터 섬(Data Islands): 로봇마다 하드웨어 구조와 센서, 자유도, 제어 방식이 달라 한 로봇에서 모은 데이터를 다른 로봇 학습에 쓰지 못하고 고립되는 상태.
-- System 2 / System 1: GR00T N1이 카너먼의 이중 처리 이론에서 이름을 빌린 두 모듈. 전자는 10Hz Eagle-2 VLM, 후자는 120Hz flow-matching DiT다.
+- System 2 / System 1: GR00T N1이 카너먼의 dual-process theory에서 이름을 빌린 두 모듈. 전자는 10Hz Eagle-2 VLM, 후자는 120Hz flow-matching DiT다.
 - data pyramid: 웹과 human video → 합성 데이터 → 실제 로봇 데이터 순으로 쌓은 학습 코퍼스 구성. 위로 갈수록 양은 줄고 embodiment 특수성은 커진다.
 - latent action space: action 라벨이 없는 영상에서 VQ-VAE로 뽑아낸 공통 동작 표현 공간. 서로 다른 embodiment의 데이터를 같은 손실 아래 넣기 위한 장치다.
 - forward Euler integration: 학습된 vector field를 따라 noise에서 action으로 1/K씩 K번 나눠 이동하는 추론 절차. GR00T N1은 K=4를 쓴다.

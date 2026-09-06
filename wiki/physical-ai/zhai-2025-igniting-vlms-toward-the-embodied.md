@@ -57,7 +57,7 @@ figures:
     kind: figure
     file: assets/zhai-2025-igniting-vlms-toward-the-embodied/fig05.png
     raw: raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/fig05.png
-    caption: "학습 corpus 구성. 자체 수집 action 57.5%, open-source action 33.1%, 멀티모달 VQA 9.4%. 가운데는 각 원천의 예시 프레임, 오른쪽 위는 바퀴형 양팔 로봇과 휴머노이드 하드웨어"
+    caption: "학습 corpus 구성. 자체 수집 action 57.5%, open-source action 33.1%, 멀티모달 VQA 9.4%. 가운데는 각 원천의 예시 프레임, 오른쪽 위는 바퀴형 양팔 로봇과 humanoid 하드웨어"
     page: 7
     bbox_norm: [0.111, 0.072, 0.9608, 0.3808]
     strategy: caption-region
@@ -260,7 +260,7 @@ corpus는 세 원천으로 구성된다. 각 원천이 맡는 역할이 다르�
 
 자체 수집 데이터의 범위는 다음과 같다.
 
-- 플랫폼: 탁상형 팔, 이동식 스탠드, 바퀴형 양팔 시스템, 바퀴형 휴머노이드. 1인칭 카메라, 3인칭 카메라, 팔에 달린 카메라를 함께 쓴다.
+- 플랫폼: 탁상형 팔, 이동식 스탠드, 바퀴형 양팔 시스템, 바퀴형 humanoid. 1인칭 카메라, 3인칭 카메라, 팔에 달린 카메라를 함께 쓴다.
 - 장면: 주방 청소, 옷 입히기와 정리, 이동하며 집어 놓기, 조립.
 - 과제 구성: 명시적 지시문 아래 정밀도와 일반화를 요구하는 짧은 manipulation, 그리고 목표는 분명하지만 절차가 암묵적이라 과제 분해와 진행 상황 추적이 필요한 long-horizon 추론 과제.
 - 주석과 품질 관리: 여러 모델을 결합한 파이프라인으로 단계별 주석을 달고 사람이 표본 검수해, trajectory 위에 곧바로 CoT 형태의 단계 감독을 붙인다. 여기에 다중 센서 타임스탬프 동기화, 이상치 제거, 저품질 프레임과 정지 프레임 제거, 규칙 기반 검증과 수동 감사, 조명과 배경의 자동 증강이 더해진다.
@@ -268,7 +268,7 @@ corpus는 세 원천으로 구성된다. 각 원천이 맡는 역할이 다르�
 샘플링에도 장치가 있다. 장면, 물체, 과제, 형상을 기준으로 층화해 환경 교차와 형상 교차 검증 세트를 만들고, long-horizon 과제와 희귀한 skill에는 temperature를 조절한 재샘플링과 어려운 예시의 상향 샘플링을 적용한다. 두 학습 단계 모두 원천별 할당량을 정해 섞으며, 시각 입력에는 가벼운 domain randomization과 occlusion perturbation을 적용한다.
 
 ![[assets/zhai-2025-igniting-vlms-toward-the-embodied/fig05.png]]
-*Figure 5: 학습 corpus 세 원천의 구성비와 각 원천의 예시 프레임. 오른쪽 위는 바퀴형 양팔 로봇과 휴머노이드 하드웨어다 (Zhai 2025, p.7)*
+*Figure 5: 학습 corpus 세 원천의 구성비와 각 원천의 예시 프레임. 오른쪽 위는 바퀴형 양팔 로봇과 humanoid 하드웨어다 (Zhai 2025, p.7)*
 
 ### open-source 데이터 표준화
 
@@ -277,7 +277,7 @@ open-source action 데이터는 AgiBot World, DROID, BC-Z, RH20T, Bridge Data V2
 | 표준화 항목 | 내용 |
 |---|---|
 | 좌표계와 단위 | 위치는 미터, 각도는 라디안으로 통일한다 |
-| 형상 정규화 | 자유도를 최대로 표현하는 템플릿을 두고, 단일 팔과 양팔, 바퀴형, 휴머노이드에서 빠진 관절은 마스킹과 자리표시자로 채운다 |
+| 형상 정규화 | 자유도를 최대로 표현하는 템플릿을 두고, 단일 팔과 양팔, 바퀴형, humanoid에서 빠진 관절은 마스킹과 자리표시자로 채운다 |
 | 인식 정렬 | 카메라 내부와 외부 파라미터, 타임스탬프를 통일하고 프레임 레이트와 해상도를 재샘플링하며 다중 시점 영상의 채널을 맞춘다 |
 | action 시간축 정규화 | control frequency를 표준화하고 trajectory를 flow matching 격자에 맞춰 재샘플링하거나 보간한다 |
 

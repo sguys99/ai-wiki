@@ -16,7 +16,7 @@ figures:
     kind: figure
     file: assets/liu-2025-generative-physical-ai-in-vision/fig01.png
     raw: raw/papers/liu-2025-generative-physical-ai-in-vision-figures/fig01.png
-    caption: "생성 AI가 의미 이해, 시간 이해, 공간 이해를 지나 상호작용성과 물리 인지 생성을 얻으며 world model로 수렴하는 흐름"
+    caption: "생성 AI가 의미 이해, 시간 이해, 공간 이해를 지나 상호작용성과 physics-aware generation을 얻으며 world model로 수렴하는 흐름"
     page: 1
     bbox_norm: [0.506, 0.388, 0.925, 0.630]
     strategy: caption-region
@@ -199,7 +199,7 @@ PAG 연구가 실제로 쓰는 생성 모델은 네 계열이다. NeRF와 Gaussi
 | NeRF | MLP가 3D 좌표와 시선 방향을 색과 밀도로 사상하는 암묵적 표현 | 카메라 광선을 따라 질의하고 volume rendering으로 이미지를 합성한다 | PixelNeRF는 단일 이미지, MIP-NeRF는 앨리어싱 저감, DNeRF는 동적 물체로 확장했다 |
 | Gaussian Splatting | 평균, 공분산, 불투명도, 시점 의존 색을 가진 3차원 가우시안 무리 | 격자나 암묵적 신경장이 아닌 명시적 radiance field 표현이라 렌더링이 빠르다 | 4D-GS는 동적 장면, SplatterImage는 단일 뷰 복원, LGM은 3D 생성으로 확장했다 |
 
-diffusion model에는 제어 수단도 함께 정리돼 있다. 정방향 과정은 매 단계 스케줄 파라미터에 따라 noise를 더하고, 역방향 과정은 신경망이 평균과 분산을 예측해 복원한다. 이때 예측 대상은 평균, noise, 깨끗한 데이터 중 하나로 파라미터화할 수 있으며, classifier guidance와 classifier-free guidance가 제어 가능성과 품질을 함께 높인다. score 기반 모델은 미분방정식 관점에서 같은 형식화를 다르게 적은 것이다.
+diffusion model에는 제어 수단도 함께 정리돼 있다. 정방향 과정은 매 단계 스케줄 파라미터에 따라 noise를 더하고, 역방향 과정은 신경망이 평균과 분산을 예측해 복원한다. 이때 예측 대상은 평균, noise, 깨끗한 데이터 중 하나로 파라미터화할 수 있으며, classifier guidance와 classifier-free guidance가 controllability와 품질을 함께 높인다. controllability는 조건 입력으로 생성 결과를 얼마나 원하는 대로 몰아갈 수 있는지를 뜻한다. score 기반 모델은 미분방정식 관점에서 같은 형식화를 다르게 적은 것이다.
 
 Gaussian Splatting이 뒤에서 자주 등장하는 이유는 표현 방식 자체에 있다. 장면을 입자 무리로 나타내므로 입자 기반 물리 시뮬레이션과 그대로 이어 붙일 수 있다.
 

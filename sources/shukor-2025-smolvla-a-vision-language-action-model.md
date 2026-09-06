@@ -331,7 +331,7 @@ action chunking 자체는 ACT에서 왔다. ACT는 CVAE 기반 80M policy로 이
 | fig02 | 6 | asynchronous inference 스택 | caption-region | ★ wiki 권장 (method) |
 | fig03 | 7 | 임계값 g에 따른 action queue 길이 변화 | caption-region | (확인 필요, 본문 설명으로 대체 가능) |
 | fig04 | 9 | 실제 로봇 과제 4종 시작과 종료 프레임 | caption-region | ★ wiki 권장 (setup) |
-| fig05 | 12 | sync 대 async 성능, 시간, 처리량 | manual | ★ wiki 권장 (result) |
+| fig05 | 12 | sync 대 async 성능, 시간, throughput | manual | ★ wiki 권장 (result) |
 | tab01 | 5 | community dataset 통계 481/22.9K/10.6M | table-region | (본문 수치로 충분) |
 | tab02 | 11 | LIBERO와 Meta-World 성공률 | table-region | ★ wiki 권장 (result) |
 | tab03 | 11 | SO100 실제 로봇 성공률 | table-region | ★ wiki 권장 (result) |

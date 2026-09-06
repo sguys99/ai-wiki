@@ -66,7 +66,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-Figure AI가 자사 휴머노이드의 상체 전체를 자연어로 몰기 위해 만든 VLA의 공식 발표문이다. 인터넷 데이터로 pre-training된 7B VLM이 7–9Hz로 장면과 명령을 해석하고 80M Transformer가 200Hz로 모터 명령을 내는 두 모듈 구조를, 과제별 fine-tuning 없이 하나의 가중치 묶음으로 end-to-end 학습했다.
+Figure AI가 자사 humanoid의 상체 전체를 자연어로 몰기 위해 만든 VLA의 공식 발표문이다. 인터넷 데이터로 pre-training된 7B VLM이 7–9Hz로 장면과 명령을 해석하고 80M Transformer가 200Hz로 모터 명령을 내는 두 모듈 구조를, 과제별 fine-tuning 없이 하나의 가중치 묶음으로 end-to-end 학습했다.
 
 ## 1. 자료 정보 (Document Information)
 

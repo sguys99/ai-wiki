@@ -18,7 +18,7 @@ figures:
     kind: figure
     file: assets/9bow-2026-physics-aware-generation-world-simulator/fig01.jpg
     raw: raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig01.jpg
-    caption: "글 대표 이미지. 이미지와 영상과 3D 생성이 물리 인지 생성과 물리 시뮬레이션을 거쳐 world simulator로 이어지는 흐름"
+    caption: "글 대표 이미지. 이미지와 영상과 3D 생성이 physics-aware generation과 물리 시뮬레이션을 거쳐 world simulator로 이어지는 흐름"
     strategy: fetched
     curated: true
 ---
@@ -30,7 +30,7 @@ Liu 2025의 서베이 "Generative Physical AI in Vision"(arXiv 2501.10928)을 �
 이 페이지는 해설이 따라간 순서대로 서베이의 뼈대를 정리한다. 원 논문의 고해상도 도식과 방법별 상세 표는 [[physical-ai/liu-2025-generative-physical-ai-in-vision]]에 있으므로, 이 해설 페이지를 먼저 읽고 논문 페이지로 넘어가는 순서를 권한다.
 
 ![[assets/9bow-2026-physics-aware-generation-world-simulator/fig01.jpg]]
-*Figure 1: 이미지와 영상과 3D 생성이 물리 인지 생성과 물리 시뮬레이션을 거쳐 world simulator로 이어지는 흐름 (9bow 2026, 글 대표 이미지).*
+*Figure 1: 이미지와 영상과 3D 생성이 physics-aware generation과 물리 시뮬레이션을 거쳐 world simulator로 이어지는 흐름 (9bow 2026, 글 대표 이미지).*
 
 ## 배경
 
@@ -96,7 +96,7 @@ diffusion model에 대해서는 해설이 배경 지식을 더 넓게 붙였다.
 | 구성 요소 | 내용 | 예 |
 |---|---|---|
 | 물리 재료(physical materials) | 모델링 대상의 종류. 질량, 마찰, 영률(Young's modulus), 포아송 비 같은 서로 다른 속성으로 기술된다 | 강체, 연체, 뉴턴 유체와 비뉴턴 유체, 점소성 재료, 입상 매질, 금속, 천, 박막, 관절체 |
-| 시뮬레이션 방법(simulation methods) | 물질의 동역학을 물리 법칙 아래 계산하는 도구 | 물질점 방법(Material Point Method, MPM), 유한요소법(FEM), 위치 기반 동역학, 라그랑주 방법과 오일러 방법 |
+| 시뮬레이션 방법(simulation methods) | 물질의 동역학을 물리 법칙 아래 계산하는 도구 | Material Point Method(MPM), 유한요소법(FEM), 위치 기반 동역학, 라그랑주 방법과 오일러 방법 |
 | 물리 엔진(physics engines) | 시뮬레이션 방법을 구현한 기성 플랫폼 | Bullet, MuJoCo 계열, NVIDIA PhysX, Blender, Isaac Gym, Genesis, Taichi |
 
 시뮬레이션에 넣을 물리 파라미터를 어디서 얻는지도 서베이가 세 경로로 정리한다. 취득 경로가 곧 방법의 자동화 수준을 가르는 기준이 된다.
@@ -105,7 +105,7 @@ diffusion model에 대해서는 해설이 배경 지식을 더 넓게 붙였다.
 - **자동 학습**: 시각 observation으로부터 데이터 기반으로 파라미터를 추론한다.
 - **MLLM 기반 추론**: MLLM이 텍스트와 시각 정보로부터 재료와 그럴듯한 구성을 추론한다. 최근 들어 빠르게 늘고 있는 경로다.
 
-## 명시적 시뮬레이션 기반 물리 인지 생성
+## 명시적 시뮬레이션 기반 physics-aware generation
 
 PAG-E는 생성 과정 G와 물리 시뮬레이션 P_θ가 어떻게 상호작용하는지에 따라 여섯 가지 패러다임으로 나뉜다. 한 논문이 여러 패러다임에 걸치기도 하는데, 그럴 때는 가장 관련 깊은 하나로 분류한다.
 
@@ -138,7 +138,7 @@ PAG-E는 생성 과정 G와 물리 시뮬레이션 P_θ가 어떻게 상호작�
 
 특히 눈여겨볼 대목은 Gen-Constrained Sim의 파라미터 추정 방식 차이다. Physics3D는 score distillation sampling(SDS)으로 물리 파라미터를 최적화하고, DreamPhysics는 운동에 특화된 사전 지식을 더 잘 잡고 색 편향을 줄이기 위해 motion distillation sampling(MDS)을 제안한다. 반면 PhysDreamer는 distillation을 쓰지 않고, 이미지에서 영상을 만드는 모델이 생성한 참조 영상과 시뮬레이션 렌더링 사이의 시각적 유사도를 최대화해 영률 같은 파라미터를 추정한다.
 
-## 명시적 시뮬레이션 없는 물리 인지 생성
+## 명시적 시뮬레이션 없는 physics-aware generation
 
 PAG-I는 명시적 시뮬레이터에 기대지 않고도 물리 인지를 드러내는 연구들이다. 서베이는 이를 다섯 가지로 정리하며, 해설은 그중 세 가지를 자세히 다룬다.
 
@@ -148,7 +148,7 @@ Sora, OpenSora, CogVideoX, Cosmos처럼 인터넷 규모의 영상으로 학습�
 
 다만 서베이는 이 암묵적 추론이 아직 초기 단계라고 평가한다. 벤치마크 PhyGenBench는 모델들이 기본적인 물리 법칙조차 정확히 표현하는 데 어려움을 겪는다고 보고한다.
 
-특히 눈여겨볼 결과는 Kang 등의 연구다. 모델과 데이터셋 크기를 키우는 것만으로는 분포 밖(out-of-distribution) 물리 일반화가 개선되지 않았다. 저자들의 표현으로 현재 모델들은 일반적인 물리 규칙을 추상화하기보다 매우 유사한 학습 예시의 존재에 주로 의존하며, 이는 완전한 물리 인지 생성 모델을 위해 더 표적화된 방법이 필요함을 시사한다. 즉 더 많은 데이터가 곧 더 나은 물리 이해는 아니다.
+특히 눈여겨볼 결과는 Kang 등의 연구다. 모델과 데이터셋 크기를 키우는 것만으로는 분포 밖(out-of-distribution) 물리 일반화가 개선되지 않았다. 저자들의 표현으로 현재 모델들은 일반적인 물리 규칙을 추상화하기보다 매우 유사한 학습 예시의 존재에 주로 의존하며, 이는 완전한 physics-aware generation 모델을 위해 더 표적화된 방법이 필요함을 시사한다. 즉 더 많은 데이터가 곧 더 나은 물리 이해는 아니다.
 
 NVIDIA의 Cosmos는 이 흐름에서 특히 주목받는 플랫폼이다. 영상 데이터 파이프라인, 토크나이저, pre-training과 post-training 모델을 묶은 오픈소스 도구이며, Transformer 기반 diffusion 모델과 자기회귀 모델 두 계열의 world foundation model을 제공한다. world foundation model은 여러 하위 Physical AI 환경으로 fine-tuning될 것을 전제로 학습한 범용 world model을 가리키고, Cosmos의 경우 로봇 manipulation, 카메라 제어, 자율주행으로 fine-tuning할 수 있다.
 
@@ -239,11 +239,11 @@ NVIDIA의 Cosmos는 이 흐름에서 특히 주목받는 플랫폼이다. 영상
 |---|---|
 | 월드 모델 / 월드 시뮬레이터 | world model / world simulator <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
 | 월드 파운데이션 모델 | world foundation model <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
-| 물리 인지 생성 | physics-aware generation (PAG) |
+| 물리 인지 생성 | physics-aware generation (PAG) <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
 | 물리 비인지 생성 | physics-unaware generation (PUG) |
 | 점수 증류 샘플링 | score distillation sampling (SDS) <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
-| 물질점 방법 | Material Point Method (MPM) |
-| 가우시안 스플래팅 | Gaussian Splatting |
+| 물질점 방법 | Material Point Method (MPM) <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
+| 가우시안 스플래팅 | Gaussian Splatting <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
 | 체화 AI | embodied AI |
 | 미세조정 | fine-tuning <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
 
@@ -273,7 +273,7 @@ NVIDIA의 Cosmos는 이 흐름에서 특히 주목받는 플랫폼이다. 영상
 | Material Point Method (MPM) | 물질을 입자와 격자를 오가며 계산하는 시뮬레이션 방법. PhysGaussian 등 가우시안 기반 PAG-E가 이것을 쓴다 |
 | Gaussian Splatting | 장면을 평균과 공분산과 불투명도를 가진 3차원 가우시안 덩어리로 표현하는 명시적 복사장. 입자 표현이라 물리 시뮬레이션과 결합이 쉽다 |
 | score distillation sampling (SDS) | pre-training된 생성 모델의 score를 안내 신호로 써서 3D 표현이나 물리 파라미터를 최적화하는 기법. Physics3D가 물리 파라미터 추정에 쓴다 |
-| world simulator | 조작에 반응해 물리적으로 일관된 미래 장면을 계속 만들어내는 시스템. 서베이가 물리 인지 생성의 도달점으로 제시한다 |
+| world simulator | 조작에 반응해 물리적으로 일관된 미래 장면을 계속 만들어내는 시스템. 서베이가 physics-aware generation의 도달점으로 제시한다 |
 
 ## 관련 페이지
 

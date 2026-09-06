@@ -286,7 +286,7 @@ compute를 늘렸을 때의 반응도 갈린다. OpenHomie는 8 GPU에서 정점
 | 8 GPU | 0.180m/s | 95.0% |
 | 32 GPU (4 노드) | 0.288m/s | 91.2% |
 
-저자들은 이 차이를 학습 목적함수의 성격으로 설명한다. 과제 특화 reward engineering은 policy가 목표 동작을 익히고 나면 개선 여지가 포화한다. 반면 motion tracking은 다양한 모션 분포에 대해 프레임 단위 dense supervision을 계속 공급하므로 용량과 데이터 처리량을 늘릴수록 이득이 이어진다.
+저자들은 이 차이를 학습 목적함수의 성격으로 설명한다. 과제 특화 reward engineering은 policy가 목표 동작을 익히고 나면 개선 여지가 포화한다. 반면 motion tracking은 다양한 모션 분포에 대해 프레임 단위 dense supervision을 계속 공급하므로 용량과 데이터 throughput을 늘릴수록 이득이 이어진다.
 
 ### sim2real 전이
 

@@ -149,13 +149,13 @@ Dual System은 이 한계를 넘기 위해 등장했고, 해법은 사람의 뇌
 |---|---|---|
 | Generated VLM Embeddings | System 2 | "이런 상황이고 이렇게 해야 한다"는 판단 신호. 전두엽이 소뇌에 의도를 전달하는 것에 해당한다 |
 | Robot State | 로봇 하드웨어 | 각 관절이 몇 도로 꺾여 있는지, end-effector가 얼마나 열려 있는지 같은 현재 상태 값 |
-| Noised Action | 무작위 숫자 생성 | 아직 의미가 없는, 노이즈로 가득 찬 가짜 action |
+| Noised Action | 무작위 숫자 생성 | 아직 의미가 없는, 노이즈로 가득 찬 action 값 |
 
 Robot State가 필요한 이유는 명확하다. "팔을 왼쪽으로 10cm 움직여라"라는 판단을 받아도 현재 팔이 어디 있는지 모르면 어디로 움직일지 계산할 수 없다. Robot State는 학습 단계에서 teleoperation으로 수집한 시연 데이터(demonstration)에 이미지, 지시문, action과 함께 기록되어 학습 데이터의 한 항목으로 들어간다. teleoperation은 사람이 로봇을 원격으로 움직여 시연을 만드는 방식이다.
 
 한편 Robot State는 System 2에는 들어가지 않는다. VLM은 시각 정보와 지시문으로 무엇을 해야 하는지를 판단하는 고차원 사고를 맡는 곳이고, 관절 각도를 계산하는 곳이 아니기 때문이다. 관절 각도 수준의 계산은 System 1의 관할이다.
 
-Noised Action의 역할은 이미지 생성 모델에 비유하면 이해하기 쉽다. DALL-E나 Midjourney 같은 모델은 완전히 무작위인 노이즈에서 시작해 조금씩 노이즈를 걷어내며 형태를 드러내고 마지막에 완성된 이미지를 만든다. DiT도 같은 방식으로 노이즈 상태의 가짜 action에서 출발해, System 2가 내려준 판단과 Robot State를 참고하며 반복적으로 노이즈를 걷어내 진짜 action을 만들어낸다.
+Noised Action의 역할은 이미지 생성 모델에 비유하면 이해하기 쉽다. DALL-E나 Midjourney 같은 모델은 완전히 무작위인 노이즈에서 시작해 조금씩 노이즈를 걷어내며 형태를 드러내고 마지막에 완성된 이미지를 만든다. DiT도 같은 방식으로 노이즈 상태의 action 값에서 출발해, System 2가 내려준 판단과 Robot State를 참고하며 반복적으로 노이즈를 걷어내 실제로 실행할 action을 만들어낸다.
 
 ### Diffusion Transformer와 flow matching
 

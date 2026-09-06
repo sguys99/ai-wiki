@@ -17,7 +17,7 @@ figures:
     kind: figure
     file: assets/9bow-2026-physics-aware-generation-world-simulator/fig01.jpg
     raw: raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig01.jpg
-    caption: "글 대표 이미지. 이미지와 영상과 3D 생성에서 물리 인지 생성과 물리 시뮬레이션을 거쳐 world simulator로 나아가는 흐름"
+    caption: "글 대표 이미지. 이미지와 영상과 3D 생성에서 physics-aware generation과 물리 시뮬레이션을 거쳐 world simulator로 나아가는 흐름"
     strategy: fetched
     curated: true
   - id: fig02
@@ -25,7 +25,7 @@ figures:
     kind: figure
     file: assets/9bow-2026-physics-aware-generation-world-simulator/fig02.png
     raw: raw/articles/9bow-2026-physics-aware-generation-world-simulator-figures/fig02.png
-    caption: "논문 Figure 1 재수록. 생성 AI가 상호작용성과 물리 인지 생성을 얻어 world model로 수렴하는 개념도"
+    caption: "논문 Figure 1 재수록. 생성 AI가 상호작용성과 physics-aware generation을 얻어 world model로 수렴하는 개념도"
     strategy: fetched
     curated: false
   - id: fig03
@@ -60,7 +60,7 @@ PyTorch 한국 사용자 모임이 Physical AI 서베이 두 편을 묶어 소�
 
 ## 1. 자료 정보 (Document Information)
 
-- 제목: Physical AI 연구 한 번에 살펴보기 2편: 물리를 이해하는 생성 모델과 월드 시뮬레이터
+- 제목: Physical AI 연구 한 번에 살펴보기 2편: 물리를 이해하는 생성 모델과 월드 시뮬레이터 <!-- lint-terms: ignore 원문 기사 제목 인용 -->
 - 작성: 9bow (박정환), PyTorch 한국 사용자 모임
 - 게시: 2026-06-19, discuss.pytorch.kr 읽을거리 게시판
 - 원 논문: Liu 2025, Generative Physical AI in Vision: A Survey (arXiv 2501.10928)
@@ -122,17 +122,17 @@ PyTorch 한국 사용자 모임이 Physical AI 서베이 두 편을 묶어 소�
 | 글의 표기 | 이 wiki 표기 |
 |---|---|
 | 월드 모델 / 월드 시뮬레이터 | world model / world simulator <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
-| 물리 인지 생성 | physics-aware generation (PAG) |
+| 물리 인지 생성 | physics-aware generation (PAG) <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
 | 점수 증류 샘플링 | score distillation sampling <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
-| 물질점 방법 | Material Point Method (MPM) |
-| 가우시안 스플래팅 | Gaussian Splatting |
+| 물질점 방법 | Material Point Method (MPM) <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
+| 가우시안 스플래팅 | Gaussian Splatting <!-- lint-terms: ignore 표기 대응표라 왼쪽 열은 원문 표기 그대로 둔다 --> |
 | 체화 AI | embodied AI |
 
 ## 8. 그림 후보 (Figure Candidates)
 
 | id | 출처 | caption | strategy | 추천 |
 |---|---|---|---|---|
-| fig01 | 글 대표 이미지 | 물리 인지 생성에서 world simulator로 나아가는 흐름 | fetched | ★ wiki 권장 (이 글 고유) |
+| fig01 | 글 대표 이미지 | physics-aware generation에서 world simulator로 나아가는 흐름 | fetched | ★ wiki 권장 (이 글 고유) |
 | fig02 | 논문 Figure 1 | 생성 AI가 world model로 수렴하는 개념도 | fetched | (논문 페이지와 중복) |
 | fig03 | 논문 Figure 4 | 물리 시뮬레이션 세 가지 구성 요소 | fetched | (논문 페이지와 중복) |
 | fig04 | 논문 Figure 3 | PAG-E 여섯 패러다임 배선도 | fetched | (논문 페이지와 중복) |

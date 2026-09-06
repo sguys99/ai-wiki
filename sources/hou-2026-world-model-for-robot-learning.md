@@ -215,7 +215,7 @@ UniPi(Du et al., 2023)가 원형이다. 과제 조건부 미래 비디오를 만
 
 한편 3D 구조를 중간물로 끼워 넣는 흐름도 있다. AVDC는 dense correspondence를, VidBot은 사람 영상에서 뽑은 3D 손 trajectory를, Object-centric 3D Motion Field는 객체 중심 3D 모션 구조를 쓴다. NovaFlow는 생성 영상을 실행 가능한 3D object flow로 distillation한다.
 
-예측 모델을 먼저 학습한 뒤 동결하거나 가볍게 적응시켜 별도 policy head에 연결한다. 이 계열을 정의하는 특징이 바로 이 아키텍처 분리다. 모듈성과 재사용 가능한 비디오 prior, 해석 가능한 미래 예측을 얻지만 생성된 미래의 충실도와 제어 가능성이 성능 상한을 정한다. 시각적으로 그럴듯하되 action과 어긋난 예측에서 오차가 누적된다.
+예측 모델을 먼저 학습한 뒤 동결하거나 가볍게 적응시켜 별도 policy head에 연결한다. 이 계열을 정의하는 특징이 바로 이 아키텍처 분리다. 모듈성과 재사용 가능한 비디오 prior, 해석 가능한 미래 예측을 얻지만 생성된 미래의 충실도와 controllability가 성능 상한을 정한다. controllability는 명령한 action 시퀀스를 생성된 미래가 얼마나 정확히 따르는지를 뜻한다. 시각적으로 그럴듯하되 action과 어긋난 예측에서 오차가 누적된다.
 
 **(b) Single-backbone.** 하나의 생성 과정으로 합치는 계열이다. 미래 시각 표현과 action 표현을 이어붙인 `x = [z^v; z^a]`를 공유 backbone `f_θ`가 손상된 입력에서 복원하도록 학습한다(13, 14). 타깃은 인스턴스에 따라 diffusion noise, flow matching의 velocity field, discrete denoising의 masked token이 된다.
 
@@ -333,7 +333,7 @@ Classical control integration (8.4). MPC는 action 최적화를 위해 world mod
 
 Symbolic structure integration (8.5). 심볼릭 표현은 픽셀 기반 rollout에서 long-horizon으로 갈수록 커지는 compounding error를 완화할 수 있다. 다만 적절한 추상화와 지각 접지가 필요하다. 고차원 observation이 사전 정의된 심볼로 잘 매핑되지 않으면 이 방식은 작동하지 않는다. 학습된 지각 표현과 심볼 구조를 결합한 하이브리드가 유망한 방향으로 제시된다.
 
-Evaluation metrics (8.6). 널리 합의된 평가 지표가 없다. 시각적으로 그럴듯해도 action-conditioned dynamics와 인과 일관성, 제어 가능성을 못 지키는 모델이 있다. 반대로 시각적 사실성이 낮아도 계획이나 policy 평가에 유용할 수 있다. 저자들은 과제 성공률과 policy 순위 충실도, 실행 가능성 진단 같은 소수 표준 지표 집합을 세워 그럴듯하기만 한 모델과 실제로 실행 가능한 모델을 구분하자고 제안한다.
+Evaluation metrics (8.6). 널리 합의된 평가 지표가 없다. 시각적으로 그럴듯해도 action-conditioned dynamics와 인과 일관성, controllability를 못 지키는 모델이 있다. 반대로 시각적 사실성이 낮아도 계획이나 policy 평가에 유용할 수 있다. 저자들은 과제 성공률과 policy 순위 충실도, 실행 가능성 진단 같은 소수 표준 지표 집합을 세워 그럴듯하기만 한 모델과 실제로 실행 가능한 모델을 구분하자고 제안한다.
 
 서베이 자체의 한계도 있다. 실험이 없는 taxonomy 서베이라 Table 5와 6의 수치는 모두 원논문이 직접 보고한 값의 취합이고 동일 조건 재현이 아니다. 저자들도 프로토콜이 서로 달라 엄밀한 순위 비교에는 부적합하다고 명시한다. 인용 문헌 상당수가 2026년 arXiv 프리프린트여서 동료 심사를 거치지 않은 결과가 많다는 점도 읽을 때 감안할 부분이다.
 

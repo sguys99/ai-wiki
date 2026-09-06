@@ -106,7 +106,7 @@ figures:
   - id: fig16
     file: assets/jo-2026-groot-n1-5-vla-primer/fig16.png
     raw: raw/articles/jo-2026-groot-n1-5-vla-primer-figures/fig16.png
-    caption: "실제 기기 휴머노이드 평가. 과일 2종 중 지정한 하나를 접시에 담는 과제가 44.0% → 98.8%, 미학습 물체 5종 과제가 84.2%. 셋 다 1,000 demos 기준"
+    caption: "실제 기기 humanoid 평가. 과일 2종 중 지정한 하나를 접시에 담는 과제가 44.0% → 98.8%, 미학습 물체 5종 과제가 84.2%. 셋 다 1,000 demos 기준"
     strategy: fetched
     curated: true
   - id: fig17
@@ -233,7 +233,7 @@ DreamGen은 사람이 teleoperation으로 데이터를 모아야 한다는 비�
 | fig13 | 시뮬레이션 벤치마크 표 | fetched | ★ wiki 권장 (result) |
 | fig14 | 실제 기기 language following / overall success rate | fetched | ★ wiki 권장 (result) |
 | fig15 | scratch 학습 벤치마크 표 | fetched | (선택) |
-| fig16 | 실제 기기 휴머노이드 3열 비교 (44.0 / 98.8 / 84.2) | fetched | ★ wiki 권장 (result) |
+| fig16 | 실제 기기 humanoid 3열 비교 (44.0 / 98.8 / 84.2) | fetched | ★ wiki 권장 (result) |
 | fig17 | 미학습 물체 10종 일반화 (0-shot 15.0 / FLARE 55.0) | fetched | (선택) |
 | fig18 | 전체 페이지 스크린샷 | screenshot | (아카이브) |
 

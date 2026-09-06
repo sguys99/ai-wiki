@@ -265,7 +265,7 @@ UniPi가 이 계열의 원형이다. 과제 조건부 미래 비디오를 만든
 
 3D 구조를 중간물로 삽입하는 보완 흐름도 있다. AVDC는 합성 영상에서 dense correspondence로 action을 복원하고, VidBot은 사람 영상에서 3D 손 trajectory와 상호작용 단서를 뽑는다. Object-centric 3D Motion Field는 객체 중심 3D 모션 구조로 action을 표현하고, NovaFlow는 생성 영상을 실행 가능한 3D object flow로 distillation한다.
 
-이 계열을 정의하는 특징은 아키텍처 분리다. 예측 모델을 먼저 학습한 뒤 동결하거나 가볍게 적응시켜 별도 policy head에 연결하며, action 생성과 함께 최적화하지 않는다. 그 결과 모듈성과 재사용 가능한 비디오 prior, 해석 가능한 미래 예측을 얻는다. 반면 생성된 미래의 충실도와 제어 가능성이 성능 상한을 정하고, 시각적으로 그럴듯하되 action과 어긋난 예측에서 compounding error가 커진다.
+이 계열을 정의하는 특징은 아키텍처 분리다. 예측 모델을 먼저 학습한 뒤 동결하거나 가볍게 적응시켜 별도 policy head에 연결하며, action 생성과 함께 최적화하지 않는다. 그 결과 모듈성과 재사용 가능한 비디오 prior, 해석 가능한 미래 예측을 얻는다. 반면 생성된 미래의 충실도와 controllability가 성능 상한을 정하고, 시각적으로 그럴듯하되 action과 어긋난 예측에서 compounding error가 커진다. controllability는 명령한 action 시퀀스를 생성된 미래가 얼마나 정확히 따르는지를 뜻한다.
 
 ### Single-backbone 통합 생성
 
@@ -440,7 +440,7 @@ Table 2는 이 능력 중심 분류에 대표 기법을 배치한다. 표기에�
 
 같은 단계 안에서 상상을 학습 가능한 디지털 트윈으로 재해석하는 흐름도 있다. DreMa는 Gaussian Splatting과 물리 시뮬레이터를 결합해 조작 가능한 장면 표현을 복원하고 imitation learning용 추가 시연 데이터를 만든다. PhysWorld는 사실적 모션과 물리적으로 실행 가능한 행위 사이의 간극을 겨냥해 생성 영상에서 물리 world model을 복원하고 객체 중심 residual 강화학습으로 예측 모션을 로봇 action에 접지한다. DreamGen은 강한 비디오 생성기를 목표 embodiment에 적응시켜 neural trajectory를 합성하고 latent action 모델링이나 inverse dynamics로 실행 가능한 action을 복원한다. neural trajectory는 video world model이 만들어낸 합성 trajectory 데이터이고, latent action은 두 프레임 사이의 시각적 변화를 action 라벨 없이 부호화한 벡터다.
 
-2단계인 action 제어 가능성 단계에서 질문은 그럴듯한 미래 영상 생성에서 명령한 action 시퀀스를 미래가 얼마나 정확히 따르는지로 옮겨 간다. IRASim은 manipulation을 trajectory-to-video 문제로 정식화하고 각 Transformer 블록 안에 프레임 단위 action 조건화를 넣어 개별 action과 대응 미래 프레임의 alignment를 강화한다. RoboMaster는 manipulation을 여러 국면으로 분해하고 로봇 팔과 조작 대상의 결합 운동을 함께 모델링해 접촉이 풍부한 상황에서 충실도를 높인다. Ctrl-World는 multi-view 공동 예측과 프레임 단위 action 제어, 메모리 기반 long-horizon 생성을 묶어 policy 평가와 표적 개선을 함께 지원한다. EVA는 사후 정렬 관점에서 시각적으로 그럴듯한 rollout과 물리적으로 실행 가능한 로봇 행위 사이의 실행 가능성 간극을 겨냥해 inverse dynamics reward로 world model을 매끄럽고 embodiment에 일관된 action 시퀀스에 맞춘다.
+2단계인 action controllability 단계에서 질문은 그럴듯한 미래 영상 생성에서 명령한 action 시퀀스를 미래가 얼마나 정확히 따르는지로 옮겨 간다. IRASim은 manipulation을 trajectory-to-video 문제로 정식화하고 각 Transformer 블록 안에 프레임 단위 action 조건화를 넣어 개별 action과 대응 미래 프레임의 alignment를 강화한다. RoboMaster는 manipulation을 여러 국면으로 분해하고 로봇 팔과 조작 대상의 결합 운동을 함께 모델링해 접촉이 풍부한 상황에서 충실도를 높인다. Ctrl-World는 multi-view 공동 예측과 프레임 단위 action 제어, 메모리 기반 long-horizon 생성을 묶어 policy 평가와 표적 개선을 함께 지원한다. EVA는 사후 정렬 관점에서 시각적으로 그럴듯한 rollout과 물리적으로 실행 가능한 로봇 행위 사이의 실행 가능성 간극을 겨냥해 inverse dynamics reward로 world model을 매끄럽고 embodiment에 일관된 action 시퀀스에 맞춘다.
 
 3단계인 구조 인식 생성은 저차원 action 시퀀스만으로 조건화하는 대신 마스크와 기하, 시점, 정체성 단서를 부호화해 접촉 관계와 장면 구조를 보존한다. Mask2IV는 행위자와 객체의 상호작용 trajectory를 먼저 예측하고 그 trajectory로 조건화해 영상을 만드는 2단계 설계로 조밀한 사용자 마스크 없이도 상호작용 결과를 제어한다. TesserAct는 표현 공간을 2D 비디오에서 RGB와 depth, normal을 아우르는 4D embodied world model로 확장해 공간 일관성을 높이고 더 강한 inverse dynamics와 policy 학습을 가능하게 한다. RoboVIP는 시각 정체성 프롬프트로 multi-view 비디오 diffusion을 안내해 시간적으로 일관된 multi-view observation을 만들고 manipulation 데이터 증강에 쓴다.
 
@@ -481,7 +481,7 @@ open-loop 층은 모델을 계획기나 제어 루프에 넣지 않고 미래 ob
 
 closed-loop 층에서는 기준이 바뀐다. 픽셀 정확도보다 policy 순위의 일관성과 value 충실도, 결정 신뢰성이 더 유익한 지표로 자리 잡는다. WorldArena는 합성 데이터 생성과 policy 평가, action 계획이라는 기능적 역할로 평가해 시각적 사실성과 embodied 유용성 사이의 간극을 드러낸다. WorldEval은 학습된 world model 안의 rollout이 로봇 policy와 체크포인트의 상대 순서를 보존하는지를 비교 평가로 다룬다. WorldGym은 학습된 모델을 몬테카를로 평가용 상호작용 환경으로 두고 추정된 policy value와 성공 추세가 실세계와 맞는지를 본다. World-in-World는 이질적인 world model을 온라인 계획 과제에 통합하는 단일 인터페이스를 제공해, 예측과 action이 시간에 걸쳐 상호작용할 때 드러나는 compounding error를 노출한다.
 
-진단 층은 더 표적화된 질문을 던진다. WorldSimBench는 지각 평가와 조작 평가를 결합해 생성 영상이 inverse dynamics 복원과 하위 제어를 지탱할 만큼 action 및 환경 동역학과 일관적인지를 묻는다. WoW-World-Eval은 지각과 계획, 예측, 실행, 일반화를 두루 다루면서 물리 법칙과 실행 지향 기준을 도입하고, 생성 영상이 개연성 있고 실행 가능한 행위를 유도하는지 보는 Inverse Dynamics Model 기반 튜링 테스트를 포함한다. 자율주행 쪽 DrivingGen은 시각적 사실성만이 아니라 trajectory 개연성과 시간 일관성, ego 조건화 아래의 제어 가능성으로 평가해 외형 품질과 물리적으로 신뢰할 만한 모션 생성 사이의 상충을 드러낸다. WM-ABench는 공간 및 시간 이해와 모션 지각, 기계적 시뮬레이션, 통제된 반사실 추론 같은 원자 능력으로 평가를 분해한다.
+진단 층은 더 표적화된 질문을 던진다. WorldSimBench는 지각 평가와 조작 평가를 결합해 생성 영상이 inverse dynamics 복원과 하위 제어를 지탱할 만큼 action 및 환경 동역학과 일관적인지를 묻는다. WoW-World-Eval은 지각과 계획, 예측, 실행, 일반화를 두루 다루면서 물리 법칙과 실행 지향 기준을 도입하고, 생성 영상이 개연성 있고 실행 가능한 행위를 유도하는지 보는 Inverse Dynamics Model 기반 튜링 테스트를 포함한다. 자율주행 쪽 DrivingGen은 시각적 사실성만이 아니라 trajectory 개연성과 시간 일관성, ego 조건화 아래의 controllability로 평가해 외형 품질과 물리적으로 신뢰할 만한 모션 생성 사이의 상충을 드러낸다. WM-ABench는 공간 및 시간 이해와 모션 지각, 기계적 시뮬레이션, 통제된 반사실 추론 같은 원자 능력으로 평가를 분해한다.
 
 세 층은 함께 층위 있는 평가 틀을 이룬다. 저자들이 여기서 끌어내는 교훈은 어떤 단일 지표도 embodied world model 평가에 충분하지 않다는 것이다.
 
@@ -621,7 +621,7 @@ Sec 8은 단순한 규모 확대만으로 해결되지 않는 여섯 가지 과�
 - **Multi-modal perception bottlenecks (8.3).** 현재 world model은 시각 합성에는 뛰어나지만 실세계 상호작용의 물리 동역학과는 분리돼 있다. 시각과 proprioception에 치우쳐 마찰과 강성, 접촉 안정성처럼 직접 관찰되지 않는 속성을 잡지 못한다. proprioception은 관절 각도 같은 로봇 자신의 상태 감각 입력이다. 촉각 센서는 고주파 순간 사건을 잡지만 저차원 신호라 joint latent 최적화에서 고차원 시각 특징에 희석되거나 압도되기 쉽다. 주파수와 차원이 다른 비동기 신호를 정렬하고 시각 지배를 막는 것이 구조적 과제다.
 - **Classical control integration (8.4).** MPC는 action 최적화를 위해 world model rollout을 반복해야 해서 고용량 모델의 실시간 배치를 심하게 제약한다. 더 근본적으로는 학습된 동역학의 신경망 표현력과 Lyapunov 안정성이나 robust control 같은 형식적 제어 보증을 어떻게 양립시킬지가 남는다. MPC에 국한하지 않고 성숙한 제어 원리와 학습된 동역학을 융합하는 것이 자기적응형 로봇 시스템으로 가는 경로로 제시된다.
 - **Symbolic structure integration (8.5).** 픽셀 기반 rollout에서 long-horizon으로 갈수록 커지는 compounding error는 계획 신뢰성을 떨어뜨리는데, 심볼릭 표현은 저수준 세부를 추상화하고 이산적이거나 규칙 기반인 전이를 모델링해 이를 완화한다. 다만 적절한 추상화와 지각 접지가 필요하고, 고차원 observation이 사전 정의된 심볼로 깔끔히 매핑되지 않으면 동작하지 않는다. 학습된 지각 표현과 심볼 구조를 결합한 하이브리드가 유망한 방향으로 꼽힌다.
-- **Evaluation metrics (8.6).** 널리 합의된 평가 지표가 없다. 시각적으로 그럴듯해도 action 조건부 동역학과 인과 일관성, 제어 가능성을 못 지키는 모델이 있고, 반대로 시각적 사실성이 낮아도 계획이나 policy 평가에 유용할 수 있다. 저자들은 과제 성공률과 policy 순위 충실도, 실행 가능성 진단 같은 소수 표준 지표 집합을 세워 그럴듯하기만 한 모델과 실제로 실행 가능한 모델을 구분하자고 제안한다.
+- **Evaluation metrics (8.6).** 널리 합의된 평가 지표가 없다. 시각적으로 그럴듯해도 action 조건부 동역학과 인과 일관성, controllability를 못 지키는 모델이 있고, 반대로 시각적 사실성이 낮아도 계획이나 policy 평가에 유용할 수 있다. 저자들은 과제 성공률과 policy 순위 충실도, 실행 가능성 진단 같은 소수 표준 지표 집합을 세워 그럴듯하기만 한 모델과 실제로 실행 가능한 모델을 구분하자고 제안한다.
 
 이 여섯 가지에 더해 서베이 자체의 한계도 읽을 때 감안해야 한다. 실험이 없는 taxonomy 서베이라 Table 5와 Table 6의 수치는 모두 원논문이 직접 보고한 값의 취합이고 동일 조건 재현이 아니다. 저자들도 프로토콜이 서로 달라 엄밀한 순위 비교에는 부적합하다고 명시한다. 또한 인용 문헌 상당수가 2026년 arXiv 프리프린트여서 동료 심사를 거치지 않은 결과가 많다.
 

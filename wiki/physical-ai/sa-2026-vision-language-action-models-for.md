@@ -157,15 +157,15 @@ Gemini Robotics 2 계열은 기술 보고서 없이 출시돼 파라미터 수�
 
 혼합 비율은 도메인 거리를 따른다. pre-training과 닮은 과제는 공격적인 혼합을 견디는 반면, 변형 물체 조작처럼 구조적으로 낯선 과제는 target 데이터 비중을 더 키워야 한다. knowledge insulation은 구조로 같은 문제를 공격해, backbone을 이산 action 토큰으로 감독하되 action expert의 gradient가 backbone으로 흐르지 못하게 막아 혼합 코퍼스 없이도 지시문 따르기 능력을 보존한다.
 
-imitation learning은 시연을 넘어설 수 없고 두 팔 teleoperation이 느리고 조심스러워 양팔 시연은 특히 품질이 낮다. RECAP은 reward 설계 병목을 없애 이 천장을 올리는 루프를 실용화했다. policy가 자율 실행하면 vision-language model이 각 episode를 판정하고, 성공한 episode만 학습셋에 더해 policy를 다시 적합시키는 과정을 반복한다. 접기 과제의 reward를 손으로 설계하는 것은 비현실적인 반면 셔츠가 접힌 상태로 끝났는지 판정하는 일은 vision-language model이 잘하는 일이므로, 별도 모델을 reward 함수로 쓴 것이 핵심이다. 효과는 처리량으로 서술되어, 가장 어려운 과제에서 처리량이 2배를 넘고 실패율이 약 절반이 됐다.
+imitation learning은 시연을 넘어설 수 없고 두 팔 teleoperation이 느리고 조심스러워 양팔 시연은 특히 품질이 낮다. RECAP은 reward 설계 병목을 없애 이 천장을 올리는 루프를 실용화했다. policy가 자율 실행하면 vision-language model이 각 episode를 판정하고, 성공한 episode만 학습셋에 더해 policy를 다시 적합시키는 과정을 반복한다. 접기 과제의 reward를 손으로 설계하는 것은 비현실적인 반면 셔츠가 접힌 상태로 끝났는지 판정하는 일은 vision-language model이 잘하는 일이므로, 별도 모델을 reward 함수로 쓴 것이 핵심이다. 효과는 throughput으로 서술되어, 가장 어려운 과제에서 throughput이 2배를 넘고 실패율이 약 절반이 됐다. throughput은 정해진 시간 안에 끝낸 과제 수를 뜻한다.
 
-| 수집 방식 | 대표 리그 | 비용 | 처리량 | 특징 |
+| 수집 방식 | 대표 리그 | 비용 | throughput | 특징 |
 |---|---|---|---|---|
 | 양방향 teleoperation | ALOHA | 2만 달러 미만 | 시간당 50~100개 | 운동감각 대응이 있어 정교한 작업에 가장 직관적 |
 | 핸드헬드 수집 | UMI | 5천 달러 미만 | 시간당 약 110개 | 로봇 없이 어디서나 수집하고 나중에 retargeting |
 | 자율 수집 | RECAP | 추가 비용 없음 | 시간당 4~12개 | 무인 24시간 운용, 데이터가 policy 자신의 상태 분포에 놓임 |
 
-품질은 과소평가된 변수다. 초보 조작자의 trajectory는 망설임을 그대로 가르치고, 실패 직전에서 회복한 episode가 정상 실행을 하나 더 추가하는 것보다 robustness에 훨씬 크게 기여한다. 데이터 규모에 대한 반응도 영역마다 달라서, cross-embodiment pre-training은 로그 선형으로 증가하고, 과제별 fine-tuning은 급격히 오른 뒤 포화하며(π0 기준 단순 과제는 시연 약 5시간, 접기나 설거지는 100시간 이상), 자율 실습은 회당 로봇 4대에서 약 300개의 trajectory만으로 처리량 2배 초과를 냈다.
+품질은 과소평가된 변수다. 초보 조작자의 trajectory는 망설임을 그대로 가르치고, 실패 직전에서 회복한 episode가 정상 실행을 하나 더 추가하는 것보다 robustness에 훨씬 크게 기여한다. 데이터 규모에 대한 반응도 영역마다 달라서, cross-embodiment pre-training은 로그 선형으로 증가하고, 과제별 fine-tuning은 급격히 오른 뒤 포화하며(π0 기준 단순 과제는 시연 약 5시간, 접기나 설거지는 100시간 이상), 자율 실습은 회당 로봇 4대에서 약 300개의 trajectory만으로 throughput 2배 초과를 냈다.
 
 ### action 표현과 실시간 실행
 
@@ -262,9 +262,9 @@ world model은 반응 대신 예측을 택하는 대안이다. world model은 �
 |---|---|---|---|
 | tight, 변형 물체 | π0 | 80% | 셔츠 접기 |
 | tight, 변형 물체 | π0.5 | 지시 따르기 94%, 과제 성공 83% | 미지 가정의 의류 접기, 분포 내 기준 |
-| tight, 변형 물체 | π0.7 | 100% | 티셔츠와 반바지 접기, RL specialist 대비 약 1.5배 처리량 |
+| tight, 변형 물체 | π0.7 | 100% | 티셔츠와 반바지 접기, RL specialist 대비 약 1.5배 throughput |
 | tight, 강체 | π0.7 | 약 100% | 상자 조립 |
-| tight, long-horizon | π*0.6 | 처리량 2배 초과, 실패율 약 절반 | 실제 가정의 세탁, 상자 조립, 에스프레소 |
+| tight, long-horizon | π*0.6 | throughput 2배 초과, 실패율 약 절반 | 실제 가정의 세탁, 상자 조립, 에스프레소 |
 | 접촉이 많은 정밀 과제 | ACT | 80~90% | 케이블 타이 꿰기, 배터리 삽입. 과제당 시연 약 50개 |
 | cross-embodiment 전이 | π0.7 | 진행도 85.6% | 미지의 양팔 UR5e에서 셔츠 접기. 숙련 teleoperator는 90.9% |
 
@@ -312,7 +312,7 @@ world model은 반응 대신 예측을 택하는 대안이다. world model은 �
 
 ### 배치 기록
 
-배치 기록은 벤치마크가 담지 못하는 차원을 더한다. 다만 이 표의 어떤 수치도 제3자 감사를 거치지 않았으며 모든 신뢰도와 처리량 값이 운영 주체의 자기 보고다.
+배치 기록은 벤치마크가 담지 못하는 차원을 더한다. 다만 이 표의 어떤 수치도 제3자 감사를 거치지 않았으며 모든 신뢰도와 throughput 값이 운영 주체의 자기 보고다.
 
 | 시스템 | 환경 | 보고된 규모와 지표 | VLA |
 |---|---|---|---|

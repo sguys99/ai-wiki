@@ -209,5 +209,5 @@ RT-2-X는 개별 데이터셋에 없던 과제, 즉 emergent skill에서 평가�
 - [[physical-ai/jo-2026-openvla-vla-primer]]: OpenVLA의 한국어 입문 해설. 이 데이터셋에서 어떤 기준으로 학습 데이터를 추렸는지 설명한다.
 - [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]]: 이 데이터셋에서 추린 약 97만 개 시연 데이터로 학습한 오픈소스 VLA. 7B 규모로 55B RT-2-X를 앞섰다.
 - [[physical-ai/zhao-2023-learning-fine-grained-bimanual-manipulation]]: 편입 데이터셋 중 하나인 ALOHA의 원 논문.
-- [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]: cross-embodiment 학습을 휴머노이드로 확장한 후속 계열.
+- [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]: cross-embodiment 학습을 humanoid로 확장한 후속 계열.
 - [[overviews/physical-ai-overview]]: physical-ai 카테고리의 분류 뼈대와 학습 경로 허브.

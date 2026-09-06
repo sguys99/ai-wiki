@@ -112,7 +112,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | compounding error | compounding error | 누적 오차·복합 오차·오차 누적 | compounding error는 policy의 작은 예측 오차가 다음 입력을 어긋나게 만들어 시간이 갈수록 커지는 현상이다 | imitation learning의 근본 난점. action chunking과 temporal ensembling이 이걸 줄이려는 처방이다 |
 | open-loop | open-loop | 개루프·오픈 루프 | open-loop 실행은 한 번 계산한 action 묶음을 중간 피드백 없이 끝까지 내보내는 방식이다 | closed-loop와 짝. action chunk 실행 구간이 곧 open-loop 구간이다 |
 | closed-loop | closed-loop | 폐루프·클로즈드 루프 | closed-loop 제어는 매 timestep 새 observation을 받아 action을 다시 정하는 방식이다 | control frequency 논의의 전제. 저장소에 번역어 "폐루프"가 일부 남아 있어 원어로 고정한다 (2026-09 등재) |
-| asynchronous inference | asynchronous inference | 비동기 추론 | asynchronous inference는 policy의 다음 chunk 계산과 현재 chunk 실행을 겹쳐 돌려 대기 시간을 감추는 실행 방식이다 | SmolVLA가 처리량 개선 수단으로 쓴다. synchronous inference도 원어로 쓴다 |
+| asynchronous inference | asynchronous inference | 비동기 추론 | asynchronous inference는 policy의 다음 chunk 계산과 현재 chunk 실행을 겹쳐 돌려 대기 시간을 감추는 실행 방식이다 | SmolVLA가 throughput 개선 수단으로 쓴다. synchronous inference도 원어로 쓴다 |
 | emergent capability | emergent capability | 창발 능력·창발적 능력·발현 능력 | emergent capability는 학습 데이터에 없던 조합을 모델이 실행해내는 성질을 말한다 | RT-2가 symbol understanding, reasoning, human recognition 세 범주로 제시했다 |
 | layer skipping | layer skipping | 레이어 스킵·층 건너뛰기 | layer skipping은 backbone의 앞쪽 layer만 쓰고 나머지를 생략해 연산량을 줄이는 기법이다 | SmolVLA가 VLM의 절반 layer만 쓰는 근거 |
 | embodied VQA | embodied VQA | 체화 VQA·구현된 VQA | embodied VQA는 로봇 시점 이미지에 대해 조작 가능성이나 다음 단계를 묻고 답하게 하는 질의응답 과제다 | WALL-OSS, π0.5, GR00T 계열이 공유한다. 일반 VQA와 구분해 쓴다 |
@@ -124,6 +124,33 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | data pyramid | data pyramid | 데이터 피라미드 | data pyramid는 웹 데이터, 합성 데이터, 실제 로봇 데이터를 양이 많은 순으로 쌓아 함께 학습에 쓰는 데이터 전략이다 | GR00T N1이 세운 이름 |
 | simulator | 시뮬레이터 | — | 시뮬레이터는 물리 엔진으로 로봇과 환경의 상호작용을 계산해 실제 기기 없이 데이터를 만들고 policy를 평가하는 소프트웨어다 | 저장소 용례가 한글 153회 대 원어 57회로 한글 우세이고, glossary-llms의 benchmark(벤치마크, 음차 정착)와 같은 성격이라 한글로 고정한다. 고유명사(Isaac Sim, MuJoCo, robosuite)와 코드 식별자는 원어 그대로. 기계 검사 없이 지침만 둔다 (2026-09 등재) |
 | long-horizon | long-horizon | 장기 과제·장기 지평·롱 호라이즌 | long-horizon 과제는 여러 단계를 이어야 끝나는 긴 과제를 말한다 | 저장소에 원어 81회 대 번역어 51회로 갈려 있었다. subtask, action chunk와 함께 쓰이는 맥락이라 원어로 고정한다 (2026-09 등재) |
+| humanoid | humanoid | 휴머노이드 | humanoid는 사람과 비슷한 몸 구조를 갖춰 사람용 공간과 도구를 그대로 쓰도록 만든 로봇이다 | 통제 태그 어휘가 `humanoid`라 본문 표기를 태그와 일치시킨다. 음차 "휴머노이드"도 한국어에서 널리 쓰이지만 원어로 고정했다. semi-humanoid 같은 파생 복합어도 원어 (2026-09 등재) |
+| throughput | throughput | 처리량 | throughput은 정해진 시간 안에 처리해낸 과제나 토큰의 수를 말한다 | π*0.6과 π0.7의 공통 배치 지표이자 추론 성능 지표. 성공률과 다른 축이라 함께 읽어야 한다 (2026-09 등재) |
+| task progress | task progress | 과제 진행도 | task progress는 과제를 어디까지 해냈는지를 부분 점수로 재는 평가 지표다 | π 계열 평가 표준. 이진 성공률과 달리 중간 단계 달성을 반영한다 |
+| occupancy | occupancy | — | occupancy는 3D 공간을 격자로 나눠 각 칸이 물체로 차 있는지를 표시한 표현이다 | occupancy grid, 3D occupancy, occupancy forecasting 등 파생도 원어. 일반어 "점유"는 오탐이 커 기계 검사 없이 지침만 둔다 |
+| physical prompt | physical prompt | 물리 프롬프트·물리적 프롬프트 | physical prompt는 언어 예시 대신 센서 데이터와 action trajectory로 이뤄진 sensorimotor 예시를 context window에 넣어 과제를 지시하는 입력이다 | GEN-1.5 고유 개념. physical prompting, physical prompt engineering 파생도 원어 |
+| test-time training | test-time training | 테스트 시점 학습·추론 시 학습 | test-time training은 추론 시점에 소량 데이터로 가중치를 조금 갱신해 적응하는 방식이다 | GEN-1.5가 1~10스텝 적응을 이 이름으로 부른다 |
+| Gaussian Splatting | Gaussian Splatting | 가우시안 스플래팅 | Gaussian Splatting은 장면을 3D 가우시안 분포의 모음으로 표현해 빠르게 렌더링하는 방법이다 | 약어 3DGS 병용 가능. physics-aware generation 계열의 장면 표현 |
+| Material Point Method | Material Point Method | 물질점 방법 | Material Point Method는 물질을 입자로 나눠 격자 위에서 변형과 충돌을 계산하는 시뮬레이션 방법이다 | 약어 MPM 병용 가능 |
+| score distillation sampling | score distillation sampling | 점수 증류 샘플링 | score distillation sampling은 pre-training된 diffusion 모델의 score를 손실로 써서 3D 표현을 최적화하는 기법이다 | 약어 SDS 병용 가능 |
+| kinematic planner | kinematic planner | — | kinematic planner는 동역학을 풀지 않고 관절 각도와 위치만으로 목표까지의 경로를 만들어 컨트롤러에 넘기는 모듈이다 | SONIC 계열의 제어 인터페이스 중 하나. 저장소 용례가 원어로 일관해 기계 검사 없이 지침만 둔다 |
+| loco-manipulation | loco-manipulation | — | loco-manipulation은 이동과 물체 조작을 한 policy로 함께 수행하는 과제 영역이다 | locomotion과 manipulation의 합성어. 팔을 얹은 이동 로봇을 뜻하는 mobile manipulation과 구분한다. "이동 조작"은 mobile manipulation 문맥에서 이미 쓰여 기계 검사에서 뺐다 |
+| world simulator | world simulator | 월드 시뮬레이터·세계 시뮬레이터 | world simulator는 조작 입력에 반응해 물리적으로 일관된 미래 장면을 계속 만들어내는 시스템이다 | world model, world foundation model 행과 짝. 예측 모델을 넘어 상호작용까지 감당하는 도달점으로 쓰인다 |
+| physics-aware generation | physics-aware generation | 물리 인지 생성 | physics-aware generation은 생성 결과가 물리 법칙을 지키도록 물리 지식을 생성 과정에 넣는 접근을 통칭한다 | 약어 PAG 병용 가능. Liu 2025 서베이의 조직 개념 |
+| language coaching | language coaching | 언어 코칭 | language coaching은 실행 중인 로봇에게 사람이 말로 중간 단계를 불러주며 과제를 끌고 가는 방식이다 | π0.7 논문과 발표 글이 공유하는 기법명. subtask 행과 짝을 이룬다 |
+| pseudo-action | pseudo-action | 가짜 action·의사 행동 | pseudo-action은 action 라벨이 없는 영상에 Inverse Dynamics Model 등으로 사후에 붙인 action 라벨이다 | DreamGen과 GR00T N1 계열이 쓴다. diffusion 입력으로 넣는 noise 상태의 action은 이 개념이 아니므로 그 문맥에는 쓰지 않는다 |
+| reference lookahead | reference lookahead | — | reference lookahead는 컨트롤러가 현재 프레임 이후 몇 초 분량의 참조 모션을 미리 받는지를 뜻한다 | SONIC 계열. 컨트롤러에 미리 제시하는 참조 모션의 길이이며 지연 측정치가 아니다 |
+| steerability | steerability | 조종 가능성 | steerability는 사람이 말이나 예시로 로봇의 행동 방식을 원하는 쪽으로 이끌 수 있는 정도를 말한다 | π0.7 논문 제목 용어. world model이 명령한 action을 얼마나 정확히 따르는지를 뜻하는 controllability와 다른 개념이라 서로 바꿔 쓰지 않는다 (2026-09 등재) |
+| controllability | controllability | 제어 가능성 | controllability는 world model이 생성한 미래가 명령으로 준 action을 얼마나 정확히 따르는지를 나타내는 성질이다 | world model 서베이(hou-2026, li-2025, liu-2025, zhang-2026) 공통 평가 개념. 번역어 "제어 가능성"과 "조종 가능성"은 과거 두 개념 모두에 쓰였으므로 치환 시 문맥으로 steerability와 구분한다 (2026-09 등재) |
+| dual-process theory | dual-process theory | 이중 처리 이론 | dual-process theory는 인지를 빠르고 자동적인 System 1과 느리고 숙고적인 System 2로 나눠 보는 심리학 이론이다 | Kahneman의 이론명이라 기법명과 같은 원칙으로 원어를 쓴다. dual-system VLA 행이 이 구도를 로봇 구조로 옮긴 것이다 |
+| domain shift | domain shift | 도메인 이동·도메인 시프트 | domain shift는 학습 데이터의 분포와 실제 입력 분포가 어긋나는 현상이다 | catastrophic forgetting과 짝을 이뤄 fine-tuning 비용을 설명할 때 등장한다 |
+| open-world generalization | open-world generalization | 개방형 일반화·오픈월드 일반화 | open-world generalization은 학습에서 보지 못한 환경과 물체까지 다루는 일반화 능력을 말한다 | π0.5 논문 제목 용어 |
+| regularized RL | regularized RL | 정규화된 강화학습 | regularized RL은 objective에 제약 항을 더해 policy가 검증된 행동에서 크게 벗어나지 않게 막는 강화학습이다 | π*0.6의 RECAP 학습 루프 설명에 등장한다. advantage, sparse reward, policy extraction 행과 한 묶음 |
+| latent goal | latent goal | 잠재 목표 | latent goal은 상위 모델이 하위 policy에 넘기는 조건 벡터를 말한다 | dual-system VLA의 연결 지점. latent 행의 금지 표기와 짝 |
+| coupling tightness | coupling tightness | — | coupling tightness는 두 팔이 함께 쥔 물체를 통해 얼마나 강하게 묶이는지를 나타내는 정도다 | Sa 2026 서베이가 양팔 VLA 문헌을 조직하는 기준으로 independent, loosely coupled, tightly coupled 세 단계를 쓴다. 한글 "결합도"는 조사 결합형("결합도 근거가")과 substring이 충돌해 기계 검사에서 뺐다 |
+| takt time | takt time | 택트 타임·타크트 타임 | takt time은 생산 라인이 한 개를 처리하는 데 허용하는 결정론적 주기다 | 평균 성공률과 종류가 다른 배치 제약이다. 자동차 차체 라인 사례는 84초 |
+| skill distribution | skill distribution | — | skill distribution은 로봇 데이터가 담고 있는 물리적 동작의 분포를 말한다 | RT-2가 낼 수 있는 동작의 상한을 정한다. 저장소 용례가 원어로 일관해 지침만 둔다 |
+| visual token reduction | visual token reduction | — | visual token reduction은 이미지에서 뽑은 토큰 수를 줄여 추론 연산량을 낮추는 기법이다 | SmolVLA의 실시간 제어 설계. layer skipping 행과 짝 |
 
 ## 신규 용어 추가 절차 (Growth Loop)
 

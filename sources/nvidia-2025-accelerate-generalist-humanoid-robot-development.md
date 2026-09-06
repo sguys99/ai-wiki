@@ -15,7 +15,7 @@ figures:
   - id: fig01
     file: assets/nvidia-2025-accelerate-generalist-humanoid-robot-development/fig01.gif
     raw: raw/articles/nvidia-2025-accelerate-generalist-humanoid-robot-development-figures/fig01.gif
-    caption: "대표 이미지. 창고에서 휴머노이드 두 대가 양팔로 물체를 다룬다 (GIF 9MB)"
+    caption: "대표 이미지. 창고에서 humanoid 두 대가 양팔로 물체를 다룬다 (GIF 9MB)"
     strategy: fetched
     curated: false
   - id: fig02
@@ -154,7 +154,7 @@ GR00T N1은 사람의 인지를 본뜬 두 계층으로 나뉜다. System 2는 N
 | Diffusion Policy | 25.6% | 56.1% | 32.7% | 33.4% |
 | Isaac GR00T N1 2B | 32.1% | 66.5% | 50.0% | 45.0% |
 
-실제 기기 평가는 GR-1 휴머노이드의 탁상 조작 과제 네 묶음이다. 학습 데이터를 10%만 줬을 때 차이가 가장 크다.
+실제 기기 평가는 GR-1 humanoid의 탁상 조작 과제 네 묶음이다. 학습 데이터를 10%만 줬을 때 차이가 가장 크다.
 
 | 모델 | Pick-and-Place | Articulated | Industrial | Coordination | 평균 |
 |---|---|---|---|---|---|
@@ -187,7 +187,7 @@ wiki 안에서는 논문 페이지가 정본이다. dual-system 구조를 다른
 | Isaac GR00T Blueprint | 합성 조작 데이터를 대량 생성하는 NVIDIA의 참조 워크플로. 11시간에 trajectory 750,000개 이상을 뽑은 근거 |
 | NVIDIA-Eagle | System 2가 쓰는 NVIDIA의 VLM 계열. 이 글은 SmolLM-1.7B를 결합했다고만 적었다. 논문은 Eagle-2로 명시한다 |
 | SimReady | Isaac Sim에서 물리 속성이 붙은 채로 바로 쓸 수 있게 준비된 3D 에셋 |
-| Fourier GR-1 / 1X Neo | GR00T N1이 하나의 가중치로 동작을 낸 휴머노이드 두 종. 실제 기기 벤치마크는 GR-1로 잰다 |
+| Fourier GR-1 / 1X Neo | GR00T N1이 하나의 가중치로 동작을 낸 humanoid 두 종. 실제 기기 벤치마크는 GR-1로 잰다 |
 | Jetson AGX Orin | 추론 배포 대상으로 지목된 엣지 모듈. 학습이 아니라 실행용이다 |
 | DGX Spark | 대규모 post-training 권장 구성으로 함께 언급된 데스크사이드 시스템 |
 

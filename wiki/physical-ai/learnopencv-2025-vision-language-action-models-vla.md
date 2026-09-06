@@ -114,7 +114,7 @@ emergent capability는 학습 데이터에 없던 조합을 모델이 실행해�
 
 ### System 1과 System 2
 
-글쓴이는 2025년 4월 시점의 SOTA VLA를 Daniel Kahneman의 이중 처리 이론에 빗대 정렬한다. 이 프레임이 글 전체의 배열 기준이다.
+글쓴이는 2025년 4월 시점의 SOTA VLA를 Daniel Kahneman의 dual-process theory에 빗대 정렬한다. dual-process theory는 인지를 빠르고 자동적인 System 1과 느리고 숙고적인 System 2로 나눠 보는 심리학 이론이다. 이 프레임이 글 전체의 배열 기준이다.
 
 | 구분 | 담당 모델 | 역할 | 대표 사례 |
 |---|---|---|---|
@@ -251,7 +251,7 @@ DCT가 시간 영역을 주파수 영역으로 옮기면 저주파와 고주파 
 
 ### Helix
 
-Helix는 Figure AI가 휴머노이드 제어를 겨냥해 만든 비공개 generalist VLA다. 약 500시간 분량의 고품질 멀티로봇 데이터를 지도학습으로 사용했고, GR00T N1과 유사한 분리형 dual-system 구조를 제안한다.
+Helix는 Figure AI가 humanoid 제어를 겨냥해 만든 비공개 generalist VLA다. 약 500시간 분량의 고품질 멀티로봇 데이터를 지도학습으로 사용했고, GR00T N1과 유사한 분리형 dual-system 구조를 제안한다.
 
 | 구성 | 규모 | 입력 | 출력과 주기 |
 |---|---|---|---|
@@ -263,7 +263,7 @@ S1의 vision backbone은 완전 convolution 기반의 다중 스케일 구조이
 글쓴이가 꼽는 Helix의 특징은 넷이다.
 
 - 여러 로봇이 실시간으로 협업하며 정교한 동작을 조율할 수 있다.
-- 머리 시선과 손목, 상체 자세, 개별 손가락까지 휴머노이드 상반신 전체를 높은 주기로 제어한 첫 VLA다.
+- 머리 시선과 손목, 상체 자세, 개별 손가락까지 humanoid 상반신 전체를 높은 주기로 제어한 첫 VLA다.
 - 과제별 fine-tuning 없이도 분포 밖 상황에서 잘 동작한다.
 - 전부 로봇 위에서 실행되어 전력 소모가 적고 BMW 공장에 상용 배치됐다.
 
@@ -273,7 +273,7 @@ S1의 vision backbone은 완전 convolution 기반의 다중 스케일 구조이
 
 ### GR00T N1
 
-GR00T N1은 Helix와 같은 설계 원칙을 따르는 NVIDIA의 오픈 foundation model이다. 2B 규모이고 backbone 이름은 `eagle2_hg_model`이다. 학습 데이터는 Omniverse와 Cosmos에서 만든 합성 데이터와 실제 휴머노이드 데이터를 합친 것이며, pre-training된 policy를 다른 embodiment로 옮겨 쓸 수 있다.
+GR00T N1은 Helix와 같은 설계 원칙을 따르는 NVIDIA의 오픈 foundation model이다. 2B 규모이고 backbone 이름은 `eagle2_hg_model`이다. 학습 데이터는 Omniverse와 Cosmos에서 만든 합성 데이터와 실제 humanoid 데이터를 합친 것이며, pre-training된 policy를 다른 embodiment로 옮겨 쓸 수 있다.
 
 observation과 지시문, 로봇 상태가 토큰으로 인코딩되어 System 2와 System 1을 차례로 통과한다. System 2인 VLM이 vision과 언어로 물리 세계를 해석해 적절한 action을 계획하면, System 1인 Diffusion Transformer가 그 지시를 받아 denoising으로 120Hz의 매끄럽고 정밀한 모터 action을 만든다.
 
@@ -381,7 +381,7 @@ modality 구성도 그대로 찍힌다. video는 `video.ego_view` 하나, 상태
 | ALOHA | 하드웨어 약 2만 달러 | 해당 없음 | 해당 없음 | 설계도와 3D 프린팅 지침 전면 공개 |
 | π0 | PaliGemma 3B + action expert 300M | 50Hz | π Cross-Embodiment 데이터셋 | flow matching, H=50 |
 | Helix | S2 7B VLM + S1 80M Transformer | S1 200Hz | 멀티로봇 약 500시간 | 온보드 실행, BMW 공장 배치 |
-| GR00T N1 | 2B (`eagle2_hg_model`) | S1 120Hz | Omniverse와 Cosmos 합성 + 실제 휴머노이드 | 예측 지평 16스텝 |
+| GR00T N1 | 2B (`eagle2_hg_model`) | S1 120Hz | Omniverse와 Cosmos 합성 + 실제 humanoid | 예측 지평 16스텝 |
 | Gemini Robotics | Gemini 2.0 기반 | 20Hz | 기재 없음 | ER 변종은 action 데이터를 쓰지 않는다 |
 
 수치를 담은 그림은 π0 계열 비교 하나뿐이다.

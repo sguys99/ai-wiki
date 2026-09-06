@@ -52,7 +52,7 @@ figures:
 
 ## 요약
 
-GR00T N1(NVIDIA 2025)을 처음 읽는 사람을 위한 한국어 입문 해설이다. "모두의 로보틱스 - VLA 입문" 시리즈의 03-13편으로, 휴머노이드 로봇 데이터가 모이지 않는 이유에서 출발해 dual-system 구조, flow matching 손실과 추론, data pyramid와 latent action space를 차례로 다룬다.
+GR00T N1(NVIDIA 2025)을 처음 읽는 사람을 위한 한국어 입문 해설이다. "모두의 로보틱스 - VLA 입문" 시리즈의 03-13편으로, humanoid 로봇 데이터가 모이지 않는 이유에서 출발해 dual-system 구조, flow matching 손실과 추론, data pyramid와 latent action space를 차례로 다룬다.
 
 해설의 성격은 도식을 쓰는 방식에서 드러난다. 본문 이미지 20장 가운데 절반 가까이가 원 논문 도식에 빨간 테두리를 덧그린 저자 주석 그림이다. 같은 구조도(원 논문 Figure 3)를 세 번 반복하면서 System 2 영역, System 1 영역, state encoder와 action encoder 입력부를 차례로 짚는다. 또한 flow matching 대목에는 원 논문에 없는 자작 시각화가 한 장 들어간다.
 
@@ -64,7 +64,7 @@ GR00T N1(NVIDIA 2025)을 처음 읽는 사람을 위한 한국어 입문 해설�
 
 | 장벽 | 원인 | 결과 |
 |---|---|---|
-| 데이터 양의 한계 | 휴머노이드 데이터를 대규모로 확보하려면 값비싼 하드웨어와 작업자의 teleoperation이 필요하다 | 단일 하드웨어 환경만으로는 foundation model을 학습시킬 양이 나오지 않는다 |
+| 데이터 양의 한계 | humanoid 데이터를 대규모로 확보하려면 값비싼 하드웨어와 작업자의 teleoperation이 필요하다 | 단일 하드웨어 환경만으로는 foundation model을 학습시킬 양이 나오지 않는다 |
 | 데이터 섬 | 로봇마다 하드웨어 구조, 센서 종류, 관절 자유도(DoF), 제어 방식이 모두 다르다 | 한 로봇에서 수집한 데이터를 다른 로봇의 학습에 적용하기 어렵다 |
 
 teleoperation은 사람이 로봇을 원격으로 움직여 시연 데이터(demonstration)를 만드는 방식이다. 즉 인터넷에서 대규모로 수집할 수 있는 텍스트나 이미지와 달리, 로봇 데이터는 하드웨어 비용과 사람의 조작 시간을 그대로 치러야 얻어진다.
@@ -87,7 +87,7 @@ policy는 현재 observation을 받아 다음 action을 정하는 함수를 말�
 
 flow matching은 noise에서 데이터로 향하는 vector field를 학습해 샘플을 만드는 생성 기법이다. System 1은 무작위 noise에서 출발해 그 noise를 걷어내는 방향으로 이동하며 action을 만든다.
 
-embodiment는 로봇의 물리적 형상과 그에 딸린 제어 구성을 뜻한다. 탁상 매니퓰레이터와 휴머노이드는 관절 수가 다르므로 상태와 action의 차원도 다르다. 따라서 하나의 가중치를 공유하려면 차원 차이를 흡수하는 층이 따로 필요하다.
+embodiment는 로봇의 물리적 형상과 그에 딸린 제어 구성을 뜻한다. 탁상 매니퓰레이터와 humanoid는 관절 수가 다르므로 상태와 action의 차원도 다르다. 따라서 하나의 가중치를 공유하려면 차원 차이를 흡수하는 층이 따로 필요하다.
 
 ### latent action
 
@@ -123,7 +123,7 @@ System 2는 pre-training된 NVIDIA Eagle-2 VLM이다. Eagle-2는 SmolLM2 LLM과 
 
 System 1은 Diffusion Transformer 기반이고 flow matching으로 학습한다. 120Hz로 동작을 생성하므로 로봇이 움직이는 도중에도 즉각 반응할 수 있다.
 
-embodiment마다 다른 상태와 action의 차원은 별도의 MLP 기반 encoder와 decoder가 흡수한다. 즉 차원이 서로 다른 매니퓰레이터와 휴머노이드가 하나의 System 1을 공유할 수 있게 해주는 층이다.
+embodiment마다 다른 상태와 action의 차원은 별도의 MLP 기반 encoder와 decoder가 흡수한다. 즉 차원이 서로 다른 매니퓰레이터와 humanoid가 하나의 System 1을 공유할 수 있게 해주는 층이다.
 
 ![[assets/jo-2026-groot-n1-vla-primer/fig06.png]]
 *Figure 3-b: 같은 구조도에서 System 1 영역을 표시한 저자 주석 그림. DiT 블록과 embodiment별 action decoder가 여기 들어간다 (조인령 2026, 원 논문 Figure 3).*
@@ -191,7 +191,7 @@ data pyramid는 데이터의 양과 질, 그리고 로봇 특화 정도에 따�
 |---|---|---|
 | 기반 계층 | 인터넷 텍스트와 사람 활동 영상 | action 라벨은 없지만 세상에 대한 상식과 사람의 움직임 패턴을 준다 |
 | 중간 계층 | 물리 시뮬레이션(DexMimicGen)과 비디오 생성으로 만든 합성 데이터 | 실제 데이터의 10배 이상을 확보해 학습 데이터의 절대량을 늘린다 |
-| 정점 계층 | 실제 휴머노이드에서 수집한 teleoperation 데이터 | 양은 가장 적지만 실제 물리 법칙과 정밀한 조작 능력을 완성한다 |
+| 정점 계층 | 실제 humanoid에서 수집한 teleoperation 데이터 | 양은 가장 적지만 실제 물리 법칙과 정밀한 조작 능력을 완성한다 |
 
 중간 계층은 양만 늘리는 층이 아니다. 보간 방식으로 원활한 실행을 보장하고, 마지막에 성공한 시연 데이터만 남겨 품질을 걸러낸다.
 
@@ -215,7 +215,7 @@ GR00T N1은 이 문제를 VQ-VAE로 푼다. VQ-VAE는 복잡하고 방대한 데
 
 | 단계 | 쓰는 데이터 | 학습 타깃과 설정 |
 |---|---|---|
-| pre-training | data pyramid 전체 | 기반 계층에는 실제 action이 없으므로 학습된 latent action을 타깃으로 쓴다. GR-1 휴머노이드나 OpenX-Embodiment 같은 로봇 데이터에는 실제 action과 latent action을 함께 쓴다 |
+| pre-training | data pyramid 전체 | 기반 계층에는 실제 action이 없으므로 학습된 latent action을 타깃으로 쓴다. GR-1 humanoid나 OpenX-Embodiment 같은 로봇 데이터에는 실제 action과 latent action을 함께 쓴다 |
 | post-training | 주로 정점 계층 | VLM backbone의 언어 부분은 frozen으로 두고, 데이터가 부족하면 비디오 생성으로 만든 neural trajectory를 1:1 비율로 섞는다 |
 
 neural trajectory는 video world model이 만들어낸 합성 trajectory 데이터다. 즉 실제 로봇을 더 움직이지 않고도 정점 계층의 부족분을 메우는 경로다.
@@ -230,7 +230,7 @@ neural trajectory는 video world model이 만들어낸 합성 trajectory 데이�
 | 동작 품질 | post-training을 마친 GR00T N1의 움직임이 Diffusion Policy보다 부드럽고 grasping 정확도도 상당히 높게 측정됐다 |
 | 데이터 효율 | 10% 데이터로만 학습해도 전체 데이터로 학습한 Diffusion Policy와의 성공률 차이가 3.8%p에 그쳤다 |
 
-emergent capability는 학습 목표로 명시하지 않았는데도 모델과 데이터가 커지면서 나타나는 능력을 가리킨다. 실험 구성은 다음과 같다. 휴머노이드의 왼손 쪽에만 의도적으로 사과를 두고 "빨간 사과를 집어 바구니에 넣어라"라는 지시를 준다. 그러면 모델은 왼손으로 사과를 집어 오른손에 넘긴 뒤 바구니에 담는다.
+emergent capability는 학습 목표로 명시하지 않았는데도 모델과 데이터가 커지면서 나타나는 능력을 가리킨다. 실험 구성은 다음과 같다. humanoid의 왼손 쪽에만 의도적으로 사과를 두고 "빨간 사과를 집어 바구니에 넣어라"라는 지시를 준다. 그러면 모델은 왼손으로 사과를 집어 오른손에 넘긴 뒤 바구니에 담는다.
 
 유사한 과제를 pre-training에서 거의 접하지 않았는데도 나온 동작이므로, 해설은 이를 모델이 동작을 암기한 것이 아니라 목표를 이루려고 신체 자원을 어떻게 쓸지 판단했다는 근거로 읽는다.
 

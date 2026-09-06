@@ -19,6 +19,7 @@ tags: [glossary, terminology, llms, synthesis]
 |---|---|---|---|---|
 | pre-training | pre-training | 사전학습·사전 학습·사전훈련 | pre-training은 대규모 일반 데이터로 모델의 기반 능력을 먼저 학습하는 단계다 | 직역 67회 실측 — 원어로 통일 |
 | fine-tuning | fine-tuning | 미세조정·미세 조정 | fine-tuning은 pre-training된 모델을 특정 과제 데이터로 더 학습시키는 단계다 | "파인튜닝" 음차는 병용 허용 (지침) |
+| post-training | post-training | 사후학습·후속학습 | post-training은 pre-training을 마친 모델을 특정 embodiment나 과제 데이터로 이어서 학습시키는 단계다 | pre-training, fine-tuning 행과 한 묶음. GR00T와 Cosmos 계열이 이 이름을 쓴다. 띄어 쓴 "사후 학습"은 사전 분포와 사후 분포 문맥과 겹쳐 기계 검사에서 뺐다 (2026-09 등재) |
 | co-fine-tuning | co-fine-tuning | — | co-fine-tuning은 로봇 데이터와 웹 데이터를 한 배치에 섞어 함께 fine-tuning하는 레시피다 | RT-2 용어 |
 | distillation | distillation | 증류 | distillation은 큰 모델의 출력을 작은 모델이 흉내 내게 학습시키는 압축 기법이다 | |
 | quantization | 양자화 | 퀀타이제이션 | 양자화는 가중치를 낮은 비트 수로 줄여 모델을 압축하는 기법이다 | 표준 번역 정착(85회, TurboQuant 계열 포함) |

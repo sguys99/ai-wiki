@@ -165,7 +165,7 @@ VLA는 시각 입력과 언어 목표를 실행 가능한 출력으로 잇는다
 
 이 서베이가 가장 공들여 가르는 구분이 여기 있다. LLM의 world knowledge는 무엇이 그럴듯하고 어떤 action이 의미 있는지를 알려주고, world model은 지금 상태와 가능한 action에서 다음에 무엇이 일어날지를 추정한다. world model은 미래 observation, latent state, reward, value, action의 결과를 예측하거나 시뮬레이션하는 모델을 뜻한다.
 
-예측 대상에 따라 세 가지로 나뉜다. 픽셀을 그리는 video 계열에는 GAIA-1과 UniSim 같은 생성형 시뮬레이터와 상호작용 환경 모델 Genie가 있고, Cosmos는 이를 로보틱스, 자율주행, 합성 데이터 생성에 맞춰 조정 가능한 world foundation model로 내세운다. 저자들은 사실적인 영상 생성이 곧 world model은 아니라고 선을 긋는다. 시간적 일관성, 조종 가능성, action 조건화, 물리적 타당성이 함께 있어야 한다. latent 계열은 픽셀 복원 대신 표현 공간에서 예측한다. PlaNet과 Dreamer 같은 model-based 강화학습 계열과 JEPA 계열이 여기 속하고, V-JEPA 2는 자기지도 영상 표현 학습을 로봇 trajectory로 post-training해 action 조건부 예측으로 잇는다. 세 번째는 상호작용과 action 조건부 계열인데, 특정 action을 취했다면 무엇이 달라졌을지를 추정하기 때문에 실행 전 검토, 안전 평가, 복구에 직접 쓰인다.
+예측 대상에 따라 세 가지로 나뉜다. 픽셀을 그리는 video 계열에는 GAIA-1과 UniSim 같은 생성형 시뮬레이터와 상호작용 환경 모델 Genie가 있고, Cosmos는 이를 로보틱스, 자율주행, 합성 데이터 생성에 맞춰 조정 가능한 world foundation model로 내세운다. 저자들은 사실적인 영상 생성이 곧 world model은 아니라고 선을 긋는다. 시간적 일관성, controllability, action 조건화, 물리적 타당성이 함께 있어야 한다. controllability는 명령한 action에 따라 생성된 미래가 얼마나 정확히 달라지는지를 뜻한다. latent 계열은 픽셀 복원 대신 표현 공간에서 예측한다. PlaNet과 Dreamer 같은 model-based 강화학습 계열과 JEPA 계열이 여기 속하고, V-JEPA 2는 자기지도 영상 표현 학습을 로봇 trajectory로 post-training해 action 조건부 예측으로 잇는다. 세 번째는 상호작용과 action 조건부 계열인데, 특정 action을 취했다면 무엇이 달라졌을지를 추정하기 때문에 실행 전 검토, 안전 평가, 복구에 직접 쓰인다.
 
 ### 3.5 모델에서 시스템으로 (Section 6)
 

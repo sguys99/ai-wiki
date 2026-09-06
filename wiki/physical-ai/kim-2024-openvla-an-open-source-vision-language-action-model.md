@@ -286,7 +286,7 @@ Google robot에서는 OpenVLA와 RT-2-X가 대등하고 둘 다 나머지를 크
 
 int4는 bfloat16과 사실상 같은 성능을 내면서 GPU 메모리를 절반 이하로 줄인다. 반면 중간 정밀도인 int8만 13.2%p 낮게 나온다.
 
-원인은 정밀도가 아니라 추론 속도다. 양자화 연산이 더해지면서 8-bit는 대부분의 GPU에서 추론이 느려지는 반면, 4-bit는 GPU 메모리 전송이 줄어드는 이득이 양자화 overhead를 상쇄해 오히려 처리량이 높다. 평가에 쓴 A5000에서 int8은 1.2Hz까지 떨어지는데, 이는 학습 데이터를 모을 때 쓴 5Hz non-blocking controller와 시스템 동역학이 크게 달라진다는 뜻이다. int4는 3Hz로 동작해 학습 당시 동역학에 훨씬 가깝다.
+원인은 정밀도가 아니라 추론 속도다. 양자화 연산이 더해지면서 8-bit는 대부분의 GPU에서 추론이 느려지는 반면, 4-bit는 GPU 메모리 전송이 줄어드는 이득이 양자화 overhead를 상쇄해 오히려 throughput이 높다. 평가에 쓴 A5000에서 int8은 1.2Hz까지 떨어지는데, 이는 학습 데이터를 모을 때 쓴 5Hz non-blocking controller와 시스템 동역학이 크게 달라진다는 뜻이다. int4는 3Hz로 동작해 학습 당시 동역학에 훨씬 가깝다.
 
 ![[assets/kim-2024-openvla-an-open-source-vision-language-action-model/tab02.png]]
 *Table 2: 양자화 추론 성능. int4가 bfloat16 성능을 유지하면서 GPU 메모리를 16.8GB에서 7.0GB로 줄인다 (Kim 2024, Table 2).*
@@ -360,7 +360,7 @@ OpenVLA는 VLA 계보에서 오픈소스 기준점 역할을 한다. RT-2가 연
 ## 한계
 
 - **단일 이미지 입력만 지원한다.** 실제 로봇 setup은 감각 입력 구성이 제각각인데 OpenVLA는 여러 장의 이미지, proprioception, observation history를 아직 받지 못한다. proprioception은 관절 각도 같은 로봇 자신의 상태 감각 입력이다. 이미지와 텍스트가 교차된 데이터로 pre-train된 VLM을 쓰면 더 유연한 입력을 받을 수 있으리라 본다.
-- **추론 처리량이 6Hz에 그친다.** 50Hz로 동작하는 ALOHA 같은 고빈도 setup에는 올릴 수 없고, 그래서 더 정교한 양손 조작 task를 시험하지 못했다. action chunking이나 speculative decoding 같은 추론 최적화가 후속 방향이다.
+- **추론 throughput이 6Hz에 그친다.** 50Hz로 동작하는 ALOHA 같은 고빈도 setup에는 올릴 수 없고, 그래서 더 정교한 양손 조작 task를 시험하지 못했다. action chunking이나 speculative decoding 같은 추론 최적화가 후속 방향이다.
 - **신뢰성이 아직 충분하지 않다.** 선행 generalist policy보다는 낫지만 시험한 task에서 성공률이 대개 90%에 못 미친다.
 - **설계 질문 여러 개가 미해결로 남았다.** base VLM 크기가 VLA 성능에 미치는 영향, 로봇 action 데이터와 인터넷 규모 vision-language 데이터를 co-training했을 때의 효과, VLA에 가장 알맞은 visual feature가 무엇인지는 연산 제약 때문에 답을 내지 못했다.
 

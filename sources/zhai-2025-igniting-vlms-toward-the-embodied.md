@@ -56,7 +56,7 @@ figures:
     kind: figure
     file: assets/zhai-2025-igniting-vlms-toward-the-embodied/fig05.png
     raw: raw/papers/zhai-2025-igniting-vlms-toward-the-embodied-figures/fig05.png
-    caption: "학습 corpus 구성. 자체 수집 action 57.5%, open-source action 33.1%, 멀티모달 VQA 9.4%. 가운데는 각 원천의 예시 프레임, 오른쪽 위는 바퀴형 양팔 로봇과 휴머노이드 하드웨어"
+    caption: "학습 corpus 구성. 자체 수집 action 57.5%, open-source action 33.1%, 멀티모달 VQA 9.4%. 가운데는 각 원천의 예시 프레임, 오른쪽 위는 바퀴형 양팔 로봇과 humanoid 하드웨어"
     page: 7
     bbox_norm: [0.111, 0.072, 0.9608, 0.3808]
     strategy: caption-region
@@ -166,7 +166,7 @@ CoT를 LLM의 텍스트 추론에 한정하지 않고 instruction → reasoning 
 
 ### 데이터
 
-corpus는 1만 시간을 넘고 세 가지로 구성된다. 자체 수집 action 데이터가 57.5%로 가장 크고, open-source action 데이터가 33.1%, 멀티모달 VQA가 9.4%다. 자체 수집분은 탁상형 팔, 이동식 스탠드, 바퀴형 양팔, 바퀴형 휴머노이드에서 주방 청소, 옷 정리, 이동 집기, 조립을 담았다. 여러 모델을 붙인 파이프라인으로 단계별 주석을 달고 사람이 표본 검수해 trajectory 위에 곧바로 CoT 감독을 결합했다.
+corpus는 1만 시간을 넘고 세 가지로 구성된다. 자체 수집 action 데이터가 57.5%로 가장 크고, open-source action 데이터가 33.1%, 멀티모달 VQA가 9.4%다. 자체 수집분은 탁상형 팔, 이동식 스탠드, 바퀴형 양팔, 바퀴형 humanoid에서 주방 청소, 옷 정리, 이동 집기, 조립을 담았다. 여러 모델을 붙인 파이프라인으로 단계별 주석을 달고 사람이 표본 검수해 trajectory 위에 곧바로 CoT 감독을 결합했다.
 
 open-source 쪽은 DROID, BC-Z, BRIDGE 등 24종을 합치는데, 좌표계와 단위(위치는 미터, 각도는 라디안), 자유도 템플릿, 카메라 내외부 파라미터와 타임스탬프, control frequency를 모두 한 규격으로 맞춘다. control frequency는 로봇이 1초에 몇 번 새로운 action을 갱신하는지를 뜻한다.
 

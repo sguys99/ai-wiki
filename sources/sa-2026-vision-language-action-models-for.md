@@ -12,7 +12,7 @@ figures:
   - id: fig01
     file: assets/sa-2026-vision-language-action-models-for/fig01.png
     raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig01.png
-    caption: "Fig. 1: 네 곳의 배치 현장(듀벳 펴는 휴머노이드 2대, Chef Robotics 컨베이어 분배, Physical Intelligence 가정 주방, Boston Dynamics와 DeepMind Atlas 부품 랙). 각 기관 공개 이미지, 저작권은 원소유자"
+    caption: "Fig. 1: 네 곳의 배치 현장(듀벳 펴는 humanoid 2대, Chef Robotics 컨베이어 분배, Physical Intelligence 가정 주방, Boston Dynamics와 DeepMind Atlas 부품 랙). 각 기관 공개 이미지, 저작권은 원소유자"
     page: 1
     strategy: page-region
     curated: false

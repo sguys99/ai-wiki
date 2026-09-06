@@ -154,7 +154,7 @@ Cosmos는 WFM을 pre-trained와 post-trained 둘로 나눈다. pre-trained WFM�
 ![[assets/nvidia-2025-cosmos-world-foundation-model-platform/fig02.png]]
 *Figure 2: pre-trained WFM을 커스텀 데이터로 post-training해 환경별로 특화시키는 구도. 점선은 데이터 루프다 (NVIDIA 2025, p.3)*
 
-post-training 데이터는 목표 환경에서 수집한 prompt와 영상의 쌍이다. prompt 자리에는 텍스트뿐 아니라 action 명령이나 trajectory가 들어갈 수 있어서, 같은 pre-trained 모델이 자율주행 차량용으로도 휴머노이드용으로도 갈라져 나온다.
+post-training 데이터는 목표 환경에서 수집한 prompt와 영상의 쌍이다. prompt 자리에는 텍스트뿐 아니라 action 명령이나 trajectory가 들어갈 수 있어서, 같은 pre-trained 모델이 자율주행 차량용으로도 humanoid용으로도 갈라져 나온다.
 
 이 분리가 비용 구조를 바꾼다. 개발자는 2천만 시간짜리 영상 수집과 H100 1만 장 학습을 되풀이하지 않고, 자기 환경에서 모은 소량 데이터로 fine-tuning만 하면 된다.
 
@@ -236,9 +236,9 @@ shot 분할은 알고리즘 선택이 결과를 크게 가른다. 저자들은 S
 | SHOT | 0.718 | 0.622 | 0.821 | 0.834 |
 | ClipShots | 0.477 | 0.513 | 0.726 | 0.711 |
 
-표의 값은 F1 점수다. 색 히스토그램 임계값을 쓰는 PySceneDetect와 CLIP 임베딩을 덧붙인 Panda70M보다, 학습 기반인 TransNetV2와 AutoShot이 네 데이터셋 모두에서 앞선다. 최종 선택은 TransNetV2인데, 편집이 심한 어려운 전환에서 더 낫고 GPU 가속으로 처리량을 올리기 쉽다는 이유에서다.
+표의 값은 F1 점수다. 색 히스토그램 임계값을 쓰는 PySceneDetect와 CLIP 임베딩을 덧붙인 Panda70M보다, 학습 기반인 TransNetV2와 AutoShot이 네 데이터셋 모두에서 앞선다. 최종 선택은 TransNetV2인데, 편집이 심한 어려운 전환에서 더 낫고 GPU 가속으로 throughput을 올리기 쉽다는 이유에서다.
 
-transcoding 단계에서는 하드웨어 활용이 처리량을 결정한다. NVIDIA L40S는 디코더(NVDEC)와 인코더(NVENC)를 모두 갖고 있어, NVDEC만 있는 H100보다 처리량이 약 17% 높다(초당 영상 0.0674개 대 0.0574개). 여기에 ffmpeg 대신 PyNvideoCodec을 쓰면 초당 0.3702개까지 올라가고, 개선을 모두 합치면 처리량이 약 6.5배가 된다.
+transcoding 단계에서는 하드웨어 활용이 throughput을 결정한다. throughput은 정해진 시간 안에 처리해낸 양을 뜻한다. NVIDIA L40S는 디코더(NVDEC)와 인코더(NVENC)를 모두 갖고 있어, NVDEC만 있는 H100보다 throughput이 약 17% 높다(초당 영상 0.0674개 대 0.0574개). 여기에 ffmpeg 대신 PyNvideoCodec을 쓰면 초당 0.3702개까지 올라가고, 개선을 모두 합치면 throughput이 약 6.5배가 된다.
 
 filtering의 네 항목은 각각 다른 모델이 맡는다.
 
@@ -247,7 +247,7 @@ filtering의 네 항목은 각각 다른 모델이 맡는다.
 - 오버레이 텍스트: InternVideo2 임베딩을 받는 MLP 이진 분류기를 쓴다. 원래 장면에 있던 글자가 아니라 후처리로 덧붙인 자막을 겨냥한다
 - 영상 유형: 자체 분류 체계로 라벨을 붙여 추상 패턴과 게임 화면과 애니메이션을 제외하고, 사람의 행위와 관련된 카테고리는 upsampling한다
 
-annotation은 VILA 13B를 영상 캡션용으로 fine-tuning해 쓴다. 클립에서 8프레임을 균등 추출해 넣으면 평균 559자, 97단어짜리 캡션이 나온다. FP8로 양자화한 TensorRT-LLM 엔진을 쓰면 처리량이 PyTorch FP16 기준 초당 0.21개에서 1.96개로 약 10배가 된다.
+annotation은 VILA 13B를 영상 캡션용으로 fine-tuning해 쓴다. 클립에서 8프레임을 균등 추출해 넣으면 평균 559자, 97단어짜리 캡션이 나온다. FP8로 양자화한 TensorRT-LLM 엔진을 쓰면 throughput이 PyTorch FP16 기준 초당 0.21개에서 1.96개로 약 10배가 된다.
 
 중복 제거는 SemDeDup과 DataComp의 방식을 따른다. filtering에서 이미 계산한 InternVideo2 임베딩을 다시 써서 k=10,000으로 k-means 군집을 만들고, 군집 안에서만 쌍별 거리를 계산해 중복을 찾는다. 중복이 발견되면 해상도가 가장 높은 영상을 남긴다.
 
@@ -350,12 +350,12 @@ autoregressive 계열은 Llama3 스타일 GPT를 영상 토큰 예측용으로 �
 
 추론 쪽에서는 LLM 최적화 기법을 그대로 가져온다. KV 캐시, tensor parallelism, torch.compile에 더해 Medusa 방식의 추측 디코딩을 적용했다. Medusa head는 backbone 뒤에 붙어 뒤따르는 토큰 여러 개를 병렬로 예측하고, 그 결과를 rejection sampling으로 검증한다.
 
-| 모델 | head 없을 때 처리량 | head 9개일 때 처리량 | forward pass 변화 |
+| 모델 | head 없을 때 throughput | head 9개일 때 throughput | forward pass 변화 |
 |---|---|---|---|
 | Cosmos-Predict1-4B | 초당 444.95토큰 | 초당 894.67토큰 | 7,680회에서 1,812회로 |
 | Cosmos-Predict1-5B-Video2World | 초당 303.61토큰 | 초당 982.77토큰 | 10,240회에서 1,799회로 |
 
-head를 9개 둘 때 처리량이 4B에서 2.0배, 5B에서 3.2배가 된다. head를 12개로 더 늘리면 forward pass는 줄지만 처리량이 오히려 떨어져, 9개가 절충점이다. fine-tuning 범위도 실험으로 정했다. Medusa head만 학습시키면 다중 토큰 예측이 부정확하고 전체를 fine-tuning하면 품질이 떨어져, 마지막 두 Transformer layer와 unembedding layer만 여는 방식을 골랐다.
+head를 9개 둘 때 throughput이 4B에서 2.0배, 5B에서 3.2배가 된다. head를 12개로 더 늘리면 forward pass는 줄지만 throughput이 오히려 떨어져, 9개가 절충점이다. fine-tuning 범위도 실험으로 정했다. Medusa head만 학습시키면 다중 토큰 예측이 부정확하고 전체를 fine-tuning하면 품질이 떨어져, 마지막 두 Transformer layer와 unembedding layer만 여는 방식을 골랐다.
 
 해상도를 320×512로 낮추면 실시간 생성에 닿는다. 목표 Physical AI 도메인 영상으로 토크나이저와 4B 모델을 차례로 fine-tuning하고 Medusa head를 붙이면 초당 10.08프레임이 나와, 10FPS 영상을 실시간으로 생성한다.
 
@@ -466,7 +466,7 @@ camera control은 단일 참조 이미지에서 출발해 3D 공간을 이동할
 
 robot manipulation은 두 과제로 나뉜다. 하나는 현재 프레임과 지시문(instruction)을 받아 그 지시를 따르는 영상을 예측하는 과제이고, 다른 하나는 현재 프레임과 action 벡터를 받아 다음 프레임을 예측하는 과제다. 뒤쪽은 action 시퀀스를 차례로 넣어 autoregressive하게 영상 전체를 만들 수 있다.
 
-지시문 조건 예측에는 Cosmos-1X 데이터셋을 만들어 썼다. 1X Technologies의 휴머노이드 EVE가 1인칭으로 찍은 약 200시간 영상에서 1초에서 9초 사이 episode 약 1만 2천 개를 골랐고, 30FPS 512×512 해상도에 한 문장짜리 지시문 라벨을 붙인 뒤 VLM으로 늘렸다. 과제는 내비게이션, 옷 개기, 탁자 닦기, 물체 집기 등이다.
+지시문 조건 예측에는 Cosmos-1X 데이터셋을 만들어 썼다. 1X Technologies의 humanoid EVE가 1인칭으로 찍은 약 200시간 영상에서 1초에서 9초 사이 episode 약 1만 2천 개를 골랐고, 30FPS 512×512 해상도에 한 문장짜리 지시문 라벨을 붙인 뒤 VLM으로 늘렸다. 과제는 내비게이션, 옷 개기, 탁자 닦기, 물체 집기 등이다.
 
 평가는 사람이 했다. 평가자 10명이 같은 지시문으로 만든 익명 영상 쌍을 놓고 네 기준으로 비교했다. 지시 따르기, 물체 유지, 사실성, 그리고 로봇이 계획을 세우기에 적절한가를 묻는 종합 판단이다. 23개 episode에 대한 결과에서 7B 모델은 종합 선호도 78.3%로 기준선 VideoLDM-Instruction의 13.0%를 크게 앞섰고, 물체 유지 항목에서는 82.6% 대 8.7%였다. 5B 모델도 네 기준 모두에서 기준선보다 선호도가 높았다.
 
@@ -551,7 +551,7 @@ autoregressive 계열에는 별도의 한계가 하나 더 있다. prompt upsamp
 - [[physical-ai/reuss-2026-pretrained-to-imagine-fine-tuned]]: 영상으로 pre-training한 뒤 action으로 fine-tuning하는 world-action model 흐름. Cosmos의 2단 구도와 같은 계보다
 - [[physical-ai/liu-2025-generative-physical-ai-in-vision]]: 생성 모델로 물리를 다루는 연구 전반을 정리한 서베이. physics alignment 문제의식이 겹친다
 - [[physical-ai/9bow-2026-physics-aware-generation-world-simulator]]: 위 서베이를 한국어로 풀어 쓴 해설. 생성과 시뮬레이션의 구분을 먼저 잡고 싶을 때 읽는다
-- [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]: 같은 NVIDIA의 휴머노이드 VLA. Cosmos가 세상의 디지털 트윈이라면 GR00T는 자기 자신의 디지털 트윈에 해당한다
+- [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]: 같은 NVIDIA의 humanoid VLA. Cosmos가 세상의 디지털 트윈이라면 GR00T는 자기 자신의 디지털 트윈에 해당한다
 - [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]]: Bridge 데이터셋의 그리퍼 7차원 action 규격을 Cosmos의 action 조건 post-training이 그대로 따른다
 - [[physical-ai/zhang-2026-a-survey-of-physical-ai]]: Physical AI를 LLM의 world knowledge에서 출발시키는 서베이. Cosmos는 그 좌표계에서 시각 예측 층에 놓인다
 - [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]: humanoid whole-body control foundation model. Cosmos의 discrete 토크나이저와 같은 FSQ 양자화를 써서 서로 다른 입력을 하나의 토큰 공간에 담는다

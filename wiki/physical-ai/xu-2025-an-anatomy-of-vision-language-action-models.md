@@ -126,7 +126,7 @@ policy는 현재 observation을 받아 다음 action을 정하는 함수를 말�
 
 observation은 매 timestep에 policy가 받는 센서 입력이다. 카메라 이미지가 기본이고, 여기에 로봇 자신의 관절 상태를 알려주는 proprioception, 그리고 촉각이나 힘 센서가 더해질 수 있다.
 
-embodiment는 로봇의 물리적 형상과 그에 딸린 제어 인터페이스 구성을 뜻한다. 같은 "컵을 집어라"라는 지시문이라도 단일 팔 로봇과 양팔 휴머노이드가 내야 할 action은 전혀 다르므로, 서로 다른 embodiment의 데이터를 하나의 모델로 묶는 문제가 이 분야의 반복 주제다.
+embodiment는 로봇의 물리적 형상과 그에 딸린 제어 인터페이스 구성을 뜻한다. 같은 "컵을 집어라"라는 지시문이라도 단일 팔 로봇과 양팔 humanoid가 내야 할 action은 전혀 다르므로, 서로 다른 embodiment의 데이터를 하나의 모델로 묶는 문제가 이 분야의 반복 주제다.
 
 long-horizon 과제는 여러 단계를 이어야 끝나는 긴 과제를 말한다. 예를 들어 "부엌을 치워라"는 물체를 찾고 집고 옮기고 놓는 단계가 수십 번 반복되는 과제이며, 단일 skill을 잘 실행하는 것과는 다른 능력을 요구한다.
 
@@ -211,9 +211,9 @@ action space 표현은 성능과 학습 난이도 사이의 절충이다. 이산
 | 2022 | 대형 모델과 일반화 학습의 시작 | SayCan(LLM planning과 저수준 skill 실행 분리), Inner Monologue(언어 모델을 연속 피드백 루프에 삽입), RT-1과 RT-2(end-to-end 학습) |
 | 2023 | 통합 multi-modal backbone, 생성적 action 모델링, cross-embodiment 데이터 확장 | PaLM-E(시각과 상태 표현을 LLM에 직접 삽입), Diffusion Policy, Open X-Embodiment |
 | 2024 | 오픈소스 확장, generalist policy, flow 기반 action 생성, 웹 규모 영상 pre-training, 3D world modeling | Octo, OpenVLA(첫 완전 오픈소스 7B VLA), π0, GR-2, 3D-VLA |
-| 2025 | 다원적 진화 | Humanoid-VLA와 GR00T N1(전신 휴머노이드 제어), PointVLA와 Cosmos-Reason1과 CoT-VLA(open-world 추론), π0.5와 LUMOS와 VLA-RL과 GEN-0(계층, 추론, 제어의 통합) |
+| 2025 | 다원적 진화 | Humanoid-VLA와 GR00T N1(전신 humanoid 제어), PointVLA와 Cosmos-Reason1과 CoT-VLA(open-world 추론), π0.5와 LUMOS와 VLA-RL과 GEN-0(계층, 추론, 제어의 통합) |
 
-2025년의 세 방향은 성격이 서로 다르다. 첫째는 embodiment 확장이며 전신 휴머노이드 제어가 여기 해당한다. 둘째는 추론 심화이며 Cosmos-Reason1이 물리적으로 근거 있는 추론을 표준화하고 CoT-VLA가 subgoal image를 중간 추론 단계로 예측한다. 셋째는 통합이며 π0.5가 계층형 Transformer로 고수준 추론과 저수준 제어를 하나로 묶고 GEN-0이 로보틱스 scaling law의 초기 증거를 제시했다.
+2025년의 세 방향은 성격이 서로 다르다. 첫째는 embodiment 확장이며 전신 humanoid 제어가 여기 해당한다. 둘째는 추론 심화이며 Cosmos-Reason1이 물리적으로 근거 있는 추론을 표준화하고 CoT-VLA가 subgoal image를 중간 추론 단계로 예측한다. 셋째는 통합이며 π0.5가 계층형 Transformer로 고수준 추론과 저수준 제어를 하나로 묶고 GEN-0이 로보틱스 scaling law의 초기 증거를 제시했다.
 
 ## 5대 도전 과제
 
@@ -370,7 +370,7 @@ reward 설계는 VLM과 LLM에 맡기는 흐름이다. 세 방향이 있다.
 | BridgeData V2 (2023) | 실제 기기 manipulation | trajectory 60,096개, 실제 환경 24곳, 핵심 조작 skill 13종 | WidowX 로봇 팔, VR teleoperation과 스크립트 |
 | DROID (2024) | 실제 기기 manipulation | episode 약 7만 6천 개(약 350시간), 실제 장면 564곳, 과제 86종 | Franka Emika Panda, 조작자 50명의 VR teleoperation |
 | Open X-Embodiment (2023) | 실제 기기 manipulation | trajectory 100만 개 이상, 통합 장면 16만 개 이상, skill 527종, 로봇 22종 | 실제 로봇 데이터의 대규모 통합 |
-| AgiBot World (2024) | 실제 기기 manipulation | trajectory 100만 개 이상, 5개 도메인, 과제 217종 | 양팔 휴머노이드 로봇 다수를 갖춘 전용 시설 |
+| AgiBot World (2024) | 실제 기기 manipulation | trajectory 100만 개 이상, 5개 도메인, 과제 217종 | 양팔 humanoid 로봇 다수를 갖춘 전용 시설 |
 | Ego4D (2021) | 사람 중심 egocentric | 약 3,700시간(클립 약 100만 개), 9개국 74개 장소 | 사람의 1인칭 영상 |
 | HOI4D (2022) | 사람 중심 egocentric | 시퀀스 약 4,000개, 실내 장면 610곳, 16개 범주에 걸친 과제 54종 | 머리 착용형 듀얼 RGB-D |
 | HD-EPIC (2025) | 사람 중심 egocentric | 물체 이동 경로 약 4,881개, 실제 부엌 9곳 | 착용형 센서(Project Aria 안경) |

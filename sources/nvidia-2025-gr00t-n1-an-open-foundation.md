@@ -224,7 +224,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-NVIDIA가 공개한 휴머노이드용 VLA foundation model. Eagle-2 VLM(System 2)이 10Hz로 상황을 해석하고 flow-matching DiT(System 1)가 120Hz로 모터 액션을 뽑는다. 두 System을 dual-system으로 묶어 end-to-end로 함께 학습한다. pre-training 코퍼스는 human video와 합성 비디오, 실제 로봇 trajectory를 data pyramid로 쌓아 만든다.
+NVIDIA가 공개한 humanoid용 VLA foundation model. Eagle-2 VLM(System 2)이 10Hz로 상황을 해석하고 flow-matching DiT(System 1)가 120Hz로 모터 액션을 뽑는다. 두 System을 dual-system으로 묶어 end-to-end로 함께 학습한다. pre-training 코퍼스는 human video와 합성 비디오, 실제 로봇 trajectory를 data pyramid로 쌓아 만든다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -239,7 +239,7 @@ VLM 기반 추론 모듈(System 2)과 DiT 기반 액션 모듈(System 1)이 하�
 
 pre-training은 대규모 일반 데이터로 모델의 기반 능력을 먼저 학습하는 단계다. 여기에는 human video와 시뮬레이션 데이터, neural 생성 데이터, 실제 로봇 시연 데이터(demonstration)를 섞어 쓴다. 저자들은 이 혼합 코퍼스를 data pyramid라고 부른다. 아래로 갈수록 양이 많고 embodiment 특수성이 낮다.
 
-탁상 단일 팔부터 dexterous hand를 단 휴머노이드까지 한 체크포인트가 커버한다. policy는 observation을 받아 다음 action을 정하는 함수를 말한다. GR00T N1은 단일 가중치로 여러 embodiment를 지원하는 다중 태스크 language-conditioned policy이고 소량 데이터로 post-training하면 새 태스크에 빠르게 적응한다.
+탁상 단일 팔부터 dexterous hand를 단 humanoid까지 한 체크포인트가 커버한다. policy는 observation을 받아 다음 action을 정하는 함수를 말한다. GR00T N1은 단일 가중치로 여러 embodiment를 지원하는 다중 태스크 language-conditioned policy이고 소량 데이터로 post-training하면 새 태스크에 빠르게 적응한다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -275,7 +275,7 @@ pre-training은 flow-matching 손실 하나로 전체 코퍼스를 학습한다.
 
 ### pre-training 코퍼스
 
-실제 로봇 데이터에는 자체 수집한 Fourier GR-1 휴머노이드 데이터가 들어간다. VIVE Ultimate Tracker로 손목, Xsens Metagloves로 손가락을 잡고 20Hz로 제어하며 atomic/aggregate 2단으로 주석했다. 여기에 OpenX-Embodiment 중 RT-1, Bridge-v2, Language Table, DROID, MUTEX, RoboSet, Plex와 AgiBot-Alpha 140,000개 trajectory를 더했다.
+실제 로봇 데이터에는 자체 수집한 Fourier GR-1 humanoid 데이터가 들어간다. VIVE Ultimate Tracker로 손목, Xsens Metagloves로 손가락을 잡고 20Hz로 제어하며 atomic/aggregate 2단으로 주석했다. 여기에 OpenX-Embodiment 중 RT-1, Bridge-v2, Language Table, DROID, MUTEX, RoboSet, Plex와 AgiBot-Alpha 140,000개 trajectory를 더했다.
 
 합성 데이터는 RoboCasa 프레임워크 위에 "A를 B에서 C로 재배치" 구조의 태스크를 세우고 source와 target receptacle 조합 54종에 각 10,000개씩, 총 54만 개 시연 데이터를 DexMimicGen으로 만들었다. Neural trajectory는 실제 로봇 3,000샘플(480P 해상도 81프레임)로 100 epoch 파인튜닝한 비디오 모델을 써서 827시간을 만들었다. L40에서 1초 영상에 2분이 걸린다. 3,600장에 약 10만 5천 GPU 시간(1.5일)이 들었다.
 
@@ -283,7 +283,7 @@ Human video는 Ego4D, Ego-Exo4D, Assembly-101, EPIC-KITCHENS, HOI4D, HoloAssist,
 
 ### 시뮬레이션
 
-RoboCasa Kitchen 24태스크(Franka Panda), DexMimicGen 9태스크(bimanual Panda 그리퍼, dexterous hand, GR-1 휴머노이드 3종 embodiment), GR-1 Tabletop 24태스크에서 BC-Transformer와 Diffusion Policy를 비교한다. 태스크당 시연 데이터 100개 기준:
+RoboCasa Kitchen 24태스크(Franka Panda), DexMimicGen 9태스크(bimanual Panda 그리퍼, dexterous hand, GR-1 humanoid 3종 embodiment), GR-1 Tabletop 24태스크에서 BC-Transformer와 Diffusion Policy를 비교한다. 태스크당 시연 데이터 100개 기준:
 
 | 모델 | RoboCasa | DexMG | GR-1 | 평균 |
 |---|---|---|---|---|
@@ -297,7 +297,7 @@ GR-1 태스크의 격차가 17%p를 넘는다. 평가는 100 trial 평균, 마�
 
 Pre-training 체크포인트만으로 두 태스크를 재봤다. bimanual 태스크는 왼손으로 잡아 오른손에 넘긴 뒤 선반에 놓는 동작인데 여기서 76.6%(11.5/15)가 나왔다. 처음 보는 객체를 처음 보는 컨테이너에 넣는 태스크는 73.3%(11/15)다. 0.5점은 잡기는 했으나 넣지 못한 경우다.
 
-Post-training 비교는 GR-1 휴머노이드에서 Diffusion Policy를 상대로 한다.
+Post-training 비교는 GR-1 humanoid에서 Diffusion Policy를 상대로 한다.
 
 | 모델 | Pick-and-Place | Articulated | Industrial | Coordination | 평균 |
 |---|---|---|---|---|---|
@@ -324,7 +324,7 @@ RoboCasa "Turn Sink Spout"에서 100 샘플 구간 DP가 11.8%, GR00T N1이 42.2
 
 합성 데이터의 한계도 명시했다. 비디오 생성과 자동 trajectory 합성이 유망하지만 물리 법칙을 지키면서 다양하고 counterfactual한 데이터를 만드는 일은 여전히 어렵다. 그래서 합성 데이터의 품질과 변동성이 부족하다.
 
-위에서 본 사후학습 능력 손실(손 간 전달)은 논문이 정성 관찰로만 다루고 정량 평가는 하지 않았다. 다중 라운드 비디오 생성이나 액체와 관절 객체의 neural trajectory도 예시만 보여주고 downstream 정량 평가는 후속 과제로 남겼다.
+위에서 본 post-training 능력 손실(손 간 전달)은 논문이 정성 관찰로만 다루고 정량 평가는 하지 않았다. 다중 라운드 비디오 생성이나 액체와 관절 객체의 neural trajectory도 예시만 보여주고 downstream 정량 평가는 후속 과제로 남겼다.
 
 ## 6. 관련 연구 (Related Work)
 

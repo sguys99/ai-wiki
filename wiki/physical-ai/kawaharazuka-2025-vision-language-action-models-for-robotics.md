@@ -243,7 +243,7 @@ backbone 선택지는 매우 다양하다.
 
 self-supervised learning은 modality 정렬과 시각 표현 학습, latent action 표현 학습 세 목적에 쓰인다. 예를 들어 TRA는 대조 학습으로 현재 상태와 미래 상태의 표현을 같은 latent 공간에 맞춘다.
 
-강화학습은 두 방식으로 결합된다. 하나는 강화학습으로 VLA를 직접 fine-tuning하는 것이다. iRe-VLA는 전문가 데이터 지도학습과 성공 여부를 reward로 쓰는 온라인 강화학습을 번갈아 반복하고, ConRFT는 소수 시연으로 imitation learning을 한 뒤 오프라인 강화학습으로 Q 함수를 배우고 사람 개입을 섞어 온라인으로 다듬는다. VLA-RL은 그리퍼 동작과 과제 진행도에서 조밀한 유사 reward를 만들어 sparse reward 문제를 완화한다.
+강화학습은 두 방식으로 결합된다. 하나는 강화학습으로 VLA를 직접 fine-tuning하는 것이다. iRe-VLA는 전문가 데이터 지도학습과 성공 여부를 reward로 쓰는 온라인 강화학습을 번갈아 반복하고, ConRFT는 소수 시연으로 imitation learning을 한 뒤 오프라인 강화학습으로 Q 함수를 배우고 사람 개입을 섞어 온라인으로 다듬는다. VLA-RL은 그리퍼 동작과 task progress에서 조밀한 유사 reward를 만들어 sparse reward 문제를 완화한다. task progress는 과제를 어디까지 해냈는지를 부분 점수로 재는 지표를 말한다.
 
 DSRL은 이 계열에서 가장 큰 성능 개선을 보고한다. diffusion 체인을 통한 역전파의 불안정을 피하려고 diffusion policy의 latent noise 공간에서 강화학습을 수행하는데, VLA 본체의 파라미터를 갱신하지 않고도 1만 개 샘플만으로 π0의 성공률을 약 20%에서 100% 근처까지 끌어올린다.
 
@@ -256,7 +256,7 @@ post-training 단계에서 backbone을 얼릴지 전체를 fine-tuning할지는 
 | 기준 | backbone freeze | full fine-tuning |
 |---|---|---|
 | 연산 효율 | 그래디언트가 action head에만 흘러 소비자용 GPU로도 학습할 수 있다 | 대규모 GPU 클러스터와 긴 학습 시간이 필요해 접근성이 낮다 |
-| 도메인 적응 | 로봇 특유의 시각 패턴과 도메인 지식에 맞추지 못한다 | perception과 제어를 함께 최적화해 도메인 이동에 대응한다 |
+| 도메인 적응 | 로봇 특유의 시각 패턴과 도메인 지식에 맞추지 못한다 | perception과 제어를 함께 최적화해 domain shift에 대응한다 |
 | 성능 대비 자원 | LoRA 같은 파라미터 효율 기법이 중간 절충안이 된다 | 데이터와 연산이 충분하면 과제 성능이 가장 높다 |
 | 지식 보존 | 웹 스케일에서 배운 표현이 그대로 유지된다 | 일반 vision-language 능력이 훼손될 위험이 있다 |
 
@@ -280,7 +280,7 @@ OpenVLA는 LoRA만으로도 경쟁력 있는 성능을 내면서 메모리와 �
 | proxy device | 로봇 대신 사람이 든 장치로 시연을 만든다 | UMI, DexUMI, Dobb-E, DexCap, DexWild | 로봇 없이 확장할 수 있다. UMI는 GoPro를 단 손잡이형 그리퍼로 6자유도 경로를 visual SLAM으로 추정한다 |
 | 사람 데이터 | 사람의 자연스러운 행동을 1인칭으로 기록한다 | Ego4D, EPIC-KITCHENS, Project Aria, Ego-Exo4D | 가장 확장적이지만 action 라벨이 없어 latent action 같은 우회가 필요하다 |
 
-leader와 follower 로봇이 모두 필요한 ALOHA 방식과 달리 AnyTeleop은 RGB 카메라 한 대로 MediaPipe를 써서 사람 손의 위치와 자세를 추정하고 CuRobo로 로봇에 retargeting한다. Open-Television은 Apple Vision Pro로 손과 머리 자세를 추정해 휴머노이드 teleoperation을 지원한다.
+leader와 follower 로봇이 모두 필요한 ALOHA 방식과 달리 AnyTeleop은 RGB 카메라 한 대로 MediaPipe를 써서 사람 손의 위치와 자세를 추정하고 CuRobo로 로봇에 retargeting한다. Open-Television은 Apple Vision Pro로 손과 머리 자세를 추정해 humanoid teleoperation을 지원한다.
 
 언어 라벨을 붙이는 비용도 무시할 수 없다. Language Table은 teleoperation 데이터에 크라우드소싱으로 언어 라벨을 달아 약 60만 개의 언어 라벨 trajectory를 만들었고, DROID는 18개 기관 분산 수집으로 7만 6천 개 trajectory와 350시간을 모아 마찬가지로 크라우드소싱 라벨을 붙였다. 최근에는 이 라벨링을 foundation model로 자동화한다. ECoT와 EMMA-X는 Grounding DINO와 SAM으로 물체와 그리퍼를 찾고 Gemini로 상위 계획과 subtask를 만들며, NILS는 사람 개입 없이 긴 영상을 분할해 지시문을 생성한다. 다만 자동 라벨링은 세밀한 장면 이해가 어렵고 환각 위험이 있어, 텍스트에만 의존하는 방식보다 시각 입력에 근거한 방식이 안정적이라고 논문은 짚는다.
 
@@ -352,7 +352,7 @@ VLA의 평가 지표는 아직 정립되지 않았다. 실제 기기에서 일�
 | RoboCasa | 조작 | RGB | MuJoCo | 사실적 렌더링의 주방 장면 120개와 물체 2,500개, 과제 100개 |
 | LIBERO | 조작 | RGB | MuJoCo | 현재 VLA 평가에 가장 널리 쓰인다. 4개 suite에 과제 130개 |
 | Meta-World | 조작 | pose | MuJoCo | Sawyer 팔로 과제 50개. multi-task와 meta 강화학습용 |
-| LeVERB-Bench | 주행, whole-body control | RGB | PhysX | 휴머노이드 제어. vision-language 과제 154개와 언어 전용 과제 460개 |
+| LeVERB-Bench | 주행, whole-body control | RGB | PhysX | humanoid 제어. vision-language 과제 154개와 언어 전용 과제 460개 |
 | ManiSkill 3 | 주행, 조작, whole-body control | RGB-D, point cloud | PhysX | GPU 병렬 시뮬레이션. 관절 물체와 변형 물체를 포함한다 |
 | RoboTwin | 조작 | RGB-D | PhysX | 양팔 조작 전용. 과제 50개, 물체 731개, embodiment 5종 |
 | Ravens | 조작 | RGB-D | PyBullet | 테이블 위 조작 과제 10개 |
@@ -383,7 +383,7 @@ Section VIII은 실전 지침 여섯 가지를 제시한다.
 | action은 생성 방식으로 continuous하게 낸다 | discrete token은 부드러움과 정밀도에서 불리하다. diffusion이나 flow matching을 쓴다 |
 | pre-training에 gradient insulation을 적용한다 | 무작위 초기화된 action head의 그래디언트가 backbone의 상식 지식 표현을 훼손한다 |
 | 적응은 경량 방법부터 시작한다 | 전체 fine-tuning은 연산 부담이 크다. GPU 클러스터가 없으면 action head만 학습하거나 LoRA를 쓴다 |
-| world model과 latent action을 도입한다 | 휴머노이드는 사람과 embodiment가 가까워 사람 영상 pre-training의 이득이 크다. 라벨이 없으므로 latent action을 대리 목표로 삼는다 |
+| world model과 latent action을 도입한다 | humanoid는 사람과 embodiment가 가까워 사람 영상 pre-training의 이득이 크다. 라벨이 없으므로 latent action을 대리 목표로 삼는다 |
 | 보조 과제로 multi-task 학습을 붙인다 | affordance 추정, keypoint 검출, 미래 상태 예측, 대상 물체 분할이 action 생성에 맞는 표현을 만든다 |
 
 이 여섯 항목은 서로 독립적이지 않다. 데이터 다양성 확보와 latent action 도입은 로봇 데이터 부족이라는 같은 문제를 다른 경로로 푸는 처방이고, gradient insulation과 경량 적응은 pre-training된 backbone의 지식을 지키는 목적을 공유한다.

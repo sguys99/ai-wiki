@@ -85,18 +85,18 @@ figures:
 
 ## 요약
 
-GR00T N1은 NVIDIA가 공개한 휴머노이드 로봇용 VLA foundation model이다. foundation model은 여러 하위 과제의 기반이 되는 대규모 범용 모델을 말한다. 카메라 이미지와 지시문(instruction)을 받아 모터 action을 출력하며, 탁상 단일 팔부터 dexterous hand를 단 휴머노이드까지 하나의 가중치로 지원한다.
+GR00T N1은 NVIDIA가 공개한 humanoid 로봇용 VLA foundation model이다. foundation model은 여러 하위 과제의 기반이 되는 대규모 범용 모델을 말한다. 카메라 이미지와 지시문(instruction)을 받아 모터 action을 출력하며, 탁상 단일 팔부터 dexterous hand를 단 humanoid까지 하나의 가중치로 지원한다.
 
 구조의 특징은 처리 주기가 다른 두 모듈을 하나의 학습 프레임워크로 묶은 dual-system 설계다. Eagle-2 VLM이 10Hz로 장면과 지시문을 해석하고, flow matching으로 학습한 Diffusion Transformer가 120Hz로 모터 action을 생성한다. 두 모듈은 따로 학습해 이어붙인 파이프라인이 아니라 학습 중 함께 최적화되는 하나의 모델이다.
 
-다만 이 논문의 실질적 기여는 아키텍처보다 데이터 전략에 있다. 휴머노이드에는 인터넷 규모의 공용 데이터셋이 없고, 로봇마다 센서와 자유도가 달라 기존 데이터는 서로 호환되지 않는 데이터 섬으로 흩어져 있다. GR00T N1은 이 섬들을 data pyramid로 쌓아 하나의 손실 함수 아래에서 함께 학습한다. GR00T-N1-2B 체크포인트와 학습 데이터, 시뮬레이션 벤치마크를 모두 공개했으므로 이후 GR00T 계열과 오픈소스 VLA 연구가 이 논문을 공통 기준점으로 삼는다.
+다만 이 논문의 실질적 기여는 아키텍처보다 데이터 전략에 있다. humanoid에는 인터넷 규모의 공용 데이터셋이 없고, 로봇마다 센서와 자유도가 달라 기존 데이터는 서로 호환되지 않는 데이터 섬으로 흩어져 있다. GR00T N1은 이 섬들을 data pyramid로 쌓아 하나의 손실 함수 아래에서 함께 학습한다. GR00T-N1-2B 체크포인트와 학습 데이터, 시뮬레이션 벤치마크를 모두 공개했으므로 이후 GR00T 계열과 오픈소스 VLA 연구가 이 논문을 공통 기준점으로 삼는다.
 
 ![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig01.png]]
 *Figure 1: data pyramid. 아래에서 위로 갈수록 데이터 양은 줄고 embodiment 특수성은 커진다 (NVIDIA 2025, p.2).*
 
 ## 배경
 
-로봇 foundation model을 막는 병목은 모델 크기가 아니라 데이터다. 텍스트와 이미지는 웹에서 대규모로 수집되지만, 휴머노이드 데이터는 값비싼 하드웨어와 사람의 조작 시간을 그대로 치러야 얻어진다. teleoperation은 사람이 로봇을 원격으로 움직여 시연 데이터(demonstration)를 만드는 방식이며, 이 논문이 직접 모은 데이터도 전부 여기서 나왔다.
+로봇 foundation model을 막는 병목은 모델 크기가 아니라 데이터다. 텍스트와 이미지는 웹에서 대규모로 수집되지만, humanoid 데이터는 값비싼 하드웨어와 사람의 조작 시간을 그대로 치러야 얻어진다. teleoperation은 사람이 로봇을 원격으로 움직여 시연 데이터(demonstration)를 만드는 방식이며, 이 논문이 직접 모은 데이터도 전부 여기서 나왔다.
 
 두 번째 병목은 데이터 섬 현상이다. Open X-Embodiment처럼 여러 로봇의 데이터를 모으는 cross-embodiment 시도가 있었지만, 로봇 형상과 센서, 액추에이터 자유도, 제어 모드가 제각각이라 하나의 일관된 대규모 데이터셋이 되지 못했다. 논문은 이 상태를 통합된 데이터셋이 아니라 섬들이 흩어진 군도에 비유한다.
 
@@ -177,7 +177,7 @@ human egocentric video와 neural trajectory에는 실행에 쓸 action이 없다
 
 ### 시뮬레이션 trajectory 증식
 
-세 번째 데이터 경로는 시뮬레이터 안에서 시연 데이터를 자동으로 불리는 것이다. 휴머노이드는 양팔과 dexterous hand를 동시에 제어해야 해서 실제 수집 비용이 특히 크므로, 논문은 DexMimicGen으로 소수의 사람 시연 데이터를 증식한다. 태스크를 물체 중심 subtask로 분해해 사람 시연 데이터를 구간으로 자르고, 각 구간을 새 물체 위치에 맞춰 변환하되 end-effector와 물체의 상대 pose를 유지한 뒤, 구간 사이를 보간해 이어붙이고 성공한 것만 남긴다.
+세 번째 데이터 경로는 시뮬레이터 안에서 시연 데이터를 자동으로 불리는 것이다. humanoid는 양팔과 dexterous hand를 동시에 제어해야 해서 실제 수집 비용이 특히 크므로, 논문은 DexMimicGen으로 소수의 사람 시연 데이터를 증식한다. 태스크를 물체 중심 subtask로 분해해 사람 시연 데이터를 구간으로 자르고, 각 구간을 새 물체 위치에 맞춰 변환하되 end-effector와 물체의 상대 pose를 유지한 뒤, 구간 사이를 보간해 이어붙이고 성공한 것만 남긴다.
 
 규모는 다음과 같다. pre-training용으로 source와 target 수납 조합 54종에 각 1만 개씩 총 54만 개를 만들었고, post-training까지 합치면 78만 개다. 사람 시연 데이터로 환산하면 6,500시간, 연속 9개월에 해당하는 양을 11시간 만에 확보한 셈이다.
 
@@ -216,7 +216,7 @@ pre-training 코퍼스는 실제 로봇 데이터, 합성 데이터, human video
 | neural trajectory | 2,380만 | 827.3시간 |
 | 합계 | 5억 9,290만 | 8,375.7시간 |
 
-자체 수집한 실제 로봇 데이터는 Fourier GR-1 휴머노이드로 모았다. VIVE Ultimate Tracker가 조작자의 손목 pose를, Xsens Metagloves가 손가락 움직임을 잡고, 기록된 사람 동작은 역기구학으로 휴머노이드 action에 맞게 retargeting된다. teleoperation은 20Hz로 동작하며 머리 장착 카메라 영상과 저차원 proprioception을 함께 기록한다. proprioception은 관절 각도 같은 로봇 자신의 상태 감각 입력이다. 주석은 잡기와 옮기기 같은 원자 단위와 그것들을 묶은 상위 태스크 단위 두 층으로 붙는다.
+자체 수집한 실제 로봇 데이터는 Fourier GR-1 humanoid로 모았다. VIVE Ultimate Tracker가 조작자의 손목 pose를, Xsens Metagloves가 손가락 움직임을 잡고, 기록된 사람 동작은 역기구학으로 humanoid action에 맞게 retargeting된다. teleoperation은 20Hz로 동작하며 머리 장착 카메라 영상과 저차원 proprioception을 함께 기록한다. proprioception은 관절 각도 같은 로봇 자신의 상태 감각 입력이다. 주석은 잡기와 옮기기 같은 원자 단위와 그것들을 묶은 상위 태스크 단위 두 층으로 붙는다.
 
 여기에 공개 데이터셋이 더해진다. OpenX-Embodiment 중에서는 RT-1, Bridge-v2, Language Table, DROID, MUTEX, RoboSet, Plex를 골랐고, AgiBot-Alpha에서는 학습 시작 시점에 공개돼 있던 14만 개 trajectory를 썼다. human video는 Ego4D, Ego-Exo4D, Assembly-101, EPIC-KITCHENS, HOI4D, HoloAssist, RH20T-Human 일곱 개다.
 
@@ -228,7 +228,7 @@ pre-training 코퍼스는 실제 로봇 데이터, 합성 데이터, human video
 | GR-1 Neural Videos | 827.3 | 비디오 생성 모델이 만든 neural trajectory |
 | GR-1 Teleop Pre-Training | 88.4 | 자체 수집, 20 FPS egocentric |
 
-자체 수집한 실제 휴머노이드 데이터가 88.4시간으로 전체의 1%에 못 미친다는 점이 data pyramid 전략의 출발점이다. 즉 꼭대기 층이 얇기 때문에 아래 두 층을 함께 학습에 넣어야 한다.
+자체 수집한 실제 humanoid 데이터가 88.4시간으로 전체의 1%에 못 미친다는 점이 data pyramid 전략의 출발점이다. 즉 꼭대기 층이 얇기 때문에 아래 두 층을 함께 학습에 넣어야 한다.
 
 ## 평가 설계
 
@@ -237,8 +237,8 @@ pre-training 코퍼스는 실제 로봇 데이터, 합성 데이터, human video
 | 벤치마크 | 태스크 수 | embodiment | observation 구성 |
 |---|---|---|---|
 | RoboCasa Kitchen | 24 | Franka Emika Panda 단일 팔 | left, right, wrist 3개 RGB 카메라 |
-| DexMimicGen Cross-Embodiment | 9 | 양팔 Panda 그리퍼, 양팔 Panda dexterous hand, GR-1 휴머노이드 | 태스크별 상이 |
-| GR-1 Tabletop | 24 | Fourier dexterous hand를 단 GR-1 휴머노이드 | 머리 장착 egocentric 카메라 1대 |
+| DexMimicGen Cross-Embodiment | 9 | 양팔 Panda 그리퍼, 양팔 Panda dexterous hand, GR-1 humanoid | 태스크별 상이 |
+| GR-1 Tabletop | 24 | Fourier dexterous hand를 단 GR-1 humanoid | 머리 장착 egocentric 카메라 1대 |
 
 RoboCasa는 집기와 놓기, 문 여닫기, 버튼 누르기 같은 기초 감각운동 능력을 다루는 atomic 태스크로 구성된다. GR-1 Tabletop은 실제 실험과 형태가 같은 재배치 태스크 18개에 관절이 있는 물체를 여닫는 태스크 6개를 더한 것이며, 수납 조합은 pre-training 데이터에 없던 것으로 골랐다.
 
@@ -265,7 +265,7 @@ RoboCasa는 집기와 놓기, 문 여닫기, 버튼 누르기 같은 기초 감�
 | Diffusion Policy | 25.6% | 56.1% | 32.7% | 33.4% |
 | GR00T-N1-2B | 32.1% | 66.5% | 50.0% | 45.0% |
 
-격차가 가장 큰 곳은 GR-1 Tabletop이다. 32.7%에서 50.0%로 17.3%p 차이가 나는데, 이 벤치마크가 dexterous hand를 단 휴머노이드를 쓰고 물체 종류와 배치가 가장 다양하다는 점을 감안하면 pre-training의 효과가 어려운 embodiment에서 크게 나타난다고 읽을 수 있다.
+격차가 가장 큰 곳은 GR-1 Tabletop이다. 32.7%에서 50.0%로 17.3%p 차이가 나는데, 이 벤치마크가 dexterous hand를 단 humanoid를 쓰고 물체 종류와 배치가 가장 다양하다는 점을 감안하면 pre-training의 효과가 어려운 embodiment에서 크게 나타난다고 읽을 수 있다.
 
 데이터 양을 바꿔가며 Diffusion Policy와 비교하면 이득의 성격이 더 분명해진다.
 
@@ -285,7 +285,7 @@ GR-1 항목에서 GR00T N1은 시연 데이터 30개만으로 43.2%를 기록해
 
 ### 실제 로봇 실험
 
-GR-1 휴머노이드에서는 Diffusion Policy와 두 데이터 조건으로 비교한다.
+GR-1 humanoid에서는 Diffusion Policy와 두 데이터 조건으로 비교한다.
 
 | 모델 | Pick-and-Place | Articulated | Industrial | Coordination | 평균 |
 |---|---|---|---|---|---|
@@ -318,9 +318,9 @@ post-training 없이 pre-training 체크포인트만으로도 두 가지 태스�
 | RoboCasa, 시연 데이터 30개 구간 | +4.2%p |
 | RoboCasa, 시연 데이터 100개 구간 | +8.8%p |
 | RoboCasa, 시연 데이터 300개 구간 | +6.8%p |
-| 실제 GR-1 휴머노이드 8개 태스크 평균 | +5.8%p |
+| 실제 GR-1 humanoid 8개 태스크 평균 | +5.8%p |
 
-라벨 방식에 따른 차이도 드러난다. 데이터가 가장 적은 30개 구간에서는 latent action이 Inverse Dynamics Model보다 약간 앞서지만, 100개와 300개로 갈수록 IDM 쪽이 벌어진다. IDM 학습에 쓸 데이터가 늘면 pseudo-action이 실제 action에 가까워져 전이가 강해진다는 것이 논문의 설명이다. GR-1 휴머노이드는 상대적으로 데이터가 많은 조건이라 실제 로봇 co-training에는 IDM이 붙인 action만 사용했다.
+라벨 방식에 따른 차이도 드러난다. 데이터가 가장 적은 30개 구간에서는 latent action이 Inverse Dynamics Model보다 약간 앞서지만, 100개와 300개로 갈수록 IDM 쪽이 벌어진다. IDM 학습에 쓸 데이터가 늘면 pseudo-action이 실제 action에 가까워져 전이가 강해진다는 것이 논문의 설명이다. GR-1 humanoid는 상대적으로 데이터가 많은 조건이라 실제 로봇 co-training에는 IDM이 붙인 action만 사용했다.
 
 ![[assets/nvidia-2025-gr00t-n1-an-open-foundation/fig09.png]]
 *Figure 9: neural trajectory co-training ablation. 시뮬레이션은 세 데이터 구간에서, 실제 로봇은 저데이터 구간에서만 측정했다 (NVIDIA 2025, p.16).*
@@ -335,14 +335,14 @@ post-training 없이 pre-training 체크포인트만으로도 두 가지 태스�
 
 ## 한계
 
-- 과제 범위가 좁다. 현재 모델은 작업 반경이 짧은 탁상 조작에 초점을 맞추고 있다. long-horizon loco-manipulation으로 넓히려면 휴머노이드 하드웨어와 모델 아키텍처, 학습 코퍼스가 모두 함께 발전해야 한다고 적었다.
+- 과제 범위가 좁다. 현재 모델은 작업 반경이 짧은 탁상 조작에 초점을 맞추고 있다. long-horizon loco-manipulation으로 넓히려면 humanoid 하드웨어와 모델 아키텍처, 학습 코퍼스가 모두 함께 발전해야 한다고 적었다.
 - vision-language backbone이 더 강해져야 한다. 저자들은 backbone이 개선되면 spatial reasoning과 언어 이해, 적응력이 함께 나아질 것으로 본다.
 - 합성 데이터의 품질과 변동성이 부족하다. 비디오 생성과 자동 trajectory 합성이 유망하지만, 물리 법칙을 지키면서 다양하고 counterfactual한 데이터를 만드는 일은 여전히 어렵다.
 - 일부 관찰이 정량화되지 않았다. post-training에서 손 사이 전달 능력을 잃은 사례, 여러 라운드에 걸친 영상 생성, 액체와 관절 물체의 neural trajectory는 예시만 제시하고 downstream 정량 평가는 후속 과제로 남겼다.
 
 ## 저장소 안에서의 위치
 
-GR00T N1은 이 저장소에서 조작 계열 dual-system VLA의 기준점 역할을 한다. whole-body control 계보와 견주면 분업이 뚜렷한데, whole-body control은 균형과 이동을 포함해 몸 전체를 함께 제어하는 문제다. [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]과 [[physical-ai/nvlabs-gr00t-wholebodycontrol]]이 휴머노이드의 균형과 locomotion을 담당하고, GR00T N1은 그 위에서 동작하는 조작 policy를 다룬다.
+GR00T N1은 이 저장소에서 조작 계열 dual-system VLA의 기준점 역할을 한다. whole-body control 계보와 견주면 분업이 뚜렷한데, whole-body control은 균형과 이동을 포함해 몸 전체를 함께 제어하는 문제다. [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]과 [[physical-ai/nvlabs-gr00t-wholebodycontrol]]이 humanoid의 균형과 locomotion을 담당하고, GR00T N1은 그 위에서 동작하는 조작 policy를 다룬다.
 
 neural trajectory는 world model 논의와 직접 이어진다. [[physical-ai/hou-2026-world-model-for-robot-learning]] 서베이가 지목한 병목은 그럴듯한 미래 영상에서 action에 alignment된 실행 가능한 미래로 넘어가는 지점인데, 이 논문의 latent action 대 IDM 비교가 정확히 같은 문제를 재고 있다.
 

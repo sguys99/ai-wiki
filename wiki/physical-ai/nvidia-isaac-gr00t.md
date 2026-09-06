@@ -24,7 +24,7 @@ GA는 General Availability의 약어로, 상용 배포와 지원, 안정성 보�
 
 ## 배경
 
-GR00T N1.7은 다양한 로봇 데이터로 학습한 cross-embodiment VLA다. 양팔 로봇, 반휴머노이드, 대규모 휴머노이드 데이터를 섞어 학습했고, 언어와 이미지를 입력으로 받아 여러 환경에서 manipulation 과제를 수행한다. manipulation은 팔과 손으로 물체를 다루는 과제 영역을 말한다.
+GR00T N1.7은 다양한 로봇 데이터로 학습한 cross-embodiment VLA다. 양팔 로봇, semi-humanoid, 대규모 humanoid 데이터를 섞어 학습했고, 언어와 이미지를 입력으로 받아 여러 환경에서 manipulation 과제를 수행한다. manipulation은 팔과 손으로 물체를 다루는 과제 영역을 말한다.
 
 저장소가 안내하는 사용 흐름은 다섯 단계다. 이 순서가 문서 전체의 뼈대이기도 하다.
 

@@ -116,7 +116,7 @@ DATA 절은 embodiment 중심의 다원 데이터셋을 구성한 이유로 두 
 | 멀티모달 VQA 데이터 | 언어와 시각 능력 유지 및 공간과 시간 추론 감독 추가 |
 
 ![[assets/x2robot-2025-wall-oss-project-page/fig03.jpg]]
-*Figure 5: 학습 corpus 구성. 자체 수집 action 57.5%, open-source action 33.1%, 멀티모달 VQA 9.4%이고 오른쪽 위는 바퀴형 양팔 로봇과 휴머노이드 하드웨어다. 이미지에 인쇄된 라벨은 Figure 4지만 논문 최종본에서는 Figure 5다 (X Square Robot 2025)*
+*Figure 5: 학습 corpus 구성. 자체 수집 action 57.5%, open-source action 33.1%, 멀티모달 VQA 9.4%이고 오른쪽 위는 바퀴형 양팔 로봇과 humanoid 하드웨어다. 이미지에 인쇄된 라벨은 Figure 4지만 논문 최종본에서는 Figure 5다 (X Square Robot 2025)*
 
 도식은 본문이 비율을 밝히지 않은 세 부분의 구성비를 보여 준다. 자체 수집 데이터가 57.5%로 가장 크고, open-source action이 33.1%, 멀티모달 VQA가 9.4%다. 즉 절반 이상이 회사가 직접 모은 데이터이고, VQA는 열에 하나 정도로 섞여 있다.
 

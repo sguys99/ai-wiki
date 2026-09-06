@@ -195,7 +195,7 @@ RSSM 중심 연구도 토큰 수준 의존성을 끌어들이기 시작했다. M
 
 로보틱스 쪽에서는 IRIS와 TWM이 이산 토큰으로 데이터 효율적 강화학습을 했고, WorldVLA는 vision, language, action을 하나의 토큰 공간에 묶어 도메인 적응력이 있는 generalist 에이전트를 만들었다. DreamZero는 pre-training된 video diffusion backbone 위에 World Action Model을 세워 언어와 시각 이력, proprioception으로부터 미래 영상과 action을 autoregressive하게 예측하며 실시간 closed-loop 제어를 지원한다.
 
-객체 중심 접근도 한 묶음을 이룬다. CarFormer는 장면을 슬롯의 집합으로 표현하고 BEV에서 슬롯 사이 관계를 autoregressive하게 모델링하며, Dyn-O는 Mamba와 드롭아웃 스케줄링으로 정적 요소와 동적 요소를 분리한다. 효율 쪽에서는 MineWorld가 시퀀스를 병렬로 예측해 토큰 생성을 가속하고 IDM을 제어 가능성 지표로 도입했다.
+객체 중심 접근도 한 묶음을 이룬다. CarFormer는 장면을 슬롯의 집합으로 표현하고 BEV에서 슬롯 사이 관계를 autoregressive하게 모델링하며, Dyn-O는 Mamba와 드롭아웃 스케줄링으로 정적 요소와 동적 요소를 분리한다. 효율 쪽에서는 MineWorld가 시퀀스를 병렬로 예측해 토큰 생성을 가속하고 IDM을 controllability 지표로 도입했다. controllability는 생성된 미래가 명령한 action을 얼마나 정확히 따르는지를 뜻한다.
 
 명시적 추론을 주입하는 방향도 있다. NavCoT는 내비게이션을 상상, 필터링, 예측으로 분해해 파라미터 효율적 도메인 내 학습을 가능하게 했고, ECoT는 foundation model 파이프라인으로 추론 라벨을 생성해 VLA policy를 학습시킨다. MineDreamer는 Chain-of-Imagination을 도입해 멀티모달 LLM이 미래 observation을 상상하고 그것으로 diffusion을 조종하게 했으며, FSDrive는 물리 제약을 건 미래 장면을 생성해 이를 Chain-of-Thought 감독으로 쓴다. Statler는 LLM이 구조화된 world state를 유지하도록 reader와 writer를 나눴고, Inner Monologue는 closed-loop 피드백을 LLM에 결합했다.
 
