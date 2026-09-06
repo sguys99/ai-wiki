@@ -17,6 +17,11 @@ sources/·wiki/ 한글 산문에서 다음을 잡는다:
     python3 scripts/lint_style.py --all                 # sources/ + wiki/ + index.md 전체
     python3 scripts/lint_style.py --all --strict        # error 1건 이상이면 exit 1
     python3 scripts/lint_style.py --json <file>         # 훅용 JSON 출력
+    python3 scripts/lint_style.py --category agents     # 그 카테고리만 (전체 스캔 후 필터)
+    python3 scripts/lint_style.py --category a,b <file> [<file> ...]   # 지정 파일 목록을 필터
+
+--category 는 파일 frontmatter의 category: 로 대상을 좁힌다. category: 가 없는 파일은
+대상에서 빼되, index.md 만 예외로 "## Agents (agents)" 꼴 절의 라인 범위 경고만 남겨 포함한다.
 
 대상 파일 규약 (lint_terms.py와 동일한 방식):
 - frontmatter에 lint_style: false 가 있으면 파일 전체 제외 (원문 인용 보존용 — 남용 금지).
@@ -101,6 +106,88 @@ def collect_targets(root, args_files, scan_all):
         if re.match(r"wiki/overviews/glossary-.*\.md$", s):
             continue
         out.append(p)
+    return out
+
+
+# ── --category 대상 선택 ────────────────────────────────────────────────
+# sources/ 가 flat 구조라 카테고리 판별은 frontmatter category: 로만 가능하다.
+# 배치 작업의 완료 게이트가 "이 카테고리만 0건"을 반복 요구해서 인자로 뺐다.
+
+RE_INDEX_SECTION = re.compile(r"^##\s+.*\(([A-Za-z0-9_-]+)\)\s*$")
+
+
+def parse_categories(values):
+    """--category 인자 정규화 → 소문자 집합. 반복 지정과 쉼표 구분을 모두 받는다."""
+    names = set()
+    for value in values or ():
+        for name in value.split(","):
+            name = name.strip().strip("'\"").lower()
+            if name:
+                names.add(name)
+    return names
+
+
+def index_section_ranges(path, categories):
+    """index.md 의 카테고리 절 라인 범위 → [(start, end), ...] (1-based, 양끝 포함).
+
+    절 헤딩은 "## Physical AI (physical-ai)" 처럼 괄호 안에 카테고리 slug를 담는다.
+    헤딩 라인부터 다음 "## " 헤딩 직전까지가 그 절의 범위다.
+    """
+    lines = path.read_text(encoding="utf-8").splitlines()
+    sections = []
+    current = None  # (category, start)
+    in_fence = False
+    for lineno, line in enumerate(lines, start=1):
+        stripped = line.strip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            continue
+        if in_fence or not line.startswith("## "):
+            continue
+        if current is not None:
+            sections.append((current[0], current[1], lineno - 1))
+            current = None
+        m = RE_INDEX_SECTION.match(line)
+        if m:
+            current = (m.group(1).lower(), lineno)
+    if current is not None:
+        sections.append((current[0], current[1], len(lines)))
+    return [(start, end) for category, start, end in sections if category in categories]
+
+
+def apply_category_filter(targets, categories, root):
+    """대상을 카테고리로 좁힌다 → (파일 목록, {index.md: [(start, end), ...]}).
+
+    파일 frontmatter의 category: 로 판정하고, category: 가 없는 파일은 제외한다.
+    index.md 만 예외로 남기되 해당 카테고리 절의 라인 범위 경고만 인정한다 —
+    배치 완료 게이트가 "index.md 절 축소"와 "카테고리 lint 0건"을 늘 짝으로 요구해서다.
+    """
+    kept = []
+    index_ranges = {}
+    for path in targets:
+        rel = str(path.relative_to(root) if path.is_relative_to(root) else path)
+        if not path.exists():
+            kept.append(path)  # 없는 파일 안내는 호출부가 그대로 담당한다
+            continue
+        if rel == "index.md":
+            ranges = index_section_ranges(path, categories)
+            if ranges:
+                index_ranges[rel] = ranges
+                kept.append(path)
+            continue
+        fm, _ = parse_frontmatter(path.read_text(encoding="utf-8").splitlines())
+        if fm.get("category", "").strip().strip("'\"").lower() in categories:
+            kept.append(path)
+    return kept, index_ranges
+
+
+def filter_index_warnings(warnings, index_ranges):
+    """index.md 경고를 선택된 절의 라인 범위 안으로 좁힌다. 다른 파일은 그대로 통과."""
+    out = []
+    for w in warnings:
+        ranges = index_ranges.get(w["file"])
+        if ranges is None or any(start <= w["line"] <= end for start, end in ranges):
+            out.append(w)
     return out
 
 
@@ -217,22 +304,36 @@ def lint_file(path, root):
 
 def main():
     ap = argparse.ArgumentParser(description="wiki 교재 문체 가이드 기반 문체 lint")
-    ap.add_argument("files", nargs="*", help="검사할 파일 (생략 시 --all 필요)")
+    ap.add_argument("files", nargs="*", help="검사할 파일 (생략 시 --all 또는 --category 필요)")
     ap.add_argument("--all", action="store_true", help="sources/ + wiki/ + index.md 전체 검사")
     ap.add_argument("--strict", action="store_true", help="error 1건 이상이면 exit 1")
     ap.add_argument("--json", action="store_true", help="JSON 출력 (훅용)")
+    ap.add_argument("--category", action="append", metavar="NAME",
+                    help="카테고리로 대상 좁히기 (반복 지정 또는 쉼표 구분). "
+                         "파일 목록 없이 쓰면 --all 과 같은 전체 스캔 후 필터")
     args = ap.parse_args()
 
-    if not args.files and not args.all:
-        ap.error("검사할 파일을 지정하거나 --all 을 쓰세요.")
+    categories = parse_categories(args.category)
+    if not args.files and not args.all and not categories:
+        ap.error("검사할 파일을 지정하거나 --all 또는 --category 를 쓰세요.")
 
-    targets = collect_targets(REPO_ROOT, args.files, args.all)
+    # --category 만 준 경우도 전체 스캔 후 필터 — 파일 목록과 함께면 그 목록을 필터한다.
+    targets = collect_targets(REPO_ROOT, args.files, args.all or (bool(categories) and not args.files))
+    index_ranges = {}
+    if categories:
+        targets, index_ranges = apply_category_filter(targets, categories, REPO_ROOT)
+        if not targets:
+            print(f"[lint_style] 대상 파일이 없습니다 (category: {', '.join(sorted(categories))}).",
+                  file=sys.stderr)
     all_warnings = []
     for path in targets:
         if not path.exists():
             print(f"[lint_style] 파일 없음: {path}", file=sys.stderr)
             continue
         all_warnings += lint_file(path, REPO_ROOT)
+
+    if index_ranges:
+        all_warnings = filter_index_warnings(all_warnings, index_ranges)
 
     errors = [w for w in all_warnings if w["severity"] == "error"]
 
