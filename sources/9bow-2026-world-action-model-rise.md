@@ -196,7 +196,7 @@ PyTorch KR 운영자 박정환(9bow)이 옮긴 NVIDIA World-Action Model 글의 
 ## 6. 관련 연구 (Related Work)
 
 - `reuss-2026-pretrained-to-imagine-fine-tuned`: 원문. 내용상 같은 자료다.
-- 글 끝의 PyTorch KR 관련 글 4건(NVIDIA Cosmos 3, Isaac GR00T, Gemini Robotics, SmolVLA)은 아직 이 wiki에 없다.
+- 글 끝의 PyTorch KR 관련 글은 4건이 아니라 7건이다. NVIDIA Cosmos 3, Isaac GR00T, Gemini Robotics, SmolVLA, Helix, Gemini Robotics ER 1.6, gWorld다. 이 가운데 Helix는 `9bow-2025-helix-generalist-humanoid-vla`로 이미 이 wiki에 있고 나머지 6건은 없다.
 
 ## 7. 용어집 (Glossary)
 

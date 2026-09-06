@@ -114,6 +114,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/9bow-2026-physics-aware-generation-world-simulator|물리를 이해하는 생성 모델과 월드 시뮬레이터 (9bow)]]: 위 Liu 2025 서베이를 한글로 풀어 쓴 PyTorch KR 해설. 논문 페이지로 넘어가기 전 진입로로 쓴다 (2026, article)
 - [[physical-ai/zhang-2026-a-survey-of-physical-ai|A Survey of Physical AI (ChatGPT → World Models → Embodied Agents)]]: LLM의 world knowledge에서 출발해 여섯 층 로드맵으로 문헌을 재배치한 preprint 서베이 (2026, paper)
 - [[physical-ai/reuss-2026-pretrained-to-imagine-fine-tuned|Pretrained to Imagine, Fine-Tuned to Act: The Rise of World-Action Models]]: 대규모 video pre-training에서 출발하는 policy 계열 지형도 (2026, article)
+- [[physical-ai/9bow-2026-world-action-model-rise|World Action Model의 부상 (9bow)]]: Reuss 2026 지형도의 PyTorch KR 한국어판. 용어 풀이 상자와 원문 도식 23장을 함께 싣는다 (2026, article)
 - [[physical-ai/huggingface-lerobot|LeRobot (Hugging Face, repo)]]: 하드웨어 제어부터 데이터 수집, policy 학습, 평가까지 담은 PyTorch 로봇 학습 프레임워크. policy 22종이 같은 데이터 형식과 CLI 위에서 동작하며 라이선스는 Apache-2.0이다 (2026, repo)
 - [[physical-ai/nasiriany-2024-robocasa-large-scale-simulation-of-everyday|RoboCasa (UT Austin, NVIDIA, RSS 2024)]]: 주방 장면 120개와 과제 100종을 담은 로봇 시뮬레이션 프레임워크. 시뮬레이션 데이터로 실제 로봇 성능을 올렸다 (2024, paper)
 - [[physical-ai/nasiriany-2026-robocasa365-a-large-scale-simulation-framework|RoboCasa365 (UT Austin, NVIDIA, ICLR 2026)]]: 과제 365종과 2,200시간 데이터로 VLA 4종을 같은 조건에서 비교한 후속 벤치마크 (2026, paper)
