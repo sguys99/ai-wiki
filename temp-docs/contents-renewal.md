@@ -241,7 +241,13 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - (b) 검증 통과. physical-ai 게이트 4개 명령 exit 0, lint_style 총계 불변(error 9,202, warning 212, 위반 파일 284), 용어 표 파싱 정상, `SUBSTRING_EXCEPTIONS` 추가 불필요 재확인(등재 8개 표기 전부 부분 문자열 충돌 0건).
   - (b) **lint_terms 기준선이 117건에서 270건으로 올랐다.** 3차 등재분 196건 중 physical-ai 43건을 정리해 153건이 배치 흡수 대상으로 남는다. 카테고리별로 agents 122, applications 55, database 50, overviews 18, evaluations 13, etc 12, llms 0, physical-ai 0이다. 착수 시 0건이던 overviews와 evaluations가 깨진 것은 3차 등재분이 그 카테고리에 실제로 존재했기 때문이다.
   - (b) Phase 7-1 이관 2건: `query`(질의 220건 대 쿼리 123건 대 원어 278건, canonical 방향 결정 선행 필요, `질의` 금지 시 `품질의` 20건과 `질의응답` 17건이 부분 문자열로 걸림), `rollout`(방향은 16대 1로 명확하나 13건이 physical-ai이고 도메인상 glossary-physical-ai 소관). 재검토 시 재조사 없이 쓸 수 있도록 계량을 후보 문서 6절에 남겼다.
-- [ ] 0-4. write-wiki 스킬 v2.2. §0 용어집 매핑 표를 0-3 이후의 `applies_to`와 정합시킨다 (비-physical-ai 예시 추가는 파일럿 후 v2.2.1로 미룸)
+- [x] 0-4. write-wiki 스킬 v2.2. §0 용어집 매핑 표를 0-3 이후의 `applies_to`와 정합시킨다 (비-physical-ai 예시 추가는 파일럿 후 v2.2.1로 미룸)
+  - 완료 (2026-09-06). `.claude/skills/write-wiki/SKILL.md`을 v2.2.0으로 올렸다 (136줄에서 140줄, 순증 4줄). §0 매핑 표를 4행에서 2행으로 줄여 실제 `applies_to`와 일치시켰다. physical-ai와 overviews, etc는 용어집 세 개 전부를 로드하고 나머지 다섯 카테고리는 glossary-agents와 glossary-llms 두 개를 로드한다. 8개 카테고리 전수 역인덱스 대조로 누락과 중복 0을 확인했다.
+  - 구 표의 오류 3종이 해소됐다. physical-ai 행이 glossary-agents를 누락했고, agents와 applications 행이 database를 누락했으며, llms 행이 glossary-agents를 "에이전트 논의 시"라는 조건부로 잘못 안내하고 있었다. glossary-physical-ai가 세 카테고리로 한정된 이유(고빈도 일반어 오탐 방지)를 표 아래 각주로 남겼다.
+  - Phase 0의 다른 변경도 반영했다. §5에 `--category` 안내 한 문장, §4 성장 루프에 용어집이 lint 대상에 들어왔다는 문단(면제 3종은 규약대로 유지되고 헤딩 등 나머지는 적용된다), §5 체크리스트 헤딩 항목에 lint가 검사한다는 사실을 넣었다. fine-tuning 정책 반전은 스킬 본문에 파인튜닝과 병용 허용 언급이 0건이라 반영할 자리가 없었다.
+  - 스킬 자체의 문체도 정리했다. 제목과 §0, §2 헤딩의 em dash를 괄호로, 본문 4곳의 중간점을 "와/과"로 바꿨다. 잔존 5건은 전부 의도적이다. 금지 기호를 지칭하는 인라인 코드 3건, 위반을 보여주는 before 인용문 1건, frontmatter `description` 1건이다. description은 스킬 트리거 매칭용 기계 문자열이고 형제 스킬(ingest-paper, ingest-article)이 같은 형식이라 단독 변경은 일관성을 깬다.
+  - before/after 예시 3쌍은 인용문 본문을 바이트 단위로 보존했다. 비-physical-ai 예시 추가는 계획대로 Phase 1-5의 v2.2.1 소관이다.
+  - 유지보수 결합 1건 기록: CLAUDE.md는 용어집과 카테고리의 매핑을 기술하지 않으므로 SSOT는 `applies_to` 값 자체이고 스킬 §0은 사본이다. `applies_to`를 바꾸는 작업은 §0 갱신을 반드시 동반한다.
 - [x] 0-5. lint_terms.py와 lint_style.py에 `--category` 인자 추가. sources/가 flat 구조라 frontmatter `category:`로만 카테고리 판별이 가능하고, 배치 게이트에 "이 카테고리만 0건" 실행이 반복 필요하다. 기본 동작과 훅 JSON 출력은 불변
   - 완료 (2026-09-06). 두 스크립트에 동일 의미로 넣었다. `--category NAME` 반복 지정과 `--category a,b` 쉼표 구분을 모두 받고, `--all` 없이 단독으로 쓰면 전체 스캔 후 필터로 동작한다. 명시적 파일 목록과 함께 주면 그 목록을 필터한다. 필터 기준은 frontmatter `category:` 값이다.
   - index.md는 `category:` 키가 없지만 제외하지 않고 **해당 절의 라인 범위로 경고를 필터**해 포함한다. 배치 완료 게이트가 "index.md {카테고리} 절 축소"와 "`--category X` lint 0건"을 늘 짝으로 요구해서다. 무필터 248건(error 245)이 8개 절로 누락과 중복 없이 정확히 분할되는 것을 확인했다.
@@ -322,7 +328,7 @@ study_path 신설 판단 기준 (셋 중 둘 이상 충족 시 신설, 미충족
 
 ### Phase 7. 검증과 마무리
 
-- [ ] 7-1. 용어집 4차 일괄 갱신 (배치 중 누적 후보, 사용자 승인 게이트, 등재 전 전 저장소 grep 사전 계량)
+- [ ] 7-1. 용어집 4차 일괄 갱신 (배치 중 누적 후보, 사용자 승인 게이트, 등재 전 전 저장소 grep 사전 계량). Phase 0-3(b)에서 이관한 2건을 포함한다: `query`(canonical 방향 결정 선행, `질의` 금지 시 `품질의` 20건과 `질의응답` 17건이 부분 문자열로 걸려 `SUBSTRING_EXCEPTIONS` 3항 추가 필요), `rollout`(glossary-physical-ai 소관, physical-ai 13건). 계량은 `temp-docs/glossary-3rd-candidates.md` 6절에 남겨 재조사 없이 쓴다. `applies_to`를 바꾸면 write-wiki 스킬 §0 매핑 표도 같은 커밋에서 갱신한다 (§0은 `applies_to`의 사본이다)
 - [ ] 7-2. pseudo-action 표기 통일. physical-ai 내 21건과 용어집 자체 혼용을 정리한다. canonical은 용어집 1차 갱신 때 등재된 하이픈 표기 `pseudo-action`을 권고
 - [ ] 7-3. 전 저장소 계량 3열 대비 기록 (아래 5절 표)
 - [ ] 7-4. 자동 메모리 갱신: physical-ai-lint-clean-state를 저장소 전체 clean-state로 승격

@@ -1,35 +1,35 @@
 ---
 name: write-wiki
-version: "2.1.0"
+version: "2.2.0"
 description: sources/·wiki/ 한글 페이지를 작성하는 스킬 (CLAUDE.md Step 3 ~ Step 4). 트리거 — "sources 작성해줘", "wiki 페이지 만들어줘", "Step 3 진행", "요약 작성해줘", "wiki에 정리해줘", "이 자료 위키로", "wiki 갱신해줘". 도메인 용어집을 로드해 전문 용어를 원어로 유지하고, wiki는 교재식으로 재구성한다 (압축 금지, 표와 불릿 적극 사용). 수집(Step 1~2.5)은 해당 없음 — ingest-paper / ingest-article 을 쓸 것.
 ---
 
-# Write Wiki — sources/ · wiki/ 작성
+# Write Wiki (sources/와 wiki/ 작성)
 
 CLAUDE.md 6-step 중 **Step 3(sources 작성) → Step 3.5(사용자 confirm) → Step 4(wiki 작성 + assets cp + index.md 갱신)** 를 담당한다. frontmatter 스키마, 본문 골격, 문체 규칙은 CLAUDE.md 해당 절("wiki 교재 문체 가이드" 포함)이 정본이고, 이 문서는 **작업 순서, 용어 표기 규칙, 작성 체크리스트**를 다룬다.
 
 ## 담당 범위
 
 ```
-Step 1~2.5  raw/ 수집·추출               ← ingest-paper / ingest-article
+Step 1~2.5  raw/ 수집과 추출              ← ingest-paper / ingest-article
 ──────────────────────────────────────
 Step 3      sources/{stem}.md            ← 여기
 Step 3.5    사용자 confirm → curated: true ← 여기
 Step 4      wiki/{category}/{stem}.md + wiki/assets/ + index.md ← 여기
 ```
 
-git commit은 하지 않는다 (사용자가 지시할 때만). humanize 자동 윤문도 하지 않는다 (wiki/·sources/는 자동 윤문 제외 대상 — 이 스킬의 가이드 준수 + lint가 품질을 담당한다).
+git commit은 하지 않는다 (사용자가 지시할 때만). humanize 자동 윤문도 하지 않는다 (wiki/와 sources/는 자동 윤문 제외 대상이고, 이 스킬의 가이드 준수와 lint가 품질을 담당한다).
 
-## 0. 용어집 선(先)로드 — 작성 전 필수
+## 0. 용어집 선(先)로드 (작성 전 필수)
 
-초안을 쓰기 전에 자료의 category에 맞는 도메인 용어집을 Read로 읽는다.
+초안을 쓰기 전에 자료의 category에 맞는 도메인 용어집을 Read로 읽는다. 아래 조합은 각 용어집 frontmatter의 `applies_to`와 같은 값이다. lint가 그 값으로 검사 대상을 정하므로, 로드하지 않은 용어집의 금지 표기도 저장 시점에 그대로 걸린다.
 
 | category | 로드할 용어집 |
 |---|---|
-| `physical-ai` | `wiki/overviews/glossary-physical-ai.md` + `glossary-llms.md` |
-| `agents` · `applications` | `wiki/overviews/glossary-agents.md` + `glossary-llms.md` |
-| `llms` · `database` · `evaluations` | `wiki/overviews/glossary-llms.md` (+ 에이전트 논의 시 `glossary-agents.md`) |
-| `overviews` · `etc` | 다루는 도메인의 용어집 전부 |
+| `physical-ai`, `overviews`, `etc` | `glossary-physical-ai.md`, `glossary-agents.md`, `glossary-llms.md` (세 개 전부) |
+| `agents`, `applications`, `database`, `evaluations`, `llms` | `glossary-agents.md`, `glossary-llms.md` |
+
+경로는 모두 `wiki/overviews/` 아래다. `glossary-agents.md`와 `glossary-llms.md`는 `applies_to`가 8개 전 카테고리라 어떤 자료를 쓰든 로드한다. `glossary-physical-ai.md`만 세 카테고리로 한정돼 있는데, 이는 누락이 아니라 의도된 설계다. 금지 표기에 "정책", "행동", "관측" 같은 고빈도 일반어가 많아 다른 도메인까지 넓히면 일반 의미로 쓴 문장을 오탐한다.
 
 ## 1. 전문 용어 표기 규칙
 
@@ -46,11 +46,11 @@ git commit은 하지 않는다 (사용자가 지시할 때만). humanize 자동 
   - "behavioral cloning은 시연의 observation→action 쌍을 지도학습으로 흉내 내는 방법이다."
   - "co-fine-tuning은 로봇 데이터만이 아니라 웹 VQA 데이터를 배치에 계속 섞는 레시피다."
 
-  나쁜 예: "정책(policy)은 관측(observation)을 받아…" — 괄호 병기 + 직역. 이 스타일을 쓰지 않는다.
+  나쁜 예: "정책(policy)은 관측(observation)을 받아…" (괄호 병기 + 직역). 이 스타일을 쓰지 않는다.
 - **자명한 것은 풀이 생략**: 널리 알려진 약어(GPU, API, PDF)와 고유명사(Transformer, EfficientNet, Isaac Lab)는 풀이 없이 그대로.
-- **산문 문체와 본문 골격**은 CLAUDE.md의 "wiki 교재 문체 가이드"와 Step 4 템플릿을 따른다 (재서술하지 않음 — 그쪽이 정본). 핵심만 상기: 하다체 기술문서체, 두괄식 문단, 자문자답과 화자 개입 금지, 극적 동사와 어휘 치환표 준수, 중간점(`·`)과 em dash(`—`) 금지, 한글 단독 명사형 헤딩, 열거는 불릿과 표로, 큰 수는 한국식 단위와 단위 표기.
+- **산문 문체와 본문 골격**은 CLAUDE.md의 "wiki 교재 문체 가이드"와 Step 4 템플릿을 따른다 (재서술하지 않는다. 그쪽이 정본이다). 핵심만 상기: 하다체 기술문서체, 두괄식 문단, 자문자답과 화자 개입 금지, 극적 동사와 어휘 치환표 준수, 중간점(`·`)과 em dash(`—`) 금지, 한글 단독 명사형 헤딩, 열거는 불릿과 표로, 큰 수는 한국식 단위와 단위 표기.
 
-## 2. Step 4 wiki 작성 방법 — 압축이 아니라 교재식 재구성
+## 2. Step 4 wiki 작성 방법 (압축이 아니라 교재식 재구성)
 
 wiki 페이지는 sources를 줄여 쓰는 단계가 **아니다**. 독자가 원문 없이 이 페이지만 읽어도 핵심을 이해하도록 sources와 raw를 바탕으로 다시 설명하는 단계다.
 
@@ -64,7 +64,7 @@ wiki 페이지는 sources를 줄여 쓰는 단계가 **아니다**. 독자가 �
 
 ### before / after 예시 (실제 교정 전후)
 
-**예시 1 — 압축 줄글을 교재식 풀이로.** 결론을 먼저 서술하고 구성을 구체적으로 나열한다. 질문형 도입("그렇다면 ~일까?")은 쓰지 않는다.
+**예시 1. 압축 줄글을 교재식 풀이로.** 결론을 먼저 서술하고 구성을 구체적으로 나열한다. 질문형 도입("그렇다면 ~일까?")은 쓰지 않는다.
 
 before (압축 줄글):
 
@@ -74,7 +74,7 @@ after (교재식 기술문서체):
 
 > RT-1의 action은 하나의 클래스 레이블이 아니라 11차원 복합 제어 신호다. arm movement 7차원(x, y, z, roll, pitch, yaw, gripper), base movement 3차원(x, y, yaw), 그리고 arm 제어, base 제어, episode 종료를 고르는 mode 1차원으로 구성된다. 즉 팔, 바퀴, 그리퍼, 종료 여부를 함께 담은 신호다.
 
-**예시 2 — 화자 개입과 구어 동사 제거.**
+**예시 2. 화자 개입과 구어 동사 제거.**
 
 before (칼럼체):
 
@@ -84,7 +84,7 @@ after (기술문서체):
 
 > FAST-LIO는 LiDAR와 IMU 데이터를 tightly-coupled iterated extended Kalman filter로 융합하는 odometry 패키지로, 빠른 움직임이나 복잡한 환경에서도 안정적으로 동작한다.
 
-**예시 3 — 수치 서술.** 단위를 생략하지 않고, "차선" 같은 어휘를 쓰지 않으며, 항목이라는 표현을 쓴다.
+**예시 3. 수치 서술.** 단위를 생략하지 않고, "차선" 같은 어휘를 쓰지 않으며, 항목이라는 표현을 쓴다.
 
 before:
 
@@ -105,8 +105,10 @@ wiki 페이지의 `## 핵심 용어` 표는 sources 용어집에서 이해에 �
 용어집에 없는 전문 용어를 만나면:
 
 1. 본문에는 **원어 + 첫 등장 풀이**로 즉시 작성한다 (막히지 않는다).
-2. Step 3.5 confirm 시점에 figure 큐레이션과 함께 "용어집 추가 후보: X, Y — 제안 표기"를 보고한다.
+2. Step 3.5 confirm 시점에 figure 큐레이션과 함께 "용어집 추가 후보: X, Y (제안 표기 첨부)"를 보고한다.
 3. 사용자가 승인하면 해당 `glossary-*.md`의 용어 표에 행을 추가하고 같은 커밋에 포함한다.
+
+용어집도 `lint_style.py` 검사 대상이다. 다만 중간점, em dash, 금지 어휘 세 규칙은 면제되므로 금지 표기 칸의 `·` 구분자와 "검사 없음"을 뜻하는 `—`는 규약대로 쓴다. 헤딩을 비롯한 나머지 규칙은 적용되므로 절 이름에 영문을 병기하지 않는다.
 
 ## 5. 작성 후 검증 (체크리스트 + lint)
 
@@ -119,18 +121,20 @@ wiki 페이지의 `## 핵심 용어` 표는 sources 용어집에서 이해에 �
 - [ ] 용어집과 다른 표기나 원어/번역어 혼용(demonstration/시연 데이터 등)이 없는가, 번역어 첫 등장에 원어 병기가 있는가
 - [ ] 각 문단의 첫 문장이 문단 주제를 담는가 (두괄식)
 - [ ] 큰 수는 한국식 단위(13만 개)인가, 수치에 단위가 붙어 있는가, %와 %p를 구분했는가
-- [ ] 헤딩이 한글 단독 명사형인가 (영문 병기 없음, wiki 본문 기준)
+- [ ] 헤딩이 한글 단독 명사형인가 (영문 병기 없음, wiki 본문 기준. `lint_style.py`가 검사한다)
 - [ ] 항목 3개 이상 열거가 문장에 묻혀 있지 않은가 (불릿이나 표로 꺼냈는가)
 - [ ] 논문, survey 기반이면 표가 1개 이상 있는가
 - [ ] `## 핵심 용어` 표가 있는가
 - [ ] wiki 본문이 sources 본문보다 짧지 않은가
 - [ ] wiki frontmatter의 `figures:`에 curated 항목만 있는가
 
-sources·wiki 파일을 저장할 때마다 lint를 돌려 경고 0을 확인한다.
+sources와 wiki 파일을 저장할 때마다 lint를 돌려 경고 0을 확인한다.
 
 ```bash
 .venv/bin/python scripts/lint_terms.py sources/{stem}.md wiki/{category}/{stem}.md
 .venv/bin/python scripts/lint_style.py sources/{stem}.md wiki/{category}/{stem}.md
 ```
+
+한 카테고리를 배치로 재작성한 뒤에는 두 스크립트에 `--category {name}`을 주어 그 카테고리 전체를 한 번에 확인한다. 판정 기준이 frontmatter `category:` 값이라 flat한 `sources/`도 함께 걸린다.
 
 경고가 나오면 고친 뒤 재실행한다. 인용문 등 의도적 예외는 해당 줄에 `<!-- lint-terms: ignore -->` 주석을 달고 사유를 남긴다 (lint_style도 같은 주석 형식 `<!-- lint-style: ignore -->`를 지원한다).
