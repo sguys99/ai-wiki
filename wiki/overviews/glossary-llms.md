@@ -18,7 +18,7 @@ tags: [glossary, terminology, llms, synthesis]
 | 원어 | canonical 표기 | 금지 표기 | 첫 등장 풀이 예문 | 비고 |
 |---|---|---|---|---|
 | pre-training | pre-training | 사전학습·사전 학습·사전훈련 | pre-training은 대규모 일반 데이터로 모델의 기반 능력을 먼저 학습하는 단계다 | 직역 67회 실측 — 원어로 통일 |
-| fine-tuning | fine-tuning | 미세조정·미세 조정 | fine-tuning은 pre-training된 모델을 특정 과제 데이터로 더 학습시키는 단계다 | "파인튜닝" 음차는 병용 허용 (지침) |
+| fine-tuning | fine-tuning | 미세조정·미세 조정·파인튜닝 | fine-tuning은 pre-training된 모델을 특정 과제 데이터로 더 학습시키는 단계다 | 2026-09 3차 갱신에서 "파인튜닝" 음차 병용 허용을 철회하고 원어로 단일화했다 (원어 624회 대 음차 48회). 파생형 "코파인튜닝"은 co-fine-tuning 행의 원어를 쓴다 |
 | post-training | post-training | 사후학습·후속학습 | post-training은 pre-training을 마친 모델을 특정 embodiment나 과제 데이터로 이어서 학습시키는 단계다 | pre-training, fine-tuning 행과 한 묶음. GR00T와 Cosmos 계열이 이 이름을 쓴다. 띄어 쓴 "사후 학습"은 사전 분포와 사후 분포 문맥과 겹쳐 기계 검사에서 뺐다 (2026-09 등재) |
 | co-fine-tuning | co-fine-tuning | — | co-fine-tuning은 로봇 데이터와 웹 데이터를 한 배치에 섞어 함께 fine-tuning하는 레시피다 | RT-2 용어 |
 | distillation | distillation | 증류 | distillation은 큰 모델의 출력을 작은 모델이 흉내 내게 학습시키는 압축 기법이다 | |
@@ -42,6 +42,7 @@ tags: [glossary, terminology, llms, synthesis]
 | mixture-of-experts | mixture-of-experts | 전문가 혼합 | mixture-of-experts는 입력마다 일부 전문 모듈만 활성화하는 구조다 | 약어 MoE 병용 가능 |
 | LoRA | LoRA | — | LoRA는 저랭크 행렬만 학습해 fine-tuning 비용을 줄이는 기법이다 | 약어 그대로 |
 | encoder / decoder | 인코더 / 디코더 | — | — | 음차 정착 |
+| backbone | backbone | 백본 | backbone은 상위 head가 올라타는 pre-training된 특징 추출 본체를 뜻한다 | VLM backbone·vision backbone 같은 복합어도 원어. 2026-09 3차 갱신 등재 (원어 526회 대 음차 37회) |
 | transformer | Transformer | 트랜스포머 | — | 고유명사 취급, 원어 대문자 |
 | benchmark | 벤치마크 | — | — | 음차 정착 |
 | sampling | 샘플링 | — | — | 음차 정착 |

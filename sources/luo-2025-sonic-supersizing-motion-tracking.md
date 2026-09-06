@@ -278,7 +278,7 @@ root trajectory는 critically damped spring model로 만든다. pelvis의 x축�
 
 VR 인터페이스는 두 가지다. 전신 teleoperation은 PICO 헤드셋에 발목 트래커와 컨트롤러를 붙여 SMPL 전신 포즈를 스트리밍한다. 3-point는 헤드셋과 컨트롤러만으로 머리와 양 손목의 SE(3) 포즈, 손가락 관절, 허리 높이, 내비게이션 명령을 내며 하체는 planner가 생성한다. 두 인터페이스가 같은 token space를 쓰기 때문에 여기서 모은 데이터로 VLA를 학습시킬 수 있다.
 
-VLA는 GR00T N1.5를 teleoperation 데이터로 파인튜닝해 붙였다. action은 78차원이며 universal motion token 64차원과 손 관절 14차원으로 이뤄진다.
+VLA는 GR00T N1.5를 teleoperation 데이터로 fine-tuning해 붙였다. action은 78차원이며 universal motion token 64차원과 손 관절 14차원으로 이뤄진다.
 
 ### 배포
 

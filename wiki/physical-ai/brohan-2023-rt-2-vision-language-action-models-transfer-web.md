@@ -66,7 +66,7 @@ figures:
 
 ## 요약
 
-RT-2는 인터넷 규모 데이터로 학습한 vision-language model을 로봇 trajectory 데이터와 함께 co-fine-tune해 로봇 action을 직접 출력하도록 만든 모델이다. trajectory는 observation과 action이 시간순으로 이어진 실행 기록이다. 핵심 발상은 action을 또 하나의 언어로 보는 것이다. end-effector의 6-DoF 변위와 gripper 값을 이산화한 뒤 텍스트 토큰으로 적으면, 이미 있는 VLM을 새 파라미터 없이 그대로 파인튜닝해 policy로 쓸 수 있다. policy는 현재 observation을 받아 다음 action을 정하는 함수를 말한다.
+RT-2는 인터넷 규모 데이터로 학습한 vision-language model을 로봇 trajectory 데이터와 함께 co-fine-tune해 로봇 action을 직접 출력하도록 만든 모델이다. trajectory는 observation과 action이 시간순으로 이어진 실행 기록이다. 핵심 발상은 action을 또 하나의 언어로 보는 것이다. end-effector의 6-DoF 변위와 gripper 값을 이산화한 뒤 텍스트 토큰으로 적으면, 이미 있는 VLM을 새 파라미터 없이 그대로 fine-tuning해 policy로 쓸 수 있다. policy는 현재 observation을 받아 다음 action을 정하는 함수를 말한다.
 
 이렇게 만든 모델 계열을 vision-language-action(VLA) 모델이라 부르고, 이 이름을 붙인 것이 이 논문이다. 저자들은 Google DeepMind 소속이며 2023년 7월 arXiv에 공개했다.
 
@@ -91,7 +91,7 @@ RT-2를 읽는 데 필요한 개념은 네 가지다. 각 개념이 뒤의 방�
 
 **action tokenization**은 연속값인 제어 명령을 정해진 구간으로 나눠 이산 토큰으로 바꾸는 기법이다. RT-2는 [[physical-ai/brohan-2022-rt-1-robotics-transformer-for-real-world|RT-1]]의 방식을 그대로 물려받아 각 차원을 256개 bin으로 나눈다. 이 표현 덕분에 action이 자연어 토큰과 같은 자리에 들어간다.
 
-**co-fine-tuning**은 로봇 데이터만 파인튜닝하지 않고 원래 웹 데이터를 배치에 계속 섞어 함께 파인튜닝하는 레시피다. fine-tuning은 pre-training된 모델을 특정 과제 데이터로 더 학습시키는 단계인데, RT-2의 실험에서 일반화 성능을 좌우하는 것은 모델 구조보다 이 학습 전략이다.
+**co-fine-tuning**은 로봇 데이터만 fine-tuning하지 않고 원래 웹 데이터를 배치에 계속 섞어 함께 fine-tuning하는 레시피다. fine-tuning은 pre-training된 모델을 특정 과제 데이터로 더 학습시키는 단계인데, RT-2의 실험에서 일반화 성능을 좌우하는 것은 모델 구조보다 이 학습 전략이다.
 
 **emergent capability**는 로봇 데이터에 없었는데 웹 pre-training에서 전이돼 나타난 능력을 가리킨다. 논문은 이를 symbol understanding, reasoning, human recognition 세 범주로 나눠 정량 측정한다. 새로운 물리 동작을 만들어내는 능력이 아니라는 점이 중요하다.
 
@@ -103,7 +103,7 @@ RT-2를 읽는 데 필요한 개념은 네 가지다. 각 개념이 뒤의 방�
 
 RT-2의 action space는 세 부분으로 나뉜다. end-effector의 6-DoF 변위(위치 3차원과 회전 3차원), gripper의 확장 정도, 그리고 에피소드 종료를 알리는 이산 명령이다. 종료 명령은 과제를 성공적으로 마쳤다는 신호로 policy가 스스로 내야 한다.
 
-종료 명령을 뺀 연속 차원은 각각 256개 bin으로 균등 이산화한다. 따라서 하나의 action은 8개 정수로 표현되고, 파인튜닝 타깃은 이 정수들을 공백으로 이어붙인 문자열 하나가 된다.
+종료 명령을 뺀 연속 차원은 각각 256개 bin으로 균등 이산화한다. 따라서 하나의 action은 8개 정수로 표현되고, fine-tuning 타깃은 이 정수들을 공백으로 이어붙인 문자열 하나가 된다.
 
 ```
 "terminate Δpos_x Δpos_y Δpos_z Δrot_x Δrot_y Δrot_z gripper_extension"
@@ -127,7 +127,7 @@ RT-2의 action space는 세 부분으로 나뉜다. end-effector의 6-DoF 변위
 
 학습 배치마다 로봇 데이터와 웹 데이터의 비율을 조절하되 로봇 쪽 샘플링 가중을 높인다. RT-2-PaLI-X는 로봇 데이터가 학습 혼합의 약 50%, RT-2-PaLM-E는 약 66%를 차지한다.
 
-co-fine-tuning이 단순 파인튜닝보다 나은 이유를 논문은 망각으로 설명한다. 원래 웹 데이터를 파인튜닝 내내 곁에 두면 VLM이 pre-training에서 배운 개념을 덜 잊는다. 반면 로봇 데이터만 쓰면 저수준 action에만 노출돼 웹에서 배운 추상적 시각 개념이 약해진다.
+co-fine-tuning이 단순 fine-tuning보다 나은 이유를 논문은 망각으로 설명한다. 원래 웹 데이터를 fine-tuning 내내 곁에 두면 VLM이 pre-training에서 배운 개념을 덜 잊는다. 반면 로봇 데이터만 쓰면 저수준 action에만 노출돼 웹에서 배운 추상적 시각 개념이 약해진다.
 
 웹 데이터의 대부분은 WebLI다. 109개 언어의 약 100억 개 image-text 쌍을 cross-modal 유사도 상위 10%로 걸러 10억 개 예제로 쓰고, 여기에 여러 captioning과 VQA 데이터셋을 더한다. 로봇 데이터는 RT-1의 것을 그대로 쓴다. 로봇 13대로 17개월간 office kitchen에서 모은 시연 데이터이며, 각 trajectory에 "Pick Object", "Move Object Near Object", "Place Object Upright", "Knock Object Over", "Open Drawer", "Close Drawer" 같은 7종 스킬 중 하나가 자연어 지시문으로 붙어 있다.
 
@@ -277,7 +277,7 @@ co-fine-tuning의 이득은 모델 크기에 따라 달라진다. 5B에서는 co
 
 ### chain-of-thought
 
-PaLM-E 기반 모델을 수백 gradient step만 추가로 파인튜닝해 action 앞에 "Plan" 단계를 생성하게 만든다. 학습 데이터를 "Instruction: I'm hungry. Plan: pick rxbar chocolate. Action: 1 128 124 136 121 158 111 255"처럼 자연어 계획 뒤에 action 토큰이 오도록 증강하는 방식이다.
+PaLM-E 기반 모델을 수백 gradient step만 추가로 fine-tuning해 action 앞에 "Plan" 단계를 생성하게 만든다. 학습 데이터를 "Instruction: I'm hungry. Plan: pick rxbar chocolate. Action: 1 128 124 136 121 158 111 255"처럼 자연어 계획 뒤에 action 토큰이 오도록 증강하는 방식이다.
 
 이 계획 단계는 VQA 데이터의 시각 추론과 조작 데이터의 action 생성 사이를 잇는 다리 역할을 한다. 예를 들어 "못을 박아야 하는데 장면에서 무엇이 쓸모 있을까"라는 프롬프트에 모델은 "Rocks"라는 답과 action을 함께 낸다. "졸리니 마실 것을 가져와라"에는 "Plan: pick redbull can"을 먼저 생성한 뒤 action을 낸다.
 
@@ -290,7 +290,7 @@ chain-of-thought 평가는 정량 비교 없이 정성 수준에 머문다. 다�
 
 새 물리 동작 자체는 배우지 못한다. 웹 pre-training은 의미와 시각 개념의 일반화를 넓히지만 로봇의 물리 스킬은 여전히 로봇 데이터 분포 안에 갇힌다. 저자들은 데이터가 스킬 측면에서 충분히 다양하지 않아서라고 보고, 사람 영상 같은 새 데이터 수집 방식을 후속 방향으로 든다.
 
-계산 비용도 높다. 고빈도 제어가 필요한 상황에서는 실시간 추론이 병목이 될 수 있어 양자화와 distillation을 후속 과제로 짚는다. RT-2를 만들 재료가 되는 VLM 자체가 아직 소수라는 점도 한계다. 저자들은 오픈소스 VLM이 늘고 상용 모델이 파인튜닝 API를 열기를 기대하는데, 파인튜닝 API 공개가 VLA를 만들기 위한 충분 조건이라고 적었다.
+계산 비용도 높다. 고빈도 제어가 필요한 상황에서는 실시간 추론이 병목이 될 수 있어 양자화와 distillation을 후속 과제로 짚는다. RT-2를 만들 재료가 되는 VLM 자체가 아직 소수라는 점도 한계다. 저자들은 오픈소스 VLM이 늘고 상용 모델이 fine-tuning API를 열기를 기대하는데, fine-tuning API 공개가 VLA를 만들기 위한 충분 조건이라고 적었다.
 
 실패 사례는 부록에 구체적으로 남아 있다. Language-Table에서 RT-2는 처음 보는 객체의 dynamics에 일반화하지 못한다. dynamics는 상태가 action에 따라 어떻게 변하는지의 규칙이다. 모델이 지시문을 제대로 해석해 목표 물체까지 이동하지만 그 물체의 움직임을 제어하지 못하는 형태의 실패다. 펜은 그대로 테이블 밖으로 굴러 떨어지고, 바나나는 무게중심이 접촉점에서 멀어 의도한 방향으로 밀리지 않는다.
 
@@ -303,7 +303,7 @@ chain-of-thought 평가는 정량 비교 없이 정성 수준에 머문다. 다�
 
 ## 계보에서의 위치
 
-RT-2는 physical-ai 카테고리에서 VLA 계보의 기준점이다. "pre-training된 VLM을 로봇 데이터로 파인튜닝해 action을 내게 한다"는 레시피의 원형이며, 이후 나온 조작용 VLA가 대부분 여기서 갈라져 나온다.
+RT-2는 physical-ai 카테고리에서 VLA 계보의 기준점이다. "pre-training된 VLM을 로봇 데이터로 fine-tuning해 action을 내게 한다"는 레시피의 원형이며, 이후 나온 조작용 VLA가 대부분 여기서 갈라져 나온다.
 
 바로 앞 세대는 RT-1이다. RT-2는 RT-1의 로봇 데이터(로봇 13대, 17개월, office kitchen, 7종 스킬)와 action tokenization(256 bin, 8개 정수)을 그대로 물려받되, backbone을 35M Transformer에서 수십억 파라미터 VLM으로 키웠다. 그래서 RT-1이 seen 과제에서 강했다면 RT-2는 unseen 일반화에서 격차를 벌린다.
 
@@ -316,7 +316,7 @@ RT-2가 한계로 지목한 "새 물리 동작을 못 배운다"는 문제는 [[
 | 용어 | 뜻 |
 |---|---|
 | VLA | 이미지와 언어 입력에서 로봇 action을 내는 모델 계열. RT-2가 이 이름을 붙였다 |
-| co-fine-tuning | 로봇 데이터만 파인튜닝하지 않고 원래 웹 데이터를 배치에 섞어 함께 파인튜닝하는 방식. RT-2 일반화의 핵심 |
+| co-fine-tuning | 로봇 데이터만 fine-tuning하지 않고 원래 웹 데이터를 배치에 섞어 함께 fine-tuning하는 방식. RT-2 일반화의 핵심 |
 | action tokenization | 연속 action을 256 bin으로 이산화해 정수 토큰 문자열로 표현하는 것. RT-1에서 이어받았다 |
 | symbol tuning | 기존 토큰의 의미를 다른 것(여기서는 action bin)으로 덮어써 학습하는 기법. PaLM-E의 action 어휘 구성에 쓰인다 |
 | output constraint | 로봇 action 프롬프트일 때만 유효 action 토큰으로 디코딩 어휘를 제한하는 장치 |

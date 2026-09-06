@@ -198,7 +198,7 @@ nuScenes open-loop planning(Table VIII)에서 평균 L2가 가장 낮은 쪽은 
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
-데이터와 평가부터 보자. embodied AI는 내비게이션과 조작, 자율주행에 걸쳐 있는데 이를 아우르는 대규모 데이터셋이 없다. 파편화는 모델 규모가 과제 관련 데이터보다 빨리 커질 때 특히 일반화를 막는다. 멀티 에이전트 상호작용 데이터는 더 부족해 협력적 world model 연구가 진척되기 어렵다. 지표 쪽도 사정이 비슷하다. FID와 FVD는 픽셀 충실도에 기울어 물리 일관성이나 dynamics, 인과는 보지 못한다. 겉보기는 그럴듯하지만 물리 법칙에 어긋나는 rollout이 나온다. EWM-Bench 같은 시도가 있어도 과제에 한정되고 도메인 간 표준이 없다. Sora류 비디오 시뮬레이터를 재는 방식과 embodied controller를 재는 방식 사이 간극도 그대로다.
+데이터와 평가부터 보자. embodied AI는 내비게이션과 조작, 자율주행에 걸쳐 있는데 이를 아우르는 대규모 데이터셋이 없다. 파편화는 모델 규모가 과제 관련 데이터보다 빨리 커질 때 특히 일반화를 막는다. 멀티에이전트 상호작용 데이터는 더 부족해 협력적 world model 연구가 진척되기 어렵다. 지표 쪽도 사정이 비슷하다. FID와 FVD는 픽셀 충실도에 기울어 물리 일관성이나 dynamics, 인과는 보지 못한다. 겉보기는 그럴듯하지만 물리 법칙에 어긋나는 rollout이 나온다. EWM-Bench 같은 시도가 있어도 과제에 한정되고 도메인 간 표준이 없다. Sora류 비디오 시뮬레이터를 재는 방식과 embodied controller를 재는 방식 사이 간극도 그대로다.
 
 계산 효율과 실시간 제어는 서로 상충한다. Transformer와 diffusion decoder는 성능이 좋지만 추론 비용과 메모리가 온보드 로봇 플랫폼의 지연과 전력 제약에 충돌한다. 실제 시스템 다수는 여전히 소형 recurrent 모델과 global latent vector에 머문다. 예측 가능한 실시간 동작을 얻는 대신 용량을 줄인다. 저자들이 내놓는 처방은 quantization, pruning, low-rank, sparse 계산 같은 압축, 선형 시간 SSM, 그리고 자원에 따라 해상도와 rollout horizon, 모달리티를 조절하는 적응형 설계다. 고용량 video diffusion은 오프라인 데이터 생성과 시뮬레이션에 쓰고 온라인 제어와 안전 모니터링에는 경량 코어를 남기라는 역할 분리도 함께 제안한다.
 

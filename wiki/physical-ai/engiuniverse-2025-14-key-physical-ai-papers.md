@@ -149,7 +149,7 @@ OpenVLA의 결과 중 발표가 가장 상징적이라고 꼽는 것은 7B 파�
 
 발표는 초기 diffusion 기반 policy가 이 반복 과정 때문에 느렸다고 지적하고, 이후 DiT 구조와 시각 feature 재활용, 스텝 수 축소, 경량화 같은 기법이 더해지며 실시간에 가까운 속도를 냈다고 덧붙인다. DiT는 diffusion 모델의 denoising 신경망을 Transformer로 구현한 구조다. 다만 여러 스텝에 걸친 확률적 denoising이라는 기본 구조는 그대로 남는다.
 
-π₀는 이 flow matching을 action expert에 적용한다. action expert는 로봇 상태와 action 토큰만 처리하도록 분리한 별도 가중치 묶음이다. 이미지와 지시문은 VLM 백본이 인코딩하고, 그 위에서 다음 몇 스텝의 joint 변화나 end-effector 이동량을 flow matching 기반 policy가 직접 생성한다.
+π₀는 이 flow matching을 action expert에 적용한다. action expert는 로봇 상태와 action 토큰만 처리하도록 분리한 별도 가중치 묶음이다. 이미지와 지시문은 VLM backbone이 인코딩하고, 그 위에서 다음 몇 스텝의 joint 변화나 end-effector 이동량을 flow matching 기반 policy가 직접 생성한다.
 
 발표가 π₀의 성과로 드는 것은 여러 로봇 플랫폼에서 50Hz 수준의 control frequency와 long-horizon 연속 제어를 동시에 만족시켰다는 점이다. control frequency는 로봇이 1초에 몇 번 새로운 action을 갱신하는지를 뜻하므로, 50Hz는 1초에 50번 새 action을 낸다는 의미다. 토큰 기반 VLA가 언어와 action을 통합 표현하는 데 강점을 보였다면 π₀는 연속 제어의 품질과 안정성을 끌어올린 쪽이라고 발표는 대비시킨다.
 
@@ -161,7 +161,7 @@ CogACT는 한 층 위의 문제를 다룬다. 고차원 인지 모듈과 저차�
 
 RoboVLMs는 앞선 흐름을 한 발짝 떨어져 정리하는 연구다. 설계 요소를 수백 개 조합으로 바꿔가며 비교했고, 발표가 짚는 검토 항목은 세 가지다.
 
-- 어떤 비전 백본이 실제 manipulation에서 강인한가
+- 어떤 비전 backbone이 실제 manipulation에서 강인한가
 - 지시문을 어떻게 구성해야 action 정확도가 올라가는가
 - action을 연속값 그대로 다룰 것인가 이산 토큰으로 바꿀 것인가
 
@@ -193,11 +193,11 @@ NVIDIA는 반대편에서 접근한다. GR00T N1과 N1.5는 Isaac Sim이라는 �
 
 | 연구 | 줄이는 대상 | 방식 |
 |---|---|---|
-| BitVLA | 파라미터의 비트 수 | 언어와 action 백본을 삼진값으로, 비전 인코더는 distillation으로 약 1.58비트까지 압축 |
+| BitVLA | 파라미터의 비트 수 | 언어와 action backbone을 삼진값으로, 비전 인코더는 distillation으로 약 1.58비트까지 압축 |
 | PD-VLA | action chunk 하나를 생성하는 시간 | 오토리그레시브 디코딩을 병렬 고정점 반복으로 근사 |
 | RTC | action chunk 사이의 이음매 | 실행 중인 앞부분을 freeze하고 뒷부분을 인페인팅하듯 재생성 |
 
-BitVLA는 VLA 전체 파라미터를 1비트에 해당하는 삼진값, 즉 -1과 0과 1 세 값만 쓰도록 설계한다. 언어와 action 백본이 이 ternary 파라미터로 구성되고, 비전 인코더는 완전한 1비트 대신 distillation 기반 학습으로 약 1.58비트 수준까지 압축한다. distillation은 큰 모델의 출력을 작은 모델이 흉내 내게 학습시키는 압축 기법이므로, 풀 프리시전 비전 인코더를 교사로 삼아 표현력을 유지하면서 메모리와 연산을 줄이는 구조다.
+BitVLA는 VLA 전체 파라미터를 1비트에 해당하는 삼진값, 즉 -1과 0과 1 세 값만 쓰도록 설계한다. 언어와 action backbone이 이 ternary 파라미터로 구성되고, 비전 인코더는 완전한 1비트 대신 distillation 기반 학습으로 약 1.58비트 수준까지 압축한다. distillation은 큰 모델의 출력을 작은 모델이 흉내 내게 학습시키는 압축 기법이므로, 풀 프리시전 비전 인코더를 교사로 삼아 표현력을 유지하면서 메모리와 연산을 줄이는 구조다.
 
 발표가 흥미롭다고 짚는 지점은 이렇게 줄여도 성능이 크게 하락하지 않는다는 데 있다. 대규모 로봇 pre-training을 하지 못한 한계가 있는데도, 로봇 벤치마크 LIBERO에서 OpenVLA-OFT의 4비트 양자화 버전과 비슷한 성능을 내면서 메모리 사용량은 약 30% 수준에 그쳤다. 즉 VLA도 LLM처럼 저비트 양자화로 로봇 내부에서 직접 실행할 수준까지 줄일 수 있다는 것이 BitVLA의 메시지다.
 
@@ -222,7 +222,7 @@ RTC가 남은 문제를 맡는다. 디코딩이 빨라져도 고주파 제어 �
 | RT-1 | 데이터 13만 개, 작업 100가지 이상 | 있음 |
 | OpenVLA | 7B 파라미터 모델이 55B RT-2-X를 성능에서 추월 | 있음 |
 | π₀ | control frequency 50Hz 수준의 고주파 제어 | 있음 |
-| BitVLA | 언어와 action 백본은 삼진값, 비전 인코더는 약 1.58비트 | 있음 |
+| BitVLA | 언어와 action backbone은 삼진값, 비전 인코더는 약 1.58비트 | 있음 |
 | BitVLA | LIBERO에서 OpenVLA-OFT의 4비트 양자화 버전과 비슷한 성능, 메모리는 약 30% 수준 | 있음 |
 | CogACT | OpenVLA와 RT-2 계열보다 조작 성공률이 상당히 높음 | 없음 |
 | RTC | Kinetix 시뮬레이터와 양팔 로봇 실제 작업에서 chunk 경계 이상 동작 감소, throughput 향상 | 없음 |
@@ -261,7 +261,7 @@ RTC가 남은 문제를 맡는다. 디코딩이 빨라져도 고주파 제어 �
 | action chunking | 매 timestep마다 action 하나가 아니라 앞으로 n스텝 분량을 한 번에 예측하는 제어 전략. 생성 모델 종류와 무관하다 |
 | flow matching | 확률 분포를 옮기는 연속 벡터장을 학습하고 결정론적 ODE 적분으로 샘플을 만드는 생성 기법. diffusion의 확률적 다단계 denoising과 대비된다 |
 | world foundation model | 여러 하위 환경으로 fine-tuning될 것을 전제로 학습한 범용 world model. NVIDIA Cosmos 플랫폼의 구성 요소이며 약어는 WFM |
-| ternary quantization | 파라미터를 -1과 0과 1 세 값으로 제한하는 극단적 양자화. BitVLA가 언어와 action 백본에 적용한다 |
+| ternary quantization | 파라미터를 -1과 0과 1 세 값으로 제한하는 극단적 양자화. BitVLA가 언어와 action backbone에 적용한다 |
 | parallel fixed-point iteration | 오토리그레시브 디코딩을 고정점 방정식으로 보고 여러 스텝을 동시에 갱신하는 근사. PD-VLA의 핵심 |
 
 ## 관련 페이지

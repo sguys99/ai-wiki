@@ -31,7 +31,7 @@ News 타임라인이 이 저장소의 성격을 잘 보여준다. 2025-11-12 최
 
 ## 2. 주요 기여 (Key Contributions)
 
-논문 재현에 필요한 것을 실제로 다 풀어놓은 게 이 저장소의 값이다. pre-training된 policy 체크포인트, C++ 추론 스택, teleoperation 스택과 데모 스크립트, motion imitation과 파인튜닝 학습 레시피, 대규모 데이터 수집 워크플로와 VLA 파인튜닝 스크립트, 전처리된 대규모 인체 모션 데이터셋이 모두 공개됐다.
+논문 재현에 필요한 것을 실제로 다 풀어놓은 게 이 저장소의 값이다. pre-training된 policy 체크포인트, C++ 추론 스택, teleoperation 스택과 데모 스크립트, motion imitation과 fine-tuning 학습 레시피, 대규모 데이터 수집 워크플로와 VLA fine-tuning 스크립트, 전처리된 대규모 인체 모션 데이터셋이 모두 공개됐다.
 
 세 프로젝트가 한 저장소를 공유한다. Decoupled WBC는 하체 RL과 상체 IK를 분리한 이전 세대 컨트롤러로 GR00T N1.5와 N1.6이 쓴 것이다. GEAR-SONIC이 현재 세대 generalist 전신 컨트롤러이고, MotionBricks는 애니메이션과 로보틱스용 실시간 latent 생성 모델의 프리뷰다. 같은 저장소 안에 세대가 겹쳐 있어 decoupled 방식과 통합 token 방식의 차이를 코드 수준에서 견줄 수 있다.
 
@@ -50,7 +50,7 @@ README가 굳이 못 박아 둔 단서가 하나 있다. lookahead 값은 컨트
 
 ### 학습
 
-Bones-SEED(14만 2천 개 이상의 모션, 약 288시간, G1 retarget)로 처음부터 학습하거나 공개 체크포인트에서 파인튜닝한다. 파이프라인은 SOMA CSV를 motion_lib 포맷으로 변환(`convert_soma_csv_to_motion_lib.py`, 120fps 소스를 30fps로) → 필터링(`filter_and_copy_bones_data.py`) → `train_agent_trl.py`를 accelerate로 실행하는 순서다. README는 체크포인트 파인튜닝에 64 GPU 이상을 권한다. 학습만 Isaac Lab의 Python 환경을 따로 요구한다.
+Bones-SEED(14만 2천 개 이상의 모션, 약 288시간, G1 retarget)로 처음부터 학습하거나 공개 체크포인트에서 fine-tuning한다. 파이프라인은 SOMA CSV를 motion_lib 포맷으로 변환(`convert_soma_csv_to_motion_lib.py`, 120fps 소스를 30fps로) → 필터링(`filter_and_copy_bones_data.py`) → `train_agent_trl.py`를 accelerate로 실행하는 순서다. README는 체크포인트 fine-tuning에 64 GPU 이상을 권한다. 학습만 Isaac Lab의 Python 환경을 따로 요구한다.
 
 ### 배포와 인터페이스
 
@@ -76,7 +76,7 @@ README가 직접 경고하는 항목이 실무에서 걸릴 지점이다. Git LF
 
 ## 6. 관련 연구 (Related Work)
 
-같은 프로젝트의 세 자료가 서로를 보완한다. [[luo-2025-sonic-supersizing-motion-tracking]]이 방법과 정량 근거, [[nvlabs-2026-gear-sonic-project-page]]가 동작 품질의 영상 증거, 이 저장소가 실행 가능한 구현이다. 외부로는 GR00T N1.5와 N1.6(decoupled WBC의 소비자이자 SONIC의 VLA 파트너), Isaac-GR00T N1.7(2026-05 VLA 워크플로의 파인튜닝 대상), BONES-SEED(학습 데이터), Kimodo(웹 데모의 text-to-motion), MotionBricks(같은 저장소의 실시간 latent 생성 모델)로 이어진다.
+같은 프로젝트의 세 자료가 서로를 보완한다. [[luo-2025-sonic-supersizing-motion-tracking]]이 방법과 정량 근거, [[nvlabs-2026-gear-sonic-project-page]]가 동작 품질의 영상 증거, 이 저장소가 실행 가능한 구현이다. 외부로는 GR00T N1.5와 N1.6(decoupled WBC의 소비자이자 SONIC의 VLA 파트너), Isaac-GR00T N1.7(2026-05 VLA 워크플로의 fine-tuning 대상), BONES-SEED(학습 데이터), Kimodo(웹 데모의 text-to-motion), MotionBricks(같은 저장소의 실시간 latent 생성 모델)로 이어진다.
 
 ## 7. 용어집 (Glossary)
 

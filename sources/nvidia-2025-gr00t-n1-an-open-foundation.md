@@ -247,7 +247,7 @@ pre-training은 대규모 일반 데이터로 모델의 기반 능력을 먼저 
 
 GR00T-N1-2B는 전체 2.2B 파라미터이고 그중 1.34B이 VLM이다. 16개 액션 chunk를 샘플링하는 데 L40 GPU와 bf16에서 63.9ms가 걸린다.
 
-System 2는 Eagle-2 VLM이다. SmolLM2 LLM과 SigLIP-2 이미지 인코더에서 파인튜닝해 만들었다. 이미지는 224×224로 인코딩한 뒤 pixel shuffle을 거쳐 프레임당 64개 image token이 된다. 최종 layer 대신 중간 layer 임베딩을 쓰면 추론이 빠르고 downstream 성공률도 높았다. GR00T-N1-2B는 12번째 layer 표현을 쓴다.
+System 2는 Eagle-2 VLM이다. SmolLM2 LLM과 SigLIP-2 이미지 인코더에서 fine-tuning해 만들었다. 이미지는 224×224로 인코딩한 뒤 pixel shuffle을 거쳐 프레임당 64개 image token이 된다. 최종 layer 대신 중간 layer 임베딩을 쓰면 추론이 빠르고 downstream 성공률도 높았다. GR00T-N1-2B는 12번째 layer 표현을 쓴다.
 
 System 1은 DiT 변종이다. adaptive layer norm으로 denoising step을 조건화한다. self-attention 블록이 noised action token과 state 임베딩을 처리하고 그 블록들 사이에 cross-attention 블록이 들어가 VLM 토큰을 받는다. Flamingo, VIMA와 같은 계열 구조다. 마지막 DiT 블록 뒤에 embodiment별 Action Decoder MLP가 붙어 H개 토큰을 액션으로 바꾼다.
 
@@ -261,13 +261,13 @@ embodiment마다 state와 action 차원이 다른 문제는 embodiment별 MLP pr
 
 액션 라벨이 없는 데이터를 쓰려면 라벨을 만들어야 한다. Human egocentric video와 neural trajectory에는 VQ-VAE를 학습해 latent action을 뽑는다. 인코더가 프레임 $x_t$와 $x_{t+H}$를 받아 latent $z_t$를 내고 디코더가 $z_t$와 $x_t$로 $x_{t+H}$를 복원하는 구조다. 학습이 끝나면 인코더를 inverse dynamics model처럼 쓴다. pre-quantized 임베딩을 latent action 라벨로 삼아 "LAPA"라는 별도 embodiment로 취급한다. 모든 이종 데이터에 같은 VQ-VAE를 학습시키니 latent action 공간이 공유된다. 논문 Figure 4를 보면 로봇 8종과 인간 embodiment에서 "오른팔을 왼쪽으로"라는 같은 latent action이 일관되게 대응된다.
 
-Neural trajectory는 image-to-video 생성 모델(Cosmos와 Wan 계열)을 자체 teleoperation 데이터 88시간으로 파인튜닝해 만든다. 초기 프레임과 새 언어 프롬프트를 주면 실제로 수집하지 않은 counterfactual 상황이 나온다. 88시간을 827시간으로, 약 10배 늘렸다. 다양성 확보에는 상용 multimodal LLM을 두 번 쓴다. 먼저 초기 프레임에서 객체를 검출해 물리적으로 가능한 "pick up {object} from {A} to {B}" 조합을 만들게 한다. 다음으로 생성된 비디오를 8프레임으로 다운샘플해 지시를 안 따른 것을 걸러내는 판정자로 쓴다.
+Neural trajectory는 image-to-video 생성 모델(Cosmos와 Wan 계열)을 자체 teleoperation 데이터 88시간으로 fine-tuning해 만든다. 초기 프레임과 새 언어 프롬프트를 주면 실제로 수집하지 않은 counterfactual 상황이 나온다. 88시간을 827시간으로, 약 10배 늘렸다. 다양성 확보에는 상용 multimodal LLM을 두 번 쓴다. 먼저 초기 프레임에서 객체를 검출해 물리적으로 가능한 "pick up {object} from {A} to {B}" 조합을 만들게 한다. 다음으로 생성된 비디오를 8프레임으로 다운샘플해 지시를 안 따른 것을 걸러내는 판정자로 쓴다.
 
 trajectory는 observation과 action이 시간순으로 이어진 실행 기록이다. 시뮬레이션 trajectory는 DexMimicGen으로 증식한다. 사람 시연 데이터 수십 개를 객체 중심 subtask로 쪼갠 뒤 객체 위치에 맞춰 변환하고 재생한 다음 end effector와 객체의 상대 pose를 유지한 채 구간을 이어붙인다. 성공한 것만 남긴다. pre-training과 post-training을 합쳐 780,000개 trajectory, 사람 시연 데이터로 환산하면 6,500시간(연속 9개월)에 해당하는 양을 11시간에 만들었다.
 
 ### 학습
 
-pre-training은 flow-matching 손실 하나로 전체 코퍼스를 학습한다. Human video는 latent action을 타깃으로 삼는다. GR-1과 OpenX 같은 로봇 데이터에는 실제 액션과 latent action을 같이 쓰고 neural trajectory에는 latent action과 실제 로봇 데이터로 학습한 IDM의 예측 액션을 쓴다. Post-training에서는 embodiment별 데이터로 파인튜닝하며 VL backbone의 language 부분은 계속 frozen이다. Neural trajectory로 증강할 때는 실제 trajectory와 1:1 비율로 co-train한다.
+pre-training은 flow-matching 손실 하나로 전체 코퍼스를 학습한다. Human video는 latent action을 타깃으로 삼는다. GR-1과 OpenX 같은 로봇 데이터에는 실제 액션과 latent action을 같이 쓰고 neural trajectory에는 latent action과 실제 로봇 데이터로 학습한 IDM의 예측 액션을 쓴다. Post-training에서는 embodiment별 데이터로 fine-tuning하며 VL backbone의 language 부분은 계속 frozen이다. Neural trajectory로 증강할 때는 실제 trajectory와 1:1 비율로 co-train한다.
 
 인프라는 NVIDIA OSMO가 관리하는 H100 클러스터다(Quantum-2 InfiniBand fat-tree). Ray 위에 올린 자체 라이브러리로 fault-tolerant 다중 노드 학습을 한다. 단일 모델에 최대 1024 GPU를 쓰고 GR00T-N1-2B pre-training에 약 50,000 H100 GPU 시간이 들었다. 최소 사양도 적어뒀다. A6000 한 장으로 adapter(state encoder, action encoder, action decoder)와 DiT만 튜닝하면 batch size 200까지, vision encoder까지 튜닝하면 16까지 올라간다.
 
@@ -277,7 +277,7 @@ pre-training은 flow-matching 손실 하나로 전체 코퍼스를 학습한다.
 
 실제 로봇 데이터에는 자체 수집한 Fourier GR-1 humanoid 데이터가 들어간다. VIVE Ultimate Tracker로 손목, Xsens Metagloves로 손가락을 잡고 20Hz로 제어하며 atomic/aggregate 2단으로 주석했다. 여기에 OpenX-Embodiment 중 RT-1, Bridge-v2, Language Table, DROID, MUTEX, RoboSet, Plex와 AgiBot-Alpha 140,000개 trajectory를 더했다.
 
-합성 데이터는 RoboCasa 프레임워크 위에 "A를 B에서 C로 재배치" 구조의 태스크를 세우고 source와 target receptacle 조합 54종에 각 10,000개씩, 총 54만 개 시연 데이터를 DexMimicGen으로 만들었다. Neural trajectory는 실제 로봇 3,000샘플(480P 해상도 81프레임)로 100 epoch 파인튜닝한 비디오 모델을 써서 827시간을 만들었다. L40에서 1초 영상에 2분이 걸린다. 3,600장에 약 10만 5천 GPU 시간(1.5일)이 들었다.
+합성 데이터는 RoboCasa 프레임워크 위에 "A를 B에서 C로 재배치" 구조의 태스크를 세우고 source와 target receptacle 조합 54종에 각 10,000개씩, 총 54만 개 시연 데이터를 DexMimicGen으로 만들었다. Neural trajectory는 실제 로봇 3,000샘플(480P 해상도 81프레임)로 100 epoch fine-tuning한 비디오 모델을 써서 827시간을 만들었다. L40에서 1초 영상에 2분이 걸린다. 3,600장에 약 10만 5천 GPU 시간(1.5일)이 들었다.
 
 Human video는 Ego4D, Ego-Exo4D, Assembly-101, EPIC-KITCHENS, HOI4D, HoloAssist, RH20T-Human 일곱 개다.
 
@@ -328,13 +328,13 @@ RoboCasa "Turn Sink Spout"에서 100 샘플 구간 DP가 11.8%, GR00T N1이 42.2
 
 ## 6. 관련 연구 (Related Work)
 
-로보틱스 foundation model 접근은 크게 두 가지다. 한쪽은 pre-trained 모델을 상위 블랙박스 추론 모듈로 두고 하위 로봇 policy와 붙인다(SayCan, PaLM-E, Code as Policies 계열). 이 방식은 하위 policy와 인터페이스가 이미 있다고 전제한다. 다른 방식은 pre-trained 모델을 로봇 데이터로 파인튜닝해 VLA를 만든다(RT-1, RT-2, π0, OpenVLA, LAPA 등). GR00T N1이 여기 속한다. 계층을 고정하지 않고 배포 태스크를 향해 end-to-end로 최적화하는 접근이다.
+로보틱스 foundation model 접근은 크게 두 가지다. 한쪽은 pre-trained 모델을 상위 블랙박스 추론 모듈로 두고 하위 로봇 policy와 붙인다(SayCan, PaLM-E, Code as Policies 계열). 이 방식은 하위 policy와 인터페이스가 이미 있다고 전제한다. 다른 방식은 pre-trained 모델을 로봇 데이터로 fine-tuning해 VLA를 만든다(RT-1, RT-2, π0, OpenVLA, LAPA 등). GR00T N1이 여기 속한다. 계층을 고정하지 않고 배포 태스크를 향해 end-to-end로 최적화하는 접근이다.
 
 데이터 쪽 선행 연구로는 teleoperation 대규모화(AgiBot과 OpenX)와 특수 하드웨어로 로봇 없이 시연 데이터를 모으는 방식(instrumented demonstration)을 짚는다. UMI 그리퍼, exoskeleton, 안경 같은 장치가 여기 속한다. human video로 표현을 pre-training하는 방식, 중간 표현을 매개로 로봇 데이터와 같이 쓰는 방식도 든다. LAPA(Ye et al., 2025)는 human video만으로 latent action pre-training을 해도 downstream 전이가 된다는 것을 보였고 GR00T N1이 그 기법을 가져왔다.
 
 합성 데이터에는 MimicGen과 DexMimicGen 계열 자동 생성과 생성 모델 증강이 있다. 생성 모델 증강은 이전까지 in-painting이나 text-to-image diffusion 수준이었다. 이 논문은 비디오 생성 모델로 trajectory 전체를 만든다. 약 30만 개 neural trajectory, 827시간 규모다.
 
-Embodiment별 projector는 Octo와 유사하지만 Octo는 VLM을 파인튜닝하지 않았다.
+Embodiment별 projector는 Octo와 유사하지만 Octo는 VLM을 fine-tuning하지 않았다.
 
 ## 7. 용어집 (Glossary)
 

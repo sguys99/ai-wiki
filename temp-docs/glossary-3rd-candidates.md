@@ -1,6 +1,6 @@
 # 용어집 3차 갱신 등재 후보 (Phase 0-3 (b))
 
-작성일: 2026-09-06. `temp-docs/contents-renewal.md` Phase 0-3의 (b) 항목 산출물이다. agents와 llms 도메인에서 아직 용어집에 없는데 한글 직역 표기가 저장소에 실제로 퍼져 있는 용어를 빈도 실측으로 뽑았다. **이 문서는 후보 표까지이고 등재는 하지 않았다.** 사용자 승인 게이트가 있다.
+작성일: 2026-09-06. `temp-docs/contents-renewal.md` Phase 0-3의 (b) 항목 산출물이다. agents와 llms 도메인에서 아직 용어집에 없는데 한글 직역 표기가 저장소에 실제로 퍼져 있는 용어를 빈도 실측으로 뽑았다. 작성 시점에는 후보 표까지가 범위였고, 2026-09-06 사용자 승인으로 7행을 등재했다. **승인 결과와 실행 내역은 6절에 있다.** 2절 표의 `권고` 열은 승인 전 조사 결과 그대로 두어 판단 근거를 보존한다.
 
 계량 방식은 `temp-docs/ingest-upgrade-plan.md` Phase 5-1의 사전 계량 방식을 승계한다. 후보를 실제로 glossary-agents(전 카테고리)에 넣고 `lint_terms.py`를 돌려 신규 위반 건수를 실측했으며, 추측값은 쓰지 않았다.
 
@@ -85,3 +85,48 @@
 
 - `재인덱싱` (12번 등재 시): re-indexing이므로 `인덱싱`과 같은 처리를 받아야 한다
 - `코파인튜닝` (7번 등재 시): co-fine-tuning의 미등재 음차이고 glossary-llms의 canonical은 `co-fine-tuning`이다
+
+## 6. 승인 결과와 실행 내역 (2026-09-06)
+
+사용자 승인으로 **7행을 등재**했다. 위반 정리는 physical-ai 43건만 즉시 수행하고, 비-physical-ai 210건은 Phase 2~5 배치가 흡수한다.
+
+### 6-1. 후보별 처분
+
+| # | 후보 | 처분 | 등재 위치 | 행 성격 | 신규 위반 | 즉시 정리 |
+|---|---|---|---|---|---|---|
+| 1 | 하네스 → harness | **등재** | glossary-agents | 기존 harness 행의 빈 금지 표기 칸을 채움 | 61건 | 0건 (physical-ai 없음) |
+| 2 | 도구 호출 → tool call | **등재** | glossary-agents | 신규 행 (tool use 아래) | 24건 | 0건 |
+| 3 | 재순위, 재정렬 → reranking | **등재** | glossary-agents | 신규 행 (retrieval 아래) | 17건 | 0건 |
+| 4 | 백본 → backbone | **등재** | glossary-llms | 신규 행 (encoder / decoder 아래) | 37건 | 11건 |
+| 5 | 컨텍스트 엔지니어링 | **등재** | glossary-agents | 기존 행의 금지 표기를 좁힘 | 4건 | 0건 |
+| 6 | 멀티 에이전트 → 멀티에이전트 | **등재** | glossary-agents | 기존 multi-agent 행의 빈 칸을 채움 | 5건 | 3건 |
+| 7 | 파인튜닝 → fine-tuning | **등재 (정책 반전)** | glossary-llms | 기존 fine-tuning 행에 추가, 병용 허용 서술 철회 | 48건 | 29건 |
+| 8 | query (질의, 쿼리) | **이관** | — | — | — | Phase 7-1 |
+| 9~14 | baseline, modality, corpus, indexing, sandbox, knowledge graph | **보류 유지** | — | — | — | 배치 진행 중 재검토 |
+| 15~20 | adapter, tool, evaluator, scaffolding, agentic, embedder | **기각 확정** | — | — | — | 4절 사유 참고 |
+| 21 | rollout | **이관** | — | — | — | Phase 7-1 (glossary-physical-ai 소관) |
+| 22~23 | orchestration, guardrail | 조치 불요, 관찰 | — | — | — | — |
+
+등재 7행의 신규 위반 합계는 196건이고, 그중 physical-ai 43건을 같은 작업에서 정리해 physical-ai 게이트 0건을 유지했다.
+
+### 6-2. Phase 7-1로 이관한 2건
+
+Phase 7-1(용어집 4차 일괄 갱신)에서 다시 볼 후보다. 재조사 없이 아래 계량을 그대로 쓸 수 있다.
+
+| 후보 | 이관 사유 | 재검토 시 필요한 것 |
+|---|---|---|
+| **8번 query** (질의 220건, 쿼리 123건, 원어 278건) | canonical 방향(원어, 음차, 번역어) 결정이 선행이다. 세 표기가 경합하고 15개 파일이 두 한글 표기를 함께 쓴다 | `질의`를 금지 표기로 삼는다면 `SUBSTRING_EXCEPTIONS`에 `품질의`, `물질의`, `성질의` 3항이 필수다. 별개 개념 `질의응답` 17건은 예외로 덮이지 않아 별도 판단이 필요하다. physical-ai 76건이 걸린다 |
+| **21번 rollout** (롤아웃 14건, 원어 221건) | agents와 llms가 아니라 physical-ai 도메인 용어라 glossary-physical-ai 소관이다. 방향은 16대 1로 명확하다 | physical-ai 13건(wiki 3, sources 10)이 rework다. 오탐은 0건 |
+
+### 6-3. 등재 후 실측
+
+| 지표 | 등재 전 | 등재 직후 | physical-ai 정리 후 |
+|---|---|---|---|
+| lint_terms `--all` | 117건 | 313건 | **270건** |
+| physical-ai (154파일) | 0건 | 43건 | **0건** |
+| physical-ai-overview | 0건 | 0건 | **0건** |
+| glossary-agents 등재 행 | 36행 (금지 22종) | 38행 (금지 27종) | 38행 |
+| glossary-llms 등재 행 | 36행 (금지 29종) | 37행 (금지 31종) | 37행 |
+| lint_style error / warning / 위반 파일 | 9,202 / 212 / 284 | 변동 없음 | **9,202 / 212 / 284** |
+
+`SUBSTRING_EXCEPTIONS` 추가는 실행 후에도 불필요했다. 등재한 8개 금지 표기 전부 남은 위반에서 앞에 다른 형태소가 붙은 매치가 0건이다. 5절의 조건부 제안은 8번과 16번을 나중에 등재할 때만 유효하다.

@@ -354,7 +354,7 @@ Evaluation metrics (8.6). 널리 합의된 평가 지표가 없다. 시각적으
 | Action-conditioned WM | action으로 조건화된 world model. embodied control에서 가장 중요한 부류 |
 | Passive / Controllable WM | action을 주변화한 예측기 / action으로 조건화한 예측기 |
 | IDM (Inverse Dynamics Model) | observation trajectory에서 그 사이 실행된 action을 복원하는 모델 |
-| VLA (Vision-Language-Action) | 시각 observation과 언어 observation을 로봇 action으로 직접 매핑하는 policy. VLM을 로봇 trajectory 데이터로 파인튜닝해 만드는 것이 일반적 |
+| VLA (Vision-Language-Action) | 시각 observation과 언어 observation을 로봇 action으로 직접 매핑하는 policy. VLM을 로봇 trajectory 데이터로 fine-tuning해 만드는 것이 일반적 |
 | VGM / UMM / MLLM | Table 1의 backbone 계열. 비디오 생성 모델 / 통합 multimodal 모델 / multimodal LLM |
 | MoT (Mixture-of-Transformers) | 모달리티별 전문가를 유지한 채 shared attention으로 결합하는 sparse 아키텍처 |
 | JEPA | 픽셀이 아니라 임베딩 공간에서 예측하는 joint-embedding predictive architecture |

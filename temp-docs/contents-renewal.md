@@ -223,7 +223,7 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - 완료 (2026-09-06). 2절 전체를 확정치로 다시 쓰고 5절 착수 열을 채웠다. 측정 정의 7종을 2절 머리에 명시하고 physical-ai 완료치로 역검증했다. 17개 지표가 계획서 기록과 일치했고 4개가 어긋나 실측으로 정정했다: lint_style 위반 파일 285개에서 284개, 표 편당 1.3개에서 1.44개(계획서 값은 전체가 아니라 agents 카테고리 값이었다), frontmatter 최악 362줄/505줄에서 364줄/504줄(구분선 계산 차이), overviews error 339건에서 401건(5-A는 bilingual-heading 미검출 상태 값이라 차이 62건이 재검출분).
   - 교차 검증 전부 통과. 8개 카테고리 lint 합계가 `--all`과 rule 단위까지 일치하고, 경로별 합계와 index.md 절별 합계도 일치한다. physical-ai 게이트 두 줄 모두 0건 유지.
 
-- [ ] 0-3. 용어집 3차 갱신. (a) glossary-agents의 `applies_to`를 전 카테고리로 확장하고 새로 걸리는 위반 약 5건을 정리한 뒤 physical-ai 154개 파일 0건 재확인. (b) agents와 llms 도메인의 빈도 실측 스캔으로 등재 후보 표를 작성해 사용자 승인 후 등재한다 (등재 전 전 저장소 grep으로 신규 위반 건수를 사전 계량하는 Phase 5-1 방식)
+- [x] 0-3. 용어집 3차 갱신. (a) glossary-agents의 `applies_to`를 전 카테고리로 확장하고 새로 걸리는 위반 약 5건을 정리한 뒤 physical-ai 154개 파일 0건 재확인. (b) agents와 llms 도메인의 빈도 실측 스캔으로 등재 후보 표를 작성해 사용자 승인 후 등재한다 (등재 전 전 저장소 grep으로 신규 위반 건수를 사전 계량하는 Phase 5-1 방식)
   - (a) 완료 (2026-09-06). glossary-agents의 `applies_to`를 8개 전 카테고리로 확장했다. 확장 직후 lint_terms가 117건에서 168건으로 늘었고(신규 51건), 위반을 정리해 117건으로 복귀시켰다. 잔여 117건의 용어 구성도 기준선과 동일해 순수 치환임이 확인된다.
   - 신규 51건의 내역: `접지`에서 grounding 20건, `온톨로지`에서 ontology 13건, `도구 사용`에서 tool use 10건, `워크플로우`에서 워크플로 7건, `리즈닝` 1건. 24개 파일 53줄을 최소 수정으로 고쳤고 문단 재작성은 하지 않았다.
   - `리즈닝` 1건만 고치지 않았다. `sources/engiuniverse-2025-rt1-rt2-robotics-transformer-review.md:81`은 자동 자막이 오인식한 표기를 복원 실패 사례로 인용한 문장이라 바꾸면 뜻이 파괴된다. `lint-terms: ignore`를 사유와 함께 달았다.
@@ -231,7 +231,16 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - glossary-agents의 ontology 행 비고가 "applies_to가 physical-ai를 제외하므로 충돌하지 않는다"고 적고 있어 확장으로 무효가 됐다. 같은 커밋에서 비고를 갱신했다. tool use 행 비고에는 로봇의 물리적 도구 사용도 원논문이 tool use로 쓰므로 함께 치환했다는 판단을 남겼다.
   - 회귀 확인 통과. physical-ai 게이트 4개 명령 전부 exit 0이고, 전 저장소 총계가 rule 단위까지 불변이다 (lint_style error 9,202, warning 212, 위반 파일 284, lint_terms 117).
   - 다른 용어집 `applies_to` 점검 결과는 변경 없음이다. glossary-llms는 이미 전 카테고리다. glossary-physical-ai의 3개 카테고리 한정은 누락이 아니라 의도된 설계로, 표기 원칙 절이 "정책, 행동, 관측 같은 단어가 다른 도메인에서 일반 의미로 쓰이는 것까지 막지 않기 위해서"라고 명시한다. 금지 표기 162종에 고빈도 일반어가 많아 확장하면 오탐이 폭증한다.
-  - (b) 후보 표 작성 완료, **사용자 승인 대기**. `temp-docs/glossary-3rd-candidates.md`에 후보 23개를 계량과 함께 정리했다. 등재 권고 6행, 보류 8건, 기각 6건, 이관 1건, 관찰 2건. 모든 신규 위반 수치는 후보를 임시 등재하고 lint를 돌린 실측값이다.
+  - (b) 후보 표 작성 완료. `temp-docs/glossary-3rd-candidates.md`에 후보 23개를 계량과 함께 정리했다. 조사 결과는 등재 권고 6행, 보류 8건, 기각 6건, 이관 1건, 관찰 2건이었다. 모든 신규 위반 수치는 후보를 임시 등재하고 lint를 돌린 실측값이다.
+  - (b) 사용자 승인 (2026-09-06): 등재 권고 6행 등재하되 위반 정리는 physical-ai만 즉시 하고 비-physical-ai는 배치가 흡수한다, `파인튜닝`은 fine-tuning 원어로 등재하여 기존 병용 허용 정책을 반전한다, `query`는 Phase 7-1로 이관한다.
+  - (b) 완료 (2026-09-06). 7행을 등재했다. glossary-agents에 4행(harness와 context engineering, multi-agent는 기존 행의 금지 표기 칸 보강, tool call과 reranking은 신규 행), glossary-llms에 2행(backbone 신규, fine-tuning 보강). 등재 행 수는 agents 36에서 38로, llms 36에서 37로 늘었고 physical-ai 126은 유지다.
+  - (b) reranking을 glossary-agents에 둔 근거는 database 전용 용어집이 없고 기존 glossary-agents가 이미 retrieval, ontology, distractor 같은 검색 계열 용어를 호스팅하기 때문이다. (a)의 `applies_to` 확장으로 database 카테고리도 덮는다.
+  - (b) fine-tuning 정책 반전은 표기 원칙 절이 아니라 해당 행의 비고 칸에 있었다. 비고를 반전 사실과 근거 수치(원어 624회 대 음차 48회)로 다시 쓰고, 파생형 `코파인튜닝`이 co-fine-tuning 행의 원어를 쓴다는 방침을 함께 남겼다. glossary-llms의 다른 병용 허용 2건(scaling law, next-token prediction)은 별개 정책이라 건드리지 않았다.
+  - (b) physical-ai 위반 43건을 11개 파일에서 정리했다. `파인튜닝` 29건, `백본` 11건, `멀티 에이전트` 3건이다. 어형은 저장소 기존 관례를 따라 접미를 유지하는 치환으로 했다.
+  - (b) `lint-terms: ignore` 1건. `sources/engiuniverse-2025-rt1-rt2-robotics-transformer-review.md:102`는 한 줄에 우리 산문의 `파인튜닝`과 자동 자막 오인식 표기 `"코파인튜닝"` 인용이 함께 있다. 앞은 치환하고 뒤는 보존해야 해서 사유를 붙인 ignore를 달았다. (a)의 81행 `리즈닝` 처리와 같은 판단이다.
+  - (b) 검증 통과. physical-ai 게이트 4개 명령 exit 0, lint_style 총계 불변(error 9,202, warning 212, 위반 파일 284), 용어 표 파싱 정상, `SUBSTRING_EXCEPTIONS` 추가 불필요 재확인(등재 8개 표기 전부 부분 문자열 충돌 0건).
+  - (b) **lint_terms 기준선이 117건에서 270건으로 올랐다.** 3차 등재분 196건 중 physical-ai 43건을 정리해 153건이 배치 흡수 대상으로 남는다. 카테고리별로 agents 122, applications 55, database 50, overviews 18, evaluations 13, etc 12, llms 0, physical-ai 0이다. 착수 시 0건이던 overviews와 evaluations가 깨진 것은 3차 등재분이 그 카테고리에 실제로 존재했기 때문이다.
+  - (b) Phase 7-1 이관 2건: `query`(질의 220건 대 쿼리 123건 대 원어 278건, canonical 방향 결정 선행 필요, `질의` 금지 시 `품질의` 20건과 `질의응답` 17건이 부분 문자열로 걸림), `rollout`(방향은 16대 1로 명확하나 13건이 physical-ai이고 도메인상 glossary-physical-ai 소관). 재검토 시 재조사 없이 쓸 수 있도록 계량을 후보 문서 6절에 남겼다.
 - [ ] 0-4. write-wiki 스킬 v2.2. §0 용어집 매핑 표를 0-3 이후의 `applies_to`와 정합시킨다 (비-physical-ai 예시 추가는 파일럿 후 v2.2.1로 미룸)
 - [x] 0-5. lint_terms.py와 lint_style.py에 `--category` 인자 추가. sources/가 flat 구조라 frontmatter `category:`로만 카테고리 판별이 가능하고, 배치 게이트에 "이 카테고리만 0건" 실행이 반복 필요하다. 기본 동작과 훅 JSON 출력은 불변
   - 완료 (2026-09-06). 두 스크립트에 동일 의미로 넣었다. `--category NAME` 반복 지정과 `--category a,b` 쉼표 구분을 모두 받고, `--all` 없이 단독으로 쓰면 전체 스캔 후 필터로 동작한다. 명시적 파일 목록과 함께 주면 그 목록을 필터한다. 필터 기준은 frontmatter `category:` 값이다.
@@ -327,7 +336,7 @@ Phase 7-3에서 아래 표를 채운다. 착수 열은 Phase 0-2의 재실측(�
 |---|---|---|
 | lint_style error (전 저장소) | 9,202건 | 목표 0건 |
 | lint_style warning | 212건 | 목표 0건 |
-| lint_terms 경고 | 117건 | 목표 0건 |
+| lint_terms 경고 | 270건 (0-2 재실측은 117건, Phase 0-3 용어집 3차 등재로 +153건) | 목표 0건 |
 | bilingual-heading (wiki) | 906건 | 0건 (sources 번호 병기 헤딩 보존 확인 동반) |
 | 중간점, em dash (본문) | 중간점 4,004건, em dash 4,280건 (발생 개수로는 9,805개와 4,510개) | 수식 곱셈 예외만 (건수와 위치 명기) |
 | 표 0개 페이지 | 48편 | 0편 |
@@ -342,6 +351,8 @@ Phase 7-3에서 아래 표를 채운다. 착수 열은 Phase 0-2의 재실측(�
 | glossary-agents 등재 행 | 36행 | (3차, 4차 갱신 후 기록) |
 
 착수 열의 lint 건수는 라인 단위 검출 건수라 수정 대상 라인 수보다 많다. 전 저장소 경고 9,414건은 고유 (파일, 라인) 8,042줄에 걸쳐 있고, 그중 1,344줄에 규칙이 둘 이상 걸린다. 가장 흔한 겹침은 middot과 emdash가 같은 줄에 함께 있는 1,212줄이다. error 규칙만 보면 9,202건이 7,934줄에 몰려 있고, middot과 emdash 8,284건은 7,045줄이다.
+
+lint_terms 착수 열은 Phase 0-3 완료 시점 값이다. Phase 0-2 재실측 당시에는 117건이었으나, 0-3의 용어집 3차 등재 7행이 신규 위반 196건을 드러냈고 그중 physical-ai 43건만 즉시 정리해 270건이 됐다. 남은 153건은 Phase 2에서 5까지의 배치가 페이지를 재작성하며 흡수한다. 카테고리별 착수값은 agents 122, applications 55, database 50, overviews 18, evaluations 13, etc 12, llms 0, physical-ai 0이다.
 
 bilingual-heading 906건은 다른 규칙과 거의 겹치지 않는다. 906줄 중 26줄만 다른 규칙과 함께 잡히며 상대는 emdash 18줄, middot 6줄, banned-vocab 1줄, no-table 1줄이다. 헤딩 재작성 작업량은 실질적으로 906줄로 봐도 된다.
 

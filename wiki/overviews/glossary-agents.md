@@ -20,6 +20,7 @@ agents 도메인(agentic 시스템·tool use·harness·loop engineering) 전문 
 | 원어 | canonical 표기 | 금지 표기 | 첫 등장 풀이 예문 | 비고 |
 |---|---|---|---|---|
 | tool use | tool use | 도구 사용 | tool use는 모델이 외부 도구를 호출해 행동 범위를 넓히는 능력이다 | 로봇이 물리적 도구를 다루는 문맥(RT-2, PhysToolBench, SONIC)도 원문이 tool use라 같은 원어를 쓴다 |
+| tool call | tool call | 도구 호출 | tool call은 모델이 도구 하나를 실제로 호출하는 한 번의 실행 단위다 | tool use가 능력이라면 tool call은 그 능력의 개별 실행이다. 2026-09 3차 갱신 등재 (원어 55회 대 직역 24회) |
 | function calling | function calling | — | function calling은 모델이 구조화된 인자로 함수를 호출하게 하는 인터페이스다 | "함수 호출"은 일반 프로그래밍 의미와 겹쳐 지침만 |
 | planning | planning | — | planning은 목표를 하위 단계로 쪼개 실행 순서를 정하는 과정이다 | "계획"은 일반어라 지침만 — 기법 명칭 문맥에서는 원어 권장 |
 | policy | policy | 메모리 정책·기억 정책·정책 네트워크 | RL 문맥의 policy는 observation을 받아 action을 정하는 함수다 | agents 도메인은 일반 의미 "정책"(운영 정책 등)이 많아 RL 복합어만 금지 |
@@ -30,15 +31,16 @@ agents 도메인(agentic 시스템·tool use·harness·loop engineering) 전문 
 | guardrail | 가드레일 | — | 가드레일은 에이전트의 행동 범위를 제한하는 안전 장치다 | 음차 정착 |
 | prompt | 프롬프트 | — | — | 음차 정착(69회) |
 | context | 컨텍스트 | — | — | 음차 정착(73회). "맥락"은 일반 서술에서 허용 |
-| context engineering | context engineering | 컨텍스트 엔지니어링 공학 | context engineering은 유한한 attention budget에 넣을 토큰을 고르는 설계다 | 고유 기법명이라 원어 |
-| harness | harness | — | harness는 모델을 감싸 도구·검증·상태를 제공하는 실행 환경이다 | "마구" 비유 인용은 그대로 두고 lint-ignore |
+| context engineering | context engineering | 컨텍스트 엔지니어링 | context engineering은 유한한 attention budget에 넣을 토큰을 고르는 설계다 | 고유 기법명이라 원어. 2026-09 3차 갱신에서 금지 표기를 "컨텍스트 엔지니어링 공학"에서 줄여 음차 단독형도 잡는다 |
+| harness | harness | 하네스 | harness는 모델을 감싸 도구·검증·상태를 제공하는 실행 환경이다 | "마구" 비유 인용은 그대로 두고 lint-ignore. 2026-09 3차 갱신에서 음차를 금지 표기에 넣었다 (원어 482회 대 하네스 61회) |
 | agent loop | agent loop | — | agent loop는 모델 호출→도구 실행→관찰을 반복하는 기본 순환이다 | |
 | workflow | 워크플로 | 워크플로우 | — | 표기 흔들림(워크플로 150 vs 워크플로우 114)을 워크플로로 고정 |
 | sub-agent | 서브에이전트 | 하위 에이전트 | 서브에이전트는 상위 에이전트가 위임한 작업을 격리된 컨텍스트에서 수행한다 | |
-| multi-agent | 멀티에이전트 | — | — | "다중 에이전트"는 지침만 |
+| multi-agent | 멀티에이전트 | 멀티 에이전트 | — | "다중 에이전트"는 지침만. 2026-09 3차 갱신에서 띄어쓰기 변형을 금지 표기에 넣었다 (5회) |
 | chain-of-thought | chain-of-thought | 사고 사슬·생각의 사슬 | chain-of-thought는 답 전에 중간 추론을 텍스트로 펼치게 하는 기법이다 | 약어 CoT 병용 가능 |
 | reasoning | 추론 | 리즈닝 | — | 표준 번역 정착 |
 | retrieval | retrieval | — | retrieval은 외부 지식에서 관련 정보를 찾아오는 단계다 | RAG 문맥의 "검색"은 허용 (지침) |
+| reranking | reranking | 재순위·재정렬 | reranking은 1차 검색이 뽑은 후보를 정밀 모델로 다시 정렬하는 단계다 | 한글 표기가 재순위와 재정렬로 갈려 있었다. 2026-09 3차 갱신 등재 (원어 97회 대 직역 17회). reranker도 원어 |
 | grounding | grounding | 접지 | grounding은 모델 출력을 외부 근거나 물리 세계에 붙들어 매는 것이다 | |
 | hallucination | 환각 | 할루시네이션 | — | 표준 번역 정착(29회). CLAUDE.md 관례와 일치 |
 | scaffold | scaffold | 발판 구조 | scaffold는 모델 주위에 짜 놓은 보조 실행 구조를 뜻한다 | |
