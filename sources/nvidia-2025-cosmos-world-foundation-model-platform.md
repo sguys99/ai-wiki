@@ -617,7 +617,7 @@ latent diffusion이고 학습 목표는 EDM의 denoising score matching이다. �
 
 Llama3 스타일 GPT를 영상 토큰 예측용으로 처음부터 학습시킨 모델이라 언어 이해 능력은 없다. 텍스트를 쓰려면 T5-XXL 임베딩을 self-attention 층마다 붙인 cross-attention으로 넣는다. 학습 안정성 장치가 둘 붙는데, QKNorm은 query와 key를 정규화한 뒤 학습되는 γ로 스케일해 softmax 포화를 막고, z-loss는 logit 제곱합에 λ=3×10^-4를 곱해 더한다. 저자들은 노드 수를 크게 늘릴 때 z-loss가 그래디언트 norm 유지에 결정적이었다고 적었다.
 
-학습은 3단계다. 1단계는 첫 프레임만 주고 16프레임을 예측하는 17프레임 문맥, 1.1단계는 시간축 RoPE에 YaRN 확장을 걸어 34프레임으로 늘린 것, 2단계는 cross-attention을 새로 초기화해 텍스트 조건을 넣는 단계다. 해상도는 640×1024 고정이고, 끝에 LLM 관행을 따라 고품질 데이터로 학습률을 0까지 선형 감쇠시키는 cooling-down을 3만 회 반복한다. 12B 모델은 파라미터와 그래디언트와 옵티마이저 상태만 약 192GB라 H100 한 장에 안 들어가므로 tensor parallelism과 sequence parallelism으로 쪼갠다. 추론 쪽은 KV 캐시와 torch.compile에 더해 Medusa 방식의 추측 디코딩을 결합했다.
+학습은 3단계다. 1단계는 첫 프레임만 주고 16프레임을 예측하는 17프레임 문맥, 1.1단계는 시간축 RoPE에 YaRN 확장을 걸어 34프레임으로 늘린 것, 2단계는 cross-attention을 새로 초기화해 텍스트 조건을 넣는 단계다. 해상도는 640×1024 고정이고, 끝에 LLM 관행을 따라 고품질 데이터로 학습률을 0까지 선형 감쇠시키는 cooling-down을 3만 회 반복한다. 12B 모델은 파라미터와 그래디언트와 옵티마이저 상태만 약 192GB라 H100 한 장에 안 들어가므로 tensor parallelism과 sequence parallelism으로 쪼갠다. 추론 쪽은 KV 캐시와 torch.compile에 더해 Medusa 방식의 speculative decoding을 결합했다.
 
 discrete 토크나이저의 압축률이 높다 보니 왜곡이 생긴다. 이를 보정하려고 7B Text2World를 fine-tuning해 DV8×16×16 토큰을 CV8×8×8 공간으로 옮기는 diffusion decoder를 만들었다.
 

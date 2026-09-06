@@ -32,6 +32,7 @@ agents 도메인(agentic 시스템·tool use·harness·loop engineering) 전문 
 | prompt | 프롬프트 | — | — | 음차 정착(69회) |
 | context | 컨텍스트 | — | — | 음차 정착(73회). "맥락"은 일반 서술에서 허용 |
 | context engineering | context engineering | 컨텍스트 엔지니어링 | context engineering은 유한한 attention budget에 넣을 토큰을 고르는 설계다 | 고유 기법명이라 원어. 2026-09 3차 갱신에서 금지 표기를 "컨텍스트 엔지니어링 공학"에서 줄여 음차 단독형도 잡는다 |
+| compaction | compaction | 컴팩션 | compaction은 길어진 대화 이력을 요약으로 접어 context 한계 안에서 세션을 이어가는 처리다 | 2026-09 등재 (원어 53회 대 음차 0회). "컨텍스트 압축" 같은 일반 서술은 허용 (지침) |
 | harness | harness | 하네스 | harness는 모델을 감싸 도구·검증·상태를 제공하는 실행 환경이다 | "마구" 비유 인용은 그대로 두고 lint-ignore. 2026-09 3차 갱신에서 음차를 금지 표기에 넣었다 (원어 482회 대 하네스 61회) |
 | agent loop | agent loop | — | agent loop는 모델 호출→도구 실행→관찰을 반복하는 기본 순환이다 | |
 | workflow | 워크플로 | 워크플로우 | — | 표기 흔들림(워크플로 150 vs 워크플로우 114)을 워크플로로 고정 |
@@ -57,6 +58,7 @@ agents 도메인(agentic 시스템·tool use·harness·loop engineering) 전문 
 | distractor | distractor | 교란 도구·방해 도구 | distractor는 task에 함께 노출되지만 풀이에는 필요 없는 도구다 | tool use 평가 문헌의 공통 용어. physical-ai의 시각 distractor와 표기가 같다 (Bandi 2026) |
 | claim | claim | — | claim은 정답이라면 최종 답에 담겨 있어야 하는 원자적 사실 진술이다 | "주장"은 일반어라 오탐이 커서 지침만. 채점 단위 문맥에서는 원어 권장 (Bandi 2026) |
 | coverage | coverage | — | coverage는 task의 claim 점수를 평균낸 값이다 | "커버리지"는 테스트·개념 커버리지 등 다른 문맥에 이미 쓰여 지침만. claim 채점 문맥에서는 원어 (Bandi 2026) |
+| seam | seam | — | seam은 그 자리를 편집하지 않고 동작을 바꿀 수 있는 위치다 | Michael Feathers의 용어로, 모듈의 interface가 놓이는 자리이자 테스트가 놓이는 자리를 가리킨다. "이음새"는 동작의 매끄러움을 뜻하는 일반어 용법이 있어 지침만. 2026-09 등재 (원어 49회 대 기술 용어로 쓴 직역 0회, mattpocock/skills 2026) |
 
 ## 신규 용어 추가 절차
 

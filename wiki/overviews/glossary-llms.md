@@ -47,6 +47,7 @@ tags: [glossary, terminology, llms, synthesis]
 | benchmark | 벤치마크 | — | — | 음차 정착 |
 | sampling | 샘플링 | — | — | 음차 정착 |
 | decoding | 디코딩 | — | — | 음차 정착 |
+| speculative decoding | speculative decoding | 추측 디코딩·투기적 디코딩·스페큘레이티브 디코딩 | speculative decoding은 값싼 수단으로 토큰 여러 개를 먼저 제안하고 target 모델이 한꺼번에 검증하게 해 생성 속도를 올리는 기법이다 | 채택 여부를 target이 정하므로 모델 품질은 바뀌지 않는다. 2026-09 등재 (원어 23회 대 직역 2회). draft model과 방식 이름(MTP·DFlash·DSpark)도 원어 |
 | inference | 추론 | — | — | 표준 번역 정착. reasoning(추론)과 문맥으로 구분 |
 | perplexity | perplexity | 혼란도·당혹도 | perplexity는 모델이 다음 토큰을 얼마나 못 맞히는지 재는 지표다 | |
 | VLM / VLA | VLM / VLA | — | VLM은 vision-language model, VLA는 vision-language-action model의 약어다 | 약어 그대로 |

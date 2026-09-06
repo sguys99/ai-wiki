@@ -348,7 +348,7 @@ autoregressive 계열은 Llama3 스타일 GPT를 영상 토큰 예측용으로 �
 
 해상도는 640×1024로 고정한다. 마지막에는 LLM 관행을 따라 고품질 데이터로 학습률을 0까지 선형 감쇠시키는 cooling-down을 3만 회 반복한다. 12B 모델은 파라미터와 그래디언트와 옵티마이저 상태만 약 192GB라 H100 한 장에 들어가지 않으므로 tensor parallelism과 sequence parallelism으로 나눈다.
 
-추론 쪽에서는 LLM 최적화 기법을 그대로 가져온다. KV 캐시, tensor parallelism, torch.compile에 더해 Medusa 방식의 추측 디코딩을 적용했다. Medusa head는 backbone 뒤에 붙어 뒤따르는 토큰 여러 개를 병렬로 예측하고, 그 결과를 rejection sampling으로 검증한다.
+추론 쪽에서는 LLM 최적화 기법을 그대로 가져온다. KV 캐시, tensor parallelism, torch.compile에 더해 Medusa 방식의 speculative decoding을 적용했다. Medusa head는 backbone 뒤에 붙어 뒤따르는 토큰 여러 개를 병렬로 예측하고, 그 결과를 rejection sampling으로 검증한다.
 
 | 모델 | head 없을 때 throughput | head 9개일 때 throughput | forward pass 변화 |
 |---|---|---|---|
