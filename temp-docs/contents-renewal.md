@@ -16,56 +16,172 @@ physical-ai 카테고리는 ingest-upgrade-plan.md의 Phase 1~5로 wiki 76편과
 - frontmatter 100줄 초과 18편의 curated 축소
 - 선행 도구 정비: lint_style.py 병기 헤딩 사각지대 수정, 용어집 3차 갱신, write-wiki 스킬 정합, lint 스크립트 `--category` 인자
 
-## 2. 착수 기준선 (2026-09-06 실측)
+## 2. 착수 기준선 (2026-09-06 Phase 0-2 재실측 확정)
 
-ingest-upgrade-plan.md 5-A 표를 승계하되, 이번 계획 수립 조사에서 확인된 보정치를 함께 기록한다. Phase 0-2에서 수정된 lint로 재실측해 최종 기준선을 확정한다.
+2026-09-06 Phase 0-2 재실측 확정. 아래 수치는 Phase 0-1의 bilingual-heading 검출 수정과 Phase 0-5의 `--category` 인자가 반영된 스크립트로 다시 잰 값이고, 이후 각 배치 완료 게이트가 대조할 기준이다.
 
-### 2-1. lint 기준선 (5-A 승계)
+측정 정의는 `temp-docs/ingest-upgrade-plan.md` 5절 "측정 방법 주석"을 승계하고, 그 문서에 없던 항목은 여기서 새로 확정한다.
 
-저장소 전체 lint_style은 error 8,313건, warning 212건(285개 파일)이다. emdash 4,280건과 middot 4,004건이 error의 99.6%다. lint_terms는 117건(워크플로우 100건 최다)이다. 경로별 분해는 5-A 표를 따른다.
+| 지표 | 정의 |
+|---|---|
+| 본문 글자 수 | frontmatter 종료 구분선 다음 줄부터 파일 끝까지, 마크업과 개행을 포함한 원문 문자 수 (5절 주석 4항 승계) |
+| 압축비 | wiki 본문 글자 수를 같은 stem sources 본문 글자 수로 나눈 값 |
+| 중앙값 | `statistics.median`. 표본이 짝수면 가운데 두 값의 평균 |
+| 표 개수 | 본문 마크다운 표의 헤더 구분행 수. 코드 펜스 안은 제외 |
+| 산문 글자 수 | 본문에서 표 줄, 이미지 임베드 줄, 캡션 줄, 코드 펜스를 뺀 문자 수 |
+| index.md 항목 길이 | 불릿 한 줄의 `- ` 접두를 포함한 문자 수 |
+| lint 건수 | 라인 단위 검출 건수. 한 줄에 규칙이 여럿 걸리면 각각 1건으로 센다 |
 
-### 2-2. 이번 조사의 보정치
+세 정의는 완료된 physical-ai 값으로 역검증했다. 표 개수 정의로 `wiki/physical-ai/` 76편을 세면 737개, 편당 9.70개가 나와 ingest-upgrade-plan.md의 9.7개와 일치한다. 본문 글자 수 정의로는 `brohan-2022-rt-1-robotics-transformer-for-real-world`의 wiki 9,602자와 sources 9,778자가 그대로 재현된다. index.md 항목 길이 정의로는 정비를 마친 Physical AI 절 76항목의 최댓값이 정확히 200자다.
 
-계획 수립 조사(2026-09-06)에서 5-A와 5-B가 놓친 사실 4건을 확인했다.
+### 2-1. lint 기준선 (확정)
 
-| 항목 | 5-A/5-B 기록 | 실측 보정 | 원인 |
-|---|---|---|---|
-| bilingual-heading | 17건 | **906건** (미검출 889건) | lint_style.py의 mask()가 라틴 괄호를 먼저 지운 뒤 헤딩을 검사하는 순서 결함 |
-| figures caption 정비 대상 | 532건 | **670건** | 금지 기호 532건에 더해 영어 전용 caption 157건이 빠짐 (중복 19건 제외) |
-| figure 크롭 품질 잔여 약 23건 | stem 미상 | **단일 stem 23건**: `dnotitia-2026-akb-product-introduction` (fig01~23 전부 page-region) | 이 stem은 wiki 페이지도 없는 고아 source라 크롭 재작업과 wiki 신설이 한 묶음 |
-| pseudo action 표기 흔들림 | 19건 대 9건 | 21건 대 12건, **전량 physical-ai와 용어집 안** | 확산 작업과 독립인 소형 작업으로 분리 (Phase 7-2) |
+수정된 lint 기준으로 저장소 전체는 lint_style error 9,202건, warning 212건이고 위반 파일은 284개다. 5-A가 기록한 error 8,313건과의 차이 889건은 전부 bilingual-heading 검출 수정분이다. warning 212건은 변동이 없다.
+
+5-A의 "285개 파일"은 실측 284개다. Phase 0-1 이전 버전 스크립트를 현재 트리에 그대로 실행해도 284개가 나오므로, 검출 수정의 영향이 아니라 5-A의 기록 오차다.
+
+lint_terms는 117건으로 5-A와 같다.
+
+**표 1. 카테고리별 lint_style (rule 단위)**
+
+| 카테고리 | middot | emdash | bilingual-heading | self-qa | speaker-intrusion | banned-vocab | k-number | connective-comma | no-table | error | warning | 계 | 위반 파일 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| agents | 1,733 | 1,473 | 358 | 2 | 3 | 52 | 31 | 1 | 5 | 3,569 | 89 | 3,658 | 126 |
+| applications | 833 | 1,360 | 206 | 0 | 1 | 38 | 22 | 2 | 0 | 2,400 | 62 | 2,462 | 66 |
+| database | 749 | 917 | 160 | 0 | 4 | 2 | 14 | 0 | 1 | 1,830 | 17 | 1,847 | 51 |
+| llms | 262 | 130 | 62 | 1 | 0 | 8 | 4 | 0 | 6 | 455 | 18 | 473 | 21 |
+| overviews | 158 | 197 | 68 | 0 | 1 | 7 | 4 | 0 | 0 | 424 | 11 | 435 | 10 |
+| etc | 134 | 128 | 16 | 0 | 0 | 0 | 0 | 0 | 0 | 278 | 0 | 278 | 5 |
+| evaluations | 135 | 75 | 36 | 0 | 0 | 13 | 0 | 0 | 2 | 246 | 15 | 261 | 11 |
+| physical-ai | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **합계** | **4,004** | **4,280** | **906** | **3** | **9** | **120** | **75** | **3** | **14** | **9,202** | **212** | **9,414** | **284** |
+
+8개 카테고리의 rule별 합계는 `--all` 결과와 전 항목 일치한다. 위반 파일 열만 단순 합이 290개로 6개 많은데, index.md가 physical-ai를 뺀 7개 절에 각각 잡혀 중복 계상되기 때문이다. 실제 고유 파일은 284개다.
+
+emdash 4,280건과 middot 4,004건이 error의 90.0%다. 재작성 판단이 필요한 것은 bilingual-heading 906건, speaker-intrusion 9건, self-qa 3건과 warning 212건이다.
+
+**표 2. 카테고리별 lint_terms**
+
+| 카테고리 | 경고 | 위반 파일 | sources : wiki | 상위 위반 용어 |
+|---|---|---|---|---|
+| agents | 61 | 31 | 39 : 22 | 워크플로우 49, 하위 에이전트 6, 사후학습 3, 사전학습 2, 도구 사용 1 |
+| applications | 42 | 21 | 25 : 17 | 워크플로우 41, 미세 조정 1 |
+| etc | 10 | 2 | 7 : 3 | 워크플로우 10 |
+| database | 4 | 3 | 3 : 1 | 프롬프트 튜닝 3, 사전 학습 1 |
+| llms | 0 | 0 | 0 : 0 | 없음 |
+| evaluations | 0 | 0 | 0 : 0 | 없음 |
+| overviews | 0 | 0 | 0 : 0 | 없음 |
+| physical-ai | 0 | 0 | 0 : 0 | 없음 |
+| **합계** | **117** | **57** | **74 : 43** | 워크플로우 100, 하위 에이전트 6, 프롬프트 튜닝 3, 사후학습 3, 사전학습 2, 미세 조정 1, 사전 학습 1, 도구 사용 1 |
+
+카테고리별 합계 117건은 `--all` 결과와 일치한다. index.md에는 lint_terms 경고가 없다. llms와 evaluations, overviews의 0건은 정비가 끝나서가 아니라 glossary-agents의 `applies_to`가 그 카테고리를 덮지 않아서다 (2-4 참고).
+
+**표 3. 경로별 분해**
+
+| 카테고리 | 경로 | 검사 파일 | error | warning | lint_terms |
+|---|---|---|---|---|---|
+| agents | sources | 64 | 1,709 | 39 | 39 |
+| agents | wiki | 61 | 1,745 | 48 | 22 |
+| agents | index.md | 1 | 115 | 2 | 0 |
+| applications | sources | 33 | 1,309 | 34 | 25 |
+| applications | wiki | 32 | 1,044 | 27 | 17 |
+| applications | index.md | 1 | 47 | 1 | 0 |
+| database | sources | 25 | 932 | 7 | 3 |
+| database | wiki | 25 | 868 | 10 | 1 |
+| database | index.md | 1 | 30 | 0 | 0 |
+| llms | sources | 10 | 231 | 7 | 0 |
+| llms | wiki | 10 | 206 | 11 | 0 |
+| llms | index.md | 1 | 18 | 0 | 0 |
+| evaluations | sources | 5 | 112 | 6 | 0 |
+| evaluations | wiki | 5 | 125 | 9 | 0 |
+| evaluations | index.md | 1 | 9 | 0 | 0 |
+| etc | sources | 2 | 156 | 0 | 7 |
+| etc | wiki | 2 | 119 | 0 | 3 |
+| etc | index.md | 1 | 3 | 0 | 0 |
+| overviews | wiki | 9 | 401 | 11 | 0 |
+| overviews | index.md | 1 | 23 | 0 | 0 |
+| physical-ai | 전체 154 | 154 | 0 | 0 | 0 |
+| **합계** | sources | 139 | **4,449** | **93** | **74** |
+| **합계** | wiki | 144 | **4,508** | **116** | **43** |
+| **합계** | index.md | 1 | **245** | **3** | **0** |
+
+경로 합계는 `--all` 결과와 정확히 일치한다. lint_style은 error 4,449 + 4,508 + 245 = 9,202건, warning 93 + 116 + 3 = 212건이고, lint_terms는 74 + 43 = 117건이다.
+
+index.md 행은 같은 파일 하나를 7개 절로 나눈 것이라 검사 파일 열의 1이 일곱 번 반복된다. 절별 error 합 115 + 47 + 30 + 18 + 9 + 3 + 23 = 245건이 무필터 실행값과 같아, 누락도 중복도 없이 분할됨을 확인했다.
+
+physical-ai 행의 154개 파일은 `wiki/physical-ai` 76편, 대응 sources 77편, index.md의 Physical AI 절이다. `wiki/overviews/physical-ai-overview.md`는 frontmatter가 `category: overviews`라 표 3의 overviews wiki 9편과는 별도로 단독 실행해 0건을 확인했다 (6절 1항의 두 번째 게이트 명령).
+
+5-A 표와의 대조에서 sources 여섯 줄과 index.md는 값이 그대로다. wiki 쪽만 bilingual-heading 재검출분만큼 늘었고, 늘어난 양은 카테고리별로 agents +358, applications +200, database +156, llms +62, evaluations +36, etc +15, overviews +62다. 총 889건으로 전 저장소 증가분과 일치한다.
+
+### 2-2. 이번 조사의 보정치 (0-2 확정)
+
+계획 수립 조사(2026-09-06)에서 5-A와 5-B가 놓친 사실 4건을 확인했고, Phase 0-2 재실측으로 전부 확정했다.
+
+| 항목 | 5-A/5-B 기록 | 실측 보정 | 0-2 확정 | 원인 |
+|---|---|---|---|---|
+| bilingual-heading | 17건 | **906건** (미검출 889건) | 확정 (906건, 전량 wiki) | lint_style.py의 mask()가 라틴 괄호를 먼저 지운 뒤 헤딩을 검사하는 순서 결함 |
+| figures caption 정비 대상 | 532건 | **670건** | 확정 (금지 기호 532, 영어 전용 157, 중복 19) | 금지 기호 532건에 더해 영어 전용 caption 157건이 빠짐 |
+| figure 크롭 품질 잔여 약 23건 | stem 미상 | **단일 stem 23건**: `dnotitia-2026-akb-product-introduction` (fig01~23 전부 page-region) | 확정 (고아 sources 5편에 포함) | 이 stem은 wiki 페이지도 없는 고아 source라 크롭 재작업과 wiki 신설이 한 묶음 |
+| pseudo action 표기 흔들림 | 19건 대 9건 | 21건 대 12건, **전량 physical-ai와 용어집 안** | 미재측정 (Phase 7-2 착수 시점에 재확인) | 확산 작업과 독립인 소형 작업으로 분리 (Phase 7-2) |
+
+5-A 기록 중 이번에 새로 발견한 오차가 하나 더 있다. 위반 파일 수 "285개"는 실측 284개다 (2-1 참고).
 
 ### 2-3. 콘텐츠 실태 (비-physical-ai 135편)
 
-| 지표 | 실측 | physical-ai 완료치 |
-|---|---|---|
-| wiki가 sources보다 얇은 페이지 | 128편 / 135 (95%) | 1편 / 76 (정상 판정) |
-| 압축비 중앙값 (wiki 본문 / sources 본문) | 0.68 | 1.95 |
-| wiki 본문 중앙값 | 5,326자 | 14,156자 |
-| 영문 병기 헤딩 (구식 IMRaD 골격) | 906개, 전 편 | 0개 |
-| `## 핵심 용어` 절 보유 | 0편 | 76편 전부 |
-| 표 0개 페이지 | 48편 | 0편 |
-| 표 편당 | 1.3개 | 9.7개 |
-| frontmatter 100줄 초과 | 18편 (최악 362줄/505줄 = 72%) | 7편 (전부 비중 14~23% 정상) |
+| 지표 | 계획서 기록 | 0-2 실측 | physical-ai 완료치 |
+|---|---|---|---|
+| wiki가 sources보다 얇은 페이지 | 128편 / 135 (95%) | **동일** | 1편 / 76 (정상 판정) |
+| 압축비 중앙값 (wiki 본문 / sources 본문) | 0.68 | **동일** (0.679) | 1.95 |
+| wiki 본문 중앙값 | 5,326자 | **동일** | 14,156자 |
+| 영문 병기 헤딩 (구식 IMRaD 골격) | 906개, 전 편 | **동일** | 0개 |
+| `## 핵심 용어` 절 보유 | 0편 | **동일** | 76편 전부 |
+| 표 0개 페이지 | 48편 | **동일** | 0편 |
+| 표 편당 | 1.3개 | **1.44개** (135편 195개) | 9.70개 (76편 737개) |
+| frontmatter 100줄 초과 | 18편 (최악 362줄/505줄 = 72%) | **18편** (최악 364줄/504줄 = 72%) | 7편 (전부 비중 14~23% 정상) |
 
-카테고리별 압축비 중앙값: agents 0.72, applications 0.67, database 0.59, llms 0.66, evaluations 0.73, etc 0.76. 전체 규모는 physical-ai Phase 4(73편)의 약 1.8배다.
+여덟 지표 중 여섯이 계획서 기록과 같고 둘이 다르다.
+
+표 편당은 1.3개가 아니라 1.44개다. 같은 정의로 카테고리별로 세면 agents 1.30개, applications 1.31개, database 2.12개, llms 1.10개, evaluations 0.40개, etc 4.00개이므로, 계획서의 1.3은 전체 값이 아니라 최대 카테고리인 agents의 값으로 보인다. 이 정의는 physical-ai 완료치 9.70개를 그대로 재현하므로 실측값을 확정치로 둔다.
+
+frontmatter 최악 페이지는 `wiki/evaluations/xie-2024-osworld-benchmarking-multimodal-agents-for`로 동일하고 비중 72%도 같다. 절대 줄 수만 계획서 362줄/505줄과 실측 364줄/504줄로 다른데, 계획서가 frontmatter를 감싼 구분선 2줄을 빼고 세고 전체 줄에는 1을 더해 센 결과다. 대상 편수 18편은 같다.
+
+카테고리별 압축비 중앙값도 계획서 기록과 전부 일치한다: agents 0.72, applications 0.67, database 0.59, llms 0.66, evaluations 0.73, etc 0.76. 전체 규모는 physical-ai Phase 4(73편)의 약 1.8배다.
+
+카테고리별 실태를 함께 둔다.
+
+| 카테고리 | 편수 | 얇은 페이지 | 압축비 중앙값 | 본문 중앙값 | 산문 중앙값 | 표 총수 | 표 편당 | 표 0개 | frontmatter 100줄 초과 |
+|---|---|---|---|---|---|---|---|---|---|
+| agents | 61 | 58 | 0.72 | 4,953자 | 4,010자 | 79 | 1.30 | 24 | 11 |
+| applications | 32 | 29 | 0.67 | 5,347자 | 4,316자 | 42 | 1.31 | 10 | 0 |
+| database | 25 | 25 | 0.59 | 6,116자 | 4,706자 | 53 | 2.12 | 5 | 1 |
+| llms | 10 | 10 | 0.66 | 5,060자 | 3,882자 | 11 | 1.10 | 6 | 4 |
+| evaluations | 5 | 4 | 0.73 | 6,019자 | 4,748자 | 2 | 0.40 | 3 | 2 |
+| etc | 2 | 2 | 0.76 | 13,023자 | 9,139자 | 8 | 4.00 | 0 | 0 |
+| **합계** | **135** | **128** | **0.68** | **5,326자** | **4,147자** | **195** | **1.44** | **48** | **18** |
+
+sources보다 두껍던 7편은 전부 압축비 1.03에서 1.23 사이라 교재식 기준에는 못 미친다: `garrytan-gstack` 1.23, `cheahjs-free-llm-api-resources` 1.22, `google-2026-the-new-sdlc-with-vibe` 1.18, `liu-2026-rag-llm-wiki-or-gbrain` 1.08, `garrytan-gbrain-tutorials` 1.07, `shao-2024-assisting-in-writing-wikipedia-like-articles` 1.06, `xlang-ai-osworld` 1.03. 재작성 범위에서 제외하지 않는다.
 
 ### 2-4. 용어집과 도구 격차
 
-- glossary-agents는 등재 36행으로 physical-ai(126행) 대비 커버 밀도가 3분의 1이다. `applies_to`에 llms, database, physical-ai가 빠져 있어 "워크플로우" 같은 위반이 누수된다 (확장 시 새로 걸릴 위반 약 5건: vectifyai-pageindex 계열 4개 파일, physical-ai 1개 파일).
+- glossary-agents는 등재 36행으로 physical-ai(126행) 대비 커버 밀도가 3분의 1이다. `applies_to`가 `[agents, applications, evaluations, overviews, etc]`라 llms, database, physical-ai가 빠져 있어 "워크플로우" 같은 위반이 누수된다 (확장 시 새로 걸릴 위반 약 5건: vectifyai-pageindex 계열 4개 파일, physical-ai 1개 파일). glossary-llms는 36행에 `applies_to`가 전 카테고리, glossary-physical-ai는 126행에 `[physical-ai, overviews, etc]`다.
 - write-wiki 스킬(v2.1.0)은 구조가 카테고리 중립이지만, §0 용어집 매핑 표가 스크립트 `applies_to`와 어긋나고 before/after 예시 3쌍이 전부 physical-ai다.
 - 얇은 paper sources는 비-physical-ai에 2편뿐이다: `shao-2024-assisting-in-writing-wikipedia-like-articles`(5,637자), `gutierrez-2025-from-rag-to-memory-non`(5,633자). 해당 배치에서 40,000자 재추출 보강을 동반한다. agents의 article과 repo에 6,000자 미만 sources가 29편 있으나, article과 repo는 raw가 원문 전문이므로 재작성 subagent가 raw를 재독하는 경로로 해결한다 (별도 보강 없음).
-- index.md 비-physical-ai 148항목 중 200자 초과 101개, error 245건. overviews 9편은 전부 study_path가 없고 error 339건이다.
+- index.md 비-physical-ai 148항목 중 200자 초과 101개, error 245건이다. 절별로는 agents 61항목 중 56개(최장 926자), applications 32항목 중 18개(최장 587자), database 25항목 중 5개(최장 317자), llms 10항목 중 8개(최장 587자), overviews 13항목 중 8개(최장 418자), evaluations 5항목 중 4개(최장 258자), etc 2항목 중 2개(최장 493자)다. Physical AI 절 76항목은 최장 200자로 전량 기준 안이다. overviews 9편은 전부 study_path가 없고 error 401건이다 (5-A의 339건은 bilingual-heading 미검출 상태의 값이다).
+- lint_style의 `collect_targets()`가 `wiki/overviews/glossary-*.md`를 파일 단위로 제외해, 용어집 3편의 병기 헤딩 12개가 검사 밖에 있다. 12개는 세 파일이 공유하는 같은 헤딩 4종이다: `## 표기 원칙 (Conventions)`, `## 용어 표 (Term Table)`, `## 신규 용어 추가 절차 (Growth Loop)`, `## 관련 페이지 (Related Pages)`. 제외를 통째로 풀면 병기 헤딩 12건 외에 middot 88건과 emdash 83건, banned-vocab 2건이 함께 걸리는데, 그 171건은 금지 표기 셀 구분자와 "검사 없음"을 뜻하는 대시로 규약이 요구하는 표기다. 처리 방침은 Phase 0-3에서 확정한다.
 
 ### 2-5. 고아 sources 5편
 
-| source stem | category | 처리 위치 |
-|---|---|---|
-| 9bow-2026-gstack-claude-code-virtual-team | agents | 배치 A6 |
-| gpters-2026-yc-ai-agent-guide-gstack | agents | 배치 A6 |
-| hada-2026-gstack-virtual-engineering-team | agents | 배치 A6 |
-| dnotitia-2026-akb-product-introduction | applications | 배치 B2 (크롭 재작업 23건 동반) |
-| 9bow-2026-world-action-model-rise | physical-ai | Phase 1-6 (sources는 정비 완료 상태) |
+wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과 같다. sources 216편, wiki stem 224개를 대조해 재확인했다.
+
+| source stem | category | type | 처리 위치 |
+|---|---|---|---|
+| 9bow-2026-gstack-claude-code-virtual-team | agents | article | 배치 A6 |
+| gpters-2026-yc-ai-agent-guide-gstack | agents | article | 배치 A6 |
+| hada-2026-gstack-virtual-engineering-team | agents | article | 배치 A6 |
+| dnotitia-2026-akb-product-introduction | applications | report | 배치 B2 (크롭 재작업 23건 동반) |
+| 9bow-2026-world-action-model-rise | physical-ai | article | Phase 1-6 (sources는 정비 완료 상태) |
+
+역방향으로 sources가 없는 wiki stem은 13개이고 전부 합성 페이지다: overviews 9편, physical-ai-overview 1편, glossary 3편. 대응 sources가 없는 것이 정상이므로 작업 대상이 아니다.
 
 ## 3. 확정 방향
 
@@ -98,7 +214,10 @@ ingest-upgrade-plan.md 5-A 표를 승계하되, 이번 계획 수립 조사에�
   - 완료 (2026-09-06). `mask()`가 마스킹 패턴 튜플을 인자로 받게 하고, 헤딩 검사만 `MASK_PATTERNS_HEADING`(인라인 코드만)으로 수행하도록 고쳤다. bilingual-heading 검출 17건에서 906건으로 (+889). 다른 8개 규칙은 전부 증감 0으로 부작용이 없다. 회귀 3종 전부 통과: (a) physical-ai 154개 파일(wiki 76, sources 77, physical-ai-overview 1) error 0 warning 0 유지, (b) sources 216개 파일의 병기 헤딩 1,937개가 `is_wiki` 가드로 전량 면제, (c) index.md 0건 (`is_wiki=False` 면제에 더해 절 헤딩에 한글이 없어 이중 면제).
   - 경로별 분해: agents 358, applications 206, database 160, overviews 68, llms 62, evaluations 36, etc 16, physical-ai 0 (144개 파일).
   - 부수 발견 2건: (1) `collect_targets()`가 `glossary-*.md`를 제외해 용어집 3편의 병기 헤딩 12개가 검사 밖에 있다 (중간점 구분자 때문의 제외가 헤딩까지 면제한 결과). (2) 일부 헤딩은 bilingual-heading과 emdash에 중복 계상된다 (예: `loop-engineering-cross-domain-overview.md:52`). 수정 작업량 산정 시 라인 단위 중복 제거가 필요하다.
-- [ ] 0-2. 수정된 lint로 전 저장소 기준선 재실측, 이 문서 2절 표를 확정치로 갱신
+- [x] 0-2. 수정된 lint로 전 저장소 기준선 재실측, 이 문서 2절 표를 확정치로 갱신
+  - 완료 (2026-09-06). 2절 전체를 확정치로 다시 쓰고 5절 착수 열을 채웠다. 측정 정의 7종을 2절 머리에 명시하고 physical-ai 완료치로 역검증했다. 17개 지표가 계획서 기록과 일치했고 4개가 어긋나 실측으로 정정했다: lint_style 위반 파일 285개에서 284개, 표 편당 1.3개에서 1.44개(계획서 값은 전체가 아니라 agents 카테고리 값이었다), frontmatter 최악 362줄/505줄에서 364줄/504줄(구분선 계산 차이), overviews error 339건에서 401건(5-A는 bilingual-heading 미검출 상태 값이라 차이 62건이 재검출분).
+  - 교차 검증 전부 통과. 8개 카테고리 lint 합계가 `--all`과 rule 단위까지 일치하고, 경로별 합계와 index.md 절별 합계도 일치한다. physical-ai 게이트 두 줄 모두 0건 유지.
+
 - [ ] 0-3. 용어집 3차 갱신. (a) glossary-agents의 `applies_to`를 전 카테고리로 확장하고 새로 걸리는 위반 약 5건을 정리한 뒤 physical-ai 154개 파일 0건 재확인. (b) agents와 llms 도메인의 빈도 실측 스캔으로 등재 후보 표를 작성해 사용자 승인 후 등재한다 (등재 전 전 저장소 grep으로 신규 위반 건수를 사전 계량하는 Phase 5-1 방식)
 - [ ] 0-4. write-wiki 스킬 v2.2. §0 용어집 매핑 표를 0-3 이후의 `applies_to`와 정합시킨다 (비-physical-ai 예시 추가는 파일럿 후 v2.2.1로 미룸)
 - [x] 0-5. lint_terms.py와 lint_style.py에 `--category` 인자 추가. sources/가 flat 구조라 frontmatter `category:`로만 카테고리 판별이 가능하고, 배치 게이트에 "이 카테고리만 0건" 실행이 반복 필요하다. 기본 동작과 훅 JSON 출력은 불변
@@ -189,23 +308,29 @@ study_path 신설 판단 기준 (셋 중 둘 이상 충족 시 신설, 미충족
 
 ## 5. 검증과 계량
 
-Phase 7-3에서 아래 표를 채운다. 착수 열은 Phase 0-2의 재실측(수정된 lint 기준), 중간 열은 각 카테고리 완료 시점의 기록, 최종 열은 Phase 7 완료 시점이다.
+Phase 7-3에서 아래 표를 채운다. 착수 열은 Phase 0-2의 재실측(수정된 lint 기준, 2026-09-06 확정)이고, 최종 열은 Phase 7 완료 시점이다. 측정 정의는 2절 머리의 정의 표를 따른다.
 
 | 지표 | 착수 (0-2 재실측) | 최종 |
 |---|---|---|
-| lint_style error (전 저장소) | (0-2에서 확정) | 목표 0건 |
-| lint_style warning | (0-2에서 확정) | 목표 0건 |
+| lint_style error (전 저장소) | 9,202건 | 목표 0건 |
+| lint_style warning | 212건 | 목표 0건 |
 | lint_terms 경고 | 117건 | 목표 0건 |
-| bilingual-heading (wiki) | 약 906건 | 0건 (sources 번호 병기 헤딩 보존 확인 동반) |
-| 중간점, em dash (본문) | (0-2에서 확정) | 수식 곱셈 예외만 (건수와 위치 명기) |
+| bilingual-heading (wiki) | 906건 | 0건 (sources 번호 병기 헤딩 보존 확인 동반) |
+| 중간점, em dash (본문) | 중간점 4,004건, em dash 4,280건 (발생 개수로는 9,805개와 4,510개) | 수식 곱셈 예외만 (건수와 위치 명기) |
 | 표 0개 페이지 | 48편 | 0편 |
+| 표 편당 (비-PAI) | 1.44개 (135편 195개) | physical-ai 완료치 9.70개 수준 |
 | `## 핵심 용어` 절 보유 (비-PAI) | 0 / 135 | 135 / 135 |
 | wiki가 sources보다 얇은 페이지 | 128편 | 0편 수렴 (예외는 사유 명기) |
-| figures caption 정비 대상 | 670건 | 0건 |
-| frontmatter 100줄 초과 | 18편 | 잔여는 curated 비중으로 정상 판정 |
-| index.md 200자 초과 항목 | 101개 | 0개 |
+| wiki 본문 중앙값 (비-PAI) | 5,326자 (산문 4,147자) | physical-ai 완료치 14,156자 수준 |
+| figures caption 정비 대상 | 670건 (금지 기호 532, 영어 전용 157, 중복 19) | 0건 |
+| frontmatter 100줄 초과 | 18편 (최악 364줄/504줄 = 72%) | 잔여는 curated 비중으로 정상 판정 |
+| index.md 200자 초과 항목 | 101개 (비-physical-ai 148항목 중) | 0개 |
 | 고아 sources | 5편 | 0편 |
 | glossary-agents 등재 행 | 36행 | (3차, 4차 갱신 후 기록) |
+
+착수 열의 lint 건수는 라인 단위 검출 건수라 수정 대상 라인 수보다 많다. 전 저장소 경고 9,414건은 고유 (파일, 라인) 8,042줄에 걸쳐 있고, 그중 1,344줄에 규칙이 둘 이상 걸린다. 가장 흔한 겹침은 middot과 emdash가 같은 줄에 함께 있는 1,212줄이다. error 규칙만 보면 9,202건이 7,934줄에 몰려 있고, middot과 emdash 8,284건은 7,045줄이다.
+
+bilingual-heading 906건은 다른 규칙과 거의 겹치지 않는다. 906줄 중 26줄만 다른 규칙과 함께 잡히며 상대는 emdash 18줄, middot 6줄, banned-vocab 1줄, no-table 1줄이다. 헤딩 재작성 작업량은 실질적으로 906줄로 봐도 된다.
 
 ## 6. 리스크와 회귀 방지 수칙
 
