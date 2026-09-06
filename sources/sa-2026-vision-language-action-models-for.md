@@ -21,7 +21,8 @@ figures:
     raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig02.png
     caption: "Fig. 2: 이 서베이의 중심 도식. 행은 coupling 정도(independent / loosely coupled / tightly coupled), 열은 action-head 계열(autoregressive / flow / diffusion / hybrid). tightly coupled 행에서만 방법이 나뉜다"
     page: 5
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0686, 0.9298, 0.5505]
+    strategy: manual
     curated: true
   - id: fig06
     file: assets/sa-2026-vision-language-action-models-for/fig06.png
@@ -33,23 +34,26 @@ figures:
   - id: fig09
     file: assets/sa-2026-vision-language-action-models-for/fig09.png
     raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig09.png
-    caption: "Fig. 4: 하나의 backbone을 공유하는 네 action-head 메커니즘과 각 지연 예산. flow(K≈10)만 da=16에서 50Hz에 들어간다 (page 13 상단, 같은 page 하단에 Fig. 5)"
+    caption: "Fig. 4: 하나의 backbone을 공유하는 네 action-head 메커니즘과 각 지연 예산. flow(K≈10)만 da=16에서 50Hz에 들어간다 (page 13 상단)"
     page: 13
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0758, 0.9298, 0.391]
+    strategy: manual
     curated: true
   - id: fig10
     file: assets/sa-2026-vision-language-action-models-for/fig10.png
     raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig10.png
-    caption: "Fig. 5: 학습 파이프라인. 각 단계에 무엇이 들어가고(초록) 무엇이 보호하는지(빨강). 데이터 비용이 자릿수 단위로 다르다 (fig09와 동일한 page 13 전체 이미지, 상단 Fig. 4와 하단 Fig. 5)"
+    caption: "Fig. 5: 학습 파이프라인. 각 단계에 무엇이 들어가고(초록) 무엇이 보호하는지(빨강). 데이터 비용이 자릿수 단위로 다르다 (page 13 하단, 같은 page 상단이 Fig. 4)"
     page: 13
-    strategy: page-region
+    bbox_norm: [0.0702, 0.3975, 0.9298, 0.6513]
+    strategy: manual
     curated: true
   - id: fig11
     file: assets/sa-2026-vision-language-action-models-for/fig11.png
     raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig11.png
     caption: "Fig. 6: 같은 세대 policy를 네 방식으로 측정한 값. sim 97.1 / real task-specific 43.7 / real generalist 17.7 / production KPI 99. 함의된 신뢰도가 약 2자릿수 벌어진다 (page 25 상단)"
     page: 25
-    strategy: page-region
+    bbox_norm: [0.5, 0.0687, 0.9298, 0.4328]
+    strategy: manual
     curated: true
 ---
 

@@ -350,23 +350,30 @@ encoder 셋은 모두 99.2% 이상을 유지한다. robot encoder는 99.6%와 23
 
 ## 8. 그림 후보 (Figure Candidates)
 
-Step 2.5 자동 추출로 14개가 잡혔고 이 중 8개가 실제 Figure다. 나머지 6개는 본문 교차참조("as shown in Fig. 2" 등)가 줄머리에 와서 잡힌 오탐이다.
+2026-08 정밀 크롭 전환으로 id를 논문 라벨 기준으로 재부여했다. 본문 Figure 8개(fig01~fig08), supplementary Figure 5개(figs1~figs5), 본문 Table 4개(tab01~tab04), supplementary Table 4개(tabs1~tabs4)가 caption-region과 table-region 전략으로 아카이브에 있다. 이전의 page-region 전면 캡처 14개와 교차참조 오탐은 이 전환에서 정리됐다.
 
-Step 3.5 확정: 아래 표 기준 fig01, fig03, fig06, fig09, fig13을 `curated: true`로 두고 `wiki/assets/`에 복사했다. 이후 재큐레이션에서 consistency loss 도식(Figure 8)을 추가로 승격했다. 나머지는 아카이브에만 남긴다.
+Step 3.5 확정 (현행 큐레이션): fig01, fig02, fig03, fig05, fig07, fig08이 `curated: true`로 `wiki/assets/`에 있다. 나머지는 아카이브에만 남긴다.
 
 | id | page | caption | strategy | 추천 |
 |---|---|---|---|---|
-| fig01 | 2 | 하나의 policy가 다루는 입력과 인터페이스 전경 (Figure 1) | page-region | ★ wiki 권장 (overview) |
-| fig02 | 3 | (오탐) 교차참조 매칭 | page-region | ✗ |
-| fig03 | 4 | 12개 패널 종합 결과, 스케일링과 베이스라인과 sim2real (Figure 2) | page-region | ★ wiki 권장 (result) |
-| fig04 | 5 | (오탐) 교차참조 매칭 | page-region | ✗ |
-| fig05 | 6 | (오탐) 교차참조 매칭 | page-region | ✗ |
-| fig06 | 7 | kinematic planner 인터랙티브 제어 (Figure 3) | page-region | ★ wiki 권장 (method) |
-| fig07 | 7 | (오탐) 교차참조 매칭 | page-region | ✗ |
-| fig08 | 8 | 영상과 텍스트와 음악과 VR 제어 (Figure 4) | page-region | (선택) |
-| fig09 | 10 | VLA loco-manipulation 5개 과제 + 성공률 표 (Figure 5 + Table 1) | page-region | ★ wiki 권장 (result) |
-| fig10 | 12 | (오탐) 교차참조 매칭 | page-region | ✗ |
-| fig11 | 12 | (오탐) 교차참조 매칭 | page-region | ✗ |
-| fig12 | 13 | 모션 데이터셋 무작위 샘플 (Figure 6) | page-region | (선택) |
-| fig13 | 14 | SONIC 아키텍처, 3 encoder에서 token을 거쳐 2 decoder로 (Figure 7) | page-region | ★ wiki 권장 (architecture) |
-| fig14 | 19 | consistency loss 유무의 latent 정렬 (Figure 8) | page-region | (선택) |
+| fig01 | 2 | 하나의 policy가 다루는 다양한 humanoid 과제와 인터페이스 전경 | caption-region | ★ wiki 권장 (overview) |
+| fig02 | 4 | 데이터, 모델, 컨텍스트 스케일링 효과와 베이스라인 비교 종합 | caption-region | ★ wiki 권장 (result) |
+| fig03 | 7 | kinematic planner 기반 인터랙티브 내비게이션 제어 | caption-region | ★ wiki 권장 (method) |
+| fig04 | 8 | 영상 teleoperation과 멀티모달 제어, VR 제어 | caption-region | (선택) |
+| fig05 | 10 | VLA 구동 loco-manipulation 과제 시연 | caption-region | ★ wiki 권장 (result) |
+| fig06 | 13 | 모션 데이터셋 무작위 샘플 | caption-region | (선택) |
+| fig07 | 14 | SONIC 아키텍처, encoder에서 token을 거쳐 decoder로 | caption-region | ★ wiki 권장 (architecture) |
+| fig08 | 19 | consistency loss 유무에 따른 latent 공간 정렬 비교 | caption-region | (선택) |
+| figs1 | 30 | 테스트셋의 분포 밖 모션 시퀀스 | caption-region | 아카이브 |
+| figs2 | 32 | 실제 로봇 평가 123개 시퀀스의 대표 모션 | caption-region | 아카이브 |
+| figs3 | 32 | 약 11kg 하중을 부착한 robustness 테스트 | caption-region | 아카이브 |
+| figs4 | 34 | OpenHomie 속도 추적 평가 비교 | caption-region | 아카이브 |
+| figs5 | 36 | SONIC 배포 아키텍처 개요 | caption-region | 아카이브 |
+| tab01 | 10 | universal motion tracker 사용 시 VLA 과제 성공률 | table-region | (선택) |
+| tab02 | 12 | 데이터셋 분할 통계와 카테고리 분포 | table-region | (선택) |
+| tab03 | 18 | VLA action space ablation 성공률 | table-region | (선택) |
+| tab04 | 20 | ablation 결과, FSQ와 VQ-VAE 비교 | table-region | (선택) |
+| tabs1 | 31 | universal control policy 아키텍처와 하이퍼파라미터 | table-region | 아카이브 |
+| tabs2 | 31 | 학습 하이퍼파라미터 | table-region | 아카이브 |
+| tabs3 | 33 | reward 설계 표 | table-region | 아카이브 |
+| tabs4 | 33 | 학습 중 적용한 domain randomization 파라미터 | table-region | 아카이브 |

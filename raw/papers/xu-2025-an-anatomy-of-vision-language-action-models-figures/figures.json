@@ -171,23 +171,24 @@
     "page": 13,
     "caption": "Fig. 7: The challenge of Safety, Interpretability and Reliable Interac- tion . This diagram shows how VLA systems build human trust, broken into three key layers. Section 4.4.1 is about making sure the robot is physically safe and works reliably. Moving up, Section 4.4.2 focuses on helping humans un",
     "bbox": [
-      265.63,
-      1.41,
-      612.0,
+      306.92,
+      138.78,
+      569.22,
       191.01
     ],
     "bbox_norm": [
-      0.434,
-      0.0018,
-      1.0,
+      0.5015,
+      0.1752,
+      0.9301,
       0.2412
     ],
     "dpi": 300,
-    "area_frac": 0.135,
-    "strategy": "caption-region",
+    "area_frac": 0.028,
+    "strategy": "manual",
     "low_confidence": false,
     "curated": false,
-    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p13.png"
+    "overlay": "raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/_overlay/p13.png",
+    "override": true
   },
   {
     "id": "fig08",

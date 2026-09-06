@@ -77,8 +77,8 @@ figures:
     raw: raw/papers/xu-2025-an-anatomy-of-vision-language-action-models-figures/fig07.png
     caption: "도전 과제 4(안전성, 해석 가능성, 신뢰 가능한 상호작용). 위험 감지 후 정지, 판단 근거 설명, 사람과의 협업 세 층으로 신뢰를 쌓는다"
     page: 13
-    bbox_norm: [0.434, 0.0018, 1.0, 0.2412]
-    strategy: caption-region
+    bbox_norm: [0.5015, 0.1752, 0.9301, 0.2412]
+    strategy: manual
     curated: false
   - id: fig08
     label: Figure 8

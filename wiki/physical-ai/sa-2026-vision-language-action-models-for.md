@@ -15,28 +15,32 @@ figures:
     raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig02.png
     caption: "결합 영역과 action head 계열의 교차 분류. tightly coupled 행에서만 방법 사이의 차이가 드러난다"
     page: 5
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0686, 0.9298, 0.5505]
+    strategy: manual
     curated: true
   - id: fig09
     file: assets/sa-2026-vision-language-action-models-for/fig09.png
     raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig09.png
     caption: "하나의 backbone을 공유하는 네 가지 action head 메커니즘과 각각의 지연 예산"
     page: 13
-    strategy: page-region
+    bbox_norm: [0.0702, 0.0758, 0.9298, 0.391]
+    strategy: manual
     curated: true
   - id: fig10
     file: assets/sa-2026-vision-language-action-models-for/fig10.png
     raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig10.png
     caption: "학습 파이프라인. 각 단계에 무엇이 들어가고(초록) 무엇이 그 단계를 보호하는지(빨강)"
     page: 13
-    strategy: page-region
+    bbox_norm: [0.0702, 0.3975, 0.9298, 0.6513]
+    strategy: manual
     curated: true
   - id: fig11
     file: assets/sa-2026-vision-language-action-models-for/fig11.png
     raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig11.png
     caption: "같은 세대 policy를 네 방식으로 측정한 값. 시뮬레이션 97.1%, 실제 task-specific 43.7%, 실제 generalist 17.7%, 생산 KPI 99%"
     page: 25
-    strategy: page-region
+    bbox_norm: [0.5, 0.0687, 0.9298, 0.4328]
+    strategy: manual
     curated: true
 ---
 
