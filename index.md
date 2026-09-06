@@ -18,7 +18,7 @@
 
 Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 
-- [[database/edge-2024-from-local-to-global|GraphRAG: From Local to Global]] — Microsoft의 GraphRAG 원논문. 엔티티와 관계를 뽑아 Leiden 커뮤니티로 요약한 뒤 map-reduce로 글로벌 답변을 만드는 그래프 RAG의 출발점 (2024, paper)
+- [[database/edge-2024-from-local-to-global|GraphRAG: From Local to Global]]: Microsoft의 GraphRAG 원논문. entity와 relationship으로 KG를 짓고 Leiden community 요약을 map-reduce로 합쳐 전역 답변을 낸다 (2024, paper)
 - [[database/microsoft-graphrag|microsoft/graphrag (repo)]] — GraphRAG 원논문의 공식 구현체. 비정형 텍스트를 knowledge graph로 인덱싱하는 파이프라인을 PyPI 패키지로 배포하며, 인덱싱 비용이 크다는 경고를 전면에 둔다 (2024, repo)
 - [[database/dsba-2025-graphrag-paper-review|GraphRAG Paper Review (DSBA, 김도윤 2025-08-11)]] — DSBA 김도윤이 정리한 GraphRAG 한국어 해설. 원논문에 발표자 견해 다섯 가지를 덧붙인 랩 세미나 슬라이드 (2025, article)
 - [[database/guo-2025-lightrag-simple-and-fast|LightRAG]] — GraphRAG의 KG를 key-value로 직렬화하고 dual-level keyword 검색으로 호출 비용을 줄인 후속작 (2025, paper)
@@ -148,6 +148,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/agentskills-agentskills|agentskills/agentskills (repo)]] — Anthropic이 시작해 오픈 표준으로 푼 Agent Skills 포맷의 스펙 저장소. 최소 규격(`SKILL.md` 폴더)과 discovery→activation→execution 3단계를 규정, 코드 Apache-2.0 / 문서 CC-BY-4.0 (2026, repo)
 - [[agents/agentskills-io-2026-agent-skills-overview|Agent Skills Overview (agentskills.io)]] — 오픈 표준 공식 문서 사이트. OpenAI Codex·Gemini CLI·Copilot·Cursor·Junie 등 40여 클라이언트가 같은 포맷을 채택했음을 Client Showcase로 전시 — 사실상 cross-vendor 표준 (2026, article)
 - [[agents/garrytan-gstack|gstack (repo)]] — Garry Tan이 공개한 Claude Code용 오픈소스 스킬 팩. 슬래시 명령어로 CEO·QA·보안 등 역할별 전문가를 불러 1인 개발자가 20인 팀의 스프린트 규율(Think→Ship→Reflect)을 밟게 한다. MIT (2026, repo)
+- [[agents/mattpocock-skills|Skills For Real Engineers (repo)]] — Matt Pocock이 매일 쓰는 코딩 에이전트 스킬 25개. 인터뷰, 스펙, TDD, 디버깅, 리뷰를 작은 단위로 쪼개고 사람만 부르는 스킬과 모델도 부르는 스킬로 나눈다. MIT (2026, repo)
 - [[agents/shao-2024-assisting-in-writing-wikipedia-like-articles|STORM]] — 주제만 주고 Wikipedia급 장문 글을 처음부터 쓰는 Stanford 시스템. 여러 관점을 가진 가상 writer가 전문가에게 인터넷 근거 질문을 던지는 시뮬레이션 대화로 pre-writing(리서치·outline)을 자동화한다 (2024, paper)
 - [[agents/qiao-2026-memory-intelligence-agent|Memory Intelligence Agent (MIA)]] — Manager·Planner·Executor 분리와 워크플로 ↔ Planner 메모리 양방향 루프로 작은 Executor가 frontier 모델을 넘긴 ECNU 연구 (2026, paper)
 - [[agents/lee-hoyeon-2026-harness-engineering|Harness Engineering (Team Attention)]] — Team Attention 이호연이 만든 강의 슬라이드. Prompt → Context → Harness 3단계 진화와 6축 순환을 Claude Code 사례로 엮어낸 한국어 자료 (2026, article)
