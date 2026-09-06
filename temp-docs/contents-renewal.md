@@ -258,7 +258,14 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
 
 ### Phase 1. 파일럿 (3편)과 게이트
 
-- [ ] 1-1. agents paper 파일럿: `cemri-2025-why-do-multi-agent-llm-systems` (표와 분류체계가 많은 대표 난도)
+- [x] 1-1. agents paper 파일럿: `cemri-2025-why-do-multi-agent-llm-systems` (표와 분류체계가 많은 대표 난도)
+  - 완료 (2026-09-06). wiki 본문 6,702자에서 19,938자로, 표 1개에서 16개로 늘었다. 압축비는 0.65에서 1.85가 되어 physical-ai 완료치 중앙값 1.95에 근접한다. sources도 문체 정비로 10,269자에서 10,761자, 표 4개에서 6개가 됐다. lint_style, lint_terms, audit_captions 세 검사 전부 0건이고 physical-ai 게이트 2줄도 exit 0이다.
+  - wiki frontmatter를 243줄에서 94줄로 줄였다 (figures 항목 22개에서 curated 7개). sources frontmatter는 22개 전량을 유지해 트레이서빌리티를 보존한다. frontmatter 100줄 초과 18편 중 1편이 해소됐다.
+  - caption 정비 18건 완료. tab01에서 tab09까지의 영어 전용 caption을 sources와 wiki 양쪽에서 한글로 다시 썼다. fig05와 fig08의 `false positive (Figure 5 텍스트 참조)` 같은 검출 오탐 표기도 서술형으로 고쳤다.
+  - legacy id 충돌을 해소했다. frontmatter에 `label: (legacy)`인 fig07과 fig11이 정상 검출분과 같은 id로 들어가 `file:` 경로가 서로 다른 두 이미지를 같은 이름으로 가리키고 있었다. 실제로 `wiki/assets/`에는 정상 크롭이 아니라 legacy 전면 캡처가 들어가 있었다 (바이트 크기 대조로 확인). id를 `legacy-fig07`, `legacy-fig11`로 분리하고 `file`과 `raw` 경로를 정합시킨 뒤 assets를 다시 복사했다.
+  - index.md 항목을 573자에서 194자로 줄이고 구분자를 `]]: `로 통일했다.
+  - 용어집 등재 후보 8건 누적 (등재하지 않음, Phase 7-1 소관): topology, trace, annotator, taxonomy, failure mode, theory of mind, verifier, Cohen's kappa. `trace`는 glossary-agents의 기존 `trajectory` 행과 역할이 겹쳐 정리가 필요하다.
+  - 부수 발견 3건. (1) sources `## 8. 그림 후보` 표의 id가 2026-08 정밀 크롭 전환 이전 순번을 그대로 쓰고 있어 frontmatter와 어긋난다. `remap_figures.py`가 frontmatter만 갱신하고 본문 표를 손대지 않은 결과로 보이며, 해당 절을 가진 sources 112편에 같은 문제가 남아 있을 수 있다. 배치마다 그 stem 분량을 함께 고친다. (2) `HUMANIZE-SUMMARY` 주석 블록이 저장소에 10개 파일 남아 있고 그 안의 금지 기호가 lint error로 잡힌다. `sources/`와 `wiki/`는 humanize 제외 대상이라 남을 이유가 없으므로 배치에서 함께 제거한다. (3) 원 논문 Appendix F의 본문 수치와 Figure 9 막대값이 어긋난다 (1.56배 대 2.57배). wiki `## 한계` 절에 사실만 기록했다.
 - [ ] 1-2. agents article 파일럿: `osmani-2026-loop-engineering` (얇은 article sources를 raw 전문 재독으로 보강 없이 재작성하는 경로 검증)
 - [ ] 1-3. database paper 파일럿: `edge-2024-from-local-to-global` (GraphRAG 원논문). repo 경로는 physical-ai 파일럿(hku-mars-fast-lio)에서 검증돼 생략
 - [ ] 1-4. 사용자 리뷰 게이트 (승인 후 배치 진행)
