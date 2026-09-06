@@ -28,7 +28,8 @@ sources/·wiki/ 한글 산문에서 다음을 잡는다:
 - 줄에 <!-- lint-style: ignore --> 가 있으면 그 줄 제외.
 - <!-- lint-style: off --> ~ <!-- lint-style: on --> 블록 제외.
 - frontmatter·코드 펜스·인라인 코드·[[wikilink]]·URL 내부는 검사하지 않는다.
-- glossary-*.md 는 제외 (금지 표기 구분자로 ·를 쓰는 규약 파일).
+- glossary-*.md 는 middot·emdash·banned-vocab 세 규칙만 면제 (금지 표기를 · 로 나열하고
+  "검사 없음"을 대시로 적는 규약 파일이라 전량 오탐이다). 헤딩 병기 등 나머지 규칙은 적용한다.
 
 의존성: python3 표준 라이브러리만 (훅에서 .venv 없이 실행).
 """
@@ -102,8 +103,6 @@ def collect_targets(root, args_files, scan_all):
         rel = p.relative_to(root) if p.is_relative_to(root) else p
         s = str(rel)
         if s.startswith("raw/") or s.startswith("wiki/assets/"):
-            continue
-        if re.match(r"wiki/overviews/glossary-.*\.md$", s):
             continue
         out.append(p)
     return out
@@ -213,6 +212,9 @@ def lint_file(path, root):
 
     rel = str(path.relative_to(root) if path.is_relative_to(root) else path)
     is_wiki = rel.startswith("wiki/")
+    # 용어집은 금지 표기를 · 로 나열하고 "검사 없음"을 대시로 적는 규약 파일이라
+    # middot·emdash·banned-vocab 이 전량 오탐이다. 그 셋만 면제하고 나머지는 검사한다.
+    is_glossary = bool(re.match(r"wiki/overviews/glossary-.*\.md$", rel))
     ftype = fm.get("type", "").strip().strip("'\"")
 
     warnings = []
@@ -248,12 +250,12 @@ def lint_file(path, root):
         masked_heading = mask(line, MASK_PATTERNS_HEADING)
         body_chars += len(stripped)
 
-        if "·" in masked:
+        if "·" in masked and not is_glossary:
             warnings.append({
                 "file": rel, "line": lineno, "severity": "error", "rule": "middot",
                 "msg": "중간점(·) 금지 — 와/과, 쉼표, 슬래시로 나열",
             })
-        if "—" in masked:
+        if "—" in masked and not is_glossary:
             warnings.append({
                 "file": rel, "line": lineno, "severity": "error", "rule": "emdash",
                 "msg": "em dash(—) 금지 — 쉼표, 괄호, 문장 분리로 대체",
@@ -275,7 +277,7 @@ def lint_file(path, root):
                     "msg": f"화자 개입 표현(\"{phrase}\") 금지 — 평서문으로 재작성",
                 })
         for pattern, hint in RE_BANNED_VOCAB:
-            if pattern.search(masked):
+            if pattern.search(masked) and not is_glossary:
                 warnings.append({
                     "file": rel, "line": lineno, "severity": "warning", "rule": "banned-vocab",
                     "msg": f"금지 어휘 — {hint}",

@@ -9,7 +9,7 @@ applies_to: [physical-ai, overviews, etc]
 tags: [glossary, terminology, physical-ai, synthesis]
 ---
 
-## 표기 원칙 (Conventions)
+## 표기 원칙
 
 이 페이지는 physical-ai 도메인 전문 용어의 canonical 표기를 정하는 SSOT다. `sources/`와 `wiki/`의 한글 산문을 쓸 때 아래 표를 따른다.
 
@@ -21,7 +21,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 - 오탐이 큰 일반어는 단독으로 등재하지 않고 복합어·조사 결합형만 등재한다 (예: 행동 → `행동 공간·행동 토큰`).
 - canonical이 개념 번역어인 용어(시연 데이터, 지시문 등)는 문서당 첫 등장 시 원어를 괄호 병기하고("시연 데이터(demonstration)") 이후에는 한 표기만 쓴다. 같은 문서에서 원어와 번역어를 섞지 않는다. 라틴 문자만 든 괄호는 `lint_terms.py`가 마스킹하므로 병기가 금지 표기로 오탐되지 않는다. (2026-09 개정)
 
-## 용어 표 (Term Table)
+## 용어 표
 
 | 원어 | canonical 표기 | 금지 표기 | 첫 등장 풀이 예문 | 비고 |
 |---|---|---|---|---|
@@ -152,11 +152,11 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | skill distribution | skill distribution | — | skill distribution은 로봇 데이터가 담고 있는 물리적 동작의 분포를 말한다 | RT-2가 낼 수 있는 동작의 상한을 정한다. 저장소 용례가 원어로 일관해 지침만 둔다 |
 | visual token reduction | visual token reduction | — | visual token reduction은 이미지에서 뽑은 토큰 수를 줄여 추론 연산량을 낮추는 기법이다 | SmolVLA의 실시간 제어 설계. layer skipping 행과 짝 |
 
-## 신규 용어 추가 절차 (Growth Loop)
+## 신규 용어 추가 절차
 
 sources·wiki 작성 중 이 표에 없는 전문 용어를 만나면 본문에는 원어 + 첫 등장 풀이로 즉시 쓰고, Step 3.5 confirm 시점에 "용어집 추가 후보"로 함께 보고한다. 사용자가 승인하면 이 표에 행을 추가하고 같은 커밋에 포함한다. 자세한 절차는 `write-wiki` 스킬을 따른다.
 
-## 관련 페이지 (Related Pages)
+## 관련 페이지
 
 - [[overviews/glossary-llms]] — 모델 학습 일반 용어 (pre-training, fine-tuning 등). physical-ai 페이지에도 함께 적용된다
 - [[overviews/glossary-agents]] — agentic 시스템 용어

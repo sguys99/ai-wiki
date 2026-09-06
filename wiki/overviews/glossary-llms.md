@@ -9,11 +9,11 @@ applies_to: [llms, database, evaluations, physical-ai, agents, applications, ove
 tags: [glossary, terminology, llms, synthesis]
 ---
 
-## 표기 원칙 (Conventions)
+## 표기 원칙
 
 모델 학습·아키텍처 일반 용어의 canonical 표기 SSOT다. 공통 원칙은 [[overviews/glossary-physical-ai]]의 표기 원칙 절과 같다. 이 용어집은 학습 용어가 도메인을 가리지 않고 등장하기 때문에 `applies_to`가 전 카테고리다 — 그만큼 금지 표기는 다른 도메인의 일반 문장을 오탐하지 않는 것만 보수적으로 등재한다.
 
-## 용어 표 (Term Table)
+## 용어 표
 
 | 원어 | canonical 표기 | 금지 표기 | 첫 등장 풀이 예문 | 비고 |
 |---|---|---|---|---|
@@ -54,11 +54,11 @@ tags: [glossary, terminology, llms, synthesis]
 | MLLM | MLLM | 멀티모달 대형 언어 모델·다중모달 LLM | MLLM은 이미지와 텍스트를 함께 받아 처리하는 대형 언어 모델을 가리킨다 | 약어 그대로. VLM과 거의 같은 뜻이지만 로보틱스 dual-system 문헌은 MLLM 표기를 쓴다 |
 | prompt tuning | prompt tuning | 프롬프트 튜닝 | prompt tuning은 모델 파라미터를 전부 얼린 채 어휘에 추가한 토큰의 임베딩만 학습시키는 방식이다 | LoRA와 달리 원래 가중치를 하나도 안 건드린다. dual-system VLA에서 일반화 보존에 유리 (Cui 2025) |
 
-## 신규 용어 추가 절차 (Growth Loop)
+## 신규 용어 추가 절차
 
 [[overviews/glossary-physical-ai]]의 동일 절차를 따른다 — 본문은 원어 + 풀이로 즉시 작성, Step 3.5에서 추가 후보 보고, 승인 후 표에 행 추가.
 
-## 관련 페이지 (Related Pages)
+## 관련 페이지
 
 - [[overviews/glossary-physical-ai]] — physical-ai 도메인 용어
 - [[overviews/glossary-agents]] — agentic 시스템 용어

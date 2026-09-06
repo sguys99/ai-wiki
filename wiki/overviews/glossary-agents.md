@@ -9,13 +9,13 @@ applies_to: [agents, applications, evaluations, overviews, etc]
 tags: [glossary, terminology, agents, synthesis]
 ---
 
-## 표기 원칙 (Conventions)
+## 표기 원칙
 
 agents 도메인(agentic 시스템·tool use·harness·loop engineering) 전문 용어의 canonical 표기 SSOT다. 공통 원칙은 [[overviews/glossary-physical-ai]]의 표기 원칙 절과 같다 — 원어 유지 + 문서당 첫 등장 시 서술형 한글 풀이 한 문장, 원어에 조사 직결, 금지 표기는 `·` 구분 리터럴 검사, `—`는 지침만.
 
 이 도메인은 음차가 이미 넓게 정착해 있다(프롬프트 69회·컨텍스트 73회·메모리 33회 등). 정착한 음차는 음차를 canonical로 삼고, 개념어는 원어를 유지한다.
 
-## 용어 표 (Term Table)
+## 용어 표
 
 | 원어 | canonical 표기 | 금지 표기 | 첫 등장 풀이 예문 | 비고 |
 |---|---|---|---|---|
@@ -56,11 +56,11 @@ agents 도메인(agentic 시스템·tool use·harness·loop engineering) 전문 
 | claim | claim | — | claim은 정답이라면 최종 답에 담겨 있어야 하는 원자적 사실 진술이다 | "주장"은 일반어라 오탐이 커서 지침만. 채점 단위 문맥에서는 원어 권장 (Bandi 2026) |
 | coverage | coverage | — | coverage는 task의 claim 점수를 평균낸 값이다 | "커버리지"는 테스트·개념 커버리지 등 다른 문맥에 이미 쓰여 지침만. claim 채점 문맥에서는 원어 (Bandi 2026) |
 
-## 신규 용어 추가 절차 (Growth Loop)
+## 신규 용어 추가 절차
 
 [[overviews/glossary-physical-ai]]의 동일 절차를 따른다 — 본문은 원어 + 풀이로 즉시 작성, Step 3.5에서 추가 후보 보고, 승인 후 표에 행 추가.
 
-## 관련 페이지 (Related Pages)
+## 관련 페이지
 
 - [[overviews/glossary-llms]] — 모델 학습 일반 용어. agents 페이지에도 함께 적용된다
 - [[overviews/glossary-physical-ai]] — physical-ai 도메인 용어
