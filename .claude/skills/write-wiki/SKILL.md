@@ -1,6 +1,6 @@
 ---
 name: write-wiki
-version: "2.2.0"
+version: "2.2.1"
 description: sources/·wiki/ 한글 페이지를 작성하는 스킬 (CLAUDE.md Step 3 ~ Step 4). 트리거 — "sources 작성해줘", "wiki 페이지 만들어줘", "Step 3 진행", "요약 작성해줘", "wiki에 정리해줘", "이 자료 위키로", "wiki 갱신해줘". 도메인 용어집을 로드해 전문 용어를 원어로 유지하고, wiki는 교재식으로 재구성한다 (압축 금지, 표와 불릿 적극 사용). 수집(Step 1~2.5)은 해당 없음 — ingest-paper / ingest-article 을 쓸 것.
 ---
 
@@ -48,7 +48,7 @@ git commit은 하지 않는다 (사용자가 지시할 때만). humanize 자동 
 
   나쁜 예: "정책(policy)은 관측(observation)을 받아…" (괄호 병기 + 직역). 이 스타일을 쓰지 않는다.
 - **자명한 것은 풀이 생략**: 널리 알려진 약어(GPU, API, PDF)와 고유명사(Transformer, EfficientNet, Isaac Lab)는 풀이 없이 그대로.
-- **산문 문체와 본문 골격**은 CLAUDE.md의 "wiki 교재 문체 가이드"와 Step 4 템플릿을 따른다 (재서술하지 않는다. 그쪽이 정본이다). 핵심만 상기: 하다체 기술문서체, 두괄식 문단, 자문자답과 화자 개입 금지, 극적 동사와 어휘 치환표 준수, 중간점(`·`)과 em dash(`—`) 금지, 한글 단독 명사형 헤딩, 열거는 불릿과 표로, 큰 수는 한국식 단위와 단위 표기.
+- **산문 문체와 본문 골격**은 CLAUDE.md의 "wiki 교재 문체 가이드"와 Step 4 템플릿을 따른다 (재서술하지 않는다. CLAUDE.md가 정본이다). 핵심만 상기: 하다체 기술문서체, 두괄식 문단, 자문자답과 화자 개입 금지, 극적 동사와 어휘 치환표 준수, 중간점(`·`)과 em dash(`—`) 금지, 한글 단독 명사형 헤딩, 열거는 불릿과 표로, 큰 수는 한국식 단위와 단위 표기.
 
 ## 2. Step 4 wiki 작성 방법 (압축이 아니라 교재식 재구성)
 
@@ -57,10 +57,12 @@ wiki 페이지는 sources를 줄여 쓰는 단계가 **아니다**. 독자가 �
 작업 순서:
 
 1. `sources/{stem}.md` 전체를 읽는다.
-2. `raw/{type}/{stem}.*`을 읽어 sources에서 빠진 세부(수치, 예시, 비유, 전개 순서)를 확보한다. 원문이 한국어 해설이면 그 전개 구조 자체를 살린다.
+2. `raw/{type}/{stem}.*`을 읽어 sources에서 빠진 세부(수치, 예시, 비유, 전개 순서)를 확보한다. 원문이 한국어 해설이면 그 전개 구조 자체를 살린다. raw 재독은 누락 복원뿐 아니라 **근거 없는 서술 검출**에도 쓴다. sources와 기존 wiki가 적고 있는 주장을 raw에서 한 문장씩 대조하고, 근거가 없으면 양쪽을 함께 정정한다. 파일럿 osmani-2026에서는 양쪽이 공유하던 "재유도하는 토큰 낭비 제거"가 raw에 없어(원문은 재유도 반복 제거만 말한다) 정정했다.
 3. CLAUDE.md Step 4의 교재식 골격(요약 → 배경 → 핵심 개념 → 방법 → 결과 → 한계 → 핵심 용어 → 관련 페이지)으로 재구성한다.
 4. curated figure를 관련 절에 배치하고 캡션을 단다.
-5. 분량을 확인한다: wiki 본문이 sources 본문보다 짧으면 어딘가에서 정보를 잃은 것이다.
+5. 분량을 확인한다: wiki 본문이 sources 본문보다 짧으면 어딘가에서 정보를 잃은 것이다. 대조 기준은 **재작성 후 sources 본문**이다. sources를 문체 정비하며 본문이 늘었다면 게이트도 함께 올라간다.
+
+**figures 백필.** Step 2.5가 끝났는데 sources에 `figures:` 키가 없는 stem이 착수 실측 14개 있었다. `raw/{type}/{stem}-figures/figures.json`이 있는데 sources frontmatter에 `figures:`가 없으면, 매니페스트를 읽어 후보 전량을 `curated: false`로 기록하고 `## 8. 그림 후보` 절을 신설한 뒤 Step 3.5를 거쳐 wiki에는 curated 항목만 복제한다. caption은 크롭 이미지와 원문을 대조해 한글로 새로 쓴다.
 
 ### before / after 예시 (실제 교정 전후)
 
@@ -94,6 +96,29 @@ after:
 
 > RT-1은 seen 과제에서 97%의 성공률을 기록해 BC-Z보다 25%p, Gato보다 32%p 높았다. unseen(76%) 항목에서도 두 번째로 높은 모델을 24%p 앞서, 모든 평가 항목에서 가장 높았다.
 
+**예시 4. 줄글에 묻힌 열거를 표로 꺼내기.** 항목이 3개 이상이거나 항목마다 같은 속성을 비교하는 서술은 표로 옮긴다. 파일럿 3편이 표를 4개에서 35개로 늘린 것이 분량 회복의 주된 수단이었다 (osmani-2026, agents).
+
+before (두 항목과 세 속성을 한 문장에 압축):
+
+> Claude Code의 두 슬래시 커맨드는 역할이 갈린다. `/loop`은 **cadence-based**(시간 주기), `/goal`은 **conditional completion**(조건 충족 시 종료 + 검증을 별도 모델에 위임)이다.
+
+after (비교 기준을 열로 세운 표):
+
+> | 커맨드 | 종료 기준 | 특징 |
+> |---|---|---|
+> | `/loop` | 주기 기반(cadence) | 정해진 시간 간격마다 실행한다 |
+> | `/goal` | 조건 충족 기반(conditional completion) | 지정한 기준을 만족할 때까지 계속하고, 검증은 별도 모델에 위임한다 |
+
+**예시 5. 영문 병기 헤딩을 한글 단독 명사형으로.** sources 템플릿의 번호 붙은 병기 헤딩과 달리 wiki 본문 헤딩에는 영문을 병기하지 않는다. `lint_style.py`의 `bilingual-heading` 규칙이 검사하며 저장소 최대 재작성 대상이다.
+
+| before | after |
+|---|---|
+| `## 방법론 및 아키텍처 (Methodology and Architecture)` | `## 방법` 아래 `### 구성 요소 카탈로그` 등으로 분할 (osmani-2026) |
+| `## 한계와 향후 (Limitations and Future)` | `## 한계`와 `## 후속 방향` 두 절로 분리 (edge-2024) |
+| `### Concrete loop architecture (저자가 든 단일 시나리오)` | `### 하루 단위 루프 시나리오` (osmani-2026) |
+
+병기를 떼면서 절을 나누는 경우가 많다. 헤딩 하나가 여러 주제를 담고 있었다는 신호라서, 이름만 바꾸고 내용을 그대로 두면 절 안의 압축이 남는다.
+
 ## 3. sources "## 7. 용어집" 섹션과의 역할 분담
 
 파일별 `## 7. 용어집 (Glossary)` 섹션에는 **그 자료 고유의 용어**(모델명, 기법명, 자료 내 신조어)만 담는다. 도메인 공통 용어(policy, reward, pre-training 등)는 도메인 용어집으로 위임하고 다시 정의하지 않는다. 표기는 반드시 도메인 용어집과 일치시킨다.
@@ -126,14 +151,18 @@ wiki 페이지의 `## 핵심 용어` 표는 sources 용어집에서 이해에 �
 - [ ] 논문, survey 기반이면 표가 1개 이상 있는가
 - [ ] `## 핵심 용어` 표가 있는가
 - [ ] wiki 본문이 sources 본문보다 짧지 않은가
-- [ ] wiki frontmatter의 `figures:`에 curated 항목만 있는가
+- [ ] `## 관련 페이지`의 wikilink가 실재 파일을 가리키는가 (category가 옮겨지면 조용히 깨진다. 이를 검사하는 lint는 아직 없다)
+- [ ] wiki frontmatter의 `figures:`에 curated 항목만 있는가 (전량 복제는 frontmatter가 본문보다 커지는 원인이다. 파일럿 cemri-2025에서 243줄이 94줄로 줄었다)
 
 sources와 wiki 파일을 저장할 때마다 lint를 돌려 경고 0을 확인한다.
 
 ```bash
 .venv/bin/python scripts/lint_terms.py sources/{stem}.md wiki/{category}/{stem}.md
 .venv/bin/python scripts/lint_style.py sources/{stem}.md wiki/{category}/{stem}.md
+.venv/bin/python scripts/audit_captions.py sources/{stem}.md wiki/{category}/{stem}.md
 ```
+
+`audit_captions.py`는 frontmatter `figures[].caption`의 금지 기호, 영어 전용, 파일 내 중복을 검사한다. `figures:` 키가 있는 자료면 세 스크립트를 모두 실행한다.
 
 한 카테고리를 배치로 재작성한 뒤에는 두 스크립트에 `--category {name}`을 주어 그 카테고리 전체를 한 번에 확인한다. 판정 기준이 frontmatter `category:` 값이라 flat한 `sources/`도 함께 걸린다.
 

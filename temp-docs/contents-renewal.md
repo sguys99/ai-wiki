@@ -290,16 +290,24 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - 파일럿 3편 종합. 압축비는 0.65에서 1.85, 0.85에서 1.27, 0.46에서 1.19가 됐고 세 편 평균 1.44다 (착수 평균 0.65). 표는 4개에서 35개, wiki 본문 합계 19,887자에서 48,170자다. lint 3종 전부 0건이고 physical-ai 회귀 게이트도 유지된다. 전 저장소 지표는 lint_style error 9,202건에서 8,949건, lint_terms 270건에서 264건, caption 정비 대상 700건에서 682건으로 내려갔다.
   - 유형별 경로 3종이 전부 검증됐다. paper 경로는 PDF 부록 수치까지 표로 꺼내면 압축비 1.8대에 도달한다. article 경로는 sources 재추출 없이 raw 전문 재독만으로 산문 42% 증가를 만들고, 부수적으로 raw에 없는 주장을 검출하는 효과도 있다. figures 경로는 curated만 복제하는 규약이 frontmatter 243줄을 94줄로 줄인다.
   - **사용자 결정 2건.** (1) 계획 밖 문제 3건(figures 누락 14 stem, 그림 후보 표 id 불일치, HUMANIZE 잔재 10파일)은 별도 phase를 만들지 않고 각 배치가 그 stem 분량만큼 흡수한다. (2) 파일럿이 제안한 lint 도구 확장 3종을 배치 착수 전에 만든다 (아래 1-7 신설).
-- [ ] 1-5. write-wiki 스킬 v2.2.1. 파일럿 전후 발췌로 비-physical-ai before/after 예시 2~3쌍 추가
+- [x] 1-5. write-wiki 스킬 v2.2.1. 파일럿 전후 발췌로 비-physical-ai before/after 예시 2~3쌍 추가
+  - 완료 (2026-09-06). 140줄에서 169줄로 순증 29줄이다 (상한 30줄 이내). 기존 예시 3쌍의 인용문 본문은 바이트 단위로 보존했다. `git diff -U0`의 hunk 헤더가 구 65행에서 95행 구간을 하나도 건드리지 않고, 편집 전 스냅샷에서 같은 구간을 재추출한 diff도 0이다.
+  - 예시 2쌍을 추가했다. 예시 4는 줄글에 묻힌 열거를 표로 꺼내는 교정(osmani-2026, agents)이고, 예시 5는 영문 병기 헤딩을 한글 단독 명사형으로 바꾸는 교정(osmani-2026 2행과 edge-2024 1행, agents와 database)이다. 전후 텍스트는 전부 파일럿 커밋 diff에서 뽑았고 after는 최종 파일에 실재함을 확인했다. 기존 3쌍이 다루던 압축 줄글 풀이, 화자 개입 제거, 수치 서술과 겹치지 않고 카테고리도 physical-ai에서 agents와 database로 벌렸다.
+  - 예시 5에 운영 관찰 한 줄을 붙였다. 병기를 떼면서 절을 나누는 경우가 많은데, 헤딩 하나가 여러 주제를 담고 있었다는 신호라서 이름만 바꾸면 절 안의 압축이 남는다.
+  - 파일럿 운영 지식 4항목을 본문에 반영했다. 1차 게이트가 재작성 후 sources 기준이라는 점은 §2 작업 순서 5번에, `audit_captions.py`는 §5 lint 블록에, figures 백필 절차는 §2 작업 순서 직후 신설 단락에, 관련 페이지 wikilink 실재 확인은 §5 체크리스트에 넣었다.
+  - 판단 2건. (1) raw 재독의 무근거 주장 검출은 §2 예시가 아니라 작업 순서 2번에 넣었다. 문체 교정이 아니라 raw 대조로만 잡히는 다른 실패 유형이고, 작업 순서 2번이 독자가 실제로 행동하는 지점이다. (2) frontmatter 비대는 §5 체크리스트의 기존 항목에 근거와 실측치(243줄에서 94줄)만 괄호로 붙여 순증 0줄로 처리했다.
+  - 부수 수정 1건. §2의 `"그쪽이 정본이다"`가 CLAUDE.md 문체 가이드의 "이쪽/그쪽 금지"를 스스로 어기고 있어 `"CLAUDE.md가 정본이다"`로 고쳤다. 스킬 파일의 lint_style warning이 4건에서 3건이 됐다. 남은 error 7건과 warning 3건은 전부 금지 패턴을 가르치려고 인용한 줄이고, 금지 기호 11회도 지정된 의도적 예외 5줄 안이다.
 - [ ] 1-6. physical-ai 고아 `9bow-2026-world-action-model-rise` wiki 신설. physical-ai-overview 커버리지를 77편으로 갱신하고 index.md Physical AI 절에 항목을 신설한다 (sources는 Phase 5-7에서 정비 완료라 wiki 1편 작업)
 - [ ] 1-7. lint 도구 확장 3종 (계획 밖 신규 항목, 파일럿 제안과 사용자 결정 2026-09-06). 배치 착수 전에 만들어 품질 게이트를 촘촘히 한다. 기존 두 스크립트의 기본 동작과 훅 JSON 출력은 불변으로 유지하고, `--category`와 `--strict`, `--json` 인자 규약을 승계한다
   - (a) `scripts/lint_figures.py` 신설. `raw/{type}/{stem}-figures/`가 있는데 같은 stem sources에 `figures:` 키가 없는 상태를 검출한다. 착수 실측 14건(1-3 부수 발견)을 그대로 재현하는지로 검증한다. stem 규약을 벗어난 고아 디렉토리(`2511.18177v1-figures`)도 함께 보고한다
   - (b) `scripts/lint_links.py` 신설. `[[category/stem]]` 형식 wikilink가 실재 파일로 해석되는지 검사한다. 이미지 임베드(`![[assets/...]]`)는 대상에서 제외하고 별도로 파일 존재를 확인한다. Obsidian이 미해결 링크를 조용히 회색 처리해 사람 눈에 안 띄는 것이 도입 이유다
   - (c) `scripts/lint_style.py`에 `축` 오용 검출 추가. `평가 축`, `N개 축`, `~ 축으로` 같은 좁은 패턴만 warning으로 올리고 `압축`, `구축`, `좌표축`은 통과시킨다. physical-ai 154개 파일 0건 유지가 회귀 기준이다
 
-### Phase 2. agents 배치 재작성 (A1~A12, 64편 = 기존 61 + 신규 3)
+### Phase 2. agents 배치 재작성 (A1~A13, 66편 = 기존 63 + 신규 3)
 
-파일럿 2편(cemri-2025, osmani-2026-loop-engineering)은 소속 배치에서 제외한다. 실제 배치 작업량은 62편이다.
+파일럿 2편(cemri-2025, osmani-2026-loop-engineering)은 소속 배치에서 제외한다. 실제 배치 작업량은 64편이다.
+
+**착수 기준선 갱신 (2026-09-06).** Phase 1 진행 중 다른 경로로 agents wiki 2편이 추가돼 61편에서 63편이 됐다. `magnitudedev-magnitude`(repo)와 `mattpocock-skills`(repo)이고 둘 다 이미 lint 0건에 표를 각각 11개와 15개 갖춘 새 기준 산출물이다. 압축비는 mattpocock 1.33, magnitude 1.05다. mattpocock은 기준 안이라 재작성 대상에서 빼고, magnitude는 2-3절이 정한 판정(압축비 1.03에서 1.23 구간은 교재식 기준 미달로 보고 범위에 넣는다)에 따라 배치 A13에 넣는다. index.md Agents 절 항목 수도 64개에서 66개가 된다.
 
 - [ ] A1 Agent Skills 표준 (5편): anthropic-2025-equipping-agents-for-the-real, agentskills-agentskills, agentskills-io-2026-agent-skills-overview, osmani-2026-agent-skills, hada-2026-agent-skills
 - [ ] A2 스킬 최적화와 조합 (5편): microsoft-skillopt, yang-2026-skillopt-executive-strategy-for, zhao-2026-generative-skill-composition-for-llm, imbad0202-academic-research-skills, llmsresearch-paperbanana
@@ -313,7 +321,8 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
 - [ ] A10 멀티에이전트와 자동 집필 (4편, 파일럿 1편 제외): lee-2026-the-agent-loop-a-survey, dennis-2026-compiling-agentic-workflows-into-llm, shao-2024-assisting-in-writing-wikipedia-like-articles(40,000자 재추출 보강 동반), stanford-oval-storm
 - [ ] A11 CUA와 브라우저 에이전트 (5편): wang-2026-cua-gym-scaling-verifiable-training-environments, xlang-ai-cua-gym, xlangai-cua-gym-dataset, browser-use-browser-use, browser-use-browsercode
 - [ ] A12 에이전트 인프라와 컨텍스트 자산 (6편): rodrigues-2026-mcp-server-architecture-patterns, block-buzz, stablyai-orca, google-labs-code-design-md, hall-2026-atlassians-design-md-is-here, theaxlabs-2026-company-brain-prompt-guide
-- [ ] A-완료. index.md Agents 절 축소(64항목, 200자 이내, 구분자 `]]: ` 통일), `--category agents` lint 0건, physical-ai 회귀 확인, 카테고리 완료 계량 기록
+- [ ] A13 세션 중 편입분 (1편): magnitudedev-magnitude (압축비 1.05로 기준 미달. mattpocock-skills는 1.33에 표 15개로 기준 안이라 제외하고 index.md 항목 점검만 한다)
+- [ ] A-완료. index.md Agents 절 축소(66항목, 200자 이내, 구분자 `]]: ` 통일), `--category agents` lint 0건, physical-ai 회귀 확인, 카테고리 완료 계량 기록
 
 ### Phase 3. applications 배치 재작성 (B1~B7, 33편 = 기존 32 + 신규 1)
 
