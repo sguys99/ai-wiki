@@ -37,7 +37,7 @@ loop engineering은 에이전트를 반복 구동하는 루프 자체를 설계 
 
 네 항목의 공통점은 원래 사람이 쥐고 있던 판단이라는 것이다. 사람이 매번 다음 프롬프트를 공급하지 않아도 순환이 이어진다는 점에서 앞의 방식과 갈린다.
 
-이름의 출처는 Anthropic의 Peter Steinberger와 Boris Cherny다. 두 사람은 이 변화를 "prompting coding agents"가 아니라 "designing loops that prompt your agents"에 집중해야 한다는 문장으로 표현했고, Osmani는 그 문장을 loop engineering이라는 한 단어의 패러다임 명칭으로 굳혔다. 다만 본문에는 두 사람의 발언에 대한 구체적 URL이나 영상 링크가 붙어 있지 않다.
+이름의 출처는 Anthropic의 Peter Steinberger와 Boris Cherny다. 두 사람은 이 변화를 "prompting coding agents"가 아니라 "designing loops that prompt your agents"에 집중해야 한다는 문장으로 표현했고, Osmani는 그 문장을 loop engineering이라는 한 단어의 패러다임 명칭으로 굳혔다. 다만 본문에는 두 사람의 발언에 대한 구체적 URL이나 영상 링크가 붙어 있지 않다. Steinberger의 소속은 자료마다 다르게 적힌다. 이 글의 원문은 두 사람을 함께 Anthropic 소속으로 묶지만, 같은 발언을 인용한 [[agents/lee-jeongmin-2026-loop-engineering-claude-code]]의 원문은 Steinberger를 OpenClaw 소속으로 적는다. 두 원자료가 어긋나므로 이 wiki는 각 페이지가 자기 원문 표기를 그대로 따른다.
 
 ## 핵심 개념
 

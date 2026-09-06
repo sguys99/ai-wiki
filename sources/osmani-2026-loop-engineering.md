@@ -107,7 +107,7 @@ Google Chrome 엔지니어링 매니저 Addy Osmani가 2026-06-07에 올린 짧�
 
 본 자료가 본문에서 명시적으로 attribution한 항목은 다음과 같다.
 
-- Peter Steinberger와 Boris Cherny (Anthropic). "design loops that prompt your agents"라는 표현의 출처다. 본문에 구체적 인용 URL이나 영상 링크는 없다.
+- Peter Steinberger와 Boris Cherny (Anthropic). "design loops that prompt your agents"라는 표현의 출처다. 본문에 구체적 인용 URL이나 영상 링크는 없다. Steinberger의 소속은 `lee-jeongmin-2026-loop-engineering-claude-code`의 원문이 OpenClaw로 적어 이 글과 어긋난다. 각 페이지는 자기 원문 표기를 따른다.
 - Claude Code (Anthropic). `/loop`과 `/goal` 슬래시 커맨드, 서브에이전트, MCP, 스킬 시스템.
 - Codex 앱 (OpenAI). 반복 프롬프트 지원 사례.
 - MCP (Model Context Protocol). 커넥터와 플러그인의 기반 프로토콜.

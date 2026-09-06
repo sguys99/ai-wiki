@@ -3,86 +3,460 @@ title: "Claude Code team just dropped a free course on loop engineering with Fab
 type: video
 year: 2026
 category: agents
+source: luis-carrijo-2026-claude-code-team-just-dropped.md
 raw_path: raw/videos/luis-carrijo-2026-claude-code-team-just-dropped.md
 raw_filename: "luis-carrijo-2026-claude-code-team-just-dropped.md"
 source_collection: external
-source: luis-carrijo-2026-claude-code-team-just-dropped.md
 channel: "Luis Carrijo"
 url: "https://www.youtube.com/watch?v=RjLlIC9InDI"
 duration: "1:01:05"
 tags: [claude-code, agentic-loop, dynamic-workflow, auto-mode, permissions, skills, fable-5, vertex-ai]
 ---
 
-## 요약 (Summary)
+## 요약
 
-Claude Code harness의 내부 동작 원리부터 permissions, skills, auto mode, dynamic workflow까지 실제 데모와 함께 설명한 1시간 강좌. Anthropic의 Lydia Haley("Avocoder")와 CS Dojo의 YK Sugi(Claude Code Tips 저장소 저자)가 출연해 각각 설계 의도와 실전 운영 팁을 설명한다.
+이 영상은 Claude Code를 만든 팀이 직접 나와 도구의 내부 동작을 설명하고 두 편의 라이브 데모로 확인하는 1시간짜리 강좌 겸 대담이다. 2026년 7월 9일 공개됐고, Anthropic의 Lydia Haley와 CS Dojo 운영자 YK Sugi가 출연한다.
 
-## 주요 기여 (Key Contributions)
+강좌를 관통하는 전제는 하나다. 모델은 아무것도 기억하지 못하며, 기억하는 일과 실행하는 일은 전부 모델 바깥의 harness가 한다. 앞부분 15분은 그 harness가 매 호출마다 어떤 재료로 프롬프트를 조립하는지를 구성 요소 단위로 분해한다. 나머지 시간은 그 harness를 사용자가 조정하는 수단, 즉 permissions와 스킬과 auto mode와 dynamic workflow를 하나씩 다룬다.
 
-- Claude Code harness의 prompt 조립 과정을 처음으로 공개적으로 시각화
-- Auto mode 설계 철학(permission fatigue 해결, classifier 기반 판단)을 Anthropic이 직접 설명
-- Dynamic workflow 기능 첫 데모 — JavaScript 파일로 결정론적 subagent 오케스트레이션
-- Intent-driven development 개념을 실제 3D slingshot 게임 빌드로 구현
+다루는 범위가 넓지만 순서에는 흐름이 있다. 조립 과정을 이해해야 무엇을 조정할 수 있는지 보이고, 조정 수단을 알아야 에이전트를 오래 자율적으로 돌리는 설정이 가능해진다. 그 끝에 놓인 것이 dynamic workflow다. 서브에이전트를 몇 개 띄울지 모델의 판단에 맡기던 것을 JavaScript 파일로 고정해 재현 가능하게 만드는 기능이다.
 
-## Harness와 agentic loop
+정량 지표는 없다. 리뷰 비중이 뒤집혔다거나 비용을 아꼈다는 수치는 모두 출연자의 경험 진술이므로, 벤치마크가 아니라 Claude Code 사용 설계를 위한 참고 자료로 읽는 편이 적절하다.
 
-모델은 stateless다. 매 호출마다 harness가 tool schemas, system prompt, 환경 정보, CLAUDE.md 내용, skills 목록, 대화 이력을 하나의 큰 request로 조립해 API에 보낸다. 모델은 직접 파일을 읽거나 명령을 실행하지 못한다. tool call을 harness에 넘기면 harness가 실행한다.
+## 배경
 
+### 강좌의 구성과 출연자
+
+앞의 15분은 Lydia Haley 혼자 진행하는 워크숍이다. CLAUDE.md, permissions, plan mode, 스킬, 훅, 플러그인, MCP를 차례로 다뤄 Claude Code를 개인 환경에 맞추는 방법을 정리하겠다는 예고로 시작한다. 15분 지점부터 진행자가 두 출연자를 소개하며 대담과 데모로 넘어간다.
+
+| 인물 | 소속과 이력 | 강좌에서 맡은 부분 |
+|---|---|---|
+| Lydia Haley | Anthropic 소속. 온라인 활동명은 Avocoder | 전반부 워크숍 강의, 후반부 dynamic workflow 데모 |
+| YK Sugi | CS Dojo 운영자. Claude Code tips 저장소 저자 | slingshot 게임 빌드 데모, 실전 운영 팁 |
+| 진행자 | Agent Factory 프로그램 진행 | 대담 진행, Vertex AI 수동 설정 시연 |
+
+Lydia Haley는 자기 업무의 대부분이 YK Sugi 같은 사용자를 관찰하는 일이라고 말한다. 사람마다 쓰는 방식이 조금씩 다르고, 내부에서 쓰는 방식이 외부 사용 방식과 같지도 않으며, Claude Code 팀 엔지니어들끼리도 서로 다르게 쓴다는 것이다. 그래서 커뮤니티에서 올라오는 사용 패턴이 로드맵 결정에 실제로 반영된다고 설명한다.
+
+YK Sugi가 Claude Code에 확신을 갖게 된 계기는 출시 직후의 개인 경험이다. 이직 면접용 데모 프로젝트를 Claude Code로 만들었고, 사용 사실을 밝히지 않았는데도 면접관들이 결과물의 완성도에 놀랐다고 한다. 그 뒤로 계속 쓰면서 배운 것을 정리한 결과물이 스타 8,000개를 넘긴 팁 저장소다.
+
+### 모델이 stateless라는 전제
+
+강좌가 가장 먼저 못박는 사실은 모델에 메모리가 없다는 것이다. 세션 안에서도 없고 호출과 호출 사이에도 없다. 모델을 호출할 때마다 모델은 사실상 0에서 시작한다.
+
+이 전제가 중요한 이유는 뒤이어 나오는 모든 기능의 존재 이유가 여기서 나오기 때문이다. 파일 내용도, 대화 이력도, 사용자의 설정과 환경도 모델이 알아서 기억하지 않는다. 상태를 전부 제공하는 일은 harness의 책임이다. harness는 모델을 감싸 도구와 상태를 공급하는 실행 환경을 말하며, 이 강좌의 harness는 Claude Code 자체다.
+
+모델이 하지 못하는 일이 하나 더 있다. 모델은 파일을 직접 읽거나 명령을 직접 실행하지 못한다. 무언가를 실행하고 싶으면 tool call을 harness에 보낼 뿐이고, 실제 실행은 harness가 한다. 그래서 사용자가 Claude Code를 통제한다는 것은 곧 harness를 통제한다는 뜻이 된다. permissions가 강좌 초반에 등장하는 이유도 그것이다.
+
+## 핵심 개념
+
+**harness**는 모델을 감싸 도구와 검증과 상태를 제공하는 실행 환경이다. 강좌에서는 Claude Code라는 프로그램 자체를 가리킨다. 프롬프트를 조립하고, 모델이 요청한 tool call을 실행하고, 결과를 다시 프롬프트에 넣어 모델을 다시 부르는 일을 전부 harness가 맡는다.
+
+**tool call**은 모델이 도구 하나를 실제로 호출하는 한 번의 실행 단위다. 모델의 응답 안에 담겨 나오는 신호이며, 그 자체로는 아무 일도 일어나지 않는다. harness가 받아서 실행해야 파일이 읽히고 명령이 돈다.
+
+**agent loop**는 모델 호출에서 도구 실행과 관찰을 거쳐 다시 모델 호출로 돌아오는 기본 순환이다. 강좌는 이 순환을 프롬프트 재조립 관점에서 설명한다. 한 바퀴 돌 때마다 messages array에 assistant message와 tool result가 쌓이고 나머지 구성 요소는 그대로 다시 붙는다.
+
+**progressive disclosure**는 필요한 시점에만 정보를 단계적으로 노출하는 설계다. 강좌에서는 스킬 목록을 첫 메시지에 이름과 설명만 실어 보내는 방식이 여기 해당한다.
+
+**permission fatigue**는 모든 행동을 묻는 방식이 반복되면서 사용자가 내용을 읽지 않고 승인하게 되는 현상이다. 안전을 위한 질문이 반복될수록 그 질문의 안전 효과가 떨어지는 역설을 가리킨다.
+
+**서브에이전트(sub-agent)**는 자체 컨텍스트를 가진 또 하나의 Claude Code 인스턴스다. 상위 에이전트가 위임한 작업 하나에 집중하는 데 강하다. 컨텍스트가 분리돼 있어 상위 세션의 대화 이력에 오염되지 않는다.
+
+**dynamic workflow**는 서브에이전트 실행 순서와 구성을 JavaScript 파일로 고정하는 기능이다. 모델이 그때그때 판단하던 오케스트레이션을 코드로 옮겨 재현 가능하게 만든다.
+
+**intent-driven development**는 어떻게 만들지가 아니라 무엇을 만들지를 정확히 파악하고 표현하는 개발 방식이다. YK Sugi는 이 개념의 핵심이 특정 프롬프트 문구를 잘 쓰는 데 있지 않다고 강조한다. 자신의 의도가 무엇인지 스스로 아는 것, 그리고 그것을 표현할 수 있는 것이 먼저다.
+
+## harness의 프롬프트 조립
+
+### 하나의 request로 묶이는 네 덩어리
+
+사용자가 엔터를 누르는 순간 Claude Code는 흩어져 있던 정보를 하나의 큰 request로 조립한다. 사용자가 화면에서 본 것은 자기가 친 한 줄뿐이지만 실제로 API에 가는 것은 아래 네 덩어리를 합친 결과다.
+
+| 구성 요소 | 담기는 내용 | 출처 |
+|---|---|---|
+| tool schemas | Claude Code가 사용자를 대신해 취할 수 있는 모든 행동의 정의 | Claude Code 내장 |
+| system prompt | 모델의 정체성, 어조, 코딩 컨벤션, Anthropic이 강제하려는 보안 규칙 | Claude Code에 하드코딩 |
+| 환경 정보 | 운영체제, 셸, 실행 중인 모델, git 브랜치 | 세션 시작 시 수집 |
+| messages array | 사용자 프롬프트, CLAUDE.md 파일 내용, 스킬 목록 | 사용자 프로젝트와 입력 |
+
+tool schemas는 bash, edit, read, agent, web fetch를 비롯해 여러 개가 있고 공식 문서에 전량 공개돼 있다. 화면에서는 알아보기 쉽게 시각화되지만 실체는 이름과 설명과 입력 형태를 담은 JSON schema다. 모델은 이 목록을 읽고 자신이 harness에 무엇을 요청할 수 있는지 파악한다.
+
+system prompt는 Anthropic이 harness에 직접 넣는 부분이라 사용자가 손대지 않는다. 모델이 누구이며 어떤 어조로 답해야 하는지, 어떤 코딩 관행과 보안 규칙을 지켜야 하는지가 여기 들어간다.
+
+환경 정보는 세션을 시작하는 시점에 Claude Code가 수집한다. 운영체제와 셸, 지금 실행 중인 모델, 현재 git 브랜치가 포함된다.
+
+messages array는 사용자 쪽 재료가 모이는 자리다. 프롬프트 본문과 함께 프로젝트에 CLAUDE.md가 있으면 그 내용이 들어가고, 스킬이 있으면 목록이 들어간다. 스킬은 목록에 이름과 설명만 실린다. 강좌는 이 방식을 progressive disclosure라고 부른다. 스킬 본문 전체를 첫 메시지에 넣으면 컨텍스트가 낭비되므로 목차만 먼저 보여 주는 셈이다.
+
+조립 결과는 messages API로 보내는 JSON request body다. Anthropic SDK를 써 본 사용자에게는 익숙한 구조라는 설명이 붙는다. 여기에 한 가지 단서가 따른다. 모델은 JSON을 읽지 않는다. JSON을 토큰으로 바꾸는 일은 Anthropic API나 Bedrock 같은 API 계층이 내부에서 처리하며, 모델이 보는 것은 토큰뿐이다.
+
+### 루프 한 바퀴
+
+강좌는 "add a test for calc"라는 요청 하나로 루프를 따라간다. 조립된 프롬프트 어디에도 `utils.ts` 파일 내용이 아직 없으므로 모델은 요청을 수행할 재료가 없다. 대신 tool schemas에서 read tool을 발견하고 그것을 호출한다.
+
+| 순서 | 주체 | 일어나는 일 |
+|---|---|---|
+| 1 | harness | 네 덩어리를 조립해 API로 보낸다 |
+| 2 | 모델 | 파일 내용이 없다는 것을 확인하고 read tool call을 담은 assistant message를 반환한다 |
+| 3 | CLI | API 응답이 도착한 뒤에야 read tool call이 화면에 표시된다 |
+| 4 | harness | 실제 파일 읽기를 실행한다. 내부 구현은 `fs.readFile`이나 런타임에 맞는 등가 호출이다 |
+| 5 | harness | 파일 내용을 tool result로 messages array에 추가한다 |
+| 6 | harness | assistant message와 tool result가 더해진 상태로 프롬프트 전체를 다시 조립한다 |
+
+세 번째 단계는 실사용 경험과 연결되는 부분이다. CLI에 read 표시가 뜨는 시점은 모델이 그 tool call을 반환한 다음이다. 화면에 나타나는 순간에는 이미 모델의 한 차례 응답이 끝나 있다.
+
+여섯 번째 단계에서 프롬프트는 처음과 거의 같은 모습으로 다시 만들어진다. tool schemas와 system prompt와 환경 정보는 그대로이고, messages array에만 두 항목이 추가된다. 이 재조립이 반복되는 것이 agent loop다.
+
+강좌는 이 도식이 실제 JSON 객체를 그대로 옮긴 것이 아니라 개념을 보여 주는 의사코드라고 명시한다. 구조를 이해하기 위한 그림이지 API 스펙 문서는 아니라는 단서다.
+
+## 통제 수단
+
+### plan mode와 permissions
+
+harness가 tool call을 실행한다는 사실은 곧 사용자가 원하지 않는 명령도 실행될 수 있다는 뜻이다. 강좌가 permissions를 초반에 배치한 이유가 그것이며, 실제로 이 부분에서 "여러분의 기기에서 원하지 않는 것이 실행되지 않게 하는 통제 수단을 이해하는 것이 중요하다"는 취지의 설명이 붙는다.
+
+plan mode는 permission mode의 일종으로 소개된다. 아직 아무것도 코딩하지 말고 아무것도 건드리지 말라고 지시하는 모드다. 그보다 세밀한 통제는 설정 JSON에 적는 permissions가 담당한다.
+
+| 규칙 | 동작 | 강좌가 든 예시 |
+|---|---|---|
+| allow | 질문 없이 실행한다 | `npm run` 계열 명령. git commit도 늘 허용하는 경우가 있다 |
+| ask | 실행 전에 사용자에게 묻는다 | `rm` 계열 |
+| deny | 실행을 막는다 | git push. 원격 저장소를 건드리지 못하게 한다 |
+
+`rm`을 deny가 아니라 ask에 두는 이유가 설명된다. deny로 막아 두면 삭제됐어야 할 파일이 계속 쌓여 프로젝트가 지저분해지기 때문이다. 위험한 동작이라고 무조건 막는 것이 아니라 되돌리기 어려운 정도와 실무 불편을 함께 고려한 선택이다.
+
+규칙을 하나도 넣지 않은 상태에서 다크 모드로 바꿔 달라고 요청하면 Claude Code는 파일 편집 허가부터 묻는다. 강좌는 이 상태를 그대로 두고 쓰는 것은 계속 지켜보며 승인해야 하는 번거로운 방식이라고 평가한다. 그 번거로움을 줄이는 경로가 permissions 규칙과 auto mode 두 가지다.
+
+### 설정 계층
+
+같은 항목이 여러 위치의 설정 파일에 들어 있으면 위쪽이 이긴다.
+
+| 순위 | 계층 | 의도 |
+|---|---|---|
+| 1 | managed settings (enterprise) | 회사가 정한 규칙을 개인이 덮어쓰지 못하게 한다 |
+| 2 | user | 개인 전역 설정 |
+| 3 | project | 프로젝트별 설정 |
+
+강좌는 이를 "루트에 가까운 쪽이 이기는 역방향 계층"이라고 표현한다. 설계 의도는 명확하다. 팀이나 회사가 정해 둔 안전 규칙을 개별 구성원의 설정이 무력화하지 못하게 하려는 것이다. 프로젝트 설정이 가장 아래에 놓이는 것도 같은 이유다.
+
+### 규칙 작성을 돕는 두 커맨드
+
+규칙을 손으로 적는 대신 내장 슬래시 커맨드를 쓸 수 있다.
+
+| 커맨드 | 하는 일 | 남는 불편 |
+|---|---|---|
+| `/permissions` | 새 규칙을 추가하거나 기존 규칙 목록을 열람한다 | 어떤 tool이 존재하는지, permission을 어떤 표기법으로 적는지 사용자가 알아야 한다 |
+| `/fewer-permission-prompts` | 기존 세션 transcript 전체를 훑어 가장 자주 질문받은 tool call을 찾아 설정 JSON에 규칙으로 추가한다 | 보수적으로 동작해 추가되는 규칙 수가 적다 |
+
+`/fewer-permission-prompts`는 강좌 시점 기준 신규 커맨드다. 데모는 방금 세팅한 노트북에서 돌렸는데도 규칙 두 개를 찾아 추가했고, 각각 Linear MCP 서버 호출과 `bash bun run type check`였다. 추가하지 않고 넘긴 항목은 사유를 함께 출력한다. 내부 지시문은 의심스러우면 넣지 말라는 것이고, 이미 Claude가 자동으로 허용하는 항목은 규칙이 필요 없다는 이유로 제외한다. 즉 이 커맨드는 허용 범위를 넓히는 도구이면서도 스스로 넓히는 정도를 억제하도록 설계돼 있다.
+
+이 대목에서 오래 쓴 사용자를 향한 조언이 붙는다. 최근 추가된 커맨드 중 워크플로에 큰 도움이 되는 것이 여럿 있으므로 한 번씩 확인해 보라는 것이다.
+
+### deny 규칙이 실제로 막는지 확인하기
+
+강좌는 deny 규칙의 실효성을 데모로 확인한다. 절차는 세 단계다.
+
+1. `Edit package.json`을 deny 규칙에 추가한다.
+2. 모델을 Haiku로 바꾼다. 버전 번호 수정은 단순한 작업이라 큰 모델이 필요 없다는 판단에서다.
+3. package.json의 버전을 1로 올려 달라고 요청한다.
+
+Claude의 응답은 그 작업을 할 수 없다는 것이었다. 요점은 이 tool call이 사용자가 아니라 모델에서 나왔다는 데 있다. 모델이 실행하려 해도 deny 규칙에 걸리면 harness가 실행하지 않는다.
+
+CLAUDE.md와 permissions의 역할 분담도 여기서 정리된다. CLAUDE.md는 행동을 유도하고 permissions는 그것을 보장한다. 다만 두 수단 모두 수동적이다. 반복 절차를 능동적으로 담아 두는 세 번째 수단이 스킬이다.
+
+## 스킬
+
+### 정의와 생성
+
+스킬은 특정 절차를 담은 마크다운 파일이다. 대상은 매번 다시 설명해야 하는 여러 단계짜리 작업이면서 프로젝트에 고유한 작업이다. 강좌가 든 예시는 배포, 통합 작업, 질의응답 루프다. 같은 프롬프트를 계속 다시 치고 싶지 않은 작업이 있다면 그것이 스킬 후보다.
+
+작성은 `/skill-creator`로 시작한다. 대화형으로 질문을 주고받으며 스킬 파일을 만들어 준다. 강좌는 이 커맨드가 Claude Code 내장이라고 보면서도, 평소 플러그인을 여러 개 추가해 두어 내장인지 자기가 넣은 것인지 헷갈릴 때가 있다고 덧붙인다. 데모에서는 code reviewer 스킬을 만든다.
+
+이 대목에서 사고방식 하나가 제시된다. 무언가를 직접 코딩하기 전에 Claude Code가 이미 자동화해 두었는지 먼저 확인하라는 것이다. 그 연장선에서 일상 업무 중 얼마나 많은 부분을 Claude에 맡길 수 있는지 되짚어 보라는 제안이 따른다.
+
+### frontmatter로 조정하는 항목
+
+스킬은 마크다운 파일이지만 동작 방식은 frontmatter로 상당 부분 조정된다.
+
+| 키 | 효과 | 강좌가 든 용도 |
+|---|---|---|
+| `model` | 스킬 실행 시 사용할 모델을 고정한다 | Opus 세션에서도 코드 리뷰만은 Sonnet이나 Haiku로 처리한다 |
+| `disable_model_invocation: true` | 스킬을 모델에 전달하지 않고 로컬에만 둔다. 모델은 호출할 수 없고 사용자만 슬래시 커맨드로 쓴다 | 모델이 임의로 코드 리뷰를 시작하지 못하게 한다 |
+| `user_invocable: false` | 반대로 슬래시 커맨드 목록에서 사라지고 모델만 호출할 수 있다 | 모델 전용 절차 |
+| 인자 문법 | 슬래시 커맨드에 인자를 넘긴다 | `/deploy staging`처럼 배포 대상을 지정한다 |
+
+`model` 키는 비용과 속도를 다루는 수단이다. 세션 전체를 Opus로 쓰고 있어도 코드 리뷰처럼 부담이 작은 작업은 Sonnet이나 Haiku로 내려 실행할 수 있다.
+
+나머지 두 키는 호출 주체를 정한다. `disable_model_invocation: true`를 켜면 그 스킬은 모델에 전달되지 않고 로컬에만 남는다. 따라서 모델은 그 스킬의 존재를 모르고 호출할 수도 없으며 사용자만 슬래시 커맨드로 실행한다. `user_invocable: false`는 정확히 반대 방향으로 작동해 슬래시 커맨드 목록에서 사라지고 모델만 호출할 수 있게 된다.
+
+Lydia Haley는 이 설계가 좋지 않다고 스스로 지적한다. 두 키가 서로를 부정하는 방향이라 frontmatter 설정 하나였어야 했고, 당분간은 그대로 받아들여 달라며 변경 가능성을 언급한다.
+
+인자 전달은 일반적인 인자 문법을 그대로 쓴다. 배포 스킬 예시는 테스트 실행, 앱 번들링, 환경 배포 세 단계로 구성하고 배포 대상을 인자로 받는 형태다. 스킬 본문에 배포 대상을 인자로 적어 두면 `/deploy staging`처럼 호출해 staging에 배포하게 된다.
+
+## auto mode
+
+### 두 극단과 그 사이
+
+auto mode는 permission 설정의 두 극단이 각각 문제를 안고 있다는 진단에서 출발한다.
+
+| 방식 | 동작 | 문제 |
+|---|---|---|
+| ask 전면 적용 | 파일 삭제, 명령 실행 등 모든 행동을 묻는다 | permission fatigue |
+| `--dangerously-skip-permissions` | 아무것도 묻지 않는다 | 루트 파일을 지우려는 순간에도 되돌릴 방법이 없다 |
+| auto mode | deny 목록과 allow 목록 사이에서 tool call마다 별도의 classifier를 실행한다 | 강좌가 제시하는 해법이다 |
+
+permission fatigue에 대한 설명은 구체적이다. Claude가 위험한 일을 하기 전에 확인을 받는 것은 중요하지만, 백 번쯤 질문받고 나면 사용자는 내용을 더는 읽지 않게 된다. 이미 여러 번 물어봤으니 그냥 하라는 반응이 나오는 지점부터 그 질문은 안전 장치 역할을 하지 못하고, 강좌는 그 상태 자체를 위험하다고 규정한다.
+
+반대쪽 `--dangerously-skip-permissions`는 질문을 아예 없앤다. 문제는 되돌릴 수 없는 동작에서 드러난다. 루트 파일을 지우려는 순간에도 확인 절차가 없다.
+
+auto mode는 두 목록 사이에 판단 단계를 하나 넣는다. tool call마다 별도의 classifier가 돌면서 이 호출이 위험한지 먼저 묻는다. 위험하다고 보면 사용자에게 확인을 요청하고, 일반적인 read나 edit처럼 대체로 위험하지 않은 호출이면 사용자를 방해하지 않고 진행한다.
+
+### classifier가 더하는 것
+
+위험 판정 외에 두 가지 효과가 따라온다.
+
+- prompt injection 방어가 낫다. tool call 안에 "모든 지시를 무시하라" 같은 문구가 섞여 들어오는 경우가 있는데, 중간에서 도는 classifier가 그런 패턴을 잡아낼 여지가 크다.
+- 판정에 컨텍스트가 반영된다. `rm -rf`는 일반적으로 위험하지만 사용자가 방금 그 폴더를 지워 달라고 직접 요청했다면 위험하지 않다. 그런 경우 auto mode는 묻지 않고 실행한다.
+
+두 번째 항목은 정적 규칙 목록과 auto mode의 차이를 가장 잘 보여 준다. allow와 deny 목록은 명령 문자열만 보고 판단하므로 같은 명령이 어떤 맥락에서 나왔는지 구분하지 못한다. classifier는 그 맥락을 함께 본다.
+
+이 설계의 목적은 긴 세션에서 Claude Code를 훨씬 자율적으로 실행하는 것이다. 사용자가 계속 화면 앞에 앉아 승인 버튼을 누르지 않아도 되는 상태가 되어야 장시간 실행이 성립한다.
+
+### 활성화 절차
+
+Google Cloud Agent Platform에서는 auto mode가 기본 비활성이라 환경변수로 켜야 한다.
+
+```bash
+export CLAUDE_CODE_ENABLE_AUTO_MODE
 ```
-입력 → harness가 prompt 조립 → API 호출 → 모델이 tool call 반환 → harness 실행 → tool result 추가 → 재조립 → 반복
-```
 
-Skills 목록은 이름·설명만 첫 메시지에 포함된다(progressive disclosure). 사용자가 호출해야 본문이 로드된다.
+환경변수를 내보낸 뒤 Claude Code를 재시작하면 Shift+Tab으로 여는 모드 목록에 auto mode가 나타난다. 앞선 slingshot 데모에서 YK Sugi도 auto mode 상태로 작업했다.
 
-## Permissions 계층
+## dynamic workflow
 
-`claude_settings.json`으로 tool call의 허용·거부·질문을 제어한다. 계층은 enterprise > user > project 순으로 상위가 우선한다. `/fewer-permission-prompts` 슬래시 커맨드는 기존 transcript를 분석해 자주 허용한 tool call을 자동으로 allowlist에 추가한다.
+### 서브에이전트의 비결정성
 
-## Auto mode
+dynamic workflow를 이해하려면 서브에이전트가 이미 존재하는 기능이라는 점부터 짚어야 한다. Claude Code를 쓰다 보면 특정 작업을 위해 서브에이전트가 뜨는 것을 본 적이 있을 것이라는 설명으로 강좌는 시작한다. 서브에이전트는 자체 컨텍스트를 가진 또 하나의 Claude Code 인스턴스이고, 작업 하나에 집중하는 데 강하다.
 
-기존 방식의 두 극단을 보완한다. 전면 ask 방식은 permission fatigue(계속 묻다 보면 사용자가 무감각해짐)를 유발한다. 반대로 `--dangerously-skip-permissions`는 위험하다. Auto mode는 두 방식 사이에서 classifier로 tool call의 위험도를 실시간 판단해 위험한 것만 묻는다. prompt injection에도 강하고 사용자가 명시적으로 요청한 작업(예: "이 폴더 삭제해")은 묻지 않는다.
+문제는 재현성이다. 같은 요청을 해도 서브에이전트가 네 개 뜨기도 하고, 아예 뜨지 않기도 하고, 열 개가 뜨기도 한다. 사용자가 요청하지 않아도 모델이 알아서 띄우므로 몇 개가 뜰지 예측할 수 없다.
 
-활성화: `export CLAUDE_CODE_ENABLE_AUTO_MODE=1`
+| 항목 | 일반 서브에이전트 호출 | dynamic workflow |
+|---|---|---|
+| 실행 결정 방식 | 모델이 그때그때 판단한다 | Claude Code가 JavaScript 파일을 생성하고 그 파일이 실행을 규정한다 |
+| 재현성 | 비결정적이다 | 저장한 뒤 슬래시 커맨드로 부르면 매번 동일한 서브에이전트가 실행된다 |
+| 규모 | 소수 | 수백 개까지 늘어날 수 있으며 이는 설계 의도다 |
+| 대상 작업 | 단발 작업 | 수 시간에서 수 일이 걸리는 장기 작업 |
 
-Google Cloud Agent Platform에서는 기본 비활성화이므로 환경변수를 직접 설정해야 한다.
+서브에이전트가 많이 뜨는 것 자체는 결함이 아니라 기능이라는 점이 명시된다. 수 시간에서 수 일이 걸리는 장기 작업을 겨냥한 기능이라 수백 개 규모까지 확장될 수 있다.
 
-## Skills
+호출 방법은 슬래시 커맨드가 아니라 자연어다. 프롬프트에 dynamic workflow를 쓰라고 적기만 하면 된다. Lydia Haley가 실제로 쓴 프롬프트는 디자인 파일을 읽고 dynamic workflow로 게임을 다시 빌드해 그 디자인에 맞추라는 요청이었다.
 
-반복 수행 절차를 markdown 파일에 저장한 것. `/skill-creator` 내장 커맨드로 인터랙티브하게 생성. frontmatter로 모델 고정(`model: sonnet`), 사용자 전용 slash command(`disable_model_invocation: true`), 모델 전용(`user_invocable: false`), 인자 전달(`{{args}}`) 등을 제어한다.
+### phase 구성과 병렬 실행
 
-Lydia 노트: 두 키(`disable_model_invocation` / `user_invocable`)가 서로 반대 방향이라 직관적이지 않다 — 추후 단일 키로 통합 예정.
+실행 내역은 `/workflows`로 확인한다. 데모에서 확인된 구성은 네 phase다.
 
-## Dynamic workflow
+| phase | 서브에이전트 | 실행 방식 |
+|---|---|---|
+| build | build engine, build UI, build audio, build levels and haptics | 네 개가 병렬로 실행된다 |
+| integration | 단일 서브에이전트 | build 완료 후 순차 실행 |
+| review | 단일 서브에이전트 | 순차 실행 |
+| verify | 단일 서브에이전트 | 순차 실행 |
 
-자연어로 "use a dynamic workflow"를 프롬프트에 포함하면, Claude가 JavaScript 파일을 생성해 subagent 오케스트레이션을 결정론적으로 수행한다. build·integration·review·verify 같은 phase로 나뉜다. 같은 phase 내 subagent들은 병렬 실행된다.
+phase 사이는 순차이고 build phase 내부는 병렬이다. 빌드를 네 가지 작업으로 나눈 뒤 통합하고 리뷰하고 검증하는 순서이므로, 순서를 지켜야 하는 곳에서는 순서를 지키고 나눌 수 있는 곳에서는 나눈 구성이다.
 
-YK Sugi 시연에서 `/workflows`로 확인한 구조 예시 (slingshot 게임 리빌드):
-- Build phase (병렬): build-engine, build-UI, build-audio, build-levels-haptics
-- Integration phase
-- Review phase
-- Verify phase
+병렬 실행의 효과는 시간 대비 작업량이다. 서브에이전트 하나로 처리했을 때와 대체로 비슷한 시간 안에 훨씬 많은 작업을 끝낼 수 있다. 강좌는 Claude가 서브에이전트마다 좁고 분명한 역할을 배정하는 데 능하다는 관찰도 덧붙인다. 데모에서는 네 개 모두 Fable 5로 실행됐다.
 
-`S`를 눌러 저장하면 slash command로 재실행 가능. 저장된 JS 파일을 직접 편집해 특정 subagent의 모델을 바꿀 수도 있다(예: 단순 빌드 작업은 Sonnet으로 교체).
+### 저장과 재실행
 
-Fable 5는 모델 크기가 커 응답이 느리다는 점은 데모에서도 언급됐다.
+`/workflows` 화면에서 `S`를 누르면 workflow를 저장한다. 데모에서는 rebuilt slingshot game이라는 이름으로 저장했고, 그 결과물이 JavaScript 파일이다.
 
-## Intent-driven development
+저장된 파일은 사람이 읽고 고칠 수 있는 평범한 함수다. build phase, 각 builder, 서브에이전트에 넘기는 프롬프트, review phase가 모두 코드로 드러난다. 강좌는 이 파일을 사람이 작성한 것이 아니라 Claude Code가 전부 생성한 것이라고 강조한다.
 
-YK Sugi가 강조한 개념. 어떻게 만들지(how)보다 무엇을 만들지(what)를 명확히 표현하는 방식. 모르는 부분은 먼저 묻고 알면 바로 지시한다. 음성 입력이 타이핑보다 의도를 더 빠르게 전달하는 경향이 있다.
+편집 대상이 된다는 점이 중요하다. 서브에이전트마다 모델을 다르게 지정하고 싶다면 두 경로가 있다.
 
-Lydia Haley: "소프트웨어 엔지니어의 역할이 점점 product manager에 가까워지고 있다. 코드 문법보다 architecture·feature·한계를 이해하는 게 더 중요해졌다."
+| 경로 | 방법 | 특징 |
+|---|---|---|
+| Claude에게 요청 | 모든 서브에이전트에 Sonnet을 쓰라고 지시한다 | 빠르지만 결과를 다시 확인해야 한다 |
+| JavaScript 직접 편집 | 저장된 파일에서 모델 지정 부분을 고친다 | 원하는 구성이 코드에 고정된다 |
 
-## 실전 관찰
+데모에서 모든 서브에이전트가 Fable 5로 돌았는데, 강한 모델이 필요 없는 서브에이전트도 있으므로 Sonnet이나 Opus로 내려도 된다는 설명이 붙는다. 파일이 고정되면 같은 슬래시 커맨드를 부를 때마다 같은 서브에이전트 구성이 실행된다. 그것이 이 기능이 말하는 결정론이다.
 
-수치 벤치마크는 없으나, 눈에 띄는 사례 두 가지가 있다.
+## Vertex AI 실행 환경
 
-- Lydia: Claude Code로 PR에 코드 리뷰 봇을 연동하면 CI 실패나 팀원 코멘트 발생 시 자동으로 수정 후 push — 팀 전체가 "loop 밖"에 있어도 CI가 green 상태를 유지.
-- YK Sugi: 부동산 구매 시 Claude Code로 realtor 이메일 목록을 추출해 직접 연락, 중개 수수료 $10,000 절감.
+강좌의 데모는 Google Cloud Agent Platform 위에서 진행된다. Claude 모델은 Vertex AI를 거쳐 호출한다. 설정 경로는 두 가지가 제시된다.
 
-## 관련 페이지 (Related Pages)
+| 방식 | 절차 |
+|---|---|
+| 수동 | Claude Code 설치, gcloud SDK 설치, 프로젝트 ID 설정, Vertex AI API 활성화, Vertex AI 연동용 환경변수 설정 |
+| `/setup-vertex` 마법사 | 위 절차 대부분을 자동 수행한다 |
 
-- [[agents/osmani-2026-loop-engineering|Loop Engineering (Addy Osmani)]] — loop 구조 설계 원칙, automations·worktrees·skills·connectors·sub-agents 5+1 요소
-- [[agents/lee-jeongmin-2026-loop-engineering-claude-code|Loop Engineering · Claude Code · RLM (Jeongmin Lee)]] — dynamic workflow 설계 의도를 RLM 이론과 연결
-- [[agents/kang-2026-no-longer-prompting-claude|더 이상 Claude를 프롬프팅하지 않습니다 (Sujin Kang)]] — Prompt → Context → Harness → Loop 4단계 전환 개요
-- [[agents/lee-hoyeon-2026-harness-engineering|Harness Engineering (Team Attention)]] — harness 개념과 6축 순환을 Claude Code 사례로 엮은 한국어 자료
-- [[agents/anthropic-2025-effective-context-engineering-for-ai|Context Engineering (Anthropic)]] — harness가 조립하는 context의 설계 원칙
+수동 절차는 진행자가 먼저 시연한다. Claude Code를 설치하고 gcloud SDK를 설치한 뒤, Google Cloud 콘솔에서 확인한 프로젝트 ID를 지정하고 Vertex AI API를 활성화한다. 그러면 Claude 모델 전체에 접근할 수 있게 되고, 마지막으로 연동용 환경변수를 설정하면 `claude` 실행 시 Vertex AI 경유로 동작한다.
+
+`/setup-vertex`는 같은 일을 대화형으로 처리하는 내장 마법사다. application default credentials를 쓸지 묻고, 프로젝트와 리전을 고르게 한 뒤, Haiku로 짧은 확인 호출을 보내 설정이 실제로 동작하는지 검증한다. 그다음 사용 가능한 모델 목록을 보여 준다. 데모 계정에서 확인된 모델은 Opus 4.6과 Fable 5였고, 추가 모델은 Google Model Garden에서 활성화할 수 있다. 마지막으로 작업 모델의 컨텍스트를 100만 토큰으로 고정하고 설정을 저장한다.
+
+## 데모
+
+### slingshot 게임 처음부터 만들기
+
+YK Sugi의 데모는 intent-driven development를 그대로 보여 주려는 의도로 구성됐다. 진행 내내 음성 입력을 썼다.
+
+첫 프롬프트는 만들 대상을 구체적으로 지정하되 구현 방법은 열어 둔다. 3D 게임이고, 고정 카메라와 고정 slingshot이 눈앞에 있으며, slingshot에 매달린 공을 X축과 Y축 방향으로 끌 수 있다. 끄는 방향이 X와 Y 좌표를 정하고 붙잡고 있는 시간이 Z 방향을 정한다. 세 방향을 모두 제어할 수 있어야 하고, 뒤로 멀리 당길수록 빠르게 날아가야 한다. 구현은 프런트엔드 HTML, JavaScript, CSS로 한정하되 라이브러리 사용은 허용하고 어떤 선택지가 있는지 알려 달라고 요청한다.
+
+마지막 한 문장이 이 프롬프트의 성격을 결정한다. 무엇을 만들지는 정확히 규정하면서 어떤 라이브러리로 만들지는 모델에게 물어보는 구조다.
+
+이후 대화는 선택지를 좁히는 방향으로 진행된다.
+
+| 단계 | 모델 제안 | YK Sugi의 판단 |
+|---|---|---|
+| 1 | three.js에 직접 구현한 물리 엔진, 또는 three.js와 Cannon 조합 | 물리 엔진을 직접 구현하고 싶지는 않다 |
+| 2 | Cannon 외의 대안을 다시 묻자 Ammo와 Rapier 제시 | 사전에 조사해 둔 Rapier를 선택 |
+| 3 | 빌드 도구 | Vite로 직접 지정 |
+
+기능 추가 요청은 세 차례 이어진다.
+
+| 순서 | 요청 | 결과 |
+|---|---|---|
+| 1 | 프로젝트를 git 저장소로 만들고 공개 저장소를 생성한다 | 별도 탭의 두 번째 세션에서 `gh` 명령으로 처리 |
+| 2 | 발사 전에 궤적을 표시해 공이 어디로 갈지 보이게 한다 | 궤적 기능 추가 후 커밋 |
+| 3 | 앞쪽에 큰 원반형 표적을 몇 개 놓고, 맞으면 입자로 흩어지는 시각 효과를 넣는다 | 서로 다른 거리에 배치한 과녁 세 개와 충돌 판정으로 계획 수립 |
+
+요청하지 않았는데도 Claude가 Playwright로 스스로 테스트를 돌린 장면이 데모에 포함된다. 병렬로 돌린 다른 세션에서는 저장소가 아직 비공개였으므로 Lydia Haley의 GitHub 계정에 admin 권한을 부여했다.
+
+마지막 프롬프트는 코드 리뷰 과정을 흉내 내기 위한 것이다. main에 직접 push하지 말고 새 브랜치를 만들어 push한 뒤 draft PR을 만들고 `open` 명령으로 열어 달라는 요청이었다. Claude는 git push와 `gh pr create` 계열 명령을 실행해 draft PR을 만들고 브라우저로 열었다.
+
+### 데모 중 제시된 운영 팁
+
+| 팁 | 내용 |
+|---|---|
+| alias 설정 | 매번 `claude`를 타이핑하지 않도록 별칭을 만든다 |
+| 음성 입력 | `/voice` 옵션이나 전용 데스크톱 앱을 쓴다. YK Sugi는 로컬 모델을 쓰는 앱을 직접 만들어 사용한다 |
+| 프로젝트 단일 폴더 | 대부분의 프로젝트를 한 폴더 아래 둔다. 에이전트가 다른 프로젝트를 참조하기 쉬워져 한 프로젝트의 요소와 다른 프로젝트의 요소를 합치라는 지시가 가능해진다 |
+| 질문 순서 | 아키텍처와 라이브러리 같은 넓은 질문을 먼저 하고 점점 좁혀 간다. 최신 정보가 필요하면 에이전트에게 조사를 맡긴다 |
+| CLI 숙달 | git과 GitHub CLI를 비롯한 CLI 명령 전반을 익힌다 |
+| 출력 검증 | 앱 동작을 직접 확인하고, 코드를 직접 읽고, 테스트와 GitHub Actions로 검증을 자동화한다 |
+| draft PR | 에이전트가 만든 PR은 draft로 두고 확인한 뒤 리뷰 대기로 바꾼다. 다른 사람도 상태를 명확히 알 수 있다 |
+| 팁 38번 | 코드 생성 모델은 필요 이상으로 코드를 많이 쓰는 경향이 있으므로 과도하게 복잡한 코드는 단순화한다 |
+
+음성 입력을 권하는 이유는 정확도가 아니라 속도다. 의도를 더 빨리 표현할 수 있으면 되고, 말이 막히거나 군더더기가 섞여도 상관없다는 것이 YK Sugi의 설명이다. Lydia Haley는 아직 음성 모드를 써 보지 않았다고 밝히면서, 타이핑할 때는 이런 걸 물어봐도 되나 하고 스스로 검열하게 되는데 소리 내어 브레인스토밍하면 프롬프트가 더 나아질 것 같다고 말한다.
+
+plan mode 사용 여부를 묻자 YK Sugi는 명시적으로 켜 본 적은 없고 Claude가 스스로 켜는 경우는 있다고 답했다. 프롬프트가 다소 모호하거나 오타와 음성 인식 오류가 섞여도 의도만 분명하면 Claude가 알아듣는다는 관찰도 덧붙인다. 질문의 양을 정하는 기준으로는 컨텍스트가 적을수록 질문을 많이 하라는 원칙을 제시한다. 물리 라이브러리를 몰랐기 때문에 앞부분에서 질문을 많이 했고, 어느 정도 파악한 뒤에는 바로 지시로 넘어갔다는 것이다.
+
+### 와이어프레임 기반 리빌드
+
+Lydia Haley는 YK Sugi의 저장소를 가져와 실제 게임에 가깝게 확장하는 작업을 맡았다. 레벨을 늘리고 레벨마다 환경을 바꾸는 것이 목표였다.
+
+특징은 프롬프트로 변경 사항을 나열하는 대신 시각적 계획을 먼저 만든 점이다. 계획은 Claude Design으로 작성했다. Claude Design은 프롬프트로 프레젠테이션과 슬라이드와 웹사이트를 만드는 research preview 단계의 도구이며, 강좌는 이를 디자인용 Claude Code라고 소개한다. 산출물이 HTML이라 Figma나 Canva로 내보낼 수도 있다.
+
+Claude가 제안한 Slingshot V2의 구성은 다음과 같다.
+
+| 구분 | 내용 |
+|---|---|
+| 게임 흐름 | 메인 메뉴, 레벨 선택, 게임플레이 루프 |
+| 화면 | 게임플레이 화면과 체력 바 |
+| 설계할 시스템 | 체력 바, 조준과 충전, 햅틱, 점수 집계 |
+| 레벨 | 레벨별 화면 구성 |
+
+햅틱은 휴대폰에서 당기고 부수는 감각을 전달하기 위한 것이다. 조준과 충전은 YK Sugi의 데모에 이미 있던 요소이고, 체력 바와 점수 집계는 새로 추가된 요소다.
+
+계획 단계를 시각화하는 이유도 설명된다. 프롬프트를 여러 문장으로 나열하는 것보다 화면 구성을 눈으로 보면서 만들려는 것과 바꿀 것을 정리하기가 낫다는 것이다. Claude Design 안에서 텍스트를 직접 고칠 수 있고, 완성된 결과를 내보내 Claude에게 넘기는 프롬프트로 쓸 수 있다.
+
+실제 프롬프트는 짧았다. 데모 자산 폴더에 넣어 둔 디자인 파일을 읽고 dynamic workflow로 게임을 다시 빌드해 그 디자인에 맞추라는 요청이다. 더 구체적으로 쓸 수도 있었지만 와이어프레임만으로 Claude가 의도를 이해하는지 보려고 일부러 짧게 두었다는 설명이 붙는다. HTML 와이어프레임 자체가 만들 것에 대한 설명이자 완성 여부를 판정할 기준 역할을 한다.
+
+결과물은 원래 디자인의 손그림 느낌을 거의 그대로 재현했다. 레벨이 추가됐고 오디오까지 들어가 실제 게임 형태가 됐다. Fable 5는 큰 모델이라 응답이 다소 느렸고, 강좌는 요리 프로그램처럼 미리 완료해 둔 탭을 준비하는 방식으로 대기 시간을 처리했다.
+
+## 실전 운영과 역할 변화
+
+### 운영 사례
+
+| 사례 | 내용 |
+|---|---|
+| PR 자동 수정 | GitHub에 Claude 앱을 설치해 두면 CI가 실패하거나 팀원이 코멘트를 남길 때 Claude가 자동으로 수정을 시도해 CI가 통과할 때까지 해당 브랜치에 push한다 |
+| 예약 세션 | Lydia Haley는 예약 실행되는 Claude Code 세션을 여러 개 두어 상시로 진행 상황을 파악한다 |
+| 리뷰 비중 전환 | 직접 코드를 쓸 때는 작성 과정에서 리뷰의 90% 정도가 함께 일어난다. Claude Code를 쓰면 리뷰가 90%, 직접 손대는 수정이 10% 정도로 뒤집힌다 |
+| 비용 절감 | YK Sugi는 부동산을 사는 과정에서 Claude Code로 realtor 목록과 이메일 주소를 쉼표로 구분된 형태로 뽑아 직접 연락했고, 그 결과 1만 달러를 아꼈다고 밝힌다 |
+| 비개발 용도 | 리서치, 영상 편집, 데이터 분석, 저장소 정리, 글쓰기에 CLI를 쓴다 |
+
+PR 자동 수정은 Anthropic 팀의 실제 운영 방식이다. 모든 이슈와 PR에 Claude bot을 붙여 두었고, 목표는 사람이 가능한 한 루프 바깥에 있는 상태다. Lydia Haley는 이 표현이 무섭게 들릴 수 있다고 인정하면서, 훅과 permissions와 샌드박스를 제대로 갖추면 상당히 멀리 갈 수 있다고 덧붙인다. Anthropic 자신이 Claude Code의 최대 사용자이며, 팀이 좋아할 만한 기능인지 스스로 확인하는 방식으로 개발한다는 설명도 따른다.
+
+리뷰 비중 전환은 작업의 성격이 바뀌었다는 진단이다. 직접 코드를 쓰면 쓰는 동안 검토가 함께 일어나므로 별도 리뷰 부담이 작다. 생성된 코드를 받는 방식에서는 그 검토가 전부 뒤로 밀린다. 따라서 리뷰를 잘하는 능력이 이전보다 중요해졌고, 리뷰 자체도 가능한 한 자동화하고 permissions와 훅으로 Claude가 처음부터 설계 명세를 따르게 만들어야 한다는 결론이 나온다.
+
+비개발 용도는 두 사람 모두 같은 경험을 말한다. YK Sugi는 Claude Code를 컴퓨터와 디지털 세계에 대한 범용 인터페이스라고 부르며, 커뮤니티 의견을 파악하기 위해 Reddit 스레드를 훑는 리서치를 예로 든다. 컴퓨터가 원래 터미널에서 시작했다가 GUI 앱으로 옮겨 갔는데 지금 다시 터미널로 돌아왔다는 관찰도 덧붙인다. Lydia Haley는 MP4 변환과 음량 조절과 이미지 편집을 별도 소프트웨어 없이 처리하고, 영상 편집도 상당 부분 CLI에서 하며 간단한 오디오 샘플도 생성한다고 말한다.
+
+Lydia Haley는 자동화 대상을 고르는 자기 기준도 밝힌다. 삶에서 가능한 많은 부분을 Claude에 맡기려 하되 자기가 즐기는 일은 맡기지 않는다는 것이다. 키노트 슬라이드 제작을 예로 드는데, computer use로 자동화해 보았지만 그 작업 자체를 좋아해서 다시 직접 하기로 했다고 한다.
+
+### Claude co-work의 배경
+
+co-work의 출발점은 내부 관찰이다. 2025년 12월 무렵 Anthropic 내부에서 비개발 업무에 Claude Code를 쓰는 사례가 늘었다. 마케팅 팀이 마케팅 자료를 만들고 데이터 사이언스 업무를 처리하는 식이었다. 그런 작업에 맞는 harness를 따로 만들자는 판단이 섰고, 데스크톱 앱 형태의 co-work가 약 일주일 만에 나왔다. 제작에도 Claude Code를 썼다.
+
+| 제품 | 대상 작업 | 구현 |
+|---|---|---|
+| Claude Code | 기술 작업 전반 | CLI harness |
+| Claude co-work | 이메일, 캘린더, 항공권 예약 같은 비기술 작업 | 데스크톱 앱. Claude Code 런타임을 그대로 쓰되 connector와 system prompt가 비기술 작업에 맞춰져 있다 |
+
+co-work는 런타임이 같으므로 코딩도 할 수 있다. 두 제품을 나눈 기준은 능력이 아니라 무엇에 최적화됐는지다.
+
+### 엔지니어 역할에 대한 두 관점
+
+Lydia Haley는 소프트웨어 엔지니어의 역할이 product manager에 가까워지고 있다고 본다. 코드를 쓰는 일만이 아니라 코드를 소유하고, 만들려는 아키텍처를 이해하고, 그 기능이 왜 필요한지 파악하는 일이 중심이 된다는 것이다.
+
+비유로는 컴파일 단계를 든다. TypeScript나 JavaScript를 쓸 때 그 결과로 생성되는 기계어에 집중하지 않듯, 코드 문법 자체보다 한 층 위인 아키텍처와 기능과 한계를 이해하는 쪽으로 초점이 옮겨 간다. 다만 훅과 permissions와 CLAUDE.md로 Claude가 일할 환경을 갖추는 일에는 여전히 기술적 전문성과 판단력, 그리고 적극성이 필요하다고 덧붙인다.
+
+YK Sugi의 관점은 도구론에 가깝다. 화가가 일반 붓 대신 자동 전동 붓을 쓰는 상황과 비슷하고, 결과물에 대한 책임은 여전히 사용자에게 있다는 것이다. AI가 나쁜 코드를 대량 생산한다는 비판에 대해서는 그러면 만들어 내지 않으면 된다고 답한다. 10만 줄을 생성했다고 10만 줄을 커밋할 필요는 없고 옳다고 판단한 부분만 커밋하면 된다.
+
+기준은 프로젝트 성격에 따라 나뉜다.
+
+| 프로젝트 성격 | 권장하는 검토 수준 |
+|---|---|
+| 일회성 개인 프로젝트 (데모의 게임 같은 경우) | 코드를 확인하지 않아도 된다 |
+| 보안이 중요한 프로덕션 코드베이스 | draft PR을 만들고 사람이나 AI가 리뷰하도록 한다 |
+
+두 사람의 진단은 다르게 출발하지만 같은 지점으로 모인다. 코드를 쓰는 비중이 줄어든 만큼 무엇을 만들지 정하고 결과를 검증하는 비중이 커졌다는 것이다.
+
+## 자동 자막 표기 판정
+
+raw transcript는 자동 생성 자막이라 고유명사가 상당수 잘못 적혀 있다. 이 페이지는 아래 판정에 따라 정확한 표기로 옮겼다.
+
+| transcript 표기 | 판정 표기 | 근거 |
+|---|---|---|
+| cloud code, clot code, claw code, clock code | Claude Code | 강좌 전체의 대상 제품이다 |
+| CloudMD | CLAUDE.md | 프로젝트 지시문 파일을 가리키는 문맥이다 |
+| enthropic | Anthropic | Claude Code 제작사다 |
+| Vortex AI, Vert.ex AI | Vertex AI | Google Cloud의 모델 서빙 제품이다 |
+| Asian platform, Asian factory | Agent Platform, Agent Factory | Google Cloud 제품명과 프로그램명이다 |
+| aentic, sub aents | agentic, sub-agents | 강좌 주제어다 |
+| 3JS, Canon | three.js, Cannon | 물리 라이브러리를 비교하는 대목이다 |
+| beat (빌드 도구) | Vite | 프런트엔드 빌드 도구를 지정하는 문맥이다 |
+| presidents | precedence | permissions 계층의 우선순위를 설명하는 대목이다 |
+| quadify, clify | claudify | Lydia Haley의 조어를 진행자가 되받는 대목이다 |
+
+확정하지 못한 표기도 있다. 진행자가 Vertex AI 설정 데모를 넘길 때 부르는 이름 "Samita", YK Sugi가 면접을 봤다는 회사 "Daft", `/fewer-permission-prompts`가 규칙 추가를 건너뛴 사유로 출력한 "mutating ob"는 transcript만으로 원 표기를 판정할 수 없어 본문에서 다루지 않았다.
+
+## 한계
+
+- dynamic workflow의 첫 실행은 결정론적이지 않다. Claude가 그때그때 JavaScript 파일을 생성하기 때문이다. 결정론이 확보되는 시점은 workflow를 저장해 슬래시 커맨드로 재실행할 때부터다.
+- Fable 5는 모델이 커서 응답이 느리다. 데모에서도 대기 시간을 감당하기 위해 미리 완료해 둔 탭을 준비했다.
+- 스킬의 `disable_model_invocation`과 `user_invocable`은 서로를 부정하는 방향의 키 두 개다. Lydia Haley가 하나로 합쳐졌어야 한다고 인정했지만 변경 시점은 밝히지 않았다.
+- auto mode는 Google Cloud Agent Platform에서 기본 비활성이라 환경변수 설정과 재시작이 필요하다.
+- `/permissions`로 규칙을 추가하려면 어떤 tool이 있는지와 permission 표기법을 사용자가 알아야 한다.
+- 강좌 전체에 정량 지표가 없다. 리뷰 비중 90 대 10과 1만 달러 절감 같은 수치는 모두 출연자의 경험 진술이며 측정 방법이 제시되지 않는다.
+- transcript가 자동 자막이라 고유명사 표기가 여러 곳에서 어긋난다. 위 판정 표로 정리했으나 세 표기는 확정하지 못했다.
+
+## 핵심 용어
+
+| 용어 | 뜻 |
+|---|---|
+| harness | 모델을 감싸 도구와 상태를 제공하는 실행 환경. 이 강좌에서는 Claude Code 자체를 가리킨다 |
+| permission fatigue | 모든 행동을 묻는 방식이 반복되면서 사용자가 내용을 읽지 않고 승인하게 되는 현상 |
+| auto mode | tool call 사이마다 classifier를 실행해 위험한 호출만 사용자에게 묻는 permission 모드 |
+| dynamic workflow | Claude Code가 생성한 JavaScript 파일로 서브에이전트 실행을 규정하는 기능. 저장 후 슬래시 커맨드로 재실행하면 같은 구성이 반복된다 |
+| intent-driven development | 어떻게 만들지가 아니라 무엇을 만들지를 정확히 파악하고 표현하는 개발 방식 |
+| progressive disclosure | 필요한 시점에만 정보를 단계적으로 노출하는 설계. 스킬 목록을 이름과 설명만 먼저 싣는 방식이 여기 해당한다 |
+
+## 관련 페이지
+
+- [[agents/osmani-2026-loop-engineering]]: loop 구조 설계 원칙을 automations, worktrees, 스킬, connector, 서브에이전트로 나눠 정리한다. 이 강좌가 기능 단위로 보여 주는 것을 설계 원칙 쪽에서 본 자료다
+- [[agents/lee-jeongmin-2026-loop-engineering-claude-code]]: dynamic workflow의 설계 의도를 Recursive Language Models 이론과 연결한다. 서브에이전트 결과를 토큰이 아니라 변수로 다루는 관점이 이 강좌의 JavaScript 파일 생성과 맞물린다
+- [[agents/kang-2026-no-longer-prompting-claude]]: 프롬프트에서 컨텍스트, harness, loop로 이어지는 4단계 전환을 정리한 한국어 자료. 이 강좌의 harness 설명이 그 전환의 세 번째 단계에 해당한다
+- [[agents/runkle-2026-the-art-of-loop-engineering]]: loop engineering을 작업 설계 관점에서 다룬다. 이 강좌의 permissions와 auto mode 설정이 그 루프를 실제로 돌리기 위한 전제 조건이다
+- [[agents/movez-2026-loop-engineering-for-trading-agents]]: 같은 loop engineering 개념을 트레이딩 도메인에 적용한 사례
+- [[agents/seans-ai-stories-2026-agent-harness-loop-engineering]]: harness 개념을 memory와 eval까지 포함한 아키텍처로 그린 입문 강의. 이 강좌가 제품 하나의 내부를 보여 준다면 해당 강의는 일반화된 구조를 보여 준다
+- [[agents/lee-hoyeon-2026-harness-engineering]]: harness 개념을 Claude Code 사례로 정리한 한국어 자료
+- [[agents/anthropic-2025-effective-context-engineering-for-ai]]: harness가 조립하는 컨텍스트를 무엇으로 채울지 다루는 설계 원칙

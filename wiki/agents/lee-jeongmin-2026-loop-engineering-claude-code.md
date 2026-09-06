@@ -1,5 +1,5 @@
 ---
-title: "Loop Engineering — Claude Code, RLM, Dynamic Workflow (Jeongmin Lee, LinkedIn 2026-06-09)"
+title: "또 새로운 용어? Loop Engineering: Claude Code, RLM, Dynamic Workflow (Jeongmin Lee, LinkedIn 2026-06-09)"
 type: article
 year: 2026
 category: agents
@@ -14,121 +14,190 @@ publication_date: "2026-06-09"
 tags: [loop-engineering, claude-code, rlm, recursive-language-model, dynamic-workflow, subagent, boris-cherny, peter-steinberger, addy-osmani, openclaw, anthropic, opus-4-8, codeact, kv-cache, context-window]
 ---
 
-## 요약 (Summary)
+## 요약
 
-Jeongmin Lee가 LinkedIn에 올린 짧은 카드 포스트(2026-06-09)다. **"loop engineering이란 결국 에이전트를 프롬프트하는 시스템을 설계하는 일이다"** 라는 한 줄짜리 정의를 축 삼아, Boris Cherny(Anthropic, Claude Code 메이커)·Peter Steinberger(OpenClaw)·Addy Osmani 세 사람의 발언을 RLM(Recursive Language Model) 이론에 묶어 7가지 항목으로 풀어낸다. 핵심 thesis는 *"용어 놀이라는 비아냥은 자연스럽지만, RLM을 알고 나면 Claude Code의 dynamic workflow가 왜 그렇게 설계됐는지 비로소 보인다"* — 사람이 프롬프트를 치고 결과를 보고 다시 치는 수작업 루프의 한계를, 태스크 발견·분배·실행·검증·다음 결정까지 자동으로 도는 loop가 메운다는 진단이다.
+Jeongmin Lee가 2026년 6월 9일 LinkedIn에 올린 한국어 카드 포스트다. loop engineering이라는 신조어가 무엇을 가리키는지 정의하고, 그 정의를 RLM(Recursive Language Model)이라는 모델 구조에 연결해 7개 항목으로 풀어낸다.
 
-본문이 짚어내는 RLM의 결정적 차이는 둘이다. 첫째, context를 단일 stream이 아니라 **REPL 변수**로 둔다 — 에이전트가 필요한 부분만 골라 읽고 print 출력은 scaffold가 강제로 잘라 context 오염을 차단한다. 둘째, `llm_query()`가 subagent 결과를 토큰이 아니라 **Python 변수**로 돌려준다 — 상위 에이전트는 변수 검증만 거쳐 `FINAL()`로 반환하므로 이론상 출력 길이 제한이 없다. 이 시맨틱은 Opus 4.8과 함께 출시된 Claude Code dynamic workflow의 설계 의도(JavaScript subagent 조율 + 격리 context)와 그대로 맞물리며, 단일 context window의 고질병인 **agentic laziness · self-preferential bias · goal drift** 셋을 구조적으로 차단한다는 게 본문의 결론이다.
+글의 중심 주장은 두 문장으로 요약된다. loop engineering은 에이전트를 프롬프트하는 시스템을 설계하는 일이다. 그리고 RLM을 이해해야 Claude Code의 dynamic workflow가 왜 그렇게 설계됐는지 보인다.
 
-## 주요 기여 (Key Contributions)
+저자는 용어 인플레이션에 대한 방어도 함께 편다. 새로운 용어 놀이를 많이 한다는 비아냥이 있다는 것을 인정하면서도, loop 자체는 LLM의 부족한 판단력을 구조적으로 극복한다는 점에서 근거가 충분하다고 적는다. 저자 자신이 3개월 전에도 같은 취지의 글을 썼다는 언급이 이 방어의 근거로 붙는다.
 
-1. **Loop engineering 용어의 등장 배경 정리** — Boris Cherny의 *"나는 더 이상 Claude에 프롬프트를 치지 않는다. 내 일은 loop를 짜는 것이다"* (Anthropic 개발자 컨퍼런스)와 Peter Steinberger의 *"코딩 에이전트에게 프롬프트를 치지 마라. 에이전트를 프롬프트하는 loop를 설계하라"* 를 같은 흐름의 두 입구로 묶었다.
-2. **Addy Osmani의 5-building-block 인용** — Automation · worktree · skill · connector · subagent. 본문은 다섯 블록을 나열만 하고 깊이 풀진 않는다.
-3. **RLM을 이론적 기반으로 명시** — REPL 환경에서 context가 변수로 존재하며, 에이전트가 필요한 부분만 읽고 print 출력은 scaffold가 강제로 자른다는 차별점.
-4. **`llm_query()` 시맨틱 해설** — CodeAct + subagent에서는 하위 결과가 상위 context로 통째 splice된다. RLM은 결과를 Python 변수로 돌려주고 상위는 검증만 한 뒤 `FINAL()`로 반환한다. 토큰 단위 재생성이 없으니 이론상 출력 길이 제한이 없다.
-5. **Claude Code Dynamic Workflow(Opus 4.8) 해독** — JavaScript로 subagent를 생성·조율하고 각 subagent가 독립된 context window에서 작동한다. RLM 구조가 **agentic laziness · self-preferential bias · goal drift** 셋을 차단한다는 진단.
-6. **실전 패턴 카탈로그** — fan-out-and-synthesize · adversarial verification · tournament. 적용 범위는 코드 리팩토링을 넘어 리서치 검증, 서포트 티켓 분류 같은 비개발 업무까지 뻗는다.
-7. **비용 관찰** — subagent가 한 단계씩 작업하면 system prompt와 이전 메시지가 유지돼 *"KV cache hit 비율이 90%까지 올라갈 수 있다"*. 에이전트가 읽을 범위를 직접 정하니 전체 prompt를 매번 스캔하는 비용도 빠진다.
-8. **현실 진단과 전망** — 현재 dynamic workflow는 토큰을 많이 쓰지만 *"일반 코딩 작업에 verifier 5개를 붙일 필요는 없다"*. 모델 단가 하락과 cache hit 비율 상승이 진행되면 loop는 결국 기본값이 된다는 전망.
+이 자료는 1차 연구가 아니라 인용과 해설로 이루어진 2차 자료다. 저자가 직접 측정한 수치는 없고, 세 사람의 발언과 RLM 논문의 구조를 요약해 전달한다. 따라서 loop engineering의 효과를 재는 근거가 아니라, 흩어져 있던 개념들을 하나의 설명 순서로 엮은 입문 지도로 읽는 것이 적절하다.
 
-## 방법론 및 아키텍처 (Methodology and Architecture)
+| 절 | 주제 |
+|---|---|
+| ❶ | loop engineering은 에이전트를 프롬프트하는 시스템을 설계하는 일이다 |
+| ❷ | loop engineering의 이론적 기반이 RLM이다 |
+| ❸ | 서브에이전트 결과는 컨텍스트가 아니라 변수로 돌아온다 |
+| ❹ | Claude Code dynamic workflow가 이 구조를 가져간다 |
+| ❺ | dynamic workflow 패턴은 생각보다 다양하다 |
+| ❻ | RLM 구조는 비용 면에서도 유리하다 |
+| ⚠️ | 아직 비용이 높지만 방향은 분명하다 |
 
-본 글은 1차 연구가 아니라 **인용 + 해설** 구조의 카드 포스트다. 저자의 직접 측정·실험은 없고, 세 사람의 발언을 한 줄씩 인용한 뒤 RLM 논문의 시맨틱을 풀어 설명한다. 본문에서 추려낸 아키텍처 그림은 두 장면이다.
+## 배경
 
-**기존 LLM vs RLM** — 기존 LLM은 입력 전체를 context window에 한꺼번에 올린다. RLM은 REPL 환경에 context라는 변수를 두고 에이전트가 필요한 부분만 골라 읽으며 print 출력은 scaffold 단에서 강제로 잘린다. 단일 stream을 변수로 바꾼 것이 핵심 차이다.
+용어의 출발점은 두 사람의 발언이다. 두 발언 모두 프롬프트 작성이 아니라 루프 설계가 실제 작업이라고 말한다는 점에서 같은 방향을 가리킨다.
 
-**CodeAct vs RLM `llm_query()`** — CodeAct + subagent에서는 하위 결과 전체가 상위 context로 올라가 토큰 단위로 splice된다. RLM의 `llm_query()`는 결과를 REPL 내 Python 변수로 돌려준다. 상위 에이전트는 변수만 검증한 뒤 `FINAL()`로 마무리하므로 결과를 토큰으로 재생성할 필요가 없고 이론상 출력 길이 제한도 없다. 본문의 "비용 우위" 주장은 여기서 나온다 — 상위 context에 결과를 통째로 다시 올리지 않으니 system prompt와 이전 메시지가 유지되고 KV cache hit 비율이 최대 90%까지 올라간다는 관찰이다.
-
-**Claude Code Dynamic Workflow의 골격** — Opus 4.8과 함께 출시. JavaScript로 subagent를 생성·조율하고 각 subagent는 독립된 context window에서 작동하며 결과만 상위로 올린다. 차단 대상은 단일 context window에서 생기는 **agentic laziness · self-preferential bias · goal drift** 셋.
-
-| 실전 패턴 | 설명 | 적용 사례 |
+| 발언자 | 본문이 밝힌 소속과 맥락 | 발언 |
 |---|---|---|
-| fan-out-and-synthesize | 작업을 병렬 subagent로 분할 후 합침 | 큰 리팩토링, 멀티-아이디어 탐색 |
-| adversarial verification | 별도 에이전트가 결과를 서로 검증 | 정확성 요구 높은 코드/리서치 |
-| tournament | 여러 접근법을 경쟁시켜 우승자 선택 | 알고리즘 선택, 디자인 비교 |
+| Boris Cherny | Claude Code를 만든 사람, Anthropic 개발자 컨퍼런스 | "나는 더 이상 Claude에 프롬프트를 치지 않는다. 내 일은 loop를 짜는 것이다" |
+| Peter Steinberger | OpenClaw | "코딩 에이전트에게 프롬프트를 치지 마라. 에이전트를 프롬프트하는 loop를 설계하라" |
 
-## 결과와 관찰 (Results & Observations)
+이 발언들이 겨냥하는 것은 사람이 매 단계 개입하는 기존 작업 방식이다. 사람이 프롬프트를 입력하고, 결과를 확인하고, 다시 입력한다. 저자는 이 방식에 한계가 있다고 진단한다. 판단과 진행의 주도권이 매번 사람에게 돌아오기 때문에 사람이 자리를 비우면 작업도 멈춘다.
 
-발표 글 성격상 정량 벤치마크는 없다. 본문에 등장하는 수치는 두 가지뿐이다.
+loop engineering은 그 자리를 자동 순환으로 대체하려는 시도다. 저자가 제시하는 순환은 다섯 단계로 이어진다.
 
-- **KV cache hit 비율 최대 90%** — RLM 구조에서 subagent가 한 단계씩 작업할 때.
-- **상호작용 지표** — 좋아요 158, 댓글 2 (수집 시점 2026-06-10).
+| 방식 | 순환 구성 | 사람의 역할 |
+|---|---|---|
+| 기존 프롬프트 작업 | 입력, 결과 확인, 재입력 | 매 단계마다 다음 지시를 공급 |
+| loop engineering | 태스크 발견, 분배, 실행, 검증, 다음 태스크 결정 | 순환 자체를 설계 |
 
-저자의 자기-인용 *"제가 3개월 전에도 작성한 것처럼"* 으로 보아 동일 주제(Recursive·Loop)에 대한 선행 글이 있는 듯하지만 정확한 시점·URL은 본문에 없다. 벤치마크·실험 결과를 원한다면 본문이 가리키는 RLM 논문과 Dynamic workflow 출시 노트(Opus 4.8)를 별도 자료로 ingest해야 한다.
+두 방식의 차이는 반복 횟수가 아니라 반복을 누가 이어 붙이는가에 있다. 기존 방식에서는 사람이 매 회차의 연결 고리이고, loop engineering에서는 그 고리가 시스템 안으로 들어간다.
 
-## 한계 (Limitations)
+저자가 용어 논쟁을 다루는 태도도 배경의 일부다. 지난 3년간, 그리고 최근 수 개월 사이 등장한 여러 용어들 때문에 사용자들의 피로감이 매우 높다는 사실을 저자는 먼저 인정한다. 그 위에서 loop만큼은 근거가 있다고 주장하는 구성이다.
 
-본문이 스스로 인정한 한계는 셋이다.
+그 근거로 저자가 드는 것은 두 가지다. 하나는 본인이 3개월 전에도 같은 취지의 글을 썼다는 사실이고, 다른 하나는 loop가 LLM의 부족한 판단력을 구조적으로 극복한다는 진단이다. 뒤쪽 문장이 이 글의 논리적 출발점에 해당한다. 모델 하나의 판단이 미덥지 않다면 그 판단을 여러 번 나누어 서로 검증하게 만드는 구조로 보완한다는 발상이기 때문이다. 본문 전체는 이 발상이 RLM이라는 구체적 구조로 어떻게 구현되는지를 따라간다.
 
-1. **토큰 비용이 크다** — *"현재의 Dynamic workflow는 토큰을 많이 씁니다"*. 일반 코딩 작업에 verifier 5개를 붙일 필요는 없다는 자제 권고가 따라붙는다.
-2. **자가 환경 구축의 부담** — Loop 환경을 자체 구축하려면 인프라·운영비가 만만치 않다.
-3. **용어 인플레이션 피로감** — 지난 3년간, 그리고 최근 수 개월 사이 등장한 여러 용어들로 사용자 피로도가 높다. Loop engineering이라는 작명이 일부에게 비아냥의 대상이 되는 맥락을 저자가 인정한다.
+## 핵심 개념
 
-본 글에 없지만 추적할 가치가 있는 후속 질문은 — RLM 논문의 실제 벤치마크 수치, Opus 4.8 Dynamic Workflow 출시 노트가 권장하는 verifier 개수와 패턴 가이드, fan-out-and-synthesize·adversarial verification·tournament 사이의 비용/품질 trade-off다.
+본문을 읽는 데 필요한 개념은 다섯 가지다. 순서대로 풀이하면 뒤의 방법 절이 그대로 이어진다.
 
-## 관련 페이지 (Related Pages)
+loop engineering은 에이전트를 프롬프트하는 시스템을 설계하는 일을 뜻한다. 설계 대상이 문장 하나가 아니라 태스크 발견부터 다음 태스크 결정까지 이어지는 순환 전체라는 점이 이 이름의 요지다.
 
-- [[agents/osmani-2026-loop-engineering|Loop Engineering (Addy Osmani)]] — 본 글이 인용한 5-building-block(Automation·worktree·skill·connector·subagent)의 원출처. Jeongmin Lee가 요약·전달한 프레임을 Osmani 본인이 정의·전개한 원문이다.
-- [[agents/zhang-2026-recursive-language-models|Recursive Language Models (Zhang et al., arXiv 2512.24601)]] — 본 글이 dynamic workflow의 "이론적 기반"으로 지목한 RLM 논문. REPL의 context 변수 모델·`llm_query()`가 결과를 토큰이 아닌 변수로 반환·단일 context의 agentic laziness/self-preferential bias/goal drift 차단 등 본 글 ❷~❹의 근거가 여기서 나온다.
-- [[agents/lee-hoyeon-2026-harness-engineering|Harness Engineering (이호연)]] — *Prompt → Context → Harness*의 3단계 진화를 한국어로 정리한 강의 슬라이드. 본 글의 "loop engineering"은 이호연이 말하는 harness 6축 순환의 하위 개념(특히 subagent/worktree 축)과 짝을 이룬다.
-- [[agents/patel-2026-beyond-the-prompt-claude-code|Beyond the Prompt: Claude Code (Arpan Patel)]] — Boris Cherny의 *"verify its own work"* 원칙을 운영 매뉴얼로 풀어낸 27분 분량 실전 가이드. 본 글이 Boris 발언을 RLM 이론으로 풀이한 자리라면, Patel은 같은 발언을 `.claude/` 설정·skills·subagents·worktree·`/goal` Ralph Loop로 풀어낸 짝이다.
-- [[agents/lin-2026-harness-updating-is-not-harness-benefit|Harness Updating Is Not Harness Benefit (Lin et al.)]] — self-evolving 에이전트의 이득을 base capability·harness-updating·harness-benefit 셋으로 가른 논문. 본 글이 *"loop는 LLM의 부족한 판단력을 구조적으로 극복한다"* 라고 단언한 자리에 대한 통제 실험 짝이다.
-- [[etc/rahman-2026-a-practical-guide-to-becoming|AI-Native Engineer 실전 가이드 (Shah Rahman)]] — 조직 차원의 4 Core Practices·ADLC 운영 프레임. 본 글이 도구 차원의 loop 설계라면, Rahman은 같은 mental shift를 팀/조직 차원으로 끌어올린 짝이다.
+REPL은 코드를 한 줄씩 받아 실행하고 결과를 즉시 돌려주는 대화형 실행 환경을 말한다. 실행 사이에 값이 변수로 남아 있으므로, 앞에서 만든 결과를 이름으로 다시 불러 쓸 수 있다는 점이 이 환경의 특징이다.
 
-## 인용 메모 (Quote Notes)
+RLM은 Recursive Language Model의 약어로, 컨텍스트를 통째로 적재하지 않고 REPL 환경의 변수로 두는 모델 구조를 가리킨다. 에이전트가 그 변수에서 필요한 부분만 골라 읽는다. 앞의 REPL 특징이 여기서 그대로 쓰인다. 값이 변수에 남아 있으니 모델이 그 값을 자기 컨텍스트로 옮기지 않고도 다룰 수 있다.
 
-본문에 등장하는 발언 인용을 그대로 옮긴다. 출처·맥락은 본문 내 진술 기준이다.
+scaffold는 모델 주위에 짜 놓은 보조 실행 구조를 뜻한다. RLM에서 scaffold는 print 출력을 강제로 자르는 역할을 맡아, 불필요한 정보가 컨텍스트를 채우지 못하게 한다.
 
-- **Boris Cherny** (Anthropic, Claude Code 메이커, Anthropic 개발자 컨퍼런스) — *"나는 더 이상 Claude에 프롬프트를 치지 않는다. 내 일은 loop를 짜는 것이다."*
-- **Peter Steinberger** (OpenClaw) — *"코딩 에이전트에게 프롬프트를 치지 마라. 에이전트를 프롬프트하는 loop를 설계하라."*
-- **Jeongmin Lee** (본문 결론) — *"RLM이 무엇인지는 알아두라 — 그래야 Dynamic workflow가 왜 그렇게 설계됐는지 보이고 다음 스텝으로 우리가 무엇을 준비해야 하는지도 감이 잡힌다."*
+서브에이전트는 상위 에이전트가 위임한 작업을 격리된 컨텍스트에서 수행하는 하위 실행 단위다. 본문의 핵심 논점은 이 서브에이전트가 결과를 어떤 형태로 상위에 돌려주는가에 있다.
 
-본문 끝의 단축 URL 두 개(`https://lnkd.in/giBBf-fe`, `https://lnkd.in/gM8ZviyE`)는 어느 자료를 가리키는지 본문에 명시되지 않았다 — 정황상 RLM 논문과 Boris/Addy의 talk·글로 추정되지만 단정하지 않는다.
+KV cache hit은 이전 요청에서 만들어 둔 key와 value 캐시를 다시 쓰는 비율을 말한다. 같은 앞부분을 반복해서 다시 계산하지 않아도 되므로 이 비율이 높을수록 추론 비용이 내려간다.
 
-<!-- HUMANIZE-SUMMARY v1.6.1
-run_id: 2026-06-10-002
-metrics:
-  char_in: 6727
-  char_out: 6695
-  change_rate: 1.4%
-  self_check: 6/6
-  grade: A
-categories:  # before → after
-  C-11 연결어미 뒤 쉼표 (-고/-며/-아서 직후): 6 → 0
-  H-3 메타 진입 ("이 시맨틱 차이가"): 1 → 0
-  A-15 추상 주어 + 만능 동사 ("본 글은 ~ 싣지 않는다"): 1 → 0
-  D-7 "X에서 Y로" 변환 공식: 1 → 1 (보존 — 본문 핵심 대조 구조, 1회는 임계 미만)
-  F-5 추상 ("두 가지/세 가지"): 2 → 0 (셋/둘로 자연화)
-  E-2 "~다" 단조 종결: 다수 → 다수 (리포트 register상 유지)
-self_check:
-  - 고유명사·수치·인용 100% 보존: PASS (Boris Cherny·Peter Steinberger·Jeongmin Lee 인용·frontmatter·표·인라인 코드·wikilink·URL 무손상)
-  - 변경률 30% 이하: PASS (1.4%)
-  - 장르 이탈 없음: PASS (리포트 register 유지)
-  - register 보존: PASS (격식 평서체 유지)
-  - S1 잔존 0건: PASS
-  - 인공 표현 추가 없음: PASS
-highlights:
-  - id: C-11
-    before: "에이전트가 필요한 부분만 골라 읽고, print 출력은 scaffold가 강제로 잘라 context 오염을 차단한다"
-    after: "에이전트가 필요한 부분만 골라 읽고 print 출력은 scaffold가 강제로 잘라 context 오염을 차단한다"
-  - id: H-3 + A-15
-    before: "이 시맨틱 차이가 본문의 \"비용 우위\" 주장으로 이어진다 — 상위 context에 결과를 통째로 다시 올리지 않으니"
-    after: "본문의 \"비용 우위\" 주장은 여기서 나온다 — 상위 context에 결과를 통째로 다시 올리지 않으니"
-  - id: A-15
-    before: "본 글은 발표 글 성격상 정량 벤치마크를 싣지 않는다."
-    after: "발표 글 성격상 정량 벤치마크는 없다."
-  - id: F-5
-    before: "본문이 스스로 인정한 한계는 세 가지다."
-    after: "본문이 스스로 인정한 한계는 셋이다."
-  - id: C-11
-    before: "토큰 단위 재생성이 없으므로 이론상 출력 길이 제한이 없다"
-    after: "토큰 단위 재생성이 없으니 이론상 출력 길이 제한이 없다"
-residual_findings:
-  - id: D-7
-    severity: 정상 보존
-    reason: "\"단일 stream을 변수로 바꾼\" 1회 등장 — 본문의 RLM vs LLM 핵심 대조 의미. D-7 임계(반복 3회+) 미달."
-  - id: E-2
-    severity: 정상 보존
-    reason: "wiki 리포트 register상 평서 ~다 종결 유지. 다양화 시 학술 톤 이탈 위험."
-grade_reason: "A — S1 잔존 0건, 변경률 1.4%, 자체검증 6항 통과. 보존 대상(frontmatter·헤딩·표·인라인 코드·인용·wikilink·URL·영문 고유명사) 무손상. wiki 정제 페이지 특성상 보수적 윤문(목표 10~20%) 하한선에 머물렀으나, AI 티 신호인 C-11/H-3/F-5는 0건으로 정리됨."
--->
+## 방법
+
+### 루프를 이루는 다섯 building block
+
+저자는 Addy Osmani가 loop engineering을 다섯 building block으로 정리했다고 인용한다. 본문은 다섯 이름만 나열하고 각 블록이 무엇을 하는지는 설명하지 않는다. 아래 표의 역할 열은 본 글의 서술이 아니라 원출처를 다룬 [[agents/osmani-2026-loop-engineering]] 페이지에서 옮겨 온 것이다.
+
+| 블록 이름 | 역할 (osmani-2026 페이지 기준) |
+|---|---|
+| Automation | 예약된 발견과 분류를 사람 개입 없이 수행한다 |
+| worktree | 병렬 실행 에이전트 사이의 파일 충돌을 차단한다 |
+| skill | 프로젝트 지식을 문서로 고정해 재유도 반복을 없앤다 |
+| connector | 파일시스템 바깥 시스템과의 통합을 담당한다 |
+| subagent | 구현 기능과 평가 기능을 분리한다 |
+
+본 글에서 이 목록이 하는 일은 loop engineering이 단일 기법이 아니라 여러 도구의 조합이라는 점을 보이는 것이다. 저자는 이 조합을 소개한 뒤 곧바로 이론적 근거로 넘어간다.
+
+### RLM의 컨텍스트 처리
+
+RLM과 기존 LLM의 차이는 입력을 다루는 시점에서 갈린다. 보통 LLM은 입력 전체를 context window에 한꺼번에 올린다. RLM은 그렇게 하지 않는다.
+
+| 구분 | 기존 LLM | RLM |
+|---|---|---|
+| 입력 적재 방식 | 입력 전체를 context window에 한꺼번에 적재 | REPL 환경에 컨텍스트를 변수로 보관 |
+| 읽는 범위 결정 | 모델이 전체를 받는다 | 에이전트가 필요한 부분만 골라 읽는다 |
+| 출력 처리 | 별도 제약 없음 | print 출력을 scaffold 단에서 강제로 자름 |
+
+이 구조가 노리는 효과는 컨텍스트 오염 차단이다. 에이전트가 읽을 범위를 스스로 정하고 출력이 scaffold 단에서 잘리기 때문에, 불필요한 정보가 컨텍스트를 채우는 일이 줄어든다.
+
+두 장치가 서로 다른 방향을 막는다는 점이 중요하다. 변수 보관은 입력 쪽에서 들어오는 양을 줄이고, print 출력 절단은 실행 중에 생겨나는 양을 줄인다. 전자는 에이전트가 스스로 고르는 선택이고 후자는 scaffold가 강제하는 제약이다. 에이전트가 실수로 큰 값을 출력하더라도 그 결과가 컨텍스트로 흘러들지 않는 이유가 여기에 있다.
+
+저자는 RLM 논문을 읽어보면 이 구조가 명쾌하게 잡힌다고 덧붙이지만 논문의 제목, 저자, 연도는 본문에 적지 않는다.
+
+### 서브에이전트 결과의 반환 방식
+
+본문이 가장 공들여 설명하는 대목은 서브에이전트 결과가 상위로 돌아오는 경로다. 기존 CodeAct와 서브에이전트를 조합한 구조에서는 서브에이전트 결과 전체가 상위 컨텍스트에 올라갔다. RLM의 `llm_query()`는 다른 경로를 쓴다.
+
+| 구분 | CodeAct와 서브에이전트 조합 | RLM `llm_query()` |
+|---|---|---|
+| 결과가 도착하는 곳 | 상위 컨텍스트 | REPL 안의 Python 변수 |
+| 상위 에이전트가 하는 일 | 결과를 컨텍스트에 담은 채 이어서 작업 | 변수를 검증한 뒤 `FINAL()`로 반환 |
+| 토큰 재생성 | 결과가 상위 출력에 다시 실린다 | 결과를 토큰 단위로 다시 생성하지 않는다 |
+| 출력 길이 | 상위 모델의 생성 한도에 묶인다 | 이론상 제한이 없다 |
+
+이 차이가 만드는 결과는 두 가지다. 하나는 상위 에이전트의 일이 결과 재생성에서 변수 검증으로 줄어든다는 것이다. 다른 하나는 최종 출력의 길이가 상위 모델이 한 번에 생성할 수 있는 분량에 묶이지 않는다는 것이다. 변수는 값을 그대로 담고 있을 뿐이라 상위 모델이 그 내용을 다시 써 내려갈 필요가 없기 때문이다.
+
+`FINAL()`이 이 흐름의 종착점이다. 상위 에이전트는 변수의 내용을 옮겨 적는 대신 그 변수를 `FINAL()`에 넘겨 최종 결과로 확정한다. 값이 한 번도 토큰으로 풀리지 않고 그대로 전달되므로, 서브에이전트가 만든 분량이 아무리 커도 상위 단계에서 다시 비용이 발생하지 않는다.
+
+### Claude Code dynamic workflow
+
+저자는 Claude Code의 dynamic workflow가 이 구조를 그대로 가져갔다고 본다. dynamic workflow는 Opus 4.8과 함께 출시된 기능이다.
+
+| 항목 | 본문 서술 |
+|---|---|
+| 출시 시점 | Opus 4.8과 함께 출시 |
+| 조율 방식 | JavaScript로 서브에이전트를 생성하고 조율 |
+| 컨텍스트 격리 | 각 서브에이전트가 독립된 context window에서 작동 |
+| 결과 전달 | 결과만 상위로 올림 |
+
+구조의 목적은 단일 context window에서 생기는 세 가지 실패를 막는 것이다. agentic laziness는 에이전트가 할 일을 끝까지 하지 않는 현상, self-preferential bias는 자기 산출물을 후하게 평가하는 편향, goal drift는 진행 도중 목표에서 벗어나는 현상을 가리킨다. 저자는 에이전트가 긴 작업 중간에 멈추거나 결과를 대충 넘기던 현상에 이유가 있었다고 진단하면서, RLM이 이 세 가지를 구조로써 차단한다고 정리한다.
+
+즉 컨텍스트를 격리하는 설계는 성능 최적화의 부산물이 아니라 실패 모드를 겨냥한 대응이라는 것이 저자의 해독이다.
+
+### 실행 패턴 세 가지
+
+dynamic workflow 위에서 쓸 수 있는 패턴으로 본문은 세 가지를 든다.
+
+| 패턴 | 본문 설명 |
+|---|---|
+| fan-out-and-synthesize | 작업을 병렬로 분할한 뒤 결과를 합친다 |
+| adversarial verification | 별도 에이전트가 서로 결과를 검증한다 |
+| tournament | 여러 접근법을 경쟁시킨다 |
+
+세 패턴은 서브에이전트를 쓰는 목적이 서로 다르다. 첫째는 처리량을 늘리려고 나누고, 둘째는 정확성을 높이려고 검증자를 분리하며, 셋째는 선택지를 비교하려고 경쟁시킨다.
+
+이 목적 차이는 앞 절의 컨텍스트 격리와 맞물린다. fan-out-and-synthesize는 각 서브에이전트가 자기 몫만 보면 되므로 격리가 분업의 전제가 된다. adversarial verification은 검증자가 구현자의 사고 과정을 물려받지 않아야 편향이 끊기므로 격리가 검증의 전제가 된다. tournament는 후보들이 서로의 답에 영향을 받지 않아야 비교가 성립하므로 격리가 공정성의 전제가 된다.
+
+적용 범위에 대해 저자는 개발 업무 밖까지 넓혀 잡는다. 코드 리팩토링뿐 아니라 리서치 검증이나 서포트 티켓 분류 같은 비개발 업무에서도 Claude Code 안에서 바로 쓸 수 있다는 서술이다.
+
+## 비용
+
+RLM 구조가 비용 면에서 유리하다는 것이 본문의 여섯 번째 항목이다. 근거는 두 가지로 제시된다.
+
+첫째는 캐시 재사용이다. 서브에이전트가 한 단계씩 작업하면 system prompt와 이전 메시지가 그대로 유지된다. 앞부분이 바뀌지 않으므로 캐시를 계속 재사용할 수 있고, 저자는 KV cache hit 비율이 90%까지 올라갈 수 있다고 적는다.
+
+둘째는 읽기 범위의 축소다. 에이전트가 읽을 범위를 직접 결정하므로 전체 프롬프트를 매번 스캔하는 비용이 빠진다. 앞선 절에서 설명한 컨텍스트 변수 모델이 그대로 비용 이점으로 연결되는 지점이다.
+
+다만 이 두 가지는 구조가 주는 잠재적 이점이고, 현재 실제 운영 비용은 별개 문제라는 것이 다음 절의 내용이다.
+
+## 한계
+
+본문이 스스로 인정한 한계는 세 가지다.
+
+1. **토큰 사용량이 크다**. 현재의 dynamic workflow는 토큰을 많이 쓴다. 저자는 여기에 자제 기준을 하나 붙인다. 일반 코딩 작업에 verifier 5개를 붙일 필요는 없다는 것이다. 즉 패턴을 최대치로 적용하는 것이 기본값은 아니다.
+2. **환경 구축 부담이 크다**. 이 환경을 직접 만드는 것도 비용 면에서 아직 부담이 크다고 적는다.
+3. **용어 피로감이 높다**. 지난 3년간, 그리고 최근 수 개월 사이 등장한 여러 용어들로 사용자들의 피로감이 매우 높다. loop engineering이라는 작명이 비아냥의 대상이 되는 맥락을 저자가 인정한다.
+
+전망은 두 조건으로 제시된다. 모델 비용이 내려가고 cache hit 비율이 높아질수록 loop의 활용은 기본값이 된다는 것이다. 저자는 마무리에서 RLM이 무엇인지 알아두라고 권하며, 그래야 dynamic workflow가 왜 그렇게 설계됐는지 보이고 다음 스텝으로 무엇을 준비해야 하는지 감이 잡힌다고 적는다. 이어서 지난 몇 년간 Transformer 쇠퇴론을 비롯한 여러 비관 속에서도 프론티어 랩이 주장한 내용이 결국 AI 발전의 큰 방향에 모두 반영되었다는 회상을 덧붙인다.
+
+## 자료 성격과 검증 범위
+
+이 페이지의 근거는 3,200자 남짓의 LinkedIn 포스트 한 편뿐이다. 인용 대상을 확인하려면 별도 자료가 필요하다는 점을 명시해 둔다.
+
+- 본문에 등장하는 수치는 KV cache hit 비율 90%와 verifier 5개 두 가지뿐이고, 둘 다 측정값이 아니라 서술 안의 언급이다.
+- RLM 논문은 제목, 저자, 연도 없이 개념만 인용된다. 본 wiki에서는 [[agents/zhang-2026-recursive-language-models]] 페이지가 그 1차 자료를 다룬다.
+- Addy Osmani의 다섯 building block도 이름만 인용된다.
+- 본문 끝에 lnkd.in 단축 URL 2개(`giBBf-fe`, `gM8ZviyE`)가 첨부돼 있으나, 어느 자료를 가리키는지는 본문에 적혀 있지 않다.
+- 포스트의 상호작용 지표는 좋아요 158개, 댓글 2개다(수집 시점 2026-06-10).
+
+## 핵심 용어
+
+| 용어 | 뜻 |
+|---|---|
+| loop engineering | 에이전트를 프롬프트하는 시스템을 설계하는 일. 태스크 발견부터 다음 태스크 결정까지 순환이 자동으로 이어지게 만드는 것을 목적으로 한다 |
+| RLM (Recursive Language Model) | 컨텍스트를 REPL 환경의 변수로 두고 에이전트가 필요한 부분만 골라 읽는 모델 구조. print 출력은 scaffold 단에서 강제로 잘린다 |
+| `llm_query()` | RLM에서 서브에이전트를 호출하는 함수. 결과를 REPL 안의 Python 변수로 돌려주며, 상위 에이전트는 그 변수를 검증한 뒤 `FINAL()`로 반환한다 |
+| dynamic workflow | Opus 4.8과 함께 출시된 Claude Code 기능. JavaScript로 서브에이전트를 생성하고 조율하며 각 서브에이전트가 독립된 context window에서 작동한다 |
+| agentic laziness, self-preferential bias, goal drift | 단일 context window에서 생기는 세 가지 실패로 본문이 지목한 현상. 컨텍스트 격리가 이를 차단한다고 서술한다 |
+| KV cache hit | 이전 요청에서 만든 key와 value 캐시를 다시 쓰는 비율. 본문은 RLM 구조에서 90%까지 올라갈 수 있다고 적는다 |
+
+## 관련 페이지
+
+- [[agents/osmani-2026-loop-engineering]]: 본 글이 인용한 다섯 building block의 원출처. 본 글이 이름만 나열한 자리를 요소별 절로 전개하고 persistent state를 여섯 번째 보조 요소로 덧붙인다.
+- [[agents/zhang-2026-recursive-language-models]]: 본 글이 이론적 기반으로 지목한 RLM 논문. REPL 컨텍스트 변수 모델과 재귀 호출 구조를 1차 자료로 다루므로, 본 글이 요약만 한 대목의 근거를 여기서 확인할 수 있다.
+- [[agents/kang-2026-no-longer-prompting-claude]]: 최적화 대상이 프롬프트에서 컨텍스트, harness, loop로 옮겨온 흐름을 한 장에 담은 한국어 LinkedIn 카드 포스트. 같은 형식과 같은 주제를 다룬 짝이다.
+- [[agents/lee-hoyeon-2026-harness-engineering]]: harness engineering을 여섯 단계 실행 절차로 정리한 한국어 슬라이드 자료. 본 글이 loop의 이론적 근거를 다룬다면 이 자료는 실행 순서를 다룬다.
+- [[agents/patel-2026-beyond-the-prompt-claude-code]]: Boris Cherny의 자기 검증 원칙을 Claude Code 운영 절차로 풀어낸 실전 가이드. 본 글이 인용만 한 Boris의 발언이 어떤 설정으로 이어지는지 보여준다.
+- [[agents/runkle-2026-the-art-of-loop-engineering]]: loop를 agent, verification, event-driven, hill climbing 네 겹으로 쌓은 LangChain 측의 정리. 본 글의 단일 loop 서술보다 층위 구분이 세밀하다.
