@@ -362,6 +362,8 @@ Phase 4 계량을 재현하면서 확인한 사항 네 가지를 남긴다.
 
 Phase 5까지의 개선은 physical-ai 범위에 한정됐다. 아래는 후속 확산의 착수 기준선(2026-09-06 실측)과 개별 이월 항목이다.
 
+> 이 절의 후속 확산 계획은 `temp-docs/contents-renewal.md`에서 관리한다 (2026-09-06 수립).
+
 ### 5-A. 타 카테고리 문체 확산 기준선
 
 저장소 전체 lint_style은 error 8,313건, warning 212건(285개 파일)이다. emdash 4,280건과 middot 4,004건이 error의 99.6%라 기계적 치환 비중이 크고, 실제 재작성 판단이 필요한 것은 bilingual-heading 17건, speaker-intrusion 9건, self-qa 3건과 warning 212건(banned-vocab 120, k-number 75 등)이다.
