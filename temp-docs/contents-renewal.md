@@ -285,9 +285,17 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - **부수 발견: 고아 figures 디렉토리 1건.** `raw/papers/2511.18177v1-figures/`가 stem 규약이 아니라 arXiv id로 이름 붙어 있고 대응 sources가 없다. arXiv 2511.18177은 `lumer-2025-rethinking-retrieval-from-traditional-retrieval`이므로 배치 D4에서 stem 규약 이름으로 옮기고 frontmatter를 붙인다. 디렉토리 이동은 사람 지시가 있을 때만 하는 raw 변경이라 이번에는 기록만 한다.
   - 개선 제안 2건. (1) `-figures/`가 있는데 같은 stem sources에 `figures:` 키가 없는 상태를 잡는 lint(`lint_figures.py`)가 없어 이번 누락 14건이 조용히 남아 있었다. Phase 7-5 후속 과제 후보. (2) fig02 크롭이 `caption-region` 검출에서 Podcast 블록 제목 행과 열 헤더 일부를 놓쳤다. `--bbox fig02=10:...`로 재크롭할 여지가 있으나 raw 불변 규약에 따라 이번에는 캡션에 상단이 Podcast, 하단이 News임을 명시하는 것으로 대신했다.
   - 1차 게이트 기준을 확정한다: **재작성 후 sources 본문 기준**이다. sources 문체 정비로 본문이 늘면 게이트도 함께 올라간다. 이번에는 16,073자 기준으로 19,171자를 통과시켰다.
-- [ ] 1-4. 사용자 리뷰 게이트 (승인 후 배치 진행)
+- [x] 1-4. 사용자 리뷰 게이트 (승인 후 배치 진행)
+  - **승인 (2026-09-06).** 파일럿 3편의 재작성 품질을 승인하고 Phase 2 배치로 진행한다. 파일럿에서 확립한 규약을 배치 표준으로 굳힌다: wiki frontmatter는 curated 항목만 복제, caption 한글 정비, index.md 항목 200자 이내와 `]]: ` 구분자, raw 전문 재독으로 sources 누락분 복원.
+  - 파일럿 3편 종합. 압축비는 0.65에서 1.85, 0.85에서 1.27, 0.46에서 1.19가 됐고 세 편 평균 1.44다 (착수 평균 0.65). 표는 4개에서 35개, wiki 본문 합계 19,887자에서 48,170자다. lint 3종 전부 0건이고 physical-ai 회귀 게이트도 유지된다. 전 저장소 지표는 lint_style error 9,202건에서 8,949건, lint_terms 270건에서 264건, caption 정비 대상 700건에서 682건으로 내려갔다.
+  - 유형별 경로 3종이 전부 검증됐다. paper 경로는 PDF 부록 수치까지 표로 꺼내면 압축비 1.8대에 도달한다. article 경로는 sources 재추출 없이 raw 전문 재독만으로 산문 42% 증가를 만들고, 부수적으로 raw에 없는 주장을 검출하는 효과도 있다. figures 경로는 curated만 복제하는 규약이 frontmatter 243줄을 94줄로 줄인다.
+  - **사용자 결정 2건.** (1) 계획 밖 문제 3건(figures 누락 14 stem, 그림 후보 표 id 불일치, HUMANIZE 잔재 10파일)은 별도 phase를 만들지 않고 각 배치가 그 stem 분량만큼 흡수한다. (2) 파일럿이 제안한 lint 도구 확장 3종을 배치 착수 전에 만든다 (아래 1-7 신설).
 - [ ] 1-5. write-wiki 스킬 v2.2.1. 파일럿 전후 발췌로 비-physical-ai before/after 예시 2~3쌍 추가
 - [ ] 1-6. physical-ai 고아 `9bow-2026-world-action-model-rise` wiki 신설. physical-ai-overview 커버리지를 77편으로 갱신하고 index.md Physical AI 절에 항목을 신설한다 (sources는 Phase 5-7에서 정비 완료라 wiki 1편 작업)
+- [ ] 1-7. lint 도구 확장 3종 (계획 밖 신규 항목, 파일럿 제안과 사용자 결정 2026-09-06). 배치 착수 전에 만들어 품질 게이트를 촘촘히 한다. 기존 두 스크립트의 기본 동작과 훅 JSON 출력은 불변으로 유지하고, `--category`와 `--strict`, `--json` 인자 규약을 승계한다
+  - (a) `scripts/lint_figures.py` 신설. `raw/{type}/{stem}-figures/`가 있는데 같은 stem sources에 `figures:` 키가 없는 상태를 검출한다. 착수 실측 14건(1-3 부수 발견)을 그대로 재현하는지로 검증한다. stem 규약을 벗어난 고아 디렉토리(`2511.18177v1-figures`)도 함께 보고한다
+  - (b) `scripts/lint_links.py` 신설. `[[category/stem]]` 형식 wikilink가 실재 파일로 해석되는지 검사한다. 이미지 임베드(`![[assets/...]]`)는 대상에서 제외하고 별도로 파일 존재를 확인한다. Obsidian이 미해결 링크를 조용히 회색 처리해 사람 눈에 안 띄는 것이 도입 이유다
+  - (c) `scripts/lint_style.py`에 `축` 오용 검출 추가. `평가 축`, `N개 축`, `~ 축으로` 같은 좁은 패턴만 warning으로 올리고 `압축`, `구축`, `좌표축`은 통과시킨다. physical-ai 154개 파일 0건 유지가 회귀 기준이다
 
 ### Phase 2. agents 배치 재작성 (A1~A12, 64편 = 기존 61 + 신규 3)
 
