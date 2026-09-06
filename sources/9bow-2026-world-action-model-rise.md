@@ -167,23 +167,23 @@ PyTorch KR 운영자 박정환(9bow)이 옮긴 NVIDIA World-Action Model 글의 
 - 저자: 박정환 (PyTorch KR 운영자, Discourse 계정 9bow)
 - 발행: 2026-06-18, PyTorch KR 읽을거리&정보공유
 - URL: https://discuss.pytorch.kr/t/world-action-model-feat-nvidia/10769
-- 원문: Moritz Reuss, "Pretrained to Imagine, Fine-Tuned to Act: The Rise of World-Action Models" (NVIDIA Technical Blog, 2026-06-15) — wiki에는 `reuss-2026-pretrained-to-imagine-fine-tuned`로 들어와 있다
-- 성격: 번역·재구성 글. 원문의 절 구조와 수치를 그대로 따르며 요약하거나 잘라내지 않는다.
+- 원문: Moritz Reuss, "Pretrained to Imagine, Fine-Tuned to Act: The Rise of World-Action Models" (NVIDIA Technical Blog, 2026-06-15). wiki에는 `reuss-2026-pretrained-to-imagine-fine-tuned`로 들어와 있다
+- 성격: 번역과 재구성을 겸한 글. 원문의 절 구조와 수치를 그대로 따르며 요약하거나 잘라내지 않는다.
 
 내용 요약은 원문 source에 있고 여기서는 중복하지 않는다. 이 파일은 한국어 판의 존재와 그 도식 아카이브를 추적하는 데 목적이 있다.
 
 ## 2. 주요 기여 (Key Contributions)
 
 - WAM 설계 공간을 다루는 원문 전체를 한국어로 옮긴다. WAM은 대규모 영상으로 pre-training한 video backbone에서 출발해 미래 장면 변화와 action을 함께 다루는 policy 계열을 가리킨다.
-- 본문 앞에 VLA·WAM·VLM·world model·grounding·inverse dynamics·joint prediction·action chunk·MoT·DiT 열 개 항목의 용어풀이를 둔다. 원문에도 같은 상자가 있지만 한국어 독자에게는 진입 문턱을 크게 낮춘다.
-- 원문 도식 23개를 모두 재게시하고 한국어 alt 텍스트를 달았다. 원문 페이지는 lazy loading 때문에 자동 수집에서 11개만 잡히는데 이쪽은 전부 잡힌다.
+- 본문 앞에 VLA, WAM, VLM, world model, grounding, inverse dynamics, joint prediction, action chunk, MoT, DiT 열 개 항목의 용어풀이를 둔다. 원문에도 같은 상자가 있지만 한국어 독자에게는 진입 문턱을 크게 낮춘다.
+- 원문 도식 23개를 모두 재게시하고 한국어 alt 텍스트를 달았다. 원문 페이지는 lazy loading 때문에 자동 수집에서 11개만 잡히지만 한국어판에서는 23개가 전부 잡힌다.
 - 글 끝에 국내 독자용 관련 글(NVIDIA Cosmos 3, Isaac GR00T, Gemini Robotics, SmolVLA)을 붙인다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
-원문과 동일하다. paradigm(inverse dynamics·joint prediction·representation-only), action integration(기본 action 토큰·action을 이미지로·latent plan), architecture(hierarchical·monolithic·MoT) 세 축 구성을 그대로 따른다. 자세한 설명은 `reuss-2026-pretrained-to-imagine-fine-tuned` 참고.
+원문과 동일하다. paradigm(inverse dynamics, joint prediction, representation-only), action integration(기본 action 토큰, action을 이미지로, latent plan), architecture(hierarchical, monolithic, MoT) 세 가지 기준 구성을 그대로 따른다. 자세한 설명은 `reuss-2026-pretrained-to-imagine-fine-tuned` 참고.
 
-번역 선택 몇 가지는 이 wiki의 용어 규약과 다르다. policy를 "정책", action을 "행동", world model을 "월드 모델", inverse dynamics를 "역동역학"으로 옮겼다. 원문 인용 시 그대로 쓰지 말고 wiki canonical 표기로 바꿔 적는다. <!-- lint-terms: ignore — 번역 표기 자체를 인용하는 줄 -->
+번역 선택 몇 가지는 이 wiki의 용어 규약과 다르다. policy를 "정책", action을 "행동", world model을 "월드 모델", inverse dynamics를 "역동역학"으로 옮겼다. 원문 인용 시 그대로 쓰지 말고 wiki canonical 표기로 바꿔 적는다. <!-- lint-terms: ignore (번역 표기 자체를 인용하는 줄) -->
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -204,12 +204,12 @@ PyTorch KR 운영자 박정환(9bow)이 옮긴 NVIDIA World-Action Model 글의 
 
 ## 8. 그림 후보 (Figure Candidates)
 
-원문 도식 23개가 모두 잡혔다. 해상도는 Discourse가 최적화한 가로 1028px 판이라 원문 원본(최대 1975px)보다 낮지만 원문 수집에서 빠진 도식은 이쪽에서만 얻을 수 있다. 페이지 전체 스크린샷 1장과 요소 크롭 21장이 아카이브에 함께 있고 크롭은 후보 표에서 뺐다.
+원문 도식 23개가 모두 잡혔다. 해상도는 Discourse가 최적화한 가로 1028px 버전이라 원문 원본(최대 1975px)보다 낮지만 원문 수집에서 빠진 도식은 한국어판에서만 얻을 수 있다. 페이지 전체 스크린샷 1장과 요소 크롭 21장이 아카이브에 함께 있고 크롭은 후보 표에서 뺐다.
 
 | id | caption | strategy | 추천 |
 |---|---|---|---|
 | fig01 | 글 머리 이미지 | fetched | (아카이브) |
-| fig02 | VLA와 WAM 두 갈래 베팅 | fetched | (원문 fig03과 중복) |
+| fig02 | VLA와 WAM 두 가지 접근 | fetched | (원문 fig03과 중복) |
 | fig03 | 로보틱스 world model 지형도 | fetched | (원문 fig04와 중복) |
 | fig04 | Veo 3.1 zero-shot rollout | fetched | (원문 fig07과 중복) |
 | fig05 | WAM 설계 공간 세 축 | fetched | ★ wiki 권장 (개념) |
