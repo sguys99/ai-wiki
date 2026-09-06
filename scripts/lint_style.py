@@ -8,6 +8,7 @@ sources/·wiki/ 한글 산문에서 다음을 잡는다:
   [error]   자문자답 패턴 ("~일까?", "~을까?") — 결론 먼저 서술
   [error]   화자 개입 표현 ("한 줄로 말하면", "정리하면" 등)
   [warning] 금지 어휘 (갈래, 차선 대비, 이쪽/그쪽, 실기기 등 실+명사 조어, 돌아간다/돌린다)
+  [warning] '축' 오용 (평가 축, 세 축, 6개 축) — 좌표축 의미가 아니면 항목/기준/측면으로
   [warning] 큰 수의 k 표기 (130k) — 한국식 단위(13만 개)로
   [warning] 연결어미 뒤 쉼표("-고, / -며, / -지만,") 과다 — 밀도 기준 초과 시 경고
   [warning] paper/report 기반 wiki 페이지에 표 없음 — 구조화 부족 신호
@@ -67,6 +68,20 @@ RE_BANNED_VOCAB = [
     (re.compile(r"실기기|실오브젝트|실데이터|실로봇"), "실+명사 조어 → 실제 기기, 실제 물체, 실제 데이터, 실제 로봇"),
     (re.compile(r"(?<!되)돌아간다|(?<!되)돌린다"), "돌다/돌리다 → 실행되다, 구동하다"),
 ]
+# '축' 오용 — CLAUDE.md 어휘 치환표의 "축 → 항목, 기준, 측면 (축은 좌표축 의미로만)".
+# 좌표축·회전축·채널 축처럼 진짜 좌표 의미로 쓰는 자리가 많아 "홀로 선 축"을 전부 잡으면
+# 오탐이 크다. 그래서 뒤가 아니라 **앞**을 보는 좁은 패턴만 쓴다.
+#   (1) 평가/비교/분류 같은 판단 명사 + 축   ("평가 축", "설계 축")
+#   (2) 수 관형사·수량 표현 + 축             ("세 축", "6개 축")
+#   (3) "축을 기준으로"
+# 검토했다가 뺀 패턴: 앞을 보지 않는 "축으로". physical-ai 에서 "인접 픽셀을 채널 축으로
+# 접어"(pixel shuffle), "잘못된 축으로 잡으면"(OBB) 처럼 좌표축 의미의 진짜 용례를 잡아서다.
+# 그 대신 "세 축으로"·"평가 축으로"는 (1)(2)가 이미 앞부분에서 잡는다.
+RE_AXIS_MISUSE = re.compile(
+    r"(?:평가|비교|분류|분석|판단|설계|구분)\s축"
+    r"|(?:[0-9]+\s*개|한|두|세|네|다섯|여섯|일곱|여덟|아홉|열)\s축"
+    r"|(?<=\s)축을\s기준으로"
+)
 # 큰 수의 k 표기 (130k 등)
 RE_K_NUMBER = re.compile(r"\b[0-9][0-9,.]*k\b")
 
@@ -282,6 +297,11 @@ def lint_file(path, root):
                     "file": rel, "line": lineno, "severity": "warning", "rule": "banned-vocab",
                     "msg": f"금지 어휘 — {hint}",
                 })
+        if RE_AXIS_MISUSE.search(masked) and not is_glossary:
+            warnings.append({
+                "file": rel, "line": lineno, "severity": "warning", "rule": "axis-misuse",
+                "msg": "'축' 오용 — 기준, 측면, 항목, 가지로 (축은 좌표축 의미로만)",
+            })
         if RE_K_NUMBER.search(masked):
             warnings.append({
                 "file": rel, "line": lineno, "severity": "warning", "rule": "k-number",

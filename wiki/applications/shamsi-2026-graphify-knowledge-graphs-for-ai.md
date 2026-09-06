@@ -98,7 +98,7 @@ graphify-out/
 - [[database/guo-2025-lightrag-simple-and-fast]] — 경량 graph-based RAG. Graphify가 코드 특화라면 LightRAG는 일반 문서 특화.
 - [[database/kalane-2026-pageindex-threw-out-vector-databases]] — "vector DB 없는 RAG" 계보의 대표. Graphify의 "no embeddings required" 노선과 같은 흐름.
 - [[database/guo-2025-rag-anything-all-in-one-rag]] — 멀티모달 RAG. Graphify의 multi-modal 입력(코드+문서+논문+다이어그램)과 비교 지점.
-- [[applications/dsba-2026-paper-review-graph-based-rag]] — graph-based RAG 흐름 리뷰. Graphify를 코드 도메인 적용 사례로 끌어 쓸 수 있는 backdrop.
+- [[database/dsba-2026-paper-review-graph-based-rag]] — graph-based RAG 흐름 리뷰. Graphify를 코드 도메인 적용 사례로 끌어 쓸 수 있는 backdrop.
 
 ## 출처 (Source)
 

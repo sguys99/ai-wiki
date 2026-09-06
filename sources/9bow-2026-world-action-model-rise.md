@@ -212,7 +212,7 @@ PyTorch KR 운영자 박정환(9bow)이 옮긴 NVIDIA World-Action Model 글의 
 | fig02 | VLA와 WAM 두 가지 접근 | fetched | (원문 fig03과 중복) |
 | fig03 | 로보틱스 world model 지형도 | fetched | (원문 fig04와 중복) |
 | fig04 | Veo 3.1 zero-shot rollout | fetched | (원문 fig07과 중복) |
-| fig05 | WAM 설계 공간 세 축 | fetched | ★ wiki 권장 (개념) |
+| fig05 | WAM 설계 공간 세 가지 기준 | fetched | ★ wiki 권장 (개념) |
 | fig06 | inverse dynamics 계열 추상 구조 | fetched | ★ wiki 권장 (구조) |
 | fig07 | UniPi 구조 | fetched | (원문 fig10과 중복) |
 | fig08 | LingBot-VA 구조 | fetched | (선택) |

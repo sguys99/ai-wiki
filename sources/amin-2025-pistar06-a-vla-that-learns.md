@@ -265,7 +265,7 @@ value function 추정 방식도 개선 여지로 남는다. on-policy Monte Carl
 
 ## 6. 관련 연구 (Related Work)
 
-관련 연구의 한 축은 개입 기반 학습이다. 이 논문이 쓰는 개입 형식은 human-gated DAgger 계열이다. 선행 연구들이 개입만 쓴 것과 달리 자율 experience와 개입을 함께 넣어 여러 데이터 원천을 통합한 강화학습 틀로 만들었다.
+관련 연구 가운데 하나는 개입 기반 학습이다. 이 논문이 쓰는 개입 형식은 human-gated DAgger 계열이다. 선행 연구들이 개입만 쓴 것과 달리 자율 experience와 개입을 함께 넣어 여러 데이터 원천을 통합한 강화학습 틀로 만들었다.
 
 VLA에 강화학습을 붙이는 시도도 따로 있다. PPO와 그 변형을 VLA fine-tuning에 직접 쓰는 계열, 잔차 policy만 학습하거나 action head만 손보는 계열, VLA가 제안한 action을 고르거나 다듬는 계열이 있다. 대부분 이산 action이나 단순한 가우시안 분포를 쓴다. 이 논문은 표현력 있는 flow matching VLA를 통째로 end-to-end 학습한다는 점에서 갈린다.
 
