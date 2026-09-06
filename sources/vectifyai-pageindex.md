@@ -144,7 +144,7 @@ CLI 플래그(`--model`, `--toc-check-pages`, `--max-pages-per-node`, `--max-tok
 
 - **OSS 버전은 "standard PDF parsing"만 사용.** 복잡한 레이아웃·테이블·OCR 필요 문서는 자사 cloud의 **PageIndex OCR**를 별도로 호출하라고 README가 반복 안내(`# ☁️ Improved Tree Generation with PageIndex OCR` 섹션은 주석 처리되어 있으나 메시지는 본문 곳곳에 산재). 즉 self-host 품질과 cloud 품질에 명시적 격차가 존재.
 - **LLM API 호출량이 크다.** TOC 검출 · 추출 · 변환 · 페이지 매핑 · 제목 검증 · 보정 단계마다 LLM이 동기/비동기로 호출되며, `page_list_to_group_text`의 `max_tokens=20000` 그룹 단위로 문서 전체를 순회한다. 비용·지연 트레이드오프가 큰 구조.
-- **Multi-document corpus는 default가 아니다.** README는 "PageIndex currently enables reasoning-based RAG within a single document by default"라고 명시하고, `examples/tutorials/doc-search/`에서 metadata / semantics / description 기반 3가지 워크플로우만 별도로 안내한다. 별도로 발표된 *PageIndex File System*(blog `pageindex-filesystem`)은 OSS 코드에 포함되지 않은 것으로 보임.
+- **Multi-document corpus는 default가 아니다.** README는 "PageIndex currently enables reasoning-based RAG within a single document by default"라고 명시하고, `examples/tutorials/doc-search/`에서 metadata / semantics / description 기반 3가지 워크플로만 별도로 안내한다. 별도로 발표된 *PageIndex File System*(blog `pageindex-filesystem`)은 OSS 코드에 포함되지 않은 것으로 보임.
 - **TOC가 없거나 매우 부실한 문서에서의 동작은 `process_no_toc` 가 LLM으로 트리를 "합성"** 하므로, 환각 가능성과 노드 경계 정확도는 모델 품질에 직결됨. `verify_toc` · `fix_incorrect_toc_with_retries` 가 있지만 max_attempts=3.
 - **`retrieve_model: "gpt-5.4"` 같은 비표준 alias** 가 default config에 박혀 있어 self-host 첫 실행 시 혼동 여지.
 - **벤치마크 reproducibility.** FinanceBench 98.7% 주장은 별도 저장소 + 자사 cloud OCR 파이프라인을 전제로 한 수치일 가능성이 높으므로, 본 OSS 코드만으로 동일 결과 재현 보장은 없음.
@@ -165,6 +165,6 @@ CLI 플래그(`--model`, `--toc-check-pages`, `--max-pages-per-node`, `--max-tok
 - **TOC detector / extractor / transformer**: 각각 (1) 페이지가 TOC인지 판단, (2) TOC 텍스트 추출, (3) 추출된 TOC를 nested JSON으로 변환하는 LLM step.
 - **physical_index**: 트리 노드가 가리키는 실제 PDF 페이지 번호. TOC에 인쇄된 페이지번호(`detect_page_index`)와 본문 시작 페이지(`add_page_offset_to_toc_json` 로 offset 보정) 사이의 차이를 다룬다.
 - **Tree thinning** (MD 전용): heading은 살아있지만 본문이 거의 없는 작은 노드를 인접 노드와 병합해 트리를 축소하는 후처리. `min_token_threshold`(default 5000)로 제어.
-- **`PageIndexClient`**: `pageindex/client.py` 클래스. 자체 호스팅 시 doc 메타데이터/저장 워크플로우를 일관되게 제공하는 래퍼. cloud API와 시그니처 호환.
-- **Agentic vectorless RAG**: OpenAI Agents SDK 같은 agent framework에서 `get_document`/`get_document_structure`/`get_page_content` 3개 tool을 노출하고 LLM이 "구조 본 다음 좁은 범위 호출" 패턴으로 답변하는 워크플로우. README가 강조하는 latest 패턴.
+- **`PageIndexClient`**: `pageindex/client.py` 클래스. 자체 호스팅 시 doc 메타데이터/저장 워크플로를 일관되게 제공하는 래퍼. cloud API와 시그니처 호환.
+- **Agentic vectorless RAG**: OpenAI Agents SDK 같은 agent framework에서 `get_document`/`get_document_structure`/`get_page_content` 3개 tool을 노출하고 LLM이 "구조 본 다음 좁은 범위 호출" 패턴으로 답변하는 워크플로. README가 강조하는 latest 패턴.
 - **Mafin 2.5**: 같은 팀의 finance RAG 시스템. PageIndex가 retrieval layer 역할.

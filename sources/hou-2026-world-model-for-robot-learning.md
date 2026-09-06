@@ -271,7 +271,7 @@ L_RL(θ) = -E[min(r_t(θ)Â_t, clip(r_t(θ), 1-ε, 1+ε)Â_t)]        … (18, G
 | 5.4 Structure-Aware | 마스크와 기하, 시점, 정체성 단서로 접촉 관계와 장면 구조 보존 | Mask2IV, TesserAct, RoboVIP |
 | 5.5 Foundation Video WM | 대규모 비디오 backbone을 재사용 가능한 world model로 전환 | Vid2World, Genie Envisioner, DreamDojo, WoW, UnifoLM-WMA-0, Cosmos Predict 2.5, GigaWorld-0, ABot-PhysWorld |
 
-DreMa는 Gaussian Splatting과 물리 시뮬레이터를 결합해 상상을 학습 가능한 디지털 트윈으로 재해석한다. PhysWorld는 생성 영상에서 물리 world model을 복원해 객체 중심 residual RL로 예측 모션을 실제 행동에 접지한다. Ctrl-World는 multi-view 예측과 frame 수준 action 제어, 메모리 기반 long-horizon 생성을 묶어 policy 평가와 표적 개선을 함께 지원한다. TesserAct는 표현 공간을 2D 비디오에서 RGB와 depth, normal의 4D embodied world model로 확장한다. WoW는 물리 직관이 수동적 영상 관찰만으로는 얻어지지 않는다고 판단하고 방대한 로봇 상호작용 trajectory로 대형 생성 world model을 학습해 상상-action 루프를 닫는다.
+DreMa는 Gaussian Splatting과 물리 시뮬레이터를 결합해 상상을 학습 가능한 디지털 트윈으로 재해석한다. PhysWorld는 생성 영상에서 물리 world model을 복원해 객체 중심 residual RL로 예측 모션을 실제 행동에 grounding한다. Ctrl-World는 multi-view 예측과 frame 수준 action 제어, 메모리 기반 long-horizon 생성을 묶어 policy 평가와 표적 개선을 함께 지원한다. TesserAct는 표현 공간을 2D 비디오에서 RGB와 depth, normal의 4D embodied world model로 확장한다. WoW는 물리 직관이 수동적 영상 관찰만으로는 얻어지지 않는다고 판단하고 방대한 로봇 상호작용 trajectory로 대형 생성 world model을 학습해 상상-action 루프를 닫는다.
 
 ### 3.5 내비게이션과 자율주행 (Sec 6)
 
@@ -317,9 +317,9 @@ RoboTwin, CALVIN, SIMPLER 계열(Table 6)은 LIBERO보다 더 흩어져 있다. 
 
 ### 4.4 학습 데이터셋 현황 (Table 3과 4, 27종)
 
-대규모 로봇 trajectory 코퍼스(OXE, DROID, BridgeData V2, AgiBot World, Galaxea, RoboMIND 2.0)는 action-conditioned 예측에 필요한 기본 전이 커버리지를 제공한다. cross-embodiment 데이터셋은 플랫폼 간 이전 가능한 dynamics prior를 유도한다. 사람 영상과 human-to-robot 자원(DexWild, EgoMimic, In-N-On, UniHand 2.0)은 로봇 수집 trajectory 밖의 상호작용 규칙성을 배우는 경로다. 촉각과 힘, 접촉 데이터(FreeTacMan, VTDexManip, RH20T, Hoi!)는 실행 가능성과 물리 일관성을 접지하는 데 특히 중요하다.
+대규모 로봇 trajectory 코퍼스(OXE, DROID, BridgeData V2, AgiBot World, Galaxea, RoboMIND 2.0)는 action-conditioned 예측에 필요한 기본 전이 커버리지를 제공한다. cross-embodiment 데이터셋은 플랫폼 간 이전 가능한 dynamics prior를 유도한다. 사람 영상과 human-to-robot 자원(DexWild, EgoMimic, In-N-On, UniHand 2.0)은 로봇 수집 trajectory 밖의 상호작용 규칙성을 배우는 경로다. 촉각과 힘, 접촉 데이터(FreeTacMan, VTDexManip, RH20T, Hoi!)는 실행 가능성과 물리 일관성을 grounding하는 데 특히 중요하다.
 
-저자들은 자원이 빠르게 늘었어도 실패 복구와 결정에 민감한 변이, 물리적으로 접지된 조밀한 감독은 대규모 성공 데모에 비해 훨씬 희소하다고 짚는다.
+저자들은 자원이 빠르게 늘었어도 실패 복구와 결정에 민감한 변이, 물리적으로 grounding된 조밀한 감독은 대규모 성공 데모에 비해 훨씬 희소하다고 짚는다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
@@ -331,7 +331,7 @@ Multi-modal perception bottlenecks (8.3). 시각과 proprioception에 치우쳐�
 
 Classical control integration (8.4). MPC는 action 최적화를 위해 world model rollout을 반복해야 해서 고용량 모델의 실시간 배치를 심하게 제약한다. 더 근본적으로는 학습된 dynamics의 신경망 표현력과 Lyapunov 안정성이나 robust control 같은 형식적 제어 보증을 양립시키는 문제가 남는다.
 
-Symbolic structure integration (8.5). 심볼릭 표현은 픽셀 기반 rollout에서 long-horizon으로 갈수록 커지는 compounding error를 완화할 수 있다. 다만 적절한 추상화와 지각 접지가 필요하다. 고차원 observation이 사전 정의된 심볼로 잘 매핑되지 않으면 이 방식은 작동하지 않는다. 학습된 지각 표현과 심볼 구조를 결합한 하이브리드가 유망한 방향으로 제시된다.
+Symbolic structure integration (8.5). 심볼릭 표현은 픽셀 기반 rollout에서 long-horizon으로 갈수록 커지는 compounding error를 완화할 수 있다. 다만 적절한 추상화와 perceptual grounding이 필요하다. 고차원 observation이 사전 정의된 심볼로 잘 매핑되지 않으면 이 방식은 작동하지 않는다. 학습된 지각 표현과 심볼 구조를 결합한 하이브리드가 유망한 방향으로 제시된다.
 
 Evaluation metrics (8.6). 널리 합의된 평가 지표가 없다. 시각적으로 그럴듯해도 action-conditioned dynamics와 인과 일관성, controllability를 못 지키는 모델이 있다. 반대로 시각적 사실성이 낮아도 계획이나 policy 평가에 유용할 수 있다. 저자들은 과제 성공률과 policy 순위 충실도, 실행 가능성 진단 같은 소수 표준 지표 집합을 세워 그럴듯하기만 한 모델과 실제로 실행 가능한 모델을 구분하자고 제안한다.
 

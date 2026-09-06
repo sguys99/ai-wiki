@@ -438,7 +438,7 @@ Table 2는 이 능력 중심 분류에 대표 기법을 배치한다. 표기에�
 
 1단계인 상상 기반 생성은 강한 생성 prior로 미래 과제 실행을 합성해 감독 신호를 수집된 로봇 trajectory 밖으로 넓히는 데 목적이 있다. Dreamitate는 과제별 사람 시연 데이터로 비디오 diffusion 모델을 fine-tuning하고, 새 장면에서 합성한 실행을 곧바로 실제 로봇 제어의 action 안내용 visual plan으로 쓴다. RoboDreamer는 지시문을 재사용 가능한 primitive로 분해하고 그 구조화된 요소로 조건화하는 구성적 world modeling으로 미학습 조합에 대한 일반화를 높인다. ManipDreamer는 action tree 표현과 depth 및 의미 시각 가이드를 더해 지시 따르기와 시간 및 물리 일관성을 강화한다.
 
-같은 단계 안에서 상상을 학습 가능한 디지털 트윈으로 재해석하는 흐름도 있다. DreMa는 Gaussian Splatting과 물리 시뮬레이터를 결합해 조작 가능한 장면 표현을 복원하고 imitation learning용 추가 시연 데이터를 만든다. PhysWorld는 사실적 모션과 물리적으로 실행 가능한 행위 사이의 간극을 겨냥해 생성 영상에서 물리 world model을 복원하고 객체 중심 residual 강화학습으로 예측 모션을 로봇 action에 접지한다. DreamGen은 강한 비디오 생성기를 목표 embodiment에 적응시켜 neural trajectory를 합성하고 latent action 모델링이나 inverse dynamics로 실행 가능한 action을 복원한다. neural trajectory는 video world model이 만들어낸 합성 trajectory 데이터이고, latent action은 두 프레임 사이의 시각적 변화를 action 라벨 없이 부호화한 벡터다.
+같은 단계 안에서 상상을 학습 가능한 디지털 트윈으로 재해석하는 흐름도 있다. DreMa는 Gaussian Splatting과 물리 시뮬레이터를 결합해 조작 가능한 장면 표현을 복원하고 imitation learning용 추가 시연 데이터를 만든다. PhysWorld는 사실적 모션과 물리적으로 실행 가능한 행위 사이의 간극을 겨냥해 생성 영상에서 물리 world model을 복원하고 객체 중심 residual 강화학습으로 예측 모션을 로봇 action에 grounding한다. DreamGen은 강한 비디오 생성기를 목표 embodiment에 적응시켜 neural trajectory를 합성하고 latent action 모델링이나 inverse dynamics로 실행 가능한 action을 복원한다. neural trajectory는 video world model이 만들어낸 합성 trajectory 데이터이고, latent action은 두 프레임 사이의 시각적 변화를 action 라벨 없이 부호화한 벡터다.
 
 2단계인 action controllability 단계에서 질문은 그럴듯한 미래 영상 생성에서 명령한 action 시퀀스를 미래가 얼마나 정확히 따르는지로 옮겨 간다. IRASim은 manipulation을 trajectory-to-video 문제로 정식화하고 각 Transformer 블록 안에 프레임 단위 action 조건화를 넣어 개별 action과 대응 미래 프레임의 alignment를 강화한다. RoboMaster는 manipulation을 여러 국면으로 분해하고 로봇 팔과 조작 대상의 결합 운동을 함께 모델링해 접촉이 풍부한 상황에서 충실도를 높인다. Ctrl-World는 multi-view 공동 예측과 프레임 단위 action 제어, 메모리 기반 long-horizon 생성을 묶어 policy 평가와 표적 개선을 함께 지원한다. EVA는 사후 정렬 관점에서 시각적으로 그럴듯한 rollout과 물리적으로 실행 가능한 로봇 행위 사이의 실행 가능성 간극을 겨냥해 inverse dynamics reward로 world model을 매끄럽고 embodiment에 일관된 action 시퀀스에 맞춘다.
 
@@ -446,7 +446,7 @@ Table 2는 이 능력 중심 분류에 대표 기법을 배치한다. 표기에�
 
 4단계는 대규모 비디오 backbone을 재사용 가능한 world model로 전환하는 흐름이다. Vid2World는 로봇 world model을 처음부터 학습하는 대신 pre-training된 비디오 diffusion 모델을 action 조건부 rollout에 적합한 상호작용 world model로 체계적으로 변환한다. Genie Envisioner는 비디오 world modeling과 action 디코딩을 통합한 world foundation 플랫폼으로 확장한다. world foundation model은 여러 downstream Physical AI 환경으로 fine-tuning될 것을 전제로 학습한 범용 world model이다. DreamDojo는 대규모 사람 1인칭 영상으로 pre-training하고 연속 latent action으로 라벨 없는 사람 상호작용과 로봇 제어를 이은 뒤 목표 embodiment로 post-training해, long-horizon 실시간 rollout과 policy 평가, 모델 기반 계획을 지원한다.
 
-WoW는 이 흐름에 다른 논거를 댄다. 물리 직관은 수동적으로 영상만 봐서는 얻어지지 않는다고 보고 방대한 로봇 상호작용 trajectory로 대형 생성 world model을 학습하며, 생성 rollout을 inverse dynamics 및 비평과 결합해 상상에서 action으로 가는 루프를 명시적으로 닫는다. 플랫폼 수준에서는 UnifoLM-WMA-0과 Cosmos Predict 2.5가 재사용 가능한 world backbone 경향을 보여주고, GigaWorld-0은 제어 가능한 비디오 분기와 물리적으로 접지된 3D 분기를 결합해 대규모 embodied 데이터 합성이라는 데이터 엔진 관점을 전면화한다. ABot-PhysWorld는 physics alignment를 갖춘 world foundation model 쪽으로 이 흐름을 확장한다. physics alignment는 생성 결과가 물리 법칙을 지키는지 재는 평가 기준이다.
+WoW는 이 흐름에 다른 논거를 댄다. 물리 직관은 수동적으로 영상만 봐서는 얻어지지 않는다고 보고 방대한 로봇 상호작용 trajectory로 대형 생성 world model을 학습하며, 생성 rollout을 inverse dynamics 및 비평과 결합해 상상에서 action으로 가는 루프를 명시적으로 닫는다. 플랫폼 수준에서는 UnifoLM-WMA-0과 Cosmos Predict 2.5가 재사용 가능한 world backbone 경향을 보여주고, GigaWorld-0은 제어 가능한 비디오 분기와 물리적으로 grounding된 3D 분기를 결합해 대규모 embodied 데이터 합성이라는 데이터 엔진 관점을 전면화한다. ABot-PhysWorld는 physics alignment를 갖춘 world foundation model 쪽으로 이 흐름을 확장한다. physics alignment는 생성 결과가 물리 법칙을 지키는지 재는 평가 기준이다.
 
 ### 내비게이션과 자율주행
 
@@ -532,9 +532,9 @@ Table 4는 같은 자원을 지원 가능한 world modeling 능력 기준으로 
 | 접촉과 물리 인식 | Humanoid Everyday, RoboMIND 2.0, Hoi!, FreeTacMan, Humanoid Visual-Tactile-Action, VTDexManip, RH20T, RH20T-P |
 | 합성 데이터와 레시피 확장 | UniHand 2.0, RoboTwin 2.0, Action100M |
 
-두 표를 겹쳐 보면 현재 자원이 서로 배타적인 묶음이 아니라 여러 병행 기준 위에 퍼져 있다는 사실이 드러난다. 대규모 로봇 trajectory 코퍼스는 action 조건부 예측에 필요한 기본 전이 커버리지를 제공하고, cross-embodiment 데이터셋은 플랫폼 사이에서 옮겨지는 동역학 prior를 유도한다. 사람 영상과 human-to-robot 자원은 로봇이 직접 모은 trajectory 밖의 상호작용 규칙성을 배우는 경로이고, 촉각과 힘, 접촉이 풍부한 데이터셋은 실행 가능성과 물리 일관성을 접지하는 데 특히 중요하다.
+두 표를 겹쳐 보면 현재 자원이 서로 배타적인 묶음이 아니라 여러 병행 기준 위에 퍼져 있다는 사실이 드러난다. 대규모 로봇 trajectory 코퍼스는 action 조건부 예측에 필요한 기본 전이 커버리지를 제공하고, cross-embodiment 데이터셋은 플랫폼 사이에서 옮겨지는 동역학 prior를 유도한다. 사람 영상과 human-to-robot 자원은 로봇이 직접 모은 trajectory 밖의 상호작용 규칙성을 배우는 경로이고, 촉각과 힘, 접촉이 풍부한 데이터셋은 실행 가능성과 물리 일관성을 grounding하는 데 특히 중요하다.
 
-이 다중 기준 관점은 현재 지형의 핵심 한계도 드러낸다. 자원이 빠르게 늘었어도 실패 복구와 결정에 민감한 변이, 물리적으로 접지된 조밀한 감독은 대규모 성공 시연 데이터에 비해 여전히 훨씬 희소하다.
+이 다중 기준 관점은 현재 지형의 핵심 한계도 드러낸다. 자원이 빠르게 늘었어도 실패 복구와 결정에 민감한 변이, 물리적으로 grounding된 조밀한 감독은 대규모 성공 시연 데이터에 비해 여전히 훨씬 희소하다.
 
 ### LIBERO 4-suite 성적
 
@@ -566,7 +566,7 @@ Table 5는 LIBERO 표준 4-suite 성공률을 world modeling이 policy 학습에
 
 수치는 모두 성공률 백분율이고 `–`는 표준 프로토콜 아래 직접 보고된 값이 없다는 뜻이다. 2023년 UniPi가 Long suite에서 0.0%였던 것과 최신 기법이 95%에서 98% 사이를 내는 것을 나란히 놓으면 3년 사이의 격차가 그대로 드러난다.
 
-분해 결과가 말해 주는 바는 두 가지다. 첫째, 강한 성능이 특정 아키텍처 패러다임에만 나타나지 않는다. 분리형과 공유 backbone, 통합형, mixture 기반, latent 예측형 모두에서 경쟁력 있는 성적이 나온다. 둘째, Spatial과 Object에서는 대부분 이미 강한 반면 Goal, 특히 Long에서 하락 폭이 크다. TriVLA는 Spatial 91.2%에서 Long 73.2%로 18.0%p 떨어져 이 경향을 가장 뚜렷하게 보여준다. long-horizon manipulation은 확장된 trajectory 전체에 걸쳐 action에 접지된 일관성을 유지해야 성공하기 때문에 여전히 변별점으로 남는다.
+분해 결과가 말해 주는 바는 두 가지다. 첫째, 강한 성능이 특정 아키텍처 패러다임에만 나타나지 않는다. 분리형과 공유 backbone, 통합형, mixture 기반, latent 예측형 모두에서 경쟁력 있는 성적이 나온다. 둘째, Spatial과 Object에서는 대부분 이미 강한 반면 Goal, 특히 Long에서 하락 폭이 크다. TriVLA는 Spatial 91.2%에서 Long 73.2%로 18.0%p 떨어져 이 경향을 가장 뚜렷하게 보여준다. long-horizon manipulation은 확장된 trajectory 전체에 걸쳐 action에 grounding된 일관성을 유지해야 성공하기 때문에 여전히 변별점으로 남는다.
 
 ### RoboTwin과 CALVIN과 SIMPLER 성적
 
@@ -620,7 +620,7 @@ Sec 8은 단순한 규모 확대만으로 해결되지 않는 여섯 가지 과�
 - **Efficiency bottlenecks (8.2).** world model 기반 policy는 VLA보다 학습과 추론 모두 훨씬 무겁다. 미래 비디오와 action을 함께 예측하거나 policy 학습 전에 fine-tuning이 필요해서 적응 비용이 크고, diffusion 기반 비디오 예측의 반복 denoising이 추론 지연을 키운다. 대응은 세 가지다. 경량 어댑터로 기반 모델을 대체로 동결하는 파라미터 효율 전략, MimicVideo와 LingBot-VA처럼 세밀한 시각 디테일보다 모션 동역학을 우선하는 부분 denoising, LeWorldModel처럼 latent 공간으로 옮겨 고차원 생성을 피하는 방식이다. 더 나아가 Fast-WAM은 world modeling을 학습 단계에만 쓰고 배포 시점에서 제거한다.
 - **Multi-modal perception bottlenecks (8.3).** 현재 world model은 시각 합성에는 뛰어나지만 실세계 상호작용의 물리 동역학과는 분리돼 있다. 시각과 proprioception에 치우쳐 마찰과 강성, 접촉 안정성처럼 직접 관찰되지 않는 속성을 잡지 못한다. proprioception은 관절 각도 같은 로봇 자신의 상태 감각 입력이다. 촉각 센서는 고주파 순간 사건을 잡지만 저차원 신호라 joint latent 최적화에서 고차원 시각 특징에 희석되거나 압도되기 쉽다. 주파수와 차원이 다른 비동기 신호를 정렬하고 시각 지배를 막는 것이 구조적 과제다.
 - **Classical control integration (8.4).** MPC는 action 최적화를 위해 world model rollout을 반복해야 해서 고용량 모델의 실시간 배치를 심하게 제약한다. 더 근본적으로는 학습된 동역학의 신경망 표현력과 Lyapunov 안정성이나 robust control 같은 형식적 제어 보증을 어떻게 양립시킬지가 남는다. MPC에 국한하지 않고 성숙한 제어 원리와 학습된 동역학을 융합하는 것이 자기적응형 로봇 시스템으로 가는 경로로 제시된다.
-- **Symbolic structure integration (8.5).** 픽셀 기반 rollout에서 long-horizon으로 갈수록 커지는 compounding error는 계획 신뢰성을 떨어뜨리는데, 심볼릭 표현은 저수준 세부를 추상화하고 이산적이거나 규칙 기반인 전이를 모델링해 이를 완화한다. 다만 적절한 추상화와 지각 접지가 필요하고, 고차원 observation이 사전 정의된 심볼로 깔끔히 매핑되지 않으면 동작하지 않는다. 학습된 지각 표현과 심볼 구조를 결합한 하이브리드가 유망한 방향으로 꼽힌다.
+- **Symbolic structure integration (8.5).** 픽셀 기반 rollout에서 long-horizon으로 갈수록 커지는 compounding error는 계획 신뢰성을 떨어뜨리는데, 심볼릭 표현은 저수준 세부를 추상화하고 이산적이거나 규칙 기반인 전이를 모델링해 이를 완화한다. 다만 적절한 추상화와 perceptual grounding이 필요하고, 고차원 observation이 사전 정의된 심볼로 깔끔히 매핑되지 않으면 동작하지 않는다. 학습된 지각 표현과 심볼 구조를 결합한 하이브리드가 유망한 방향으로 꼽힌다.
 - **Evaluation metrics (8.6).** 널리 합의된 평가 지표가 없다. 시각적으로 그럴듯해도 action 조건부 동역학과 인과 일관성, controllability를 못 지키는 모델이 있고, 반대로 시각적 사실성이 낮아도 계획이나 policy 평가에 유용할 수 있다. 저자들은 과제 성공률과 policy 순위 충실도, 실행 가능성 진단 같은 소수 표준 지표 집합을 세워 그럴듯하기만 한 모델과 실제로 실행 가능한 모델을 구분하자고 제안한다.
 
 이 여섯 가지에 더해 서베이 자체의 한계도 읽을 때 감안해야 한다. 실험이 없는 taxonomy 서베이라 Table 5와 Table 6의 수치는 모두 원논문이 직접 보고한 값의 취합이고 동일 조건 재현이 아니다. 저자들도 프로토콜이 서로 달라 엄밀한 순위 비교에는 부적합하다고 명시한다. 또한 인용 문헌 상당수가 2026년 arXiv 프리프린트여서 동료 심사를 거치지 않은 결과가 많다.
@@ -644,7 +644,7 @@ Sec 8은 단순한 규모 확대만으로 해결되지 않는 여섯 가지 과�
 - [[physical-ai/wu-2023-unleashing-large-scale-video-generative]]: 이 서베이가 Unified VLA로 분류한 GR-1의 원논문. 미래 프레임 예측과 action 예측을 하나의 backbone에서 같은 토큰 시퀀스로 처리하는 방식을 논문 하나로 확인할 수 있다.
 - [[physical-ai/jo-2026-groot-n1-5-vla-primer]]: 이 서베이가 Latent-space world modeling으로 분류한 FLARE와 imagination-based로 분류한 DreamGen이 실제로 한 모델(GR00T N1.5) 안에서 함께 쓰인 사례.
 - [[physical-ai/brohan-2022-rt-1-robotics-transformer-for-real-world]]: 예측 구조 없이 observation에서 action으로 곧장 가는 반응형 policy의 출발점. 이 서베이가 진단하는 long-horizon 약점의 기준선에 해당한다.
-- [[llms/cai-2026-vlm3-vision-language-models]]: 표준 VLM이 3D를 네이티브로 배운다는 주장. 이 서베이 Sec 3.6이 말하는 픽셀을 거치지 않는 예측 표현과 방향이 같고, metric depth와 camera pose 같은 능력은 world model이 물리 세계를 접지할 때의 바탕이 된다.
+- [[llms/cai-2026-vlm3-vision-language-models]]: 표준 VLM이 3D를 네이티브로 배운다는 주장. 이 서베이 Sec 3.6이 말하는 픽셀을 거치지 않는 예측 표현과 방향이 같고, metric depth와 camera pose 같은 능력은 world model이 물리 세계에 grounding할 때의 바탕이 된다.
 
 ## 외부 참조
 

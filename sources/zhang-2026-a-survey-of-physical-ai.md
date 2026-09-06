@@ -143,7 +143,7 @@ Physical AI를 로보틱스나 vision이 아니라 LLM이 품고 있는 world kn
 
 이 지식이 Physical AI에서 실제로 쓰이는 방식은 네 가지로 정리된다. SayCan은 LLM이 뽑은 단계 시퀀스를 학습된 affordance 값으로 걸러 물리적으로 불가능한 action을 쳐내고, Inner Monologue는 환경 관찰을 언어로 되먹여 실행 중 재계획을 수행한다. Code as Policies와 ProgPrompt는 산문 대신 실행 가능한 로봇 프로그램을 짜게 하고, Voyager는 그렇게 만든 skill을 계속 쌓아 올린다. VoxPoser는 지시문에서 공간 value map을 합성해 reward 설계 부담을 줄인다. 그리고 여러 단계에 걸친 과제에서는 LLM이 도구와 하위 모듈을 지휘하는 조정자 역할을 맡는다.
 
-한계는 결국 언어와 물리 사이의 추상화 격차다. 언어는 연속적인 물리 상태를 성기게 압축하기 때문에 자세, 속도, 접촉, 변형, 불확실성, embodiment 제약이 빠진다. 유리가 깨지기 쉽다거나 손잡이를 잡을 수 있다는 사실은 알아도, 기하, 접촉, 마찰, 미래 trajectory를 추정하지는 못한다. LLM-modulo 계열 분석과 PlanBench 갱신판이 검증기 없는 언어 모델의 planning이 왜 불안정한지를 보였고, PHYBench와 PhysToolBench 같은 물리 추론 벤치마크가 동역학과 도구 사용에서 같은 약점을 드러낸다.
+한계는 결국 언어와 물리 사이의 추상화 격차다. 언어는 연속적인 물리 상태를 성기게 압축하기 때문에 자세, 속도, 접촉, 변형, 불확실성, embodiment 제약이 빠진다. 유리가 깨지기 쉽다거나 손잡이를 잡을 수 있다는 사실은 알아도, 기하, 접촉, 마찰, 미래 trajectory를 추정하지는 못한다. LLM-modulo 계열 분석과 PlanBench 갱신판이 검증기 없는 언어 모델의 planning이 왜 불안정한지를 보였고, PHYBench와 PhysToolBench 같은 물리 추론 벤치마크가 동역학과 tool use에서 같은 약점을 드러낸다.
 
 ### 3.2 perception으로의 grounding (Section 3)
 

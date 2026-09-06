@@ -89,7 +89,7 @@ if_add_node_summary: "yes"
 
 - **OSS 버전은 standard PDF parsing만 지원** — 복잡한 레이아웃 · OCR 필요 문서는 자사 cloud의 PageIndex OCR을 별도로 호출하라고 README가 반복. self-host 품질과 cloud 품질 간 명시적 격차.
 - **LLM API 호출량 다수** — TOC 검출 · 추출 · 변환 · 매핑 · 검증 · 보정 단계마다 LLM 호출. `max_tokens=20000` 그룹 단위로 문서 전체 순회. 비용 · 지연 트레이드오프 큼.
-- **Multi-document corpus는 default 아님** — README: *"PageIndex currently enables reasoning-based RAG within a single document by default."* `examples/tutorials/doc-search/`의 metadata / semantics / description 3가지 워크플로우와 별도 블로그 *PageIndex File System*은 OSS 코드에 포함되지 않은 것으로 보임.
+- **Multi-document corpus는 default 아님** — README: *"PageIndex currently enables reasoning-based RAG within a single document by default."* `examples/tutorials/doc-search/`의 metadata / semantics / description 3가지 워크플로와 별도 블로그 *PageIndex File System*은 OSS 코드에 포함되지 않은 것으로 보임.
 - **TOC 부재 문서의 트리 합성 정확도는 모델 의존** — `process_no_toc`는 LLM 환각 가능. `fix_incorrect_toc_with_retries(max_attempts=3)` 외에는 강한 ground-truth check 부재.
 - **`retrieve_model: "gpt-5.4"` 비표준 alias** — default config에 박혀 있어 self-host 첫 실행 시 혼동 여지.
 

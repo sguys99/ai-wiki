@@ -124,7 +124,7 @@ PageIndex의 외부 벤치마크 수치(`Mafin 2.5 FinanceBench 98.7%` 등)는 �
 - **PageIndex Cloud SaaS 비용 모델 미공개** — `PAGEINDEX_API_KEY`만 언급. OSS 자체 호스팅 시 LLM API 호출량(TOC 검출·추출·변환·매핑·검증·보정 각 단계마다 발생)이 cloud에선 어떻게 청구되는지 정보 없음.
 - **"vectorless"의 엄밀성** — *"임베딩을 0% 사용하지 않는다"* 는 보장은 OSS 코드 기준. cloud 내부 구현은 불투명하므로 *"agent-facing API에 embedding이 노출되지 않는다"* 정도로 이해하는 것이 안전.
 - **벤치마크 부재** — 5축 비교 표는 hand-waving. 실제 cost/latency 비교는 별도 측정 필요.
-- **single-document 가정** — OSS README *"reasoning-based RAG within a single document by default"* 를 한 줄로만 다룸. multi-doc은 OSS의 `examples/tutorials/doc-search/` 워크플로우에서 별도 처리.
+- **single-document 가정** — OSS README *"reasoning-based RAG within a single document by default"* 를 한 줄로만 다룸. multi-doc은 OSS의 `examples/tutorials/doc-search/` 워크플로에서 별도 처리.
 - **CRAG·Self-RAG·Agentic-RAG와의 관계 미언급** — Pandey의 5개 design space([[applications/pandey-2026-rag-is-no-longer-just]]) 중 vectorless의 위치(Agentic의 변종? 별도 축?) 미정렬.
 - **Conversation history 미시연** — vector RAG의 *"No Awareness of Conversation History"* 를 한계로 지적했지만 데모는 single-turn `llm.invoke`. vectorless가 그 한계를 어떻게 해결하는지 미시연.
 

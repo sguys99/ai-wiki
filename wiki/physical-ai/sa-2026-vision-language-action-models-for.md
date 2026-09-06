@@ -46,7 +46,7 @@ figures:
 
 ## 요약
 
-이 서베이는 Chef Robotics의 Inkyu Sa가 단독으로 쓴 35페이지 분량의 문헌 조사다. VLA 문헌 200편 이상을 양팔(bimanual) manipulation이라는 하나의 문제로 읽어 아키텍처와 학습 레시피, action 표현, 협응 전략, 언어 접지, memory와 world model, 실전 배치라는 일곱 측면으로 정리하고 31개 방법을 표로 대조한다. manipulation은 팔과 손으로 물체를 다루는 과제 영역을 말한다.
+이 서베이는 Chef Robotics의 Inkyu Sa가 단독으로 쓴 35페이지 분량의 문헌 조사다. VLA 문헌 200편 이상을 양팔(bimanual) manipulation이라는 하나의 문제로 읽어 아키텍처와 학습 레시피, action 표현, 협응 전략, language grounding, memory와 world model, 실전 배치라는 일곱 측면으로 정리하고 31개 방법을 표로 대조한다. manipulation은 팔과 손으로 물체를 다루는 과제 영역을 말한다.
 
 두 팔 협응을 렌즈로 고른 이유는 그것이 VLA의 모든 구성 요소를 동시에 압박하기 때문이다. 팔이 하나 늘면 출력 차원이 두 배가 되고, 두 팔이 같은 물체를 쥐면서 서로의 제약이 되며, 시연 데이터(demonstration) 수집 비용도 가장 비싸진다.
 
@@ -224,7 +224,7 @@ RTC의 이득이 특히 큰 이유는 계산량이 아니라 일정을 바꿨기
 
 MEM은 이 문제를 명시적 memory로 다룬다. 최근 과거는 video encoder가 dense한 픽셀 문맥으로 붙들어 수 초 규모의 적응과 가림 회복을 지원하고, 먼 과거는 언어 기반 memory가 의미 사건의 압축 요약으로 최대 15분까지 담는다. π0.6에 통합됐고 π0.7 안에서 재사용되며, memoryless baseline 대비 Bridge에서 14.6%, memory 전용 suite에서 11.8%의 향상과 18개 과제 전반 86.8%, perturbation 조건에서 4.3%의 저하만이 보고됐다. 제한은 다섯 가지인데 가장 깊은 것은 causal confusion이다. 과거 action이 observation에 들어 있으면 전문가 데이터의 높은 상관 때문에 policy가 현재를 추론하는 대신 자기 과거 행동을 복사할 수 있다. 나머지는 학습과 추론의 불일치, history에 비례하는 연산 부담, 언어 요약이 힘의 이력을 버린다는 점, 그리고 memory가 과제 사이에 초기화돼 며칠에 걸쳐 아무것도 축적되지 않는다는 점이다.
 
-### 언어 접지와 일반화
+### language grounding과 일반화
 
 언어는 VLA를 visuomotor policy와 구분하는 인터페이스이며 무엇을 할지 지정하는 일과 하는 도중에 수정하는 일을 함께 맡는다. VLA가 바꾼 것은 입력이 아니라 융합 지점이어서, 지시문 토큰과 이미지 토큰이 공유 Transformer layer를 함께 통과한다.
 
@@ -383,5 +383,5 @@ world model은 반응 대신 예측을 택하는 대안이다. world model은 �
 - [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics]]: 실세계 응용을 향한 VLA 리뷰. 초점이 응용 영역 전반이라 양팔 결합도라는 단일 기준으로 좁히지 않는다.
 - [[physical-ai/cui-2025-openhelix-a-short-survey-empirical]]: dual-system VLA에 한정한 짧은 서베이이자 실증 분석. 이 서베이가 head 계열로 나누는 자리를 System 1과 System 2의 분리 여부로 나눈다.
 - [[physical-ai/zhang-2026-a-survey-of-physical-ai]]: ChatGPT에서 world model과 embodied agent까지의 역사를 다룬 Physical AI 서베이. 범위가 분야사 전체라 이 서베이의 manipulation 초점과 상보적이다.
-- [[physical-ai/hou-2026-world-model-for-robot-learning]]: 로봇 학습 world model 서베이. 병목이 그럴듯한 미래에서 실행 가능한 미래로 옮겨갔다는 진단이 여기 compounding error와 haptic 미접지 한계와 맞물린다.
+- [[physical-ai/hou-2026-world-model-for-robot-learning]]: 로봇 학습 world model 서베이. 병목이 그럴듯한 미래에서 실행 가능한 미래로 옮겨갔다는 진단이 여기 compounding error와 haptic grounding 부재 한계와 맞물린다.
 - [[overviews/physical-ai-overview]]: physical-ai 카테고리의 분류 뼈대와 학습 경로 허브. 이 페이지가 허브의 양팔 manipulation 기준점 역할을 한다.

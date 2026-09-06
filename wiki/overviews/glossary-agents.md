@@ -5,7 +5,7 @@ year: 2026
 category: overviews
 source_collection: synthesis
 glossary_domain: agents
-applies_to: [agents, applications, evaluations, overviews, etc]
+applies_to: [agents, applications, database, evaluations, etc, llms, overviews, physical-ai]
 tags: [glossary, terminology, agents, synthesis]
 ---
 
@@ -19,7 +19,7 @@ agents 도메인(agentic 시스템·tool use·harness·loop engineering) 전문 
 
 | 원어 | canonical 표기 | 금지 표기 | 첫 등장 풀이 예문 | 비고 |
 |---|---|---|---|---|
-| tool use | tool use | 도구 사용 | tool use는 모델이 외부 도구를 호출해 행동 범위를 넓히는 능력이다 | |
+| tool use | tool use | 도구 사용 | tool use는 모델이 외부 도구를 호출해 행동 범위를 넓히는 능력이다 | 로봇이 물리적 도구를 다루는 문맥(RT-2, PhysToolBench, SONIC)도 원문이 tool use라 같은 원어를 쓴다 |
 | function calling | function calling | — | function calling은 모델이 구조화된 인자로 함수를 호출하게 하는 인터페이스다 | "함수 호출"은 일반 프로그래밍 의미와 겹쳐 지침만 |
 | planning | planning | — | planning은 목표를 하위 단계로 쪼개 실행 순서를 정하는 과정이다 | "계획"은 일반어라 지침만 — 기법 명칭 문맥에서는 원어 권장 |
 | policy | policy | 메모리 정책·기억 정책·정책 네트워크 | RL 문맥의 policy는 observation을 받아 action을 정하는 함수다 | agents 도메인은 일반 의미 "정책"(운영 정책 등)이 많아 RL 복합어만 금지 |
@@ -51,7 +51,7 @@ agents 도메인(agentic 시스템·tool use·harness·loop engineering) 전문 
 | loop engineering | loop engineering | 루프 엔지니어링 공학 | loop engineering은 에이전트를 도는 루프 자체를 설계 대상으로 삼는 관점이다 | 고유 기법명 |
 | vault | vault | 볼트 | vault는 에이전트와 사람이 같이 읽고 쓰는 Markdown 파일 폴더를 뜻한다 | 영문 174회 대 "볼트" 19회로 영문이 우세해 vault로 고정. Obsidian 원문 절 제목 인용은 lint-ignore |
 | local-first | local-first | 로컬-퍼스트·로컬 퍼스트 | local-first는 데이터 원본을 사용자 디스크에 두고 서버 없이 도는 설계다 | 표기 흔들림(영문 10회 대 로컬-퍼스트 4회)을 영문으로 고정 |
-| ontology | ontology | 온톨로지 | ontology는 도메인의 개체 종류와 관계 타입을 고정된 집합으로 정의한 구조다 | "온톨로지"는 physical-ai의 물리 상식 분류 문맥에 이미 쓰여 있고, 이 용어집의 applies_to가 그 카테고리를 제외하므로 충돌하지 않는다 |
+| ontology | ontology | 온톨로지 | ontology는 도메인의 개체 종류와 관계 타입을 고정된 집합으로 정의한 구조다 | physical-ai의 물리 상식 분류(Cosmos-Reason1)도 같은 개념이라 원어로 통일한다. 2026-09 applies_to 전 카테고리 확장 시 음차 13건을 정리했다 |
 | distractor | distractor | 교란 도구·방해 도구 | distractor는 task에 함께 노출되지만 풀이에는 필요 없는 도구다 | tool use 평가 문헌의 공통 용어. physical-ai의 시각 distractor와 표기가 같다 (Bandi 2026) |
 | claim | claim | — | claim은 정답이라면 최종 답에 담겨 있어야 하는 원자적 사실 진술이다 | "주장"은 일반어라 오탐이 커서 지침만. 채점 단위 문맥에서는 원어 권장 (Bandi 2026) |
 | coverage | coverage | — | coverage는 task의 claim 점수를 평균낸 값이다 | "커버리지"는 테스트·개념 커버리지 등 다른 문맥에 이미 쓰여 지침만. claim 채점 문맥에서는 원어 (Bandi 2026) |

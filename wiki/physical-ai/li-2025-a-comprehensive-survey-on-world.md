@@ -177,7 +177,7 @@ Dec/Seq/GLV 칸은 RSSM 계보가 채운다. PlaNet이 결정적 메모리와 �
 
 최근 RSSM 확장의 공통 주제는 전이 가능성이다. 모달리티와 과제, embodiment를 넘나드는 일반화가 목표이며, 서로 다른 처방이 같은 문제를 향한다. PreLAR는 암묵적 action 추상을 학습해 영상으로 pre-training한 표현과 제어 fine-tuning을 잇는다. Wang et al.은 optical flow를 embodiment에 무관한 action 표현으로 써서 behavioral cloning된 policy를 다듬는다. SENSEI는 VLM을 distillation해 의미 기반 reward를 얻고 RSSM이 그 reward를 내부에서 예측하고 전파하게 한다.
 
-sim2real 간극을 겨냥한 처방도 있다. ReDRAW는 시뮬레이션에서 pre-training한 뒤 reward 없는 소량 데이터로 실제 환경에 적응하며 latent dynamics에 잔차 보정을 가한다. AdaWM은 학습된 dynamics와 planner 사이의 불일치를 찾아 중요한 부분만 선택적으로 fine-tuning한다. FOUNDER는 foundation model의 표현을 world model 상태 공간에 접지하고 시간 거리 예측으로 유연한 목표를 다루며, LUMOS는 latent 공간에서 on-policy로 동작하는 언어 조건 imitation 프레임워크로 실제 로봇에 zero-shot 전이한다.
+sim2real 간극을 겨냥한 처방도 있다. ReDRAW는 시뮬레이션에서 pre-training한 뒤 reward 없는 소량 데이터로 실제 환경에 적응하며 latent dynamics에 잔차 보정을 가한다. AdaWM은 학습된 dynamics와 planner 사이의 불일치를 찾아 중요한 부분만 선택적으로 fine-tuning한다. FOUNDER는 foundation model의 표현을 world model 상태 공간에 grounding하고 시간 거리 예측으로 유연한 목표를 다루며, LUMOS는 latent 공간에서 on-policy로 동작하는 언어 조건 imitation 프레임워크로 실제 로봇에 zero-shot 전이한다.
 
 RSSM 계보는 자율주행으로도 뻗었다. MILE은 오프라인 전문가 데이터로 계획용 미래 상태를 상상하고, SEM2는 의미 필터링과 다중 소스 샘플링으로 주행 관련 feature를 뽑는다. Popov et al.은 latent 생성 world model로 policy를 전문가 상태에 다시 맞춰 covariate shift를 다루고, VL-SAFE는 VLM에서 얻은 안전 점수로 world model을 지도해 안전한 trajectory를 만든다. CALL은 RSSM을 multi-agent 강화학습으로 확장하며 자기 중심 정보 공유를 도입했다.
 

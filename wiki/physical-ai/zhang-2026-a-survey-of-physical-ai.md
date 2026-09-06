@@ -68,7 +68,7 @@ figures:
 
 Physical AI를 다루는 기존 논의는 대체로 세 갈림에서 출발했다. 로보틱스 쪽은 embodiment와 제어를 앞세우고, vision 쪽은 물리 인식과 생성을 앞세우며, cyber-physical 쪽은 배포와 센싱 인프라를 앞세운다. 세 관점 모두 유효하지만 Physical AI를 하나의 연구 문제가 아니라 응용 사례의 모음처럼 보이게 만든다는 것이 저자들의 진단이다.
 
-이 논문이 택한 출발점은 네 번째 관점이다. GPT-4, Gemini, Claude 같은 frontier LLM이 텍스트 생성기에서 지시문 따르기, 과제 분해, 도구 사용, planning, agentic 상호작용을 수행하는 범용 추론 엔진으로 바뀐 것이 계기다. 대규모 pre-training이 물체와 사건에 대한 의미 지식, 일상 상황에 대한 상식, 과제 수행 절차, action의 결과에 대한 인과 지식을 파라미터에 남기기 때문이다.
+이 논문이 택한 출발점은 네 번째 관점이다. GPT-4, Gemini, Claude 같은 frontier LLM이 텍스트 생성기에서 지시문 따르기, 과제 분해, tool use, planning, agentic 상호작용을 수행하는 범용 추론 엔진으로 바뀐 것이 계기다. 대규모 pre-training이 물체와 사건에 대한 의미 지식, 일상 상황에 대한 상식, 과제 수행 절차, action의 결과에 대한 인과 지식을 파라미터에 남기기 때문이다.
 
 문제는 이 지식만으로는 물리 세계에 닿지 못한다는 점이다. 물리 세계는 촘촘하고 연속적이며 시간에 따라 변하고 기하, dynamics, 접촉, 힘, 불확실성, embodiment 제약의 지배를 받는다. embodiment는 로봇의 물리적 형상과 그에 딸린 제어 API 구성을 뜻한다. 언어는 효과적인 추상화 인터페이스지만 이런 상태를 표현하기에는 지나치게 성기고 손실이 크다.
 
@@ -145,7 +145,7 @@ compounding error는 policy의 작은 예측 오차가 다음 입력을 어긋�
 - **목표와 reward 지정**: VoxPoser는 지시문에서 공간 value map을 합성해 사람이 reward를 직접 설계하는 부담을 줄인다. reward는 policy가 얼마나 잘했는지를 알려주는 스칼라 신호다.
 - **agentic 조율**: 여러 단계에 걸친 과제에서 LLM이 도구와 하위 모듈을 지휘하며 일회성 planner가 아니라 closed-loop 의사결정 엔진으로 동작한다.
 
-한계는 언어와 물리 사이의 추상화 격차로 수렴한다. LLM은 유리가 깨지기 쉽다거나 손잡이를 잡을 수 있다는 사실은 알아도 기하, 접촉, 힘, 마찰, 미래 trajectory를 추정하지 못한다. 그 결과 없는 물체를 환각하거나 실행 불가능한 계획을 제안하거나 action이 성공했다고 가정하는 오류가 나온다. LLM-modulo 계열 분석과 PlanBench 갱신판이 검증기 없는 언어 모델의 planning이 왜 불안정한지를 보였고, PHYBench와 PhysToolBench 같은 물리 추론 벤치마크가 동역학과 도구 사용에서 같은 약점을 드러낸다.
+한계는 언어와 물리 사이의 추상화 격차로 수렴한다. LLM은 유리가 깨지기 쉽다거나 손잡이를 잡을 수 있다는 사실은 알아도 기하, 접촉, 힘, 마찰, 미래 trajectory를 추정하지 못한다. 그 결과 없는 물체를 환각하거나 실행 불가능한 계획을 제안하거나 action이 성공했다고 가정하는 오류가 나온다. LLM-modulo 계열 분석과 PlanBench 갱신판이 검증기 없는 언어 모델의 planning이 왜 불안정한지를 보였고, PHYBench와 PhysToolBench 같은 물리 추론 벤치마크가 동역학과 tool use에서 같은 약점을 드러낸다.
 
 ### perception으로의 grounding
 
@@ -271,8 +271,8 @@ world model과 LLM의 관계는 대체가 아니라 보완이다. LLM은 상위 
 
 | 시스템 | 범주 | 공개 수준 | 로드맵에서의 역할 |
 |---|---|---|---|
-| GPT-4와 ChatGPT 계열 agent | LLM과 agentic 어시스턴트 | 비공개, 기술 보고서나 제품 문서 | 상위 world knowledge, planning, 도구 사용, 과제 분해 |
-| Claude 계열 어시스턴트 | LLM과 agentic 어시스턴트 | 비공개, 제품 문서 | 추론, 도구 사용, 코딩, agentic 조율 |
+| GPT-4와 ChatGPT 계열 agent | LLM과 agentic 어시스턴트 | 비공개, 기술 보고서나 제품 문서 | 상위 world knowledge, planning, tool use, 과제 분해 |
+| Claude 계열 어시스턴트 | LLM과 agentic 어시스턴트 | 비공개, 제품 문서 | 추론, tool use, 코딩, agentic 조율 |
 | Gemini Robotics와 Gemini Robotics 1.5 | 로보틱스 foundation model | 비공개 또는 부분 공개, 기술 보고서 | 멀티모달 추론, embodied 제어, 실제 로봇 상호작용 |
 | Cosmos | world foundation model 플랫폼 | 부분 공개, 기술 보고서 | world model, 합성 데이터, 시뮬레이션, 자율주행, 로보틱스 |
 | GR00T N1 | humanoid foundation model | 부분 공개, 기술 보고서 | generalist humanoid policy와 cross-embodiment action 학습 |

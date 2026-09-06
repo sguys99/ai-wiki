@@ -59,7 +59,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-VLA 문헌 200편 이상을 양팔(bimanual) 조작이라는 렌즈로 7개 측면(아키텍처, 학습 레시피, action 표현, 협응 전략, 언어 접지, memory와 world model, 실전 배치)에 걸쳐 정리한 35페이지 서베이. 어떤 아키텍처가 두 팔 과제에서 성공할지를 예측하는 변수는 과제 종류가 아니라 두 팔의 결합도(coupling tightness)라는 게 중심 주장이다.
+VLA 문헌 200편 이상을 양팔(bimanual) 조작이라는 렌즈로 7개 측면(아키텍처, 학습 레시피, action 표현, 협응 전략, language grounding, memory와 world model, 실전 배치)에 걸쳐 정리한 35페이지 서베이. 어떤 아키텍처가 두 팔 과제에서 성공할지를 예측하는 변수는 과제 종류가 아니라 두 팔의 결합도(coupling tightness)라는 게 중심 주장이다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -129,7 +129,7 @@ Fig. 2가 핵심 결론이다. Independent와 loosely coupled 행에서는 거�
 - 시각 표현: backbone encoder(SigLIP/CLIP, 의미 풍부하지만 metric 정밀도 약함), robot-specific(R3M 등), multi-view fusion(양팔은 팔당 wrist camera + 3인칭 필수. 한 시점이 두 작업 공간과 공유 물체를 다 못 담음).
 - 안전: bounds와 rate limit, OOD 탐지(flow head는 최종 step velocity-field norm이 신뢰도 proxy), 팔 간 충돌 회피, 인간 개입. 넷 다 heuristic이고 실패율 상한을 주지 못한다.
 - sim2real: 마찰, compliance, 변형이 가장 부실하게 시뮬레이션되는데 그게 tight coupling의 본질. 현재 시스템은 물리 데이터 위주로 학습(locomotion과 반대).
-- world model(Section X-D): 반응 대신 예측. GigaBrain-0/0.5M(합성 데이터 엔진, 양팔 folding과 packing 약 30% 향상), V-JEPA 2(100만 시간 영상 self-supervised, zero-shot 65~80%), direct video action(Rhoda AI). 다섯 한계는 compounding error, inverse-dynamics 오차, 비용(수백 ms), hallucination, haptic 미접지.
+- world model(Section X-D): 반응 대신 예측. GigaBrain-0/0.5M(합성 데이터 엔진, 양팔 folding과 packing 약 30% 향상), V-JEPA 2(100만 시간 영상 self-supervised, zero-shot 65~80%), direct video action(Rhoda AI). 다섯 한계는 compounding error, inverse-dynamics 오차, 비용(수백 ms), hallucination, haptic grounding 부재.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -164,7 +164,7 @@ Fig. 2가 핵심 결론이다. Independent와 loosely coupled 행에서는 거�
 
 이 wiki 안의 인접 자료:
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]: GR00T N1. 본 서베이가 open-weight dual-system 대표로 인용(N1.7 revision은 accelerator별 지연표 공개, 31~173ms). GR00T N1이 이 서베이 Table III, XIV, XII의 한 행.
-- [[physical-ai/hou-2026-world-model-for-robot-learning]] 와 [[physical-ai/li-2025-a-comprehensive-survey-on-world]]: world model 서베이 2종. 본 서베이 Section X-D(world model as data engine, future prediction)와 주제가 겹침. 병목이 "그럴듯한 미래에서 action에 alignment된 실행 가능한 미래로" 옮겨갔다는 진단이 여기 compounding-error, haptic 미접지 한계와 맞물린다.
+- [[physical-ai/hou-2026-world-model-for-robot-learning]] 와 [[physical-ai/li-2025-a-comprehensive-survey-on-world]]: world model 서베이 2종. 본 서베이 Section X-D(world model as data engine, future prediction)와 주제가 겹침. 병목이 "그럴듯한 미래에서 action에 alignment된 실행 가능한 미래로" 옮겨갔다는 진단이 여기 compounding-error, haptic grounding 부재 한계와 맞물린다.
 - [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]: SONIC. whole-body humanoid 제어(locomotion 영역). 본 서베이는 aerial과 legged를 manipulator와 policy나 레시피를 공유할 때만 포함하므로 직접 대상은 아니지만 universal action token(FSQ)과 humanoid 배치 맥락이 인접.
 - [[physical-ai/zhang-2024-vision-and-language-navigation-today]]: VLN 서베이. embodied AI의 navigation 영역. 본 서베이는 manipulation 영역에서 같은 개념(world/human model, language grounding)을 다룸.
 - [[overviews/physical-ai-overview]]: physical-ai 허브. (이 자료가 들어오면서 "자료 0건" 전제는 이미 해소됨. 허브 갱신 후보.)

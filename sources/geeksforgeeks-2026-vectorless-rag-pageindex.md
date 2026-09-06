@@ -132,7 +132,7 @@ tags: [rag, vectorless-rag, pageindex, reasoning-based-rag, tree-search, tutoria
 - **PageIndex Cloud SaaS는 비용 모델 미공개** — `PAGEINDEX_API_KEY`만 언급할 뿐, OSS 자체 호스팅 시 LLM API 호출량(TOC 검출·추출·변환·매핑·검증·보정 각 단계마다 발생, OSS 페이지에 상세) 가 cloud에선 어떻게 청구되는지 정보 없음.
 - **"vectorless"의 엄밀성 의문** — PageIndex가 *임베딩을 0% 사용하지 않는다*는 보장은 OSS 코드 기준이고, cloud 내부 구현은 불투명. 사용자에게는 *"agent-facing API에 embedding이 노출되지 않는다"* 정도로 이해되어야 안전.
 - **벤치마크 부재** — 5축 비교 표는 hand-waving. 실제 cost/latency 비교는 별도 측정 필요.
-- **single-document 가정의 부각 부족** — PageIndex OSS README가 *"reasoning-based RAG within a single document by default"* 라고 명시한 사실을 아티클은 한 줄("Less effective for searching across many unrelated documents") 정도로만 다룸. multi-doc은 OSS의 `examples/tutorials/doc-search/`(metadata/semantics/description 3개 워크플로우)에서 별도 처리.
+- **single-document 가정의 부각 부족** — PageIndex OSS README가 *"reasoning-based RAG within a single document by default"* 라고 명시한 사실을 아티클은 한 줄("Less effective for searching across many unrelated documents") 정도로만 다룸. multi-doc은 OSS의 `examples/tutorials/doc-search/`(metadata/semantics/description 3개 워크플로)에서 별도 처리.
 - **CRAG·Self-RAG·Agentic-RAG와의 관계 미언급** — Pandey 카드(`applications/pandey-2026-rag-is-no-longer-just`)의 5개 design space 중 vectorless가 어디에 들어가는지(Agentic의 한 변종? structure-based의 별도 축?) 미정렬.
 - **Conversation history 미시연** — vector RAG 한계로 *"No Awareness of Conversation History"* 를 지적했지만, 본 데모 코드는 single-turn `llm.invoke`만 보이므로 vectorless가 그 한계를 어떻게 해결하는지 미시연.
 

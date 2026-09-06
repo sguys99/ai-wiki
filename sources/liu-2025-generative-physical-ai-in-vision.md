@@ -95,7 +95,7 @@ figures:
     kind: table
     file: assets/liu-2025-generative-physical-ai-in-vision/tab03.png
     raw: raw/papers/liu-2025-generative-physical-ai-in-vision-figures/tab03.png
-    caption: "Cosmos-Reason1의 물리 상식 온톨로지. 공간, 시간, 기초 물리 3개 대분류와 16개 세부 범주"
+    caption: "Cosmos-Reason1의 물리 상식 ontology. 공간, 시간, 기초 물리 3개 대분류와 16개 세부 범주"
     page: 12
     bbox_norm: [0.065, 0.817, 0.510, 0.933]
     strategy: manual
@@ -160,7 +160,7 @@ Sim-evaluated Gen(SeG)에서는 생성 결과가 시뮬레이션 환경에 배�
 
 Fig. 6에 다섯 유형의 방법 트리가 있다. Sora, OpenSora, CogVideoX, ModelScope, Cosmos 계열은 모두 인터넷 규모 영상으로 학습했다. 이들은 일관된 물체 상호작용과 그럴듯한 운동을 보인다. 저자들은 이를 창발적 물리 추론이라 부르면서도 아직 초기 단계라고 분명히 한다. PhyGenBench는 이 모델들이 기본 물리 법칙조차 정확히 표현하지 못한다고 보고했다. Kang 등의 연구는 더 구체적으로 지적한다. 모델과 데이터셋 크기를 키우는 것만으로는 분포 밖 물리 일반화가 개선되지 않았다. 모델은 일반 규칙을 추상화하기보다 아주 비슷한 학습 예시의 존재에 의존한다는 것이다.
 
-NVIDIA의 Cosmos는 영상 데이터 파이프라인, 토크나이저, pre-training 모델과 post-training 모델을 묶은 오픈소스 플랫폼이다. 대규모 영상으로 학습한 world foundation model을 제공한다. Transformer 기반 확산 모델과 자기회귀 모델이 그 뼈대다. 로봇 manipulation, 카메라 제어, 자율주행으로 fine-tuning할 수 있다. Cosmos-Reason1은 embodied 의사결정용 multimodal LLM으로, 공간, 시간, 기초 물리 3개 대분류와 16개 세부 범주의 물리 상식 온톨로지를 정의하고 이진 2,828개와 객관식 2,909개를 합쳐 5,737개 문항을 모았다. 그중 604개는 426개 영상과 연결된 벤치마크로 따로 골라냈다. Cosmos-Transfer1은 분할 맵, 깊이 맵, 엣지 맵 같은 공간 입력으로 world 생성을 제어하는 ControlNet류 구조를 얹는다.
+NVIDIA의 Cosmos는 영상 데이터 파이프라인, 토크나이저, pre-training 모델과 post-training 모델을 묶은 오픈소스 플랫폼이다. 대규모 영상으로 학습한 world foundation model을 제공한다. Transformer 기반 확산 모델과 자기회귀 모델이 그 뼈대다. 로봇 manipulation, 카메라 제어, 자율주행으로 fine-tuning할 수 있다. Cosmos-Reason1은 embodied 의사결정용 multimodal LLM으로, 공간, 시간, 기초 물리 3개 대분류와 16개 세부 범주의 물리 상식 ontology를 정의하고 이진 2,828개와 객관식 2,909개를 합쳐 5,737개 문항을 모았다. 그중 604개는 426개 영상과 연결된 벤치마크로 따로 골라냈다. Cosmos-Transfer1은 분할 맵, 깊이 맵, 엣지 맵 같은 공간 입력으로 world 생성을 제어하는 ControlNet류 구조를 얹는다.
 
 남은 유형에서는 PhyT2V가 LLM으로 프롬프트를 반복 정제해 물체와 물리 규칙을 뽑고 생성 영상 캡션과 대조해 불일치를 고친다. WISA는 동역학, 열역학, 광학에 걸친 17가지 현상의 영상 약 32,000편으로 WISA-32K를 만들고 물리 속성 임베딩과 mixture-of-physical-experts attention, 물리 분류기를 붙여 학습한다. PISA는 실제 361편과 Kubric 합성 60편의 낙하 영상으로 분할, 광학 흐름, 깊이 정렬을 reward 삼는 post-training을 실행한다. 운동 제어에는 Generative Image Dynamics(단일 이미지에서 스펙트럼 볼륨을 거쳐 장기 픽셀 trajectory 생성), Motion Prompting(운동 trajectory를 조건으로), Motion Guidance(광학 흐름 추정기의 기울기로 확산 제어)가 있다. CoCoGen은 이산화한 편미분방정식 정보를 샘플링에 직접 주입해 다르시 흐름이나 버거스 방정식 데이터를 만든다.
 
@@ -186,7 +186,7 @@ VideoPhy는 CogVideoX, OpenSora 같은 공개 모델과 Pika, Gen-2 같은 비�
 
 평가 지표 세 부류 가운데 가장 믿을 만한 것은 사람 평가다. 대신 비용과 시간이 든다. VLM 기반 평가는 확장성을 얻지만 평가자 자신의 물리 이해가 미해결 문제로 남는다. 자동 정량 평가는 정밀하고 재현도 되지만 대개 짝지어진 실세계 정답 영상을 요구한다.
 
-물리 상식의 정의가 연구마다 달라 모델 간 비교가 어렵다는 점을 저자들은 분야의 핵심 과제로 짚는다. Cosmos-Reason1의 온톨로지가 현재로선 가장 구체적인 제안이다.
+물리 상식의 정의가 연구마다 달라 모델 간 비교가 어렵다는 점을 저자들은 분야의 핵심 과제로 짚는다. Cosmos-Reason1의 ontology가 현재로선 가장 구체적인 제안이다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
@@ -195,7 +195,7 @@ VideoPhy는 CogVideoX, OpenSora 같은 공개 모델과 Pika, Gen-2 같은 비�
 - 표준 벤치마크가 나왔지만 물리 인지 평가는 여전히 임시방편이거나 수작업에 의존한다. 생성 결과를 물리 엔진에 실제로 올려 타당성을 재는 방법, 로봇 manipulation과 자율주행 같은 하위 과제 성능으로 간접 평가하는 방법을 제안한다. 시뮬레이션과 실세계에서 실행한 embodied agent의 행동 유사도를 척도로 삼자는 제안도 한다.
 - 명시적 물리 법칙을 결합하면 설명 가능성이 따라온다. 입력에서 출력까지의 경로를 힘, 제약, 상호작용으로 되짚을 수 있다. saliency map이나 특징 귀인 같은 기존 해석 기법과 결합하는 길도 있다.
 - foundation model 자체에 물리를 심을 수도 있다. 여러 인식 foundation model을 통합하고 대규모 합성 데이터와 미분 가능한 물리로 물리 유도 pre-training을 하는 길이다. 물리 법칙 발견을 유도하는 자기지도 목표 설계도 같은 방향에 속한다.
-- 신경망과 상징 표현을 섞는 하이브리드에서는 미분 가능한 시간 논리 같은 상징적 물리 제약을 심어 물리적으로 타당하고 시간적으로 일관된 출력을 유도한다. 상징 그래프나 온톨로지는 합성적 추론에도 강하다.
+- 신경망과 상징 표현을 섞는 하이브리드에서는 미분 가능한 시간 논리 같은 상징적 물리 제약을 심어 물리적으로 타당하고 시간적으로 일관된 출력을 유도한다. 상징 그래프나 ontology는 합성적 추론에도 강하다.
 - 생성형 시뮬레이션 엔진도 그중 하나다. "폭우 뒤 가파른 산의 산사태를 시뮬레이션하라" 같은 고수준 프롬프트를 상호작용 가능한 물리 일관 환경으로 바꾸는 text-to-simulation이다. Genesis가 후보 사례다. 걸림돌은 다양한 프롬프트와 장면에 대한 일반화가 아직 좁다는 점이다.
 - 로봇과 embodied AI에서는 물리적으로 사실적인 합성 데이터로 sim2real 전이를 개선하자고 본다. VLA 모델에 물리 추론을 명시적으로 주입해 낯선 환경에서 예측 성능을 끌어올리는 방안도 제안한다. 응용은 기후 모델링과 조직의 물리 성질을 재현하는 수술 훈련과 계획까지 이른다.
 
@@ -234,4 +234,4 @@ VideoPhy는 CogVideoX, OpenSora 같은 공개 모델과 Pika, Gen-2 같은 비�
 | fig06 | 10 | PAG-I 다섯 가지 유형 방법 트리 | caption-region | ★ wiki 권장 (논문 지도) |
 | tab01 | 3 | 여섯 개념 비교표 (PS, PU, G, PUG, PAG-E, PAG-I) | manual | ★ wiki 권장 (정의) |
 | tab02 | 6 | PAG-E 방법 38편 요약표 | manual | (선택, 세로로 길다) |
-| tab03 | 12 | Cosmos-Reason1 물리 상식 온톨로지 | manual | (선택) |
+| tab03 | 12 | Cosmos-Reason1 물리 상식 ontology | manual | (선택) |

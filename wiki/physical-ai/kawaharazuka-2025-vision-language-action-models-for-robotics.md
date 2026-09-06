@@ -335,7 +335,7 @@ VLA 연구에 쓰이는 로봇은 다섯 범주로 정리된다.
 | 범주 | 대표 기종 | 특징 |
 |---|---|---|
 | manipulator | Franka Emika Panda, UR5, KUKA LBR iiwa, xArm, WidowX 250, ViperX 300, SO-100/101 | 가장 널리 쓰인다. 대개 5에서 7 자유도이며 두 대를 나란히 놓아 양팔 구성을 만든다. WidowX와 ViperX, ALOHA, SO-100/101은 하드웨어가 완전 공개돼 있다 |
-| hand와 gripper | Robotiq 2F-85/140, LEAP Hand, Shadow Hand, Inspire RH56, UMI | 2지 그리퍼는 grasping에 적합하고 4지와 5지 손은 도구 사용과 in-hand manipulation을 가능하게 한다. LEAP Hand와 UMI는 오픈소스다 |
+| hand와 gripper | Robotiq 2F-85/140, LEAP Hand, Shadow Hand, Inspire RH56, UMI | 2지 그리퍼는 grasping에 적합하고 4지와 5지 손은 tool use와 in-hand manipulation을 가능하게 한다. LEAP Hand와 UMI는 오픈소스다 |
 | mobile robot | Hello Stretch, Google Robot, LoCoBot, Mobile ALOHA, AgiBot G1, TurtleBot 2 | 이동과 조작을 함께 다룬다. RT-1은 arm과 base 동작을 동시에 낸다 |
 | quadruped | Unitree A1, Go1, Go2, B1, Boston Dynamics Spot, ANYmal | 비정형 지형 주행이 강점이며 강화학습 기반 제어와 결합된다. 팔을 결합해 조작까지 확장하기도 한다 |
 | humanoid | Fourier GR-1, Unitree G1, Unitree H1, Booster T1 | 사람용 공간과 도구에 맞고, 사람 동작 데이터로 학습한 VLA와 형상이 가까워 궁합이 좋다 |
