@@ -23,35 +23,35 @@ figures:
   - id: fig02
     file: assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig02.png
     raw: raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig02.png
-    caption: "current observation 1 (world model 데모의 현재 observation)"
+    caption: "world model 데모의 현재 observation 1. 전자레인지와 싱크대가 있는 주방을 로봇 카메라가 담았다"
     source_url: "https://www.pi.website/images/pi07/current_1.png"
     strategy: fetched
     curated: false
   - id: fig03
     file: assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig03.png
     raw: raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig03.png
-    caption: "current observation 2"
+    caption: "world model 데모의 현재 observation 2. 로봇 카메라가 담은 주방 조리대 장면이다"
     source_url: "https://www.pi.website/images/pi07/current_2.png"
     strategy: fetched
     curated: true
   - id: fig04
     file: assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig04.png
     raw: raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig04.png
-    caption: "current observation 3"
+    caption: "world model 데모의 현재 observation 3. 레인지 위 접시에 음식이 담긴 주방 조리대 장면이다"
     source_url: "https://www.pi.website/images/pi07/current_3.png"
     strategy: fetched
     curated: false
   - id: fig05
     file: assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig05.png
     raw: raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig05.png
-    caption: "current observation 4"
+    caption: "world model 데모의 현재 observation 4. 사람이 앉은 테이블에 접시와 음식이 놓인 실내 장면이다"
     source_url: "https://www.pi.website/images/pi07/current_4.png"
     strategy: fetched
     curated: false
   - id: fig06
     file: assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig06.png
     raw: raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig06.png
-    caption: "current observation 5"
+    caption: "world model 데모의 현재 observation 5. 같은 실내 테이블을 다른 각도에서 담았다"
     source_url: "https://www.pi.website/images/pi07/current_5.png"
     strategy: fetched
     curated: false

@@ -21,13 +21,13 @@ figures:
   - id: fig02
     file: assets/9bow-2026-world-action-model-rise/fig02.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig02.jpg
-    caption: "VLM 기반 VLA와 video backbone 기반 WAM — generalist manipulation policy를 향한 두 갈래 베팅"
+    caption: "VLM 기반 VLA와 video backbone 기반 WAM. generalist manipulation policy를 향한 두 가지 접근"
     strategy: fetched
     curated: false
   - id: fig03
     file: assets/9bow-2026-world-action-model-rise/fig03.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig03.jpg
-    caption: "로보틱스 world model 지형도 — video world model과 action 조건부 world model이 겹치는 자리에 WAM이 있다"
+    caption: "로보틱스 world model 지형도. video world model과 action 조건부 world model이 겹치는 자리에 WAM이 있다"
     strategy: fetched
     curated: false
   - id: fig04
@@ -39,103 +39,103 @@ figures:
   - id: fig05
     file: assets/9bow-2026-world-action-model-rise/fig05.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig05.jpg
-    caption: "WAM 설계 공간 한눈에 보기 — paradigm·action integration·architecture 세 축"
+    caption: "WAM 설계 공간 전체 조망. paradigm과 action integration과 architecture 세 가지 기준"
     strategy: fetched
     curated: true
   - id: fig06
     file: assets/9bow-2026-world-action-model-rise/fig06.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig06.jpg
-    caption: "inverse dynamics 계열 WAM의 추상 구조 — video 모델이 미래 프레임을 만들면 헤드가 action으로 옮긴다"
+    caption: "inverse dynamics 계열 WAM의 추상 구조. video 모델이 미래 프레임을 만들면 헤드가 이를 action으로 변환한다"
     strategy: fetched
     curated: true
   - id: fig07
     file: assets/9bow-2026-world-action-model-rise/fig07.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig07.jpg
-    caption: "UniPi 구조 — 텍스트 조건부 video 생성기와 별도 inverse dynamics 모듈"
+    caption: "UniPi 구조. 텍스트 조건부 video 생성기와 별도 inverse dynamics 모듈"
     strategy: fetched
     curated: false
   - id: fig08
     file: assets/9bow-2026-world-action-model-rise/fig08.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig08.jpg
-    caption: "LingBot-VA 구조 — fine-tuning한 Wan 2.2-5B의 video rollout에 조건화해 action을 예측한다"
+    caption: "LingBot-VA 구조. fine-tuning한 Wan 2.2-5B의 video rollout에 조건화해 action을 예측한다"
     strategy: fetched
     curated: false
   - id: fig09
     file: assets/9bow-2026-world-action-model-rise/fig09.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig09.jpg
-    caption: "joint prediction 계열 WAM의 추상 구조 — 하나의 모델이 action과 상상된 미래 상태를 함께 낸다"
+    caption: "joint prediction 계열 WAM의 추상 구조. 하나의 모델이 action과 상상된 미래 상태를 함께 낸다"
     strategy: fetched
     curated: true
   - id: fig10
     file: assets/9bow-2026-world-action-model-rise/fig10.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig10.jpg
-    caption: "GR-1 구조 — video 예측 pre-training 뒤 미래 프레임과 action chunk 목적으로 fine-tuning"
+    caption: "GR-1 구조. video 예측 pre-training 뒤 미래 프레임과 action chunk 목적으로 fine-tuning한다"
     strategy: fetched
     curated: false
   - id: fig11
     file: assets/9bow-2026-world-action-model-rise/fig11.png
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig11.png
-    caption: "CALVIN ABC→D 평균 완료 subtask 수 — GR-1의 당시 결과와 현재 VLA 참조선"
+    caption: "CALVIN ABC→D 평균 완료 subtask 수. GR-1의 당시 결과와 현재 VLA 참조선"
     strategy: fetched
     curated: false
   - id: fig12
     file: assets/9bow-2026-world-action-model-rise/fig12.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig12.jpg
-    caption: "DreamZero 구조 — 14B Wan video diffusion에서 출발한 monolithic Transformer가 video와 action 토큰을 함께 디노이징한다"
+    caption: "DreamZero 구조. 14B Wan video diffusion에서 출발한 monolithic Transformer가 video와 action 토큰을 함께 디노이징한다"
     strategy: fetched
     curated: false
   - id: fig13
     file: assets/9bow-2026-world-action-model-rise/fig13.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig13.jpg
-    caption: "2026년 4월 RoboArena 리더보드 — DreamZero 1750, Pi-0.5 1622"
+    caption: "2026년 4월 RoboArena 리더보드. DreamZero 1750, Pi-0.5 1622"
     strategy: fetched
     curated: true
   - id: fig14
     file: assets/9bow-2026-world-action-model-rise/fig14.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig14.jpg
-    caption: "GENIMA — 이미지 모델이 RGB 공간에 관절 목표를 그리면 컨트롤러가 로봇 명령으로 옮긴다"
+    caption: "GENIMA 구조. 이미지 모델이 RGB 공간에 관절 목표를 그리면 컨트롤러가 이를 로봇 명령으로 변환한다"
     strategy: fetched
     curated: false
   - id: fig15
     file: assets/9bow-2026-world-action-model-rise/fig15.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig15.jpg
-    caption: "Cosmos Policy — action과 proprioception과 value 목표를 합성 latent 프레임으로 주입한다"
+    caption: "Cosmos Policy 구조. action과 proprioception과 value 목표를 합성 latent 프레임으로 주입한다"
     strategy: fetched
     curated: false
   - id: fig16
     file: assets/9bow-2026-world-action-model-rise/fig16.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig16.jpg
-    caption: "Play-LMP 구조 — 사후 네트워크가 trajectory 창을 latent plan으로 압축한다"
+    caption: "Play-LMP 구조. 사후 네트워크가 trajectory 창을 latent plan으로 압축한다"
     strategy: fetched
     curated: false
   - id: fig17
     file: assets/9bow-2026-world-action-model-rise/fig17.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig17.jpg
-    caption: "Being-H0.7 latent world-action 구조 — 사후 분기가 압축하고 사전 분기가 예측한다"
+    caption: "Being-H0.7 latent world-action 구조. 사후 분기가 압축하고 사전 분기가 예측한다"
     strategy: fetched
     curated: false
   - id: fig18
     file: assets/9bow-2026-world-action-model-rise/fig18.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig18.jpg
-    caption: "hierarchical 구조 — video 예측 단계와 action 생성 단계가 단방향으로 이어진다"
+    caption: "hierarchical 구조. video 예측 단계와 action 생성 단계가 단방향으로 이어진다"
     strategy: fetched
     curated: false
   - id: fig19
     file: assets/9bow-2026-world-action-model-rise/fig19.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig19.jpg
-    caption: "monolithic Transformer — 하나의 Transformer가 video와 action을 함께 디노이징한다"
+    caption: "monolithic Transformer 구조. 하나의 Transformer가 video와 action을 함께 디노이징한다"
     strategy: fetched
     curated: false
   - id: fig20
     file: assets/9bow-2026-world-action-model-rise/fig20.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig20.jpg
-    caption: "Mixture-of-Transformers — 모달리티별 전문가가 공유 attention으로 묶인다"
+    caption: "Mixture-of-Transformers 구조. 모달리티별 전문가가 공유 attention으로 묶인다"
     strategy: fetched
     curated: false
   - id: fig21
     file: assets/9bow-2026-world-action-model-rise/fig21.png
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig21.png
-    caption: "학습 레시피별 조밀 코어 연산량 비교 — 로그 스케일 ZFLOP"
+    caption: "학습 레시피별 조밀 코어 연산량 비교, 로그 스케일 ZFLOP"
     strategy: fetched
     curated: true
   - id: fig22
@@ -147,7 +147,7 @@ figures:
   - id: fig23
     file: assets/9bow-2026-world-action-model-rise/fig23.jpg
     raw: raw/articles/9bow-2026-world-action-model-rise-figures/fig23.jpg
-    caption: "Motus 계열 hybrid 구성 — video 모델링과 action 생성을 별도 Transformer가 맡되 attention과 텍스트 조건화를 공유한다"
+    caption: "Motus 계열 hybrid 구성. video 모델링과 action 생성을 별도 Transformer가 맡되 attention과 텍스트 조건화를 공유한다"
     strategy: fetched
     curated: false
   - id: fig24

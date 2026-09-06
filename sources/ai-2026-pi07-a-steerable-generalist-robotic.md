@@ -15,7 +15,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig01.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig01.png
-    caption: "π0.7 전체 구성 — 왼쪽 robot data(demonstration·autonomous)와 오른쪽 non-robot data(웹 멀티모달·사람 1인칭 영상)가 language instruction·subgoal image·episode metadata 세 갈래 prompt로 묶여 학습에 들어가고, 추론 때는 high-level policy·world model·desired metadata가 그 자리를 채운다"
+    caption: "π0.7 전체 구성. 왼쪽 robot data(시연 데이터와 자율 데이터)와 오른쪽 non-robot data(웹 멀티모달 데이터, 사람 1인칭 영상)가 language instruction, subgoal image, episode metadata 세 가지 prompt로 묶여 학습에 들어가고, 추론 때는 high-level policy와 world model, 지정한 metadata가 그 자리를 채운다"
     page: 1
     bbox_norm: [0.0702, 0.3049, 0.9298, 0.7252]
     strategy: caption-region
@@ -25,7 +25,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig02.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig02.png
-    caption: "아키텍처 — SigLIP 400M + Gemma 4B backbone이 observation memory·task/subtask instruction·subgoal image·metadata를 받고 860M action expert가 flow matching으로 action을 낸다. subtask는 사람이나 high-level policy가, subgoal image는 BAGEL 14B world model이 만든다"
+    caption: "아키텍처. SigLIP 400M vision encoder와 Gemma 4B backbone이 observation memory, task/subtask instruction, subgoal image, metadata를 받고 860M action expert가 flow matching으로 action을 낸다. subtask는 사람이나 high-level policy가, subgoal image는 BAGEL 14B world model이 만든다"
     page: 4
     bbox_norm: [0.0668, 0.0606, 0.9298, 0.3991]
     strategy: caption-region
@@ -35,7 +35,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig03.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig03.png
-    caption: "prompt 구성 예시 — '식탁에 음식 놓기'와 '셔츠 개기' 두 과제에서 observation·subgoal image·subtask instruction·metadata가 5단계에 걸쳐 어떻게 짝을 이루는지 보여준다"
+    caption: "prompt 구성 예시. '식탁에 음식 놓기'와 '셔츠 개기' 두 과제에서 observation, subgoal image, subtask instruction, metadata가 다섯 단계에 걸쳐 어떻게 짝을 이루는지 보여준다"
     page: 6
     bbox_norm: [0.1752, 0.0606, 0.8248, 0.4441]
     strategy: caption-region
@@ -45,7 +45,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig04.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig04.png
-    caption: "실험에 쓴 로봇 — 양팔 이동형 manipulator, 정적 양팔 BiPi, cross-embodiment 실험용 양팔 UR5e"
+    caption: "실험에 쓴 로봇. 양팔 이동형 manipulator, 정적 양팔 BiPi, cross-embodiment 실험용 양팔 UR5e"
     page: 7
     bbox_norm: [0.4644, 0.5870, 1.0000, 0.7988]
     strategy: caption-region
@@ -55,7 +55,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig05.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig05.png
-    caption: "long-horizon 과제 평가 예시 — 'take out the trash'처럼 한 줄 지시로 끝까지 가는 과제와, 학습 데이터에 없어 단계별 지시로 coaching해야 하는 'toasting a bagel'"
+    caption: "long-horizon 과제 평가 예시. 'take out the trash'처럼 한 줄 지시문으로 끝까지 가는 과제와, 학습 데이터에 없어 단계별 지시문으로 coaching해야 하는 'toasting a bagel'"
     page: 8
     bbox_norm: [0.0800, 0.0000, 0.9357, 0.2706]
     strategy: caption-region
@@ -65,7 +65,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig06.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig06.png
-    caption: "out-of-the-box 성능 — 위는 π*0.6 RL specialist 대비 빨래·에스프레소·상자 조립의 성공률과 정규화 throughput, 아래는 π0.6 SFT specialist 대비 6개 과제의 task progress"
+    caption: "out-of-the-box 성능. 위는 π*0.6 RL specialist 대비 빨래, 에스프레소, 상자 조립의 성공률과 정규화 throughput이고, 아래는 π0.6 SFT specialist 대비 6개 과제의 task progress다"
     page: 9
     bbox_norm: [0.0702, 0.0606, 0.9298, 0.5163]
     strategy: caption-region
@@ -75,7 +75,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig07.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig07.png
-    caption: "prompt 구성과 평가 데이터 ablation — metadata를 뺀 모델과 자율 평가 데이터를 뺀 모델 모두 π0.7보다 낮고 격차는 throughput에서 가장 크다"
+    caption: "prompt 구성과 평가 데이터 ablation. metadata를 뺀 모델과 자율 평가 데이터를 뺀 모델 모두 π0.7보다 낮고, 격차는 throughput에서 가장 크다"
     page: 9
     bbox_norm: [0.0702, 0.5710, 0.9298, 0.7587]
     strategy: caption-region
@@ -85,7 +85,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig08.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig08.png
-    caption: "memory가 필요한 과제 — 머그 3개 교체·물건 찾기·커피 뜨기·창 닦기에서 fine-tuning 없이 π0.6-MEM SFT specialist와 비슷하거나 더 낫다"
+    caption: "memory가 필요한 과제. 머그 3개 교체, 물건 찾기, 커피 뜨기, 창 닦기에서 fine-tuning 없이 π0.6-MEM SFT specialist와 비슷하거나 더 낫다"
     page: 10
     bbox_norm: [0.0702, 0.0606, 0.5000, 0.1646]
     strategy: caption-region
@@ -95,7 +95,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig09.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig09.png
-    caption: "미학습 환경에서의 지시 따르기 — 처음 보는 주방 4곳·침실 2곳의 14개 시나리오에서 3~6단계 지시를 얼마나 따라갔는지"
+    caption: "미학습 환경에서의 지시 따르기. 처음 보는 주방 4곳과 침실 2곳의 14개 시나리오에서 3~6단계 지시문을 얼마나 따라갔는지 보여준다"
     page: 11
     bbox_norm: [0.0702, 0.0606, 0.9298, 0.2763]
     strategy: caption-region
@@ -105,7 +105,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig10.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig10.png
-    caption: "복잡한 지시 표현 — 표준 지시에서는 세 모델이 비슷하지만 '수프 먹을 때 쓰는 물건'처럼 우회 표현이 들어가면 π0.7이 앞서고 subgoal image를 주면 더 올라간다"
+    caption: "복잡한 지시 표현. 표준 지시문에서는 세 모델이 비슷하지만 '수프 먹을 때 쓰는 물건'처럼 우회 표현이 들어가면 π0.7이 앞서고, subgoal image를 주면 더 올라간다"
     page: 11
     bbox_norm: [0.0483, 0.2805, 0.5000, 0.4753]
     strategy: caption-region
@@ -115,7 +115,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig11.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig11.png
-    caption: "데이터 편향 깨기 — 학습 데이터와 반대로 지시한 Reverse Bussing·Reverse Fridge to Microwave. 후자는 subgoal image 조건이 성공의 관건이다"
+    caption: "데이터 편향 깨기. 학습 데이터와 반대로 지시한 Reverse Bussing과 Reverse Fridge to Microwave. 후자는 subgoal image 조건이 성공의 관건이다"
     page: 11
     bbox_norm: [0.0702, 0.5742, 0.5524, 0.7069]
     strategy: caption-region
@@ -125,7 +125,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig12.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig12.png
-    caption: "cross-embodiment 전이 — 왼쪽은 재배치 계열 4과제, 오른쪽은 수건·셔츠 개기. 형상 격차가 커질수록 π0.5가 먼저 무너지고 셔츠 개기에서는 사람 조작자 수준(파선)에 근접한다"
+    caption: "cross-embodiment 전이. 왼쪽은 재배치 계열 4과제, 오른쪽은 수건과 셔츠 개기다. 형상 격차가 커질수록 π0.5가 먼저 크게 하락하고, 셔츠 개기에서는 사람 조작자 수준(파선)에 근접한다"
     page: 12
     bbox_norm: [0.0638, 0.0606, 0.9468, 0.3301]
     strategy: caption-region
@@ -135,7 +135,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig13.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig13.png
-    caption: "전이 과정에서 나타난 전략 변화 — 목표 로봇의 팔 길이와 배치에 맞춰 쥐는 방식 자체를 바꾼다"
+    caption: "전이 과정에서 나타난 전략 변화. 목표 로봇의 팔 길이와 배치에 맞춰 쥐는 방식 자체를 바꾼다"
     page: 12
     bbox_norm: [0.0702, 0.4570, 0.5129, 0.6730]
     strategy: caption-region
@@ -145,7 +145,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig14.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig14.png
-    caption: "language coaching 예시 — 에어프라이어에 고구마를 넣는 미학습 과제를 다섯 마디 지시로 단계별로 끌고 간다"
+    caption: "language coaching 예시. 에어프라이어에 고구마를 넣는 미학습 과제를 다섯 마디 지시문으로 단계별로 이끈다"
     page: 13
     bbox_norm: [0.0404, 0.0553, 0.9298, 0.1783]
     strategy: caption-region
@@ -155,7 +155,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig15.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig15.png
-    caption: "long-horizon 과제 coaching 결과 — 에어프라이어 넣기·빼기와 베이글 굽기. 지시를 따라가는 능력이 없는 이전 모델은 거의 진행하지 못한다"
+    caption: "long-horizon 과제 coaching 결과. 에어프라이어 넣기와 빼기, 베이글 굽기 세 과제에서 지시를 따라가는 능력이 부족한 이전 모델은 거의 진행하지 못한다"
     page: 13
     bbox_norm: [0.0652, 0.2224, 0.5018, 0.4346]
     strategy: manual
@@ -165,7 +165,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig16.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig16.png
-    caption: "coaching 데이터로 만든 자율 policy — 사람이 실시간으로 불러주던 지시를 high-level policy가 대신하며 5개 과제에서 coaching과 비슷한 진행도를 낸다"
+    caption: "coaching 데이터로 만든 자율 policy. 사람이 실시간으로 불러주던 지시문을 high-level policy가 대신하며, 5개 과제에서 coaching과 비슷한 task progress를 낸다"
     page: 13
     bbox_norm: [0.0702, 0.5024, 0.5000, 0.6485]
     strategy: caption-region
@@ -175,7 +175,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig17.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig17.png
-    caption: "미학습 단기 과제 — 프렌치프레스 누르기·밥솥에 쌀 담기·사무용품 닦기·회전체 돌리기를 전용 데이터 없이 수행한다"
+    caption: "미학습 단기 과제. 프렌치프레스 누르기, 밥솥에 쌀 담기, 사무용품 닦기, 회전체 돌리기를 전용 데이터 없이 수행한다"
     page: 13
     bbox_norm: [0.4932, 0.2204, 0.9328, 0.3716]
     strategy: manual
@@ -185,7 +185,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig18.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig18.png
-    caption: "데이터 규모·다양성 ablation — 왼쪽은 데이터를 늘려 평균 품질이 떨어져도 metadata가 있으면 throughput이 계속 오른다는 것, 오른쪽은 과제 다양성 상위 20%를 빼면 미학습 과제 성능이 무너진다는 것"
+    caption: "데이터 규모와 다양성 ablation. 왼쪽은 데이터를 늘려 평균 품질이 떨어져도 metadata가 있으면 throughput이 계속 오른다는 것, 오른쪽은 과제 다양성 상위 20%를 빼면 미학습 과제 성능이 크게 하락한다는 것을 보여준다"
     page: 14
     bbox_norm: [0.0702, 0.0606, 0.9298, 0.2401]
     strategy: caption-region
@@ -195,7 +195,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig19.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig19.png
-    caption: "VLA와 world model의 attention mask — image goal 유무, metadata CFG 추론, goal generator의 학습·추론 분기"
+    caption: "VLA와 world model의 attention mask. image goal 유무, metadata CFG 추론, goal generator의 학습 분기와 추론 분기"
     page: 22
     bbox_norm: [0.4997, 0.0604, 0.9300, 0.3615]
     strategy: caption-region
@@ -205,7 +205,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig20.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig20.png
-    caption: "joint 제어와 end-effector 제어 비교 — cross-embodiment 과제 전반에서 두 제어 모드의 차이가 뚜렷하지 않다"
+    caption: "joint 제어와 end-effector 제어 비교. cross-embodiment 과제 전반에서 두 제어 모드의 차이가 뚜렷하지 않다"
     page: 23
     bbox_norm: [0.1402, 0.0544, 0.8498, 0.2386]
     strategy: manual
@@ -215,7 +215,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig21.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig21.png
-    caption: "사람 대조군 10인의 teleoperation 경력 — 목표 로봇인 양팔 UR5e 경험은 거의 없고 전체 경력은 평균 375시간이다"
+    caption: "사람 대조군 10인의 teleoperation 경력. 목표 로봇인 양팔 UR5e 경험은 거의 없고 전체 경력은 평균 375시간이다"
     page: 23
     bbox_norm: [0.0682, 0.2684, 0.4448, 0.4656]
     strategy: manual
@@ -225,7 +225,7 @@ figures:
     kind: figure
     file: assets/ai-2026-pi07-a-steerable-generalist-robotic/fig22.png
     raw: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic-figures/fig22.png
-    caption: "셔츠 개기에서 π0.7 (GC)과 사람 조작자 비교 — task progress 85.6% 대 90.9%, 성공률 80% 대 80.6%"
+    caption: "셔츠 개기에서 π0.7 (GC)과 사람 조작자 비교. task progress 85.6% 대 90.9%, 성공률 80% 대 80.6%"
     page: 23
     bbox_norm: [0.0682, 0.5234, 0.4448, 0.6676]
     strategy: manual

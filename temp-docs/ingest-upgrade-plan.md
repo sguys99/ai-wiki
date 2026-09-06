@@ -241,7 +241,7 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 - [x] 배치 1 완료분 8편의 sources 문체 정비 (중간점 233개, em dash 117개, 금지 어휘 71건 제거, 구조와 figures 항목 100% 보존)
 - [x] 파일럿 3편 sources 정비 (jo-2026-rt-1 51건, hku-mars-fast-lio 26건 치환. 헤딩 개수와 figures 항목 수 보존 확인)
 - [x] `page-full.png` 임베드 정리 완료 (physical-ai 8편 전부). 전체 페이지 캡처는 도식이 아니라 레이아웃 기록이므로 curated에서 제외하고, 대신 이미지를 판독해 본문 내용을 회수하는 방식으로 처리했다
-- [ ] sources frontmatter figure caption 정비 (배치 초반에 지침이 없어 subagent마다 처리가 갈렸다. 2026-09-06 브리프에 정비 대상으로 명시했고, 이전 완료분 중 미정비분은 마지막에 일괄 처리한다)
+- [x] sources frontmatter figure caption 정비 (Phase 5-2에서 완료, 2026-09-06)
 - [ ] frontmatter 금지 기호 일괄 판단 (lint는 frontmatter를 검사하지 않아 전부 통과하지만 CLAUDE.md는 "제목과 본문 모두" 금지로 규정한다. 키별 현황: `title` 91건, `authors` 21건, `license` 8건, `author` 2건)
   - `title`: 원어 제목 그대로인 것은 CLAUDE.md 불변 항목(인용)이라 손대지 않는다. "LeRobot — State-of-the-art..."처럼 우리가 이름과 설명을 이어 붙인 조합만 정리 대상 후보
   - `authors`, `author`: 저자명 구분자 용도의 중간점. 쉼표 전환 여부 결정 필요
@@ -291,7 +291,7 @@ subagent가 배치 1 재작성 중 발견한 표기 불일치와 미등재 용�
 2026-09-06 착수. 원래 체크리스트 4개에 더해, 계획서가 "마무리 단계 일괄 처리"로 미뤄둔 용어집 2차 갱신과 잔여 정비 미완료 항목을 이 Phase의 범위로 편입한다. 사용자 결정 3건 확정 (2026-09-06): humanoid는 원어 canonical로 등재하고 "휴머노이드" 95건을 치환한다, frontmatter의 authors 저자 구분자 중간점은 쉼표로 전환한다, sa-2026 fig09/fig10은 raw를 재크롭해 wiki/assets 사본과 일치시킨다.
 
 - [x] 5-1. 용어집 2차 갱신 일괄 반영 (2026-09-06). glossary-physical-ai 신규 27개 등재(99→126개, 금지 표기 135→162종), glossary-llms에 post-training 등재(35→36개). 번역어 158건을 47개 파일에서 치환 (휴머노이드 94, 처리량 29, 물리 인지 생성 11, 제어와 조종 가능성 13, 이중 처리 이론 4 등). physical-ai 범위 lint_terms 0건, lint_style error 0건 복원. 주요 판단: 서베이 4편의 "제어 가능성"은 steerability가 아니라 controllability(생성된 미래가 명령 action을 따르는 정도)로 확인돼 별도 행으로 등재하고 구분을 비고에 명시했다. "가짜 action" 2건은 pseudo-action이 아니라 DiT 입력 noise라 문장을 다듬어 해소했다. 오탐 위험이 확실한 6개 용어(occupancy, kinematic planner 등)는 금지 표기 없이 지침만 등재했다. 잔여: pseudo action 하이픈 표기 흔들림 19건과 타 카테고리 "사후학습" 3건은 5-9 후속 과제로 기록한다
-- [ ] 5-2. sources frontmatter figure caption 정비 (배치 초반 완료분의 미정비 caption 일괄 처리)
+- [x] 5-2. sources frontmatter figure caption 정비 (2026-09-06). physical-ai sources 77편의 figure 항목 828개 전수 조사, 정비 대상 131건(영어 원문 52, 중간점 25, em dash 77, 중복 제거)을 12개 파일에서 133건 재작성했다. wiki 측 308개 항목은 Phase 4 재작성 때 이미 정비돼 있어 sources만 미정비 상태였고, 통일 방향은 품질이 높은 wiki 캡션을 sources로 가져오는 쪽(28건)과 신규 작성(105건)으로 처리했다. YAML 파싱 440개 파일 전체 통과, diff는 caption 줄 133건에 국한, lint 회귀 0건. 캡션 안의 영어 인용문(도식에 찍힌 지시문 원문)과 article 자료의 원문 도식 번호 접두사는 보존했다. 부수 발견: `sources/9bow-2026-world-action-model-rise.md`는 wiki 페이지가 없는 77번째 physical-ai source라 Phase 4 범위(대응 sources 76편)에서 빠져 본문에 error 5건과 warning 3건이 남아 있다. 5-7에서 정비한다
 - [ ] 5-3. frontmatter 금지 기호 정리 (title 조합형, license 8건, authors와 author 23건 쉼표 전환)
 - [ ] 5-4. figure 자산 정합 (lionhong-2023 raw 실파일 부재 해소, sa-2026 fig09/fig10 raw 재크롭, luo-2025-sonic 그림 후보 표 id 정합, xu-2025-anatomy fig07 재크롭, sa-2026 low_confidence 15건 검토)
 - [ ] 5-5. lint_terms.py 부분 문자열 오탐 개선 (3글자 이하 금지 표기의 예외 문자열 목록 상수)

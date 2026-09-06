@@ -18,7 +18,7 @@ figures:
   - id: fig03
     file: assets/physical-intelligence-2026-a-steerable-model-with-emergent/fig03.png
     raw: raw/articles/physical-intelligence-2026-a-steerable-model-with-emergent-figures/fig03.png
-    caption: "아키텍처 도식의 observation memory 예시. 로봇 카메라가 담은 현재 주방 장면이다"
+    caption: "world model 데모의 현재 observation 2. 로봇 카메라가 담은 주방 조리대 장면이다"
     source_url: "https://www.pi.website/images/pi07/current_2.png"
     strategy: fetched
     curated: true

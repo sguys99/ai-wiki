@@ -25,7 +25,7 @@ figures:
     kind: figure
     file: assets/luo-2025-sonic-supersizing-motion-tracking/figs1.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs1.png
-    caption: "Figure S1: Out-of-distribution motion sequences from the test-content split. Top four rows: unseen motions successfully tracked (hip-hop dance, stage bow, sword lunge, roundhouse kick). Bottom two rows: unseen motions where tracking fails (zombie crawl, cross-legged sit)."
+    caption: "test-content 분할에서 나온 분포 밖 모션 시퀀스. 위 네 줄은 추적에 성공한 미학습 모션(힙합 댄스, 무대 인사, 검 찌르기, 돌려차기)이고, 아래 두 줄은 추적에 실패한 미학습 모션(좀비 기어가기, 양반다리 앉기)이다"
     page: 30
     bbox_norm: [0.0947, 0.2636, 0.9053, 0.6819]
     strategy: caption-region
@@ -45,7 +45,7 @@ figures:
     kind: figure
     file: assets/luo-2025-sonic-supersizing-motion-tracking/figs2.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs2.png
-    caption: "Figure S2: Representative motions from the 123-sequence real-world evaluation set. All shown motions are successfully tracked on the physical Unitree G1 robot."
+    caption: "123개 시퀀스로 이뤄진 실세계 평가 세트의 대표 모션. 여기 실린 모션은 모두 실제 Unitree G1 로봇에서 추적에 성공했다"
     page: 32
     bbox_norm: [0.0947, 0.1423, 0.9053, 0.5802]
     strategy: caption-region
@@ -65,7 +65,7 @@ figures:
     kind: figure
     file: assets/luo-2025-sonic-supersizing-motion-tracking/figs3.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs3.png
-    caption: "Figure S3: Robustness test: an approximately 11 kg (25 lb) object is dropped onto the robot from above head height during policy execution. The robot absorbs the impact, maintains balance, and continues tracking. No recovery module or policy adaptation is used."
+    caption: "견고성 시험. policy 실행 중 약 11kg(25파운드) 물체를 머리 높이 위에서 로봇에 떨어뜨린다. 로봇은 충격을 흡수하고 균형을 유지하며 추적을 이어간다. 별도의 복구 모듈이나 policy 적응은 쓰지 않았다"
     page: 32
     bbox_norm: [0.0947, 0.7124, 0.9053, 0.8033]
     strategy: caption-region
@@ -85,7 +85,7 @@ figures:
     kind: figure
     file: assets/luo-2025-sonic-supersizing-motion-tracking/figs4.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs4.png
-    caption: "Figure S4: OpenHomie velocity tracking evaluation vs. compute scale. Left: mean velocity tracking error (m/s). Right: survival rate (%)."
+    caption: "연산 규모에 따른 OpenHomie 속도 추적 평가. 왼쪽은 평균 속도 추적 오차(m/s), 오른쪽은 생존률(%)이다"
     page: 34
     bbox_norm: [0.1737, 0.0939, 0.8263, 0.351]
     strategy: caption-region
@@ -105,7 +105,7 @@ figures:
     kind: figure
     file: assets/luo-2025-sonic-supersizing-motion-tracking/figs5.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/figs5.png
-    caption: "Figure S5: Overview of the deployment architecture of SONIC ."
+    caption: "SONIC 배포 아키텍처 개요"
     page: 36
     bbox_norm: [0.0947, 0.0939, 0.9053, 0.4076]
     strategy: caption-region
@@ -145,7 +145,7 @@ figures:
     kind: table
     file: assets/luo-2025-sonic-supersizing-motion-tracking/tab01.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab01.png
-    caption: "Table 1: VLA task success rates using the universal motion token action space. The GR00T N1.5 model is fine-tuned on teleoperated data and evaluated across five whole-body loco-manipulation tasks (object pickup variants share the same policy and are averaged as one task for the 5-task mean). Success"
+    caption: "universal motion token action space를 쓴 VLA 과제 성공률. GR00T N1.5 모델을 teleoperation 데이터로 fine-tuning해 전신 loco-manipulation 과제 5종에서 평가했다. 물체 집기 변형들은 같은 policy를 공유하므로 5과제 평균에서는 하나로 묶었다"
     page: 10
     bbox_norm: [0.2307, 0.6998, 0.7693, 0.8222]
     strategy: table-region
@@ -155,7 +155,7 @@ figures:
     kind: table
     file: assets/luo-2025-sonic-supersizing-motion-tracking/tabs1.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs1.png
-    caption: "Table S1: Universal control policy architecture and hyperparameters."
+    caption: "universal control policy 구조와 하이퍼파라미터"
     page: 31
     bbox_norm: [0.0947, 0.0708, 0.9053, 0.267]
     strategy: table-region
@@ -165,7 +165,7 @@ figures:
     kind: table
     file: assets/luo-2025-sonic-supersizing-motion-tracking/tab02.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab02.png
-    caption: "Table 2: Dataset split statistics and main/sub-category distribution. Each main category (e.g., Locomotion, Dance) contains many sub-categories describing specific motion types (e.g., “hip-hop slide,” “injured-leg jog”). Test-content evaluates generalization to novel sub-categories: its sub-categor"
+    caption: "데이터셋 분할 통계와 main category, sub category 분포. 각 main category(예: Locomotion, Dance)는 구체적 모션 유형을 나타내는 여러 sub category(예: hip-hop slide, injured-leg jog)를 담는다. test-content 분할은 새로운 sub category로의 일반화를 평가한다"
     page: 12
     bbox_norm: [0.2521, 0.4929, 0.7479, 0.7164]
     strategy: table-region
@@ -175,7 +175,7 @@ figures:
     kind: table
     file: assets/luo-2025-sonic-supersizing-motion-tracking/tabs2.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs2.png
-    caption: "Table S2: Training hyperparameters."
+    caption: "학습 하이퍼파라미터"
     page: 31
     bbox_norm: [0.2817, 0.2939, 0.7183, 0.5454]
     strategy: table-region
@@ -185,7 +185,7 @@ figures:
     kind: table
     file: assets/luo-2025-sonic-supersizing-motion-tracking/tab03.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab03.png
-    caption: "Table 3: VLA action space ablation: task completion success rate using universal motion tokens vs. explicit SMPL poses. The FSQ token interface provides a compact, structured action space that is substantially easier for the VLA to learn. The gap widens on more complex tasks: on soda-can-to-trash-can"
+    caption: "VLA action space ablation. universal motion token을 쓸 때와 명시적 SMPL pose를 쓸 때의 과제 완료 성공률이다. FSQ 토큰 인터페이스는 compact하고 구조화된 action space를 제공해 VLA가 학습하기 훨씬 쉽다. 과제가 복잡할수록 격차가 벌어진다"
     page: 18
     bbox_norm: [0.3048, 0.0944, 0.6952, 0.183]
     strategy: table-region
@@ -195,7 +195,7 @@ figures:
     kind: table
     file: assets/luo-2025-sonic-supersizing-motion-tracking/tabs3.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs3.png
-    caption: "Table S3: Reward design. Superscript 𝑔 : goal/target; 𝑝 : current state; ℬ : tracked body links; 𝒦 : VR keypoints (head, both wrists, both ankles); “rel”: relative to root frame."
+    caption: "reward 설계. 위첨자 𝑔는 목표, 𝑝는 현재 상태, ℬ는 추적 대상 신체 링크, 𝒦는 VR 키포인트(머리, 양 손목, 양 발목)를 뜻하고 rel은 root frame 기준 상대값을 뜻한다"
     page: 33
     bbox_norm: [0.1712, 0.3703, 0.8288, 0.5889]
     strategy: table-region
@@ -205,7 +205,7 @@ figures:
     kind: table
     file: assets/luo-2025-sonic-supersizing-motion-tracking/tab04.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tab04.png
-    caption: "Table 4: Ablation results. (a) FSQ outperforms VQ-VAE by 8.7 mm MPJPE-L on test-content. (b) Higher quantizer capacity improves performance; token dimension matters more than levels. (c) All encoders maintain > 99.2% success; the human encoder shows only +0.6 mm gap from the robot encoder."
+    caption: "ablation 결과. (a) FSQ가 test-content에서 VQ-VAE보다 MPJPE-L 기준 8.7mm 낫다. (b) quantizer 용량이 클수록 성능이 오르며 level 수보다 토큰 차원이 더 중요하다. (c) 모든 encoder가 99.2%를 넘는 성공률을 유지하고, human encoder는 robot encoder 대비 0.6mm 차이에 그친다"
     page: 20
     bbox_norm: [0.1731, 0.0944, 0.8269, 0.2958]
     strategy: table-region
@@ -215,7 +215,7 @@ figures:
     kind: table
     file: assets/luo-2025-sonic-supersizing-motion-tracking/tabs4.png
     raw: raw/papers/luo-2025-sonic-supersizing-motion-tracking-figures/tabs4.png
-    caption: "Table S4: Domain randomization parameters applied during training. 𝒰 denotes a uniform distribution."
+    caption: "학습 중 적용한 domain randomization 파라미터. 𝒰는 균등 분포를 뜻한다"
     page: 33
     bbox_norm: [0.1712, 0.3703, 0.8288, 0.5889]
     strategy: table-region

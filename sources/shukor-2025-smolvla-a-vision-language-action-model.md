@@ -15,7 +15,7 @@ figures:
     kind: figure
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/fig01.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/fig01.png
-    caption: "SmolVLA 전체 구조 — community dataset으로 pre-training해 저가 로봇에 배포한다. VLM의 뒤쪽 L−N개 층을 잘라내고(가위 아이콘) 남은 층이 언어 지시·RGB 이미지·sensorimotor state를 임베딩한다. 합쳐진 토큰이 cross-attention과 self-attention을 번갈아 쌓은 action expert로 들어가 action chunk를 낸다"
+    caption: "SmolVLA 전체 구조. community dataset으로 pre-training해 저가 로봇에 배포한다. VLM의 뒤쪽 L-N개 layer를 잘라내고(가위 아이콘) 남은 layer가 지시문, RGB 이미지, sensorimotor state를 임베딩한다. 합쳐진 토큰이 cross-attention과 self-attention을 번갈아 쌓은 action expert로 들어가 action chunk를 낸다"
     page: 1
     bbox_norm: [0.1102, 0.5274, 0.9098, 0.8756]
     strategy: manual
@@ -25,7 +25,7 @@ figures:
     kind: figure
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/fig02.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/fig02.png
-    caption: "asynchronous inference 스택 — RobotClient가 observation을 PolicyServer로 보내고 action chunk를 돌려받는다. 큐를 다 쓰기 전에 다음 예측을 걸어 대기 구간을 없앤다. PolicyServer는 GPU가 달린 원격 서버여도 된다"
+    caption: "asynchronous inference 스택. RobotClient가 observation을 PolicyServer로 보내고 action chunk를 돌려받는다. 큐를 다 쓰기 전에 다음 예측을 걸어 대기 구간을 없앤다. PolicyServer는 GPU가 달린 원격 서버여도 된다"
     page: 6
     bbox_norm: [0.1194, 0.0615, 0.8806, 0.3608]
     strategy: caption-region
@@ -45,7 +45,7 @@ figures:
     kind: figure
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/fig04.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/fig04.png
-    caption: "실기기 과제 4종의 시작·종료 프레임. (A) SO100의 pickplace·stacking·sorting은 top과 wrist 카메라, (B) SO101의 pickplace는 top과 side 카메라를 쓴다"
+    caption: "실제 로봇 과제 4종의 시작 프레임과 종료 프레임. (A) SO100의 pickplace, stacking, sorting은 top과 wrist 카메라를 쓰고 (B) SO101의 pickplace는 top과 side 카메라를 쓴다"
     page: 9
     bbox_norm: [0.0796, 0.0628, 0.915, 0.3422]
     strategy: caption-region
@@ -55,7 +55,7 @@ figures:
     kind: figure
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/fig05.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/fig05.png
-    caption: "sync와 async 추론 비교 — (a) 성공률은 비슷하고, (b) 완료 시간은 13.75초에서 9.70초로 줄고, (c) 60초 안에 처리한 큐브는 9개에서 19개로 는다"
+    caption: "sync 추론과 async 추론 비교. (a) 성공률은 비슷하고, (b) 완료 시간은 13.75초에서 9.70초로 줄고, (c) 60초 안에 처리한 큐브는 9개에서 19개로 늘어난다"
     page: 12
     bbox_norm: [0.0652, 0.2424, 0.9248, 0.3696]
     strategy: manual
@@ -65,7 +65,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab01.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab01.png
-    caption: "community dataset 통계 — 481개 데이터셋·22.9K episode·10.6M 프레임"
+    caption: "community dataset 통계. 481개 데이터셋, 2만 2,900 episode, 1,060만 프레임"
     page: 5
     bbox_norm: [0.5783, 0.4214, 0.9162, 0.4764]
     strategy: table-region
@@ -75,7 +75,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab02.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab02.png
-    caption: "LIBERO·Meta-World 시뮬레이션 성공률 — SmolVLA 0.45B가 LIBERO 87.3으로 π0 3.3B(86.0)와 OpenVLA 7B(76.5)를 앞선다"
+    caption: "LIBERO와 Meta-World 시뮬레이션 성공률. SmolVLA 0.45B가 LIBERO 87.3%로 π0 3.3B(86.0%)와 OpenVLA 7B(76.5%)를 앞선다"
     page: 11
     bbox_norm: [0.1445, 0.0608, 0.8555, 0.4149]
     strategy: table-region
@@ -85,7 +85,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab03.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab03.png
-    caption: "SO100 실기기 벤치마크 — SmolVLA 0.45B 평균 78.3으로 π0 3.5B(61.7)와 단일 과제 학습 ACT(48.3)를 앞선다"
+    caption: "SO100 실제 로봇 벤치마크. SmolVLA 0.45B가 평균 78.3%로 π0 3.5B(61.7%)와 단일 과제 학습 ACT(48.3%)를 앞선다"
     page: 11
     bbox_norm: [0.0952, 0.4844, 0.5548, 0.6226]
     strategy: manual
@@ -95,7 +95,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab04.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab04.png
-    caption: "SO101 Pick-Place-Lego 성공률 — 학습 분포 안에서 90, 벗어난 위치에서 50. pre-training에 SO101 데이터는 들어 있지 않다"
+    caption: "SO101 Pick-Place-Lego 성공률. 학습 분포 안에서 90%, 벗어난 위치에서 50%다. pre-training에 SO101 데이터는 들어 있지 않다"
     page: 11
     bbox_norm: [0.5722, 0.5042, 0.8974, 0.5983]
     strategy: table-region
@@ -105,7 +105,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab05.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab05.png
-    caption: "pre-training과 multi-task 학습의 효과 — 단일 과제 40, multi-task 51.7, community dataset pre-training을 더하면 78.3"
+    caption: "pre-training과 multi-task 학습의 효과. 단일 과제 40%, multi-task 51.7%, community dataset pre-training을 더하면 78.3%"
     page: 12
     bbox_norm: [0.2211, 0.0609, 0.7789, 0.2078]
     strategy: table-region
@@ -115,7 +115,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab06.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab06.png
-    caption: "cross-attention과 self-attention 비교 — 번갈아 쌓은 CA+SA가 85.5로 CA 단독(79.0)과 SA 단독(74.5)을 앞선다"
+    caption: "cross-attention과 self-attention 비교. 번갈아 쌓은 CA+SA가 85.5%로 CA 단독(79.0%)과 SA 단독(74.5%)을 앞선다"
     page: 13
     bbox_norm: [0.1002, 0.0474, 0.4698, 0.1826]
     strategy: manual
@@ -125,7 +125,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab07.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab07.png
-    caption: "action 토큰끼리의 attention mask — causal 74.5가 bidirectional 67.5보다 낫다"
+    caption: "action 토큰끼리의 attention mask. causal 74.5%가 bidirectional 67.5%보다 낫다"
     page: 13
     bbox_norm: [0.5517, 0.0685, 0.8768, 0.1686]
     strategy: table-region
@@ -135,7 +135,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab08.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab08.png
-    caption: "VLM 층 잘라내기 — 500M VLM의 앞 N개 층만 쓰는 편(N=32에서 80.3)이 256M짜리 작은 VLM(75.8)이나 한 층 걸러 쓰기(75.5)보다 낫다"
+    caption: "layer skipping 비교. 500M VLM의 앞 N개 layer만 쓰는 방식이 256M 작은 VLM(75.8%)이나 한 layer 걸러 쓰기(75.5%)보다 낫다"
     page: 13
     bbox_norm: [0.1002, 0.2084, 0.4698, 0.4076]
     strategy: manual
@@ -145,7 +145,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab09.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab09.png
-    caption: "action expert의 hidden size — VLM 대비 ×1.00이 82.3으로 가장 높고 ×0.75가 77.5, ×0.25는 73.8로 떨어진다"
+    caption: "action expert의 hidden size. VLM 대비 ×1.00이 82.3%로 가장 높고 ×0.75가 77.5%, ×0.25는 73.8%로 떨어진다"
     page: 13
     bbox_norm: [0.5514, 0.2417, 0.8771, 0.3859]
     strategy: table-region
@@ -155,7 +155,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab10.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab10.png
-    caption: "학습 목표 비교 — flow matching 80.25가 L1 regression 75.25를 앞선다"
+    caption: "학습 목표 비교. flow matching 80.25%가 L1 regression 75.25%를 앞선다"
     page: 14
     bbox_norm: [0.0852, 0.0474, 0.4998, 0.1876]
     strategy: manual
@@ -165,7 +165,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab11.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab11.png
-    caption: "state를 넣는 위치 — VLM 쪽(prefix) 80.3이 action expert 쪽(suffix) 73.3보다 낫다"
+    caption: "state를 넣는 위치. VLM 쪽(prefix) 80.3%이 action expert 쪽(suffix) 73.3%보다 낫다"
     page: 14
     bbox_norm: [0.5507, 0.0608, 0.8777, 0.1894]
     strategy: table-region
@@ -175,7 +175,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab12.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab12.png
-    caption: "action chunk 크기 n — 10에서 84.0으로 최고, n=1은 50.0, n=100은 74.5로 떨어진다"
+    caption: "action chunk 크기 n. n=10에서 84.0%로 가장 높고 n=1은 50.0%, n=100은 74.5%로 떨어진다"
     page: 14
     bbox_norm: [0.1252, 0.2324, 0.4698, 0.4176]
     strategy: manual
@@ -185,7 +185,7 @@ figures:
     kind: table
     file: assets/shukor-2025-smolvla-a-vision-language-action-model/tab13.png
     raw: raw/papers/shukor-2025-smolvla-a-vision-language-action-model-figures/tab13.png
-    caption: "observation을 새로 받기 전 실행하는 action 수 — 10스텝 82.8이 최고이고 50스텝까지 밀면 51.8로 무너진다"
+    caption: "observation을 새로 받기 전 실행하는 action 수. 10스텝이 82.8%로 가장 높고 50스텝까지 늘리면 51.8%로 크게 하락한다"
     page: 14
     bbox_norm: [0.5712, 0.2551, 0.8573, 0.4]
     strategy: table-region

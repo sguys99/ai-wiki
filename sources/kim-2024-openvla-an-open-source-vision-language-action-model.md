@@ -117,7 +117,7 @@ figures:
     kind: figure
     file: assets/kim-2024-openvla-an-open-source-vision-language-action-model/fig11.png
     raw: raw/papers/kim-2024-openvla-an-open-source-vision-language-action-model-figures/fig11.png
-    caption: "Franka-DROID 'Wipe Table' task (in-distribution vs distractor OOD) (paper Figure 11, Appendix)"
+    caption: "Franka-DROID의 Wipe Table 과제. 학습 분포 안의 장면과 distractor가 추가된 분포 밖 장면을 비교한다 (Appendix)"
     page: 31
     bbox_norm: [0.2961, 0.3097, 0.7039, 0.4669]
     strategy: caption-region

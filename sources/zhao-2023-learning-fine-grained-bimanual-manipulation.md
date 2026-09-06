@@ -146,7 +146,7 @@ figures:
     kind: table
     file: assets/zhao-2023-learning-fine-grained-bimanual-manipulation/tab03.png
     raw: raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/tab03.png
-    caption: "ACT hyperparameter"
+    caption: "ACT hyperparameter 설정표"
     page: 18
     bbox_norm: [0.3118, 0.1903, 0.6882, 0.3257]
     strategy: table-region
@@ -166,7 +166,7 @@ figures:
     kind: table
     file: assets/zhao-2023-learning-fine-grained-bimanual-manipulation/tab05.png
     raw: raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/tab05.png
-    caption: "BeT hyperparameter"
+    caption: "BeT hyperparameter 설정표"
     page: 18
     bbox_norm: [0.3258, 0.448, 0.6741, 0.5947]
     strategy: table-region
@@ -176,7 +176,7 @@ figures:
     kind: table
     file: assets/zhao-2023-learning-fine-grained-bimanual-manipulation/tab06.png
     raw: raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/tab06.png
-    caption: "VINN hyperparameter"
+    caption: "VINN hyperparameter 설정표"
     page: 18
     bbox_norm: [0.2726, 0.6831, 0.7273, 0.875]
     strategy: table-region
@@ -186,7 +186,7 @@ figures:
     kind: table
     file: assets/zhao-2023-learning-fine-grained-bimanual-manipulation/tab07.png
     raw: raw/papers/zhao-2023-learning-fine-grained-bimanual-manipulation-figures/tab07.png
-    caption: "RT-1 hyperparameter"
+    caption: "RT-1 hyperparameter 설정표"
     page: 18
     bbox_norm: [0.2726, 0.6831, 0.7273, 0.875]
     strategy: table-region

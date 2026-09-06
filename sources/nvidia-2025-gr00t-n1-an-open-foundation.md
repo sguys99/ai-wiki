@@ -155,7 +155,7 @@ figures:
     kind: table
     file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab01.png
     raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab01.png
-    caption: "Table 1: Training Data Generation. Our data generation strategies leverage different data sources. The latent- action learning technique is broadly applied to diverse video datasets. Neural trajectories can be generated from datasets containing robot actions, while simulation trajectories rely on a "
+    caption: "학습 데이터 생성 전략. 각 전략은 서로 다른 데이터 소스를 활용한다. latent action 학습 기법은 다양한 video 데이터셋에 폭넓게 적용하고, neural trajectory는 로봇 action이 들어 있는 데이터셋에서 만들 수 있다"
     page: 9
     bbox_norm: [0.151, 0.297, 0.849, 0.3803]
     strategy: table-region
@@ -165,7 +165,7 @@ figures:
     kind: table
     file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab02.png
     raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab02.png
-    caption: "Table 2: Simulation Results. Average success rate across three simulation benchmarks, using 100 demonstra- tions per task. GR00T N1 outperforms both baselines, especially on the GR-1 task where it outperforms by more than 17 %."
+    caption: "시뮬레이션 결과. 과제당 시연 데이터 100개를 써서 세 시뮬레이션 벤치마크의 평균 성공률을 비교한다. GR00T N1이 두 베이스라인을 모두 앞서고, 특히 GR-1 과제에서는 17% 이상 앞선다"
     page: 15
     bbox_norm: [0.266, 0.5367, 0.734, 0.62]
     strategy: table-region
@@ -175,7 +175,7 @@ figures:
     kind: table
     file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab03.png
     raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab03.png
-    caption: "Table 3: Real-World Results. Average policy success rate on real-world tasks with the GR-1 humanoid robots. GR00T N1 beats the diffusion policy baseline and shows strong results even with very little data."
+    caption: "실세계 결과. GR-1 humanoid 로봇으로 수행한 실세계 과제의 평균 policy 성공률이다. GR00T N1이 diffusion policy 베이스라인을 앞서고, 데이터가 매우 적을 때도 좋은 결과를 낸다"
     page: 15
     bbox_norm: [0.0947, 0.757, 0.9053, 0.9368]
     strategy: table-region
@@ -185,7 +185,7 @@ figures:
     kind: table
     file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab04.png
     raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab04.png
-    caption: "Table 4: Simulation Evaluation Results with Models Trained with Different Dataset Sizes."
+    caption: "데이터셋 크기를 달리해 학습한 모델의 시뮬레이션 평가 결과"
     page: 26
     bbox_norm: [0.0947, 0.1204, 0.9053, 0.9368]
     strategy: table-region
@@ -195,7 +195,7 @@ figures:
     kind: table
     file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab05.png
     raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab05.png
-    caption: "Table 5: Success rate on real-world tasks with the GR-1 humanoid robot."
+    caption: "GR-1 humanoid 로봇의 실세계 과제 성공률"
     page: 27
     bbox_norm: [0.2107, 0.1534, 0.7893, 0.5592]
     strategy: table-region
@@ -205,7 +205,7 @@ figures:
     kind: table
     file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab06.png
     raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab06.png
-    caption: "Table 6: Training hyperparameters. Pre- and post-training use the same hyperparameters unless specified."
+    caption: "학습 하이퍼파라미터. 별도 표기가 없으면 pre-training과 post-training이 같은 값을 쓴다"
     page: 27
     bbox_norm: [0.2197, 0.6474, 0.7757, 0.8727]
     strategy: table-region
@@ -215,7 +215,7 @@ figures:
     kind: table
     file: assets/nvidia-2025-gr00t-n1-an-open-foundation/tab07.png
     raw: raw/papers/nvidia-2025-gr00t-n1-an-open-foundation-figures/tab07.png
-    caption: "Table 7: Pre-training Dataset Statistics"
+    caption: "pre-training 데이터셋 통계"
     page: 28
     bbox_norm: [0.0947, 0.3548, 0.9053, 0.9368]
     strategy: table-region

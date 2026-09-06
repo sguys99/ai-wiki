@@ -16,7 +16,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig01.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig01.png
-    caption: "RT-1 전체 개요 — (a) 이미지+언어 지시 → 이산화된 arm/base 행동, (b) 130k 시연·3000 실세계 시행 (paper Figure 1)"
+    caption: "RT-1 전체 개요. 이미지와 지시문을 받아 이산화된 arm/base 행동을 내고 13만 개 시연 데이터, 3,000회 실세계 평가로 검증"
     page: 2
     bbox_norm: [0.1667, 0.0962, 0.8333, 0.4393]
     strategy: caption-region
@@ -26,7 +26,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig02.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig02.png
-    caption: "실험 환경 — robot classroom, Kitchen1/2, Everyday Robots 모바일 매니퓰레이터, 오브젝트 세트 (paper Figure 2)"
+    caption: "실험 환경. robot classroom, Kitchen1과 Kitchen2, Everyday Robots 모바일 매니퓰레이터, 오브젝트 세트"
     page: 5
     bbox_norm: [0.2314, 0.0958, 0.7686, 0.3187]
     strategy: caption-region
@@ -36,7 +36,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig03.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig03.png
-    caption: "RT-1 상세 아키텍처 — USE embedding → FiLM EfficientNet-B3 → TokenLearner(81→8) → decoder-only Transformer → action token (paper Figure 3)"
+    caption: "RT-1 상세 아키텍처. USE 임베딩, FiLM EfficientNet-B3, TokenLearner(81에서 8로), decoder-only Transformer, action token"
     page: 6
     bbox_norm: [0.1103, 0.0865, 0.7738, 0.6118]
     strategy: caption-region
@@ -46,7 +46,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig04.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig04.png
-    caption: "평가 시나리오 — distractor(easy/medium/hard)·background·realistic(L1/L2/L3) (paper Figure 4)"
+    caption: "평가 시나리오. distractor(easy/medium/hard), background, realistic(L1/L2/L3)"
     page: 9
     bbox_norm: [0.2637, 0.3465, 0.7363, 0.6287]
     strategy: caption-region
@@ -56,7 +56,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig05.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig05.png
-    caption: "RT-1 실행 궤적 예시 — 서랍 열기·물체 이동·세우기 등 (paper Figure 5)"
+    caption: "RT-1 실행 trajectory 예시. 서랍 열기, 물체 이동, 세우기 등"
     page: 11
     bbox_norm: [0.2314, 0.0958, 0.7692, 0.5739]
     strategy: caption-region
@@ -76,7 +76,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig07.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig07.png
-    caption: "Figure 7: Model Card for RT-1."
+    caption: "RT-1 모델 카드"
     page: 21
     bbox_norm: [0.1667, 0.096, 0.8333, 0.9276]
     strategy: caption-region
@@ -86,7 +86,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig08.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig08.png
-    caption: "Figure 8: Example camera images showcasing raw simulation, simulation with RetinaGAN applied, and the real world."
+    caption: "카메라 이미지 예시. 원본 시뮬레이션, RetinaGAN을 적용한 시뮬레이션, 실세계 순으로 보여준다"
     page: 22
     bbox_norm: [0.2152, 0.6063, 0.7848, 0.8605]
     strategy: caption-region
@@ -96,7 +96,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig09.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig09.png
-    caption: "시간에 따른 데이터량·태스크 수·seen 성능 성장 곡선 (paper Figure 9)"
+    caption: "시간에 따른 데이터량, 태스크 수, seen 성능의 성장 곡선"
     page: 23
     bbox_norm: [0.2314, 0.2131, 0.7686, 0.4029]
     strategy: caption-region
@@ -106,7 +106,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig10.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig10.png
-    caption: "Figure 10: “Backgrounds” evaluations focus on testing the performance of RT-1 on settings with different table textures and different backgrounds, such as those found in kitchens never trained on. These visual differences are quite pronounced, which in the most challenging case entails a new kitchen"
+    caption: "Backgrounds 평가. 조리대 질감과 배경을 바꿔 RT-1의 성능을 시험하며, 학습에 없던 주방도 포함한다. 시각적 차이가 뚜렷하고 가장 어려운 경우에는 주방 자체가 새 곳으로 바뀐다"
     page: 24
     bbox_norm: [0.1667, 0.2863, 0.8339, 0.4873]
     strategy: caption-region
@@ -116,7 +116,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig11.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig11.png
-    caption: "Figure 11: “Realistic instructions” evaluations propose realistic scenarios multiple distribution shifts that incrementally increase in difficulty. L 1 generalization introduces a new real office kitchen with new lighting conditions. L 2 generalization additionally adds unseen distractor objects. Fi"
+    caption: "Realistic instructions 평가. 난이도가 점차 올라가는 분포 변화를 여러 겹으로 제시한다. L1은 조명 조건이 다른 새 사무실 주방을 도입하고, L2는 여기에 미학습 distractor 물체를 더한다"
     page: 24
     bbox_norm: [0.1667, 0.5767, 0.8339, 0.7842]
     strategy: caption-region
@@ -126,7 +126,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig12.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig12.png
-    caption: "Figure 12: “Distractors” evaluations focus on diversifying initial scene configurations well beyond the distributions contained in the training dataset, which contain between 2 and 4 distractor objects. In the most challenging scenarios, the scene is extremely cluttered and contains occlusions for t"
+    caption: "Distractors 평가. distractor 물체가 2~4개인 학습 데이터 분포를 크게 벗어나도록 초기 장면 구성을 다양화한다. 가장 어려운 경우 장면이 매우 혼잡하고 가림이 생긴다"
     page: 26
     bbox_norm: [0.1667, 0.0958, 0.8338, 0.4129]
     strategy: caption-region
@@ -136,7 +136,7 @@ figures:
     kind: figure
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/fig13.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/fig13.png
-    caption: "RT-1 어텐션 맵 — layer/head별로 그리퍼-오브젝트 상호작용에 집중 (paper Figure 13)"
+    caption: "RT-1 attention map. layer와 head별로 그리퍼와 오브젝트의 상호작용에 집중한다"
     page: 31
     bbox_norm: [0.1667, 0.2975, 0.8395, 0.7034]
     strategy: caption-region
@@ -146,7 +146,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab01.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab01.png
-    caption: "Table 1: The list of skills collected for RT-1 together with their descriptions and example instruc- tions."
+    caption: "RT-1이 수집한 skill 목록과 각 설명, 지시문 예시"
     page: 7
     bbox_norm: [0.1667, 0.0419, 0.8333, 0.4772]
     strategy: table-region
@@ -156,7 +156,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab02.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab02.png
-    caption: "전체 성능 비교 — seen/unseen/distractor/background 성공률 표·막대그래프 (paper Table 2)"
+    caption: "전체 성능 비교. seen/unseen/distractor/background 성공률 표와 막대그래프 (Table 2)"
     page: 10
     bbox_norm: [0.1503, 0.0401, 0.8497, 0.2497]
     strategy: column-band
@@ -166,7 +166,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab03.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab03.png
-    caption: "Table 3: Realistic generalization scenarios: we compare model success rate in a realistic Google kitchen scenarios across three levels of generalization: L 1 for generalization to the new counter-top layout and lighting conditions, L 2 for additionally generalization to unseen distractor objects, L "
+    caption: "현실적 일반화 시나리오. Google 주방 환경에서 세 단계 일반화에 대한 모델 성공률을 비교한다. L1은 새 조리대 배치와 조명 조건에 대한 일반화, L2는 여기에 미학습 distractor 물체까지 더한 경우다"
     page: 11
     bbox_norm: [0.1503, 0.0401, 0.8497, 0.7867]
     strategy: column-band
@@ -176,7 +176,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab04.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab04.png
-    caption: "Table 4: Experimental results for incorporating simulation data in RT-1. Adding simulation data does not impact the performance on real objects, while significantly improving real performance on objects that were only introduced in simulation (+64%). It also improves real-world generalization on sim"
+    caption: "시뮬레이션 데이터를 결합한 실험 결과. 시뮬레이션 데이터를 더해도 실제 물체 성능은 영향을 받지 않고, 시뮬레이션에만 등장한 물체의 실세계 성능은 크게 오른다(+64%)"
     page: 12
     bbox_norm: [0.5922, 0.1091, 0.8282, 0.2675]
     strategy: table-region
@@ -186,7 +186,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab05.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab05.png
-    caption: "Table 5: Experimental results for mixing data from two different robots. Incorporating Kuka bin- picking data from QT-Opt (Kalashnikov et al., 2018) in RT-1 minimally impacts the standard class- room evaluation performance and results in almost a 2x improvement in generalization to the Bin- picking "
+    caption: "서로 다른 두 로봇의 데이터를 섞은 실험 결과. QT-Opt(Kalashnikov et al., 2018)의 Kuka bin-picking 데이터를 RT-1에 결합해도 표준 classroom 평가 성능은 거의 영향받지 않고, Bin-picking 일반화는 약 2배 개선된다"
     page: 13
     bbox_norm: [0.5549, 0.2762, 0.8309, 0.4791]
     strategy: table-region
@@ -196,7 +196,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab06.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab06.png
-    caption: "Table 6: SayCan style long horizon tasks in Kitchen1 and Kitchen2. (*Original SayCan eval uses a slightly different prompt so the planning success rate is lower.)"
+    caption: "Kitchen1과 Kitchen2에서의 SayCan 방식 long-horizon 과제. (*원래 SayCan 평가는 프롬프트가 조금 달라 planning 성공률이 더 낮다)"
     page: 14
     bbox_norm: [0.2781, 0.1422, 0.7219, 0.2368]
     strategy: table-region
@@ -206,7 +206,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab07.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab07.png
-    caption: "Table 7: Various data ablations of RT-1 across seen tasks, generalization to unseen tasks, and ro- bustness to distractors and backgrounds. Data diversity has a higher impact on the performance and generalization than data quantity."
+    caption: "RT-1의 데이터 ablation. seen 과제, 미학습 과제 일반화, distractor와 background에 대한 견고성을 비교한다. 데이터 다양성이 데이터 양보다 성능과 일반화에 더 큰 영향을 준다"
     page: 14
     bbox_norm: [0.1667, 0.8629, 0.8333, 0.9699]
     strategy: table-region
@@ -216,7 +216,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab08.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab08.png
-    caption: "Table 8: List of Unseen Instructions in Sec. 6.2 . For the “Unseen Tasks” evaluation, we exclude a total of 53 tasks during training. While these exact instructions were not present in the training set, the objects and skills contained in these instructions were still present in the training set."
+    caption: "6.2절의 미학습 지시문 목록. Unseen Tasks 평가를 위해 학습에서 53개 과제를 제외했다. 이 지시문 자체는 학습셋에 없지만 지시문에 담긴 물체와 skill은 학습셋에 있었다"
     page: 25
     bbox_norm: [0.221, 0.1345, 0.779, 0.83]
     strategy: table-region
@@ -226,7 +226,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab09.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab09.png
-    caption: "Table 9: Experimental results for incorporating simulation data in RT-1. Adding simulation data does not impact the performance on real objects, while significantly improving real performance on objects that were only introduced in simulation."
+    caption: "시뮬레이션 데이터를 결합한 실험 결과. 시뮬레이션 데이터를 더해도 실제 물체 성능은 영향을 받지 않고, 시뮬레이션에만 등장한 물체의 실세계 성능은 크게 오른다"
     page: 27
     bbox_norm: [0.5922, 0.1091, 0.8282, 0.2675]
     strategy: table-region
@@ -236,7 +236,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab10.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab10.png
-    caption: "Table 10: Experimental results for mixing data from two different robots. Incorporating Kuka bin-picking data from QT-Opt (Kalashnikov et al., 2018) in RT-1 minimally impacts the standard classroom evaluation performance and results in almost a 2x improvement in generalization to the Bin-picking eva"
+    caption: "서로 다른 두 로봇의 데이터를 섞은 실험 결과. QT-Opt(Kalashnikov et al., 2018)의 Kuka bin-picking 데이터를 RT-1에 결합해도 표준 classroom 평가 성능은 거의 영향받지 않고, Bin-picking 평가 일반화는 약 2배 개선된다"
     page: 28
     bbox_norm: [0.5549, 0.0582, 0.8309, 0.2611]
     strategy: table-region
@@ -246,7 +246,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab11.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab11.png
-    caption: "Table 11: SayCan style long horizon tasks in Kitchen1 and Kitchen2. (*Original SayCan eval uses a slightly different prompt so the planning success rate is lower.)"
+    caption: "Kitchen1과 Kitchen2에서의 SayCan 방식 long-horizon 과제. (*원래 SayCan 평가는 프롬프트가 조금 달라 planning 성공률이 더 낮다)"
     page: 29
     bbox_norm: [0.2781, 0.1438, 0.7219, 0.2384]
     strategy: table-region
@@ -256,7 +256,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab12.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab12.png
-    caption: "Table 12: List of SayCan instructions evaluated in Sec. 6.4"
+    caption: "6.4절에서 평가한 SayCan 지시문 목록"
     page: 30
     bbox_norm: [0.221, 0.096, 0.779, 0.326]
     strategy: table-region
@@ -266,7 +266,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab13.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab13.png
-    caption: "Table 13: Various model ablations of RT-1 across seen tasks, generalization to unseen tasks, and robustness to distractors and backgrounds."
+    caption: "RT-1의 모델 ablation. seen 과제, 미학습 과제 일반화, distractor와 background에 대한 견고성을 비교한다"
     page: 30
     bbox_norm: [0.1503, 0.0401, 0.8497, 0.7749]
     strategy: column-band

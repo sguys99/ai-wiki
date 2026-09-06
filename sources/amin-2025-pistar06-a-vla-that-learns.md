@@ -15,7 +15,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig01.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig01.png
-    caption: "RECAP 전체 루프 — 왼쪽의 다양한 로봇 데이터·subtask 명령·웹 multimodal 데이터가 π*0.6 VLA와 value function 양쪽을 pre-training하고, 오른쪽의 상자 조립·에스프레소·빨래 개기 배치에서 나온 rollout과 사람 개입·라벨이 다시 value function을 거쳐 VLA로 돌아온다. VLA 입력에 language와 나란히 advantage가 들어간다"
+    caption: "RECAP 전체 루프. 왼쪽의 다양한 로봇 데이터와 subtask 명령과 웹 multimodal 데이터가 π*0.6 VLA와 value function 양쪽을 pre-training하고, 오른쪽의 상자 조립과 에스프레소와 빨래 개기 배치에서 나온 rollout과 사람 개입과 라벨이 다시 value function을 거쳐 VLA 학습으로 들어간다. VLA 입력에 language와 나란히 advantage가 들어간다"
     page: 1
     bbox_norm: [0.0702, 0.2253, 0.9298, 0.4917]
     strategy: caption-region
@@ -25,7 +25,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig02.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig02.png
-    caption: "RECAP으로 학습한 과제들 — 에스프레소 음료 만들기, 납작한 골판지에서 상자 조립하기, 종류가 제각각인 빨래 개기"
+    caption: "RECAP으로 학습한 과제들. 에스프레소 음료 만들기, 납작한 골판지에서 상자 조립하기, 종류가 제각각인 빨래 개기"
     page: 2
     bbox_norm: [0.0702, 0.0606, 0.9297, 0.29]
     strategy: caption-region
@@ -35,7 +35,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig03.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig03.png
-    caption: "π*0.6 VLA와 value function의 연결 구조 — 아래쪽 670M value function이 낸 값으로 advantage A(o,a)=r+V(o_{t+N})−V(o_t)를 구하고, 이를 임계값 ε로 이진화해 VLA 입력의 metadata 옆에 붙인다. VLA는 SigLIP 400M + Gemma 4B backbone에 860M action expert를 달아 이산 action 토큰과 연속 action을 함께 낸다"
+    caption: "π*0.6 VLA와 value function의 연결 구조. 아래쪽 670M value function이 낸 값으로 advantage A(o,a)=r+V(o_{t+N})−V(o_t)를 구하고, 이를 임계값 ε로 이진화해 VLA 입력의 metadata 옆에 붙인다. VLA는 SigLIP 400M과 Gemma 4B backbone에 860M action expert를 결합해 이산 action 토큰과 연속 action을 함께 낸다"
     page: 4
     bbox_norm: [0.5, 0.0606, 0.9298, 0.3263]
     strategy: caption-region
@@ -45,7 +45,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig04.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig04.png
-    caption: "value function 출력 시각화 — 성공한 빨래 개기 episode(왼쪽)에서는 왼팔이 갠 셔츠를 흐트러뜨릴 때 값이 급락했다가 복구하며 다시 오르고, 실패한 냉장고 episode(오른쪽)에서는 문을 여는 순간 값이 뛰었다가 정수 필터를 넘어뜨릴 때 떨어진다"
+    caption: "value function 출력 시각화. 성공한 빨래 개기 episode(왼쪽)에서는 왼팔이 갠 셔츠를 흐트러뜨릴 때 값이 크게 하락했다가 복구하며 다시 오르고, 실패한 냉장고 episode(오른쪽)에서는 문을 여는 순간 값이 올랐다가 정수 필터를 넘어뜨릴 때 하락한다"
     page: 5
     bbox_norm: [0.0577, 0.0392, 0.9421, 0.2322]
     strategy: caption-region
@@ -55,7 +55,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig05.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig05.png
-    caption: "반복 개선 실험에 쓴 로봇 — 6 DoF 팔 둘에 평행 그리퍼, 팔 사이 베이스 카메라 1대와 손목 카메라 2대를 갖춘 고정형 양팔 시스템. 관절 위치를 50Hz로 제어한다"
+    caption: "반복 개선 실험에 쓴 로봇. 6 DoF 팔 둘에 평행 그리퍼, 팔 사이 베이스 카메라 1대와 손목 카메라 2대를 갖춘 고정형 양팔 시스템이다. 관절 위치를 50Hz로 제어한다"
     page: 7
     bbox_norm: [0.5205, 0.0606, 0.9093, 0.253]
     strategy: caption-region
@@ -65,7 +65,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig06.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig06.png
-    caption: "평가 과제 다섯 종의 시작 상태·성공 상태·성공 판정 기준 — 셔츠와 반바지 개기, 11종 혼합 빨래, ablation용 티셔츠(깃이 위로), 상자 조립, 에스프레소 추출"
+    caption: "평가 과제 다섯 가지의 시작 상태와 성공 상태와 성공 판정 기준. 셔츠와 반바지 개기, 11종 혼합 빨래, ablation용 티셔츠(깃이 위로), 상자 조립, 에스프레소 추출"
     page: 8
     bbox_norm: [0.0912, 0.0606, 0.9088, 0.3047]
     strategy: caption-region
@@ -75,7 +75,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig07.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig07.png
-    caption: "시간당 성공 횟수 — 네 과제 모두에서 RECAP을 끝까지 적용한 π*0.6(노란색)이 가장 높다. 혼합 빨래와 에스프레소는 offline RL + SFT 대비 2배 이상으로 뛴다"
+    caption: "throughput 비교. 네 과제 모두에서 RECAP을 끝까지 적용한 π*0.6(노란색)이 가장 높다. 혼합 빨래와 에스프레소는 offline RL + SFT 대비 두 배 이상이다"
     page: 9
     bbox_norm: [0.081, 0.0606, 0.919, 0.2454]
     strategy: caption-region
@@ -85,7 +85,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig08.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig08.png
-    caption: "성공률 — RECAP 단계마다 성적이 오르고, 혼합 빨래를 뺀 나머지는 90%대에 닿는다. 오른쪽 상자 조립은 집기·접기·라벨·쌓기 네 하위 단계로 쪼개 보여준다"
+    caption: "성공률 비교. RECAP 단계마다 성적이 오르고, 혼합 빨래를 뺀 나머지는 90%대에 닿는다. 오른쪽 상자 조립은 집기와 접기와 라벨과 쌓기 네 하위 단계로 나눠 보여준다"
     page: 9
     bbox_norm: [0.0801, 0.2868, 0.9199, 0.448]
     strategy: caption-region
@@ -95,7 +95,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig09.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig09.png
-    caption: "RECAP 반복 횟수에 따른 시간당 성공 횟수 — 빨래는 꾸준히 오르고, 상자 조립은 i=1에서 한 번 떨어졌다가 i=2에서 크게 오른다"
+    caption: "RECAP 반복 횟수에 따른 throughput. 빨래는 꾸준히 오르고, 상자 조립은 i=1에서 한 번 떨어졌다가 i=2에서 크게 오른다"
     page: 10
     bbox_norm: [0.0877, 0.0606, 0.4826, 0.2477]
     strategy: caption-region
@@ -105,7 +105,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig10.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig10.png
-    caption: "RECAP 반복 횟수에 따른 성공률 — 빨래는 1회 반복만에 90%를 넘겨 포화하고, 상자 조립은 두 반복 내내 하위 단계별로 계속 오른다"
+    caption: "RECAP 반복 횟수에 따른 성공률. 빨래는 한 번의 반복만으로 90%를 넘겨 포화하고, 상자 조립은 두 반복 내내 하위 단계별로 계속 오른다"
     page: 10
     bbox_norm: [0.073, 0.291, 0.4973, 0.4431]
     strategy: caption-region
@@ -115,7 +115,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig11.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig11.png
-    caption: "policy extraction 방식 비교 — 같은 on-robot 데이터를 쓴 AWR과 PPO는 offline RL + SFT를 거의 못 넘는다. advantage conditioning을 쓴 π*0.6만 시간당 성공 횟수가 두 배 가까이 올라간다"
+    caption: "policy extraction 방식 비교. 같은 on-robot 데이터를 쓴 AWR과 PPO는 offline RL + SFT를 거의 넘지 못한다. advantage conditioning을 쓴 π*0.6만 throughput이 두 배 가까이 올라간다"
     page: 10
     bbox_norm: [0.5006, 0.0606, 0.9291, 0.209]
     strategy: caption-region
@@ -125,7 +125,7 @@ figures:
     kind: figure
     file: assets/amin-2025-pistar06-a-vla-that-learns/fig12.png
     raw: raw/papers/amin-2025-pistar06-a-vla-that-learns-figures/fig12.png
-    caption: "특정 실패 모드 제거 — 깃이 위로 오게 개야 통과하는 엄격한 기준에서 offline RL + SFT는 23%에 그치지만, 사람 개입 없이 RECAP 두 반복만으로 97%까지 오른다"
+    caption: "특정 실패 모드 제거. 깃이 위로 오게 개야 통과하는 엄격한 기준에서 offline RL + SFT는 23%에 그치지만, RECAP 두 반복만으로 97%까지 오른다"
     page: 10
     bbox_norm: [0.5006, 0.2566, 0.9291, 0.4593]
     strategy: caption-region

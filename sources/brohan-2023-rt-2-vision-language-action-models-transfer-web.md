@@ -116,7 +116,7 @@ figures:
     kind: table
     file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab01.png
     raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab01.png
-    caption: "Table 1 | Performance on the simulated Language-Table tasks ( Lynch and Ser- manet , 2020 )."
+    caption: "시뮬레이션 Language-Table 과제 성능(Lynch and Sermanet, 2020)"
     page: 9
     bbox_norm: [0.5719, 0.1031, 0.883, 0.1869]
     strategy: table-region
@@ -126,7 +126,7 @@ figures:
     kind: table
     file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab02.png
     raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab02.png
-    caption: "Table 2 | Natural language instructions used for evaluations testing controlled distribution shifts along the dimension of novel objects, novel environments, and novel backgrounds. For each category, we introduce evaluation settings with smaller distribution shifts as well as larger distribution shi"
+    caption: "새 물체, 새 환경, 새 배경 축의 통제된 분포 변화를 시험하는 평가에 쓴 자연어 지시문. 각 범주마다 분포 변화가 작은 설정과 큰 설정을 함께 둔다"
     page: 26
     bbox_norm: [0.1537, 0.0944, 0.8463, 0.8646]
     strategy: table-region
@@ -136,7 +136,7 @@ figures:
     kind: table
     file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab03.png
     raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab03.png
-    caption: "Table 3 | Natural language instructions used for quantitative emergent evalutions."
+    caption: "정량적 emergent 평가에 쓴 자연어 지시문"
     page: 22
     bbox_norm: [0.1339, 0.4326, 0.8661, 0.8389]
     strategy: table-region
@@ -146,7 +146,7 @@ figures:
     kind: table
     file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab04.png
     raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab04.png
-    caption: "Table 4 | Overall performance of two instantiations of RT-2 and baselines across seen training tasks as well as unseen evaluations measuring generalization to novel objects, novel backgrounds, and novel environments."
+    caption: "RT-2 두 구현과 베이스라인의 전체 성능. 학습에서 본 과제와, 새 물체와 새 배경과 새 환경 일반화를 재는 미학습 평가를 함께 담았다"
     page: 23
     bbox_norm: [0.0959, 0.7363, 0.9004, 0.8606]
     strategy: table-region
@@ -156,7 +156,7 @@ figures:
     kind: table
     file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab05.png
     raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab05.png
-    caption: "Table 5 | Performance of RT-2 and baselines on quantitative emergent evaluations."
+    caption: "정량적 emergent 평가에서 RT-2와 베이스라인의 성능"
     page: 24
     bbox_norm: [0.0941, 0.0708, 0.9084, 0.278]
     strategy: table-region
@@ -166,7 +166,7 @@ figures:
     kind: table
     file: assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/tab06.png
     raw: raw/papers/brohan-2023-rt-2-vision-language-action-models-transfer-web-figures/tab06.png
-    caption: "Table 6 | Ablations of RT-2 showcasing the impact of parameter count and training strategy on generalization."
+    caption: "RT-2 ablation. 파라미터 수와 학습 전략이 일반화에 미치는 영향을 보여준다"
     page: 24
     bbox_norm: [0.1442, 0.4148, 0.852, 0.5274]
     strategy: table-region
