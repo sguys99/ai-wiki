@@ -104,8 +104,15 @@ def collect_targets(root, args_files, scan_all):
     return out
 
 
-def mask(line):
-    for pattern in (RE_INLINE_CODE, RE_WIKILINK, RE_MD_LINK_TARGET, RE_URL, RE_LATIN_PAREN):
+# 본문 규칙용 마스킹 세트 — 병기 괄호까지 지운다.
+MASK_PATTERNS = (RE_INLINE_CODE, RE_WIKILINK, RE_MD_LINK_TARGET, RE_URL, RE_LATIN_PAREN)
+# 헤딩 병기 규칙용 마스킹 세트 — 인라인 코드만 지운다.
+# RE_LATIN_PAREN 이 "## 요약 (Summary)" 의 괄호를 먼저 지워버리면 병기 헤딩이 검출되지 않는다.
+MASK_PATTERNS_HEADING = (RE_INLINE_CODE,)
+
+
+def mask(line, patterns=MASK_PATTERNS):
+    for pattern in patterns:
         line = pattern.sub(lambda m: " " * len(m.group(0)), line)
     return line
 
@@ -150,6 +157,8 @@ def lint_file(path, root):
             has_table = True
 
         masked = mask(line)
+        # 헤딩 병기 검사만 라틴 괄호를 남긴 라인으로 한다 (위 MASK_PATTERNS_HEADING 주석 참고).
+        masked_heading = mask(line, MASK_PATTERNS_HEADING)
         body_chars += len(stripped)
 
         if "·" in masked:
@@ -162,7 +171,7 @@ def lint_file(path, root):
                 "file": rel, "line": lineno, "severity": "error", "rule": "emdash",
                 "msg": "em dash(—) 금지 — 쉼표, 괄호, 문장 분리로 대체",
             })
-        if is_wiki and RE_BILINGUAL_HEADING.match(masked):
+        if is_wiki and RE_BILINGUAL_HEADING.match(masked_heading):
             warnings.append({
                 "file": rel, "line": lineno, "severity": "error", "rule": "bilingual-heading",
                 "msg": "헤딩 영문 병기 금지 — 한글 단독 헤딩으로",
