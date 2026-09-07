@@ -12,9 +12,9 @@ tags: [gstack, claude-code, agentic-workflow, slash-commands, software-factory, 
 > 이 페이지는 gstack 저장소와 이를 다룬 세 한국어 자료를 묶은 합성 overview다. wiki에 실재하는 네 자료만 인용한다 (rule #1·#4).
 >
 > - [[agents/garrytan-gstack]] — 원 저장소 (`garrytan/gstack`, MIT)
-> - 소개: [[sources/hada-2026-gstack-virtual-engineering-team|GeekNews (xguru)]]
-> - 카탈로그: [[sources/9bow-2026-gstack-claude-code-virtual-team|PyTorch KR (9bow, 28개 명령어)]]
-> - 실전 가이드: [[sources/gpters-2026-yc-ai-agent-guide-gstack|GPTERS (editor_소연, 브라우저 데몬 내부)]]
+> - 소개: [[agents/hada-2026-gstack-virtual-engineering-team|GeekNews (xguru)]]
+> - 카탈로그: [[agents/9bow-2026-gstack-claude-code-virtual-team|PyTorch KR (9bow, 명령어 카탈로그)]]
+> - 실전 가이드: [[agents/gpters-2026-yc-ai-agent-guide-gstack|GPTERS (editor_소연, 브라우저 데몬 내부)]]
 
 ## 한눈에 (TL;DR)
 
@@ -39,7 +39,7 @@ gstack은 Claude Code를 **역할이 나뉜 가상 엔지니어링 팀**으로 �
 | 자료 | 성격 | 이 자료만의 결 |
 |---|---|---|
 | GeekNews (xguru) | 커뮤니티 소개 | 대상 사용자 세분화(창업자·입문자·테크 리드), Conductor 병렬 스프린트 강조, Garry Tan 본인 리트윗 등 반응 |
-| PyTorch KR (9bow) | 명령어 카탈로그 | 전체 **28개** 명령어를 7단계에 매핑, 텔레메트리 수집 범위 명시 |
+| PyTorch KR (9bow) | 명령어 카탈로그 | 명령어를 5개 그룹으로 정리, 텔레메트리 수집 범위 명시. 원문은 28가지라 소개하지만 실제로 이름이 나오는 것은 22개다 |
 | GPTERS (editor_소연) | 실전 가이드 | 브라우저 데몬 내부 수치, Greptile 연동, `/retro`의 Team-Aware 동작 |
 
 ## 규모의 근거와 그 한계 (Claims & Caveats)
