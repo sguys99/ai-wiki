@@ -1,0 +1,310 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/dsba-2026-paper-review-graph-based-rag/fig01.png",
+    "raw": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig01.png",
+    "page": 5,
+    "caption": "",
+    "bbox": [
+      118.8,
+      193.8,
+      841.2,
+      540.0
+    ],
+    "bbox_norm": [
+      0.1238,
+      0.3589,
+      0.8763,
+      1.0
+    ],
+    "dpi": 300,
+    "area_frac": 0.482,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": true,
+    "override": true,
+    "overlay": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/dsba-2026-paper-review-graph-based-rag/fig02.png",
+    "raw": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig02.png",
+    "page": 7,
+    "caption": "",
+    "bbox": [
+      205.2,
+      231.6,
+      754.8,
+      540.0
+    ],
+    "bbox_norm": [
+      0.2137,
+      0.4289,
+      0.7862,
+      1.0
+    ],
+    "dpi": 300,
+    "area_frac": 0.327,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/dsba-2026-paper-review-graph-based-rag/fig03.png",
+    "raw": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig03.png",
+    "page": 9,
+    "caption": "",
+    "bbox": [
+      13.2,
+      4.8,
+      960.0,
+      540.0
+    ],
+    "bbox_norm": [
+      0.0137,
+      0.0089,
+      1.0,
+      1.0
+    ],
+    "dpi": 300,
+    "area_frac": 0.977,
+    "strategy": "manual",
+    "low_confidence": true,
+    "curated": true,
+    "override": true,
+    "overlay": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/dsba-2026-paper-review-graph-based-rag/fig04.png",
+    "raw": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig04.png",
+    "page": 14,
+    "caption": "",
+    "bbox": [
+      32.4,
+      161.4,
+      946.8,
+      362.4
+    ],
+    "bbox_norm": [
+      0.0338,
+      0.2989,
+      0.9862,
+      0.6711
+    ],
+    "dpi": 300,
+    "area_frac": 0.355,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": true,
+    "override": true,
+    "overlay": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/dsba-2026-paper-review-graph-based-rag/fig05.png",
+    "raw": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig05.png",
+    "page": 16,
+    "caption": "",
+    "bbox": [
+      13.2,
+      318.0,
+      898.8,
+      540.0
+    ],
+    "bbox_norm": [
+      0.0137,
+      0.5889,
+      0.9362,
+      1.0
+    ],
+    "dpi": 300,
+    "area_frac": 0.379,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": true,
+    "override": true,
+    "overlay": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/dsba-2026-paper-review-graph-based-rag/fig06.png",
+    "raw": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig06.png",
+    "page": 17,
+    "caption": "",
+    "bbox": [
+      118.8,
+      307.2,
+      841.2,
+      540.0
+    ],
+    "bbox_norm": [
+      0.1238,
+      0.5689,
+      0.8763,
+      1.0
+    ],
+    "dpi": 300,
+    "area_frac": 0.324,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": true,
+    "override": true,
+    "overlay": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/dsba-2026-paper-review-graph-based-rag/fig07.png",
+    "raw": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig07.png",
+    "page": 20,
+    "caption": "",
+    "bbox": [
+      214.8,
+      258.6,
+      745.2,
+      540.0
+    ],
+    "bbox_norm": [
+      0.2238,
+      0.4789,
+      0.7763,
+      1.0
+    ],
+    "dpi": 300,
+    "area_frac": 0.288,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/dsba-2026-paper-review-graph-based-rag/fig08.png",
+    "raw": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig08.png",
+    "page": 29,
+    "caption": "",
+    "bbox": [
+      90.0,
+      183.0,
+      889.2,
+      470.4
+    ],
+    "bbox_norm": [
+      0.0938,
+      0.3389,
+      0.9263,
+      0.8711
+    ],
+    "dpi": 300,
+    "area_frac": 0.443,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": true,
+    "override": true,
+    "overlay": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/dsba-2026-paper-review-graph-based-rag/fig09.png",
+    "raw": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig09.png",
+    "page": 31,
+    "caption": "",
+    "bbox": [
+      138.0,
+      264.0,
+      822.0,
+      405.6
+    ],
+    "bbox_norm": [
+      0.1437,
+      0.4889,
+      0.8562,
+      0.7511
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": true,
+    "override": true,
+    "overlay": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/dsba-2026-paper-review-graph-based-rag/fig10.png",
+    "raw": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig10.png",
+    "page": 35,
+    "caption": "",
+    "bbox": [
+      603.6,
+      139.8,
+      956.4,
+      502.8
+    ],
+    "bbox_norm": [
+      0.6287,
+      0.2589,
+      0.9963,
+      0.9311
+    ],
+    "dpi": 300,
+    "area_frac": 0.247,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/_overlay/p35.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/dsba-2026-paper-review-graph-based-rag/fig11.png",
+    "raw": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig11.png",
+    "page": 39,
+    "caption": "",
+    "bbox": [
+      253.2,
+      264.0,
+      697.2,
+      540.0
+    ],
+    "bbox_norm": [
+      0.2637,
+      0.4889,
+      0.7263,
+      1.0
+    ],
+    "dpi": 300,
+    "area_frac": 0.236,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": true,
+    "override": true,
+    "overlay": "raw/papers/dsba-2026-paper-review-graph-based-rag-figures/_overlay/p39.png"
+  }
+]

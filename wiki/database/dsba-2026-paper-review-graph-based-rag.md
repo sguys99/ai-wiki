@@ -19,6 +19,88 @@ papers_reviewed:
   - "LightRAG: Simple and Fast Retrieval-Augmented Generation (EMNLP 2025)"
   - "LeanRAG: Knowledge-Graph-Based Generation with Semantic Aggregation and Hierarchical Retrieval (AAAI-26)"
 tags: [graph-rag, rag, knowledge-graph, lightrag, leanrag, paper-review, dsba, dual-level-retrieval, hierarchical-clustering, lca, video]
+figures:
+  - id: fig01
+    label: Figure 1
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig01.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig01.png
+    caption: "Figure 1: graph 기반 RAG의 전반적인 과정. 질의가 G-Retrieval, retrieval 결과, graph format 변환, G-Generation을 거쳐 응답이 된다"
+    page: 5
+    bbox_norm: [0.1238, 0.3589, 0.8763, 1.0]
+    strategy: manual
+    curated: true
+  - id: fig03
+    label: Figure 3
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig03.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig03.png
+    caption: "Figure 3: 2024년부터 2026년까지의 대표 방법론 연구 흐름. 화살표에 붙은 문구가 앞선 방법론이 지적받은 한계다"
+    page: 9
+    bbox_norm: [0.0137, 0.0089, 1.0, 1.0]
+    strategy: manual
+    low_confidence: true
+    curated: true
+  - id: fig04
+    label: Figure 4
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig04.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig04.png
+    caption: "Figure 4: LightRAG 전체 구조. 왼쪽이 graph 기반 텍스트 인덱싱이고 오른쪽이 dual-level retrieval paradigm이다"
+    page: 14
+    bbox_norm: [0.0338, 0.2989, 0.9862, 0.6711]
+    strategy: manual
+    curated: true
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig05.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig05.png
+    caption: "Figure 5: entity와 relationship을 key-value로 재표현한 예시. 원문 한 문장에서 entity 두 개와 relationship 하나를 뽑아 각각 이름과 설명문 쌍으로 옮긴다"
+    page: 16
+    bbox_norm: [0.0137, 0.5889, 0.9362, 1.0]
+    strategy: manual
+    curated: true
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig06.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig06.png
+    caption: "Figure 6: Dual-level Retrieval Paradigm. low-level 키워드는 entity에, high-level 키워드는 relation에 매칭되고 그 결과에 출처 원문이 붙는다"
+    page: 17
+    bbox_norm: [0.1238, 0.5689, 0.8763, 1.0]
+    strategy: manual
+    curated: true
+  - id: fig08
+    label: Figure 8
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig08.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig08.png
+    caption: "Figure 8: LeanRAG 전체 프레임워크. (a) 지식 그래프 구축, (b) 계층적 의미 집계, (c) inference 세 단계로 나뉜다"
+    page: 29
+    bbox_norm: [0.0938, 0.3389, 0.9263, 0.8711]
+    strategy: manual
+    curated: true
+  - id: fig09
+    label: Figure 9
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig09.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig09.png
+    caption: "Figure 9: LeanRAG의 처리 흐름. 코퍼스를 인덱싱해 계층 그래프를 만들고 질의는 LCA 검색으로 처리한다"
+    page: 31
+    bbox_norm: [0.1437, 0.4889, 0.8562, 0.7511]
+    strategy: manual
+    curated: true
+  - id: fig11
+    label: Figure 11
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig11.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig11.png
+    caption: "Figure 11: 도메인 네 곳의 retrieval 컨텍스트 토큰 소비량 비교. LeanRAG가 가장 적고 LightRAG가 가장 많다"
+    page: 39
+    bbox_norm: [0.2637, 0.4889, 0.7263, 1.0]
+    strategy: manual
+    curated: true
 ---
 
 ## 요약
@@ -88,6 +170,9 @@ GraphRAG의 강점은 코퍼스 전체의 내용이 반영되어야만 답할 �
 
 전체 과정 도식의 출처로 슬라이드는 "Graph Retrieval-Augmented Generation: A Survey (2024)"를 인용한다. 네 단계 중 방법론의 정체성을 결정하는 것은 가운데 두 단계이고, 이 세미나의 나머지 논의도 모두 그 두 단계에 관한 것이다.
 
+![[assets/dsba-2026-paper-review-graph-based-rag/fig01.png]]
+*Figure 1: graph 기반 RAG의 전반적인 과정. 질의가 G-Retrieval, retrieval 결과, graph format 변환, G-Generation을 거쳐 응답이 된다 (DSBA 세미나 슬라이드 5).*
+
 ### Vanilla RAG와의 비교
 
 vanilla RAG는 벡터 기반의 단순한 RAG를 가리킨다. 두 방식의 대비는 세미나의 도입부에서 표로 제시된다.
@@ -146,6 +231,9 @@ entity가 포함된 원문 passage를 컨텍스트에 함께 붙이는 관행 �
 
 슬라이드 9장은 2024년부터 2026년까지의 흐름도를 제시한다. 각 방법론의 정의와 함께, 그 방법론이 지적받은 한계가 화살표로 다음 방법론에 연결되는 구조다.
 
+![[assets/dsba-2026-paper-review-graph-based-rag/fig03.png]]
+*Figure 3: 2024년부터 2026년까지의 대표 방법론 연구 흐름. 화살표에 붙은 문구가 앞선 방법론이 지적받은 한계다 (DSBA 세미나 슬라이드 9).*
+
 | 방법론 | 한 줄 정의 | 흐름도가 붙인 한계 |
 |---|---|---|
 | GraphRAG | LLM으로 지식 그래프와 커뮤니티 요약을 사전 구축해 전체 코퍼스에 대한 글로벌 질의응답을 가능하게 하는 프레임워크 | LLM의 높은 토큰 비용과 글로벌 요약의 한계, 글로벌 요약으로 인한 precision 하락 |
@@ -178,6 +266,9 @@ open-ended QA의 질문 생성 방식은 GraphRAG 연구에서 시작되었다. 
 
 LightRAG는 지식 그래프를 대상으로 dual-level retrieval을 통해 다각적 정보를 효율적으로 획득하는 방법론이다. 제목의 Light와 Fast가 가리키듯 효율성을 전면에 내세운다.
 
+![[assets/dsba-2026-paper-review-graph-based-rag/fig04.png]]
+*Figure 4: LightRAG 전체 구조. 왼쪽이 graph 기반 텍스트 인덱싱이고 오른쪽이 dual-level retrieval paradigm이다 (DSBA 세미나 슬라이드 14).*
+
 **문제 정의.** 논문이 지적하는 기존 RAG의 한계는 세 가지다.
 
 첫째, entity 간 관계에 기반한 정보를 얻기 어렵다. 둘째, 동일한 entity라도 다른 entity와 여러 종류의 관계를 가질 수 있는데 이를 충분히 반영하지 못하고 주제 간 연결도 찾지 못한다. 슬라이드가 든 예시 질의는 "전기차 사용량의 증가가 대기 오염과 교통 체계에 주는 영향은?"이다. 일반 RAG는 전기차, 대기 오염, 교통 체계 각각에 대한 문서를 따로 반환할 뿐 세 주제를 통합한 답을 만들지 못한다.
@@ -199,6 +290,9 @@ LightRAG는 지식 그래프를 대상으로 dual-level retrieval을 통해 다�
 
 이 재표현의 목적은 임베딩 검색을 단순하게 만드는 것이다. 그래프 구조를 그대로 순회하는 대신 key와 value를 이어 붙인 문자열 하나를 임베딩해 두면, 질의 쪽에서도 문자열 하나만 임베딩해 유사도를 재면 된다.
 
+![[assets/dsba-2026-paper-review-graph-based-rag/fig05.png]]
+*Figure 5: entity와 relationship을 key-value로 재표현한 예시. 원문 한 문장에서 entity 두 개와 relationship 하나를 뽑아 각각 이름과 설명문 쌍으로 옮긴다 (DSBA 세미나 슬라이드 16).*
+
 **Dual-level Retrieval.** 그래프 데이터를 다룰 때는 로컬 관점과 글로벌 관점을 함께 잡아야 한다는 것이 이 설계의 전제다. 슬라이드는 두 관점을 질의 예시로 구분한다.
 
 | 관점 | 예시 질의 | 대응 retrieval |
@@ -218,9 +312,15 @@ LightRAG는 지식 그래프를 대상으로 dual-level retrieval을 통해 다�
 
 두 번째 단계의 대응 관계가 이 방법론의 이름값이다. 구체적인 entity를 묻는 low-level 키워드는 entity 쪽에 매칭되고, 개념과 주제를 묻는 high-level 키워드는 relation 쪽에 매칭된다. relation이 글로벌 관점을 담당하는 이유는 관계 서술이 두 entity를 잇는 맥락 정보를 담고 있어서다.
 
+![[assets/dsba-2026-paper-review-graph-based-rag/fig06.png]]
+*Figure 6: Dual-level Retrieval Paradigm. low-level 키워드는 entity에, high-level 키워드는 relation에 매칭되고 그 결과에 출처 원문이 붙는다 (DSBA 세미나 슬라이드 17).*
+
 ### LeanRAG의 설계
 
 LeanRAG는 평면 지식 그래프 내 entity를 대상으로 hierarchical clustering을 적용해 상위 개념 간에도 모두 연결되도록 만드는 방법론이다.
+
+![[assets/dsba-2026-paper-review-graph-based-rag/fig08.png]]
+*Figure 8: LeanRAG 전체 프레임워크. (a) 지식 그래프 구축, (b) 계층적 의미 집계, (c) inference 세 단계로 나뉜다 (DSBA 세미나 슬라이드 29).*
 
 **문제 정의.** 논문이 겨냥하는 선행 연구는 둘이다.
 
@@ -268,6 +368,9 @@ LeanRAG는 평면 지식 그래프 내 entity를 대상으로 hierarchical clust
 | Contextualization via LCA Path Traversal | 계층 지식 그래프 위에서 seed entity를 모두 연결하는 서브그래프를 Lowest Common Ancestor 기법으로 찾는다 |
 
 LCA를 쓰는 이유는 평면 지식 그래프만 놓고 보면 서로 다른 노드를 잇는 경로가 지나치게 많기 때문이다. 계층 구조 위에서 공통 조상을 찾으면 경로가 하나로 좁혀지고, 저자들은 이 경로가 의미적 중복을 최소화한다고 주장한다.
+
+![[assets/dsba-2026-paper-review-graph-based-rag/fig09.png]]
+*Figure 9: LeanRAG의 처리 흐름. 코퍼스를 인덱싱해 계층 그래프를 만들고 질의는 LCA 검색으로 처리한다 (DSBA 세미나 슬라이드 31).*
 
 컨텍스트는 경로 안의 모든 entity와 relationship, 그리고 entity의 출처 원문 chunk로 구성한다. 원문은 많이 등장한 상위 몇 개만 고르며 그 개수는 하이퍼파라미터다. 이 부분은 LightRAG의 컨텍스트 구성 방식과 사실상 같다.
 
@@ -339,6 +442,9 @@ RQ1에서 LeanRAG와 함께 상위권에 오른 것이 HiRAG라는 점이 결론
 RQ2의 전제도 짚어 둘 필요가 있다. 컨텍스트 토큰 수가 적을수록 중복이 적다는 가정은 직접적인 중복 측정이 아니라 대리 지표다. 같은 정보를 짧게 담았는지, 아니면 필요한 정보를 덜 담았는지는 토큰 수만으로 구분되지 않는다. 이 실험이 RQ1의 성능 우위와 짝을 이룰 때 비로소 근거가 되는 구조다.
 
 RQ2에서 발표자가 의외라고 짚은 대목은 LightRAG가 GraphRAG보다 긴 컨텍스트를 산출했다는 점이다. 발표자는 LightRAG가 원문 코퍼스까지 붙여서일 것이라고 추정하면서도, LeanRAG 역시 원문을 붙이므로 같은 논리로는 설명이 되지 않는다고 스스로 반박하고 더 자세한 분석이 있었으면 좋았겠다고 말한다.
+
+![[assets/dsba-2026-paper-review-graph-based-rag/fig11.png]]
+*Figure 11: 도메인 네 곳의 retrieval 컨텍스트 토큰 소비량 비교. LeanRAG가 가장 적고 LightRAG가 가장 많다 (DSBA 세미나 슬라이드 39).*
 
 RQ3의 Diversity 하락은 LightRAG의 high-level 키워드 ablation과 같은 방향을 가리킨다. 계층적 관점은 곧 글로벌 관점을 포착하는 수단이므로, 그 수단을 빼면 답변의 관점 다양성이 먼저 무너진다. 로컬 관점과 글로벌 관점을 동시에 잡아야 한다는 세미나의 논지가 서로 다른 두 논문에서 같은 형태로 확인된 셈이다.
 

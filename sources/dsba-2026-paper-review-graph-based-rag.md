@@ -18,6 +18,118 @@ papers_reviewed:
   - "LightRAG: Simple and Fast Retrieval-Augmented Generation (EMNLP 2025)"
   - "LeanRAG: Knowledge-Graph-Based Generation with Semantic Aggregation and Hierarchical Retrieval (AAAI-26)"
 tags: [graph-rag, rag, knowledge-graph, lightrag, leanrag, paper-review, dsba, dual-level-retrieval, hierarchical-clustering, lca, video]
+figures:
+  - id: fig01
+    label: Figure 1
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig01.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig01.png
+    caption: "Figure 1: graph 기반 RAG의 전반적인 과정. 질의가 G-Retrieval, retrieval 결과, graph format 변환, G-Generation을 거쳐 응답이 된다"
+    page: 5
+    bbox_norm: [0.1238, 0.3589, 0.8763, 1.0]
+    strategy: manual
+    curated: true
+  - id: fig02
+    label: Figure 2
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig02.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig02.png
+    caption: "Figure 2: LightRAG가 지식 그래프를 구축할 때 쓰는 프롬프트 전문. entity와 relationship의 추출 필드가 그대로 적혀 있다"
+    page: 7
+    bbox_norm: [0.2137, 0.4289, 0.7862, 1.0]
+    strategy: manual
+    curated: false
+  - id: fig03
+    label: Figure 3
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig03.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig03.png
+    caption: "Figure 3: 2024년부터 2026년까지의 대표 방법론 연구 흐름. 화살표에 붙은 문구가 앞선 방법론이 지적받은 한계다"
+    page: 9
+    bbox_norm: [0.0137, 0.0089, 1.0, 1.0]
+    strategy: manual
+    low_confidence: true
+    curated: true
+  - id: fig04
+    label: Figure 4
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig04.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig04.png
+    caption: "Figure 4: LightRAG 전체 구조. 왼쪽이 graph 기반 텍스트 인덱싱이고 오른쪽이 dual-level retrieval paradigm이다"
+    page: 14
+    bbox_norm: [0.0338, 0.2989, 0.9862, 0.6711]
+    strategy: manual
+    curated: true
+  - id: fig05
+    label: Figure 5
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig05.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig05.png
+    caption: "Figure 5: entity와 relationship을 key-value로 재표현한 예시. 원문 한 문장에서 entity 두 개와 relationship 하나를 뽑아 각각 이름과 설명문 쌍으로 옮긴다"
+    page: 16
+    bbox_norm: [0.0137, 0.5889, 0.9362, 1.0]
+    strategy: manual
+    curated: true
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig06.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig06.png
+    caption: "Figure 6: Dual-level Retrieval Paradigm. low-level 키워드는 entity에, high-level 키워드는 relation에 매칭되고 그 결과에 출처 원문이 붙는다"
+    page: 17
+    bbox_norm: [0.1238, 0.5689, 0.8763, 1.0]
+    strategy: manual
+    curated: true
+  - id: fig07
+    label: Figure 7
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig07.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig07.png
+    caption: "Figure 7: 실제 질의에서 뽑힌 두 레벨 키워드와 그 결과로 구성된 retrieval context 예시"
+    page: 20
+    bbox_norm: [0.2238, 0.4789, 0.7763, 1.0]
+    strategy: manual
+    curated: false
+  - id: fig08
+    label: Figure 8
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig08.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig08.png
+    caption: "Figure 8: LeanRAG 전체 프레임워크. (a) 지식 그래프 구축, (b) 계층적 의미 집계, (c) inference 세 단계로 나뉜다"
+    page: 29
+    bbox_norm: [0.0938, 0.3389, 0.9263, 0.8711]
+    strategy: manual
+    curated: true
+  - id: fig09
+    label: Figure 9
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig09.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig09.png
+    caption: "Figure 9: LeanRAG의 처리 흐름. 코퍼스를 인덱싱해 계층 그래프를 만들고 질의는 LCA 검색으로 처리한다"
+    page: 31
+    bbox_norm: [0.1437, 0.4889, 0.8562, 0.7511]
+    strategy: manual
+    curated: true
+  - id: fig10
+    label: Figure 10
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig10.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig10.png
+    caption: "Figure 10: LeanRAG inference 단계 확대. 질의 임베딩과 매칭된 노드에서 시작해 상향식으로 경로를 모아 컨텍스트를 만든다"
+    page: 35
+    bbox_norm: [0.6287, 0.2589, 0.9963, 0.9311]
+    strategy: manual
+    curated: false
+  - id: fig11
+    label: Figure 11
+    kind: figure
+    file: assets/dsba-2026-paper-review-graph-based-rag/fig11.png
+    raw: raw/papers/dsba-2026-paper-review-graph-based-rag-figures/fig11.png
+    caption: "Figure 11: 도메인 네 곳의 retrieval 컨텍스트 토큰 소비량 비교. LeanRAG가 가장 적고 LightRAG가 가장 많다"
+    page: 39
+    bbox_norm: [0.2637, 0.4889, 0.7263, 1.0]
+    strategy: manual
+    curated: true
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -356,3 +468,21 @@ RQ3의 Diversity 하락에 대해서는 계층적 관점이 곧 글로벌 관점
 - **Comprehensiveness, Diversity, Empowerment, Overall**: open-ended QA의 평가 지표. 각각 답변의 포괄성, 관점의 다양성, 의사결정 지원력, 종합 품질을 본다.
 - **UltraDomain**: 18개 분야 428권의 원서로 구성된 다중 도메인 코퍼스.
 - **BIC (Bayesian Information Criterion)**: LeanRAG가 Gaussian Mixture Clustering의 클러스터 수 $m$을 정할 때 최소화하는 기준.
+
+## 8. 그림 후보 (Figure Candidates)
+
+원자료 영상에는 도식이 없고, 함께 보관한 보조 슬라이드 PDF 45장이 도해의 출처다. 슬라이드 캡션이 `Figure N` 형식이 아니어서 자동 검출이 멈췄고, 슬라이드 번호와 영역을 사람이 지정해 잘랐다. 표만 담긴 슬라이드(24, 38, 40)는 정량 수치를 본문이 인용하지 않는다는 이 자료의 성격을 유지하기 위해 후보에서 제외했다.
+
+| id | page | caption | strategy | 추천 |
+|---|---|---|---|---|
+| fig01 | 5 | graph 기반 RAG의 전반적인 과정 | manual | ★ wiki 권장 (method) |
+| fig02 | 7 | LightRAG의 지식 그래프 구축 프롬프트 전문 | manual | (텍스트 이미지) |
+| fig03 | 9 | 2024년부터 2026년까지의 대표 방법론 연구 흐름 | manual | ★ wiki 권장 (architecture) |
+| fig04 | 14 | LightRAG 전체 구조 | manual | ★ wiki 권장 (architecture) |
+| fig05 | 16 | entity와 relationship의 key-value 재표현 예시 | manual | ★ wiki 권장 (method) |
+| fig06 | 17 | Dual-level Retrieval Paradigm | manual | ★ wiki 권장 (method) |
+| fig07 | 20 | 질의, 두 레벨 키워드, retrieval context 예시 | manual | (텍스트 이미지) |
+| fig08 | 29 | LeanRAG 전체 프레임워크 | manual | ★ wiki 권장 (architecture) |
+| fig09 | 31 | LeanRAG의 처리 흐름과 LCA 검색 | manual | ★ wiki 권장 (method) |
+| fig10 | 35 | LeanRAG inference 단계 확대 | manual | (fig08의 (c) 패널과 중복) |
+| fig11 | 39 | 도메인별 retrieval 컨텍스트 토큰 소비량 | manual | ★ wiki 권장 (result) |
