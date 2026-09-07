@@ -253,9 +253,9 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/kmyu-2026-llm-wiki-pattern-synthesis|Karpathy LLM Wiki 패턴 한국어 종합 정리]]: Karpathy의 LLM Wiki Gist와 한국어 커뮤니티 논의를 11개 절로 합성한 기술 리포트. 여섯 가지 비판과 한국어 운영 아홉 항목을 함께 정리한다
 - [[applications/pandey-2026-rag-is-no-longer-just|RAG is no longer just vector search + LLM (Pandey, LinkedIn)]] — Brij Kishore Pandey가 올린 짧은 LinkedIn 카드. 2026 production RAG를 다섯 가지 디자인 공간으로 정렬한 사고 모델 (2026, article)
 - [[applications/lum1104-understand-anything|Lum1104/Understand-Anything (repo)]]: 코드베이스나 Karpathy 패턴 wiki를 knowledge graph로 바꿔 대화형 대시보드로 탐색하게 하는 MIT 플러그인. tree-sitter가 구조를, LLM이 의미를 맡는다
-- [[applications/langchain-ai-openwiki|langchain-ai/openwiki (repo)]] — 코드베이스 문서를 자동으로 짓고 갱신하는 CLI. "사람이 아니라 에이전트를 위해" 만들어, 저장소 위키를 생성한 뒤 `AGENTS.md`·`CLAUDE.md`에 참조를 심어 코딩 에이전트가 알아서 찾아 쓰게 한다. DeepAgents 기반, git diff 증분 갱신, GitHub Action 예시 포함, MIT (2026, repo)
-- [[applications/sproul-2026-introducing-openwiki-an-open-source|OpenWiki 출시 소개 (LangChain, Brace Sproul)]] — OpenWiki 공식 출시 블로그. 왜 지시 파일이 아니라 위키인지, diff 기반 백그라운드 갱신으로 문서가 코드를 따라가는 구조를 설명한다. DeepWiki·AutoWiki·Karpathy LLM Wiki를 계보로 든다 (2026, article)
-- [[applications/9bow-2026-openwiki-coding-agent-documentation|OpenWiki 한국어 소개 (9bow, PyTorchKR)]] — PyTorch Korea 9bow가 OpenWiki 설치·설정·사용법·CI 연동·라이선스를 코드 예제와 함께 정리한 커뮤니티 입문글 (2026, article)
+- [[applications/langchain-ai-openwiki|langchain-ai/openwiki (repo)]]: 코드베이스 문서를 만들고 갱신하는 LangChain의 CLI. 저장소를 읽어 openwiki/ 디렉토리에 문서를 만든 뒤 AGENTS.md와 CLAUDE.md에 참조를 덧붙여 코딩 에이전트가 찾아 쓰게 한다
+- [[applications/sproul-2026-introducing-openwiki-an-open-source|OpenWiki 출시 소개 (LangChain)]]: 제작사가 직접 밝힌 문제 의식과 설계 판단. 지시 파일에는 위키 참조만 두고, GitHub Action이 git diff로 문서를 갱신한다 (2026, article)
+- [[applications/9bow-2026-openwiki-coding-agent-documentation|OpenWiki 한국어 소개 (9bow, PyTorchKR)]]: PyTorch Korea 9bow가 OpenWiki의 문제의식과 에이전트 연동, 실행 모드, CI 연동을 코드 예제와 함께 소개한 커뮤니티 글 (2026, article)
 - [[applications/kmyu-2026-akb-llmwiki-gbrain-comparison|AKB, llmwiki, GBrain 비교 (kmyu)]]: 세 agent memory 접근을 6개 항목 5점 척도로 비교하고, AKB를 조직용 memory operating platform으로 올리는 3단계 로드맵을 제안한 2026-04-18 전략 보고서
 - [[applications/agricidaniel-claude-obsidian|AgriciDaniel/claude-obsidian (repo)]]: Karpathy LLM Wiki 패턴을 Claude Code 스킬 15개와 사전 설정 Obsidian vault로 구현한 MIT 저장소. advisory lock과 hybrid retrieval을 포함한다
 - [[applications/joonan30-llm-wiki-labs|joonan30/llm-wiki-labs (repo)]]: Joonan Lab이 연구실 위키 시스템(LLM-Wiki)의 구축과 운영을 인터랙티브 페이지로 공개한 저장소. 31일 케이스 스터디를 담은 lab 1편이 단일 HTML로 배포된다 (2026, repo)
