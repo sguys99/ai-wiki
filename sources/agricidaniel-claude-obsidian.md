@@ -287,7 +287,7 @@ CSS 스니펫 3종은 `setup-vault.sh`가 자동으로 활성화한다. `vault-c
 - **[[applications/joonan30-llm-wiki-labs|joonan30/llm-wiki-labs]]**: 같은 패턴을 실험 랩 형태로 구성한 구현.
 - **[[applications/safishamsi-graphify|safishamsi/graphify]]**: tree-sitter AST와 Leiden 군집화로 코드 지식 그래프를 만든다.
 - **[[applications/colbymchenry-codegraph|colbymchenry/codegraph]]**: 로컬 우선 code intelligence MCP 서버.
-- **[[applications/lum1104-understand-anything|Lum1104/Understand-Anything]]**: 7단계 파이프라인으로 코드베이스를 지식 그래프로 변환한다.
+- **[[applications/lum1104-understand-anything|Lum1104/Understand-Anything]]**: 코드베이스를 지식 그래프로 바꿔 대화형 대시보드로 탐색하게 한다.
 - **[[applications/datasciencedojo-2026-llm-wiki-by-andrej-karpathy|LLM Wiki by Karpathy 입문 튜토리얼]]**: Karpathy gist의 영어권 입문 가이드.
 - **[[applications/kmyu-2026-llm-wiki-pattern-synthesis|Karpathy LLM Wiki 패턴 한국어 종합 정리]]**: 본 ai-wiki 운영자 관점의 합성.
 - **[[applications/kmyu-2026-akb-llmwiki-gbrain-comparison|AKB와 llmwiki, GBrain 비교]]**: 6개 기준 비교. claude-obsidian을 네 번째 대상으로 추가할 가치가 있다.
