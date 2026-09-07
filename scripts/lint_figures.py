@@ -171,7 +171,9 @@ def parse_candidate_table(lines):
         cells = [c.strip() for c in m.group(1).split("|")]
         if not cells:
             continue
-        first = cells[0].strip().strip("`").strip()
+        # 마크다운 강조와 인라인 코드는 id 표기의 장식이라 벗긴다 (`**fig06**`, `` `fig06` ``).
+        # 벗기지 않으면 frontmatter id 와 문자열이 달라져 오탐이 난다 (B2 에서 16건 발생).
+        first = cells[0].strip().strip("*_`").strip()
         if not first:
             continue
         if set(first) <= set("-: "):  # 구분 행
