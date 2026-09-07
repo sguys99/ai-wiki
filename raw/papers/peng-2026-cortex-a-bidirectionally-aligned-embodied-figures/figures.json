@@ -1,0 +1,760 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig01.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Compared to previous works, Cortex is an embodied agent framework aligning the high- level VLM and low-level VLA on the subtask executability and tractability, enabling synergistic planning and execution for long-horizon manipulation.",
+    "bbox": [
+      113.88,
+      490.14,
+      498.11,
+      699.98
+    ],
+    "bbox_norm": [
+      0.1861,
+      0.6189,
+      0.8139,
+      0.8838
+    ],
+    "dpi": 300,
+    "area_frac": 0.166,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig02.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2: Overview of the Cortex framework. The cognitive orchestrator dynamically updates se- mantic memory to continuously stream executable subtask to ground the reactive System-1 executor.",
+    "bbox": [
+      102.0,
+      66.0,
+      510.01,
+      248.44
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8334,
+      0.3137
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig03.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3: Long-horizon metadata construction and interface standardization. Our data generation pipeline leverages automated annotation of over 4,000 hours of open-source video data and synthe- sizes high-quality procedural simulation data. frequency motor commands (the action sequence a t ). Howeve",
+    "bbox": [
+      102.0,
+      65.69,
+      510.0,
+      263.21
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0829,
+      0.8333,
+      0.3323
+    ],
+    "dpi": 300,
+    "area_frac": 0.166,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig04.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig04.png",
+    "page": 5,
+    "caption": "Figure 4: Event-balanced Sampling. Training trajectories are strategically divided into boundary transition phases and intra-task execution phases. The sampling mechanism employs asymmetric temporal margins around the subtask boundaries, explicitly balancing the learning of continuous state maintena",
+    "bbox": [
+      83.83,
+      66.0,
+      526.66,
+      274.48
+    ],
+    "bbox_norm": [
+      0.137,
+      0.0833,
+      0.8606,
+      0.3466
+    ],
+    "dpi": 300,
+    "area_frac": 0.19,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig05.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig05.png",
+    "page": 6,
+    "caption": "Figure 5: Harness Engineering. The deployment harness acts as a lightweight arbitration layer that maps diverse, open-ended global instructions into a unified instruction interface.",
+    "bbox": [
+      102.0,
+      66.0,
+      510.02,
+      143.97
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8334,
+      0.1818
+    ],
+    "dpi": 300,
+    "area_frac": 0.066,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig06.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig06.png",
+    "page": 7,
+    "caption": "Figure 6: Success rates on RoboTwin benchmark.",
+    "bbox": [
+      300.0,
+      575.22,
+      510.0,
+      710.4
+    ],
+    "bbox_norm": [
+      0.4902,
+      0.7263,
+      0.8333,
+      0.897
+    ],
+    "dpi": 300,
+    "area_frac": 0.059,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig07.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig07.png",
+    "page": 8,
+    "caption": "Figure 7: Zero-shot Real-world Deployment in Multi-stage Chemistry Tasks. A 14-step continuous experiment demonstrating Cortex’s exceptional capability in fine-grained spatial-numerical ground- ing, robust long-horizon progress tracking, and closed-loop physical execution.",
+    "bbox": [
+      102.0,
+      188.63,
+      510.01,
+      439.52
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2382,
+      0.8334,
+      0.555
+    ],
+    "dpi": 300,
+    "area_frac": 0.211,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig08.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig08.png",
+    "page": 14,
+    "caption": "Figure 8: Annotation-free subtask boundary inference on Wash the beaker . Each thumbnail is sam- pled at the inferred start boundary of a subtask. The bottom bar shows the monotone temporal segmentation over the full trajectory.",
+    "bbox": [
+      105.96,
+      389.59,
+      506.04,
+      619.84
+    ],
+    "bbox_norm": [
+      0.1731,
+      0.4919,
+      0.8269,
+      0.7826
+    ],
+    "dpi": 300,
+    "area_frac": 0.19,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig09.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig09.png",
+    "page": 15,
+    "caption": "Figure 9: Annotation-free boundary inference for a representative Wash the beaker trajectory. Thumbnails indicate inferred subtask onsets, and the lower bar shows the resulting monotone seg- mentation.",
+    "bbox": [
+      105.96,
+      66.0,
+      506.03,
+      205.23
+    ],
+    "bbox_norm": [
+      0.1731,
+      0.0833,
+      0.8269,
+      0.2591
+    ],
+    "dpi": 300,
+    "area_frac": 0.115,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig10.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig10.png",
+    "page": 18,
+    "caption": "Figure 10: Representative raw head-view frames extracted from the 15 tasks in the evaluation suite. The three rows correspond to Spatial Information, Long-horizon Task, and Counting Task, respec- tively, while the five columns in each row follow the task ordering in Table 6 .",
+    "bbox": [
+      102.0,
+      66.0,
+      510.02,
+      251.91
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8334,
+      0.3181
+    ],
+    "dpi": 300,
+    "area_frac": 0.156,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig11.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig11.png",
+    "page": 24,
+    "caption": "Figure 11: State history exposes high-frequency progress in a representative press button episode. The blue curve plots the normalized per-frame motion magnitude of the raw robot state, and the red staircase indicates the number of completed button presses from the subtask annotation. The model does",
+    "bbox": [
+      120.6,
+      66.2,
+      493.99,
+      173.89
+    ],
+    "bbox_norm": [
+      0.1971,
+      0.0836,
+      0.8072,
+      0.2196
+    ],
+    "dpi": 300,
+    "area_frac": 0.083,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig12.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig12.png",
+    "page": 25,
+    "caption": "Figure 12: Training prompt template for System-2. The prompt contains task-level language, input memory, optional ordered subtask guidance, quantized causal state history, delta summaries, and multi-view image tokens. The target is a minimal JSON object rather than free-form reasoning.",
+    "bbox": [
+      102.0,
+      66.0,
+      510.01,
+      367.37
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.4638
+    ],
+    "dpi": 300,
+    "area_frac": 0.254,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig13.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig13.png",
+    "page": 28,
+    "caption": "Figure 13: Multi-view rollout of the oven heating experiment. From top to bottom, the rows show the head, left-wrist, and right-wrist views. Each column shows an action-switching frame, and the displayed output is the current subtask.",
+    "bbox": [
+      102.0,
+      91.96,
+      510.01,
+      244.84
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1161,
+      0.8334,
+      0.3091
+    ],
+    "dpi": 300,
+    "area_frac": 0.129,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p28.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig14.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig14.png",
+    "page": 29,
+    "caption": "Figure 14: Prompt-mode comparison for trash disposal. Each frame is an action-switching frame, and the displayed output is the current subtask. The top row shows detailed mode, and the bottom row shows coarse mode.",
+    "bbox": [
+      102.0,
+      66.0,
+      510.0,
+      249.81
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3154
+    ],
+    "dpi": 300,
+    "area_frac": 0.155,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig15.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig15.png",
+    "page": 29,
+    "caption": "Figure 15: Detailed subtask prediction and execution process of Beaker Washing task",
+    "bbox": [
+      102.0,
+      476.42,
+      509.96,
+      713.25
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.6015,
+      0.8333,
+      0.9006
+    ],
+    "dpi": 300,
+    "area_frac": 0.199,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig16.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig16.png",
+    "page": 31,
+    "caption": "Figure 16: Performance comparison across different baselines in the beaker washing task. π 0 . 5 tends to repeat memory-sensitive reciprocal motions, while the task-level π mem can confuse visually similar task phases; Cortex maintains the correct order through explicit subtask routing and transitio",
+    "bbox": [
+      102.0,
+      133.61,
+      510.0,
+      611.04
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1687,
+      0.8333,
+      0.7715
+    ],
+    "dpi": 300,
+    "area_frac": 0.402,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig17.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig17.png",
+    "page": 32,
+    "caption": "Figure 17: Local execution failure during stopper grasping. Cortex keeps the current subtask and memory until the grasp succeeds.",
+    "bbox": [
+      102.0,
+      208.63,
+      510.0,
+      323.83
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2634,
+      0.8333,
+      0.4089
+    ],
+    "dpi": 300,
+    "area_frac": 0.097,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p32.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/fig18.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/fig18.png",
+    "page": 33,
+    "caption": "Figure 18: End-to-end failure cases in the chemical liquid stirring task. π 0 . 5 fails to terminate memory-sensitive insertion/removal phases, while the task-level π mem can confuse adjacent proce- dural stages; Cortex preserves task order through explicit memory and subtask-conditioned execu- tion",
+    "bbox": [
+      102.0,
+      263.58,
+      509.94,
+      481.07
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.3328,
+      0.8332,
+      0.6074
+    ],
+    "dpi": 300,
+    "area_frac": 0.183,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p33.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/tab01.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1: Performance evaluation on Step-level and Episode-level across different spatial and tempo- ral tasks. Metric scores include Subtask accuracy, Memory (Mem.) accuracy, and Total (Tot.) score.",
+    "bbox": [
+      98.04,
+      62.03,
+      513.96,
+      253.98
+    ],
+    "bbox_norm": [
+      0.1602,
+      0.0783,
+      0.8398,
+      0.3207
+    ],
+    "dpi": 300,
+    "area_frac": 0.165,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/tab02.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/tab02.png",
+    "page": 7,
+    "caption": "",
+    "bbox": [
+      297.98,
+      367.98,
+      506.0,
+      520.01
+    ],
+    "bbox_norm": [
+      0.4869,
+      0.4646,
+      0.8268,
+      0.6566
+    ],
+    "dpi": 300,
+    "area_frac": 0.065,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/tab03.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/tab03.png",
+    "page": 8,
+    "caption": "Table 3: Method comparison across two long-horizon task suites. Progress and success rate are average over 20 trials.",
+    "bbox": [
+      263.56,
+      567.32,
+      504.6,
+      655.97
+    ],
+    "bbox_norm": [
+      0.4306,
+      0.7163,
+      0.8245,
+      0.8282
+    ],
+    "dpi": 300,
+    "area_frac": 0.044,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/tab04.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/tab04.png",
+    "page": 16,
+    "caption": "Table 4: System-2 training configuration and infrastructure parameters.",
+    "bbox": [
+      163.44,
+      446.62,
+      448.56,
+      599.12
+    ],
+    "bbox_norm": [
+      0.2671,
+      0.5639,
+      0.7329,
+      0.7565
+    ],
+    "dpi": 300,
+    "area_frac": 0.09,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/tab05.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/tab05.png",
+    "page": 17,
+    "caption": "Table 5: Ablation study of temporal sample composition on the Galaxea dataset under a leave-episode-0-out validation protocol. Evaluated on the held-out episode 0 split across all tasks, the event-balanced mixture confirms superior sample efficiency and task performance. Sample counts are reported i",
+    "bbox": [
+      102.0,
+      116.94,
+      510.0,
+      179.83
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1477,
+      0.8333,
+      0.2271
+    ],
+    "dpi": 300,
+    "area_frac": 0.053,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/tab06.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/tab06.png",
+    "page": 18,
+    "caption": "Table 6: Scenario buckets used by the System-2 step-level and episode-level evaluations.",
+    "bbox": [
+      107.9,
+      310.25,
+      504.1,
+      573.38
+    ],
+    "bbox_norm": [
+      0.1763,
+      0.3917,
+      0.8237,
+      0.724
+    ],
+    "dpi": 300,
+    "area_frac": 0.215,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/tab07.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/tab07.png",
+    "page": 22,
+    "caption": "Table 7: Simulation π 0 . 5 executor training configuration.",
+    "bbox": [
+      186.21,
+      84.28,
+      425.79,
+      258.77
+    ],
+    "bbox_norm": [
+      0.3043,
+      0.1064,
+      0.6957,
+      0.3267
+    ],
+    "dpi": 300,
+    "area_frac": 0.086,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/tab08.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/tab08.png",
+    "page": 23,
+    "caption": "Table 8: Success rates (%) on the RoboTwin 2.0 benchmark under the data-scaling setting (50 clean + 500 randomized demonstrations).",
+    "bbox": [
+      150.45,
+      214.03,
+      461.55,
+      331.0
+    ],
+    "bbox_norm": [
+      0.2458,
+      0.2702,
+      0.7542,
+      0.4179
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/tab09.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/tab09.png",
+    "page": 23,
+    "caption": "Table 9: RMBench benchmark results. We report success rates across seven manipulation tasks for six policies, each trained with 50 synthesized demonstrations and evaluated over 100 rollouts.",
+    "bbox": [
+      102.0,
+      432.75,
+      510.0,
+      570.64
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.5464,
+      0.8333,
+      0.7205
+    ],
+    "dpi": 300,
+    "area_frac": 0.116,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/peng-2026-cortex-a-bidirectionally-aligned-embodied/tab10.png",
+    "raw": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/tab10.png",
+    "page": 26,
+    "caption": "Table 10: Real-world π mem executor training configuration.",
+    "bbox": [
+      182.12,
+      84.28,
+      429.88,
+      308.59
+    ],
+    "bbox_norm": [
+      0.2976,
+      0.1064,
+      0.7024,
+      0.3896
+    ],
+    "dpi": 300,
+    "area_frac": 0.115,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/peng-2026-cortex-a-bidirectionally-aligned-embodied-figures/_overlay/p26.png"
+  }
+]

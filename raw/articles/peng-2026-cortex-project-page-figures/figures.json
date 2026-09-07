@@ -1,0 +1,70 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/peng-2026-cortex-project-page/fig01.png",
+    "raw": "raw/articles/peng-2026-cortex-project-page-figures/fig01.png",
+    "caption": "Cortex dataset construction with public real-world data, simulation data, self-collected data, procedural data, annotation pipeline, and interface properties.",
+    "source_url": "https://steinate.github.io/cortex.github.io/static/images/dataset.png",
+    "bytes": 1889981,
+    "width": 2197,
+    "height": 1028,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/peng-2026-cortex-project-page/fig02.png",
+    "raw": "raw/articles/peng-2026-cortex-project-page-figures/fig02.png",
+    "caption": "Automatic annotation pipeline for subtask segmentation and temporal alignment.",
+    "source_url": "https://steinate.github.io/cortex.github.io/static/images/appendix_subtask_anno_pipeline_ds.png",
+    "bytes": 1364374,
+    "width": 2600,
+    "height": 1462,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/peng-2026-cortex-project-page/fig03.png",
+    "raw": "raw/articles/peng-2026-cortex-project-page-figures/fig03.png",
+    "caption": "Event-balanced sampling improves average total score while using fewer training samples.",
+    "source_url": "https://steinate.github.io/cortex.github.io/static/images/chart_event_ablation.png",
+    "bytes": 77301,
+    "width": 1452,
+    "height": 770,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/peng-2026-cortex-project-page/page-full.png",
+    "raw": "raw/articles/peng-2026-cortex-project-page-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/peng-2026-cortex-project-page/fig05.png",
+    "raw": "raw/articles/peng-2026-cortex-project-page-figures/fig05.png",
+    "caption": "Cortex architecture with instruction, observation, memory, VLM orchestration, and VLA execution.",
+    "source_url": "https://steinate.github.io/cortex.github.io/static/images/Architecture.png",
+    "bytes": 463483,
+    "width": 3023,
+    "height": 1302,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/peng-2026-cortex-project-page/fig06.png",
+    "raw": "raw/articles/peng-2026-cortex-project-page-figures/fig06.png",
+    "caption": "Chemical liquid stirring real-world rollout with fourteen subtasks.",
+    "source_url": "https://steinate.github.io/cortex.github.io/static/images/real_ds.png",
+    "bytes": 1915664,
+    "width": 1729,
+    "height": 1043,
+    "strategy": "fetched",
+    "curated": false
+  }
+]

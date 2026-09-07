@@ -151,6 +151,9 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | takt time | takt time | 택트 타임·타크트 타임 | takt time은 생산 라인이 한 개를 처리하는 데 허용하는 결정론적 주기다 | 평균 성공률과 종류가 다른 배치 제약이다. 자동차 차체 라인 사례는 84초 |
 | skill distribution | skill distribution | — | skill distribution은 로봇 데이터가 담고 있는 물리적 동작의 분포를 말한다 | RT-2가 낼 수 있는 동작의 상한을 정한다. 저장소 용례가 원어로 일관해 지침만 둔다 |
 | visual token reduction | visual token reduction | — | visual token reduction은 이미지에서 뽑은 토큰 수를 줄여 추론 연산량을 낮추는 기법이다 | SmolVLA의 실시간 제어 설계. layer skipping 행과 짝 |
+| finite state machine | Finite State Machine | 유한 상태 기계·상태 머신 | Finite State Machine은 상태와 transition으로 로봇 제어 흐름을 표현하는 구조다 | 약어 FSM 병용 가능. Behavior Tree 행과 짝을 이룬다. 계층형인 HFSM도 원어 약어로 쓴다 (2026-09 등재) |
+| tick | tick | 틱 신호 | tick은 Behavior Tree의 루트에서 잎으로 흘러 각 노드를 실행시키는 신호다 | BT 실행의 기본 단위. 음차 "틱" 단독은 시간 단위 tick과 겹쳐 원어로 고정한다 (2026-09 등재) |
+| graph edit distance | graph edit distance | 그래프 편집 거리 | graph edit distance는 한 그래프를 다른 그래프와 동형으로 만드는 데 필요한 최소 편집 연산 횟수다 | 약어 GED 병용 가능. Iovino 2024가 BT와 FSM을 같은 자로 재기 위해 도입했다 (2026-09 등재) |
 
 ## 신규 용어 추가 절차
 
