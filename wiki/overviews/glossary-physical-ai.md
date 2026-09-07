@@ -84,6 +84,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | world knowledge | world knowledge | 세계 지식 | world knowledge는 물체·행위·환경·예상되는 결과에 대해 모델이 미리 갖고 있는 사전 지식을 말한다 | Zhang 2026 서베이의 조직 축. 예측 장치인 world model과 구분해서 쓴다 |
 | multimodal grounding | multimodal grounding | 멀티모달 그라운딩·다중모달 그라운딩 | multimodal grounding은 언어로 된 지식을 이미지·영상·물체·공간 관계에 붙이는 단계다 | VLM·MLLM이 맡는 층. 음차도 표기 흔들림이라 원어로 고정 |
 | action grounding | action grounding | 행동 그라운딩·액션 그라운딩 | action grounding은 perception과 언어를 실행 가능한 action으로 잇는 단계다 | VLA가 맡는 층 |
+| visual grounding | visual grounding | 시각 그라운딩·비주얼 그라운딩·시각적 그라운딩 | visual grounding은 지시문이 가리키는 대상을 이미지 안의 구체적인 영역에 대응시키는 작업이다 | grounding 행의 하위 개념이며 multimodal·action grounding과 같은 계열. 2026-09 등재 (원어 13회 대 음차 0회, HiVLA). 계층형 VLA가 상위와 하위를 잇는 인터페이스로 쓴다 |
 | costmap | costmap | 코스트맵 | costmap은 로봇 주변 환경을 이동 가능 영역·장애물·팽창 비용으로 표현한 2D 격자 지도다 | Nav2 환경 표현. global/local 두 층. costmap filter·layer 등 파생도 원어 |
 | behavior tree | Behavior Tree | 행동 트리·비헤이비어 트리 | Behavior Tree는 로봇의 의사결정을 트리 구조의 노드 조합으로 관리하는 제어 구조다 | 약어 BT 병용 가능. Nav2 조율 축 |
 | action server | action server | 액션 서버 | action server는 오래 걸리는 작업을 요청받아 실행하며 feedback과 최종 결과를 돌려주는 ROS 2 통신 방식이다 | ROS 2 용어 |
@@ -108,6 +109,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | neural trajectory | neural trajectory | 신경 궤적·뉴럴 궤적 | neural trajectory는 video world model이 만들어낸 합성 trajectory 데이터다 | DreamGen(Zhu 2025)이 세운 이름. GR00T N1.5 pre-training 데이터에 들어간다. robot state가 없어 상태 입력을 0으로 조건화해 쓴다. trajectory 행의 "궤적" 금지와 짝 |
 | flow matching | flow matching | 흐름 정합·플로우 매칭 | flow matching은 noise에서 목표 분포로 가는 연속 변환의 속도장을 학습하는 생성 기법이다 | π0 계열과 GR00T 계열이 action head 학습에 공유한다. dynamics 행의 "동역학"과 달리 번역어를 쓰지 않는다 |
 | DiT | DiT | 확산 트랜스포머 | DiT는 diffusion 모델의 denoising 신경망을 Transformer로 구현한 구조다 | Diffusion Transformer의 표준 약어. GR00T의 action head와 Cosmos의 diffusion WFM이 모두 이 계열이다 |
+| cascaded cross-attention | cascaded cross-attention | — | cascaded cross-attention은 블록 하나 안에서 여러 조건을 각각 별도의 cross-attention 층으로 순서대로 주입하는 구조다 | HiVLA 고유 구조명. 금지 표기는 두지 않는다. "계단식"과 "캐스케이드"가 계단식 배열·비용 캐스케이드처럼 일반어로 이미 쓰이고 있어 리터럴 검사가 오탐한다. 2026-09 등재 |
 | action chunk | action chunk | 행동 청크·동작 묶음 | action chunk는 policy가 한 번에 출력하는 여러 timestep 분량의 action 묶음이다 | action 행의 "행동 청킹" 금지와 짝. chunk size는 k 또는 H로 표기 |
 | temporal ensembling | temporal ensembling | 시간 앙상블·시계열 앙상블·템포럴 앙상블 | temporal ensembling은 서로 겹치는 여러 action chunk의 같은 시점 예측을 가중 평균해 실행하는 기법이다 | ACT(Zhao 2023)가 세운 이름. 저장소에 Temporal Ensembling, temporal ensemble 등 4종이 혼재해 소문자 원형으로 고정한다 (2026-09 등재) |
 | compounding error | compounding error | 누적 오차·복합 오차·오차 누적 | compounding error는 policy의 작은 예측 오차가 다음 입력을 어긋나게 만들어 시간이 갈수록 커지는 현상이다 | imitation learning의 근본 난점. action chunking과 temporal ensembling이 이걸 줄이려는 처방이다 |
