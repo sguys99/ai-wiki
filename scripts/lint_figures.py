@@ -135,6 +135,47 @@ def parse_figures(lines):
     return present, items
 
 
+RE_CAND_HEADING = re.compile(r"^##\s+8[.\s]")
+RE_CAND_ROW = re.compile(r"^\s*\|(.+)\|\s*$")
+
+
+def parse_candidate_table(lines):
+    """sources 본문 '## 8. 그림 후보' 표의 id 열 파싱.
+
+    반환: (present, rows) — rows 는 [{"id":..., "line": 1-based}].
+    표의 첫 열을 id 로 본다. 헤더 행과 구분 행은 건너뛴다.
+    """
+    if not lines:
+        return False, []
+    start = None
+    for i, line in enumerate(lines):
+        if RE_CAND_HEADING.match(line):
+            start = i
+            break
+    if start is None:
+        return False, []
+    rows = []
+    for i in range(start + 1, len(lines)):
+        line = lines[i]
+        if line.startswith("## "):
+            break
+        m = RE_CAND_ROW.match(line)
+        if not m:
+            continue
+        cells = [c.strip() for c in m.group(1).split("|")]
+        if not cells:
+            continue
+        first = cells[0].strip().strip("`").strip()
+        if not first:
+            continue
+        if set(first) <= set("-: "):  # 구분 행
+            continue
+        if first.lower() == "id":  # 헤더 행
+            continue
+        rows.append({"id": first, "line": i + 1})
+    return True, rows
+
+
 def _assign(item, key, value):
     value = unquote(value)
     if key == "id":
@@ -247,6 +288,37 @@ def lint_stem(stem, root, figure_dirs):
 
     is_repo = unquote(src_fm.get("type", "")).lower() == "repo"
     warnings += check_paths(src_items, rel(root, src), root, check_raw=not is_repo)
+
+    # ── sources 8절 그림 후보 표와 frontmatter id 대조 ────────────────
+    cand_present, cand_rows = parse_candidate_table(src_lines)
+    if cand_present:
+        src_ids_all = {i["id"] for i in src_items if i["id"]}
+        seen = set()
+        for row in cand_rows:
+            if row["id"] in seen:
+                warnings.append({
+                    "file": rel(root, src), "line": row["line"], "severity": "warning",
+                    "rule": "candidate-table-mismatch",
+                    "msg": f"8절 표에 '{row['id']}' 행이 중복된다",
+                })
+                continue
+            seen.add(row["id"])
+            if row["id"] not in src_ids_all:
+                warnings.append({
+                    "file": rel(root, src), "line": row["line"], "severity": "warning",
+                    "rule": "candidate-table-mismatch",
+                    "msg": f"8절 표의 '{row['id']}' 가 frontmatter figures 에 없음 — "
+                           f"유령 행이거나 id 가 밀렸다",
+                })
+        for item in src_items:
+            if item["ignore"] or not item["id"]:
+                continue
+            if item["id"] not in seen:
+                warnings.append({
+                    "file": rel(root, src), "line": item["line"], "severity": "warning",
+                    "rule": "candidate-table-mismatch",
+                    "msg": f"frontmatter 의 '{item['id']}' 가 8절 그림 후보 표에 없음",
+                })
 
     wiki = find_wiki_page(root, stem)
     if wiki is None:

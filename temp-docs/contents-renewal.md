@@ -327,6 +327,15 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - (c) `banned-vocab`에 합치지 않고 별도 rule로 뒀다. `RE_BANNED_VOCAB`은 문맥을 안 보는 리터럴 묶음이고 그 위 주석이 "판/축/벌/기둥은 오탐이 커서 가이드로만 관리"라고 축을 명시적으로 배제한 자리다. 축은 앞 문맥을 봐야 하는 다른 종류의 규칙이고, rule을 나눠야 훅 JSON과 배치 보고에서 신규 94건을 기존 어휘 backlog와 섞지 않고 추적할 수 있다.
   - **훅 연동 판단: (c)는 자동 연동됐고 (a)(b)는 지금 붙이지 않는다.** `axis-misuse`는 `lint_style.py`의 기존 warning 경로를 타므로 훅 스크립트와 `settings.json`을 고칠 필요가 없다. (a)(b)를 지금 붙이지 않는 이유는 지연이 아니라(각 0.03초에서 0.04초로 기존과 같다) 두 가지다. 첫째, 두 스크립트가 배치가 앞으로 처리할 대형 backlog를 들고 있어(`wiki-uncurated-figure` 210, `bare-wikilink` 143) 파일 하나를 저장해도 방금 한 편집과 무관한 경고가 매번 뜨고, 훅 메시지가 상위 10건에서 잘려 정작 새 위반이 밀려난다. 둘째, 두 검사가 edit-local이 아니다. `lint_figures`는 한 stem의 sources와 wiki, raw를 함께 대조해 Step 4 진행 중 정상적인 과도기 불일치를 잡고, `lint_links`는 링크 대상 페이지를 아직 안 만든 시점의 저장에서 error를 낸다. 배치가 backlog를 0으로 내린 뒤 Phase 7에서 다시 판단한다.
 
+- [x] 1-8. lint 도구 확장 4종째: `lint_figures.py`에 `candidate-table-mismatch` 규칙 신설 (계획 밖 신규 항목, A8 배치의 제안에서 파생). sources 본문 `## 8. 그림 후보` 표의 id 열과 frontmatter `figures[].id`를 대조한다
+  - 완료 (2026-09-07). **8절 표 id 밀림이 A2, A5, A8에서 4개 stem 연속으로 나왔고 매번 담당 subagent가 수동으로 발견했다.** 남은 배치에 figures 보유 stem이 많아 기계 검사로 돌리는 편이 확실하다. `audit_captions.py`는 frontmatter caption만 보고 8절 표를 보지 않아 이 결함이 계속 통과했다.
+  - 구현은 새 함수 `parse_candidate_table()`과 `lint_stem()` 안의 대조 블록이다. 표의 첫 열을 id로 보고 헤더 행과 구분 행을 건너뛴다. 세 가지를 잡는다: 표에 있는 id가 frontmatter에 없는 경우(유령 행이거나 밀림), frontmatter에 있는 id가 표에 없는 경우, 표 안의 id 중복이다. severity는 기존 `curated-mismatch`와 같은 warning으로 뒀다.
+  - **기본 동작 불변 확인.** error 총계 171건이 패치 전후 동일하고(신규 규칙은 warning 전용), `--json`과 파일 단위 호출 경로가 그대로다. 계획서 6절 1항의 physical-ai 게이트 두 명령은 `lint_style`과 `lint_terms`라 영향이 없고 둘 다 exit 0을 유지한다. `lint_figures.py`는 Phase 1-7 판단에 따라 훅에 붙지 않은 상태라 훅 영향도 없다.
+  - **착수 실측 272건, 27개 stem.** 카테고리 분해는 physical-ai 158건(16 stem), agents 이하 비-physical-ai 114건(11 stem)이다.
+  - 규칙 정확성을 완료본으로 역검증했다. A2와 A5, A8에서 8절 표를 고친 7개 stem(zhang-2026, bai-2026, yang-2026, zhao-2026, google-sdlc, lin-2026, he-2026)과 파일럿 edge-2024가 전부 0건이다.
+  - **파일럿 1-1이 예고한 문제가 physical-ai에 그대로 남아 있음이 확인됐다.** 파일럿은 "해당 절을 가진 sources 112편에 같은 문제가 남아 있을 수 있다"고 적었고 실제로 `brohan-2022-rt-1`은 frontmatter에 id 26개(fig01~13, tab01~13)가 있는데 8절 표에는 10개만 있고 그중 `fig17`과 `fig22`는 frontmatter에 존재하지 않는다. 2026-08 정밀 크롭 전환 이전 순번 잔재다. 오탐이 아니다.
+  - **physical-ai 158건의 처리는 Phase 2 범위 밖이다.** physical-ai는 ingest-upgrade-plan Phase 1~5로 완료 선언된 카테고리인데, 그 완료 시점에는 `lint_figures.py`가 없었고 `audit_captions.py`가 8절 표를 검사하지 않아 이 결함이 드러날 경로가 없었다. **처리 방침은 사용자 결정 사항으로 남긴다** (Phase 7-5 후보). 비-physical-ai 114건은 각 배치가 그 stem 분량만큼 흡수한다.
+
 ### Phase 2. agents 배치 재작성 (A1~A13, 66편 = 기존 63 + 신규 3)
 
 파일럿 2편(cemri-2025, osmani-2026-loop-engineering)은 소속 배치에서 제외한다. 실제 배치 작업량은 64편이다.
