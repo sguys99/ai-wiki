@@ -167,6 +167,8 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | proxy ratio | proxy ratio | 대리 응답률·대리 비율 | proxy ratio는 사람 개입 없이 해소된 질문의 비율이다 | 기호는 rho. 대화 효율을 재는 지표. 서술어 "대리 응답"은 일반 서술이라 금지하지 않는다 (2026-09 등재) |
 | Tree Edit Distance | Tree Edit Distance | 트리 편집 거리 | Tree Edit Distance는 한 트리를 다른 트리로 바꾸는 데 필요한 노드 삽입, 삭제, 치환의 최소 횟수다 | 약어 TED 병용 가능. graph edit distance 행과 짝을 이룬다 (2026-09 등재) |
 | horizon amplification | horizon amplification | 지평 증폭·호라이즌 증폭·horizon 증폭 | horizon amplification은 노드별 성공률이 곱으로 누적되어 시퀀스가 길어질수록 전체 성공률이 급격히 낮아지는 현상이다 | long-horizon 행과 짝. 반쪽 번역 "horizon 증폭"도 금지 표기에 넣었다 (2026-09 등재) |
+| self-resetting loop | self-resetting loop | 자가 초기화 루프·셀프 리셋 루프·자기 초기화 루프 | self-resetting loop는 사람이 환경을 되돌려 주지 않아도 로봇이 스스로 재사용 가능한 시작 상태로 복귀하는 반복 구조다 | RoboClaw의 Entangled Action Pairs가 이 구조를 만든다. 자율 데이터 수집 계열에서 반복될 개념이라 표기를 고정한다 (2026-09 등재) |
+| structured memory | structured memory | 구조화 메모리·구조적 기억 | structured memory는 agent가 매 시점 유지하는 컨텍스트 저장소로, 역할과 과제 진행 상황과 단기 실행 이력을 나누어 담는다 | episodic memory 행과 같은 방식으로 복합 memory 용어를 원어로 고정한다. glossary-agents의 메모리 행은 단독 memory에만 적용된다. "구조화된 메모리"는 agents 파일에서 일반 서술로 쓰여 금지 표기에서 뺐다 (2026-09 등재) |
 
 ## 신규 용어 추가 절차
 
