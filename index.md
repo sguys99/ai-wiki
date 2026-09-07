@@ -141,6 +141,8 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/jo-2026-wall-oss-vla-primer|03-11. WALL-OSS (모두의 로보틱스)]]: WALL-OSS 논문의 한국어 입문 해설. 논문 여러 절에 흩어진 손실 함수를 학습 단계 순서로 재배열해 기호를 하나씩 풀이한다 (2026, article)
 - [[physical-ai/cui-2025-openhelix-a-short-survey-empirical|OpenHelix (Westlake Univ)]]: dual-system VLA의 짧은 서베이와 설계 요소별 ablation, 오픈소스 모델을 묶은 기술 보고서. dual-system에 판정 기준을 세웠다 (2025, paper)
 - [[physical-ai/openhelix-robot-awesome-dual-system-vla|Awesome-Dual-System-VLA (repo)]]: OpenHelix 저자들이 논문의 서베이 절을 옮겨 갱신하는 awesome 리스트. 배제 목록을 나란히 둬 판정 기준을 함께 보여 준다 (2025, repo)
+- [[physical-ai/peng-2026-cortex-a-bidirectionally-aligned-embodied|Cortex (Shanghai AI Lab)]]: 상위 VLM의 계획을 32개 canonical skill primitive와 도달 가능성 제약으로 묶어 하위 VLA가 그대로 실행하게 만든 dual-system VLA. 14단계 화학 실험을 zero-shot으로 완수한다 (2026, paper)
+- [[physical-ai/peng-2026-cortex-project-page|Cortex 프로젝트 페이지]]: Cortex 논문의 공식 프로젝트 페이지. 방법을 네 장의 카드로 압축하고, 논문에 없는 RMBench 7과제 평균과 경계 추론 히트맵을 싣는다 (2026, article)
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform|Cosmos World Foundation Model Platform (NVIDIA)]]: 영상 curation과 토크나이저, WFM 8종을 함께 공개한 NVIDIA의 world model 플랫폼 논문 (2025, paper)
 - [[physical-ai/wu-2023-unleashing-large-scale-video-generative|GR-1 (ByteDance Research)]]: 사람 영상에서 미래 프레임 예측을 배운 뒤 로봇 데이터로 학습한 manipulation policy. video generative pre-training의 출발점 (2023, paper)
 - [[physical-ai/bytedance-gr-1|GR-1 (bytedance, repo)]]: GR-1 논문의 공식 코드 저장소(Apache-2.0). CALVIN 평가 경로와 가중치만 공개하고 pre-training과 fine-tuning 코드는 없다 (2024, repo)
