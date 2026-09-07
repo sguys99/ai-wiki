@@ -232,14 +232,14 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 
 RAG 응용, 도메인 적용 사례, 제품 패턴.
 
-- [[applications/garrytan-gbrain|garrytan/gbrain (repo)]] — Garry Tan이 공개한 markdown-first 에이전트 메모리. git 마크다운을 진실 원천으로 두고 pgvector와 typed-edge KG, skill pack을 한데 결합한 OSS (2026, repo)
-- [[applications/garrytan-gbrain-tutorials|garrytan/gbrain — tutorials]] — 저장소 docs/tutorials의 실전 셋업 4편. 개인 브레인·회사 브레인·skillopt·코딩 에이전트 연결을 시간·비용 예산과 함께 정리 (2026, repo)
-- [[applications/xguru-2026-gbrain-open-source-personal-knowledge|GBrain — 오픈소스 개인 지식 베이스 (GeekNews)]] — xguru가 GeekNews에 올린 GBrain 소개. 한 문장 정의와 핵심 기능·기술 스택·v0.2.0 변경점 (2026, article)
-- [[applications/tilnote-2026-gbrain-repository-core-summary|GBrain 저장소 핵심 정리 (tilnote)]] — thin harness/fat skills와 contract-first 두 축으로 저장소를 읽고, v0.3→v0.9 버전 진화 경로를 꿴 한국어 정리 (2026, article)
+- [[applications/garrytan-gbrain|garrytan/gbrain (repo)]]: Garry Tan이 MIT로 공개한 에이전트 메모리. git markdown을 원본으로 두고 hybrid retrieval, LLM 호출 없는 typed edge graph, 답을 합성하는 brain layer를 결합한다 (2026, repo)
+- [[applications/garrytan-gbrain-tutorials|garrytan/gbrain tutorials]]: 저장소 docs/tutorials의 실전 셋업 4편. 개인 brain, 회사 brain, skillopt, 코딩 에이전트 연결을 소요 시간과 비용 예산까지 절차로 정리한다 (2026, repo)
+- [[applications/xguru-2026-gbrain-open-source-personal-knowledge|GBrain 오픈소스 개인 지식 베이스 (GeekNews)]]: xguru의 한국어 소개글. v0.2.0 기준 핵심 기능 5개와 기술 스택, 변경점 3개를 담은 버전 스냅샷 (2026, article)
+- [[applications/tilnote-2026-gbrain-repository-core-summary|GBrain 저장소 핵심 정리 (tilnote)]]: thin harness, fat skills와 contract-first 두 원칙으로 저장소를 읽고 v0.3.0에서 v0.9.1까지 버전 진화를 정리한 한국어 요약 (2026, article)
 - [[applications/gajjar-2026-gbrain-vs-computer-memory|GBrain vs DevRev Computer Memory]] — DevRev Arth Gajjar가 개인 GBrain과 엔터프라이즈 Computer Memory의 격차 세 가지를 비교한 에세이 (2026, article)
-- [[applications/vectorize-2026-gbrain-review-honest-assessment|GBrain Honest Assessment (Vectorize)]] — Vectorize.io가 GBrain을 10차원 스코어카드로 채점한 솔직 리뷰 (2026, article)
+- [[applications/vectorize-2026-gbrain-review-honest-assessment|GBrain Honest Assessment (Vectorize)]]: Vectorize.io가 GBrain을 10개 항목으로 채점한 리뷰. 강약점을 각 6가지로 나누고 단일 운영자 범위를 넘으면 맞지 않는다고 본다 (2026, article)
 - [[applications/mantena-2026-hermes-gbrain-setup-vps|Hermes + GBrain on AWS EC2 (Mantena)]] — Sudhir Mantena가 쓴 4-Part VPS 운영 튜토리얼. Hermes 위임 ingestion과 pay-per-use OAuth 흐름을 갈무리한 글 (2026, article)
-- [[applications/techwealth-hub-2026-garry-tan-gbrain-explained|GBrain Explained (TechWealth Hub)]] — 출시 6일 뒤 올라온 짧은 영상. 3-layer 멘탈 모델과 검증 runbook을 압축해 풀어낸 자료 (2026, video)
+- [[applications/techwealth-hub-2026-garry-tan-gbrain-explained|GBrain Explained (TechWealth Hub)]]: 공개 직후 올라온 5분 45초 3자 해설. 3-layer 구조와 brain agent loop, verification runbook을 압축한다 (2026, video)
 - [[applications/liu-2026-rag-llm-wiki-or-gbrain|RAG, LLM Wiki, or GBrain? (Liu, Medium)]] — Yanli Liu가 제안한 결정 프레임워크. 에이전트의 job(retrieve, compile, act)으로 RAG, LLM Wiki, Fat Skills를 가르는 Medium 글 (2026, article)
 - [[applications/safishamsi-graphify|safishamsi/graphify (repo)]] — Safi Shamsi가 만든 YC S26 제품. 임의 폴더를 3-pass로 처리해 단일 NetworkX 그래프로 컴파일하며, 21개가 넘는 AI 어시스턴트와 호환되는 도구 (2026, repo)
 - [[applications/graphify-labs-graphify|graphify (Graphify-Labs v0.9.15)]] — safishamsi/graphify의 조직 이전판. 85.1k stars, www.graphify.com 공식 도메인. 임의 폴더→knowledge graph + /graphify skill across 21+ AI assistants (2026, repo)
