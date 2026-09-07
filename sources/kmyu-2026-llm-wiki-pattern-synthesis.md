@@ -15,224 +15,316 @@ tags: [llm-wiki, karpathy, knowledge-management, obsidian, claude-code, ingest-q
 
 ## 한 줄 요약 (One-line Summary)
 
-**kmyu99**의 2026-05-06 Notion "기술 리포트" — Andrej Karpathy의 **LLM Wiki Gist**(2026-04-04, GitHub 5,000+ ★, HN 700+ 댓글)를 trunk로 삼아 한국어 커뮤니티 자료(박재홍 위키독스, GeekNews, unclejobs-ai 번역+10가지 역자 주석, nashsu/llm_wiki Tauri 데스크탑 앱)를 한국어로 합성한 11개 섹션 종합 문서. **핵심 thesis**: RAG는 "매 질의마다 지식을 재발견"하지만, LLM Wiki는 ingest 시점에 **사전 컴파일 + 복리 축적**되는 영속 산출물(persistent compounding artifact)을 유지한다 — 차이는 검색 기술이 아니라 **지식 관리 워크플로우**다. **3-Layer 아키텍처**(Raw 사람 소유 immutable / Wiki LLM 전적 소유 / Schema CLAUDE.md·AGENTS.md 공동) + **3-Operation**(Ingest 단일 소스 → 10~15 page touch · Query 인용+합성 + 좋은 답변은 페이지로 재저장 · Lint 모순/orphan/stale 주기 점검) + **임베딩 없는 검색**(index.md + log.md, ~100 sources까지 OK, 그 이상은 qmd 같은 BM25+벡터 하이브리드+LLM rerank 도구) + **경제학적 통찰**(*"북키핑 비용이 ~0에 수렴 → Bush의 Memex 1945가 풀지 못한 유지보수 문제를 LLM이 담당"*) + **6대 비판**(RAG 본질 논쟁 · Nature 모델 붕괴 · lossy compression · 차세대 모델 무력화 가능성 · 벤치마크/프로덕션 이슈 부재 · "사고 위임에 의한 새로운 기술 부채" 인지적 부작용)을 정리. **9개 한국어 실전 팁**(영어 kebab-case 파일명 + 한국어 H1 / 한국어 교착어 검색 한계 / Obsidian vault ↔ Claude Code 직접 연동 / CLAUDE.md 필수 항목 / **MCP 서버가 게임 체인저** / RAG와 병행 = 1차 wiki + 2차 raw / 세션 간 컨텍스트 유실 해결 = "index.md/log.md 먼저 읽어" 스키마 박기 / 소스당 수만~십수만 토큰 비용 / 9-항목 Lint 프롬프트 verbatim)과 **nashsu/llm_wiki 구현 디테일**(취소선 처리되어 사용자가 무효화한 섹션이지만 raw 보존, 2-step CoT Ingest · purpose.md · 4-Signal Relevance Model: Direct ×3.0 / Source overlap ×4.0 / Adamic-Adar ×1.5 / Type affinity ×1.0 · 4-phase Query Pipeline 토큰화→그래프 확장→예산 제어 60/20/5/15→컨텍스트 어셈블리)도 기록. **이 ai-wiki 자체가 Karpathy 패턴의 직접 구현**이라는 메타 관계: 사용자의 [`CLAUDE.md`](../CLAUDE.md) "THE FOUR RULES" + [`index.md`](../index.md) + raw/sources/wiki 3-tier + 한국어 본문/영어 식별자 정책이 본 문서가 정리한 9.1·9.4·9.7 조항을 그대로 적용한 결과물.
+Andrej Karpathy가 2026년 4월 4일 GitHub Gist로 공개한 LLM Wiki 아이디어 파일을 중심에 두고, 박재홍 위키독스 분석, GeekNews 요약, unclejobs-ai 한국어 번역과 역자 주석, nashsu/llm_wiki 구현 분석을 한국어로 합성한 11개 절 구성의 기술 리포트다. 핵심 주장은 RAG가 질의마다 지식을 다시 발견하는 반면 LLM Wiki는 수집 시점에 지식을 한 번 컴파일해 계속 축적되는 산출물로 유지한다는 것이며, 차이는 검색 기술이 아니라 지식 관리 워크플로에 있다고 본다. 문서는 3계층 아키텍처(Raw, Wiki, Schema), 세 가지 작업(Ingest, Query, Lint), 임베딩 없이 동작하는 `index.md`와 `log.md` 인덱싱, 유지보수 비용 관점의 경제학적 해석, 여섯 가지 비판, 한국어 사용자를 위한 아홉 가지 운영 팁, 구현 사례를 차례로 정리한다.
 
 ## 1. 자료 정보 (Document Information)
 
-- **형식**: Notion 페이지 (개인 share 공개, 비공개 데이터베이스 "기술 리포트"의 한 항목)
-- **저자**: kmyu99 (Notion 페이지 소유자, 본 ai-wiki repo의 사용자)
-- **URL**: <https://kmyu99.notion.site/LLM-wiki-3586150bf13c8057988bf7b9661465e5>
-- **Notion 모계 구조**: ancestor 7개 계층, 최상위 `Engineering Wiki` 데이터베이스 → ... → `기술 리포트` 데이터베이스 → 본 페이지
-- **상태**: "시작 전" (Notion 속성)
-- **최종 편집**: 2026-05-11T03:59:38Z
-- **문서 작성일 (자체 기재)**: 2026년 5월 6일
-- **분량**: 11개 최상위 섹션, ~6,500자 한국어 + 외부 링크 ~20개
-- **성격**: 1차 자료 요약이 아니라 **다수 자료의 한국어 합성**. Karpathy의 GitHub Gist(영어)를 중심으로 박재홍 위키독스 분석, GeekNews 핵심 요약+HN 의견, unclejobs-ai 한국어 번역+역자 10가지 주석, nashsu/llm_wiki 구현 분석을 한국어로 통합.
-- **수집 방법**: `mcp__claude_ai_Notion__notion-fetch`로 Notion API에서 페이지 본문 직접 추출
-- **취소선 처리 영역 (사용자 의도)**: 8.1 Farzapedia, 8.2 Karpathy 4가지 장점, 8.3 nashsu/llm_wiki 4-Signal/4-phase 상세 — Notion 원문에서 **취소선(strikethrough) 처리**되어 있어 사용자가 잠정 무효화·재검토 마킹한 것으로 보임. raw에는 취소선을 `~~...~~`로 보존, sources/wiki 본문에서는 메타 사실로만 언급.
+| 항목 | 내용 |
+|---|---|
+| 형식 | Notion 페이지 (공개 share). 개인 데이터베이스 "기술 리포트"의 한 항목 |
+| 저자 | kmyu99 (Notion 페이지 소유자) |
+| URL | <https://kmyu99.notion.site/LLM-wiki-3586150bf13c8057988bf7b9661465e5> |
+| 문서 작성일 (본문 말미 자체 기재) | 2026년 5월 6일 |
+| 구성 | 최상위 11개 절, 본문 한글 약 4,900자, 외부 URL 15개 |
+| 성격 | 1차 자료 요약이 아니라 다수 자료의 한국어 합성 |
+
+문서가 합성한 자료는 다섯 편이다. Karpathy의 GitHub Gist(영어 원문), 박재홍의 실리콘밸리 위키독스 글, GeekNews의 요약과 Hacker News 의견 정리, unclejobs-ai의 한국어 번역본과 역자 주석, nashsu/llm_wiki 구현 분석이다.
+
+### 1.1 취소선 처리 영역
+
+원문 8장의 세 소절(8.1 Farzapedia, 8.2 Karpathy가 정리한 네 가지 장점, 8.3 nashsu/llm_wiki 구현 상세)은 Notion 원문에서 취소선으로 표시돼 있다. raw 파일은 이를 `~~...~~`로 보존한다. 취소선의 의도는 원문에 설명돼 있지 않으므로, 이 문서는 해당 내용을 기록하되 취소선 상태라는 사실을 함께 남긴다.
+
+취소선 영역의 내용은 문서의 다른 곳에서도 언급된다. 11.2절은 GeekNews의 특징으로 "Farzapedia 사례 + Karpathy의 4가지 장점 정리"를 적고, 11.3절은 nashsu/llm_wiki의 특징으로 "2-step Ingest, 4-Signal Relevance Model, 4-phase Query Pipeline"을 적는다. 두 곳 모두 취소선이 없다.
 
 ## 2. 주요 기여 (Key Contributions)
 
-1. **Karpathy LLM Wiki 패턴의 한국어 정식 정리 (11 섹션)** — 단일 영어 Gist + 한국어 분산 토론을 처음으로 1개 문서에 종합. 박재홍·GeekNews·unclejobs-ai 3개 한국어 자료를 모두 출처 명기.
-2. **3-Layer 아키텍처 표 명시화** —
-    - **Raw Sources** (사람 소유, immutable, LLM 읽기만)
-    - **Wiki** (LLM 전적 소유, markdown 디렉토리, summary·entity·concept·synthesis)
-    - **Schema** (사람+LLM 공동, CLAUDE.md/AGENTS.md, "범용 챗봇 → 체계적 위키 관리자" 전환의 핵심)
-3. **3-Operation 정식화 (Ingest / Query / Lint)** —
-    - Ingest: 단일 소스 = **10~15 wiki page touch** (요약 + 인덱스 + 엔티티/개념 + 로그). 순차+직접 관여 vs 일괄+감독 최소화 2 모드.
-    - Query: 답변이 페이지로 재저장되어 *"탐색 활동이 지식 베이스에 복리 축적"*. 마크다운/테이블/Marp 슬라이드/matplotlib 차트/캔버스 출력 가능.
-    - Lint: 모순·낡은 주장·orphan page·미생성 개념·누락 cross-ref·웹 검색 데이터 공백 6 항목.
-4. **임베딩 없는 인덱싱 패턴** —
-    - **index.md**: 콘텐츠 카탈로그, 매 ingest 시 LLM 업데이트, 매 query 시 LLM 첫 reading
-    - **log.md**: append-only `## [YYYY-MM-DD] ingest | Title` 일관 접두사 → `grep "^## \["` unix 도구 파싱
-    - **scale ceiling**: ~100 sources, 수백 page까지 임베딩 없이 OK
-    - **확장 도구**: [qmd](https://github.com/tobi/qmd) (BM25+벡터 하이브리드, LLM rerank, 온디바이스, CLI+MCP)
-5. **Obsidian 보조 도구 카탈로그** — Web Clipper(브라우저 확장) · 이미지 로컬 다운로드(URL 깨짐 방지) · Graph View(허브/orphan 파악) · Marp(slide deck) · Dataview(frontmatter 쿼리) · Git 백엔드(버전/브랜치/협업).
-6. **경제학적 통찰** — 위키 유지의 진짜 장벽은 **북키핑(bookkeeping)** = 교차 참조 업데이트, 요약 갱신, 모순 표시. 사람들이 위키를 포기하는 이유 = 유지비 > 가치. LLM은 *"지루함을 모르고, 교차 참조 업데이트를 잊지 않고, 한 번에 15 파일 처리 가능"* → 유지비 ~0 → 개인 지식 관리의 경제학 자체가 변화. Vannevar Bush **Memex (1945)** 의 미해결 "누가 유지하느냐"에 LLM이 답.
-7. **6대 비판 정리 (HN/박재홍 종합)** —
-    - **7.1 "결국 RAG"**: 벡터 DB 대신 인덱스 + 파일시스템일 뿐. 반론 = *"사전 컴파일 vs 런타임 조립"*, 검색 기술이 아닌 **지식 관리 패턴**의 차이.
-    - **7.2 모델 붕괴**: Nature 논문 인용(*"LLM이 쓴 텍스트를 다시 LLM이 처리"*). 반론 = "학습" 맥락 vs "이미 학습된 모델로 위키 작성" 맥락 분리. 실무: 요약의 요약은 뉘앙스 손실 실재.
-    - **7.3 Lossy Compression**: 단서·날짜·소수의견·정확 워딩·엣지 케이스·소스 컨텍스트 손실. 위험 = 원본 대신 위키 검색하면 요약 오류 고착.
-    - **7.4 차세대 모델 무력화**: 10M context, 1000 tps면 중간 계층 불필요? 반론 = 1M context도 **20~30만 토큰에서 기억 손실 시작** → 근본 한계 유지.
-    - **7.5 벤치마크/프로덕션 부재**: hybrid RAG · BM25+rerank · GraphRAG · 계층적 요약 · NotebookLM 대비 우위 증거 0. 권한·다중사용자·감사로그·롤백·버저닝·동시성·컴플라이언스 미해결.
-    - **7.6 인지적 부작용**: *"사고 정리를 LLM에 위임 → 깊이 생각하는 능력 약화"* = **새로운 기술 부채**, "지속적인 뇌의 공백" 경험담.
-8. **한국어 사용자 9가지 실전 팁 (unclejobs-ai 역자 주석)** — 본 ai-wiki의 CLAUDE.md 정책에 직접 반영되는 핵심 가이드.
-9. **6가지 RAG 실무자 적용 가이드** — 자기주도 학습/면접 준비/클라이언트 케이스/arXiv 정리에 적합, Legal/프로덕션/빠른 변화 도메인은 신중. 기존 GraphRAG·멀티홉·계층 요약·BM25+벡터와 자연 연결, Karpathy 기여는 **워크플로우와 철학** 측면.
-10. **6+ 구현 사례 인용** — Karpathy 본인의 **Farzapedia** (일기+Notes+iMessage 2,500건 → 400 위키 doc, 에이전트 활용용, RAG 1년 전 실패 후 파일시스템 직접 탐색) + **nashsu/llm_wiki Tauri 데스크탑 앱** (취소선 처리됐지만 raw 보존) + Astro-Han · dragon1086 · joonan30 · OpenKB · agricidaniel 기타.
+1. **분산된 한국어 논의를 한 문서로 통합.** 영어 Gist 한 편과 한국어 자료 세 편(박재홍, GeekNews, unclejobs-ai)을 출처를 명기해 11개 절로 정리했다.
+2. **3계층 아키텍처를 표로 명시화.** Raw Sources(사람 소유, 불변, LLM은 읽기만), Wiki(LLM 전적 소유), Schema(사람과 LLM 공동, `CLAUDE.md` 또는 `AGENTS.md`)로 소유권과 가변성을 나눈다.
+3. **세 가지 작업을 정식화.** Ingest, Query, Lint 각각의 입력과 절차, 산출물을 나열한다. 단일 소스 하나가 10~15개 위키 페이지에 영향을 준다는 규모 감각을 제시한다.
+4. **임베딩 없는 인덱싱 패턴.** `index.md`(콘텐츠 카탈로그)와 `log.md`(시간순 append-only 기록) 두 파일만으로 소스 약 100개, 페이지 수백 개 규모까지 동작한다고 본다. 그 이상은 qmd 같은 검색 도구를 권한다.
+5. **Obsidian 보조 도구 카탈로그.** Web Clipper, 첨부 이미지 로컬 다운로드, Graph View, Marp, Dataview, Git 백엔드를 용도와 함께 정리한다.
+6. **경제학적 해석.** 위키 유지의 실제 장벽은 읽기나 사고가 아니라 북키핑(bookkeeping)이며, LLM이 이 비용을 거의 0으로 만들어 개인 지식 관리의 경제학 자체를 바꾼다고 본다. Vannevar Bush의 Memex(1945)가 남긴 "누가 유지보수하느냐"에 LLM이 답한다는 계보를 붙인다.
+7. **여섯 가지 비판 정리.** RAG 본질 논쟁, 모델 붕괴, 손실 압축, 차세대 모델의 무력화 가능성, 벤치마크와 프로덕션 이슈 부재, 인지적 부작용을 각각 반론과 함께 적는다.
+8. **한국어 사용자 실전 팁 아홉 항목.** unclejobs-ai 역자 주석에서 발췌한 것으로, 파일명 규칙부터 MCP 서버 도입 시점, 아홉 항목짜리 Lint 프롬프트 전문까지 포함한다.
+9. **RAG 실무자 관점의 적용 가이드.** 적합한 시나리오 네 가지와 신중해야 할 영역 세 가지를 구분하고, 기존 RAG 기법과의 연결점을 짚는다.
+10. **구현 사례 열거.** Farzapedia, nashsu/llm_wiki, agricidaniel, joonan30, OpenKB, Astro-Han, dragon1086과 Gist 댓글에서 발견된 구현체 12개를 모은다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
-### 3.1 3-Layer Stack
+### 3.1 RAG의 구조적 한계와 LLM Wiki의 차별점
+
+문서는 일반적인 LLM 문서 워크플로를 RAG로 규정한다. 파일을 업로드하면 청크 단위로 벡터 DB에 저장하고, 질의 시점에 관련 청크를 검색해 답변을 만든다. NotebookLM, ChatGPT 파일 업로드, 대부분의 RAG 시스템이 이 구조라고 본다.
+
+근본 문제로 지목하는 것은 LLM이 매 질의마다 지식을 처음부터 찾아야 하고 재발견한다는 점이다. 문서 다섯 편을 종합해야 하는 미묘한 질문도 매번 처음부터 조립하고, 이전 질의에서 발견한 연결고리와 모순점, 종합적 해석이 사라진다. 지식이 축적되지 않는다.
+
+LLM Wiki는 LLM이 단순 인덱싱이 아니라 점진적으로 축적되고 발전하는 위키를 구축하고 유지하게 한다. 위키를 사람이 직접 쓰지 않고 LLM이 쓰고 관리한다. 새 소스가 도착하면 LLM은 소스를 읽고 핵심 정보를 추출하며, 기존 위키에 통합해 엔티티와 개념 페이지를 갱신하고, 새 데이터가 기존 주장과 모순되면 표시하며, 진화하는 종합 분석을 강화하거나 도전한다. 지식은 한 번 컴파일되고 최신 상태로 유지되며 질의마다 재도출되지 않는다.
+
+핵심 통찰은 위키가 영속적이고 복리로 축적되는 산출물(persistent, compounding artifact)이라는 것이다. 교차 참조가 이미 구성돼 있고, 모순점이 이미 표시돼 있으며, 종합 분석이 이미 모든 자료를 반영한다. 소스를 추가할수록, 질문할수록 더 풍부해진다.
+
+역할 분담도 명시된다. 사람은 소스 큐레이션과 탐색 방향 결정, 질문 던지기를 맡고, LLM은 요약과 교차 참조, 분류, 기록 관리 같은 허드렛일을 전부 맡는다. Karpathy 본인의 사용 방식은 Obsidian을 IDE로, LLM을 내용을 수정하는 프로그래머로, 위키를 코드베이스로 두는 것이다.
+
+### 3.2 적용 영역
+
+문서는 다섯 영역을 든다.
+
+| 영역 | 예시 |
+|---|---|
+| 개인 | 목표, 건강, 심리, 자기개발 추적. 일기, 기사, 팟캐스트 노트 정리 |
+| 연구 | 수 주에서 수개월간 한 주제를 깊이 파고들며 진화하는 테제를 담은 위키 |
+| 독서 | 챕터별 정리, 캐릭터와 테마와 플롯 페이지. Tolkien Gateway 같은 팬 위키를 개인용으로 |
+| 비즈니스와 팀 | Slack 스레드, 미팅 전사, 프로젝트 문서로 만드는 내부 위키 |
+| 기타 | 경쟁 분석, 실사(due diligence), 여행 계획, 강의 노트, 취미 심층 탐구 |
+
+### 3.3 3계층 아키텍처
+
+| 레이어 | 소유자 | 특성 | 내용 |
+|---|---|---|---|
+| Raw Sources | 사람 | 불변(immutable) | 큐레이션된 원본 논문, 기사, 이미지, 데이터 파일. LLM은 읽기만 한다 |
+| Wiki | LLM | LLM 전적 소유 | 마크다운 파일 디렉토리. 요약, 엔티티, 개념, 비교, 종합 분석 |
+| Schema | 사람과 LLM 공동 | 핵심 설정 | `CLAUDE.md`(Claude Code), `AGENTS.md`(Codex) 등 |
+
+Raw Sources는 사용자가 선별한 문서 모음이자 정보의 원(source of truth)이다. LLM이 읽을 수는 있지만 절대 수정하지 않는다.
+
+Wiki는 LLM이 생성한 마크다운 파일 디렉토리로 요약, 엔티티 페이지, 개념 페이지, 비교 자료, 개요, 종합 분석을 포함한다. 새 원본 자료가 도착하면 LLM이 갱신하면서 상호 참조를 관리하고 내용을 일관되게 유지한다. 사용자는 읽기만 한다.
+
+Schema는 위키 구조와 컨벤션, 유지 관리 워크플로를 정의한다. LLM을 범용 챗봇이 아니라 체계적인 위키 관리자로 만드는 핵심이며, 사용자와 LLM이 시간이 지나며 함께 발전시킨다.
+
+### 3.4 세 가지 핵심 작업
+
+| 작업 | 시점 | 절차 | 산출 |
+|---|---|---|---|
+| Ingest | 새 소스 도착 시 | 소스 읽기, 핵심 요점 사용자와 논의, 위키 요약 페이지 작성, 인덱스 갱신, 관련 엔티티와 개념 페이지 갱신, 로그에 항목 추가 | 단일 소스가 10~15개 위키 페이지에 영향 |
+| Query | 대화 중 | 관련 페이지 검색과 읽기, 인용과 함께 답변 합성 | 마크다운 페이지, 비교 테이블, Marp 슬라이드 덱, matplotlib 차트, 캔버스 |
+| Lint | 주기적 | 위키 관리 상태 점검(health-check) | 모순, 낡은 주장, 고아 페이지 등 목록 |
+
+Ingest에는 두 가지 운영 방식이 있다. 하나는 한 번에 하나씩 처리하는 순차 수집에 사용자가 직접 관여하는 방식으로, Karpathy가 선호한다고 적혀 있다. 다른 하나는 여러 소스를 한 번에 일관되게 처리하는 일괄 수집으로 감독을 최소화한다.
+
+Query의 중요한 통찰은 좋은 답변을 위키에 새 페이지로 다시 저장할 수 있다는 점이다. 비교 분석과 발견한 연결고리, 심층 분석이 채팅 히스토리로 사라지지 않고 탐색 활동 자체가 지식 베이스에 복리로 축적된다.
+
+Lint의 점검 항목은 여섯 가지다.
+
+- 페이지 간 모순
+- 새 소스에 의해 대체된 낡은 주장
+- 인바운드 링크 없는 고아 페이지
+- 언급만 되고 자체 페이지가 없는 중요 개념
+- 누락된 교차 참조
+- 웹 검색으로 채울 수 있는 데이터 공백
+
+문서는 LLM이 조사할 새 질문과 찾아볼 새 소스를 제안하는 데 뛰어나다고 덧붙인다.
+
+### 3.5 인덱싱과 로깅
+
+`index.md`는 콘텐츠 중심 카탈로그다. 위키의 모든 페이지를 링크와 한 줄 요약, 메타데이터(날짜, 소스 수 등)로 카탈로그화하고 엔티티, 개념, 소스 같은 카테고리별로 정리한다. LLM은 수집할 때마다 갱신하고 질의할 때마다 먼저 읽는다. 소스 약 100개, 페이지 수백 개 규모까지는 임베딩 기반 RAG 인프라 없이 잘 작동한다.
+
+`log.md`는 시간순 append-only 기록으로 수집, 질의, 점검 내역을 남긴다. 일관된 접두사를 쓰면 unix 도구로 파싱할 수 있다. 예시는 `## [2026-04-02] ingest | Article Title` 형식이고, `grep "^## \[" log.md | tail -5`로 최근 다섯 항목을 뽑는다.
+
+위키 규모가 커지면 선택적으로 CLI 도구를 도입한다. 문서가 권하는 것은 [qmd](https://github.com/tobi/qmd)로, 마크다운 로컬 검색 엔진이며 BM25와 벡터 하이브리드에 LLM reranking을 결합하고 온디바이스로 동작하며 CLI와 MCP 서버를 모두 지원한다.
+
+### 3.6 Obsidian 보조 도구
+
+| 도구 | 용도 |
+|---|---|
+| Obsidian Web Clipper | 웹 기사를 마크다운으로 변환하는 브라우저 확장. 원본 컬렉션에 소스를 빠르게 추가한다 |
+| 첨부 이미지 로컬 다운로드 | 설정에서 첨부 파일 경로를 고정 디렉토리(예: `raw/assets/`)로 지정하고, "현재 파일의 첨부 파일 다운로드"에 단축키를 할당한다. 클리핑 후 단축키를 누르면 이미지가 로컬로 내려온다 |
+| Graph View | 위키 구조 파악. 무엇이 무엇과 연결되는지, 어떤 페이지가 허브이고 어떤 페이지가 고아인지 본다 |
+| Marp | 마크다운 기반 슬라이드 덱 포맷. 위키 콘텐츠에서 바로 프레젠테이션을 만든다 |
+| Dataview | 페이지 frontmatter에 쿼리를 실행하는 플러그인. LLM이 태그, 날짜, 출처 수를 frontmatter에 넣으면 동적 테이블과 목록을 생성한다 |
+| Git | 위키가 마크다운 파일로 된 Git 저장소이므로 버전 이력, 브랜치, 협업 기능을 그대로 쓴다 |
+
+이미지 로컬 다운로드에는 주의 사항이 붙는다. URL이 깨질 수 있는 상황에 의존하지 않고 LLM이 이미지를 직접 보고 참조할 수 있게 해주지만, LLM은 인라인 이미지가 포함된 마크다운을 한 번에 원시적으로 읽지 못한다. 해결책은 LLM이 먼저 텍스트를 읽은 다음 참조된 이미지의 일부 또는 전부를 별도로 확인해 추가 맥락을 얻게 하는 것이다.
+
+### 3.7 왜 작동하는가
+
+지식 베이스 유지의 핵심 장벽은 북키핑(bookkeeping)이다. 교차 참조 갱신, 요약 갱신, 모순 표시, 일관성 유지가 부담이며 읽기나 사고가 부담인 것이 아니다. 사람들이 위키를 포기하는 이유는 유지 관리 부담이 가치보다 빠르게 증가하기 때문이다.
+
+LLM의 강점은 지루함을 모르고, 교차 참조 갱신을 잊지 않으며, 한 번에 15개 파일을 처리할 수 있다는 것이다. 유지 관리 비용이 거의 0에 수렴하면서 개인 지식 관리의 경제학 자체가 바뀐다.
+
+역사적 맥락으로는 Vannevar Bush의 Memex(1945)와의 정신적 연결을 든다. 개인적이고 능동적인 큐레이션이며 문서 간 연결이 문서 자체만큼 가치 있다는 점이 같다. Bush가 풀지 못한 "누가 유지보수하느냐"를 LLM이 담당한다.
+
+### 3.8 한국어 운영 아홉 항목
+
+9장은 unclejobs-ai의 한국어 번역본 역자 주석에서 발췌한 것으로 다음 아홉 항목이다.
+
+| 번호 | 항목 | 요지 |
+|---|---|---|
+| 9.1 | 파일명 컨벤션 | 파일명은 영어 kebab-case, 제목(H1)만 한국어. 한글 파일명은 URL 인코딩과 git 호환성 문제를 일으킨다. frontmatter에는 한영 태그를 병기해 Dataview 쿼리에서 양쪽이 잡히게 한다 |
+| 9.2 | 한국어 검색 문제 | 한국어는 교착어라 형태소 분석 없이 검색이 잘 안 된다. qmd의 한국어 토크나이징 지원 여부를 확인해야 한다. 차선책은 `index.md`에 영어 키워드를 병기하는 것이고, 대안은 BM25의 한글 약점을 보완하는 가드레일이다 |
+| 9.3 | Obsidian과 에이전트 연동 | Obsidian vault를 LLM 에이전트의 작업 디렉토리로 직접 지정한다. Claude Code는 vault 루트에서 세션을 연다. `.obsidian/` 설정 디렉토리는 LLM이 건드리지 않도록 스키마에 명시하고, Linter 플러그인으로 LLM이 쓴 마크다운을 자동 정규화하며, Templater로 페이지 템플릿을 미리 만든다 |
+| 9.4 | 스키마에 들어갈 것 | 디렉토리 구조, 페이지 템플릿(frontmatter와 필수 섹션), 네이밍 규칙, 수집 워크플로 체크리스트, 금지 사항(원시 소스 수정 금지, 원문 통째 복사 금지 등) |
+| 9.5 | MCP 서버 | 위키 검색을 MCP 서버로 노출하면 LLM이 셸 명령어가 아니라 네이티브 도구로 직접 호출한다. Claude Code는 `.mcp.json`에 등록한다. 위키가 50페이지를 넘으면 진지하게 고려할 가치가 있다 |
+| 9.6 | RAG와 병행 | 원문은 RAG 대체재처럼 설명하지만 실제로는 보완재다. 1차 레이어가 위키(컴파일된 지식), 2차 레이어가 원시 소스 RAG(원문 검증 도구) |
+| 9.7 | 세션 간 컨텍스트 유실 | 원문에 명시되지 않은 실전 가치. 새 세션 시작 시 `index.md`와 `log.md`를 먼저 읽으라고 스키마에 박아두면 어제의 분석에서 즉시 이어갈 수 있다 |
+| 9.8 | 비용과 규모 감각 | 소스 1건 수집은 입력과 출력을 합쳐 수만에서 십수만 토큰을 소비할 수 있다. 질의 1건은 인덱스와 관련 페이지 2~5개로 상대적으로 가볍다. 위키 100페이지 이상이면 인덱스만으로 탐색이 어려워져 qmd 같은 검색 도구 도입 시점이 된다 |
+| 9.9 | Lint 실전 프롬프트 | 아홉 항목짜리 점검 프롬프트를 전문으로 제공한다 |
+
+9.2의 가드레일 대안에는 kurthong의 seCall 사례가 붙어 있다. 11.3절의 구현체 목록에는 hang-in/seCall이 들어 있다.
+
+9.9의 프롬프트 전문은 다음과 같다.
 
 ```
-┌──────────────────────────────────────────────────────────┐
-│ Schema (CLAUDE.md / AGENTS.md)            사람 ↔ LLM 공동 │
-│   디렉토리·페이지 템플릿·네이밍·워크플로우·금지사항       │
-├──────────────────────────────────────────────────────────┤
-│ Wiki  (markdown directory)                LLM 전적 소유  │
-│   summaries · entity pages · concept · synthesis        │
-│   LLM이 작성·업데이트·cross-ref 관리, 사용자는 읽기만   │
-├──────────────────────────────────────────────────────────┤
-│ Raw Sources  (papers/articles/PDFs/images)  사람 소유    │
-│   curated, immutable, LLM 읽기만                        │
-└──────────────────────────────────────────────────────────┘
+위키 상태를 점검해줘. 아래 항목을 순서대로 확인하고 결과를 보고해:
+
+1. index.md에 등록되었지만 실제 파일이 없는 항목 (깨진 링크)
+2. 파일은 있지만 index.md에 누락된 페이지 (미등록 페이지)
+3. 다른 페이지에서 한 번도 링크되지 않은 고아 페이지
+4. 2개 이상의 페이지에서 서로 모순되는 주장
+5. 언급은 되지만 자체 페이지가 없는 주요 개념
+6. source_count가 3 이상인데 요약이 1문단 이하인 빈약한 페이지
+7. 최근 수집된 소스가 기존 주장을 업데이트했어야 하는데 반영 안 된 곳
+
+각 항목에 대해 발견 사항과 구체적인 수정 제안을 함께 알려줘.
 ```
 
-### 3.2 3-Operation Loop
+원문 9.9절은 이 프롬프트를 아홉 항목짜리로 소개하지만 실제 코드 블록에는 일곱 항목이 들어 있다.
 
-```
-                   새 소스 도착
-                       │
-                       ▼
-   ┌───────────────────────────────────────────┐
-   │ INGEST                                     │
-   │  - LLM이 소스 읽기                          │
-   │  - 핵심 요점 사용자와 논의                  │
-   │  - wiki 요약 페이지 작성                    │
-   │  - index.md 업데이트                        │
-   │  - 관련 entity/concept 페이지 갱신           │
-   │  - log.md에 entry append                    │
-   │  → 단일 소스 = 10-15 page touch              │
-   └───────────────────────────────────────────┘
-                       │
-                       ▼ (대화 도중)
-   ┌───────────────────────────────────────────┐
-   │ QUERY                                      │
-   │  - index.md 먼저 읽기                       │
-   │  - 관련 페이지 검색·읽기                    │
-   │  - 인용+합성 답변 (md/table/Marp/chart)     │
-   │  - 좋은 답변 = 새 wiki page로 재저장        │
-   │  → 탐색 활동이 지식 베이스로 복리 축적      │
-   └───────────────────────────────────────────┘
-                       │
-                       ▼ (주기적)
-   ┌───────────────────────────────────────────┐
-   │ LINT (health check)                        │
-   │  1. 페이지 간 모순                          │
-   │  2. 새 소스에 의해 대체된 낡은 주장          │
-   │  3. inbound link 없는 orphan 페이지         │
-   │  4. 언급만 되고 자체 페이지 없는 개념        │
-   │  5. 누락된 cross-reference                  │
-   │  6. 웹 검색으로 메울 수 있는 데이터 공백     │
-   └───────────────────────────────────────────┘
-```
+### 3.9 RAG 실무자 관점
 
-### 3.3 임베딩 없는 검색 = index.md + log.md
+문서 10장은 이 패턴의 위치를 검색 기술의 새 패러다임이 아니라 지식 관리 워크플로의 재구성으로 규정한다. nashsu의 4-Signal Relevance Model과 4-phase Query Pipeline은 결국 그래프 RAG에 가까운 것으로 본다. "RAG가 아니다"라는 프레이밍을 곧이곧대로 받지 말고 하이브리드 검색과 사전 컴파일된 지식 레이어의 조합으로 이해하기를 권한다.
 
-- `index.md`: 카테고리별 catalog. 형식 = `link + one-line summary + metadata(날짜, 소스 수)`.
-- `log.md`: append-only, `## [YYYY-MM-DD] ingest | Title` prefix로 grep 가능.
-- **scale ceiling = ~100 sources, 수백 page**. 그 이상이면 qmd 같은 BM25+벡터 하이브리드 + LLM rerank + MCP 서버 노출 도구가 필요.
+적용 가능 시나리오는 네 가지다.
 
-### 3.4 한국어 운영 9가지 (unclejobs-ai)
+- 자기주도 학습 자료 정리. 12주 LLM 엔지니어링 커리큘럼이나 24주 논문 기반 커리큘럼처럼 누적 학습이 필요한 영역
+- 인터뷰와 면접 준비. 회사별 정보, 예상 질문, 답변, 회사 분석 누적
+- 클라이언트 케이스 누적 문서화. Vision AI 프로젝트처럼 평가 메트릭과 모델 선택 기준 같은 공통 패턴이 추출돼야 하는 도메인
+- arXiv 논문 정리와 리뷰. 종합 분석 페이지가 자동으로 진화하는 구조
 
-1. 영어 kebab-case 파일명 + 한국어 H1 (URL 인코딩·git 호환성)
-2. frontmatter 한영 태그 병기 (`tags: [인공지능, artificial-intelligence]`)
-3. Obsidian vault = LLM 작업 디렉토리. `.obsidian/` 보호, Linter 플러그인으로 정규화, Templater로 템플릿
-4. CLAUDE.md 필수 = 디렉토리 구조 + 페이지 템플릿 + 네이밍 규칙 + 수집 워크플로우 체크리스트 + 금지사항
-5. **MCP 서버 = 게임 체인저**: 위키 검색을 MCP로 노출하면 LLM이 셸 명령 아닌 **네이티브 도구**로 호출. 50 페이지 이상이면 진지하게.
-6. RAG는 대체재 아닌 **보완재** = 1차 wiki(컴파일) + 2차 raw RAG(원문 검증)
-7. 세션 컨텍스트 유실 해결 = *"index.md와 log.md를 먼저 읽어"*를 스키마에 박기
-8. 비용: 소스 1건 ingest = 수만~십수만 토큰, query = 인덱스+2~5 page로 가벼움
-9. **9-항목 Lint 프롬프트 verbatim 제공** (raw 9.9 섹션)
+신중하게 적용할 영역은 세 가지다.
+
+- Legal과 Compliance RAG. 손실 압축이 치명적이고 원문 보존이 필수다
+- 프로덕션 검색 시스템. 벤치마크가 없고 권한 모델과 감사 로그 같은 이슈가 미해결이다
+- 빠르게 변하는 데이터. 위키 동기화 비용이 가치를 추월할 위험이 있다
+
+기존 RAG 기법과의 연결에서는 GraphRAG, 멀티홉 검색, 계층적 요약, 하이브리드 검색(BM25와 벡터)이 자연스럽게 이어진다고 보고, 기존 도구로도 충분히 구현할 수 있으며 Karpathy의 기여는 워크플로와 철학 측면이라고 정리한다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
-> 본 문서는 합성 article이므로 자체 벤치마크는 없다. 다만 다음 수치를 인용·확장한다:
+이 문서는 합성 article이라 자체 벤치마크가 없다. 인용한 수치는 다음과 같다.
 
-- **Karpathy Gist 반응**: 5,000+ 별/포크, HN 700+ 댓글, 한 달 만에 paulshomo/co-wiki · jgoldfed/keppi · doum1004/llmwiki-cli · cagataysengor/llm-wiki-studio · kytmanov/obsidian-llm-wiki-local · tuirk/Kompl · swarmclawai/swarmvault · skyllwt/OmegaWiki · axoviq-ai/synthadoc · theafh/ai-modules · hang-in/seCall 등 **10+ 구현체** 등장.
-- **Farzapedia 규모**: 일기 + Apple Notes + iMessage **2,500건 입력 → 400 위키 doc 자동 생성**. 새 항목 추가 시 관련 2~3개 기존 문서 자동 업데이트 또는 새 문서 생성. **에이전트 활용 목적으로 설계** — 사용자 열람용 아님. 1년 전 RAG 시도 실패 후 파일시스템 직접 탐색으로 전환.
-- **단일 소스 → 10~15 wiki page touch** (Karpathy 본인 추정, 실측 아님).
-- **Context window degradation**: 1M context도 20~30만 토큰에서 기억 손실 시작 (7.4 비판 반박).
-- **Wiki scale**: ~100 sources, 수백 page까지는 임베딩 없이 OK; 그 이상은 qmd 같은 도구 필요.
-- **nashsu/llm_wiki Tauri 앱** (취소선 처리됐지만 raw 보존, GitHub 23 ★):
-    - 2-step CoT Ingest (Analysis → Generation)
-    - purpose.md 추가 (schema=how, purpose=why)
-    - **4-Signal Relevance Model**: Direct link ×3.0 (`[[wikilinks]]`) · Source overlap ×4.0 (frontmatter `sources[]`) · Adamic-Adar ×1.5 (공통 이웃, 이웃의 차수로 가중) · Type affinity ×1.0
-    - **4-phase Query Pipeline**: 토큰화 검색(영어 단어 분리, 한중일 bigram) → 그래프 확장(검색 결과 시드 + 관련성 모델) → **예산 제어(60% 위키 / 20% 히스토리 / 5% 인덱스 / 15% 시스템)** → 컨텍스트 어셈블리(페이지 번호 인용)
-    - 다국어, Chrome 확장(웹 클리퍼), 멀티 포맷(PDF/DOCX/PPTX/XLSX)
+| 항목 | 수치 | 출처 맥락 |
+|---|---|---|
+| Gist 반응 | GitHub 별과 포크 5,000개 이상, Hacker News 댓글 700개 이상 | 1장 |
+| 구현체 등장 | 공개 한 달 만에 다수 등장. Gist 댓글에서 발견된 것 12개 열거 | 1장, 11.3절 |
+| 단일 소스의 영향 범위 | 위키 페이지 10~15개 | 4.1절 |
+| 임베딩 없는 운영 한계 | 소스 약 100개, 페이지 수백 개 | 5.1절 |
+| MCP 도입 검토 시점 | 위키 50페이지 | 9.5절 |
+| 검색 도구 도입 시점 | 위키 100페이지 | 9.8절 |
+| 수집 비용 | 소스 1건당 입력과 출력 합쳐 수만에서 십수만 토큰 | 9.8절 |
+| context window 한계 | 100만 토큰 모델도 20만에서 30만 토큰에서 기억 손실 시작 | 7.4절 |
+
+Gist 댓글에서 발견된 구현체 12개는 paulshomo/co-wiki, gowtham0992/link, jgoldfed/keppi, doum1004/llmwiki-cli, cagataysengor/llm-wiki-studio, kytmanov/obsidian-llm-wiki-local, tuirk/Kompl, swarmclawai/swarmvault, skyllwt/OmegaWiki, axoviq-ai/synthadoc, theafh/ai-modules, hang-in/seCall이다.
+
+### 4.1 취소선 영역의 수치
+
+아래 내용은 원문에서 취소선으로 표시된 8.1에서 8.3절에 있다.
+
+Farzapedia는 Karpathy 본인이 좋은 사례로 언급한 구현이다. 일기와 Apple Notes, iMessage 2,500건을 입력해 위키 문서 400개를 자동 생성했다. 친구, 스타트업, 좋아하는 애니메이션, 영감 이미지까지 백링크로 연결했다. 사용자 열람용이 아니라 에이전트가 활용하는 지식 베이스로 설계했고, Claude Code를 위키에 연결해 `index.md`를 진입점으로 에이전트가 직접 탐색하게 한다. 1년 전 RAG 기반으로 시도했으나 성능이 부족해 파일시스템 직접 탐색으로 바꿨다. 새 항목을 추가하면 관련된 기존 문서 2~3개를 자동으로 갱신하거나 새 문서를 만든다.
+
+Karpathy가 정리한 네 가지 장점은 기존 AI 개인화 방식과 대비한 것이다.
+
+| 장점 | 내용 |
+|---|---|
+| Explicit (명시성) | 메모리가 위키 형태로 보인다. AI가 무엇을 알고 모르는지 직접 확인하고 관리할 수 있다 |
+| Yours (데이터 소유권) | 로컬 컴퓨터에 저장하며 특정 AI 제공업체에 락인되지 않는다 |
+| File over App (파일 우선) | 마크다운과 이미지 같은 범용 포맷이라 Unix 툴킷을 활용할 수 있다 |
+| BYOAI (AI 선택 자유) | Claude, Codex, OpenCode를 자유롭게 연결하고 오픈소스 AI를 위키로 fine-tuning할 수도 있다 |
+
+이 절은 에이전트 활용 능력이 21세기의 핵심 스킬이라는 문장으로 강조를 맺는다.
+
+nashsu/llm_wiki는 Karpathy 패턴을 Tauri 데스크탑 앱으로 구현한 것으로 GitHub 별 23개다.
+
+- **2-step Chain-of-Thought Ingest**: Step 1(Analysis)에서 소스를 구조화된 분석(엔티티, 개념, 모순, 추천)으로 바꾸고, Step 2(Generation)에서 분석을 위키 파일로 만든다.
+- **purpose.md 추가**: schema가 "어떻게"라면 purpose는 "왜"에 해당한다.
+- **4-Signal Relevance Model** (지식 그래프): Direct link 3.0배(`[[wikilinks]]`), Source overlap 4.0배(frontmatter `sources[]` 공유), Adamic-Adar 1.5배(공통 이웃을 이웃의 차수로 가중), Type affinity 1.0배(같은 타입 보너스).
+- **4-phase Query Pipeline**: Phase 1은 토큰화 검색(영어 단어 분리, 한중일 bigram), Phase 2는 그래프 확장(검색 결과를 시드로 관련성 모델 적용), Phase 3은 예산 제어(위키 60%, 히스토리 20%, 인덱스 5%, 시스템 15%), Phase 4는 컨텍스트 어셈블리(페이지 번호 인용)다.
+- 다국어를 지원하고 Chrome 확장(웹 클리퍼)과 멀티 포맷(PDF, DOCX, PPTX, XLSX)을 다룬다.
+
+### 4.2 취소선 없는 기타 구현 사례
+
+8.4절은 취소선 없이 다음을 든다.
+
+- Agrici Daniel의 "Obsidian AI Second Brain: The Open-Source Plugin That Organizes Itself"
+- joonan30의 "Compounding Wiki, 31일의 누적"
+- OpenKB. LLM이 문서를 자동으로 위키 형태 지식 베이스로 컴파일하는 오픈소스 도구
+- Astro-Han/karpathy-llm-wiki
+- dragon1086/llm-wiki
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
-### 5.1 비판 6가지 (본 문서 정리)
+### 5.1 문서가 정리한 여섯 가지 비판
 
-- **결국 RAG**: 사전 컴파일 vs 런타임 조립의 차이로 반박하지만 **컴파일된 인덱스 + 파일시스템 lookup**은 RAG의 한 변종이라는 시각도 합리적.
-- **모델 붕괴 (Model Collapse, Nature)**: 학습 vs 운영 맥락 분리로 반박하지만, 요약의 요약 = 뉘앙스 손실은 실재.
-- **Lossy compression**: 원문 대신 위키에 의존하면 요약 오류가 고착. **법률·컴플라이언스에 치명적**.
-- **차세대 모델 무력화 가능성**: 10M context · 1000 tps면 중간 계층 불필요? 실측은 20~30만 토큰부터 degradation.
-- **벤치마크/프로덕션 부재**: hybrid RAG · BM25+rerank · GraphRAG · 계층 요약 · NotebookLM 대비 우위 증거 0. 권한·다중사용자·감사·롤백·버저닝·동시성·컴플라이언스 미해결. **결론: 소·중규모 · 느린 변화 · 사람 큐레이션 연구 폴더에 유용; 대규모/빠른 변화/고위험/멀티유저/엔터프라이즈는 검증 필요**.
-- **인지적 부작용**: *"사고 위임에 의한 새로운 기술 부채"* — "지속적인 뇌의 공백" 경험담.
+| 번호 | 비판 | 반론 또는 평가 |
+|---|---|---|
+| 7.1 | 결국 RAG다. 벡터 DB 대신 인덱스 파일과 파일시스템 계층을 쓸 뿐, 의미적 연결 인덱스와 검색 보조 구조 자체는 RAG와 같다 | 사전 컴파일과 런타임 조립의 차이이며, 검색 기술이 아니라 지식 관리 패턴의 차이라고 반박한다 |
+| 7.2 | 모델 붕괴. Nature 논문을 인용해 LLM이 쓴 텍스트를 다시 LLM이 처리하면 정보가 점진적으로 열화한다고 본다 | 그것은 LLM 학습의 맥락이며 이미 학습된 모델로 위키를 작성하는 맥락과 다르다고 반박한다. 다만 LLM이 생성한 요약을 다시 요약하면 미묘한 뉘앙스가 빠지는 현상은 실제로 존재한다고 인정한다 |
+| 7.3 | 손실 압축. 원문을 위키 페이지로 재작성하며 단서(caveats), 정확한 날짜, 소수 의견, 정확한 워딩, 엣지 케이스, 소스 컨텍스트가 손실된다 | 원본 대신 위키를 검색하기 시작하면 요약 오류가 지식 베이스에 고착된다는 위험을 그대로 인정한다 |
+| 7.4 | 차세대 모델이 다 해결한다. 1,000만 컨텍스트에 초당 1,000토큰 모델이 나오면 중간 계층 자체가 불필요하다 | 100만 컨텍스트도 20만에서 30만 토큰에서 기억 손실이 시작되므로 근본 한계는 같다고 반박한다 |
+| 7.5 | 벤치마크와 프로덕션 이슈 부재 | 하이브리드 RAG, BM25와 reranking 조합, GraphRAG, 계층적 요약, NotebookLM 같은 베이스라인 대비 우위 증거가 없다. 권한, 다중 사용자 편집, 감사 로그, 롤백, 출처 버저닝, 동시성, 컴플라이언스도 무시된다 |
+| 7.6 | 인지적 부작용 | 한 개발자의 후기로 새로운 형태의 기술 부채가 발생한다고 적는다. 사고 정리를 LLM에 위임하며 직접 깊이 생각하는 능력이 약해지는 느낌, 지속적인 뇌의 공백을 경험했다는 내용이다 |
 
-### 5.2 본 문서 자체의 한계
+7.5의 합리적 결론으로 문서는 이렇게 정리한다. 소규모에서 중규모, 느린 변화, 사람이 큐레이션하는 연구 폴더에 유용하며, 대규모나 빠른 변화, 고위험, 멀티유저, 엔터프라이즈 환경에는 검증이 필요하다.
 
-- **취소선 영역(8.1·8.2·8.3)이 사용자에 의해 잠정 무효화** — Farzapedia/Karpathy 4 BYOAI 장점/nashsu 4-Signal·4-phase 상세가 raw에는 보존되나 사용자 평가가 미완. 이후 갱신 시 취소선 해제 또는 명시적 삭제 결정 필요.
-- **자체 검증 없음**: 인용한 GitHub star, HN 댓글 수, Farzapedia 2,500건 등은 출처 자료의 보고치를 신뢰한 것으로 본 문서 시점에서 재검증 안 됨.
-- **언어 unbalance**: 한국어 자료(박재홍·GeekNews·unclejobs-ai)는 풍부하지만 영어 ecosystem은 Karpathy 한 명에 집중. 다른 영어 비판(Simon Willison, Hamel Husain 등)은 미커버.
+### 5.2 이 문서 자체의 한계
 
-### 5.3 향후 과제
+- **취소선 영역의 상태가 미결이다.** 8.1에서 8.3절(Farzapedia, Karpathy의 네 가지 장점, nashsu 구현 상세)이 취소선으로 남아 있고 그 이유가 문서 안에 설명돼 있지 않다.
+- **자체 검증이 없다.** GitHub 별 수, Hacker News 댓글 수, Farzapedia 2,500건 같은 수치는 출처 자료의 보고치를 그대로 옮긴 것이다.
+- **영어권 자료가 Karpathy 한 명에 집중돼 있다.** 한국어 자료는 세 편을 다루지만 영어권 비판은 Hacker News 스레드 요약에 그친다.
+- **9장의 항목 수가 어긋난다.** 11.2절은 unclejobs-ai 역자 주석을 10가지로 소개하지만 9장은 아홉 항목만 발췌한다. 9.9절도 아홉 항목짜리 프롬프트를 표방하나 코드 블록에는 일곱 항목이 들어 있다.
 
-- 본 문서가 정리한 **9-항목 Lint 프롬프트**를 이 ai-wiki에 실제로 주기 적용 → orphan/모순/stale 항목 첫 점검 결과 도출.
-- nashsu/llm_wiki의 **4-Signal Relevance Model (Direct ×3.0 / Source overlap ×4.0 / Adamic-Adar ×1.5 / Type affinity ×1.0)** 을 본 wiki의 frontmatter `tags` + 본문 `[[wikilink]]` 데이터로 측정 가능한지 검토.
-- **MCP 서버화** (9.5) — 본 ai-wiki를 `akb` MCP 서버에 vault로 등재하면 grep/search/browse를 native tool로 호출 가능. (단, 위키 50 페이지 임계점 인근에서 의사결정)
-- **세션 컨텍스트 유실 해결책 (9.7)** — *"index.md와 log.md를 먼저 읽어"*가 본 ai-wiki CLAUDE.md에는 명시 안 됨. `log.md`도 부재. ingest log 도입 검토.
+### 5.3 문서가 남긴 미해결 항목
+
+- **qmd의 한국어 토크나이징 지원 여부.** 9.2절이 확인이 필요하다고만 적고 결론을 내지 않는다.
+- **BM25의 한글 약점 보완.** 가드레일 대안으로 kurthong의 seCall 사례만 언급하고 방법을 설명하지 않는다.
+- **베이스라인 비교 실험.** 7.5절이 지적한 우위 증거 부재는 반론 없이 남는다.
 
 ## 6. 관련 연구 (Related Work)
 
-- **본 ai-wiki 내부 (Karpathy LLM Wiki 패턴 직접 인용 자료)**
-    - `[[applications/liu-2026-rag-llm-wiki-or-gbrain]]` — Yanli Liu의 RAG/LLM Wiki/GBrain 3-축 결정 프레임워크. **Karpathy LLM Wiki 3-layer 정식화**(raw/wiki/schema) + **단일 ingest = 10~15 page touch** + **scale ceiling ~100 sources** 등 동일 thesis를 영어 1차 자료로 정리. 본 문서와 핵심 수치 일치.
-    - `[[applications/garrytan-gbrain]]` — Garry Tan의 markdown-first agent memory(2026-04-05 OSS). Karpathy 패턴을 production 도구로 확장한 사례. *"memory that compounds beats memory that just retrieves"* 동일 thesis.
-    - `[[applications/lum1104-understand-anything]]` — 15개 AI 코딩 플랫폼 호환 OSS. `/understand-knowledge` skill + `article-analyzer` agent + `parse-knowledge-base.py`가 **Karpathy LLM Wiki(이 ai-wiki 포함) 패턴 first-class 지원** — wikilink/`index.md` 카테고리 정규식 추출, LLM은 5종 implicit edge만 보완. 본 문서가 정리한 패턴의 **직접 구현체**.
-    - `[[applications/gajjar-2026-gbrain-vs-computer-memory]]` · `[[applications/vectorize-2026-gbrain-review-honest-assessment]]` · `[[applications/mantena-2026-hermes-gbrain-setup-vps]]` · `[[applications/techwealth-hub-2026-garry-tan-gbrain-explained]]` — GBrain 생태계 6개 자료. Karpathy LLM Wiki 계보를 production memory 시스템으로 확장한 사례.
-    - `[[overviews/gbrain-ecosystem-overview]]` — GBrain 6개 자료 합성. Liu의 3-축 분류에 Karpathy LLM Wiki + Bush Memex 계보 명시.
-- **Vectorless / Reasoning-based RAG (대안적 retrieval 패러다임)**
-    - `[[database/zhang-2025-pageindex-vectorless-reasoning-rag]]` — PageIndex founder intro. ToC를 LLM active context 안에 두는 **in-context index** + iterative reasoning loop. *"vector DB 없이 reasoning으로 retrieval"* = LLM Wiki의 *"사전 컴파일 + 임베딩 없는 index.md"* 와 철학 공명.
-    - `[[database/kalane-2026-pageindex-threw-out-vector-databases]]` — Mafin 2.5 FinanceBench **98.7%** verbatim. *"Vector DB 폐기"* 실증.
-    - `[[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]` — Direct Corpus Interaction (DCI). embedding/index 없이 agent가 `grep`·`bash`로 raw corpus 직접 검색. **BrowseComp-Plus 80.0%** vs Qwen3-Embed-8B 69.0%. LLM Wiki의 *"파일시스템 직접 탐색"*(Karpathy Farzapedia)과 mechanism 일치.
-- **Graph-based RAG (구조화된 사전 컴파일 인덱스)**
-    - `[[database/guo-2025-lightrag-simple-and-fast]]` — KG entity·relation을 key-value로 직렬화 + dual-level keyword retrieval.
-    - `[[database/zhang-2026-leanrag-knowledge-graph-based-generation]]` — hierarchical KG + LCA 기반 retrieval.
-- **외부 1차 자료 (Karpathy 패턴 원본)**
-    - **Andrej Karpathy, "LLM Wiki" Gist** (2026-04-04) — <https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f>. 5,000+ ★, HN 700+ 댓글.
-    - **Hacker News 토론** (item 47640875) — 베이스라인 비교 부재, model collapse, 권한/multi-user 비판.
-- **외부 한국어 자료**
-    - **박재홍의 실리콘밸리** (위키독스 2026-04-06) — *"LLM에게 지식의 '유지보수'를 맡기다"*. 비판적 분석 + 경제학적 통찰.
-    - **GeekNews** (news.hada.io topic 28208, 2026-04-05) — 핵심 요약 + HN 의견 + Farzapedia + BYOAI 4가지.
-    - **unclejobs-ai 한국어 번역본 + 10가지 역자 주석** (2026-04-05) — <https://gist.github.com/unclejobs-ai/7af4a9e3446751b8e2c3bc66d23fa0ac>. 본 문서 9장 한국어 9가지 팁의 출처.
-- **구현 사례 (외부)**
-    - **nashsu/llm_wiki** (Tauri 데스크탑 앱) — <https://github.com/nashsu/llm_wiki>. 2-step CoT Ingest · 4-Signal Relevance Model · 4-phase Query Pipeline.
-    - paulshomo/co-wiki, jgoldfed/keppi, doum1004/llmwiki-cli, cagataysengor/llm-wiki-studio, kytmanov/obsidian-llm-wiki-local, tuirk/Kompl, swarmclawai/swarmvault, skyllwt/OmegaWiki, axoviq-ai/synthadoc, theafh/ai-modules, hang-in/seCall — Karpathy gist 댓글 발견 구현체.
-    - dragon1086/llm-wiki, Astro-Han/karpathy-llm-wiki, joonan30/llm-wiki-labs (Compounding Wiki 31일 누적), agricidaniel "Obsidian AI Second Brain", OpenKB.
-- **역사적 계보**
-    - **Vannevar Bush, "Memex" (1945, As We May Think)** — 개인 큐레이션 지식 저장소. 미해결 *"누가 유지하느냐"* 문제에 LLM이 답.
-    - **J.C.R. Licklider, "Man-Computer Symbiosis" (1960)** — 인간-컴퓨터 공생 개념.
-- **도구**
-    - **qmd** — <https://github.com/tobi/qmd>. BM25+벡터 하이브리드 + LLM rerank, 온디바이스, CLI + MCP. wiki 50+ page에서 권장.
-    - **Obsidian** — Web Clipper · Graph View · Marp · Dataview · Templater · Linter.
+### 6.1 이 문서가 인용한 1차 자료
+
+- **Andrej Karpathy, "LLM Wiki" Gist** (2026-04-04). <https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f>. 이 문서가 11.1절에 적은 gist 주소다.
+- **Hacker News 토론** (item 47640875). 댓글 700개 이상. RAG 본질 논쟁, 모델 붕괴 우려, 베이스라인 비교 부재 비판.
+
+### 6.2 한국어 자료
+
+- **박재홍의 실리콘밸리** (위키독스 블로그, 2026-04-06). "LLM에게 지식의 '유지보수'를 맡기다: Karpathy의 LLM Wiki 패턴". 비판적 분석(모델 붕괴, 손실 압축)과 경제학적 통찰.
+- **GeekNews** (news.hada.io topic 28208, 2026-04-05). "LLM-Wiki, LLM을 활용하여 개인 지식저장소 구축 하기". 핵심 요약과 Hacker News 의견 정리, Farzapedia 사례, Karpathy의 네 가지 장점.
+- **unclejobs-ai 한국어 번역본과 역자 주석** (2026-04-05). <https://gist.github.com/unclejobs-ai/7af4a9e3446751b8e2c3bc66d23fa0ac>. 9장 한국어 팁의 출처.
+
+### 6.3 역사적 계보와 도구
+
+- **Vannevar Bush, "Memex"** (1945, As We May Think). 개인 큐레이션 지식 저장소의 원형 개념.
+- **J.C.R. Licklider, "Man-Computer Symbiosis"** (1960). 인간과 컴퓨터의 공생 개념.
+- **qmd**. <https://github.com/tobi/qmd>. 마크다운용 로컬 검색 엔진.
+
+### 6.4 이 저장소 안의 관련 자료
+
+- `[[applications/datasciencedojo-2026-llm-wiki-by-andrej-karpathy]]`. 같은 Karpathy Gist를 다룬 영어권 입문 튜토리얼. 실행 절차 중심이라 이 문서의 비판과 한국어 운영 팁과 역할이 나뉜다.
+- `[[applications/liu-2026-rag-llm-wiki-or-gbrain]]`. RAG, LLM Wiki, GBrain 선택 기준을 영어 1차 자료로 정리했다. 3계층 정식화와 단일 수집이 10~15개 페이지에 영향을 준다는 규모 감각이 같다. 다만 context window 성능 저하 지점은 Liu가 한도의 30~40%라 적고 이 문서는 100만 토큰 기준 20만에서 30만 토큰이라 적어 수치가 다르다.
+- `[[applications/garrytan-gbrain]]`. markdown 우선 에이전트 메모리 도구. 마크다운 파일을 지식 원본으로 두고 계속 쌓는 발상을 공유한다.
+- `[[applications/lum1104-understand-anything]]`. Karpathy 패턴 위키를 지식 그래프로 시각화하는 오픈소스.
+- `[[applications/dragon1086-llm-wiki]]`, `[[applications/agricidaniel-claude-obsidian]]`, `[[applications/joonan30-llm-wiki-labs]]`. 이 문서 8.4절이 이름만 들고 지나간 구현체를 이 저장소가 개별 페이지로 다룬 것들이다.
+- `[[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]`. 임베딩 없이 에이전트가 `grep`과 `bash`로 원본 코퍼스를 직접 검색하는 Direct Corpus Interaction. Farzapedia의 파일시스템 직접 탐색과 방식이 겹친다.
+- `[[database/zhang-2025-pageindex-vectorless-reasoning-rag]]`, `[[database/kalane-2026-pageindex-threw-out-vector-databases]]`. 벡터 DB 없이 목차를 컨텍스트 안에 두는 retrieval. 임베딩 없는 `index.md` 발상과 통한다.
+- `[[database/guo-2025-lightrag-simple-and-fast]]`, `[[database/zhang-2026-leanrag-knowledge-graph-based-generation]]`. 그래프 기반 RAG. 이 문서 10.1절이 nashsu의 관련성 모델을 그래프 RAG에 가깝다고 본 것과 이어진다.
 
 ## 7. 용어집 (Glossary)
 
-- **LLM Wiki (Karpathy)**: LLM이 단순 인덱싱이 아니라 **점진적으로 축적·진화하는 위키를 작성·유지**하는 패턴. raw/wiki/schema 3-layer.
-- **Persistent Compounding Artifact**: 한 번 컴파일되고 최신 상태로 유지되는 지식 산출물. 매 질의마다 재도출하지 않음.
-- **Re-derivation Problem**: RAG가 매 질의마다 같은 문서를 다시 읽어 종합하는 문제. *"RAG rereads the same books for every exam, never learning the material."* (Karpathy)
-- **3-Layer**: Raw Sources(사람 immutable) / Wiki(LLM 전적 소유) / Schema(CLAUDE.md·AGENTS.md 공동).
-- **Schema (CLAUDE.md/AGENTS.md)**: 위키 구조·컨벤션·워크플로우 정의. LLM을 *"체계적 위키 관리자"*로 만드는 핵심.
-- **Ingest**: 새 소스 추가 + LLM 처리. 단일 소스 = 10~15 page touch.
-- **Query**: 위키 검색 + 인용+합성. 좋은 답변은 페이지로 재저장 → 복리 축적.
-- **Lint**: 주기적 health check. 모순/낡은 주장/orphan/미생성 개념/누락 cross-ref/데이터 공백 6 항목.
-- **index.md**: wiki 카탈로그. 매 ingest 갱신, 매 query 첫 reading.
-- **log.md**: append-only ingest/query/lint 기록. `## [YYYY-MM-DD]` prefix로 unix grep.
-- **qmd**: tobi/qmd. 마크다운 로컬 검색 엔진. BM25+벡터 하이브리드 + LLM rerank, 온디바이스, CLI+MCP.
-- **MCP (Model Context Protocol)**: 위키 검색을 native tool로 LLM에 노출. 9.5 *"50 페이지 이상이면 진지하게"*.
-- **Farzapedia**: Karpathy 본인의 LLM Wiki 사례. 일기+Notes+iMessage 2,500건 → 400 doc. 에이전트 활용 목적.
-- **BYOAI (Bring Your Own AI)**: Karpathy의 4가지 장점 중 하나. Claude/Codex/OpenCode/오픈소스 LLM 자유 연결.
-- **File over App**: Karpathy 4 장점 중 하나. 마크다운/이미지 등 범용 포맷 + Unix 툴킷 활용.
-- **Memex (Vannevar Bush, 1945)**: 개인 큐레이션 지식 저장소의 원형. *"누가 유지하느냐"* 미해결.
-- **Model Collapse**: Nature 논문. LLM이 쓴 텍스트로 LLM을 재학습하면 정보 열화. 본 패턴 비판 7.2에 인용 (학습 vs 운영 맥락 분리로 반박).
-- **Lossy Compression (위키 맥락)**: 원문을 위키 페이지로 요약하며 단서·날짜·소수의견·정확 워딩·엣지 케이스 손실. 7.3 비판.
-- **Inbound Link / Orphan Page**: 다른 페이지에서 한 번도 링크되지 않은 wiki 페이지. Lint 점검 항목.
-- **4-Signal Relevance Model (nashsu)**: Direct link ×3.0 / Source overlap ×4.0 / Adamic-Adar ×1.5 / Type affinity ×1.0. 지식 그래프 페이지 관련성 계산.
-- **Adamic-Adar**: 공통 이웃 수를 이웃의 차수로 가중하는 link prediction metric.
-- **4-phase Query Pipeline (nashsu)**: 토큰화 검색 → 그래프 확장 → 예산 제어(60/20/5/15) → 컨텍스트 어셈블리(페이지 번호 인용).
-- **2-step CoT Ingest (nashsu)**: Analysis(소스 → 구조화 분석: 엔티티/개념/모순/추천) → Generation(분석 → 위키 파일).
-- **purpose.md (nashsu)**: schema=how, purpose=why. *"위키 사용 의도"* 명시 파일.
-- **Hyperlinked Mention (Liu)**: *"An unlinked mention is a broken brain."* GBrain의 signal-detector 원칙으로 Liu가 인용. LLM Wiki 맥락에서는 Lint의 *"언급만 되고 자체 페이지 없는 개념"* 점검과 동치.
-- **취소선(Strikethrough) 영역**: Notion 원문 8.1~8.3에서 사용자가 잠정 무효화·재검토 마킹한 부분. raw에는 `~~...~~`로 보존, sources/wiki는 메타 사실로만 언급.
+- **LLM Wiki**: LLM이 단순 인덱싱이 아니라 점진적으로 축적되고 진화하는 위키를 작성하고 유지하는 패턴. Raw, Wiki, Schema 3계층으로 구성한다.
+- **persistent compounding artifact**: 한 번 컴파일되고 최신 상태로 유지되는 지식 산출물. 질의마다 재도출하지 않는다.
+- **Schema**: 위키 구조와 컨벤션, 워크플로를 정의하는 파일. `CLAUDE.md`나 `AGENTS.md`가 여기 해당한다. LLM을 체계적인 위키 관리자로 만드는 핵심이다.
+- **Ingest**: 새 소스를 원시 컬렉션에 추가하고 LLM이 요약, 인덱스, 엔티티 페이지, 로그까지 갱신하는 작업. 단일 소스가 위키 페이지 10~15개에 영향을 준다.
+- **Query**: 위키를 검색해 인용과 함께 답변을 합성하는 작업. 좋은 답변은 새 페이지로 저장해 다시 축적한다.
+- **Lint**: 위키의 주기적 상태 점검. 모순, 낡은 주장, 고아 페이지, 자체 페이지 없는 개념, 누락된 교차 참조, 데이터 공백을 본다.
+- **고아 페이지(orphan page)**: 다른 페이지에서 인바운드 링크를 한 번도 받지 못한 위키 페이지. Lint 점검 항목이다.
+- **북키핑(bookkeeping)**: 교차 참조 갱신, 요약 갱신, 모순 표시, 일관성 유지 같은 기록 관리 작업. 문서는 이것을 위키 유지의 실제 장벽으로 본다.
+- **qmd**: tobi/qmd. 마크다운용 로컬 검색 엔진. BM25와 벡터 하이브리드에 LLM reranking을 붙이고 온디바이스로 동작하며 CLI와 MCP 서버를 지원한다.
+- **Farzapedia**: Karpathy 본인의 LLM Wiki 사례. 일기와 Apple Notes, iMessage 2,500건에서 문서 400개를 만들었고 에이전트 활용을 목적으로 설계했다.
+- **BYOAI (Bring Your Own AI)**: Karpathy가 든 네 가지 장점 중 하나. 위키가 특정 제공업체에 묶이지 않아 Claude, Codex, OpenCode를 자유롭게 연결한다.
+- **File over App**: 네 가지 장점 중 하나. 마크다운과 이미지 같은 범용 포맷이라 Unix 툴킷을 쓸 수 있다.
+- **Memex**: Vannevar Bush가 1945년 제시한 개인 큐레이션 지식 저장소의 원형. 문서 간 연결이 문서 자체만큼 가치 있다고 봤으나 유지보수 주체 문제를 남겼다.
+- **model collapse (모델 붕괴)**: LLM이 쓴 텍스트로 LLM을 다시 학습시키면 정보가 열화하는 현상. 7.2절 비판에 인용된다.
+- **lossy compression (손실 압축)**: 원문을 위키 페이지로 요약하며 단서, 날짜, 소수 의견, 정확한 워딩, 엣지 케이스가 사라지는 것. 7.3절 비판이다.
+- **4-Signal Relevance Model**: nashsu/llm_wiki의 페이지 관련성 계산. Direct link 3.0배, Source overlap 4.0배, Adamic-Adar 1.5배, Type affinity 1.0배.
+- **Adamic-Adar**: 공통 이웃 수를 이웃의 차수로 가중하는 link prediction 지표.
+- **4-phase Query Pipeline**: nashsu/llm_wiki의 질의 처리. 토큰화 검색, 그래프 확장, 예산 제어(60/20/5/15), 컨텍스트 어셈블리 순서다.
+- **2-step Chain-of-Thought Ingest**: nashsu/llm_wiki의 수집 방식. Analysis 단계에서 구조화 분석을 만들고 Generation 단계에서 위키 파일을 쓴다.
+- **purpose.md**: nashsu/llm_wiki가 추가한 파일. schema가 "어떻게"를 담는다면 purpose는 "왜"를 담는다.

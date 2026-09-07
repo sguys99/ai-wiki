@@ -244,7 +244,7 @@ README에서 분량이 가장 큰 절이며, 실제 운영에서 나온 실패�
 
 ## 6. 관련 연구 (Related Work)
 
-- **Andrej Karpathy의 LLM Wiki 패턴** ([gist](https://gist.github.com/karpathy/1dd0294ef9567971c1e4348a90d69285)): markdown 파일을 지식의 원본으로 두고 복리로 쌓는 발상을 공유한다. GBrain은 그 발상에 retrieval 엔진, 스케줄러, 권한 모델을 붙여 운영 시스템으로 만든 사례다.
+- **Andrej Karpathy의 LLM Wiki 패턴**: markdown 파일을 지식의 원본으로 두고 계속 쌓아 가는 발상을 공유한다. 이 저장소의 `CLAUDE.md`가 원형으로 밝힌 패턴이며, GBrain의 raw README는 특정 gist 주소를 인용하지 않으므로 여기서도 주소를 적지 않는다. GBrain은 그 발상에 retrieval 엔진, 스케줄러, 권한 모델을 붙여 운영 시스템으로 만든 사례다.
 - **본 ai-wiki와의 관계**: 본 저장소의 `CLAUDE.md`도 Karpathy LLM Wiki를 여러 자료 유형으로 확장한 것으로 자기 정의한다. GBrain은 에이전트가 직접 brain을 읽고 쓰는 방향으로, 본 wiki는 사용자와 LLM이 함께 큐레이션하는 방향으로 갈린 두 변형이다.
 - **OpenClaw와 Hermes**: GBrain이 실제로 운영되는 대상 에이전트 플랫폼이다. README는 GBrain을 "내 OpenClaw와 Hermes 배치 뒤의 production brain"으로 소개한다.
 - **YC Request for Startups의 company-brain 항목**: README가 company brain 확장을 이 항목에 대응시키며, 그 영역에서 창업할 거라면 GBrain 위에 지으라고 권한다.
