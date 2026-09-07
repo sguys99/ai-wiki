@@ -1,5 +1,5 @@
 ---
-title: "sguys99/langchain-study/medium/3.vectorless-rag: Vectorless RAG (PageIndex 없이 직접 구현한 한글 reference)"
+title: "sguys99/langchain-study/medium/3.vectorless-rag: PageIndex 없이 직접 만든 vectorless RAG"
 type: repo
 year: 2026
 category: database
@@ -24,154 +24,373 @@ tags:
   - korean
 ---
 
-## 요약 (Summary)
+## 요약
 
-`sguys99/langchain-study` 모노레포 `medium/3.vectorless-rag` 서브디렉토리 — towardsai.net 글과 `alphaiterations/agentic-ai-usecases` 레포를 한글 주석·노트북·CLAUDE.md와 함께 재구성한 **PageIndex API 의존성 0** vectorless RAG 학습용 reference 구현. `pymupdf4llm` 마크다운 변환 + 자체 스택 기반 파싱으로 `DocumentTree`를 *로컬에서 직접 빌드*하고, LangGraph `StateGraph` 4-노드(analyze · descend · retrieve · generate) + `MAX_DEPTH=5` · confidence<0.3 종료 라우팅 + Anthropic `claude-sonnet-4-6` (env `ANTHROPIC_MODEL` 단일 출처)로 트리를 탐색한다. Bigtable OSDI'06(13페이지) 데모에서 35개 L2 자식 노드 추출 후 단일 질의 = **4 LLM call(3 navigate + 1 answer) / 15.60s**. 동일 카테고리의 [[vectifyai-pageindex]] (OSS 라이브러리, FinanceBench 98.7%)·[[geeksforgeeks-2026-vectorless-rag-pageindex]] (Cloud SaaS API verbatim 튜토리얼)와 함께 vectorless RAG 3-구현체 비교 축을 완성한다 — *"PageIndex 없이 직접 만들 때 무엇이 필요한가"* 의 답.
+`sguys99/langchain-study` 모노레포의 `medium/3.vectorless-rag`는 vectorless RAG를 기성 솔루션 없이 직접 만들어 보며 이해하려는 목적의 학습용 저장소다. 저자는 towardsai.net의 해설 글과 `alphaiterations/agentic-ai-usecases` 저장소를 한글로 옮기고 재구성했으며, PageIndex처럼 바로 쓸 수 있는 도구가 있다는 것을 알면서도 쓰지 않기로 결정했다. README가 밝힌 이유는 "파싱, 계층 구조, 메타데이터를 완전히 제어하기 위해"다.
 
-## 주요 기여 (Key Contributions)
+구현은 두 부분으로 나뉜다. 먼저 `pymupdf4llm`으로 PDF를 마크다운으로 바꾼 뒤 마크다운 헤더의 레벨과 스택 자료구조로 DocumentTree를 만든다. 다음으로 langgraph 에이전트가 그 트리를 루트에서부터 내려가며 분석, 하위 탐색, 검색, 생성 네 단계를 반복한다. 임베딩도 벡터 데이터베이스도 없고, 검색 대상을 고르는 판단을 전부 LLM이 내린다.
 
-1. **PageIndex 의존성 0인 한글 reference 구현** — README가 명시적으로 *"PageIndex와 같이 바로 사용할 수 있는 솔루션도 있지만 이 구현에서는 파싱, 계층 구조, 메타데이터를 완전히 제어하기 위해 자체 트리를 구축"* 이라고 선언. [[vectifyai-pageindex]] (OSS)·[[geeksforgeeks-2026-vectorless-rag-pageindex]] (Cloud SaaS) 사이의 *세 번째 구현 축*.
-2. **3-파일 분리 + single-source-of-truth 컨벤션** — `tree.py`(385줄, LLM-free 파서) / `retriever.py`(603줄, LangGraph 에이전트) / `main.py`(197줄, 오케스트레이션) / `questions.py`(데이터). `CLAUDE.md`에 *"단일 클라이언트 인스턴스"* + *"`retriever.DEFAULT_MODEL`이 모델명 단일 출처, 다른 곳에 하드코딩 금지"* 명문화.
-3. **한글 주석 + 49셀 학습 노트북** — `tree.py`·`retriever.py` 모든 함수 한글 docstring + inline 주석. `notebooks/vectorless_rag_walkthrough.ipynb` (49 cells)가 환경 설정 → 트리 빌드 → 단일 질의 → 결과 분석을 단계별로 분리.
-4. **observability-first 로깅** — dual handler logger(console INFO 들여쓰기 트리 요약 + file DEBUG `retriever.log` 전체 prompt/response/latency/token). README에 *"로깅은 선택 사항이 아니고 필수"* 라고 학습 포인트로 명시.
-5. **LLM JSON 응답 안전 파싱** — `_strip_fences`로 ` ```json ... ``` ` 코드펜스 자동 제거 + JSON 파싱 실패 시 보수적 fallback decision(`should_descend = bool(node.children)`, 첫 자식으로 하강).
+Google의 Bigtable OSDI'06 논문(13페이지)을 데모 문서로 쓴다. README가 인용한 단일 실행 추적에서 한 질의가 LLM 호출 4회로 끝났고 그중 3회가 탐색 결정, 1회가 답변 생성이었으며 전체 지연은 15.60초였다. 이 페이지는 그 README 한 편에서 확인되는 내용만 다룬다. 저장소의 소스 코드는 현재 raw에 없어서 코드 수준의 세부는 검증할 수 없다.
 
-## 방법론 및 아키텍처 (Methodology and Architecture)
+## 배경
 
-### 데이터 흐름
+### vectorless RAG가 등장한 맥락
 
-```
-PDF → [tree.py:parse_pdf]
-        ├─ pymupdf4llm.to_markdown (전체 마크다운)
-        ├─ pymupdf4llm.to_markdown(page_chunks=True, write_images=False) (페이지 인덱스)
-        └─ _build_tree_from_markdown
-             ├─ 라인 순회: '#'개수 = level
-             ├─ stack 기반 부모-자식 연결 (stack[-1][0] >= level → pop)
-             ├─ _classify_heading (numbered/roman/letter/unnumbered/unknown 정규식 4종)
-             ├─ _refine_page_boundaries (본문 100자 스니펫 ↔ 페이지 청크 매칭)
-             └─ _distribute_content_to_leaves (헤더 노드 500자 초과 시 요약 축약)
-        → DocumentTree(document_name, root, total_pages, source_path)
+RAG는 비공개 데이터에 대한 질문에 답변하는 AI 시스템을 만드는 핵심 패턴으로 자리 잡았다. 기존 방식은 벡터 임베딩으로 관련 텍스트 청크를 검색한 뒤 그것을 LLM에 전달해 답을 생성한다. 임베딩은 텍스트를 고정 차원 벡터로 바꾼 표현을 말한다.
 
-DocumentTree → results/document_tree.json (asdict + json.dump(default=str)) → 캐시
+시스템이 커지고 복잡해지면서 다른 방향이 제시되었다. 추론 기반 검색으로도 불리는 vectorless RAG다. 임베딩과 유사도 검색에 의존하는 대신 인간이 정보를 탐색하듯 구조를 따르고 단계별로 추론하며 다음에 어디를 살펴볼지 동적으로 결정한다.
 
-질문 → [retriever.py:retrieve]
-        └─ LangGraph StateGraph
-             ┌──────────────┐
-             │   analyze    │ ← entry_point
-             │ (LLM 1회)    │
-             └──┬───────────┘
-                │
-                ├─ confidence < 0.3 ────────────────→ END
-                ├─ depth >= MAX_DEPTH(5) ────────────→ retrieve
-                ├─ should_descend & has children ──→ descend ─→ (analyze 재귀)
-                └─ 그 외 ────────────────────────────→ retrieve ─→ generate (LLM 1회) ─→ END
-        → {answer, path, reasoning, confidence, sources, call_log}
+README는 이 방향을 네 가지 주제로 나누어 설명한 뒤 구현으로 넘어간다.
 
-[main.py] PDF 다운로드 → get_tree() (캐시 우선) → generate_workflow_png() → for q in QUESTIONS: ask(q, tree)
-```
+| README가 다루는 주제 | 내용 |
+|---|---|
+| vectorless RAG란 무엇인가 | 검색을 유사도 계산이 아니라 의사결정으로 다루는 정의 |
+| 기존 RAG와의 비교 | 같은 질문에 두 방식이 어떻게 다르게 답하는지 |
+| 장점과 단점 | 구조 보존과 인용 정확도 대비 지연과 비용 |
+| 사용할 때와 사용하지 말아야 할 때 | 문서 유형과 코퍼스 성격에 따른 적합성 |
 
-### tree.py — `PyMuPDF4LLMTreeBuilder` (LLM-free)
+### 전통 RAG의 기본 파이프라인
 
-- `TreeNode` dataclass: `id, title, level(0=root/1=chapter/2=section/3=subsection), page_start, page_end, content, children, heading_type, summary`
-- 마크다운 라인 순회 → `#`개수로 level 결정 → 스택 `[(level, node)]` 운용:
-  - 새 헤딩 도착 시 `while stack[-1][0] >= level: stack.pop()` (같거나 더 깊은 노드 닫음, 닫힌 자식 `page_end`를 부모에 반영)
-  - 스택 top = 부모, 새 노드 append, 스택에 push
-- 페이지 번호 추정: 1차로 라인 비율(`line_idx/total_lines * total_pages + 1`) → 2차로 `_refine_page_boundaries`가 본문 앞 100자 스니펫 ↔ `page_contents` 매칭으로 보정
-- 부모 범위: 자식 있으면 `page_start = min(child.page_start)`, `page_end = max(child.page_end)` 재계산
-- 헤더 역할 노드 본문 축약: `if len(node.content) > 500: node.content = node.content[:500] + "..."` (리프 노드는 보존)
+전통 RAG는 문서를 미리 잘게 나눠 두고 질문이 들어오면 비슷한 조각을 찾아 LLM에 넘기는 구조다. README는 이 흐름을 `Query → Embedding → Vector DB → Top-k Chunks → LLM → Answer`로 적는다.
 
-### retriever.py — LangGraph 에이전트
+| 단계 | 하는 일 |
+|---|---|
+| chunking | 문서를 작은 단위로 분할한다 |
+| 임베딩 | 각 청크를 벡터로 변환한다 |
+| retrieval | 코사인 유사도 같은 유사도 검색으로 관련 청크를 찾아낸다 |
 
-**State** (TypedDict + `Annotated[List, operator.add]`로 3개 필드 누적):
-- 누적: `path_taken`, `retrieved_content`, `call_log`
-- 덮어쓰기: `query`, `current_node`, `tree`, `reasoning`, `confidence`, `should_descend`, `target_child_id`, `depth`, `final_answer`
+이렇게 고른 Top-k 청크를 LLM에 보내고 LLM이 답변을 생성한다. 구조가 단순하고 조회가 빠르기 때문에 널리 쓰이지만, 검색 품질과 추론 깊이와 문맥 관련성에서 아쉬움이 반복적으로 지적되어 왔다.
 
-**노드 4개**:
+### 파이프라인을 보강한 세 가지 변형
 
-| 노드 | 입력 | LLM | 출력 |
+그 아쉬움을 메우려는 변형이 차례로 등장했다. 세 변형은 서로 다른 지점을 겨냥한다.
+
+| 변형 | 추가하는 것 | 겨냥한 문제 |
+|---|---|---|
+| Re-ranking RAG | 초기 검색 결과를 LLM이 다시 정렬하는 2차 단계(reranking) | 단순 유사도 점수만으로는 실제로 쿼리와 가장 관련성이 높은 것을 가릴 수 없다 |
+| Hybrid RAG | dense 벡터 검색과 BM25 같은 키워드 검색의 결합 | 임베딩은 ID, 이름, 희귀 용어의 정확 일치를 놓친다. 반대로 키워드 검색만으로는 의미적 이해가 부족하다 |
+| Agentic RAG | 쿼리의 하위 질문 분해, 여러 단계 검색, 다음에 가져올 정보의 동적 결정 | 한 번의 조회로는 다단계 질문을 풀지 못한다 |
+
+reranking은 1차 검색이 뽑은 후보를 정밀 모델로 다시 정렬하는 단계를 말한다. 세 변형 중 Agentic RAG가 가장 멀리 나아가서, 검색을 한 번의 조회가 아니라 반복되는 판단으로 바꾼다. README는 이 지점에서 "검색과 추론의 경계가 모호해지기 시작하며, 시스템은 더 유연해지지만 동시에 더 복잡해진다"고 평가한다.
+
+### 전통 RAG의 한계를 등급으로 나누기
+
+이 자료의 배경 설명에서 가장 특징적인 부분은 전통 RAG의 문제를 뭉뚱그리지 않고 네 항목으로 나눈 뒤 각각에 성격 등급을 붙였다는 점이다. 무엇이 설계로 해결되고 무엇이 남는지를 가르기 위해서다.
+
+| 한계 | 자료가 붙인 등급 | 내용 | 완화 수단 |
 |---|---|---|---|
-| analyze | 현재 노드 + 자식 메타(`id`/`title`/`summary[:150]`) | 1회 (max_tokens=512, T=0) | `{confidence, should_descend, target_child_id, reasoning}` JSON |
-| descend | `target_child_id` | 0 | `current_node` 교체 (못 찾으면 첫 자식 fallback) |
-| retrieve | `current_node.content` | 0 | `=== **{title}** (Pages {s}-{e}) ===\n{content}` 청크 누적 |
-| generate | 누적 `retrieved_content` | 1회 (max_tokens=2048, T=0) | `final_answer` (한글, 인용 + 근거 부족 시 명시 지시) |
+| Shallow retrieval | 핵심적 한계 | 검색이 과제 관련성이나 추론이 아니라 의미적 유사성에 기반한다 | 없다. 더 나은 청킹이나 색인화만으로는 완전히 해결되지 않는다 |
+| Context Fragmentation | 완화 가능 | 임베딩 전 분할 때문에 중요한 문맥이 여러 조각에 걸쳐 나뉘고, 검색된 조각에 주변 정보가 부족하며, 섹션 간 관계가 사라진다 | overlapping chunks, sliding windows, reranking, multi-hop retrieval |
+| Loss of Structure | 구현 방식에 따라 다름 | 단순한 구현에서 문서가 여러 청크로 평면화되면서 장, 절, 소절 구조가 사라진다 | 절 제목과 계층 구조 같은 메타데이터, hierarchical chunking, parent-child retrieval |
+| 전처리 오버헤드 | 아키텍처 상의 절충점 | 임베딩 생성, 벡터 데이터베이스 저장, 인덱싱과 유지 관리에 초기 비용과 시스템 복잡성이 든다 | 절충의 대가로 빠른 검색과 저지연 쿼리, 확장 가능한 성능을 얻는다 |
 
-**`_route` 분기 (analyze 다음)**:
-- `confidence < 0.3` → END (낮은 확신도 종료)
-- `depth >= 5` → retrieve (안전판)
-- `should_descend && children` → descend → analyze 재귀
-- else → retrieve
+첫 항목만 다른 셋과 성격이 다르다. 벡터 검색은 "어떤 텍스트가 쿼리와 유사해 보이나"라는 질문에 답하는 장치인데, 실제 질문은 인과 관계 이해나 다단계 추론이나 여러 섹션에 걸친 정보 통합을 요구하는 경우가 많다. 그래서 주제와 관련은 있지만 답하는 데는 쓸모없는 텍스트가 딸려 온다. 이는 임베딩 기반 검색의 본질에서 나오므로 청킹 방식이나 색인 방식을 바꿔서 없앨 수 없다.
 
-**엣지**: `descend → analyze` (재귀), `retrieve → generate`, `generate → END`
+나머지 셋은 성격이 다르다. Context Fragmentation은 청크를 겹쳐 자르거나 sliding window를 쓰거나 multi-hop retrieval을 붙이면 줄어든다. Loss of Structure는 절 제목을 메타데이터로 붙이거나 hierarchical chunking을 쓰면 상당 부분 유지된다. 전처리 오버헤드는 결함이 아니라 비용을 언제 치를지의 선택이며, 초기 비용을 크게 치르는 대신 쿼리당 비용을 낮추는 배분이다.
 
-**`_call_llm` 공통 호출자**: header 로깅 + prompt DEBUG-only (콘솔 미출력) + `messages.create(model, max_tokens, temperature=0.0)` + raw response DEBUG + model/latency/token usage INFO 출력 + `(text, elapsed)` 반환.
+README의 결론은 명확하다. "흔히 언급되는 여러 문제점 중 유일한 근본적인 한계는 기존 RAG가 추론이 아닌 유사성을 기반으로 검색을 수행한다는 점뿐이다." 이 구분이 이 자료 전체의 출발점이다. 남은 하나를 없애려면 검색 자체에 추론을 넣어야 한다는 결론으로 이어지기 때문이다.
 
-**`_strip_fences`**: `text.split("```")` → 각 조각 lstrip `json` → `json.loads` 시도 → 첫 성공 조각 반환, 실패 시 원본 반환. analyze의 JSON 파싱 실패 시 fallback decision으로 `should_descend=bool(children), target_child_id=children[0].id`.
+## 핵심 개념
 
-### main.py — 오케스트레이션
+### 추론 기반 검색
 
-- `bigtable-osdi06.pdf` 자동 다운로드 (`urllib.request.urlretrieve`)
-- `results/document_tree.json` 캐시 우선 (`dict_to_treenode` 재귀 복원, `data.get("root", data)`로 DocumentTree/TreeNode 양쪽 호환)
-- `generate_workflow_png(output_path=results/workflow.png)` — 더미 노드(`lambda state: state`)로 동일 토폴로지 재구성 후 `draw_mermaid_png()` 렌더링
-- `for q in QUESTIONS: ask(q, tree)` 순회 — 한 질문 실패해도 try/except로 다음 진행
-- `ask`는 `[판단 근거] / [확신도] / [탐색 경로] / [출처] / [답변]` 5블록 콘솔 출력
+vectorless RAG는 임베딩과 유사도 검색에 의존하지 않고 문서 구조를 따라가며 단계별로 추론해 다음에 볼 위치를 정하는 retrieval 방식이다. README는 reasoning-based retrieval을 같은 뜻의 별칭으로 쓴다. retrieval은 외부 지식에서 관련 정보를 찾아오는 단계를 가리킨다.
 
-## 결과 (Results)
+핵심은 검색을 유사도 계산이 아니라 의사결정 과정으로 다룬다는 점이다. 시스템이 하는 일은 네 가지로 정리된다. 문서 구조를 해석하고, 다음으로 이동할 위치를 결정하고, 검색 범위를 점진적으로 좁히고, 충분한 맥락이 확보되었을 때만 콘텐츠를 검색한다.
 
-> 자체 정량 벤치마크는 없다. README가 인용한 실행 추적 1개 + 트리 빌드 결과가 유일한 수치.
+README는 이 절차가 검색의 질문 자체를 바꾼다고 서술한다. `무엇이 비슷해 보이나?`에서 `다음에 어디로 가야 할까?`로 옮겨 가는 것이 vectorless RAG를 정의하는 근본적인 변화다.
 
-**단일 질의 실행 추적** (README, Bigtable PDF "Bigtable이란 무엇이며…?"):
+### 인간 분석가의 문서 읽기 절차
+
+이 개념을 설명하려고 README가 드는 비유가 인간 분석가다. 사람은 수천 개의 문장 조각을 훑거나 유사도에만 의존하지 않는다. 대신 문서의 지도를 먼저 보고 목적지를 정한 다음 그곳으로 간다.
+
+| 사람이 하는 일 | 시스템의 대응 |
+|---|---|
+| 목차를 살펴본다 | 트리의 제목과 요약만 LLM에 넘긴다 |
+| 문서의 구조를 파악한다 | 고수준 문서 구조를 해석한다 |
+| "X에 대한 정보가 필요하다면 아마도 Y 섹션에 있을 것"이라고 추론한다 | 다음으로 이동할 위치를 결정한다 |
+| 해당 섹션으로 바로 이동한다 | 선택된 자식 노드로 내려간다 |
+| 전체 맥락을 읽는다 | 충분한 맥락이 확보된 뒤에만 콘텐츠를 검색한다 |
+| 답변을 종합한다 | 여러 섹션의 정보를 종합해 답을 만든다 |
+
+README가 강조하는 점은 이 과정이 체계적이고 의도적이며 반복적이라는 것이다. 검색은 일회성 작업이 아니고 모든 단계에서 추론에 의해 안내된다.
+
+### DocumentTree
+
+DocumentTree는 PDF를 제목 계층으로 옮긴 트리 자료구조로, 이 저장소의 트리 생성 단계가 내놓는 결과물이다. 개념적으로는 책이 구성되는 방식과 같아서 제목, 장, 절, 소절이 층을 이룬다.
+
+노드 하나가 담는 값은 제목, 짧은 요약, 페이지 경계, 그리고 선택적으로 전문이다. 요약만 모아 놓으면 문서 전체 텍스트를 읽지 않고도 어디에 무엇이 있는지 파악할 수 있다. 탐색 단계가 LLM에 트리를 넘길 때 제목과 요약만 주는 것이 가능한 이유가 여기에 있다.
+
+### 신뢰도와 하위 이동 판단
+
+탐색을 계속할지 멈출지는 분석 단계가 내놓는 두 값이 정한다. 신뢰도는 현재 노드가 쿼리에 얼마나 관련되는지를 나타내는 점수이고, `should_descend`는 현재 노드에 머물러 콘텐츠를 뽑을지 자식 노드로 내려갈지를 정하는 판단값이다.
+
+README는 이 두 값이 시스템 동작을 크게 좌우한다고 본다. 특히 `should_descend`를 프롬프트에서 어떻게 정의하는지에 따라 결과가 달라지며, 사소해 보이는 문구 변경도 탐색 경로 전체를 바꿀 수 있다.
+
+## 방법
+
+### 쿼리 처리의 네 단계
+
+구현을 보기 전에 개념 수준의 동작을 먼저 짚어 둘 필요가 있다. README는 vectorless RAG의 처리를 네 단계로 나누어 설명하며, 뒤에 나오는 저장소 코드는 이 네 단계를 그대로 옮긴 것이다.
+
+| 단계 | 하는 일 | 이 단계가 대체하는 것 |
+|---|---|---|
+| 문서 트리 구축 | 문서를 계층 구조로 바꾼다. 문서마다 한 번만 수행한다 | 청킹과 임베딩 생성 |
+| 구조에 대한 추론 | 쿼리와 트리 구조를 LLM에 주고 어느 섹션에 답이 있을지 고르게 한다 | 벡터 유사도 계산 |
+| 전체 컨텍스트 검색 | 선택된 노드의 전체 텍스트를 가져와 구조화된 컨텍스트로 결합한다 | Top-k 청크 수집 |
+| 답변 생성 | 모은 컨텍스트로 답변을 만든다 | 대체하는 것 없이 전통 RAG와 형태가 같다 |
+
+첫 단계에서 만드는 트리는 제목, 장, 절, 소절이 층을 이루는 구조이고, 각 노드는 제목과 짧은 요약과 페이지 경계를 갖는다. 전문은 선택적으로 붙는다. 이 트리 덕분에 전체 텍스트를 훑지 않고도 문서 내용을 탐색할 수 있다.
+
+두 번째 단계가 이 방식의 중심이다. 쿼리 시점에 텍스트를 바로 검색하지 않고, LLM에 쿼리와 트리 구조를 제목과 요약만 담아 넘긴 뒤 "어떤 섹션에 답이 포함되어 있을 가능성이 가장 높습니까?"라고 묻는다. 모델은 쿼리의 의미적 이해와 고수준 문서 구조와 섹션 간 관계를 함께 보고 노드를 고른다. Bigtable의 Chubby에 대한 질문이라면 "아키텍처"와 "일관성 및 동기화"를 고를 수 있다.
+
+세 번째 단계는 고른 노드의 전체 텍스트를 가져오고 완전성을 위해 하위 섹션을 선택적으로 포함한다. 검색 단위가 임의의 조각이 아니라 섹션이 되는 지점이 여기다.
+
+네 번째 단계는 모델에 세 가지 지침을 준다. 제공된 컨텍스트만 사용할 것, 여러 섹션에 걸친 정보를 종합할 것, 선택적으로 출처를 인용할 것이다. 형태만 보면 전통 RAG의 생성 단계와 같고, 다른 점은 컨텍스트가 선택된 방식뿐이다.
+
+### 저장소의 구현 구성
+
+vectorless RAG는 유사도 기반 검색을 구조화된 추론 중심 프로세스로 대체한다. README는 이를 두 부분으로 나눈다. 하나는 문서마다 한 번만 수행하는 일회성 변환이고, 다른 하나는 질문이 들어올 때마다 도는 추론 기반 검색 루프다.
+
+일회성 변환이 트리 생성 단계이고 검색 루프가 트리 탐색 단계다. 저장소의 파일 구성도 이 경계를 그대로 따른다. README는 트리 생성 세부를 `tree.py 파일 참고`로, 탐색 세부를 `retriever.py 파일 참고`로 넘기고, 실행 진입점은 `main.py`이며 `uv run main.py`로 실행한다.
+
+### 트리 생성 단계
+
+이 단계의 목표는 문서를 단순한 텍스트가 아니라 논리적 구성을 반영하는 계층 구조로 바꾸는 것이다. 도구는 `pymupdf4llm`인데, PyMuPDF를 기반으로 만든 경량 라이브러리로 제목과 구조를 유지한 채 PDF 콘텐츠를 마크다운으로 뽑는다. 마크다운으로 바꾸는 이유는 헤더 기호 자체가 계층 정보를 담고 있어서다.
+
+트리의 설계 원칙은 네 가지다.
+
+- 각 노드는 섹션(chapter, subsection 등)을 나타낸다
+- 노드는 마크다운 헤더(`#`, `##`, `###`)에서 파생된다
+- 부모와 자식 관계가 문서 구조를 반영한다
+- 각 노드는 페이지 범위 및 콘텐츠에 매핑된다
+
+실제 파싱은 세 단계를 순서대로 거친다.
+
+| 단계 | 수단 | 산출 |
+|---|---|---|
+| 구조화된 마크다운 추출 | `pymupdf4llm.to_markdown()`으로 레이아웃과 제목을 보존한다 | 헤더가 살아 있는 마크다운 전문 |
+| 헤더를 기반으로 계층 구조 구축 | 마크다운 헤더를 레벨로 파싱하고 스택 기반 접근 방식으로 트리를 구성한다 | 부모와 자식이 연결된 트리 뼈대 |
+| 콘텐츠를 페이지와 정렬 | 페이지 단위 청크를 사용해 페이지 경계를 정교화한다 | 각 노드가 원본 문서에 정확히 매핑된 트리 |
+
+두 번째 단계의 스택 기반 접근은 계층을 만드는 표준적인 방법이다. 헤더를 만날 때마다 `#` 개수로 레벨을 읽고, 스택 위쪽에 쌓여 있던 같거나 더 깊은 레벨의 노드를 닫은 뒤, 남은 스택의 맨 위 노드를 부모로 삼아 새 노드를 붙인다. 이렇게 하면 문서를 한 번만 훑으면서 임의 깊이의 트리를 만들 수 있고, 문서마다 목차 규칙이 달라도 같은 절차가 그대로 적용된다.
+
+세 번째 단계가 따로 필요한 이유는 마크다운 전문에 페이지 구분이 남지 않기 때문이다. 그래서 페이지 단위로 한 번 더 뽑은 청크와 대조해 각 노드가 몇 페이지에서 몇 페이지에 걸쳐 있는지를 확정한다. 인용의 정확도가 여기서 결정된다. 답변에 섹션 제목과 페이지 범위를 붙일 수 있는지가 이 정렬 단계의 성패에 달려 있다.
+
+파싱 이후의 추가 처리도 세 가지가 명시되어 있다.
+
+| 추가 처리 | 내용 |
+|---|---|
+| 제목 분류 | 제목을 번호 매김, 로마 숫자, 번호 없음 등으로 분류한다 |
+| 상위 노드 요약 | 콘텐츠는 상위 레벨 노드에서 요약된다 |
+| 리프 노드 보존 | 리프 노드는 가장 상세한 콘텐츠를 유지한다 |
+
+상위 노드를 요약하고 리프 노드를 보존하는 배치가 탐색 방식과 맞물린다. 상위 노드는 어디로 갈지 정할 때만 읽히므로 요약이면 충분하고, 실제 답의 근거가 되는 리프 노드는 전문이 필요하다.
+
+### 트리 탐색 단계
+
+트리가 준비되면 검색은 트리에 대한 의사결정 과정이 된다. 루트에서 시작해 각 노드에서 쿼리와의 관련성을 평가하고, 멈추고 콘텐츠를 추출하거나 더 관련성이 높은 하위 섹션으로 깊이 이동한다. 이는 langgraph를 사용한 에이전트 기반 탐색 루프로 구현된다.
+
+탐색 파이프라인은 네 단계로 구성된 그래프다. 각 단계가 무엇을 받고 무엇을 내보내는지가 그래프의 상태 전달을 결정한다.
+
+| 단계 | 받는 상태 | 하는 일 | 내보내는 상태 |
+|---|---|---|---|
+| 분석 | 쿼리, 현재 노드의 제목과 요약과 콘텐츠 미리보기, 자식 노드 목록 | LLM이 현재 노드가 쿼리에 얼마나 관련되는지 평가하고 다음 행동을 정한다 | 신뢰도 점수, 하위로 이동할지 여부, 다음에 탐색할 자식 노드, 간략한 추론 |
+| 하위 탐색 | 분석이 고른 자식 노드 | 선택된 자식 노드로 이동하고 과정을 반복한다 | 갱신된 현재 위치 |
+| 검색 | 탐색이 멈춘 시점의 현재 노드 | 현재 노드에서 콘텐츠를 페이지 메타데이터와 함께 추출한다 | 섹션 콘텐츠와 페이지 정보 |
+| 생성 | 검색 단계가 모은 섹션들 | 모델이 섹션을 종합해 인용 출처가 포함된 근거 기반 답변을 만든다 | 최종 답변 |
+
+분석 단계만 매번 LLM을 부르고 하위 탐색과 검색은 부르지 않는다. 생성 단계가 마지막에 한 번 더 부른다. 그래서 한 질의의 LLM 호출 수는 하강 횟수에 1을 더한 값이 된다.
+
+하강을 언제 멈출지는 세 가지 조건이 정한다.
+
+| 중지 조건 | 자료의 서술 |
+|---|---|
+| 낮은 신뢰도 | 관련성 평가의 신뢰도가 낮으면 더 내려가지 않는다 |
+| 최대 깊이 | 정해진 깊이 한도에 도달하면 멈춘다 |
+| 리프 노드 | 자식이 없는 노드에 닿으면 멈춘다 |
+
+구체적인 신뢰도 임계값과 깊이 상한 값은 README에 없다. 세 조건이 있다는 사실과 각각의 역할만 확인된다.
+
+### 실행 흐름과 로깅
+
+README는 같은 그래프를 실행 흐름 블록으로 한 번 더 보여 준다.
+
+```
+Question
+   ↓
+[Step 1] Analyze Node      ← LLM evaluates relevance and decides next action
+   ↓
+[Step 2] Route Decision    ← Descend into children, retrieve content, or backtrack
+   ↓
+[Step 3] Retrieve Content  ← Extract full text from relevant nodes
+   ↓
+[Step 4] Generate Answer   ← LLM synthesizes final answer with sources
+   ↓
+Answer + Path + Confidence + Sources
+```
+
+최종 산출물이 답변 하나가 아니라 답변, 경로, 신뢰도, 출처 네 가지라는 점이 이 설계의 특징이다. 각 단계는 탐색 경로, 각 노드에서 내린 결정, 신뢰도 점수, 최종적으로 사용된 출처를 로깅한다. README는 이 덕분에 "블랙박스 검색 시스템과 달리 검색 과정이 완전히 투명해지고 디버깅이 가능해짐"이라고 적는다.
+
+로그의 실제 모습도 한 건 인용되어 있다.
+
+```
+Decision   : ↓ descend
+Reasoning  : The Introduction section directly addresses the query
+```
+
+결정과 그 이유가 함께 남기 때문에 왜 그 섹션으로 갔는지를 사후에 확인할 수 있다. README가 꼽는 주요 특징 네 가지도 이 로깅과 연결된다. 검색이 일회성이 아니라 반복적으로 수행되고, 결정이 명시적이며 검토 가능하고, 탐색이 구조와 추론을 기반으로 안내되며, 시스템이 광범위한 블록 대신 관련성 높은 하위 섹션에 집중한다.
+
+### 기성 솔루션 경로와의 대조
+
+README는 트리 생성 절에서 선택을 명시적으로 밝힌다. "PageIndex와 같이 바로 사용할 수 있는 솔루션도 있어 구조화된 문서 표현을 생성할 수 있음. 하지만 이 구현에서는 파싱, 계층 구조, 메타데이터를 완전히 제어하기 위해 자체 트리를 구축."
+
+두 경로의 차이는 README가 나란히 실은 두 개의 트리 JSON에서 확인된다. 하나는 전처리 단계를 설명하며 든 개념적 예시이고, 다른 하나는 `main.py`를 실행해 얻은 실제 출력이다.
+
+| 비교 항목 | 기성 솔루션 경로 | 이 저장소의 자체 구현 |
+|---|---|---|
+| 트리를 만드는 주체 | 전처리 단계가 문서를 트리 형태로 파싱한다 | `pymupdf4llm` 마크다운 변환 후 헤더 레벨과 스택으로 직접 만든다 |
+| 통제 범위 | 파싱 방식과 계층 규칙이 솔루션 쪽에 있다 | 파싱, 계층 구조, 메타데이터를 전부 통제한다 |
+| 노드 식별자 | `node_id`가 `0001` 같은 연번이다 | `id`가 `Abstract_8`처럼 제목 슬러그와 숫자를 붙인 형태다 |
+| 자식 필드 이름 | `nodes` | `children` |
+| 노드가 담는 값 | 제목, 짧은 요약, 페이지 경계, 선택적 전문 | 제목, 레벨, 페이지 시작과 끝, 콘텐츠, 요약, 제목 분류 |
+| 페이지 정보의 형태 | 페이지 경계 | `page_start`와 `page_end` 두 필드로 분리 |
+| README가 밝힌 장점 | 바로 사용할 수 있다 | 완전한 통제를 얻는다 |
+
+자체 구현 쪽에만 `level`과 `heading_type` 필드가 있다는 점이 눈에 띈다. 레벨을 노드에 직접 적어 두면 탐색 중에 깊이를 세지 않아도 되고, 제목 분류를 남겨 두면 번호 없는 제목과 번호 매긴 제목을 구분해 다룰 여지가 생긴다. 통제권을 가져온 대가로 붙는 것이 파싱 품질에 대한 책임이라는 점은 뒤의 한계에서 다시 나온다.
+
+PageIndex 쪽 API의 구체적인 호출 절차는 이 자료에 없다. 그 부분은 [[database/geeksforgeeks-2026-vectorless-rag-pageindex]]와 [[database/vectifyai-pageindex]]가 다룬다.
+
+## 결과
+
+### Bigtable 데모의 트리 출력
+
+데모 문서는 Google의 Bigtable OSDI'06 논문이다. `uv run main.py`를 실행하면 먼저 `pymupdf4llm`으로 PDF에서 텍스트를 추출하고 트리를 만든다. README가 붙인 실제 출력 JSON에서 다음이 관측된다.
+
+| 노드 id | 제목 | level | 페이지 범위 | heading_type |
+|---|---|---|---|---|
+| `root` | `bigtable-osdi06.pdf` | 0 | 1에서 13 | 표기 없음 |
+| `Bigtable_A_Distribut_0` | Bigtable: A Distributed Storage System for Structured Data | 1 | 1에서 13 | 표기 없음 |
+| `Abstract_8` | Abstract | 2 | 1에서 1 | `unknown` |
+| `1_Introduction_12` | 1 Introduction | 2 | 1에서 1 | `unknown` |
+
+노드 하나가 갖는 필드는 `id`, `title`, `level`, `page_start`, `page_end`, `content`, `children`, `heading_type`, `summary`다. 출력에서 세 가지 규칙을 읽어낼 수 있다.
+
+- `id`는 제목을 슬러그로 만들고 숫자를 덧붙인 형태다. `Bigtable_A_Distribut_0`은 제목이 스무 글자에서 잘린 뒤 숫자가 붙은 모습이다
+- `summary`는 `content` 앞부분을 잘라 만든 값이다. Abstract 노드의 `summary`가 초록 본문의 앞부분과 글자 단위로 일치한다
+- `heading_type`이 두 L2 노드에서 모두 `unknown`이다. 제목 분류 규칙이 이 논문의 `**Abstract**` 형태를 인식하지 못했다는 뜻으로 보인다
+
+논문 제목이 트리에서 루트가 아니라 루트의 유일한 자식이 되고, 실제 섹션들이 그 아래 L2에 놓이는 점도 확인된다. PDF 첫 줄의 제목도 마크다운 헤더로 잡히기 때문에 생기는 결과다. 인용된 JSON은 두 번째 자식 노드에서 잘려 있어 트리 전체 구성은 확인할 수 없다.
+
+### 단일 질의 실행 추적
+
+정량 벤치마크는 없다. README가 인용한 실행 추적 한 건이 유일한 수치다.
+
 ```
 Total LLM calls : 4  (3 navigate + 1 answer)
 Total latency   : 15.60s
 ```
-- depth 3 이하에서 종료 (MAX_DEPTH=5 미도달)
 
-**트리 빌드 결과 (Bigtable OSDI'06, 13페이지)**:
-- L1: 1개 (논문 제목)
-- L2: **35개** (Abstract, 1 Introduction, 2 Data Model, Rows, Column Families, Timestamps, Architecture, Tablet Servers, Chubby, …)
-- 트리 빌드 LLM 호출: **0회** (정규식 + 스택만 사용)
-- 최초 파싱 약 10~30초 (CLAUDE.md 명시), 이후 캐시 즉시 로드
+한 질의가 LLM 호출 4회로 끝났고 그중 3회가 탐색 결정(navigate), 1회가 답변 생성(answer)이다. 앞의 호출 구조에 비추어 보면 루트에서 세 번 판단하는 동안 두 번 하강했다는 뜻이 된다. 전체 지연은 15.60초이며, 이는 임베딩 조회 한 번으로 끝나는 전통 RAG와 자릿수가 다른 값이다.
 
-**활성 샘플 질문 1개 + 주석 7개** (`questions.py`):
-- 활성 (사실 확인): `"Bigtable이란 무엇이며 어떤 문제를 해결하는가?"`
-- 주석 (사실/추론/심화 3등급): data model vs RDBMS, Chubby의 역할, tablet server 장애·복구, compaction 전략, read/write 처리량, Google 내부 사용 사례, locality group ↔ column family 비교
+README는 이 수치를 탐색 깊이와 지연의 관계를 설명하는 근거로 쓴다. 탐색 단계가 하나 추가될 때마다 LLM 호출이 하나 늘고 그만큼 지연이 쌓인다. 실제 시스템에서 최대 깊이를 제한하고 중지 임계값을 조정해야 하는 이유가 이 관계에 있다.
 
-**언급된 한계** (README "벡터리스 RAG의 실용적 측면" 절):
-- 노드 세분화 trade-off (굵으면 정확도 ↓, 세분이면 LLM 호출 ↑)
-- 탐색 깊이 vs 지연 (MAX_DEPTH 제한·confidence threshold 조정·불필요 탐색 방지 필요)
-- 구조 품질 의존성 (깔끔한 제목 = 더 나은 탐색)
-- 구조화 문서 한정 (논문·보고서·문서 ✓ / 로그·채팅 ✗)
-- 의미론적 fallback 부재
+### 같은 질문에 대한 두 방식의 대조
 
-**구현 한계** (코드 인스펙션):
-- 라이선스 미명시 (pyproject·README·CLAUDE.md 모두) — 재사용 시 저자에게 확인 필요
-- 표준 벤치 0개 (FinanceBench·HotpotQA 등 없음)
-- 활성 질문 1개만 (7개 주석 처리, 사용자가 직접 unblock)
-- backtrack 분기 미구현 (overview는 언급하지만 `_route`에 없음)
-- 단일 PDF (`bigtable-osdi06.pdf` 하드코딩)
-- pure vectorless (hybrid·graph 결합 없음)
+README는 "Bigtable은 복제본 간 일관성을 어떻게 처리하나요?"라는 질문 하나로 두 방식을 비교한다.
 
-## 관련 페이지 (Related Pages)
+| 항목 | 전통 RAG | vectorless RAG |
+|---|---|---|
+| 검색 대상 선정 | "일관성", "복제" 같은 용어와의 유사성을 기반으로 청크를 검색한다 | 관련 섹션(예: "일관성 및 동기화")을 먼저 식별한다 |
+| 가져오는 단위 | 부분적으로만 관련성이 있는 청크 | 섹션 전체 |
+| 생성 단계의 부담 | 모델이 노이즈를 걸러내야 한다 | 더 일관되고 집중된 맥락을 받는다 |
 
-### Vectorless RAG 가족 (database/)
+차이가 생기는 지점은 검색 결과의 양이 아니라 경계다. 유사도로 고른 청크는 문서의 어느 지점에서 잘린 조각이라 앞뒤 맥락이 빠질 수 있지만, 섹션 단위로 가져오면 저자가 하나의 주제로 묶어 둔 범위가 그대로 온다.
 
-- [[database/vectifyai-pageindex|VectifyAI PageIndex (OSS)]] — `get_document`/`get_document_structure`/`get_page_content` 3-함수 API, LiteLLM 멀티 프로바이더, FinanceBench 98.7%. 본 구현은 PageIndex *개념*만 채택하고 라이브러리 미사용.
-- [[database/geeksforgeeks-2026-vectorless-rag-pageindex|GeeksforGeeks Vectorless RAG 튜토리얼]] — PageIndex *Cloud SaaS* API(`PageIndexClient` → `submit_document` → 폴링 → `get_tree` → `submit_query` → `get_retrieval`) verbatim 10-step. 본 구현은 SaaS 대신 *로컬 직접 구축*.
-- [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval|DCI (Direct Corpus Interaction)]] — embedding/index 없이 agent가 `grep`·`bash`로 raw corpus 직접 검색, BrowseComp-Plus 80.0%. *tree navigation* 축 본 구현과 *shell tool* 축 DCI의 대비.
+### 두 방식의 성격
 
-### Graph-based RAG (database/, overviews/)
+| 기준 | 기존 RAG | vectorless RAG |
+|---|---|---|
+| 성격 | 효율적이다 | 구조화되어 있다 |
+| 검색 근거 | 유사도 | 추론 |
+| 확장성 | 우수하다 | 선택적으로 쓴다 |
+| 맞는 문제 | 대규모 검색 | 구조화된 문서에 대한 추론 |
 
-- [[database/guo-2025-lightrag-simple-and-fast|LightRAG]] — KG entity·relation을 key-value로 직렬화 + dual-level keyword retrieval
-- [[database/zhang-2026-leanrag-knowledge-graph-based-generation|LeanRAG]] — hierarchical KG + LCA retrieval
-- [[database/guo-2025-rag-anything-all-in-one-rag|RAG-Anything]] — multimodal dual-graph (text + cross-modal)
-- [[database/hkuds-rag-anything|HKUDS/RAG-Anything (repo)]] — RAG-Anything paper reference implementation
-- [[overviews/lightrag-family-graph-rag-overview|LightRAG 계열 합성]] — Graph-based RAG family overview
+README의 결론은 대체가 아니라 전환이다. "벡터리스 RAG는 기존의 RAG를 대체하는 것이 아니라, 검색 전략을 전환하는 것"이며, 둘은 서로 다른 아키텍처적 선택이라 문제에 따라 보완하거나 같은 시스템 안에서 공존할 수도 있다.
 
-### RAG 디자인 공간 정렬 (applications/)
+이 방식이 얻는 것은 정확도만이 아니다. 검색을 일회성 조회가 아니라 안내된 프로세스로 재구성하면서, 시스템은 어디로 갈지와 언제 멈출지와 무엇을 추출할지를 명시적인 결정으로 쌓아 올린다. 그 결과 구조화된 데이터에 효과적일 뿐 아니라 사후에 따라 읽기 쉬운 파이프라인이 만들어진다. README가 마지막에 남기는 관점은 검색이 반드시 유사성에만 의존할 필요는 없으며 구조와 탐색과 통제된 추론에서도 도출될 수 있다는 것이다.
 
-- [[applications/pandey-2026-rag-is-no-longer-just|RAG is no longer just vector search + LLM (Pandey)]] — 2026 production RAG **5 design space**(Hybrid · Graph · Agentic · CRAG · Multimodal). 본 구현은 *Agentic* 축 단일.
+## 한계
 
-### 동일 카테고리 — Embedding 진영 (대비축)
+### vectorless 방식이 치르는 대가
 
-- [[database/shanbhogue-2026-gemini-embedding-2-native-multimodal|Gemini Embedding 2]] — Google DeepMind의 native multimodal embedder, MTEB Multilingual 69.9
-- [[database/zhang-2026-your-embedding-model-is-smarter|SMART (Single-to-Multi Adaptation)]] — single-vector 모델에 MaxSim late-interaction을 얹는 training-free hybrid
+vectorless RAG가 유리한 조건은 세 가지다. 문서의 구조가 명확한 경우, 질문이 섹션 간 이동을 필요로 하는 경우, 맥락이 관련 하위 섹션에 분산되어 있는 경우다. 그 반대 방향의 대가도 네 가지로 명시되어 있다.
+
+| 대가 | 내용 |
+|---|---|
+| 지연 시간 | 쿼리당 여러 번의 LLM 호출이 필요해 지연이 커진다 |
+| 비용 | 벡터 조회 대비 쿼리당 비용이 더 높다 |
+| 구조 품질 의존 | 구조가 취약하거나 노이즈가 많으면 효과가 줄어든다 |
+| 코퍼스 성격 | 대규모의 비정형 코퍼스에는 적합하지 않다 |
+
+앞의 실행 추적이 이 표의 첫 두 줄을 뒷받침한다. 한 질의에 LLM 호출 4회가 들었고 15.60초가 걸렸으므로, 쿼리 수가 많은 서비스에서는 지연과 비용이 모두 문제가 된다.
+
+### 구현에서 드러난 실용적 고려 사항
+
+README는 구현과 실행 추적에서 두드러진 고려 사항을 일곱 항목으로 정리한다.
+
+| 고려 사항 | 자료의 서술 |
+|---|---|
+| 구조의 품질 | 깔끔한 제목은 더 나은 탐색으로, 노이즈가 많은 PDF는 불확실한 탐색 결정으로, 계층 구조 누락은 평면적이고 비효율적인 검색으로 이어진다 |
+| 노드 세분화 | 너무 굵으면 답변이 덜 정확해지고, 너무 잘게 쪼개면 탐색이 깊어져 LLM 호출이 늘어난다. 섹션에서 하위 섹션, 리프로 이어지는 균형 잡힌 계층이 가장 효과적이다 |
+| 탐색 깊이와 지연 | 탐색 단계가 하나 늘 때마다 지연이 쌓인다. 최대 깊이 제한, 중지 임계값 조정, 불필요한 탐색 방지가 필요하다 |
+| 프롬프트 설계 | 명확한 지시는 더 나은 결정으로, 모호한 프롬프트는 무작위 탐색으로 이어진다. `should_descend`를 어떻게 정의하는지 같은 사소한 변경도 결과를 크게 바꾼다 |
+| 로깅 | 어디로 이동했는지 확인하고 왜 그 결정을 내렸는지 디버깅하며 실제 추적 기록으로 동작을 조정할 수 있다. 로그 없이는 성능 향상이 어렵다 |
+| 문서 유형 | 명확한 섹션이 있고 정보가 논리적으로 구성된 자료에서 잘 동작한다 |
+| 콘텐츠 품질 | 올바른 정보가 명확히 정의된 섹션에 없으면 시스템에 의미론적 대체 방안이 없다 |
+
+첫 항목과 마지막 항목이 같은 곳을 가리킨다. 이 방식은 문서의 구조를 지도로 삼기 때문에 지도가 부실하면 대체 수단이 없다. 전통 RAG는 구조가 없어도 유사도로 근처까지는 가지만, vectorless 방식은 제목이 잘못 잡히면 그 아래 내용을 아예 보지 못한다. 그래서 README는 파싱 품질에 투자하는 것이 검색 품질에 직접 영향을 준다고 적는다.
+
+문서 유형에 따른 적합성도 명확히 갈린다.
+
+| 구분 | 문서 유형 |
+|---|---|
+| 잘 동작한다 | 논문, 보고서, 문서처럼 명확한 섹션이 있고 정보가 논리적으로 구성된 자료 |
+| 효과가 떨어진다 | 로그, 채팅, 정리가 안 된 텍스트처럼 비구조화되어 있고 따를 만한 계층이 없는 자료 |
+
+### 자료의 공백과 내적 모순
+
+이 저장소의 README 자체에서 확인되는 문제도 있다.
+
+- **비용과 성능 절에 본문이 없다.** "코스트, 성능 고려 사항" 절에 이미지 참조 한 줄만 있고 설명 문장이 없다. 해당 이미지 파일은 현재 raw에 없어서 이 절이 어떤 비교를 담으려 했는지 확인할 방법이 없다
+- **단계 이름이 두 곳에서 다르다.** 구현 구성 요소 목록은 네 단계를 분석, 하위 탐색, 검색, 생성으로 열거한다. 반면 실행 흐름 블록은 Analyze Node, Route Decision, Retrieve Content, Generate Answer로 적어 하위 탐색 자리에 Route Decision을 놓는다. 두 목록이 같은 그래프를 가리키는지 여부는 README만으로 확정되지 않는다
+- **backtrack의 근거가 부족하다.** 실행 흐름 블록의 Route Decision 설명에만 backtrack이 등장하고, 구현 구성 요소 목록에는 되돌아가기에 해당하는 단계가 없다. 잘못 내려간 경우의 복구 절차는 README에서 확인되지 않는다
+- **단계 수 표기가 흔들린다.** 동작 설명을 두 단계로 예고한 뒤 실제로는 네 단계로 서술한다
+- **정량 근거가 얇다.** 표준 벤치마크가 없고, 인용된 지연 15.60초와 LLM 호출 4회도 단일 실행 추적이라 반복 측정이나 분산 정보가 없다
+- **라이선스가 명시되지 않았다.** README 본문에 라이선스 조항이 없어 frontmatter도 `unspecified`로 둔다. 재사용하려면 저장소의 LICENSE 파일을 직접 확인해야 한다
+
+### raw 범위에서 오는 검증 한계
+
+이 stem의 raw는 원래 저장소 전체 클론이었으나 2026-06-17 커밋 `0507ad0`에서 README 스텁으로 바뀌었다. ai-wiki 저장소 쪽 정리이며 대상 저장소의 변경이 아니다. 그 커밋으로 `tree.py`, `retriever.py`, `main.py`, `questions.py`, `pyproject.toml`, 노트북, 트리 캐시 JSON, 워크플로 이미지가 raw에서 사라졌다.
+
+그래서 클래스 이름, 함수 시그니처, 상수값, 의존성 버전 같은 코드 수준의 사실은 현재 raw로 확인할 수 없다. 이 페이지는 README 본문에서 확인되는 서술과 README에 인용된 실행 출력만 근거로 삼았다. 코드 세부가 필요하면 저장소를 직접 열어야 한다.
+
+## 핵심 용어
+
+| 용어 | 뜻 |
+|---|---|
+| vectorless RAG | 임베딩과 유사도 검색에 의존하지 않고 문서 구조를 따라가며 단계별로 추론해 다음에 볼 위치를 정하는 retrieval 방식. reasoning-based retrieval이 같은 뜻의 별칭이다 |
+| DocumentTree | PDF를 제목 계층으로 옮긴 트리 자료구조. 트리 생성 단계의 결과물이며 탐색과 추론의 대상이 된다 |
+| `should_descend` | 분석 단계가 내놓는 판단값. 현재 노드에 머물러 콘텐츠를 뽑을지 자식 노드로 내려갈지를 정한다 |
+| `heading_type` | 노드 제목의 분류를 담는 필드. 번호 매김, 로마 숫자, 번호 없음 등으로 나뉘며 Bigtable 예시에서는 `unknown`으로 채워져 있다 |
+| `pymupdf4llm` | PyMuPDF 기반의 경량 라이브러리. 제목과 구조를 유지한 채 PDF 콘텐츠를 마크다운으로 추출한다 |
+| navigate 호출과 answer 호출 | 실행 추적이 LLM 호출을 나누는 두 종류. 탐색 결정에 쓰인 호출이 navigate, 최종 답변 생성에 쓰인 호출이 answer다 |
+
+## 관련 페이지
+
+- [[database/zhang-2025-pageindex-vectorless-reasoning-rag]]: PageIndex 팀이 vectorless RAG 개념을 소개한 글. 이 저장소가 따르는 개념의 출처 쪽에 해당한다
+- [[database/vectifyai-pageindex]]: README가 링크한 PageIndex OSS 구현체. 이 저장소가 알면서도 쓰지 않기로 결정한 기성 솔루션이다
+- [[database/geeksforgeeks-2026-vectorless-rag-pageindex]]: README의 참고 자료 목록에 있는 PageIndex 튜토리얼. 같은 개념을 기성 API로 구현하는 경로를 다루므로 이 페이지의 자체 구현과 짝을 이룬다
+- [[database/kalane-2026-pageindex-threw-out-vector-databases]]: PageIndex에 대한 제3자 리뷰. 개념 소개와 자체 구현 사이에서 외부 평가를 제공한다
+- [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]: 임베딩 없이 corpus를 직접 다루는 다른 방향의 연구. 이 페이지가 문서 트리 탐색으로 유사도를 대체한다면 해당 연구는 tool use로 대체한다
+- [[applications/pandey-2026-rag-is-no-longer-just]]: RAG 설계 공간을 정리한 글. 이 구현은 그중 agentic 방향에 해당한다

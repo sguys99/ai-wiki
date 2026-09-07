@@ -25,309 +25,276 @@ tags:
 
 ## 한 줄 요약 (One-line Summary)
 
-sguys99(Kwang Myung Yu)의 `langchain-study` 모노레포 산하 `medium/3.vectorless-rag` 서브디렉토리 — towardsai.net 글과 alphaiterations 레포를 한글로 포팅·재구성한 **PageIndex API 의존성 0** vectorless RAG 학습용 구현. `pymupdf4llm`로 PDF → 마크다운 헤더 → 스택 기반 `DocumentTree` 직접 빌드 + LangGraph `StateGraph` 4-노드(analyze · descend · retrieve · generate) 에이전트 탐색, Anthropic `claude-sonnet-4-6` 기본. Bigtable OSDI'06(13페이지) 데모에서 35개 L2 자식 노드 추출 후 단일 질의가 **4 LLM call(3 navigate + 1 answer) / 15.60s** 완료. 노트북(`vectorless_rag_walkthrough.ipynb` 49셀) + 풍부한 한글 주석으로 [[vectifyai-pageindex]] (cloud SaaS)와 [[geeksforgeeks-2026-vectorless-rag-pageindex]] (튜토리얼) 사이에서 *"PageIndex 없이 직접 만들 때 무엇이 필요한가"* 의 답을 코드로 보여준다.
+`sguys99/langchain-study` 모노레포의 `medium/3.vectorless-rag` 서브디렉토리로, towardsai.net 해설 글과 `alphaiterations/agentic-ai-usecases` 저장소를 한글로 재구성한 vectorless RAG 학습용 구현이다. PageIndex 같은 기성 솔루션을 쓰지 않고 `pymupdf4llm`으로 PDF를 마크다운으로 바꾼 뒤 헤더 레벨과 스택으로 DocumentTree를 직접 만들고, langgraph 에이전트가 그 트리를 분석, 하위 탐색, 검색, 생성 네 단계로 내려가며 답을 만든다. Bigtable OSDI'06 논문(13페이지) 데모에서 한 질의가 LLM 호출 4회(navigate 3회, answer 1회), 지연 15.60초로 끝났다.
 
 ---
 
 ## 1. 자료 정보 (Document Information)
 
-- **Repo 위치**: `sguys99/langchain-study` 모노레포의 `medium/3.vectorless-rag/` 서브디렉토리 (Medium 글 시리즈 3번째)
-- **저자**: sguys99 (Kwang Myung Yu) — 본 ai-wiki 운영자 본인
-- **최종 커밋**: 2026-06-02 16:39 KST (`47350865`, ":recycle: Update README.md")
-- **언어 정책**: 코드 식별자·라이브러리는 영문 유지, 주석·문서·README·질문 모두 한글
-- **자료 출처 (README에 명시)**:
-  - https://pub.towardsai.net/vectorless-rag-how-i-built-a-rag-system-without-embeddings-databases-or-vector-similarity-efccf21e42ff
-  - https://github.com/alphaiterations/agentic-ai-usecases/tree/main/advanced/vectorless-rag
-- **라이선스**: `pyproject.toml`·`README.md`·`CLAUDE.md` 모두 라이선스 미명시 → unspecified
-- **패키지 매니저·런타임**: uv + Python 3.12, `uv sync && uv run main.py`
-- **핵심 의존성** (`pyproject.toml`): `anthropic>=0.105.2`, `langgraph>=1.2.2`, `pymupdf4llm>=1.27.2.3`, `pymupdf>=1.27.2.3`, `pydantic>=2.13.4`, `python-dotenv>=1.2.2`, `langchain>=1.3.2`, `langchain-anthropic>=1.4.4`, `langchain-openai>=1.2.2`, `openai>=2.38.0`, `ipykernel>=7.2.0`, `jupyter>=1.1.1` (langchain·openai 계열은 의존성으로 설치되지만 vectorless 핵심 경로는 anthropic SDK + langgraph만 사용)
-- **데모 문서**: Google `bigtable-osdi06.pdf` (13페이지, 220KB), `main.py`가 부재 시 자동 다운로드 후 `bigtable-osdi06.pdf`로 저장
-- **파일 구성** (총 1.1MB):
-  ```
-  3.vectorless-rag/
-  ├── README.md         (28KB, 한글 본문)
-  ├── overview.md       (12KB, 한글 아키텍처 설명)
-  ├── CLAUDE.md         (8KB, Claude Code 에이전트 가이드)
-  ├── main.py           (12KB, 진입점)
-  ├── tree.py           (32KB, PDF → DocumentTree 빌더)
-  ├── retriever.py      (32KB, LangGraph 에이전트 + 로깅)
-  ├── questions.py      (4KB, 한글 샘플 질문 리스트)
-  ├── pyproject.toml    (4KB)
-  ├── uv.lock           (444KB)
-  ├── bigtable-osdi06.pdf (220KB, 데모 문서)
-  ├── notebooks/
-  │   └── vectorless_rag_walkthrough.ipynb (49셀 단계별 학습)
-  ├── results/
-  │   ├── document_tree.json (트리 캐시, JSON, 약 35개 L2 노드 + 다수 L3)
-  │   └── workflow.png       (LangGraph 그래프 시각화)
-  └── img/
-      └── 2.png         (비용/성능 비교 인포그래픽)
-  ```
+- **저장소 위치**: `sguys99/langchain-study` 모노레포의 `medium/3.vectorless-rag/` 서브디렉토리
+- **URL**: https://github.com/sguys99/langchain-study/tree/main/medium/3.vectorless-rag
+- **저자**: sguys99 (Kwang Myung Yu), 이 ai-wiki 운영자 본인
+- **자료 성격**: 한글 README 한 편. 개념 해설(전통 RAG의 한계 분석과 vectorless RAG 정의)과 구현 해설(트리 생성, 트리 탐색, 실행)이 한 문서에 이어져 있다
+- **원 출처 2건** (README가 "본 저장소는 아래 출처의 자료를 수정한 것입니다"로 명시):
+  - `https://pub.towardsai.net/vectorless-rag-how-i-built-a-rag-system-without-embeddings-databases-or-vector-similarity-efccf21e42ff`
+  - `https://github.com/alphaiterations/agentic-ai-usecases/tree/main/advanced/vectorless-rag`
+- **README가 참조하라고 지시한 코드 파일**: `tree.py`(트리 생성), `retriever.py`(트리 탐색), `main.py`(실행 진입점)
+- **실행 명령**: `uv run main.py`
+- **핵심 의존 라이브러리** (README 본문 언급분): `pymupdf4llm`(PyMuPDF 기반 PDF 마크다운 변환), `langgraph`(에이전트 탐색 루프)
+- **데모 문서**: Google의 Bigtable OSDI'06 논문 PDF. `main.py` 실행 결과 JSON에서 `document_name`이 `bigtable-osdi06`, 루트 페이지 범위가 1에서 13이다
+- **라이선스**: 현재 raw(README 본문)에 라이선스 조항이 없다. frontmatter의 `license: unspecified`를 유지하며, 재사용 시 저장소의 LICENSE 파일을 직접 확인해야 한다
+
+### raw 범위에 대한 주의
+
+이 stem의 raw는 2026-06-17 커밋 `0507ad0`에서 전체 클론 디렉토리가 README 스텁으로 바뀌었다(ai-wiki 저장소 쪽 변경이며 대상 저장소의 변경이 아니다). 그 커밋이 삭제한 파일은 `tree.py`(386줄), `retriever.py`(603줄), `main.py`(197줄), `questions.py`, `CLAUDE.md`, `overview.md`, `pyproject.toml`, `uv.lock`, `notebooks/vectorless_rag_walkthrough.ipynb`, `results/document_tree.json`, `results/workflow.png`, `img/2.png`, `bigtable-osdi06.pdf`이다.
+
+따라서 클래스 이름, 함수 시그니처, 상수값, 의존성 버전, 노트북 셀 수처럼 소스 코드를 직접 읽어야 확인되는 사실은 현재 raw로 검증할 수 없다. 이 문서는 README 본문에서 확인되는 서술과 README에 인용된 실행 출력만 근거로 삼는다.
 
 ---
 
 ## 2. 주요 기여 (Key Contributions)
 
-### 2-1. PageIndex 의존성 0인 한글 reference 구현
+### 2-1. 기성 솔루션을 쓰지 않는 선택과 그 이유의 명시
 
-- README의 "구현" 절에서 명시: *"[PageIndex](https://github.com/VectifyAI/PageIndex)와 같이 바로 사용할 수 있는 솔루션도 있어 구조화된 문서 표현을 생성할 수 있음. 하지만 이 구현에서는 파싱, 계층 구조, 메타데이터를 완전히 제어하기 위해 자체 트리를 구축."*
-- 즉 [[vectifyai-pageindex]] (PageIndex OSS, FinanceBench 98.7%)·[[geeksforgeeks-2026-vectorless-rag-pageindex]] (PageIndex Cloud SaaS API 튜토리얼)와 동일 카테고리지만 **PageIndex 라이브러리/SaaS 미사용**. `pymupdf4llm` 마크다운 변환 + 자체 정규식·스택 파싱으로 `DocumentTree`를 만든다.
+README는 구현 절에서 "PageIndex와 같이 바로 사용할 수 있는 솔루션도 있어 구조화된 문서 표현을 생성할 수 있음. 하지만 이 구현에서는 파싱, 계층 구조, 메타데이터를 완전히 제어하기 위해 자체 트리를 구축"이라고 적는다. 같은 vectorless RAG 개념을 따르되 PageIndex 라이브러리나 서비스를 쓰지 않는다는 뜻이며, 선택 이유를 통제권으로 밝힌 점이 이 자료의 위치를 정한다.
 
-### 2-2. 3-파일 분리 아키텍처 + 단일 책임
+### 2-2. 전통 RAG의 한계를 등급으로 나눈 분석
 
-- `tree.py`: PDF → `DocumentTree` 구조화 (LLM 호출 0회)
-- `retriever.py`: `DocumentTree` 탐색 → 답변 생성 (LangGraph + Anthropic)
-- `main.py`: 오케스트레이션 (다운로드 → 트리 캐시 → 질문 순회)
-- `questions.py`: 데이터 분리 (질문 리스트)
+흔히 뭉뚱그려 나열되는 전통 RAG의 문제를 네 항목으로 나누고 각각에 성격 등급을 붙인다. Shallow retrieval만 "핵심적 한계"이고 Context Fragmentation은 "완화 가능", Loss of Structure는 "구현 방식에 따라 다름", 전처리 오버헤드는 "아키텍처 상의 절충점"이라는 구분이다. README의 결론은 "흔히 언급되는 여러 문제점 중 유일한 근본적인 한계는 기존 RAG가 추론이 아닌 유사성을 기반으로 검색을 수행한다는 점뿐"이며, 나머지는 설계로 해결 가능하다고 본다.
 
-`CLAUDE.md`에 *"LLM 클라이언트는 `main.py`에서 단일 `anthropic.Anthropic` 인스턴스를 만들어 `retrieve()`로 전달… 호출마다 새 클라이언트를 만들지 마세요"*, *"사용 모델은 `retriever.DEFAULT_MODEL`(= 환경변수 `ANTHROPIC_MODEL`)이 단일 출처"*라고 명문화된 *single-source-of-truth* 컨벤션. 모델명 하드코딩 금지.
+### 2-3. 인간 분석가 비유로 정의한 추론 기반 검색
 
-### 2-3. 한글 주석 + 노트북 walkthrough (학습 자료 가치)
+vectorless RAG를 정의할 때 인간 분석가가 문서를 다루는 절차를 여섯 단계로 제시한다. 목차를 살펴보고, 구조를 파악하고, "X에 대한 정보가 필요하다면 아마도 Y 섹션에 있을 것"이라고 추론하고, 해당 섹션으로 이동하고, 전체 맥락을 읽고, 답변을 종합하는 순서다. README는 이 절차가 검색의 질문 자체를 바꾼다고 정리한다. `무엇이 비슷해 보이나?`에서 `다음에 어디로 가야 할까?`로 옮겨 가는 것이 vectorless RAG를 정의하는 근본적인 변화다.
 
-- `tree.py` (385줄)·`retriever.py` (603줄) 모두 각 함수·블록마다 한글 주석. 예: `_route` 분기 4가지 케이스를 inline 주석으로 설명, `_call_llm`의 핸들러 2개(console INFO + file DEBUG) 의도 설명.
-- `notebooks/vectorless_rag_walkthrough.ipynb` (49 cells) — 첫 셀에 *"`tree.py` · `retriever.py` · `main.py`로 구성된 **벡터 없는(vectorless) RAG** 데모를 **한 단계씩 직접 실행**하며 동작 원리를 이해하기 위한 학습 자료"* 라고 명시. 환경 설정 → API 클라이언트 → PDF 다운로드 → tree 빌드/캐시 → 단일 질의 → 결과 분석 순으로 셀 분리.
+### 2-4. langgraph 기반 4단계 탐색 루프 설계
 
-### 2-4. observability-first 로깅 설계
+트리 탐색을 일회성 조회가 아니라 네 단계 그래프로 구현한다. 분석 단계가 LLM으로 의사결정을 내리고, 하위 탐색 단계가 선택된 자식으로 이동하고, 검색 단계가 콘텐츠를 추출하고, 생성 단계가 인용 출처가 붙은 답변을 만든다. 각 단계는 탐색 경로, 각 노드에서 내린 결정, 신뢰도 점수, 최종 사용 출처를 로깅한다. README는 이 로깅 덕분에 "블랙박스 검색 시스템과 달리 검색 과정이 완전히 투명해지고 디버깅이 가능해짐"이라고 적는다.
 
-- `retriever.py` 64-87행에 dual handler logger 구성:
-  - **console** (INFO): `┌─ Depth {depth} | Node: "{title}"` 들여쓰기 트리 + `↓ descend / → retrieve` 화살표 + 확신도·근거 한 줄
-  - **file** (`retriever.log`, DEBUG): 전체 prompt + raw response + latency + token usage
-- README "5. 로깅은 선택 사항이 아니고 필수" 절에 *"로그 없이 다음만 있다면 …성능 향상이 어렵다"* 라고 가시성을 학습 포인트로 명시.
+### 2-5. 한글 재구성 학습 자료
 
-### 2-5. JSON 코드펜스 안전 파싱 (`_strip_fences`)
-
-- LLM이 ` ```json … ``` ` 펜스로 감싸 응답하는 일반 케이스 대응. `text.split("```")` → 각 조각 lstrip `json` → `json.loads` 시도 → 첫 유효 조각 반환, 실패 시 원본 그대로 반환. 펜스 미사용 ↔ 사용 둘 다 커버.
-- 추가로 `analyze_node`의 JSON 파싱 실패 시 fallback decision (`should_descend: bool(node.children)`, `target_child_id: node.children[0].id if node.children else None`) — 노드가 자식 있으면 첫 자식으로 보수적으로 하강.
+영어 출처 두 건을 한글 해설로 옮기면서 개념 설명과 구현 설명을 한 문서에 이어 붙였다. 코드 세부는 `tree.py 파일 참고`, `retriever.py 파일 참고`처럼 파일로 위임하고, README 본문은 무엇을 왜 그렇게 만들었는지에 집중한다.
 
 ---
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
-### 3-1. tree.py — PyMuPDF4LLMTreeBuilder (LLM-free)
+### 3-1. 전통 RAG 파이프라인과 변형 세 가지
 
-**클래스**:
-- `TreeNode` (dataclass): `id`, `title`, `level` (0=루트, 1=챕터, 2=섹션, 3=하위), `page_start`, `page_end`, `content`, `children`, `heading_type`, `summary`. `to_dict()`로 미리보기 200자까지 자른 직렬화 지원.
-- `DocumentTree` (dataclass): `document_name`, `root`, `total_pages`, `source_path`. `print_tree()`로 들여쓰기 + 레벨별 아이콘(📑📖📄📝) 콘솔 출력.
-- `PyMuPDF4LLMTreeBuilder`: `max_content_length=8000` 기본.
+전통 RAG는 chunking으로 문서를 작은 단위로 나누고, 각 청크를 벡터로 바꾸는 임베딩 단계를 거치고, 코사인 유사도 같은 유사도 검색으로 관련 청크를 찾는다. 그다음 Top-k 청크를 LLM에 보내 답변을 생성한다. README가 적은 파이프라인은 `Query → Embedding → Vector DB → Top-k Chunks → LLM → Answer`다.
 
-**`parse_pdf(pdf_path)` 흐름**:
-1. `pymupdf4llm.to_markdown(pdf_path)`로 레이아웃 보존 마크다운 전체 추출
-2. `pymupdf4llm.to_markdown(pdf_path, page_chunks=True, write_images=False, embed_images=False)`로 페이지 단위 청크 별도 추출 → `page_contents: Dict[int, str]` 인덱스 생성
-3. `_build_tree_from_markdown(full_md, page_contents, doc_name)` 호출 → root 반환
-4. 결과: `DocumentTree(document_name=stem, root, total_pages, source_path)`
+검색 품질, 추론 깊이, 문맥 관련성을 겨냥한 변형 세 가지가 뒤따랐다.
 
-**`_build_tree_from_markdown` 스택 기반 파서**:
-- `stack = [(0, root)]`로 시작, `current_content_lines` 버퍼에 본문 누적
-- 라인 순회하며 `stripped.startswith('#')` 만나면:
-  1. `flush_content()` — 직전까지 누적된 본문을 `stack[-1]` 노드에 `\n\n` 구분으로 append, `summary` 미설정이면 첫 문단 300자로 자동 채움
-  2. level = `#` 개수 (`len(stripped.split()[0])`)
-  3. title = `stripped.lstrip('#').strip()`
-  4. heading_type = `_classify_heading(title)` (numbered/roman/letter/unnumbered/unknown)
-  5. page_num = `_estimate_page_number(i, len(lines), max_pages)` (라인 비율 × 전체 페이지 + 1, 후속 단계에서 보정)
-  6. `node_id = f"{title_slug[:20]}_{i}"` (제목 슬러그 + 라인 번호)
-  7. `while stack[-1][0] >= level: stack.pop()` — 새 헤딩과 같거나 더 깊은 노드들을 닫고, 닫힌 자식의 `page_end`를 부모에 반영
-  8. `stack[-1][1].children.append(new_node)` — 스택 top을 부모로 새 노드 연결
-  9. `stack.append((level, new_node))` — 새 노드를 현재 경로로 push
-- 헤딩 분류 정규식 4종:
-  - `numbered_section`: `^(?:\d+\.)+\s+(.+)$` (1. , 2.3.1)
-  - `roman_section`: `^(?:[IVX]+)\.?\s+(.+)$` (I. , II.)
-  - `letter_section`: `^([A-Z])\.\s+(.+)$` (A. , B.)
-  - `unnumbered_heading`: `^([A-Z][a-zA-Z\s]{3,50})$` (Abstract, Conclusion)
-- 후처리:
-  - `_refine_page_boundaries(root, page_contents)`: 본문 앞 100자 스니펫이 어느 페이지 청크에 포함되는지 매칭하여 `page_start/page_end` 보정. 자식 있으면 `min(child.page_start)~max(child.page_end)`로 부모 범위 갱신
-  - `_distribute_content_to_leaves(node)`: 자식 있는 (헤더 역할) 노드는 본문 500자 초과 시 요약으로 축약. 리프 노드는 본문 보존.
+| 변형 | 추가하는 것 | 겨냥한 문제 |
+|---|---|---|
+| Re-ranking RAG | 초기 검색 결과를 LLM이 다시 정렬하는 2차 단계(reranking) | 단순 유사도 점수만으로는 "실제로 쿼리와 가장 관련성이 높은 것"을 가릴 수 없다 |
+| Hybrid RAG | dense 벡터 검색과 BM25 같은 키워드 검색의 결합 | 임베딩이 ID, 이름, 희귀 용어의 정확 일치를 놓친다. 반대로 키워드 검색만으로는 의미적 이해가 부족하다 |
+| Agentic RAG | 쿼리의 하위 질문 분해, 여러 단계 검색, 다음에 가져올 정보의 동적 결정 | 한 번의 조회로는 다단계 질문을 풀지 못한다 |
 
-**실제 출력 (Bigtable 트리)**:
-- L0 root: `bigtable-osdi06.pdf` (p1-13, 1 child)
-- L1: `**Bigtable: A Distributed Storage System for Structured Data**` (p1-13, **35 children**)
-- L2 자식 일부: Abstract, 1 Introduction, 2 Data Model, Rows, Column Families, Timestamps, …
+README는 이 흐름에서 "검색과 추론의 경계가 모호해지기 시작하며, 시스템은 더 유연해지지만 동시에 더 복잡해진다"고 평가한다.
 
-### 3-2. retriever.py — LangGraph 에이전트
+### 3-2. 전통 RAG의 네 가지 한계와 등급
 
-**State**:
-```python
-class RetrievalState(TypedDict):
-    query: str
-    current_node: Optional[TreeNode]
-    tree: TreeNode  # 또는 DocumentTree (.root로 자동 추출)
-    path_taken: Annotated[List[str], operator.add]        # 누적
-    retrieved_content: Annotated[List[str], operator.add] # 누적
-    reasoning: str
-    confidence: float
-    should_descend: bool
-    target_child_id: Optional[str]
-    depth: int
-    final_answer: Optional[str]
-    call_log: Annotated[List[dict], operator.add]         # 누적
+| 한계 | 자료가 붙인 등급 | 내용 | 완화 수단 |
+|---|---|---|---|
+| Shallow retrieval | 핵심적 한계 | 검색이 과제 관련성이나 추론이 아니라 의미적 유사성에 기반한다. 벡터 검색은 "어떤 텍스트가 쿼리와 유사해 보이나"에만 답하는데, 실제 쿼리는 인과 관계 이해, 다단계 추론, 여러 섹션에 걸친 정보 통합을 요구한다 | 없다. 더 나은 청킹이나 색인화만으로는 완전히 해결되지 않는다 |
+| Context Fragmentation | 완화 가능 | 임베딩 전 분할 때문에 중요한 문맥이 여러 조각에 걸쳐 나뉘고, 검색된 조각에 주변 정보가 부족하며, 섹션 간 관계가 사라진다 | overlapping chunks, sliding windows, reranking, multi-hop retrieval |
+| Loss of Structure | 구현 방식에 따라 다름 | 단순한 구현에서 문서가 여러 청크로 평면화되면서 장, 절, 소절 구조가 사라진다 | 절 제목과 계층 구조 같은 메타데이터, hierarchical chunking, parent-child retrieval |
+| 전처리 오버헤드 | 아키텍처 상의 절충점 | 임베딩 생성, 벡터 데이터베이스 저장, 인덱싱과 유지 관리에 초기 비용과 시스템 복잡성이 든다 | 절충의 대가로 빠른 검색, 저지연 쿼리, 확장 가능한 성능을 얻는다. 높은 초기 비용과 낮은 쿼리당 비용의 배분으로 이해하는 편이 적절하다 |
+
+### 3-3. vectorless RAG의 동작 네 단계
+
+README는 vectorless RAG를 "일회성 문서 변환"과 "쿼리 시점에 수행되는 추론 기반 검색 루프" 두 단계로 소개한 뒤, 실제로는 네 단계로 나누어 설명한다.
+
+1. **문서 트리 구축(일회성 설정)**: 문서를 제목, 장, 절, 소절이라는 책의 구성과 유사한 계층 구조로 바꾼다. 전처리 단계를 거치면 각 노드가 제목, 짧은 요약, 페이지 경계, 선택적 전문을 갖는다. 이 트리는 전체 텍스트를 훑지 않고도 내용을 탐색할 수 있는 간결한 표현이다.
+2. **구조에 대한 추론**: 쿼리 시점에 텍스트를 바로 검색하지 않는다. LLM에 쿼리와 트리 구조(제목과 요약만)를 주고 "어떤 섹션에 답이 포함되어 있을 가능성이 가장 높습니까?"라고 묻는다. 모델은 쿼리의 의미적 이해, 고수준 문서 구조, 섹션 간 관계를 근거로 노드를 고른다. Bigtable의 Chubby에 대한 질문이면 "아키텍처"와 "일관성 및 동기화"를 고를 수 있다. 이 단계가 벡터 유사성을 명시적 의사결정으로 대체한다.
+3. **전체 컨텍스트 검색**: 관련 섹션이 정해지면 해당 노드의 전체 텍스트를 가져오고, 완전성을 위해 하위 섹션을 선택적으로 포함해 구조화된 컨텍스트로 결합한다. 검색 단위가 임의의 조각이 아니라 섹션이 된다.
+4. **답변 생성**: 검색된 컨텍스트를 LLM에 전달한다. 지침은 제공된 컨텍스트만 사용할 것, 여러 섹션에 걸친 정보를 종합할 것, 선택적으로 출처를 인용할 것이다. 전통 RAG와 형태는 비슷하지만 컨텍스트가 선택된 방식이 다르다.
+
+### 3-4. 트리 생성 구현
+
+`pymupdf4llm`은 PyMuPDF를 기반으로 만든 경량 라이브러리로, 제목과 구조를 유지한 채 PDF 콘텐츠를 마크다운으로 뽑는다. 이 구현이 트리 생성 단계에서 쓰는 도구다.
+
+트리의 설계 원칙은 네 가지다.
+
+- 각 노드는 섹션(chapter, subsection 등)을 나타낸다
+- 노드는 마크다운 헤더(`#`, `##`, `###`)에서 파생된다
+- 부모와 자식 관계가 문서 구조를 반영한다
+- 각 노드는 페이지 범위 및 콘텐츠에 매핑된다
+
+파싱은 세 단계를 따른다.
+
+| 단계 | 수단 | 산출 |
+|---|---|---|
+| 구조화된 마크다운 추출 | `pymupdf4llm.to_markdown()`으로 레이아웃과 제목을 보존한다 | 헤더가 살아 있는 마크다운 |
+| 헤더를 기반으로 계층 구조 구축 | 마크다운 헤더를 레벨로 파싱하고 스택 기반 접근 방식으로 트리를 구성한다 | 부모와 자식이 연결된 트리 뼈대 |
+| 콘텐츠를 페이지와 정렬 | 페이지 단위 청크로 페이지 경계를 정교화한다 | 각 노드가 원본 문서에 정확히 매핑된 트리 |
+
+추가 처리도 세 가지가 명시되어 있다. 제목은 번호 매김, 로마 숫자, 번호 없음 등으로 분류된다. 콘텐츠는 상위 레벨 노드에서 요약된다. 리프 노드는 가장 상세한 콘텐츠를 유지한다. 결과물이 DocumentTree이며 README는 세부 구현을 `tree.py 파일 참고`로 넘긴다.
+
+### 3-5. 트리 탐색 구현
+
+탐색은 트리에 대한 의사결정 과정으로 다뤄진다. 루트에서 시작해 각 노드에서 쿼리와의 관련성을 평가하고, 중지하고 콘텐츠를 추출하거나 더 관련성이 높은 하위 섹션으로 깊이 이동한다. 이 과정은 중지 조건이 충족될 때까지 이어진다.
+
+| 중지 조건 | 자료의 서술 |
+|---|---|
+| 낮은 신뢰도 | 관련성 평가의 신뢰도가 낮으면 더 내려가지 않는다 |
+| 최대 깊이 | 정해진 깊이 한도에 도달하면 멈춘다 |
+| 리프 노드 | 자식이 없는 노드에 닿으면 멈춘다 |
+
+구체적인 신뢰도 임계값과 깊이 상한 값은 README에 없다.
+
+탐색 파이프라인은 네 단계 그래프로 구성된다.
+
+| 단계 | 받는 정보 | 하는 일 | 내보내는 정보 |
+|---|---|---|---|
+| 분석 | 쿼리, 현재 노드(제목, 요약, 콘텐츠 미리보기), 자식 노드 목록 | LLM이 관련성을 평가하고 다음 행동을 정한다 | 신뢰도 점수, 하위로 이동할지 여부, 다음에 탐색할 자식 노드, 간략한 추론 |
+| 하위 탐색 | 분석이 고른 자식 노드 | 선택된 자식 노드로 이동하고 과정을 반복한다 | 갱신된 현재 위치 |
+| 검색 | 탐색이 멈춘 시점의 현재 노드 | 현재 노드에서 콘텐츠를 페이지 메타데이터와 함께 추출한다 | 섹션 콘텐츠와 페이지 정보 |
+| 생성 | 검색된 섹션들 | 모델이 섹션을 종합해 근거 기반 답변을 만든다 | 인용 출처가 포함된 최종 답변 |
+
+README가 따로 제시하는 실행 흐름 블록은 단계 이름을 조금 다르게 적는다.
+
+```
+Question
+   ↓
+[Step 1] Analyze Node      ← LLM evaluates relevance and decides next action
+   ↓
+[Step 2] Route Decision    ← Descend into children, retrieve content, or backtrack
+   ↓
+[Step 3] Retrieve Content  ← Extract full text from relevant nodes
+   ↓
+[Step 4] Generate Answer   ← LLM synthesizes final answer with sources
+   ↓
+Answer + Path + Confidence + Sources
 ```
 
-`operator.add` 어노테이션 3개로 LangGraph가 노드 반환값을 *덮어쓰지 않고 누적*하게 설정. 나머지는 일반 덮어쓰기.
+각 단계는 탐색 경로, 각 노드에서 내린 결정, 신뢰도 점수, 최종적으로 사용된 출처를 로깅한다. README가 꼽는 주요 특징은 네 가지다. 검색이 일회성이 아니라 반복적으로 수행되고, 결정이 명시적이며 검토 가능하고, 탐색이 구조와 추론을 기반으로 안내되며, 시스템이 광범위한 블록 대신 관련성 높은 하위 섹션에 집중한다. 세부 구현은 `retriever.py 파일 참고`로 넘긴다.
 
-**4-노드 StateGraph**:
-- **analyze** (`_make_analyze`): 현재 노드(없으면 tree.root) + 자식 메타데이터(`id`/`title`/`summary[:150]`) 추출 → 한글 프롬프트로 `{confidence, should_descend, target_child_id, reasoning}` JSON 요청 (max_tokens=512, temperature=0.0). `_strip_fences` 후 `json.loads`, 실패 시 fallback. depth +1 반환.
-- **descend** (`_make_descend`): `target_child_id` 매칭 자식으로 `current_node` 교체 (못 찾으면 첫 자식 fallback)
-- **retrieve** (`_make_retrieve`): `=== **{title}** (Pages {start}-{end}) ===\n{content}` 헤더 붙은 청크를 `retrieved_content`에 누적
-- **generate** (`_make_generate`): 모든 청크를 `\n\n---\n\n` 구분으로 합쳐 컨텍스트 구성, 한글 프롬프트로 *"수집된 문서 구간만을 근거로 질문에 답… 모든 주장에 섹션 제목과 페이지 범위를 인용… 근거 부족하면 추측 말고 그렇다고 명확히 밝히세요"* 요청 (max_tokens=2048). 답변 한글.
+### 3-6. 실행과 트리 출력
 
-**`_route` 조건부 분기 (analyze → descend/retrieve/end)**:
-```python
-MAX_DEPTH = 5
-def _route(state):
-    if state["confidence"] < 0.3:             return "end"       # 낮은 확신도 → 종료
-    if state["depth"] >= MAX_DEPTH:           return "retrieve"  # 최대 깊이 → 수집
-    if state["should_descend"] and state["current_node"].children:
-        return "descend"                                          # 내려가기
-    return "retrieve"                                             # 그 외 → 수집
-```
+`uv run main.py`를 실행하면 가장 먼저 `pymupdf4llm`으로 PDF에서 텍스트를 추출한다. README가 붙인 실제 출력 JSON에서 관측되는 트리는 다음과 같다.
 
-**고정 엣지**: `descend → analyze` (재귀), `retrieve → generate`, `generate → END`
+| 노드 id | 제목 | level | 페이지 범위 | heading_type |
+|---|---|---|---|---|
+| `root` | `bigtable-osdi06.pdf` | 0 | 1에서 13 | 표기 없음 |
+| `Bigtable_A_Distribut_0` | `**Bigtable: A Distributed Storage System for Structured Data**` | 1 | 1에서 13 | 표기 없음 |
+| `Abstract_8` | `**Abstract**` | 2 | 1에서 1 | `unknown` |
+| `1_Introduction_12` | `**1 Introduction**` | 2 | 1에서 1 | `unknown` |
 
-**공개 API**:
-- `retrieve(query, tree, client=None, model=None) → Dict` — initial state 구성 후 `graph.invoke`. 반환: `{answer, path, reasoning, confidence, sources, call_log}`. client 미전달 시 `anthropic.Anthropic()` 자동 생성, model 미전달 시 `DEFAULT_MODEL`(env `ANTHROPIC_MODEL`, 기본 `claude-sonnet-4-6`).
-- `generate_workflow_png(output_path="workflow.png") → str` — 더미 노드(`lambda state: state`)로 동일 토폴로지 재구성 후 `graph.draw_mermaid_png()`로 PNG 렌더링.
-
-**`_call_llm` 공통 호출자**:
-- header 로깅 (call number + type)
-- prompt 전체는 DEBUG → file only (콘솔 미출력, 가독성)
-- `client.messages.create(model, max_tokens, temperature=0.0, messages=[{"role":"user","content":prompt}])`
-- 응답 첫 텍스트 블록 추출·strip
-- raw response DEBUG → file, model/latency/token usage INFO → console
-- 반환: `(raw_text, elapsed_seconds)`
-
-### 3-3. main.py — 오케스트레이션
-
-- `PDF_URL = "https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf"`
-- `download_pdf()`: 부재 시 `urllib.request.urlretrieve`로 다운로드
-- `get_tree()`: `results/document_tree.json` 캐시 우선 로드 (`dict_to_treenode`로 재귀 복원, `data.get("root", data)`로 DocumentTree/TreeNode 양쪽 호환). 부재 시 `parse_pdf` 후 `asdict + json.dump(default=str)`로 캐시
-- 워크플로 PNG도 `results/workflow.png`에 저장
-- `for question in QUESTIONS: ask(question, tree)` 순회, 실패해도 다음 질문 진행 (try/except + ok 플래그)
-- 마지막에 `완료: 전체 N개 중 ok개 질문 답변 성공` 요약
-
-`ask(question, tree)`는 콘솔에 `[판단 근거] / [확신도] / [탐색 경로] / [출처] / [답변]` 5블록 출력.
+노드 하나가 갖는 필드는 `id`, `title`, `level`, `page_start`, `page_end`, `content`, `children`, `heading_type`, `summary`다. `id`는 제목을 슬러그로 만들고 숫자를 붙인 형태이며, `Bigtable_A_Distribut_0`은 제목이 스무 글자에서 잘린 뒤 `_0`이 붙은 모습이다. `summary`는 `content` 앞부분을 잘라 만든 값으로, Abstract 노드의 `summary`가 초록 본문의 앞부분과 글자 단위로 일치한다. 인용된 JSON은 두 번째 자식 노드에서 잘려 있어 트리 전체 구성은 확인할 수 없다.
 
 ---
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
-> 자체 정량 벤치마크는 없다. README가 인용한 **실행 추적(execution trace) 1개 예시**가 유일한 수치:
+정량 벤치마크는 없다. README가 인용한 실행 추적 한 건이 유일한 수치다.
 
 ```
 Total LLM calls : 4  (3 navigate + 1 answer)
 Total latency   : 15.60s
 ```
 
-- 즉 Bigtable 데모에서 단일 질의 = navigate 3회(root → 1 Introduction → 어느 하위 노드) + answer 1회. depth 3 이하에서 종료된 것으로 추정 (MAX_DEPTH=5 미도달).
-- **트리 빌드 결과 (Bigtable PDF, 13페이지)**:
-  - L1 노드 1개 (논문 제목)
-  - L2 노드 **35개** (Abstract / 1 Introduction / 2 Data Model / Rows / Column Families / Timestamps / 등)
-  - 트리 빌드는 LLM 호출 0회 (`PyMuPDF4LLMTreeBuilder`는 정규식·스택만 사용)
-  - 최초 파싱 약 10~30초 (`CLAUDE.md`), 이후 `results/document_tree.json` 캐시 즉시 로드
-- **샘플 질문** (`questions.py`, 1개 활성 + 7개 주석):
-  - 활성: `"Bigtable이란 무엇이며 어떤 문제를 해결하는가?"` (사실 확인, 단일 섹션)
-  - 주석된 추가 질문 7개는 사실/추론/심화 3등급 분류:
-    - 사실 확인: data model vs RDBMS, Chubby의 역할
-    - 추론·복수 섹션: tablet server 장애/복구, compaction 전략, read/write 처리량 동시 달성
-    - 심화·교차 섹션: Google 내부 사용 사례별 요구사항, locality group ↔ column family 비교
+한 질의가 LLM 호출 4회로 끝났고 그중 3회가 탐색 결정(navigate), 1회가 답변 생성(answer)이다. 전체 지연은 15.60초다. README는 이 수치를 "탐색 깊이 vs 지연" 항목의 근거로 들며 "탐색 단계가 하나 추가될 때마다 지연 시간이 발생"한다고 적는다.
 
-비교 표 (README의 ‘Vector RAG vs Vectorless RAG’ 절):
+로그 예시도 한 건 인용되어 있다.
 
-| 측면 | Vector RAG | Vectorless RAG (이 구현) |
+```
+Decision   : ↓ descend
+Reasoning  : The Introduction section directly addresses the query
+```
+
+### 벡터 RAG와의 실무 비교
+
+README는 "Bigtable은 복제본 간 일관성을 어떻게 처리하나요?"라는 질문 하나로 두 방식을 대조한다.
+
+| 항목 | 전통 RAG | vectorless RAG |
 |---|---|---|
-| 청킹 | 고정 512토큰 (맥락 손실) | 자연스러운 섹션 (구조 보존) |
-| 임베딩 | 모든 청크 임베딩 필요 (고비용) | 없음 (트리 구조만) |
-| 검색 품질 | 유사도 매칭 | LLM 추론 (맥락 이해) |
-| 인용 | 모호한 청크 ID | 페이지 범위 + 섹션 제목 |
-| 멀티홉 | 재랭킹 없이 자주 실패 | 여러 섹션 자연 처리 |
-| 환각 | 높음 (의미 표류) | 낮음 (전체 섹션 근거) |
-| 비용 | 지속적 임베딩 비용 | 일회성 트리 구축 |
+| 검색 대상 선정 | "일관성", "복제" 같은 용어와의 유사성으로 청크를 검색한다 | 관련 섹션(예: "일관성 및 동기화")을 먼저 식별한다 |
+| 가져오는 단위 | 부분적으로만 관련성이 있는 청크 | 섹션 전체 |
+| 생성 단계의 부담 | 모델이 노이즈를 걸러내야 한다 | 더 일관되고 집중된 맥락을 받는다 |
 
-> 단 위 표는 일반적 vectorless RAG 비교이며, 본 구현으로 벤치마크 측정한 것은 아니다.
+### 두 방식의 성격 비교
+
+| 기준 | 기존 RAG | vectorless RAG |
+|---|---|---|
+| 성격 | 효율적이다 | 구조화되어 있다 |
+| 검색 근거 | 유사도 | 추론 |
+| 확장성 | 우수하다 | 선택적으로 쓴다 |
+| 맞는 문제 | 대규모 검색 | 구조화된 문서에 대한 추론 |
+
+README의 결론은 대체가 아니라 전환이다. "벡터리스 RAG는 기존의 RAG를 대체하는 것이 아니라, 검색 전략을 전환하는 것"이며 문제에 따라 선택한다.
 
 ---
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
-### 5-1. 명시된 한계 (README 본문)
+### 5-1. 자료가 밝힌 한계
 
-- **노드 세분화 trade-off**: 너무 굵으면(큰 섹션) 정확도 ↓, 너무 세분(아주 작은 단위)이면 LLM 호출 증가. README: *"균형 잡힌 계층 구조(섹션 → 하위 섹션 → 리프)가 가장 효과적"*
-- **탐색 깊이 vs 지연**: navigate 1회당 latency 누적. 실제 시스템은 *"최대 깊이 제한 / 중지 임계값(신뢰도) 조정 / 불필요한 탐색 방지"* 필요. 본 구현은 MAX_DEPTH=5, confidence<0.3 = 종료로 대응.
-- **구조 품질 의존성**: 깔끔한 제목 → 더 나은 탐색, 노이즈 많은 PDF → 불확실한 traversal, 계층 누락 → 평면적 검색. *"우수한 파싱(레이아웃 + 헤더)에 투자하는 것은 검색 품질에 직접적인 영향"*
-- **구조화 문서 한정**: 논문·보고서·문서에 적합, 로그·채팅·비정형 텍스트엔 부적합
-- **의미론적 fallback 부재**: 올바른 정보가 명확히 정의된 섹션에 없으면 시스템은 *"의미론적 대체 방안"* 없음
+vectorless RAG가 유리한 조건은 세 가지다. 문서의 구조가 명확한 경우, 질문이 섹션 간 이동을 필요로 하는 경우, 맥락이 관련 하위 섹션에 분산되어 있는 경우다. 반대 방향의 대가도 네 가지로 명시되어 있다.
 
-### 5-2. 구현 한계 (코드 인스펙션)
+| 대가 | 내용 |
+|---|---|
+| 지연 시간 | 쿼리당 여러 번의 LLM 호출이 필요해 지연이 커진다 |
+| 비용 | 벡터 조회 대비 쿼리당 비용이 더 높다 |
+| 구조 품질 의존 | 구조가 취약하거나 노이즈가 많으면 효과가 줄어든다 |
+| 코퍼스 성격 | 대규모의 비정형 코퍼스에는 적합하지 않다 |
 
-- **라이선스 미명시** — `pyproject.toml`·`README.md`·`CLAUDE.md` 어디에도 라이선스 정보 없음. 모노레포 루트도 확인되지 않음. 인용·재사용 시 저자(sguys99)에게 직접 확인 필요.
-- **벤치마크 부재** — FinanceBench·HotpotQA 등 표준 벤치 없음. README 인용 latency 15.60s/Bigtable 1질의도 단일 trace로 통계적 신뢰 구간 없음.
-- **샘플 질문 1개만 활성** — `questions.py`의 8개 중 7개가 주석 처리. 다양한 질문 유형(사실/추론/심화) 검증은 사용자가 직접 주석 해제해야 함.
-- **에이전트 backtrack 미구현** — overview.md에서 *"되돌아가기(backtrack)"*를 언급하지만 `_route`에는 backtrack 분기 없음 (낮은 확신도는 종료, 자식 없으면 retrieve). 잘못 내려간 경우 복구 불가.
-- **단일 PDF 대상** — `main.py`가 `bigtable-osdi06.pdf`를 하드코딩. 다른 PDF로 바꾸려면 `PDF_URL` + `PDF_PATH` 수정 필요. 멀티 문서 지원 없음.
-- **벡터/하이브리드 결합 없음** — pure vectorless. [[pandey-2026-rag-is-no-longer-just]]의 5개 디자인 공간(Hybrid·Graph·Agentic·CRAG·Multimodal) 중 Agentic 단일 축만 다룬다.
+### 5-2. 실용적 고려 사항 일곱 가지
 
-### 5-3. README가 권하는 향후 개선
+README는 구현과 실행 추적에서 두드러진 고려 사항을 일곱 항목으로 정리한다.
 
-- 명확한 instruction prompt 설계 — "should_descend" 정의 한 줄 변경만으로도 결과에 큰 영향
-- 로깅 활용 — *"로그 없이는 성능 향상이 어렵다"*
-- 콘텐츠 구성을 시스템 설계 일부로 — 문서 자체가 정리되어 있어야 효과
+| 고려 사항 | 자료의 서술 |
+|---|---|
+| 구조의 품질 | 깔끔한 제목은 더 나은 탐색으로, 노이즈가 많은 PDF는 불확실한 탐색 결정으로, 계층 구조 누락은 평면적이고 비효율적인 검색으로 이어진다. 우수한 파싱에 투자하는 것이 검색 품질에 직접 영향을 준다 |
+| 노드 세분화 | 너무 굵으면 답변이 덜 정확해지고, 너무 잘게 쪼개면 탐색이 깊어져 LLM 호출이 늘어난다. 섹션에서 하위 섹션, 리프로 이어지는 균형 잡힌 계층이 가장 효과적이다 |
+| 탐색 깊이와 지연 | 탐색 단계가 하나 늘 때마다 지연이 쌓인다. 실제 시스템은 최대 깊이 제한, 중지 임계값 조정, 불필요한 탐색 방지가 필요하다 |
+| 프롬프트 설계 | 명확한 지시는 더 나은 결정으로, 모호한 프롬프트는 무작위 탐색으로 이어진다. `should_descend`를 어떻게 정의하는지 같은 사소한 변경도 결과를 크게 바꾼다 |
+| 로깅 | 시스템이 어디로 이동했는지 확인하고 왜 그 결정을 내렸는지 디버깅하며 실제 추적 기록으로 동작을 조정할 수 있다. 로그 없이는 성능 향상이 어렵다 |
+| 문서 유형 | 명확한 섹션이 있고 정보가 논리적으로 구성된 논문, 보고서, 문서에서 잘 동작한다. 로그, 채팅, 정리가 안 된 텍스트에서는 효과가 떨어진다 |
+| 콘텐츠 품질 | 올바른 정보가 명확히 정의된 섹션에 없으면 시스템에 의미론적 대체 방안이 없다. 콘텐츠 구성이 시스템 설계의 일부가 된다 |
+
+### 5-3. 자료의 공백과 내적 모순
+
+- **비용과 성능 절의 본문 부재**: "코스트, 성능 고려 사항" 절에 `![](img/2.png)` 이미지 참조만 있고 설명 문장이 없다. 해당 이미지 파일은 현재 raw에 없어서 이 절의 내용을 확인할 방법이 없다.
+- **단계 이름의 불일치**: "구현 구성 요소"는 네 단계를 분석, 하위 탐색, 검색, 생성으로 열거한다. 반면 "실행 흐름" 블록은 Analyze Node, Route Decision, Retrieve Content, Generate Answer로 적어 하위 탐색 자리에 Route Decision을 놓는다. 두 목록이 같은 그래프를 가리키는지 여부는 README만으로 확정되지 않는다.
+- **backtrack의 근거 부족**: 실행 흐름 블록의 Route Decision 설명에만 backtrack이 등장하고, 구현 구성 요소 목록에는 되돌아가기에 해당하는 단계가 없다. 잘못 내려간 경우의 복구 절차는 README에서 확인되지 않는다.
+- **단계 수 표기의 흔들림**: 동작 설명을 "두 단계"로 예고한 뒤 실제로는 네 단계로 서술한다.
+- **정량 근거 부족**: 표준 벤치마크가 없고, 인용된 지연 15.60초와 LLM 호출 4회도 단일 실행 추적이라 반복 측정이나 분산이 없다.
+- **라이선스 미확인**: README 본문에 라이선스 조항이 없다. 재사용 시 저장소의 LICENSE 파일을 직접 확인해야 한다.
+
+### 5-4. README가 제시하는 개선 방향
+
+- 탐색 프롬프트를 명확하게 설계한다. `should_descend`의 정의 한 줄이 결과를 좌우한다
+- 로깅을 개선의 근거로 쓴다
+- 콘텐츠 구성 자체를 시스템 설계의 일부로 다룬다
 
 ---
 
 ## 6. 관련 연구 (Related Work)
 
-### Vectorless RAG 가족
+### README가 인용한 참고 자료
 
-- [[vectifyai-pageindex]] — VectifyAI의 PageIndex OSS. FinanceBench 98.7%, LiteLLM 멀티 프로바이더, `get_document`/`get_document_structure`/`get_page_content` 3-함수 API. 본 구현은 PageIndex *개념*은 따르되 라이브러리 미사용.
-- [[geeksforgeeks-2026-vectorless-rag-pageindex]] — PageIndex *Cloud SaaS* API(`submit_document` → 폴링 → `get_tree` → `submit_query` → `get_retrieval`) verbatim 튜토리얼. 본 구현은 SaaS 대신 *로컬 직접 구축*.
-- [[li-2026-beyond-semantic-similarity-rethinking-retrieval]] — DCI(Direct Corpus Interaction) 논문. embedding/index 없이 agent가 `grep`·`bash`로 raw corpus 직접 검색, BrowseComp-Plus 80.0%. 본 구현은 *tree navigation* 축, DCI는 *shell tool* 축.
+- PageIndex Framework (Vectorless RAG), `https://github.com/VectifyAI/PageIndex`
+- Vectorless RAG, `https://www.geeksforgeeks.org/artificial-intelligence/vectorless-rag-pageindex/`
+- Bigtable: A Distributed Storage System for Structured Data (데모 대상 논문)
+- Alpha Iterations Vectorless RAG Repo (원본 코드 베이스)
 
-### Graph-based RAG 가족
+### wiki 내 인접 페이지
 
-- [[guo-2025-lightrag-simple-and-fast]] — KG entity·relation을 key-value로 직렬화, dual-level keyword retrieval
-- [[zhang-2026-leanrag-knowledge-graph-based-generation]] — GMM-BIC hierarchical KG + LCA retrieval
-- [[guo-2025-rag-anything-all-in-one-rag]] — multimodal cross-modal KG
-- [[hkuds-rag-anything]] — 위 paper의 reference implementation
-
-### 디자인 공간 정렬
-
-- [[pandey-2026-rag-is-no-longer-just]] — 2026 production RAG 5 design space(Hybrid·Graph·Agentic·CRAG·Multimodal). 본 구현은 Agentic 축 단일 구현.
-
-### 합성 페이지
-
-- [[lightrag-family-graph-rag-overview]] — LightRAG 계열 합성
-
-### 의존 라이브러리
-
-- `pymupdf4llm` (Artifex) — PDF → LLM 친화 마크다운, layout-aware
-- `langgraph` (LangChain) — StateGraph 기반 에이전트 워크플로
-- `anthropic` Python SDK — Claude API 클라이언트
-
-### 데모 대상 논문
-
-- Chang et al., "Bigtable: A Distributed Storage System for Structured Data", **OSDI'06**, Google. 13페이지, distributed storage system 고전.
-
-### 학습 자료 출처 (README 인용)
-
-- *Vectorless RAG: How I Built a RAG System Without Embeddings, Databases, or Vector Similarity* — pub.towardsai.net 글
-- `alphaiterations/agentic-ai-usecases` repo의 `advanced/vectorless-rag` (원본 코드 베이스)
+- [[database/zhang-2025-pageindex-vectorless-reasoning-rag]]: PageIndex 팀이 vectorless RAG 개념을 소개한 글
+- [[database/vectifyai-pageindex]]: README가 링크한 PageIndex OSS 구현체. 이 저장소가 쓰지 않기로 한 기성 솔루션이다
+- [[database/geeksforgeeks-2026-vectorless-rag-pageindex]]: README의 참고 자료 목록에 있는 PageIndex 튜토리얼
+- [[database/kalane-2026-pageindex-threw-out-vector-databases]]: PageIndex에 대한 제3자 리뷰
+- [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]: 임베딩 없이 corpus를 직접 다루는 다른 방향의 연구
+- [[applications/pandey-2026-rag-is-no-longer-just]]: RAG 설계 공간 정리. 이 구현은 그중 agentic 방향에 해당한다
 
 ---
 
 ## 7. 용어집 (Glossary)
 
-- **Vectorless RAG** — 임베딩·벡터 DB 없이 문서 구조(목차/계층)와 LLM 추론으로 retrieval 수행하는 패러다임. 본 구현·[[vectifyai-pageindex]]·[[geeksforgeeks-2026-vectorless-rag-pageindex]] 모두 동일 개념. 별칭: Reasoning-based retrieval.
-- **DocumentTree** — `tree.py`에서 정의한 PDF의 계층적 표현 자료구조. `TreeNode`(id/title/level/page_start/page_end/content/children/summary)의 재귀 구조 + 메타데이터(document_name/total_pages/source_path).
-- **TreeNode** — DocumentTree 한 단위. level 0=root, 1=chapter, 2=section, 3=subsection. `heading_type`은 numbered/roman/letter/unnumbered/unknown/root/page 분류.
-- **PyMuPDF4LLM** — Artifex가 만든 PyMuPDF의 LLM 친화 래퍼. `to_markdown(pdf, page_chunks=True)`로 페이지별 마크다운 분리 추출. 본 구현의 핵심 의존성.
-- **LangGraph StateGraph** — LangChain의 그래프 기반 에이전트 프레임워크. `add_node`/`add_edge`/`add_conditional_edges`/`compile` API. 본 구현은 4-node graph.
-- **`Annotated[List[X], operator.add]`** — TypedDict 필드에 누적(append) 의미 부여하는 LangGraph 컨벤션. 노드가 반환한 리스트가 *덮어쓰지 않고* 기존 리스트에 더해짐. 본 구현의 `path_taken`/`retrieved_content`/`call_log`에 사용.
-- **MAX_DEPTH (=5)** — 트리 무한 하강 방지 안전판. `retriever.py:433`
-- **confidence threshold (=0.3)** — `_route`의 종료 조건. `state["confidence"] < 0.3 → END`. `analyze_node`의 LLM이 반환하는 0~1 값.
-- **navigate call / answer call** — 본 구현 로깅 분류. `_call_llm`의 `call_type` 파라미터로 구분. navigate는 max_tokens=512, answer는 max_tokens=2048.
-- **`_strip_fences`** — LLM JSON 응답의 ` ```json ... ``` ` 코드펜스 제거 헬퍼. 펜스 조각마다 `json.loads` 시도해 첫 유효 조각 반환.
-- **dual handler logging** — console INFO(요약) + file DEBUG(전체 prompt/response). `retriever.log`로 모든 LLM 호출 추적 가능.
-- **single source of truth (모델명)** — `retriever.DEFAULT_MODEL`(= env `ANTHROPIC_MODEL`)이 유일한 모델 지정 지점. `main.py`·`tree.py`·notebook 어디에도 모델명 하드코딩 금지.
-- **uv** — Astral의 Python 패키지 매니저 (pip 대체). `uv sync`로 `uv.lock` 기반 결정론적 설치, `uv run main.py`로 venv 자동 활성화.
-- **Bigtable (OSDI'06)** — 본 데모 대상. Google의 distributed storage system 고전 논문, 13페이지, 35개 L2 섹션(Abstract/Introduction/Data Model/Rows/Column Families/Timestamps/Architecture/Tablet Servers/Chubby/…).
-- **`bigtable-osdi06.pdf`** — `main.py`가 자동 다운로드하는 데모 PDF. URL: `https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf`
-- **`results/document_tree.json`** — 트리 캐시. JSON 직렬화(`asdict + default=str`)로 저장, 다음 실행 시 `dict_to_treenode`로 재귀 복원.
-- **`results/workflow.png`** — `generate_workflow_png()`가 만드는 LangGraph 토폴로지 시각화. 더미 노드(`lambda state: state`)로 동일 그래프 재구성 후 `draw_mermaid_png()`로 렌더링.
+- **vectorless RAG**: 임베딩과 유사도 검색에 의존하지 않고 문서 구조를 따라가며 단계별로 추론해 다음에 볼 위치를 정하는 retrieval 방식. README는 reasoning-based retrieval을 같은 뜻의 별칭으로 쓴다.
+- **DocumentTree**: PDF를 제목 계층으로 옮긴 트리 자료구조. 이 저장소의 트리 생성 단계가 내놓는 결과물이며 탐색, 쿼리, 추론의 대상이 된다.
+- **`should_descend`**: 분석 단계가 내놓는 판단값. 현재 노드에 머물러 콘텐츠를 뽑을지 자식 노드로 내려갈지를 정한다. README는 이 값의 정의를 바꾸는 것만으로도 결과가 크게 달라진다고 적는다.
+- **`heading_type`**: 노드 제목의 분류를 담는 필드. 제목은 번호 매김, 로마 숫자, 번호 없음 등으로 나뉘며 Bigtable 예시에서는 `unknown`으로 채워져 있다.
+- **`pymupdf4llm`**: PyMuPDF를 기반으로 만든 경량 라이브러리. 제목과 구조를 유지한 채 PDF 콘텐츠를 마크다운으로 추출한다.
+- **navigate 호출과 answer 호출**: 실행 추적이 LLM 호출을 나누는 두 종류. 탐색 결정에 쓰인 호출이 navigate, 최종 답변 생성에 쓰인 호출이 answer다.

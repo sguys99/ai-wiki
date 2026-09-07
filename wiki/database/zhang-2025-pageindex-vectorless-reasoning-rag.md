@@ -14,59 +14,294 @@ publication_date: "2025-09-19"
 tags: [rag, vectorless-rag, pageindex, reasoning-based-rag, toc-tree, in-context-index, long-document, mcp, cross-reference, hard-chunking]
 ---
 
-## 요약 (Summary)
+## 요약
 
-PageIndex 팀(Mingtian Zhang, Yu Tang)이 직접 쓴 제품 소개 글로, **vector embedding을 사용하지 않는(vectorless) reasoning-based RAG**의 동기·아키텍처·차별점을 정리했다. 핵심은 문서의 Table of Contents를 JSON 트리(PageIndex Tree)로 만들어 LLM의 active context 안에 인덱스를 두고, LLM이 직접 "어디를 볼지" 추론하며 섹션을 iterative하게 탐색하는 것이다. 이를 통해 vector RAG의 5대 한계(query/지식 mismatch, similarity≠relevance, hard chunking, chat history 미통합, in-document reference 처리 실패)를 동시에 해결한다고 주장한다.
+PageIndex 팀이 2025년 9월 자사 블로그에 직접 게시한 소개글이다. 임베딩 유사도로 chunk를 고르는 기존 RAG 대신, 문서의 목차를 JSON 트리로 만들어 LLM의 컨텍스트 안에 두고 모델이 스스로 다음에 볼 곳을 정하게 하는 retrieval 방식을 제안한다.
 
-## 주요 기여 (Key Contributions)
+이 페이지가 다루는 것은 PageIndex 팀이 밝힌 설계 동기와 철학이다. 저자는 vector 기반 RAG의 한계를 다섯 가지로 나누고, 각 한계에 자사 방식이 어떻게 대응하는지를 하나씩 대응시킨다. 설치 절차나 API 호출 방법은 이 글의 범위가 아니며, 구현체 페이지와 튜토리얼 페이지가 담당한다.
 
-- **Vectorless RAG 정의**: vector DB 없이 LLM in-context reasoning만으로 long document retrieval을 수행하는 패러다임을 명시화.
-- **PageIndex Tree 자료구조**: `{node_id, name, description, metadata, start_index, end_index, sub_nodes}` 재귀 JSON으로 비구조 문서에 ToC 기반 인덱스 부여.
-- **In-context Index 개념**: vector DB(외부 정적 embedding 저장소)와 대비되는 "LLM context 내부에 상주하는 인덱스"로 모델이 직접 navigate.
-- **5대 vector RAG 한계의 체계적 분류**와 각각에 대한 reasoning-based 대응 매핑.
-- **Iterative retrieval 루프**: ToC 읽기 → 섹션 선택 → 정보 추출 → 충분성 평가 → (반복 or 답변).
+주의해서 읽어야 할 부분은 근거의 성격이다. 이 글에는 정확도나 latency 같은 정량 벤치마크가 하나도 없다. 우위 주장은 Federal Reserve 보고서 질의 사례 하나와 정성 비교 표에 기대고 있으며, 한계를 다루는 절도 존재하지 않는다.
 
-## 방법론 및 아키텍처 (Methodology and Architecture)
+## 배경
 
-**전처리 (offline)**: 비구조 문서 → PageIndex Tree(JSON) 변환. 각 노드 = 논리적 섹션 + page range + metadata + sub_nodes.
+저자가 출발점으로 삼는 제약은 context window다. context window는 모델이 한 번에 받아들일 수 있는 토큰 길이의 한도를 뜻한다. 저자는 더 긴 context를 지원하는 기술이 발전했음에도 context 길이가 늘어날수록 모델 성능이 나빠진다는 연구 결과가 있다고 적는다. 다만 어떤 연구인지 특정 논문을 지목하지는 않는다.
 
-**Retrieval (online)**: LLM이 query와 PageIndex Tree를 함께 받아 다음 루프 수행
-1. ToC 트리를 읽어 후보 섹션 식별
-2. query 의도에 가장 부합하는 노드 선택
-3. `node_id → node_content` 매핑으로 raw content fetch
-4. 충분성 판단 → 부족하면 다른 섹션 탐색, 충분하면 답변 생성
+이 제약이 실무에서 문제가 되는 지점은 도메인 문서다. 금융 보고서나 법률 서류처럼 길고 복잡한 문서를 LLM이 정확히 해석하기 어려워지기 때문이다.
 
-**In-document reference 추적**: 본문의 "Appendix G", "Table 5.3" cue를 LLM이 인식하면 ToC 트리로 직접 점프. 사례로 Federal Reserve 보고서에서 main 섹션(pp.75–82)에는 deferred asset 증가분만 있고 총합은 Appendix G에 있었으나, PageIndex는 본문 cue를 따라 Appendix G로 이동해 정답 반환 — vector RAG가 놓치는 케이스.
+RAG는 이 제약에 대한 지배적 해법으로 등장했다. 문서 전체를 모델에 넘기는 대신 query에 맞는 텍스트 chunk만 골라 넘겨 실효 context 길이를 최적화하는 방식이다. 즉 RAG는 모델의 한도를 늘리는 기술이 아니라 한도 안에 무엇을 담을지 고르는 기술이다.
 
-**Multi-turn**: 이전 대화를 reasoning context에 함께 입력하여 "financial assets → liabilities" 같은 follow-up에서 동일 섹션의 다른 측면을 자연스럽게 탐색.
+그러나 저자는 통상적인 vector 기반 RAG가 정적인 의미 유사도에 의존한다는 점에서 별도의 한계를 안는다고 본다. 무엇을 담을지 고르는 기준이 질문의 의도가 아니라 표현의 닮음이기 때문이다.
 
-**배포**: GitHub 오픈소스, ChatGPT-style 채팅 플랫폼, MCP/API 통합.
-
-## 결과 (Results)
-
-블로그 글이라 정량 벤치마크 대신 정성 비교 표와 사례로 우위 주장:
-
-| 한계 | Vector RAG | Reasoning RAG (PageIndex) |
+| 단계 | 해결한 문제 | 새로 생긴 문제 |
 |---|---|---|
-| Query–Knowledge mismatch | 표면 유사도 매칭 | reasoning으로 관련 섹션 추론 |
-| Similarity ≠ Relevance | 유사하지만 무관한 chunk | 문맥적 관련성 우선 |
-| Hard chunking | 고정 길이로 의미 단절 | semantic 단위 동적 retrieval |
-| Chat context | query 독립 | multi-turn reasoning |
-| Cross-reference | 내부 링크 실패 | ToC 트리로 추적 |
+| 문서를 통째로 입력 | 없음 | context window 초과, 길이에 따른 성능 저하 |
+| Vector 기반 RAG | 실효 context 길이를 줄인다 | 정적 유사도에 의존하는 다섯 가지 한계 |
+| Reasoning 기반 RAG | 모델이 관련성을 판단해 이동한다 | 이 글은 별도 한계를 제시하지 않는다 |
 
-근거 인용: Claude Code 또한 코드 retrieval에서 vector DB를 버리고 reasoning 기반으로 가서 정밀도/속도를 얻었다는 점을 동일 패러다임의 검증 사례로 제시.
+저자의 제안은 이 흐름의 세 번째 자리에 놓인다. LLM이 문서 구조를 동적으로 탐색해 의미가 유사한 텍스트가 아니라 실제로 관련 있는 섹션을 찾아내게 한다는 것이다.
 
-## 한계와 비판적 시각
+## 핵심 개념
 
-- **정량 벤치마크 부재**: precision/recall, latency, cost 등 수치 비교 미제공.
-- **ToC 생성 비용**: 평문 위주 문서나 ToC가 명시되지 않은 자료에서 전처리 부담.
-- **Context window 부담**: PageIndex Tree 자체가 LLM context를 점유 — 매우 큰 문서에서 한계.
-- **Iteration latency · LLM 호출 비용**: reasoning loop는 본질적으로 여러 LLM 호출을 요구.
+**Vectorless RAG**는 임베딩과 vector DB 없이 retrieval을 수행하는 방식을 가리키는 이 글의 범주명이다. 벡터를 미리 계산해 외부 저장소에 넣어 두는 단계 자체를 없앤다.
 
-## 관련 페이지 (Related Pages)
+**Reasoning 기반 retrieval**은 미리 계산된 유사도 점수 대신 모델이 질문의 맥락에 따라 다음에 볼 곳을 그때그때 정하는 방식이다. 저자는 이를 사람이 긴 문서를 다루는 방식을 모사한 것이라고 설명한다.
 
-- [[database/vectifyai-pageindex]] — 본 글에서 소개하는 시스템의 오픈소스 구현체 레포(MIT). 본 글이 철학·동기·개념을, 이 레포가 실제 코드/툴체인을 제공.
-- [[database/geeksforgeeks-2026-vectorless-rag-pageindex]] — LangChain · Gemini · DeepSeek-R1 결합으로 PageIndex 흐름을 실습하는 외부 튜토리얼. 본 글의 개념을 코드로 구체화한 자료.
-- [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]] — semantic similarity의 한계와 retrieval 재정의 흐름 — 본 글의 "similarity ≠ relevance" 논거와 직접 연결.
-- [[database/zhang-2026-your-embedding-model-is-smarter]] — embedding 기반 검색의 한계/재해석 — vectorless RAG의 대척점 논의에 함께 참고.
-- [[applications/pandey-2026-rag-is-no-longer-just]] — RAG가 단순 retrieval 문제를 넘어선다는 관점 — 본 글의 reasoning-as-retrieval 주장과 같은 흐름.
+**PageIndex Tree**는 문서의 목차를 재귀 JSON 트리로 표현한 인덱스 자료구조다. 노드 하나가 논리적 섹션 하나에 대응하고, 노드마다 하위 섹션을 자식으로 가진다.
+
+**In-context index**는 인덱스가 놓이는 자리를 가리키는 개념이다. vector DB가 모델 바깥의 정적 저장소라면, PageIndex 트리는 LLM의 활성 추론 컨텍스트 안에 들어가 모델이 추론 도중 직접 참조하고 이동할 수 있다.
+
+**Hard chunking**은 문서를 고정 크기로 자르는 방식을 뜻한다. 저자는 통상 512개나 1000개 토큰 단위를 예로 들며, 이 경계가 문장과 문단을 가로지른다는 점을 문제로 지목한다.
+
+**In-document reference**는 문서가 자기 안의 다른 위치를 가리키는 참조다. "see Appendix G"나 "refer to Table 5.3" 같은 문장이 여기 해당한다.
+
+## 방법
+
+### Vector 기반 RAG의 처리 흐름
+
+저자는 자기 방식을 설명하기 전에 대조군의 동작을 두 단계로 정리한다. 전처리는 문서를 chunk로 나누고 각 chunk를 임베딩 모델로 벡터 공간에 사상한 뒤 Chroma나 Pinecone 같은 vector DB에 저장하는 과정이다. 질의 시점에는 사용자 query를 같은 방식으로 임베딩하고, vector DB에서 유사한 chunk를 찾아, top-k 결과를 모델의 입력 컨텍스트로 삼는다.
+
+| 시점 | 동작 | 산출물 |
+|---|---|---|
+| 전처리 | 문서를 고정 크기 chunk로 분할 | 512개 또는 1000개 토큰 단위의 chunk |
+| 전처리 | 각 chunk를 임베딩 모델로 벡터화 | chunk별 벡터 |
+| 전처리 | 벡터를 vector DB에 저장 | Chroma, Pinecone 등의 인덱스 |
+| 질의 | 사용자 query를 임베딩 | query 벡터 |
+| 질의 | 유사한 chunk 검색 | top-k chunk |
+| 질의 | 검색 결과를 모델 입력에 결합 | 답변 생성용 컨텍스트 |
+
+저자는 이 방식이 짧은 텍스트에는 효과적이라고 인정한다. 문제로 삼는 것은 긴 도메인 문서에서 드러나는 다섯 가지 실패다.
+
+### 저자가 규정한 다섯 가지 한계
+
+첫 번째는 query와 지식 공간의 불일치다. vector retrieval은 query와 의미적으로 가장 유사한 텍스트가 곧 가장 관련성 높은 텍스트라고 가정한다. 그러나 query가 표현하는 것은 내용이 아니라 의도이므로, 검색이 세운 가정과 실제로 필요한 관련성 사이에 간극이 생긴다.
+
+두 번째는 의미 유사도가 관련성과 같지 않다는 점이다. 이 문제는 금융 공시, 법률 문서, 기술 매뉴얼처럼 도메인 특화 문서에서 특히 심하다. 여러 문단이 거의 같은 의미를 공유하면서도 관련성은 결정적으로 다르기 때문이다.
+
+세 번째는 hard chunking이다. 고정 크기 분할이 문장이나 문단이나 섹션의 한가운데를 자르면서 의미와 맥락을 조각낸다.
+
+네 번째는 대화 이력을 통합하지 못한다는 점이다. 각 query가 독립적으로 처리되므로 retriever는 앞서 무엇을 묻고 답했는지 알지 못한다. 그 결과 일관된 multi-turn 대화가 성립하지 않는다.
+
+다섯 번째는 문서 내부 참조를 다루기 어렵다는 점이다. "see Appendix G" 같은 문장은 그것이 가리키는 대상과 의미 유사도를 갖지 않는다. 저자는 knowledge graph 같은 추가 전처리를 하지 않는 한 전통적 RAG가 이런 참조를 놓친다고 적는다.
+
+| 번호 | 한계 | 저자가 든 근거 | 예시 도메인 |
+|---|---|---|---|
+| 1 | Query와 지식 공간의 불일치 | query는 내용이 아니라 의도를 표현한다 | 전 도메인 |
+| 2 | 의미 유사도가 관련성과 다름 | 거의 같은 의미의 문단이 관련성은 크게 다르다 | 금융 공시, 법률 문서, 기술 매뉴얼 |
+| 3 | Hard chunking의 의미 단절 | 고정 크기 경계가 문장과 섹션을 가로지른다 | 장문 문서 전반 |
+| 4 | 대화 이력 미통합 | query가 서로 독립적으로 처리된다 | Multi-turn 대화 |
+| 5 | 내부 참조 추적 실패 | 참조 문구와 대상 사이에 의미 유사도가 없다 | 부록과 표를 가진 보고서 |
+
+저자는 이 다섯 가지를 든 뒤 선례를 하나 인용한다. Claude Code가 코드 retrieval에서 전통적 vector 기반 RAG를 벗어나 vector DB 없이도 더 나은 정밀도와 속도를 얻었다는 것이다. 같은 원리가 문서 retrieval에도 적용되어야 한다는 것이 저자의 논지이며, LLM이 구조화된 문서 표현 위에서 추론해 다음에 볼 곳을 정할 수 있다는 주장으로 이어진다.
+
+이 인용의 무게는 제한적이다. 저자는 Claude Code가 무엇으로 vector 검색을 대체했는지, 어떤 조건에서 정밀도와 속도가 좋아졌는지를 설명하지 않는다. 논지를 뒷받침하는 사례로만 등장하고 검증 가능한 형태로 제시되지는 않는다.
+
+### 반복 retrieval 루프
+
+PageIndex의 동작은 5단계 루프다. 사람이 두꺼운 보고서에서 답을 찾을 때 목차를 먼저 보고 장을 고르고 읽어 본 뒤 부족하면 다른 장으로 옮겨가는 과정을 그대로 옮긴 형태다.
+
+| 단계 | 동작 | 분기 |
+|---|---|---|
+| 1 | 목차를 읽어 문서 구조를 파악하고 후보 섹션을 식별한다 | 다음 단계로 |
+| 2 | 질문에 비추어 유용할 가능성이 가장 높은 섹션을 고른다 | 다음 단계로 |
+| 3 | 선택한 섹션을 파싱해 답에 쓸 내용을 모은다 | 다음 단계로 |
+| 4 | 모인 정보가 충분한지 평가한다 | 충분하면 5단계, 부족하면 1단계로 복귀 |
+| 5 | 근거를 갖춘 완전한 답을 생성한다 | 종료 |
+
+이 루프에서 목차는 문서의 핵심 인덱스 역할을 한다. 정적인 의미 유사도에 기대는 기존 방식과의 차이는 판단 시점에 있다. vector 검색은 질의 전에 계산해 둔 벡터로 한 번에 후보를 정하지만, 이 루프는 질문의 맥락이 전개되는 상황에 맞춰 다음에 볼 곳을 매 회차 다시 정한다.
+
+### ToC 트리의 자료구조
+
+인덱스는 JSON 기반 계층 구조다. 구조가 드러나 있지 않은 문서에 목차를 부여하는 것이 목적이며, 목차는 내용을 계층 노드로 조직하는 인덱스 트리로 작동한다. 각 노드는 하나의 논리적 섹션을 나타내고 metadata와 설명과 하위 섹션 링크를 가질 수 있다.
+
+원문이 제시하는 노드 스키마는 다음 필드로 이루어진다.
+
+| 필드 | 타입 | 역할 |
+|---|---|---|
+| `node_id` | string | 고유 식별자이자 대응하는 원본 데이터를 찾는 참조 키 |
+| `name` | string | 사람이 읽을 수 있는 라벨 또는 제목 |
+| `description` | string | 선택적 상세 설명 |
+| `metadata` | object | 맥락과 속성을 담는 key-value 쌍. 문서 유형, 저자, 타임스탬프, 관련성 점수 등 |
+| `sub_nodes` | Node 배열 | 자식 노드. 재귀 중첩을 허용해 완전한 목차 트리를 이룬다 |
+
+이 구조가 LLM에 열어 주는 동작은 세 가지다.
+
+- 구조화된 내용을 재귀적으로 순회한다.
+- `node_id`로 목표 원본 데이터를 직접 가져온다.
+- 출처 유형이나 주제나 의미 태그 같은 맥락 metadata를 함께 참조한다.
+
+노드와 실제 내용은 `node_id → node_content` 매핑으로 연결된다. node_content에는 원본 내용, 추출된 텍스트, 이미지가 포함된다. 즉 트리는 내용을 복제해 담는 그릇이 아니라 내용을 가리키는 주소록에 가깝다.
+
+원문은 Federal Reserve 보고서를 예로 실제 트리 조각을 보여준다.
+
+| node_id | title | start_index | end_index | 관계 |
+|---|---|---|---|---|
+| 0006 | Financial Stability | 21 | 22 | 부모 노드 |
+| 0007 | Monitoring Financial Vulnerabilities | 22 | 28 | 0006의 자식 |
+| 0008 | Domestic and International Cooperation and Coordination | 28 | 31 | 0006의 자식 |
+
+각 노드에는 `summary` 필드가 함께 붙어 있으며, 예시에서는 "The Federal Reserve ..." 처럼 앞부분만 표시된다. `start_index`와 `end_index`는 원본 문서에서 그 섹션이 차지하는 페이지 범위를 가리킨다.
+
+### 인덱스가 놓이는 자리
+
+저자가 두는 결정적 차이는 인덱스의 물리적 위치다. vector DB는 모델 바깥에 정적 임베딩을 저장하지만, JSON 기반 목차 인덱스는 LLM의 활성 추론 컨텍스트 안에 상주한다. 저자는 후자를 in-context index라 부른다.
+
+| 비교 항목 | Vector DB | In-context index |
+|---|---|---|
+| 저장 위치 | 모델 외부의 별도 저장소 | 모델의 활성 추론 컨텍스트 안 |
+| 내용 | 미리 계산된 정적 임베딩 | JSON 목차 트리 |
+| 접근 방식 | 유사도 계산으로 후보를 받는다 | 모델이 직접 참조하고 이동하며 추론한다 |
+| 판단 시점 | 질의 전에 계산이 끝나 있다 | 추론 도중 다음 목적지를 정한다 |
+| 대가 | 인덱스가 컨텍스트를 소비하지 않는다 | 트리 자체가 context window를 점유한다 |
+
+인덱스를 모델의 context window 안에 통합함으로써, 모델은 미리 계산된 유사도 점수에만 의존하지 않고 다음에 볼 곳을 동적으로 정한다. 저자는 이것을 컨텍스트 안에서 일어나는 추론 주도 retrieval이라 부른다. 표의 마지막 항목은 이 글이 다루지 않은 대가인데, 인덱스를 컨텍스트에 두는 설계는 도입부에서 문제로 지목한 context window 제약과 다시 마주치게 된다.
+
+### 다섯 한계에 대한 대응
+
+저자는 앞서 나눈 다섯 한계를 그대로 되짚으며 각각에 대응을 붙인다.
+
+| 한계 | PageIndex의 대응 | 저자가 든 예시 |
+|---|---|---|
+| Query와 지식 공간의 불일치 | 임베딩 유사도에만 기대지 않고 모델이 어느 섹션에 답이 있을지 유추한다 | 부채 추이라면 재무 요약 섹션이나 Appendix G에 있을 것이라는 식의 구조 추론 |
+| 유사도와 관련성의 불일치 | 목차 구조를 읽고 query의 의도를 해석해 표현이 달라도 답이 있는 섹션으로 이동한다 | 단어를 맞추는 대신 질문을 이해하는 사람의 탐색 방식 |
+| Hard chunking | 전체 페이지, 섹션, 챕터처럼 의미가 온전한 단위를 가져온다 | 섹션이 불완전하면 이웃 섹션을 반복해 가져온다 |
+| 대화 이력 미통합 | 이전 대화 이력으로 현재 질문의 이해를 다듬는다 | financial assets를 물은 뒤 liabilities를 물으면 같은 보고서 섹션의 부채 항목을 본다 |
+| 내부 참조 추적 실패 | 목차 계층을 따라 사람 독자처럼 참조를 따라간다 | "see Appendix G"를 만나면 인덱스 트리로 그 섹션에 이동한다 |
+
+세 번째 대응에는 부수 효과가 하나 붙어 있다. 의미가 온전한 단위를 가져오고 부족하면 이웃 섹션을 채우는 방식이 논리적 연속성을 보존하고 환각을 줄인다는 것이 저자의 주장이다. 다섯 번째 대응의 장점은 사전 작업의 절감이다. 수동으로 링크를 구축하지 않아도 상호 참조가 가능해진다.
+
+### 사용 형태
+
+글 말미에 배포 채널이 정리되어 있다.
+
+| 채널 | 대상 | 제공 내용 |
+|---|---|---|
+| GitHub | 개발자 | 오픈소스 코드, cookbook, 튜토리얼 |
+| 채팅 플랫폼 | 일반 사용자 | ChatGPT 스타일 인터페이스 |
+| MCP, API | 통합 개발자 | 외부 시스템 연동 경로 |
+
+## 결과
+
+### 저자가 제시한 유일한 사례
+
+PageIndex MCP 환경에서 Federal Reserve 보고서에 질의한 사례 하나가 이 글의 실증 근거 전부다.
+
+| 단계 | 내용 |
+|---|---|
+| 질문 | deferred asset의 총액 |
+| 문제 | 주 섹션인 75쪽부터 82쪽에는 증가분만 있고 총액이 없다 |
+| 단서 | 77쪽 본문이 Table 5.3의 요약 범위를 설명하며 Appendix G "Statistical Tables"에 더 상세한 정보가 있다고 안내한다 |
+| 동작 | 추론 기반 retriever가 이 단서를 따라 Appendix G로 이동한다 |
+| 결과 | 올바른 표를 찾아 deferred asset 총액을 반환했다 |
+| 비교 | 저자는 vector 기반 retrieval이라면 실패할 가능성이 높은 과제라고 적는다 |
+
+이 사례의 구조는 앞서 다섯 번째 한계로 든 내부 참조 문제와 정확히 맞물린다. 질문의 표현과 정답이 있는 위치 사이에 의미 유사도가 없고, 둘을 잇는 유일한 다리가 본문 안의 안내 문장이기 때문이다. 다만 마지막 항목의 비교는 실측이 아니라 저자의 예상이다. 같은 질의를 vector RAG로 수행한 대조 실험 결과는 제시되지 않는다.
+
+### 원문의 정성 비교 표
+
+결론 직전에 놓인 요약 표는 다섯 한계를 두 방식이 어떻게 다루는지 한눈에 대비시킨다.
+
+| 한계 | Vector 기반 RAG | Reasoning 기반 RAG |
+|---|---|---|
+| Query와 지식의 불일치 | 표면 유사도를 맞추며 실제 맥락을 자주 놓친다 | 유추로 가장 관련 있는 섹션을 식별한다 |
+| 유사도와 관련성의 불일치 | 의미는 유사하나 무관한 chunk를 가져온다 | 맥락적으로 관련 있는 정보를 가져온다 |
+| Hard chunking | 고정 길이 chunk가 의미를 조각낸다 | 일관된 섹션을 동적으로 가져온다 |
+| 대화 맥락 부재 | 각 query가 고립된다 | Multi-turn 추론이 이전 맥락을 고려한다 |
+| 상호 참조 | 문서 내부 링크를 따라가지 못한다 | 목차와 PageIndex 추론으로 본문 참조를 따라간다 |
+
+저자의 결론은 두 방식이 하는 일 자체가 다르다는 것이다. vector 기반 RAG가 유사한 텍스트를 찾는다면 reasoning 기반 RAG는 어디를 왜 볼지 생각한다. 목차 트리 같은 구조화된 문서 표현과 반복 추론을 결합하면 LLM이 단지 유사한 정보가 아니라 관련 있는 정보를 가져오게 된다는 것이 마지막 주장이다.
+
+### 이 글이 제시한 수치와 제시하지 않은 수치
+
+이 글에는 성능 수치가 없다. 본문에 등장하는 숫자는 chunk 크기 예시와 사례의 페이지 번호와 예시 트리의 인덱스가 전부다. 이 구분은 PageIndex 계열 페이지를 함께 읽을 때 중요하다. 인접 페이지가 인용하는 FinanceBench 98.7%가 이 글에서 나온 값으로 오해되기 쉽기 때문이다.
+
+| 숫자 | 값 | 성격 |
+|---|---|---|
+| chunk 크기 | 512개 또는 1000개 토큰 | 대조군 설명용 통상값 |
+| 사례 페이지 범위 | 75쪽부터 82쪽 | 사례 문서의 위치 |
+| 단서 페이지 | 77쪽 | 사례 문서의 위치 |
+| 예시 트리 인덱스 | 21, 22, 28, 31 | 예시 노드의 페이지 범위 |
+| 정확도, precision, recall | 없음 | 이 글에 제시되지 않음 |
+| latency, 비용 | 없음 | 이 글에 제시되지 않음 |
+
+FinanceBench 98.7%는 이 글이 아니라 다른 자료에서 온 수치이며, 인용하려면 다음 조건을 함께 적어야 한다.
+
+| 조건 항목 | 내용 |
+|---|---|
+| 대상 시스템 | Mafin 2.5. PageIndex를 retrieval 층으로 사용하는 VectifyAI의 금융 분석 에이전트이며 PageIndex 자체가 아니다 |
+| 벤치마크 | FinanceBench. 실제 SEC 공시(10-K, 10-Q, 8-K) 기반의 정답 일치형 QA |
+| Coverage | 데이터셋의 100% |
+| 보고 주체 | VectifyAI 자체 보고. 독립 재검증은 이루어지지 않았다 |
+| 확인한 출처 | `raw/repos/vectifyai-pageindex.md`와 `raw/articles/kalane-2026-pageindex-threw-out-vector-databases.md` |
+| 이 글과의 관계 | 2025년 9월 게시본인 이 글은 해당 수치를 언급하지 않는다 |
+
+## 한계
+
+### 저자가 밝힌 한계
+
+원문에는 한계나 향후 과제를 다루는 절이 없다. 저자가 스스로 인정한 제약은 하나도 기재되어 있지 않으며, 글 전체가 대조군의 약점과 자사 방식의 대응으로만 구성되어 있다.
+
+따라서 아래 두 절의 내용은 저자의 진술이 아니라 원문을 대조해 정리한 것이다. 이 글을 인용할 때는 한계 서술의 출처가 저자인지 독자인지를 구분해 적어야 한다.
+
+### 자료의 내적 모순
+
+같은 글 안에서 서술이 어긋나는 지점이 두 곳 있다.
+
+| 모순 | 한쪽의 서술 | 다른 쪽의 서술 |
+|---|---|---|
+| 노드 스키마 필드 | 스키마 정의는 `name`, `description`, `metadata`, `sub_nodes`를 든다 | 예시 트리는 `title`, `summary`, `start_index`, `end_index`, `sub_nodes`를 쓰고 `metadata`가 없다. `start_index`와 `end_index`는 스키마에 정의되어 있지 않다 |
+| 내부 참조 한계의 강도 | 한계 서술은 knowledge graph 같은 추가 전처리를 하면 vector RAG도 내부 참조를 다룰 수 있다는 단서를 단다 | 요약 표는 vector RAG가 내부 링크를 따라가지 못한다고 단정한다 |
+
+첫 번째 모순은 실제 구현을 볼 때 주의가 필요한 지점이다. 스키마 예시만 보고 필드 이름을 확정하면 실제 산출물과 어긋날 수 있으므로, 필드 이름은 구현체 문서에서 확인하는 편이 안전하다.
+
+### 자료 성격에서 오는 제약
+
+| 제약 | 내용 |
+|---|---|
+| 정량 근거 부재 | 정확도, latency, 비용 어느 것도 수치로 제시되지 않는다. 우위 주장이 사례 하나와 정성 표에 의존한다 |
+| 대조 실험 부재 | 사례에서 vector RAG의 실패는 실측이 아니라 저자의 예상이다 |
+| 자사 소개글 | 저자가 곧 제품 개발사이므로 대비 서술이 자사에 유리하게 구성되어 있다 |
+| 인용 없는 전제 | 도입부의 핵심 전제인 context 길이에 따른 성능 저하 연구를 특정 논문으로 지목하지 않는다 |
+| 선례 인용의 얕은 근거 | Claude Code 사례를 들지만 그 시스템이 실제로 무엇을 쓰는지는 설명하지 않는다 |
+
+이 글이 다루지 않아 별도로 검토해야 할 지점도 정리해 둔다.
+
+| 검토 항목 | 왜 문제가 되는가 |
+|---|---|
+| 트리 생성 비용 | 구조가 드러나지 않은 문서를 목차 트리로 바꾸는 전처리 부담을 다루지 않는다 |
+| Context window 점유 | 인덱스를 컨텍스트에 두는 설계이므로 문서가 커지면 도입부에서 지목한 제약과 다시 만난다 |
+| 반복 호출 비용과 지연 | vector retrieval이 한 번의 top-k 검색인 반면 추론 루프는 LLM 호출을 여러 번 요구한다 |
+| 문서 유형 일반화 | 사례가 명시적 섹션 구조를 가진 금융 보고서에 집중되어 있어 자유 산문이나 대화 기록에서의 효과는 알 수 없다 |
+
+## 계열 페이지에서 이 글의 자리
+
+wiki에는 PageIndex를 다루는 페이지가 다섯 개 있다. 자료의 성격이 서로 달라서 찾는 정보에 따라 볼 페이지가 갈린다. 이 페이지가 담당하는 것은 개발 주체가 스스로 밝힌 문제 규정과 설계 철학이다.
+
+| 페이지 | 자료 성격 | 여기서 얻을 것 |
+|---|---|---|
+| 이 페이지 | 개발사 소개글, 2025년 9월 | 문제 규정, 설계 근거, 다섯 한계와 대응의 매핑 |
+| `vectifyai-pageindex` | 오픈소스 구현체 | 실제 함수와 툴체인, 자체 호스팅 경로 |
+| `geeksforgeeks-2026-vectorless-rag-pageindex` | 외부 입문 튜토리얼 | Cloud API 호출 시퀀스를 따라가는 코드 예제 |
+| `kalane-2026-pageindex-threw-out-vector-databases` | 3rd-party 사후 리뷰 | 정량 벤치마크 표, trade-off 진단, 출시 이후의 기능 변화 |
+| `sguys99-langchain-study-vectorless-rag` | 한글 학습용 구현 | API 없이 트리 구축과 탐색을 직접 만들 때 필요한 것 |
+
+이 글만으로 알 수 없는 것은 두 가지다. 하나는 실제 성능 수치이고 다른 하나는 트리를 만드는 구체적 절차다. 앞의 것은 3rd-party 리뷰 페이지가 채우고, 뒤의 것은 구현체 페이지와 학습용 구현 페이지가 채운다. 이 세 방향을 함께 읽으면 주장과 근거와 실행 절차가 각각 어느 자료에서 나왔는지 구분할 수 있다.
+
+## 핵심 용어
+
+| 용어 | 뜻 |
+|---|---|
+| Vectorless RAG | 임베딩과 vector DB 없이 LLM의 추론만으로 retrieval을 수행하는 방식을 가리키는 이 글의 범주명 |
+| Reasoning-based RAG | 미리 계산된 유사도 대신 모델이 질의 맥락에 따라 다음에 볼 곳을 정하는 retrieval 방식 |
+| PageIndex Tree | 문서의 목차를 재귀 JSON 트리로 표현한 인덱스 자료구조. 노드 하나가 논리적 섹션 하나에 대응한다 |
+| In-context index | 외부 저장소가 아니라 LLM의 활성 추론 컨텍스트 안에 상주해 모델이 직접 참조하고 이동할 수 있는 인덱스 |
+| Hard chunking | 문서를 512개나 1000개 토큰 같은 고정 크기로 자르는 방식. 문장과 문단 경계를 무시해 의미 단절을 일으킨다 |
+| In-document reference | "see Appendix G"처럼 문서가 자기 안의 다른 위치를 가리키는 참조 |
+
+## 관련 페이지
+
+- [[database/vectifyai-pageindex]]: 이 글이 소개하는 시스템의 오픈소스 구현체. 이 페이지가 동기와 설계 철학을 담고, 구현체 페이지가 실제 함수와 툴체인을 담당한다.
+- [[database/geeksforgeeks-2026-vectorless-rag-pageindex]]: PageIndex Cloud API를 코드로 따라가는 입문 튜토리얼. 이 글의 개념이 실제 호출 시퀀스로 어떻게 나타나는지 확인할 수 있다.
+- [[database/kalane-2026-pageindex-threw-out-vector-databases]]: 출시 6개월 뒤에 나온 3rd-party 리뷰. 이 글이 비워 둔 정량 표와 trade-off 진단을 채운다. FinanceBench 98.7% 수치의 조건을 확인하려면 이 페이지를 본다.
+- [[database/sguys99-langchain-study-vectorless-rag]]: PageIndex API 없이 트리 구축과 탐색을 직접 구현한 한글 학습용 코드. 이 글의 개념을 라이브러리 없이 재현할 때 무엇이 필요한지 보여준다.
+- [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]: 의미 유사도의 한계를 다루는 별개 자료. 이 글의 두 번째 한계와 같은 문제를 다른 관점에서 논의한다.
+- [[database/lumer-2025-rethinking-retrieval-from-traditional-retrieval]]: 계층 구조 기반 RAG를 별도 설정에서 평가한 논문. 평가 설정이 달라지면 결론도 달라진다는 대조 사례로 함께 읽는다.
