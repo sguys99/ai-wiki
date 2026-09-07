@@ -563,7 +563,6 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - 압축비 최소 3편도 사유가 분명하다. `lin-2026`(1.10)은 sources를 18,694자에서 31,451자로 보강했고, `shao-2024`(1.12)는 계획서 지정 40,000자 재추출로 5,637자에서 19,145자가 됐으며, `lee-jeongmin`(1.14)은 창작 서술 2,640자를 삭제한 뒤의 값이다. 세 편 모두 게이트가 올라간 쪽이거나 부풀린 내용을 걷어낸 쪽이다.
   - **전 저장소 잔여 지표 (Phase 3 이후 소관).** lint_style error 5,555건, warning 161건, lint_terms 148건, lint_links error 1건과 warning 130건이다. `lint_figures`는 error 109건(`figures-missing` 8, `wiki-uncurated-figure` 101)과 warning 234건(`candidate-table-mismatch` 232)이다. `HUMANIZE-SUMMARY` 잔재 7파일과 frontmatter `title:` 금지 기호 10건도 남아 있고 전부 비-agents 카테고리다.
   - **Phase 2 누적 산출물.** wiki 본문 합계가 착수 약 30만 자에서 **약 118만 자**가 됐고(13개 배치 합산) 표는 76개에서 1,213개다. caption 정비 약 300건, figures 백필 4 stem 84장(lin 23, qiao 17, zou 30, dennis 14), `wiki-uncurated-figure` 210건에서 101건, `figures-missing` 12건에서 8건, 고아 sources 5편에서 1편이다. raw 재독으로 잡은 무근거 주장이 **약 250건**이고 논문 자체의 내적 불일치 기록이 **약 60건**이다.
-- [ ] A-완료. index.md Agents 절 축소(66항목, 200자 이내, 구분자 `]]: ` 통일), `--category agents` lint 0건, physical-ai 회귀 확인, 카테고리 완료 계량 기록
 
 ### Phase 3. applications 배치 재작성 (B1~B7, 33편 = 기존 32 + 신규 1)
 
