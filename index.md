@@ -158,7 +158,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/9bow-2026-gstack-claude-code-virtual-team|gstack 명령어 카탈로그 (9bow)]]: PyTorch KR이 gstack의 슬래시 명령어를 스프린트 사이클에 맞춰 5개 그룹으로 정리한 한국어 카탈로그. 설치 3종과 텔레메트리 범위까지 담았다 (2026, article)
 - [[agents/gpters-2026-yc-ai-agent-guide-gstack|Y Combinator의 AI 에이전트 사용법 완벽 정리 (GPTers)]]: gstack 9개 슬래시 명령어의 사용법 가이드. 브라우저 QA 데몬의 콜드 스타트 3~5초, 이후 호출 100~200ms 수치를 담았다 (2026, article)
 - [[agents/hada-2026-gstack-virtual-engineering-team|gstack으로 만드는 가상 엔지니어링 팀 (GeekNews)]]: gstack의 스프린트 사이클과 명령어 구조, 대상 사용자 세 부류를 정리한 커뮤니티 소개 글. 독자 댓글 4건을 함께 싣는다 (2026, article)
-- [[agents/mattpocock-skills|Skills For Real Engineers (repo)]] — Matt Pocock이 매일 쓰는 코딩 에이전트 스킬 25개. 인터뷰, 스펙, TDD, 디버깅, 리뷰를 작은 단위로 쪼개고 사람만 부르는 스킬과 모델도 부르는 스킬로 나눈다. MIT (2026, repo)
+- [[agents/mattpocock-skills|Skills For Real Engineers (repo)]]: Matt Pocock이 매일 쓰는 코딩 에이전트 스킬 25개. 인터뷰, 스펙, TDD, 디버깅, 리뷰를 작은 단위로 쪼개고 사람만 부르는 스킬과 모델도 부르는 스킬로 나눈다. MIT (2026, repo)
 - [[agents/shao-2024-assisting-in-writing-wikipedia-like-articles|STORM]]: 주제 이름만 받아 관점 발견과 시뮬레이션 대화로 pre-writing을 자동화하는 Wikipedia 글 생성 시스템. FreshWiki 데이터셋과 outline 평가 지표를 함께 제안한다 (2024, paper)
 - [[agents/qiao-2026-memory-intelligence-agent|Memory Intelligence Agent (MIA)]]: Manager, Planner, Executor 3-agent 메모리 프레임워크. trajectory를 압축 workflow와 Planner 가중치로 나눠 담고 추론 중에도 계속 학습한다 (2026, paper)
 - [[agents/lee-hoyeon-2026-harness-engineering|Harness Engineering (이호연)]]: 프롬프트에서 작업 환경 설계로의 전환을 구조, 맥락, 계획, 실행, 검증, 개선 여섯 단계로 정리한 Claude Code 기준 슬라이드 deck (2026, article)
@@ -216,7 +216,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/block-buzz|Buzz (repo)]]: 사람과 에이전트가 같은 채널의 멤버가 되고 대화, 패치, 승인이 Nostr relay의 서명 이벤트 하나로 쌓이는 Block의 self-host 워크스페이스 (2026, repo)
 - [[agents/browser-use-browser-use|browser-use (repo)]]: LLM이 Chrome DevTools Protocol로 Chromium을 직접 제어해 웹 과제를 수행하는 MIT 라이선스 Python 패키지. CLI 스킬과 라이브러리 두 경로를 제공한다 (2026, repo)
 - [[agents/browser-use-browsercode|BrowserCode (repo)]]: OpenCode fork에 브라우저 도구 `browser_execute(code)` 하나만 더한 코딩 에이전트. CDP로 에이전트가 쓴 JavaScript를 직접 실행한다 (2026, repo)
-- [[agents/magnitudedev-magnitude|Magnitude (magnitudedev, repo)]]: 하드웨어를 프로파일링해 맞는 로컬 모델을 추천, 다운로드, 튜닝, 실행하고 Claude Code, Codex 등 harness 9종에 loopback API로 연결하는 오픈소스 추론 서버. Rust와 llama.cpp 기반 엔진 ICN을 직접 관리한다 (2026, repo, Apache-2.0)
+- [[agents/magnitudedev-magnitude|Magnitude (repo)]]: 하드웨어를 프로파일링해 맞는 로컬 모델을 추천, 다운로드, 튜닝, 실행하고 Claude Code 등 harness 9종에 loopback API로 연결하는 오픈소스 추론 서버. Apache-2.0 (2026, repo)
 
 ## Evaluations (evaluations)
 

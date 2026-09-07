@@ -527,7 +527,42 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - **`lint_figures.py`의 8절 파서 제약을 수정했다** (rodrigues 보고에서 파생, 별도 커밋). 8절 안에 재크롭 좌표 표를 두면 그 표의 첫 열이 figure id로 읽혀 오탐이 났다. 첫 표 블록이 끝나는 빈 줄에서 파싱을 멈추도록 고쳤고 전 저장소 검출 수치는 불변이다. 1-8에서 만든 규칙이 실사용에서 드러낸 두 번째 개선점이다.
   - 용어집 등재 후보 20건 누적 (Phase 7-1 소관): 팬아웃, worktree, slop, design token, theming, truncation, ACP, substrate, audit trail, MCP, primitive, composite tool, retrieval-over-tools, sanitize, namespace, structured error content, Cohen's kappa, negative constraint, normative value, DESIGN.md. **판단이 필요한 항목 둘.** `audit trail`은 원어 9회 대 "감사 추적" 9회로 정확히 반반 갈려 있어 방향 결정이 필요하다. `design token`은 LLM `토큰`(canonical)과 동형 충돌해 A12에서 두 편이 각자 안내 문단을 따로 두어야 했다. 파일 규약명(`AGENTS.md`, `DESIGN.md`, `CLAUDE.md`)은 한 행으로 묶어 "원어 유지" 지침으로 등재하는 안이 제안됐다.
   - 부수 발견 1건. `raw/repos/google-okf`가 파일이 아니라 디렉토리다(`google-okf/SPEC.md` 포함). `raw/repos/`의 다른 항목이 모두 단일 `.md`인 것과 달라, 멀티파일 패키지의 `raw_path`와 `raw_filename` 규약 적용을 확인할 필요가 있다. 해당 stem 담당 배치나 Phase 7-5 소관이다.
-- [ ] A13 세션 중 편입분 (1편): magnitudedev-magnitude (압축비 1.05로 기준 미달. mattpocock-skills는 1.33에 표 15개로 기준 안이라 제외하고 index.md 항목 점검만 한다)
+- [x] A13 세션 중 편입분 (1편): magnitudedev-magnitude (압축비 1.05로 기준 미달. mattpocock-skills는 1.33에 표 15개로 기준 안이라 제외하고 index.md 항목 점검만 한다)
+  - 완료 (2026-09-07). magnitudedev-magnitude의 wiki 본문이 15,164자에서 38,154자, 표가 11개에서 37개, 압축비가 1.05에서 1.40이 됐다. sources도 14,469자에서 27,318자, 표 10개에서 20개다. lint 5종 0건이고 착수 시점의 0건 상태를 깨지 않았다. raw README가 71,406자(Appendix A에서 H까지 verbatim 포함)로 압축률 5:1이었고 CLI 명령 20개, ICN 빌드 명령 14개, projection 13종, crate 13개 등을 표로 복원했다.
+  - **"harness 9종"은 실측이 맞았다.** `onboarding.md` 표 9행과 `docs/get-started.mdx` 열거가 일치한다. README와 FAQ는 외부 8개만 열거하고 내장 harness를 별도 문장으로 언급하므로 "외부 8 더하기 자체 1"임을 wiki 요약에 명시했다. star 3,437과 fork 247도 raw Appendix A의 GitHub API JSON에 실재해 A12의 block-buzz와 반대 결과였다. 다만 `pushed_at`이 수집일과 같은 날이라 sources에 그 사실을 적고 wiki에서는 push 날짜 주장을 쓰지 않았다.
+  - 오귀속 점검에서 1건을 고쳤다. 관련 페이지 5편을 전부 열어 대조한 결과 `ai-boost-awesome-harness-engineering` 항목이 "harness 연결 개념의 배경"이라는 근거 없는 인과를 붙이고 있어 실제 내용(자료 385개를 문제 단위로 분류, CC0)으로 교체했다. cross-source 무출처 유입과 의미 방향 역전은 0건이었다.
+  - **부수 요청 판정: `raw/repos/`의 WebFetch 요약본 2편을 확정했다.** `garrytan-gstack.md`(3,209자)는 README 마크다운 구조가 없는 3인칭 영문 digest이고, `garrytan-gbrain-tutorials.md`(6,988자)는 스스로 "WebFetch로 수집한 5개 문서 요약"이라 적고 "마지막 두 파일은 verbatim 재현이 거부되어 상세 요약으로 대체"까지 명시한다. A6과 A11 배치가 각각 조사 범위 밖이라 남긴 항목이 여기서 마무리됐다.
+  - `mattpocock-skills`는 계획서대로 재작성하지 않고 index.md 항목만 정리했다 (오케스트레이터 직접 수정). em dash 구분자를 `]]: `로 바꿨고 180자에서 179자다. 스킬 25개와 MIT 라이선스는 wiki 페이지와 sources frontmatter에서 근거를 확인했다. **이 한 줄이 `--category agents`의 마지막 lint error였다.**
+- [x] A-완료. index.md Agents 절 축소(66항목, 200자 이내, 구분자 `]]: ` 통일), `--category agents` lint 0건, physical-ai 회귀 확인, 카테고리 완료 계량 기록
+  - 완료 (2026-09-07). 네 게이트 전부 통과했다.
+  - **게이트 1: index.md Agents 절.** 66항목, 200자 초과 0개, 금지 기호 0개, 구분자 미통일 0개다. 착수 시점은 66항목 중 200자 초과 55개였다 (신규 3편 추가 전 63항목 중 56개).
+  - **게이트 2: `--category agents` lint 0건.** 검사 파일 133개(wiki 66, sources 66, index.md Agents 절)에 `lint_style` error 0 warning 0, `lint_terms` 0건이다. `--strict` 두 명령 모두 exit 0이다. **착수 기준선은 error 3,569건, warning 89건, lint_terms 122건, 위반 파일 126개였다.**
+  - **게이트 3: physical-ai 회귀 없음.** 계획서 6절 1항의 두 명령 모두 exit 0이고, 검사 파일이 154개에서 **167개**로 늘었는데도(다른 세션이 Phase 2 진행 중 physical-ai 자료 5편을 새로 ingest했다) error 0 warning 0을 유지한다.
+  - **게이트 4: 카테고리 완료 계량.** 아래 표가 physical-ai 완료치와 대조한 값이다.
+
+| 지표 | agents 착수 | agents 완료 | physical-ai 완료치 |
+|---|---|---|---|
+| 편수 | 61 | 66 (신규 3, 세션 중 편입 2) | 77 |
+| sources보다 얇은 페이지 | 58 / 61 | **0 / 66** | 1 / 76 |
+| 압축비 중앙값 | 0.72 | **1.42** | 1.95 |
+| 압축비 최소 | 미기록 | 1.10 | 미기록 |
+| wiki 본문 중앙값 | 4,953자 | **17,227자** | 14,156자 |
+| wiki 산문 중앙값 | 4,010자 | 10,395자 | 미기록 |
+| 표 총수 | 79 | **1,213** | 737 |
+| 표 편당 | 1.30 | **18.38** | 9.70 |
+| 표 0개 페이지 | 24 | **0** | 0 |
+| `## 핵심 용어` 절 보유 | 0 / 61 | **66 / 66** | 76 / 76 |
+| frontmatter 100줄 초과 | 11 | 4 (전부 정상 판정) | 7 (전부 정상 판정) |
+| lint_style error | 3,569 | **0** | 0 |
+| lint_style warning | 89 | **0** | 0 |
+| lint_terms | 122 | **0** | 0 |
+| index.md 200자 초과 | 55 / 66 | **0 / 66** | 0 / 76 |
+
+  - **본문 중앙값과 표 편당은 physical-ai 완료치를 넘어섰다.** 표 편당 18.38개는 physical-ai 9.70개의 1.9배다. 배치가 진행되며 "표로 꺼낸다"는 지시가 누적 학습된 결과로 보인다. 압축비 중앙값 1.42는 physical-ai 1.95에 못 미치는데, sources도 함께 보강해 게이트가 계속 올라간 구조 때문이다 (sources 본문 합계가 배치별로 2배에서 4배가 됐다).
+  - frontmatter 100줄 초과 잔여 4편은 전부 정상 판정이다. `lee-2026`(126줄, 전체의 14%), `zhang-2026`(114줄, 13%), `zhou-2026`(104줄, 15%), `wang-2026`(104줄, 9%)이고 네 편 모두 `curated: false`가 0건이다. physical-ai 완료치의 정상 범위(14~23%)와 같은 성격이다.
+  - 압축비 최소 3편도 사유가 분명하다. `lin-2026`(1.10)은 sources를 18,694자에서 31,451자로 보강했고, `shao-2024`(1.12)는 계획서 지정 40,000자 재추출로 5,637자에서 19,145자가 됐으며, `lee-jeongmin`(1.14)은 창작 서술 2,640자를 삭제한 뒤의 값이다. 세 편 모두 게이트가 올라간 쪽이거나 부풀린 내용을 걷어낸 쪽이다.
+  - **전 저장소 잔여 지표 (Phase 3 이후 소관).** lint_style error 5,555건, warning 161건, lint_terms 148건, lint_links error 1건과 warning 130건이다. `lint_figures`는 error 109건(`figures-missing` 8, `wiki-uncurated-figure` 101)과 warning 234건(`candidate-table-mismatch` 232)이다. `HUMANIZE-SUMMARY` 잔재 7파일과 frontmatter `title:` 금지 기호 10건도 남아 있고 전부 비-agents 카테고리다.
+  - **Phase 2 누적 산출물.** wiki 본문 합계가 착수 약 30만 자에서 **약 118만 자**가 됐고(13개 배치 합산) 표는 76개에서 1,213개다. caption 정비 약 300건, figures 백필 4 stem 84장(lin 23, qiao 17, zou 30, dennis 14), `wiki-uncurated-figure` 210건에서 101건, `figures-missing` 12건에서 8건, 고아 sources 5편에서 1편이다. raw 재독으로 잡은 무근거 주장이 **약 250건**이고 논문 자체의 내적 불일치 기록이 **약 60건**이다.
 - [ ] A-완료. index.md Agents 절 축소(66항목, 200자 이내, 구분자 `]]: ` 통일), `--category agents` lint 0건, physical-ai 회귀 확인, 카테고리 완료 계량 기록
 
 ### Phase 3. applications 배치 재작성 (B1~B7, 33편 = 기존 32 + 신규 1)
