@@ -136,6 +136,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/ros-navigation-navigation2|navigation2 (ros-navigation)]]: Nav2 공식 소스 저장소 README. 40개 가까운 nav2_* 패키지의 빌드 상태 표와 인용 논문 5편의 학술 계보가 실질 내용이다 (2018, repo)
 - [[physical-ai/iovino-2024-comparison-between-behavior-trees-and|Behavior Tree와 FSM 비교 (ABB, ETH, KTH)]]: mobile manipulation 과제에서 두 policy 표현을 모듈성, 반응성, 가독성으로 비교한 논문. 로봇 동작은 같지만 과제가 커질수록 BT의 편집 비용이 낮다 (2024, paper)
 - [[physical-ai/suzuki-2026-from-dialogue-to-execution-mixture-of-agents|MoA 대리 응답과 BT 실행 (Waseda, NII)]]: LLM planner의 확인 질문을 세 expert agent가 겹치지 않게 나눠 답하고 남은 것만 사람이 답하는 대화형 계획. 결과 Behavior Tree의 action node마다 imitation learning policy를 묶어 실제 로봇에서 실행한다 (2026, paper)
+- [[physical-ai/choi-2026-reactree-hierarchical-llm-agent-trees|ReAcTree (ETRI, UST)]]: subgoal을 맡은 LLM agent들을 Behavior Tree식 control flow로 엮은 트리를 실행 중에 키우는 task planning 방법. WAH-NL에서 Qwen 2.5 72B 기준 goal 성공률이 31%에서 61%로 올랐다 (2026, paper)
 - [[physical-ai/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior|LLM-as-BT-Planner (TUM MIRMI, MBZUAI)]]: LLM이 로봇 조립 계획을 실행 가능한 Behavior Tree로 직접 생성하는 프레임워크. in-context learning 방법 네 가지를 비교해 human-in-the-loop이 17개 중 16개로 앞섰다 (2024, paper)
 - [[physical-ai/zhai-2025-igniting-vlms-toward-the-embodied|WALL-OSS (X Square Robot)]]: Self-Attention은 공유하고 FFN만 vision-language용과 action용으로 나눈 embodied foundation model. 커리큘럼은 두 단계다 (2025, paper)
 - [[physical-ai/x-square-robot-2026-wall-oss-05-technical-report|Wall-OSS-0.5 기술 보고서]]: VLA pre-training 체크포인트를 초기값이 아니라 policy 그대로 실제 로봇에서 평가한 4B 오픈소스 VLA (2026, paper)
