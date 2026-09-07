@@ -1,0 +1,299 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/cai-2026-tau0-vla-a-hierarchical-robot-foundation/fig01.png",
+    "raw": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/fig01.png",
+    "page": 1,
+    "caption": "Fig. 1: Overview of τ 0 -VLA. The high-level policy uses world-model-guided test-time computation to search over subtask sequences. At each expansion step, a VLM proposes candidate subtasks, a world model predicts their visual outcomes, and a value model evaluates the resulting task progress. Beam s",
+    "bbox": [
+      48.1,
+      232.3,
+      563.9,
+      484.13
+    ],
+    "bbox_norm": [
+      0.0786,
+      0.2933,
+      0.9214,
+      0.6113
+    ],
+    "dpi": 300,
+    "area_frac": 0.268,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/cai-2026-tau0-vla-a-hierarchical-robot-foundation/fig02.png",
+    "raw": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/fig02.png",
+    "page": 5,
+    "caption": "Fig. 2: The hierarchical τ 0 -VLA architecture. (a) At a high-level inference step t , the proposal model P conditions on the latest multi-view observation o t , task instruction ℓ , carried execution memory M t − 1 , and previously generated subtask z ⋆",
+    "bbox": [
+      48.1,
+      48.0,
+      563.89,
+      267.4
+    ],
+    "bbox_norm": [
+      0.0786,
+      0.0606,
+      0.9214,
+      0.3376
+    ],
+    "dpi": 300,
+    "area_frac": 0.233,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/cai-2026-tau0-vla-a-hierarchical-robot-foundation/fig03.png",
+    "raw": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/fig03.png",
+    "page": 8,
+    "caption": "Fig. 3: Representative physical-robot evaluation tasks. (a) Clean Room requires collecting two dirty garments, placing them in a laundry basket, hanging a handbag, handing a blanket to a person, and disposing of table trash. (b) Prepare Ingredients requires retrieving a tomato and an egg, then crack",
+    "bbox": [
+      42.96,
+      48.0,
+      569.04,
+      396.42
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0606,
+      0.9298,
+      0.5005
+    ],
+    "dpi": 300,
+    "area_frac": 0.378,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/cai-2026-tau0-vla-a-hierarchical-robot-foundation/fig04.png",
+    "raw": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/fig04.png",
+    "page": 10,
+    "caption": "Fig. 4: Next-subtask prediction accuracy under different high-level inference methods. We compare Plan Once, Best- of- N , and TTC (Ours) across four evaluation settings: Make Milk Tea, Book Organization (In-Domain), Book Organization (OOD), and Clean Room.",
+    "bbox": [
+      305.97,
+      358.31,
+      569.03,
+      512.26
+    ],
+    "bbox_norm": [
+      0.5,
+      0.4524,
+      0.9298,
+      0.6468
+    ],
+    "dpi": 300,
+    "area_frac": 0.084,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/cai-2026-tau0-vla-a-hierarchical-robot-foundation/fig05.png",
+    "raw": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/fig05.png",
+    "page": 11,
+    "caption": "Fig. 5: Relationship between computational cost and subtask-prediction accuracy. The accuracy increases with additional computation for the Make Milk Tea and Book Organization tasks, shown in panels (a) and (b), respectively. Each point represents an experimental result obtained at a different compu",
+    "bbox": [
+      94.37,
+      48.0,
+      517.63,
+      232.84
+    ],
+    "bbox_norm": [
+      0.1542,
+      0.0606,
+      0.8458,
+      0.294
+    ],
+    "dpi": 300,
+    "area_frac": 0.161,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table I",
+    "kind": "table",
+    "file": "assets/cai-2026-tau0-vla-a-hierarchical-robot-foundation/tab01.png",
+    "raw": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/tab01.png",
+    "page": 10,
+    "caption": "TABLE I: Long-horizon task performance. Each method–task setting uses 10 independently collected physical-robot trials. SR reports successful trials as x/ 10 , and Progress is the normalized milestone-completion score. Avg. is the unweighted mean of the four task-level rates. The first four rows use",
+    "bbox": [
+      48.1,
+      102.2,
+      563.89,
+      202.09
+    ],
+    "bbox_norm": [
+      0.0786,
+      0.129,
+      0.9214,
+      0.2552
+    ],
+    "dpi": 300,
+    "area_frac": 0.106,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table II",
+    "kind": "table",
+    "file": "assets/cai-2026-tau0-vla-a-hierarchical-robot-foundation/tab02.png",
+    "raw": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/tab02.png",
+    "page": 10,
+    "caption": "TABLE II: Direct-execution performance across embodiments. Tidy Makeup Table comprises three independently scored instruction-following groups. All methods execute the full task instruction without a high-level policy. Each task or task group is evaluated over 10 trials. SR reports successful trials",
+    "bbox": [
+      108.85,
+      260.25,
+      565.69,
+      493.36
+    ],
+    "bbox_norm": [
+      0.1779,
+      0.3286,
+      0.9243,
+      0.6229
+    ],
+    "dpi": 300,
+    "area_frac": 0.22,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table III",
+    "kind": "table",
+    "file": "assets/cai-2026-tau0-vla-a-hierarchical-robot-foundation/tab03.png",
+    "raw": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/tab03.png",
+    "page": 10,
+    "caption": "TABLE III: Closed-loop physical-robot performance with test-time computation. Each entry uses 10 independently collected trials. Book Organization uses shuffled initial ar- rangements and is reported without the in-domain and OOD split used in the open-loop evaluation. SR denotes task success rate, ",
+    "bbox": [
+      42.96,
+      604.23,
+      306.02,
+      673.19
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.7629,
+      0.5,
+      0.85
+    ],
+    "dpi": 300,
+    "area_frac": 0.037,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table IV",
+    "kind": "table",
+    "file": "assets/cai-2026-tau0-vla-a-hierarchical-robot-foundation/tab04.png",
+    "raw": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/tab04.png",
+    "page": 14,
+    "caption": "TABLE IV: Canonical 40-D state and action layout. Dimen- sions are one-indexed. For a rotation matrix R = [ r 1 , r 2 , r 3 ] , we use Rot6D( R ) = [ r ⊤",
+    "bbox": [
+      324.68,
+      430.73,
+      550.33,
+      560.43
+    ],
+    "bbox_norm": [
+      0.5305,
+      0.5438,
+      0.8992,
+      0.7076
+    ],
+    "dpi": 300,
+    "area_frac": 0.06,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table V",
+    "kind": "table",
+    "file": "assets/cai-2026-tau0-vla-a-hierarchical-robot-foundation/tab05.png",
+    "raw": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/tab05.png",
+    "page": 15,
+    "caption": "TABLE V: Maximum duration of each physical-robot trial.",
+    "bbox": [
+      325.61,
+      66.33,
+      549.4,
+      176.71
+    ],
+    "bbox_norm": [
+      0.532,
+      0.0838,
+      0.8977,
+      0.2231
+    ],
+    "dpi": 300,
+    "area_frac": 0.051,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table VI",
+    "kind": "table",
+    "file": "assets/cai-2026-tau0-vla-a-hierarchical-robot-foundation/tab06.png",
+    "raw": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/tab06.png",
+    "page": 17,
+    "caption": "TABLE VI: High-level instance families, synthesized by perturbing only the input memory while reading the corrected target from the demonstration. M n is the memory upon entering segment n . A single unified <think> / <memory> / <subtask> format instantiates all of them at zero extra annotation.",
+    "bbox": [
+      50.37,
+      90.24,
+      561.62,
+      172.73
+    ],
+    "bbox_norm": [
+      0.0823,
+      0.1139,
+      0.9177,
+      0.2181
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/cai-2026-tau0-vla-a-hierarchical-robot-foundation-figures/_overlay/p17.png"
+  }
+]

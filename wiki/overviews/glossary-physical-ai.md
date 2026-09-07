@@ -74,6 +74,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | primitive | primitive | 원시 동작·기본 동작 | primitive는 로봇 API가 노출하는 최소 실행 단위를 가리킨다 | motion primitive·control primitive 등 복합어도 원어 |
 | co-training | co-training | 공동 학습·병행 학습 | co-training은 성격이 다른 여러 데이터 원천을 하나의 학습 mixture에 함께 넣는 방식이다 | π0.5 레시피의 축. glossary-llms의 co-fine-tuning(RT-2)과 구분 — 이쪽은 웹 데이터에 한정하지 않는다 |
 | subtask | subtask | — | subtask는 high-level 추론이 텍스트로 내놓는 중간 단계 명령이다 | "하위 과제·부분 과제"는 기존 페이지에서 일반어로 쓰여 기계 검사에서 뺐다. 지침만 |
+| subgoal | subgoal | — | subgoal은 상위 목표를 쪼갠 하나의 실행 단위이며 그 자체가 다시 쪼개질 수 있다 | 계층적 planning을 다루는 페이지의 기본 단위다. "하위 목표"는 x-square-robot·qiao 등 7개 파일에서 일반어로 쓰이고 있어 기계 검사에서 뺐다. 지침만 (2026-09 등재, ReAcTree) |
 | subgoal image | subgoal image | 서브골 이미지·하위 목표 이미지 | subgoal image는 현재 subtask가 끝난 직후의 장면을 여러 카메라 시점으로 그린 목표 이미지다 | π0.7이 prompt modality로 세웠다. 실행 시점에는 world model이 생성한다. SuSIE·CoT-VLA 계보 |
 | episode metadata | episode metadata | 에피소드 메타데이터 | episode metadata는 그 episode의 속도·품질·실수 여부를 prompt에 적어 둔 라벨 묶음이다 | π0.7 고유 구성. 품질이 뒤섞인 데이터를 거르지 않고 쓰게 해준다. 발표 글은 strategy metadata로도 부른다 |
 | verbal instruction | verbal instruction | 구두 지시 | verbal instruction은 사람이 학습된 저수준 policy에 말로 subtask를 불러 과제를 끝내게 하며 모은 데이터다 | π0.5 고유 데이터 슬라이스(VI). 일반어 "언어 지시"는 지시 따르기 평가 문맥에서 널리 쓰여 금지 목록에서 뺐다 |

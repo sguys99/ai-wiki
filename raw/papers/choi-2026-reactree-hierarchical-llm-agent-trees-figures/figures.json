@@ -1,0 +1,462 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/fig01.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: Illustration of how ReAcTree generates an agent tree for the instruction: Please bring one pudding and one juice to the coffee table. The left side shows the hierarchical structure with agent nodes (circles) and control flow nodes (squares); the number inside each circle denotes execution ",
+    "bbox": [
+      47.8,
+      77.69,
+      564.2,
+      267.58
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.9219,
+      0.3378
+    ],
+    "dpi": 300,
+    "area_frac": 0.202,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/fig02.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2: Illustration of agent node execution and control flow node execution in ReAcTree .",
+    "bbox": [
+      98.24,
+      77.69,
+      513.75,
+      216.72
+    ],
+    "bbox_norm": [
+      0.1605,
+      0.0981,
+      0.8395,
+      0.2736
+    ],
+    "dpi": 300,
+    "area_frac": 0.119,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/fig03.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3: Success case of ReAcTree on the WAH-NL dataset using Qwen 2.5 72B. The snapshot of each step and the tree structure of nodes are shown. The subgoal of each node is also listed.",
+    "bbox": [
+      73.02,
+      77.47,
+      539.06,
+      417.56
+    ],
+    "bbox_norm": [
+      0.1193,
+      0.0978,
+      0.8808,
+      0.5272
+    ],
+    "dpi": 300,
+    "area_frac": 0.327,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/fig04.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/fig04.png",
+    "page": 8,
+    "caption": "Figure 4: Categories and subcategories of failure cases for ReAcTree+WM .",
+    "bbox": [
+      336.24,
+      77.69,
+      539.92,
+      204.69
+    ],
+    "bbox_norm": [
+      0.5494,
+      0.0981,
+      0.8822,
+      0.2584
+    ],
+    "dpi": 300,
+    "area_frac": 0.053,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/fig05.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/fig05.png",
+    "page": 17,
+    "caption": "Figure 5: Failure case of ReAct+WM on the WAH-NL dataset using Qwen 2.5 72B.",
+    "bbox": [
+      47.8,
+      80.87,
+      559.62,
+      595.05
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.1021,
+      0.9144,
+      0.7513
+    ],
+    "dpi": 300,
+    "area_frac": 0.543,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/fig06.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/fig06.png",
+    "page": 23,
+    "caption": "Figure 6: Success case of ReAcTree+WM on ALFRED using LLaMA 3.1 70B.",
+    "bbox": [
+      98.24,
+      118.19,
+      513.76,
+      671.9
+    ],
+    "bbox_norm": [
+      0.1605,
+      0.1492,
+      0.8395,
+      0.8484
+    ],
+    "dpi": 300,
+    "area_frac": 0.475,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p23.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/fig07.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/fig07.png",
+    "page": 24,
+    "caption": "Figure 7: Failure case of ReAct+WM on ALFRED using LLaMA 3.1 70B.",
+    "bbox": [
+      98.24,
+      102.5,
+      513.75,
+      372.75
+    ],
+    "bbox_norm": [
+      0.1605,
+      0.1294,
+      0.8395,
+      0.4706
+    ],
+    "dpi": 300,
+    "area_frac": 0.232,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/tab01.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/tab01.png",
+    "page": 5,
+    "caption": "Table 1: Performance of ReAcTree , ReAcTree+WM , and 5 baselines across 7 LLMs. Both GSR and SSR (%) are reported. Bold indicates the best result, and underlined indicates the second best. For brevity, we use Phi-4-RP to denote Phi-4-reasoning-plus.",
+    "bbox": [
+      47.8,
+      111.93,
+      565.16,
+      236.19
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.1413,
+      0.9235,
+      0.2982
+    ],
+    "dpi": 300,
+    "area_frac": 0.133,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/tab02.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/tab02.png",
+    "page": 6,
+    "caption": "Table 2: Performance of ReAct+WM and ReAcTree+WM on the ALFRED across 3 LLMs. GSR (%) is reported for both valid- seen and valid-unseen splits. Bold indicates the best result.",
+    "bbox": [
+      314.25,
+      499.58,
+      561.9,
+      595.48
+    ],
+    "bbox_norm": [
+      0.5135,
+      0.6308,
+      0.9181,
+      0.7519
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/tab03.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/tab03.png",
+    "page": 7,
+    "caption": "Table 3: Memory ablation results on Qwen 2.5 7B and 72B. EM, WM describes the memory configuration: none ( ✗ , ✗ ), WM only ( ✗ , ✓ ), EM only ( ✓ , ✗ ), or EM+WM ( ✓ , ✓ ). We report GSR (%) and SSR (%) with Δ improvements over the no-memory baseline.",
+    "bbox": [
+      142.07,
+      111.93,
+      469.93,
+      251.67
+    ],
+    "bbox_norm": [
+      0.2321,
+      0.1413,
+      0.7679,
+      0.3178
+    ],
+    "dpi": 300,
+    "area_frac": 0.095,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/tab04.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/tab04.png",
+    "page": 7,
+    "caption": "Table 4: Control flow ablation results. GSR and SSR (%) are reported. Bold indicates the best performance.",
+    "bbox": [
+      311.95,
+      289.05,
+      566.27,
+      378.62
+    ],
+    "bbox_norm": [
+      0.5097,
+      0.365,
+      0.9253,
+      0.4781
+    ],
+    "dpi": 300,
+    "area_frac": 0.047,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/tab05.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/tab05.png",
+    "page": 8,
+    "caption": "Table 5: Average execution time, decision steps, and GSR/SSR on shared successful tasks.",
+    "bbox": [
+      48.28,
+      111.93,
+      299.57,
+      177.07
+    ],
+    "bbox_norm": [
+      0.0789,
+      0.1413,
+      0.4895,
+      0.2236
+    ],
+    "dpi": 300,
+    "area_frac": 0.034,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/tab06.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/tab06.png",
+    "page": 8,
+    "caption": "Table 6: Peak and average token usage per decision.",
+    "bbox": [
+      39.9,
+      193.58,
+      304.04,
+      265.78
+    ],
+    "bbox_norm": [
+      0.0652,
+      0.2444,
+      0.4968,
+      0.3356
+    ],
+    "dpi": 300,
+    "area_frac": 0.039,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/tab07.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/tab07.png",
+    "page": 12,
+    "caption": "Table 7: Summary of corrections four WAH-NL test tasks were misaligned with their goal conditions.",
+    "bbox": [
+      77.69,
+      512.97,
+      532.06,
+      701.25
+    ],
+    "bbox_norm": [
+      0.127,
+      0.6477,
+      0.8694,
+      0.8854
+    ],
+    "dpi": 300,
+    "area_frac": 0.176,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/tab08.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/tab08.png",
+    "page": 13,
+    "caption": "Table 8: Representative action-observation pairs in VirtualHome under the partially observable setting.",
+    "bbox": [
+      47.8,
+      245.93,
+      565.08,
+      448.93
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.3105,
+      0.9233,
+      0.5668
+    ],
+    "dpi": 300,
+    "area_frac": 0.217,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/tab09.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/tab09.png",
+    "page": 13,
+    "caption": "Table 9: Representative action-observation pairs in AI2THOR under the partially observable setting.",
+    "bbox": [
+      47.8,
+      483.8,
+      565.08,
+      701.37
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.6109,
+      0.9233,
+      0.8856
+    ],
+    "dpi": 300,
+    "area_frac": 0.232,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/choi-2026-reactree-hierarchical-llm-agent-trees/tab10.png",
+    "raw": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/tab10.png",
+    "page": 14,
+    "caption": "Table 10: Language models used in our experiments.",
+    "bbox": [
+      177.18,
+      369.86,
+      434.82,
+      496.89
+    ],
+    "bbox_norm": [
+      0.2895,
+      0.467,
+      0.7105,
+      0.6274
+    ],
+    "dpi": 300,
+    "area_frac": 0.068,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/choi-2026-reactree-hierarchical-llm-agent-trees-figures/_overlay/p14.png"
+  }
+]

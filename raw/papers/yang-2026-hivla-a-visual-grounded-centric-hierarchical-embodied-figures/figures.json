@@ -1,0 +1,353 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/fig01.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/fig01.png",
+    "page": 2,
+    "caption": "Fig. 1: (a) Overview of our proposed HiVLA framework. (b) Success rate comparison on RoboTwin benchmark.",
+    "bbox": [
+      102.02,
+      86.72,
+      512.99,
+      210.84
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1095,
+      0.8382,
+      0.2662
+    ],
+    "dpi": 300,
+    "area_frac": 0.105,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/fig02.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/fig02.png",
+    "page": 5,
+    "caption": "Fig. 2: Pipeline of HiVLA. (a) Our decoupled framework utilizes a VLM to decom- pose user instructions into explicit structured plans, yielding a skill-level subtask and a bounding box used to extract a high-resolution target crop. (b) To execute this plan, the DiT action expert employs a cascaded c",
+    "bbox": [
+      121.06,
+      50.2,
+      537.88,
+      250.42
+    ],
+    "bbox_norm": [
+      0.1978,
+      0.0634,
+      0.8789,
+      0.3162
+    ],
+    "dpi": 300,
+    "area_frac": 0.172,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/fig03.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/fig03.png",
+    "page": 9,
+    "caption": "Fig. 3: Visualization of RoboTwin tasks and real-world tasks.",
+    "bbox": [
+      113.07,
+      89.43,
+      515.32,
+      221.9
+    ],
+    "bbox_norm": [
+      0.1848,
+      0.1129,
+      0.842,
+      0.2802
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/fig04.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/fig04.png",
+    "page": 25,
+    "caption": "Fig. 4: Visualization of RoboTwin tasks.",
+    "bbox": [
+      128.76,
+      168.49,
+      486.59,
+      589.44
+    ],
+    "bbox_norm": [
+      0.2104,
+      0.2127,
+      0.7951,
+      0.7442
+    ],
+    "dpi": 300,
+    "area_frac": 0.311,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/fig05.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/fig05.png",
+    "page": 26,
+    "caption": "Fig. 5: Visualization of real-world tasks.",
+    "bbox": [
+      128.76,
+      204.51,
+      486.59,
+      553.46
+    ],
+    "bbox_norm": [
+      0.2104,
+      0.2582,
+      0.7951,
+      0.6988
+    ],
+    "dpi": 300,
+    "area_frac": 0.258,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/tab01.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/tab01.png",
+    "page": 10,
+    "caption": "Table 1: Main success rates across 9 tasks in the RoboTwin simulator. HiVLA demon- strates superior performance, particularly in long-horizon and visually demanding tasks. Best and second-best results are bold and underlined.",
+    "bbox": [
+      131.39,
+      154.01,
+      486.61,
+      323.9
+    ],
+    "bbox_norm": [
+      0.2147,
+      0.1945,
+      0.7951,
+      0.409
+    ],
+    "dpi": 300,
+    "area_frac": 0.125,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/tab02.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/tab02.png",
+    "page": 12,
+    "caption": "Table 2: Robustness evaluation of the Action Expert against guidance perturbations. The policy is highly resilient to Bbox noise but strictly adheres to language instructions.",
+    "bbox": [
+      155.83,
+      143.06,
+      459.18,
+      215.88
+    ],
+    "bbox_norm": [
+      0.2546,
+      0.1806,
+      0.7503,
+      0.2726
+    ],
+    "dpi": 300,
+    "area_frac": 0.046,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/tab03.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/tab03.png",
+    "page": 13,
+    "caption": "Table 3: Real-world success rates. HiVLA excels in multi-object cluttered scenarios requiring semantic grounding, where baseline models struggle.",
+    "bbox": [
+      154.16,
+      141.51,
+      453.81,
+      199.32
+    ],
+    "bbox_norm": [
+      0.2519,
+      0.1787,
+      0.7415,
+      0.2517
+    ],
+    "dpi": 300,
+    "area_frac": 0.036,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/tab04.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/tab04.png",
+    "page": 14,
+    "caption": "Table 4: Ablation study on guidance injection strategies and visual-grounding com- ponents. Best results are bold .",
+    "bbox": [
+      147.17,
+      138.07,
+      467.88,
+      308.03
+    ],
+    "bbox_norm": [
+      0.2405,
+      0.1743,
+      0.7645,
+      0.3889
+    ],
+    "dpi": 300,
+    "area_frac": 0.112,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/tab05.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/tab05.png",
+    "page": 20,
+    "caption": "Table 5: Hyperparameters and architecture specifications. Detailed configura- tion of the HiVLA DiT Action Expert and training settings.",
+    "bbox": [
+      183.97,
+      143.15,
+      438.04,
+      486.68
+    ],
+    "bbox_norm": [
+      0.3006,
+      0.1807,
+      0.7158,
+      0.6145
+    ],
+    "dpi": 300,
+    "area_frac": 0.18,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/tab06.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/tab06.png",
+    "page": 21,
+    "caption": "Table 6: Comprehensive Evaluation of the VLM Planner Agent. We compare different model scales and architectures under zero-shot and fine-tuned settings. Fine- tuning drastically improves domain-specific performance, while historical visual context is critical for optimal accuracy.",
+    "bbox": [
+      131.58,
+      164.99,
+      483.8,
+      301.38
+    ],
+    "bbox_norm": [
+      0.215,
+      0.2083,
+      0.7905,
+      0.3805
+    ],
+    "dpi": 300,
+    "area_frac": 0.099,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/tab07.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/tab07.png",
+    "page": 23,
+    "caption": "Table 7: System prompt for the VLM planner agent. The agent receives histori- cal and current observations together with state information, and generates a structured subtask plan.",
+    "bbox": [
+      128.76,
+      226.02,
+      490.31,
+      596.57
+    ],
+    "bbox_norm": [
+      0.2104,
+      0.2854,
+      0.8012,
+      0.7532
+    ],
+    "dpi": 300,
+    "area_frac": 0.276,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied/tab08.png",
+    "raw": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/tab08.png",
+    "page": 24,
+    "caption": "Table 8: List of Task Instructions. The specific natural language instructions corresponding to each task in the RoboTwin simulation and real-world experiments.",
+    "bbox": [
+      128.76,
+      265.52,
+      498.03,
+      546.11
+    ],
+    "bbox_norm": [
+      0.2104,
+      0.3353,
+      0.8138,
+      0.6895
+    ],
+    "dpi": 300,
+    "area_frac": 0.214,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied-figures/_overlay/p24.png"
+  }
+]

@@ -65,6 +65,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 
 - [[physical-ai/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x|Open X-Embodiment / RT-X 프로젝트 페이지]]: 로봇 데이터셋 60종을 한 형식으로 합친 데이터셋과 그 위에서 다시 학습한 RT-1-X, RT-2-X를 소개하는 공식 사이트 (2023, article)
 - [[physical-ai/lu-2026-aspire-agentic-skills-discovery-for|ASPIRE (NVIDIA GEAR)]]: 로봇 policy를 신경망 가중치가 아니라 코딩 에이전트가 고쳐 쓰는 Python 프로그램으로 두는 지속학습 시스템. 검증된 수정을 skill library에 쌓아 재사용한다 (2026, paper)
+- [[physical-ai/li-2026-roboclaw-an-agentic-framework-for|RoboClaw (AgiBot)]]: 데이터 수집과 policy 학습과 과제 실행을 하나의 VLM 컨트롤러 아래로 합친 agentic 프레임워크. forward 동작에 inverse 복구 동작을 짝지어 사람 없이 환경을 리셋한다 (2026, paper)
 - [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics|VLA for Robotics, Full-Stack Review (Survey)]]: 400편 넘게 인용한 VLA 종합 서베이. 아키텍처와 로봇 플랫폼, 데이터 수집, 평가를 함께 놓는다 (2025, paper)
 - [[physical-ai/xu-2025-an-anatomy-of-vision-language-action-models|An Anatomy of VLA Models (Survey)]]: 285편을 인용한 VLA 서베이. perception, brain, action 3모듈로 해부하고 도전 과제 분석을 본문 절반에 둔다 (2025, paper)
 - [[physical-ai/hou-2026-world-model-for-robot-learning|World Model for Robot Learning (Survey)]]: NTU MARS 주도 9개 기관의 world model 서베이. policy 결합 방식 5분류로 문헌을 가르고 실행 가능한 미래 예측을 병목으로 진단한다 (2026, paper)
@@ -110,6 +111,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/engiuniverse-2025-rt1-rt2-robotics-transformer-review|구글 RT-1, RT-2 핵심 논문 리뷰 (엥지유니버스)]]: RT-1과 RT-2 두 논문의 아키텍처를 텐서 크기를 대입해 대조한 한국어 20분 영상. 벤치마크 수치는 다루지 않는다 (2025, video)
 - [[physical-ai/natnew-awesome-physical-ai|Awesome Physical AI (natnew, repo)]]: Physical AI 도구, 데이터, 논문, 규제 문서 353개를 14개 카테고리로 모은 큐레이션 색인. 개별 자료로 가는 지도로 쓰며 라이선스는 MIT다 (2026, repo)
 - [[physical-ai/keon-awesome-physical-ai|Awesome Physical AI (keon)]]: Physical AI 논문과 리소스 485개를 16개 섹션으로 배열한 CC0 큐레이션 목록. 논문을 한 카테고리에만 넣는 규칙이라 방법 계보가 배치로 드러난다 (2026, repo)
+- [[physical-ai/acensia-long-horizon-papers|long-horizon-papers (acensia, repo)]]: long-horizon 논문 52편을 LLM agent, VLM planning, VLA manipulation으로 나눈 큐레이션 저장소. VLA는 실패를 막는 네 전략과 recovery까지 다섯 폴더로 배열한다 (2026, repo)
 - [[physical-ai/liu-2025-generative-physical-ai-in-vision|Generative Physical AI in Vision: A Survey]]: 생성 모델이 물리 법칙을 지키게 만드는 연구를 physics-aware generation이라는 이름으로 묶은 서베이 (2025, paper)
 - [[physical-ai/9bow-2026-physics-aware-generation-world-simulator|물리를 이해하는 생성 모델과 월드 시뮬레이터 (9bow)]]: 위 Liu 2025 서베이를 한글로 풀어 쓴 PyTorch KR 해설. 논문 페이지로 넘어가기 전 진입로로 쓴다 (2026, article)
 - [[physical-ai/zhang-2026-a-survey-of-physical-ai|A Survey of Physical AI (ChatGPT → World Models → Embodied Agents)]]: LLM의 world knowledge에서 출발해 여섯 층 로드맵으로 문헌을 재배치한 preprint 서베이 (2026, paper)
@@ -134,6 +136,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/ros-navigation-navigation2|navigation2 (ros-navigation)]]: Nav2 공식 소스 저장소 README. 40개 가까운 nav2_* 패키지의 빌드 상태 표와 인용 논문 5편의 학술 계보가 실질 내용이다 (2018, repo)
 - [[physical-ai/iovino-2024-comparison-between-behavior-trees-and|Behavior Tree와 FSM 비교 (ABB, ETH, KTH)]]: mobile manipulation 과제에서 두 policy 표현을 모듈성, 반응성, 가독성으로 비교한 논문. 로봇 동작은 같지만 과제가 커질수록 BT의 편집 비용이 낮다 (2024, paper)
 - [[physical-ai/suzuki-2026-from-dialogue-to-execution-mixture-of-agents|MoA 대리 응답과 BT 실행 (Waseda, NII)]]: LLM planner의 확인 질문을 세 expert agent가 겹치지 않게 나눠 답하고 남은 것만 사람이 답하는 대화형 계획. 결과 Behavior Tree의 action node마다 imitation learning policy를 묶어 실제 로봇에서 실행한다 (2026, paper)
+- [[physical-ai/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior|LLM-as-BT-Planner (TUM MIRMI, MBZUAI)]]: LLM이 로봇 조립 계획을 실행 가능한 Behavior Tree로 직접 생성하는 프레임워크. in-context learning 방법 네 가지를 비교해 human-in-the-loop이 17개 중 16개로 앞섰다 (2024, paper)
 - [[physical-ai/zhai-2025-igniting-vlms-toward-the-embodied|WALL-OSS (X Square Robot)]]: Self-Attention은 공유하고 FFN만 vision-language용과 action용으로 나눈 embodied foundation model. 커리큘럼은 두 단계다 (2025, paper)
 - [[physical-ai/x-square-robot-2026-wall-oss-05-technical-report|Wall-OSS-0.5 기술 보고서]]: VLA pre-training 체크포인트를 초기값이 아니라 policy 그대로 실제 로봇에서 평가한 4B 오픈소스 VLA (2026, paper)
 - [[physical-ai/x-square-robot-wall-x|wall-x (X-Square-Robot)]]: WALL 계열 모델의 학습과 추론 코드 저장소(Apache-2.0). 데이터 준비부터 fine-tuning, 서빙, 평가까지의 경로를 담는다 (2025, repo)
@@ -143,6 +146,8 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/openhelix-robot-awesome-dual-system-vla|Awesome-Dual-System-VLA (repo)]]: OpenHelix 저자들이 논문의 서베이 절을 옮겨 갱신하는 awesome 리스트. 배제 목록을 나란히 둬 판정 기준을 함께 보여 준다 (2025, repo)
 - [[physical-ai/peng-2026-cortex-a-bidirectionally-aligned-embodied|Cortex (Shanghai AI Lab)]]: 상위 VLM의 계획을 32개 canonical skill primitive와 도달 가능성 제약으로 묶어 하위 VLA가 그대로 실행하게 만든 dual-system VLA. 14단계 화학 실험을 zero-shot으로 완수한다 (2026, paper)
 - [[physical-ai/peng-2026-cortex-project-page|Cortex 프로젝트 페이지]]: Cortex 논문의 공식 프로젝트 페이지. 방법을 네 장의 카드로 압축하고, 논문에 없는 RMBench 7과제 평균과 경계 추론 히트맵을 싣는다 (2026, article)
+- [[physical-ai/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied|HiVLA (HKU, Shanghai AI Lab)]]: VLM이 낸 subtask 문장과 bounding box로 계획과 제어를 분리하고, DiT 안에서 global과 국소와 언어를 순서대로 주입하는 계층형 manipulation 시스템 (2026, paper)
+- [[physical-ai/yang-2026-hivla-project-page|HiVLA 프로젝트 페이지]]: HiVLA 논문의 공식 프로젝트 페이지. 초록과 도식 두 장, RoboTwin 결과 표만 싣고 시연 영상은 없다 (2026, article)
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform|Cosmos World Foundation Model Platform (NVIDIA)]]: 영상 curation과 토크나이저, WFM 8종을 함께 공개한 NVIDIA의 world model 플랫폼 논문 (2025, paper)
 - [[physical-ai/wu-2023-unleashing-large-scale-video-generative|GR-1 (ByteDance Research)]]: 사람 영상에서 미래 프레임 예측을 배운 뒤 로봇 데이터로 학습한 manipulation policy. video generative pre-training의 출발점 (2023, paper)
 - [[physical-ai/bytedance-gr-1|GR-1 (bytedance, repo)]]: GR-1 논문의 공식 코드 저장소(Apache-2.0). CALVIN 평가 경로와 가중치만 공개하고 pre-training과 fine-tuning 코드는 없다 (2024, repo)
@@ -251,7 +256,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/wlsdks-ontology-atlas|wlsdks/ontology-atlas (repo)]]: 코드베이스 ontology를 저장소 Markdown 폴더 하나로 유지하는 로컬 워크벤치. 다섯 kind와 typed 관계로 폴더를 계산 가능하게 만들고, 사람은 git diff로 에이전트는 MCP로 같은 그래프를 다룬다
 - [[applications/datasciencedojo-2026-llm-wiki-by-andrej-karpathy|LLM Wiki 입문 튜토리얼 (Data Science Dojo)]]: Karpathy의 LLM Wiki 패턴을 코딩 없이 25~35분에 따라 하는 6단계 절차로 풀어쓴 입문 가이드. 컴파일과 유지보수 프롬프트를 원문 그대로 싣는다
 - [[applications/kmyu-2026-llm-wiki-pattern-synthesis|Karpathy LLM Wiki 패턴 한국어 종합 정리]]: Karpathy의 LLM Wiki Gist와 한국어 커뮤니티 논의를 11개 절로 합성한 기술 리포트. 여섯 가지 비판과 한국어 운영 아홉 항목을 함께 정리한다
-- [[applications/pandey-2026-rag-is-no-longer-just|RAG is no longer just vector search + LLM (Pandey, LinkedIn)]] — Brij Kishore Pandey가 올린 짧은 LinkedIn 카드. 2026 production RAG를 다섯 가지 디자인 공간으로 정렬한 사고 모델 (2026, article)
+- [[applications/pandey-2026-rag-is-no-longer-just|RAG is no longer just vector search + LLM (Pandey, LinkedIn)]]: production RAG를 Hybrid, GraphRAG, Agentic, Corrective, Multimodal 다섯 가지로 나눈 포스트
 - [[applications/lum1104-understand-anything|Lum1104/Understand-Anything (repo)]]: 코드베이스나 Karpathy 패턴 wiki를 knowledge graph로 바꿔 대화형 대시보드로 탐색하게 하는 MIT 플러그인. tree-sitter가 구조를, LLM이 의미를 맡는다
 - [[applications/langchain-ai-openwiki|langchain-ai/openwiki (repo)]]: 코드베이스 문서를 만들고 갱신하는 LangChain의 CLI. 저장소를 읽어 openwiki/ 디렉토리에 문서를 만든 뒤 AGENTS.md와 CLAUDE.md에 참조를 덧붙여 코딩 에이전트가 찾아 쓰게 한다
 - [[applications/sproul-2026-introducing-openwiki-an-open-source|OpenWiki 출시 소개 (LangChain)]]: 제작사가 직접 밝힌 문제 의식과 설계 판단. 지시 파일에는 위키 참조만 두고, GitHub Action이 git diff로 문서를 갱신한다 (2026, article)
@@ -260,11 +265,11 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/agricidaniel-claude-obsidian|AgriciDaniel/claude-obsidian (repo)]]: Karpathy LLM Wiki 패턴을 Claude Code 스킬 15개와 사전 설정 Obsidian vault로 구현한 MIT 저장소. advisory lock과 hybrid retrieval을 포함한다
 - [[applications/joonan30-llm-wiki-labs|joonan30/llm-wiki-labs (repo)]]: Joonan Lab이 연구실 위키 시스템(LLM-Wiki)의 구축과 운영을 인터랙티브 페이지로 공개한 저장소. 31일 케이스 스터디를 담은 lab 1편이 단일 HTML로 배포된다 (2026, repo)
 - [[applications/dragon1086-llm-wiki|dragon1086/llm-wiki (repo)]]: Karpathy LLM Knowledge Base 패턴을 Claude Code CLI와 Obsidian vault로 구현한 한국어 저장소. ingest, query, lint에 watch 감시, Discord 봇, BFS 검색을 더했다
-- [[applications/alex-xu-2026-rag-vs-graph-rag-vs|RAG vs Graph RAG vs Agentic RAG (Alex Xu, LinkedIn)]] — ByteByteGo 공동창업자 Alex Xu의 짧은 LinkedIn 카드. Standard·Graph·Agentic RAG를 각각 3~4단계 파이프라인으로 정리하고 Graph RAG의 local/global search 라우팅과 Agentic RAG의 검증-재검색 루프를 명시한 비교 자료 (2026, article)
-- [[applications/patel-2026-production-ai-app-seven-layers|Production AI 앱의 7개 레이어 (Manthan Patel, LinkedIn)]] — 프로덕션 AI 앱은 모델 선택도 prompt도 아니라 레이어를 하나의 시스템으로 엮는 규율이라 주장하며, Next.js·Supabase·Stripe 코드베이스를 7개 레이어로 해부하고 `.claude/`를 정식 레이어로 승격시킨 짧은 글. "모델은 쉬운 10%, 레이어가 90%" (2026, article)
-- [[applications/shubhamsaboo-awesome-llm-apps|Awesome LLM Apps (Shubhamsaboo, repo)]] — 포크해서 바로 돌리는 100+개 LLM 앱 템플릿 쿡북. 링크 모음이 아니라 full source가 담긴 자족형 실행 코드로, AI Agents·Multi-agent·Voice·MCP·RAG·Agent Skills·fine-tuning 등 modern AI stack 15개 카테고리를 provider-agnostic·Apache-2.0로 묶은 학습 자원 (2026, repo)
-- [[applications/zhulinsen-daily-stock-analysis|ZhuLinsen/daily_stock_analysis (repo)]] — A주·홍콩·미국·일본·한국·대만 6개 시장을 매일 자동 분석해 매수/관망/매도 대시보드를 생성하고 텔레그램·디스코드·슬랙 등으로 push하는 오픈소스 AI 주식 분석 시스템. GitHub Actions/Docker 배포, 15종 내장 전략의 에이전트 전략 채팅, MIT (2026, repo)
-- [[applications/cheahjs-free-llm-api-resources|cheahjs/free-llm-api-resources (repo)]] — 무료 또는 체험 크레딧으로 쓰는 LLM API 서비스 26곳을 모아 모델·요청/토큰 한도·데이터 정책을 표로 정리한 커뮤니티 큐레이션 레포 (2026, repo) <!-- lint-terms: ignore -->
+- [[applications/alex-xu-2026-rag-vs-graph-rag-vs|RAG vs Graph RAG vs Agentic RAG (Alex Xu, LinkedIn)]]: Standard, Graph, Agentic RAG를 각각 3~4단계 파이프라인으로 비교한 LinkedIn 카드. 첨부 비교도가 본문보다 상세하다
+- [[applications/patel-2026-production-ai-app-seven-layers|Production AI 앱의 7개 레이어 (Manthan Patel, LinkedIn)]]: 실제 Next.js 앱의 파일 트리를 7개 레이어로 해부하고 `.claude/`를 일곱 번째 레이어로 세운 짧은 게시글 (2026, article)
+- [[applications/shubhamsaboo-awesome-llm-apps|Awesome LLM Apps (Shubhamsaboo, repo)]]: 15개 카테고리 아래 107건의 실행 가능한 LLM 앱 템플릿을 담은 Apache-2.0 쿡북 저장소. 링크 모음이 아니라 full source code가 든 자족형 디렉토리다 (2026, repo)
+- [[applications/zhulinsen-daily-stock-analysis|ZhuLinsen/daily_stock_analysis (repo)]]: A주, 홍콩, 미국, 일본, 한국, 대만 6개 시장 종목을 매일 분석해 매수와 관망과 매도 대시보드를 만들고 6개 채널로 전송하는 MIT 오픈소스
+- [[applications/cheahjs-free-llm-api-resources|cheahjs/free-llm-api-resources (repo)]]: 무료 한도나 체험 크레딧으로 쓸 수 있는 LLM API 프로바이더 26곳을 요청 한도, 토큰 한도, 이용 조건, 제공 모델까지 정리한 큐레이션 저장소 (2026, repo)
 
 ## Etc (etc)
 

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/yang-2026-hivla-project-page/fig01.jpg",
+    "raw": "raw/articles/yang-2026-hivla-project-page-figures/fig01.jpg",
+    "caption": "HiVLA teaser figure",
+    "source_url": "https://tianshuoy.github.io/HiVLA-page/static/images/teaser.jpg",
+    "bytes": 1845583,
+    "width": 6846,
+    "height": 1654,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/yang-2026-hivla-project-page/fig02.png",
+    "raw": "raw/articles/yang-2026-hivla-project-page-figures/fig02.png",
+    "caption": "HiVLA pipeline figure",
+    "source_url": "https://tianshuoy.github.io/HiVLA-page/static/images/pipeline.png",
+    "bytes": 648721,
+    "width": 2881,
+    "height": 1051,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/yang-2026-hivla-project-page/page-full.png",
+    "raw": "raw/articles/yang-2026-hivla-project-page-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]

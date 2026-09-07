@@ -672,8 +672,71 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - 용어집 등재 후보 6건 누적 (Phase 7-1 소관): inference provider(원어 유지 제안과 "추론 제공자" 번역어 제안이 갈린다. 일반어 "제공자" 오탐 우려로 금지 표기 없이 지침만 권고), base URL, gateway, instruction file(번역어 "지시 파일" 제안, 첫 등장 원어 병기), provider, tracing. `AGENTS.md`와 `CLAUDE.md`는 파일명이라 표기 흔들림이 없으나 "에이전트 진입 지시 파일"이라는 개념 설명을 용어집에 두면 여러 페이지가 재사용할 수 있다는 제안이 함께 올라왔다.
   - 부수 발견 3건. (1) `sproul-2026`의 raw에는 정량 근거가 하나도 없다. 수치 표현이 "몇 분 안에"와 "수백 개 파일" 둘뿐이고 측정 조건이 없어 wiki에 사실과 주장을 가르는 표 두 개를 세웠다. (2) 같은 raw가 같은 대상을 두 단위로 센다("수백 페이지의 저장소 문서"와 "위키가 수백 개 파일에 걸친다"). 절별로 원문 단위를 살려 분리했다. (3) `langchain-ai-openwiki`의 README 상단에 `static/openwiki.png`가 있으나 로컬 사본이 없어 figures 작업을 하지 않았다. B5의 `wlsdks` 판단과 같은 근거로, 웹 fetch는 rule #1 위반이다.
   - 향후 수집 후보 3건이 나왔다. `9bow-2026`의 raw가 "더 읽어보기"로 든 4개 중 이 wiki에 페이지가 있는 것은 Understand-Anything 하나뿐이고 DeepWiki-Open, Tutorial-Codebase-Knowledge, Wrinkl은 미수집이다.
-- [ ] B7 RAG 담론과 응용 카탈로그 (6편): alex-xu-2026-rag-vs-graph-rag-vs, pandey-2026-rag-is-no-longer-just, patel-2026-production-ai-app-seven-layers, shubhamsaboo-awesome-llm-apps, zhulinsen-daily-stock-analysis, cheahjs-free-llm-api-resources
-- [ ] B-완료. index.md Applications 절 축소, `--category applications` lint 0건, physical-ai 회귀 확인, 계량 기록
+- [x] B7 RAG 담론과 응용 카탈로그 (6편): alex-xu-2026-rag-vs-graph-rag-vs, pandey-2026-rag-is-no-longer-just, patel-2026-production-ai-app-seven-layers, shubhamsaboo-awesome-llm-apps, zhulinsen-daily-stock-analysis, cheahjs-free-llm-api-resources
+  - 완료 (2026-09-07). 6편 전부 게이트를 통과했다. wiki 본문 합계 25,226자에서 75,073자로 2.98배가 됐고 표는 7개에서 72개다. 압축비 중앙값 0.85에서 1.50, 최소값 0.75에서 1.34다. 편별로는 alex-xu 0.89에서 1.43, pandey 1.00에서 1.61, patel 0.75에서 1.56, shubhamsaboo 0.75에서 1.44, zhulinsen 0.80에서 1.34, cheahjs 1.22에서 1.68이다. 얇은 페이지 4편에서 0편, 표 0개 페이지 1편에서 0편이다.
+  - sources도 합계 28,067자에서 50,187자, 표 0개에서 29개가 됐다.
+  - **`cheahjs`의 산문이 957자에서 7,837자로 8.2배가 돼 Phase 3 최대 회복이다.** 표를 줄이지 않고 2개에서 12개로 함께 늘리며 달성했다. 착수 시점 본문 3,394자 중 2,437자가 표와 마크업이라 표는 있는데 해석하는 산문이 없던 상태였다.
+  - lint 5종 0건. 12개 파일에 lint_style error 0 warning 0, lint_terms 0, audit_captions 0, lint_links error 0 warning 0, lint_figures 0이다. 예외 주석은 6편 전부 한 건도 쓰지 않았다.
+  - **subagent 2편이 API 오류로 중단돼 재시작했다.** `pandey`는 sources 재작성을 마치고 wiki 착수 직전에 끊겨 그 상태(lint 0건, 8개 절 완비)를 이어받게 했고, `zhulinsen`은 파일 변경이 전혀 없어 처음부터 다시 돌렸다. 중단 시점 파일 상태를 확인하고 범위를 좁혀 재발주하는 절차가 유효했다.
+  - **raw 재독이 무근거 주장 85건을 잡았다.** 편별로 pandey 약 30건, shubhamsaboo 17건, alex-xu 11건, cheahjs 11건, patel 8건, zhulinsen 8건이다.
+  - **새 유형: 인접 페이지의 벤치마크 수치를 이 페이지의 근거처럼 복제.** `pandey`의 wiki가 BrowseComp-Plus 80.0% 대 69.0%, LeanRAG redundancy 46% 감소, MSCOCO 62.9, ViDoRe V2 64.9, MTEB Multilingual 69.9 등 12건을 본문에 싣고 있었으나 raw 3.0KB 포스트에는 수치가 하나도 없다. 전량 삭제하고 "수치는 각 페이지가 담당한다"고 명시한 뒤 링크만 걸었다. 짧은 LinkedIn 포스트 계열의 공통 위험으로 보인다.
+  - **날조된 대응표 1건.** 같은 stem이 "Support chatbot은 Hybrid와 CRAG", "Legal research는 Hybrid와 Graph와 CRAG" 같은 5행 매핑표를 두고 **표 바로 아래 인용문으로 "원문에는 없다"고 자백하면서 표는 그대로 두고 있었다.** raw는 다섯 use case와 다섯 아키텍처를 나란히 놓기만 하고 대응을 제시하지 않는다.
+  - **중대 정정: GraphRAG 원논문 오귀속 3건.** `alex-xu`의 sources와 wiki가 "local과 global 이원 구조는 Microsoft GraphRAG 원논문의 핵심 설계와 정확히 일치한다"고 세 곳에서 적었으나 틀렸다. `wiki/database/edge-2024-from-local-to-global.md`에는 "local search"가 한 번도 나오지 않고, 원논문은 community summary와 map-reduce 단일 질의 모드만 다룬다. local과 global 이원 구성은 공식 구현체(`wiki/database/microsoft-graphrag.md`) 기능이다. global 경로만 원논문에 귀속하고 local 경로는 구현체로 정정했다. **오케스트레이터가 이 사실을 진행 중이던 `pandey` subagent에 전달해 같은 기준으로 점검하게 했고, 그쪽에서도 `edge-2024`를 "GraphRAG의 원형"이라 부르던 표현을 정정했다. Phase 4의 D1에서 database 쪽 서술을 재확인한다.**
+  - 대표 정정 4건 추가. (1) `shubhamsaboo`의 "15개 최상위 카테고리 폴더"는 15가 목차 분류이고 실제 디렉토리는 10개다. 링크 105건을 집계해 대응표를 신설했다. (2) 같은 stem의 "대부분 템플릿은 Python과 Streamlit UI로 돌아간다"는 raw에서 streamlit이 Quick Start 명령 한 줄에만 나온다. (3) `zhulinsen`의 "A-shares는 중국 본토 증권거래소에 상장된 위안화 표시 주식"이라는 정의가 README에 없는 외부 지식이었다. (4) `cheahjs`의 "커뮤니티가 PR로 지속 갱신한다"는 raw에 PR, 기여, 갱신 절차 언급이 전혀 없다.
+  - **저자 오귀속 1건과 Phase 2 완료분 정정.** `patel-2026`의 wiki가 `agents/patel-2026-beyond-the-prompt-claude-code`를 "같은 저자군의 글"로 적었으나 그 글의 저자는 Arpan Patel이고 이 글은 Manthan Patel이다. 오케스트레이터가 저장소 전수 확인 결과 frontmatter의 `author` 값은 세 stem 모두 정확했고 본문 서술만 틀렸다. 반대 방향(`i-taught-myself`에서 `beyond-the-prompt`)은 이미 "성이 같은 다른 저자"로 정확히 적고 있었으므로, 틀린 쪽인 `beyond-the-prompt`의 sources와 wiki 두 파일을 직접 정정했다. agents 카테고리는 lint 0건을 유지한다.
+  - **지표 운용 보정: figure를 가진 stem에는 `sources 바이트 / raw 바이트` 비율을 보수적으로 적용한다.** `patel-2026`(2.3배)과 `alex-xu`(3.2배) 둘 다 비율이 높았으나 원인의 상당 부분이 과잉 부연이 아니라 **도해가 본문보다 정보 밀도가 높은데 텍스트 바이트만 세었기 때문**이었다. `patel-2026`의 fig01은 40여 개 파일 경로와 8개 주석을 담고, `alex-xu`의 fig01에는 본문에 없는 항목이 6종 있다(Planning agent와 Evaluator agent 이름, direct query 우회, MCP servers, mapping call, 저평가 필터링). 두 편 모두 도해 판독 내용을 반영해 sources가 오히려 늘었다.
+  - caption 정비 2건 (`patel-2026` fig01, `alex-xu` fig01). 둘 다 이미지를 직접 열어 대조했고 금지 기호뿐 아니라 사실 오류를 함께 고쳤다. `patel-2026`은 "7개 레이어"를 8개 묶음으로, "색으로 구분"을 `.claude/` 한 묶음만 강조로 정정했다. B5에서 확립한 "repo stem의 caption은 이미지를 열어 대조한다" 지침이 article 유형에도 그대로 적용됐다.
+  - sources `## 8. 그림 후보` 절 신설 2건 (`patel-2026`, `alex-xu`). `figures:` 키가 있는데 8절이 없던 규약 위반이다.
+  - `patel-2026`의 title을 `A production AI app isn't picking the right model — the seven layers nobody talks about`에서 em dash를 뺀 형태로 정규화했다. **이로써 applications의 frontmatter title 금지 기호가 전부 해소됐고, 전 저장소 잔여는 llms의 `9bow-2026-gpt-5-6-sol-terra-luna` 한 stem(sources와 wiki 2파일, 중간점)뿐이다** (Phase 5 소관).
+  - tags 정정 4건. `shubhamsaboo`의 `streamlit` 제거와 `generative-ui` 추가, `cheahjs`의 `cost-optimization`을 `trial-credit`으로 교체, `pandey`의 `mental-model` 제거다. `patel-2026`의 `harness`는 raw에 단어가 없으나 도해 주석 `AI agent context: rules, hooks, skills, subagents`가 용어집 정의와 1대1로 대응해 색인어로 유지하되 본문에서 저자 주장으로 귀속하는 문장은 제거했다. `zhulinsen`과 `alex-xu`의 tags는 전량 근거가 확인돼 변경이 없다.
+  - **`lint-terms: ignore` 1건이 불필요해져 사라졌다.** index.md의 `cheahjs` 항목이 "데이터 정책" 표현 때문에 physical-ai 용어집의 policy 금지 표기에 걸려 ignore 주석을 달고 있었는데, 새 문구가 "이용 조건"을 쓰면서 주석 없이 통과한다.
+  - index.md 6항목을 283, 217, 285, 300, 253, 208자에서 186, 194, 194, 199, 170, 185자로 다시 썼다. **Applications 절 33항목이 전부 200자 이내가 됐다** (최장 200자).
+  - 용어집 등재 후보 23건 누적 (Phase 7-1 소관): community report, chunk, vector database(표기 3분 실측: "벡터 DB" 8회, "vector database" 5회, "벡터 데이터베이스" 1회), self-correction, GraphRAG(322회) 대 Graph RAG(55회) 대 graph-based RAG(22회) 표기 분열, fallback(59회) 대 폴백(37회), design space, retrieval architecture, grading, RLS, migration, regression, quota, rate limit, provider와 inference provider, free tier, AI gateway, provider-agnostic, always-on agent, generative UI, webhook, backtest.
+  - 자료 자체의 내적 모순 8건을 기록했다. `patel-2026`의 `autonomy`와 `Anatomy`, `./claude/`와 `.claude/`, 본문 7개 레이어와 도해 8개 묶음. `shubhamsaboo`의 "Runs in 3 commands"와 네 줄짜리 Quick Start, 같은 이름 템플릿의 이중 경로 2쌍. `cheahjs`의 Modal이 매월 재지급인데 일회성 trial 묶음에 있고 HuggingFace와 Vercel은 금액 표기인데 무료 묶음에 있는 분류 기준 불일치.
+  - 부수 발견 3건. (1) `zhulinsen`의 README 권장 프로바이더 링크에 `share_code`, `aff`, `ref`, `utm_source` 추천 파라미터가 붙어 있고 두 곳은 Sponsors 절에 배너로도 노출된다. 권장 순서를 중립적 기술 평가로만 읽기 어렵다는 점을 wiki에 명시했다. (2) 같은 stem은 브리프가 적은 4개 시장이 아니라 한국(`005930.KS`)과 대만(`2330.TW`)까지 6개 시장을 지원한다. (3) `shubhamsaboo`의 raw는 Headroom을 "API 비용 50~90% 절감"으로 적는데 `wiki/overviews/headroom-context-compression-overview.md`는 "토큰 60~95% 절감"으로 적는다. 기준이 다른 값이므로 Phase 6에서 overview 쪽 출처를 재확인한다.
+  - **Phase 4 확인 사항 2건.** (1) `wiki/database/lumer-2025-rethinking-retrieval-from-traditional-retrieval.md:85`에 bare wikilink 3개가 있고 같은 파일 199행은 정상 형식이라 파일 내부에서도 갈린다. (2) 같은 파일 102행의 "corrective RAG(Yan 2024)"와 "BM25" 표기가 `pandey`에 흘러든 근거의 출처로 보인다. 그 페이지에서는 논문 본문 근거가 있을 수 있으므로 D4에서 확인한다.
+- [x] B-완료. index.md Applications 절 축소, `--category applications` lint 0건, physical-ai 회귀 확인, 계량 기록
+  - 완료 (2026-09-08, 배치 작업은 2026-09-07). 네 게이트를 전부 통과했다.
+  - **게이트 1: index.md Applications 절 축소.** 33항목 전부 200자 이내이고 최장이 정확히 200자다. 착수 시점 32항목 중 18개가 200자를 넘었고 최장이 587자였다. 구분자도 전량 `]]: `로 통일했다.
+  - **게이트 2: `--category applications` lint 0건.** 검사 파일 67개에 lint_style error 0 warning 0, lint_terms 0, lint_figures error 0 warning 0이다. `lint-style: ignore`와 `lint-terms: ignore` 예외는 33편 어디에도 없고, index.md 항목에 있던 기존 ignore 1건도 문구 개선으로 사라졌다.
+  - **게이트 3: physical-ai 회귀 없음.** 6절 1항의 두 명령 모두 exit 0이다.
+  - **게이트 4: 카테고리 완료 계량.** 아래 표가 physical-ai 완료치와 대조한 값이다.
+
+| 지표 | applications 착수 | applications 완료 | physical-ai 완료치 |
+|---|---|---|---|
+| 편수 | 32 | 33 (신규 1) | 77 |
+| sources보다 얇은 페이지 | 29 / 32 | **0 / 33** | 1 / 76 |
+| 압축비 중앙값 | 0.67 | **1.34** | 1.95 |
+| 압축비 최소 | 0.38 | **1.30** | 미기록 |
+| wiki 본문 중앙값 | 5,344자 | **13,588자** | 14,156자 |
+| wiki 산문 중앙값 | 4,313자 | **8,083자** | 미기록 |
+| wiki 본문 합계 | 190,511자 | **495,520자** | 미기록 |
+| 표 총수 | 42 | **460** | 737 |
+| 표 편당 | 1.31 | **13.94** | 9.70 |
+| 표 0개 페이지 | 10 | **0** | 0 |
+| `## 핵심 용어` 절 보유 | 0 / 32 | **33 / 33** | 76 / 76 |
+| frontmatter 100줄 초과 | 0 | **0** | 7 (전부 정상 판정) |
+| lint_style error | 2,400 | **0** | 0 |
+| lint_style warning | 80 | **0** | 0 |
+| lint_terms | 55 | **0** | 0 |
+| lint_figures error | 4 | **0** | 미기록 |
+| index.md 200자 초과 | 18 / 32 | **0 / 33** | 0 / 76 |
+
+  - **표 편당 13.94개는 physical-ai 완료치 9.70개의 1.44배**이고 Phase 2 agents의 18.38개보다는 낮다. 본문 중앙값 13,588자는 physical-ai 14,156자에 근접한다. 압축비 중앙값 1.34는 physical-ai 1.95에 못 미치는데, agents(1.42)와 같은 구조적 이유다. sources도 함께 보강해 게이트가 계속 올라갔고, 여기에 더해 **applications 고유의 사정으로 sources가 오히려 줄어든 stem이 여럿 있다** (stale claim 삭제분이 보강분보다 큰 경우다). sources 본문 합계는 307,038자에서 363,670자로 늘었다.
+  - **Phase 3 누적 산출물.** wiki 본문 합계가 190,511자에서 495,520자로 2.60배가 됐고(7개 배치 합산) 표는 42개에서 460개다. sources는 307,038자에서 363,670자, 표 34개에서 208개다. 고아 sources 1편을 신규 wiki로 해소했고, caption 정비 약 50건, figure 큐레이션 조정 2 stem(dnotitia-2026-akb 8장에서 12장, wlsdks 4건 제거), `wiki-uncurated-figure` 4건에서 0건, `candidate-table-mismatch` 16건에서 0건, `empty-figures-dir` 1건에서 0건이다.
+  - **raw 재독으로 잡은 무근거 주장이 722건이다.** 배치별로 B1 80건, B2 81건, B3 197건, B4 133건, B5 120건, B6 26건, B7 85건이다. Phase 2 agents 64편의 약 250건과 비교하면 편당 21.9건 대 3.9건으로 5.6배다. **applications가 유독 오염이 심했던 이유는 아래 세 구조적 원인으로 규명됐다.**
+  - **원인 1: 커밋 `0507ad0`(2026-06-17)의 repo 스텁 전환.** `raw/repos/`의 전체 클론 14개를 README 스텁으로 경량화하면서(185MB에서 344KB) sources와 wiki 28개 파일의 `raw_path`와 `raw_filename`만 갱신하고 본문을 재검증하지 않았다. 영향 stem 13개 중 applications가 8편으로 가장 많고, database 4편(D2, D3, D4, D5)과 evaluations 1편(E2)이 Phase 4와 5에 남아 있다. agents는 0편이라 Phase 2 완료분에 회귀 위험이 없다. 이 8편에서만 무근거 주장 약 340건이 나와 Phase 3 전체의 47%를 차지한다.
+  - **원인 1의 성격 규정 정정: 스텁 전환은 경량화가 아니라 자료 교체였다.** `colbymchenry-codegraph`는 클론이 v0.9.8 시점인데 새로 받은 README가 1.0 판이고 도구 구성이 10종에서 8종으로 바뀌었다. `dragon1086-llm-wiki`도 스텁(361줄)이 삭제된 클론 README(261줄)보다 최신이다. 따라서 스텁 stem의 sources는 **없어진 근거에 기댄 서술**과 **낡은 판을 보고 쓴 서술** 두 종류를 함께 안고 있다.
+  - **원인 2: ingest 시점의 raw 밖 정보 유입.** 스텁 전환 목록 밖인 `graphify-labs-graphify`도 "85.1k stars"와 "www.graphify.com"이 raw에 없었고, **ingest 커밋 `f148a6b`의 메시지 자체가 그 수치를 담고 있다.** 수집 절차가 raw에 없는 정보를 sources에 넣는 경로가 있었다는 뜻이다.
+  - **원인 3: 짧은 자료의 과잉 부연과 인접 페이지 수치 복제.** raw가 3KB 안팎인 LinkedIn 포스트 계열(`alex-xu`, `pandey`, `patel`)에서 일반 지식 부연과 인접 페이지 벤치마크 수치 복제가 나왔다. `pandey` 한 편에서만 인접 논문 수치 12건을 일괄 삭제했다.
+  - **도구 개선 2건.** (1) `scripts/lint_figures.py`의 `parse_candidate_table()`이 8절 표 id 셀의 마크다운 강조를 벗기지 않아 `**fig06**` 표기에서 `candidate-table-mismatch` 오탐 16건을 냈다. `.strip("*_`")`로 정규화했고 전 저장소 총계는 불변이다. (2) 배치 공통 브리프에 부록 두 개를 신설했다. 스텁 stem 목록과 `sources 바이트 / raw 바이트` 위험 지표 표, 그리고 repo stem의 caption을 이미지로 대조하는 절차다.
+  - **새 예측 지표를 확립했다: `sources 바이트 / raw 바이트`.** 실측 대응이 safishamsi 4.0배 64건, joonan30 5.6배 62건, lum1104 2.0배 64건, dragon1086 2.3배 61건, dnotitia-akb 1.3배 37건, garrytan-gbrain 0.7배 32건, wlsdks 0.62배 8건이다. **2배 초과를 고위험으로 본다.** 다만 figure를 가진 stem은 도해의 정보 밀도가 텍스트 바이트에 반영되지 않으므로 보수적으로 적용한다(`patel-2026` 2.3배와 `alex-xu` 3.2배가 그 사례다). Phase 4와 5의 잔여 스텁 stem 비율은 athina-ai-rag-cookbooks 1.1배, marker-inc-korea-autorag 1.1배, ryancodrai-turbovec 0.9배, vectifyai-pageindex 0.8배, hkuds-rag-anything 0.2배로 전부 저위험 대역이다.
+  - **저장소 backlog 3종을 완결했다.** `HUMANIZE-SUMMARY` 잔재가 전 저장소 0파일이 됐고(파일럿 1-1의 10파일이 출발점이며 마지막 4파일이 전부 applications에 있었다), `lint_links`의 `link-unresolved`가 전 저장소 0건이 됐으며(Phase 1-7(b)가 남긴 마지막 1건이 B3의 `datasciencedojo-2026`이었다), frontmatter `title` 금지 기호가 applications에서 전량 해소돼 전 저장소 잔여가 llms 1 stem(2파일)뿐이다.
+  - **사용자 결정 4건을 이행했다.** (1) `dnotitia-2026-akb-product-introduction`의 figure 재크롭 23건 생략(23쪽 슬라이드 덱이라 page-region이 정상 출력이라는 판정), (2) frontmatter `title` 금지 기호는 sources와 wiki만 정규화하고 raw는 보존(원제는 인라인 코드로 sources 1절에 기록), (3) `raw/reports/kmyu-2026-akb-llmwiki-gbrain-comparison-figures/` 삭제(PDF 6페이지에 도식이 0장이라 이미지 0장은 추출 실패가 아니라 대상 부재), (4) Karpathy gist ID는 sources 쪽 근거 없는 인용만 정정하고 CLAUDE.md는 유지(raw 근거가 `442a6bf` 4건 대 `1dd0294` 0건이나 웹 확인이 rule #1로 금지되어 실재 여부는 판정 불가).
+  - **사용자 판단 사항 3건을 남긴다.** (1) `raw/repos/dnotitia-akb.md` frontmatter의 `license: "PolyForm Noncommercial 1.0"`이 같은 파일이 감싼 README 본문(BUSL-1.1)과 모순된다. raw 불변 규약과 충돌하고 같은 성격의 문제가 다른 스텁 stem에도 있을 수 있다. (2) `safishamsi-graphify`와 `graphify-labs-graphify`의 raw 본문이 바이트 단위로 동일하다(각 7,071자). 두 stem은 실질적으로 같은 자료의 중복 수집이고, 지금은 양쪽을 남기고 "확인되는 차이는 소유 주체 표기뿐"이라고 명시해 뒀다. (3) `lum1104-understand-anything`의 저장소가 `Egonex-AI/Understand-Anything`으로 이전됐고 README의 설치 명령과 라이선스 링크가 전부 새 주소를 가리킨다. stem은 옛 주소 기준이고 3-tier가 stem을 공유하므로 변경 비용이 크다.
+  - **Phase 4와 5로 넘기는 확인 사항 4건.** (1) **GraphRAG 원논문 오귀속을 D1에서 재확인한다.** `edge-2024`에 "local search"가 0회이고 원논문은 community summary와 map-reduce 단일 모드만 다루므로, local과 global 이원 구성을 원논문에 귀속하는 서술이 database 페이지에 남아 있는지 본다. (2) `wiki/database/lumer-2025-rethinking-retrieval-from-traditional-retrieval.md:85`의 bare wikilink 3개와 102행의 "corrective RAG(Yan 2024)", "BM25" 표기 근거를 D4에서 확인한다. (3) 스텁 stem 5편(database 4, evaluations 1)에 부록 절차를 적용한다. (4) `sources/google-okf.md:120`과 `wiki/etc/google-okf.md:118`의 gist ID `1dd0294`를 E2에서 정정한다.
+  - **전 저장소 잔여 지표 (Phase 4 이후 소관).** lint_style error 3,155건, warning 81건, lint_terms 93건이다. `lint_links`는 error 0건에 warning 116건(`bare-wikilink` 계열), `lint_figures`는 error 116건과 warning 217건이다. 착수 시점 전 저장소 error 9,202건에서 3,155건으로 65.7% 줄었다.
+  - 부수 관찰 1건. Phase 3 진행 중 다른 세션이 physical-ai 자료 7편을 새로 ingest해 저장소 전체 고아 sources가 0편에서 7편이 됐다. **전부 physical-ai이고 applications는 0편을 유지한다.** 계획서 2-5절이 지정한 5편은 Phase 1-6과 B2로 전량 해소됐다.
 
 ### Phase 4. database 배치 재작성 (D1~D5, 25편)
 

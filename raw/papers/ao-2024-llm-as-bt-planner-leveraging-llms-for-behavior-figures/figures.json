@@ -1,0 +1,192 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior/fig01.png",
+    "raw": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/fig01.png",
+    "page": 1,
+    "caption": "Fig. 1: LLM-as-BT-Planner . Our framework leverages LLMs to generate executable BTs based on scene states and user instructions directly. Left : The conceptual overview of the framework. The LLM takes user instructions as input, generating BT-based task plans based on the scene information and the t",
+    "bbox": [
+      85.92,
+      135.15,
+      526.05,
+      368.69
+    ],
+    "bbox_norm": [
+      0.1404,
+      0.1706,
+      0.8596,
+      0.4655
+    ],
+    "dpi": 300,
+    "area_frac": 0.212,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior/fig02.png",
+    "raw": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/fig02.png",
+    "page": 3,
+    "caption": "Fig. 2: The four proposed in-context learning methods , where the red dashed rectangles show the place in the workflow (shown in Fig. 1) that the contents from different methods can substitute.",
+    "bbox": [
+      48.14,
+      206.52,
+      306.02,
+      482.6
+    ],
+    "bbox_norm": [
+      0.0787,
+      0.2608,
+      0.5,
+      0.6093
+    ],
+    "dpi": 300,
+    "area_frac": 0.147,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior/fig03.png",
+    "raw": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/fig03.png",
+    "page": 4,
+    "caption": "Fig. 3: The examples of (a) the unit-tree generation tasks and (b) the one-step generation tasks. The BTs in the figures are only for illustrative purposes to visualize the processes and their complexity. If the readers are interested in the details of the BTs in the examples, we refer to high-resol",
+    "bbox": [
+      49.37,
+      180.74,
+      304.79,
+      306.49
+    ],
+    "bbox_norm": [
+      0.0807,
+      0.2282,
+      0.498,
+      0.387
+    ],
+    "dpi": 300,
+    "area_frac": 0.066,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior/fig04.png",
+    "raw": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/fig04.png",
+    "page": 4,
+    "caption": "Fig. 4: Experiment setup with a franka panda robot, four tool cubes from Leverage, and a gearset from the Siemens Robot Assembly Challenge.",
+    "bbox": [
+      48.14,
+      511.83,
+      305.96,
+      667.74
+    ],
+    "bbox_norm": [
+      0.0787,
+      0.6462,
+      0.4999,
+      0.8431
+    ],
+    "dpi": 300,
+    "area_frac": 0.083,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior/fig05.png",
+    "raw": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/fig05.png",
+    "page": 6,
+    "caption": "Fig. 5: Robotic assembly of a gear set . The generated BT and the corresponding sequence of actions are shown. The order of actions is labeled by number and shown from left to right, while their corresponding action nodes in the BT are colored green.",
+    "bbox": [
+      73.33,
+      59.61,
+      538.61,
+      284.16
+    ],
+    "bbox_norm": [
+      0.1198,
+      0.0753,
+      0.8801,
+      0.3588
+    ],
+    "dpi": 300,
+    "area_frac": 0.216,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table I",
+    "kind": "table",
+    "file": "assets/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior/tab01.png",
+    "raw": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/tab01.png",
+    "page": 5,
+    "caption": "TABLE I: Result comparison of the four in-context learning methods.",
+    "bbox": [
+      41.74,
+      301.3,
+      304.04,
+      402.0
+    ],
+    "bbox_norm": [
+      0.0682,
+      0.3804,
+      0.4968,
+      0.5076
+    ],
+    "dpi": 300,
+    "area_frac": 0.054,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table II",
+    "kind": "table",
+    "file": "assets/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior/tab02.png",
+    "raw": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/tab02.png",
+    "page": 5,
+    "caption": "TABLE II: Comparison of BT generation results of pre- trained and fine-tuned LLMs in both task types.",
+    "bbox": [
+      305.98,
+      271.62,
+      563.86,
+      412.96
+    ],
+    "bbox_norm": [
+      0.5,
+      0.343,
+      0.9213,
+      0.5214
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ao-2024-llm-as-bt-planner-leveraging-llms-for-behavior-figures/_overlay/p05.png"
+  }
+]

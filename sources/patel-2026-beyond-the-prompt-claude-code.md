@@ -217,7 +217,7 @@ Obsidian 플러그인 `obsidian-claude-code-mcp`를 설치하면 vault를 로컬
 - **본 wiki 내**:
   - [[etc/rahman-2026-a-practical-guide-to-becoming|A Practical Guide to Becoming an AI-Native Engineer]]. 조직과 팀 차원의 AI-native engineering 처방이다. 본 글의 도구 차원 실무 매뉴얼과 추상도가 다른 짝이며, 둘 다 context engineering, verification, 멀티에이전트 오케스트레이션, MCP를 핵심으로 공유한다.
   - [[agents/osmani-2026-loop-engineering|Loop Engineering]]. 같은 harness를 루프 설계 관점에서 다룬다.
-  - [[agents/patel-2026-i-taught-myself-claude-code|I Taught Myself Claude Code]]. 같은 저자의 학습 과정 기록으로, 본 글이 정리한 설정 체계에 이르기까지의 경로를 담는다.
+  - [[agents/patel-2026-i-taught-myself-claude-code|I Taught Myself Claude Code]]. 성이 같은 다른 저자 Manthan Patel의 학습 과정 기록으로, 본 글이 정리한 설정 체계와 같은 대상을 다룬다.
 - **글이 인용한 외부 자료**(웹 검색 금지. 인용 사실만 기록):
   - Anthropic 공식 문서(code.claude.com/docs의 overview, claude-directory, best-practices, memory, skills, sub-agents, plugins, mcp, hooks), Anthropic blog "Best practices for Opus 4.7 with Claude Code"
   - howborisusesclaudecode.com, shanraisshan/claude-code-best-practice

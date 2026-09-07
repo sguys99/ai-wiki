@@ -1,0 +1,114 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/fig01.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/fig01.png",
+    "caption": "Physical-robot evaluation tasks from the paper across three robot embodiments",
+    "source_url": "https://tau0-vla.github.io/media/paper-demo-tasks.png",
+    "bytes": 4605518,
+    "width": 3118,
+    "height": 2041,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/fig02.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/fig02.png",
+    "caption": "τ0-VLA high-level decision making and low-level execution architecture",
+    "source_url": "https://tau0-vla.github.io/media/framework-latest.png",
+    "bytes": 609723,
+    "width": 3200,
+    "height": 1318,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/fig03.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/fig03.png",
+    "caption": "Next-subtask prediction accuracy across evaluation settings",
+    "source_url": "https://tau0-vla.github.io/media/ttc-accuracy.png",
+    "bytes": 61986,
+    "width": 1353,
+    "height": 765,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/fig04.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/fig04.png",
+    "caption": "Test-time compute and accuracy trade-off",
+    "source_url": "https://tau0-vla.github.io/media/ttc-scaling.png",
+    "bytes": 71549,
+    "width": 1268,
+    "height": 533,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/page-full.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/crop01.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/crop02.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/crop03.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/crop04.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/crop05.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/crop06.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/sii-research-2026-tau0-vla-project-page/crop07.png",
+    "raw": "raw/articles/sii-research-2026-tau0-vla-project-page-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

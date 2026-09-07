@@ -1,0 +1,218 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/li-2026-roboclaw-an-agentic-framework-for/fig01.png",
+    "raw": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/fig01.png",
+    "page": 2,
+    "caption": "Fig. 1. RoboClaw workflow across the robot policy lifecycle. A robot developer spec- ifies system configuration, MCP tools, and skills, while RoboClaw provides file-based memory, memory embeddings, search, and management. Data is collected through ba- sic human demonstrations followed by online roll",
+    "bbox": [
+      137.41,
+      109.84,
+      477.95,
+      289.48
+    ],
+    "bbox_norm": [
+      0.2245,
+      0.1387,
+      0.781,
+      0.3655
+    ],
+    "dpi": 300,
+    "area_frac": 0.126,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/li-2026-roboclaw-an-agentic-framework-for/fig02.png",
+    "raw": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/fig02.png",
+    "page": 5,
+    "caption": "Fig. 2. RoboClaw system architecture. A Vision-Language-Model (VLM) acts as a meta-controller operating under an in-context learning paradigm. Multimodal obser- vations are integrated with structured memory (role identity, task-level memory, and working memory) to form the decision context. Through ",
+    "bbox": [
+      137.41,
+      109.83,
+      477.96,
+      310.55
+    ],
+    "bbox_norm": [
+      0.2245,
+      0.1387,
+      0.781,
+      0.3921
+    ],
+    "dpi": 300,
+    "area_frac": 0.141,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/li-2026-roboclaw-an-agentic-framework-for/fig03.png",
+    "raw": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/fig03.png",
+    "page": 6,
+    "caption": "Fig. 3. RoboClaw Autonomous Data Collection Workflow. This diagram illustrates the process of the agent interacting with a user to initiate a data collection task for the robot (”place the primer into the drawer”). The agent autonomously processes visual observations using MCP tools, evaluates the i",
+    "bbox": [
+      137.41,
+      109.83,
+      477.95,
+      250.06
+    ],
+    "bbox_norm": [
+      0.2245,
+      0.1387,
+      0.781,
+      0.3157
+    ],
+    "dpi": 300,
+    "area_frac": 0.099,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/li-2026-roboclaw-an-agentic-framework-for/fig04.png",
+    "raw": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/fig04.png",
+    "page": 8,
+    "caption": "Fig. 4. Human effort comparison for data collection. (a) Relative human time required to collect the same amount of data. (b) Relative human intervention during rollout ex- ecution. All values are normalized with respect to our method (Ours = 1). (c) Success rate across iterations on the vanity tabl",
+    "bbox": [
+      137.41,
+      109.83,
+      477.93,
+      205.68
+    ],
+    "bbox_norm": [
+      0.2245,
+      0.1387,
+      0.7809,
+      0.2597
+    ],
+    "dpi": 300,
+    "area_frac": 0.067,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/li-2026-roboclaw-an-agentic-framework-for/fig05.png",
+    "raw": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/fig05.png",
+    "page": 14,
+    "caption": "Fig. 5. Long-horizon task execution with agent orchestration. The same VLM-based agent plans over the vanity table tidying task and dynamically composes independent forward policy checkpoints (primer placement, lipstick insertion, lotion placement and tissue wipe), invoking re-planning when needed.",
+    "bbox": [
+      137.41,
+      109.87,
+      477.86,
+      448.05
+    ],
+    "bbox_norm": [
+      0.2245,
+      0.1387,
+      0.7808,
+      0.5657
+    ],
+    "dpi": 300,
+    "area_frac": 0.238,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/li-2026-roboclaw-an-agentic-framework-for/tab01.png",
+    "raw": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/tab01.png",
+    "page": 10,
+    "caption": "Table 1. Training hyperparameters for π 0 . 5 fine-tuning.",
+    "bbox": [
+      172.81,
+      133.4,
+      442.57,
+      228.21
+    ],
+    "bbox_norm": [
+      0.2824,
+      0.1684,
+      0.7232,
+      0.2881
+    ],
+    "dpi": 300,
+    "area_frac": 0.053,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/li-2026-roboclaw-an-agentic-framework-for/tab02.png",
+    "raw": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/tab02.png",
+    "page": 10,
+    "caption": "Table 2. Success rates of inverse reset policies across four manipulation tasks.",
+    "bbox": [
+      151.67,
+      251.13,
+      460.62,
+      295.35
+    ],
+    "bbox_norm": [
+      0.2478,
+      0.3171,
+      0.7526,
+      0.3729
+    ],
+    "dpi": 300,
+    "area_frac": 0.028,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/li-2026-roboclaw-an-agentic-framework-for/tab03.png",
+    "raw": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/tab03.png",
+    "page": 11,
+    "caption": "Table 3. Success rates of forward manipulation policies across rollout iterations.",
+    "bbox": [
+      173.89,
+      129.16,
+      441.46,
+      217.22
+    ],
+    "bbox_norm": [
+      0.2841,
+      0.1631,
+      0.7213,
+      0.2743
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-roboclaw-an-agentic-framework-for-figures/_overlay/p11.png"
+  }
+]

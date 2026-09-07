@@ -432,7 +432,7 @@ Closing Notes는 다섯 가지를 남긴다. `CLAUDE.md`는 계속 쌓이는 인
 
 ## 관련 페이지
 
-- [[agents/patel-2026-i-taught-myself-claude-code]]: 같은 저자가 Claude Code를 익힌 과정을 기록한 글이다. 본 페이지가 정리한 설정 체계에 이르기까지의 학습 경로를 담는다
+- [[agents/patel-2026-i-taught-myself-claude-code]]: 성이 같은 다른 저자 Manthan Patel이 Claude Code를 익힌 과정을 기록한 글이다. 본 페이지가 정리한 설정 체계와 같은 대상을 다룬다
 - [[agents/osmani-2026-loop-engineering]]: 같은 harness를 루프 설계 관점에서 다룬다. harness는 모델을 감싸 도구와 검증과 상태를 제공하는 실행 환경을 뜻하며, 본 글이 그 구성 요소를 나열한다면 이 글은 구성 요소가 도는 순환 자체를 설계 대상으로 삼는다
 - [[agents/thariq-2026-know-your-unknowns]]: Claude Code 팀 구성원이 쓴 글로, 본 글의 verification 규칙이 왜 필요한지를 모델의 인식 한계 쪽에서 설명한다
 - [[agents/trq212-2026-a-field-guide-to-fable]]: 자율 실행 에이전트의 실전 운용 기록이다. 본 글의 `/goal`과 auto mode 조합이 다루는 무인 실행 구간과 문제 영역이 겹친다

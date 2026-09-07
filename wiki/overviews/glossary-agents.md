@@ -26,6 +26,7 @@ agents 도메인(agentic 시스템·tool use·harness·loop engineering) 전문 
 | policy | policy | 메모리 정책·기억 정책·정책 네트워크 | RL 문맥의 policy는 observation을 받아 action을 정하는 함수다 | agents 도메인은 일반 의미 "정책"(운영 정책 등)이 많아 RL 복합어만 금지 |
 | memory | 메모리 | — | — | 음차 정착(33회). "장기 기억" 같은 인지과학 서술은 허용하되 시스템 구성 요소는 메모리. "기억 정책"은 policy 행 |
 | episodic memory | episodic memory | 일화 기억 | episodic memory는 개별 경험 단위로 저장되는 메모리 층이다 | procedural·semantic memory도 원어 |
+| working memory | working memory | — | working memory는 한 번의 실행 안에서만 유지되며 여러 node나 단계가 함께 읽고 쓰는 메모리 층이다 | episodic memory 행과 짝을 이룬다. "작업 기억"은 attention budget 설명 등 인지과학 비유로 이미 쓰이고 있어 기계 검사에서 뺐다. 지침만 (2026-09 등재, ReAcTree) |
 | orchestration | 오케스트레이션 | — | 오케스트레이션은 여러 에이전트·도구의 실행을 조율하는 층이다 | 음차 정착 |
 | handoff | handoff | — | handoff는 한 에이전트가 작업을 다른 에이전트로 넘기는 전환점이다 | "인계"는 일반어라 지침만 |
 | guardrail | 가드레일 | — | 가드레일은 에이전트의 행동 범위를 제한하는 안전 장치다 | 음차 정착 |
