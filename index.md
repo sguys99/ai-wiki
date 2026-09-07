@@ -121,6 +121,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/nasiriany-2026-robocasa365-a-large-scale-simulation-framework|RoboCasa365 (UT Austin, NVIDIA, ICLR 2026)]]: 과제 365종과 2,200시간 데이터로 VLA 4종을 같은 조건에서 비교한 후속 벤치마크 (2026, paper)
 - [[physical-ai/robocasa-robocasa|robocasa (repo)]]: RoboCasa와 RoboCasa365 공식 구현으로 코드는 MIT, asset은 CC BY 4.0이다. 설치와 첫 실행까지만 담고 과제 목록과 학습 절차는 문서 사이트로 넘긴다 (2026, repo)
 - [[physical-ai/robocasa-2026-robocasa365-project-page|RoboCasa 프로젝트 페이지 (robocasa.ai)]]: 논문 두 편과 코드, 문서, leaderboard 링크를 한 페이지에 모은 공식 홈. 프로젝트 현황을 확인하는 진입로로 쓴다 (2026, article)
+- [[physical-ai/wang-2026-chain-of-interaction-benchmark-coin|COIN (BIGAI, USTC)]]: 환경을 직접 건드려 정보를 얻고 계획을 고치는 interactive reasoning을 재는 manipulation 벤치마크. 과제 90개에서 사람은 40%, 최고 모델은 3.26%에 그친다 (2026, paper)
 - [[physical-ai/xu-2020-fast-lio-a-fast-robust-lidar-inertial|FAST-LIO (HKU MaRS)]]: LiDAR와 IMU를 iterated EKF로 융합하는 LiDAR-inertial odometry. Kalman gain 역행렬을 상태 차원으로 옮겨 실시간으로 동작한다 (2020, paper)
 - [[physical-ai/hku-mars-fast-lio|FAST_LIO (hku-mars, repo)]]: FAST-LIO 계열 공식 구현. direct 방식과 ikd-Tree 기반 LiDAR-inertial odometry의 ROS 패키지, GPL-2.0 (2020, repo)
 - [[physical-ai/taeyoung-2022-fast-lio-paper-review|FAST-LIO 리뷰 (Taeyoung's Blog)]]: FAST-LIO 논문의 수식 전개를 단계별로 풀어 쓴 한국어 리뷰. iterated error state Kalman filter의 update 절차를 논문 절과 짝지어 해설한다 (2022, article)

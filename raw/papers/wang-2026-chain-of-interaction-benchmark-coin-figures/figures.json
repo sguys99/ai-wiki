@@ -1,0 +1,353 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/fig01.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: An illustration of COIN . Our benchmark focuses on evaluating the crucial interactive reasoning ability of Vision-Language-Action (VLA) models and VLM-based robotic planning systems, covering both rich reasoning knowledge and diverse primitive actions.",
+    "bbox": [
+      110.65,
+      75.86,
+      498.86,
+      299.47
+    ],
+    "bbox_norm": [
+      0.1808,
+      0.0958,
+      0.8151,
+      0.3781
+    ],
+    "dpi": 300,
+    "area_frac": 0.179,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/fig02.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/fig02.png",
+    "page": 5,
+    "caption": "Figure 2: Tasks in COIN: we provide diverse tasks with feasible primitive tasks, and provide GT planning for these tasks, which could be used to guide the planning",
+    "bbox": [
+      102.0,
+      75.86,
+      510.01,
+      271.3
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.3425
+    ],
+    "dpi": 300,
+    "area_frac": 0.165,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/fig03.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/fig03.png",
+    "page": 7,
+    "caption": "Figure 3: Model Architecture Comparison: (a) CodeAsPolicy uses VLMs for planning, with execution handled separately by low-level code and constraint optimizers. (b) End-to-End VLA performs in- loop perception and action directly from the environment. (c) Hierarchical VLA (H-VLA) combines high-level ",
+    "bbox": [
+      160.15,
+      75.86,
+      449.36,
+      237.88
+    ],
+    "bbox_norm": [
+      0.2617,
+      0.0958,
+      0.7342,
+      0.3004
+    ],
+    "dpi": 300,
+    "area_frac": 0.097,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/fig04.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/fig04.png",
+    "page": 9,
+    "caption": "Figure 4: Performance heatmap for different models on COIN-Primitive tasks. The visualization reveals that VLA models achieve broader task coverage than CodeAsPolicy approaches, though with different strengths across task types. Color intensity indicates success rate.",
+    "bbox": [
+      130.45,
+      75.86,
+      479.05,
+      217.65
+    ],
+    "bbox_norm": [
+      0.2132,
+      0.0958,
+      0.7828,
+      0.2748
+    ],
+    "dpi": 300,
+    "area_frac": 0.102,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/fig05.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/fig05.png",
+    "page": 14,
+    "caption": "Figure 5: Environment Setup",
+    "bbox": [
+      140.35,
+      75.86,
+      469.15,
+      303.37
+    ],
+    "bbox_norm": [
+      0.2293,
+      0.0958,
+      0.7666,
+      0.383
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/fig06.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/fig06.png",
+    "page": 16,
+    "caption": "Figure 6: Comparison of VLM reasoning abilities on COIN-50 tasks evaluated along expert demon- stration videos. GPT-4o consistently outperforms Gemini 2.0 across different reasoning categories and time steps.",
+    "bbox": [
+      120.56,
+      75.86,
+      488.96,
+      328.82
+    ],
+    "bbox_norm": [
+      0.197,
+      0.0958,
+      0.799,
+      0.4152
+    ],
+    "dpi": 300,
+    "area_frac": 0.192,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/tab01.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/tab01.png",
+    "page": 3,
+    "caption": "Table 1: Comprehensive benchmark comparison including quantitative metrics and reasoning ca- pabilities. COIN demonstrates the longest average trajectory length (988.9 steps) and uniquely combines all critical reasoning capabilities, particularly interactive reasoning. Our systematic eval- uation fr",
+    "bbox": [
+      102.0,
+      33.15,
+      510.0,
+      260.28
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0419,
+      0.8333,
+      0.3286
+    ],
+    "dpi": 300,
+    "area_frac": 0.191,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p03.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/tab02.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/tab02.png",
+    "page": 8,
+    "caption": "Table 2: Trajectory and gripper stability analysis across different task types. Values show mean ± standard deviation, revealing execution quality patterns across model architectures. Bold values indicate performance exceeding human baseline.",
+    "bbox": [
+      153.39,
+      118.05,
+      456.37,
+      265.96
+    ],
+    "bbox_norm": [
+      0.2506,
+      0.1491,
+      0.7457,
+      0.3358
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/tab03.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/tab03.png",
+    "page": 9,
+    "caption": "Table 3: Generalization capability evaluation using COIN-Composition tasks. Models demonstrate severe generalization failures when faced with minor visual or instruction variations from primitive tasks.",
+    "bbox": [
+      145.02,
+      294.23,
+      464.49,
+      360.77
+    ],
+    "bbox_norm": [
+      0.237,
+      0.3715,
+      0.759,
+      0.4555
+    ],
+    "dpi": 300,
+    "area_frac": 0.044,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/tab04.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/tab04.png",
+    "page": 15,
+    "caption": "Table 4: Performance comparison on COIN-50 interactive reasoning tasks. Human participants achieve 40% success rate via teleoperation (100% in real-world settings), while current AI approaches rarely exceed 3% success rates, revealing a substantial capability gap that highlights the significant chal",
+    "bbox": [
+      131.79,
+      129.01,
+      480.21,
+      322.43
+    ],
+    "bbox_norm": [
+      0.2153,
+      0.1629,
+      0.7847,
+      0.4071
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/tab05.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/tab05.png",
+    "page": 17,
+    "caption": "Table 5: Trajectory length comparison across benchmarks. COIN features substantially longer temporal horizons, requiring extended reasoning and planning capabilities.",
+    "bbox": [
+      208.09,
+      313.61,
+      401.42,
+      428.45
+    ],
+    "bbox_norm": [
+      0.34,
+      0.396,
+      0.6559,
+      0.541
+    ],
+    "dpi": 300,
+    "area_frac": 0.046,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/tab06.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/tab06.png",
+    "page": 22,
+    "caption": "Table 6: Complete COIN-Primitive task specifications with visual exam- ples (20 tasks)",
+    "bbox": [
+      102.0,
+      33.15,
+      510.0,
+      447.17
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0419,
+      0.8333,
+      0.5646
+    ],
+    "dpi": 300,
+    "area_frac": 0.349,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/wang-2026-chain-of-interaction-benchmark-coin/tab07.png",
+    "raw": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/tab07.png",
+    "page": 30,
+    "caption": "Table 7: COIN-50 interactive reasoning task specifications with visual examples (50 tasks)",
+    "bbox": [
+      102.0,
+      33.15,
+      531.51,
+      540.42
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0419,
+      0.8685,
+      0.6824
+    ],
+    "dpi": 300,
+    "area_frac": 0.45,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wang-2026-chain-of-interaction-benchmark-coin-figures/_overlay/p30.png"
+  }
+]

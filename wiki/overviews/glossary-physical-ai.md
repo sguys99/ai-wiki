@@ -154,6 +154,10 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | finite state machine | Finite State Machine | 유한 상태 기계·상태 머신 | Finite State Machine은 상태와 transition으로 로봇 제어 흐름을 표현하는 구조다 | 약어 FSM 병용 가능. Behavior Tree 행과 짝을 이룬다. 계층형인 HFSM도 원어 약어로 쓴다 (2026-09 등재) |
 | tick | tick | 틱 신호 | tick은 Behavior Tree의 루트에서 잎으로 흘러 각 노드를 실행시키는 신호다 | BT 실행의 기본 단위. 음차 "틱" 단독은 시간 단위 tick과 겹쳐 원어로 고정한다 (2026-09 등재) |
 | graph edit distance | graph edit distance | 그래프 편집 거리 | graph edit distance는 한 그래프를 다른 그래프와 동형으로 만드는 데 필요한 최소 편집 연산 횟수다 | 약어 GED 병용 가능. Iovino 2024가 BT와 FSM을 같은 자로 재기 위해 도입했다 (2026-09 등재) |
+| interactive reasoning | interactive reasoning | 상호작용 추론 | interactive reasoning은 환경을 계속 건드려 정보를 모으고 그 결과로 계획을 갱신하는 능력이다 | COIN 벤치마크의 평가 대상. long-horizon 행과 구분한다. 전자는 step 수, 이쪽은 상호작용 밀도가 기준이다 (2026-09 등재) |
+| partial observability | partial observability | 부분 관찰 가능성 | partial observability는 로봇이 환경 상태의 일부만 볼 수 있는 조건을 가리킨다 | POMDP 행과 한 묶음. "부분 관측 가능성"은 observation 행의 금지 표기가 이미 잡는다 (2026-09 등재) |
+| POMDP | POMDP | — | POMDP는 상태 전부를 볼 수 없는 조건에서의 순차 의사결정 문제를 형식화한 틀이다 | 약어가 이미 표준이라 풀어 쓰지 않는다. partial observability 행과 짝 (2026-09 등재) |
+| articulated object | articulated object | 다관절 물체 | articulated object는 문이나 서랍처럼 관절로 연결돼 일부만 움직이는 물체를 말한다 | 음차 "아티큘레이티드"도 쓰지 않는다. "관절 물체" 표기가 기존 4개 파일에 남아 있어 일괄 정비 전까지 금지 표기에서 뺀다 (2026-09 등재) |
 
 ## 신규 용어 추가 절차
 
