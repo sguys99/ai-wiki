@@ -1,0 +1,273 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/suzuki-2026-from-dialogue-to-execution-mixture-of-agents/fig01.png",
+    "raw": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/fig01.png",
+    "page": 2,
+    "caption": "Fig. 1. Overview of the proposed framework. A task instruction is turned into a BT, whose uncertainty the LLM analyzes to produce clarification questions. The three expert boxes form the cascade of Sec. III: agent e k holds a prerequisite description P k —the robot’s functional specification, the ta",
+    "bbox": [
+      73.56,
+      44.08,
+      538.44,
+      272.84
+    ],
+    "bbox_norm": [
+      0.1202,
+      0.0557,
+      0.8798,
+      0.3445
+    ],
+    "dpi": 300,
+    "area_frac": 0.219,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/suzuki-2026-from-dialogue-to-execution-mixture-of-agents/fig02.png",
+    "raw": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/fig02.png",
+    "page": 3,
+    "caption": "Fig. 2. Prompt design for the three expert agents, with the wording of the deployed prompts left as issued. The #Prerequisites block ( #Bartender Manual for the Task Domain Expert) is the prerequisite description P k that the answerability predicate α k is evaluated against: each agent answers only ",
+    "bbox": [
+      308.03,
+      45.28,
+      562.9,
+      359.43
+    ],
+    "bbox_norm": [
+      0.5033,
+      0.0572,
+      0.9198,
+      0.4538
+    ],
+    "dpi": 300,
+    "area_frac": 0.165,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/suzuki-2026-from-dialogue-to-execution-mixture-of-agents/fig03.png",
+    "raw": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/fig03.png",
+    "page": 4,
+    "caption": "Fig. 3. Fragment of a generated BT. Repeat realizes the user- specified quantity, the Condition after each Action verifies its outcome, RetryUntilSuccessful re-executes failures, and the Selector falls back to notifying an operator.",
+    "bbox": [
+      48.0,
+      147.64,
+      304.8,
+      279.14
+    ],
+    "bbox_norm": [
+      0.0784,
+      0.1864,
+      0.498,
+      0.3524
+    ],
+    "dpi": 300,
+    "area_frac": 0.07,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/suzuki-2026-from-dialogue-to-execution-mixture-of-agents/fig04.png",
+    "raw": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/fig04.png",
+    "page": 6,
+    "caption": "Fig. 4. BT generated through MoA-assisted interactive planning for the smoothie-making task, with example question–answer interactions. Robot-related questions are answered by the Robot Expert, user-preference questions by the human, and action nodes are assigned either Diffusion Policy or π 0 . 5 .",
+    "bbox": [
+      67.23,
+      44.08,
+      544.56,
+      330.73
+    ],
+    "bbox_norm": [
+      0.1098,
+      0.0557,
+      0.8898,
+      0.4176
+    ],
+    "dpi": 300,
+    "area_frac": 0.282,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/suzuki-2026-from-dialogue-to-execution-mixture-of-agents/fig05.png",
+    "raw": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/fig05.png",
+    "page": 6,
+    "caption": "Fig. 5. Real-robot execution sequence guided by the generated BT, switching between π 0 . 5 and Diffusion Policy according to the action node.",
+    "bbox": [
+      75.35,
+      356.72,
+      532.33,
+      576.92
+    ],
+    "bbox_norm": [
+      0.1231,
+      0.4504,
+      0.8698,
+      0.7284
+    ],
+    "dpi": 300,
+    "area_frac": 0.208,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table I",
+    "kind": "table",
+    "file": "assets/suzuki-2026-from-dialogue-to-execution-mixture-of-agents/tab01.png",
+    "raw": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/tab01.png",
+    "page": 4,
+    "caption": "TABLE I: Design comparison with multi-agent LLM architectures",
+    "bbox": [
+      74.18,
+      53.45,
+      537.82,
+      138.92
+    ],
+    "bbox_norm": [
+      0.1212,
+      0.0675,
+      0.8788,
+      0.1754
+    ],
+    "dpi": 300,
+    "area_frac": 0.082,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/_overlay/p04.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table II",
+    "kind": "table",
+    "file": "assets/suzuki-2026-from-dialogue-to-execution-mixture-of-agents/tab02.png",
+    "raw": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/tab02.png",
+    "page": 5,
+    "caption": "TABLE II: Normalized TED against BTs w/o MoA ( ↓ )",
+    "bbox": [
+      332.6,
+      53.25,
+      538.6,
+      129.21
+    ],
+    "bbox_norm": [
+      0.5435,
+      0.0672,
+      0.8801,
+      0.1631
+    ],
+    "dpi": 300,
+    "area_frac": 0.032,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table III",
+    "kind": "table",
+    "file": "assets/suzuki-2026-from-dialogue-to-execution-mixture-of-agents/tab03.png",
+    "raw": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/tab03.png",
+    "page": 5,
+    "caption": "TABLE III: Node similarity against BTs w/o MoA ( ↑ )",
+    "bbox": [
+      326.32,
+      123.1,
+      545.78,
+      205.58
+    ],
+    "bbox_norm": [
+      0.5332,
+      0.1554,
+      0.8918,
+      0.2596
+    ],
+    "dpi": 300,
+    "area_frac": 0.037,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table IV",
+    "kind": "table",
+    "file": "assets/suzuki-2026-from-dialogue-to-execution-mixture-of-agents/tab04.png",
+    "raw": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/tab04.png",
+    "page": 5,
+    "caption": "TABLE IV: Success rates of actions (10 trials)",
+    "bbox": [
+      334.24,
+      623.41,
+      536.96,
+      717.85
+    ],
+    "bbox_norm": [
+      0.5461,
+      0.7871,
+      0.8774,
+      0.9064
+    ],
+    "dpi": 300,
+    "area_frac": 0.04,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table V",
+    "kind": "table",
+    "file": "assets/suzuki-2026-from-dialogue-to-execution-mixture-of-agents/tab05.png",
+    "raw": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/tab05.png",
+    "page": 8,
+    "caption": "TABLE V: Failure modes, applicability boundaries, and mitigation directions",
+    "bbox": [
+      65.79,
+      52.45,
+      546.21,
+      162.83
+    ],
+    "bbox_norm": [
+      0.1075,
+      0.0662,
+      0.8925,
+      0.2056
+    ],
+    "dpi": 300,
+    "area_frac": 0.109,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/suzuki-2026-from-dialogue-to-execution-mixture-of-agents-figures/_overlay/p08.png"
+  }
+]

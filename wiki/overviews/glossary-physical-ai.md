@@ -158,6 +158,14 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | partial observability | partial observability | 부분 관찰 가능성 | partial observability는 로봇이 환경 상태의 일부만 볼 수 있는 조건을 가리킨다 | POMDP 행과 한 묶음. "부분 관측 가능성"은 observation 행의 금지 표기가 이미 잡는다 (2026-09 등재) |
 | POMDP | POMDP | — | POMDP는 상태 전부를 볼 수 없는 조건에서의 순차 의사결정 문제를 형식화한 틀이다 | 약어가 이미 표준이라 풀어 쓰지 않는다. partial observability 행과 짝 (2026-09 등재) |
 | articulated object | articulated object | 다관절 물체 | articulated object는 문이나 서랍처럼 관절로 연결돼 일부만 움직이는 물체를 말한다 | 음차 "아티큘레이티드"도 쓰지 않는다. "관절 물체" 표기가 기존 4개 파일에 남아 있어 일괄 정비 전까지 금지 표기에서 뺀다 (2026-09 등재) |
+| action node | action node | 액션 노드·행동 노드·Action 노드 | action node는 Behavior Tree의 잎 노드 중 실제 동작을 수행하는 쪽을 말한다 | condition node 행과 짝. 표기 흔들림이 있던 Iovino 2024를 등재와 함께 정비했다 (2026-09 등재) |
+| condition node | condition node | 조건 노드·Condition 노드 | condition node는 Behavior Tree의 잎 노드 중 상태 성립 여부만 확인하는 쪽을 말한다 | Running을 반환하지 않는 점이 action node와의 차이다 (2026-09 등재) |
+| abstention | abstention | 기권·응답 보류 | abstention은 agent가 답할 수 없다고 판단해 응답을 미루고 질문을 그대로 넘기는 선택이다 | Suzuki 2026에서는 실패가 아니라 기본 동작이다. delegation cascade 행과 짝 (2026-09 등재) |
+| delegation cascade | delegation cascade | 위임 캐스케이드·위임 연쇄 | delegation cascade는 agent를 일렬로 놓고 앞선 agent가 답하지 않은 질문만 다음 agent가 받는 구조다 | 마지막 원소가 사람이라 모든 질문이 해소된다. layered MoA와 대비되는 설계 (2026-09 등재) |
+| prerequisite description | prerequisite description | 전제 조건 설명·사전 지식 명세 | prerequisite description은 agent가 사용할 수 있는 지식의 범위를 적어 둔 프롬프트 블록이다 | 기호는 Pk. 로봇 기능 명세나 도메인 매뉴얼이 여기 들어간다 (2026-09 등재) |
+| proxy ratio | proxy ratio | 대리 응답률·대리 비율 | proxy ratio는 사람 개입 없이 해소된 질문의 비율이다 | 기호는 rho. 대화 효율을 재는 지표. 서술어 "대리 응답"은 일반 서술이라 금지하지 않는다 (2026-09 등재) |
+| Tree Edit Distance | Tree Edit Distance | 트리 편집 거리 | Tree Edit Distance는 한 트리를 다른 트리로 바꾸는 데 필요한 노드 삽입, 삭제, 치환의 최소 횟수다 | 약어 TED 병용 가능. graph edit distance 행과 짝을 이룬다 (2026-09 등재) |
+| horizon amplification | horizon amplification | 지평 증폭·호라이즌 증폭·horizon 증폭 | horizon amplification은 노드별 성공률이 곱으로 누적되어 시퀀스가 길어질수록 전체 성공률이 급격히 낮아지는 현상이다 | long-horizon 행과 짝. 반쪽 번역 "horizon 증폭"도 금지 표기에 넣었다 (2026-09 등재) |
 
 ## 신규 용어 추가 절차
 

@@ -266,7 +266,7 @@ policy는 로봇이 현재 상황에서 어떤 동작을 실행할지 정하는 
 | Fallback(Selector) | 자식을 순서대로 실행하다 하나가 성공하면 성공, 모두 실패하면 실패를 반환한다 |
 | Parallel | 자식을 동시에 실행하고 미리 정한 개수가 성공하면 성공을 반환한다 |
 
-잎 노드는 execution node 또는 behavior이며 Action 노드와 Condition 노드로 나뉜다. Action 노드는 실행 중이면 Running, 끝났으면 Success 또는 Failure를 반환하고, Condition 노드는 상태 확인만 하므로 Running 없이 즉시 Success 또는 Failure를 낸다. Running 상태가 있어서 BT는 한 tick보다 긴 동작을 표현할 수 있고, 이 점이 Decision Tree와의 결정적 차이다.
+잎 노드는 execution node 또는 behavior이며 action node와 condition node로 나뉜다. action node는 실행 중이면 Running, 끝났으면 Success 또는 Failure를 반환하고, condition node는 상태 확인만 하므로 Running 없이 즉시 Success 또는 Failure를 낸다. Running 상태가 있어서 BT는 한 tick보다 긴 동작을 표현할 수 있고, 이 점이 Decision Tree와의 결정적 차이다.
 
 **Finite State Machine**은 상태와 transition으로 이뤄진다. transition은 한 상태에서 다른 상태로 실행이 넘어가는 연결을 말한다. 각 상태는 로봇 동작을 담은 컨트롤러이고, 동작의 결과가 이벤트를 일으켜 다음 상태로 실행을 넘긴다. FSM은 PLC용 그래픽 프로그래밍 언어인 Sequential Function Chart를 포함하는 개념이라 산업계에 널리 퍼져 있다.
 
@@ -323,7 +323,7 @@ HFSM은 이 문제를 부분적으로 해결한다. 삽입 지점이 정해지�
 | FSM | 5 이상 (alternative state는 4). fully connected 상태면 4 + n |
 | HFSM | Condition 3, Action 4, control node 5 |
 
-HFSM의 GED는 구성 요소 차이의 함수로 정리된다. 조건 노드 수 차이를 Δc, action 노드 수 차이를 Δa, 내부 제어 노드 수 차이를 Δi라 할 때 `GED = 3Δc + 4Δa + 5Δi`다. 이 공식은 HFSM 그래프 변환 규칙에서 나온다. action 노드는 정점 1개와 엣지 3개, condition 노드는 Running이 없어 엣지 2개, control node는 첫 자식으로 가는 엣지가 더해져 엣지 4개를 기여하고, 실행 결과를 담는 상태 3개가 추가된다.
+HFSM의 GED는 구성 요소 차이의 함수로 정리된다. condition node 수 차이를 Δc, action node 수 차이를 Δa, 내부 제어 노드 수 차이를 Δi라 할 때 `GED = 3Δc + 4Δa + 5Δi`다. 이 공식은 HFSM 그래프 변환 규칙에서 나온다. action node는 정점 1개와 엣지 3개, condition node는 Running이 없어 엣지 2개, control node는 첫 자식으로 가는 엣지가 더해져 엣지 4개를 기여하고, 실행 결과를 담는 상태 3개가 추가된다.
 
 이 규칙으로 Figure 1의 BT를 HFSM으로 옮기면 Fallback 4개, Sequence 2개, Action 4개, Condition 4개에서 정점 17개와 엣지 44개가 나온다.
 
@@ -354,7 +354,7 @@ Figure 2의 sequential FSM은 노드 5개와 엣지 4개이고 Figure 4의 반�
 
 Graphical Elements는 노드와 엣지를 모두 센 값이고, Active Elements는 사람이 직접 조작할 수 있는 요소만 센 값이다.
 
-**BT의 경우** action 노드 M개에 대해 조건 노드도 대략 M개, 각 짝을 묶는 Fallback 노드도 M개, Sequence 노드는 대략 M/2개다. 따라서 노드 총수는 N = 3.5M이고 이것이 Active Elements가 된다. 엣지는 T = N - 1이므로 Graphical Elements는 S = N + T = 7M - 1이다.
+**BT의 경우** action node M개에 대해 condition node도 대략 M개, 각 짝을 묶는 Fallback 노드도 M개, Sequence 노드는 대략 M/2개다. 따라서 노드 총수는 N = 3.5M이고 이것이 Active Elements가 된다. 엣지는 T = N - 1이므로 Graphical Elements는 S = N + T = 7M - 1이다.
 
 **FSM의 경우** action 상태 M개에 SELECTOR를 더해 N = M + 1이다. transition은 상태별 Running 자기 transition N개, action 상태별 Failure transition M개, SELECTOR에서 각 상태로 돌아오는 transition M개, 각 상태에서 다음 상태로 가는 transition M개, SELECTOR에서 결과로 가는 transition 1개다. fully connected 상태가 있으면 `Tfc = Mfc(M - 1)`이 더해진다. 이를 합하면 T = 4M + 2이고 결과 상태를 포함해 S = 5M + 4 + Tfc다. FSM에서는 노드와 transition이 모두 편집 대상이므로 Active Elements와 Graphical Elements가 같다.
 
@@ -370,7 +370,7 @@ fully connected 그래프로 반응성을 구현하는 대안 설계는 상태�
 | Fault-Tolerant FSM | O(n) | f(n*, n) | 3(M + 1) + Tfc | 약 5M + 4 + Tfc | 약 5M + 4 + Tfc |
 | HFSM | O(1) | kn* | 0 | 약 36M - 3 | 약 29M - 3 |
 
-여기서 n은 BT에서는 노드 수, FSM에서는 상태와 transition을 합한 수다. n*은 편집 연산에서 수정해야 하는 노드 또는 상태 수, M은 BT에서는 action 노드 수, FSM에서는 상태 수다.
+여기서 n은 BT에서는 노드 수, FSM에서는 상태와 transition을 합한 수다. n*은 편집 연산에서 수정해야 하는 노드 또는 상태 수, M은 BT에서는 action node 수, FSM에서는 상태 수다.
 
 가독성에는 요소 개수로 환원되지 않는 측면도 있다. FSM은 현재 상태에서 갈 수 있는 다음 동작이 transition으로 명시되므로 운영자가 다음에 무엇이 일어날지 분명히 안다. 실행이 과거 이벤트에 의존하는 인과적 구조이기 때문이다. 반면 BT는 매 반복마다 루트에서 다시 시작하므로 어떤 동작이든 중단되고 실행 흐름이 트리의 다른 곳으로 이동할 수 있어, 운영자에게 더 많은 훈련이 필요하다. 선행 연구가 수정한 `py_trees`는 실행 중인 behavior를 노란색, 성공을 초록색, 실패를 빨간색으로 표시해 이 부담을 줄인다.
 
@@ -380,7 +380,7 @@ fully connected 그래프로 반응성을 구현하는 대안 설계는 상태�
 
 저자들은 FSM 편을 드는 반론도 함께 다룬다. 단순함과 가독성이 가장 중요하다면 BT로도 같은 feed-forward 제어를 만들 수 있다. Memory 노드(mSequence 또는 Sequence*)를 쓰면 이미 성공한 자식을 다시 실행하지 않으므로 Figure 12 같은 open-loop BT가 된다. 이런 목적이라면 BT를 쓸 이점이 없다는 것이 선행 연구의 결론이다.
 
-backchaining 대신 Genetic Programming으로 BT를 생성하면 더 압축된 구조가 나온다. 같은 action과 condition 집합으로 GP를 돌리면 Figure 13 같은 BT가 만들어지는데, 큐브로 이동하는 action을 조건 노드로 보호해 chattering을 피하는 방식을 학습한다. 이 BT는 노드 9개와 엣지 8개로, 대응하는 반응형 FSM의 노드 6개와 엣지 18개보다 단순하다.
+backchaining 대신 Genetic Programming으로 BT를 생성하면 더 압축된 구조가 나온다. 같은 action과 condition 집합으로 GP를 돌리면 Figure 13 같은 BT가 만들어지는데, 큐브로 이동하는 action을 condition node로 보호해 chattering을 피하는 방식을 학습한다. 이 BT는 노드 9개와 엣지 8개로, 대응하는 반응형 FSM의 노드 6개와 엣지 18개보다 단순하다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 

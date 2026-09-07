@@ -165,7 +165,7 @@ Behavior Tree는 깊이 우선 전위 순회로 반복 실행되는 방향 트�
 | Fallback (Selector) | 자식을 순서대로 실행하다 하나가 성공하면 성공, 모두 실패하면 실패를 반환한다 |
 | Parallel | 자식을 동시에 실행하고 미리 정한 개수가 성공하면 성공을 반환한다 |
 
-잎 노드는 execution node 또는 behavior라 부르며 두 종류다. Action 노드는 tick을 받으면 동작을 실행하고 Running, Success, Failure 중 하나를 반환한다. Condition 노드는 상태 확인만 하므로 Running 없이 즉시 Success 또는 Failure를 낸다.
+잎 노드는 execution node 또는 behavior라 부르며 두 종류다. action node는 tick을 받으면 동작을 실행하고 Running, Success, Failure 중 하나를 반환한다. condition node는 상태 확인만 하므로 Running 없이 즉시 Success 또는 Failure를 낸다.
 
 Running 상태의 존재가 BT를 Decision Tree와 갈라놓는다. Decision Tree는 한 번의 평가로 결정이 끝나지만, BT는 Running을 통해 한 tick보다 긴 동작을 표현할 수 있다. 동시에 매 tick마다 트리 전체가 논리적으로 재평가되므로, 우선순위가 높은 동작이 필요해지면 실행 중인 동작이 중단된다.
 
@@ -280,7 +280,7 @@ BT 전용 edit distance 정의가 이미 있지만 트리에만 적용되므로 
 | FSM | 5 이상. alternative state는 4. fully connected 상태면 4 + n |
 | HFSM | Condition 3, Action 4, control node 5 |
 
-HFSM의 GED는 구성 요소 차이의 함수로 정리된다. 조건 노드 수 차이를 Δc, action 노드 수 차이를 Δa, 내부 제어 노드 수 차이를 Δi라 할 때 `GED = 3Δc + 4Δa + 5Δi`다. 이 공식은 HFSM을 그래프로 옮기는 규칙에서 나온다. action 노드는 정점 1개와 엣지 3개를 기여하고, condition 노드는 Running을 반환하지 않으므로 엣지가 하나 적으며, control node는 첫 자식으로 가는 엣지가 더해져 엣지 4개를 기여한다. 여기에 실행 결과를 담는 상태 3개가 추가된다.
+HFSM의 GED는 구성 요소 차이의 함수로 정리된다. condition node 수 차이를 Δc, action node 수 차이를 Δa, 내부 제어 노드 수 차이를 Δi라 할 때 `GED = 3Δc + 4Δa + 5Δi`다. 이 공식은 HFSM을 그래프로 옮기는 규칙에서 나온다. action node는 정점 1개와 엣지 3개를 기여하고, condition node는 Running을 반환하지 않으므로 엣지가 하나 적으며, control node는 첫 자식으로 가는 엣지가 더해져 엣지 4개를 기여한다. 여기에 실행 결과를 담는 상태 3개가 추가된다.
 
 이 규칙으로 Figure 1의 BT를 HFSM으로 옮기면 Fallback 4개, Sequence 2개, Action 4개, Condition 4개에서 정점 17개와 엣지 44개가 나온다. 같은 내용을 BT로 그리면 노드 14개와 엣지 13개다.
 
@@ -335,7 +335,7 @@ Figure 2의 sequential FSM은 노드 5개와 엣지 4개이고 Figure 4의 반�
 
 Graphical Elements는 노드와 엣지를 모두 센 값이고, Active Elements는 사람이 직접 편집할 수 있는 요소만 센 값이다.
 
-**BT의 경우** backchaining 결과에서는 action 노드 M개에 대해 조건 노드도 대략 M개다. 각 조건과 action의 짝을 묶는 Fallback 노드가 M개이고, Sequence 노드 개수는 확장이 필요한 action 수에 달렸지만 어림잡아 M/2개다. 따라서 노드 총수는 N = 3.5M이고 이것이 Active Elements가 된다. 엣지는 부모와 자식을 잇는 연결뿐이라 T = N - 1이므로 Graphical Elements는 S = 7M - 1이다.
+**BT의 경우** backchaining 결과에서는 action node M개에 대해 condition node도 대략 M개다. 각 조건과 action의 짝을 묶는 Fallback 노드가 M개이고, Sequence 노드 개수는 확장이 필요한 action 수에 달렸지만 어림잡아 M/2개다. 따라서 노드 총수는 N = 3.5M이고 이것이 Active Elements가 된다. 엣지는 부모와 자식을 잇는 연결뿐이라 T = N - 1이므로 Graphical Elements는 S = 7M - 1이다.
 
 **FSM의 경우** action 상태 M개에 SELECTOR를 더해 N = M + 1이다. transition은 다음과 같이 구성된다.
 
@@ -362,7 +362,7 @@ fully connected 그래프로 반응성을 구현하는 대안 설계는 상태�
 | Fault-Tolerant FSM | O(n) | f(n*, n) | 3(M + 1) + Tfc | 약 5M + 4 + Tfc | 약 5M + 4 + Tfc |
 | HFSM | O(1) | kn* | 0 | 약 36M - 3 | 약 29M - 3 |
 
-여기서 n은 BT에서는 노드 수, FSM에서는 상태와 transition을 합한 수다. n*은 편집 연산에서 수정해야 하는 노드 또는 상태 수, M은 BT에서는 action 노드 수, FSM에서는 상태 수다.
+여기서 n은 BT에서는 노드 수, FSM에서는 상태와 transition을 합한 수다. n*은 편집 연산에서 수정해야 하는 노드 또는 상태 수, M은 BT에서는 action node 수, FSM에서는 상태 수다.
 
 ![[assets/iovino-2024-comparison-between-behavior-trees-and/tab01.png]]
 *Table I: 세 가지 policy 표현의 지표별 상한. Tfc = Mfc(M - 1)이며 Mfc는 FSM의 fully connected 상태 개수다 (Iovino 2024, p.5)*
@@ -377,7 +377,7 @@ fully connected 그래프로 반응성을 구현하는 대안 설계는 상태�
 
 저자들은 FSM 쪽 반론도 함께 다룬다. 단순함과 가독성이 가장 중요하다면 BT로도 같은 feed-forward 제어를 만들 수 있다. Memory 노드(mSequence 또는 Sequence*)는 마지막으로 실행한 자식의 상태를 기억해 이미 성공한 자식을 다시 실행하지 않는다. 이 노드를 루트에 두면 open-loop BT가 되며, open-loop 실행은 한 번 정한 순서를 중간 피드백 없이 끝까지 내보내는 방식을 말한다. 이런 목적이라면 BT를 쓸 이점이 없다는 것이 선행 연구의 결론이다.
 
-backchaining 대신 Genetic Programming으로 BT를 생성하면 더 압축된 구조가 나온다. 같은 action과 condition 집합으로 Genetic Programming을 실행하면 큐브로 이동하는 action을 조건 노드로 보호하는 BT가 학습되는데, 이 방식이 앞서 본 chattering을 피한다. 결과 BT는 노드 9개와 엣지 8개로, 대응하는 반응형 FSM의 노드 6개와 엣지 18개보다 단순하다. 반응성과 모듈성은 모든 BT가 공유하는 성질이므로 이 구조에서도 유지된다.
+backchaining 대신 Genetic Programming으로 BT를 생성하면 더 압축된 구조가 나온다. 같은 action과 condition 집합으로 Genetic Programming을 실행하면 큐브로 이동하는 action을 condition node로 보호하는 BT가 학습되는데, 이 방식이 앞서 본 chattering을 피한다. 결과 BT는 노드 9개와 엣지 8개로, 대응하는 반응형 FSM의 노드 6개와 엣지 18개보다 단순하다. 반응성과 모듈성은 모든 BT가 공유하는 성질이므로 이 구조에서도 유지된다.
 
 ## 결과
 

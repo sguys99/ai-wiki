@@ -133,6 +133,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/nav2-2026-official-documentation|Nav2 공식 문서 랜딩 (docs.nav2.org)]]: Nav2 공식 문서 rolling 버전 랜딩 페이지. 프로젝트 자기 정의와 제공 기능, ROS 2 배포판별 지원 상태를 담은 1차 출처 (2026, article)
 - [[physical-ai/ros-navigation-navigation2|navigation2 (ros-navigation)]]: Nav2 공식 소스 저장소 README. 40개 가까운 nav2_* 패키지의 빌드 상태 표와 인용 논문 5편의 학술 계보가 실질 내용이다 (2018, repo)
 - [[physical-ai/iovino-2024-comparison-between-behavior-trees-and|Behavior Tree와 FSM 비교 (ABB, ETH, KTH)]]: mobile manipulation 과제에서 두 policy 표현을 모듈성, 반응성, 가독성으로 비교한 논문. 로봇 동작은 같지만 과제가 커질수록 BT의 편집 비용이 낮다 (2024, paper)
+- [[physical-ai/suzuki-2026-from-dialogue-to-execution-mixture-of-agents|MoA 대리 응답과 BT 실행 (Waseda, NII)]]: LLM planner의 확인 질문을 세 expert agent가 겹치지 않게 나눠 답하고 남은 것만 사람이 답하는 대화형 계획. 결과 Behavior Tree의 action node마다 imitation learning policy를 묶어 실제 로봇에서 실행한다 (2026, paper)
 - [[physical-ai/zhai-2025-igniting-vlms-toward-the-embodied|WALL-OSS (X Square Robot)]]: Self-Attention은 공유하고 FFN만 vision-language용과 action용으로 나눈 embodied foundation model. 커리큘럼은 두 단계다 (2025, paper)
 - [[physical-ai/x-square-robot-2026-wall-oss-05-technical-report|Wall-OSS-0.5 기술 보고서]]: VLA pre-training 체크포인트를 초기값이 아니라 policy 그대로 실제 로봇에서 평가한 4B 오픈소스 VLA (2026, paper)
 - [[physical-ai/x-square-robot-wall-x|wall-x (X-Square-Robot)]]: WALL 계열 모델의 학습과 추론 코드 저장소(Apache-2.0). 데이터 준비부터 fine-tuning, 서빙, 평가까지의 경로를 담는다 (2025, repo)
