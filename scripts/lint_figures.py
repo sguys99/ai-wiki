@@ -155,13 +155,19 @@ def parse_candidate_table(lines):
     if start is None:
         return False, []
     rows = []
+    seen_table = False
     for i in range(start + 1, len(lines)):
         line = lines[i]
         if line.startswith("## "):
             break
         m = RE_CAND_ROW.match(line)
         if not m:
+            # 첫 표가 끝나면 이후 표는 읽지 않는다. 재크롭 좌표처럼
+            # 8절 안에 부가 표를 두는 경우의 오탐을 막는다.
+            if seen_table and line.strip() == "":
+                break
             continue
+        seen_table = True
         cells = [c.strip() for c in m.group(1).split("|")]
         if not cells:
             continue
