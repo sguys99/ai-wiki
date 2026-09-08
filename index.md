@@ -52,10 +52,10 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[llms/rombach-2022-high-resolution-image-synthesis-with-latent|LDM (Latent Diffusion)]]: autoencoder latent에서 diffusion을 학습해 비용을 낮춘 모델. cross-attention 조건화, ImageNet FID 3.60 (2022, paper)
 - [[llms/peebles-2022-scalable-diffusion-models-with-transformers|DiT]]: U-Net backbone을 순수 Transformer로 바꾼 latent diffusion. Gflops와 FID 상관 -0.93, ImageNet 256×256 FID 2.27 (2022, paper)
 - [[llms/mentzer-2023-finite-scalar-quantization-vq-vae-made|FSQ]]: VQ-VAE의 벡터 양자화를 차원별 bound와 반올림으로 바꾼 finite scalar quantization. 보조 손실 없이 codebook 사용률 약 100%, MaskGIT과 UViM에서 VQ와 대등 (2023, paper)
-- [[llms/shumailov-2024-ununlearning-unlearning-is-not-sufficient|UnUnlearning]] — ICL 때문에 unlearning(exact 포함)만으로는 LLM 콘텐츠 규제가 불충분하다는 점을 짚은 논문 (2024, paper)
+- [[llms/shumailov-2024-ununlearning-unlearning-is-not-sufficient|UnUnlearning]]: unlearning된 지식을 in-context learning으로 되살리는 ununlearning을 제안하고, exact unlearning도 콘텐츠 규제에 불충분하다고 논증한 논문 (2024, paper)
 - [[llms/cai-2026-vlm3-vision-language-models|VLM3]]: Qwen3-VL-4B에 focal length 통일, 텍스트 픽셀 참조, 데이터 mixture만 더한 SFT로 depth, object 3D, correspondence, pose 네 task에서 expert 모델에 필적 (2026, paper)
-- [[llms/9bow-2026-gpt-5-6-sol-terra-luna|OpenAI GPT-5.6 Sol·Terra·Luna 프리뷰 (9bow)]] — PyTorch Korea 9bow가 옮긴 OpenAI GPT-5.6 프리뷰 소식. 숫자=세대·천체 이름=능력 티어의 새 네이밍으로 Sol(플래그십)·Terra(균형)·Luna(경량) 3종을 가르고, 가격·Terminal-Bench 수치와 함께 미국 정부 협의형 계층 안전 스택·단계적 배포에 절반의 비중을 둔 2차 소식 글 (2026, article)
-- [[llms/panfilov-2026-stealing-reasoning-traces-from-proprietary|Stealing Reasoning Traces from Proprietary LLM APIs]] — provider가 암호화해 클라이언트로 돌려주는 chain-of-thought 블록이 세션·사용자·모델을 넘어 호환된다는 점을 악용해, 강한 모델의 encrypted reasoning trace를 약한 형제 모델에 주입해 평문으로 받아낸다. distillation·secret 추출(315,320 trace에서 API 키·PII 복원)·jailbreak·prompt injection 네 벡터를 Anthropic·OpenAI·Google에 실증한 보안 논문 (2026, paper)
+- [[llms/9bow-2026-gpt-5-6-sol-terra-luna|OpenAI GPT-5.6 Sol/Terra/Luna 프리뷰]]: 9bow의 한국어 소식 글. 세 티어 라인업과 새 네이밍 체계, 1M 토큰 가격표, Terminal-Bench 2.1 등 벤치마크, 4층 안전 스택과 정부 협의 기반 단계적 배포를 전한다 (2026, article)
+- [[llms/panfilov-2026-stealing-reasoning-traces-from-proprietary|Stealing Reasoning Traces]]: 암호화 reasoning 블록의 cross-model 호환성으로 강한 모델의 사고를 약한 모델로 복호화하는 공격. 네 벡터를 세 provider에서 실증 (2026, paper)
 - [[llms/chen-2025-eagle-25-boosting-long-context-post-training|Eagle 2.5]]: NVIDIA long-context VLM. 텍스트 우선 샘플링과 progressive post-training, Eagle-Video-110K로 512프레임 Video-MME 72.4를 낸다 (2025, paper)
 - [[llms/nvlabs-eagle|NVlabs/EAGLE (repo)]]: Eagle, Eagle 2, Eagle 2.5, LocateAnything 네 계열의 공식 저장소이자 11개 모델의 model zoo. GR00T N1부터 N1.6까지의 backbone 채택 시점을 월 단위로 기록한다 (2026, repo)
 
