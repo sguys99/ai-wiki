@@ -19,6 +19,7 @@ sources:
   - zhao-2023-learning-fine-grained-bimanual-manipulation.md
   - open-x-embodiment-2023-robotic-learning-datasets-and-rt-x.md
   - huggingface-lerobot.md
+  - genesis-embodied-ai-genesis-world.md
   - kawaharazuka-2025-vision-language-action-models-for-robotics.md
   - xu-2025-an-anatomy-of-vision-language-action-models.md
   - sa-2026-vision-language-action-models-for.md
@@ -70,9 +71,9 @@ study_path:
 
 ## 요약
 
-`wiki/physical-ai/`는 77개 페이지로 늘었다. 이 문서는 그 지도다. 어떤 자료가 어디에 있고 어떤 순서로 읽으면 되는지, 분류 기준과 태그 어휘는 무엇인지를 한자리에 모은다.
+`wiki/physical-ai/`는 93개 페이지로 늘었다. 이 문서는 그 지도다. 어떤 자료가 어디에 있고 어떤 순서로 읽으면 되는지, 분류 기준과 태그 어휘는 무엇인지를 한자리에 모은다.
 
-카테고리는 실질적으로 두 도메인으로 갈려 있다. 한쪽은 VLA와 foundation model 계열이고 `vla` 태그가 붙은 페이지만 53개다. 다른 쪽은 고전 로보틱스 스택으로, LiDAR odometry 계열 6개와 Nav2 계열 4개가 자기들끼리만 링크를 주고받는다. 두 묶음 사이에는 상호 참조가 거의 없다. CLAUDE.md가 정한 40페이지 분할 검토선을 이미 넘겼으므로 아래 "분할 검토" 절에서 따로 다룬다.
+카테고리는 실질적으로 두 도메인으로 갈려 있다. 한쪽은 VLA와 foundation model 계열이고 `vla` 태그가 붙은 페이지만 64개다. 다른 쪽은 고전 로보틱스 스택으로, LiDAR odometry 계열 6개와 Nav2 계열 4개가 자기들끼리만 링크를 주고받는다. 두 묶음 사이에는 상호 참조가 거의 없다. CLAUDE.md가 정한 40페이지 분할 검토선을 이미 넘겼으므로 아래 "분할 검토" 절에서 따로 다룬다.
 
 자료가 낱개가 아니라 클러스터로 들어왔다는 점도 이 저장소의 특징이다. 한 프로젝트를 놓고 원 논문, 공식 발표글, 구현 저장소, 한국어 해설을 함께 갖고 있는 경우가 여럿이다. 겹마다 담당하는 정보가 달라서 이 중복은 낭비가 아니다.
 
@@ -80,7 +81,9 @@ study_path:
 
 ### 클러스터 분포
 
-프로젝트 단위로 묶으면 카테고리의 모양이 드러난다. 아래 표에서 한 페이지가 두 묶음에 걸치는 경우가 있어 합계는 77과 정확히 맞지 않는다.
+프로젝트 단위로 묶으면 카테고리의 모양이 드러난다. 아래 표는 77개 페이지 시점에 만든 묶음이고, 한 페이지가 두 묶음에 걸치는 경우가 있어 합계는 그 수와도 정확히 맞지 않는다.
+
+이후 추가된 16개 페이지는 아직 이 표에 반영하지 않았다. Behavior Tree와 LLM 계획 계열 3편, τ0-VLA와 Cortex와 HiVLA의 논문과 프로젝트 페이지 6편, RoboClaw와 COIN과 LIBERO-Recover 3편, 대화 기반 실행 1편, awesome 리스트와 클라이언트 저장소 2편, Genesis World 저장소 1편이다. 다음 갱신에서 묶음을 다시 잡는다.
 
 | 클러스터 | 페이지 | 구성 |
 |---|---|---|
@@ -204,6 +207,8 @@ VLA와 직접 이어지지 않는다. 실제 기기를 구동하려면 필요한
 
 모델이 아니라 모델을 재고 올려놓는 층도 따로 있다. RoboCasa 클러스터가 평가 무대를 담당한다. [[physical-ai/nasiriany-2024-robocasa-large-scale-simulation-of-everyday|RoboCasa]]가 주방 장면 120개와 과제 100종으로 출발했고, [[physical-ai/nasiriany-2026-robocasa365-a-large-scale-simulation-framework|RoboCasa365]]가 과제 365종과 2,200시간 데이터로 VLA 4종을 같은 조건에서 비교한다. [[physical-ai/robocasa-robocasa|공식 저장소]]는 설치와 첫 실행까지만 담고 과제 목록과 학습 절차는 문서 사이트로 넘기며, [[physical-ai/robocasa-2026-robocasa365-project-page|프로젝트 페이지]]는 릴리스 이력과 leaderboard 운영처럼 논문에 없는 현황을 담당한다.
 
+시뮬레이션 자체를 만드는 층은 [[physical-ai/genesis-embodied-ai-genesis-world|Genesis World]]가 담당한다. RoboCasa가 장면과 과제를 제공한다면 Genesis World는 그 아래에서 multi-physics 엔진과 렌더러, GPU 커널 컴파일러를 하나의 Python API로 묶는다. 성능 수치를 싣지 않고 예제 카탈로그로 기능 범위를 보이는 자료라, 도입 판단보다는 어떤 물리 현상과 어떤 센서를 다룰 수 있는지 확인하는 용도에 맞는다.
+
 공용 실행 기반은 [[physical-ai/huggingface-lerobot|LeRobot]]이 맡는다. ACT와 Diffusion, π0 계열, GR00T N1.7, SmolVLA를 포함한 policy 22종이 같은 데이터 형식과 같은 학습 CLI 위에서 동작하므로, 이 wiki가 개별 논문 페이지로 다룬 모델 상당수가 여기에 구현으로 들어와 있다.
 
 ### 산업 현황
@@ -268,28 +273,28 @@ VLA와 직접 이어지지 않는다. 실제 기기를 구동하려면 필요한
 
 physical-ai 페이지는 도메인 루트 태그 `physical-ai`를 달고 아래에서 1개에서 3개를 고른다. 표기는 하나만 허용한다.
 
-| 묶음 | 태그와 사용 횟수 (전체 77개 페이지 기준) |
+| 묶음 | 태그와 사용 횟수 (전체 93개 페이지 기준) |
 |---|---|
-| 학습과 제어 방법 | `vla` 53, `robot-learning` 40, `world-model` 15, `imitation-learning` 8, `rl-control` 3 |
-| 플랫폼과 응용 | `manipulation` 38, `humanoid` 14, `mobile-robot` 8, `drone` 2, `autonomous-driving` 2, `locomotion` 0 |
-| 환경과 인식 | `slam` 7, `simulator` 7, `teleoperation` 3, `sim2real` 1, `3d-perception` 1, `spatial-reasoning` 1 |
-| 자원과 운영 | `benchmark` 12, `robot-dataset` 9, `edge-inference` 8, `hardware` 0, `safety` 0 |
+| 학습과 제어 방법 | `vla` 64, `robot-learning` 49, `world-model` 17, `imitation-learning` 9, `rl-control` 3 |
+| 플랫폼과 응용 | `manipulation` 53, `humanoid` 14, `mobile-robot` 9, `drone` 2, `autonomous-driving` 2, `locomotion` 0 |
+| 환경과 인식 | `simulator` 9, `slam` 7, `teleoperation` 5, `sim2real` 1, `3d-perception` 1, `spatial-reasoning` 1 |
+| 자원과 운영 | `benchmark` 18, `robot-dataset` 11, `edge-inference` 8, `hardware` 0, `safety` 0 |
 
-분포가 한쪽으로 크게 쏠려 있다. `vla`가 53회로 전체의 69%라 발견 경로로서의 변별력이 거의 없고, `robot-learning`도 40회로 사정이 같다. 반면 `hardware`와 `safety`, `locomotion` 셋은 한 번도 쓰이지 않았다. SONIC 계열이 locomotion을 다루는데도 `humanoid`와 `teleoperation`으로 붙은 결과다.
+분포가 한쪽으로 크게 쏠려 있다. `vla`가 64회로 전체의 69%라 발견 경로로서의 변별력이 거의 없고, `robot-learning`도 49회로 사정이 같다. 반면 `hardware`와 `safety`, `locomotion` 셋은 한 번도 쓰이지 않았다. SONIC 계열이 locomotion을 다루는데도 `humanoid`와 `teleoperation`으로 붙은 결과다.
 
-1개에서 3개라는 상한도 지켜지지 않고 있다. 77개 중 19개(25%)가 4개를 달았다. 대부분 `vla`와 `robot-learning`, `manipulation`에 하나를 더한 조합이라, 상한을 넘긴 것이라기보다 앞의 세 태그가 거의 자동으로 붙는 것이 원인에 가깝다. 상한을 4로 올릴지, `vla`와 `robot-learning`을 루트 태그처럼 취급해 집계에서 뺄지는 CLAUDE.md를 고쳐야 하는 결정이라 여기서는 기록만 한다.
+1개에서 3개라는 상한도 지켜지지 않고 있다. 93개 중 24개(26%)가 4개를 달았다. 대부분 `vla`와 `robot-learning`, `manipulation`에 하나를 더한 조합이라, 상한을 넘긴 것이라기보다 앞의 세 태그가 거의 자동으로 붙는 것이 원인에 가깝다. 상한을 4로 올릴지, `vla`와 `robot-learning`을 루트 태그처럼 취급해 집계에서 뺄지는 CLAUDE.md를 고쳐야 하는 결정이라 여기서는 기록만 한다.
 
 통제 어휘 밖 태그는 한 건 있었다. 엥지유니버스 14편 리뷰가 `video`를 달고 있었는데, 이것은 태그가 아니라 `type` 값이라 지웠다.
 
 ## 분할 검토
 
-CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분할을 다시 보라고 적어 뒀다. 지금은 77개다. 나눌 선은 태그 분포가 이미 그려 준다.
+CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분할을 다시 보라고 적어 뒀다. 지금은 93개다. 나눌 선은 태그 분포가 이미 그려 준다.
 
 | 묶음 | 페이지 | 성격 |
 |---|---|---|
-| VLA와 foundation model | 약 54 | 학습된 policy가 중심이고 서로 조밀하게 링크된다 |
+| VLA와 foundation model | 약 64 | 학습된 policy가 중심이고 서로 조밀하게 링크된다 |
 | 고전 로보틱스 스택 | 10 | FAST-LIO 6개와 Nav2 4개. 기하와 필터, 플래닝이 중심이고 위 묶음과 상호 참조가 거의 없다 |
-| world model과 생성 | 8 | 예측과 시뮬레이션이 중심이며 VLA 쪽과 서베이를 통해 이어진다 |
+| world model과 생성 | 17 | 예측과 시뮬레이션이 중심이며 VLA 쪽과 서베이를 통해 이어진다 |
 
 가장 명확한 후보는 고전 스택 10개다. 두 FAST-LIO 논문과 Nav2 문서가 VLA 페이지를 인용할 일이 없고 그 반대도 마찬가지다. 다만 10개는 폴더를 새로 만들기엔 적은 수라 아직은 태그로 충분하다는 판단도 가능하다. VLA 묶음이 더 커져 다시 나눠야 할 때가 오면, 그때는 계보 계열(RT에서 OpenVLA와 π를 거쳐 dual-system까지)과 서베이 및 해설 계열로 가르는 편이 자연스럽다. 실제 분할은 CLAUDE.md의 디렉터리 규약을 함께 고쳐야 해서 여기서는 선택지만 남긴다.
 
@@ -297,15 +302,15 @@ CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분�
 
 | 항목 | 값 |
 |---|---|
-| `wiki/physical-ai/` 페이지 | 77 |
-| 자료 유형 | `article` 32, `paper` 29, `repo` 12, `video` 4 |
-| 연도 분포 | 2026년 32, 2025년 25, 2024년 9, 2023년 5, 2022년 2, 2021년 1, 2020년 2, 2018년 1 |
+| `wiki/physical-ai/` 페이지 | 93 |
+| 자료 유형 | `paper` 39, `article` 35, `repo` 15, `video` 4 |
+| 연도 분포 | 2026년 46, 2025년 25, 2024년 11, 2023년 5, 2022년 2, 2021년 1, 2020년 2, 2018년 1 |
 | 한국어 자료 | 21 (WikiDocs primer 9, PyTorch KR 3, 영상 리뷰 4, RFM 연재 2, SLAM과 Nav2 블로그 3) |
 | 인접 카테고리 페이지 | [[llms/cai-2026-vlm3-vision-language-models]], [[llms/chen-2025-eagle-25-boosting-long-context-post-training]], [[llms/nvlabs-eagle]], [[agents/zou-2026-task-focused-memorization-multimodal-agents]] |
-| 용어 SSOT | [[overviews/glossary-physical-ai]] (99개 용어) |
-| 홈 밴드 | `index.md`의 Physical AI 절에 77줄이 모두 올라 있다 |
+| 용어 SSOT | [[overviews/glossary-physical-ai]] (147개 용어) |
+| 홈 밴드 | `index.md`의 Physical AI 절에 93줄이 모두 올라 있다 |
 
-연도 분포에서 읽히는 흐름이 하나 있다. 2026년 자료 32개는 한동안 한국어 primer와 서베이가 대부분이었는데, π0.7과 RoboCasa365, ASPIRE가 들어오면서 1차 연구도 섞이기 시작했다. 다만 원 논문의 무게중심은 여전히 2024년과 2025년이고, 2026년은 그것을 정리하고 해설하는 층이 함께 두꺼워지는 해다.
+연도 분포의 무게중심이 2026년으로 옮겨 갔다. 2026년 자료 46개는 전체의 절반에 가깝고, 한동안 한국어 primer와 서베이가 대부분이던 구성도 바뀌었다. π0.7과 RoboCasa365, ASPIRE에 이어 τ0-VLA와 Cortex, HiVLA, RoboClaw, COIN, LIBERO-Recover 같은 1차 연구가 들어왔고 프로젝트 페이지가 그 옆에 붙는 형태가 반복된다. 2024년과 2025년 자료 36개는 RT 계열과 π 계열, OpenVLA처럼 계보의 기준점이 되는 논문이 차지한다.
 
 ## 앞으로 채울 자리
 

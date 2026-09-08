@@ -123,6 +123,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/nasiriany-2026-robocasa365-a-large-scale-simulation-framework|RoboCasa365 (UT Austin, NVIDIA, ICLR 2026)]]: 과제 365종과 2,200시간 데이터로 VLA 4종을 같은 조건에서 비교한 후속 벤치마크 (2026, paper)
 - [[physical-ai/robocasa-robocasa|robocasa (repo)]]: RoboCasa와 RoboCasa365 공식 구현으로 코드는 MIT, asset은 CC BY 4.0이다. 설치와 첫 실행까지만 담고 과제 목록과 학습 절차는 문서 사이트로 넘긴다 (2026, repo)
 - [[physical-ai/robocasa-2026-robocasa365-project-page|RoboCasa 프로젝트 페이지 (robocasa.ai)]]: 논문 두 편과 코드, 문서, leaderboard 링크를 한 페이지에 모은 공식 홈. 프로젝트 현황을 확인하는 진입로로 쓴다 (2026, article)
+- [[physical-ai/genesis-embodied-ai-genesis-world|Genesis World (Genesis AI, repo)]]: multi-physics 엔진과 렌더러 Nyx, 컴파일러 Quadrants를 한 Python API 아래 묶은 오픈소스 시뮬레이션 플랫폼. 예제 카탈로그와 설치가 전부이고 성능 수치는 없다 (2026, repo)
 - [[physical-ai/wang-2026-chain-of-interaction-benchmark-coin|COIN (BIGAI, USTC)]]: 환경을 직접 건드려 정보를 얻고 계획을 고치는 interactive reasoning을 재는 manipulation 벤치마크. 과제 90개에서 사람은 40%, 최고 모델은 3.26%에 그친다 (2026, paper)
 - [[physical-ai/liu-2026-libero-recover-beyond-task-success-towards|LIBERO-Recover (DUT, Beta Infinity)]]: VLA와 WAM이 실제 실행에서 낸 실패 2,117건을 네 단계 난이도로 정리한 복구 벤치마크. LIBERO에서 90%대를 내던 모델 6종이 여기서는 5.8%에서 34.0%에 그친다 (2026, paper)
 - [[physical-ai/xu-2020-fast-lio-a-fast-robust-lidar-inertial|FAST-LIO (HKU MaRS)]]: LiDAR와 IMU를 iterated EKF로 융합하는 LiDAR-inertial odometry. Kalman gain 역행렬을 상태 차원으로 옮겨 실시간으로 동작한다 (2020, paper)
