@@ -822,8 +822,66 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - index.md 5항목을 317, 215, 187, 177, 224자에서 197, 190, 183, 183, 189자로 다시 쓰고 구분자를 `]]: `로 통일했다. `athina-ai`의 "16개 기법"과 `nirdiamant`의 "8개 카테고리", "저자 오리지널 기법" 표기를 함께 고쳤다. **Database 절 200자 초과가 3개에서 0개가 됐다.** 남은 `]] — ` 구분자 3건은 전부 D5 소관 stem이다.
   - `zhang-2026`의 산문이 18,411자로 CLAUDE.md의 논문 기반 목표 범위(8,000~16,000자)를 넘는다. sources를 21,923자로 보강해 1차 게이트가 함께 올라간 결과이고, 5절의 "1차 게이트가 목표 범위에 우선한다"는 규정에 따라 그대로 뒀다. 표 마크업 비중은 약 37%다.
   - 용어집 등재 후보 22건 누적 (Phase 7-1 소관): Personalized PageRank(PPR), OpenIE, phrase node, passage node, reset probability, recognition memory, sense-making, associativity, continual learning, late interaction(하이픈 유무가 `late interaction` 2파일 대 `late-interaction` 3파일로 갈린다), hidden state(원어 8파일 대 `은닉 상태` 2파일), contrastive(원어 8파일 대 `대조 학습` 5파일), hard negative, multi-vector, vector store, chunk, vector similarity, sub-query, multi-hop, LLM-as-judge.
-- [ ] D5 벡터 양자화 turbovec (3편): zandieh-2025-turboquant-online-vector-quantization-with, ryancodrai-turbovec(title 조합 판정 유지로 재검토 종결 기록), 9bow-2026-turbovec-turboquant-rust-vector-index
-- [ ] D-완료. index.md Database 절 축소, `--category database` lint 0건, physical-ai 회귀 확인, 계량 기록
+- [x] D5 벡터 양자화 turbovec (3편): zandieh-2025-turboquant-online-vector-quantization-with, ryancodrai-turbovec(title 조합 판정 유지로 재검토 종결 기록), 9bow-2026-turbovec-turboquant-rust-vector-index
+  - 완료 (2026-09-08). 3편 전부 게이트를 통과했다. wiki 본문 합계 13,890자에서 49,610자로 3.57배가 됐고 **표는 0개에서 50개**다. 세 편 모두 표 0개 페이지였다. 압축비 중앙값 0.59에서 1.31, 최소값 0.51에서 1.30이다. 편별로는 zandieh-2025 0.51에서 1.300, ryancodrai 0.69에서 1.306, 9bow-2026 0.59에서 1.439다.
+  - sources도 합계 24,077자에서 37,394자, 표 5개에서 26개가 됐다.
+  - lint 5종 0건. 6개 파일에 lint_style error 0 warning 0, lint_terms 0, lint_links error 0 warning 0, lint_figures 0, audit_captions 0이다. 예외 주석은 3편 전부 한 건도 쓰지 않았다.
+  - **`ryancodrai-turbovec`의 title 조합 표기 유지 판정을 재검토 종결로 기록했다** (계획서 지정 사항). `title`은 변경하지 않고 sources 1절에 판정 사실을 남겼다.
+  - **raw 재독이 무근거 주장 47건을 잡았다.** 편별로 `ryancodrai` 21건, `9bow-2026` 20건, `zandieh-2025` 6건이다.
+  - **수치가 raw와 정면 모순인 사례가 5건 나왔다.** 전부 `ryancodrai-turbovec`이고, 무근거를 넘어 결론이 뒤집힌 경우다. (1) recall "FAISS 대비 0.4~3.4점 우위"가 README의 "0.2–1.9 points"와 다르다. (2) **GloVe 2비트가 "1.2점 열세"로 적혀 한계 절 항목까지 되어 있었으나 README는 "0.1 points 이내 동률"이라 적는다.** (3) x86 결과에서 싱글스레드와 멀티스레드가 뒤바뀌어 있었다("2비트 ST는 ±1%, MT만 2~4% 뒤짐"이 README의 "d=1536 single-threaded ~8%"와 반대다). (4) 삭제된 `CHANGELOG.md` 기반 서술 블록 전량("14개 활성 버그 수정", on-disk 포맷 v3, `.tv` 9바이트 헤더, `.tvim` TVIM 매직)이 raw 부재다. (5) Rust 모듈과 함수 이름 4건이 raw 부재다.
+  - **수치 역류의 방향이 처음으로 반대인 사례를 확인했다.** `ryancodrai-turbovec`의 "ARM 12~20%"는 README의 "10–19%"가 아니라 **짝 한국어 소개글 raw 40행의 값**이다. 지금까지 D1에서 D4까지는 논문과 저장소 수치가 해설 글로 흘러가는 방향이었는데, 여기서는 해설 글 수치가 저장소 페이지로 들어왔다. 로컬 SVG 실측은 10.3~16.3%다. **두 담당 subagent가 서로의 파일을 읽지 않은 상태에서 같은 불일치를 독립 확인했다.**
+  - **`9bow-2026`은 확인 항목 60건 중 20건이 무근거였다.** raw가 3,532바이트로 Phase 4 최소인데 arXiv ID, SIMD 커널과 ARM NEON과 AVX-512BW, air-gapped, RaBitQ, Shannon 왜곡률 하한, `docs/api.md`, MMR 미지원, 초구, nibble-LUT 등이 전부 문자열 0회다. **구 sources가 "글에는 명시되지 않았으나"라고 스스로 밝히면서 등재해 둔 항목도 있었다.** D2의 같은 저자 글(`9bow-2026-rag-anything`)에서 나온 것과 같은 패턴이다.
+  - **자료 간 불일치 11건을 버전 격차로 판정했다.** `9bow-2026` 담당자가 README의 "TQ+ 단계는 recall을 최대 +1.4%p 올린다"를 근거로, 글의 "2비트 1.2점 열세" + 1.4%p가 README의 "0.1점 이내 동률"과 맞아떨어짐을 보였다. 글(5월 21일)이 TQ+ 도입 전이고 README 스냅샷(6월 17일)이 이후다. 저자 오기로 단정하지 않고 근거를 들어 구분했다.
+  - **논문 대조에서 게재 정보가 확인되지 않았다.** `9bow-2026` 글과 turbovec README가 모두 TurboQuant을 "ICLR 2026"으로 적지만 **논문 PDF 25쪽 전문에 `ICLR` 문자열이 0회**이고 arXiv 게재일은 2025년 4월 28일이다. 각 페이지는 자기 raw를 충실히 옮긴 것이므로 삭제하지 않고, 오케스트레이터가 `ryancodrai-turbovec` wiki 38행에 출처와 대조 사실을 병기했다. 저자 소속도 글은 "Google Research가 공개"라 적지만 논문 4인 중 2인만 Google Research이고 1인은 Google DeepMind, 1인은 NYU다.
+  - **수학 상수 오기 2건을 정정했다.** `zandieh-2025`의 Theorem 1 상한이 `√(3π)/2 ≈ 2.7`로 적혀 있었으나 `√(3π)/2 = 1.535`다. Figure 3 범례를 직접 판독하고 Panter와 Dite 공식으로 재유도한 결과 실제 상수는 **`√3·π/2 ≈ 2.72`**다. Theorem 2 상한도 π 인자가 빠져 `√(3π)/2 · ‖y‖²/d · 4^-b`로 적혀 있던 것을 **`√3·π²·‖y‖²/d · 4^-b`**로 정정했다. **오케스트레이터가 짝 페이지 2편으로의 전파 여부를 교차 확인한 결과 전파는 없다.** 두 페이지의 "2.7배"는 README 198행("within a factor of 2.7x of the information-theoretic lower bound")에 근거하고 정정된 상수와 일치한다.
+  - **Table 1의 KIVI 5비트 행이 누락돼 있었다.** 원문 Table 1에는 KV Size 5의 KIVI가 있고 평균 50.16으로 3.5비트 TurboQuant의 50.06보다 높은데, 그 행이 빠진 상태에서 "KIVI를 능가"라고 적혀 있었다. 행을 복원하고 유보 문장을 달았다.
+  - **권위 주장 패턴이 5연속으로 확인됐다.** `ryancodrai-turbovec`의 "프로덕션급 Rust 구현"이 무근거인데, raw에서 production-grade는 **비교 대상인 FAISS `IndexPQ` baseline을 수식하는 말**이고 turbovec 자신이 아니다. README는 "built on Google Research's TurboQuant"라고만 하며 공식이나 reference 구현체를 자처하지 않고, baseline 주석에서 "other community reference implementations"와 자기 수치를 비교해 스스로를 커뮤니티 구현 중 하나로 놓는다.
+  - **라이선스 판정.** `ryancodrai-turbovec`은 README 본문에 조항 문장이 없고 shields.io 배지가 사라진 `LICENSE`를 가리켜 **검증 불가**다. D2의 `hkuds-rag-anything`, D3의 `vectifyai-pageindex`와 같은 판정이고 D4의 `athina-ai-rag-cookbooks`(README에 MIT 조항 실재)와 다르다. 사용자 결정대로 값을 유지하고 한계 절에 기록했다.
+  - **`figures[].raw` 로컬 경로를 9건 정정했다.** `ryancodrai-turbovec`의 지정 7건에 더해, README가 참조하지만 후보에서 빠져 있던 `arm_speed_st.svg`와 `x86_speed_st.svg` 2건을 추가해 9건 전부를 `https://raw.githubusercontent.com/RyanCodrai/turbovec/main/docs/{파일명}` 형식으로 바꿨다. D2의 `startrail-org-pixelrag` 4건에 이어 **전 저장소 database 소관 11건이 전부 해소됐고** 잔여는 Phase 5의 `marker-inc-korea-autorag` 12건뿐이다.
+  - **크롭 결함 3건을 기록만 했다.** `zandieh-2025`의 `tab01`은 마지막 행(Ministral-7B-Instruct의 2.5비트)이 아래에서 절반 잘렸고, `fig03`과 `fig05`는 상단 패널 제목 줄이 위에서 절반 잘렸다. 7장 md5 전수 대조로 중복 크롭은 0건이다. 잘린 값은 raw 본문에서 복원해 표에 전량 기재했다.
+  - 자료 자체의 내적 모순 8건을 기록했다. `zandieh-2025` 5건(초록의 "5배 초과" 대 4.3절 "최소 4.5배", 본문 "LongBench-E" 대 Table 1 캡션 "LongBench-V1", 1.3절 `N(1, 1/d)` 대 Lemma 1 `N(0, 1/d)`, 참고문헌 [62]와 [63]이 같은 QJL 논문의 중복 항목), `ryancodrai` 2건, `9bow-2026` 1건(압축률 절이 "OpenAI d=1536 기준"이라면서 1,000만 건 float32를 31GB로 적는데 계산값은 약 61GB다)이다.
+  - 날조 인용은 이 배치에서 **0건**이다. `zandieh-2025`는 표 76개 값 전량을, `ryancodrai`와 `9bow-2026`은 직인용을 raw grep 문자열 일치로 확인했다. D3에서 2건이 나온 뒤 넣은 점검 지시가 D4에 이어 계속 작동했다.
+  - 오케스트레이터 직접 처리 2건. (1) `ryancodrai-turbovec` wiki 38행이 "ICLR 2026에 발표됐으며"를 사실로 적어, README가 그렇게 적는다는 출처와 논문 PDF에 표기가 없다는 대조 사실을 병기했다. (2) 상수 오기 2건의 짝 페이지 전파 여부를 교차 확인했다(전파 없음).
+  - index.md 3항목을 195, 131, 163자에서 182, 188, 167자로 다시 쓰고 **Database 절 마지막 `]] — ` 구분자 3건을 `]]: `로 통일했다.**
+  - 용어집 등재 후보 12건 누적 (Phase 7-1 소관): recall(원어 canonical 제안, "회복률"과 "재현율" 금지 후보), distortion, residual, data-oblivious, codebook, unbiased, Lloyd-Max, bit width, PQ(Product Quantization). **`recall`은 재작성 중 실제로 "회복률"과 원어 혼용이 발생해 단일화한 용어라 등재 우선순위가 높다** (저장소 전체 recall 236회 대 회복률 4파일).
+- [x] D-완료. index.md Database 절 축소, `--category database` lint 0건, physical-ai 회귀 확인, 계량 기록
+  - 완료 (2026-09-08). 네 게이트를 전부 통과했다.
+  - **게이트 1: index.md Database 절 축소.** 25항목 전부 200자 이내이고 최장이 199자다. 착수 시점 200자 초과 5개(최장 317자)가 0개가 됐고, 구분자도 전량 `]]: `로 통일했다. 항목 서술에서 잡아낸 오류는 `microsoft-graphrag`의 "공식 구현체", `hkuds-rag-anything`의 "reference 구현체", `vectifyai-pageindex`의 "reference 구현체", `athina-ai-rag-cookbooks`의 "16개 기법", `nirdiamant-rag-techniques`의 "8개 카테고리"와 "저자 오리지널 기법", `kalane-2026`의 "IBM 엔지니어" 단정, `shanbhogue-2026`의 `파인튜닝` 표기와 `Google DeepMind` 소속이다.
+  - **게이트 2: `--category database` lint 5종 0건.** 검사 파일 51개에 lint_style error 0 warning 0, lint_terms 0, lint_links error 0 warning 0, lint_figures error 0 warning 0(검사 stem 25개), audit_captions 0건이다. **`lint-style: ignore`와 `lint-terms: ignore` 예외는 25편 어디에도 한 건도 없다.**
+  - **게이트 3: 회귀 없음.** 6절 1항의 physical-ai 두 명령과 agents, applications 두 명령 모두 exit 0이다.
+  - **게이트 4: 카테고리 완료 계량.** 아래 표가 physical-ai 완료치와 대조한 값이다.
+
+| 지표 | database 착수 | database 완료 | physical-ai 완료치 |
+|---|---|---|---|
+| 편수 | 25 | 25 | 77 |
+| sources보다 얇은 페이지 | 25 / 25 | **0 / 25** | 1 / 76 |
+| 압축비 중앙값 | 0.59 | **1.31** | 1.95 |
+| 압축비 최소 | 0.395 | **1.172** | 미기록 |
+| wiki 본문 중앙값 | 6,116자 | **19,739자** | 14,156자 |
+| wiki 산문 중앙값 | 4,706자 | **12,053자** | 미기록 |
+| wiki 본문 합계 | 164,775자 | **496,531자** | 미기록 |
+| sources 본문 합계 | 260,296자 | **375,107자** | 미기록 |
+| 표 총수 | 67 | **519** | 737 |
+| 표 편당 | 2.68 | **20.76** | 9.70 |
+| 표 0개 페이지 | 5 | **0** | 0 |
+| `## 핵심 용어` 절 보유 | 0 / 25 | **25 / 25** | 76 / 76 |
+| frontmatter 100줄 초과 | 1 | **1** (정상 판정) | 7 (전부 정상) |
+| lint_style error | 1,752 | **0** | 0 |
+| lint_style warning | 19 | **0** | 0 |
+| lint_terms | 50 | **0** | 0 |
+| lint_links warning | 62 | **0** | 0 |
+| lint_figures error / warning | 30 / 16 | **0 / 0** | 미기록 |
+| audit_captions | 71 | **0** | 0 |
+| index.md 200자 초과 | 5 / 25 | **0 / 25** | 0 / 76 |
+
+  - **표 편당 20.76개는 physical-ai 완료치 9.70개의 2.14배**로 Phase 2 agents의 18.38개와 Phase 3 applications의 13.94개를 넘어 저장소 최고다. 배치가 누적될수록 "표로 꺼낸다"는 지시가 강하게 반영되는 경향이 계속됐다. 본문 중앙값 19,739자도 physical-ai의 14,156자를 넘는다. 압축비 중앙값 1.31은 physical-ai 1.95에 못 미치는데, agents(1.42)와 applications(1.34)와 같은 구조적 이유다. sources를 함께 보강해 게이트가 계속 올라갔고 sources 본문 합계가 260,296자에서 375,107자로 1.44배가 됐다.
+  - frontmatter 100줄 초과 잔여 1편은 정상 판정이다. `dsba-2026-paper-review-graph-based-rag`가 104줄이고 전체 542줄의 19%로, physical-ai 완료치의 정상 범위(14~23%) 안이다. 착수 시점의 1편(`zhang-2026-your-embedding-model-is-smarter`)은 재작성으로 해소됐고, 이 1편은 사용자 승인 슬라이드 figure 추출로 새로 늘어난 것이다.
+  - 압축비 최소 1.172는 `dsba-2025-graphrag-paper-review`다. sources 표 보완 지시로 sources가 18,746자에서 21,107자로 늘어 1.319에서 내려간 값이고, 5절의 "1차 게이트가 목표 범위에 우선한다"는 규정에 따라 그대로 뒀다.
+  - **Phase 4 누적 산출물.** wiki 본문 합계가 164,775자에서 **496,531자**로 3.01배가 됐고(5개 배치와 파일럿 합산) 표는 67개에서 519개다. sources는 260,296자에서 375,107자, 표 72개에서 275개다. figures 백필 69장(D1 21, D2 30, D3 18)과 슬라이드 신규 추출 11장, caption 정비 71건, `wiki-uncurated-figure` 24건에서 0건, `figures-missing` 6건에서 0건, `candidate-table-mismatch` 16건에서 0건, bare-wikilink 61건에서 0건, `figures[].raw` 로컬 경로 11건 정정이다. **raw 재독으로 잡은 무근거 주장이 330건 이상**이고 자료 자체의 내적 불일치 기록이 **93건**이다.
+  - **Phase 4가 규명한 구조적 사실 다섯 가지.** (1) `FinanceBench 98.7%`는 PageIndex가 아니라 Mafin 2.5의 공급자 자체 발표치이고 독립 재검증이 없다. (2) 스텁 전환 대상은 13개가 아니라 **14개**이고 database는 4편이 아니라 **5편**이다(`git show --stat`이 긴 경로를 줄인 추출 오류였다). (3) 스텁 오염은 repo stem 밖으로도 번져 같은 제품을 다룬 article 페이지가 사라진 소스 코드 기준 서술을 담고 있었다. (4) **권위 주장 패턴이 5연속**으로 확인됐다(공식 구현체, reference 구현체 2건, 널리 star 받은, 가장 방대한 카탈로그, 프로덕션급 구현). (5) **개수 주장은 카탈로그성 repo에서 반복적으로 틀린다**(`hkuds` 13개 대 5개, `vectifyai` 3종 대 2종, `athina` 16종 대 13종, `nirdiamant` 8개 대 10개).
+  - **크롭 결함 12건이 누적됐다** (D1 3, D2 3, D3 1, D5 3, D4 5에서 D4가 최다). 유형은 다섯이다: (a) 같은 bbox를 두 id가 공유하는 중복 크롭(md5까지 동일), (b) 캡션 줄이나 하단 괘선 잘림, (c) caption 앵커가 페이지 대부분을 잡아 본문 문단 혼입, (d) 인접 Figure의 캡션 꼬리 혼입, (e) caption 앵커가 같은 페이지의 다른 표를 잡음. 가장 심한 것은 `gutierrez-2025`에서 `tab05`가 `tab04`와, `tab07`이 `tab06`과 md5까지 같아 **Table 5와 Table 7이 아예 포착되지 않은 것**이다. `--force` 금지 규약을 지켜 전부 기록만 했고, 해당 Table은 본문 마크다운 표로 전량 이관해 정보 손실이 없다. `extract_figures.py`의 caption 앵커 로직 개선은 Phase 7-5 후속 과제 후보다.
+  - **전 저장소 잔여 지표 (Phase 5 이후 소관).** lint_style error 1,403건, warning 62건, 위반 파일 44개다. lint_terms 43건에 9개 파일이고, `lint_links`는 error 0건 warning 54건, `lint_figures`는 error 75건 warning 201건이다. Phase 3 완료 시점의 error 3,155건에서 1,403건으로 55.5% 줄었고 착수 시점 9,202건 대비로는 84.8% 줄었다. 남은 카테고리는 llms, evaluations, etc, overviews 9편과 index.md의 해당 절이다.
+  - 전 저장소 검사 파일이 478개로 늘었다. Phase 4 진행 중 다른 세션이 physical-ai 자료를 계속 ingest했고, `lint_figures`의 잔여 error 75건과 warning 201건에도 그 신규 stem 분이 섞여 있다. **database 소관은 0건이다.**
 
 ### Phase 5. llms, evaluations, etc 배치 재작성 (L1~L3, E1~E2, 17편)
 
