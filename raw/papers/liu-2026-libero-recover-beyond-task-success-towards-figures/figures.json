@@ -1,0 +1,354 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/fig01.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: Overview of LIBERO-Recover. LIBERO-Recover collects failure scenarios from SOTA models and expert recovery trajectories via human teleoperation. The radar chart reveals existing models’ limitations in failure recovery.",
+    "bbox": [
+      80.33,
+      75.86,
+      510.23,
+      268.53
+    ],
+    "bbox_norm": [
+      0.1313,
+      0.0958,
+      0.8337,
+      0.3391
+    ],
+    "dpi": 300,
+    "area_frac": 0.171,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/fig02.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2: Comparison of LIBERO-Recover with existing benchmarks. LIBERO-Recover is the first benchmark dedicated to failure recovery, where Rec.",
+    "bbox": [
+      102.0,
+      75.86,
+      510.0,
+      256.32
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.3236
+    ],
+    "dpi": 300,
+    "area_frac": 0.152,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/fig03.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 3: Four recovery difficulty levels of LIBERO-Recover. Each level demands progressively deeper state reasoning, from re-executing a failed action ( L 1 ) to restoring environmental states that block task completion ( L 4 ).",
+    "bbox": [
+      102.0,
+      75.86,
+      510.01,
+      282.86
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.3571
+    ],
+    "dpi": 300,
+    "area_frac": 0.174,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/fig04.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/fig04.png",
+    "page": 6,
+    "caption": "Figure 4: The construction pipeline of LIBERO-Recover.",
+    "bbox": [
+      102.0,
+      75.86,
+      510.15,
+      247.01
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8336,
+      0.3119
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/fig05.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/fig05.png",
+    "page": 6,
+    "caption": "Figure 5: Distribution of LIBERO- Recover scenarios across task suites and recovery difficulty levels, includ- ing LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, LIBERO-10 (LIBERO- 100) and LIBERO-90 (LIBERO-100).",
+    "bbox": [
+      332.44,
+      481.08,
+      518.86,
+      646.73
+    ],
+    "bbox_norm": [
+      0.5432,
+      0.6074,
+      0.8478,
+      0.8166
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/fig06.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/fig06.png",
+    "page": 8,
+    "caption": "Figure 6: The performace of VLAS and WAMS on LIBERO and LIBERO-Recover.",
+    "bbox": [
+      102.0,
+      75.86,
+      510.0,
+      196.63
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.2483
+    ],
+    "dpi": 300,
+    "area_frac": 0.102,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/fig07.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/fig07.png",
+    "page": 9,
+    "caption": "Figure 7: Temporal Manifestation of Failures (RD) in VLAs and WAMs on LIBERO-Recover.",
+    "bbox": [
+      102.0,
+      75.86,
+      510.0,
+      187.5
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.2367
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/fig08.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/fig08.png",
+    "page": 9,
+    "caption": "Figure 8: The RC performace of VLAS and WAMS on LIBERO-Recover.",
+    "bbox": [
+      102.0,
+      210.45,
+      509.99,
+      334.41
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2657,
+      0.8333,
+      0.4222
+    ],
+    "dpi": 300,
+    "area_frac": 0.104,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/fig09.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/fig09.png",
+    "page": 9,
+    "caption": "Figure 9: The impact of Chunk Size on Model Recovery Capability.",
+    "bbox": [
+      102.0,
+      504.81,
+      509.99,
+      625.26
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.6374,
+      0.8333,
+      0.7895
+    ],
+    "dpi": 300,
+    "area_frac": 0.101,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/fig10.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/fig10.png",
+    "page": 11,
+    "caption": "Figure 10: Distribution visualization of training trajectories on LIERO-Recover and LIBERO.",
+    "bbox": [
+      102.0,
+      75.86,
+      510.01,
+      278.3
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8334,
+      0.3514
+    ],
+    "dpi": 300,
+    "area_frac": 0.17,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/tab01.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/tab01.png",
+    "page": 8,
+    "caption": "Table 1: The Multi-level Evaluation on LIBERO-Recover. Darker cells indicate higher recovery success rates. Best results in each difficulty level are shown in bold. PI (PI-0), FAST (PI-0 FAST), GR00T (GR00T N1.5), Wan.(Wan2-Policy) and Cos.(Cosmos-Predict2-Policy).",
+    "bbox": [
+      95.76,
+      289.31,
+      510.01,
+      342.47
+    ],
+    "bbox_norm": [
+      0.1565,
+      0.3653,
+      0.8333,
+      0.4324
+    ],
+    "dpi": 300,
+    "area_frac": 0.045,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/tab02.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/tab02.png",
+    "page": 10,
+    "caption": "Table 2: Performance on LIBERO and LIBERO- Recover after training with mixed LIBERO-Recover expert data.",
+    "bbox": [
+      293.42,
+      183.38,
+      510.0,
+      292.23
+    ],
+    "bbox_norm": [
+      0.4794,
+      0.2315,
+      0.8333,
+      0.369
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/liu-2026-libero-recover-beyond-task-success-towards/tab03.png",
+    "raw": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/tab03.png",
+    "page": 10,
+    "caption": "Table 3: Impact of temporal prompts on model re- covery capability.",
+    "bbox": [
+      293.44,
+      508.17,
+      510.01,
+      568.71
+    ],
+    "bbox_norm": [
+      0.4795,
+      0.6416,
+      0.8333,
+      0.7181
+    ],
+    "dpi": 300,
+    "area_frac": 0.027,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/liu-2026-libero-recover-beyond-task-success-towards-figures/_overlay/p10.png"
+  }
+]
