@@ -885,6 +885,14 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
 
 ### Phase 5. llms, evaluations, etc 배치 재작성 (L1~L3, E1~E2, 17편)
 
+**착수 실측 (2026-09-08, HEAD 779426b).** 17편 전부 재작성 대상이다. 압축비 중앙값 0.69, 최소 0.44(shumailov-2024), 최대 1.03(xlang-ai-osworld). 얇은 페이지 16편, 표 0개 페이지 9편, `## 핵심 용어` 절 보유 0편이다. 카테고리별 lint_style error는 llms 455, evaluations 246, etc 278이고 lint_terms는 evaluations 13(bandi-2026 `도구 호출` 12, index 1), etc 12(rahman-2026 `워크플로우` 10, `컨텍스트 엔지니어링` 2), llms 0이다. lint_figures는 llms error 43(wiki-uncurated 41, figures-missing 2) warning 14, evaluations error 32 warning 20이고 index.md 200자 초과는 LLMs 8, Evaluations 4, Etc 2로 14개(최장 587자 rombach)다. 계획 밖 발견은 아래 LE-0과 각 배치 항목에 적는다.
+
+- [x] LE-0. `lint_figures.py`에 `figures-partial` 규칙 신설 (계획 밖 신규 항목, Phase 5 착수 조사에서 파생). `-figures/figures.json` 매니페스트의 id 중 sources frontmatter `figures:`에 없는 것을 warning으로 보고한다. 기존 `figures-missing`은 키 부재만 잡아, 키는 있는데 후보 일부만 옮긴 **부분 백필**(예: rombach-2022는 51장 중 9장만 기록)이 어느 lint에도 걸리지 않았다
+  - 완료 (2026-09-08). 새 함수 `manifest_ids()`와 `figures-missing` 분기의 else 절 하나로 처리했다. 매니페스트는 리스트 형태와 `{"figures": [...]}` 형태를 모두 읽고 못 읽으면 건너뛴다. severity는 `candidate-table-mismatch`와 같은 warning이다.
+  - 불변 검증 통과. `--all` error 75건과 다른 규칙 건수(candidate-table-mismatch 200, figures-missing 2, orphan-figures-dir 1, wiki-uncurated-figure 73)가 전후 동일하고 신규 warning 8건만 늘었다(201건에서 209건). `--json` 출력 스키마는 무변경이다. 완료 카테고리 agents, applications, database에 신규 검출은 0건이다.
+  - 착수 실측 8 stem. llms 3편(rombach-2022 42개, panfilov-2026 41개, peebles-2022 26개 누락. L1과 L3이 흡수한다)과 physical-ai 5편(reuss-2026 50, learnopencv-2025 46, 9bow-2026-world-action-model-rise 21, sa-2026 9, taeyoung-2022 6)이다. physical-ai 5건은 1-8의 candidate-table-mismatch 158건과 같은 성격(완료 선언 뒤 생긴 lint)이라 Phase 7-5 사용자 결정 후보로 남긴다.
+  - 배치 공통 브리프 부록 B에 "frontmatter가 매니페스트 전량을 담고 있는지 대조하고 일부만 있으면 누락분을 `curated: false`로 추가한다"를 넣었다.
+
 - [ ] L1 생성 모델 기초 (4편, physical-ai action head 계보의 배경): lipman-2022-flow-matching-for-generative-modeling, rombach-2022-high-resolution-image-synthesis-with-latent, peebles-2022-scalable-diffusion-models-with-transformers, mentzer-2023-finite-scalar-quantization-vq-vae-made
 - [ ] L2 Eagle과 VLM (3편, GR00T backbone 계보): chen-2025-eagle-25-boosting-long-context-post-training, nvlabs-eagle, cai-2026-vlm3-vision-language-models
 - [ ] L3 모델 보안과 산업 소식 (3편): shumailov-2024-ununlearning-unlearning-is-not-sufficient, panfilov-2026-stealing-reasoning-traces-from-proprietary, 9bow-2026-gpt-5-6-sol-terra-luna

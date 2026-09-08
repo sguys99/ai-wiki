@@ -3,6 +3,7 @@
 
 CLAUDE.md "Image & Figure Handling"의 규약을 stem 단위로 확인한다:
   [error]   raw/{type}/{stem}-figures/ 에 크롭이 있는데 sources/{stem}.md 에 figures: 키가 없음
+  [warning] figures.json 매니페스트의 id 가 sources figures: 에 일부만 기록됨 (부분 백필)
   [warning] -figures/ 에 대응하는 sources/{stem}.md 가 없음 (stem 규약 밖 고아 디렉토리)
   [warning] -figures/ 가 있는데 이미지가 0장 (추출 실패 잔재)
   [warning] sources 의 curated: true 항목과 wiki 페이지 figures 항목이 어긋남
@@ -238,6 +239,25 @@ def rel(root, path):
     return str(path.relative_to(root) if path.is_relative_to(root) else path)
 
 
+def manifest_ids(fig_dir):
+    """-figures/figures.json 의 id 목록. 매니페스트가 없거나 못 읽으면 빈 리스트.
+
+    extract_figures.py 는 리스트 형태로, 일부 구버전은 {"figures": [...]} 형태로 쓴다.
+    """
+    manifest = fig_dir / "figures.json"
+    if not manifest.exists():
+        return []
+    try:
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    if isinstance(data, dict):
+        data = data.get("figures", [])
+    if not isinstance(data, list):
+        return []
+    return [str(x.get("id")) for x in data if isinstance(x, dict) and x.get("id")]
+
+
 def stem_category(root, stem):
     """sources/{stem}.md frontmatter 의 category. 없으면 wiki 페이지에서, 그것도 없으면 None."""
     for path in (root / "sources" / f"{stem}.md", find_wiki_page(root, stem)):
@@ -277,7 +297,7 @@ def lint_stem(stem, root, figure_dirs):
                 "msg": "이미지가 0장 — 추출 실패 잔재인지 확인",
             })
         else:
-            present, _ = parse_figures(src_lines)
+            present, present_items = parse_figures(src_lines)
             if not present:
                 warnings.append({
                     "file": rel(root, src), "line": max(src_fm_end, 1), "severity": "error",
@@ -285,6 +305,19 @@ def lint_stem(stem, root, figure_dirs):
                     "msg": f"크롭 {n_images}장이 있는데 frontmatter 에 figures: 키가 없음 — "
                            f"Step 2.5 산출물이 Step 3 에 기록되지 않았다",
                 })
+            else:
+                # 키는 있는데 매니페스트의 일부만 옮긴 경우 (부분 백필). sources 는 전 후보를
+                # curated: false 로라도 보존해야 트레이서빌리티가 유지된다 (CLAUDE.md figures 스키마).
+                known = {i["id"] for i in present_items if i["id"]}
+                missing = [i for i in manifest_ids(fig_dir) if i not in known]
+                if missing:
+                    shown = ", ".join(missing[:6]) + (" ..." if len(missing) > 6 else "")
+                    warnings.append({
+                        "file": rel(root, src), "line": max(src_fm_end, 1), "severity": "warning",
+                        "rule": "figures-partial",
+                        "msg": f"figures.json 의 {len(missing)}개 id 가 frontmatter figures 에 없음 "
+                               f"({shown}) — 전 후보를 curated: false 로 기록한다",
+                    })
 
     if src_lines is None:
         return warnings
