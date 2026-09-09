@@ -177,6 +177,9 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | structured memory | structured memory | 구조화 메모리·구조적 기억 | structured memory는 agent가 매 시점 유지하는 컨텍스트 저장소로, 역할과 과제 진행 상황과 단기 실행 이력을 나누어 담는다 | episodic memory 행과 같은 방식으로 복합 memory 용어를 원어로 고정한다. glossary-agents의 메모리 행은 단독 memory에만 적용된다. "구조화된 메모리"는 agents 파일에서 일반 서술로 쓰여 금지 표기에서 뺐다 (2026-09 등재) |
 | GRPO | GRPO | 그룹 상대 정책 최적화·그룹 상대 최적화 | GRPO는 같은 입력에 대해 뽑은 여러 후보 출력 사이의 상대적 advantage로 policy를 최적화해 별도의 value 모델을 두지 않는 강화학습 기법이다 | Group Relative Policy Optimization의 약어이며 약어를 기본 표기로 쓴다. advantage 행과 짝을 이룬다. DeepSeekMath에서 나와 VLA 학습에도 쓰인다 (2026-09 등재) |
 | System 0 | System 0 | 시스템 0 | System 0는 로봇 형상에 의존하는 저수준 실행 층을 가리키며, 상위 policy가 형상별 구동 방식을 직접 배우지 않아도 되게 한다 | dual-process theory와 dual-system VLA 행이 세운 System 1 / System 2 구도에 실행 층을 하나 더 붙인 이름이다. MobileVLA-R1 2.0이 System 2에서 System 1을 거쳐 System 0로 내려가는 구도로 쓴다 (2026-09 등재) |
+| causal hallucination | causal hallucination | 인과 환각·인과적 환각 | causal hallucination은 action 조건부 예측에서 모델이 현재 action과 target 관련 observation 사이의 상관을 이용해 action에서 target evidence로 가는 직접 인과를 만들어내는 실패 양상이다 | Hu 2026(CST-WM)이 embodied visual tracking 문맥에서 이름 붙였다. glossary-agents의 환각 행이 일반 환각을 가리키는 것과 달리 이 행은 예측 구조 안에서 생기는 특정 실패를 가리킨다 (2026-09 등재) |
+| target evidence | target evidence | 목표 증거·타깃 증거 | target evidence는 target이 보이는지와 겉보기 크기가 유효한 추종 거리와 맞는지를 요약한 표현이다 | CST-WM의 latent branch 이름이자 planning 입력이다. world model 계열에서 재사용될 개념이라 표기를 고정한다 (2026-09 등재) |
+| model-predictive control | model-predictive control | — | model-predictive control은 학습한 동역학으로 후보 action을 여러 스텝 앞까지 예측해 점수를 매기고 첫 action만 실행한 뒤 다시 계획하는 제어 방식이다 | 약어 MPC 병용 가능. 번역어 "모델 예측 제어"는 Nav2의 MPPI 설명에서 일반 서술로 이미 쓰이고 있어 기계 검사에서 뺐다. 지침만 (2026-09 등재) |
 
 ## 신규 용어 추가 절차
 

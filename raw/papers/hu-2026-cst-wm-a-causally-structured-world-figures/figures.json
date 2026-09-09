@@ -1,0 +1,633 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/fig01.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/fig01.png",
+    "page": 3,
+    "caption": "Figure 1: Causal structure of action-conditioned prediction in embodied visual tracking. Given an egocentric observation and candidate action sequences (A: forward, turn-left; B: forward, turn- right), the model must imagine which sequence preserves target observability and following distance. Conve",
+    "bbox": [
+      102.0,
+      66.0,
+      510.0,
+      214.68
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.2711
+    ],
+    "dpi": 300,
+    "area_frac": 0.125,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/fig02.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Overall pipeline of CST-WM. (a) Structured state construction. The egocentric observation O ℓ yields a target-evidence token H ℓ (GroundingDINO confidence and normalized target area) and a visual latent Z ℓ (frozen VAE); the robot state x ℓ is integrated from the action history. They form ",
+    "bbox": [
+      102.0,
+      66.0,
+      509.97,
+      246.02
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3106
+    ],
+    "dpi": 300,
+    "area_frac": 0.152,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/fig03.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/fig03.png",
+    "page": 9,
+    "caption": "Figure 3: Qualitative recovery episodes after tem- porary target loss on EVT-Bench.",
+    "bbox": [
+      99.88,
+      223.68,
+      304.66,
+      314.09
+    ],
+    "bbox_norm": [
+      0.1632,
+      0.2824,
+      0.4978,
+      0.3966
+    ],
+    "dpi": 300,
+    "area_frac": 0.038,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/fig04.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/fig04.png",
+    "page": 9,
+    "caption": "Figure 4: GroundingDINO-based target-evidence score vs. relative robot–human distance on EVT- Bench.",
+    "bbox": [
+      295.72,
+      223.68,
+      506.62,
+      314.09
+    ],
+    "bbox_norm": [
+      0.4832,
+      0.2824,
+      0.8278,
+      0.3966
+    ],
+    "dpi": 300,
+    "area_frac": 0.039,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/fig05.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/fig05.png",
+    "page": 10,
+    "caption": "Figure 5: Offline rollout fidelity vs. planning horizon. (a) La- tent prediction error (lower is better). (b) Target-visibility AUROC (higher is better). The gap widens at longer horizons.",
+    "bbox": [
+      102.0,
+      66.0,
+      359.52,
+      164.38
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.5874,
+      0.2075
+    ],
+    "dpi": 300,
+    "area_frac": 0.052,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/fig06.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/fig06.png",
+    "page": 11,
+    "caption": "Figure 6: Qualitative results for real-world tracking in different environments.",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      292.08
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3688
+    ],
+    "dpi": 300,
+    "area_frac": 0.19,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/fig07.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/fig07.png",
+    "page": 11,
+    "caption": "Figure 7: Performance–latency Pareto tradeoff for three planning configurations. Horizontal axis: per-step latency (ms); vertical axis: Re- acquisition Success. Bubble size is proportional to candidate count N .",
+    "bbox": [
+      101.71,
+      292.58,
+      307.1,
+      480.41
+    ],
+    "bbox_norm": [
+      0.1662,
+      0.3694,
+      0.5018,
+      0.6066
+    ],
+    "dpi": 300,
+    "area_frac": 0.08,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/fig08.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/fig08.png",
+    "page": 11,
+    "caption": "Figure 8: Radar chart of the ablation study on Habitat 3.0. Each axis represents a normalized evaluation metric (higher is better; Leak and CR are inverted). The full model (red, shaded) consis- tently encloses the ablated variants.",
+    "bbox": [
+      295.1,
+      292.58,
+      517.63,
+      480.41
+    ],
+    "bbox_norm": [
+      0.4822,
+      0.3694,
+      0.8458,
+      0.6066
+    ],
+    "dpi": 300,
+    "area_frac": 0.086,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab01.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab01.png",
+    "page": 6,
+    "caption": "Table 1: Training procedure for CST-WM.",
+    "bbox": [
+      103.94,
+      159.66,
+      508.06,
+      292.73
+    ],
+    "bbox_norm": [
+      0.1698,
+      0.2016,
+      0.8302,
+      0.3696
+    ],
+    "dpi": 300,
+    "area_frac": 0.111,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab02.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab02.png",
+    "page": 6,
+    "caption": "Table 2: MPC planning procedure for CST-WM with the Cross-Entropy Method.",
+    "bbox": [
+      101.1,
+      301.3,
+      501.72,
+      417.84
+    ],
+    "bbox_norm": [
+      0.1652,
+      0.3804,
+      0.8198,
+      0.5276
+    ],
+    "dpi": 300,
+    "area_frac": 0.096,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab03.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab03.png",
+    "page": 8,
+    "caption": "Table 3: Implementation details: dataset scale, architecture, optimization, planner, and compute.",
+    "bbox": [
+      107.2,
+      84.28,
+      504.8,
+      353.35
+    ],
+    "bbox_norm": [
+      0.1752,
+      0.1064,
+      0.8248,
+      0.4462
+    ],
+    "dpi": 300,
+    "area_frac": 0.221,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab04.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab04.png",
+    "page": 8,
+    "caption": "Table 4: Main quantitative comparison. First block: in-domain EVT-Bench. Second block: standard tracking on Habitat 3.0 with initially visible targets. Third block: cross-dataset transfer by training on EVT-Bench and testing on Habitat 3.0. Best in bold , second in underline.",
+    "bbox": [
+      99.88,
+      379.31,
+      517.63,
+      453.08
+    ],
+    "bbox_norm": [
+      0.1632,
+      0.4789,
+      0.8458,
+      0.5721
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab05.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab05.png",
+    "page": 9,
+    "caption": "Table 5: Tracking recovery after temporary target loss on EVT-Bench. Re-acq.: Re-acquisition Success; TTR: Time to Re-acquire (steps); Post-F: Post-Reacquisition Following Rate; Rec-ES: Recovery Episode Success. Best in bold , second in underline.",
+    "bbox": [
+      102.0,
+      103.07,
+      510.01,
+      233.29
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1301,
+      0.8334,
+      0.2946
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab06.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab06.png",
+    "page": 10,
+    "caption": "Table 6: Planning-value consistency: rank correlation with simulator- induced ranking. Best in bold , sec- ond in underline.",
+    "bbox": [
+      377.61,
+      128.56,
+      487.83,
+      189.12
+    ],
+    "bbox_norm": [
+      0.617,
+      0.1623,
+      0.7971,
+      0.2388
+    ],
+    "dpi": 300,
+    "area_frac": 0.014,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab07.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab07.png",
+    "page": 10,
+    "caption": "Table 7: Jacobian leakage distribution. Lower values indicate better suppression of direct action leakage into the target-evidence branch. Best in bold , second in underline (leakage columns only).",
+    "bbox": [
+      147.59,
+      228.87,
+      464.41,
+      298.9
+    ],
+    "bbox_norm": [
+      0.2412,
+      0.289,
+      0.7588,
+      0.3774
+    ],
+    "dpi": 300,
+    "area_frac": 0.046,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab08.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab08.png",
+    "page": 10,
+    "caption": "Table 8: Jacobian leakage summary. Lower values indi- cate weaker direct action leakage into the target-evidence branch.",
+    "bbox": [
+      125.58,
+      325.06,
+      430.12,
+      371.9
+    ],
+    "bbox_norm": [
+      0.2052,
+      0.4104,
+      0.7028,
+      0.4696
+    ],
+    "dpi": 300,
+    "area_frac": 0.029,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab09.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab09.png",
+    "page": 10,
+    "caption": "Table 9: Robot-motion-only check on Habitat 3.0.",
+    "bbox": [
+      350.89,
+      324.1,
+      490.79,
+      375.2
+    ],
+    "bbox_norm": [
+      0.5734,
+      0.4092,
+      0.8019,
+      0.4737
+    ],
+    "dpi": 300,
+    "area_frac": 0.015,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab10.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab10.png",
+    "page": 10,
+    "caption": "Table 10: Interventional analysis under action swap. Lower action-induced variance and lower pairwise distance indicate weaker direct action leakage. Best in bold , second in underline.",
+    "bbox": [
+      107.45,
+      401.85,
+      504.55,
+      462.42
+    ],
+    "bbox_norm": [
+      0.1756,
+      0.5074,
+      0.8244,
+      0.5839
+    ],
+    "dpi": 300,
+    "area_frac": 0.05,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab11.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab11.png",
+    "page": 12,
+    "caption": "Table 11: Validation of the target-evidence proxy and the distance-aware objective on Habitat 3.0. DRS: Distance-Range Success; Re-acq.: Re-acquisition Success after temporary loss.",
+    "bbox": [
+      127.6,
+      95.19,
+      484.4,
+      165.22
+    ],
+    "bbox_norm": [
+      0.2085,
+      0.1202,
+      0.7915,
+      0.2086
+    ],
+    "dpi": 300,
+    "area_frac": 0.052,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab12.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab12.png",
+    "page": 12,
+    "caption": "Table 12: Cross-humanoid distance-aware tracking validation on Habitat 3.0. Mono. ρ : Spearman correlation between proxy score and true relative distance trend after sign inversion. Best in bold .",
+    "bbox": [
+      140.27,
+      186.46,
+      481.52,
+      236.47
+    ],
+    "bbox_norm": [
+      0.2292,
+      0.2354,
+      0.7868,
+      0.2986
+    ],
+    "dpi": 300,
+    "area_frac": 0.035,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab13.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab13.png",
+    "page": 12,
+    "caption": "Table 13: Condition-wise ablation breakdown on Habi- tat 3.0. Best in bold , second in underline.",
+    "bbox": [
+      101.71,
+      256.15,
+      322.4,
+      341.81
+    ],
+    "bbox_norm": [
+      0.1662,
+      0.3234,
+      0.5268,
+      0.4316
+    ],
+    "dpi": 300,
+    "area_frac": 0.039,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab14.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab14.png",
+    "page": 12,
+    "caption": "Table 14: Additional architecture ablations on Habitat 3.0.",
+    "bbox": [
+      337.05,
+      263.05,
+      500.67,
+      333.08
+    ],
+    "bbox_norm": [
+      0.5507,
+      0.3321,
+      0.8181,
+      0.4206
+    ],
+    "dpi": 300,
+    "area_frac": 0.024,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab15",
+    "label": "Table 15",
+    "kind": "table",
+    "file": "assets/hu-2026-cst-wm-a-causally-structured-world/tab15.png",
+    "raw": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/tab15.png",
+    "page": 12,
+    "caption": "Table 15: Per-seed breakdown of the full model on Habitat 3.0 standard tracking.",
+    "bbox": [
+      241.25,
+      348.02,
+      365.86,
+      409.92
+    ],
+    "bbox_norm": [
+      0.3942,
+      0.4394,
+      0.5978,
+      0.5176
+    ],
+    "dpi": 300,
+    "area_frac": 0.016,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/hu-2026-cst-wm-a-causally-structured-world-figures/_overlay/p12.png"
+  }
+]

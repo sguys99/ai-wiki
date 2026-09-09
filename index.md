@@ -160,6 +160,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform|Cosmos World Foundation Model Platform (NVIDIA)]]: 영상 curation과 토크나이저, WFM 8종을 함께 공개한 NVIDIA의 world model 플랫폼 논문 (2025, paper)
 - [[physical-ai/wu-2023-unleashing-large-scale-video-generative|GR-1 (ByteDance Research)]]: 사람 영상에서 미래 프레임 예측을 배운 뒤 로봇 데이터로 학습한 manipulation policy. video generative pre-training의 출발점 (2023, paper)
 - [[physical-ai/bytedance-gr-1|GR-1 (bytedance, repo)]]: GR-1 논문의 공식 코드 저장소(Apache-2.0). CALVIN 평가 경로와 가중치만 공개하고 pre-training과 fine-tuning 코드는 없다 (2024, repo)
+- [[physical-ai/hu-2026-cst-wm-a-causally-structured-world|CST-WM (NYU Abu Dhabi)]]: 사람을 따라가는 embodied visual tracking용 world model. action이 target evidence를 직접 갱신하는 경로를 아키텍처로 끊고 MPC로 추종과 재획득을 함께 처리한다 (2026, paper)
 
 ## Agents (agents)
 
