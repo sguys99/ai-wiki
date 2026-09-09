@@ -1,0 +1,10 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/kang-2026-no-longer-prompting-claude/page-full.png",
+    "raw": "raw/articles/kang-2026-no-longer-prompting-claude-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]

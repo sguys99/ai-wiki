@@ -1,0 +1,46 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/kim-2026-ai-prd-eval-plan/fig01.png",
+    "raw": "raw/articles/kim-2026-ai-prd-eval-plan-figures/fig01.png",
+    "caption": "",
+    "source_url": "https://www.wishket.com/media/news/3809/image3.png",
+    "bytes": 38639,
+    "width": 744,
+    "height": 363,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/kim-2026-ai-prd-eval-plan/fig02.png",
+    "raw": "raw/articles/kim-2026-ai-prd-eval-plan-figures/fig02.png",
+    "caption": "",
+    "source_url": "https://www.wishket.com/media/news/3809/image4.png",
+    "bytes": 90717,
+    "width": 1022,
+    "height": 487,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/kim-2026-ai-prd-eval-plan/fig03.png",
+    "raw": "raw/articles/kim-2026-ai-prd-eval-plan-figures/fig03.png",
+    "caption": "",
+    "source_url": "https://www.wishket.com/media/news/3809/image5.png",
+    "bytes": 134252,
+    "width": 930,
+    "height": 423,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/kim-2026-ai-prd-eval-plan/page-full.png",
+    "raw": "raw/articles/kim-2026-ai-prd-eval-plan-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]

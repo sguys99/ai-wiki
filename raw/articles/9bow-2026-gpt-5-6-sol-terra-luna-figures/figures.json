@@ -1,0 +1,74 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/9bow-2026-gpt-5-6-sol-terra-luna/fig01.jpg",
+    "raw": "raw/articles/9bow-2026-gpt-5-6-sol-terra-luna-figures/fig01.jpg",
+    "caption": "GPT-5.6 Sol, Terra, Luna 모델 가격표 소개 이미지",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/original/3X/f/0/f088bfcb17e4f7a8da3d2ba48d6391fa5a9201d9.jpeg",
+    "bytes": 222274,
+    "width": 1533,
+    "height": 863,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/9bow-2026-gpt-5-6-sol-terra-luna/fig02.png",
+    "raw": "raw/articles/9bow-2026-gpt-5-6-sol-terra-luna-figures/fig02.png",
+    "caption": "Terminal-Bench 2.1 모델별 점수 비교 그래프",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/original/3X/9/3/932a711265e7b71d352574355dc7f2a56344667d.png",
+    "bytes": 59978,
+    "width": 1584,
+    "height": 1032,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/9bow-2026-gpt-5-6-sol-terra-luna/fig03.png",
+    "raw": "raw/articles/9bow-2026-gpt-5-6-sol-terra-luna-figures/fig03.png",
+    "caption": "GeneBench v1 출력 토큰 대비 점수 곡선",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/original/3X/2/3/23deec9781d3f8db9415235b180d4118deca9848.png",
+    "bytes": 62767,
+    "width": 1574,
+    "height": 1072,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/9bow-2026-gpt-5-6-sol-terra-luna/fig04.png",
+    "raw": "raw/articles/9bow-2026-gpt-5-6-sol-terra-luna-figures/fig04.png",
+    "caption": "ExploitBench 출력 토큰 대비 익스플로잇 성공률",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/original/3X/1/0/10c215df21020a439e32c970bd3d96177000d09b.png",
+    "bytes": 62314,
+    "width": 1574,
+    "height": 1148,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/9bow-2026-gpt-5-6-sol-terra-luna/page-full.png",
+    "raw": "raw/articles/9bow-2026-gpt-5-6-sol-terra-luna-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "legacy-fig01",
+    "file": null,
+    "raw": "raw/articles/9bow-2026-gpt-5-6-sol-terra-luna-figures/legacy/fig01.png",
+    "caption": "수동 저장본. 본문 가격표를 렌더한 화면 캡처",
+    "strategy": "manual",
+    "curated": false
+  },
+  {
+    "id": "legacy-fig02",
+    "file": null,
+    "raw": "raw/articles/9bow-2026-gpt-5-6-sol-terra-luna-figures/legacy/fig02.png",
+    "caption": "수동 저장본. Terminal-Bench 2.1 그래프 (fig02 원본으로 대체됨)",
+    "strategy": "manual",
+    "curated": false
+  }
+]
