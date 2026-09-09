@@ -238,8 +238,8 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 
 평가 프레임워크(RAGAS, Braintrust), benchmark.
 
-- [[evaluations/marker-inc-korea-autorag|Marker-Inc-Korea/AutoRAG (repo)]] — RAG 파이프라인의 노드별 모듈 조합을 그리드 서치로 자동 평가·비교해 최적 파이프라인을 골라주는 RAG AutoML 프레임워크. Node Line→Node→Module 3계층 YAML 추상화, 한국어 BM25 토크나이저 기본 제공 (2024, repo)
-- [[evaluations/kim-2026-ai-prd-eval-plan|AI PRD는 무엇이 달라야 하는가 (article)]] — 확률적 AI 기능은 행동이 아니라 "합격선"을 명세해야 한다는 AI PRD 작성론. Eval Plan(스프레드시트 Eval 셋 + 규칙기반·LLM-as-a-Judge·사람 3층 피라미드 + 회귀 테스트)을 문서의 심장으로, 8대 필수 항목과 가격 모델까지 하나의 정합 시스템으로 (2026, article)
+- [[evaluations/marker-inc-korea-autorag|Marker-Inc-Korea/AutoRAG (repo)]]: 사용자의 QA와 corpus 데이터로 여러 RAG module 조합을 자동 평가해 최적 파이프라인을 고르는 RAG AutoML 도구. YAML 3계층 설정과 summary.csv 결과 (2024, repo)
+- [[evaluations/kim-2026-ai-prd-eval-plan|AI PRD는 무엇이 달라야 하는가 (article)]]: AI PRD는 행동이 아니라 받아들여질 만한 답과 판단 방법을 정의해야 한다는 글. Eval 셋, 3층 평가 피라미드, 회귀 테스트의 Eval Plan과 8가지 필수 항목, 가격 모델을 제시한다 (2026, article)
 - [[evaluations/xie-2024-osworld-benchmarking-multimodal-agents-for|OSWorld]]: VM 위 Ubuntu에 369개 task와 실행 채점 스크립트를 둔 computer-use agent 벤치마크. 사람 72.36% 대 최고 12.24%, 실패 75% 이상이 클릭 좌표 오류 (2024, paper)
 - [[evaluations/xlang-ai-osworld|xlang-ai/OSWorld (repo)]]: OSWorld 논문 저자 조직의 환경과 벤치마크 저장소. desktop_env가 여섯 provider를 추상화하고, 2025년 OSWorld-Verified가 문제 수정과 AWS 병렬 평가(1시간 이내)를 더했다 (2024, repo)
 - [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for|MCP-Atlas]]: 실제 MCP 서버 36개와 도구 220개 위 1,000개 task로 tool use를 재는 벤치마크. 최종 답의 원자 claim으로 채점하며 20개 모델 실패의 63.3%가 인지 계열이었다 (2026, paper)
@@ -286,8 +286,8 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 
 미분류, 횡단(cross-cutting) 주제.
 
-- [[etc/rahman-2026-a-practical-guide-to-becoming|AI-Native Engineer 실전 가이드 (Shah Rahman, ByteByteGo)]] — Meta Ads ML 총괄 Shah Rahman의 에세이. 엔지니어가 오케스트레이터로 정체성을 옮길 때 필요한 4 Core Practices와 ADLC 운영 프레임 (2026, article)
-- [[etc/google-okf|Open Knowledge Format (OKF)]] — 데이터·시스템을 둘러싼 지식을 YAML frontmatter markdown으로 표현하는 Google의 벤더 중립 포맷(SPEC v0.2, Apache-2.0). 에이전트가 계속 고쳐 쓰는 코퍼스를 전제로 출처(`sources` + 신뢰도 신호)·신뢰(`generated`·`verified`에서 유도하는 trust tier)·수명주기(`status`·`stale_after`)를 frontmatter 1급 항목으로 올렸고, 수치를 계산하는 승인된 방법을 실어 실행 결과를 결정적 코드로 검사하는 Attested Computation 타입을 새로 뒀다. 신뢰 점수는 저장하지 않고 신호만 남긴다. 포맷 자체가 기여이고 생산(BigQuery+Gemini reference agent)·소비(자기완결 HTML visualizer)는 PoC. 이 ai-wiki와 같은 계보 (2026, repo)
+- [[etc/rahman-2026-a-practical-guide-to-becoming|AI-Native Engineer 실전 가이드 (Shah Rahman, ByteByteGo)]]: Meta Ads ML 총괄의 에세이. orchestrator로의 전환에 필요한 4 Core Practices, ADLC 6절, 가드레일 9종 (2026, article)
+- [[etc/google-okf|Open Knowledge Format (OKF)]]: 지식을 YAML frontmatter markdown 디렉토리로 표현하는 벤더 중립 포맷 명세 v0.2. provenance, trust, lifecycle 필드와 승인된 계산을 검사하는 Attested Computation 타입을 정의한다 (2026, repo)
 
 ## Overviews (overviews)
 
