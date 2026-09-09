@@ -431,6 +431,15 @@ trace 한 건당 평균 1.8달러이고 trace 길이에 따라 크게 갈린다.
 | fig09 | 23 | "Figure 9 (Appendix F): MetaGPT 대 ChatDev 비교" | caption-region | ★ wiki 선택 (MAS 비교) |
 | fig10 | 28 | "Figure 10 (Appendix H): AG2 개입 효과" | caption-region | (선택) intervention |
 | fig11 | 28 | "Figure 11 (Appendix H): ChatDev 개입 효과" | caption-region | (선택) intervention |
+| tab01 | 3 | "Table 1: MAST-Data 구성표. 7개 MAS와 벤치마크, 사용 모델, 라벨링 방식(HE 사람 평가, HA 사람 라벨링, LA LLM 라벨링), trace 수를 18개 설정으로 나열했다" | table-region | (확인 필요) |
+| tab02 | 6 | "Table 2: LLM-as-a-Judge annotator 성능. o1의 zero-shot과 few-shot 설정에서 accuracy, recall, precision, F1, Cohen's κ를 비교했다" | table-region | (확인 필요) |
+| tab03 | 19 | "Table 3: MAST-Data가 다루는 7개 MAS 개요. 각 시스템의 agentic 구조(assembly line, hierarchical workflow, star topology)와 목적을 정리했다" | table-region | (확인 필요) |
+| tab04 | 26 | "Table 4: 실패 카테고리별 해결 전략 매핑. 각 카테고리에 대응하는 tactical 접근과 structural 전략을 나란히 놓았다" | table-region | (확인 필요) |
+| tab05 | 27 | "Table 5: 개입 case study 정확도 비교. AG2(GSM-Plus)와 ChatDev(ProgramDev-v0, HumanEval)에서 baseline, 프롬프트 개선, topology 재설계 세 설정의 성공률을 비교했다" | table-region | (확인 필요) |
+| tab06 | 29 | "Table 6: open-source 모델 400개 trace의 실패 모드 발생 건수. Qwen2.5-Coder-32B와 CodeLlama-7B를 ChatDev, MetaGPT에서 각각 비교했다" | table-region | (확인 필요) |
+| tab07 | 29 | "Table 7: 성공 trace와 실패 trace의 실패 모드 발생률. ChatDev와 MetaGPT를 각각 성공, 실패로 나눠 14개 모드의 발생 비율을 적었다" | table-region | (확인 필요) |
+| tab08 | 30 | "Table 8: 벤치마크별 실패 카테고리 발생률. AG2와 GPT-4o를 고정하고 GSM, MMLU, OlympiadBench를 비교했다" | table-region | (확인 필요) |
+| tab09 | 30 | "Table 9: MAS 프레임워크별 LLM annotator 평균 비용(달러). trace 길이에 따라 AppWorld 0.37달러에서 OpenManus 4.14달러까지 벌어진다" | table-region | (확인 필요) |
 | legacy-fig07 | 19 | "Figure 5 (Appendix B): 6개 MAS 작업 성공률 비교" | legacy-page-region | ★ wiki 선택 (summary) |
 | legacy-fig11 | 23 | "Figure 8 (Appendix F): GPT-4o 대 Claude 비교" | legacy-page-region | ★ wiki 선택 (LLM 비교) |
 

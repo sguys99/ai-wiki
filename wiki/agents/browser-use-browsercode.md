@@ -278,6 +278,6 @@ open-weight 모델은 다섯 종이고 86.0%부터 74.0%까지 분포한다. 최
 - [[agents/browser-use-browser-use]]: 같은 조직의 Python 라이브러리이자 이 조직 스택의 본체. 아키텍처와 설치, 스킬과 라이브러리 두 진입로는 그 페이지가 담당한다. 그 페이지에 따르면 고정된 agent loop를 기성품으로 제공하는 형태이고, 이 저장소는 코딩 에이전트에 브라우저 도구 하나를 더한 형태다
 - [[evaluations/xie-2024-osworld-benchmarking-multimodal-agents-for]]: 실제 OS 위에서 computer-use agent를 재는 벤치마크. grounding이 병목이라는 결과가 BrowserCode의 좌표 대신 코드라는 선택과 맞닿는다
 - [[agents/wang-2026-cua-gym-scaling-verifiable-training-environments]]: 같은 문제를 학습 데이터 쪽에서 다룬 연구. BrowserCode가 추론 시점의 harness로 푼다면 CUA-Gym은 환경과 task를 합성해 RLVR로 푼다
-- [[evaluations/xlang-ai-osworld]]: OSWorld의 공식 구현체. 외부 벤치마크로 BrowserCode를 재보려 할 때의 출발점
+- [[evaluations/xlang-ai-osworld]]: OSWorld 논문 저자 조직(xlang-ai)의 환경과 벤치마크 저장소. 외부 벤치마크로 BrowserCode를 재보려 할 때의 출발점
 - [[agents/stablyai-orca]]: OpenCode를 포함한 CLI 코딩 에이전트를 worktree 단위로 병렬 관리하는 오케스트레이터. 같은 상류 프로젝트를 반대편에서 다루는 사례
 - [[overviews/glossary-agents]]: harness, 가드레일, grounding 등 이 페이지의 용어 표기 기준

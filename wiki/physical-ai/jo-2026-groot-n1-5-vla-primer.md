@@ -352,7 +352,7 @@ DreamGen 쪽 한계는 더 구체적이다. 생성 모델은 물리 엔진처럼
 - [[physical-ai/jo-2026-groot-n1-vla-primer]]: 같은 시리즈 03-13편이자 이 편의 전제. dual-system 구조, flow matching 손실과 추론, data pyramid와 latent action space가 그 페이지에 있다. 먼저 읽어야 이 편의 변경점 목록이 읽힌다.
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]: N1 원 논문. 이 편이 기준선으로 삼는 구조의 정량 결과와 데이터 생성 절차가 있다.
 - [[physical-ai/nvidia-2025-gr00t-n1-5-an-improved-open]]: NVIDIA GEAR의 N1.5 공식 프로젝트 페이지. 이 해설이 참고문헌 첫 줄로 드는 원 출처다.
-- [[llms/chen-2025-eagle-25-boosting-long-context-post-training]]: N1.5가 backbone으로 교체한 VLM의 원 논문. 공간 이해가 개선됐다는 한 문장의 근거를 확인할 수 있다.
+- [[llms/chen-2025-eagle-25-boosting-long-context-post-training]]: N1.5가 backbone으로 교체한 VLM의 원 논문. 긴 영상과 고해상도 이미지를 다루는 long-context post-training이 주제이고, 이 해설이 적은 공간 이해 개선은 그 논문의 주장이 아니라 N1.5 프로젝트 페이지가 Eagle 2.5를 grounding을 겨냥해 다시 튜닝했다고 적은 내용에 해당한다.
 - [[llms/nvlabs-eagle]]: Eagle 계열 공식 저장소. Eagle 2에서 N1, Eagle 2.5에서 N1.5, native resolution 변형에서 N1.6으로 이어지는 backbone 채택 이력이 날짜로 기록돼 있다.
 - [[physical-ai/hou-2026-world-model-for-robot-learning]]: world model 서베이. FLARE를 latent-space world modeling 가지로, DreamGen을 imagination-based 가지로 분류하고 DreamGen Bench를 open-loop 예측 품질 평가 항목으로 든다.
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform]]: DreamGen 1단계에서 fine-tuning 대상으로 이름이 오르는 world foundation model.

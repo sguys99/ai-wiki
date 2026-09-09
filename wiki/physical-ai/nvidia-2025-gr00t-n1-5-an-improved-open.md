@@ -251,7 +251,7 @@ GR-1이 아닌 다른 embodiment에서도 같은 개선이 나타나는지 확�
 
 원문은 모델을 곧 오픈소스로 공개하겠다고 밝히며, 사용자가 자기 로봇에 fine-tuning했을 때 더 나은 결과를 보기를 기대한다고 적는다. 실제 배포와 실행 절차는 [[physical-ai/nvidia-isaac-gr00t]]가 다루는데, 이 저장소는 현재 N1.7을 배포하며 backbone이 Cosmos-Reason2-2B로 바뀌어 있다.
 
-VLM backbone의 계보는 이름이 겹쳐 혼동하기 쉬운 지점이다. 저장소 기록은 Eagle 2가 N1을, Eagle 2.5가 N1.5를, native resolution 변형이 N1.6을 받쳤고 N1.7에서 Cosmos-Reason2-2B로 교체되며 계보가 끊긴다고 적는다. 다만 GR00T N1 논문이 말하는 Eagle-2는 SmolLM2와 SigLIP-2 기반 소형 변형이고, model zoo가 배포하는 Eagle2-1B와 2B와 9B는 Qwen2.5 기반이다. 기술 내용은 [[llms/chen-2025-eagle-25-boosting-long-context-post-training]]이, 채택 이력과 model zoo 구성은 [[llms/nvlabs-eagle]]이 다룬다.
+VLM backbone의 계보는 이름이 겹쳐 혼동하기 쉬운 지점이다. Eagle 저장소 기록은 Eagle 2가 N1을, Eagle 2.5가 N1.5를, native resolution 변형이 N1.6을 받쳤다고 적고, N1.7에서 Cosmos-Reason2-2B로 교체되며 계보가 끊긴 사실은 Isaac GR00T 저장소 README가 적는다. 다만 GR00T N1 논문이 말하는 Eagle-2는 SmolLM2와 SigLIP-2 기반 소형 변형이고, model zoo가 배포하는 Eagle2-1B와 2B와 9B는 Qwen2.5 기반이다. 기술 내용은 [[llms/chen-2025-eagle-25-boosting-long-context-post-training]]이, 채택 이력과 model zoo 구성은 [[llms/nvlabs-eagle]]이 다룬다.
 
 문서 자체의 성격도 인용할 때 참고할 만하다. 페이지에는 발행일 표기가 없어 이 wiki에서는 GR00T N1과 같은 2025년으로 기록했다. 페이지가 스스로 붙인 주제 태그는 Foundation Model, Humanoid Robot, VLM, Language Following 네 개다. 감사의 글에는 "testing GR00T N1.6"이 적혀 있어, 이 글이 쓰인 시점에 이미 다음 버전이 사내에서 시험되고 있었음을 알 수 있다.
 

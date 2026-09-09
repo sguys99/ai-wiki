@@ -340,5 +340,5 @@ CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분�
 - [[physical-ai/zhang-2026-a-survey-of-physical-ai]]: Physical AI 전체를 6층 로드맵으로 정리한 서베이. 이 허브가 저장소 기준 지도라면 그 서베이는 분야 기준 지도다
 - [[physical-ai/keon-awesome-physical-ai]], [[physical-ai/natnew-awesome-physical-ai]]: 외부 큐레이션 목록 둘. 아직 갖고 있지 않은 자료를 찾을 때 출발점이다
 - [[llms/cai-2026-vlm3-vision-language-models]]: 3D 인식을 표준 VLM의 SFT로 푸는 논문. 물리 상호작용이 없어 `llms`에 남아 있지만 VLA backbone 쪽과 맞닿는다
-- [[llms/chen-2025-eagle-25-boosting-long-context-post-training]], [[llms/nvlabs-eagle]]: GR00T N1부터 N1.6까지의 VLM backbone이던 Eagle 계열. 방법이 순수 vision-language라 `llms`에 두고 여기서 잇는다. N1.7이 Cosmos-Reason2-2B로 갈아타며 계보가 끊긴 지점까지 저장소 쪽 페이지에 정리돼 있다
+- [[llms/chen-2025-eagle-25-boosting-long-context-post-training]], [[llms/nvlabs-eagle]]: GR00T N1부터 N1.6까지의 VLM backbone이던 Eagle 계열. 방법이 순수 vision-language라 `llms`에 두고 여기서 잇는다. N1.7이 backbone을 Cosmos-Reason2-2B로 교체하며 계보가 끊긴 지점까지 저장소 쪽 페이지에 정리돼 있다
 - [[agents/zou-2026-task-focused-memorization-multimodal-agents]]: 1인칭 스트림에서 무엇을 기억할지 학습하는 프레임워크. 방법이 순수 소프트웨어라 `agents`에 있다

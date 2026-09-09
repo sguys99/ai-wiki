@@ -118,7 +118,7 @@ Google Chrome 엔지니어링 매니저 Addy Osmani가 2026-06-07에 올린 짧�
 - [[agents/patel-2026-beyond-the-prompt-claude-code|Beyond the Prompt: Claude Code (Patel 2026)]]. Boris Cherny의 "give Claude a way to verify its own work" 원칙과 함께 스킬, 서브에이전트, worktree, MCP, `/goal`, `/rewind` 등 본 자료의 5요소를 더 세밀하게 풀어쓴 실전 가이드다.
 - [[agents/lee-hoyeon-2026-harness-engineering|Harness Engineering (이호연 2026)]]. "Prompt → Context → Harness Engineering" 3단계 진화 모델이다. 본 자료의 loop은 이호연의 harness 6개 항목(구조, 맥락, 계획, 실행, 검증, 개선) 중 실행과 개선에 가깝다.
 - [[agents/dennis-2026-compiling-agentic-workflows-into-llm|Compiling Agentic Workflows (Dennis 2026)]]. 워크플로 자체를 컴파일 대상으로 본 시각이다.
-- [[etc/rahman-2026-a-practical-guide-to-becoming|A Practical Guide to Becoming (Rahman 2026)]]. 에이전틱 개발 실무 가이드 전반이다.
+- [[etc/rahman-2026-a-practical-guide-to-becoming|A Practical Guide to Becoming an AI-Native Engineer (Rahman 2026)]]. 에이전틱 개발 실무 가이드 전반이다.
 - [[agents/lin-2026-harness-updating-is-not-harness-benefit|Harness Updating Is Not Harness Benefit (Lin 2026)]]. harness 변경을 가치 측정에서 분리하라는 비판적 시각이다.
 
 ## 7. 용어집 (Glossary)

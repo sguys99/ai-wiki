@@ -318,7 +318,7 @@ memory 시스템의 깊이는 생략한다. 선행 영상으로 미루고 harnes
 
 자료 내부에 서로 어긋나는 예시가 있다. 불필요한 retrieval의 사례로 "내 생일은 언제인가"를 들며 모델이 이미 안다고 설명하는데, 같은 강의가 앞서 유명하지 않은 개인의 사실은 모델이 학습하지 않았으므로 semantic memory에 직접 주입해야 한다고 말했다. 개인의 생일은 후자에 해당하므로 두 설명이 충돌한다. 자동 자막의 오인식일 가능성도 있으나 확인할 수단이 없다.
 
-평가 자동화의 신뢰성을 다루지 않는다. LLM-as-judge의 편향이나 재현성, 채점 기준 설계 같은 문제는 언급되지 않으므로 [[evaluations/marker-inc-korea-autorag]] 같은 자료로 보완하는 편이 좋다.
+평가 자동화의 신뢰성을 다루지 않는다. LLM-as-judge의 편향이나 재현성, 채점 기준 설계 같은 문제는 언급되지 않는다. 평가 자동화 도구의 구체 사례로는 사용자의 QA와 corpus 데이터로 RAG module 조합을 자동 평가해 최적 파이프라인을 고르는 [[evaluations/marker-inc-korea-autorag]]를 참고할 수 있다.
 
 보안과 권한 설계가 빠져 있다. 에이전트가 Stripe와 Alipay의 환불을 실제로 실행하는 시나리오까지 제시하지만, 승인 절차나 권한 범위, 실패 시 롤백은 다루지 않는다.
 
@@ -348,5 +348,5 @@ memory 시스템의 깊이는 생략한다. 선행 영상으로 미루고 harnes
 - [[agents/runkle-2026-the-art-of-loop-engineering]]: loop 설계의 심화. 종료 조건 설계가 사례마다 다르다는 이 영상의 한계를 메운다.
 - [[agents/qiao-2026-memory-intelligence-agent]]: 에이전트 memory 연구 정리. procedural, semantic, episodic 3분법의 학술적 배경이다.
 - [[agents/zou-2026-task-focused-memorization-multimodal-agents]]: 태스크 중심 기억 선별 연구. 이 영상의 consolidation 게이트와 문제의식이 같다.
-- [[evaluations/marker-inc-korea-autorag]]: RAG 평가 자동화 프레임워크. 이 영상이 생략한 eval 신뢰성 문제를 다룬다.
+- [[evaluations/marker-inc-korea-autorag]]: 사용자의 QA와 corpus 데이터로 RAG module 조합을 자동 평가해 최적 파이프라인을 고르는 도구. 이 영상의 LLMOps 블록이 말하는 eval을 RAG 구성 요소 비교에 적용한 도구 사례다.
 - [[evaluations/kim-2026-ai-prd-eval-plan]]: eval 계획을 PRD 단계에 넣는 실무 프레임. LLMOps 파트를 제품 개발 절차로 잇는다.

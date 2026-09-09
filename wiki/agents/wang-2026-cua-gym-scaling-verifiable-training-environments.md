@@ -1059,7 +1059,7 @@ Figure 6b의 category 도넛에 있는 "Gymnastic 6%" 항목은 정의가 논문
 - [[agents/xlang-ai-cua-gym]]: 공식 코드 저장소. 이 페이지가 다루는 파이프라인을 실제로 실행하는 명령과 mock 상태 API 규약과 자체 배포 절차를 담당한다
 - [[agents/xlangai-cua-gym-dataset]]: Hugging Face 배포판. 공개된 데이터의 구성과 릴리스 통계와 실행 안전 주의사항을 담당한다
 - [[evaluations/xie-2024-osworld-benchmarking-multimodal-agents-for]]: 이 논문의 주 평가 벤치마크 원 논문. 2024년의 12.24%가 출발점이었다는 대비가 여기서 나온다
-- [[evaluations/xlang-ai-osworld]]: OSWorld 공식 구현체. OSWorld-Verified 개정 내역과 이전 버전 점수를 직접 비교하면 안 되는 이유를 담고 있다
+- [[evaluations/xlang-ai-osworld]]: OSWorld 논문 저자 조직(xlang-ai)의 환경과 벤치마크 저장소. OSWorld-Verified 개정 내역과 이전 버전 점수를 직접 비교하면 안 되는 이유를 담고 있다
 - [[agents/he-2026-agent-lightning-v1-0-towards-harnessed]]: harness를 학습 루프에 끌어들일 때 생기는 advantage 계산과 loss normalization 문제를 정리한 연구. CUA-Gym의 trajectory slicing과 표준편차 정규화 비활성화 결정이 같은 문제 공간에 있다
 - [[agents/lin-2026-harness-updating-is-not-harness-benefit]]: 에이전트가 harness를 스스로 갱신할 때 역량 예산을 어디에 쓸지 가른 연구. CUA-Gym이 코딩 에이전트 harness로 데이터를 만든다는 점과 맞물린다
 - [[agents/cemri-2025-why-do-multi-agent-llm-systems]]: 멀티에이전트 시스템의 실패 유형 분류. Orchestrator와 Generator와 Discriminator 3자 구조의 위험 지점을 짚는 데 참고

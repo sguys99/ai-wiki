@@ -864,4 +864,4 @@ E2에서 E5까지 네 실험은 저자들이 리더보드가 아니라 통제된
 - [[agents/anthropic-2025-effective-context-engineering-for-ai]]: 4.4절과 7.4절이 근거로 삼는 context engineering 원전
 - [[agents/anthropic-2025-equipping-agents-for-the-real]]: 6절이 산업 표준으로 지목하는 Agent Skills와 SKILL.md 발표
 - [[agents/osmani-2026-loop-engineering]]: 같은 전환을 실무 관점에서 loop engineering으로 부르는 에세이
-- [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for]]: agent loop의 정지 조건을 실측한 벤치마크. 그 페이지는 상위 모델의 조기 종료가 42.8%에 이른다고 보고해 4.1절 termination 문제를 다른 축의 수치로 보여 준다
+- [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for]]: agent loop의 정지 조건을 실측한 벤치마크. 그 페이지는 Gemini 3.1 Pro Preview의 진단된 실패 가운데 조기 종료가 42.8%를 차지한다고 보고해 4.1절 termination 문제를 다른 기준의 수치로 보여 준다

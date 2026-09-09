@@ -644,7 +644,7 @@ Sec 8은 단순한 규모 확대만으로 해결되지 않는 여섯 가지 과�
 - [[physical-ai/wu-2023-unleashing-large-scale-video-generative]]: 이 서베이가 Unified VLA로 분류한 GR-1의 원논문. 미래 프레임 예측과 action 예측을 하나의 backbone에서 같은 토큰 시퀀스로 처리하는 방식을 논문 하나로 확인할 수 있다.
 - [[physical-ai/jo-2026-groot-n1-5-vla-primer]]: 이 서베이가 Latent-space world modeling으로 분류한 FLARE와 imagination-based로 분류한 DreamGen이 실제로 한 모델(GR00T N1.5) 안에서 함께 쓰인 사례.
 - [[physical-ai/brohan-2022-rt-1-robotics-transformer-for-real-world]]: 예측 구조 없이 observation에서 action으로 곧장 가는 반응형 policy의 출발점. 이 서베이가 진단하는 long-horizon 약점의 기준선에 해당한다.
-- [[llms/cai-2026-vlm3-vision-language-models]]: 표준 VLM이 3D를 네이티브로 배운다는 주장. 이 서베이 Sec 3.6이 말하는 픽셀을 거치지 않는 예측 표현과 방향이 같고, metric depth와 camera pose 같은 능력은 world model이 물리 세계에 grounding할 때의 바탕이 된다.
+- [[llms/cai-2026-vlm3-vision-language-models]]: 표준 VLM이 구조 변경 없이 metric depth와 camera pose 같은 3D 양을 숫자 텍스트로 예측하도록 학습한 논문. 미래 상태를 예측하는 world model은 아니지만, 이런 3D 이해 능력은 world model이 물리 세계에 grounding할 때의 바탕이 된다.
 
 ## 외부 참조
 
