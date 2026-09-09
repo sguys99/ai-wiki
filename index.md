@@ -94,6 +94,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/physical-intelligence-2026-a-steerable-model-with-emergent|π0.7: a Steerable Model with Emergent Capabilities (블로그)]]: π0.7 논문과 같은 날 나온 공식 발표문. 영상 시연과 회사가 강조한 메시지를 담는다 (2026, article)
 - [[physical-ai/physical-intelligence-openpi|openpi (Physical Intelligence, repo)]]: π0 계열의 공식 구현. Apache-2.0으로 base와 플랫폼별 checkpoint를 열고, RTX 4090 한 장에서 LoRA fine-tuning이 된다 (2025, repo)
 - [[physical-ai/generalist-ai-2026-gen-1-5-embodied-foundation|GEN-1.5 (Generalist AI, 블로그)]]: 시연 하나를 context window에 넣는 것만으로 새 조작 과제를 하는 로봇 foundation model 발표문. 설계 없이 나타난 능력이라고 본다 (2026, article)
+- [[physical-ai/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for|MobileVLA-R1 2.0 (Peking University)]]: chain-of-thought 내부 표현을 학습형 decoder로 (Vx, Vy, ω, α) 명령으로 바꾸고 GRPO로 다시 학습시킨 이동 로봇 VLA. 학습에 쓰지 않은 Unitree G1에서 mobile manipulation을 수행한다 (2026, paper)
 - [[physical-ai/zhang-2024-vision-and-language-navigation-today|Vision-and-Language Navigation Today and Tomorrow (Survey)]]: LAW framework로 VLN 연구를 top-down 정리한 서베이. 벤치마크 24종 분류표를 싣는다 (2024, paper)
 - [[physical-ai/li-2026-tango-humanoid-navigation-in-cluttered|TANGO (UC Berkeley)]]: 언어 지시문과 RGB만으로 29-DoF whole-body action을 직접 예측하는 whole-body VLN 프레임워크. 시뮬레이터에서만 학습해 Unitree G1에 zero-shot 배포했다 (2026, paper)
 - [[physical-ai/sa-2026-vision-language-action-models-for|VLA for Bimanual Manipulation (Survey)]]: VLA 문헌 200편 이상을 양팔 manipulation 렌즈로 정리한 서베이. 성패를 가르는 변수는 두 팔의 결합도라고 본다 (2026, paper)

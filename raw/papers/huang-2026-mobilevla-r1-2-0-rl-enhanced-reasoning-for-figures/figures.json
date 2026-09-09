@@ -1,0 +1,762 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/fig01.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/fig01.png",
+    "page": 2,
+    "caption": "Fig. 1: Multi-granularity CoT data engine. Given multimodal observations, language instructions, and optional state– action histories, the engine generates episode-, step-, and navigation-level reasoning traces together with executable targets, followed by automatic parsing and semi-automatic qualit",
+    "bbox": [
+      42.0,
+      37.7,
+      570.03,
+      231.89
+    ],
+    "bbox_norm": [
+      0.0686,
+      0.0476,
+      0.9314,
+      0.2928
+    ],
+    "dpi": 300,
+    "area_frac": 0.212,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/fig02.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/fig02.png",
+    "page": 5,
+    "caption": "Fig. 2: Overview of MobileVLA-R1 2.0. Multimodal observations and language instructions are fused for structured reasoning, which conditions a task-level action decoder to predict locomotion ( V x , V y , ω ) and a discrete task-level behavior primitive α for mobile robot control.",
+    "bbox": [
+      42.0,
+      37.7,
+      570.02,
+      255.74
+    ],
+    "bbox_norm": [
+      0.0686,
+      0.0476,
+      0.9314,
+      0.3229
+    ],
+    "dpi": 300,
+    "area_frac": 0.238,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/fig03.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/fig03.png",
+    "page": 7,
+    "caption": "Fig. 3: GRPO-based reasoning-to-action optimization. For each multimodal input, the policy samples multiple structured outputs whose induced actions are evaluated by movement, behavior, and format rewards. Group-relative advantages, together with KL regularization to a frozen reference policy, are t",
+    "bbox": [
+      42.0,
+      37.7,
+      569.99,
+      344.0
+    ],
+    "bbox_norm": [
+      0.0686,
+      0.0476,
+      0.9314,
+      0.4343
+    ],
+    "dpi": 300,
+    "area_frac": 0.334,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/fig04.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/fig04.png",
+    "page": 9,
+    "caption": "Fig. 4: Qualitative results on R2R-CE. MobileVLA-R1 2.0 executes navigation instructions in the simulator.",
+    "bbox": [
+      93.6,
+      37.69,
+      518.4,
+      512.81
+    ],
+    "bbox_norm": [
+      0.1529,
+      0.0476,
+      0.8471,
+      0.6475
+    ],
+    "dpi": 300,
+    "area_frac": 0.416,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/fig05.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/fig05.png",
+    "page": 10,
+    "caption": "Fig. 5: Qualitative results on RxR-CE. MobileVLA-R1 2.0 follows multilingual instructions with complex spatial semantics, maintaining coherent reasoning and stable motion across unseen environments.",
+    "bbox": [
+      93.6,
+      37.69,
+      518.4,
+      501.75
+    ],
+    "bbox_norm": [
+      0.1529,
+      0.0476,
+      0.8471,
+      0.6335
+    ],
+    "dpi": 300,
+    "area_frac": 0.407,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/fig06.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/fig06.png",
+    "page": 11,
+    "caption": "Fig. 6: Real-world hardware and deployment pipeline on Unitree Go2. (a) Go2 platform equipped with an Intel RealSense D435i RGB-D camera, an L2 LiDAR, and a Jetson Orin Nano. (b) Hybrid Deployment pipeline. Sensing and multimodal preprocessing are performed onboard, while the 8B VLA backbone and rea",
+    "bbox": [
+      42.0,
+      37.7,
+      314.42,
+      169.43
+    ],
+    "bbox_norm": [
+      0.0686,
+      0.0476,
+      0.5138,
+      0.2139
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/fig07.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/fig07.png",
+    "page": 11,
+    "caption": "Fig. 7: Real-world hardware and deployment pipeline on Unitree G1. (a) G1 humanoid platform equipped with an Intel RealSense RGB-D camera, an Inspire dexterous hand, and a Jetson Orin NX computation module. (b) Hybrid Deployment pipeline. RGB-D observations and language instructions are processed by",
+    "bbox": [
+      42.0,
+      270.89,
+      314.42,
+      402.62
+    ],
+    "bbox_norm": [
+      0.0686,
+      0.342,
+      0.5138,
+      0.5084
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/fig08.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/fig08.png",
+    "page": 12,
+    "caption": "Fig. 8: Indoor qualitative results on Unitree Go2. Representative closed-loop rollouts show target-directed navigation, turning, and obstacle avoidance in indoor environments.",
+    "bbox": [
+      93.6,
+      37.69,
+      518.4,
+      430.1
+    ],
+    "bbox_norm": [
+      0.1529,
+      0.0476,
+      0.8471,
+      0.5431
+    ],
+    "dpi": 300,
+    "area_frac": 0.344,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/fig09.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/fig09.png",
+    "page": 13,
+    "caption": "Fig. 9: Outdoor qualitative results on Unitree Go2. Representative closed-loop rollouts show target-directed navigation, turning, and obstacle-aware execution in outdoor environments. TABLE 6: Real-world mobile manipulation on Unitree G1. Navigation (Nav.), manipulation (Manip.), and full- task (Ful",
+    "bbox": [
+      93.6,
+      37.69,
+      518.4,
+      430.1
+    ],
+    "bbox_norm": [
+      0.1529,
+      0.0476,
+      0.8471,
+      0.5431
+    ],
+    "dpi": 300,
+    "area_frac": 0.344,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/fig10.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/fig10.png",
+    "page": 14,
+    "caption": "Fig. 10: Real-world qualitative results on Unitree G1. Representative mobile-manipulation rollouts in the Cluttered , Shelf/Cabinet , and Tabletop scenarios, showing task progression from navigation and alignment to grasping and object interaction. TABLE 7: Evaluation scale and failure statistics on",
+    "bbox": [
+      93.6,
+      37.69,
+      518.4,
+      347.51
+    ],
+    "bbox_norm": [
+      0.1529,
+      0.0476,
+      0.8471,
+      0.4388
+    ],
+    "dpi": 300,
+    "area_frac": 0.272,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab01.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab01.png",
+    "page": 4,
+    "caption": "TABLE 1: Statistics of source datasets and the synthesized MobileVLA-CoT. Nav.” and Emb-Ctl.” denote navigation and embodied continuous-control supervision, respectively, while CoT” indicates synthesized reasoning annotations. Samples” denotes the number of instances reported by the corresponding da",
+    "bbox": [
+      42.0,
+      103.83,
+      303.66,
+      195.41
+    ],
+    "bbox_norm": [
+      0.0686,
+      0.1311,
+      0.4962,
+      0.2467
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p04.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab02.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab02.png",
+    "page": 8,
+    "caption": "TABLE 2: Comparison on VLN-CE Val-Unseen [ 20 ], [ 48 ]. We report standard metrics on the R2R-CE and RxR-CE val- unseen splits. “S.RGB”, “Pano.”, and “Odo.” denote single-view RGB, panoramic observations, and odometry, respectively. ∗ indicates the use of a simulator-pretrained waypoint predictor [",
+    "bbox": [
+      68.77,
+      69.19,
+      540.71,
+      352.33
+    ],
+    "bbox_norm": [
+      0.1124,
+      0.0874,
+      0.8835,
+      0.4449
+    ],
+    "dpi": 300,
+    "area_frac": 0.276,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab03.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab03.png",
+    "page": 9,
+    "caption": "TABLE 3: Overall performance on QUARD [ 39 ]. We report success rates on six tasks grouped by difficulty; Average is the mean over all tasks, with 25 episodes per task.",
+    "bbox": [
+      307.38,
+      552.89,
+      568.62,
+      620.11
+    ],
+    "bbox_norm": [
+      0.5023,
+      0.6981,
+      0.9291,
+      0.783
+    ],
+    "dpi": 300,
+    "area_frac": 0.036,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab04.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab04.png",
+    "page": 11,
+    "caption": "TABLE 4: Closed-loop real-world evaluation on Unitree Go2. We report navigation error (NE) and success rate (SR) under Simple and Complex instructions in three represen- tative environments. Outdoor results use SR only because reliable global localization is unavailable.",
+    "bbox": [
+      307.33,
+      92.16,
+      568.67,
+      156.75
+    ],
+    "bbox_norm": [
+      0.5022,
+      0.1164,
+      0.9292,
+      0.1979
+    ],
+    "dpi": 300,
+    "area_frac": 0.035,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab05.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab05.png",
+    "page": 12,
+    "caption": "TABLE 5: Deployment statistics and failure analysis on Unitree Go2. Latency is reported as the mean ± standard deviation of the hybrid end-to-end latency measured from observation acquisition to task-level command handoff, and failures are counted at the episode level. “Target,” “Percep.,” “Turn,” “",
+    "bbox": [
+      43.73,
+      542.3,
+      306.0,
+      620.06
+    ],
+    "bbox_norm": [
+      0.0715,
+      0.6847,
+      0.5,
+      0.7829
+    ],
+    "dpi": 300,
+    "area_frac": 0.042,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab06.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab06.png",
+    "page": 13,
+    "caption": "",
+    "bbox": [
+      39.29,
+      536.52,
+      307.1,
+      593.66
+    ],
+    "bbox_norm": [
+      0.0642,
+      0.6774,
+      0.5018,
+      0.7496
+    ],
+    "dpi": 300,
+    "area_frac": 0.032,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab07.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab07.png",
+    "page": 14,
+    "caption": "",
+    "bbox": [
+      40.51,
+      454.15,
+      307.72,
+      506.54
+    ],
+    "bbox_norm": [
+      0.0662,
+      0.5734,
+      0.5028,
+      0.6396
+    ],
+    "dpi": 300,
+    "area_frac": 0.029,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab08.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab08.png",
+    "page": 14,
+    "caption": "TABLE 8: Ablation of action decoding and conditioning. We compare deterministic action parsing with learnable action decoders under different conditioning inputs. “Obs.” and “Reason.” denote observation and intermediate reason- ing representations, respectively.",
+    "bbox": [
+      302.45,
+      421.68,
+      572.1,
+      510.5
+    ],
+    "bbox_norm": [
+      0.4942,
+      0.5324,
+      0.9348,
+      0.6446
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab09.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab09.png",
+    "page": 14,
+    "caption": "",
+    "bbox": [
+      322.03,
+      583.25,
+      551.9,
+      676.82
+    ],
+    "bbox_norm": [
+      0.5262,
+      0.7364,
+      0.9018,
+      0.8546
+    ],
+    "dpi": 300,
+    "area_frac": 0.044,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab10.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab10.png",
+    "page": 15,
+    "caption": "TABLE 10: Ablation of reasoning supervision granularity on R2R-CE Val-Unseen. We vary the granularity of rea- soning supervision while keeping the teacher model, action targets, output format, and training budget fixed. No-CoT removes rationale supervision while preserving identical action supervisi",
+    "bbox": [
+      68.96,
+      102.1,
+      540.72,
+      206.88
+    ],
+    "bbox_norm": [
+      0.1127,
+      0.1289,
+      0.8835,
+      0.2612
+    ],
+    "dpi": 300,
+    "area_frac": 0.102,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab11.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab11.png",
+    "page": 15,
+    "caption": "TABLE 11: Ablation of GRPO reward components on R2R- CE Val-Unseen. Results are obtained with deterministic action parsing. We evaluate the movement, behavior, and format rewards; the configuration without reward optimiza- tion denotes the supervised pre-GRPO baseline.",
+    "bbox": [
+      81.32,
+      428.44,
+      499.45,
+      568.77
+    ],
+    "bbox_norm": [
+      0.1329,
+      0.541,
+      0.8161,
+      0.7181
+    ],
+    "dpi": 300,
+    "area_frac": 0.121,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab12.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab12.png",
+    "page": 15,
+    "caption": "TABLE 12: Ablation of action decoder architectures on R2R-CE Val-Unseen. All variants use identical observation and reasoning representations and the same training proto- col, differing only in the decoder architecture.",
+    "bbox": [
+      332.76,
+      80.82,
+      540.72,
+      166.55
+    ],
+    "bbox_norm": [
+      0.5437,
+      0.102,
+      0.8835,
+      0.2103
+    ],
+    "dpi": 300,
+    "area_frac": 0.037,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab13.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab13.png",
+    "page": 19,
+    "caption": "TABLE 13: Incremental ablation of multimodal perception on VLN-CE. The first three rows progressively add geomet- ric modalities under the same training configuration. The final row reports the complete MobileVLA-R1 configuration for reference.",
+    "bbox": [
+      62.07,
+      279.37,
+      283.41,
+      354.63
+    ],
+    "bbox_norm": [
+      0.1014,
+      0.3527,
+      0.4631,
+      0.4478
+    ],
+    "dpi": 300,
+    "area_frac": 0.034,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab14.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab14.png",
+    "page": 19,
+    "caption": "TABLE 14: Sensitivity to the movement reward weight on R2R-CE Val-Unseen. Results are obtained with deter- ministic action parsing. We vary λ mov while keeping λ beh and λ fmt fixed. “Adv. Contrib.” denotes the normalized contribution of each reward term to the reward-derived advantage, with all con",
+    "bbox": [
+      68.61,
+      597.81,
+      276.87,
+      705.89
+    ],
+    "bbox_norm": [
+      0.1121,
+      0.7548,
+      0.4524,
+      0.8913
+    ],
+    "dpi": 300,
+    "area_frac": 0.046,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab15",
+    "label": "Table 15",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab15.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab15.png",
+    "page": 19,
+    "caption": "TABLE 15: Ablation of rationale sources on R2R-CE Val- Unseen. All variants use identical action targets, backbone, structured output format, and training budget; only the source of supervised rationales is varied.",
+    "bbox": [
+      357.72,
+      174.35,
+      515.76,
+      248.35
+    ],
+    "bbox_norm": [
+      0.5845,
+      0.2201,
+      0.8428,
+      0.3136
+    ],
+    "dpi": 300,
+    "area_frac": 0.024,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab16",
+    "label": "Table 16",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab16.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab16.png",
+    "page": 19,
+    "caption": "TABLE 16: Comparison of PPO and GRPO on R2R-CE Val-Unseen. Both methods use the same reward definitions, structured output schema, KL regularization, and training budget.",
+    "bbox": [
+      351.35,
+      387.31,
+      522.13,
+      439.81
+    ],
+    "bbox_norm": [
+      0.5741,
+      0.489,
+      0.8532,
+      0.5553
+    ],
+    "dpi": 300,
+    "area_frac": 0.018,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab17",
+    "label": "Table 17",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab17.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab17.png",
+    "page": 19,
+    "caption": "TABLE 17: Comparison of optimization objectives on R2R- CE Val-Unseen. All variants use the same training data and action targets. Reward-based variants use identical reward definitions and deterministic action parsing.",
+    "bbox": [
+      307.92,
+      483.51,
+      568.08,
+      541.75
+    ],
+    "bbox_norm": [
+      0.5031,
+      0.6105,
+      0.9282,
+      0.684
+    ],
+    "dpi": 300,
+    "area_frac": 0.031,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab18",
+    "label": "Table 18",
+    "kind": "table",
+    "file": "assets/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for/tab18.png",
+    "raw": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/tab18.png",
+    "page": 20,
+    "caption": "TABLE 18: Filtering statistics of MobileVLA-CoT. “Ret.” denotes the fraction of samples retained from the preceding stage.",
+    "bbox": [
+      68.96,
+      57.68,
+      542.94,
+      151.98
+    ],
+    "bbox_norm": [
+      0.1127,
+      0.0728,
+      0.8872,
+      0.1919
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for-figures/_overlay/p20.png"
+  }
+]

@@ -175,6 +175,8 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | horizon amplification | horizon amplification | 지평 증폭·호라이즌 증폭·horizon 증폭 | horizon amplification은 노드별 성공률이 곱으로 누적되어 시퀀스가 길어질수록 전체 성공률이 급격히 낮아지는 현상이다 | long-horizon 행과 짝. 반쪽 번역 "horizon 증폭"도 금지 표기에 넣었다 (2026-09 등재) |
 | self-resetting loop | self-resetting loop | 자가 초기화 루프·셀프 리셋 루프·자기 초기화 루프 | self-resetting loop는 사람이 환경을 되돌려 주지 않아도 로봇이 스스로 재사용 가능한 시작 상태로 복귀하는 반복 구조다 | RoboClaw의 Entangled Action Pairs가 이 구조를 만든다. 자율 데이터 수집 계열에서 반복될 개념이라 표기를 고정한다 (2026-09 등재) |
 | structured memory | structured memory | 구조화 메모리·구조적 기억 | structured memory는 agent가 매 시점 유지하는 컨텍스트 저장소로, 역할과 과제 진행 상황과 단기 실행 이력을 나누어 담는다 | episodic memory 행과 같은 방식으로 복합 memory 용어를 원어로 고정한다. glossary-agents의 메모리 행은 단독 memory에만 적용된다. "구조화된 메모리"는 agents 파일에서 일반 서술로 쓰여 금지 표기에서 뺐다 (2026-09 등재) |
+| GRPO | GRPO | 그룹 상대 정책 최적화·그룹 상대 최적화 | GRPO는 같은 입력에 대해 뽑은 여러 후보 출력 사이의 상대적 advantage로 policy를 최적화해 별도의 value 모델을 두지 않는 강화학습 기법이다 | Group Relative Policy Optimization의 약어이며 약어를 기본 표기로 쓴다. advantage 행과 짝을 이룬다. DeepSeekMath에서 나와 VLA 학습에도 쓰인다 (2026-09 등재) |
+| System 0 | System 0 | 시스템 0 | System 0는 로봇 형상에 의존하는 저수준 실행 층을 가리키며, 상위 policy가 형상별 구동 방식을 직접 배우지 않아도 되게 한다 | dual-process theory와 dual-system VLA 행이 세운 System 1 / System 2 구도에 실행 층을 하나 더 붙인 이름이다. MobileVLA-R1 2.0이 System 2에서 System 1을 거쳐 System 0로 내려가는 구도로 쓴다 (2026-09 등재) |
 
 ## 신규 용어 추가 절차
 
