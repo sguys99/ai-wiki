@@ -975,7 +975,46 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - 용어집 등재 후보 14종 누적 (Phase 7-1 소관): hybrid retrieval, score fusion, Eval, Eval Plan, LLM-as-a-Judge(`agents/seans-ai-stories`가 "LLM-as-judge"와 태그 `llm-as-judge`를 써 표기가 갈림), 회귀 테스트(한글 canonical 제안), PRD, provenance, attestation, trust tier, receipt와 attester와 executor(OKF 고유), slop, agent swarm, prompt injection(L3와 중복).
   - 다른 페이지에서 발견한 오류 2건 (완료 카테고리, 편집하지 않음): `wiki/agents/seans-ai-stories-2026-agent-harness-loop-engineering.md` 321행과 351행이 AutoRAG를 "LLM-as-judge 편향, 재현성 같은 eval 신뢰성 문제를 다루는 자료"로 소개하는데 README에 그런 내용이 없다. `sources/osmani-2026-loop-engineering.md` 121행이 rahman 글의 표시명을 잘라 적는다(경미).
   - 사용자 확인 필요 사항 3건. (1) autorag tags에서 `korean`을 뺐는데 유일한 근거가 fig02의 `korean` 폴더명이라 복원 여부 판단이 필요하다. (2) rahman fig01 curated 해제는 Step 3.5 confirm 없이 담당자 판단이다. (3) rahman index의 "Meta Ads ML 총괄"은 raw 직함 "Global Head of Autonomous ML Iteration & Optimization for Ads at Meta"의 근사 표현이다.
-- [ ] LE-완료. index.md LLMs, Evaluations, Etc 절 축소, 해당 카테고리 lint 0건, physical-ai 회귀 확인, 계량 기록
+- [x] LE-완료. index.md LLMs, Evaluations, Etc 절 축소, 해당 카테고리 lint 0건, physical-ai 회귀 확인, 계량 기록
+  - 완료 (2026-09-09). 네 게이트를 전부 통과했다. **Phase 5가 끝나 비-physical-ai 개별 페이지 135편의 재작성이 모두 끝났고, 남은 것은 Phase 6의 overviews 9편과 index.md Overviews 절뿐이다.**
+  - **게이트 1: index.md LLMs, Evaluations, Etc 절 축소.** 17항목 전부 200자 이내이고 최장이 199자다. 착수 시점 200자 초과 14개(LLMs 8, Evaluations 4, Etc 2, 최장 587자 rombach)가 0개가 됐고 구분자도 전량 `]]: `로 통일했다. 항목 서술에서 잡아낸 무근거는 peebles "Stable Diffusion 3와 Sora의 backbone 계보", chen "GR00T N1.5의 VLM backbone"(논문 사실처럼 적음), 9bow "절반의 비중", xie "실패의 75%가 GUI grounding"(raw는 클릭 좌표 부정확), bandi "63.3%가 조기 종료와 잘못된 합성"(두 유형 합은 30.7%), xlang "공식 구현체"와 "채점 결함", autorag "그리드 서치", kim "확률적 AI 기능", google-okf "Apache-2.0" 단정과 "이 ai-wiki와 같은 계보"다.
+  - **게이트 2: 세 카테고리 lint 5종 0건.** llms 검사 파일 21개, evaluations 11개, etc 5개 전부 lint_style error 0 warning 0, lint_terms 0, lint_links error 0 warning 0, lint_figures error 0 warning 0(검사 stem 10, 5, 2), audit_captions 0이다. 예외 주석은 17편 중 kim-2026 한 편의 원제목 인용 2건뿐이다.
+  - **게이트 3: 회귀 없음.** 6절 1항의 physical-ai 두 명령과 agents, applications, database, llms, evaluations, etc 여섯 명령 전부 exit 0이다. 매 배치 커밋 전에 같은 게이트를 확인했다.
+  - **게이트 4: 카테고리 완료 계량.** 아래 표가 physical-ai 완료치와 대조한 값이다. 착수 열은 779426b 시점을 같은 정의로 다시 잰 값이다.
+
+| 지표 | llms 착수 | llms 완료 | evaluations 착수 | evaluations 완료 | etc 착수 | etc 완료 | physical-ai 완료치 |
+|---|---|---|---|---|---|---|---|
+| 편수 | 10 | 10 | 5 | 5 | 2 | 2 | 77 |
+| sources보다 얇은 페이지 | 10 / 10 | **0 / 10** | 4 / 5 | **0 / 5** | 2 / 2 | **0 / 2** | 1 / 76 |
+| 압축비 중앙값 | 0.66 | **1.31** | 0.73 | **1.38** | 0.76 | **1.31** | 1.95 |
+| 압축비 최소 | 0.436 | **1.301** | 0.588 | **1.330** | 0.746 | **1.304** | 미기록 |
+| wiki 본문 중앙값 | 5,060자 | **26,880자** | 6,019자 | **19,142자** | 13,023자 | **31,890자** | 14,156자 |
+| wiki 산문 중앙값 | 3,882자 | **14,298자** | 4,748자 | **8,157자** | 9,139자 | **15,270자** | 미기록 |
+| wiki 본문 합계 | 49,892자 | **271,687자** | 28,937자 | **107,231자** | 26,046자 | **63,780자** | 미기록 |
+| sources 본문 합계 | 77,673자 | **205,604자** | 41,403자 | **77,147자** | 34,240자 | **48,487자** | 미기록 |
+| 표 총수 | 11 | **243** | 2 | **108** | 8 | **62** | 737 |
+| 표 편당 | 1.10 | **24.30** | 0.40 | **21.60** | 4.00 | **31.00** | 9.70 |
+| 표 0개 페이지 | 6 | **0** | 3 | **0** | 0 | **0** | 0 |
+| `## 핵심 용어` 절 보유 | 0 / 10 | **10 / 10** | 0 / 5 | **5 / 5** | 0 / 2 | **2 / 2** | 76 / 76 |
+| frontmatter 100줄 초과 | 4 | **0** | 2 | **0** | 0 | **0** | 7 (전부 정상) |
+| lint_style error / warning | 455 / 22 | **0 / 0** | 246 / 18 | **0 / 0** | 278 / 1 | **0 / 0** | 0 / 0 |
+| lint_terms | 0 | **0** | 13 | **0** | 12 | **0** | 0 |
+| lint_links warning | 14 | **0** | 5 | **0** | 0 | **0** | 0 |
+| lint_figures error / warning | 43 / 17 | **0 / 0** | 32 / 20 | **0 / 0** | 0 / 0 | **0 / 0** | 0 / 162 (Phase 7-5) |
+| audit_captions | 77 | **0** | 82 | **0** | 8 | **0** | 0 |
+| index.md 200자 초과 | 8 / 10 | **0 / 10** | 4 / 5 | **0 / 5** | 2 / 2 | **0 / 2** | 0 / 76 (착수 시점) |
+
+  - **Phase 5 누적 산출물.** 17편 합산으로 wiki 본문이 104,875자에서 **442,698자**로 4.22배가 됐고 표는 21개에서 **413개**(편당 1.24개에서 24.29개)다. sources는 153,316자에서 331,238자로 2.16배다. 17편 압축비 중앙값은 0.69에서 1.32, 최소는 0.44에서 1.30이고 17편 전부 1.30 이상이다. 표 편당 24.29개는 저장소 최고(database 20.76개)를 넘는데, 배치가 누적될수록 "표로 꺼낸다" 지시가 강하게 반영되는 Phase 4의 경향이 이어졌다. 압축비 중앙값 1.32가 physical-ai 1.95에 못 미치는 것은 agents 이후 네 카테고리와 같은 구조적 이유(sources 동반 보강)다.
+  - **raw 재독으로 잡은 무근거 주장이 210건**(편당 12.4건)이고 자료 내적 모순 36건과 자료 간 불일치 4건을 한계 절에 기록했다. figures는 부분 백필과 신규 백필 118장(rombach 42, panfilov 41, peebles 26, cai 7, shumailov 2), caption 309건 한글 재작성, curated 재판정 12편(assets 삭제 21장, 추가 21장), 크롭 결함 27건 기록, `figures[].raw` 로컬 경로 12건 정정, `wiki-uncurated-figure` 73건에서 0건, `candidate-table-mismatch` 34건에서 0건, `figures-missing` 2건에서 0건, `figures-partial` 3건에서 0건이다.
+  - **Phase 5가 규명한 구조적 사실 다섯 가지.** (1) **논문 페이지의 게재 학회는 arXiv 본문에 없는 것이 기본이다.** lipman "ICLR 2023", peebles "ICCV 2023", xie "NeurIPS 2024 D&B"를 삭제했고 rombach "CVPR 2022"는 다른 raw의 참고문헌을 출처로 병기해 유지, chen "NeurIPS 2025"는 저장소 README 근거로 한정했다. D5 TurboQuant까지 합쳐 6건이다. (2) **같은 제품의 논문 페이지와 저장소 페이지가 서로의 raw를 근거로 삼는 양방향 복제**가 세 쌍(Eagle 2.5와 nvlabs-eagle, OSWorld와 xlang-ai, Flow Matching과 physical-ai VLA 페이지)에서 확인됐다. 논문 페이지에서는 삭제하거나 출처를 명시한 별도 절로 분리했다. (3) **raw 자체가 WebFetch 요약본인 stem이 2편 더 있다**(9bow-2026-gpt-5-6, kim-2026). A4 kang-2026까지 3편이고 전부 article이다. 재수집은 Phase 7-5 판단 사항이다. (4) **저자 한계로 위장된 우리 평가**가 이 Phase에서 두드러졌다(google-okf 4건, kim 2건, lipman 2건, mentzer 1건 등). `## 한계`를 "저자가 명시한 것"과 "자료에 기술이 없어 확인할 수 없는 것"으로 나누는 브리프 지침이 이를 잡았다. (5) **"공식 구현체" 권위 주장이 완료 카테고리로 번져 있다.** xlang-ai README에 official 표기가 없는데 `wiki/agents/wang-2026-cua-gym` 1062행과 `wiki/agents/browser-use-browsercode` 281행이 그렇게 적는다. Phase 4의 5연속에 이어 6, 7번째다.
+  - **크롭 결함 27건의 유형 분포**는 동일 bbox 중복 4건(rombach 3, peebles 1. Table 5와 6이 미포착된 gutierrez 양상 재현), 오크롭 3건, 본문과 코드 혼입 15건(xie 7, lipman 3, chen 4, panfilov 1), 하단 잘림 4건, 상단 잘림 1건이다. 전부 caption과 8절에 기록하고 값은 본문 표로 이관했으며 `--force`는 쓰지 않았다. rombach Table 6은 매니페스트 항목 자체가 없다. `extract_figures.py`의 caption 앵커 개선은 Phase 4에 이어 Phase 7-5 후속 과제 후보다.
+  - **완료 카테고리에서 발견한 오류 10건은 편집하지 않고 Phase 7 판단 후보로 남긴다.** (a) `wiki/agents/cemri-2025-why-do-multi-agent-llm-systems`(파일럿 1-1)의 candidate-table-mismatch 9건(tab01에서 tab09가 8절 표에 없음. 1-8 규칙 신설 이전 완료분이라 A-완료 게이트를 통과했다). (b) `wiki/agents/wang-2026-cua-gym` 1062행과 `wiki/agents/browser-use-browsercode` 281행 "OSWorld 공식 구현체". (c) `wiki/agents/lee-2026-the-agent-loop-a-survey` 867행 "상위 모델의 조기 종료 42.8%"(한 모델 값의 일반화)와 "다른 축의 수치". (d) `wiki/agents/seans-ai-stories-2026` 321행과 351행이 AutoRAG를 eval 신뢰성 자료로 소개(README에 없음). (e) `wiki/physical-ai/nvidia-2025-gr00t-n1-5` 254행이 N1.7 교체를 EAGLE 저장소 기록으로 귀속(isaac-gr00t README가 근거). (f) `wiki/physical-ai/jo-2026-groot-n1-5-vla-primer` 355행이 Eagle 2.5 논문에서 "공간 이해 개선" 근거를 확인할 수 있다고 적음(논문은 long-context만). (g) `wiki/physical-ai/hou-2026-world-model-for-robot-learning` 647행의 VLM3 서술이 VLM3의 픽셀 좌표 텍스트 예측과 어긋남. (h) `sources/osmani-2026-loop-engineering` 121행의 rahman 표시명 절단(경미). (i) `wiki/physical-ai/black-2024-pi0` 핵심 용어 표가 flow matching을 "diffusion의 변형"으로 적는 관점 차이(오류 아님). (j) `wiki/overviews/physical-ai-overview` 338행 구어 동사 "갈아타며"(Phase 6 소관).
+  - **사용자 확인 필요 사항 누적 6건.** (1) curated 집합을 12편에서 subagent가 재판정했다(Step 3.5 confirm 대체). 각 배치 기록에 id 단위로 적었고 되돌리려면 `curated` 값과 assets 사본만 바꾸면 된다. (2) autorag tags에서 `korean`을 뺐다(유일한 근거가 fig02 폴더명). (3) chen-2025 sources에 "NeurIPS 2025 채택"을 저장소 README 근거로 한 문장 남겼다. (4) 9bow-2026 title은 원문 중간점 표기로 되돌렸다(CLAUDE.md "원어 그대로" 규정, lint는 frontmatter title 미검사). (5) panfilov wiki 54,291자(산문 28,877자)와 nvlabs-eagle wiki 21,640자는 분량 기준선을 크게 넘지만 1차 게이트 우선 규정으로 유지했다. (6) lipman fig01(hero)은 `--bbox` 재크롭이 필요하다(raw 변경이라 사람 지시 사항).
+  - **전 저장소 잔여 지표 (Phase 6과 7 소관).** lint_style error 424건 warning 21건 위반 파일 10개이고 **전부 overviews 9편(lightrag 124, gbrain 81, harness 46, prompt-to-loop 38, loop-cross 29, headroom 28, skills 26, gstack 25, design-md 23)과 index.md Overviews 절 25건**이다. 착수 시점 9,202건 대비 95.4% 줄었고 Phase 4 완료 시점 1,403건 대비로는 69.8% 줄었다. lint_terms 18건은 overviews 4편 17건과 index 1건이다. `lint_links` warning 35건(bare-wikilink)은 전부 physical-ai sources 9편이고, `lint_figures` warning 172건은 physical-ai 162건(candidate-table-mismatch 157, figures-partial 5)과 agents cemri 9건, 고아 디렉토리 1건이다. audit_captions 중복 30건은 physical-ai sources 5편(nav2 계열 3편 25건, gr00t-n1-5 3건, rt-1 2건)이다. **index.md Physical AI 절 200자 초과가 착수 9개(91항목)에서 16개(98항목)로 늘었다.** Phase 5 진행 중 다른 세션이 physical-ai 자료 7편(LIBERO-Recover, Genesis World, Strands Robots, OpenArm, TANGO, MobileVLA-R1, CST-WM)과 agents 1편(ECC)을 ingest했고 그 항목이 200자를 넘는다. physical-ai lint_style과 lint_terms 게이트는 그 ingest를 포함해도 0건이다. 이 잔여는 Phase 7-3 계량과 7-5 후속 과제에서 다룬다.
+  - 도구와 브리프 개선 2건. (1) LE-0의 `figures-partial` 규칙이 llms 3건을 잡아 전부 해소됐고 physical-ai 5건이 남았다. (2) 배치 진행 중 index 갱신 스크립트의 자수 초과 assert가 실패했는데 뒤의 git 명령이 그대로 실행돼 L2 커밋에 index 갱신이 빠졌고 후속 커밋으로 반영했다. 이후 배치부터 갱신, 검증, 커밋을 `set -e`와 `&&` 체인으로 묶어 재발하지 않았다.
+  - 용어집 등재 후보는 5개 배치 합산 73종(중복 포함)이다. 등재 우선순위가 높은 것은 표기가 실제로 갈린 autoencoder(오토인코더 대 autoencoder), LLM-as-a-Judge(LLM-as-judge), reference trajectory(참조 궤적), denoising(디노이징)과 이 Phase에서 반복 등장한 diffusion model, latent, classifier-free guidance, prompt injection, jailbreak다. Phase 7-1에서 일괄 처리한다.
+  - 자동 메모리 갱신 (Phase 7-4 선행): `physical-ai-lint-clean-state`를 일곱 카테고리 clean-state로, `repo-stub-stale-claims`를 14 stem 전부 완료로 갱신했다.
+
 
 ### Phase 6. overviews 재작성과 study_path (9편)
 
