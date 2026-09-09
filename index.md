@@ -95,6 +95,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/physical-intelligence-openpi|openpi (Physical Intelligence, repo)]]: π0 계열의 공식 구현. Apache-2.0으로 base와 플랫폼별 checkpoint를 열고, RTX 4090 한 장에서 LoRA fine-tuning이 된다 (2025, repo)
 - [[physical-ai/generalist-ai-2026-gen-1-5-embodied-foundation|GEN-1.5 (Generalist AI, 블로그)]]: 시연 하나를 context window에 넣는 것만으로 새 조작 과제를 하는 로봇 foundation model 발표문. 설계 없이 나타난 능력이라고 본다 (2026, article)
 - [[physical-ai/zhang-2024-vision-and-language-navigation-today|Vision-and-Language Navigation Today and Tomorrow (Survey)]]: LAW framework로 VLN 연구를 top-down 정리한 서베이. 벤치마크 24종 분류표를 싣는다 (2024, paper)
+- [[physical-ai/li-2026-tango-humanoid-navigation-in-cluttered|TANGO (UC Berkeley)]]: 언어 지시문과 RGB만으로 29-DoF whole-body action을 직접 예측하는 whole-body VLN 프레임워크. 시뮬레이터에서만 학습해 Unitree G1에 zero-shot 배포했다 (2026, paper)
 - [[physical-ai/sa-2026-vision-language-action-models-for|VLA for Bimanual Manipulation (Survey)]]: VLA 문헌 200편 이상을 양팔 manipulation 렌즈로 정리한 서베이. 성패를 가르는 변수는 두 팔의 결합도라고 본다 (2026, paper)
 - [[physical-ai/brohan-2022-rt-1-robotics-transformer-for-real-world|RT-1 (Robotics Transformer)]]: 13만 개 시연 데이터로 학습한 35M Transformer 조작 policy. 대규모 데이터와 실시간 제어를 함께 실증한 VLA 계보의 출발점 (2022, paper)
 - [[physical-ai/zhao-2023-learning-fine-grained-bimanual-manipulation|ALOHA + ACT (Learning Fine-Grained Bimanual Manipulation)]]: 저가 양팔 teleoperation 장치와 action chunking 알고리즘 ACT를 낸 논문 (2023, paper)
