@@ -240,9 +240,9 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 
 - [[evaluations/marker-inc-korea-autorag|Marker-Inc-Korea/AutoRAG (repo)]] — RAG 파이프라인의 노드별 모듈 조합을 그리드 서치로 자동 평가·비교해 최적 파이프라인을 골라주는 RAG AutoML 프레임워크. Node Line→Node→Module 3계층 YAML 추상화, 한국어 BM25 토크나이저 기본 제공 (2024, repo)
 - [[evaluations/kim-2026-ai-prd-eval-plan|AI PRD는 무엇이 달라야 하는가 (article)]] — 확률적 AI 기능은 행동이 아니라 "합격선"을 명세해야 한다는 AI PRD 작성론. Eval Plan(스프레드시트 Eval 셋 + 규칙기반·LLM-as-a-Judge·사람 3층 피라미드 + 회귀 테스트)을 문서의 심장으로, 8대 필수 항목과 가격 모델까지 하나의 정합 시스템으로 (2026, article)
-- [[evaluations/xie-2024-osworld-benchmarking-multimodal-agents-for|OSWorld]] — 가상 머신 위 실제 Ubuntu에 369개 컴퓨터 조작 task를 얹고 task마다 채점 스크립트를 붙인 computer-use agent 벤치마크. 사람 72.36%에 최고 모델 12.24%로 격차를 드러냈고 실패의 75%가 GUI grounding이었다 (2024, paper)
-- [[evaluations/xlang-ai-osworld|xlang-ai/OSWorld (repo)]] — OSWorld 공식 구현체. `desktop_env` 패키지가 VMware·Docker·AWS 등 provider를 추상화한다. 2025년 OSWorld-Verified가 채점 결함을 고치고 평가를 1시간 안으로 병렬화했다 (2024, repo)
-- [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for|MCP-Atlas]] — 목이 아닌 실제 운영 MCP 서버 36개·도구 220개 위에서 1,000개 task로 tool use를 재는 벤치마크. trajectory 일치 대신 원자 단위 claim으로 채점했더니 20개 프런티어 모델 실패의 63.3%가 도구 호출이 아니라 조기 종료·잘못된 합성 같은 인지 단계에서 나왔다 (2026, paper)
+- [[evaluations/xie-2024-osworld-benchmarking-multimodal-agents-for|OSWorld]]: VM 위 Ubuntu에 369개 task와 실행 채점 스크립트를 둔 computer-use agent 벤치마크. 사람 72.36% 대 최고 12.24%, 실패 75% 이상이 클릭 좌표 오류 (2024, paper)
+- [[evaluations/xlang-ai-osworld|xlang-ai/OSWorld (repo)]]: OSWorld 논문 저자 조직의 환경과 벤치마크 저장소. desktop_env가 여섯 provider를 추상화하고, 2025년 OSWorld-Verified가 문제 수정과 AWS 병렬 평가(1시간 이내)를 더했다 (2024, repo)
+- [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for|MCP-Atlas]]: 실제 MCP 서버 36개와 도구 220개 위 1,000개 task로 tool use를 재는 벤치마크. 최종 답의 원자 claim으로 채점하며 20개 모델 실패의 63.3%가 인지 계열이었다 (2026, paper)
 
 ## Applications (applications)
 
