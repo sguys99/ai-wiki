@@ -1016,6 +1016,15 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
   - 자동 메모리 갱신 (Phase 7-4 선행): `physical-ai-lint-clean-state`를 일곱 카테고리 clean-state로, `repo-stub-stale-claims`를 14 stem 전부 완료로 갱신했다.
 
 
+- [x] LE-후속. Phase 5 완료 후 사용자 승인(2026-09-10)으로 실행한 후속 조치 3건. Phase 6 착수 전에 rework 원인을 먼저 없애는 것이 목적이다
+  - **(a) 완료 카테고리 이월 오류 9건 정리** (커밋 `735e56a`). Phase 5 subagent들이 발견해 보고만 했던 항목을 한 커밋으로 처리했다. `sources/cemri-2025`의 8절 표에 tab01에서 tab09까지 9행 보강(`candidate-table-mismatch` 9건에서 0건, 파일럿 1-1이 1-8 규칙 신설 이전이라 A-완료 게이트를 통과했던 잔재), agents 2편의 "OSWorld 공식 구현체" 표기, `lee-2026`의 42.8% 귀속(Gemini 3.1 Pro Preview 한 모델 값의 일반화)과 "다른 축", `seans-ai-stories`의 AutoRAG eval 신뢰성 오소개 2곳, `gr00t-n1-5`의 N1.7 Cosmos-Reason2 귀속(EAGLE README가 아니라 isaac-gr00t README가 근거), `jo-2026-groot-n1-5`의 Eagle 2.5 공간 이해 주장, `hou-2026`의 VLM3 방법 서술, `osmani-2026` 표시명 절단, overview 338행 구어 동사다. 10개 파일 19줄 추가 10줄 삭제이고 회귀 게이트 4종 전부 exit 0이다.
+  - **(b) WebFetch 요약본 article 3편 재수집과 재정합** (커밋 `7bff4f1`, `907cfed`). Phase 5가 구조적 사실 (3)으로 기록한 3편을 `scripts/fetch_article.py`(chrome tier)로 다시 수집했다. 본문이 9bow 약 5,000자에서 14,715자, kim 2,954자에서 9,171자, kang 1,278자에서 2,784자가 됐고, 도식 7장(9bow 4장은 원본 해상도, kim 3장)을 새로 확보했다. `kang`의 `raw_path`에 남아 있던 macOS 절대경로도 저장소 상대경로로 고쳤다. 9bow의 기존 수동 저장본 2장은 CLAUDE.md의 `legacy/` 규약대로 보존했다.
+  - (b) **재수집이 Phase 5 판정을 뒤집었다.** 요약본을 근거로 "raw에 없음"으로 지운 서술 19건이 실제로는 원문에 있었다. kim의 "결정론적(deterministic) 시스템 대비"(raw 84행), 9bow의 "지금까지 가장 견고한 안전 스택" 직인용과 활성화 분류기 2단계 동작과 railfree 조건과 벤치마크 6종의 측정 대상, kang의 루프 구성 요소 6종 역할과 리스크 3종 정의가 대표다. **무근거 판정은 raw가 원문 전문일 때만 유효하다**는 것이 이번 교훈이고, 배치 브리프의 6유형 대조 앞에 "raw가 원문 전문인지 먼저 판정한다"를 두어야 한다.
+  - (b) 재정합 후 3편 합계는 wiki 21,431자에서 50,459자, 표 34개에서 54개, 압축비 중앙값 1.47(최소 1.32)이다. lint 5종 0건이고 일곱 카테고리 회귀 게이트 전부 exit 0이다. 9bow는 figures id를 전면 교체했고(새 fig01은 원문 hero 이미지, 옛 가격표 캡처는 `legacy-fig01`), kim은 `figures:` 키를 신규 백필했으며, kim의 `lint-style: ignore` 2건은 표 열 이름을 바꿔 원제 인용 없이 서술해 제거했다. 9bow 담당자가 fig03과 fig04 그래프를 판독해 본문에 없던 GeneBench와 ExploitBench 수치를 표로 옮겼고 판독값임을 명시했다.
+  - (b) 수집 과정에서 `fetch_article.py`의 새 함정을 확인해 자동 메모리에 7번으로 기록했다. **Discourse는 post stream을 가상화해서**, 스크립트가 맨 아래로 스크롤한 뒤 곧바로 `page.content()`를 부르는 사이에 1번 글이 DOM에서 빠진다. 셀렉터와 렌더 대기가 모두 맞는데도 201자만 잡히던 원인이고, `Page.content`를 monkeypatch해 캡처 직전에 본문 길이를 확인하자 14,715자가 됐다. 이미지도 `<a href=원본><img src=optimized>>` 구조라 언랩만으로는 optimized 판이 내려와, URL의 `/optimized/`를 `/original/`로 바꿔 원본을 받았다.
+  - **(c) 스킬 게이트 보강** (커밋 `ab0e329`). write-wiki를 v2.3.0으로 올려 §5 lint 블록을 3종에서 5종으로 늘리고(`lint_links`, `lint_figures` 추가), 체크리스트에 index.md 200자 항목과 figures 정합 항목을 넣었으며, "wikilink를 검사하는 lint는 아직 없다"는 1-7 이전의 낡은 서술을 고쳤다. ingest-article에는 요약본 판별 절차와 가상 스크롤 사이트 대응을 넣었다. 두 스킬 파일은 `lint_style.py --all` 대상 밖이라 파일의 기존 서술 방식을 유지했다.
+  - **잔여 확인 사항.** Phase 5 진행 중 다른 세션이 ingest한 physical-ai 7편과 agents 1편이 남긴 지표는 그대로다. index.md Physical AI 절 200자 초과 16개, `bare-wikilink` 35건(physical-ai sources 9편), audit_captions 중복 30건(physical-ai sources 5편)이다. (c)의 스킬 보강은 앞으로의 ingest에만 적용되므로 기존 잔여는 Phase 7-3과 7-5에서 다룬다.
+
 ### Phase 6. overviews 재작성과 study_path (9편)
 
 전 카테고리 배치 완료 후 착수한다. overview는 커버 자료의 재작성 결과(새 수치, 새 구조)와 신규 페이지 편입을 반영해야 하기 때문이다. 배치 진행 중 overview와의 일시 모순은 허용하고 이 계획서에 기록한다.
