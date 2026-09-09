@@ -120,6 +120,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/huggingface-lerobot|LeRobot (Hugging Face, repo)]]: 하드웨어 제어부터 데이터 수집, policy 학습, 평가까지 담은 PyTorch 로봇 학습 프레임워크. policy 22종이 같은 데이터 형식과 CLI 위에서 동작하며 라이선스는 Apache-2.0이다 (2026, repo)
 - [[physical-ai/noietch-eva-client|EVA-Client (repo)]]: 실제 로봇의 배포와 평가와 데이터 수집을 브라우저 콘솔 하나로 합친 Apache-2.0 스택. 설정 파일 하나로 transport와 policy backend와 추론 전략을 조합한다 (2026, repo)
 - [[physical-ai/strands-labs-robots|Strands Robots (strands-labs, repo)]]: Strands Agent가 자연어로 로봇을 다루게 하는 Apache-2.0 라이브러리. teleoperation 수집부터 policy 학습, 시뮬레이션과 실제 기기 실행, Zenoh mesh, ROS 2 연결까지 한 패키지에 담았다 (2026, repo)
+- [[physical-ai/enactic-openarm|OpenArm (Enactic, repo)]]: 7자유도 오픈소스 humanoid 팔과 평가 환경 Cell, 모터 없는 leader 팔 KER를 한 세트로 묶은 Apache-2.0 프로젝트. bilateral teleoperation 수집부터 ACT 학습과 Dora 추론까지 규격을 문서로 고정했다 (2026, repo)
 - [[physical-ai/nasiriany-2024-robocasa-large-scale-simulation-of-everyday|RoboCasa (UT Austin, NVIDIA, RSS 2024)]]: 주방 장면 120개와 과제 100종을 담은 로봇 시뮬레이션 프레임워크. 시뮬레이션 데이터로 실제 로봇 성능을 올렸다 (2024, paper)
 - [[physical-ai/nasiriany-2026-robocasa365-a-large-scale-simulation-framework|RoboCasa365 (UT Austin, NVIDIA, ICLR 2026)]]: 과제 365종과 2,200시간 데이터로 VLA 4종을 같은 조건에서 비교한 후속 벤치마크 (2026, paper)
 - [[physical-ai/robocasa-robocasa|robocasa (repo)]]: RoboCasa와 RoboCasa365 공식 구현으로 코드는 MIT, asset은 CC BY 4.0이다. 설치와 첫 실행까지만 담고 과제 목록과 학습 절차는 문서 사이트로 넘긴다 (2026, repo)

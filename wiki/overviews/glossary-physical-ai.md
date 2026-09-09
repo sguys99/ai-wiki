@@ -41,6 +41,9 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | imitation learning | imitation learning | 모방 학습·모방학습 | imitation learning은 시연 데이터를 흉내 내 policy를 학습하는 방법이다 | |
 | behavioral cloning | behavioral cloning | 행동 복제·행동 모사 | behavioral cloning은 시연의 observation→action 쌍을 지도학습으로 흉내 낸다 | |
 | teleoperation | teleoperation | 원격 조작·원격조작 | teleoperation은 사람이 로봇을 원격으로 움직여 시연을 만드는 방식이다 | 이미 원어로 정착 (22회) |
+| bilateral control / unilateral control | bilateral control / unilateral control | 양방향 제어·쌍방향 제어·단방향 제어·일방향 제어 | bilateral control은 leader와 follower가 힘을 서로 주고받아 조작자가 접촉을 느끼는 teleoperation 방식이고, unilateral control은 위치 명령만 한 방향으로 보내는 방식이다 | 짝을 이루는 개념이라 한 행에 둔다 (glossary-llms의 encoder / decoder 선례). OpenArm은 bilateral에 500Hz 이상의 control frequency를 요구한다 (2026-09 등재) |
+| backdrivability | backdrivability | 백드라이버빌리티·역구동성 | backdrivability는 외력으로 관절을 밀었을 때 모터가 순순히 밀리는 정도를 말한다 | 접촉 안전과 bilateral control의 전제. 동사형 backdrive도 원어로 쓴다 (ALOHA 페이지 용례). 음차와 직역 모두 금지 (2026-09 등재) |
+| QDD | QDD | 준직접구동·준 직접 구동·쿼시 다이렉트 드라이브 | QDD는 감속비를 낮게 잡아 모터의 힘을 관절에 거의 직접 전달하는 구동 방식이다 | Quasi-Direct Drive의 약어. 약어를 기본 표기로 쓰고 첫 등장에서만 원어를 풀어 적는다. backdrivability를 확보하는 하드웨어 조건 (2026-09 등재) |
 | demonstration | 시연 데이터 | demonstration | 시연 데이터(demonstration)는 사람이 만들어준 모범 실행 데이터다 | 2026-09 개정: 개념 번역어로 전환. 첫 등장 시 원어 병기 후 단일 표기. 병기 괄호는 lint가 마스킹한다 |
 | instruction | 지시문 | — | 지시문(instruction)은 로봇에게 과제를 지정하는 자연어 문장이다 | 2026-09 신설. 기계 검사 없음 — verbal instruction, hindsight instruction 같은 원어 canonical 복합어와 substring이 충돌한다. 혼용 여부는 write-wiki 자체 검토로 관리 |
 | end-effector | end-effector | 말단 장치·엔드 이펙터 | end-effector는 로봇 팔 끝에서 물체와 접촉하는 부분이다 | 음차도 금지, 원어 고정 |
