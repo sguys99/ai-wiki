@@ -54,7 +54,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[llms/mentzer-2023-finite-scalar-quantization-vq-vae-made|FSQ]]: VQ-VAE의 벡터 양자화를 차원별 bound와 반올림으로 바꾼 finite scalar quantization. 보조 손실 없이 codebook 사용률 약 100%, MaskGIT과 UViM에서 VQ와 대등 (2023, paper)
 - [[llms/shumailov-2024-ununlearning-unlearning-is-not-sufficient|UnUnlearning]]: unlearning된 지식을 in-context learning으로 되살리는 ununlearning을 제안하고, exact unlearning도 콘텐츠 규제에 불충분하다고 논증한 논문 (2024, paper)
 - [[llms/cai-2026-vlm3-vision-language-models|VLM3]]: Qwen3-VL-4B에 focal length 통일, 텍스트 픽셀 참조, 데이터 mixture만 더한 SFT로 depth, object 3D, correspondence, pose 네 task에서 expert 모델에 필적 (2026, paper)
-- [[llms/9bow-2026-gpt-5-6-sol-terra-luna|OpenAI GPT-5.6 Sol/Terra/Luna 프리뷰]]: 9bow의 한국어 소식 글. 세 티어 라인업과 새 네이밍 체계, 1M 토큰 가격표, Terminal-Bench 2.1 등 벤치마크, 4층 안전 스택과 정부 협의 기반 단계적 배포를 전한다 (2026, article)
+- [[llms/9bow-2026-gpt-5-6-sol-terra-luna|OpenAI GPT-5.6 Sol/Terra/Luna 프리뷰]]: 9bow의 한국어 소식 글. 세 티어 라인업과 네이밍 체계, max와 ultra 실행 모드, 벤치마크, Preparedness High 분류와 네 층 안전 스택, 정부 협의 배포를 전한다 (2026, article)
 - [[llms/panfilov-2026-stealing-reasoning-traces-from-proprietary|Stealing Reasoning Traces]]: 암호화 reasoning 블록의 cross-model 호환성으로 강한 모델의 사고를 약한 모델로 복호화하는 공격. 네 벡터를 세 provider에서 실증 (2026, paper)
 - [[llms/chen-2025-eagle-25-boosting-long-context-post-training|Eagle 2.5]]: NVIDIA long-context VLM. 텍스트 우선 샘플링과 progressive post-training, Eagle-Video-110K로 512프레임 Video-MME 72.4를 낸다 (2025, paper)
 - [[llms/nvlabs-eagle|NVlabs/EAGLE (repo)]]: Eagle, Eagle 2, Eagle 2.5, LocateAnything 네 계열의 공식 저장소이자 11개 모델의 model zoo. GR00T N1부터 N1.6까지의 backbone 채택 시점을 월 단위로 기록한다 (2026, repo)
@@ -189,7 +189,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/google-labs-code-design-md|code design.md (repo)]]: 디자인 시스템을 코딩 에이전트에게 넘기는 Google Labs 포맷 규격. YAML 토큰과 Markdown 산문 두 층, lint/diff/export/spec CLI, 린터 9규칙 (2026, repo)
 - [[agents/hada-2026-agent-skills|Agent Skills (GeekNews)]]: Osmani 원문을 GeekNews가 요약하고 댓글 토론을 붙인 짝 자료. 스킬 20개, MIT 라이선스, 이식 경로 같은 정량 스펙에 규칙 우회와 컨텍스트 오염 회의론을 더한다 (2026, article)
 - [[agents/lee-jeongmin-2026-loop-engineering-claude-code|Loop Engineering과 RLM (Jeongmin Lee)]]: RLM 구조로 Claude Code dynamic workflow의 설계 의도를 해설한 한국어 LinkedIn 포스트 (2026, article)
-- [[agents/kang-2026-no-longer-prompting-claude|더 이상 Claude를 프롬프팅하지 않습니다 (Sujin Kang)]]: 최적화 단위가 prompt, context, harness, loop로 옮겨온 4단계 타임라인 (2026, article)
+- [[agents/kang-2026-no-longer-prompting-claude|더 이상 Claude를 프롬프팅하지 않습니다 (Sujin Kang)]]: 최적화 단위가 prompt, context, harness, loop로 옮겨온 4단계 타임라인. 루프 구성 요소 6종과 리스크 3종에 정의를 붙였다 (2026, article)
 - [[agents/zhang-2026-recursive-language-models|Recursive Language Models]]: prompt를 REPL 변수로 offload하고 코드로 재귀 sub-LM을 호출하는 추론 패러다임 (2026, paper)
 - [[agents/bytebytego-2026-how-openai-built-its-data|How OpenAI Built Its Data Agent (ByteByteGo)]]: 1.5 exabyte 규모 사내 data agent를 GPT-5.5 단일 모델과 여섯 개 context layer로 운영한 사례 (2026, article)
 - [[agents/bai-2026-how-do-ai-agents-spend|How Do AI Agents Spend Your Money?]]: SWE-bench Verified 500문제를 8개 모델로 4회씩 실행한 trajectory 분석. 비용은 input 토큰에서 나오고 토큰을 더 써도 정확도는 오르지 않는다 (2026, paper)
@@ -239,7 +239,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 평가 프레임워크(RAGAS, Braintrust), benchmark.
 
 - [[evaluations/marker-inc-korea-autorag|Marker-Inc-Korea/AutoRAG (repo)]]: 사용자의 QA와 corpus 데이터로 여러 RAG module 조합을 자동 평가해 최적 파이프라인을 고르는 RAG AutoML 도구. YAML 3계층 설정과 summary.csv 결과 (2024, repo)
-- [[evaluations/kim-2026-ai-prd-eval-plan|AI PRD는 무엇이 달라야 하는가 (article)]]: AI PRD는 행동이 아니라 받아들여질 만한 답과 판단 방법을 정의해야 한다는 글. Eval 셋, 3층 평가 피라미드, 회귀 테스트의 Eval Plan과 8가지 필수 항목, 가격 모델을 제시한다 (2026, article)
+- [[evaluations/kim-2026-ai-prd-eval-plan|AI PRD는 무엇이 달라야 하는가 (article)]]: AI PRD는 단일 행동이 아니라 허용 가능한 답변의 범위와 판단 방법을 정의해야 한다는 글. Eval Plan, 3층 평가 피라미드, 회귀 테스트, 8가지 필수 항목, 가격 모델을 다룬다 (2026, article)
 - [[evaluations/xie-2024-osworld-benchmarking-multimodal-agents-for|OSWorld]]: VM 위 Ubuntu에 369개 task와 실행 채점 스크립트를 둔 computer-use agent 벤치마크. 사람 72.36% 대 최고 12.24%, 실패 75% 이상이 클릭 좌표 오류 (2024, paper)
 - [[evaluations/xlang-ai-osworld|xlang-ai/OSWorld (repo)]]: OSWorld 논문 저자 조직의 환경과 벤치마크 저장소. desktop_env가 여섯 provider를 추상화하고, 2025년 OSWorld-Verified가 문제 수정과 AWS 병렬 평가(1시간 이내)를 더했다 (2024, repo)
 - [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for|MCP-Atlas]]: 실제 MCP 서버 36개와 도구 220개 위 1,000개 task로 tool use를 재는 벤치마크. 최종 답의 원자 claim으로 채점하며 20개 모델 실패의 63.3%가 인지 계열이었다 (2026, paper)
