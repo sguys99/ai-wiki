@@ -1,6 +1,6 @@
 ---
 name: write-wiki
-version: "2.2.1"
+version: "2.3.0"
 description: sources/·wiki/ 한글 페이지를 작성하는 스킬 (CLAUDE.md Step 3 ~ Step 4). 트리거 — "sources 작성해줘", "wiki 페이지 만들어줘", "Step 3 진행", "요약 작성해줘", "wiki에 정리해줘", "이 자료 위키로", "wiki 갱신해줘". 도메인 용어집을 로드해 전문 용어를 원어로 유지하고, wiki는 교재식으로 재구성한다 (압축 금지, 표와 불릿 적극 사용). 수집(Step 1~2.5)은 해당 없음 — ingest-paper / ingest-article 을 쓸 것.
 ---
 
@@ -151,18 +151,22 @@ wiki 페이지의 `## 핵심 용어` 표는 sources 용어집에서 이해에 �
 - [ ] 논문, survey 기반이면 표가 1개 이상 있는가
 - [ ] `## 핵심 용어` 표가 있는가
 - [ ] wiki 본문이 sources 본문보다 짧지 않은가
-- [ ] `## 관련 페이지`의 wikilink가 실재 파일을 가리키는가 (category가 옮겨지면 조용히 깨진다. 이를 검사하는 lint는 아직 없다)
+- [ ] `## 관련 페이지`의 wikilink가 실재 파일을 가리키는가, `[[category/stem]]` 형식인가 (category가 옮겨지면 조용히 깨진다. `lint_links.py`가 `link-unresolved`와 `bare-wikilink`로 검사한다)
 - [ ] wiki frontmatter의 `figures:`에 curated 항목만 있는가 (전량 복제는 frontmatter가 본문보다 커지는 원인이다. 파일럿 cemri-2025에서 243줄이 94줄로 줄었다)
+- [ ] sources frontmatter의 `figures:`가 `{stem}-figures/figures.json` 전량을 담고 `## 8. 그림 후보` 표와 id가 일치하는가 (`lint_figures.py`의 `figures-partial`과 `candidate-table-mismatch`가 검사한다)
+- [ ] `index.md` 항목이 `- ` 접두 포함 200자 이내인가, 구분자가 `]]: `인가, 금지 기호가 없는가 (항목이 두 번째 wiki로 자라는 것을 막는다)
 
 sources와 wiki 파일을 저장할 때마다 lint를 돌려 경고 0을 확인한다.
 
 ```bash
 .venv/bin/python scripts/lint_terms.py sources/{stem}.md wiki/{category}/{stem}.md
 .venv/bin/python scripts/lint_style.py sources/{stem}.md wiki/{category}/{stem}.md
+.venv/bin/python scripts/lint_links.py sources/{stem}.md wiki/{category}/{stem}.md
+.venv/bin/python scripts/lint_figures.py sources/{stem}.md
 .venv/bin/python scripts/audit_captions.py sources/{stem}.md wiki/{category}/{stem}.md
 ```
 
-`audit_captions.py`는 frontmatter `figures[].caption`의 금지 기호, 영어 전용, 파일 내 중복을 검사한다. `figures:` 키가 있는 자료면 세 스크립트를 모두 실행한다.
+이 다섯이 완료 게이트다. `lint_style`은 error와 warning 둘 다 0이어야 하고(`axis-misuse`가 warning이다), `lint_links`는 `bare-wikilink` warning까지 0으로 맞춘다. `lint_figures.py`는 `-figures/` 디렉토리와 frontmatter, 8절 표, wiki curated 사본의 정합을 한 stem 단위로 본다. `audit_captions.py`는 frontmatter `figures[].caption`의 금지 기호, 영어 전용, 파일 내 중복을 검사한다. `figures:` 키가 없는 자료도 앞의 세 개는 실행한다.
 
 한 카테고리를 배치로 재작성한 뒤에는 두 스크립트에 `--category {name}`을 주어 그 카테고리 전체를 한 번에 확인한다. 판정 기준이 frontmatter `category:` 값이라 flat한 `sources/`도 함께 걸린다.
 
