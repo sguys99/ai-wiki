@@ -246,7 +246,7 @@ Step 3.5  사용자 confirm — wiki에 넣을 fig ID 지정 → curated: true
 Step 4    wiki/{category}/{stem}.md 작성 + curated figure를 wiki/assets/{stem}/로 cp + 본문 임베드 + index.md 갱신
 ```
 
-Step 3~4(sources·wiki 작성)는 `write-wiki` 스킬을 사용한다. 스킬이 도메인 용어집 로드, 전문 용어 표기 규칙, 교재식 구조와 문체 가이드, 작성 후 lint 검증(`lint_terms.py` + `lint_style.py`)을 담당한다.
+Step 3~4(sources·wiki 작성)는 `write-wiki` 스킬을 사용한다. 스킬이 도메인 용어집 로드, 전문 용어 표기 규칙, 교재식 구조와 문체 가이드, 작성 후 lint 검증(`lint_terms.py`, `lint_style.py`, `lint_links.py`, `lint_figures.py`, `audit_captions.py`, `lint_index.py` 여섯 게이트)을 담당한다.
 
 ### 공통 Step 3 — `sources/{stem}.md` 작성
 
@@ -347,6 +347,14 @@ cp raw/papers/{stem}-figures/fig05.png wiki/assets/{stem}/
 ```
 
 `index.md`에는 해당 카테고리 아래 한 줄 항목을 추가한다. 항목 설명은 **1~2문장, 200자 이내**로 제한한다. 세부 내용은 wiki 페이지가 담당하고 index는 카탈로그 역할만 한다 (기존에 항목이 수백 자로 자라 두 번째 wiki가 되는 문제가 있었다).
+
+항목은 아래 문법 한 가지만 쓴다. 사이트 빌드(`site/lib/content.mjs`)가 이 줄을 홈 카드로 바꾸고, `scripts/lint_index.py`가 write-wiki 게이트에서 같은 문법을 검사한다. 구분자나 꼬리 형식을 바꾸면 두 소비자를 함께 고치고 `cd site && npm run build:strict`로 절별 카드 수를 확인한다 (2026-09 구분자를 `]]: `로 바꾸면서 파서를 빠뜨려 홈 카드가 전부 사라진 일이 있었다. 배포 빌드는 이제 파싱 불가 항목이나 카드 0개 절이 있으면 실패한다).
+
+```
+- [[category/stem|표시 이름]]: 한 줄 설명 (YYYY, type)
+```
+
+`type`은 paper, repo, article, report, video, book, lecture, overview 중 하나다. 표시 이름은 생략할 수 있고 `]`를 포함할 수 있다.
 
 > **Obsidian 임베드 syntax 주의**: `![[fig02]]` shortlink는 vault 내 동명 파일과 충돌 위험 → 항상 `![[assets/{stem}/figNN.png]]` 처럼 **상대경로 명시**로 통일한다. 캡션은 임베드 바로 아래 `*Figure N: ...*` 형식으로 한 줄 둔다.
 
