@@ -8,6 +8,10 @@ const raw = process.env.BASE ?? '';
 // 정규화: 빈 문자열이거나 '/'로 시작하고 trailing slash 제거.
 export const BASE = raw === '' ? '' : '/' + raw.replace(/^\/+|\/+$/g, '');
 
+// 카탈로그 가드 엄격 모드. STRICT=1 이면 index.md 에 파싱 불가 항목이 있거나 "wiki 페이지는 있는데
+// 카드 0개"인 절이 있을 때 빌드를 실패시킨다 (package.json build:deploy / build:strict).
+export const STRICT = process.env.STRICT === '1';
+
 // 경로 헬퍼: BASE + 정규화된 절대 경로. href('/agents/x/') → '/ai-wiki/agents/x/'
 export function href(path = '/') {
   const p = path.startsWith('/') ? path : '/' + path;

@@ -11,7 +11,7 @@ import { rm, mkdir, writeFile, cp, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
-import { BASE, href, RECENT_COUNT } from './lib/config.mjs';
+import { BASE, STRICT, href, RECENT_COUNT } from './lib/config.mjs';
 import { loadContent, tagsOf } from './lib/content.mjs';
 import { addedDates } from './lib/dates.mjs';
 import { buildGraph } from './lib/graph.mjs';
@@ -40,7 +40,11 @@ async function main() {
   console.log(
     `[content] wiki pages: ${totalPages}  ·  catalog entries: ${totalEntries}  ·  sections: ${sections.length}`
   );
+  // 절별 카드 수. 어느 절이 비었는지 로그만으로 보이게 한다.
+  console.log(`[content] sections: ${sections.map((s) => `${s.slug} ${s.pages.length}`).join('  ·  ')}`);
   for (const w of content.warnings) console.log(`[content] WARN ${w}`);
+  for (const iss of content.catalogIssues)
+    console.log(`[content] WARN index.md L${iss.line} ${iss.kind}: ${iss.text.slice(0, 80)}`);
   if (content.missingFile.length)
     console.log(
       `[content] WARN 카탈로그에 있으나 wiki 파일 없음 (${content.missingFile.length}): ${content.missingFile.join(', ')}`
@@ -49,6 +53,28 @@ async function main() {
     console.log(
       `[content] WARN index.md 카탈로그에 없는 페이지 (${content.missingFromIndex.length}): ${content.missingFromIndex.join(', ')}`
     );
+
+  // 2.1) 카탈로그 가드. 2026-09 index.md 구분자 전환(` — ` → `]]: `)을 파서가 모르는 채 배포돼
+  //      홈 카드 254개 중 12개만 남은 뒤 추가했다. 아래 두 조건은 렌더 결과가 곧 깨진 홈이라
+  //      STRICT(배포 빌드 build:deploy, 로컬 build:strict)에서는 빌드를 실패시킨다.
+  //        - 절 안의 `- [[` 줄이 문법에 맞지 않아 카드에서 빠짐 (unparsed)
+  //        - wiki/{slug}/ 에 페이지가 있는데 그 절의 카드가 0개 (이번 증상 그 자체)
+  //      꼬리 누락·레거시 구분자·미등재 페이지는 폴백으로 렌더가 되므로 WARN 에 둔다.
+  const guard = [];
+  for (const iss of content.catalogIssues)
+    if (iss.kind === 'unparsed') guard.push(`index.md L${iss.line} 항목 파싱 불가: ${iss.text.slice(0, 80)}`);
+  for (const s of sections) {
+    if (s.pages.length) continue;
+    const have = [...pages.values()].filter((p) => p.category === s.slug).length;
+    if (have) guard.push(`'${s.label}' 절 카드 0개인데 wiki/${s.slug}/ 페이지 ${have}개`);
+  }
+  if (guard.length) {
+    for (const g of guard) console.log(`[content] ${STRICT ? 'FAIL' : 'WARN'} ${g}`);
+    if (STRICT)
+      throw new Error(
+        `카탈로그 가드 ${guard.length}건 (STRICT=1). index.md 항목 문법은 scripts/lint_index.py 로 확인`
+      );
+  }
 
   // 2.5) 태그 인덱스 — 전 페이지 tags: → slug 기준 태그→페이지 맵.
   //      슬러그가 겹치는 표기 변형은 한 태그로 합치고 그 내역을 콘솔에 남긴다.

@@ -14,11 +14,24 @@ import { href, SITE, RECENT_DAYS } from './config.mjs';
 import { slugify } from './markdown.mjs';
 import { domainOf } from './domains.mjs';
 
-// index.md 카탈로그 한 줄 정규식.
-//   - [[category/stem|display]] — 설명 ... (YYYY, type)
-// display(`|...`)는 옵션. 설명에 내부 괄호가 있어도 말미 `(YYYY, type)`에 그리디 앵커로 안정 매칭.
-const CATALOG_RE =
-  /^- \[\[([^/\]]+)\/([^|\]]+?)(?:\|([^\]]*))?\]\]\s*—\s*(.+)\s*\((\d{4}),\s*([^)]+)\)\s*$/;
+// index.md 카탈로그 한 줄 문법. 정본은 index.md 상단 안내이고 scripts/lint_index.py 가 같은 문법을
+// 작성 시점에 검사한다. 문법을 바꾸면 세 곳을 같이 고친다.
+//   - [[category/stem|표시 이름]]: 한 줄 설명 (YYYY, type)
+//
+// 두 단계로 판다. 머리(CATALOG_HEAD_RE)가 링크·구분자·나머지를 떼고, 꼬리(CATALOG_TAIL_RE)가
+// 나머지에서 설명과 (YYYY, type) 을 가른다. 꼬리가 없거나 type 이 허용값 밖이어도 항목은 살리고
+// (카드 메타는 frontmatter year/type 으로 폴백) issues 로만 알린다.
+//
+// 2026-09 구분자가 ` — ` 에서 `]]: ` 로 바뀌었을 때 옛 한 줄 정규식이 전량 미스해 홈 카드
+// 254개 중 12개만 남은 일이 있어서, 구분자는 둘 다 받되 `—` 는 legacy-separator 로 표시한다.
+// 표시 이름은 `]]` 앞까지 lazy 로 받아 `[ROS2] Nav2란?` 처럼 `]` 를 품을 수 있다.
+const CATALOG_HEAD_RE = /^- \[\[([^/\]|]+)\/([^|\]]+?)(?:\|(.+?))?\]\]\s*(:|—)\s*(.*)$/;
+const CATALOG_TAIL_RE = /^(.*?)\s*\((\d{4}),\s*([^)]+)\)\s*$/;
+// `- [[` 로 시작하는 줄은 카탈로그 항목 후보다. 머리가 안 맞으면 절 설명으로 새지 않게 issue 로 보낸다.
+const CATALOG_CANDIDATE_RE = /^- \[\[/;
+export const CATALOG_TYPES = new Set([
+  'paper', 'repo', 'article', 'report', 'video', 'book', 'lecture', 'overview',
+]);
 
 // `## Label (slug)` 카테고리 헤더.
 const SECTION_RE = /^##\s+(.+?)\s+\(([a-z0-9-]+)\)\s*$/;
@@ -96,6 +109,7 @@ async function loadCatalog(root) {
   const text = await readFile(join(root, 'index.md'), 'utf8');
   const lines = text.split('\n');
   const sections = []; // { label, slug, desc, entries: [...] }
+  const issues = []; // { line, kind, text } — 절 안 항목 후보의 문법 이탈 (build.mjs 가 리포트/가드)
   let current = null;
   const descBuf = [];
 
@@ -106,36 +120,60 @@ async function loadCatalog(root) {
     descBuf.length = 0;
   };
 
-  for (const line of lines) {
+  lines.forEach((line, i) => {
+    const lineno = i + 1;
     const sec = line.match(SECTION_RE);
     if (sec) {
       flushDesc();
       current = { label: sec[1].trim(), slug: sec[2], desc: null, entries: [] };
       sections.push(current);
-      continue;
+      return;
     }
-    if (!current) continue;
+    if (!current) return;
 
-    const ent = line.match(CATALOG_RE);
-    if (ent) {
+    if (CATALOG_CANDIDATE_RE.test(line)) {
+      const head = line.match(CATALOG_HEAD_RE);
+      if (!head) {
+        // 머리부터 안 맞는 항목은 절 설명으로 새지 않게 issue 로만 남긴다.
+        issues.push({ line: lineno, kind: 'unparsed', text: line });
+        return;
+      }
+      const [, category, stem, display, sep, rest] = head;
+      if (sep === '—') issues.push({ line: lineno, kind: 'legacy-separator', text: line });
+
+      let desc = rest.trim();
+      let year = null;
+      let type = null;
+      const tail = rest.match(CATALOG_TAIL_RE);
+      if (!tail) {
+        issues.push({ line: lineno, kind: 'missing-tail', text: line });
+      } else {
+        desc = tail[1].trim();
+        year = Number(tail[2]);
+        const t = tail[3].trim();
+        if (CATALOG_TYPES.has(t)) type = t;
+        else issues.push({ line: lineno, kind: 'bad-type', text: line }); // type 은 frontmatter 폴백
+      }
+
       flushDesc();
       current.entries.push({
-        category: ent[1],
-        stem: ent[2].trim(),
-        display: (ent[3] || '').trim() || null,
-        desc: ent[4].trim(),
-        year: Number(ent[5]),
-        type: ent[6].trim(),
+        category,
+        stem: stem.trim(),
+        display: (display || '').trim() || null,
+        desc,
+        year,
+        type,
+        line: lineno,
       });
-      continue;
+      return;
     }
     // 헤더와 첫 카탈로그 항목 사이의 산문 → 섹션 설명
     if (current.entries.length === 0 && line.trim() && !line.startsWith('#')) {
       descBuf.push(line.trim());
     }
-  }
+  });
   flushDesc();
-  return sections;
+  return { sections, issues };
 }
 
 // ── 태그 인덱스 ───────────────────────────────────────────────────────────────
@@ -296,7 +334,7 @@ export function resolveStudyPaths(pages, resolve) {
 
 export async function loadContent(root, addedDates = new Map()) {
   const { pages, byStem, warnings } = await loadWikiPages(root);
-  const catalog = await loadCatalog(root);
+  const { sections: catalog, issues: catalogIssues } = await loadCatalog(root);
 
   // git 추가일 부착: relPath("category/stem.md") → 저장소기준("wiki/category/stem.md")로 조회.
   // 미추적/이력없음(로컬 신규 등)은 now 폴백 → 최상단에 뜬다.
@@ -371,6 +409,7 @@ export async function loadContent(root, addedDates = new Map()) {
     warnings,
     missingFile,
     missingFromIndex,
+    catalogIssues,
   };
 }
 

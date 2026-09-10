@@ -6,7 +6,8 @@
   "description": "GitHub Pages site generator for ai-wiki (Constellation design)",
   "scripts": {
     "build": "node build.mjs",
-    "build:deploy": "BASE=/ai-wiki node build.mjs && pagefind --site ../dist",
+    "build:strict": "STRICT=1 node build.mjs",
+    "build:deploy": "STRICT=1 BASE=/ai-wiki node build.mjs && pagefind --site ../dist",
     "pagefind": "pagefind --site ../dist",
     "preview": "node build.mjs && pagefind --site ../dist && serve ../dist -l 4173",
     "serve": "serve ../dist -l 4173"
