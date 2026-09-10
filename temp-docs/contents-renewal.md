@@ -1035,10 +1035,14 @@ study_path 신설 판단 기준 (셋 중 둘 이상 충족 시 신설, 미충족
 - [ ] 6-2 비교형 3편 (역할 대응표 강화): headroom-context-compression-overview, design-md-overview, loop-engineering-cross-domain-overview
 - [ ] 6-3 gstack-ai-software-factory-overview: A6의 신규 3편 편입 후 재판정 (커버가 4편에서 7편이 되면 study_path 후보)
 - [ ] 6-4 study_path 해석 검증: `site/build.mjs` 빌드 콘솔의 `[study]` 미해석 참조 0건 확인
-- [ ] 6-5 index.md Overviews 절 축소, overviews lint 0건
+- [ ] 6-5 index.md Overviews 절 축소, overviews lint 0건 (구분자 `]]: ` 전환은 2026-09-10 홈 카드 복구(7-0) 때 12항목 선행 완료. 표시 이름과 설명의 기호 정비만 남음)
 
 ### Phase 7. 검증과 마무리
 
+- [x] 7-0. 홈 카드 미표시 복구 (2026-09-10, 계획 밖 긴급). 배포 사이트의 카테고리 밴드가 카드 대신 항목 텍스트를 절 설명으로 통째로 보여 주고 칩 카운트가 0이었다. 원인은 index.md 구분자를 `]]: `로 바꾼 뒤 사이트 파서(`site/lib/content.mjs`)가 옛 ` — ` 문법만 알아 253항목 중 Overviews의 em dash 잔존분 12개만 매칭된 것이다. 매칭 실패 줄은 "헤더와 첫 항목 사이 산문"으로 간주돼 `band-desc`로 렌더됐고, 배포 로그의 `WARN index.md 카탈로그에 없는 페이지 (241)`는 경고라 배포가 통과했다. "최근 추가" 밴드는 wiki frontmatter와 git 추가일로 만들어 무관했다.
+  - 조치. (1) 파서를 머리/꼬리 두 단계로 바꿔 `]]: `를 정본으로 받고 `—`는 legacy-separator로 표시, 꼬리 `(YYYY, type)` 누락은 frontmatter year/type 폴백, 표시 이름의 `]` 허용. (2) `STRICT=1` 빌드 가드를 `build:deploy`와 신설 `build:strict`에 추가. 파싱 불가 항목과 "wiki 페이지가 있는데 카드 0개"인 절이 있으면 빌드가 실패한다. (3) `scripts/lint_index.py` 신설, write-wiki 6번째 게이트(v2.4.0). (4) index.md 정정: 꼬리 누락 14줄(applications), type 누락 2줄(database), type 오염 1줄(`repo, Apache-2.0`), Overviews 구분자 12줄 선행 전환, 상단 안내를 정본 문법으로 갱신. (5) CLAUDE.md Step 4에 정본 문법과 소비자 두 곳 명시, 6절 수칙 7 추가.
+  - 실측. 카탈로그 매칭 12 → 253 (wiki 페이지 253과 일치), `missingFromIndex` 241 → 0, 절별 카드 database 25, llms 10, physical-ai 98, agents 67, evaluations 5, applications 33, etc 2, overviews 13. index.md의 `--category` lint_style은 overviews를 뺀 7절 0건 유지, overviews는 23건에서 12건(구분자 12개 제거분). 음성 테스트로 Etc 절 2항목의 구분자를 깨뜨리면 `STRICT=1` 빌드가 exit 1로 멈춘다.
+  - 부수 발견. lint_index가 200자 초과를 physical-ai 절 16항목(9-08~09 ingest분, 최장 267자)과 Overviews 절 8항목에서 잡았다. 이번 범위 밖이라 두었고, physical-ai 16항목은 다음 physical-ai 작업 시 `--category physical-ai --strict` 통과를 위해 축소가 필요하다. Overviews 8항목은 6-5 소관.
 - [ ] 7-1. 용어집 4차 일괄 갱신 (배치 중 누적 후보, 사용자 승인 게이트, 등재 전 전 저장소 grep 사전 계량). Phase 0-3(b)에서 이관한 2건을 포함한다: `query`(canonical 방향 결정 선행, `질의` 금지 시 `품질의` 20건과 `질의응답` 17건이 부분 문자열로 걸려 `SUBSTRING_EXCEPTIONS` 3항 추가 필요), `rollout`(glossary-physical-ai 소관, physical-ai 13건). 계량은 `temp-docs/glossary-3rd-candidates.md` 6절에 남겨 재조사 없이 쓴다. `applies_to`를 바꾸면 write-wiki 스킬 §0 매핑 표도 같은 커밋에서 갱신한다 (§0은 `applies_to`의 사본이다)
 - [ ] 7-2. pseudo-action 표기 통일. physical-ai 내 21건과 용어집 자체 혼용을 정리한다. canonical은 용어집 1차 갱신 때 등재된 하이픈 표기 `pseudo-action`을 권고
 - [ ] 7-3. 전 저장소 계량 3열 대비 기록 (아래 5절 표)
@@ -1093,6 +1097,7 @@ python3 scripts/lint_style.py wiki/overviews/physical-ai-overview.md --strict &&
 4. **sources 규약 보존.** 번호 붙은 영문 병기 헤딩 유지, raw/ frontmatter 불변, sources `## 8. 그림 후보` 표의 `추천` 열 불변.
 5. **용어집 등재 타이밍.** 배치 중 발견 후보는 누적만 하고 Phase 7-1에서 일괄 등재한다 (완료분 rework 방지).
 6. **index.md와 계획서의 직렬성.** 배치를 병렬 subagent로 진행하더라도 index.md와 이 계획서의 갱신은 오케스트레이터가 직렬로 커밋한다.
+7. **index.md 문법의 소비자 확인.** index.md 항목의 구분자나 꼬리 형식을 바꾸면 사이트 파서(`site/lib/content.mjs`)와 `scripts/lint_index.py`를 함께 고치고 `cd site && npm run build:strict`로 절별 카드 수를 확인한다. 2026-09-05~09 구분자를 `]]: `로 바꾸면서 파서를 빠뜨려 배포 사이트의 홈 카드가 254항목 중 12개만 남았고, 빌드 경고만 찍힌 채 나흘간 배포가 통과했다 (7-0). 배포 빌드는 이제 `STRICT=1`로 파싱 불가 항목과 카드 0개 절을 실패로 다룬다.
 
 ## 7. 후속 과제 (이 계획 범위 밖)
 
