@@ -164,7 +164,7 @@ def extract_jina(url: str, timeout: int) -> Extracted:
 
 
 BLOCK_DROP = {
-    "script", "style", "noscript", "nav", "header", "footer", "aside",
+    "script", "style", "noscript", "nav", "footer", "aside",
     "form", "svg", "iframe", "button", "template",
 }
 
@@ -223,7 +223,7 @@ def html_to_markdown(node) -> str:
             if inner:
                 out.append("\n\n> " + inner + "\n\n")
             return
-        if name in ("p", "div", "section", "article", "ul", "ol", "table", "tr", "figure", "figcaption"):
+        if name in ("p", "div", "section", "article", "header", "ul", "ol", "table", "tr", "figure", "figcaption"):
             out.append("\n\n")
             for c in el.children:
                 walk(c, depth)
@@ -258,7 +258,7 @@ def pick_main(soup):
 
 
 def extract_chrome(url: str, timeout: int, use_profile: bool, want_shot: bool,
-                   want_crop: bool, figdir: Path | None):
+                   want_crop: bool, figdir: Path | None, full_body: bool = False):
     """Playwright 로 설치된 Chrome 을 구동한다. channel="chrome" 이라 별도
     브라우저 다운로드가 필요 없다. 스크린샷·크롭도 여기서 함께 처리한다."""
     from bs4 import BeautifulSoup
@@ -379,7 +379,8 @@ def extract_chrome(url: str, timeout: int, use_profile: bool, want_shot: bool,
             if published:
                 break
 
-    body = html_to_markdown(pick_main(soup))
+    main_node = (soup.body or soup) if full_body else pick_main(soup)
+    body = html_to_markdown(main_node)
     return Extracted(tier, title, body, published, html=html, url=url), shots
 
 
@@ -510,7 +511,7 @@ def download_images(pairs, figdir: Path, referer: str, timeout: int) -> list[dic
 LADDER = ["jina", "chrome", "profile", "firecrawl"]
 
 
-def run_ladder(url, tier_arg, timeout, use_profile, want_shot, want_crop, figdir):
+def run_ladder(url, tier_arg, timeout, use_profile, want_shot, want_crop, figdir, full_body=False):
     if tier_arg == "auto":
         order = ["jina", "chrome"]
         if use_profile:
@@ -529,7 +530,7 @@ def run_ladder(url, tier_arg, timeout, use_profile, want_shot, want_crop, figdir
                 res = extract_jina(url, timeout)
             elif tier in ("chrome", "profile"):
                 res, shots = extract_chrome(
-                    url, timeout, tier == "profile", want_shot, want_crop, figdir
+                    url, timeout, tier == "profile", want_shot, want_crop, figdir, full_body
                 )
             else:
                 res = extract_firecrawl(url, timeout)
@@ -621,6 +622,8 @@ def main() -> int:
     ap.add_argument("--shot", default="full", choices=["full", "none"])
     ap.add_argument("--crop", action="store_true", help="도식 영역별 크롭")
     ap.add_argument("--profile", action="store_true", help="본인 Chrome 로그인 세션 사용")
+    ap.add_argument("--full-body", action="store_true",
+                     help="pick_main 대신 <body> 전체를 쓴다 (병렬 섹션이 많은 랜딩/프로젝트 페이지용)")
     ap.add_argument("--no-images", action="store_true")
     ap.add_argument("--timeout", type=int, default=60)
     ap.add_argument("--dry-run", action="store_true")
@@ -634,7 +637,7 @@ def main() -> int:
 
     # 스크린샷·크롭은 Chrome tier 에서만 나온다. jina 로 끝나면 별도로 한 번 더 띄운다.
     res, shots = run_ladder(
-        a.url, a.tier, a.timeout, a.profile, want_shot, want_crop, figdir
+        a.url, a.tier, a.timeout, a.profile, want_shot, want_crop, figdir, a.full_body
     )
     if res is None:
         log("✗ 모든 tier 실패. --profile 또는 --tier firecrawl 을 검토하라.")
@@ -673,7 +676,7 @@ def main() -> int:
             log("스크린샷·크롭용 Chrome 실행…")
             try:
                 _, shots = extract_chrome(
-                    a.url, a.timeout, a.profile, want_shot, want_crop, figdir
+                    a.url, a.timeout, a.profile, want_shot, want_crop, figdir, a.full_body
                 )
             except Exception as e:
                 log(f"  · 스크린샷 실패 (본문은 이미 확보됨): {type(e).__name__}")
