@@ -483,7 +483,7 @@ rtk와 caveman은 이 wiki에 1차 자료 페이지가 없다. 따라서 두 도
 ## 관련 페이지
 
 - [[agents/headroomlabs-ai-headroom]]: headroom의 1차 자료 저장소 페이지. 아키텍처, 설치, 라이선스, 공개 벤치마크가 여기 있다. 이 페이지의 Figure 3은 headroom 공개 벤치마크가 아니라 저자가 직접 측정한 값이다
-- [[overviews/headroom-context-compression-overview]]: headroom 저장소 하나와 소개글 넷을 묶은 overview. overview가 정리한 "60~95% 절감" 주장이 이 글의 재생 실험에서 지출 2.8%로 나타난다
+- [[overviews/headroom-context-compression-overview]]: headroom 저장소 하나와 소개글 넷, 독립 재측정 한 편(이 글)을 묶은 overview. overview가 정리한 "60~95% 절감" 주장이 이 글의 재생 실험에서 지출 2.8%로 나타난다
 - [[agents/tosea-2026-how-to-use-headroom-context]]: headroom의 다섯 사용 방식과 네이티브 compaction 비교. 이 글이 다루는 프록시 방식의 선택 기준을 보완한다
 - [[agents/subratpati-2026-building-cost-efficient-agents-with]]: 압축률을 달러로 환산한 소개글. 이 글의 재생 결과와 대조하면 분모 차이가 드러난다
 - [[agents/nedai-2026-headroom-token-compression-guide]]: Cursor에서 headroom을 붙이는 실전 절차
