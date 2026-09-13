@@ -45,6 +45,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[database/ryancodrai-turbovec|turbovec (repo)]]: TurboQuant 알고리즘을 Rust 코어와 Python 바인딩으로 구현한 OSS 벡터 인덱스. 학습 없는 data-oblivious 양자화로 2비트에서 약 16배 압축하고 SIMD 커널로 ARM에서 FAISS를 앞선다 (2026, repo)
 - [[database/9bow-2026-turbovec-turboquant-rust-vector-index|turbovec 한국어 소개글]]: turbovec의 압축률과 속도 수치를 정리한 PyTorchKR 글. 원 저장소 및 논문과 대조해 어긋나는 값을 표로 기록했다 (2026, article)
 - [[database/startrail-org-pixelrag|PixelRAG (repo)]]: 문서를 파싱하지 않고 스크린샷으로 렌더링해 이미지 자체를 검색하는 visual RAG. 위키피디아 828만 페이지 인덱스를 키 없이 쓰는 API와 Claude Code 플러그인 pixelbrowse를 함께 공개한다 (2026, repo)
+- [[database/volcengine-openviking|OpenViking (repo)]]: 에이전트의 context를 viking:// 파일시스템 하나로 통합하고 directory recursive retrieval로 LoCoMo, tau2-bench 성능을 높인 context database (2026, repo)
 
 ## LLMs (llms)
 
