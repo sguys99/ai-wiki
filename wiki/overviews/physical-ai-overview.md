@@ -5,6 +5,7 @@ year: 2026
 category: overviews
 source_collection: synthesis
 sources:
+  - jo-2026-rt-1-vla-primer.md
   - brohan-2022-rt-1-robotics-transformer-for-real-world.md
   - brohan-2023-rt-2-vision-language-action-models-transfer-web.md
   - kim-2024-openvla-an-open-source-vision-language-action-model.md
