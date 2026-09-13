@@ -293,7 +293,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 
 ## Overviews (overviews)
 
-다수 자료를 합성한 페이지 — 지식이 복리로 쌓이는 곳.
+다수 자료를 합성한 페이지, 카테고리 지도, 도메인 용어집.
 
 - [[overviews/agent-skills-overview|Agent Skills 규격과 생태계]]: SKILL.md 폴더 규격과 progressive disclosure 3레벨, 클라이언트 42개의 cross-vendor 채택, Skills와 MCP의 경계를 자료 11편으로 묶었다 (2026, overview)
 - [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG 계보]]: GraphRAG 트렁크에서 LightRAG, LeanRAG, RAG-Anything 세 분기로 갈라지는 계보를 자료 8편으로 합성하고 학습 경로 8단계를 붙였다 (2026, overview)
@@ -304,7 +304,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[overviews/loop-engineering-cross-domain-overview|Loop Engineering 도메인 이식]]: 코딩 중심 loop engineering 프레임이 트레이딩으로 옮겨가는지 7편으로 대조한 개괄. 다섯 단계 골격과 verifier gate 배치를 두 도메인에 놓고 근거 등급을 매긴다 (2026, overview)
 - [[overviews/gstack-ai-software-factory-overview|gstack 자료 지도와 명령어 출처 대조]]: 저장소 1편과 한국어 소개 3편을 묶어 역할 분담과 갈리는 서술, 자기 보고 수치의 근거 등급을 정리한다 (2026, overview)
 - [[overviews/prompt-to-loop-engineering-evolution-overview|Prompt에서 Loop까지 4단계 진화]]: prompt, context, harness, loop 네 단계를 자료 13편으로 채운 최상위 진입 지도. 12단계 학습 경로와 자매 overview 3편 라우팅을 담는다 (2026, overview)
-- [[overviews/physical-ai-overview|Physical AI 카테고리 지도와 학습 경로]]: physical-ai 76편을 프로젝트 단위 클러스터로 묶은 허브. 학습 경로 세 트랙(VLA 계보, world model, 고전 스택)과 각 겹의 역할을 정리한다 (2026, overview)
-- [[overviews/glossary-physical-ai|용어집 — Physical AI]]: policy·observation·trajectory 등 physical-ai 전문 용어의 canonical 표기를 정한 SSOT. 원어 유지 + 첫 등장 서술형 풀이 원칙과 lint 금지 표기 목록을 담는다 (2026, overview)
-- [[overviews/glossary-agents|용어집 — Agents]]: tool use·harness·오케스트레이션 등 agentic 시스템 용어의 canonical 표기 SSOT. 정착 음차(프롬프트·컨텍스트·메모리)와 원어 유지 개념어를 가른다 (2026, overview)
-- [[overviews/glossary-llms|용어집 — LLMs]]: pre-training·fine-tuning·임베딩 등 모델 학습 일반 용어의 canonical 표기 SSOT. 전 카테고리에 적용된다 (2026, overview)
+- [[overviews/physical-ai-overview|Physical AI 카테고리 지도와 학습 경로]]: physical-ai 페이지를 프로젝트 단위 클러스터로 묶은 허브. 학습 경로 세 트랙(VLA 계보, world model, 고전 스택)과 각 겹의 역할을 정리한다 (2026, overview)
+- [[overviews/glossary-physical-ai|용어집: Physical AI]]: policy, observation, trajectory 등 physical-ai 전문 용어의 canonical 표기를 정한 SSOT. 원어 유지와 첫 등장 서술형 풀이 원칙, lint 금지 표기 목록을 담는다 (2026, overview)
+- [[overviews/glossary-agents|용어집: Agents]]: tool use, harness, 오케스트레이션 등 agentic 시스템 용어의 canonical 표기 SSOT. 정착 음차(프롬프트, 컨텍스트, 메모리)와 원어 유지 개념어를 가른다 (2026, overview)
+- [[overviews/glossary-llms|용어집: LLMs]]: pre-training, fine-tuning, 임베딩 등 모델 학습 일반 용어의 canonical 표기 SSOT. 전 카테고리에 적용된다 (2026, overview)
