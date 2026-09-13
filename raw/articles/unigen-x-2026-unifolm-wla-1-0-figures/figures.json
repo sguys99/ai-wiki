@@ -1,0 +1,94 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/unigen-x-2026-unifolm-wla-1-0/fig01.png",
+    "raw": "raw/articles/unigen-x-2026-unifolm-wla-1-0-figures/fig01.png",
+    "caption": "Robot-view image at t0",
+    "source_url": "https://unigen-x.github.io/unifolm-wla.github.io/assets/dynamic_region_prediction/head_left_t0.png",
+    "bytes": 273876,
+    "width": 640,
+    "height": 480,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/unigen-x-2026-unifolm-wla-1-0/fig02.png",
+    "raw": "raw/articles/unigen-x-2026-unifolm-wla-1-0-figures/fig02.png",
+    "caption": "Robot-view image at t1",
+    "source_url": "https://unigen-x.github.io/unifolm-wla.github.io/assets/dynamic_region_prediction/head_left_t1.png",
+    "bytes": 260402,
+    "width": 640,
+    "height": 480,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/unigen-x-2026-unifolm-wla-1-0/fig03.png",
+    "raw": "raw/articles/unigen-x-2026-unifolm-wla-1-0-figures/fig03.png",
+    "caption": "Optical flow from t0 to t1",
+    "source_url": "https://unigen-x.github.io/unifolm-wla.github.io/assets/dynamic_region_prediction/optical_flow_t0_t1.png",
+    "bytes": 87628,
+    "width": 640,
+    "height": 480,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/unigen-x-2026-unifolm-wla-1-0/fig04.png",
+    "raw": "raw/articles/unigen-x-2026-unifolm-wla-1-0-figures/fig04.png",
+    "caption": "Dynamic-region mask overlay",
+    "source_url": "https://unigen-x.github.io/unifolm-wla.github.io/assets/dynamic_region_prediction/mask_overlay_head_left_t1.png",
+    "bytes": 260210,
+    "width": 640,
+    "height": 480,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/unigen-x-2026-unifolm-wla-1-0/fig05.png",
+    "raw": "raw/articles/unigen-x-2026-unifolm-wla-1-0-figures/fig05.png",
+    "caption": "Dynamic-region mask isolated from the RGB image",
+    "source_url": "https://unigen-x.github.io/unifolm-wla.github.io/assets/dynamic_region_prediction/dynamic_mask_only.png",
+    "bytes": 15672,
+    "width": 640,
+    "height": 480,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/unigen-x-2026-unifolm-wla-1-0/fig06.png",
+    "raw": "raw/articles/unigen-x-2026-unifolm-wla-1-0-figures/fig06.png",
+    "caption": "",
+    "source_url": "https://unigen-x.github.io/unifolm-wla.github.io/assets/dynamic_region_prediction/wrist_cam_left.png",
+    "bytes": 306972,
+    "width": 640,
+    "height": 480,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/unigen-x-2026-unifolm-wla-1-0/fig07.png",
+    "raw": "raw/articles/unigen-x-2026-unifolm-wla-1-0-figures/fig07.png",
+    "caption": "",
+    "source_url": "https://unigen-x.github.io/unifolm-wla.github.io/assets/dynamic_region_prediction/wrist_cam_right.png",
+    "bytes": 268306,
+    "width": 640,
+    "height": 480,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/unigen-x-2026-unifolm-wla-1-0/page-full.png",
+    "raw": "raw/articles/unigen-x-2026-unifolm-wla-1-0-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]
