@@ -1031,6 +1031,12 @@ wiki 페이지가 없는 sources는 5편이고 계획 수립 조사의 목록과
 
 study_path 신설 판단 기준 (셋 중 둘 이상 충족 시 신설, 미충족은 역할 대응표 강화): (a) 커버 자료가 난이도와 선후 관계로 정렬된다, (b) 학습 트랙이 하나 이상 성립한다, (c) 커버 자료가 5편 이상이다.
 
+**착수 실측 (2026-09-14, HEAD e135d78).** 대상 9편(용어집 3편과 완료된 physical-ai-overview 제외)의 합계는 총 78,842자, 산문 55,528자, 표 29개, wikilink 186개다. 편별 산문 자수는 lightrag 17,071, gbrain 11,143, prompt-to-loop 7,222, harness 5,890, loop-cross 3,598, design-md 2,873, gstack 2,667, headroom 2,533, skills 2,531이고 표 0개 페이지는 없으나 표 1개 페이지가 4편(harness, skills, gstack, lightrag 제외 나머지)이다. lint_style error 413건 warning 21건(lightrag 124, gbrain 81, harness 46, prompt-to-loop 38, loop-cross 29, headroom 28, skills 26, gstack 25, design-md 23, index.md Overviews 절 14), lint_terms 18건(harness 10, prompt-to-loop 4, lightrag 2, loop-cross 1, index 1. 전부 `하네스`와 `백본`), lint_links 0건, lint_index Overviews 절 entry-length 8건(최장 417자)이다. 사이트 빌드 `[study]`는 선언 페이지 1편(physical-ai-overview) 단계 11개 미해석 0건이다.
+
+**커버 자료 해석 결과.** 9편 중 3편(agent-skills, design-md, gstack)은 frontmatter에 `sources:` 키 자체가 없고 `source_collection`도 `synthesis`가 아니라 `external`이다. 나머지 6편의 `sources:` 항목 47개는 전부 실재 wiki 페이지로 해석된다(database 9, agents 28, applications 7, 중복 제외 시 38편). 커버 자료는 Phase 2~5에서 전면 재작성됐으므로 수치와 구조 대조가 이 Phase의 주 작업이다.
+
+배치 공통 브리프는 `temp-docs/phase6-brief.md`에 둔다. 무근거 주장 7유형 대조표, overview 특유의 분량 판정 기준(대응 sources가 없어 1차 게이트 대신 합성 가치로 본다), study_path 작성 규약, 완료 게이트 4종이 들어 있다.
+
 - [ ] 6-1 커리큘럼형 5편 (study_path 신설): prompt-to-loop-engineering-evolution-overview, agent-harness-engineering-overview, agent-skills-overview, lightrag-family-graph-rag-overview, gbrain-ecosystem-overview
 - [ ] 6-2 비교형 3편 (역할 대응표 강화): headroom-context-compression-overview, design-md-overview, loop-engineering-cross-domain-overview
 - [ ] 6-3 gstack-ai-software-factory-overview: A6의 신규 3편 편입 후 재판정 (커버가 4편에서 7편이 되면 study_path 후보)
