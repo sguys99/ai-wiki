@@ -302,7 +302,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[overviews/headroom-context-compression-overview|Headroom 컨텍스트 압축 자료 지도]]: 저장소 1편과 소개글 4편, 독립 재측정 1편을 묶어 압축률 주장의 출처와 근거 등급, 읽는 순서를 정리한다 (2026, overview)
 - [[overviews/design-md-overview|DESIGN.md 포맷과 production 트레이드오프]]: 규격 저장소와 Atlassian production 실측을 묶어 DESIGN.md와 MCP server, Agent Skills의 로딩 방식과 토큰 비용을 비교하고 선택 기준을 정리했다 (2026, overview)
 - [[overviews/loop-engineering-cross-domain-overview|Loop Engineering 도메인 이식]]: 코딩 중심 loop engineering 프레임이 트레이딩으로 옮겨가는지 7편으로 대조한 개괄. 다섯 단계 골격과 verifier gate 배치를 두 도메인에 놓고 근거 등급을 매긴다 (2026, overview)
-- [[overviews/gstack-ai-software-factory-overview|gstack — 1인 개발자를 위한 AI 소프트웨어 팩토리]]: Garry Tan의 gstack 저장소와 세 한국어 자료(GeekNews·PyTorch KR·GPTERS)를 묶어, 역할 기반 계획·실제 브라우저 QA·배포/보안/회고 자동화 세 축으로 정리하고 자기 보고 수치의 한계까지 짚은 개괄 (2026, overview)
+- [[overviews/gstack-ai-software-factory-overview|gstack 자료 지도와 명령어 출처 대조]]: 저장소 1편과 한국어 소개 3편을 묶어 역할 분담과 갈리는 서술, 자기 보고 수치의 근거 등급을 정리한다 (2026, overview)
 - [[overviews/prompt-to-loop-engineering-evolution-overview|Prompt에서 Loop까지 4단계 진화]]: prompt, context, harness, loop 네 단계를 자료 13편으로 채운 최상위 진입 지도. 12단계 학습 경로와 자매 overview 3편 라우팅을 담는다 (2026, overview)
 - [[overviews/physical-ai-overview|Physical AI 카테고리 지도와 학습 경로]]: physical-ai 76편을 프로젝트 단위 클러스터로 묶은 허브. 학습 경로 세 트랙(VLA 계보, world model, 고전 스택)과 각 겹의 역할을 정리한다 (2026, overview)
 - [[overviews/glossary-physical-ai|용어집 — Physical AI]]: policy·observation·trajectory 등 physical-ai 전문 용어의 canonical 표기를 정한 SSOT. 원어 유지 + 첫 등장 서술형 풀이 원칙과 lint 금지 표기 목록을 담는다 (2026, overview)
