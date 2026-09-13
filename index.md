@@ -60,6 +60,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[llms/panfilov-2026-stealing-reasoning-traces-from-proprietary|Stealing Reasoning Traces]]: 암호화 reasoning 블록의 cross-model 호환성으로 강한 모델의 사고를 약한 모델로 복호화하는 공격. 네 벡터를 세 provider에서 실증 (2026, paper)
 - [[llms/chen-2025-eagle-25-boosting-long-context-post-training|Eagle 2.5]]: NVIDIA long-context VLM. 텍스트 우선 샘플링과 progressive post-training, Eagle-Video-110K로 512프레임 Video-MME 72.4를 낸다 (2025, paper)
 - [[llms/nvlabs-eagle|NVlabs/EAGLE (repo)]]: Eagle, Eagle 2, Eagle 2.5, LocateAnything 네 계열의 공식 저장소이자 11개 모델의 model zoo. GR00T N1부터 N1.6까지의 backbone 채택 시점을 월 단위로 기록한다 (2026, repo)
+- [[llms/k2-fsa-omnivoice|k2-fsa/OmniVoice (repo)]]: 600개 이상 언어를 지원하는 diffusion 기반 zero-shot TTS. voice cloning과 voice design을 하나의 API로 제공하고 FlashInfer로 추론을 2~2.9배 가속한다 (2026, repo)
 
 ## Physical AI (physical-ai)
 
