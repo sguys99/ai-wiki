@@ -1,0 +1,246 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/fig01.jpg",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/fig01.jpg",
+    "caption": "A person recording a demonstration to use as the prompt",
+    "source_url": "https://www.skild.ai/blogs/skild-brain/video/how2prompt.jpg",
+    "bytes": 601140,
+    "width": 2684,
+    "height": 1504,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/fig02.jpg",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/fig02.jpg",
+    "caption": "LocoFormer: Generalist Locomotion via Long-context Adaptation",
+    "source_url": "https://www.skild.ai/blogs/skild-brain/video/locoformer-head.jpg",
+    "bytes": 83855,
+    "width": 1902,
+    "height": 536,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/fig03.jpg",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/fig03.jpg",
+    "caption": "",
+    "source_url": "https://www.skild.ai/blogs/skild-brain/video/locoformer-1.jpg",
+    "bytes": 1181903,
+    "width": 3382,
+    "height": 1816,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/fig04.jpg",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/fig04.jpg",
+    "caption": "",
+    "source_url": "https://www.skild.ai/blogs/skild-brain/video/locoformer-2.jpg",
+    "bytes": 1051755,
+    "width": 3392,
+    "height": 1796,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/fig05.jpg",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/fig05.jpg",
+    "caption": "",
+    "source_url": "https://www.skild.ai/blogs/skild-brain/video/locoformer-3.jpg",
+    "bytes": 760669,
+    "width": 3378,
+    "height": 1824,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/fig06.jpg",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/fig06.jpg",
+    "caption": "",
+    "source_url": "https://www.skild.ai/blogs/skild-brain/video/locoformer-4.jpg",
+    "bytes": 720035,
+    "width": 3394,
+    "height": 1806,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/fig07.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/fig07.png",
+    "caption": "Introducing S1",
+    "source_url": "https://www.skild.ai/blogs/skild-brain/video/banner-s1.png",
+    "bytes": 1909947,
+    "width": 1672,
+    "height": 941,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/page-full.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop01.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop02.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop03.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop04.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop05.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop06.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop07.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop08.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop09.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop10.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop11.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop12.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop13.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop13.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop14.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop14.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig23",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop15.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop15.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig24",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop16.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop16.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig25",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop17.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop17.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig26",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop18.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop18.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig27",
+    "file": "assets/skild-2026-introducing-s1-in-context-learning/crop19.png",
+    "raw": "raw/articles/skild-2026-introducing-s1-in-context-learning-figures/crop19.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
