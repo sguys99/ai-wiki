@@ -103,3 +103,27 @@ python3 scripts/lint_style.py --category physical-ai --strict && python3 scripts
 7. **용어집 등재 후보.** 원어, 제안 표기, 저장소 내 표기 실태 (Phase 7-1 소관이라 등재는 하지 않는다).
 8. **다른 페이지에서 발견한 오류.** 고치지 말고 파일과 행 번호, 내용만 보고한다.
 9. **사용자 확인 필요 사항.**
+
+---
+
+## 부록 A. 배치 중 전파된 정정 사실 (오케스트레이터 추가)
+
+### A-1. Lin et al.의 harness benefit은 비단조다 (2026-09-14, 6-1에서 두 subagent가 독립 검출)
+
+`wiki/agents/lin-2026-harness-updating-is-not-harness-benefit`의 controlled grid 결과를 저장소 여러 곳이 **"harness engineering은 frontier 모델에서 가장 크게 회수된다"**로 적어 왔는데, 이는 측정 결과와 반대다. harness benefit은 base capability에 비단조로 반응해 **중간 등급에서 정점**을 찍는다. SWE에서 base 20.7%인 Qwen3-235B가 19.3%p로 정점이고 base 74.2%인 Opus 4.6은 2.6%p에 그친다. frontier는 개선 여지가 좁고(ceiling effect) weak-tier는 별도 병목 때문에 이득이 작다. 약한 모델에서 "아예 작동하지 않는다"는 서술도 과장이다 (Qwen3-32B가 SWE 4.4%p, SkillsBench 5.8%p를 얻는다).
+
+곁들여 확인된 값: agent 안쪽 최대 변동폭은 SWE 5.0%p, MCP 5.1%p, **SkillsBench 9.3%p**다. "최대 5.1%p"는 SkillsBench를 빠뜨린 값이다. "between-agent gap 36%p"는 MCP만의 값이고 SWE는 53.5%p라 둘을 짝지어 쓸 수 없다. 논문이 설계 지침 근거로 실제 짝지은 쌍은 evolver 사이 3.1%p 대 agent 사이 36.0%p다.
+
+담당 페이지에 이 주장이 있으면 위 내용으로 정정하고 보고한다. `index.md:301`에도 같은 주장이 실려 있다 (오케스트레이터 소관).
+
+### A-2. 이호연 자료의 TerminalBench 수치
+
+`wiki/agents/lee-hoyeon-2026-harness-engineering`의 LangChain 사례는 표가 "14%p", 산문이 "13.7"로 적어 한 페이지 안에서 값이 갈린다. 원값은 52.8에서 66.5이므로 **원값 두 개를 그대로 인용**하고 차이를 직접 계산해 쓰지 않는다.
+
+### A-3. Osmani의 Skills 효용 표현
+
+Osmani 원문은 "재유도 **반복** 제거"만 말한다. "재유도하는 토큰 낭비 제거"는 파일럿에서 이미 정정된 무근거 서술인데 overview에 잔존한 사례가 있었다. 같은 표현을 만나면 정정한다.
+
+### A-4. 동명이인
+
+`patel-2026-i-taught-myself-claude-code`(Manthan Patel)와 `patel-2026-beyond-the-prompt-claude-code`(Arpan Patel)는 동명이인이다. 한 사람의 두 글로 묶어 쓰지 않는다.

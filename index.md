@@ -295,15 +295,15 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 
 다수 자료를 합성한 페이지 — 지식이 복리로 쌓이는 곳.
 
-- [[overviews/agent-skills-overview|Agent Skills — 설계 원전·오픈 표준·생태계]]: Anthropic 발표글(왜·어떻게, 도식 6종)·agentskills 저장소(규격)·agentskills.io(40여 클라이언트 채택)를 세 축으로 겹쳐, `SKILL.md` 폴더 + progressive disclosure + cross-vendor 표준화를 한 장으로 정리하고 Skills vs MCP 경계까지 그은 개괄 (2026, overview)
-- [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG 계열 — GraphRAG 트렁크 (LightRAG · LeanRAG · RAG-Anything)]]: GraphRAG를 트렁크로 두고 LightRAG, LeanRAG, RAG-Anything 분기와 한국어 자료를 한데 모은 graph RAG 계보 overview (2026, overview)
-- [[overviews/gbrain-ecosystem-overview|GBrain 생태계]]: Garry Tan이 공개한 GBrain을 축으로 repo와 리뷰, 튜토리얼, 영상, 결정 프레임을 합성한 생태계 overview (2026, overview)
-- [[overviews/agent-harness-engineering-overview|Agent Harness Engineering — Skills · Loops · Verification]]: Osmani의 Agent Skills·Loop Engineering, 이호연의 Harness Engineering, Patel의 실전 가이드를 한 지도로 묶고, Lin et al.의 controlled grid 실증으로 "harness는 frontier 모델에서 가장 크게 회수된다"는 경계까지 그은 개괄. trq212의 Fable 가이드를 "하네스 앞단 — 사람의 unknown" 입력단으로 덧대 7개 자료로 확장 (2026, overview)
+- [[overviews/agent-skills-overview|Agent Skills 규격과 생태계]]: SKILL.md 폴더 규격과 progressive disclosure 3레벨, 클라이언트 42개의 cross-vendor 채택, Skills와 MCP의 경계를 자료 11편으로 묶었다 (2026, overview)
+- [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG 계보]]: GraphRAG 트렁크에서 LightRAG, LeanRAG, RAG-Anything 세 분기로 갈라지는 계보를 자료 8편으로 합성하고 학습 경로 8단계를 붙였다 (2026, overview)
+- [[overviews/gbrain-ecosystem-overview|GBrain 생태계]]: 저장소가 보유한 GBrain 자료 6편의 역할 분담과 어긋나는 수치, 자기 보고 벤치마크 판정, 6단계 학습 경로를 묶은 허브 (2026, overview)
+- [[overviews/agent-harness-engineering-overview|Agent Harness Engineering 개괄]]: harness 자료 8편을 역할 분담과 근거 등급으로 묶고 학습 경로 8단계를 제시한다. 통제 실험은 한 편뿐이다 (2026, overview)
 - [[overviews/headroom-context-compression-overview|Headroom — 에이전트 컨텍스트 압축 개괄]]: 정본 저장소와 소개글 넷(Tosea·Subrat Pati·Nedai·9bow)을 한 장의 지도로 묶어, 같은 도구를 구조·선택 규칙·비용·Cursor 실전·정확도 다섯 렌즈로 정리하고 합의 벤치마크와 "쓰지 말아야 할 때"까지 그은 개괄 (2026, overview)
 - [[overviews/design-md-overview|DESIGN.md — 포맷 정의부터 production 트레이드오프까지]]: Google Labs 정본 저장소와 Atlassian production 검증 두 자료를 한 장으로 겹쳐, 포맷이 약속하는 것(산문 중심·이식성)과 현장에서 깨지는 지점(일괄 로드로 토큰 2배·재생성 유도)을 나란히 놓고 "기존 시스템 있으면 MCP·Skill, 없으면 DESIGN.md"라는 결정 가이드를 그은 개괄 (2026, overview)
 - [[overviews/loop-engineering-cross-domain-overview|Loop Engineering — 코딩과 트레이딩을 관통하는 도메인 이식]]: loop engineering 클러스터가 거의 전부 코딩 에이전트를 다루는 가운데, Movez의 트레이딩 데스크 글을 처음으로 코딩 밖 도메인 이식 사례로 나란히 놓아 "도메인 불변의 뼈대(탐색→결정→실행→기록→개선)"와 "코딩 특유의 살"을 가른 개괄. verifier gate를 두 도메인을 관통하는 심장으로 세우고, Movez는 데모·Lin은 실증이라는 경계까지 그었다 (2026, overview)
 - [[overviews/gstack-ai-software-factory-overview|gstack — 1인 개발자를 위한 AI 소프트웨어 팩토리]]: Garry Tan의 gstack 저장소와 세 한국어 자료(GeekNews·PyTorch KR·GPTERS)를 묶어, 역할 기반 계획·실제 브라우저 QA·배포/보안/회고 자동화 세 축으로 정리하고 자기 보고 수치의 한계까지 짚은 개괄 (2026, overview)
-- [[overviews/prompt-to-loop-engineering-evolution-overview|Prompt → Context → Harness → Loop Engineering — 4단계 진화]]: 에이전트 최적화의 무게중심이 단일 지시→문맥 토큰→실행 환경→오케스트레이션 루프로 한 칸씩 밀려온 4단계를 관통하는 최상위 진입 지도. 앞 두 단계(Prompt·Context)는 배경으로 압축하고 Harness·Loop를 심화한 뒤 각각 자매 overview로 하향 라우팅. verification distance·progressive disclosure·compounding 세 원리가 단계를 넘어 반복됨을 실로 꿰고, "사다리를 오를수록 frontier 모델 의존이 커진다"는 Lin의 경계까지 그었다 (2026, overview)
+- [[overviews/prompt-to-loop-engineering-evolution-overview|Prompt에서 Loop까지 4단계 진화]]: prompt, context, harness, loop 네 단계를 자료 13편으로 채운 최상위 진입 지도. 12단계 학습 경로와 자매 overview 3편 라우팅을 담는다 (2026, overview)
 - [[overviews/physical-ai-overview|Physical AI 카테고리 지도와 학습 경로]]: physical-ai 76편을 프로젝트 단위 클러스터로 묶은 허브. 학습 경로 세 트랙(VLA 계보, world model, 고전 스택)과 각 겹의 역할을 정리한다 (2026, overview)
 - [[overviews/glossary-physical-ai|용어집 — Physical AI]]: policy·observation·trajectory 등 physical-ai 전문 용어의 canonical 표기를 정한 SSOT. 원어 유지 + 첫 등장 서술형 풀이 원칙과 lint 금지 표기 목록을 담는다 (2026, overview)
 - [[overviews/glossary-agents|용어집 — Agents]]: tool use·harness·오케스트레이션 등 agentic 시스템 용어의 canonical 표기 SSOT. 정착 음차(프롬프트·컨텍스트·메모리)와 원어 유지 개념어를 가른다 (2026, overview)
