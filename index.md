@@ -179,6 +179,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/gpters-2026-yc-ai-agent-guide-gstack|Y Combinator의 AI 에이전트 사용법 완벽 정리 (GPTers)]]: gstack 9개 슬래시 명령어의 사용법 가이드. 브라우저 QA 데몬의 콜드 스타트 3~5초, 이후 호출 100~200ms 수치를 담았다 (2026, article)
 - [[agents/hada-2026-gstack-virtual-engineering-team|gstack으로 만드는 가상 엔지니어링 팀 (GeekNews)]]: gstack의 스프린트 사이클과 명령어 구조, 대상 사용자 세 부류를 정리한 커뮤니티 소개 글. 독자 댓글 4건을 함께 싣는다 (2026, article)
 - [[agents/mattpocock-skills|Skills For Real Engineers (repo)]]: Matt Pocock이 매일 쓰는 코딩 에이전트 스킬 25개. 인터뷰, 스펙, TDD, 디버깅, 리뷰를 작은 단위로 쪼개고 사람만 부르는 스킬과 모델도 부르는 스킬로 나눈다. MIT (2026, repo)
+- [[agents/ayghri-i-have-adhd|i-have-adhd (repo)]]: 코딩 에이전트 응답을 행동 우선, 단계 번호, 전문과 마무리 금지 규칙 10개로 바꾸는 단일 스킬. 15개 harness 배포와 blind judge 평가 harness를 갖춘다. MIT (2026, repo)
 - [[agents/shao-2024-assisting-in-writing-wikipedia-like-articles|STORM]]: 주제 이름만 받아 관점 발견과 시뮬레이션 대화로 pre-writing을 자동화하는 Wikipedia 글 생성 시스템. FreshWiki 데이터셋과 outline 평가 지표를 함께 제안한다 (2024, paper)
 - [[agents/qiao-2026-memory-intelligence-agent|Memory Intelligence Agent (MIA)]]: Manager, Planner, Executor 3-agent 메모리 프레임워크. trajectory를 압축 workflow와 Planner 가중치로 나눠 담고 추론 중에도 계속 학습한다 (2026, paper)
 - [[agents/lee-hoyeon-2026-harness-engineering|Harness Engineering (이호연)]]: 프롬프트에서 작업 환경 설계로의 전환을 구조, 맥락, 계획, 실행, 검증, 개선 여섯 단계로 정리한 Claude Code 기준 슬라이드 deck (2026, article)
@@ -299,7 +300,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 
 다수 자료를 합성한 페이지, 카테고리 지도, 도메인 용어집.
 
-- [[overviews/agent-skills-overview|Agent Skills 규격과 생태계]]: SKILL.md 폴더 규격과 progressive disclosure 3레벨, 클라이언트 42개의 cross-vendor 채택, Skills와 MCP의 경계를 자료 11편으로 묶었다 (2026, overview)
+- [[overviews/agent-skills-overview|Agent Skills 규격과 생태계]]: SKILL.md 폴더 규격과 progressive disclosure 3레벨, 클라이언트 42개의 cross-vendor 채택, Skills와 MCP의 경계를 자료 12편으로 묶었다 (2026, overview)
 - [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG 계보]]: GraphRAG 트렁크에서 LightRAG, LeanRAG, RAG-Anything 세 분기로 갈라지는 계보를 자료 8편으로 합성하고 학습 경로 8단계를 붙였다 (2026, overview)
 - [[overviews/gbrain-ecosystem-overview|GBrain 생태계]]: 저장소가 보유한 GBrain 자료 6편의 역할 분담과 어긋나는 수치, 자기 보고 벤치마크 판정, 6단계 학습 경로를 묶은 허브 (2026, overview)
 - [[overviews/agent-harness-engineering-overview|Agent Harness Engineering 개괄]]: harness 자료 8편을 역할 분담과 근거 등급으로 묶고 학습 경로 8단계를 제시한다. 통제 실험은 한 편뿐이다 (2026, overview)

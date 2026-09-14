@@ -13,6 +13,7 @@ sources:
   - hada-2026-agent-skills.md
   - mattpocock-skills.md
   - imbad0202-academic-research-skills.md
+  - ayghri-i-have-adhd.md
   - zhao-2026-generative-skill-composition-for-llm.md
   - yang-2026-skillopt-executive-strategy-for.md
   - google-labs-code-design-md.md
@@ -78,7 +79,7 @@ Agent Skills는 `SKILL.md` 파일 하나를 담은 폴더를 에이전트 확장
 
 ## 자료의 역할 분담
 
-커버하는 열한 편은 규격, 생태계, 사용, 규모, 경계 다섯 성격으로 나뉜다. 같은 포맷을 다루더라도 답하는 질문이 서로 다르다.
+커버하는 열두 편은 규격, 생태계, 사용, 규모, 경계 다섯 성격으로 나뉜다. 같은 포맷을 다루더라도 답하는 질문이 서로 다르다.
 
 | 역할 | 자료 | 유형 | 이 페이지가 가져오는 것 |
 |---|---|---|---|
@@ -90,6 +91,7 @@ Agent Skills는 `SKILL.md` 파일 하나를 담은 폴더를 에이전트 확장
 | 실무 반론 | [[agents/hada-2026-agent-skills\|Agent Skills (GeekNews)]] | article (2026) | 800줄 스킬의 컨텍스트 비용, 강제 주체 문제 |
 | 실사용 규약 | [[agents/mattpocock-skills\|mattpocock/skills]] | repo (2026) | 호출 주체 구분, 문서 계층 설계, 두 harness 배포 실패 기록 |
 | 도메인 확장 | [[agents/imbad0202-academic-research-skills\|Academic Research Skills]] | repo (2026) | 코딩 밖 파이프라인, SKILL.md 감량 실측, 트리거 언어 편중 |
+| 응답 형식 | [[agents/ayghri-i-have-adhd\|i-have-adhd]] | repo (2026) | 절차가 아닌 output style만 담은 스킬, 15개 harness 배포, blind judge 평가와 release gate 실측 |
 | 규모 문제 | [[agents/zhao-2026-generative-skill-composition-for-llm\|SkillComposer]] | paper (2026) | library 196개에서의 선택 문제와 pass rate 비교 |
 | 작성 자동화 | [[agents/yang-2026-skillopt-executive-strategy-for\|SkillOpt]] | paper (2026) | 스킬 본문을 학습 대상으로 두는 방향과 최종 분량 실측 |
 | 인접 포맷 | [[agents/google-labs-code-design-md\|DESIGN.md]] | repo (2026) | 같은 Markdown 파일 인터페이스지만 로딩 방식이 다른 경우 |
@@ -215,6 +217,12 @@ progressive disclosure는 필요한 시점에만 정보를 단계적으로 노�
 
 트리거 쪽에서는 규격의 약점이 그대로 드러난다. 스킬 활성화를 결정하는 키워드 절이 영어와 번체중문 위주라 다른 언어에서는 활성화 신뢰도가 떨어지고, 사용자가 `SKILL.md`에 키워드를 직접 추가해야 한다.
 
+### 응답 형식
+
+[[agents/ayghri-i-have-adhd]]는 스킬에 절차가 아니라 응답의 모양만 담은 사례다. 다음 행동을 첫 줄에 두고 여러 단계에 번호를 붙이며 도입부와 마무리 인사를 금지하는 규칙 10개가 `SKILL.md` 하나에 들어 있고, `disable-model-invocation: true`로 사용자만 부를 수 있게 한 점은 [[agents/mattpocock-skills]]의 user-invoked 규약과 같다.
+
+이 저장소가 커버 자료 가운데 유일하게 남긴 것은 스킬의 효과를 blind LLM judge로 잰 기록이다. 케이스 14개를 3회씩 실행해 스킬 주입 조건이 가중 점수 4.045에서 4.473으로 올랐지만, blocker 0건이라는 절대 조건 때문에 release gate는 실패했다. 스킬 본문의 규칙 하나(오류를 원인과 수정으로 보고)가 근거 없는 원인 단정을 유도할 수 있다는 메커니즘도 같은 기록에서 나왔다. 규격은 스킬을 어떻게 싣는지만 정하고 효과를 어떻게 재는지는 비워 두는데, 이 실측이 그 빈칸을 채우는 한 방식이다.
+
 ## 규격이 규모를 만났을 때
 
 ### library가 커질 때의 선택
@@ -331,7 +339,7 @@ progressive disclosure라는 이름은 스킬 포맷보다 먼저 나왔다. [[a
 
 ## 한계
 
-이 페이지의 근거는 저장소가 보유한 열한 편으로 한정된다. 남는 빈칸은 다음과 같다.
+이 페이지의 근거는 저장소가 보유한 열두 편으로 한정된다. 남는 빈칸은 다음과 같다.
 
 - **규격 전문이 없다.** 커버 자료 중 어느 것도 `agentskills.io/specification` 본문을 담지 않는다. 따라서 메타데이터 키가 `name`과 `description` 말고 무엇이 더 있는지, 버전 규칙과 호환성 보장이 어떻게 되는지는 확인할 수 없다.
 - **포맷 자체의 효과를 잰 실험이 없다.** 세 원전 자료에 벤치마크가 없고, 스킬 적재 효과를 수치로 다루는 두 논문은 각자의 방법을 평가한 것이지 포맷을 평가한 것이 아니다.
@@ -361,6 +369,7 @@ progressive disclosure라는 이름은 스킬 포맷보다 먼저 나왔다. [[a
 - [[agents/hada-2026-agent-skills]]: 같은 원칙에 대한 실무 반론. 컨텍스트 비용과 강제 주체 문제를 제기한다
 - [[agents/mattpocock-skills]]: 스킬 25개를 운영하며 만든 규약. 호출 주체 구분과 문서 계층, 두 harness 배포 마찰의 기록이다
 - [[agents/imbad0202-academic-research-skills]]: 코딩 밖 도메인 적용 사례. SKILL.md 감량과 트리거 언어 편중을 실측으로 남긴다
+- [[agents/ayghri-i-have-adhd]]: 응답 모양만 담은 스킬. 15개 harness 배포와 blind judge 평가, release gate 실패 기록을 남긴다
 - [[agents/zhao-2026-generative-skill-composition-for-llm]]: library 196개 규모에서 스킬 선택 문제를 측정한 논문. 전량 주입의 비용을 보인다
 - [[agents/yang-2026-skillopt-executive-strategy-for]]: 스킬 문서를 학습 대상으로 두는 논문. 최종 문서 분량과 편집 수용률이 규격 지침과 맞닿는다
 - [[agents/google-labs-code-design-md]]: 같은 Markdown 인터페이스를 쓰지만 선택적 로딩이 없는 인접 포맷. 레벨 구분의 값어치를 대비로 보여준다
