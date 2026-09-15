@@ -1,0 +1,438 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/fig01.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Current as Touch for contact-rich dexterous manipulation. Our proprioception-driven compliance framework uses motor current and joint states as tactile-like contact cues, enabling com- pliant manipulation without external tactile sensors. Across teleoperation and policy-learning set- tings",
+    "bbox": [
+      102.0,
+      191.03,
+      509.97,
+      374.27
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2412,
+      0.8333,
+      0.4726
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/fig02.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/fig02.png",
+    "page": 2,
+    "caption": "Figure 2: Motivation for Current as Touch. Rigid position control may generate excessive contact forces and damage fragile objects when target positions are inaccurate. Motor current and joint states offer built-in tactile-like proprioceptive feedback about contact and object resistance. We use this",
+    "bbox": [
+      102.0,
+      288.44,
+      510.0,
+      481.02
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.3642,
+      0.8333,
+      0.6073
+    ],
+    "dpi": 300,
+    "area_frac": 0.162,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/fig03.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/fig03.png",
+    "page": 3,
+    "caption": "Figure 3: Motivating measurement of motor current as proprioceptive contact feedback. On Unitree Dex3 [ 8 ] and LEAP Hand [ 9 ], motor current and joint states vary consistently with contact force measured by an external force/torque sensor. This observation motivates using intrinsic actu- ator sign",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      182.44
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.2304
+    ],
+    "dpi": 300,
+    "area_frac": 0.098,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/fig04.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/fig04.png",
+    "page": 5,
+    "caption": "Figure 4: Teleoperation data manifold for learning CRPs. Demonstrations couple user intent with contact responses: command slopes encode grasp/release intent, while current changes relative to joint motion, e.g., ∆ I/ ∆ q , provide stiffness-related contact cues. The model learns CRPs from this huma",
+    "bbox": [
+      116.6,
+      66.0,
+      492.91,
+      175.47
+    ],
+    "bbox_norm": [
+      0.1905,
+      0.0833,
+      0.8054,
+      0.2216
+    ],
+    "dpi": 300,
+    "area_frac": 0.085,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/fig05.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/fig05.png",
+    "page": 6,
+    "caption": "Figure 5: Current-conditioned prediction pipeline. The model predicts CRPs from proprioceptive history. In teleoperation, inputs include robot state, raw motor current, and user intent velocity; in policy mode, user intent is replaced by task-level object or goal pose.",
+    "bbox": [
+      111.9,
+      66.0,
+      500.1,
+      259.25
+    ],
+    "bbox_norm": [
+      0.1828,
+      0.0833,
+      0.8172,
+      0.3273
+    ],
+    "dpi": 300,
+    "area_frac": 0.155,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/fig06.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/fig06.png",
+    "page": 7,
+    "caption": "Figure 6: Object set for teleoperation training and evaluation. We collect grasping demonstra- tions on everyday objects with diverse shapes and stiffness, together with free-space hand-motion trajectories, to expose the model to both contact-induced and internal hand-motion currents.",
+    "bbox": [
+      98.04,
+      284.66,
+      513.96,
+      349.73
+    ],
+    "bbox_norm": [
+      0.1602,
+      0.3594,
+      0.8398,
+      0.4416
+    ],
+    "dpi": 300,
+    "area_frac": 0.056,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/fig07.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/fig07.png",
+    "page": 8,
+    "caption": "Figure 7: Qualitative results across teleoperation and policy tasks. Without current-conditioned CRP prediction, direct retargeting or behavior cloning can deform cups, lose wiping contact, draw multiple cards, or drop a dynamically loaded bottle. Motor-current feedback predicts contact-aware CRPs f",
+    "bbox": [
+      103.97,
+      67.09,
+      507.88,
+      263.01
+    ],
+    "bbox_norm": [
+      0.1699,
+      0.0847,
+      0.8299,
+      0.3321
+    ],
+    "dpi": 300,
+    "area_frac": 0.163,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/tab01.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1: Teleop foam-cup stacking results.",
+    "bbox": [
+      98.04,
+      88.25,
+      341.38,
+      168.36
+    ],
+    "bbox_norm": [
+      0.1602,
+      0.1114,
+      0.5578,
+      0.2126
+    ],
+    "dpi": 300,
+    "area_frac": 0.04,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/tab02.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/tab02.png",
+    "page": 7,
+    "caption": "Table 2: Teleop board-wiping results.",
+    "bbox": [
+      339.6,
+      87.2,
+      510.0,
+      162.64
+    ],
+    "bbox_norm": [
+      0.5549,
+      0.1101,
+      0.8333,
+      0.2054
+    ],
+    "dpi": 300,
+    "area_frac": 0.027,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/tab03.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/tab03.png",
+    "page": 7,
+    "caption": "Table 3: Dynamic bottle-holding results.",
+    "bbox": [
+      98.04,
+      177.74,
+      296.7,
+      292.7
+    ],
+    "bbox_norm": [
+      0.1602,
+      0.2244,
+      0.4848,
+      0.3696
+    ],
+    "dpi": 300,
+    "area_frac": 0.047,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/tab04.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/tab04.png",
+    "page": 7,
+    "caption": "Table 4: Single-card picking results. Strict suc- cess requires picking exactly one card, while tol- erant success allows one or two cards.",
+    "bbox": [
+      297.51,
+      200.16,
+      507.51,
+      267.3
+    ],
+    "bbox_norm": [
+      0.4861,
+      0.2527,
+      0.8293,
+      0.3375
+    ],
+    "dpi": 300,
+    "area_frac": 0.029,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/tab05.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/tab05.png",
+    "page": 10,
+    "caption": "Table 5: Dataset statistics for teleoperation and policy-learning tasks. Task Hardware Demonstrations Average length / rate",
+    "bbox": [
+      102.0,
+      155.85,
+      523.88,
+      216.64
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1968,
+      0.856,
+      0.2735
+    ],
+    "dpi": 300,
+    "area_frac": 0.053,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/tab06.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/tab06.png",
+    "page": 12,
+    "caption": "Table 6: Default model and training hyperparameters.",
+    "bbox": [
+      204.2,
+      84.28,
+      407.8,
+      292.98
+    ],
+    "bbox_norm": [
+      0.3337,
+      0.1064,
+      0.6663,
+      0.3699
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/tab07.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/tab07.png",
+    "page": 13,
+    "caption": "Table 7: Execution aggregation ablation for dynamic bottle holding. Each setting is evaluated over 10 trials. Grasp success measures whether the robot first establishes a stable grasp on the empty bottle. Hold success measures whether the robot keeps the bottle from 0 g to 250 g of poured water afte",
+    "bbox": [
+      156.99,
+      117.01,
+      455.01,
+      193.86
+    ],
+    "bbox_norm": [
+      0.2565,
+      0.1477,
+      0.7435,
+      0.2448
+    ],
+    "dpi": 300,
+    "area_frac": 0.047,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/tab08.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/tab08.png",
+    "page": 14,
+    "caption": "Table 8: Teleoperation fist-closing success under different KL weights. Each setting is evaluated over 10 trials.",
+    "bbox": [
+      197.31,
+      95.19,
+      414.69,
+      173.46
+    ],
+    "bbox_norm": [
+      0.3224,
+      0.1202,
+      0.6776,
+      0.219
+    ],
+    "dpi": 300,
+    "area_frac": 0.035,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/ma-2026-current-as-touch-proprioceptive-contact/tab09.png",
+    "raw": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/tab09.png",
+    "page": 14,
+    "caption": "Table 9: Bottle-grasping success under different KL weights. Each setting is evaluated over 10 trials.",
+    "bbox": [
+      189.84,
+      195.17,
+      422.16,
+      273.7
+    ],
+    "bbox_norm": [
+      0.3102,
+      0.2464,
+      0.6898,
+      0.3456
+    ],
+    "dpi": 300,
+    "area_frac": 0.038,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/ma-2026-current-as-touch-proprioceptive-contact-figures/_overlay/p14.png"
+  }
+]

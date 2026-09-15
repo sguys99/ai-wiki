@@ -1,0 +1,242 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/ma-2026-current-as-touch-project-page/fig01.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/fig01.png",
+    "caption": "Current as Touch teaser overview.",
+    "source_url": "https://cat.chenyangma.com/assets/img/teaser_ad_v1.png",
+    "bytes": 3072110,
+    "width": 2664,
+    "height": 1006,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/ma-2026-current-as-touch-project-page/fig02.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/fig02.png",
+    "caption": "Current-conditioned compliance reference prediction model framework.",
+    "source_url": "https://cat.chenyangma.com/assets/img/pipeline_v4.png",
+    "bytes": 297135,
+    "width": 3572,
+    "height": 1721,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/ma-2026-current-as-touch-project-page/fig03.jpg",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/fig03.jpg",
+    "caption": "Foam cup grasping without current.",
+    "source_url": "https://cat.chenyangma.com/assets/img/grasp-no-current.jpg",
+    "bytes": 156901,
+    "width": 850,
+    "height": 850,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/ma-2026-current-as-touch-project-page/fig04.jpg",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/fig04.jpg",
+    "caption": "Foam cup grasping with current.",
+    "source_url": "https://cat.chenyangma.com/assets/img/grasp-current.jpg",
+    "bytes": 168736,
+    "width": 850,
+    "height": 850,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/ma-2026-current-as-touch-project-page/fig05.jpg",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/fig05.jpg",
+    "caption": "Whiteboard wiping without current.",
+    "source_url": "https://cat.chenyangma.com/assets/img/wipe-no-current.jpg",
+    "bytes": 195778,
+    "width": 850,
+    "height": 850,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/ma-2026-current-as-touch-project-page/fig06.jpg",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/fig06.jpg",
+    "caption": "Whiteboard wiping with current.",
+    "source_url": "https://cat.chenyangma.com/assets/img/wipe-current.jpg",
+    "bytes": 194122,
+    "width": 850,
+    "height": 850,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/ma-2026-current-as-touch-project-page/fig07.jpg",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/fig07.jpg",
+    "caption": "Single-card picking without current.",
+    "source_url": "https://cat.chenyangma.com/assets/img/draw-no-current.jpg",
+    "bytes": 145568,
+    "width": 850,
+    "height": 850,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/ma-2026-current-as-touch-project-page/fig08.jpg",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/fig08.jpg",
+    "caption": "Single-card picking with current.",
+    "source_url": "https://cat.chenyangma.com/assets/img/draw-current.jpg",
+    "bytes": 147233,
+    "width": 850,
+    "height": 850,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/ma-2026-current-as-touch-project-page/fig09.jpg",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/fig09.jpg",
+    "caption": "Dynamic bottle holding without current.",
+    "source_url": "https://cat.chenyangma.com/assets/img/pour-no-current.jpg",
+    "bytes": 203260,
+    "width": 850,
+    "height": 850,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/ma-2026-current-as-touch-project-page/fig10.jpg",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/fig10.jpg",
+    "caption": "Dynamic bottle holding with current.",
+    "source_url": "https://cat.chenyangma.com/assets/img/pour-current.jpg",
+    "bytes": 213716,
+    "width": 850,
+    "height": 850,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/ma-2026-current-as-touch-project-page/page-full.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop01.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop02.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop03.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop04.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop05.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop06.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop07.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop08.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop09.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop10.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop11.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig23",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop12.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig24",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop13.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop13.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig25",
+    "file": "assets/ma-2026-current-as-touch-project-page/crop14.png",
+    "raw": "raw/articles/ma-2026-current-as-touch-project-page-figures/crop14.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
