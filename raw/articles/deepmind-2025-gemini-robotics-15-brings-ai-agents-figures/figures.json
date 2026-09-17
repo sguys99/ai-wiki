@@ -1,0 +1,218 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/fig01.jpg",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/fig01.jpg",
+    "caption": "Three vertical panels showing Gemini Robotics 1.5 performing physical tasks: a white robotic arm holding green tape, a mechanical claw placing red grapes into a green container, and Apollo, the white Apptronik humanoid robot.",
+    "source_url": "https://lh3.googleusercontent.com/gWwpRQKqcoVvkXtc-b2pdCCMu82CgDbQB7U6nCGFSKWF9R1AsgLukMkBXW4Ft55LiuLW5W0M9grV6nFlsyNDSj1qK7nuSRBYk4_NZrUzETEYaWgh=w1440-h810-n-nu",
+    "bytes": 122641,
+    "width": 1440,
+    "height": 810,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/fig02.jpg",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/fig02.jpg",
+    "caption": "A diagram illustrating the Gemini Robotics 1.5 agentic system, showing how the high-level orchestrator Gemini Robotics-ER 1.5 uses thinking, tool use, and planning to guide the Gemini Robotics 1.5 VLA model in performing a waste-sorting task.",
+    "source_url": "https://lh3.googleusercontent.com/vSMY895gzWpK-nGK2Vn__6OsjX5DIlTkiBBqggd0f-oAw1oNgh5tFPiZPKtSKIONx4UCT7kiop72Nuj0RMrJ-bICxx21SZCG55LlqcqBA-n_znJw=w1440",
+    "bytes": 117900,
+    "width": 1440,
+    "height": 809,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/fig03.jpg",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/fig03.jpg",
+    "caption": "",
+    "source_url": "https://lh3.googleusercontent.com/sdFcpCoe-jJQIx2Ay8OzvMoz0WHXK0wJ0fa9WNG2JzqmGEfBH8d60a5YUlWQkJ9wlMfbJEAJ6wphjI9jAlaZcE9BTIEpInPQowHpvGMHZe9Ui8qiGQ=w1440-h810-n-nu",
+    "bytes": 106242,
+    "width": 1070,
+    "height": 602,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/fig04.jpg",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/fig04.jpg",
+    "caption": "Bar chart showing aggregated performance on 15 academic embodied reasoning benchmarks, with Gemini Robotics-ER 1.5 highlighted in blue achieving the highest score of over 60, followed by GPT-5, GPT-5-mini, Gemini Robotics-ER 1.0, and GPT-5-Nano.",
+    "source_url": "https://lh3.googleusercontent.com/iGOPSXl7VFgFdMJW9V7dCfa8ngGLwHmaIOL9bDgrQMULRVVIku-ukMdcdRl0XVZPLnhpJLdkayLARFTDkoSwkyEgXi5s35vcMDRtnwLuf0oyx3Xqyg=w1440",
+    "bytes": 43320,
+    "width": 1232,
+    "height": 743,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/fig05.jpg",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/fig05.jpg",
+    "caption": "",
+    "source_url": "https://deepmind.google/static/images/fallback/video_poster_fallback_light.57b61d57842a.jpg",
+    "bytes": 10209,
+    "width": 800,
+    "height": 450,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/fig06.jpg",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/fig06.jpg",
+    "caption": "",
+    "source_url": "https://deepmind.google/static/images/fallback/video_poster_fallback_dark.4d55bc99efa6.jpg",
+    "bytes": 4562,
+    "width": 800,
+    "height": 450,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/fig07.jpg",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/fig07.jpg",
+    "caption": "",
+    "source_url": "https://lh3.googleusercontent.com/z1XbNpE9I8GVhHf9jWsER5fFXj0TVWgsRE42CnYTInCMt2x83RvAbGtUJ46gBeg57mSLFQi3XBUT8Rt7bo7kKAV-hhOmM7-oBeV4wyGro6UXvL--85Y=w1440-h810-n-nu",
+    "bytes": 99260,
+    "width": 1070,
+    "height": 602,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/fig08.jpg",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/fig08.jpg",
+    "caption": "",
+    "source_url": "https://lh3.googleusercontent.com/vHo1vRQXDOOR3movvDNdiYIBH5xfw3gxknu3Q9XE1TYtFJCiCxF_6FdgiQoSiMmNqQJOn01aD4ySoMuio2rzI49xqS_q-8828m7oJ5KzA5IvhJDBEr8=w1440-h810-n-nu",
+    "bytes": 106938,
+    "width": 1070,
+    "height": 602,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/page-full.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop01.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop02.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop03.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop04.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop05.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop06.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop07.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop08.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop09.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop10.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop11.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop12.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop13.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop13.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig23",
+    "file": "assets/deepmind-2025-gemini-robotics-15-brings-ai-agents/crop14.png",
+    "raw": "raw/articles/deepmind-2025-gemini-robotics-15-brings-ai-agents-figures/crop14.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

@@ -1,0 +1,118 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/jo-2026-gemini-robotics-1-5-vla-primer/fig01.png",
+    "raw": "raw/articles/jo-2026-gemini-robotics-1-5-vla-primer-figures/fig01.png",
+    "caption": "Gemini Robotics 1.5 overview",
+    "source_url": "https://static.wikidocs.net/images/page/366382/gh_08f0dcaa5859.png",
+    "bytes": 229579,
+    "width": 646,
+    "height": 444,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/jo-2026-gemini-robotics-1-5-vla-primer/fig02.png",
+    "raw": "raw/articles/jo-2026-gemini-robotics-1-5-vla-primer-figures/fig02.png",
+    "caption": "Embodied reasoning in physical scenes",
+    "source_url": "https://static.wikidocs.net/images/page/366382/gh_4387cc92756a.png",
+    "bytes": 66128,
+    "width": 643,
+    "height": 353,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/jo-2026-gemini-robotics-1-5-vla-primer/fig03.png",
+    "raw": "raw/articles/jo-2026-gemini-robotics-1-5-vla-primer-figures/fig03.png",
+    "caption": "Multi-embodiment evaluation",
+    "source_url": "https://static.wikidocs.net/images/page/366382/gh_4f87a3cc515f.png",
+    "bytes": 323421,
+    "width": 645,
+    "height": 299,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/jo-2026-gemini-robotics-1-5-vla-primer/fig04.png",
+    "raw": "raw/articles/jo-2026-gemini-robotics-1-5-vla-primer-figures/fig04.png",
+    "caption": "Generalization performance",
+    "source_url": "https://static.wikidocs.net/images/page/366382/gh_b3f844a9a2bd.png",
+    "bytes": 51377,
+    "width": 477,
+    "height": 550,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/jo-2026-gemini-robotics-1-5-vla-primer/fig05.png",
+    "raw": "raw/articles/jo-2026-gemini-robotics-1-5-vla-primer-figures/fig05.png",
+    "caption": "Motion Transfer result 1",
+    "source_url": "https://static.wikidocs.net/images/page/366382/gh_8f6b44dfd816.png",
+    "bytes": 49845,
+    "width": 486,
+    "height": 525,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/jo-2026-gemini-robotics-1-5-vla-primer/fig06.png",
+    "raw": "raw/articles/jo-2026-gemini-robotics-1-5-vla-primer-figures/fig06.png",
+    "caption": "Motion Transfer result 2",
+    "source_url": "https://static.wikidocs.net/images/page/366382/gh_5b7f17865d53.png",
+    "bytes": 110243,
+    "width": 486,
+    "height": 302,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/jo-2026-gemini-robotics-1-5-vla-primer/fig07.png",
+    "raw": "raw/articles/jo-2026-gemini-robotics-1-5-vla-primer-figures/fig07.png",
+    "caption": "Thinking result 1",
+    "source_url": "https://static.wikidocs.net/images/page/366382/gh_f4e9d1c9c57b.png",
+    "bytes": 18456,
+    "width": 589,
+    "height": 250,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/jo-2026-gemini-robotics-1-5-vla-primer/fig08.png",
+    "raw": "raw/articles/jo-2026-gemini-robotics-1-5-vla-primer-figures/fig08.png",
+    "caption": "Thinking result 2",
+    "source_url": "https://static.wikidocs.net/images/page/366382/gh_b9d36bcc8bca.png",
+    "bytes": 403842,
+    "width": 608,
+    "height": 516,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/jo-2026-gemini-robotics-1-5-vla-primer/fig09.png",
+    "raw": "raw/articles/jo-2026-gemini-robotics-1-5-vla-primer-figures/fig09.png",
+    "caption": "Agentic system",
+    "source_url": "https://static.wikidocs.net/images/page/366382/gh_8b23ecbe24d7.png",
+    "bytes": 237722,
+    "width": 615,
+    "height": 617,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/jo-2026-gemini-robotics-1-5-vla-primer/page-full.png",
+    "raw": "raw/articles/jo-2026-gemini-robotics-1-5-vla-primer-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]
