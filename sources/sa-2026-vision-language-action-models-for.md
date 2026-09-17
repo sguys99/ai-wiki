@@ -24,11 +24,51 @@ figures:
     bbox_norm: [0.0702, 0.0686, 0.9298, 0.5505]
     strategy: manual
     curated: true
+  - id: fig03
+    kind: figure
+    file: assets/sa-2026-vision-language-action-models-for/fig03.png
+    raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig03.png
+    caption: "page 7 전면 렌더 (텍스트 page): 평가 지표(성공률과 generalization 비율 수식)와 시뮬레이션 벤치마크 절. Fig. 3 참조 문장에서 잡혔고 fig04, fig05와 동일 이미지"
+    page: 7
+    strategy: page-region
+    curated: false
+  - id: fig04
+    kind: figure
+    file: assets/sa-2026-vision-language-action-models-for/fig04.png
+    raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig04.png
+    caption: "page 7 전면 렌더의 중복 (fig03과 동일 이미지). Fig. 2 참조 문장에서 잡혔다"
+    page: 7
+    strategy: page-region
+    curated: false
+  - id: fig05
+    kind: figure
+    file: assets/sa-2026-vision-language-action-models-for/fig05.png
+    raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig05.png
+    caption: "page 7 전면 렌더의 중복 (fig03과 동일 이미지). Fig. 4 참조 문장에서 잡혔다"
+    page: 7
+    strategy: page-region
+    curated: false
   - id: fig06
     file: assets/sa-2026-vision-language-action-models-for/fig06.png
     raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig06.png
     caption: "Fig. 3: 통일된 시간축 위의 마일스톤. research(파랑), hardware(주황), field deployment(초록) 세 트랙. 실전 배치는 그 기반 역량보다 대략 2년 늦게 시작 (같은 page에 Table II 병존)"
     page: 8
+    strategy: page-region
+    curated: false
+  - id: fig07
+    kind: figure
+    file: assets/sa-2026-vision-language-action-models-for/fig07.png
+    raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig07.png
+    caption: "page 8 전면 렌더의 중복 (fig06과 동일 이미지). Fig. 3 캡션 줄에서 잡혔고 상단에 Table II pre-training 코퍼스 비교가 함께 있다"
+    page: 8
+    strategy: page-region
+    curated: false
+  - id: fig08
+    kind: figure
+    file: assets/sa-2026-vision-language-action-models-for/fig08.png
+    raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig08.png
+    caption: "page 11 전면 렌더 (텍스트 page): Gemini Robotics On-Device, GR00T N1, Xiaomi-Robotics-0 등 on-device 모델과 상용 시스템 서술, VI절 학습 레시피 도입. Fig. 5 참조 문장에서 잡혔다"
+    page: 11
     strategy: page-region
     curated: false
   - id: fig09
@@ -55,6 +95,38 @@ figures:
     bbox_norm: [0.5, 0.0687, 0.9298, 0.4328]
     strategy: manual
     curated: true
+  - id: fig12
+    kind: figure
+    file: assets/sa-2026-vision-language-action-models-for/fig12.png
+    raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig12.png
+    caption: "page 25 전면 렌더: 우상단에 Fig. 6 4-way 막대 그래프(fig11이 크롭본), 나머지는 human-robot interaction과 compute 제약, XI절 실전 배치 도입 텍스트"
+    page: 25
+    strategy: page-region
+    curated: false
+  - id: fig13
+    kind: figure
+    file: assets/sa-2026-vision-language-action-models-for/fig13.png
+    raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig13.png
+    caption: "page 26 전면 렌더: 상단 Table XII (대표 방법 10종의 visual encoder, view 수, 안전 메커니즘, sim2real, dialogue 비교), 하단은 식품/제조/물류/가정 배치 서술"
+    page: 26
+    strategy: page-region
+    curated: false
+  - id: fig14
+    kind: figure
+    file: assets/sa-2026-vision-language-action-models-for/fig14.png
+    raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig14.png
+    caption: "page 27 전면 렌더 (텍스트 page): 배치 기록의 시사점 3가지와 XII절 결론(architecture, training, action 표현, generalization, efficiency, memory). Fig. 6 참조 문장에서 잡혔다"
+    page: 27
+    strategy: page-region
+    curated: false
+  - id: fig15
+    kind: figure
+    file: assets/sa-2026-vision-language-action-models-for/fig15.png
+    raw: raw/papers/sa-2026-vision-language-action-models-for-figures/fig15.png
+    caption: "page 28 전면 렌더: 상단 Table XIII 실전 배치 사례 16건(규모, 지표, VLA 여부), 우하단 Table XIV 추론 비용과 hardware 상한. 표 안의 'Figure 02 (Helix)' 문자열에서 잡혔다"
+    page: 28
+    strategy: page-region
+    curated: false
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -186,7 +258,7 @@ Fig. 2가 핵심 결론이다. Independent와 loosely coupled 행에서는 거�
 
 ## 8. 그림 후보 (Figure Candidates)
 
-page-region 전략이 "Fig. N" 문자열이 등장한 page를 통째로 200 DPI PNG로 저장했다. 그래서 본문에서 그림을 참조만 한 page(중복과 노이즈)와 실제 그림이 있는 page가 섞여 나왔다. 아래는 raw 15장 중 **실제 그림을 담은 대표 후보**만 추린 것이다. 나머지(fig03, fig04, fig05, fig07, fig08, fig12, fig13, fig14, fig15)는 본문 참조로 잡힌 텍스트나 표 page라 제외.
+page-region 전략이 "Fig. N" 문자열이 등장한 page를 통째로 200 DPI PNG로 저장했다. 그래서 본문에서 그림을 참조만 한 page(중복과 노이즈)와 실제 그림이 있는 page가 섞여 나왔다. 아래 표의 앞 6행은 raw 15장 중 **실제 그림을 담은 대표 후보**이고, 뒤 9행(fig03, fig04, fig05, fig07, fig08, fig12, fig13, fig14, fig15)은 본문 참조로 잡힌 텍스트나 표 page다. 뒤 9행은 큐레이션 대상이 아니지만 트레이서빌리티를 위해 frontmatter와 표에 함께 기록한다.
 
 | id | page | 실제 그림 | 내용 | strategy | 추천 |
 |---|---|---|---|---|---|
@@ -196,6 +268,15 @@ page-region 전략이 "Fig. N" 문자열이 등장한 page를 통째로 200 DPI 
 | fig10 | 13 | Fig. 5 | 학습 파이프라인 (fig09와 **동일 page 13 이미지**, 하단이 Fig. 5) | page-region | ○ fig09와 중복 |
 | fig06 | 8 | Fig. 3 | 2022~2026 마일스톤 타임라인 (research/hardware/deployment 3트랙) | page-region | ○ 선택 (맥락) |
 | fig01 | 1 | Fig. 1 | 네 배치 현장 사진 (title page 전체) | page-region | △ 선택 (저작권 원소유자, 개념도 아님) |
+| fig03 | 7 | 없음 | 평가 지표 수식과 시뮬레이션 벤치마크 절 (텍스트 page, fig04, fig05와 동일 이미지) | page-region | 비도식 |
+| fig04 | 7 | 없음 | fig03과 동일 이미지 (Fig. 2 참조 문장에서 잡힘) | page-region | 비도식 |
+| fig05 | 7 | 없음 | fig03과 동일 이미지 (Fig. 4 참조 문장에서 잡힘) | page-region | 비도식 |
+| fig07 | 8 | Fig. 3 (+ Table II) | fig06과 동일 이미지 (Fig. 3 캡션 줄에서 잡힘) | page-region | (확인 필요, fig06과 동일 이미지) |
+| fig08 | 11 | 없음 | on-device 모델과 상용 시스템 서술, VI절 도입 (텍스트 page) | page-region | 비도식 |
+| fig12 | 25 | Fig. 6 | 우상단 4-way 막대 그래프 (fig11이 크롭본), 나머지 텍스트 | page-region | (확인 필요, Fig. 6은 fig11 크롭본 사용) |
+| fig13 | 26 | Table XII | 대표 방법 10종의 visual encoder, 안전 메커니즘, sim2real, dialogue 비교표 | page-region | (확인 필요, 표 page) |
+| fig14 | 27 | 없음 | 배치 기록의 시사점과 XII절 결론 (텍스트 page) | page-region | 비도식 |
+| fig15 | 28 | Table XIII, XIV | 실전 배치 사례 16건 표와 추론 비용/hardware 상한 표 | page-region | (확인 필요, 표 page) |
 
 메모:
 - **fig09 = fig10** (page 13 전체 이미지 하나). 이 page 상단이 Fig. 4, 하단이 Fig. 5다. wiki에 둘 다 넣고 싶으면 `wiki/assets/`로 복사할 때 상단(Fig. 4)과 하단(Fig. 5)으로 **수동 크롭** 권장. 크롭 안 하면 같은 page가 두 번 임베드된다.

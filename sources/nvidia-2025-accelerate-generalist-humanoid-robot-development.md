@@ -203,6 +203,11 @@ wiki 안에서는 논문 페이지가 정본이다. dual-system 구조를 다른
 | fig02 | Figure 1 조작 데모 원본 GIF | fetched | (선택, 10MB라 Obsidian에서 무겁다) |
 | fig01 | 대표 이미지 GIF | fetched | (선택, 9MB) |
 | fig08 | 조작 데모 정지 이미지, 캡션 없음 | crop | (fig07과 중복) |
-| fig04, fig05, fig06, fig09, fig10, fig11 | 전체 스크린샷, 유튜브 임베드, 쿠키 배너에 가린 도식 | screenshot / crop | 제외 |
+| fig04 | 전체 페이지 스크린샷 (상단 6000px) | screenshot | 제외 |
+| fig05 | 대표 이미지 크롭. 우상단에 쿠키 배너 일부가 걸쳤다 | crop | 제외 |
+| fig06 | Video 1 유튜브 임베드. 쿠키 배너에 가렸다 | crop | 제외 |
+| fig09 | Video 2 유튜브 임베드. 쿠키 배너에 가렸다 | crop | 제외 |
+| fig10 | Figure 2 구조 도식과 캡션. 상단이 쿠키 배너에 가렸다 | crop | 제외 |
+| fig11 | Figure 2 구조 도식 (캡션 없는 버전). 상단이 쿠키 배너에 가렸다 | crop | 제외 |
 
 본문의 표 세 개는 텍스트로도 남아 있어 fig12~fig14는 시각 확인용이다. 논문 페이지가 이미 같은 수치를 표로 실었으니 중복이 부담이면 fig03과 fig07만 가져가도 된다.

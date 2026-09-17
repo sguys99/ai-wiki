@@ -84,6 +84,356 @@ figures:
     caption: "원문 페이지 전체 스크린샷"
     strategy: screenshot
     curated: false
+  - id: fig13
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop01.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop01.png
+    caption: "글 머리 콜라주 (WAM 2026 원형 배지와 논문 도식 모음). 우상단 쿠키 배너 버튼 겹침"
+    strategy: crop
+    curated: false
+  - id: fig14
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop02.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop02.png
+    caption: "Figure 1 VLA/VAM 갈림길 삽화, 캡션 포함. 상단 쿠키 배너 겹침 (fig03과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig15
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop03.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop03.png
+    caption: "Figure 1 갈림길 삽화의 캡션 없는 크롭 (fig14와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig16
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop04.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop04.png
+    caption: "Figure 1 갈림길 삽화의 좁은 크롭. 좌우가 잘렸다 (fig14와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig17
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop05.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop05.png
+    caption: "Figure 2 로보틱스 world model 지형도, 캡션 포함. 상단 쿠키 배너 겹침 (fig04와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig18
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop06.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop06.png
+    caption: "Figure 2 지형도의 캡션 없는 크롭 (fig17과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig19
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop07.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop07.png
+    caption: "Figure 3 DROID 토스터 과제 컨텍스트 프레임, 캡션 포함. 상단 쿠키 배너 일부 (fig05와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig20
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop08.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop08.png
+    caption: "Figure 3 컨텍스트 프레임의 캡션 없는 크롭 (fig19와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig21
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop09.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop09.png
+    caption: "Figure 4 DROID 실제 rollout 3프레임, 캡션 포함 (fig06과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig22
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop10.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop10.png
+    caption: "Figure 4 실제 rollout의 여백 없는 크롭 (fig21과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig23
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop11.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop11.png
+    caption: "Figure 5 Veo 3.1 zero-shot rollout 4프레임, 캡션 포함 (fig07과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig24
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop12.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop12.png
+    caption: "Figure 6 Veo 3.1 합성 확장 rollout 4프레임, 캡션 포함 (fig08과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig25
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop13.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop13.png
+    caption: "Figure 7 합성 확장 애니메이션의 정지 프레임, 캡션 포함 (fig09 GIF의 한 프레임)"
+    strategy: crop
+    curated: false
+  - id: fig26
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop14.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop14.png
+    caption: "Figure 7 정지 프레임의 여백 없는 크롭 (fig25와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig27
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop15.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop15.png
+    caption: "Figure 8 WAM 설계 공간 도식 자리. 이미지가 로드되지 않아 캡션만 남았고 상단 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig28
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop16.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop16.png
+    caption: "본문 삽입 이미지 (도식 아님): 빈 회색 영역과 쿠키 배너 (Figure 8 미로드 자리)"
+    strategy: crop
+    curated: false
+  - id: fig29
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop17.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop17.png
+    caption: "Figure 9 inverse dynamics 계열 WAM 추상 구조, 캡션 포함"
+    strategy: crop
+    curated: false
+  - id: fig30
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop18.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop18.png
+    caption: "Figure 9 추상 구조의 캡션 없는 크롭 (fig29와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig31
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop19.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop19.png
+    caption: "Figure 10 UniPi 구조도. 상단 쿠키 배너 겹침 (fig10과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig32
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop20.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop20.png
+    caption: "Figure 11 LingBot-VA 구조도, 캡션 포함. 상단 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig33
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop21.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop21.png
+    caption: "Figure 11 LingBot-VA 구조도의 캡션 없는 크롭 (fig32와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig34
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop22.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop22.png
+    caption: "Figure 12 joint prediction 계열 WAM 추상 구조 자리. 이미지가 로드되지 않아 캡션만 남았고 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig35
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop23.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop23.png
+    caption: "Figure 12 joint prediction 추상 구조. 상단 일부가 쿠키 배너에 가려졌다"
+    strategy: crop
+    curated: false
+  - id: fig36
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop24.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop24.png
+    caption: "Figure 13 GR-1 구조도 자리. 이미지가 로드되지 않아 캡션만 남았다"
+    strategy: crop
+    curated: false
+  - id: fig37
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop25.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop25.png
+    caption: "Figure 13 GR-1 구조도 (pre-train과 fine-tune 단계, CALVIN과 실제 로봇 배치)"
+    strategy: crop
+    curated: false
+  - id: fig38
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop26.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop26.png
+    caption: "Figure 14 CALVIN ABC→D 평균 완료 subtask 막대 그래프, 캡션 포함. 상단 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig39
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop27.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop27.png
+    caption: "Figure 14 막대 그래프의 캡션 없는 크롭 (fig38과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig40
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop28.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop28.png
+    caption: "Figure 15 DreamZero joint video-action DiT 구조도, 캡션 포함"
+    strategy: crop
+    curated: false
+  - id: fig41
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop29.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop29.png
+    caption: "Figure 15 DreamZero 구조도의 캡션 없는 크롭 (fig40과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig42
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop30.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop30.png
+    caption: "Figure 16 RoboArena 리더보드 표, 캡션 포함. 상단 1~4위 행이 쿠키 배너에 가려졌다"
+    strategy: crop
+    curated: false
+  - id: fig43
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop31.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop31.png
+    caption: "Figure 16 리더보드 표의 캡션 없는 크롭 (fig42와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig44
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop32.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop32.png
+    caption: "Figure 17 GENIMA 도식 자리. 이미지가 로드되지 않아 캡션만 남았고 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig45
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop33.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop33.png
+    caption: "본문 삽입 이미지 (도식 아님): 빈 회색 영역과 쿠키 배너 (Figure 17 미로드 자리)"
+    strategy: crop
+    curated: false
+  - id: fig46
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop34.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop34.png
+    caption: "Figure 18 Cosmos Policy latent 주입 도식, 캡션 포함"
+    strategy: crop
+    curated: false
+  - id: fig47
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop35.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop35.png
+    caption: "Figure 18 Cosmos Policy 도식의 캡션 없는 크롭 (fig46과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig48
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop36.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop36.png
+    caption: "Figure 19 Play-LMP 학습과 추론 구조도, 캡션 포함. 우상단 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig49
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop37.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop37.png
+    caption: "Figure 19 Play-LMP 구조도의 캡션 없는 크롭 (fig48과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig50
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop38.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop38.png
+    caption: "Figure 20 Being-H0.7 latent world-action 구조도, 캡션 포함. 상단 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig51
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop39.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop39.png
+    caption: "Figure 20 Being-H0.7 구조도의 캡션 없는 크롭 (fig50과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig52
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop40.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop40.png
+    caption: "Figure 21 hierarchical 구조(video DiT와 action DiT), 캡션 포함. 상단 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig53
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop41.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop41.png
+    caption: "Figure 21 hierarchical 구조의 캡션 없는 크롭 (fig52와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig54
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop42.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop42.png
+    caption: "Figure 22 monolithic Diffusion Transformer 구조, 캡션 포함. 상단 쿠키 배너 일부"
+    strategy: crop
+    curated: false
+  - id: fig55
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop43.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop43.png
+    caption: "Figure 22 monolithic 구조의 캡션 없는 크롭 (fig54와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig56
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop44.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop44.png
+    caption: "Figure 23 Mixture-of-Transformers 구조, 캡션 포함. 상단 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig57
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop45.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop45.png
+    caption: "Figure 23 Mixture-of-Transformers 구조의 캡션 없는 크롭 (fig56과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig58
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop46.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop46.png
+    caption: "Figure 24 학습 연산량 ZFLOP 비교 자리. 이미지가 로드되지 않아 캡션만 남았고 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig59
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop47.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop47.png
+    caption: "Figure 25 세 번째 경로로의 수렴 삽화 자리. 이미지가 로드되지 않아 캡션과 블로그 헤더, 쿠키 배너만 보인다"
+    strategy: crop
+    curated: false
+  - id: fig60
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop48.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop48.png
+    caption: "본문 삽입 이미지 (도식 아님): 빈 회색 영역과 블로그 헤더, 쿠키 배너 (Figure 25 미로드 자리)"
+    strategy: crop
+    curated: false
+  - id: fig61
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop49.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop49.png
+    caption: "Figure 26 Motus 계열 hybrid 구성, 캡션 포함. 상단 쿠키 배너 겹침 (fig11과 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig62
+    kind: figure
+    file: assets/reuss-2026-pretrained-to-imagine-fine-tuned/crop50.png
+    raw: raw/articles/reuss-2026-pretrained-to-imagine-fine-tuned-figures/crop50.png
+    caption: "Figure 26 hybrid 구성의 캡션 없는 크롭 (fig61과 같은 그림)"
+    strategy: crop
+    curated: false
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -202,7 +552,7 @@ hierarchical 구성이 가장 유연하다. action 헤드가 완전히 모듈이
 
 ## 8. 그림 후보 (Figure Candidates)
 
-원문 도식은 약 24개인데 lazy loading 탓에 원본 다운로드로 내려받은 것은 11개뿐이다. 빠진 몫은 한국어 판 아카이브(`9bow-2026-world-action-model-rise-figures/`)에서 채우면 된다. 거기에는 23개가 온전히 들어와 있다. 같은 아카이브에 페이지 전체 스크린샷 1장과 요소 단위 크롭 51장도 함께 있다. 크롭 쪽은 관련 글 썸네일까지 섞여 있어 후보 표에서 뺐다. 전체 목록은 `figures.json`이 들고 있다.
+원문 도식은 약 24개인데 lazy loading 탓에 원본 다운로드로 내려받은 것은 11개뿐이다. 빠진 몫은 한국어 판 아카이브(`9bow-2026-world-action-model-rise-figures/`)에서 채우면 된다. 거기에는 23개가 온전히 들어와 있다. 이 자료의 아카이브(`reuss-2026-pretrained-to-imagine-fine-tuned-figures/`)에는 페이지 전체 스크린샷 1장(fig12)과 요소 단위 크롭 50장(fig13~fig62)도 함께 있고, 트레이서빌리티를 위해 frontmatter와 아래 표에 모두 기록했다. 크롭은 대부분 캡션 포함본과 캡션 제외본이 쌍으로 잡혔고, 쿠키 배너가 겹치거나 lazy loading으로 이미지가 비어 있는 자리가 섞여 있다. 반면 Figure 9, 11~16, 18~23의 도식은 fetched 원본이 없어 크롭이 이 아카이브의 유일한 사본이다. 전체 목록은 `figures.json`이 들고 있다.
 
 | id | caption | strategy | 추천 |
 |---|---|---|---|
@@ -218,3 +568,53 @@ hierarchical 구성이 가장 유연하다. action 헤드가 완전히 모듈이
 | fig10 | UniPi 구조 | fetched | (선택) |
 | fig11 | Motus 계열 hybrid 구성 | fetched | ★ wiki 권장 (전망) |
 | fig12 | 페이지 전체 스크린샷 | screenshot | (아카이브) |
+| fig13 | 글 머리 콜라주, 쿠키 배너 겹침 (fetched 원본 없음) | crop | (확인 필요) |
+| fig14 | Figure 1 갈림길 삽화, 캡션 포함 | crop | (확인 필요, fig03과 중복) |
+| fig15 | Figure 1 캡션 없는 크롭 | crop | (확인 필요, fig14와 중복) |
+| fig16 | Figure 1 좁은 크롭 | crop | (확인 필요, fig14와 중복) |
+| fig17 | Figure 2 지형도, 캡션 포함 | crop | (확인 필요, fig04와 중복) |
+| fig18 | Figure 2 캡션 없는 크롭 | crop | (확인 필요, fig17과 중복) |
+| fig19 | Figure 3 컨텍스트 프레임, 캡션 포함 | crop | (확인 필요, fig05와 중복) |
+| fig20 | Figure 3 캡션 없는 크롭 | crop | (확인 필요, fig19와 중복) |
+| fig21 | Figure 4 실제 rollout, 캡션 포함 | crop | (확인 필요, fig06과 중복) |
+| fig22 | Figure 4 여백 없는 크롭 | crop | (확인 필요, fig21과 중복) |
+| fig23 | Figure 5 Veo 3.1 rollout, 캡션 포함 | crop | (확인 필요, fig07과 중복) |
+| fig24 | Figure 6 합성 확장 rollout, 캡션 포함 | crop | (확인 필요, fig08과 중복) |
+| fig25 | Figure 7 GIF 정지 프레임, 캡션 포함 | crop | (확인 필요, fig09와 중복) |
+| fig26 | Figure 7 여백 없는 크롭 | crop | (확인 필요, fig25와 중복) |
+| fig27 | Figure 8 미로드 자리 (캡션만) | crop | 비도식 |
+| fig28 | 빈 회색 영역 (Figure 8 미로드) | crop | 비도식 |
+| fig29 | Figure 9 inverse dynamics 추상 구조 (fetched 원본 없음) | crop | (확인 필요) |
+| fig30 | Figure 9 캡션 없는 크롭 | crop | (확인 필요, fig29와 중복) |
+| fig31 | Figure 10 UniPi, 쿠키 배너 겹침 | crop | (확인 필요, fig10과 중복) |
+| fig32 | Figure 11 LingBot-VA, 캡션 포함 (fetched 원본 없음) | crop | (확인 필요) |
+| fig33 | Figure 11 캡션 없는 크롭 | crop | (확인 필요, fig32와 중복) |
+| fig34 | Figure 12 미로드 자리 (캡션만) | crop | 비도식 |
+| fig35 | Figure 12 joint prediction 추상 구조 (fetched 원본 없음) | crop | (확인 필요) |
+| fig36 | Figure 13 미로드 자리 (캡션만) | crop | 비도식 |
+| fig37 | Figure 13 GR-1 구조도 (fetched 원본 없음) | crop | (확인 필요) |
+| fig38 | Figure 14 CALVIN 막대, 캡션 포함 (fetched 원본 없음) | crop | (확인 필요) |
+| fig39 | Figure 14 캡션 없는 크롭 | crop | (확인 필요, fig38과 중복) |
+| fig40 | Figure 15 DreamZero 구조도 (fetched 원본 없음) | crop | (확인 필요) |
+| fig41 | Figure 15 캡션 없는 크롭 | crop | (확인 필요, fig40과 중복) |
+| fig42 | Figure 16 RoboArena 리더보드, 캡션 포함 (fetched 원본 없음) | crop | (확인 필요) |
+| fig43 | Figure 16 캡션 없는 크롭 | crop | (확인 필요, fig42와 중복) |
+| fig44 | Figure 17 미로드 자리 (캡션만) | crop | 비도식 |
+| fig45 | 빈 회색 영역 (Figure 17 미로드) | crop | 비도식 |
+| fig46 | Figure 18 Cosmos Policy latent 주입 (fetched 원본 없음) | crop | (확인 필요) |
+| fig47 | Figure 18 캡션 없는 크롭 | crop | (확인 필요, fig46과 중복) |
+| fig48 | Figure 19 Play-LMP 구조도 (fetched 원본 없음) | crop | (확인 필요) |
+| fig49 | Figure 19 캡션 없는 크롭 | crop | (확인 필요, fig48과 중복) |
+| fig50 | Figure 20 Being-H0.7 구조도 (fetched 원본 없음) | crop | (확인 필요) |
+| fig51 | Figure 20 캡션 없는 크롭 | crop | (확인 필요, fig50과 중복) |
+| fig52 | Figure 21 hierarchical 구조 (fetched 원본 없음) | crop | (확인 필요) |
+| fig53 | Figure 21 캡션 없는 크롭 | crop | (확인 필요, fig52와 중복) |
+| fig54 | Figure 22 monolithic 구조 (fetched 원본 없음) | crop | (확인 필요) |
+| fig55 | Figure 22 캡션 없는 크롭 | crop | (확인 필요, fig54와 중복) |
+| fig56 | Figure 23 Mixture-of-Transformers (fetched 원본 없음) | crop | (확인 필요) |
+| fig57 | Figure 23 캡션 없는 크롭 | crop | (확인 필요, fig56과 중복) |
+| fig58 | Figure 24 미로드 자리 (캡션만) | crop | 비도식 |
+| fig59 | Figure 25 미로드 자리 (캡션만) | crop | 비도식 |
+| fig60 | 빈 회색 영역 (Figure 25 미로드) | crop | 비도식 |
+| fig61 | Figure 26 hybrid 구성, 캡션 포함 | crop | (확인 필요, fig11과 중복) |
+| fig62 | Figure 26 캡션 없는 크롭 | crop | (확인 필요, fig61과 중복) |

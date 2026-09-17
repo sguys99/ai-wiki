@@ -30,8 +30,8 @@ SONIC 논문의 공식 프로젝트 페이지. 텍스트로는 abstract 하나�
 - URL: https://nvlabs.github.io/GEAR-SONIC/
 - 발행: NVIDIA GEAR Lab (nvlabs.github.io). 페이지에 발행일 표기 없음. 수집 시점 2026-08-03 상태를 아카이브했다
 - 추출 tier: `chrome` (jina는 403). 본문 1,596자, 이미지 후보 0개, 전체 페이지 캡처 1장
-- 대응 논문: [[luo-2025-sonic-supersizing-motion-tracking]] (arXiv 2511.07820)
-- 대응 코드: [[nvlabs-gr00t-wholebodycontrol]]
+- 대응 논문: [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] (arXiv 2511.07820)
+- 대응 코드: [[physical-ai/nvlabs-gr00t-wholebodycontrol]]
 - 페이지 안에 인터랙티브 웹 데모(`/demo.html`)로 가는 경로가 있고, repo README에 따르면 이 데모는 Kimodo text-to-motion 생성을 쓴다
 
 ## 2. 주요 기여 (Key Contributions)
@@ -42,7 +42,7 @@ SONIC 논문의 공식 프로젝트 페이지. 텍스트로는 abstract 하나�
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
-페이지에 방법론 서술은 없다. 아키텍처를 확인할 곳은 논문 Figure 7이다 ([[luo-2025-sonic-supersizing-motion-tracking]]의 3절 참조).
+페이지에 방법론 서술은 없다. 아키텍처를 확인할 곳은 논문 Figure 7이다 ([[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]의 3절 참조).
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 

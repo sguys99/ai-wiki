@@ -24,7 +24,7 @@ SONIC 논문을 실행 가능한 스택으로 내려놓은 NVIDIA의 공식 저�
 - 라이선스: 코드는 Apache-2.0, 모델 가중치는 NVIDIA Open Model License (이중 라이선스)
 - 의존: Isaac Lab 2.3.2 (학습 시), Git LFS (필수. 없으면 포인터 파일만 받아 조용히 실패한다)
 - 문서 사이트: https://nvlabs.github.io/GR00T-WholeBodyControl/
-- 대응 논문: [[luo-2025-sonic-supersizing-motion-tracking]] (arXiv 2511.07820, BibTeX `luo2025sonic`)
+- 대응 논문: [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]] (arXiv 2511.07820, BibTeX `luo2025sonic`)
 - 아카이브한 README 스냅샷: 2026-08-03 수집
 
 News 타임라인이 이 저장소의 성격을 잘 보여준다. 2025-11-12 최초 릴리스는 GR00T N1.5/N1.6용 decoupled WBC였고, 2026-02-19에 GEAR-SONIC(pre-training된 체크포인트, C++ 추론, VR teleoperation)이 들어왔다. 이후 BONES-SEED 공개(2026-03-16), 웹 데모(2026-04-14), MotionBricks 프리뷰(2026-04-27), 학습 코드와 체크포인트 공개(2026-04-10), G1용 end-to-end VLA 워크플로(2026-05-07), 저지연 teleoperation 체크포인트(2026-06-16) 순으로 확장됐다. README의 TODO 목록은 항목 전부가 체크된 상태다.
@@ -66,7 +66,7 @@ kinematic planner는 스타일을 고르고 키보드나 게임패드로 조향�
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
-저장소 자체에는 벤치마크 수치가 없다. 정량 결과는 논문 쪽이다 ([[luo-2025-sonic-supersizing-motion-tracking]]의 4절). README가 제공하는 건 GIF 데모다. teleoperation 쪽은 걷기, 달리기, 측면 이동, 무릎보행, 기상, 점프, 양손 조작, 물체 손 바꾸기, planner 쪽은 위에 적은 스타일들, 그리고 저지연 모델의 3-point teleoperation 바닥 물체 집기 데모가 있다.
+저장소 자체에는 벤치마크 수치가 없다. 정량 결과는 논문 쪽이다 ([[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]의 4절). README가 제공하는 건 GIF 데모다. teleoperation 쪽은 걷기, 달리기, 측면 이동, 무릎보행, 기상, 점프, 양손 조작, 물체 손 바꾸기, planner 쪽은 위에 적은 스타일들, 그리고 저지연 모델의 3-point teleoperation 바닥 물체 집기 데모가 있다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
@@ -76,7 +76,7 @@ README가 직접 경고하는 항목이 실무에서 걸릴 지점이다. Git LF
 
 ## 6. 관련 연구 (Related Work)
 
-같은 프로젝트의 세 자료가 서로를 보완한다. [[luo-2025-sonic-supersizing-motion-tracking]]이 방법과 정량 근거, [[nvlabs-2026-gear-sonic-project-page]]가 동작 품질의 영상 증거, 이 저장소가 실행 가능한 구현이다. 외부로는 GR00T N1.5와 N1.6(decoupled WBC의 소비자이자 SONIC의 VLA 파트너), Isaac-GR00T N1.7(2026-05 VLA 워크플로의 fine-tuning 대상), BONES-SEED(학습 데이터), Kimodo(웹 데모의 text-to-motion), MotionBricks(같은 저장소의 실시간 latent 생성 모델)로 이어진다.
+같은 프로젝트의 세 자료가 서로를 보완한다. [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]이 방법과 정량 근거, [[physical-ai/nvlabs-2026-gear-sonic-project-page]]가 동작 품질의 영상 증거, 이 저장소가 실행 가능한 구현이다. 외부로는 GR00T N1.5와 N1.6(decoupled WBC의 소비자이자 SONIC의 VLA 파트너), Isaac-GR00T N1.7(2026-05 VLA 워크플로의 fine-tuning 대상), BONES-SEED(학습 데이터), Kimodo(웹 데모의 text-to-motion), MotionBricks(같은 저장소의 실시간 latent 생성 모델)로 이어진다.
 
 ## 7. 용어집 (Glossary)
 

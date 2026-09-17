@@ -354,19 +354,26 @@ Embodiment별 projector는 Octo와 유사하지만 Octo는 VLM을 fine-tuning하
 
 | id | page | caption | strategy | 추천 |
 |---|---|---|---|---|
-| fig01 | 2 | "Figure 1: Data Pyramid" | page-region | ★ wiki 권장 (concept) |
-| fig02 | 3 | "Figure 2: Model Overview" | page-region | ★ wiki 권장 (architecture) |
-| fig04 | 4 | "Figure 3: Model Architecture" | page-region | ★ wiki 권장 (architecture 상세) |
-| fig07 | 6 | "Figure 4: Latent Actions" | page-region | ★ wiki 권장 (method) |
-| fig08 | 7 | "Figure 5: Synthetically Generated Videos" | page-region | ★ wiki 권장 (method) |
-| fig09 | 10 | "Figure 6: Data Collection via Teleoperation" | page-region | (선택) |
-| fig10 | 11 | "Figure 7: Simulation Tasks" | page-region | (선택) |
-| fig12 | 13 | "Figure 8: Real-World Tasks" | page-region | (선택) |
-| fig13 | 16 | "Figure 9: Neural Trajectories Ablations" | page-region | ★ wiki 권장 (result) |
-| fig16 | 20 | "Figure 10: 시연 데이터 수별 시뮬레이션 성공률" | page-region | ★ wiki 권장 (result) |
-| fig19 | 21 | "Figure 11: Pre-training 정성 rollout" | page-region | (선택) |
-| fig20 | 21 | "Figure 12: Post-training 정성 rollout" | page-region | (선택) |
-| fig21 | 22 | "Figure 13: neural trajectory 추가 예시" | page-region | (선택) |
-| fig22 | 25 | "Figure 14: human egocentric 데이터셋 샘플" | page-region | (선택) |
+| fig01 | 2 | "Figure 1: Data Pyramid" | caption-region | ★ wiki 권장 (concept) |
+| fig02 | 3 | "Figure 2: Model Overview" | caption-region | ★ wiki 권장 (architecture) |
+| fig03 | 4 | "Figure 3: Model Architecture" | caption-region | ★ wiki 권장 (architecture 상세) |
+| fig04 | 6 | "Figure 4: Latent Actions" | caption-region | ★ wiki 권장 (method) |
+| fig05 | 7 | "Figure 5: Synthetically Generated Videos" | caption-region | ★ wiki 권장 (method) |
+| fig06 | 10 | "Figure 6: Data Collection via Teleoperation" | caption-region | (선택) |
+| fig07 | 11 | "Figure 7: Simulation Tasks" | caption-region | (선택) |
+| fig08 | 13 | "Figure 8: Real-World Tasks" | caption-region | (선택) |
+| fig09 | 16 | "Figure 9: Neural Trajectories Ablations" | caption-region | ★ wiki 권장 (result) |
+| fig10 | 20 | "Figure 10: 시연 데이터 수별 시뮬레이션 성공률" | caption-region | ★ wiki 권장 (result) |
+| fig11 | 21 | "Figure 11: Pre-training 정성 rollout" | caption-region | (선택) |
+| fig12 | 21 | "Figure 12: Post-training 정성 rollout" | caption-region | (선택) |
+| fig13 | 22 | "Figure 13: neural trajectory 추가 예시" | caption-region | (선택) |
+| fig14 | 25 | "Figure 14: human egocentric 데이터셋 샘플" | caption-region | (선택) |
+| tab01 | 9 | "Table 1: 학습 데이터 생성 전략과 데이터 소스" | table-region | (확인 필요) |
+| tab02 | 15 | "Table 2: 시뮬레이션 벤치마크 3종 평균 성공률" | table-region | (확인 필요) |
+| tab03 | 15 | "Table 3: GR-1 humanoid 실세계 과제 평균 성공률" | table-region | (확인 필요) |
+| tab04 | 26 | "Table 4: 데이터셋 크기별 시뮬레이션 평가 결과" | table-region | (확인 필요) |
+| tab05 | 27 | "Table 5: GR-1 humanoid 실세계 과제 성공률" | table-region | (확인 필요) |
+| tab06 | 27 | "Table 6: 학습 하이퍼파라미터" | table-region | (확인 필요) |
+| tab07 | 28 | "Table 7: pre-training 데이터셋 통계" | table-region | (확인 필요) |
 
-> 추출 스크립트가 본문 인라인 "Fig. N" 참조까지 잡아 `figures.json`에는 22개 항목이 들어 있다. 위 표는 실제 figure가 있는 페이지만 남긴 것이다 (fig03, fig05, fig06, fig11, fig14, fig15, fig17, fig18은 인라인 참조로 인한 중복 페이지 캡처). page-region 전략상 각 PNG는 해당 페이지 전체이므로 wiki로 옮길 때 크롭을 권한다.
+> 표의 id는 2026-08 정밀 크롭 전환 이후 논문 라벨을 따른다 (Figure N이 figNN, Table N이 tabNN). 전환 이전에는 추출 스크립트가 본문 인라인 "Fig. N" 참조까지 잡아 페이지 전면 캡처 22장을 만들었고, 그 가운데 옛 fig03, fig05, fig06, fig11, fig14, fig15, fig17, fig18은 인라인 참조로 인한 중복 페이지 캡처였다. 전환 후에는 캡션 앵커 크롭 21장(figure 14, table 7)만 남았고 이 stem에는 `legacy/` 디렉토리가 없다.

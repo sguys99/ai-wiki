@@ -309,7 +309,7 @@ CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분�
 | 연도 분포 | 2026년 46, 2025년 25, 2024년 11, 2023년 5, 2022년 2, 2021년 1, 2020년 2, 2018년 1 |
 | 한국어 자료 | 21 (WikiDocs primer 9, PyTorch KR 3, 영상 리뷰 4, RFM 연재 2, SLAM과 Nav2 블로그 3) |
 | 인접 카테고리 페이지 | [[llms/cai-2026-vlm3-vision-language-models]], [[llms/chen-2025-eagle-25-boosting-long-context-post-training]], [[llms/nvlabs-eagle]], [[agents/zou-2026-task-focused-memorization-multimodal-agents]] |
-| 용어 SSOT | [[overviews/glossary-physical-ai]] (147개 용어) |
+| 용어 SSOT | [[overviews/glossary-physical-ai]] (154개 용어) |
 | 홈 밴드 | `index.md`의 Physical AI 절에 93줄이 모두 올라 있다 |
 
 연도 분포의 무게중심이 2026년으로 옮겨 갔다. 2026년 자료 46개는 전체의 절반에 가깝고, 한동안 한국어 primer와 서베이가 대부분이던 구성도 바뀌었다. π0.7과 RoboCasa365, ASPIRE에 이어 τ0-VLA와 Cortex, HiVLA, RoboClaw, COIN, LIBERO-Recover 같은 1차 연구가 들어왔고 프로젝트 페이지가 그 옆에 붙는 형태가 반복된다. 2024년과 2025년 자료 36개는 RT 계열과 π 계열, OpenVLA처럼 계보의 기준점이 되는 논문이 차지한다.

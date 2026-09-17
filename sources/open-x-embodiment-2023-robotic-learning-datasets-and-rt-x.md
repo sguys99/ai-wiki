@@ -106,7 +106,7 @@ RT-2-X는 emergent skill 쪽에서 평가했다. emergent skill은 개별 데이
 
 ## 6. 관련 연구 (Related Work)
 
-RT-1과 RT-2가 직접적인 전신이다. 이 wiki에는 두 논문이 각각 [[brohan-2022-rt-1-robotics-transformer-for-real-world]], [[brohan-2023-rt-2-vision-language-action-models-transfer-web]]으로 정리돼 있고 한글 해설로 [[jo-2026-rt-1-vla-primer]]와 [[jo-2026-rt-2-vla-primer]]가 있다. 데이터셋 안에는 ALOHA([[zhao-2023-learning-fine-grained-bimanual-manipulation]])와 Bridge, QT-Opt 등이 편입돼 있다. 이후 흐름으로는 이 데이터셋을 학습에 쓴 OpenVLA([[kim-2024-openvla-an-open-source-vision-language-action-model]])와 GR00T N1([[nvidia-2025-gr00t-n1-an-open-foundation]])이 이 wiki에 있다.
+RT-1과 RT-2가 직접적인 전신이다. 이 wiki에는 두 논문이 각각 [[physical-ai/brohan-2022-rt-1-robotics-transformer-for-real-world]], [[physical-ai/brohan-2023-rt-2-vision-language-action-models-transfer-web]]으로 정리돼 있고 한글 해설로 [[physical-ai/jo-2026-rt-1-vla-primer]]와 [[physical-ai/jo-2026-rt-2-vla-primer]]가 있다. 데이터셋 안에는 ALOHA([[physical-ai/zhao-2023-learning-fine-grained-bimanual-manipulation]])와 Bridge, QT-Opt 등이 편입돼 있다. 이후 흐름으로는 이 데이터셋을 학습에 쓴 OpenVLA([[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]])와 GR00T N1([[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]])이 이 wiki에 있다.
 
 ## 7. 용어집 (Glossary)
 

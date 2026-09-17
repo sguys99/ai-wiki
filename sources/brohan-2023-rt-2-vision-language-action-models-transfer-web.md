@@ -395,6 +395,8 @@ VLM은 크게 두 계열이다. CLIP처럼 두 modality의 공통 임베딩을 �
 | fig09 | 23 | "실패 사례 + Table 4 (Appendix)" | caption-region | (선택) |
 | fig10 | 25 | "CoT 추가 rollout (Appendix)" | caption-region | (선택) |
 | tab01 | 9 | "Language-Table 성능표" | table-region | (선택) |
+| tab02 | 26 | "새 물체, 새 환경, 새 배경 분포 변화 평가용 자연어 지시문 (Appendix)" | table-region | (확인 필요) |
+| tab03 | 22 | "정량적 emergent 평가용 자연어 지시문 (Appendix)" | table-region | (확인 필요) |
 | tab04 | 23 | "전체 성능 Table 4" | table-region | (선택) |
 | tab05 | 24 | "emergent 평가 Table 5" | table-region | (선택) |
 | tab06 | 24 | "크기와 학습 전략 ablation Table 6" | table-region | (선택) |

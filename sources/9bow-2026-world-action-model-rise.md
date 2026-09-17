@@ -156,6 +156,153 @@ figures:
     caption: "원문 페이지 전체 스크린샷"
     strategy: screenshot
     curated: false
+  - id: fig25
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop01.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop01.png
+    caption: "글 머리 콜라주 이미지의 페이지 크롭 (fig01과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig26
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop02.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop02.png
+    caption: "VLA와 VAM 갈림길 앞에 선 로봇 삽화의 페이지 크롭 (fig02와 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig27
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop03.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop03.png
+    caption: "로보틱스 world model 지형도의 페이지 크롭 (fig03과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig28
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop04.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop04.png
+    caption: "WAM 설계 공간 세 가지 기준 도식의 페이지 크롭 (fig05와 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig29
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop05.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop05.png
+    caption: "inverse dynamics 계열 추상 구조의 페이지 크롭 (fig06과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig30
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop06.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop06.png
+    caption: "UniPi 구조도의 페이지 크롭 (fig07과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig31
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop07.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop07.png
+    caption: "LingBot-VA 구조도의 페이지 크롭 (fig08과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig32
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop08.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop08.png
+    caption: "joint prediction 계열 추상 구조의 페이지 크롭 (fig09와 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig33
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop09.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop09.png
+    caption: "GR-1 pre-training과 fine-tuning 구조도의 페이지 크롭 (fig10과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig34
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop10.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop10.png
+    caption: "CALVIN ABC→D 평균 완료 subtask 막대 그래프의 페이지 크롭 (fig11과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig35
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop11.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop11.png
+    caption: "DreamZero joint video-action DiT 구조도의 페이지 크롭 (fig12와 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig36
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop12.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop12.png
+    caption: "RoboArena policy 리더보드 표의 페이지 크롭 (fig13과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig37
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop13.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop13.png
+    caption: "GENIMA 관절 목표 렌더링 예시의 페이지 크롭 (fig14와 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig38
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop14.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop14.png
+    caption: "Cosmos Policy latent 주입 도식의 페이지 크롭 (fig15와 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig39
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop15.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop15.png
+    caption: "Play-LMP 학습과 추론 구조도의 페이지 크롭 (fig16과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig40
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop16.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop16.png
+    caption: "Being-H0.7 dual-branch 구조도의 페이지 크롭 (fig17과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig41
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop17.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop17.png
+    caption: "hierarchical 구조(video DiT와 action DiT)의 페이지 크롭 (fig18과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig42
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop18.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop18.png
+    caption: "monolithic Diffusion Transformer 구조의 페이지 크롭 (fig19와 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig43
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop19.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop19.png
+    caption: "본문 삽입 이미지 (도식 아님): 이미지가 로드되기 전의 빈 회색 자리 표시자"
+    strategy: crop
+    curated: false
+  - id: fig44
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop20.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop20.png
+    caption: "세 갈래 길과 세 성 삽화(세 번째 경로로의 수렴)의 페이지 크롭 (fig22와 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig45
+    kind: figure
+    file: assets/9bow-2026-world-action-model-rise/crop21.png
+    raw: raw/articles/9bow-2026-world-action-model-rise-figures/crop21.png
+    caption: "Mixture-of-Transformers 구조도의 페이지 크롭 (fig20과 같은 영역)"
+    strategy: crop
+    curated: false
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -204,7 +351,7 @@ PyTorch KR 운영자 박정환(9bow)이 옮긴 NVIDIA World-Action Model 글의 
 
 ## 8. 그림 후보 (Figure Candidates)
 
-원문 도식 23개가 모두 잡혔다. 해상도는 Discourse가 최적화한 가로 1028px 버전이라 원문 원본(최대 1975px)보다 낮지만 원문 수집에서 빠진 도식은 한국어판에서만 얻을 수 있다. 페이지 전체 스크린샷 1장과 요소 크롭 21장이 아카이브에 함께 있고 크롭은 후보 표에서 뺐다.
+원문 도식 23개가 모두 잡혔다. 해상도는 Discourse가 최적화한 가로 1028px 버전이라 원문 원본(최대 1975px)보다 낮지만 원문 수집에서 빠진 도식은 한국어판에서만 얻을 수 있다. 페이지 전체 스크린샷 1장과 요소 크롭 21장(fig25~fig45)이 아카이브에 함께 있다. 크롭은 fetched 원본과 같은 영역을 잘라낸 것이라 큐레이션 대상은 아니지만, 트레이서빌리티를 위해 표 뒤쪽에 함께 기록한다.
 
 | id | caption | strategy | 추천 |
 |---|---|---|---|
@@ -232,3 +379,24 @@ PyTorch KR 운영자 박정환(9bow)이 옮긴 NVIDIA World-Action Model 글의 
 | fig22 | 세 번째 경로로의 수렴 | fetched | ★ wiki 권장 (전망) |
 | fig23 | Motus 계열 hybrid 구성 | fetched | (원문 fig11과 중복) |
 | fig24 | 페이지 전체 스크린샷 | screenshot | (아카이브) |
+| fig25 | 글 머리 콜라주 크롭 | crop | (확인 필요, fig01과 중복) |
+| fig26 | VLA/VAM 갈림길 삽화 크롭 | crop | (확인 필요, fig02와 중복) |
+| fig27 | world model 지형도 크롭 | crop | (확인 필요, fig03과 중복) |
+| fig28 | WAM 설계 공간 크롭 | crop | (확인 필요, fig05와 중복) |
+| fig29 | inverse dynamics 추상 구조 크롭 | crop | (확인 필요, fig06과 중복) |
+| fig30 | UniPi 구조 크롭 | crop | (확인 필요, fig07과 중복) |
+| fig31 | LingBot-VA 구조 크롭 | crop | (확인 필요, fig08과 중복) |
+| fig32 | joint prediction 추상 구조 크롭 | crop | (확인 필요, fig09와 중복) |
+| fig33 | GR-1 구조 크롭 | crop | (확인 필요, fig10과 중복) |
+| fig34 | CALVIN 결과 크롭 | crop | (확인 필요, fig11과 중복) |
+| fig35 | DreamZero 구조 크롭 | crop | (확인 필요, fig12와 중복) |
+| fig36 | RoboArena 리더보드 크롭 | crop | (확인 필요, fig13과 중복) |
+| fig37 | GENIMA 예시 크롭 | crop | (확인 필요, fig14와 중복) |
+| fig38 | Cosmos Policy latent 주입 크롭 | crop | (확인 필요, fig15와 중복) |
+| fig39 | Play-LMP 구조 크롭 | crop | (확인 필요, fig16과 중복) |
+| fig40 | Being-H0.7 구조 크롭 | crop | (확인 필요, fig17과 중복) |
+| fig41 | hierarchical 구조 크롭 | crop | (확인 필요, fig18과 중복) |
+| fig42 | monolithic Transformer 크롭 | crop | (확인 필요, fig19와 중복) |
+| fig43 | 빈 회색 자리 표시자 (이미지 미로드) | crop | 비도식 |
+| fig44 | 세 번째 경로 삽화 크롭 | crop | (확인 필요, fig22와 중복) |
+| fig45 | Mixture-of-Transformers 크롭 | crop | (확인 필요, fig20과 중복) |

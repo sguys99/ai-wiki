@@ -67,6 +67,48 @@ figures:
     caption: "전체 페이지 스크린샷 (상단 6000px)"
     strategy: screenshot
     curated: false
+  - id: fig09
+    kind: figure
+    file: assets/taeyoung-2022-fast-lio-paper-review/crop01.png
+    raw: raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop01.png
+    caption: "전체 파이프라인 도식의 페이지 크롭 (fig01과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig10
+    kind: figure
+    file: assets/taeyoung-2022-fast-lio-paper-review/crop02.png
+    raw: raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop02.png
+    caption: "notation 표의 페이지 크롭 (fig02와 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig11
+    kind: figure
+    file: assets/taeyoung-2022-fast-lio-paper-review/crop03.png
+    raw: raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop03.png
+    caption: "state vector와 kinematic model 수식의 페이지 크롭 (fig03과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig12
+    kind: figure
+    file: assets/taeyoung-2022-fast-lio-paper-review/crop04.png
+    raw: raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop04.png
+    caption: "forward/backward propagation 시간축 도식의 페이지 크롭 (fig04와 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig13
+    kind: figure
+    file: assets/taeyoung-2022-fast-lio-paper-review/crop05.png
+    raw: raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop05.png
+    caption: "Algorithm 1 state estimation 절차의 페이지 크롭 (fig06과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig14
+    kind: figure
+    file: assets/taeyoung-2022-fast-lio-paper-review/crop06.png
+    raw: raw/articles/taeyoung-2022-fast-lio-paper-review-figures/crop06.png
+    caption: "UAV 비행 실험 결과의 페이지 크롭 (fig07과 같은 영역)"
+    strategy: crop
+    curated: false
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -132,4 +174,9 @@ map update는 optimal state로 얻은 feature point를 전역 프레임으로 �
 | fig06 | Algorithm 1 재게재 | fetched | ★ wiki 권장 (method) |
 | fig07 | UAV 비행 실험 (논문 Fig 3 재게재) | fetched | (선택) |
 | fig08 | 전체 페이지 스크린샷 | screenshot | (아카이브용) |
-| fig09~14 | 도식 영역 크롭 | crop | (아카이브용) |
+| fig09 | 전체 파이프라인 도식의 페이지 크롭 (fig01과 같은 영역) | crop | (확인 필요, fig01과 중복) |
+| fig10 | notation 표의 페이지 크롭 (fig02와 같은 영역) | crop | (확인 필요, fig02와 중복) |
+| fig11 | state vector와 kinematic model 수식의 페이지 크롭 (fig03과 같은 영역) | crop | (확인 필요, fig03과 중복) |
+| fig12 | forward/backward propagation 시간축 도식의 페이지 크롭 (fig04와 같은 영역) | crop | (확인 필요, fig04와 중복) |
+| fig13 | Algorithm 1 state estimation 절차의 페이지 크롭 (fig06과 같은 영역) | crop | (확인 필요, fig06과 중복) |
+| fig14 | UAV 비행 실험 결과의 페이지 크롭 (fig07과 같은 영역) | crop | (확인 필요, fig07과 중복) |

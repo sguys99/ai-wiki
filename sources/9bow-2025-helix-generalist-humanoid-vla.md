@@ -37,7 +37,7 @@ PyTorch 한국 사용자 모임의 9bow가 Figure AI의 Helix 발표를 한국�
 - **제목**: Helix: Figure AI가 공개한 범용 휴머노이드 제어를 위한 시각-언어-행동(VLA) 모델 <!-- lint-terms: ignore 원문 기사 제목 인용 -->
 - **저자**: 9bow (박정환), PyTorch 한국 사용자 모임 운영자
 - **발행**: 2025-02-23, https://discuss.pytorch.kr/t/helix-figure-ai-vla/6197
-- **성격**: [[figure-ai-2025-helix-a-vision-language-action]]의 한국어 소개. 원문 링크와 데모 영상 5편을 함께 싣는다
+- **성격**: [[physical-ai/figure-ai-2025-helix-a-vision-language-action]]의 한국어 소개. 원문 링크와 데모 영상 5편을 함께 싣는다
 - **신뢰도 주의**: 글 끝에 저자가 "GPT 모델로 정리한 글을 바탕으로 한 것으로, 원문의 내용 또는 의도와 다르게 정리된 내용이 있을 수 있습니다"라고 명시한다. 사실 확인은 원문 페이지를 기준으로 한다
 - **수집 메모**: `scripts/fetch_article.py`의 chrome tier가 Discourse SPA에서 본문 123자만 얻어 실패했다. Discourse raw endpoint(`/raw/6197`)로 저자 원본 마크다운을 받고 본문의 `upload://` 참조를 실제 이미지 URL로 치환했다. 본문 3,646자
 

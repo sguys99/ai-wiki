@@ -36,28 +36,28 @@ figures:
     kind: figure
     file: assets/yhoons-2024-ros2-nav2-intro/crop01.png
     raw: raw/articles/yhoons-2024-ros2-nav2-intro-figures/crop01.png
-    caption: "도식 영역 크롭"
+    caption: "Nav2 로고 화면 캡처 (넓은 여백)"
     strategy: crop
     curated: false
   - id: fig05
     kind: figure
     file: assets/yhoons-2024-ros2-nav2-intro/crop02.png
     raw: raw/articles/yhoons-2024-ros2-nav2-intro-figures/crop02.png
-    caption: "도식 영역 크롭"
+    caption: "Nav2 로고 화면 캡처 (좁은 여백)"
     strategy: crop
     curated: false
   - id: fig06
     kind: figure
     file: assets/yhoons-2024-ros2-nav2-intro/crop03.png
     raw: raw/articles/yhoons-2024-ros2-nav2-intro-figures/crop03.png
-    caption: "도식 영역 크롭"
+    caption: "Nav2 아키텍처 화면 캡처 (넓은 여백)"
     strategy: crop
     curated: false
   - id: fig07
     kind: figure
     file: assets/yhoons-2024-ros2-nav2-intro/crop04.png
     raw: raw/articles/yhoons-2024-ros2-nav2-intro-figures/crop04.png
-    caption: "도식 영역 크롭"
+    caption: "Nav2 아키텍처 화면 캡처 (좁은 여백)"
     strategy: crop
     curated: false
 ---
@@ -124,4 +124,7 @@ Nav2를 처음 접하는 사람을 위한 한국어 입문 글이다. 주요 개
 | fig01 | Nav2 로고 | fetched | 비권장 (로고) |
 | fig02 | Nav2 시스템 아키텍처 (공식 다이어그램) | fetched | ★ wiki 권장 (architecture) |
 | fig03 | 전체 페이지 스크린샷 | screenshot | 비권장 (fig02로 충분) |
-| fig04~fig07 | 도식 영역 크롭 | crop | 비권장 (fig02 원본이 더 선명) |
+| fig04 | Nav2 로고 화면 캡처 (넓은 여백) | crop | 비권장 (fig01 원본이 더 선명) |
+| fig05 | Nav2 로고 화면 캡처 (좁은 여백) | crop | 비권장 (fig01 원본이 더 선명) |
+| fig06 | Nav2 아키텍처 화면 캡처 (넓은 여백) | crop | 비권장 (fig02 원본이 더 선명) |
+| fig07 | Nav2 아키텍처 화면 캡처 (좁은 여백) | crop | 비권장 (fig02 원본이 더 선명) |

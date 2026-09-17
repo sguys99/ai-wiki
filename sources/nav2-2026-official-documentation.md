@@ -29,14 +29,14 @@ figures:
     kind: figure
     file: assets/nav2-2026-official-documentation/crop02.png
     raw: raw/articles/nav2-2026-official-documentation-figures/crop02.png
-    caption: "스폰서 로고 타일"
+    caption: "스폰서 로고 타일 (marquee 1회차)"
     strategy: crop
     curated: false
   - id: fig04
     kind: figure
     file: assets/nav2-2026-official-documentation/crop03.png
     raw: raw/articles/nav2-2026-official-documentation-figures/crop03.png
-    caption: "스폰서 로고 타일"
+    caption: "스폰서 로고 타일 (marquee 반복분, fig03과 동일)"
     strategy: crop
     curated: false
   - id: fig05
@@ -57,49 +57,49 @@ figures:
     kind: figure
     file: assets/nav2-2026-official-documentation/crop06.png
     raw: raw/articles/nav2-2026-official-documentation-figures/crop06.png
-    caption: "랜딩 페이지 요소 크롭"
+    caption: "ROS 2 배포판 타일 (Rolling Ridley, 주사위 풍선)"
     strategy: crop
     curated: false
   - id: fig08
     kind: figure
     file: assets/nav2-2026-official-documentation/crop07.png
     raw: raw/articles/nav2-2026-official-documentation-figures/crop07.png
-    caption: "랜딩 페이지 요소 크롭"
+    caption: "ROS 2 배포판 타일 (Lyrical Lynx, 로봇 밴드)"
     strategy: crop
     curated: false
   - id: fig09
     kind: figure
     file: assets/nav2-2026-official-documentation/crop08.png
     raw: raw/articles/nav2-2026-official-documentation-figures/crop08.png
-    caption: "랜딩 페이지 요소 크롭"
+    caption: "ROS 2 배포판 타일 (Kilted Kaiju, 괴수 풍선)"
     strategy: crop
     curated: false
   - id: fig10
     kind: figure
     file: assets/nav2-2026-official-documentation/crop09.png
     raw: raw/articles/nav2-2026-official-documentation-figures/crop09.png
-    caption: "랜딩 페이지 요소 크롭"
+    caption: "ROS 2 배포판 타일 (Jazzy Jalisco, 실크햇 풍선)"
     strategy: crop
     curated: false
   - id: fig11
     kind: figure
     file: assets/nav2-2026-official-documentation/crop10.png
     raw: raw/articles/nav2-2026-official-documentation-figures/crop10.png
-    caption: "랜딩 페이지 요소 크롭"
+    caption: "ROS 2 배포판 타일 (Iron Irwini, 강철 풍선)"
     strategy: crop
     curated: false
   - id: fig12
     kind: figure
     file: assets/nav2-2026-official-documentation/crop11.png
     raw: raw/articles/nav2-2026-official-documentation-figures/crop11.png
-    caption: "랜딩 페이지 요소 크롭"
+    caption: "ROS 2 배포판 타일 (Humble Hawksbill, 거북 풍선)"
     strategy: crop
     curated: false
   - id: fig13
     kind: figure
     file: assets/nav2-2026-official-documentation/crop12.png
     raw: raw/articles/nav2-2026-official-documentation-figures/crop12.png
-    caption: "랜딩 페이지 요소 크롭"
+    caption: "ROS 2 배포판 타일 (Galactic Geochelone, 우주 풍선)"
     strategy: crop
     curated: false
 ---
@@ -160,7 +160,17 @@ Nav2 공식 문서(docs.nav2.org rolling)의 랜딩 페이지다. 프로젝트�
 | id | caption | strategy | 추천 |
 |---|---|---|---|
 | fig01 | 랜딩 페이지 전체 스크린샷 | screenshot | (선택, 기록용) |
-| fig05, fig06 | Nav2 공식 아키텍처 다이어그램 (동일 이미지 중복 수집) | crop | ★ wiki 권장 (architecture) |
-| fig02~fig04, fig07~fig13 | 로고, 스폰서, 배포판 타일 크롭 | crop | 비권장 (도식 아님) |
+| fig02 | Nav2 로고 | crop | 비권장 (도식 아님) |
+| fig03 | 스폰서 로고 타일 (marquee 1회차) | crop | 비권장 (도식 아님) |
+| fig04 | 스폰서 로고 타일 (marquee 반복분, fig03과 동일) | crop | 비권장 (도식 아님) |
+| fig05 | Nav2 공식 아키텍처 다이어그램 | crop | ★ wiki 권장 (architecture) |
+| fig06 | Nav2 공식 아키텍처 다이어그램 (fig05와 동일 이미지 중복 수집) | crop | ★ wiki 권장 (architecture) |
+| fig07 | ROS 2 배포판 타일 (Rolling Ridley, 주사위 풍선) | crop | 비권장 (도식 아님) |
+| fig08 | ROS 2 배포판 타일 (Lyrical Lynx, 로봇 밴드) | crop | 비권장 (도식 아님) |
+| fig09 | ROS 2 배포판 타일 (Kilted Kaiju, 괴수 풍선) | crop | 비권장 (도식 아님) |
+| fig10 | ROS 2 배포판 타일 (Jazzy Jalisco, 실크햇 풍선) | crop | 비권장 (도식 아님) |
+| fig11 | ROS 2 배포판 타일 (Iron Irwini, 강철 풍선) | crop | 비권장 (도식 아님) |
+| fig12 | ROS 2 배포판 타일 (Humble Hawksbill, 거북 풍선) | crop | 비권장 (도식 아님) |
+| fig13 | ROS 2 배포판 타일 (Galactic Geochelone, 우주 풍선) | crop | 비권장 (도식 아님) |
 
-fig05와 fig06의 분류는 2026-09 재작성 때 정정한 것이다. 최초 판독에서는 crop 12장을 모두 로고와 타일로 보았으나, 이미지를 다시 확인한 결과 crop04와 crop05가 랜딩 페이지 본문에 실린 공식 아키텍처 다이어그램이었다. fig05를 wiki에 임베드했다.
+fig05와 fig06의 분류는 2026-09 재작성 때 정정한 것이다. 최초 판독에서는 crop 12장을 모두 로고와 타일로 보았으나, 이미지를 다시 확인한 결과 crop04와 crop05가 랜딩 페이지 본문에 실린 공식 아키텍처 다이어그램이었다. fig05를 wiki에 임베드했다. fig03과 fig04는 스폰서 marquee가 끊김 없이 반복되도록 페이지가 같은 타일 묶음을 두 번 실은 것이라 바이트 단위로 같고, fig07부터 fig13까지 7장은 Distributions 절의 배포판 타일을 페이지 순서대로 담은 것이다.

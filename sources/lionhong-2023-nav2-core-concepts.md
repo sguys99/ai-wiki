@@ -64,84 +64,84 @@ figures:
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop01.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop01.png
-    caption: "도식 영역 크롭"
+    caption: "lifecycle 노드 연결 화면 캡처 (하단 여백 포함)"
     strategy: crop
     curated: false
   - id: fig09
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop02.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop02.png
-    caption: "도식 영역 크롭"
+    caption: "lifecycle 노드 연결 화면 캡처 (여백 제거)"
     strategy: crop
     curated: false
   - id: fig10
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop03.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop03.png
-    caption: "도식 영역 크롭"
+    caption: "광고 배너 오탐 캡처 (Adobe, 넓은 영역)"
     strategy: crop
     curated: false
   - id: fig11
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop04.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop04.png
-    caption: "도식 영역 크롭"
+    caption: "광고 배너 오탐 캡처 (Adobe, 좁은 영역)"
     strategy: crop
     curated: false
   - id: fig12
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop05.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop05.png
-    caption: "도식 영역 크롭"
+    caption: "기본 Behavior Tree 화면 캡처 (캡션 포함)"
     strategy: crop
     curated: false
   - id: fig13
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop06.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop06.png
-    caption: "도식 영역 크롭"
+    caption: "기본 Behavior Tree 화면 캡처 (캡션 제외)"
     strategy: crop
     curated: false
   - id: fig14
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop07.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop07.png
-    caption: "도식 영역 크롭"
+    caption: "BT Navigator 서버 관계 화면 캡처 (버튼 겹침)"
     strategy: crop
     curated: false
   - id: fig15
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop08.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop08.png
-    caption: "도식 영역 크롭"
+    caption: "BT Navigator 서버 관계 화면 캡처 (여백 제거)"
     strategy: crop
     curated: false
   - id: fig16
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop09.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop09.png
-    caption: "도식 영역 크롭"
+    caption: "costmap RViz 화면 캡처 (캡션 포함)"
     strategy: crop
     curated: false
   - id: fig17
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop10.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop10.png
-    caption: "도식 영역 크롭"
+    caption: "costmap RViz 화면 캡처 (캡션 제외)"
     strategy: crop
     curated: false
   - id: fig18
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop11.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop11.png
-    caption: "도식 영역 크롭"
+    caption: "속도 제한 costmap filter 화면 캡처 (캡션 포함)"
     strategy: crop
     curated: false
   - id: fig19
     kind: figure
     file: assets/lionhong-2023-nav2-core-concepts/crop12.png
     raw: raw/articles/lionhong-2023-nav2-core-concepts-figures/crop12.png
-    caption: "도식 영역 크롭"
+    caption: "속도 제한 costmap filter 화면 캡처 (캡션 제외)"
     strategy: crop
     curated: false
 ---
@@ -212,4 +212,15 @@ state estimation은 REP-105 표준을 따른다. map→odom 변환은 positionin
 | fig05 | map 위 global/local costmap | fetched | ★ wiki 권장 (concept) |
 | fig06 | 속도 제한 costmap filter | fetched | (선택, 응용 예시) |
 | fig07 | 전체 페이지 스크린샷 | screenshot | 비권장 |
-| fig08~fig19 | 도식 영역 크롭 | crop | 비권장 (fig01~06 원본이 더 선명) |
+| fig08 | lifecycle 노드 연결 화면 캡처 (하단 여백 포함) | crop | 비권장 (fig01~06 원본이 더 선명) |
+| fig09 | lifecycle 노드 연결 화면 캡처 (여백 제거) | crop | 비권장 (fig01~06 원본이 더 선명) |
+| fig10 | 광고 배너 오탐 캡처 (Adobe, 넓은 영역) | crop | 비권장 (도식 아님, 광고 오탐) |
+| fig11 | 광고 배너 오탐 캡처 (Adobe, 좁은 영역) | crop | 비권장 (도식 아님, 광고 오탐) |
+| fig12 | 기본 Behavior Tree 화면 캡처 (캡션 포함) | crop | 비권장 (fig01~06 원본이 더 선명) |
+| fig13 | 기본 Behavior Tree 화면 캡처 (캡션 제외) | crop | 비권장 (fig01~06 원본이 더 선명) |
+| fig14 | BT Navigator 서버 관계 화면 캡처 (버튼 겹침) | crop | 비권장 (fig01~06 원본이 더 선명) |
+| fig15 | BT Navigator 서버 관계 화면 캡처 (여백 제거) | crop | 비권장 (fig01~06 원본이 더 선명) |
+| fig16 | costmap RViz 화면 캡처 (캡션 포함) | crop | 비권장 (fig01~06 원본이 더 선명) |
+| fig17 | costmap RViz 화면 캡처 (캡션 제외) | crop | 비권장 (fig01~06 원본이 더 선명) |
+| fig18 | 속도 제한 costmap filter 화면 캡처 (캡션 포함) | crop | 비권장 (fig01~06 원본이 더 선명) |
+| fig19 | 속도 제한 costmap filter 화면 캡처 (캡션 제외) | crop | 비권장 (fig01~06 원본이 더 선명) |

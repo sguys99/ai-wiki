@@ -34,7 +34,7 @@ VLM에서 VLA로 이어지는 개념을 LLM의 다음 토큰 예측 원리에 �
 - 저자: Kyungyul Kim, Jiyoon Kim
 - 발행: 2026-08-07, LinkedIn Pulse (한국어)
 - 유형: 업계 동향 분석 연재의 2편, 약 18,500자. 1편의 서론 격 분량을 넘어 기술 개념 설명이 본격적으로 시작되는 편이다.
-- 전편: 1편 "RFM의 등장 배경과 실리콘밸리의 Robot Intelligence 스타트업의 현황", [[kim-2026-silicon-valley-rfm-part-1]]
+- 전편: 1편 "RFM의 등장 배경과 실리콘밸리의 Robot Intelligence 스타트업의 현황", [[physical-ai/kim-2026-silicon-valley-rfm-part-1]]
 
 ## 2. 주요 기여 (Key Contributions)
 

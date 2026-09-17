@@ -414,6 +414,9 @@ RVQ tokenizer와 학습 파이프라인이 26차원 action 표현에 묶여 있�
 | tab04 | 15 | fine-tuning baseline 3모델 비교 | table-region | ★ wiki 권장 (result) |
 | tab05 | 29 | 부록 seen 과제별 상세 | table-region | (확인 필요, tab06과 크롭이 겹친다) |
 | tab06 | 29 | 부록 unseen 과제별 상세 | table-region | (확인 필요, tab05와 바이트 동일) |
-| tab07~tab10 | 30~32 | 부록 상세 표 | table-region | (선택) |
+| tab07 | 30 | 부록의 멀티모달 이해 벤치마크 항목별 점수 | table-region | (선택) |
+| tab08 | 30 | 부록의 fine-tuning 평가 과제별 결과 | table-region | (선택) |
+| tab09 | 31 | 부록의 다중 과제 fine-tuning 과제별 상세 | table-region | (선택) |
+| tab10 | 32 | 부록의 실제 로봇 평가 과제 설명과 채점 기준 | table-region | (선택) |
 
 검출 22건은 논문의 Figure 12개, Table 10개와 개수가 맞는다. 다만 29쪽의 Table 5와 Table 6이 나란히 놓여 있어 두 id가 같은 밴드를 잡았고 크롭 파일이 바이트 단위로 같다. 둘 다 부록 표라 wiki에는 쓰지 않으므로 다시 자르지 않았다. 필요해지면 `--bbox tab05=29:...`, `--bbox tab06=29:...`로 분리한다.

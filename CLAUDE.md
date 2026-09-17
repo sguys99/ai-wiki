@@ -283,6 +283,8 @@ sources는 요약이지만 세부를 깎는 단계가 아니다. 실험 수치, 
 
 스크립트가 이 표의 초안을 stdout으로 뽑아준다. 캡션은 원문 영어 그대로이므로, 옮길 때 실제 이미지를 보고 한글로 다시 쓴다. id가 논문 라벨과 일치하므로 `대응` 열 같은 수동 매핑은 필요 없다.
 
+id 열은 한 행에 id 하나만 적는다. `fig04~fig07`이나 `fig08, fig09, fig10` 같은 범위 행과 병합 행은 `scripts/lint_figures.py`가 첫 셀 전체를 id로 읽어 candidate-table-mismatch로 잡는다 (2026-09 Phase 7-7에서 physical-ai sources 17편의 158건 중 대부분이 이 유형이었다). 같은 판정을 여러 id에 내리더라도 행을 나눈다.
+
 ### 공통 Step 3.5 — 사용자 confirm
 
 사용자가 "fig01, fig02, tab01을 wiki에 넣어줘"처럼 지정하면, 에이전트는 `sources/{stem}.md` frontmatter에서 해당 id의 `curated: true`로 변경한다 (`wiki/{category}/{stem}.md`도 동일하게).

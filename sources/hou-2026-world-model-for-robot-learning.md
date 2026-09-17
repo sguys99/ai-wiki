@@ -370,19 +370,17 @@ Evaluation metrics (8.6). 널리 합의된 평가 지표가 없다. 시각적으
 
 | id | page | caption | strategy | 추천 |
 |---|---|---|---|---|
-| fig01 | 2 | Figure 1. 서베이 세 부분 구성 개관 | page-region | ★ wiki 권장 (overview) |
-| fig02 | 3 | Figure 2. 2023.1~2026.3 대표 연구의 시간 순 진화 | page-region | ★ wiki 권장 (landscape) |
-| fig03 | 4 | (오탐) 본문 교차참조가 줄머리에 온 페이지 | page-region | ✗ 제외 |
-| fig04 | 8 | Table 1. Sec 3 아키텍처 5분류 비교표 | page-region | ★ wiki 권장 (taxonomy) |
-| fig05 | 10 | Figure 3. IDM / Single-backbone / MoT 3대 아키텍처 | page-region | ★ wiki 권장 (architecture) |
-| fig06 | 13 | Figure 4. Unified VLA와 Latent world modeling 두 경로 | page-region | ★ wiki 권장 (architecture) |
-| fig07 | 16 | Figure 5. 시뮬레이터의 두 용도 (RL / validation) | page-region | ★ wiki 권장 (method) |
-| fig08 | 19 | Figure 6. 로봇 비디오 world model 통합 관점 | page-region | ★ wiki 권장 (method) |
-| fig09 | 20 | Table 2. Sec 5 capability regime별 기법 비교 | page-region | (선택) |
-| fig10 | 26 | Table 3. 데이터셋 27종 핵심 속성 | page-region | (선택) |
-| fig11 | 27 | Table 4. 데이터셋의 capability 관련성 | page-region | (선택) |
-| fig12 | 28 | Table 5. LIBERO 4-suite 성적표 | page-region | ★ wiki 권장 (result) |
-| fig13 | 28 | (오탐) fig12와 같은 페이지 재캡처 | page-region | ✗ 제외 |
-| fig14 | 29 | Table 6. RoboTwin, CALVIN, SIMPLER 성적표 | page-region | (선택) |
+| fig01 | 2 | Figure 1. 서베이 세 부분 구성 개관 | caption-region | ★ wiki 권장 (overview) |
+| fig02 | 3 | Figure 2. 2023.1~2026.3 대표 연구의 시간 순 진화 | caption-region | ★ wiki 권장 (landscape) |
+| tab01 | 8 | Table 1. Sec 3 아키텍처 5분류 비교표 | table-region | ★ wiki 권장 (taxonomy) |
+| fig03 | 10 | Figure 3. IDM / Single-backbone / MoT 3대 아키텍처 | caption-region | ★ wiki 권장 (architecture) |
+| fig04 | 13 | Figure 4. Unified VLA와 Latent world modeling 두 경로 | caption-region | ★ wiki 권장 (architecture) |
+| fig05 | 16 | Figure 5. 시뮬레이터의 두 용도 (RL / validation) | caption-region | ★ wiki 권장 (method) |
+| fig06 | 19 | Figure 6. 로봇 비디오 world model 통합 관점 | caption-region | ★ wiki 권장 (method) |
+| tab02 | 20 | Table 2. Sec 5 capability regime별 기법 비교 | table-region | (선택) |
+| tab03 | 26 | Table 3. 데이터셋 27종 핵심 속성 | table-region | (선택) |
+| tab04 | 27 | Table 4. 데이터셋의 capability 관련성 | table-region | (선택) |
+| tab05 | 28 | Table 5. LIBERO 4-suite 성적표 | table-region | ★ wiki 권장 (result) |
+| tab06 | 29 | Table 6. RoboTwin, CALVIN, SIMPLER 성적표 | table-region | (선택) |
 
-> **추출 메모**: MVP의 캡션 정규식이 `Figure\s+\d+`라서 이 PDF의 `Figure4`(공백 없음)를 놓쳤고 본문 줄머리 교차참조("Figure 2 highlights…", "Table 5 focuses on…")를 오탐으로 잡았다. 캡션 앵커를 줄머리 `^(Figure|Table)\s*(\d+)`로 바꿔 재추출한 결과가 위 14건이다. 오탐 2건(fig03과 fig13)은 트레이서빌리티를 위해 아카이브에 남기되 큐레이션에서 제외한다.
+> **추출 메모**: 최초 ingest는 페이지 전면 캡처(page-region) 방식이라 id를 페이지 순서대로 fig01부터 fig14까지 매겼고, 그 가운데 fig03(p.4)과 fig13(p.28)은 본문 줄머리 교차참조("Figure 2 highlights…", "Table 5 focuses on…")를 캡션으로 오인한 오탐이었다. 2026-08 정밀 크롭 전환(`scripts/remap_figures.py`)에서 id가 논문 라벨 기준(Figure N은 figNN, Table N은 tabNN)으로 바뀌었고 위 표는 그 id로 다시 대응시킨 것이다. 옛 전면 캡처 fig03과 fig13은 전환에서 대응 검출이 없어 표에서 지웠으며, 이 stem에는 `legacy/` 하위 디렉토리가 없어 옛 캡처 파일도 남아 있지 않다.

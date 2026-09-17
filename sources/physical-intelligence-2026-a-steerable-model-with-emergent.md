@@ -155,7 +155,15 @@ cross-embodiment 절은 양팔 UR5e를 "학습 데이터에서 가장 과소 대
 | id | caption | strategy | 추천 |
 |---|---|---|---|
 | fig01 | 전체 페이지 스크린샷 | screenshot | (선택) |
-| fig02~fig06 | world model 데모의 현재 observation 5장 | fetched | (선택) |
-| fig07~fig11 | 같은 데모에서 world model이 생성한 subgoal image 5장 | fetched | (선택) |
+| fig02 | world model 데모의 현재 observation 1. 전자레인지와 싱크대가 있는 주방을 로봇 카메라가 담았다 | fetched | (선택) |
+| fig03 | world model 데모의 현재 observation 2. 로봇 카메라가 담은 주방 조리대 장면이다 | fetched | ★ wiki 권장 (observation 예시) |
+| fig04 | world model 데모의 현재 observation 3. 레인지 위 접시에 음식이 담긴 주방 조리대 장면이다 | fetched | (선택) |
+| fig05 | world model 데모의 현재 observation 4. 사람이 앉은 테이블에 접시와 음식이 놓인 실내 장면이다 | fetched | (선택) |
+| fig06 | world model 데모의 현재 observation 5. 같은 실내 테이블을 다른 각도에서 담았다 | fetched | (선택) |
+| fig07 | world model이 생성한 subgoal image 1 | fetched | (선택) |
+| fig08 | world model이 생성한 subgoal image 2 | fetched | ★ wiki 권장 (subgoal image 예시) |
+| fig09 | world model이 생성한 subgoal image 3 | fetched | (선택) |
+| fig10 | world model이 생성한 subgoal image 4 | fetched | (선택) |
+| fig11 | world model이 생성한 subgoal image 5 | fetched | (선택) |
 
 본문 도식은 대부분 인라인 SVG와 영상이라 파일로 남지 않는다. 내려받은 10장은 246x171 안팎의 썸네일이라 임베드용으로는 작다. 아키텍처와 결과 도식은 논문 쪽 figure를 쓰는 편이 낫다.

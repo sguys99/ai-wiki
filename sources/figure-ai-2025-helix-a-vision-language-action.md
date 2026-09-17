@@ -74,7 +74,7 @@ Figure AI가 자사 humanoid의 상체 전체를 자연어로 몰기 위해 만�
 - **저자**: Figure AI (개별 저자 표기 없음)
 - **발행**: 2025-02-20, https://www.figure.ai/news/helix
 - **성격**: 회사 블로그 발표문. 같은 시점에 대응하는 논문이나 기술 보고서가 나오지 않았고, arXiv 링크도 붙어 있지 않다. 수치와 구조 설명은 이 글의 서술이 전부다
-- **수집 메모**: 본문 15,381자, chrome tier로 취득. 페이지의 시연이 전부 동영상(Video 1~6)이라 정지 이미지 후보는 Figure 1 하나뿐이다. 본문에서 가장 중요한 System 1 / System 2 구조도는 iframe 안에 들어 있어 `<img>` 수집에 잡히지 않았고, 같은 도식을 [[9bow-2025-helix-generalist-humanoid-vla]] 쪽에서 확보했다
+- **수집 메모**: 본문 15,381자, chrome tier로 취득. 페이지의 시연이 전부 동영상(Video 1~6)이라 정지 이미지 후보는 Figure 1 하나뿐이다. 본문에서 가장 중요한 System 1 / System 2 구조도는 iframe 안에 들어 있어 `<img>` 수집에 잡히지 않았고, 같은 도식을 [[physical-ai/9bow-2025-helix-generalist-humanoid-vla]] 쪽에서 확보했다
 
 ## 2. 주요 기여 (Key Contributions)
 
@@ -132,11 +132,11 @@ control frequency는 로봇이 1초에 몇 번 새로운 action을 갱신하는�
 
 인용이 없다. 이름을 대는 선행 연구가 하나도 없고, "prior VLA approaches", "conventional robot imitation learning" 같은 범주로만 지칭한다. 비교 위치를 잡으려면 wiki 안의 다른 페이지를 봐야 한다.
 
-action tokenization을 쓰는 쪽으로 언급되는 계열은 [[brohan-2023-rt-2-vision-language-action-models-transfer-web]]과 [[kim-2024-openvla-an-open-source-vision-language-action-model]]이다. 연속 제어를 붙인 쪽으로는 [[black-2024-pi0-a-vision-language-action-flow-model]]이 flow matching을 쓴다. 같은 dual-system 분업을 한 달 뒤 논문 형태로 공개한 것이 [[nvidia-2025-gr00t-n1-an-open-foundation]]이며, GR00T N1은 Eagle-2 VLM 10Hz에 flow-matching DiT 120Hz다.
+action tokenization을 쓰는 쪽으로 언급되는 계열은 [[physical-ai/brohan-2023-rt-2-vision-language-action-models-transfer-web]]과 [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]]이다. 연속 제어를 붙인 쪽으로는 [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]]이 flow matching을 쓴다. 같은 dual-system 분업을 한 달 뒤 논문 형태로 공개한 것이 [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]이며, GR00T N1은 Eagle-2 VLM 10Hz에 flow-matching DiT 120Hz다.
 
 ## 7. 용어집 (Glossary)
 
-도메인 공통 용어는 [[glossary-physical-ai]]에 위임하고 이 자료 고유의 표현만 적는다.
+도메인 공통 용어는 [[overviews/glossary-physical-ai]]에 위임하고 이 자료 고유의 표현만 적는다.
 
 - **System 1 / System 2**: Kahneman의 이중 과정 은유를 그대로 쓴 모듈 이름. S2는 느리게 생각하는 의미 추론, S1은 빠르게 반응하는 visuomotor policy를 맡는다. 이 글에서 S1과 S2는 항상 이 두 모듈을 가리킨다.
 - **hindsight instruction**: 이미 수집된 영상을 보고 "이 동작을 시키려면 어떤 지시를 내렸을까"를 되물어 사후에 붙인 자연어 지시문. auto-labeling VLM이 생성한다.
@@ -156,4 +156,4 @@ action tokenization을 쓰는 쪽으로 언급되는 계열은 [[brohan-2023-rt-
 | fig07 | Video 4 자리 (검은 화면) | crop | (제외) |
 | fig08 | Video 5 자리 (검은 화면) | crop | (제외) |
 
-이 페이지의 핵심 도식인 System 1 / System 2 구조도는 iframe 안에 있어 수집되지 않았다. 같은 도식을 [[9bow-2025-helix-generalist-humanoid-vla]]의 fig02로 확보했으므로 wiki 본문에서는 9bow 페이지의 사본을 참조한다.
+이 페이지의 핵심 도식인 System 1 / System 2 구조도는 iframe 안에 있어 수집되지 않았다. 같은 도식을 [[physical-ai/9bow-2025-helix-generalist-humanoid-vla]]의 fig02로 확보했으므로 wiki 본문에서는 9bow 페이지의 사본을 참조한다.

@@ -88,7 +88,7 @@ generalist robot policy는 아직 초기 단계이고 갈 길이 멀다고 명�
 
 ## 7. 용어집 (Glossary)
 
-논문 source와 겹치는 용어는 [[black-2024-pi0-a-vision-language-action-flow-model]]에 위임한다. 이 문서 고유의 표현만 적는다.
+논문 source와 겹치는 용어는 [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]]에 위임한다. 이 문서 고유의 표현만 적는다.
 
 - **artificial physical intelligence**: Physical Intelligence가 내건 장기 목표. 사용자가 LLM 챗봇에 요청하듯 로봇에 아무 과제나 말로 시킬 수 있는 상태를 가리킨다.
 - **Moravec's paradox**: 사람에게 쉬운 감각과 운동 과제가 AI에는 어렵고 그 반대도 성립한다는 관찰. 블로그가 문제 설정의 출발점으로 인용한다.

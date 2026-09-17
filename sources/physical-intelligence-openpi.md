@@ -103,15 +103,15 @@ PyTorch 쪽에는 π0-FAST 모델, 혼합 정밀도 학습, FSDP 학습, LoRA �
 
 ## 6. 관련 연구 (Related Work)
 
-- **π0 논문**: [[black-2024-pi0-a-vision-language-action-flow-model]]. 이 저장소가 구현하는 모델의 원 논문이다.
+- **π0 논문**: [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]]. 이 저장소가 구현하는 모델의 원 논문이다.
 - **π0-FAST**: action을 이산 토큰으로 압축하는 FAST tokenizer를 써서 autoregressive로 동작하는 변형. 언어 따르기는 낫지만 추론은 flow matching 버전보다 느리다.
 - **π0.5**: knowledge insulation으로 학습해 open-world 일반화를 높인 후속 모델.
 - **데이터 플랫폼**: LeRobot(학습 데이터 형식), DROID(대규모 in-the-wild Franka 데이터셋), ALOHA(저가 양팔 teleoperation 플랫폼), LIBERO(시뮬레이션 벤치마크).
-- **비교 대상**: [[kim-2024-openvla-an-open-source-vision-language-action-model]]. 오픈소스 VLA라는 위치가 겹치지만 openpi는 base 가중치까지 여러 변형으로 공개한다는 점이 다르다.
+- **비교 대상**: [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]]. 오픈소스 VLA라는 위치가 겹치지만 openpi는 base 가중치까지 여러 변형으로 공개한다는 점이 다르다.
 
 ## 7. 용어집 (Glossary)
 
-π0 아키텍처 용어는 [[black-2024-pi0-a-vision-language-action-flow-model]]에, 공통 용어는 [[overviews/glossary-physical-ai]]와 [[overviews/glossary-llms]]에 위임한다.
+π0 아키텍처 용어는 [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]]에, 공통 용어는 [[overviews/glossary-physical-ai]]와 [[overviews/glossary-llms]]에 위임한다.
 
 - **openpi**: Physical Intelligence의 로봇 모델 공개 저장소. π0 계열 가중치와 학습, 추론 코드를 담는다.
 - **π0-FAST**: FAST action tokenizer로 action을 이산화해 autoregressive로 예측하는 π0 변형.

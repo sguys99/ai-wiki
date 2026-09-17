@@ -79,6 +79,328 @@ figures:
     caption: "전체 페이지 스크린샷"
     strategy: screenshot
     curated: false
+  - id: fig12
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop01.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop01.png
+    caption: "글 머리 이미지의 한 프레임: 제목 배너와 Helix System 1/System 2 구조도 (fig01 GIF의 정지 프레임)"
+    strategy: crop
+    curated: false
+  - id: fig13
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop02.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop02.png
+    caption: "글 머리 이미지 프레임의 더 큰 크롭 (fig12와 같은 내용)"
+    strategy: crop
+    curated: false
+  - id: fig14
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop03.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop03.png
+    caption: "글 머리 이미지 프레임 재캡처 (fig13과 거의 같은 이미지)"
+    strategy: crop
+    curated: false
+  - id: fig15
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop04.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop04.png
+    caption: "System 1(직관, 95%)과 System 2(이성, 5%)를 뇌 그림으로 나타낸 Thinking Fast and Slow 삽화"
+    strategy: crop
+    curated: false
+  - id: fig16
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop05.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop05.png
+    caption: "System 1/System 2 뇌 삽화의 캡션 없는 크롭 (fig15와 같은 그림)"
+    strategy: crop
+    curated: false
+  - id: fig17
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop06.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop06.png
+    caption: "Greetings from RT-2 애니메이션의 전환 중 프레임. VLM 아이콘과 흐린 Wikipedia 카드만 보여 판독이 어렵다"
+    strategy: crop
+    curated: false
+  - id: fig18
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop07.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop07.png
+    caption: "RT-2 co-fine-tuning과 closed-loop 제어 도식의 페이지 크롭 (fig02와 같은 영역, 좌하단 쿠키 배너 겹침)"
+    strategy: crop
+    curated: false
+  - id: fig19
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop08.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop08.png
+    caption: "RT-2 co-fine-tuning 도식 재캡처 (fig18과 거의 같은 이미지)"
+    strategy: crop
+    curated: false
+  - id: fig20
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop09.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop09.png
+    caption: "RT-2 내부 구조(ViT와 LLM, de-tokenize) 도식의 페이지 크롭 (fig03과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig21
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop10.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop10.png
+    caption: "RT-2 내부 구조 도식 재캡처 (fig20과 동일 파일)"
+    strategy: crop
+    curated: false
+  - id: fig22
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop11.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop11.png
+    caption: "RT-2 chain-of-thought 실행 예시의 페이지 크롭 (fig05와 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig23
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop12.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop12.png
+    caption: "RT-2 chain-of-thought 예시 재캡처 (fig22와 거의 같은 이미지)"
+    strategy: crop
+    curated: false
+  - id: fig24
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop13.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop13.png
+    caption: "Octo Transformer 구조도. task 토큰과 observation 토큰, readout, diffusion action head 구성. 좌하단 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig25
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop14.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop14.png
+    caption: "Octo Transformer 구조도 재캡처 (fig24와 거의 같은 이미지)"
+    strategy: crop
+    curated: false
+  - id: fig26
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop15.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop15.png
+    caption: "데모 영상 프레임 (도식 아님): 로봇 팔이 호랑이 인형이 든 그릇과 레고 블록 앞에 있는 장면"
+    strategy: crop
+    curated: false
+  - id: fig27
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop16.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop16.png
+    caption: "데모 영상 프레임 (도식 아님): 캔을 냄비 왼쪽에 놓는 과제 장면. 좌하단 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig28
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop17.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop17.png
+    caption: "OpenVLA 구조도의 페이지 크롭 (fig06과 같은 영역)"
+    strategy: crop
+    curated: false
+  - id: fig29
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop18.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop18.png
+    caption: "OpenVLA 구조도 재캡처 (fig28과 동일 파일)"
+    strategy: crop
+    curated: false
+  - id: fig30
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop19.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop19.png
+    caption: "RT-2-X와 OpenVLA의 out-of-distribution 과제 비교. 콜라 캔을 Taylor Swift 사진 옆으로 옮기는 과제에서 RT-2-X만 성공"
+    strategy: crop
+    curated: false
+  - id: fig31
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop20.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop20.png
+    caption: "QUAR-VLA 구조도. 사족보행 로봇용 QUART가 이미지와 지시문을 토큰화해 MLLM에 넣고 2Hz로 action을 낸다"
+    strategy: crop
+    curated: false
+  - id: fig32
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop21.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop21.png
+    caption: "QUAR-VLA 구조도 재캡처 (fig31과 거의 같은 이미지)"
+    strategy: crop
+    curated: false
+  - id: fig33
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop22.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop22.png
+    caption: "ALOHA 2 하드웨어 구성. overhead camera와 worms-eye camera, gravity compensation, leader/follower gripper 위치"
+    strategy: crop
+    curated: false
+  - id: fig34
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop23.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop23.png
+    caption: "ALOHA 2 하드웨어 구성 재캡처 (fig33과 거의 같은 이미지)"
+    strategy: crop
+    curated: false
+  - id: fig35
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop24.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop24.png
+    caption: "ALOHA 2 프레임 CAD 도면과 collaborator/teleoperator 배치 삽화. 좌하단 쿠키 배너 겹침"
+    strategy: crop
+    curated: false
+  - id: fig36
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop25.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop25.png
+    caption: "ALOHA 2 CAD와 배치 삽화 재캡처 (fig35와 동일 파일)"
+    strategy: crop
+    curated: false
+  - id: fig37
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop26.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop26.png
+    caption: "rerun.io 뷰어 화면. lerobot/act_aloha_sim_insertion_human 데이터셋의 state와 action 시계열 그래프, 시뮬레이션 뷰"
+    strategy: crop
+    curated: false
+  - id: fig38
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop27.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop27.png
+    caption: "π0 구조도. SigLIP 400M과 Gemma 2.6B pre-trained VLM에 300M action expert를 붙이고 세 종류 manipulator를 제어한다"
+    strategy: crop
+    curated: false
+  - id: fig39
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop28.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop28.png
+    caption: "π0 구조도 재캡처 (fig38과 동일 파일)"
+    strategy: crop
+    curated: false
+  - id: fig40
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop29.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop29.png
+    caption: "π0 학습 파이프라인 개요. cross-embodiment 데이터셋과 OXE pre-training, post-training 데이터, zero-shot과 특화 과제 예시"
+    strategy: crop
+    curated: false
+  - id: fig41
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop30.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop30.png
+    caption: "FAST tokenizer 5단계 도식의 페이지 크롭 (fig08과 같은 영역, 좌하단 쿠키 배너 겹침)"
+    strategy: crop
+    curated: false
+  - id: fig42
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop31.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop31.png
+    caption: "FAST tokenizer 도식 재캡처 (fig41과 동일 파일)"
+    strategy: crop
+    curated: false
+  - id: fig43
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop32.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop32.png
+    caption: "데모 영상 프레임 (도식 아님): Gemma 3 chain-of-thought를 쓰는 π0 양팔 로봇이 테이블 위 물체를 다루는 장면"
+    strategy: crop
+    curated: false
+  - id: fig44
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop33.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop33.png
+    caption: "π0 계열과 OpenVLA, Octo의 out-of-box 성능 막대 그래프의 페이지 크롭 (fig09와 같은 영역, 좌하단 쿠키 배너 겹침)"
+    strategy: crop
+    curated: false
+  - id: fig45
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop34.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop34.png
+    caption: "성능 비교 막대 그래프 재캡처 (fig44와 동일 파일)"
+    strategy: crop
+    curated: false
+  - id: fig46
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop35.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop35.png
+    caption: "Figure AI Helix 구조도. System 2(7B VLM, 7~9Hz)가 latent vector를 넘기고 System 1(80M Transformer, 200Hz)이 상체를 제어한다"
+    strategy: crop
+    curated: false
+  - id: fig47
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop36.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop36.png
+    caption: "데모 영상 프레임 (도식 아님): humanoid 로봇 손이 과자 봉지와 사과 앞에 있는 장면"
+    strategy: crop
+    curated: false
+  - id: fig48
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop37.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop37.png
+    caption: "GR00T N1 dual-system 구조도. VLM(System 2)이 이미지와 텍스트 토큰을 처리하고 Diffusion Transformer(System 1)가 action 토큰을 디노이징한다"
+    strategy: crop
+    curated: false
+  - id: fig49
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop38.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop38.png
+    caption: "GR00T N1 구조도 재캡처 (fig48과 동일 파일)"
+    strategy: crop
+    curated: false
+  - id: fig50
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop39.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop39.png
+    caption: "LeRobot 실습 결과. joint 0~6의 state joints와 gt action joints 시계열 플롯 (좌하단 쿠키 배너 일부 겹침)"
+    strategy: crop
+    curated: false
+  - id: fig51
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop40.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop40.png
+    caption: "joint 시계열 플롯 재캡처 (fig50과 동일 파일)"
+    strategy: crop
+    curated: false
+  - id: fig52
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop41.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop41.png
+    caption: "Gemini Robotics 개요. Gemini 2.0에서 Gemini Robotics-ER와 Gemini Robotics로 이어지는 학습 단계와 dexterous 과제, 새 embodiment 예시"
+    strategy: crop
+    curated: false
+  - id: fig53
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop42.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop42.png
+    caption: "Gemini Robotics 개요 재캡처 (fig52와 동일 파일)"
+    strategy: crop
+    curated: false
+  - id: fig54
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop43.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop43.png
+    caption: "본문 삽입 이미지 (도식 아님): 빈 회색 영역, 이미지가 로드되기 전의 자리 표시자"
+    strategy: crop
+    curated: false
+  - id: fig55
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop44.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop44.png
+    caption: "본문 삽입 이미지 (도식 아님): 관련 글 썸네일 (Decoding Virat Kohli's Flick Shot)"
+    strategy: crop
+    curated: false
+  - id: fig56
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop45.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop45.png
+    caption: "본문 삽입 이미지 (도식 아님): 관련 글 썸네일 (Object Detection with OpenCV 5)"
+    strategy: crop
+    curated: false
+  - id: fig57
+    kind: figure
+    file: assets/learnopencv-2025-vision-language-action-models-vla/crop46.png
+    raw: raw/articles/learnopencv-2025-vision-language-action-models-vla-figures/crop46.png
+    caption: "본문 삽입 이미지 (도식 아님): 관련 글 썸네일 (Fine-tune YOLO26 on your own data)"
+    strategy: crop
+    curated: false
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -240,5 +562,51 @@ Octo가 RT-2 55B와 "동등한 성능"이라는 서술에도 근거가 없다. �
 | fig09 | π0 대 OpenVLA, Octo 성능 비교 | fetched | ★ wiki 확정 (result) |
 | fig10 | Satya Mallick 프로필 사진 | fetched | ✗ 본문 무관 |
 | fig11 | 전체 페이지 스크린샷 | screenshot | ✗ 아카이브용 |
+| fig12 | 글 머리 GIF 정지 프레임 (제목 배너 + Helix 구조도) | crop | (확인 필요, fig01과 중복) |
+| fig13 | 글 머리 GIF 정지 프레임, 큰 크롭 | crop | (확인 필요, fig12와 중복) |
+| fig14 | fig13 재캡처 | crop | (확인 필요, fig13과 중복) |
+| fig15 | System 1/System 2 뇌 삽화 (Thinking Fast and Slow) | crop | (확인 필요) |
+| fig16 | fig15의 캡션 없는 크롭 | crop | (확인 필요, fig15와 중복) |
+| fig17 | RT-2 인사 애니메이션 전환 프레임 (판독 불가) | crop | 비도식 |
+| fig18 | RT-2 co-fine-tuning 도식 크롭, 쿠키 배너 겹침 | crop | (확인 필요, fig02와 중복) |
+| fig19 | fig18 재캡처 | crop | (확인 필요, fig18과 중복) |
+| fig20 | RT-2 내부 구조 크롭 | crop | (확인 필요, fig03과 중복) |
+| fig21 | fig20과 동일 파일 | crop | (확인 필요, fig20과 동일) |
+| fig22 | RT-2 chain-of-thought 예시 크롭 | crop | (확인 필요, fig05와 중복) |
+| fig23 | fig22 재캡처 | crop | (확인 필요, fig22와 중복) |
+| fig24 | Octo Transformer 구조도, 쿠키 배너 겹침 (fetched 원본 없음) | crop | (확인 필요) |
+| fig25 | fig24 재캡처 | crop | (확인 필요, fig24와 중복) |
+| fig26 | 데모 영상 프레임 (인형과 그릇) | crop | 비도식 |
+| fig27 | 데모 영상 프레임 (캔 놓기 과제) | crop | 비도식 |
+| fig28 | OpenVLA 구조도 크롭 | crop | (확인 필요, fig06과 중복) |
+| fig29 | fig28과 동일 파일 | crop | (확인 필요, fig28과 동일) |
+| fig30 | RT-2-X 대 OpenVLA OOD 과제 비교 (fetched 원본 없음) | crop | (확인 필요) |
+| fig31 | QUAR-VLA 구조도 (fetched 원본 없음) | crop | (확인 필요) |
+| fig32 | fig31 재캡처 | crop | (확인 필요, fig31과 중복) |
+| fig33 | ALOHA 2 하드웨어 구성 (fetched 원본 없음) | crop | (확인 필요) |
+| fig34 | fig33 재캡처 | crop | (확인 필요, fig33과 중복) |
+| fig35 | ALOHA 2 CAD와 teleoperator 배치 삽화, 쿠키 배너 겹침 | crop | (확인 필요) |
+| fig36 | fig35와 동일 파일 | crop | (확인 필요, fig35와 동일) |
+| fig37 | rerun.io 뷰어 화면 (aloha sim insertion 데이터셋) | crop | (확인 필요) |
+| fig38 | π0 구조도 (fetched 원본 없음) | crop | (확인 필요) |
+| fig39 | fig38과 동일 파일 | crop | (확인 필요, fig38과 동일) |
+| fig40 | π0 학습 파이프라인 개요 (fetched 원본 없음) | crop | (확인 필요) |
+| fig41 | FAST tokenizer 도식 크롭, 쿠키 배너 겹침 | crop | (확인 필요, fig08과 중복) |
+| fig42 | fig41과 동일 파일 | crop | (확인 필요, fig41과 동일) |
+| fig43 | 데모 영상 프레임 (π0 양팔 로봇) | crop | 비도식 |
+| fig44 | 성능 비교 막대 크롭, 쿠키 배너 겹침 | crop | (확인 필요, fig09와 중복) |
+| fig45 | fig44와 동일 파일 | crop | (확인 필요, fig44와 동일) |
+| fig46 | Helix System 1/System 2 구조도 (fetched 원본 없음) | crop | (확인 필요) |
+| fig47 | 데모 영상 프레임 (humanoid 로봇 손) | crop | 비도식 |
+| fig48 | GR00T N1 dual-system 구조도 (fetched 원본 없음) | crop | (확인 필요) |
+| fig49 | fig48과 동일 파일 | crop | (확인 필요, fig48과 동일) |
+| fig50 | joint 0~6 state/action 시계열 플롯 | crop | (확인 필요) |
+| fig51 | fig50과 동일 파일 | crop | (확인 필요, fig50과 동일) |
+| fig52 | Gemini Robotics 개요 (fetched 원본 없음) | crop | (확인 필요) |
+| fig53 | fig52와 동일 파일 | crop | (확인 필요, fig52와 동일) |
+| fig54 | 빈 회색 자리 표시자 (이미지 미로드) | crop | 비도식 |
+| fig55 | 관련 글 썸네일 (크리켓 3D 재구성) | crop | 비도식 |
+| fig56 | 관련 글 썸네일 (OpenCV 5 객체 검출) | crop | 비도식 |
+| fig57 | 관련 글 썸네일 (YOLO26 fine-tuning) | crop | 비도식 |
 
-Step 3.5에서 fig02~fig09 여덟 장을 wiki 임베드로 확정했다. `--crop`으로 만든 `crop01.png` ~ `crop46.png` 46장이 `-figures/`에 함께 있다. 확인해 보니 임베드된 데모 영상 프레임과 쿠키 배너가 대부분이고 fig01~fig10과 겹치거나 판독 불가라 후보 목록에서 뺐다. 필요하면 `figures.json`에서 되살릴 수 있다.
+Step 3.5에서 fig02~fig09 여덟 장을 wiki 임베드로 확정했다. `--crop`으로 만든 `crop01.png` ~ `crop46.png` 46장이 `-figures/`에 함께 있고, 트레이서빌리티를 위해 fig12~fig57로 frontmatter와 위 표에 기록했다. 46장 중 동일 파일 9쌍과 재캡처 6쌍이 겹치고, 데모 영상 프레임과 쿠키 배너가 겹친 크롭이 많다. 반면 Octo, QUAR-VLA, ALOHA 2 하드웨어, π0, Helix, GR00T N1, Gemini Robotics 도식(fig24, fig31, fig33, fig38, fig40, fig46, fig48, fig52)은 fetched 원본이 없어 크롭이 유일한 사본이다.

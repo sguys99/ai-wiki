@@ -290,4 +290,8 @@ decoder(policy)는 ResNet18 image encoder + transformer encoder + transformer de
 | fig11 | 17 | ACT 상세 아키텍처 (학습과 테스트 흐름) | caption-region | (아카이브, fig04와 중복) |
 | fig12 | 18 | user study 물체 | caption-region | (아카이브) |
 | tab02 | 8 | 나머지 실세계 3과제 성공률 | table-region | (아카이브) |
-| tab03~07 | 18 | ACT, BYOL, BeT, VINN, RT-1 hyperparameter | table-region | (아카이브) |
+| tab03 | 18 | ACT hyperparameter 설정표 | table-region | (아카이브) |
+| tab04 | 18 | BYOL hyperparameter (VINN과 BeT의 feature extractor) | table-region | (아카이브) |
+| tab05 | 18 | BeT hyperparameter 설정표 | table-region | (아카이브) |
+| tab06 | 18 | VINN hyperparameter 설정표 | table-region | (아카이브) |
+| tab07 | 18 | RT-1 hyperparameter 설정표 | table-region | (아카이브) |

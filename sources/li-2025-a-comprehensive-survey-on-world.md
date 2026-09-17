@@ -66,7 +66,7 @@ figures:
     kind: table
     file: assets/li-2025-a-comprehensive-survey-on-world/tab05.png
     raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab05.png
-    caption: "Occ3D-nuScenes 4D occupancy forecasting(Table V), DMC(Table VI), RLBench(Table VII)가 함께 실린 p.15"
+    caption: "Occ3D-nuScenes 4D occupancy forecasting 비교 20종. mIoU와 IoU를 1s, 2s, 3s 구간별로 보고 (Table V, p.15)"
     page: 15
     bbox_norm: [0.0702, 0.0984, 0.9298, 0.3951]
     strategy: table-region
@@ -76,7 +76,7 @@ figures:
     kind: table
     file: assets/li-2025-a-comprehensive-survey-on-world/tab06.png
     raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab06.png
-    caption: "(중복) fig07과 동일한 p.15 이미지. Table VI 캡션에 재매칭된 결과"
+    caption: "DMC 벤치마크 episode return 비교 8종 (Table VI, p.15). 오른쪽 단의 Table VII이 같은 밴드에 함께 잡혔다"
     page: 15
     bbox_norm: [0.0702, 0.4633, 0.9298, 0.6183]
     strategy: table-region
@@ -86,7 +86,7 @@ figures:
     kind: table
     file: assets/li-2025-a-comprehensive-survey-on-world/tab07.png
     raw: raw/papers/li-2025-a-comprehensive-survey-on-world-figures/tab07.png
-    caption: "(중복) fig07과 동일한 p.15 이미지. Table VII 캡션에 재매칭된 결과"
+    caption: "RLBench manipulation 과제 5종 성공률 비교. VidMan, ManiGaussian, DreMa, TesserAct (Table VII, p.15)"
     page: 15
     bbox_norm: [0.5, 0.4633, 0.9298, 0.6183]
     strategy: table-region
@@ -235,15 +235,14 @@ world model이라는 용어는 Ha와 Schmidhuber가 정착시켰고 Dreamer 계�
 
 | id | page | caption | strategy | 추천 |
 |---|---|---|---|---|
-| fig01 | 2 | (오탐) 본문 교차참조가 줄머리에 잡힌 페이지, 도식 없음 | page-region | (제외) |
-| fig02 | 3 | Figure 1. 서베이 구조와 세 가지 분류 기준 전체 도해 | page-region | ★ wiki 권장 (architecture) |
-| fig03 | 4 | Table I. 로보틱스와 범용 도메인 56편 분류표 | page-region | ★ wiki 권장 (taxonomy) |
-| fig04 | 5 | Table II. 자율주행 32편 분류표 | page-region | ★ wiki 권장 (taxonomy) |
-| fig05 | 12 | Table III. 데이터 자원 개괄 24종 | page-region | ★ wiki 권장 (data) |
-| fig06 | 14 | Table IV. nuScenes 비디오 생성 FID/FVD | page-region | (선택) |
-| fig07 | 15 | Table V, VI, VII 합본 페이지 (Occ3D / DMC / RLBench) | page-region | (선택) |
-| fig08 | 15 | (중복) fig07과 동일 이미지 | page-region | (제외) |
-| fig09 | 15 | (중복) fig07과 동일 이미지 | page-region | (제외) |
-| fig10 | 16 | Table VIII. nuScenes open-loop planning | page-region | (선택) |
+| fig01 | 3 | Figure 1. 서베이 구조와 세 가지 분류 기준 전체 도해 | caption-region | ★ wiki 권장 (architecture) |
+| tab01 | 4 | Table I. 로보틱스와 범용 도메인 56편 분류표 | table-region | ★ wiki 권장 (taxonomy) |
+| tab02 | 5 | Table II. 자율주행 32편 분류표 | table-region | ★ wiki 권장 (taxonomy) |
+| tab03 | 12 | Table III. 데이터 자원 개괄 24종 | table-region | ★ wiki 권장 (data) |
+| tab04 | 14 | Table IV. nuScenes 비디오 생성 FID/FVD | table-region | (선택) |
+| tab05 | 15 | Table V. Occ3D-nuScenes 4D occupancy forecasting 비교 20종 | table-region | (선택) |
+| tab06 | 15 | Table VI. DMC 벤치마크 episode return 비교 8종 (오른쪽 단 Table VII 포함) | table-region | (선택) |
+| tab07 | 15 | Table VII. RLBench manipulation 과제 5종 성공률 비교 | table-region | (선택) |
+| tab08 | 16 | Table VIII. nuScenes open-loop planning | table-region | (선택) |
 
-> fig02는 도식이 페이지 상단 절반에 있어 그대로 임베드하면 아래쪽 본문이 함께 들어온다. wiki에 넣을 때 상단만 크롭하는 편이 낫다.
+> 표의 id는 2026-08 정밀 크롭 전환 이후 논문 라벨을 따른다 (Figure 1이 fig01, Table I이 tab01). 전환 이전의 페이지 전면 캡처 10장 가운데 옛 fig01(p.2, 본문 교차참조가 줄머리에 잡힌 오탐, 도식 없음)은 대응 검출이 없어 표에서 뺐고, 옛 fig08과 fig09(p.15 중복 캡처)는 전환 후 각각 Table VI과 Table VII 영역 크롭(tab06, tab07)으로 나뉘어 더 이상 중복이 아니다. 이 stem에는 `legacy/` 디렉토리가 없다.

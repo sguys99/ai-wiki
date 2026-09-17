@@ -154,8 +154,8 @@ agent model을 적응시키는 문제도 남는다. LLM은 환경을 직접 보�
 
 | id | page | caption | strategy | 추천 |
 |---|---|---|---|---|
-| fig01 | 2 | "LAW framework로 본 VLN 구조, world/human/VLN agent 세 부분" (Figure 1) | page-region | ★ wiki 권장 (framework) |
-| fig02 | 3 | "VLN 벤치마크 24종 분류표" (Table 1) | page-region | ★ wiki 권장 (reference table) |
-| fig03 | 5 | "서베이 전체 taxonomy + foundation model 역할 4분류 + 미래 과제" (Figure 2) | page-region | ★ wiki 권장 (핵심 도해) |
+| fig01 | 2 | "LAW framework로 본 VLN 구조, world/human/VLN agent 세 부분" (Figure 1) | caption-region | ★ wiki 권장 (framework) |
+| fig02 | 5 | "서베이 전체 taxonomy + foundation model 역할 4분류 + 미래 과제" (Figure 2) | caption-region | ★ wiki 권장 (핵심 도해) |
+| tab01 | 3 | "VLN 벤치마크 24종 분류표" (Table 1) | table-region | ★ wiki 권장 (reference table) |
 
-세 후보 모두 페이지 통째 200 DPI PNG라, curated 사본은 도식 영역만 재렌더해서 넣는 편이 낫다. fig01은 p.2 오른쪽 단, fig03은 p.5 상단 밴드, fig02는 p.3 표 전체가 해당 영역이다.
+세 후보는 2026-08 정밀 크롭 전환 이후 캡션 앵커 크롭이며, id는 논문 라벨을 따른다 (Figure 2가 fig02, Table 1이 tab01). 전환 이전의 페이지 전면 캡처(옛 id fig01, fig02, fig03)는 `legacy/`에 `figNN_crop.png`로 남아 있다.

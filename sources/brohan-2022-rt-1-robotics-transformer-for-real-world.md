@@ -196,7 +196,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab06.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab06.png
-    caption: "Kitchen1과 Kitchen2에서의 SayCan 방식 long-horizon 과제. (*원래 SayCan 평가는 프롬프트가 조금 달라 planning 성공률이 더 낮다)"
+    caption: "Kitchen1과 Kitchen2의 SayCan 방식 long-horizon 과제 planning과 execution 성공률. 본문 6.4절 (Table 6, p.14). *원래 SayCan 평가는 프롬프트가 조금 달라 planning 성공률이 더 낮다"
     page: 14
     bbox_norm: [0.2781, 0.1422, 0.7219, 0.2368]
     strategy: table-region
@@ -246,7 +246,7 @@ figures:
     kind: table
     file: assets/brohan-2022-rt-1-robotics-transformer-for-real-world/tab11.png
     raw: raw/papers/brohan-2022-rt-1-robotics-transformer-for-real-world-figures/tab11.png
-    caption: "Kitchen1과 Kitchen2에서의 SayCan 방식 long-horizon 과제. (*원래 SayCan 평가는 프롬프트가 조금 달라 planning 성공률이 더 낮다)"
+    caption: "SayCan 방식 long-horizon 과제 성공률의 부록 재수록본. 본문 Table 6과 같은 수치 (Table 11, p.29)"
     page: 29
     bbox_norm: [0.2781, 0.1438, 0.7219, 0.2384]
     strategy: table-region
@@ -391,16 +391,33 @@ RT-1이 전 수준에서 가장 강하다. Gato는 L1은 견디지만 수준이 
 
 ## 8. 그림 후보 (Figure Candidates)
 
-page-region 방식(캡션이 잡힌 페이지를 200 DPI로 통째 렌더)이라 각 PNG는 해당 페이지 전체다. 아래는 실제 논문 그림/표에 대응하는 후보만 추린 것이다(전체 22개는 `figures.json` 참조).
+2026-08 정밀 크롭 전환 이후 각 PNG는 캡션 앵커로 자른 도식 영역이며 id는 논문 라벨을 따른다 (Figure N이 figNN, Table N이 tabNN, 전체 26개는 `figures.json` 참조). 전환 이전의 페이지 전면 캡처 22장은 대응 검출이 모두 있어 아래 표의 id를 새 id로 옮겼고, 이 stem에는 `legacy/` 디렉토리가 없다.
 
 | id | page | 대응 | caption | 추천 |
 |---|---|---|---|---|
 | fig01 | 2 | Figure 1 | RT-1 전체 개요(아키텍처+데이터+평가) | ★ wiki 권장 (overview) |
-| fig05 | 6 | Figure 3 | 상세 아키텍처: USE→FiLM EfficientNet→TokenLearner→Transformer→action | ★★ wiki 권장 (architecture) |
-| fig09 | 10 | Table 2 | 전체 성능 비교 표+막대그래프 | ★ wiki 권장 (result) |
-| fig03 | 5 | Figure 2 | 환경, 로봇, 오브젝트 세트 | (선택) setup |
-| fig08 | 9 | Figure 4 | distractor, background, realistic 평가 시나리오 | (선택) |
-| fig12 | 11 | Figure 5 | 실행 trajectory 예시 | (선택) |
-| fig13 | 13 | Figure 6 | 두 로봇 플랫폼 혼합 학습과 전이 | (선택) multi-robot |
-| fig17 | 23 | Figure 9 | 데이터, 태스크, 성능 성장 곡선 | (선택) |
-| fig22 | 31 | Figure 13 | attention 맵 시각화 | (선택) |
+| fig03 | 6 | Figure 3 | 상세 아키텍처: USE→FiLM EfficientNet→TokenLearner→Transformer→action | ★★ wiki 권장 (architecture) |
+| tab02 | 10 | Table 2 | 전체 성능 비교 표+막대그래프 | ★ wiki 권장 (result) |
+| fig02 | 5 | Figure 2 | 환경, 로봇, 오브젝트 세트 | (선택) setup |
+| fig04 | 9 | Figure 4 | distractor, background, realistic 평가 시나리오 | (선택) |
+| fig05 | 11 | Figure 5 | 실행 trajectory 예시 | (선택) |
+| fig06 | 13 | Figure 6 | 두 로봇 플랫폼 혼합 학습과 전이 | (선택) multi-robot |
+| fig09 | 23 | Figure 9 | 데이터, 태스크, 성능 성장 곡선 | (선택) |
+| fig13 | 31 | Figure 13 | attention 맵 시각화 | (선택) |
+| fig07 | 21 | Figure 7 | RT-1 모델 카드 | (확인 필요) |
+| fig08 | 22 | Figure 8 | 카메라 이미지 예시. 원본 시뮬레이션, RetinaGAN 시뮬레이션, 실세계 | (확인 필요) |
+| fig10 | 24 | Figure 10 | Backgrounds 평가 장면. 조리대 질감과 배경 변화 | (확인 필요) |
+| fig11 | 24 | Figure 11 | Realistic instructions 평가 장면. L1, L2, L3 난이도 | (확인 필요) |
+| fig12 | 26 | Figure 12 | Distractors 평가 장면. 학습 분포를 벗어난 초기 장면 구성 | (확인 필요) |
+| tab01 | 7 | Table 1 | 수집한 skill 목록과 설명, 지시문 예시 | (확인 필요) |
+| tab03 | 11 | Table 3 | 현실적 일반화 시나리오 L1, L2, L3 성공률 | (확인 필요) |
+| tab04 | 12 | Table 4 | 시뮬레이션 데이터 결합 실험 결과 (+64%) | (확인 필요) |
+| tab05 | 13 | Table 5 | 두 로봇 데이터 혼합 실험 결과 (Kuka bin-picking) | (확인 필요) |
+| tab06 | 14 | Table 6 | SayCan 방식 long-horizon 과제 planning과 execution 성공률 | (확인 필요) |
+| tab07 | 14 | Table 7 | 데이터 ablation. 데이터 다양성 대 데이터 양 | (확인 필요) |
+| tab08 | 25 | Table 8 | 6.2절 미학습 지시문 53개 목록 | (확인 필요) |
+| tab09 | 27 | Table 9 | 시뮬레이션 데이터 결합 실험 결과 (부록 재수록) | (확인 필요) |
+| tab10 | 28 | Table 10 | 두 로봇 데이터 혼합 실험 결과 (부록 재수록) | (확인 필요) |
+| tab11 | 29 | Table 11 | SayCan 방식 long-horizon 과제 성공률 (부록 재수록) | (확인 필요) |
+| tab12 | 30 | Table 12 | 6.4절 SayCan 지시문 목록 | (확인 필요) |
+| tab13 | 30 | Table 13 | 모델 ablation. seen, unseen, distractor, background | (확인 필요) |

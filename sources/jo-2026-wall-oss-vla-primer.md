@@ -226,11 +226,20 @@ embodied VQA에서는 `<box>[x1,y1,x2,y2]`와 `<point>[x,y]` 두 태그의 쓰�
 | fig03 | 학습과 추론 파이프라인 | fetched | (논문 Figure 4와 동일) |
 | fig04 | 일반 VQA 예시 | fetched | (선택, 입문용 삽화) |
 | fig05 | static router 경로를 빨간 테두리로 표시한 저자 주석판 | fetched | ★ wiki 권장, 이 글에만 있는 도식 |
-| fig06과 fig12~fig17 | 손실 함수와 노이즈 스케줄 수식 캡처 7종 | fetched | (선택, 본문 서술로 갈음) |
+| fig06 | Uni-CoT 통합 손실 함수 수식 캡처 | fetched | (선택, 본문 서술로 갈음) |
 | fig07 | 데이터 전략 | fetched | (논문 Figure 5와 동일) |
-| fig08, fig09, fig10 | 성능 막대와 실행 스텝 | fetched | (논문 Figure 7, Figure 6과 동일) |
+| fig08 | ID와 OOD task progress 비교 막대 | fetched | (논문 Figure 7과 동일) |
+| fig09 | tidy-bedroom 실행 스텝과 subtask 문장 | fetched | (논문 Figure 6 하위 행과 동일) |
+| fig10 | block-spell의 CoT와 subtask 4스텝 | fetched | (논문 Figure 6 하위 행과 동일) |
 | fig11 | 전체 페이지 스크린샷 | screenshot | (아카이브용) |
-| fig18, fig19 | 일반 VQA와 embodied VQA 데이터 예시 | fetched | (논문 Figure 5 하단과 동일) |
+| fig12 | 이산 action 모델링 수식 캡처 | fetched | (선택, 본문 서술로 갈음) |
+| fig13 | FAST tokenization 3단계 수식 캡처 | fetched | (선택, 본문 서술로 갈음) |
+| fig14 | Inspiration 단계 손실 함수 수식 캡처 | fetched | (선택, 본문 서술로 갈음) |
+| fig15 | 노이즈 스케줄 수식 캡처 | fetched | (선택, 본문 서술로 갈음) |
+| fig16 | Integration 단계 손실 함수 수식 캡처 | fetched | (선택, 본문 서술로 갈음) |
+| fig17 | Uni-CoT 목적 함수의 두 항 수식 캡처 | fetched | (선택, 본문 서술로 갈음) |
+| fig18 | 일반 VQA 데이터 예시 | fetched | (논문 Figure 5 하단과 동일) |
+| fig19 | embodied VQA 데이터 예시 | fetched | (논문 Figure 5 하단과 동일) |
 
 수집 시 본문 이미지 18개 중 10개만 내려받혔다. `MIN_IMG_SIDE=200` 필터가 높이 100픽셀 안팎의 수식 이미지 8개를 걸러냈기 때문이다. 이후 fig12~fig19로 사후 보강해 본문과 개수를 맞췄고, `figures.json`의 해당 항목에 `note` 필드로 보강 사실을 적었다.
 

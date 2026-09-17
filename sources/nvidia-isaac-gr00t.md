@@ -63,7 +63,7 @@ GR00T 계열 VLA의 공식 레퍼런스 구현이자 N1.7 GA 릴리스의 배포
 - URL: https://github.com/NVIDIA/Isaac-GR00T
 - 라이선스: 코드는 Apache-2.0, 모델 가중치는 NVIDIA Open Model License (이중 라이선스)
 - 릴리스 단계: General Availability. 상용 배포와 지원, 안정성 보장이 명시된 단계다
-- 대응 논문: [[nvidia-2025-gr00t-n1-an-open-foundation]] (arXiv 2503.14734, BibTeX `gr00tn1_2025`)
+- 대응 논문: [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] (arXiv 2503.14734, BibTeX `gr00tn1_2025`)
 - 이전 세대 브랜치: `n1d6`, `n1d5`가 따로 살아 있다
 - 아카이브한 README 스냅샷: 2026-09-01 수집
 
@@ -133,7 +133,7 @@ CLI 이름 하나가 바뀐 것도 기록해 둘 만하다. `--action-horizon`�
 
 whole-body control은 `UNITREE_G1_SONIC` tag와 GEAR-SONIC 컨트롤러로 간다. whole-body control은 균형과 이동을 포함해 몸 전체를 함께 제어하는 문제다. 이 경로에서 VLA는 관절 명령을 직접 내지 않고 압축된 latent action 토큰을 내며, 학습된 컨트롤러가 그것을 다리와 팔과 손을 포함한 전신 관절 명령으로 푼다. 한 policy가 언어 조건을 받아 manipulation과 locomotion을 함께 낸다.
 
-세대 간 짝이 갈린다는 단서가 여기 있다. `UNITREE_G1` tag는 이전 세대 decoupled WBC와 호환되지만, 데이터 수집부터 fine-tuning, 배포까지 이어지는 end-to-end 워크플로는 GEAR-SONIC 쪽에서만 지원한다. 실제 절차는 이 저장소가 아니라 [[nvlabs-gr00t-wholebodycontrol]]의 튜토리얼 문서로 넘어간다.
+세대 간 짝이 갈린다는 단서가 여기 있다. `UNITREE_G1` tag는 이전 세대 decoupled WBC와 호환되지만, 데이터 수집부터 fine-tuning, 배포까지 이어지는 end-to-end 워크플로는 GEAR-SONIC 쪽에서만 지원한다. 실제 절차는 이 저장소가 아니라 [[physical-ai/nvlabs-gr00t-wholebodycontrol]]의 튜토리얼 문서로 넘어간다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -161,13 +161,13 @@ Cosmos-Reason2-2B가 gated 모델이라는 게 첫 관문이다. 베이스 체�
 
 ## 6. 관련 연구 (Related Work)
 
-이 저장소는 [[nvidia-2025-gr00t-n1-an-open-foundation]]의 후속 구현이다. 논문의 Eagle-2 VLM과 flow-matching DiT라는 dual-system 골격은 유지되지만 backbone과 action 표현이 그때와 다르므로, 논문을 읽고 코드를 볼 때 차이를 염두에 둬야 한다.
+이 저장소는 [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]의 후속 구현이다. 논문의 Eagle-2 VLM과 flow-matching DiT라는 dual-system 골격은 유지되지만 backbone과 action 표현이 그때와 다르므로, 논문을 읽고 코드를 볼 때 차이를 염두에 둬야 한다.
 
-whole-body control 쪽 절반은 [[nvlabs-gr00t-wholebodycontrol]]에 있다. GR00T가 팔과 손의 manipulation을, SONIC 계열이 몸 전체 제어를 맡는 분업인데 N1.7부터 두 계열이 `UNITREE_G1_SONIC` tag로 맞물린다. 이름이 겹쳐 헷갈리는 GEAR, GR00T, SONIC, GEAR-SONIC 구분은 [[physical-ai-overview]]의 용어 정리 절이 표로 정리해 뒀다.
+whole-body control 쪽 절반은 [[physical-ai/nvlabs-gr00t-wholebodycontrol]]에 있다. GR00T가 팔과 손의 manipulation을, SONIC 계열이 몸 전체 제어를 맡는 분업인데 N1.7부터 두 계열이 `UNITREE_G1_SONIC` tag로 맞물린다. 이름이 겹쳐 헷갈리는 GEAR, GR00T, SONIC, GEAR-SONIC 구분은 [[overviews/physical-ai-overview]]의 용어 정리 절이 표로 정리해 뒀다.
 
-[[huggingface-lerobot]]과는 두 방향으로 얽힌다. 데이터 형식이 LeRobot v2를 기반으로 하고, 반대로 LeRobot 쪽에서도 `groot` policy type으로 N1.7을 쓸 수 있다. README는 역할을 갈라 둔다. LeRobot 원생 학습과 평가 흐름은 LeRobot 문서로, 모델 내부와 배포 도구, 벤치마크별 예제는 이 저장소로 오라는 것이다.
+[[physical-ai/huggingface-lerobot]]과는 두 방향으로 얽힌다. 데이터 형식이 LeRobot v2를 기반으로 하고, 반대로 LeRobot 쪽에서도 `groot` policy type으로 N1.7을 쓸 수 있다. README는 역할을 갈라 둔다. LeRobot 원생 학습과 평가 흐름은 LeRobot 문서로, 모델 내부와 배포 도구, 벤치마크별 예제는 이 저장소로 오라는 것이다.
 
-[[cui-2025-openhelix-a-short-survey-empirical]]의 판정 기준으로 보면 GR00T는 dual-system VLA에서 빠진다. System 1이 실시간 perception 입력을 직접 받아야 한다는 조건 때문인데, 그 기준을 적용한 배제 목록이 [[openhelix-robot-awesome-dual-system-vla]]에 있다.
+[[physical-ai/cui-2025-openhelix-a-short-survey-empirical]]의 판정 기준으로 보면 GR00T는 dual-system VLA에서 빠진다. System 1이 실시간 perception 입력을 직접 받아야 한다는 조건 때문인데, 그 기준을 적용한 배제 목록이 [[physical-ai/openhelix-robot-awesome-dual-system-vla]]에 있다.
 
 ## 7. 용어집 (Glossary)
 

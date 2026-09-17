@@ -68,19 +68,19 @@ figures:
   - id: fig10
     file: assets/nvidia-2025-gr00t-n1-5-an-improved-open/crop03.png
     raw: raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/crop03.png
-    caption: "도식 영역 크롭"
+    caption: "grounding 출력 예시 크롭. 배너 버튼이 상단에 걸쳤다"
     strategy: crop
     curated: false
   - id: fig11
     file: assets/nvidia-2025-gr00t-n1-5-an-improved-open/crop04.png
     raw: raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/crop04.png
-    caption: "도식 영역 크롭"
+    caption: "데이터 구성 원형 차트 크롭. 배너가 상단을 가렸다"
     strategy: crop
     curated: false
   - id: fig12
     file: assets/nvidia-2025-gr00t-n1-5-an-improved-open/crop05.png
     raw: raw/articles/nvidia-2025-gr00t-n1-5-an-improved-open-figures/crop05.png
-    caption: "도식 영역 크롭"
+    caption: "미학습 물체 사진 크롭. 상단 일부만 잡혔다"
     strategy: crop
     curated: false
   - id: fig13
@@ -261,7 +261,11 @@ wiki 안에서는 [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]이 정
 | fig05 | Unitree G1의 과일 4종 중 2택 장면 | fetched | (선택, 실험 설정 보조) |
 | fig06 | Unitree G1의 미학습 물체 5종 중 2택 장면 | fetched | (선택, 실험 설정 보조) |
 | fig07 | 전체 페이지 스크린샷 | screenshot | 제외 (아카이브용) |
-| fig08, fig09, fig10, fig11, fig12 | 페이지 크롭. 쿠키 배너가 겹쳤고 해상도가 원본보다 낮다 | crop | 제외 |
+| fig08 | 구조도 크롭. 상단이 쿠키 배너에 가려졌다 | crop | 제외 |
+| fig09 | grounding 주석 예시 크롭. 배너가 겹쳤다 | crop | 제외 |
+| fig10 | grounding 출력 예시 크롭. 배너 버튼이 상단에 걸쳤다 | crop | 제외 |
+| fig11 | 데이터 구성 원형 차트 크롭. 배너가 상단을 가렸다 | crop | 제외 |
+| fig12 | 미학습 물체 사진 크롭. 상단 일부만 잡혔다 | crop | 제외 |
 
 fig01과 fig13은 원문이 SVG로 제공한 벡터라 크롭본보다 훨씬 선명하다. 크롭 다섯 장은 원본 이미지가 이미 다 확보돼 쓸 자리가 없다.
 
