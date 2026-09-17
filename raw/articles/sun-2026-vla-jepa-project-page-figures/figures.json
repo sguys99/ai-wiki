@@ -1,0 +1,82 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/sun-2026-vla-jepa-project-page/fig01.png",
+    "raw": "raw/articles/sun-2026-vla-jepa-project-page-figures/fig01.png",
+    "caption": "VLA-JEPA Architecture",
+    "source_url": "https://ginwind.github.io/VLA-JEPA/images/teaser.png",
+    "bytes": 63976,
+    "width": 1588,
+    "height": 942,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/sun-2026-vla-jepa-project-page/fig02.png",
+    "raw": "raw/articles/sun-2026-vla-jepa-project-page-figures/fig02.png",
+    "caption": "VLA-JEPA Framework",
+    "source_url": "https://ginwind.github.io/VLA-JEPA/images/vla_jepa_framework.png",
+    "bytes": 783108,
+    "width": 4760,
+    "height": 2676,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/sun-2026-vla-jepa-project-page/fig03.png",
+    "raw": "raw/articles/sun-2026-vla-jepa-project-page-figures/fig03.png",
+    "caption": "Attention Map Visualization",
+    "source_url": "https://ginwind.github.io/VLA-JEPA/images/attention_map.png",
+    "bytes": 3165541,
+    "width": 3148,
+    "height": 1576,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/sun-2026-vla-jepa-project-page/fig04.png",
+    "raw": "raw/articles/sun-2026-vla-jepa-project-page-figures/fig04.png",
+    "caption": "Experiments Setup",
+    "source_url": "https://ginwind.github.io/VLA-JEPA/images/experiments_setup.png",
+    "bytes": 1714544,
+    "width": 2466,
+    "height": 1542,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/sun-2026-vla-jepa-project-page/fig05.png",
+    "raw": "raw/articles/sun-2026-vla-jepa-project-page-figures/fig05.png",
+    "caption": "Human Video Proportion Analysis",
+    "source_url": "https://ginwind.github.io/VLA-JEPA/images/human_video_proportion.png",
+    "bytes": 58534,
+    "width": 680,
+    "height": 428,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/sun-2026-vla-jepa-project-page/fig06.png",
+    "raw": "raw/articles/sun-2026-vla-jepa-project-page-figures/fig06.png",
+    "caption": "Real-World Experimental Results",
+    "source_url": "https://ginwind.github.io/VLA-JEPA/images/realworld_figure.png",
+    "bytes": 48179,
+    "width": 1275,
+    "height": 750,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/sun-2026-vla-jepa-project-page/page-full.png",
+    "raw": "raw/articles/sun-2026-vla-jepa-project-page-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]

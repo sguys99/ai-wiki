@@ -1,0 +1,355 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/fig01.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 VLA-JEPA model architecture",
+    "bbox": [
+      64.87,
+      57.78,
+      302.76,
+      203.68
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.4947,
+      0.2572
+    ],
+    "dpi": 300,
+    "area_frac": 0.072,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/fig02.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2 VLA-JEPA supports cross-domain training on both human videos and robot data, where human videos are trained using an alignment loss under the latent world modeling objective, while robot data are trained with a joint objective consisting of an alignment loss and a robot action prediction lo",
+    "bbox": [
+      69.57,
+      57.78,
+      542.43,
+      328.71
+    ],
+    "bbox_norm": [
+      0.1137,
+      0.0729,
+      0.8863,
+      0.415
+    ],
+    "dpi": 300,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/fig03.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3 Experiments setup on LIBERO, LIBERO-Plus, SimplerEnv and real-world Franka robot. We evaluate VLA-JEPA on 3 simulation benchmarks and 1 real-world environment.",
+    "bbox": [
+      64.87,
+      47.82,
+      547.15,
+      345.5
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0604,
+      0.894,
+      0.4362
+    ],
+    "dpi": 300,
+    "area_frac": 0.296,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/fig04.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/fig04.png",
+    "page": 8,
+    "caption": "Figure 4 Real World Experimental Results",
+    "bbox": [
+      318.36,
+      465.24,
+      553.74,
+      601.58
+    ],
+    "bbox_norm": [
+      0.5202,
+      0.5874,
+      0.9048,
+      0.7596
+    ],
+    "dpi": 300,
+    "area_frac": 0.066,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/fig05.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/fig05.png",
+    "page": 9,
+    "caption": "Figure 5 Effect of the proportion of human video data in pre-training on success rates across different perturbation dimensions on the LIBERO-Plus benchmark.",
+    "bbox": [
+      309.21,
+      57.78,
+      547.13,
+      211.98
+    ],
+    "bbox_norm": [
+      0.5053,
+      0.073,
+      0.894,
+      0.2676
+    ],
+    "dpi": 300,
+    "area_frac": 0.076,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/fig06.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/fig06.png",
+    "page": 10,
+    "caption": "Figure 6 Visualization of the attention weight matrix of latent action tokens attending to image tokens.",
+    "bbox": [
+      64.87,
+      57.78,
+      547.14,
+      305.46
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.3857
+    ],
+    "dpi": 300,
+    "area_frac": 0.246,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/fig07.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/fig07.png",
+    "page": 17,
+    "caption": "Figure 7 Comparison of three models ( π 0 , π 0 . 5 , VLA-JEPA) under the object-layout OOD setting.",
+    "bbox": [
+      65.42,
+      57.78,
+      542.43,
+      233.53
+    ],
+    "bbox_norm": [
+      0.1069,
+      0.073,
+      0.8863,
+      0.2949
+    ],
+    "dpi": 300,
+    "area_frac": 0.173,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/tab01.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/tab01.png",
+    "page": 6,
+    "caption": "Table 1 Comparison on the LIBERO benchmark. We report the task success rate for each suite and the average across all tasks. Each task is evaluated over 50 episodes (500 episodes per suite), and success rates are computed over these trials. Bold denotes the best performance, and italics denotes the ",
+    "bbox": [
+      123.33,
+      421.99,
+      485.59,
+      607.52
+    ],
+    "bbox_norm": [
+      0.2015,
+      0.5328,
+      0.7935,
+      0.7671
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/tab02.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/tab02.png",
+    "page": 8,
+    "caption": "Table 2 Comparison on the SimplerEnv benchmark. We report the average success rate for each individual task under the visual matching setting in both SimplerEnv-WidowX Robot and SimplerEnv-Google Robot. ∗ denotes that the method is trained on in-distribution expert demonstrations collected in simula",
+    "bbox": [
+      69.75,
+      109.98,
+      539.18,
+      284.56
+    ],
+    "bbox_norm": [
+      0.114,
+      0.1389,
+      0.881,
+      0.3593
+    ],
+    "dpi": 300,
+    "area_frac": 0.169,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/tab03.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/tab03.png",
+    "page": 8,
+    "caption": "Table 3 Comparison on the LIBERO-Plus benchmark. We report the average success rate across each perturbation dimension, where each perturbation includes the four task suites from the original LIBERO benchmark.",
+    "bbox": [
+      73.56,
+      325.06,
+      538.44,
+      457.44
+    ],
+    "bbox_norm": [
+      0.1202,
+      0.4104,
+      0.8798,
+      0.5776
+    ],
+    "dpi": 300,
+    "area_frac": 0.127,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/tab04.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/tab04.png",
+    "page": 10,
+    "caption": "Table 4 Comparison of VLA-JEPA on the LIBERO bench- mark with different numbers of future video horizon.",
+    "bbox": [
+      82.9,
+      492.49,
+      284.75,
+      558.63
+    ],
+    "bbox_norm": [
+      0.1355,
+      0.6218,
+      0.4653,
+      0.7053
+    ],
+    "dpi": 300,
+    "area_frac": 0.028,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/tab05.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/tab05.png",
+    "page": 16,
+    "caption": "Table 5 Configuration of the Latent World Model.",
+    "bbox": [
+      180.73,
+      308.45,
+      427.76,
+      429.39
+    ],
+    "bbox_norm": [
+      0.2953,
+      0.3895,
+      0.6989,
+      0.5422
+    ],
+    "dpi": 300,
+    "area_frac": 0.062,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/sun-2026-vla-jepa-enhancing-vision-language-action-model-with/tab06.png",
+    "raw": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/tab06.png",
+    "page": 16,
+    "caption": "Table 6 Configuration of the Action head.",
+    "bbox": [
+      209.13,
+      493.86,
+      399.36,
+      614.79
+    ],
+    "bbox_norm": [
+      0.3417,
+      0.6236,
+      0.6525,
+      0.7763
+    ],
+    "dpi": 300,
+    "area_frac": 0.047,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sun-2026-vla-jepa-enhancing-vision-language-action-model-with-figures/_overlay/p16.png"
+  }
+]

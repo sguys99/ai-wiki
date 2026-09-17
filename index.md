@@ -179,6 +179,9 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/jie-2026-omnivla-rl-a-vision-language-action-model-with|OmniVLA-RL]]: 세 expert MoT 구조와 SDE flow matching 위의 GSPO(Flow-GSPO)로 online RL하는 manipulation VLA. LIBERO 평균 97.6% (2026, paper)
 - [[physical-ai/hirose-2025-omnivla-project-page|OmniVLA 프로젝트 페이지 (UC Berkeley)]]: 2D pose, goal 이미지, 자연어와 그 조합으로 goal을 지정하는 navigation VLA. OpenVLA 기반, 9,500시간 주행 데이터, 실제 로봇 배포 영상 6종 (2025, article)
 - [[physical-ai/parada-2026-gemini-robotics-2-whole-body|Gemini Robotics 2]]: humanoid whole-body control, dexterous manipulation, 다중 로봇 협업을 갖춘 Google DeepMind의 세 모델 발표문과 성공률 차트 (2026, article)
+- [[physical-ai/sun-2026-vla-jepa-enhancing-vision-language-action-model-with|VLA-JEPA (USTC)]]: 미래 프레임을 목표로만 쓰는 leakage-free 예측으로 사람 영상에서 latent action을 배우는 VLA. LIBERO-Plus 79.5% (2026, paper)
+- [[physical-ai/sun-2026-vla-jepa-project-page|VLA-JEPA 프로젝트 페이지]]: VLA-JEPA 논문의 공식 페이지. 실제 Franka 로봇 시연 영상과 고해상도 도식, 논문 결과 표 4개를 싣는다 (2026, article)
+- [[physical-ai/ginwind-vla-jepa|VLA-JEPA (ginwind, repo)]]: VLA-JEPA 공식 코드 저장소. starVLA 기반 학습 코드 일부와 LIBERO, LIBERO-Plus, SimplerEnv 평가 스크립트, 체크포인트 2종 사용법 (2026, repo)
 
 ## Agents (agents)
 
