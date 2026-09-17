@@ -135,7 +135,7 @@ dual-system 묶음도 마찬가지다. [[physical-ai/figure-ai-2025-helix-a-visi
 
 ### 한국어 자료층
 
-한국어 자료가 두껍다는 것도 이 저장소의 성격이다. WikiDocs "모두의 로보틱스" primer 9편이 VLA 본류를 거의 그대로 따라가며, 각 편은 원 논문 페이지 앞에 두는 진입로 역할을 한다.
+한국어 자료가 두껍다는 것도 이 저장소의 성격이다. WikiDocs "모두의 로보틱스" primer 10편이 VLA 본류를 거의 그대로 따라가며, 각 편은 원 논문 페이지 앞에 두는 진입로 역할을 한다.
 
 | primer | 대응하는 1차 자료 |
 |---|---|
@@ -148,10 +148,11 @@ dual-system 묶음도 마찬가지다. [[physical-ai/figure-ai-2025-helix-a-visi
 | [[physical-ai/jo-2026-wall-oss-vla-primer\|03-11 WALL-OSS]] | [[physical-ai/zhai-2025-igniting-vlms-toward-the-embodied\|WALL-OSS 논문]] |
 | [[physical-ai/jo-2026-groot-n1-vla-primer\|03-13 Groot N1]] | [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation\|GR00T N1 논문]] |
 | [[physical-ai/jo-2026-groot-n1-5-vla-primer\|03-14 Groot N1.5]] | [[physical-ai/nvidia-2025-gr00t-n1-5-an-improved-open\|N1.5 프로젝트 페이지]] |
+| [[physical-ai/jo-2026-gemini-robotics-1-0-vla-primer\|03-15 Gemini Robotics 1.0]] | [[physical-ai/google-deepmind-2025-gemini-robotics-bringing-ai-into\|Gemini Robotics 논문]] |
 
-primer 아홉 편이 모두 같은 밀도인 것은 아니다. 03-09편은 강화학습 기초부터 RECAP 수식 유도까지 내려가고, 03-11편은 논문 여러 절에 흩어진 손실 함수를 학습 단계 순서로 다시 배열해 기호를 하나씩 풀이한다. 반면 03-13편은 원 논문 도식에 저자가 빨간 테두리를 덧그린 주석 그림으로 같은 구조도를 세 번 반복해 읽힌다.
+primer 열 편이 모두 같은 밀도인 것은 아니다. 03-09편은 강화학습 기초부터 RECAP 수식 유도까지 내려가고, 03-11편은 논문 여러 절에 흩어진 손실 함수를 학습 단계 순서로 다시 배열해 기호를 하나씩 풀이한다. 반면 03-13편은 원 논문 도식에 저자가 빨간 테두리를 덧그린 주석 그림으로 같은 구조도를 세 번 반복해 읽힌다.
 
-primer 외의 한국어 자료는 다섯 가지로 나뉜다. PyTorch KR 해설 3편, 로봇 엔지니어 채널 영상 2편, SLAM 세미나 영상 2편, 실리콘밸리 RFM 연재 2편, Nav2와 FAST-LIO 블로그 3편이다. 합치면 한국어 자료는 21편이고, 주요 모델 대부분에 원 논문을 열기 전에 들를 곳이 하나씩 있다.
+primer 외의 한국어 자료는 다섯 가지로 나뉜다. PyTorch KR 해설 3편, 로봇 엔지니어 채널 영상 2편, SLAM 세미나 영상 2편, 실리콘밸리 RFM 연재 2편, Nav2와 FAST-LIO 블로그 3편이다. 합치면 한국어 자료는 22편이고, 주요 모델 대부분에 원 논문을 열기 전에 들를 곳이 하나씩 있다.
 
 ## 학습 경로
 

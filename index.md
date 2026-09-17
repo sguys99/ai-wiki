@@ -80,6 +80,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation|GR00T N1 (NVIDIA)]]: humanoid dual-system VLA foundation model. VLM이 10Hz로 해석하고 DiT가 120Hz로 action을 내며, 데이터를 data pyramid로 쌓는다 (2025, paper)
 - [[physical-ai/jo-2026-groot-n1-vla-primer|03-13. Groot N1 (모두의 로보틱스 - VLA 입문)]]: GR00T N1 논문의 한국어 입문 해설. dual-system 구조와 flow matching, data pyramid를 차례로 풀어 원 논문 앞에 두는 진입로다 (2026, article)
 - [[physical-ai/jo-2026-groot-n1-5-vla-primer|03-14. Groot N1.5 (모두의 로보틱스 - VLA 입문)]]: GR00T N1.5의 한국어 입문 해설. N1 구조는 그대로 두고 FLARE 손실과 DreamGen 합성 데이터라는 변경점만 좁혀 읽는다 (2026, article)
+- [[physical-ai/jo-2026-gemini-robotics-1-0-vla-primer|03-15. Gemini Robotics 1.0 (모두의 로보틱스 - VLA 입문)]]: Gemini Robotics 1.0의 한국어 입문 해설. 추론하는 ER와 action을 내는 본 모델을 나눠 구조, 일반화, 한계를 짚는다 (2026, article)
 - [[physical-ai/nvidia-2025-gr00t-n1-5-an-improved-open|GR00T N1.5 (NVIDIA GEAR Lab)]]: N1의 골격을 두고 네 군데만 손본 후속 버전의 공식 프로젝트 페이지. VLM 고정과 FLARE 손실, DreamGen 합성 데이터가 변경점이다 (2025, article)
 - [[physical-ai/nvidia-isaac-gr00t|Isaac GR00T (N1.7, repo)]]: GR00T 계열 VLA의 공식 구현이자 N1.7 GA 배포처. backbone을 Cosmos-Reason2-2B로 바꾸고 relative EEF action space로 사람 영상까지 pre-training에 썼다 (2026, repo)
 - [[physical-ai/nvidia-2025-accelerate-generalist-humanoid-robot-development|Isaac GR00T N1 릴리스 공지 (NVIDIA)]]: GR00T N1 공개 당일의 NVIDIA 기술 블로그. 논문에 없는 GPU 사양과 다섯 단계 절차가 실무 진입점이다 (2025, article)
