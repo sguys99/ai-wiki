@@ -1,0 +1,272 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/bytedance-seed-2025-gr-3-technical-report/fig01.png",
+    "raw": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 Overview. GR-3 is able to learn from three types of data: vision-language data, robot trajectory data, and human trajectory data. It is able to perform dexterous and long-horizon tasks with exceptional robustness and generalize well to novel objects, environments, and instructions.",
+    "bbox": [
+      96.12,
+      57.78,
+      512.53,
+      394.65
+    ],
+    "bbox_norm": [
+      0.1571,
+      0.073,
+      0.8375,
+      0.4983
+    ],
+    "dpi": 300,
+    "area_frac": 0.289,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/bytedance-seed-2025-gr-3-technical-report/fig02.png",
+    "raw": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2 Capabilities. GR-3 strictly follows instructions and is capable of understanding unseen instructions involving abstract concepts. It performs robustly and reliably on long-horizon table bussing and dexterous cloth manipulation.",
+    "bbox": [
+      88.38,
+      43.59,
+      523.59,
+      701.55
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.055,
+      0.8555,
+      0.8858
+    ],
+    "dpi": 300,
+    "area_frac": 0.591,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/bytedance-seed-2025-gr-3-technical-report/fig03.png",
+    "raw": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3 The GR-3 Model. GR-3 is co-trained on both robot trajectories and vision-language data with a flow-matching objective (left) and a next-token-prediction objective (right), respectively.",
+    "bbox": [
+      64.87,
+      71.96,
+      547.07,
+      190.46
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0909,
+      0.8939,
+      0.2405
+    ],
+    "dpi": 300,
+    "area_frac": 0.118,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/bytedance-seed-2025-gr-3-technical-report/fig04.png",
+    "raw": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/fig04.png",
+    "page": 6,
+    "caption": "Figure 4 The GR-3 Data. We leverage three types of data during training: robot trajectory data (top), human trajectory data (middle), and vision-language data (bottom).",
+    "bbox": [
+      69.57,
+      71.95,
+      542.4,
+      425.89
+    ],
+    "bbox_norm": [
+      0.1137,
+      0.0908,
+      0.8863,
+      0.5377
+    ],
+    "dpi": 300,
+    "area_frac": 0.345,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/bytedance-seed-2025-gr-3-technical-report/fig05.png",
+    "raw": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/fig05.png",
+    "page": 7,
+    "caption": "Figure 5 The ByteMini Robot. We show the robot specifications, multi-camera views, and motion range of the unique wrist sphere joint.",
+    "bbox": [
+      64.87,
+      71.96,
+      547.07,
+      291.14
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0909,
+      0.8939,
+      0.3676
+    ],
+    "dpi": 300,
+    "area_frac": 0.218,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/bytedance-seed-2025-gr-3-technical-report/fig06.png",
+    "raw": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/fig06.png",
+    "page": 8,
+    "caption": "Figure 6 Experiment Settings of Generalizable Pick-and-Place. (a) Test objects that are seen during training. (b) Test objects that are unseen during training. (c) The Basic environment is seen during training. The others are",
+    "bbox": [
+      64.87,
+      71.96,
+      547.09,
+      321.36
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0909,
+      0.8939,
+      0.4058
+    ],
+    "dpi": 300,
+    "area_frac": 0.248,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/bytedance-seed-2025-gr-3-technical-report/fig07.png",
+    "raw": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/fig07.png",
+    "page": 9,
+    "caption": "Figure 7 Experiment Results of Generalizable Pick-and-Place. (a) Results on generalizable pick-and-place under four different settings. (b) Results on few-shot generalization with human trajectories.",
+    "bbox": [
+      64.87,
+      71.96,
+      547.07,
+      295.43
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0909,
+      0.8939,
+      0.373
+    ],
+    "dpi": 300,
+    "area_frac": 0.222,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/bytedance-seed-2025-gr-3-technical-report/fig08.png",
+    "raw": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/fig08.png",
+    "page": 11,
+    "caption": "Figure 8 Experiment Settings & Results of Table Bussing. (a) Flat: the robot is required to perform long-horizon table bussing in a single run. (b) Instruction following (IF): the robot is prompted with multiple sub-task descriptions in a roll. (c) Test objects. (d) Results on the flat and instructi",
+    "bbox": [
+      64.87,
+      71.96,
+      547.12,
+      415.93
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0909,
+      0.894,
+      0.5252
+    ],
+    "dpi": 300,
+    "area_frac": 0.342,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/bytedance-seed-2025-gr-3-technical-report/fig09.png",
+    "raw": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/fig09.png",
+    "page": 12,
+    "caption": "Figure 9 Experiment Settings of Dexterous Cloth Manipulation. (a) Seen and unseen clothes in the test set. (b) The Basic and Position settings.",
+    "bbox": [
+      64.87,
+      71.96,
+      547.12,
+      241.8
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0909,
+      0.894,
+      0.3053
+    ],
+    "dpi": 300,
+    "area_frac": 0.169,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/bytedance-seed-2025-gr-3-technical-report/fig10.png",
+    "raw": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/fig10.png",
+    "page": 13,
+    "caption": "Figure 10 Experiment Results on Dexterous Cloth Manipulation. (a) Sankey diagram of success (solid) and failure (hatch) across entire rollouts of the Basic setting. (b) Average task progresses of π 0 and GR-3 in the three evaluation",
+    "bbox": [
+      64.87,
+      71.96,
+      547.12,
+      254.66
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0909,
+      0.894,
+      0.3215
+    ],
+    "dpi": 300,
+    "area_frac": 0.182,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bytedance-seed-2025-gr-3-technical-report-figures/_overlay/p13.png"
+  }
+]

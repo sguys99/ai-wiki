@@ -1,0 +1,142 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/fig01.webp",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/fig01.webp",
+    "caption": "",
+    "source_url": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-robotics-2__general-whole.width-1000.format-webp.webp",
+    "bytes": 13550,
+    "width": 1000,
+    "height": 562,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/fig02.webp",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/fig02.webp",
+    "caption": "",
+    "source_url": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-robotics-2__multi-finger-.width-1000.format-webp.webp",
+    "bytes": 13864,
+    "width": 1000,
+    "height": 562,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/fig03.webp",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/fig03.webp",
+    "caption": "",
+    "source_url": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-robotics-2__gripper-dexte.width-1000.format-webp.webp",
+    "bytes": 12470,
+    "width": 1000,
+    "height": 562,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/page-full.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop01.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop02.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop03.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop04.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop05.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop06.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop07.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop08.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop09.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop10.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop11.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/parada-2026-gemini-robotics-2-whole-body/crop12.png",
+    "raw": "raw/articles/parada-2026-gemini-robotics-2-whole-body-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
