@@ -64,13 +64,13 @@ figures:
   - id: fig09
     file: assets/jo-2026-groot-n1-5-vla-primer/fig09.png
     raw: raw/articles/jo-2026-groot-n1-5-vla-primer-figures/fig09.png
-    caption: "DreamGen 개요. video world model이 초기 프레임 한 장에서 합성 영상을 만들고 pseudo action을 자동 추출한다. 아래 세 칸은 contact-rich 증강과 새 행동 일반화, 새 환경 일반화 사례 (DreamGen 논문 Figure 1)"
+    caption: "DreamGen 개요. video world model이 초기 프레임 한 장에서 합성 영상을 만들고 pseudo-action을 자동 추출한다. 아래 세 칸은 contact-rich 증강과 새 행동 일반화, 새 환경 일반화 사례 (DreamGen 논문 Figure 1)"
     strategy: fetched
     curated: false
   - id: fig10
     file: assets/jo-2026-groot-n1-5-vla-primer/fig10.png
     raw: raw/articles/jo-2026-groot-n1-5-vla-primer-figures/fig10.png
-    caption: "DreamGen 4단계 파이프라인. video world model fine-tuning → rollout → pseudo action 라벨링 → neural trajectory로 visuomotor policy 학습 (DreamGen 논문)"
+    caption: "DreamGen 4단계 파이프라인. video world model fine-tuning → rollout → pseudo-action 라벨링 → neural trajectory로 visuomotor policy 학습 (DreamGen 논문)"
     strategy: fetched
     curated: true
   - id: fig11
@@ -82,7 +82,7 @@ figures:
   - id: fig12
     file: assets/jo-2026-groot-n1-5-vla-primer/fig12.png
     raw: raw/articles/jo-2026-groot-n1-5-vla-primer-figures/fig12.png
-    caption: "pseudo action 라벨링 두 방식. (a) Inverse Dynamics Model은 s_t와 s_{t+H} 두 프레임을 DiT에 넣어 action chunk를 예측하고, (b) LAPA는 VQ-VAE로 두 프레임의 차이를 latent action으로 부호화한다"
+    caption: "pseudo-action 라벨링 두 방식. (a) Inverse Dynamics Model은 s_t와 s_{t+H} 두 프레임을 DiT에 넣어 action chunk를 예측하고, (b) LAPA는 VQ-VAE로 두 프레임의 차이를 latent action으로 부호화한다"
     strategy: fetched
     curated: true
   - id: fig13
@@ -146,7 +146,7 @@ N1과 N1.5의 차이를 목록으로 먼저 세운다. VLM backbone이 Eagle-2�
 
 FLARE를 "행동의 결과를 미리 상상한다"는 한 문장으로 요약하고 작동 순서를 두 단계로 나눠 푼다. Q-former로 observation을 32개 토큰으로 압축하는 앞단, 그리고 DiT 안에서 future token을 미래 임베딩에 맞추는 뒷단이다. 중간 layer를 쓰는 이유와 코사인 유사도 식의 기호를 하나씩 옮기는 대목이 이 해설에서 가장 공들인 부분이다.
 
-DreamGen을 4단계 파이프라인으로 정리한다. video world model fine-tuning, rollout, pseudo action 라벨링, neural trajectory로 policy 학습 순이다. 데이터 증강이 아니라 일반화 장치라는 점을 결론으로 못박고, 환경 일반화 28.5%와 행동 일반화 38.3%를 근거로 든다.
+DreamGen을 4단계 파이프라인으로 정리한다. video world model fine-tuning, rollout, pseudo-action 라벨링, neural trajectory로 policy 학습 순이다. 데이터 증강이 아니라 일반화 장치라는 점을 결론으로 못박고, 환경 일반화 28.5%와 행동 일반화 38.3%를 근거로 든다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -168,7 +168,7 @@ DreamGen은 사람이 teleoperation으로 데이터를 모아야 한다는 비�
 
 2단계는 rollout이다. 로봇이 처한 상황을 담은 실제 사진 한 장과 언어 지시를 주면 합성 영상이 나온다. 시뮬레이터에서 대상 물체와 환경 위치를 무작위화하며 증강하는 과정을 함께 거친다.
 
-3단계는 pseudo action 라벨링이다. 생성된 영상에는 action 라벨이 없으니 두 가지 방법 중 하나로 만들어 붙인다. Inverse Dynamics Model은 DiT와 SigLIP-2 vision encoder를 써서 현재 프레임 s_t와 미래 프레임 s_{t+h} 두 장만 보고 그 사이를 채울 action chunk를 예측한다. robot state 없이 이미지 변화만으로 동작을 뽑는 게 특징이고, 학습 후에는 sliding window로 영상 전체를 한 프레임씩 밀며 연속 라벨을 만든다. Latent Action Model은 VQ-VAE 구조로 두 프레임의 시각적 차이를 latent action 벡터로 바꾸고 그 벡터 자체를 라벨로 삼는다.
+3단계는 pseudo-action 라벨링이다. 생성된 영상에는 action 라벨이 없으니 두 가지 방법 중 하나로 만들어 붙인다. Inverse Dynamics Model은 DiT와 SigLIP-2 vision encoder를 써서 현재 프레임 s_t와 미래 프레임 s_{t+h} 두 장만 보고 그 사이를 채울 action chunk를 예측한다. robot state 없이 이미지 변화만으로 동작을 뽑는 게 특징이고, 학습 후에는 sliding window로 영상 전체를 한 프레임씩 밀며 연속 라벨을 만든다. Latent Action Model은 VQ-VAE 구조로 두 프레임의 시각적 차이를 latent action 벡터로 바꾸고 그 벡터 자체를 라벨로 삼는다.
 
 4단계는 이렇게 만든 neural trajectory로 visuomotor policy를 학습하는 단계다. neural trajectory에는 robot state가 없어 상태 정보를 0으로 조건화한다. N1.5 학습에서는 합성 데이터와 실제 데이터를 함께 쓰되 두 유형을 별도의 action encoder와 decoder 경로로 나눠 처리한다.
 
@@ -200,7 +200,7 @@ DreamGen은 사람이 teleoperation으로 데이터를 모아야 한다는 비�
 - FLARE: N1.5의 alignment 손실이 나온 곳. 본문 도식 다수가 이 논문에서 왔다. world model 서베이는 이 방식을 latent-space world modeling 가지로 분류한다.
 - DreamGen(Zhu 2025, arXiv 2505.12705): neural trajectory 합성 파이프라인. 같은 서베이에서 imagination-based 가지로 묶이고, DreamGen Bench는 open-loop 예측 품질 평가 항목으로도 인용된다.
 - Eagle 2.5(Chen 2025, arXiv 2504.15271): 교체된 VLM backbone의 원 논문.
-- LAPA: pseudo action 라벨링의 한 가지 방법. 앞 편 N1 해설에서 latent action space를 설명할 때 이미 나온 방식이다.
+- LAPA: pseudo-action 라벨링의 한 가지 방법. 앞 편 N1 해설에서 latent action space를 설명할 때 이미 나온 방식이다.
 - Cosmos(NVIDIA 2025): DreamGen 1단계에서 fine-tuning 대상으로 이름이 오르는 world foundation model 중 하나.
 
 ## 7. 용어집 (Glossary)
@@ -208,9 +208,9 @@ DreamGen은 사람이 teleoperation으로 데이터를 모아야 한다는 비�
 - FLARE (Future LAtent Representation Alignment): DiT 입력에 learnable future token을 더하고, 그 중간 layer 출력을 t+H 시점 future observation의 임베딩과 코사인 유사도로 묶는 학습 방식. flow matching 손실에 λ=0.2로 더해진다.
 - future token: DiT 입력 시퀀스에 새로 들어간 M개의 learnable 임베딩. 초기값에는 의미가 없고 self-attention을 거치며 미래 상태를 담는 자리로 학습된다.
 - Q-former: 32개의 learnable query token이 self-attention과 cross-attention으로 288개 융합 토큰의 정보를 흡수해 대신하는 압축 모듈. N1.5는 VLM 출력을 이 32 토큰으로 줄여 쓴다.
-- DreamGen: video world model을 fine-tuning해 합성 로봇 영상을 만들고 pseudo action을 붙여 학습 데이터로 쓰는 4단계 파이프라인.
+- DreamGen: video world model을 fine-tuning해 합성 로봇 영상을 만들고 pseudo-action을 붙여 학습 데이터로 쓰는 4단계 파이프라인.
 - neural trajectory: DreamGen이 만들어낸 합성 trajectory. robot state가 없어 상태 입력을 0으로 조건화해 쓴다.
-- pseudo action label: action 라벨이 없는 생성 영상에 Inverse Dynamics Model이나 Latent Action Model로 사후에 붙이는 action 라벨.
+- pseudo-action label: action 라벨이 없는 생성 영상에 Inverse Dynamics Model이나 Latent Action Model로 사후에 붙이는 action 라벨.
 - Inverse Dynamics Model (IDM): 두 프레임 s_t와 s_{t+h}만 보고 그 사이 action chunk를 예측하도록 학습한 DiT 기반 모델. robot state를 쓰지 않는다.
 - 환경 일반화 / 행동 일반화: DreamGen의 값을 재는 두 항목. 전자는 처음 보는 장소에서의 성공률(28.5%), 후자는 학습에 없던 동사 지시에서의 성공률(38.3%)이다.
 

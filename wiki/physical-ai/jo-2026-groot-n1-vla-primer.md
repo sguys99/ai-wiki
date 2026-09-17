@@ -250,7 +250,7 @@ emergent capability는 학습 목표로 명시하지 않았는데도 모델과 �
 
 - 12번째 layer를 쓴다는 선택과 K=4가 가장 좋았다는 결론은 결과만 옮기고, 그 근거가 된 ablation은 다루지 않는다. ablation은 구성 요소를 하나씩 빼거나 바꿔가며 각 요소의 성능 기여를 확인하는 실험이다.
 - neural trajectory를 비디오 생성 AI로만 언급하고, 88시간 분량을 827시간으로 늘린 규모나 생성 결과를 걸러내는 판정 절차는 빠져 있다.
-- action 라벨이 없는 데이터에 pseudo action을 붙이는 Inverse Dynamics Model도 등장하지 않는다.
+- action 라벨이 없는 데이터에 pseudo-action을 붙이는 Inverse Dynamics Model도 등장하지 않는다.
 
 이 해설은 입문 진입로로는 충분하지만, 인용 근거로 쓰기에는 원 논문 페이지가 맞다.
 
@@ -268,7 +268,7 @@ emergent capability는 학습 목표로 명시하지 않았는데도 모델과 �
 ## 관련 페이지
 
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]: 이 페이지가 해설하는 원 논문. 시뮬레이션과 실제 로봇 수치표, 데이터 생성 절차, 학습 인프라가 모두 원 논문 페이지에 있다. 입문으로 감을 잡은 뒤 넘어가는 순서를 권한다.
-- [[physical-ai/jo-2026-groot-n1-5-vla-primer]]: 같은 시리즈의 다음 편(03-14). 여기서 세운 dual-system 구조를 그대로 두고 FLARE와 DreamGen이 결합되는 과정을 이어서 읽는다. 이 편에서 다룬 latent action space가 다음 편의 pseudo action 라벨링으로 이어진다.
+- [[physical-ai/jo-2026-groot-n1-5-vla-primer]]: 같은 시리즈의 다음 편(03-14). 여기서 세운 dual-system 구조를 그대로 두고 FLARE와 DreamGen이 결합되는 과정을 이어서 읽는다. 이 편에서 다룬 latent action space가 다음 편의 pseudo-action 라벨링으로 이어진다.
 - [[physical-ai/jo-2026-wall-oss-vla-primer]]: 같은 시리즈의 03-11편. 수식을 기호 단위로 나눠 설명하는 방식이 이 편과 닮았다.
 - [[physical-ai/jo-2026-smolvla-vla-primer]]: 같은 시리즈의 03-10편. SmolVLA가 π0의 self-attention과 GR00T N1의 cross-attention을 번갈아 쌓는 절충을 택한 배경을 함께 볼 수 있다.
 - [[llms/chen-2025-eagle-25-boosting-long-context-post-training]]: System 2 자리에 들어가는 Eagle 계열의 다음 세대. 이 편이 설명하는 Eagle-2가 어떤 계보의 모델인지 확인할 수 있다.

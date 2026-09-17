@@ -20,6 +20,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 - 이 용어집은 frontmatter `applies_to`에 적힌 category의 파일에만 적용된다. "정책·행동·관측" 같은 단어가 다른 도메인에서 일반 의미(운영 정책 등)로 쓰이는 것까지 막지 않기 위해서다.
 - 오탐이 큰 일반어는 단독으로 등재하지 않고 복합어·조사 결합형만 등재한다 (예: 행동 → `행동 공간·행동 토큰`).
 - canonical이 개념 번역어인 용어(시연 데이터, 지시문 등)는 문서당 첫 등장 시 원어를 괄호 병기하고("시연 데이터(demonstration)") 이후에는 한 표기만 쓴다. 같은 문서에서 원어와 번역어를 섞지 않는다. 라틴 문자만 든 괄호는 `lint_terms.py`가 마스킹하므로 병기가 금지 표기로 오탐되지 않는다. (2026-09 개정)
+- 금지 표기 칸에는 영문 철자 변형도 둘 수 있다 (예: pseudo-action 행의 `pseudo action`). `lint_terms.py`는 영문도 대소문자를 구분하는 리터럴 부분 문자열로 검사하므로, 띄어쓰기나 대소문자만 다른 변형을 금지 표기로 두어도 canonical 자체는 걸리지 않는다 ("pseudo action"은 "pseudo-action"의 부분 문자열이 아니다). [[overviews/glossary-agents]]의 표기 원칙 절과 같은 규약이다. (2026-09 7-2 통일)
 
 ## 용어 표
 
@@ -108,8 +109,8 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | perturbation | perturbation | 섭동 | perturbation은 world model이 미래를 예측할 때 함께 받는 현재 입력으로, action·텍스트·무작위 입력을 한 이름으로 묶는다 | Cosmos 형식화의 c(t). 조건 입력의 종류를 가리지 않는다는 뜻이 담겨 직역하면 의미가 좁아진다. "교란"은 벤치마크 교란(LIBERO-Pro 등) 문맥에서 이미 널리 쓰여 기계 검사에서 뺐다 — 지침만 |
 | physics alignment | physics alignment | 물리 정렬·물리 정합 | physics alignment는 시뮬레이터로 만든 물리적으로 옳은 영상을 정답 삼아 생성 결과가 물리 법칙을 지키는지 재는 평가 축이다 | NVIDIA Cosmos 2025가 도입한 평가 이름. glossary-llms의 alignment(가치 정렬) 행과는 다른 문맥이다 |
 | video generative pre-training | video generative pre-training | 영상 생성 사전학습·비디오 생성 사전학습 | video generative pre-training은 언어 설명이 붙은 영상에서 미래 프레임을 맞히도록 모델을 먼저 학습시키는 단계다 | GR-1(Wu 2023)이 세운 이름. 로봇 trajectory 자체가 영상이라는 전제에서 출발해 GR-2·GR-3와 world-action model 계열로 이어진다. "사전학습" 직역은 glossary-llms의 pre-training 행이 이미 잡는다 |
-| latent action | latent action | 잠재 행동·잠재 동작 | latent action은 두 프레임 사이의 시각적 변화를 action 라벨 없이 부호화한 벡터다 | LAPA(Ye 2024)가 VQ-VAE로 세운 표현. GR00T N1의 latent action space와 DreamGen의 pseudo action 라벨링이 모두 이걸 쓴다. latent 행의 금지 표기와 짝을 이룬다 |
-| Inverse Dynamics Model | Inverse Dynamics Model | 역동역학 모델 | Inverse Dynamics Model은 두 프레임만 보고 그 사이를 채울 action chunk를 되짚어 예측하는 모델이다 | 약어 IDM 병용 가능. action 라벨이 없는 영상에 pseudo action을 붙이는 표준 경로. dynamics 행이 "동역학"을 병용 허용하는 것과 달리 이 복합어는 원어로 고정한다 |
+| latent action | latent action | 잠재 행동·잠재 동작 | latent action은 두 프레임 사이의 시각적 변화를 action 라벨 없이 부호화한 벡터다 | LAPA(Ye 2024)가 VQ-VAE로 세운 표현. GR00T N1의 latent action space와 DreamGen의 pseudo-action 라벨링이 모두 이걸 쓴다. latent 행의 금지 표기와 짝을 이룬다 |
+| Inverse Dynamics Model | Inverse Dynamics Model | 역동역학 모델 | Inverse Dynamics Model은 두 프레임만 보고 그 사이를 채울 action chunk를 되짚어 예측하는 모델이다 | 약어 IDM 병용 가능. action 라벨이 없는 영상에 pseudo-action을 붙이는 표준 경로. dynamics 행이 "동역학"을 병용 허용하는 것과 달리 이 복합어는 원어로 고정한다 |
 | neural trajectory | neural trajectory | 신경 궤적·뉴럴 궤적 | neural trajectory는 video world model이 만들어낸 합성 trajectory 데이터다 | DreamGen(Zhu 2025)이 세운 이름. GR00T N1.5 pre-training 데이터에 들어간다. robot state가 없어 상태 입력을 0으로 조건화해 쓴다. trajectory 행의 "궤적" 금지와 짝 |
 | DiT | DiT | 확산 트랜스포머 | DiT는 diffusion 모델의 denoising 신경망을 Transformer로 구현한 구조다 | Diffusion Transformer의 표준 약어. GR00T의 action head와 Cosmos의 diffusion WFM이 모두 이 계열이다 |
 | cascaded cross-attention | cascaded cross-attention | — | cascaded cross-attention은 블록 하나 안에서 여러 조건을 각각 별도의 cross-attention 층으로 순서대로 주입하는 구조다 | HiVLA 고유 구조명. 금지 표기는 두지 않는다. "계단식"과 "캐스케이드"가 계단식 배열·비용 캐스케이드처럼 일반어로 이미 쓰이고 있어 리터럴 검사가 오탐한다. 2026-09 등재 |
@@ -144,7 +145,7 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | world simulator | world simulator | 월드 시뮬레이터·세계 시뮬레이터 | world simulator는 조작 입력에 반응해 물리적으로 일관된 미래 장면을 계속 만들어내는 시스템이다 | world model, world foundation model 행과 짝. 예측 모델을 넘어 상호작용까지 감당하는 도달점으로 쓰인다 |
 | physics-aware generation | physics-aware generation | 물리 인지 생성 | physics-aware generation은 생성 결과가 물리 법칙을 지키도록 물리 지식을 생성 과정에 넣는 접근을 통칭한다 | 약어 PAG 병용 가능. Liu 2025 서베이의 조직 개념 |
 | language coaching | language coaching | 언어 코칭 | language coaching은 실행 중인 로봇에게 사람이 말로 중간 단계를 불러주며 과제를 끌고 가는 방식이다 | π0.7 논문과 발표 글이 공유하는 기법명. subtask 행과 짝을 이룬다 |
-| pseudo-action | pseudo-action | 가짜 action·의사 행동 | pseudo-action은 action 라벨이 없는 영상에 Inverse Dynamics Model 등으로 사후에 붙인 action 라벨이다 | DreamGen과 GR00T N1 계열이 쓴다. diffusion 입력으로 넣는 noise 상태의 action은 이 개념이 아니므로 그 문맥에는 쓰지 않는다 |
+| pseudo-action | pseudo-action | 가짜 action·의사 행동·pseudo action | pseudo-action은 action 라벨이 없는 영상에 Inverse Dynamics Model 등으로 사후에 붙인 action 라벨이다 | DreamGen과 GR00T N1 계열이 쓴다. diffusion 입력으로 넣는 noise 상태의 action은 이 개념이 아니므로 그 문맥에는 쓰지 않는다. 띄어쓰기 변형은 금지 표기로 잡는다 (2026-09 7-2 통일, 띄어쓰기 21건 대 하이픈 12건이던 것을 하이픈으로 고정) |
 | reference lookahead | reference lookahead | — | reference lookahead는 컨트롤러가 현재 프레임 이후 몇 초 분량의 참조 모션을 미리 받는지를 뜻한다 | SONIC 계열. 컨트롤러에 미리 제시하는 참조 모션의 길이이며 지연 측정치가 아니다 |
 | steerability | steerability | 조종 가능성 | steerability는 사람이 말이나 예시로 로봇의 행동 방식을 원하는 쪽으로 이끌 수 있는 정도를 말한다 | π0.7 논문 제목 용어. world model이 명령한 action을 얼마나 정확히 따르는지를 뜻하는 controllability와 다른 개념이라 서로 바꿔 쓰지 않는다 (2026-09 등재) |
 | controllability | controllability | 제어 가능성 | controllability는 world model이 생성한 미래가 명령으로 준 action을 얼마나 정확히 따르는지를 나타내는 성질이다 | world model 서베이(hou-2026, li-2025, liu-2025, zhang-2026) 공통 평가 개념. 번역어 "제어 가능성"과 "조종 가능성"은 과거 두 개념 모두에 쓰였으므로 치환 시 문맥으로 steerability와 구분한다 (2026-09 등재) |

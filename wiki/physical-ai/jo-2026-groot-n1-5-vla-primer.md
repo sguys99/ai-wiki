@@ -35,13 +35,13 @@ figures:
   - id: fig10
     file: assets/jo-2026-groot-n1-5-vla-primer/fig10.png
     raw: raw/articles/jo-2026-groot-n1-5-vla-primer-figures/fig10.png
-    caption: "DreamGen 4단계 파이프라인. video world model fine-tuning, rollout, pseudo action 라벨링, neural trajectory를 이용한 visuomotor policy 학습 순서다 (DreamGen 논문)"
+    caption: "DreamGen 4단계 파이프라인. video world model fine-tuning, rollout, pseudo-action 라벨링, neural trajectory를 이용한 visuomotor policy 학습 순서다 (DreamGen 논문)"
     strategy: fetched
     curated: true
   - id: fig12
     file: assets/jo-2026-groot-n1-5-vla-primer/fig12.png
     raw: raw/articles/jo-2026-groot-n1-5-vla-primer-figures/fig12.png
-    caption: "pseudo action 라벨링 두 방식. (a) Inverse Dynamics Model은 s_t와 s_{t+h} 두 프레임을 DiT에 넣어 action chunk를 예측하고, (b) LAPA는 VQ-VAE로 두 프레임의 차이를 latent action으로 부호화한다"
+    caption: "pseudo-action 라벨링 두 방식. (a) Inverse Dynamics Model은 s_t와 s_{t+h} 두 프레임을 DiT에 넣어 action chunk를 예측하고, (b) LAPA는 VQ-VAE로 두 프레임의 차이를 latent action으로 부호화한다"
     strategy: fetched
     curated: true
   - id: fig13
@@ -102,11 +102,11 @@ frozen은 학습 중 해당 모듈의 가중치를 갱신하지 않고 고정한
 
 N1은 fine-tuning 단계에서만 고정했다. 반면 N1.5는 학습 내내 VLM의 언어 이해 능력을 건드리지 않는 쪽으로 기울었다. 뒤의 결과 장에서 language following rate가 크게 오른 것을 해설은 이 결정의 근거로 삼는다.
 
-### neural trajectory와 pseudo action
+### neural trajectory와 pseudo-action
 
 neural trajectory는 video world model이 만들어낸 합성 trajectory 데이터를 가리킨다. 실제 로봇이 움직이는 것처럼 보이는 영상이지만 사람이 teleoperation으로 만든 기록은 아니다. teleoperation은 사람이 로봇을 원격으로 움직여 시연을 만드는 방식이다.
 
-생성된 영상에는 어떤 제어 명령이 있었는지가 기록되어 있지 않다. pseudo action은 그렇게 라벨이 비어 있는 영상에 사후에 붙이는 action 라벨을 뜻한다.
+생성된 영상에는 어떤 제어 명령이 있었는지가 기록되어 있지 않다. pseudo-action은 그렇게 라벨이 비어 있는 영상에 사후에 붙이는 action 라벨을 뜻한다.
 
 ### future token
 
@@ -202,13 +202,13 @@ FLARE를 적용한 N1.5는 다음 동작을 예측하는 데 그치지 않고, �
 로봇 학습의 가장 큰 걸림돌은 사람이 직접 로봇을 조종해 데이터를 모아야 한다는 비용 문제다. DreamGen은 video world model을 활용해 실제 로봇이 움직이는 것처럼 보이는 합성 영상, 즉 neural trajectory를 스스로 만들어내 이 비용을 우회한다.
 
 ![[assets/jo-2026-groot-n1-5-vla-primer/fig10.png]]
-*Figure 4: DreamGen 4단계 파이프라인. video world model fine-tuning, rollout, pseudo action 라벨링, neural trajectory를 이용한 visuomotor policy 학습 순서로 이어진다 (DreamGen 논문).*
+*Figure 4: DreamGen 4단계 파이프라인. video world model fine-tuning, rollout, pseudo-action 라벨링, neural trajectory를 이용한 visuomotor policy 학습 순서로 이어진다 (DreamGen 논문).*
 
 | 단계 | 이름 | 하는 일 |
 |---|---|---|
 | 1 | video world model fine-tuning | 사람이 teleoperation으로 만든 실제 trajectory에 world model을 맞춘다 |
 | 2 | rollout | 실제 사진 한 장과 지시문으로 합성 영상을 생성한다 |
-| 3 | pseudo action 라벨링 | 라벨이 없는 생성 영상에 action 라벨을 사후에 붙인다 |
+| 3 | pseudo-action 라벨링 | 라벨이 없는 생성 영상에 action 라벨을 사후에 붙인다 |
 | 4 | visuomotor policy 학습 | 완성된 neural trajectory로 policy를 학습한다 |
 
 ### 1단계 video world model fine-tuning
@@ -225,12 +225,12 @@ FLARE를 적용한 N1.5는 다음 동작을 예측하는 데 그치지 않고, �
 
 이 과정에는 증강이 함께 들어간다. 시뮬레이터에서 각 과제의 대상 물체나 환경의 위치를 무작위화하며 데이터를 넓힌다.
 
-### 3단계 pseudo action 라벨링
+### 3단계 pseudo-action 라벨링
 
 3단계는 생성된 영상에 action 라벨을 붙이는 과정이다. 생성 영상에는 라벨이 없으므로 두 방법 중 하나를 쓴다.
 
 ![[assets/jo-2026-groot-n1-5-vla-primer/fig12.png]]
-*Figure 5: pseudo action 라벨링 두 방식. (a) Inverse Dynamics Model은 s_t와 s_{t+h} 두 프레임을 DiT에 넣어 그 사이의 action chunk를 예측하고, (b) LAPA는 VQ-VAE로 두 프레임의 차이를 latent action으로 부호화한다.*
+*Figure 5: pseudo-action 라벨링 두 방식. (a) Inverse Dynamics Model은 s_t와 s_{t+h} 두 프레임을 DiT에 넣어 그 사이의 action chunk를 예측하고, (b) LAPA는 VQ-VAE로 두 프레임의 차이를 latent action으로 부호화한다.*
 
 | 방식 | 구조 | 입력 | 출력 |
 |---|---|---|---|
@@ -343,7 +343,7 @@ DreamGen 쪽 한계는 더 구체적이다. 생성 모델은 물리 엔진처럼
 | FLARE | DiT 입력에 learnable future token을 추가하고, 그 중간 layer 출력을 t+H 시점 future observation의 임베딩과 코사인 유사도로 묶는 학습 방식. flow matching 손실에 λ=0.2로 더해진다 |
 | future token | DiT 입력 시퀀스에 새로 들어간 M개의 learnable 임베딩. 초기값에는 의미가 없고 self-attention을 거치며 미래 상태를 담는 자리로 학습된다 |
 | Q-former | 32개의 learnable query token이 self-attention과 cross-attention으로 288개 융합 토큰의 정보를 흡수해 대신하는 압축 모듈 |
-| DreamGen | video world model을 fine-tuning해 합성 로봇 영상을 만들고 pseudo action을 붙여 학습 데이터로 쓰는 4단계 파이프라인 |
+| DreamGen | video world model을 fine-tuning해 합성 로봇 영상을 만들고 pseudo-action을 붙여 학습 데이터로 쓰는 4단계 파이프라인 |
 | neural trajectory | DreamGen이 만들어낸 합성 trajectory. robot state가 없어 상태 입력을 0으로 조건화해 쓴다 |
 | Inverse Dynamics Model | 두 프레임 s_t와 s_{t+h}만 보고 그 사이를 채울 action chunk를 예측하도록 학습한 DiT 기반 모델. robot state를 쓰지 않는다 |
 
