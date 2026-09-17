@@ -7,6 +7,7 @@ raw_path: raw/papers/ai-2026-pi07-a-steerable-generalist-robotic.pdf
 raw_filename: "ai-2026-pi07-a-steerable-generalist-robotic.pdf"
 source_collection: external
 authors: "Physical Intelligence (성 알파벳순 87인 공저: Bo Ai, Ali Amin, Ashwin Balakrishna, Kevin Black, Danny Driess, Chelsea Finn, Karol Hausman, Brian Ichter, Sergey Levine, Suraj Nair, Karl Pertsch, Lucy Xiaoyang Shi, Jost Tobias Springenberg, Marcel Torne, Quan Vuong 등)"
+arxiv_id: "2604.15483"
 url: "https://www.pi.website/blog/pi07"
 tags: [physical-ai, vla, world-model, manipulation]
 figures:
@@ -240,7 +241,7 @@ prompt에 "무엇을 할지"만이 아니라 "어떻게 할지"까지 담아 품
 
 - 제목: π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities
 - 저자: Physical Intelligence 소속 87인 공저 (성 알파벳순 나열, Bo Ai가 첫 이름)
-- 공개: 2026년 4월 16일, 블로그와 PDF 동시 공개 (arXiv 번호 없음)
+- 공개: 2026년 4월 16일, 블로그와 PDF 동시 공개. arXiv에는 2604.15483으로 등록되었고 v2는 2026년 4월 24일자다 (본문은 pi.website PDF와 동일)
 - 분량: 25페이지 (본문 15페이지 + 참고문헌 + Appendix A~F)
 - 프로젝트 페이지: https://www.pi.website/pi07
 - 원본: `raw/papers/ai-2026-pi07-a-steerable-generalist-robotic.pdf`

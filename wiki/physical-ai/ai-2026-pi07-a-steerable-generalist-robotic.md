@@ -8,6 +8,7 @@ raw_filename: "ai-2026-pi07-a-steerable-generalist-robotic.pdf"
 source_collection: external
 source: ai-2026-pi07-a-steerable-generalist-robotic.md
 authors: "Physical Intelligence (성 알파벳순 87인 공저: Bo Ai, Ali Amin, Ashwin Balakrishna, Kevin Black, Danny Driess, Chelsea Finn, Karol Hausman, Brian Ichter, Sergey Levine, Suraj Nair, Karl Pertsch, Lucy Xiaoyang Shi, Jost Tobias Springenberg, Marcel Torne, Quan Vuong 등)"
+arxiv_id: "2604.15483"
 url: "https://www.pi.website/blog/pi07"
 tags: [physical-ai, vla, world-model, manipulation]
 figures:
