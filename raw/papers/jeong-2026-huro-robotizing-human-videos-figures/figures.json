@@ -1,0 +1,543 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/fig01.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: Overview of HuRo pretraining for real-world manipulation. We transform large-scale human activity videos into robotized VLA episodes using visual robot overlay and motion retarget- ing. The resulting episodes contain language instructions, robot states, and actions for VLA policy pretraini",
+    "bbox": [
+      99.77,
+      50.71,
+      511.27,
+      253.38
+    ],
+    "bbox_norm": [
+      0.163,
+      0.064,
+      0.8354,
+      0.3199
+    ],
+    "dpi": 300,
+    "area_frac": 0.172,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/fig02.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2: Overview of HuRo dataset construction pipeline. Human videos are annotated, retar- geted into robot actions, and visually converted into robotized observations to form HuRo episodes.",
+    "bbox": [
+      102.0,
+      46.08,
+      510.0,
+      199.58
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0582,
+      0.8333,
+      0.252
+    ],
+    "dpi": 300,
+    "area_frac": 0.129,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/fig03.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3: Real-world manipulation tasks and main results. (a) Completion scores under increas- ing scales of robotized human video pretraining. (b) Effect of visual robotization. (c) Comparison with robot foundation model references. (d) Representative rollouts across the four real-world ma- nipulat",
+    "bbox": [
+      102.0,
+      45.73,
+      510.0,
+      227.86
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0577,
+      0.8333,
+      0.2877
+    ],
+    "dpi": 300,
+    "area_frac": 0.153,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/fig04.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/fig04.png",
+    "page": 6,
+    "caption": "Figure 4: Cup Stacking evaluation. (a) ID and OOD completion across pretraining scales. (b– c) OOD settings with spatial layout and visual appearance shifts.",
+    "bbox": [
+      102.0,
+      413.91,
+      510.0,
+      629.63
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.5226,
+      0.8333,
+      0.795
+    ],
+    "dpi": 300,
+    "area_frac": 0.182,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/fig05.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/fig05.png",
+    "page": 7,
+    "caption": "Figure 5: Effect of end-to-end VLA pretraining on Diverse Pick-and-Place. (a) Task setup. (b) Completion scores under ID and OOD evaluation. (c) ID and OOD object instances. (d) Qualitative comparison of grasp behavior.",
+    "bbox": [
+      102.0,
+      47.17,
+      512.23,
+      246.97
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0596,
+      0.837,
+      0.3118
+    ],
+    "dpi": 300,
+    "area_frac": 0.169,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/fig06.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/fig06.png",
+    "page": 8,
+    "caption": "Figure 6: Scaling comparison with video- generation pretraining. Completion scores on Diverse Pick-and-Place under matched pretraining frame budgets for (a) ID and (b) OOD evaluation.",
+    "bbox": [
+      298.16,
+      202.3,
+      518.86,
+      345.77
+    ],
+    "bbox_norm": [
+      0.4872,
+      0.2554,
+      0.8478,
+      0.4366
+    ],
+    "dpi": 300,
+    "area_frac": 0.065,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/fig07.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/fig07.png",
+    "page": 16,
+    "caption": "Figure 7: Word clouds of HuRo instructions . Frequent verbs, objects, and attributes from the full mixed-source HuRo instruction set are shown.",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      183.82
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.2321
+    ],
+    "dpi": 300,
+    "area_frac": 0.099,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/fig08.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/fig08.png",
+    "page": 17,
+    "caption": "Figure 8: OpenArm Fruit Pick-and-Place setup. (a) OpenArm embodiment. (b) Fine-tuning and ID objects. (c) Objects introduced for OOD evaluation.",
+    "bbox": [
+      111.9,
+      66.0,
+      500.1,
+      228.0
+    ],
+    "bbox_norm": [
+      0.1828,
+      0.0833,
+      0.8172,
+      0.2879
+    ],
+    "dpi": 300,
+    "area_frac": 0.13,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/fig09.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/fig09.png",
+    "page": 18,
+    "caption": "Figure 9: Qualitative robotization across target embodiments. The same source human videos are robotized for four target embodiments with different morphologies and kinematics: (a) ALLEX, (b) OpenArm with XHand1 hands, (c) RBY1 with Wuji2 hands, and (d) GR1.",
+    "bbox": [
+      105.96,
+      66.0,
+      506.05,
+      145.26
+    ],
+    "bbox_norm": [
+      0.1731,
+      0.0833,
+      0.8269,
+      0.1834
+    ],
+    "dpi": 300,
+    "area_frac": 0.065,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/fig10.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/fig10.png",
+    "page": 20,
+    "caption": "Figure 10: Camera-alignment residuals and high-error examples. Top: top-decile tail of episode-level mean camera-position and camera-rotation residuals, with dashed lines indicating the p99 thresholds. Bottom: representative high-error episodes exhibiting large viewpoint or robot- placement inconsis",
+    "bbox": [
+      105.96,
+      66.0,
+      506.05,
+      288.98
+    ],
+    "bbox_norm": [
+      0.1731,
+      0.0833,
+      0.8269,
+      0.3649
+    ],
+    "dpi": 300,
+    "area_frac": 0.184,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/tab01.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/tab01.png",
+    "page": 13,
+    "caption": "Table 1: ALLEX real-world evaluation setup. The table summarizes the task suite, demonstration counts, and ID/OOD rollout protocol used for real-world evaluation.",
+    "bbox": [
+      104.0,
+      95.11,
+      508.01,
+      170.03
+    ],
+    "bbox_norm": [
+      0.1699,
+      0.1201,
+      0.8301,
+      0.2147
+    ],
+    "dpi": 300,
+    "area_frac": 0.062,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/tab02.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/tab02.png",
+    "page": 13,
+    "caption": "Table 2: Real-world evaluation results on the ALLEX suite. We report per-task ID/OOD com- pletion scores and aggregate averages. The first two rows are external references, and the remaining rows are our controlled variants. PT denotes robotized human-video pretraining, and no-overlay denotes the 10",
+    "bbox": [
+      104.48,
+      232.31,
+      507.53,
+      392.83
+    ],
+    "bbox_norm": [
+      0.1707,
+      0.2933,
+      0.8293,
+      0.496
+    ],
+    "dpi": 300,
+    "area_frac": 0.133,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/tab03.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/tab03.png",
+    "page": 14,
+    "caption": "Table 3: Masquerade-style robotization comparison. We report ID and OOD completion scores on Diverse Pick-and-Place. Best and second-best scores are bolded and underlined, respectively.",
+    "bbox": [
+      197.81,
+      95.19,
+      414.19,
+      172.04
+    ],
+    "bbox_norm": [
+      0.3232,
+      0.1202,
+      0.6768,
+      0.2172
+    ],
+    "dpi": 300,
+    "area_frac": 0.034,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/tab04.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/tab04.png",
+    "page": 14,
+    "caption": "Table 4: OOD comparison with human-domain pretraining. PT Obs./Action denotes the ob- servation and action domains used during pretraining. Best and second-best scores are bolded and underlined, respectively.",
+    "bbox": [
+      184.52,
+      206.32,
+      425.24,
+      288.63
+    ],
+    "bbox_norm": [
+      0.3015,
+      0.2605,
+      0.6948,
+      0.3644
+    ],
+    "dpi": 300,
+    "area_frac": 0.041,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/tab05.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/tab05.png",
+    "page": 15,
+    "caption": "Table 5: Source composition of HuRo dataset. Ratios are computed by frame count.",
+    "bbox": [
+      185.81,
+      84.28,
+      426.19,
+      181.33
+    ],
+    "bbox_norm": [
+      0.3036,
+      0.1064,
+      0.6964,
+      0.2289
+    ],
+    "dpi": 300,
+    "area_frac": 0.048,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/tab06.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/tab06.png",
+    "page": 15,
+    "caption": "Table 6: Coverage descriptors across HuRo variants. Visual coverage is computed using sampled DINOv3 frame features and 20K OpenImages reference images. Instruction statistics are computed over chunk-level instructions.",
+    "bbox": [
+      102.0,
+      221.98,
+      507.88,
+      293.6
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2803,
+      0.8299,
+      0.3707
+    ],
+    "dpi": 300,
+    "area_frac": 0.06,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/tab07.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/tab07.png",
+    "page": 17,
+    "caption": "Table 7: OpenArm Fruit Pick-and-Place results. Each condition uses 8 rollouts, and entries report binary completion percentages. Overall is the mean of ID Avg. and OOD Avg. Best and second-best values in the ID Avg., OOD Avg., and Overall columns are bolded and underlined, respectively.",
+    "bbox": [
+      134.35,
+      312.43,
+      477.65,
+      448.5
+    ],
+    "bbox_norm": [
+      0.2195,
+      0.3945,
+      0.7805,
+      0.5663
+    ],
+    "dpi": 300,
+    "area_frac": 0.096,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/tab08.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/tab08.png",
+    "page": 18,
+    "caption": "Table 8: Pipeline processing cost on a single RTX 5090. Times are averaged over three 15-minute clips per source and include per-clip computation, excluding model loading and video/file I/O. EPIC- Kitchens and Ego4D are processed at 456 × 256 and 342 × 256 , respectively.",
+    "bbox": [
+      171.23,
+      224.9,
+      440.77,
+      302.02
+    ],
+    "bbox_norm": [
+      0.2798,
+      0.284,
+      0.7202,
+      0.3813
+    ],
+    "dpi": 300,
+    "area_frac": 0.043,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/tab09.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/tab09.png",
+    "page": 19,
+    "caption": "Table 9: Corpus-level data retention. Manipulation selection denotes the fraction of source-video frames retained as manipulation segments during human-video annotation. Post-selection retention denotes the fraction of these segment frames that reach the final dataset through subsequent action and v",
+    "bbox": [
+      192.91,
+      117.01,
+      419.09,
+      179.16
+    ],
+    "bbox_norm": [
+      0.3152,
+      0.1477,
+      0.6848,
+      0.2262
+    ],
+    "dpi": 300,
+    "area_frac": 0.029,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/jeong-2026-huro-robotizing-human-videos/tab10.png",
+    "raw": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/tab10.png",
+    "page": 19,
+    "caption": "Table 10: Pipeline quality diagnostics. Camera trajectory uses 115 scored EgoDex reruns from 129 attempted episodes, and hand pose uses 80 EgoDex side-segments. Retargeting uses 2,183 segment- side samples, while joint-limit and self-contact statistics use 288 trajectories across five sources. Inpai",
+    "bbox": [
+      102.0,
+      232.02,
+      510.0,
+      348.47
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.293,
+      0.8333,
+      0.44
+    ],
+    "dpi": 300,
+    "area_frac": 0.098,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jeong-2026-huro-robotizing-human-videos-figures/_overlay/p19.png"
+  }
+]
