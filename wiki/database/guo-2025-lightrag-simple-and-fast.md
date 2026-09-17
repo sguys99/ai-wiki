@@ -79,7 +79,7 @@ LightRAG는 지식 그래프를 검색 인덱스로 쓰되 GraphRAG의 community
 
 ### 기존 RAG가 놓치는 것
 
-RAG는 외부 지식을 검색해 LLM 입력에 붙이는 구조다. 이때 코퍼스를 chunk로 쪼개 벡터 DB에 넣고 질의와 가장 가까운 chunk 상위 몇 개를 가져오는 방식이 표준이었다. 논문은 이 방식의 한계를 두 가지로 정리한다.
+RAG는 외부 지식을 검색해 LLM 입력에 붙이는 구조다. 이때 코퍼스를 chunk로 쪼개 vector database에 넣고 질의와 가장 가까운 chunk 상위 몇 개를 가져오는 방식이 표준이었다. 논문은 이 방식의 한계를 두 가지로 정리한다.
 
 | 한계 | 내용 |
 |---|---|
@@ -125,7 +125,7 @@ LightRAG 논문이 baseline으로 삼은 GraphRAG는 community 요약과 communi
 
 ## 핵심 개념
 
-**Graph-based text indexing**은 코퍼스를 chunk 벡터가 아니라 지식 그래프로 색인하는 방식이다. LLM이 chunk마다 entity와 relation을 뽑아내고, 이 결과를 모아 코퍼스 전체를 아우르는 그래프 하나를 만든다.
+**Graph-based text indexing**은 코퍼스를 chunk 벡터가 아니라 지식 그래프로 인덱싱하는 방식이다. LLM이 chunk마다 entity와 relation을 뽑아내고, 이 결과를 모아 코퍼스 전체를 아우르는 그래프 하나를 만든다.
 
 **key-value 인덱싱**은 그래프의 node와 edge를 (key, value) 쌍 문자열로 바꿔 두는 것이다. key는 검색에 쓰는 단어나 짧은 구이고, value는 생성에 넣을 요약 문단이다. 그래프를 순회하지 않고 key만 벡터로 비교하면 되므로 검색이 단순해진다.
 
@@ -226,7 +226,7 @@ relation의 key가 실제로 어떻게 만들어지는지는 그래프 구축 �
 | 순서 | 단계 | 내용 |
 |---|---|---|
 | 1 | Query Keyword Extraction | 질의 $q$에서 local 키워드 $k^{(l)}$와 global 키워드 $k^{(g)}$를 LLM이 한 번에 뽑는다 |
-| 2 | Keyword Matching | 벡터 DB에서 $k^{(l)}$은 후보 entity와, $k^{(g)}$는 global key가 붙은 relation과 매칭한다 |
+| 2 | Keyword Matching | vector database에서 $k^{(l)}$은 후보 entity와, $k^{(g)}$는 global key가 붙은 relation과 매칭한다 |
 | 3 | Incorporating High-Order Relatedness | 검색된 node $v$와 edge $e$의 1-hop neighbor까지 모아 subgraph를 넓힌다 |
 
 3단계의 집합은 $\{v_i \mid v_i \in V \wedge (v_i \in N_v \vee v_i \in N_e)\}$로 쓴다. $N_v$와 $N_e$는 각각 검색된 node와 edge의 1-hop 이웃 node 집합이다. 즉 직접 맞은 것만 쓰지 않고 그 한 칸 옆까지 컨텍스트로 끌어온다.
@@ -322,7 +322,7 @@ Legal이 508만 토큰으로 가장 크고 Mix가 62만 토큰으로 가장 작�
 
 정답을 정의하기 어려운 개방형 질의를 다루므로 GraphRAG가 쓴 방식을 그대로 따른다. 데이터셋 전체 텍스트를 컨텍스트로 주고 LLM에 가상의 사용자 5명을 만들게 하고, 사용자마다 과제 5개, (사용자, 과제) 쌍마다 질문 5개를 만들게 한다. 결과는 데이터셋당 125문항이다.
 
-채점은 GPT-4o-mini judge의 페어와이즈 비교다.
+채점은 GPT-4o-mini judge의 pairwise 비교다.
 
 | 항목 | 정의 |
 |---|---|

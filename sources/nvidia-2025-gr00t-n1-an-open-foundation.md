@@ -364,8 +364,8 @@ Embodiment별 projector는 Octo와 유사하지만 Octo는 VLM을 fine-tuning하
 | fig12 | 13 | "Figure 8: Real-World Tasks" | page-region | (선택) |
 | fig13 | 16 | "Figure 9: Neural Trajectories Ablations" | page-region | ★ wiki 권장 (result) |
 | fig16 | 20 | "Figure 10: 시연 데이터 수별 시뮬레이션 성공률" | page-region | ★ wiki 권장 (result) |
-| fig19 | 21 | "Figure 11: Pre-training 정성 롤아웃" | page-region | (선택) |
-| fig20 | 21 | "Figure 12: Post-training 정성 롤아웃" | page-region | (선택) |
+| fig19 | 21 | "Figure 11: Pre-training 정성 rollout" | page-region | (선택) |
+| fig20 | 21 | "Figure 12: Post-training 정성 rollout" | page-region | (선택) |
 | fig21 | 22 | "Figure 13: neural trajectory 추가 예시" | page-region | (선택) |
 | fig22 | 25 | "Figure 14: human egocentric 데이터셋 샘플" | page-region | (선택) |
 

@@ -203,7 +203,7 @@ README의 Contributing 절은 worked 예제를 가장 신뢰를 쌓는 기여로
 
 ## 7. 용어집 (Glossary)
 
-- **`/graphify` 스킬**: Claude Code에서 입력하는 슬래시 명령. 스킬이 폴더를 읽고 지식 그래프를 만든 뒤 결과를 돌려준다.
+- **`/graphify` 스킬**: Claude Code에서 입력하는 슬래시 커맨드. 스킬이 폴더를 읽고 지식 그래프를 만든 뒤 결과를 돌려준다.
 - **`graphify-out/`**: 모든 산출물이 모이는 디렉토리. `graph.html`, `obsidian/`, `wiki/`, `GRAPH_REPORT.md`, `graph.json`, `cache/`로 구성된다.
 - **God node**: 그래프에서 연결도가 가장 높은 개념. 다른 개념들이 그곳을 거쳐 이어진다.
 - **Surprising connection**: 복합 점수로 순위를 매긴 의외의 연결. 코드와 논문 사이 엣지가 코드와 코드 사이 엣지보다 높은 순위를 받는다.

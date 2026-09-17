@@ -28,7 +28,7 @@ Graphiti는 AI 에이전트용 temporal context graph를 구축하고 질의하�
 | 관련 논문 | Rasmussen et al. 2025, "Zep: A Temporal Knowledge Graph Architecture for Agent Memory" (arXiv:2501.13956) |
 | 부속 컴포넌트 | `mcp_server/` (MCP 서버), `server/` (FastAPI REST 서비스), `examples/` (quickstart, azure-openai) |
 
-Graphiti는 Zep의 컨텍스트 인프라 핵심에 있는 오픈소스 temporal context graph 엔진이다. README는 이를 "context graph" 프레임워크로 부른다. context graph는 엔티티와 관계와 사실을 시간 축과 함께 담아 각 사실이 언제 참이 됐고 언제 대체됐는지를 유효 기간으로 표현한 그래프를 말한다. 정적 knowledge graph와 달리 사실마다 유효 기간이 붙고 모든 파생 정보는 원본 episode로 거슬러 올라간다.
+Graphiti는 Zep의 컨텍스트 인프라 핵심에 있는 오픈소스 temporal context graph 엔진이다. README는 이를 "context graph" 프레임워크로 부른다. context graph는 entity와 관계와 사실을 시간 축과 함께 담아 각 사실이 언제 참이 됐고 언제 대체됐는지를 유효 기간으로 표현한 그래프를 말한다. 정적 knowledge graph와 달리 사실마다 유효 기간이 붙고 모든 파생 정보는 원본 episode로 거슬러 올라간다.
 
 README가 제시하는 대표 예시는 "Kendra loves Adidas shoes (as of March 2026)"다. 같은 사실이 2026년 3월 기준으로는 참이지만 이후 뒤집힐 수 있고, 그 전환 시점까지 그래프가 함께 보관한다는 뜻이다.
 
@@ -45,8 +45,8 @@ README는 기존 RAG 방식이 배치 처리와 정적 요약에 의존해 자�
 | 항목 | 내용 |
 |---|---|
 | Temporal Fact Management | 사실마다 유효 기간이 있다. 정보가 바뀌면 예전 사실을 삭제하지 않고 무효화한다. 지금 참인 것과 과거 임의 시점에 참이었던 것을 모두 질의할 수 있다 |
-| Episodes와 provenance | 모든 엔티티와 관계가 그것을 만들어낸 episode(원본 데이터)로 거슬러 올라간다. 파생 사실에서 원본까지 계보가 완전히 남는다 |
-| Prescribed와 learned ontology | Pydantic 모델로 엔티티 타입과 엣지 타입을 미리 정의하거나(prescribed), 데이터에서 구조가 자라나게 둘 수 있다(learned) |
+| Episodes와 provenance | 모든 entity와 관계가 그것을 만들어낸 episode(원본 데이터)로 거슬러 올라간다. 파생 사실에서 원본까지 계보가 완전히 남는다 |
+| Prescribed와 learned ontology | Pydantic 모델로 entity 타입과 엣지 타입을 미리 정의하거나(prescribed), 데이터에서 구조가 자라나게 둘 수 있다(learned) |
 | Incremental Graph Construction | 새 데이터가 배치 재계산 없이 즉시 통합된다. episode가 인제스트되는 대로 그래프가 실시간으로 갱신된다 |
 | Hybrid Retrieval | 의미 임베딩, 키워드(BM25), 그래프 순회를 결합해 LLM 요약에 의존하지 않고 낮은 latency로 정밀하게 질의한다 |
 | Scalability | 병렬 처리와 교체 가능한 그래프 백엔드로 대규모 데이터셋을 다루며 엔터프라이즈 워크로드를 겨냥한다 |
@@ -60,9 +60,9 @@ README는 기존 RAG 방식이 배치 처리와 정적 요약에 의존해 자�
 | 구성 요소 | 저장하는 것 |
 |---|---|
 | Entities (노드) | 사람, 제품, 정책, 개념. 시간에 따라 요약이 갱신된다 |
-| Facts / Relationships (엣지) | (엔티티 → 관계 → 엔티티) 삼중항에 유효 기간을 붙인 것 |
+| Facts / Relationships (엣지) | (entity → 관계 → entity) 삼중항에 유효 기간을 붙인 것 |
 | Episodes (provenance) | 인제스트된 그대로의 원본 데이터. ground truth 스트림이며 모든 파생 사실이 여기로 귀속된다 |
-| Custom Types (ontology) | Pydantic 모델로 개발자가 정의한 엔티티 타입과 엣지 타입 |
+| Custom Types (ontology) | Pydantic 모델로 개발자가 정의한 entity 타입과 엣지 타입 |
 
 README는 Graphiti의 고유한 점을 비정형과 정형 데이터로부터 context graph를 자율적으로 구축하면서, 바뀌는 관계를 처리하는 동시에 전체 시간 이력을 보존하는 능력이라고 설명한다.
 
@@ -116,7 +116,7 @@ extra는 `graphiti-core[falkordb,anthropic,google-genai]`처럼 조합할 수 �
 
 ### 구조화 출력과 동시성
 
-Graphiti는 엔티티 추출과 엣지 추출, 중복 해소에 구조화(JSON) 출력을 사용한다. 그래서 스키마를 확실히 지키는 모델과 제공자(OpenAI, Anthropic, Gemini)에서 가장 안정적으로 동작한다. README는 다른 서비스를 쓰면 출력 스키마가 어긋나 인제스트가 실패할 수 있고, 작은 모델에서 특히 문제가 된다고 명시한다.
+Graphiti는 entity 추출과 엣지 추출, 중복 해소에 구조화(JSON) 출력을 사용한다. 그래서 스키마를 확실히 지키는 모델과 제공자(OpenAI, Anthropic, Gemini)에서 가장 안정적으로 동작한다. README는 다른 서비스를 쓰면 출력 스키마가 어긋나 인제스트가 실패할 수 있고, 작은 모델에서 특히 문제가 된다고 명시한다.
 
 `OpenAIGenericClient`는 이 문제에 대응해 `structured_output_mode` 옵션을 제공한다.
 
@@ -142,7 +142,7 @@ Graphiti는 엔티티 추출과 엣지 추출, 중복 해소에 구조화(JSON) 
 
 로컬 실행에는 Docker Compose를 쓴다. `docker compose up`은 Neo4j 서비스와 관련 컴포넌트를 띄우고, `docker compose --profile falkordb up`은 FalkorDB 쪽을 띄운다. FalkorDB만 단독으로 쓰려면 `docker run -p 6379:6379 -p 3000:3000 -it --rm falkordb/falkordb:latest`로도 시작할 수 있다. Neo4j를 가장 간단히 설치하는 방법으로는 Neo4j Desktop을 안내한다.
 
-MCP 서버의 주요 기능은 다섯 가지다. episode 관리(추가, 조회, 삭제), 엔티티 관리와 관계 처리, 의미 검색과 hybrid 검색, 관련 데이터를 묶는 group 관리, 그래프 유지보수 작업이다. Neo4j와 함께 Docker로 배포할 수 있어 AI 어시스턴트 워크플로에 붙이기 쉽다고 설명한다.
+MCP 서버의 주요 기능은 다섯 가지다. episode 관리(추가, 조회, 삭제), entity 관리와 관계 처리, 의미 검색과 hybrid 검색, 관련 데이터를 묶는 group 관리, 그래프 유지보수 작업이다. Neo4j와 함께 Docker로 배포할 수 있어 AI 어시스턴트 워크플로에 붙이기 쉽다고 설명한다.
 
 문서는 `help.getzep.com/graphiti`에 가이드와 API 문서, Quick Start, 그리고 LangChain의 LangGraph로 에이전트를 만드는 통합 가이드가 있다.
 
@@ -173,13 +173,13 @@ README가 대신 제시하는 것은 설계 포지션 비교 두 개다.
 |---|---|---|
 | 주요 용도 | 정적 문서 요약 | 에이전트를 위한 동적이고 변화하는 컨텍스트 |
 | 데이터 처리 | 배치 지향 | 연속적 증분 갱신 |
-| 지식 구조 | 엔티티 클러스터와 community 요약 | temporal context graph (엔티티, 유효 기간 있는 사실, episode, community) |
+| 지식 구조 | entity 클러스터와 community 요약 | temporal context graph (entity, 유효 기간 있는 사실, episode, community) |
 | retrieval 방식 | 순차적 LLM 요약 | 의미 검색과 키워드 검색과 그래프 검색의 hybrid |
 | 적응성 | 낮음 | 높음 |
 | 시간 처리 | 기본적인 타임스탬프 추적 | 명시적 bi-temporal 추적과 자동 사실 무효화 |
 | 모순 처리 | LLM 요약이 내리는 판단 | 시간 이력을 보존한 자동 사실 무효화 |
 | 질의 latency | 수 초에서 수십 초 | 통상 1초 미만 |
-| 커스텀 엔티티 타입 | 지원하지 않음 | Pydantic 모델로 지원 |
+| 커스텀 entity 타입 | 지원하지 않음 | Pydantic 모델로 지원 |
 | 확장성 | 보통 | 높음. 대규모 데이터셋에 최적화 |
 
 README는 이 비교를 근거로 Graphiti가 동적이고 자주 갱신되는 데이터셋의 문제를 겨냥해 설계됐으며, 실시간 상호작용과 정밀한 과거 시점 질의가 필요한 응용에 특히 적합하다고 정리한다.
@@ -191,7 +191,7 @@ Zep은 관리형 서비스이고 Graphiti는 그 코어의 오픈소스 엔진�
 | 항목 | Zep | Graphiti |
 |---|---|---|
 | 정체 | AI 에이전트를 위한 관리형 context graph 인프라 | 오픈소스 temporal context graph 엔진 |
-| context graph 규모 | 사용자별, 엔티티별 context graph를 대량으로 관리하며 거버넌스를 제공 | 개별 context graph를 구축하고 질의 |
+| context graph 규모 | 사용자별, entity별 context graph를 대량으로 관리하며 거버넌스를 제공 | 개별 context graph를 구축하고 질의 |
 | 그래프 데이터베이스 | 자체 Context Graph Engine. 서드파티 벤더가 필요 없다 | 서드파티 그래프 데이터베이스를 직접 준비 |
 | 사용자와 대화 관리 | users, threads, message 저장이 내장 | 직접 구현 |
 | retrieval과 성능 | 사전 구성된 프로덕션급 retrieval. 대규모에서 200ms 미만 | 직접 구현. 성능은 구성에 따라 달라진다 |
@@ -223,7 +223,7 @@ README의 선택 기준은 명확하다. 보안과 성능과 지원이 갖춰진
 ## 7. 용어집 (Glossary)
 
 - **Graphiti**: 이 저장소. temporal context graph를 구축하고 질의하는 오픈소스 엔진.
-- **context graph**: 엔티티와 사실과 episode를 시간 축과 함께 담은 그래프. 각 사실에 유효 기간이 붙는다. README가 정적 knowledge graph와 구분하려고 쓰는 이름이다.
+- **context graph**: entity와 사실과 episode를 시간 축과 함께 담은 그래프. 각 사실에 유효 기간이 붙는다. README가 정적 knowledge graph와 구분하려고 쓰는 이름이다.
 - **episode**: 인제스트된 원본 데이터 단위. ground truth 스트림이며 모든 파생 사실의 provenance다.
 - **graphiti-core**: PyPI 배포 패키지 이름. 백엔드와 LLM 제공자는 extra로 덧붙인다.
 - **Context Graph Engine**: Zep 관리형 서비스 내부의 자체 그래프 데이터베이스. 오픈소스가 아니며 Graphiti와 별개다.

@@ -246,36 +246,36 @@ Parallel Parser가 입력 문서를 atomic unit 열로 분해한다. 유형별 �
 
 생성은 컨텍스트를 함께 본다. 지역 이웃 `C_j = {c_k | |k - j| <= δ}`를 함께 입력하며 `δ`가 컨텍스트 윈도우 크기를 정한다.
 
-그다음 비텍스트 단위를 anchor로 삼아 그래프를 만든다. 추출 루틴 `R(·)`이 `d_chunk_j`에서 세부 엔티티와 관계를 뽑는다.
+그다음 비텍스트 단위를 anchor로 삼아 그래프를 만든다. 추출 루틴 `R(·)`이 `d_chunk_j`에서 세부 entity와 관계를 뽑는다.
 
 - `(V_j, E_j) = R(d_chunk_j)`
 - `Ṽ = {v_mm_j}_j ∪ ⋃_j V_j`
 - `Ẽ = ⋃_j E_j ∪ ⋃_j {(u -belongs_to-> v_mm_j) : u ∈ V_j}`
 
-`v_mm_j`가 각 비텍스트 단위를 대표하는 multimodal entity node이고, 그 안에서 추출된 엔티티들이 `belongs_to` 엣지로 anchor에 묶인다.
+`v_mm_j`가 각 비텍스트 단위를 대표하는 multimodal entity node이고, 그 안에서 추출된 entity들이 `belongs_to` 엣지로 anchor에 묶인다.
 
 ### 3.3 Text-Based Knowledge Graph
 
-`t_j = text`인 청크에 대해서는 named entity recognition과 relation extraction으로 전통적 text KG를 만든다. 논문은 이 부분이 LightRAG와 GraphRAG에서 확립된 방법론과 유사하다고 밝히고, 텍스트는 이미 의미 정보가 풍부하므로 multimodal 컨텍스트 통합이 필요 없다고 적었다.
+`t_j = text`인 chunk에 대해서는 named entity recognition과 relation extraction으로 전통적 text KG를 만든다. 논문은 이 부분이 LightRAG와 GraphRAG에서 확립된 방법론과 유사하다고 밝히고, 텍스트는 이미 의미 정보가 풍부하므로 multimodal 컨텍스트 통합이 필요 없다고 적었다.
 
 ### 3.4 Graph Fusion and Index Creation
 
-- **Entity Alignment and Graph Fusion**: entity name을 1차 매칭 키로 삼아 두 그래프에서 의미가 같은 엔티티를 찾아 통합해 `G = (V, E)`를 만든다.
-- **Dense Representation Generation**: 모든 엔티티, 관계, 청크를 인코딩해 임베딩 테이블 `T = {emb(s) : s ∈ V ∪ E ∪ {c_j}_j}`를 만든다.
+- **Entity Alignment and Graph Fusion**: entity name을 1차 매칭 키로 삼아 두 그래프에서 의미가 같은 entity를 찾아 통합해 `G = (V, E)`를 만든다.
+- **Dense Representation Generation**: 모든 entity, 관계, chunk를 인코딩해 임베딩 테이블 `T = {emb(s) : s ∈ V ∪ E ∪ {c_j}_j}`를 만든다.
 - 최종 검색 인덱스는 `I = (G, T)`다.
 
 ### 3.5 Cross-Modal Hybrid Retrieval
 
 - **Modality-Aware Query Encoding**: 질의 `q`에서 어휘 단서와 모달리티 선호를 추출한다. 논문이 든 예시는 "figure", "chart", "table", "equation"이 들어간 질의다. 동시에 인덱싱과 같은 encoder로 통합 임베딩 `e_q`를 만든다.
-- **Structural Knowledge Navigation**: 키워드 매칭과 엔티티 인식으로 그래프 구성 요소를 찾고, 질의어와의 정확 매칭에서 출발해 지정된 hop 거리 안에서 이웃을 확장한다. 결과가 `C_stru(q)`다.
-- **Semantic Similarity Matching**: `e_q`와 `T`의 모든 구성 요소 사이에서 dense vector 유사도 검색을 수행하고, 코사인 유사도 상위 k개 청크 `C_seman(q)`를 돌려준다.
+- **Structural Knowledge Navigation**: 키워드 매칭과 entity 인식으로 그래프 구성 요소를 찾고, 질의어와의 정확 매칭에서 출발해 지정된 hop 거리 안에서 이웃을 확장한다. 결과가 `C_stru(q)`다.
+- **Semantic Similarity Matching**: `e_q`와 `T`의 모든 구성 요소 사이에서 dense vector 유사도 검색을 수행하고, 코사인 유사도 top-k chunk `C_seman(q)`를 돌려준다.
 - **Candidate Pool Unification**: `C(q) = C_stru(q) ∪ C_seman(q)`로 후보를 모은다.
 - **Multi-Signal Fusion Scoring**: 그래프 위상에서 나온 구조 중요도, 임베딩 공간의 의미 유사도, 어휘 분석으로 추론한 모달리티 선호 세 신호를 결합해 최종 순위 `C*(q)`를 정한다.
 
 ### 3.6 From Retrieval to Synthesis
 
 - **Building Textual Context**: 상위 후보 `C*(q)`의 텍스트 표현을 이어 붙여 구조화 컨텍스트 `P(q)`를 만든다. entity summary, relationship description, chunk content가 모두 들어가며 모달리티 유형과 계층 출처를 나타내는 구분자를 삽입한다.
-- **Recovering Visual Content**: 시각 자료에 대응하는 multimodal 청크는 dereferencing으로 원본 시각 자료 `V*(q)`를 복원한다. 텍스트 대리 표현이 검색 효율을 맡고 원본 시각 자료가 합성 시점의 의미 충실도를 맡는 분업이다.
+- **Recovering Visual Content**: 시각 자료에 대응하는 multimodal chunk는 dereferencing으로 원본 시각 자료 `V*(q)`를 복원한다. 텍스트 대리 표현이 검색 효율을 맡고 원본 시각 자료가 합성 시점의 의미 충실도를 맡는 분업이다.
 - 최종 생성은 `Response = VLM(q, P(q), V*(q))`다.
 
 ### 3.7 실험 구현 설정
@@ -287,7 +287,7 @@ Parallel Parser가 입력 문서를 atomic unit 열로 분해한다. 유형별 �
 | 임베딩 모델 | text-embedding-3-large, 3072차원 |
 | reranker | bge-reranker-v2-m3 |
 | 그래프 기반 방법의 entity와 relation 합산 토큰 한도 | 20,000 토큰 |
-| 청크 토큰 한도 | 12,000 토큰 |
+| chunk 토큰 한도 | 12,000 토큰 |
 | 출력 형식 제약 | 한 문장 |
 | GPT-4o-mini baseline 입력 | 문서를 최대 50페이지까지 144 dpi 이미지로 이어 붙여 입력 |
 | 정확도 판정 | GPT-4o-mini judge |
@@ -341,7 +341,7 @@ MMLongBench:
 |---|---|---|
 | GPT-4o-mini | 텍스트와 이미지를 함께 이해하는 모델. 128K 토큰 context window로 문서 전체를 직접 처리 | 검색 구조가 없다 |
 | LightRAG (Guo et al., 2024) | 구조화 지식 표현과 dual-level retrieval을 결합한 graph 기반 RAG | 텍스트 전용 처리로 제한된다 |
-| MMGraphRAG (Wan & Yu, 2025) | 텍스트와 시각 내용을 아우르는 통합 KG. multimodal 엔티티 분석에 spectral clustering을 쓰고 추론 경로를 따라 컨텍스트를 검색 | 기본적인 이미지 처리만 더했을 뿐 표와 수식을 plain text로 취급해 구조 정보를 잃는다 |
+| MMGraphRAG (Wan & Yu, 2025) | 텍스트와 시각 내용을 아우르는 통합 KG. multimodal entity 분석에 spectral clustering을 쓰고 추론 경로를 따라 컨텍스트를 검색 | 기본적인 이미지 처리만 더했을 뿐 표와 수식을 plain text로 취급해 구조 정보를 잃는다 |
 
 ### 4.4 DocBench 정확도 (%, Table 2)
 
@@ -387,7 +387,7 @@ Figure 2는 DocBench와 MMLongBench 각각에 대해 정확도 선 그래프와 
 | w/o Reranker | 60.9 | 63.5 | 58.8 | 60.2 | 68.6 | 81.7 | 74.7 | 45.4 | 62.4 |
 | RAG-Anything | 61.4 | 67.0 | 61.5 | 60.2 | 66.3 | 85.0 | 76.3 | 46.0 | 63.4 |
 
-Chunk-only는 dual-graph construction을 건너뛰고 전통적 청크 검색만 쓰는 변형이고, w/o Reranker는 cross-modal reranking만 제거하고 그래프 구조는 유지한 변형이다. 그래프 구축이 2.4%p, reranking이 1.0%p를 기여했다. 저자는 이를 "그래프 구축이 필수이고 reranking은 개선폭이 작다"로 정리한다.
+Chunk-only는 dual-graph construction을 건너뛰고 전통적 chunk 검색만 쓰는 변형이고, w/o Reranker는 cross-modal reranking만 제거하고 그래프 구조는 유지한 변형이다. 그래프 구축이 2.4%p, reranking이 1.0%p를 기여했다. 저자는 이를 "그래프 구축이 필수이고 reranking은 개선폭이 작다"로 정리한다.
 
 멀티모달 질문(Mm.) 항목의 변화폭이 특히 크다. Chunk-only 66.2%에서 전체 모델 76.3%로 10.1%p 오르는데, 이는 Overall 상승폭 3.4%p의 3배에 가깝다. News 항목은 w/o Reranker가 68.6%로 전체 모델의 66.3%보다 높다.
 
@@ -397,7 +397,7 @@ Chunk-only는 dual-graph construction을 건너뛰고 전통적 청크 검색만
 
 **Case 2, 재무 표 탐색 (Figure 4)**: Novo Nordisk의 2020년 임금 총액을 묻는 질의다. 정답은 DKK 26,778백만이고 GPT-4o-mini는 32,928백만, MMGraphRAG와 LightRAG는 둘 다 11,503백만으로 답했다. RAG-Anything은 행 헤더, 열 헤더(연도), 데이터 셀, 단위를 각각 노드로 두고 `row-of`, `column-of`, `header-applies-to`, `unit-of` 엣지로 잇는다. 이 구조가 "Share-based payments" 같은 인접 항목과의 혼동을 막았다.
 
-저자의 정리는 MMGraphRAG가 이미지 모달리티 엔티티만 다루고 표 셀, 행 헤더, 열 헤더 같은 다른 모달리티 엔티티를 무시해서 실패한다는 것이다.
+저자의 정리는 MMGraphRAG가 이미지 모달리티 entity만 다루고 표 셀, 행 헤더, 열 헤더 같은 다른 모달리티 entity를 무시해서 실패한다는 것이다.
 
 ### 4.9 Appendix A.2의 추가 사례
 
@@ -454,15 +454,15 @@ Chunk-only는 dual-graph construction을 건너뛰고 전통적 청크 검색만
 ## 7. 용어집 (Glossary)
 
 - **Atomic content unit `c_j = (t_j, x_j)`**: 문서를 분해한 모달리티 일관 최소 단위. `t_j`가 모달리티 유형이고 `x_j`가 원본 내용이다.
-- **Cross-Modal Knowledge Graph**: 비텍스트 단위를 anchor 노드 `v_mm_j`로 두고 그 안에서 추출한 엔티티를 `belongs_to` 엣지로 묶은 그래프.
-- **Text-Based Knowledge Graph**: 텍스트 청크에 named entity recognition과 relation extraction을 적용해 만든 전통적 그래프.
+- **Cross-Modal Knowledge Graph**: 비텍스트 단위를 anchor 노드 `v_mm_j`로 두고 그 안에서 추출한 entity를 `belongs_to` 엣지로 묶은 그래프.
+- **Text-Based Knowledge Graph**: 텍스트 chunk에 named entity recognition과 relation extraction을 적용해 만든 전통적 그래프.
 - **Dual-Graph Construction**: 위 두 그래프를 따로 만든 뒤 entity name 매칭으로 병합하는 전략. 단일 그래프를 바로 만들 때 모달리티 고유 구조 신호를 놓치는 문제를 피하려는 설계다.
-- **Belongs_to edge**: 비텍스트 anchor 노드와 그 내부 엔티티를 잇는 modality grounding 엣지.
+- **Belongs_to edge**: 비텍스트 anchor 노드와 그 내부 entity를 잇는 모달리티 grounding 엣지.
 - **Modality-Aware Query Encoding**: 질의의 어휘 단서로 모달리티 선호를 추출하는 질의 분석.
 - **Structural Knowledge Navigation**: 그래프의 명시적 엣지를 따라 hop 거리 안에서 후보를 모으는 retrieval 경로.
-- **Semantic Similarity Matching**: 임베딩 공간의 코사인 유사도로 상위 k개를 뽑는 retrieval 경로.
+- **Semantic Similarity Matching**: 임베딩 공간의 코사인 유사도로 top-k를 뽑는 retrieval 경로.
 - **Multi-Signal Fusion Scoring**: 구조 중요도, 의미 유사도, 모달리티 선호 세 신호를 결합한 재랭킹.
-- **Dereferencing**: 검색된 multimodal 청크의 텍스트 대리 표현을 원본 시각 자료로 되돌려 VLM에 직접 입력하는 과정.
+- **Dereferencing**: 검색된 multimodal chunk의 텍스트 대리 표현을 원본 시각 자료로 되돌려 VLM에 직접 입력하는 과정.
 - **Architectural Fragmentation**: 모달리티마다 별도 파이프라인을 두는 구조가 낳는 파편화. 논문이 기존 multimodal RAG의 근본 문제로 지목한 개념이다.
 - **DocBench / MMLongBench**: 각각 다섯 도메인, 일곱 유형의 장문 multimodal 문서 QA 벤치마크.
 - **MinerU**: 문서에서 텍스트, 이미지, 표, 수식을 분리 추출하는 오픈소스 파서.

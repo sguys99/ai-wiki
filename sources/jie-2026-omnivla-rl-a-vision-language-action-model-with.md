@@ -74,7 +74,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-OmniVLA-RL은 Spatial Expert, Reasoning Expert, Action Expert 세 전문가를 Mixture-of-Transformers(MoT) backbone 하나에 통합해 3D 공간 특징과 언어와 시각 의미를 Transformer 층 안에서 직접 융합하고, flow matching의 ODE 디노이징을 SDE로 바꿔 GSPO와 결합한 Flow-GSPO로 online 강화학습을 수행하는 VLA다. LIBERO 평균 성공률 97.6%로 π0.5(96.9%)를 넘었고, LIBERO-Plus에서는 SFT 기준선 41.2%를 80.3%로 끌어올려 PPO(78.7%)와 GRPO(65.7%)를 앞섰다.
+OmniVLA-RL은 Spatial Expert, Reasoning Expert, Action Expert 세 전문가를 Mixture-of-Transformers(MoT) backbone 하나에 통합해 3D 공간 특징과 언어와 시각 의미를 Transformer 층 안에서 직접 융합하고, flow matching의 ODE denoising을 SDE로 바꿔 GSPO와 결합한 Flow-GSPO로 online 강화학습을 수행하는 VLA다. LIBERO 평균 성공률 97.6%로 π0.5(96.9%)를 넘었고, LIBERO-Plus에서는 SFT 기준선 41.2%를 80.3%로 끌어올려 PPO(78.7%)와 GRPO(65.7%)를 앞섰다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -95,8 +95,8 @@ OmniVLA-RL은 Spatial Expert, Reasoning Expert, Action Expert 세 전문가를 M
 저자들이 정리한 기여는 네 가지다.
 
 1. **MoT 기반 tri-expert 구조.** Spatial Expert, Reasoning Expert, Action Expert가 같은 Transformer 층을 공유하며 언어 지시문(instruction) 특징, 시각 의미 특징, 3D 공간 특징이 층 내부에서 양방향으로 상호작용한다. 인코더나 action head에서만 공간 정보를 섞는 early fusion과 late fusion의 표현 병목을 피하려는 설계다.
-2. **Block-wise Causal Attention.** 공간과 의미 토큰을 prefix로, action 토큰을 suffix로 나누어, prefix는 서로 양방향으로 보되 action 토큰은 보지 못하게 하고, action 토큰은 prefix 전체와 자기 앞의 action 토큰만 보게 하는 마스크다. 장면 이해가 디노이징 노이즈에 오염되지 않으면서 action 생성은 autoregressive causality를 지킨다.
-3. **Flow-GSPO.** flow matching의 결정론적 ODE 디노이징을 Fokker-Planck 방정식을 거쳐 SDE로 바꾸어 확률적 탐색을 가능하게 하고, action block 단위로 GSPO 목적함수를 적용한다. GRPO 계열의 토큰 단위 importance ratio가 만드는 편향과 불안정을 피하는 것이 목적이다.
+2. **Block-wise Causal Attention.** 공간과 의미 토큰을 prefix로, action 토큰을 suffix로 나누어, prefix는 서로 양방향으로 보되 action 토큰은 보지 못하게 하고, action 토큰은 prefix 전체와 자기 앞의 action 토큰만 보게 하는 마스크다. 장면 이해가 denoising 노이즈에 오염되지 않으면서 action 생성은 autoregressive causality를 지킨다.
+3. **Flow-GSPO.** flow matching의 결정론적 ODE denoising을 Fokker-Planck 방정식을 거쳐 SDE로 바꾸어 확률적 탐색을 가능하게 하고, action block 단위로 GSPO 목적함수를 적용한다. GRPO 계열의 토큰 단위 importance ratio가 만드는 편향과 불안정을 피하는 것이 목적이다.
 4. **LIBERO와 LIBERO-Plus 실험.** LIBERO 평균 97.6%로 비교 대상 중 1위, LIBERO-Plus에서 PPO와 GRPO보다 수렴 속도와 최종 성공률 모두 우위다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
@@ -159,7 +159,7 @@ flow matching은 Gaussian 같은 단순 초기 분포를 목표 데이터 분포
 
 #### Stochastic Flow Matching
 
-CFM이 생성하는 연속 action 시퀀스를 A_t = [a_{t,0}, ..., a_{t,H-1}]로 두고, 디노이징 step 수를 K, step 크기를 δ = 1/K로 둔다. A_t^τ는 τ번째 디노이징 단계의 action이고 A_t^0 ~ N(0, I)다. Rectified Flow 틀에서 조건부 확률 p(A_t^τ | A_t)를 채택하고 목표 vector field를 u(A_t^τ | A_t) = A_t - ε (ε ~ N(0, I))으로 두면 결정론적 갱신식은 다음과 같다.
+CFM이 생성하는 연속 action 시퀀스를 A_t = [a_{t,0}, ..., a_{t,H-1}]로 두고, denoising step 수를 K, step 크기를 δ = 1/K로 둔다. A_t^τ는 τ번째 denoising 단계의 action이고 A_t^0 ~ N(0, I)다. Rectified Flow 틀에서 조건부 확률 p(A_t^τ | A_t)를 채택하고 목표 vector field를 u(A_t^τ | A_t) = A_t - ε (ε ~ N(0, I))으로 두면 결정론적 갱신식은 다음과 같다.
 
 A_t^{τ+δ} = A_t^τ + δ v_θ(A_t^τ, s_t)   (식 9)
 
@@ -179,7 +179,7 @@ GRPO 같은 토큰 단위 최적화가 만드는 단일 step 편향 누적과 ac
 
 - 그룹 크기 G에 대해 상태 s_t마다 G개의 action 시퀀스 {A_{t,i}}를 샘플링한다.
 - 각 action 시퀀스의 우도는 K단계 Gaussian 전이의 곱이다(식 14): π_θ(A_{t,i}|s_t) = Π_{τ=0}^{K-1} N(A_{t,i}^{τ+δ} | μ_{τ,i}, Σ_{τ,i}).
-- |A_{t,i}| = H × K (action block 길이 × 디노이징 step 수)로 두고, action block 단위 importance ratio를 시퀀스 우도비의 1/|A_{t,i}| 제곱으로 정의한다(식 15).
+- |A_{t,i}| = H × K (action block 길이 × denoising step 수)로 두고, action block 단위 importance ratio를 시퀀스 우도비의 1/|A_{t,i}| 제곱으로 정의한다(식 15).
 - advantage는 G개 action block의 누적 reward R_total(A_{i,t}, s_t) = Σ_{h=0}^{H-1} γ^h R(s_t, a_{t,i,h})를 그룹 평균과 표준편차로 정규화한 값이다(식 16).
 - 안정성을 위해 old policy와 new policy 사이의 action block 단위 KL divergence 항 β D_KL(π_θ || π_old)를 뺀다(식 17, 18).
 
@@ -187,7 +187,7 @@ GRPO 같은 토큰 단위 최적화가 만드는 단일 step 편향 누적과 ac
 
 #### gradient 분석
 
-clip 항을 무시하면 주 항의 gradient는 (1/G) Σ_i s_{t,i}(θ) Â_{i,t} ∇_θ log s_{t,i}(θ)의 기대값이다(식 19). 전이가 Gaussian이므로 log 우도의 gradient는 Σ^{-1}_{τ,i} (A^{τ+δ} - μ_{τ,i}) × ∇_θ μ_{τ,i}이고(식 21), μ_{τ,i}를 θ와 무관한 항 C_0 = A_t^τ (1 + σ_τ² δ / 2)와 θ에 의존하는 항 C_r = (1 + σ_τ² (1-τ)/2) δ × v_θ로 분해하면 ∇_θ μ_{τ,i} = C_r ∇_θ v_θ가 된다(식 22, 23). 최종 gradient(식 24)는 각 디노이징 step에서 (예측 노이즈 잔차) × (1 + σ_τ²(1-τ)/2) δ × ∇_θ v_θ의 합에 (s Â / |A| + β) 가중치를 곱한 형태다. 즉 Flow-GSPO의 gradient는 velocity network v_θ의 gradient를 advantage 가중 잔차로 되먹이는 구조이며, 디노이징 step마다 σ_τ에 따라 기여가 달라진다.
+clip 항을 무시하면 주 항의 gradient는 (1/G) Σ_i s_{t,i}(θ) Â_{i,t} ∇_θ log s_{t,i}(θ)의 기대값이다(식 19). 전이가 Gaussian이므로 log 우도의 gradient는 Σ^{-1}_{τ,i} (A^{τ+δ} - μ_{τ,i}) × ∇_θ μ_{τ,i}이고(식 21), μ_{τ,i}를 θ와 무관한 항 C_0 = A_t^τ (1 + σ_τ² δ / 2)와 θ에 의존하는 항 C_r = (1 + σ_τ² (1-τ)/2) δ × v_θ로 분해하면 ∇_θ μ_{τ,i} = C_r ∇_θ v_θ가 된다(식 22, 23). 최종 gradient(식 24)는 각 denoising step에서 (예측 노이즈 잔차) × (1 + σ_τ²(1-τ)/2) δ × ∇_θ v_θ의 합에 (s Â / |A| + β) 가중치를 곱한 형태다. 즉 Flow-GSPO의 gradient는 velocity network v_θ의 gradient를 advantage 가중 잔차로 되먹이는 구조이며, denoising step마다 σ_τ에 따라 기여가 달라진다.
 
 ### 3.5 3단계 학습 과정
 
@@ -210,7 +210,7 @@ Stage III의 설정은 다음과 같다.
 | clip 계수 ε | 0.2 |
 | KL 벌점 가중치 β | 0.01 |
 | 노이즈 스케줄 | σ_τ = σ_max (1-τ), σ_max = 0.1 |
-| 디노이징 step K | 10 |
+| denoising step K | 10 |
 | action horizon H | 16 |
 | optimizer | AdamW, lr 1e-5, weight decay 0.01 |
 | RL 갱신 step | 200, rollout buffer는 10 step마다 갱신 |
@@ -305,8 +305,8 @@ Flow-GSPO, PPO, GRPO를 같은 SFT 체크포인트에서 200 step 동안 online 
 | Action Expert | 융합된 공간-의미 표현을 조건으로 conditional flow matching으로 action chunk를 생성하는 expert |
 | Block-wise Causal Attention | 공간과 의미 토큰을 양방향 prefix로, action 토큰을 causal suffix로 두고 prefix가 action을 보지 못하게 막는 attention 마스크 |
 | GSPO (Group Sequence Policy Optimization) | importance ratio를 토큰이 아니라 시퀀스 우도의 길이 정규화 값으로 정의한 그룹 기반 policy 최적화. GRPO의 토큰 단위 불안정을 줄이려는 방법 |
-| Flow-GSPO | flow matching의 ODE 디노이징을 SDE로 바꿔 Gaussian 전이 우도를 얻고, action block을 시퀀스 단위로 삼아 GSPO 목적함수와 KL 벌점으로 최적화하는 online 강화학습 방법 |
-| Stochastic Flow Matching | Fokker-Planck 방정식으로 결정론적 flow matching ODE를 SDE로 바꾸고 Euler-Maruyama로 이산화한 확률적 디노이징. 각 step의 전이가 등방성 Gaussian이 된다 |
+| Flow-GSPO | flow matching의 ODE denoising을 SDE로 바꿔 Gaussian 전이 우도를 얻고, action block을 시퀀스 단위로 삼아 GSPO 목적함수와 KL 벌점으로 최적화하는 online 강화학습 방법 |
+| Stochastic Flow Matching | Fokker-Planck 방정식으로 결정론적 flow matching ODE를 SDE로 바꾸고 Euler-Maruyama로 이산화한 확률적 denoising. 각 step의 전이가 등방성 Gaussian이 된다 |
 | importance ratio | 새 policy와 old policy가 같은 샘플에 부여하는 확률의 비. PPO와 GSPO 계열은 이 비를 clip해 갱신 폭을 제한한다 |
 | LIBERO-Plus | LIBERO를 다단계 compositional long-horizon 과제로 확장한 벤치마크. 이 논문에서 online RL과 ablation의 무대 |
 | early fusion / late fusion | 공간 특징을 VLM 앞단 인코더에서 섞는 방식과 VLM 뒤 action head에서 섞는 방식. 둘 다 VLM 본체는 건드리지 않는다는 것이 논문의 비판점 |

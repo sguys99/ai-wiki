@@ -278,7 +278,7 @@ STORM은 두 가설에 기반한다. 첫째, 다양한 관점은 다양한 질�
 
 | 하위 단계 | 하는 일 |
 |---|---|
-| Split Queries | 복잡한 질문 q_i를 여러 개의 검색 쿼리로 분해한다 |
+| Split Queries | 복잡한 질문 q_i를 여러 개의 검색 질의(query)로 분해한다 |
 | Search & Sift | 검색 결과를 Wikipedia 신뢰 출처 지침 기반 규칙 필터로 걸러 신뢰할 수 없는 출처를 제외한다 |
 | Synthesize | 남은 신뢰 출처를 종합해 답 a_i를 생성한다 |
 
@@ -299,7 +299,7 @@ Algorithm 1이 STORM의 골격을 담는다. 입력은 주제 t, 최대 관점 �
 | `GenRelatedTopicsPrompt` | 주제와 밀접한 Wikipedia 문서 URL 목록을 추천받는다 |
 | `GenPerspectivesPrompt` | 서로 다른 관점, 역할, 소속을 가진 Wikipedia 편집자 집단을 설명과 함께 생성한다 |
 | `GenQnPrompt` | 배정된 관점과 대화 이력을 보고 한 번에 질문 하나만 생성한다. 더 물을 것이 없으면 감사 인사로 대화를 끝낸다 |
-| `GenQueriesPrompt` | 질문에 답하기 위해 검색창에 입력할 쿼리 목록을 만든다 |
+| `GenQueriesPrompt` | 질문에 답하기 위해 검색창에 입력할 질의 목록을 만든다 |
 | `GenAnswerPrompt` | 수집한 정보만으로 모든 문장이 뒷받침되도록 답변을 작성한다 |
 | `DirectGenOutlinePrompt` | 주제만으로 draft outline을 생성한다. 우물 정 기호로 수준을 표시하고 다른 정보는 넣지 않는다 |
 | `RefineOutlinePrompt` | draft outline과 대화 이력을 받아 더 포괄적인 outline으로 개선한다 |
@@ -328,7 +328,7 @@ baseline은 LLM 기반 3종이며, outline 평가에는 RAG-expand를 더해 4�
 | Direct Gen | LLM에 직접 outline을 생성하게 하고 그 outline으로 본문을 쓴다. 외부 검색을 쓰지 않는다 |
 | RAG | 주제로 한 번 검색하고 검색 결과와 주제로 outline이나 본문 전체를 생성한다 |
 | oRAG (Outline-driven RAG) | outline 생성은 RAG와 같고, 섹션 제목으로 추가 검색을 해서 섹션 단위로 본문을 생성한다 |
-| RAG-expand | RAG가 만든 outline의 섹션 제목을 검색 쿼리로 써서 출처를 더 모으고, 새 출처와 초기 outline으로 outline을 다시 다듬는다. outline 평가에만 쓴다 |
+| RAG-expand | RAG가 만든 outline의 섹션 제목을 검색 질의로 써서 출처를 더 모으고, 새 출처와 초기 outline으로 outline을 다시 다듬는다. outline 평가에만 쓴다 |
 
 자동 평가 지표는 다음과 같이 나뉜다.
 

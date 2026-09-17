@@ -153,7 +153,7 @@ GraphRAG의 강점은 코퍼스 전체의 내용이 반영되어야만 답할 �
 
 **Seed entity**는 질의 임베딩과 노드 임베딩의 유사도로 고른 retrieval 시작점을 말한다. LeanRAG는 여기서 출발해 계층을 거슬러 올라가며 컨텍스트를 모은다.
 
-**LLM-as-judge**는 사람 대신 LLM이 두 시스템의 답변을 읽고 우열을 매기는 평가 방식이다. 세미나가 다룬 두 논문의 주 평가가 모두 이 방식이며, 우열을 어떻게 매기느냐에서 갈린다. LightRAG는 두 답변을 직접 맞붙이는 pairwise 비교를 쓰고, LeanRAG는 답변마다 1점에서 10점 점수를 매겨 평균을 낸다. 발표자는 이 차이가 두 논문의 상충 결과를 만든 원인일 수 있다고 본다.
+**LLM-as-a-Judge**는 사람 대신 LLM이 두 시스템의 답변을 읽고 우열을 매기는 평가 방식이다. 세미나가 다룬 두 논문의 주 평가가 모두 이 방식이며, 우열을 어떻게 매기느냐에서 갈린다. LightRAG는 두 답변을 직접 맞붙이는 pairwise 비교를 쓰고, LeanRAG는 답변마다 1점에서 10점 점수를 매겨 평균을 낸다. 발표자는 이 차이가 두 논문의 상충 결과를 만든 원인일 수 있다고 본다.
 
 ## 방법
 
@@ -236,9 +236,9 @@ entity가 포함된 원문 passage를 컨텍스트에 함께 붙이는 관행 �
 
 | 방법론 | 한 줄 정의 | 흐름도가 붙인 한계 |
 |---|---|---|
-| GraphRAG | LLM으로 지식 그래프와 커뮤니티 요약을 사전 구축해 전체 코퍼스에 대한 글로벌 질의응답을 가능하게 하는 프레임워크 | LLM의 높은 토큰 비용과 글로벌 요약의 한계, 글로벌 요약으로 인한 precision 하락 |
-| HippoRAG | 인간 해마의 기억 메커니즘을 모방해 LLM으로 구축한 지식 그래프와 Personalized PageRank를 결합하고, 멀티홉 질의에서 효과적인 연상 검색을 구현한 RAG | 대규모 데이터에서 확장이 어렵고, entity 중심 검색으로 정보 고립이 발생한다 |
-| HippoRAG2 | HippoRAG에 passage 노드와 LLM 필터링 triplet을 추가해 단순 QA부터 복잡한 멀티홉 추론까지 포괄하도록 성능을 강화 | 흐름도에 별도 표기 없음 |
+| GraphRAG | LLM으로 지식 그래프와 community summary를 사전 구축해 전체 코퍼스에 대한 글로벌 질의응답을 가능하게 하는 프레임워크 | LLM의 높은 토큰 비용과 글로벌 요약의 한계, 글로벌 요약으로 인한 precision 하락 |
+| HippoRAG | 인간 해마의 기억 메커니즘을 모방해 LLM으로 구축한 지식 그래프와 Personalized PageRank를 결합하고, multi-hop 질의에서 효과적인 연상 검색을 구현한 RAG | 대규모 데이터에서 확장이 어렵고, entity 중심 검색으로 정보 고립이 발생한다 |
+| HippoRAG2 | HippoRAG에 passage 노드와 LLM 필터링 triplet을 추가해 단순 QA부터 복잡한 multi-hop 추론까지 포괄하도록 성능을 강화 | 흐름도에 별도 표기 없음 |
 | LightRAG | entity라는 저수준과 토픽이라는 고수준을 동시에 검색하는 이중 레벨 검색 패러다임과 graph 기반 텍스트 인덱싱으로 응답의 다양성과 포괄성을 높인 경량 RAG | 흐름도에 별도 표기 없음 |
 | CausalRAG | 단순 의미 유사도 대신 인과 그래프 기반 경로 탐색으로 검색 문맥을 결정해 응답의 인과적 근거와 충실도를 높임 | 인과 관계를 충분히 반영하지 못한다 |
 | HugRAG | Hierarchical Causal Gating으로 전역 문맥과 지역 인과 경로 정제를 동시에 달성 | 흐름도에 별도 표기 없음 |
@@ -253,7 +253,7 @@ graph 기반 RAG 연구가 쓰는 평가는 두 가지로 나뉜다.
 
 | 구분 | Multi-hop QA | Open-ended QA |
 |---|---|---|
-| 방식 | 문서 여러 건에 걸쳐 여러 번의 추론 단계를 거쳐 답을 생성한다 | 다양한 도메인의 문서를 기반으로 질문을 직접 생성한 뒤 LLM-as-judge로 평가한다 |
+| 방식 | 문서 여러 건에 걸쳐 여러 번의 추론 단계를 거쳐 답을 생성한다 | 다양한 도메인의 문서를 기반으로 질문을 직접 생성한 뒤 LLM-as-a-Judge로 평가한다 |
 | 지표 | Exact Match, Recall 등. 검색된 컨텍스트까지 함께 볼 때는 RAGAS를 쓴다 | Comprehensiveness, Diversity, Empowerment, Overall 등 |
 | 예시 데이터셋 | HotpotQA. 슬라이드는 Mother Love Bone 밴드 관련 문항을 예시로 든다 | UltraDomain 코퍼스 |
 | 세미나가 다룬 두 논문 | 메인 평가로 쓰지 않는다 | 두 논문 모두 이 방식을 택했다 |
@@ -420,7 +420,7 @@ Mix 분야는 여러 도메인의 문서를 통합한 데이터셋이다. 이 �
 
 RQ1의 Diversity 우위는 설계 의도와 맞아떨어지는 결과다. 두 레벨의 키워드를 모두 쓰면 답변이 여러 관점을 담게 되고, 그 성질을 재는 지표가 Diversity다.
 
-Mix 데이터셋 예외에 대한 발표자의 해석은 GraphRAG가 이미 커뮤니티 요약을 쓰고 있어 다양한 주제가 그 요약 안에 잘 담겼기 때문이라는 것이다. 다만 발표자는 승률 차이 자체가 크지는 않다고 단서를 단다.
+Mix 데이터셋 예외에 대한 발표자의 해석은 GraphRAG가 이미 community summary를 쓰고 있어 다양한 주제가 그 요약 안에 잘 담겼기 때문이라는 것이다. 다만 발표자는 승률 차이 자체가 크지는 않다고 단서를 단다.
 
 RQ3의 효율성 결과는 네 가지 비용을 각각 다른 표로 나눠 보여준다. LLM 입출력 토큰 수와 API 호출 횟수는 그래프를 만들 때 드는 비용이고, 새 document 추가에 걸리는 시간과 메모리는 그래프를 유지할 때 드는 비용이며, retrieval 시간은 질의를 받을 때마다 드는 비용이다. 세 종류의 비용이 모두 GraphRAG보다 낮다는 것이 LightRAG가 Light와 Fast를 제목에 넣은 근거다. 커뮤니티를 탐지하고 커뮤니티마다 요약을 생성하는 단계를 통째로 없앤 설계의 직접적인 귀결이다.
 
@@ -497,13 +497,13 @@ RQ3의 Diversity 하락은 LightRAG의 high-level 키워드 ablation과 같은 �
 | 1년의 과정 | 일련의 과정 | 슬라이드 8장의 HippoRAG 설명 |
 | 428개의 원소 | 428권의 원서 | 슬라이드 22장의 UltraDomain 설명 |
 | 쿠 3 14 빌리언 | Qwen3-14B | 슬라이드 39장 |
-| 멀파 Q웨이 | 판독 불가 | 슬라이드 10장은 HotpotQA를 멀티홉 QA 예시로 든다 |
+| 멀파 Q웨이 | 판독 불가 | 슬라이드 10장은 HotpotQA를 multi-hop QA 예시로 든다 |
 
 자료 안의 불일치도 남는다. 슬라이드 17장은 LightRAG가 질의 자체를 분류하기보다 질의에서 두 레벨의 키워드를 뽑아 모두 쓴다고 적는데, 같은 발표의 슬라이드 27장 take-away는 "기본적으로 query를 구분한 후 진행되지만"으로 시작한다. 두 문장의 주어가 서로 다른 것으로 보이나 자료만으로는 확정할 수 없다. 또 슬라이드 42장은 LCA를 "Lowest Ancestor Common"으로 적어 다른 슬라이드의 "Lowest Common Ancestor"와 어순이 어긋난다.
 
 세미나는 두 논문의 정량 수치를 거의 인용하지 않는다. 슬라이드는 원논문의 표 이미지를 붙이고 경향만 서술하므로, 정확한 벤치마크 점수가 필요하면 각 원논문 페이지를 참조해야 한다. 이 페이지가 담는 것은 승률과 점수 자체가 아니라, 발표자가 그 수치를 어떻게 읽었고 어디에서 두 논문이 어긋난다고 판단했는가다.
 
-한 가지 더 짚어 둘 점은 이 세미나의 GraphRAG 서술 범위다. 발표자는 GraphRAG를 커뮤니티 요약을 사전 구축해 글로벌 질의응답에 쓰는 시스템으로만 소개하며, 질의 유형에 따라 검색 모드를 나누는 구성은 다루지 않는다. GraphRAG의 세부는 [[database/edge-2024-from-local-to-global]]과 [[database/dsba-2025-graphrag-paper-review]]가 담당한다.
+한 가지 더 짚어 둘 점은 이 세미나의 GraphRAG 서술 범위다. 발표자는 GraphRAG를 community summary를 사전 구축해 글로벌 질의응답에 쓰는 시스템으로만 소개하며, 질의 유형에 따라 검색 모드를 나누는 구성은 다루지 않는다. GraphRAG의 세부는 [[database/edge-2024-from-local-to-global]]과 [[database/dsba-2025-graphrag-paper-review]]가 담당한다.
 
 ### 남은 연구 질문
 
@@ -529,7 +529,7 @@ RQ3의 Diversity 하락은 LightRAG의 high-level 키워드 ablation과 같은 �
 | Key-value 재표현 | LightRAG가 entity를 (이름, 설명), relationship을 ((source, target), 설명) 쌍 문자열로 직렬화한 방식 |
 | Abstract entity | LeanRAG가 클러스터 하나를 대표해 상위 층에 새로 만든 가상 노드. 이 노드들 사이에 관계까지 만드는 것이 LeanRAG의 기여다 |
 | Lowest Common Ancestor | 계층 그래프에서 여러 노드의 공통 조상 중 가장 낮은 노드. LeanRAG는 seed entity를 모두 연결하는 서브그래프를 이 방식으로 찾아 의미 중복을 줄인다 |
-| Open-ended QA | persona와 task 조합으로 질문을 자동 생성해 LLM-as-judge로 평가하는 방식. GraphRAG 연구부터 차용되었다 |
+| Open-ended QA | persona와 task 조합으로 질문을 자동 생성해 LLM-as-a-Judge로 평가하는 방식. GraphRAG 연구부터 차용되었다 |
 
 ## 관련 페이지
 

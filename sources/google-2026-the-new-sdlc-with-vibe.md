@@ -239,7 +239,7 @@ harness의 구성 요소는 여섯이다.
 - **Sandboxes and execution environments**: agent의 코드가 실제 실행되는 곳, 접근 가능한 범위와 닿을 수 없는 범위.
 - **Orchestration logic**: 서브에이전트 스포닝, 모델 라우팅, 전문가 사이의 handoff, 각각의 발동 규칙.
 - **Guardrails or Hooks**: 특정 라이프사이클 지점에서 실행되는 결정적 코드(tool call 전, 파일 편집 후, 커밋 전). agent가 절대 잊어서는 안 되는데 자주 잊는 것들의 자리.
-- **Observability**: 로그, 트레이스, 평가, 비용과 지연 계측. 없으면 agent가 잘하고 있는지 조용히 드리프트하는지 알 방법이 없다.
+- **Observability**: 로그, trace, 평가, 비용과 지연 계측. 없으면 agent가 잘하고 있는지 조용히 드리프트하는지 알 방법이 없다.
 
 원문은 이 표면적이 넓다는 점을 인정하고, 그것이 모델 제공자의 표면적이 아니라 팀의 표면적이라고 못 박는다.
 

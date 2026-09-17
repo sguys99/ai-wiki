@@ -201,7 +201,7 @@ Deep Research Agent용 메모리 프레임워크 MIA. Manager-Planner-Executor 3
 2. **2단계 교대 강화학습**. GRPO를 두 번 적용한다. Stage 1은 Planner를 frozen server로 두고 Executor를 학습시키고, Stage 2는 학습된 Executor를 frozen server로 두고 Planner를 학습시킨다.
 3. **continual test-time learning(TTL)**. 추론 batch마다 exploration, 메모리 저장, 파라미터 갱신을 동시에 수행한다. offline 학습과 달리 미리 모아둔 memory context나 multi-epoch rollout에 의존하지 않는다.
 4. **양방향 메모리 변환 루프**. trajectory를 압축 workflow와 이미지 캡션으로 바꿔 non-parametric memory에 넣고, 그 batch로 Planner를 재학습해 parametric memory로 내재화한 뒤 memory 단위를 선택적으로 비운다.
-5. **Reviewer-Area Chair 비지도 판정**. ground truth가 없을 때 Qwen3-32B 4개 인스턴스가 학회 심사를 모사해 trajectory 품질을 판정한다. 단일 프롬프트 LLM-as-a-judge의 "hallucinated objectivity"를 우회하려는 설계다.
+5. **Reviewer-Area Chair 비지도 판정**. ground truth가 없을 때 Qwen3-32B 4개 인스턴스가 학회 심사를 모사해 trajectory 품질을 판정한다. 단일 프롬프트 LLM-as-a-Judge의 "hallucinated objectivity"를 우회하려는 설계다.
 6. **11개 벤치마크 실험**. 멀티모달 7종과 텍스트 전용 4종에서 memory baseline 대비 우위를 보이고, 폐쇄형 Executor 3종에 Planner만 붙여도 개선이 나타난다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
@@ -315,7 +315,7 @@ Dimensional Orthogonality를 설명하는 문장은 분리 대상 차원을 Logi
 | 최대 prompt / response | 16384 / 16384 | 24576 / 8192 | 기재 없음 |
 | tool use | 최대 assistant 10턴, user 10턴, 도구 응답 4096토큰 | tool-free | 평가 도구 설정 사용 |
 
-학습 프레임워크는 veRL이고 rollout은 SGLang 비동기, 추론은 vLLM에 temperature 0이다. 학습용 텍스트 검색기는 wiki25 코퍼스를 E5-base-v2 임베딩과 FAISS 인덱스로 색인한 오프라인 retriever다. 이미지 검색은 ImgBB로 공개 URL을 만든 뒤 Serper image search API를 호출하고 결과를 로컬에 캐시해 오프라인으로 쓴다. 검증 데이터는 두 단계 모두 FVQA-test다.
+학습 프레임워크는 veRL이고 rollout은 SGLang 비동기, 추론은 vLLM에 temperature 0이다. 학습용 텍스트 검색기는 wiki25 코퍼스를 E5-base-v2 임베딩과 FAISS 인덱스로 인덱싱한 오프라인 retriever다. 이미지 검색은 ImgBB로 공개 URL을 만든 뒤 Serper image search API를 호출하고 결과를 로컬에 캐시해 오프라인으로 쓴다. 검증 데이터는 두 단계 모두 FVQA-test다.
 
 baseline 공정 비교를 위해 Executor를 세 가지 프롬프트 변형으로 각각 학습시켰다. no extra prompt는 No Memory용, long-context memory prompt는 RAG, Mem0, A-Mem용, guideline prompt는 ReasoningBank, ExpeL, Memento, MIA용이다. 부록 C가 두 번째 변형을 long-context memory prompt로 부르고 본문 4.1절이 workflow memory prompt로 부르는 명칭 차이가 있다.
 

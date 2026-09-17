@@ -400,7 +400,7 @@ production 시스템은 이것을 1급 파라미터로 노출해 호출자가 �
 
 credit assignment 쪽 보완책도 계보가 있다. GiGPO는 critic이 없는 두 수준(에피소드와 anchor 상태 step) advantage 추정기로 같은 메모리에서 GRPO보다 ALFWorld와 WebShop 성공률을 올린다. ARPO는 tool call 직후의 불확실성 높은 라운드에서 entropy로 분기 샘플링을 발동해 trajectory 수준 예산의 일부로 step 수준 tool use를 정렬한다. 반성 루프도 프롬프트 대신 학습 대상이 될 수 있지만(Retroformer, Reflect-Retry-Reward, SAMULE) 각각 같은 credit assignment 취약성을 반성 토큰 자체에 물려받는다.
 
-환경 병목에서 파생되는 위험도 있다. 에이전트가 자기 trajectory를 만들어 그것으로 학습하는 자기 개선 방식은 데이터 희소성에 맞서지만 같은 프록시 reward 위험을 복리로 키운다. 에이전트가 자기 학습 신호를 쓰면서 동시에 채점하기 때문이다.
+환경 병목에서 파생되는 위험도 있다. 에이전트가 자기 trajectory를 만들어 그것으로 학습하는 자기 개선 방식은 데이터 희소성에 맞서지만 같은 프록시 reward 위험을 compounding 효과로 키운다. 에이전트가 자기 학습 신호를 쓰면서 동시에 채점하기 때문이다.
 
 #### 가장 무거운 반증
 

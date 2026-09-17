@@ -165,7 +165,7 @@ frontmatter는 선택 키를 여럿 지원한다.
 
 부작용이 있는 스킬에는 `disable-model-invocation: true`를 건다. `/ship`은 사용자가 명시적으로 입력했을 때만 배포해야지, 모델이 관련 있다고 판단할 때 실행되어서는 안 된다.
 
-실전 예시로 제시된 Go HTTP handler 스킬은 `SKILL.md`와 `templates/handler.go.tmpl`과 `examples/healthz.go`로 구성된다. Stack 절에 Go 1.22와 chi 라우터, 타입 안전 쿼리용 sqlc, 구조화 로깅용 zap, 테이블 주도 테스트용 testify를 적는다.
+실전 예시로 제시된 Go HTTP handler 스킬은 `SKILL.md`와 `templates/handler.go.tmpl`과 `examples/healthz.go`로 구성된다. Stack 절에 Go 1.22와 chi 라우터, 타입 안전 질의(query)용 sqlc, 구조화 로깅용 zap, 테이블 주도 테스트용 testify를 적는다.
 
 이 스킬의 핵심은 Gotchas 절에 있다. 팀이 실제로 걸려 넘어진 지점만 모았기 때문이다.
 
@@ -200,7 +200,7 @@ frontmatter는 선택 키를 여럿 지원한다.
 | 절 | 내용 |
 |---|---|
 | Process | `git diff main...HEAD` 실행, `git log main..HEAD --oneline` 실행, diff 컨텍스트가 아닌 전체 파일 읽기, `CLAUDE.md`와 `CLAUDE.local.md`와 `.claude/rules/`에 대조 |
-| Flag | 정확성 버그(off-by-one, null 처리, 에러 경로, race condition), 보안(injection, 인증 검사 누락, 코드 안의 비밀값), 새 로직의 테스트 누락, N+1 쿼리, 관례 위반 |
+| Flag | 정확성 버그(off-by-one, null 처리, 에러 경로, race condition), 보안(injection, 인증 검사 누락, 코드 안의 비밀값), 새 로직의 테스트 누락, N+1 질의, 관례 위반 |
 | Do NOT flag | 프로젝트 룰에 없는 스타일 취향, 동작하는 코드의 리팩터링 제안, 이 diff 바깥의 것 |
 | Output | 심각도별(Critical, High, Medium, Low) 묶음. 파일과 라인과 이슈와 수정안을 적고 마지막에 SHIP, FIX FIRST, REWORK 중 하나로 판정 |
 
@@ -219,7 +219,7 @@ Claude Code 팀 자체 워크플로에서는 `build-validator`, `code-architect`
 | `security-reviewer` | injection, 인증, 비밀값, 안전하지 않은 역직렬화 |
 | `test-writer` | 테스트를 생성하며 code-reviewer와 짝을 이뤄 루프를 돈다 |
 | `debugger` | 실패하는 테스트를 근본 원인까지 추적한다 |
-| `performance-auditor` | 흐름과 쿼리를 프로파일링한다 |
+| `performance-auditor` | 흐름과 질의를 프로파일링한다 |
 | `migration-writer` | 프로젝트 관례에 맞는 DB 마이그레이션을 생성한다 |
 | `release-notes-writer` | 커밋 이력에서 변경 로그를 만든다 |
 
@@ -313,13 +313,13 @@ done
 
 MCP는 코딩 에이전트를 시스템 인식 에이전트로 바꾸는 배선이다. MCP 서버가 외부 도구를 표준 계약으로 노출하면 Claude가 다른 도구와 똑같이 호출할 수 있다.
 
-차이는 접근 범위에서 난다. MCP가 없으면 Claude는 파일을 읽고 커맨드를 실행한다. MCP가 있으면 Linear 티켓을 읽고, Postgres에 질의하고, Figma 컴포넌트를 열고, Sentry 스택 트레이스를 가져오고, Obsidian vault를 읽는다.
+차이는 접근 범위에서 난다. MCP가 없으면 Claude는 파일을 읽고 커맨드를 실행한다. MCP가 있으면 Linear 티켓을 읽고, Postgres에 질의하고, Figma 컴포넌트를 열고, Sentry stack trace를 가져오고, Obsidian vault를 읽는다.
 
 | MCP | 열리는 것 |
 |---|---|
 | GitHub | 저장소 관리, PR, 이슈, 코드 검색 |
 | Context7 | 최신 라이브러리 문서. 프롬프트 끝에 `use context7`을 붙인다 |
-| Sentry | 실제 에러 맥락, 스택 트레이스, breadcrumb |
+| Sentry | 실제 에러 맥락, stack trace, breadcrumb |
 | Linear | 티켓 읽기와 생성, 상태 갱신 |
 | Playwright | 접근성 스냅샷 기반 브라우저 자동화 |
 | Figma | 라이브 디자인 트리, auto-layout, 간격 토큰, 컴포넌트 참조 |

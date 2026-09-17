@@ -73,11 +73,11 @@ foundation model 항목에서는 OpenVLA가 파라미터 70억 개의 오픈 VLA
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
-큐레이션 목록의 본질적 한계가 그대로 적용된다. 항목은 링크와 한 줄 설명뿐이라 깊이는 각 원본으로 넘긴다. 포함 여부와 배치는 저자의 편집 판단이고 활발한 영역이라 링크는 시간이 지나면 낡는다(저장소가 link-check 워크플로를 두는 이유다). 한국어 wiki에 옮길 때는 이 목록을 발견용 색인으로 쓰고 실제 근거가 필요하면 개별 자료를 `raw/`로 따로 수집해 3-tier에 태우는 편이 맞는다. 이 목록 자체를 근거로 특정 모델의 수치를 인용해서는 안 된다. 목록은 "무엇이 있는지"를 알려줄 뿐 "그것이 얼마나 잘하는지"를 검증하지 않는다.
+큐레이션 목록의 본질적 한계가 그대로 적용된다. 항목은 링크와 한 줄 설명뿐이라 깊이는 각 원본으로 넘긴다. 포함 여부와 배치는 저자의 편집 판단이고 활발한 영역이라 링크는 시간이 지나면 낡는다(저장소가 link-check 워크플로를 두는 이유다). 한국어 wiki에 옮길 때는 이 목록을 발견용 인덱스로 쓰고 실제 근거가 필요하면 개별 자료를 `raw/`로 따로 수집해 3-tier에 태우는 편이 맞는다. 이 목록 자체를 근거로 특정 모델의 수치를 인용해서는 안 된다. 목록은 "무엇이 있는지"를 알려줄 뿐 "그것이 얼마나 잘하는지"를 검증하지 않는다.
 
 ## 6. 관련 연구 (Related Work)
 
-저장소 말미의 Related Awesome Lists가 인접 색인을 가리킨다. Awesome LLM Robotics(로보틱스의 LLM/VLM 응용), Awesome Robotics, Awesome Robotics 3D(3D 비전), Awesome Embodied Agent, Awesome World Models, Awesome Deep RL, Awesome Imitation Learning 등이다. 같은 저자(natnew)의 인접 목록으로 Awesome Agentic Engineering, Awesome Agentic AI Security, Awesome AI Scientists도 링크된다.
+저장소 말미의 Related Awesome Lists가 인접 인덱스를 가리킨다. Awesome LLM Robotics(로보틱스의 LLM/VLM 응용), Awesome Robotics, Awesome Robotics 3D(3D 비전), Awesome Embodied Agent, Awesome World Models, Awesome Deep RL, Awesome Imitation Learning 등이다. 같은 저자(natnew)의 인접 목록으로 Awesome Agentic Engineering, Awesome Agentic AI Security, Awesome AI Scientists도 링크된다.
 
 이 wiki 내부에서는 physical-ai 카테고리에 이미 들어와 있는 1차 자료들이 이 지도의 개별 좌표에 해당한다. 목록이 이름을 직접 싣는 것은 RT-1과 RT-2(VLA 계보의 출발점), GR00T N1(dual-system VLA) 정도다. SONIC 계열(whole-body control)과 VLA bimanual 서베이는 목록에 이름이 없고 Locomotion과 Manipulation 절이 다루는 주제에 속할 뿐이다.
 
@@ -85,5 +85,5 @@ foundation model 항목에서는 OpenVLA가 파라미터 70억 개의 오픈 VLA
 
 이 자료 고유의 용어는 거의 없다(외부 프로젝트명 모음이라 대부분 고유명사다). 도메인 공통 용어는 [[overviews/glossary-physical-ai]]와 [[overviews/glossary-llms]]에 위임한다.
 
-- awesome-list: GitHub 관행으로, 특정 주제의 우수 자료를 한 줄 설명과 함께 큐레이션한 링크 색인. `awesome.re` 배지가 그 관행을 표시한다.
+- awesome-list: GitHub 관행으로, 특정 주제의 우수 자료를 한 줄 설명과 함께 큐레이션한 링크 인덱스. `awesome.re` 배지가 그 관행을 표시한다.
 - 정본 카테고리(canonical categories): 이 저장소가 자료를 배치하는 14개 상위 분류. 부록(appendices)과 구분된다.

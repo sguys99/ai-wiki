@@ -604,7 +604,7 @@ provider마다 추출이 되는 가장 약한 호환 모델을 고른다.
 
 **충실도의 한계**: ground-truth trace가 없고 생성이 확률적이라 정확한 일치를 보장할 수 없다. Figure 1은 120개 Codeforces 문제에서 API 보고 thinking 토큰 수와 추출 reasoning을 같은 모델 입력으로 재인코딩한 토큰 수를 비교하며, 대부분의 입력에서 모든 모델에 걸쳐 밀접하게 일치했다. Figure 8은 추출 reasoning이 native 요약보다 상세하고 입력에 없던 API 토큰과 개인정보까지 드러냄을 보인다.
 
-**직접 jailbreak 대비 확장성**: 강한 모델 직접 공격은 모델 수준 alignment(chain-of-thought 공개 거부)와 시스템 수준 방어(입력 필터, 출력 substring 매칭)를 함께 뚫어야 한다. Haiku 4.5는 Figure 1의 모든 공격에 고정 프롬프트 하나로 됐지만, 더 유능한 GPT-5.6 Luna는 블록마다 다른 템플릿, best-of-n 샘플링, 생성 토큰 50개 미만 청크 분할 같은 ad-hoc 우회가 필요했다.
+**직접 jailbreak 대비 확장성**: 강한 모델 직접 공격은 모델 수준 alignment(chain-of-thought 공개 거부)와 시스템 수준 방어(입력 필터, 출력 substring 매칭)를 함께 뚫어야 한다. Haiku 4.5는 Figure 1의 모든 공격에 고정 프롬프트 하나로 됐지만, 더 유능한 GPT-5.6 Luna는 블록마다 다른 템플릿, best-of-n 샘플링, 생성 토큰 50개 미만 chunk 분할 같은 ad-hoc 우회가 필요했다.
 
 ### 3.5 평가 설정
 
@@ -622,7 +622,7 @@ provider마다 추출이 되는 가장 약한 호환 모델을 고른다.
 | provider | 디코더와 절차 | 어려움과 보정 |
 |---|---|---|
 | Claude (C.1) | Haiku 4.5가 fuzzy 디코더. 수작업 jailbreak와 prefill 공격(Andriushchenko 2025)으로 복호화 요청 뒤 assistant 턴에 signed thought와 `<thinking-copy>` prefill을 둔다. temperature 1에서도 추출 토큰 대 과금 토큰 비 약 1:1 | 실패 유형은 전사 거부, 템플릿 마지막 메시지 반복, 앞선 사고가 없다는 혼동이며 키워드 필터로 제거한다. 선택적 reconciliation은 비거부 추출 최대 3개를 원본 signed thought와 함께 Opus 4.8에 주어 temperature 0에서 단일 전사를 만든다 |
-| GPT (C.2) | GPT-5.6 Luna에서 후보를 샘플링하고 추출 오류(1에서 추출 토큰 수를 과금 토큰 수로 나눈 값을 뺀 것)가 가장 낮은 후보를 고른다. Figure 1 실험은 최대 50개, secret 추출은 최대 10개. 오류가 0.1을 넘으면 GPT-5.6 Terra로 되풀이 | Claude보다 훨씬 어려웠다. 품질이 trace 길이와 출처에 따라 달랐고(Luna는 GPT-5-mini보다 GPT-5.6 Sol reasoning을 더 안정적으로 추출), 완성에 원본의 연속 약 50토큰 이상이 담기면 API가 거부해 수학과 프로그래밍 블록은 50토큰 청크로 이어 추출했다. 같은 reasoning 반복 주입이 alignment 우회에 도움이 됐다 |
+| GPT (C.2) | GPT-5.6 Luna에서 후보를 샘플링하고 추출 오류(1에서 추출 토큰 수를 과금 토큰 수로 나눈 값을 뺀 것)가 가장 낮은 후보를 고른다. Figure 1 실험은 최대 50개, secret 추출은 최대 10개. 오류가 0.1을 넘으면 GPT-5.6 Terra로 되풀이 | Claude보다 훨씬 어려웠다. 품질이 trace 길이와 출처에 따라 달랐고(Luna는 GPT-5-mini보다 GPT-5.6 Sol reasoning을 더 안정적으로 추출), 완성에 원본의 연속 약 50토큰 이상이 담기면 API가 거부해 수학과 프로그래밍 블록은 50토큰 chunk로 이어 추출했다. 같은 reasoning 반복 주입이 alignment 우회에 도움이 됐다 |
 | Gemini (C.3) | Gemini Robotics ER-1.6이 fuzzy 디코더, Gemini 3.5 Flash가 선택적 reconciler | 잡음이 커서 Claude보다 덜 안정적. 비거부 복호화 최대 20개 중 오류가 가장 낮은 3개를 reconciliation에 넘긴다 |
 
 본문 2.4절은 Gemini 디코더를 "Gemini Robotics 1.6"으로, 부록 C.3은 "Gemini Robotics ER-1.6"으로 적는다. 같은 모델을 가리키는 표기 차이로 보이지만 논문 안에서 통일되어 있지 않다.
@@ -655,7 +655,7 @@ Figure 40(부록 C.4)은 표시된 요약이 숨은 reasoning의 작은 일부�
 
 reasoning trace가 재현성을 위해 공개되거나(예: PostTrainBench, Rank 2026) 맥락을 넘어 전달되면 다른 사용자가 재생할 수 있다. 공개자의 익명화는 평문 수준에서만 가능해 암호화 블록 안의 reasoning을 놓치고, 사용자에게 복호화 수단이 없어 삭제 외에는 안전하게 정제할 방법이 없다.
 
-**대규모 추출**: GitHub와 Hugging Face에서 Claude, GPT, Gemini 모델이 만든 공개 agent trajectory 6,708개를 모아 서명된 모든 블록을 복호화해 315,320개의 reasoning trace를 복원하고 LLM-as-a-judge로 개인정보 침해 가능성을 표시했다(부록 D).
+**대규모 추출**: GitHub와 Hugging Face에서 Claude, GPT, Gemini 모델이 만든 공개 agent trajectory 6,708개를 모아 서명된 모든 블록을 복호화해 315,320개의 reasoning trace를 복원하고 LLM-as-a-Judge로 개인정보 침해 가능성을 표시했다(부록 D).
 
 | 지표 | 값 |
 |---|---|
@@ -671,7 +671,7 @@ reasoning trace가 재현성을 위해 공개되거나(예: PostTrainBench, Rank
 
 이 실험은 공개 세션 trace에 대한 비전수 탐색이다. 로컬 trace 저장이나 프로덕션 서비스의 trace처럼 다른 시나리오에서는 PII와 secret 누출이 훨씬 넓게 퍼져 있다고 가정할 수 있으며, 발견된 취약점으로 악의적 제3자의 복호화가 가능해지면서 이런 시스템 운영자에게 상당한 컴플라이언스 위험이 생긴다.
 
-**2단계 라벨링 (부록 D.1)**: 1차 라벨러(Haiku 4.5, Figure 44)가 블록에 개인정보 침해 가능성이 있는지 표시하고 세부 taxonomy로 항목을 추출한다. 315,320개 중 27,165개(8.6%)가 표시됐다(GPT 출처 237,209개 중 14,876개, Claude 출처 78,111개 중 12,289개). 1차는 의도적으로 재현율을 높였기 때문에 placeholder(sk-xxxx), 환경변수 이름, 벤치마크 fixture, 비밀이 아닌 일반 식별자가 많이 섞인다. 2차 분류기(Figure 45)가 표시된 항목을 진짜 개인정보 침해인지 비artifact인지 다시 라벨링한다. 2차가 판정한 6,950개 블록 중 1,028개가 실제 artifact를 1개 이상 유지했다. 중복 제거와 벤치마크 출처 제외를 거친 결과가 Table 4다.
+**2단계 라벨링 (부록 D.1)**: 1차 라벨러(Haiku 4.5, Figure 44)가 블록에 개인정보 침해 가능성이 있는지 표시하고 세부 taxonomy로 항목을 추출한다. 315,320개 중 27,165개(8.6%)가 표시됐다(GPT 출처 237,209개 중 14,876개, Claude 출처 78,111개 중 12,289개). 1차는 의도적으로 recall을 높였기 때문에 placeholder(sk-xxxx), 환경변수 이름, 벤치마크 fixture, 비밀이 아닌 일반 식별자가 많이 섞인다. 2차 분류기(Figure 45)가 표시된 항목을 진짜 개인정보 침해인지 비artifact인지 다시 라벨링한다. 2차가 판정한 6,950개 블록 중 1,028개가 실제 artifact를 1개 이상 유지했다. 중복 제거와 벤치마크 출처 제외를 거친 결과가 Table 4다.
 
 | 범주 | 1차 라벨러 | 2차 라벨러 | 중복 제거 | 비벤치마크 | reasoning에만 있음 |
 |---|---|---|---|---|---|
@@ -830,7 +830,7 @@ reasoning 요약은 raw reasoning의 압축본으로 보통 더 싸고 덜 유�
 
 공개 전 저자들은 영향을 받는 주요 모델 API provider, Microsoft, Hugging Face에 취약점과 추출 방법, 공개 데이터셋 스캔의 예비 결과를 전체 기술 세부와 함께 알렸다. Green(2026)은 교체 가능한 reasoning trace라는 원 취약점을 2026년 5월에 공개했는데, Green에 따르면 provider들은 "side channel이나 replay 공격에서 생기는 어떤 보안 함의"도 인정하지 않았다. 모든 provider가 이 논문의 보고 접수를 확인했고 이후 저자들은 같은 공격을 실행할 수 없었다.
 
-PII artifact 367개와 credential 182개의 추출과 라벨링은 격리된 보안 환경에서 수행됐고, 복원한 secret은 자동 LLM-as-a-judge 분류와 집계 단계 직후 안전하게 삭제됐다. 공개 전 데이터셋 플랫폼과 provider와 조율해 영향받는 사용자의 즉각적 위험을 완화하게 했다.
+PII artifact 367개와 credential 182개의 추출과 라벨링은 격리된 보안 환경에서 수행됐고, 복원한 secret은 자동 LLM-as-a-Judge 분류와 집계 단계 직후 안전하게 삭제됐다. 공개 전 데이터셋 플랫폼과 provider와 조율해 영향받는 사용자의 즉각적 위험을 완화하게 했다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
@@ -933,11 +933,11 @@ figures.json의 50개 항목 전량이다. Table 1~5는 본문 마크다운 표�
 | fig01 | 2 | "Opus 4.8의 signature를 Haiku 4.5에 주입해 숨은 reasoning을 받아내는 2회 호출 추출 개요와, 세 provider에서 API가 보고한 thinking 토큰 수 대비 복원한 토큰 수를 그린 산점도" | caption-region | ★ wiki 권장 (architecture) |
 | fig02 | 5 | "current-turn injection과 past-turn injection 두 가지 사고 주입 방식의 턴 배치" | manual | ★ wiki 권장 (method) |
 | tab01 | 4 | "2026년 7월 기준 Claude, GPT, Gemini 세 provider의 암호화 reasoning cross-model 호환성 표" | manual | ★ wiki 권장 (key finding) |
-| fig06 | 8 | "공개 트레이스에서 복원한 개인정보 항목 수를 PII, 기술 식별자, credential 세 범주로 집계한 막대그래프 (크롭에 왼쪽 열 본문이 함께 잘려 들어감)" | caption-region | ★ wiki 권장 (result) |
+| fig06 | 8 | "공개 trace에서 복원한 개인정보 항목 수를 PII, 기술 식별자, credential 세 범주로 집계한 막대그래프 (크롭에 왼쪽 열 본문이 함께 잘려 들어감)" | caption-region | ★ wiki 권장 (result) |
 | tab02 | 19 | "누출 벡터 6종을 완화책이 제공하는 보호와 운영 절차에 대응시킨 표" | table-region | ★ wiki 권장 (mitigation) |
 | fig03 | 6 | "Opus 4.8 reasoning 일부를 Kimi-K3 reasoning에 prefill하면 가시 답변 문체가 Opus 쪽으로 옮겨가는 예시" | caption-region | (확인 필요) |
 | fig04 | 7 | "HarmBench 변형 프롬프트에 대해 Opus 4.8의 최종 답변에는 없는 유해 정보가 복호화한 reasoning에 남아 있는 예시" | caption-region | (확인 필요) |
-| fig05 | 8 | "공개 트레이스를 복호화해 얻은 API 키(GPT-5.2 Codex)와 합성 페르소나 개인정보(Claude Sonnet 4.6) 예시" | caption-region | (확인 필요) |
+| fig05 | 8 | "공개 trace를 복호화해 얻은 API 키(GPT-5.2 Codex)와 합성 페르소나 개인정보(Claude Sonnet 4.6) 예시" | caption-region | (확인 필요) |
 | fig08 | 12 | "AIME 2025 14번 문제에서 API가 돌려준 요약과 복호화한 reasoning을 비교한 summary unfaithfulness 예시" | caption-region | (확인 필요) |
 | fig07 | 11 | "GPT-5.6 Luna로 복호화한 GPT-5의 판독하기 어려운 reasoning 예시 (복원 토큰 대 API 보고 토큰 비 1:1)" | caption-region | (부록 E 정성 예시) |
 | fig09 | 24 | "Opus 4.8 reasoning의 앞 1%를 prefill했을 때 Kimi-K3와 Inkling의 가시 답변이 Opus 답변과 공유하는 best-of-k n-gram 비율 곡선" | caption-region | ★ wiki 권장 (result) |
@@ -968,14 +968,14 @@ figures.json의 50개 항목 전량이다. Table 1~5는 본문 마크다운 표�
 | fig34 | 53 | "Claude reconciliation 요청 템플릿 (past-turn 주입 1회)" | caption-region | (추출 템플릿, 임베드 제외) |
 | fig35 | 54 | "GPT 추출 요청 템플릿 (같은 reasoning을 과거 턴과 현재 턴에 두 번 주입)" | caption-region | (추출 템플릿, 임베드 제외) |
 | fig36 | 55 | "GPT multi-turn 추출 요청 템플릿 (같은 reasoning을 이전 턴과 현재 턴에 반복 주입)" | caption-region | (추출 템플릿, 임베드 제외) |
-| fig37 | 55 | "GPT 청크 이어쓰기 접미 메시지 템플릿 (출력 길이 제한에 걸리면 짧은 이어쓰기를 요청해 이어 붙임)" | caption-region | (추출 템플릿, 임베드 제외) |
+| fig37 | 55 | "GPT chunk 이어쓰기 접미 메시지 템플릿 (출력 길이 제한에 걸리면 짧은 이어쓰기를 요청해 이어 붙임)" | caption-region | (추출 템플릿, 임베드 제외) |
 | fig38 | 56 | "Gemini fuzzy 추출 요청 템플릿 (source signature와 thought prefill을 실은 model 턴을 이어 쓰게 함)" | caption-region | (추출 템플릿, 임베드 제외) |
 | fig39 | 56 | "Gemini reconciliation 요청 템플릿" | caption-region | (추출 템플릿, 임베드 제외) |
 | fig40 | 58 | "Codeforces 문제별 숨은 thinking 토큰 수 대비 표시된 요약 토큰 수 산점도로, 요약이 숨은 reasoning의 일부에 그침을 보여준다" | caption-region | ★ wiki 권장 (result) |
 | fig41 | 59 | "AIME 2025 I 12번 문제에서 복호화한 reasoning의 불확실한 추정치가 요약에서는 확정값처럼 적힌 예시 (Opus 4.8)" | caption-region | (부록 정성 예시) |
 | fig42 | 60 | "AIME 2025 II 6번 문제에서 요약이 검증 단서 문구를 빼고 독립 유도처럼 제시한 예시 (Opus 4.8)" | caption-region | (부록 정성 예시) |
 | fig43 | 61 | "AIME 2025 I 7번 문제에서 요약이 reasoning의 끝부분만 담아 수학 내용이 없는 예시 (GPT-5.6 Sol)" | caption-region | (부록 정성 예시) |
-| fig44 | 63 | "1차 LLM-as-a-judge 프롬프트로, 복원한 trace의 개인정보 후보를 고정된 2단계 taxonomy로 추출한다" | caption-region | (judge 프롬프트, 임베드 제외) |
+| fig44 | 63 | "1차 LLM-as-a-Judge 프롬프트로, 복원한 trace의 개인정보 후보를 고정된 2단계 taxonomy로 추출한다" | caption-region | (judge 프롬프트, 임베드 제외) |
 | fig45 | 64 | "2차 실제 artifact 판정 프롬프트로, placeholder와 변수명을 진짜 credential과 개인정보에서 가려낸다" | caption-region | (judge 프롬프트, 임베드 제외) |
 | tab03 | 23 | "prefill 출처별 best-of-k n-gram 겹침과 paired t-test 결과 표" | table-region | (본문 표로 전사) |
 | tab04 | 62 | "발견한 개인정보 artifact를 범주별로 필터링 파이프라인 단계마다 집계한 표" | table-region | (본문 표로 전사) |

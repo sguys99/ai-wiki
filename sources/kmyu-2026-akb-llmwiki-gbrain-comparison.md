@@ -158,7 +158,7 @@ tags: [akb, llmwiki, gbrain, agent-memory, shared-memory, knowledge-base, memory
 | 검색 계층 | DB/MCP 중심 | wiki 탐색 + search index | multi-layer brain query |
 | 출판 / 공유 | 약함 | **매우 강함** | 중간 |
 | 정합성 / lint | 제한적 | 강함 | 강함 |
-| 엔티티 확장 | 제한적 | 위키 페이지 중심 | tiered enrichment 강함 |
+| entity 확장 | 제한적 | 위키 페이지 중심 | tiered enrichment 강함 |
 | 스케줄링 / recurring job | 약함 | 제한적 | **강함** |
 | 운영 오버헤드 | 낮음 | 낮음에서 중간 | 높음 |
 
@@ -288,5 +288,5 @@ tags: [akb, llmwiki, gbrain, agent-memory, shared-memory, knowledge-base, memory
 - **publish layer**: knowledge base의 일부를 사람이나 다른 시스템이 읽을 수 있게 export하는 계층으로, markdown, HTML, llms.txt, JSON, graph 등이 대상이다.
 - **lifecycle 관리**: memory entry에 draft, active, stale, archived 같은 상태값을 부여해 수명을 추적하는 기능이다.
 - **citation repair**: 오래되거나 깨진 출처를 보정하는 기능으로, 보고서는 GBrain의 강점 목록에 이를 포함한다.
-- **tiered enrichment**: 엔티티에 단계적으로 메타 정보를 채워 넣는 방식으로, 보고서 4.3절이 GBrain의 강점으로 표기한 항목이다.
+- **tiered enrichment**: entity에 단계적으로 메타 정보를 채워 넣는 방식으로, 보고서 4.3절이 GBrain의 강점으로 표기한 항목이다.
 - **compiled artifact**: 실시간으로 갱신되는 저장소가 아니라 한 번 정리해 만들어 낸 결과물을 뜻하며, 보고서가 llmwiki의 성격을 규정할 때 쓴 표현이다.

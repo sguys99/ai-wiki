@@ -72,9 +72,9 @@ study_path:
 | [[database/dsba-2025-graphrag-paper-review\|GraphRAG 리뷰 (DSBA 2025)]] | article | 트렁크의 한국어 해설과 첫 비판 | 발표자 견해 아홉 건, 논문과 코드의 간극, DRIFT의 존재 |
 | [[database/guo-2025-lightrag-simple-and-fast\|LightRAG]] | paper | 비용 분기 | key-value 인덱스, dual-level retrieval, 비용 실측, 원문 제거 ablation |
 | [[database/zhang-2026-leanrag-knowledge-graph-based-generation\|LeanRAG]] | paper | 추상화 분기 | semantic island 문제 정의, aggregated relation, LCA 검색, 원문 제거 ablation |
-| [[database/guo-2025-rag-anything-all-in-one-rag\|RAG-Anything]] | paper | modality 분기 | dual-graph 구축, dereferencing, DocBench와 MMLongBench 수치 |
-| [[database/hkuds-rag-anything\|HKUDS/RAG-Anything]] | repo | modality 분기의 운영 인터페이스 | 파서 세 종, query 방식 세 가지, 설치와 운영 의존 |
-| [[database/9bow-2026-rag-anything-multimodal-rag-framework\|RAG-Anything 한국어 소개]] | article | modality 분기의 한국어 진입로 | 소개 순서와 강조점, 도메인별 ablation 증감 |
+| [[database/guo-2025-rag-anything-all-in-one-rag\|RAG-Anything]] | paper | 모달리티 분기 | dual-graph 구축, dereferencing, DocBench와 MMLongBench 수치 |
+| [[database/hkuds-rag-anything\|HKUDS/RAG-Anything]] | repo | 모달리티 분기의 운영 인터페이스 | 파서 세 종, query 방식 세 가지, 설치와 운영 의존 |
+| [[database/9bow-2026-rag-anything-multimodal-rag-framework\|RAG-Anything 한국어 소개]] | article | 모달리티 분기의 한국어 진입로 | 소개 순서와 강조점, 도메인별 ablation 증감 |
 | [[database/dsba-2026-paper-review-graph-based-rag\|Graph-based RAG 세미나 (DSBA 2026)]] | video | 두 분기를 나란히 놓은 비교 | retrieval 패턴 다섯 가지, 연구 흐름도, 원문 첨부 상충, 남은 연구 질문 |
 
 한국어 자료 세 편 가운데 두 편은 같은 발표자의 시간 순차 세미나다. [[database/dsba-2025-graphrag-paper-review]]가 2025년 8월 GraphRAG 한 편을 깊게 다루고, [[database/dsba-2026-paper-review-graph-based-rag]]가 2026년 4월 그 이후 2년의 흐름을 지도로 그린다. 두 자료를 겹쳐 읽으면 한 연구자의 판단이 어떻게 이어지는지 확인할 수 있지만, 독립적인 외부 시각은 이 저장소에 없다.
@@ -88,7 +88,7 @@ study_path:
 | 진단 | 발표자의 서술 | 이후 분기에서의 전개 |
 |---|---|---|
 | 그래프의 정보 반영 효율 | 문서 본문 대비 지식 그래프가 얼마나 효율적으로 전체 정보를 반영하느냐가 핵심으로 보인다 | LightRAG가 key-value 직렬화로 검색 컨텍스트를 줄이고, LeanRAG가 retrieval 토큰을 baseline 평균 대비 약 46% 줄였다고 보고한다 |
-| 고정된 프롬프트 | 고정된 프롬프트로 지식 그래프를 구축했고, 사용자 목적에 맞게 구축하는 방법이 성능을 좌우할 것으로 보인다 | RAG-Anything이 modality별 전용 프롬프트와 확장 가능한 처리기를 두어 도메인 확장 경로를 연다 |
+| 고정된 프롬프트 | 고정된 프롬프트로 지식 그래프를 구축했고, 사용자 목적에 맞게 구축하는 방법이 성능을 좌우할 것으로 보인다 | RAG-Anything이 모달리티별 전용 프롬프트와 확장 가능한 처리기를 두어 도메인 확장 경로를 연다 |
 | 요약의 상세 손실 | community summary를 쓰면 글로벌 정보는 반영되지만 본문의 상세 정보 손실은 불가피하다 | LeanRAG가 계층 구조와 상위 relation으로 같은 손실을 다르게 다룬다 |
 | hybrid scheme의 필요 | 임베딩 벡터를 활용하는 hybrid scheme이 필수 불가결이며, community summary를 query 임베딩 유사도로 취사선택했으면 어땠을지 아쉬움이 남는다 | LightRAG의 키워드 임베딩 매칭과 LeanRAG의 base 층 anchoring이 모두 이 방향이다 |
 
@@ -133,7 +133,7 @@ LeanRAG의 직전 참조점은 HiRAG다. [[database/zhang-2026-leanrag-knowledge
 | GraphRAG | entity, relationship, claim, 4단계 community summary | 한 level의 요약을 무작위로 섞어 자른 뒤 chunk마다 부분 답변과 0에서 100 사이 helpfulness score를 만들고 점수 순으로 합친다 | community summary 자체 | 쓰지 않는다. TS 조건만 원본 chunk를 직접 쓴다 | 요약 chunk 수만큼 |
 | LightRAG | entity와 relation의 key-value 쌍 | query에서 low-level 키워드와 high-level 키워드를 한 번에 뽑아 각각 entity 인덱스와 relation 인덱스에 매칭하고 1-hop 이웃까지 넓힌다 | relation의 상위 테마 키워드 | 등장 횟수가 높은 상위 원문만 붙인다 | 키워드 추출 1회 |
 | LeanRAG | base entity, aggregated entity, aggregated relation | base 층 entity만 대상으로 seed를 고른 뒤 seed들의 lowest common ancestor까지 부모 링크를 따라 올라간다 | 상위 층 aggregated entity와 같은 층 aggregated relation | base entity의 출처 chunk를 붙인다 | 본문에 명시 없음 |
-| RAG-Anything | atomic content unit, anchor 노드, 통합 그래프와 임베딩 테이블 | 구조 탐색과 dense 유사도 검색을 병렬로 수행한 뒤 구조 중요도와 의미 유사도와 modality 선호 세 신호로 순위를 정한다 | 통합 그래프의 구조 탐색 | 텍스트 표현을 붙이고 시각 자료는 원본으로 복원한다 | 본문에 명시 없음 |
+| RAG-Anything | atomic content unit, anchor 노드, 통합 그래프와 임베딩 테이블 | 구조 탐색과 dense 유사도 검색을 병렬로 수행한 뒤 구조 중요도와 의미 유사도와 모달리티 선호 세 신호로 순위를 정한다 | 통합 그래프의 구조 탐색 | 텍스트 표현을 붙이고 시각 자료는 원본으로 복원한다 | 본문에 명시 없음 |
 
 ### community detection
 
@@ -161,7 +161,7 @@ LeanRAG는 두 문제를 나란히 세운다. semantic islands는 상위 개념 
 
 계층을 쌓는 파라미터에는 자료 사이의 정보량 차이가 있다. [[database/zhang-2026-leanrag-knowledge-graph-based-generation]] 논문 본문은 클러스터 개수와 주요 hyperparameter를 held-out validation set에서 튜닝했다고만 적는다. 클러스터 개수를 Bayesian Information Criterion으로 정한다는 설명과 최대 층 수가 평면 그래프 노드 수 $N$에 대해 $\log_2 N + 1$이라는 서술은 [[database/dsba-2026-paper-review-graph-based-rag]] 세미나에만 있다. 임계값의 실제 사용값과 민감도 분석은 어느 자료에도 없다.
 
-### dual-graph와 modality 검색
+### dual-graph와 모달리티 검색
 
 RAG-Anything이 바꾸는 것은 인덱스에 올라가는 대상 자체다. 문서를 atomic content unit으로 분해하는데, 각 단위는 모달리티 유형과 원본 내용의 쌍이고 유형은 텍스트, 이미지, 표, 수식이다. 이 추상화 덕분에 PPT와 PDF와 XLS가 같은 처리 경로를 탄다.
 
@@ -181,7 +181,7 @@ RAG-Anything이 바꾸는 것은 인덱스에 올라가는 대상 자체다. 문
 |---|---|---|---|---|
 | 코퍼스 | Podcast 약 100만 토큰과 News 약 170만 토큰 | UltraDomain 4개 도메인 | UltraDomain 같은 4개 도메인 | DocBench 229문서와 MMLongBench 135문서 |
 | 질문 | 코퍼스 설명에서 합성한 125문항씩 | 같은 절차로 125문항씩 | 같은 절차로 125문항씩 | 전문가가 작성한 정답 있는 질문 |
-| 채점 | 페어와이즈 승률, 각 비교 5회 반복 | 페어와이즈 승률, 답변 위치를 번갈아 바꿈 | 1점에서 10점 척도, 5회 평균. RQ3만 페어와이즈 | 0 또는 1의 이진 정확도 |
+| 채점 | pairwise 승률, 각 비교 5회 반복 | pairwise 승률, 답변 위치를 번갈아 바꿈 | 1점에서 10점 척도, 5회 평균. RQ3만 pairwise | 0 또는 1의 이진 정확도 |
 | judge | 본문에 모델 명시 없음 | GPT-4o-mini | DeepSeek-V3 | GPT-4o-mini |
 | 답변 생성 | GPT-4-turbo | GPT-4o-mini | DeepSeek-V3 | GPT-4o-mini |
 | 임베딩 | 본문 명시 없음 | 본문 명시 없음 | BGE-M3 | text-embedding-3-large, 3072차원 |
@@ -212,7 +212,7 @@ claim 기반 재검증도 같은 방향을 가리키되 완전히 겹치지는 �
 
 같은 UltraDomain 4개 도메인을 LightRAG와 LeanRAG가 모두 쓰지만 채점 방식이 달라 두 표를 겹쳐 읽을 수 없다. 각 표가 무엇을 말하는지는 따로 읽어야 한다.
 
-LightRAG의 표는 자신과 baseline의 페어와이즈 승률이다. 아래는 LightRAG 쪽 승률이고 단위는 백분율이다.
+LightRAG의 표는 자신과 baseline의 pairwise 승률이다. 아래는 LightRAG 쪽 승률이고 단위는 백분율이다.
 
 | 데이터셋 | 코퍼스 토큰 | comprehensiveness | diversity | empowerment | overall |
 |---|---|---|---|---|---|
@@ -283,12 +283,12 @@ RAG-Anything 쪽에는 비용 수치가 없다. [[database/guo-2025-rag-anything
 |---|---|---|
 | 결과 | overall 기준 Agriculture에서 67.6%가 74.4%로 상승, Mix에서 60.0%가 55.6%로 하락 | 16개 칸 전부 하락. Mix overall 8.59가 7.93으로, Agriculture overall 8.87이 8.53으로 |
 | 저자 해석 | 그래프 인덱싱이 이미 핵심 정보를 뽑았고 원문에는 노이즈가 섞인다 | 그래프는 semantic index이자 navigation system이고 실제 내용은 원문이 공급한다 |
-| 채점 방식 | 페어와이즈 승률 | 1점에서 10점 평균 |
+| 채점 방식 | pairwise 승률 | 1점에서 10점 평균 |
 | judge | GPT-4o-mini | DeepSeek-V3 |
 
 여기서 주의할 것이 하나 있다. LightRAG 논문 본문은 Agriculture와 Mix 두 곳에서 개선이라고 적지만, [[database/guo-2025-lightrag-simple-and-fast]] 페이지가 Table 2를 다시 읽은 결과 overall 기준 실제 상승은 Agriculture 한 곳뿐이다. Mix에서는 diversity 한 지표만 67.6%에서 74.4%로 오르고 overall은 내려간다. 본문 요약과 표가 어긋나는 사례이므로 "두 데이터셋에서 향상"이라는 서술을 그대로 옮기면 안 된다.
 
-상충의 원인에 대해 [[database/dsba-2026-paper-review-graph-based-rag]] 발표자가 제시한 설명은 채점 방식의 차이다. 점수 평균 방식에서는 두 조건의 미묘한 차이가 같은 점수 구간에 묻힐 수 있으므로, LeanRAG도 컨텍스트를 넣은 답변과 넣지 않은 답변을 페어와이즈로 직접 비교했다면 더 적절했으리라는 지적이다. 세미나는 이 상충을 해소하지 않고 열어 둔 채 마치며, 원문을 언제 어떻게 얼마나 붙일지 정하는 체계가 필요하다는 것을 남은 연구 질문 네 가지 중 하나로 적는다.
+상충의 원인에 대해 [[database/dsba-2026-paper-review-graph-based-rag]] 발표자가 제시한 설명은 채점 방식의 차이다. 점수 평균 방식에서는 두 조건의 미묘한 차이가 같은 점수 구간에 묻힐 수 있으므로, LeanRAG도 컨텍스트를 넣은 답변과 넣지 않은 답변을 pairwise로 직접 비교했다면 더 적절했으리라는 지적이다. 세미나는 이 상충을 해소하지 않고 열어 둔 채 마치며, 원문을 언제 어떻게 얼마나 붙일지 정하는 체계가 필요하다는 것을 남은 연구 질문 네 가지 중 하나로 적는다.
 
 retrieval 정밀도의 차이가 원인이라는 설명도 가능하다. 검색이 거칠면 원문이 노이즈를 더하고 정밀하면 원문이 근거를 보강한다는 구도인데, 이 저장소 자료 가운데 그 가설을 검증한 것은 없다. 판정 모델과 채점 방식과 retrieval 본질 가운데 무엇이 결과를 갈랐는지는 보유 자료만으로 분리되지 않는다.
 
@@ -351,10 +351,10 @@ RAG-Anything 쪽 공백이 실무에서 가장 크다. LightRAG는 chunk마다 L
 4. [[database/zhang-2026-leanrag-knowledge-graph-based-generation|LeanRAG]]. 두 번째 분기다. 같은 평면 지식 그래프 위에 층을 쌓고 상위 노드끼리 relation을 만든다. semantic island와 structure-retrieval mismatch라는 문제 정의가 방법 전체의 뼈대다.
 5. [[database/dsba-2026-paper-review-graph-based-rag|Graph-based RAG 세미나 (DSBA 2026)]]. 두 분기를 나란히 놓고 읽는 자리다. 원문 chunk 첨부 효과가 정반대로 나온다는 이 계열 최대의 미해결 지점이 여기서 명시되고, 남은 연구 질문 네 가지도 함께 제시된다.
 6. [[database/9bow-2026-rag-anything-multimodal-rag-framework|RAG-Anything 한국어 소개]]. 세 번째 분기의 진입로다. 도전 과제, 기여, 파이프라인, 설치까지를 한 편에 압축한다. 본문 말미에 GPT 모델로 정리했다는 안내가 붙으므로 수치 인용은 다음 단계에서 다시 확인한다.
-7. [[database/guo-2025-rag-anything-all-in-one-rag|RAG-Anything]]. modality 분기의 본편이다. dual-graph 구축과 dereferencing이 텍스트 전용 전제를 어떻게 깨는지, DocBench와 MMLongBench 수치로 확인한다.
+7. [[database/guo-2025-rag-anything-all-in-one-rag|RAG-Anything]]. 모달리티 분기의 본편이다. dual-graph 구축과 dereferencing이 텍스트 전용 전제를 어떻게 깨는지, DocBench와 MMLongBench 수치로 확인한다.
 8. [[database/hkuds-rag-anything|HKUDS/RAG-Anything]]. 논문이 수식으로 적은 것이 실제로는 어떤 인터페이스인지 확인하는 마지막 단계다. 파서 선택, 환경 변수, 운영체제 의존처럼 논문에 없는 요구 사항이 여기 있다.
 
-비용 관점만 빠르게 잡고 싶으면 2번과 3번 두 편으로 충분하다. 평가 설계를 다루려면 2번과 5번을 붙여 읽는 편이 낫다. modality 확장만 필요하면 6번에서 8번까지 세 편이 한 묶음이다.
+비용 관점만 빠르게 잡고 싶으면 2번과 3번 두 편으로 충분하다. 평가 설계를 다루려면 2번과 5번을 붙여 읽는 편이 낫다. 모달리티 확장만 필요하면 6번에서 8번까지 세 편이 한 묶음이다.
 
 ## 한계
 
@@ -386,7 +386,7 @@ RAG-Anything 쪽 공백이 실무에서 가장 크다. LightRAG는 chunk마다 L
 - [[database/dsba-2025-graphrag-paper-review]]: 트렁크의 한국어 해설 슬라이드. 발표자 견해 아홉 건이 후속 분기의 방향과 맞물리며, 논문과 공식 코드의 간극을 처음 명시한 자료다.
 - [[database/guo-2025-lightrag-simple-and-fast]]: 비용 분기의 원전. key-value 인덱스와 dual-level retrieval의 정의, 비용 실측, 원문 제거 ablation의 표와 본문이 어긋나는 지점까지 담는다.
 - [[database/zhang-2026-leanrag-knowledge-graph-based-generation]]: 추상화 분기의 원전. semantic island 문제 정의와 aggregated relation, LCA 검색의 상세를 담고, LeanRAG 실험의 GraphRAG baseline이 구현체 모드라는 점을 짚는다.
-- [[database/guo-2025-rag-anything-all-in-one-rag]]: modality 분기의 원전. dual-graph 구축과 dereferencing, DocBench와 MMLongBench 수치, 저자가 밝힌 두 가지 실패 유형을 담는다.
-- [[database/hkuds-rag-anything]]: modality 분기의 운영 인터페이스. 파서 세 종과 query 방식 세 가지, 설치 의존과 환경 변수를 담고, raw가 README 스텁이라 확인 범위가 어디까지인지도 함께 밝힌다.
-- [[database/9bow-2026-rag-anything-multimodal-rag-framework]]: modality 분기의 한국어 진입로. 한국어 커뮤니티가 이 도구를 어떤 순서로 소개했는지와 도메인별 ablation 증감 계산을 담는다.
+- [[database/guo-2025-rag-anything-all-in-one-rag]]: 모달리티 분기의 원전. dual-graph 구축과 dereferencing, DocBench와 MMLongBench 수치, 저자가 밝힌 두 가지 실패 유형을 담는다.
+- [[database/hkuds-rag-anything]]: 모달리티 분기의 운영 인터페이스. 파서 세 종과 query 방식 세 가지, 설치 의존과 환경 변수를 담고, raw가 README 스텁이라 확인 범위가 어디까지인지도 함께 밝힌다.
+- [[database/9bow-2026-rag-anything-multimodal-rag-framework]]: 모달리티 분기의 한국어 진입로. 한국어 커뮤니티가 이 도구를 어떤 순서로 소개했는지와 도메인별 ablation 증감 계산을 담는다.
 - [[database/dsba-2026-paper-review-graph-based-rag]]: 두 분기를 나란히 놓은 세미나. retrieval 패턴 분류와 연구 흐름도, 원문 첨부 상충의 1차 출처이며 남은 연구 질문 네 가지를 제시한다.

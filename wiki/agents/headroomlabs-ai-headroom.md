@@ -34,7 +34,7 @@ tags:
 
 ## 요약
 
-Headroom은 AI 에이전트가 읽어들이는 모든 텍스트를 LLM에 도달하기 전에 압축하는 context compression layer다. context compression layer는 모델과 애플리케이션 사이에 놓여 오가는 텍스트의 양만 줄이고 의미는 유지하려는 중간 계층을 뜻한다. 압축 대상은 tool 출력과 로그, RAG 청크, 파일 내용, 대화 이력 전체다. README는 같은 답을 얻으면서 토큰을 60~95% 줄인다고 주장하며, 대표 예시로 로그 10,144 토큰을 1,260 토큰으로 줄여도 동일한 FATAL 항목을 찾아냈다는 데모를 제시한다.
+Headroom은 AI 에이전트가 읽어들이는 모든 텍스트를 LLM에 도달하기 전에 압축하는 context compression layer다. context compression layer는 모델과 애플리케이션 사이에 놓여 오가는 텍스트의 양만 줄이고 의미는 유지하려는 중간 계층을 뜻한다. 압축 대상은 tool 출력과 로그, RAG chunk, 파일 내용, 대화 이력 전체다. README는 같은 답을 얻으면서 토큰을 60~95% 줄인다고 주장하며, 대표 예시로 로그 10,144 토큰을 1,260 토큰으로 줄여도 동일한 FATAL 항목을 찾아냈다는 데모를 제시한다.
 
 이 저장소가 다른 압축 도구와 갈라지는 지점은 세 가지다. 첫째, 콘텐츠 유형마다 다른 압축기를 쓴다. 둘째, 압축한 원본을 로컬에 남겨 두어 모델이 필요할 때 되돌릴 수 있다. 셋째, 보내는 프롬프트만이 아니라 모델이 되돌려 쓰는 출력까지 줄인다.
 
@@ -48,7 +48,7 @@ Headroom은 AI 에이전트가 읽어들이는 모든 텍스트를 LLM에 도달
 
 ### 입력 측 문제
 
-에이전트가 한 턴에 읽어들이는 텍스트는 사람이 작성한 프롬프트보다 기계가 만든 텍스트가 훨씬 많다. README가 압축 대상으로 꼽는 목록이 그 구성을 보여 준다. tool을 호출해 돌아온 JSON 응답, 명령 실행 로그, RAG가 가져온 청크, 읽어들인 파일, 그리고 누적된 대화 이력이다. 이 텍스트는 대개 정보 밀도가 낮다. 코드 검색 결과 100건의 원본 크기가 17,765 토큰이라는 README 수치가 그 예다.
+에이전트가 한 턴에 읽어들이는 텍스트는 사람이 작성한 프롬프트보다 기계가 만든 텍스트가 훨씬 많다. README가 압축 대상으로 꼽는 목록이 그 구성을 보여 준다. tool을 호출해 돌아온 JSON 응답, 명령 실행 로그, RAG가 가져온 chunk, 읽어들인 파일, 그리고 누적된 대화 이력이다. 이 텍스트는 대개 정보 밀도가 낮다. 코드 검색 결과 100건의 원본 크기가 17,765 토큰이라는 README 수치가 그 예다.
 
 여기서 압축 대상이 되는 것은 context window의 사용량이다. context window는 모델이 한 번에 받아들일 수 있는 토큰 길이 한도를 뜻한다. Headroom은 검색 품질을 개선해 읽을 양을 줄이는 접근이 아니라, 이미 확보된 텍스트를 그대로 받아 부피만 줄이는 접근을 택한다.
 
@@ -376,7 +376,7 @@ Headroom OSS는 개인 개발자를 대상으로 하며 local-first, 무료, Apa
 
 이 페이지는 공식 저장소 README를 근거로 제품 스펙, 아키텍처, 설치, 설정, 라이선스를 담당한다. 사용 팁이나 개별 필자의 측정치, 커뮤니티 반응은 아래 해설 자료가 담당한다.
 
-- [[agents/tosea-2026-how-to-use-headroom-context]]: Tosea Team의 영문 사용 안내. 컨텍스트와 로그, RAG 청크를 실제로 압축하는 절차를 다룬다
+- [[agents/tosea-2026-how-to-use-headroom-context]]: Tosea Team의 영문 사용 안내. 컨텍스트와 로그, RAG chunk를 실제로 압축하는 절차를 다룬다
 - [[agents/subratpati-2026-building-cost-efficient-agents-with]]: Subrat Pati가 비용 효율 관점에서 정리한 적용 사례
 - [[agents/nedai-2026-headroom-token-compression-guide]]: Nedai의 한국어 사용 방법 안내
 - [[agents/9bow-2026-headroom-ai-agent-context-compression]]: 박정환의 한국어 소개. 이 README에 없는 공식 문서 사이트 주소를 안내한다

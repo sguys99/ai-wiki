@@ -80,7 +80,7 @@ VLA가 37편으로 전체의 71%를 차지한다. 이 저장소를 physical-ai �
 
 12편 모두 2026년 논문이고, 메모리 시스템과 강화학습 두 흐름으로 갈린다.
 
-메모리 쪽에서는 실행 이력을 어떻게 저장하고 꺼내 쓸지가 문제다. Agent Memory는 stateful long-horizon 워크로드를 시스템 관점에서 처음 특성화하고 네 항목의 분류를 세운다. Memex(RL)은 수백 단계에 걸친 워크플로를 위해 색인된 경험 메모리를 둔다. Continuum Memory Architectures도 장시간 워크플로용 메모리를 다룬다.
+메모리 쪽에서는 실행 이력을 어떻게 저장하고 꺼내 쓸지가 문제다. Agent Memory는 stateful long-horizon 워크로드를 시스템 관점에서 처음 특성화하고 네 항목의 분류를 세운다. Memex(RL)은 수백 단계에 걸친 워크플로를 위해 인덱싱된 경험 메모리를 둔다. Continuum Memory Architectures도 장시간 워크플로용 메모리를 다룬다.
 
 Meta-Cognitive Memory Policy Optimization은 조금 다른 각도에서 접근한다. 압축된 메모리만 주어졌을 때 모델이 latent 과제 상태를 얼마나 모르는지 재는 "Belief Entropy"를 두어, 메모리 압축의 손실을 정량화한다.
 

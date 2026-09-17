@@ -15,7 +15,7 @@ tags: [rag, vectorless-rag, pageindex, tree-search, tutorial, langchain, gemini,
 
 ## 한 줄 요약 (One-line Summary)
 
-GeeksforGeeks가 2026-03-09에 마지막으로 갱신한 무서명 입문 튜토리얼로, PageIndex Cloud API와 LangChain과 Gemini 2.5 Flash를 조합해 PDF 한 편을 색인하고 질의하는 Python 코드 10단계를 제시한다. 개념부(vector RAG의 한계 7가지, vectorless RAG의 워크플로 7단계)와 실습부(코드 10단계)와 정리부(5개 항목 비교표, 한계 5가지)로 구성되며, 벤치마크 수치와 정량 측정은 한 건도 제시하지 않는다.
+GeeksforGeeks가 2026-03-09에 마지막으로 갱신한 무서명 입문 튜토리얼로, PageIndex Cloud API와 LangChain과 Gemini 2.5 Flash를 조합해 PDF 한 편을 인덱싱하고 질의하는 Python 코드 10단계를 제시한다. 개념부(vector RAG의 한계 7가지, vectorless RAG의 워크플로 7단계)와 실습부(코드 10단계)와 정리부(5개 항목 비교표, 한계 5가지)로 구성되며, 벤치마크 수치와 정량 측정은 한 건도 제시하지 않는다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -36,7 +36,7 @@ GeeksforGeeks가 2026-03-09에 마지막으로 갱신한 무서명 입문 튜토
 1. vectorless RAG를 하나의 범주명으로 제시한다. 임베딩과 vector database를 쓰지 않고 문서 구조와 LLM 추론만으로 retrieval을 수행하는 방식을 가리키며, PageIndex를 그 대표 구현으로 지목한다.
 2. vector 기반 RAG의 구조적 한계를 7개 항목으로 나열한다. 질의와 문서 표현의 불일치, similarity와 relevance의 괴리, 고정 크기 chunking의 문맥 절단, 다단계 추론 부재, 대화 이력 미반영, 문서 내부 상호 참조 처리 실패, 인프라 비용이다.
 3. vectorless RAG의 처리 흐름을 7단계 워크플로로 정리한다. 문서 분할, 트리 구축, 질의 이해, 계층적 탐색, 반복 페이지 탐색, 컨텍스트 조립, 답변 생성 순이다.
-4. PageIndex Cloud API의 호출 순서를 실행 가능한 코드로 노출한다. 클라이언트 초기화, 문서 제출, 색인 완료 폴링, 트리 조회, 질의 제출, retrieval 폴링, 응답 본문 추출까지 이어진다.
+4. PageIndex Cloud API의 호출 순서를 실행 가능한 코드로 노출한다. 클라이언트 초기화, 문서 제출, 인덱싱 완료 폴링, 트리 조회, 질의 제출, retrieval 폴링, 응답 본문 추출까지 이어진다.
 5. LangChain의 `ChatGoogleGenerativeAI`로 Gemini 2.5 Flash를 붙이고, 검색된 컨텍스트만 쓰도록 강제하는 grounding 프롬프트를 제시한다.
 6. vector RAG와 vectorless RAG를 5개 항목으로 비교하는 표를 제공한다. 정성 비교이며 측정값은 없다.
 
@@ -44,7 +44,7 @@ GeeksforGeeks가 2026-03-09에 마지막으로 갱신한 무서명 입문 튜토
 
 ### 3.1 vectorless RAG의 정의와 특성
 
-글이 내린 정의는 다음과 같다. vectorless RAG는 vector 임베딩에 의존하지 않고 문서에서 관련 정보를 찾아오는 retrieval-augmented generation 방식이며, 내용을 색인된 페이지나 구조화된 섹션으로 조직한 뒤 선택된 컨텍스트를 언어 모델에 넘긴다.
+글이 내린 정의는 다음과 같다. vectorless RAG는 vector 임베딩에 의존하지 않고 문서에서 관련 정보를 찾아오는 retrieval-augmented generation 방식이며, 내용을 인덱싱된 페이지나 구조화된 섹션으로 조직한 뒤 선택된 컨텍스트를 언어 모델에 넘긴다.
 
 글이 내세운 특성은 4가지다.
 
@@ -52,10 +52,10 @@ GeeksforGeeks가 2026-03-09에 마지막으로 갱신한 무서명 입문 튜토
 |---|---|
 | Eliminates Embeddings and Vector Databases | dense similarity search 대신 문서 구조와 LLM 주도 추론을 쓴다 |
 | Avoids Artificial Chunking | 페이지와 heading 같은 자연 구획을 보존해 문맥 연속성과 논리 구조를 유지한다 |
-| Human-like Retrieval | 트리 색인을 한 단계씩 따라 내려가며, 전문가가 자료를 찾는 방식과 유사하다 |
+| Human-like Retrieval | 트리 인덱스를 한 단계씩 따라 내려가며, 전문가가 자료를 찾는 방식과 유사하다 |
 | Transparent Retrieval Process | 근사 의미 매칭에 기대지 않고 추적 가능하고 해석 가능한 결정을 낸다 |
 
-PageIndex는 두 단계로 동작하는 프레임워크로 소개된다. 첫째로 문서의 트리 구조 색인을 생성하고, 둘째로 그 트리를 탐색하며 추론 기반 retrieval을 수행한다.
+PageIndex는 두 단계로 동작하는 프레임워크로 소개된다. 첫째로 문서의 트리 구조 인덱스를 생성하고, 둘째로 그 트리를 탐색하며 추론 기반 retrieval을 수행한다.
 
 ### 3.2 vector 기반 RAG의 한계 7가지
 
@@ -90,7 +90,7 @@ PageIndex는 두 단계로 동작하는 프레임워크로 소개된다. 첫째�
 | 3 | Initialize PageIndex Client | `PageIndexClient(api_key=PAGEINDEX_API_KEY)` | API key는 PageIndex에서 발급받으라는 안내 한 줄뿐이다 |
 | 4 | Download the PDF Document | `requests.get("https://arxiv.org/pdf/2501.12948.pdf")` | `../data` 아래에 파일명을 그대로 저장한다 |
 | 5 | Submit Document to PageIndex | `pi_client.submit_document(pdf_path)` | `doc_info["doc_id"]`를 꺼내 이후 호출의 식별자로 쓴다 |
-| 6 | Indexing | `pi_client.is_retrieval_ready(doc_id)`, `pi_client.get_tree(doc_id, node_summary=True)` | 색인은 비동기이므로 5초 간격으로 최대 30회 폴링한다. 완료되면 `['result']`를 꺼내 `utils.print_tree(tree)`로 출력하고, 실패하면 `tree = None`으로 둔다 |
+| 6 | Indexing | `pi_client.is_retrieval_ready(doc_id)`, `pi_client.get_tree(doc_id, node_summary=True)` | 인덱싱은 비동기이므로 5초 간격으로 최대 30회 폴링한다. 완료되면 `['result']`를 꺼내 `utils.print_tree(tree)`로 출력하고, 실패하면 `tree = None`으로 둔다 |
 | 7 | Initialize the LLM | `ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.3)` | `os.environ["GOOGLE_API_KEY"]`로 키를 주입한다 |
 | 8 | Define Retrieval Function | `pi_client.submit_query(doc_id, query)`, `pi_client.get_retrieval(retrieval_id)` | 질의를 제출해 `retrieval_id`를 받고, `status`가 `completed`가 될 때까지 1초 간격으로 폴링하며, `failed`면 빈 리스트를 돌려준다 |
 | 9 | Build Vectorless RAG Pipeline | `llm.invoke(prompt)` | 컨텍스트를 두 줄 개행으로 이어 붙이고 grounding 프롬프트에 끼워 넣는다. 컨텍스트가 비면 "No relevant context found."를 반환한다 |
@@ -110,9 +110,9 @@ Step 8의 추출 코드는 3중 중첩 구조를 순회한다. `retrieval["retri
 
 ### 3.6 폴링 설계
 
-색인 폴링과 retrieval 폴링은 같은 글 안에서 다르게 짜여 있다.
+인덱싱 폴링과 retrieval 폴링은 같은 글 안에서 다르게 짜여 있다.
 
-| 항목 | 색인 폴링 (Step 6) | retrieval 폴링 (Step 8) |
+| 항목 | 인덱싱 폴링 (Step 6) | retrieval 폴링 (Step 8) |
 |---|---|---|
 | 판정 함수 | `is_retrieval_ready(doc_id)` 불리언 | `get_retrieval(retrieval_id)["status"]` 문자열 |
 | 간격 | 5초 | 1초 |
@@ -134,7 +134,7 @@ Step 9의 프롬프트는 역할 지정과 근거 제한과 미발견 응답 문
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
-이 글은 정량 결과를 보고하지 않는다. 정확도, 지연, 비용, 토큰 사용량, 색인 소요 시간 중 어느 것도 측정하지 않으며 외부 벤치마크 수치도 인용하지 않는다. 검증 가능한 산출물은 5개 항목 정성 비교표와 예제 질의 1건의 응답 본문뿐이다.
+이 글은 정량 결과를 보고하지 않는다. 정확도, 지연, 비용, 토큰 사용량, 인덱싱 소요 시간 중 어느 것도 측정하지 않으며 외부 벤치마크 수치도 인용하지 않는다. 검증 가능한 산출물은 5개 항목 정성 비교표와 예제 질의 1건의 응답 본문뿐이다.
 
 | Feature | Vector RAG | Vectorless RAG |
 |---|---|---|
@@ -167,7 +167,7 @@ Step 9의 프롬프트는 역할 지정과 근거 제한과 미발견 응답 문
 | 5 | Transparent Retrieval Process를 특성으로 내세우지만 Step 8의 추출 코드는 `relevant_content` 문자열만 남기고 노드 식별자와 페이지 번호와 판단 근거를 버린다. 추적 가능성을 보여주는 출력이 없다 | Key Characteristics 대 Step 8 |
 | 6 | vector RAG의 한계로 대화 이력 미반영을 지적하지만 데모는 단일 질의 `llm.invoke` 한 번이며 이력을 넘기는 코드가 없다. vectorless가 그 한계를 어떻게 푸는지 시연하지 않는다 | Limitation 5번 대 Step 9, Step 10 |
 | 7 | Step 6에서 `get_tree`로 트리를 받아 출력하지만 Step 8부터 Step 10까지 `tree` 변수를 다시 쓰지 않는다. 트리는 화면 출력용이고 실제 retrieval은 `submit_query` 뒤 서버에서 일어난다 | Step 6 대 Step 8 |
-| 8 | 색인 폴링에는 `max_retries = 30` 상한이 있는데 retrieval 폴링은 `while True`로 상한이 없다. 같은 튜토리얼 안에서 견고성 기준이 다르다 | Step 6 대 Step 8 |
+| 8 | 인덱싱 폴링에는 `max_retries = 30` 상한이 있는데 retrieval 폴링은 `while True`로 상한이 없다. 같은 튜토리얼 안에서 견고성 기준이 다르다 | Step 6 대 Step 8 |
 | 9 | Computation Cost 항목의 답이 저장 비용에 한정된다. 같은 글이 단계별 탐색을 지연 요인으로 지적했으므로 연산 비용은 그 탐색이 유발하는 LLM 호출을 포함해야 한다 | 비교표 대 Limitations 3번 |
 | 10 | Step 8 설명은 "top matching nodes"에서 본문을 모은다고 하지만 코드는 서버가 돌려준 순서를 그대로 `[:top_k]`로 자를 뿐이다. 정렬 기준을 글이 설명하지 않는다 | Step 8 설명 대 Step 8 코드 |
 
@@ -177,7 +177,7 @@ Step 9의 프롬프트는 역할 지정과 근거 제한과 미발견 응답 문
 |---|---|---|
 | 엔드포인트 | 없음. SDK 메서드만 노출된다 | 기반 URL, 경로, HTTP 메서드 |
 | 인증 | 생성자 인자 `api_key` | 전송 헤더 이름, 토큰 만료, 키 회전, 발급 절차 |
-| 요금 | 없음 | 과금 단위, 무료 한도, 색인과 질의의 가격 차이 |
+| 요금 | 없음 | 과금 단위, 무료 한도, 인덱싱과 질의의 가격 차이 |
 | rate limit | 없음 | 초당 또는 분당 호출 상한, 초과 시 동작 |
 | 파일 형식 | PDF 1종만 시연 | 다른 형식 지원 여부, 페이지 수 상한, 파일 크기 상한 |
 | 상태 값 | `completed`, `failed` | 진행 중 상태의 이름, 그 밖의 상태 값 |
@@ -196,7 +196,7 @@ Step 9의 프롬프트는 역할 지정과 근거 제한과 미발견 응답 문
 
 ### 5.5 후속 확인 과제
 
-- 색인 1회와 질의 1회에 드는 실제 시간과 비용 측정
+- 인덱싱 1회와 질의 1회에 드는 실제 시간과 비용 측정
 - vector RAG 파이프라인과 같은 문서 같은 질의로 맞붙인 정확도 비교
 - 다중 문서 corpus에서의 동작 확인
 - 트리 품질이 나쁜 문서에서의 저하 정도 측정
@@ -218,12 +218,12 @@ vector database, embedding model, similarity search는 대조군으로만 언급
 ## 7. 용어집 (Glossary)
 
 - Vectorless RAG: 임베딩과 vector database를 쓰지 않고 문서 구조와 LLM 추론으로 retrieval을 수행하는 RAG 방식을 가리키는 이 글의 범주명이다.
-- PageIndex: 문서를 트리 색인으로 바꾸고 그 트리를 탐색해 retrieval하는 프레임워크. 이 글은 클라우드 API 클라이언트 `PageIndexClient`로 사용한다.
-- Tree structure index: root가 문서 전체, 중간 노드가 섹션과 하위 섹션, 말단 노드가 개별 페이지인 계층 색인이다.
+- PageIndex: 문서를 트리 인덱스로 바꾸고 그 트리를 탐색해 retrieval하는 프레임워크. 이 글은 클라우드 API 클라이언트 `PageIndexClient`로 사용한다.
+- Tree structure index: root가 문서 전체, 중간 노드가 섹션과 하위 섹션, 말단 노드가 개별 페이지인 계층 인덱스다.
 - Hierarchical Reasoning-Based Retrieval: 넓은 섹션에서 시작해 구체적인 하위 섹션으로 내려가며 무관한 가지를 건너뛰는 탐색 단계다.
 - Iterative Page Exploration: 페이지를 읽고 충분성을 평가한 뒤 더 깊이 가거나 옆으로 가거나 되돌아가는 반복 루프다.
 - Hard chunking: 고정 크기로 문서를 자르는 vector RAG 전처리. 문장과 표와 섹션을 임의 지점에서 절단한다.
 - Query–Knowledge Mismatch: 질의는 의도를 담고 문서는 특정 문구로 쓰여 있어 생기는 표현 격차다.
 - Grounding 프롬프트: 주어진 컨텍스트만 근거로 답하고 찾지 못하면 정해진 문구로 답하게 하는 제약 프롬프트다.
 - `retrieval_id`: 질의 제출 시 서버가 돌려주는 식별자로, 이후 폴링에서 상태와 결과를 조회하는 열쇠다.
-- `is_retrieval_ready`: 문서 색인이 질의를 받을 준비가 되었는지 묻는 불리언 판정 함수다.
+- `is_retrieval_ready`: 문서 인덱스가 질의를 받을 준비가 되었는지 묻는 불리언 판정 함수다.

@@ -41,7 +41,7 @@ Subrat Pati가 Headroom을 비용 관점에서 소개한 Medium 글이다. 에�
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
-Headroom은 에이전트와 LLM 사이에 놓이는 오픈소스 context optimization layer다. 로그, 코드, JSON, RAG 청크를 content-aware 압축으로 라우팅한다고 원문 아키텍처 다이어그램이 설명한다.
+Headroom은 에이전트와 LLM 사이에 놓이는 오픈소스 context optimization layer다. 로그, 코드, JSON, RAG chunk를 content-aware 압축으로 라우팅한다고 원문 아키텍처 다이어그램이 설명한다.
 
 글이 제시하는 토큰 소비의 세 원인은 다음과 같다.
 

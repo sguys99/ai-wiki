@@ -45,7 +45,7 @@ Tosea 팀이 쓴 Headroom 실무 how-to 가이드다. 다섯 가지 사용 방�
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
-동작 순서는 세 단계다. 에이전트가 컨텍스트를 만들고, Headroom이 압축하고, LLM이 더 작고 깨끗한 버전을 받는다. 압축은 단일 알고리즘이 아니라 콘텐츠 유형별 라우팅으로 이루어지며, 구조화 데이터와 코드와 산문과 로그와 RAG 청크에 각각 다른 전략을 적용한다.
+동작 순서는 세 단계다. 에이전트가 컨텍스트를 만들고, Headroom이 압축하고, LLM이 더 작고 깨끗한 버전을 받는다. 압축은 단일 알고리즘이 아니라 콘텐츠 유형별 라우팅으로 이루어지며, 구조화 데이터와 코드와 산문과 로그와 RAG chunk에 각각 다른 전략을 적용한다.
 
 글이 나열하는 내부 컴포넌트는 content routing, JSON과 구조화 데이터 압축, code-aware 압축, text 압축, cache alignment, retrieval을 지원하는 reversible 압축, cross-agent memory다. 저장소 구현 클래스 이름은 이 수집본에 없다. 구현 구조는 [[agents/headroomlabs-ai-headroom]]이 다룬다.
 
@@ -63,7 +63,7 @@ CLI 표면은 설치와 실행 명령 몇 개로 요약된다. Python은 `pip in
 
 실패 테스트 디버깅 예시는 다음 흐름이다. 12,000 토큰짜리 테스트 출력에서 대부분은 반복 경고와 의존성 메시지와 통과한 테스트 이름이고 실제 실패는 중간 어딘가에 묻혀 있다. 테스트를 실행하면 로그가 Headroom을 통과하면서 반복 구간과 저가치 구간이 압축되고, LLM은 핵심 실패가 보존된 작은 버전을 받는다. 필요하면 원본을 retrieve하고, `headroom stats`로 절감을 확인한다.
 
-글 말미의 Q&A는 도입 시점의 실무 질문에 답한다. Claude Code는 `headroom wrap claude`, Codex는 `headroom wrap codex`로 붙이고, Cursor도 지원되어 설정 지침이 출력된다. Headroom은 RAG 도구가 아니며 retrieval과 임베딩과 vector DB를 대체하지 않고 retrieval 이후의 RAG 청크를 압축한다. 가역성은 로컬에 저장된 원본을 참조하는 retrieval로 지원된다. 가장 쉬운 시작 경로는 `pip install "headroom-ai[all]"`, `headroom wrap codex`, `headroom stats` 순서다.
+글 말미의 Q&A는 도입 시점의 실무 질문에 답한다. Claude Code는 `headroom wrap claude`, Codex는 `headroom wrap codex`로 붙이고, Cursor도 지원되어 설정 지침이 출력된다. Headroom은 RAG 도구가 아니며 retrieval과 임베딩과 vector DB를 대체하지 않고 retrieval 이후의 RAG chunk를 압축한다. 가역성은 로컬에 저장된 원본을 참조하는 retrieval로 지원된다. 가장 쉬운 시작 경로는 `pip install "headroom-ai[all]"`, `headroom wrap codex`, `headroom stats` 순서다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 

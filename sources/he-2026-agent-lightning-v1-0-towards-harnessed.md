@@ -255,7 +255,7 @@ Agent Lightning v1.0은 이 control plane을 선언적 rollout 추상화와 reco
 
 | 컴포넌트 | 역할 | 구성 |
 |---|---|---|
-| API Gateway | rollout, 모델, 이벤트를 저장하고 harness가 보낸 LLM 호출을 학습기가 등록해 둔 엔드포인트로 넘긴다. 생애주기 상태와 append-only 이벤트의 진실 원천이다 | Rollout API, LLM API Proxy |
+| API Gateway | rollout, 모델, 이벤트를 저장하고 harness가 보낸 LLM 호출을 학습기가 등록해 둔 엔드포인트로 넘긴다. 생애주기 상태와 append-only 이벤트의 진실의 원천(source of truth)이다 | Rollout API, LLM API Proxy |
 | Rollout Controller | Gateway에서 rollout을 polling해 해당 agent 작업을 Kubernetes Job이나 로컬 프로세스 풀로 띄우고 상태를 Gateway에 다시 보고한다 | K8S Reconciler, Local Reconciler |
 | Customized Trainer | VERL 위에 구현돼 rollout을 등록하고 종료 상태에 이를 때까지 기다렸다가 기록된 이벤트를 모아 학습 sample로 조립한다 | Sample Adapter, Monitoring |
 
@@ -405,7 +405,7 @@ verl, AReaL, slime 같은 초기 RL 프레임워크는 agent loop를 학습 프�
 | rollout-level token-mean loss | rollout 안의 응답 토큰을 먼저 모아 평균 낸 뒤 rollout 개수로 균등 평균하는 정규화 |
 | within-rollout policy skew | 한 rollout에서 나온 시퀀스들이 서로 다른 optimizer 갱신에 나뉘어 다른 policy 버전 아래서 평가되는 현상 |
 | collocated async RL | rollout과 가중치 갱신이 같은 GPU 풀을 시분할하는 비동기 방식 |
-| API Gateway | rollout, 모델, 이벤트를 저장하고 LLM 호출을 프록시하는 컴포넌트. 생애주기 상태의 진실 원천 |
+| API Gateway | rollout, 모델, 이벤트를 저장하고 LLM 호출을 프록시하는 컴포넌트. 생애주기 상태의 진실의 원천 |
 | Rollout Controller | Gateway를 polling해 agent 실행을 Kubernetes Job이나 로컬 프로세스로 띄우고 상태를 맞춰 가는 컴포넌트 |
 | Customized Trainer | VERL 위에 구현돼 rollout을 등록하고 이벤트를 학습 sample로 조립하는 컴포넌트 |
 | model_request 이벤트 | LLM 상호작용 하나를 프롬프트 토큰 ID, 응답 토큰 ID, 응답 log probability로 기록한 이벤트 |

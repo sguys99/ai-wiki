@@ -29,7 +29,7 @@ CodeGraph는 tree-sitter로 20개 이상 언어의 코드를 파싱해 symbol과
 
 ## 2. 주요 기여 (Key Contributions)
 
-1. **에이전트가 소비하는 local-first 코드 인덱스.** Claude Code가 코드베이스를 탐색할 때 Explore 서브에이전트를 띄워 grep, glob, Read로 파일을 훑고 tool call마다 토큰을 쓴다는 관찰에서 출발한다. CodeGraph는 symbol 관계, call graph, 코드 구조를 미리 인덱싱해 두고 에이전트가 파일을 훑는 대신 그래프에 질의하게 만든다. 외부 API 호출, 임베딩, LLM 요약이 전혀 없고 데이터가 기기를 떠나지 않는다.
+1. **에이전트가 소비하는 local-first 코드 인덱스.** Claude Code가 코드베이스를 탐색할 때 Explore 서브에이전트를 띄워 grep, glob, Read로 파일을 훑고 tool call마다 토큰을 쓴다는 관찰에서 출발한다. CodeGraph는 symbol 관계, call graph, 코드 구조를 미리 인덱싱해 두고 에이전트가 파일을 훑는 대신 그래프에 질의(query)하게 만든다. 외부 API 호출, 임베딩, LLM 요약이 전혀 없고 데이터가 기기를 떠나지 않는다.
 
 2. **20개 이상 언어의 tree-sitter 정적 추출.** TypeScript, JavaScript, Python, Go, Rust, Java, C#, PHP, Ruby, C, C++, Objective-C, Swift, Kotlin, Scala, Dart, Lua, Luau, R, Svelte, Vue, Astro, Liquid, Pascal/Delphi를 지원한다. 언어 지원은 파일 확장자로 자동 판정되므로 언어마다 설정할 것이 없다.
 
@@ -75,7 +75,7 @@ README의 "How It Works"는 네 단계를 제시한다.
 - 설치된 에이전트를 자동 탐지해 어느 것을 설정할지 묻는다.
 - `codegraph`를 PATH에 올릴지 묻는다. 에이전트가 MCP 서버를 띄우려면 필요하다.
 - 설정을 모든 프로젝트에 적용할지 현재 프로젝트에만 적용할지 묻는다.
-- 각 에이전트의 MCP 서버 설정을 쓰고, 에이전트 지시문 파일(`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`)에 마커로 감싼 짧은 CodeGraph 절을 추가한다. MCP 서버의 자체 안내는 메인 에이전트에게만 도달하므로, 서브에이전트와 MCP를 쓰지 않는 환경은 이 절로 `codegraph explore`와 `codegraph node` CLI를 알게 된다.
+- 각 에이전트의 MCP 서버 설정을 쓰고, 에이전트 지시 파일(`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`)에 마커로 감싼 짧은 CodeGraph 절을 추가한다. MCP 서버의 자체 안내는 메인 에이전트에게만 도달하므로, 서브에이전트와 MCP를 쓰지 않는 환경은 이 절로 `codegraph explore`와 `codegraph node` CLI를 알게 된다.
 - Claude Code가 대상이면 자동 허용 권한을 설정한다.
 
 비대화 실행용 플래그는 다음과 같다.
@@ -150,7 +150,7 @@ MCP 서버는 사용 지침을 MCP `initialize` 응답에 실어 에이전트에
 - 의도에 따라 도구를 고른다. 거의 모든 경우 `codegraph_explore`를 쓰고, symbol 위치만 찾으면 `codegraph_search`, 모든 호출 지점이 필요하면 `codegraph_callers`, symbol 하나의 전체 소스와 호출자가 필요하거나 파일을 읽으려면 `codegraph_node`를 쓴다.
 - 결과를 신뢰하고 grep으로 다시 검증하지 않는다. 편집 후에는 staleness banner를 확인한다.
 
-README는 이 지침 원문이 `src/mcp/server-instructions.ts`이며 메인 에이전트에 대한 단일 진실 원천이라고 밝힌다. 서브에이전트와 MCP를 쓰지 않는 환경은 MCP 지침을 볼 수 없으므로, 인스톨러가 에이전트 지시문 파일에 네 줄짜리 마커 절을 따로 써서 CLI 등가 명령을 알린다.
+README는 이 지침 원문이 `src/mcp/server-instructions.ts`이며 메인 에이전트에 대한 단일 진실의 원천(single source of truth)이라고 밝힌다. 서브에이전트와 MCP를 쓰지 않는 환경은 MCP 지침을 볼 수 없으므로, 인스톨러가 에이전트 지시 파일에 네 줄짜리 마커 절을 따로 써서 CLI 등가 명령을 알린다.
 
 ### 3.6 auto-sync 3계층
 
@@ -158,7 +158,7 @@ README는 이 지침 원문이 `src/mcp/server-instructions.ts`이며 메인 에
 
 1. **debounce된 파일 감시자.** 네이티브 FSEvents, inotify, ReadDirectoryChangesW 감시자가 소스 파일의 생성, 수정, 삭제를 모두 잡아 debounce 구간 뒤에 재인덱싱을 건다. 기본값은 2000ms이고 `CODEGRAPH_WATCH_DEBOUNCE_MS`로 조절하되 100ms에서 60초 사이로 제한된다. 편집이 몰리면 하나의 동기화로 합쳐진다.
 2. **파일 단위 staleness banner.** debounce 구간 동안, 아직 반영되지 않은 파일을 참조하게 될 MCP 도구 응답은 머리에 경고 배너를 붙여 그 파일 이름을 알리고 에이전트에게 직접 `Read`하라고 지시한다. 응답이 참조하지 않는 대기 파일은 짧은 꼬리말로 표시된다. Claude Code로 확인한 결과 에이전트가 "Reading the file directly for the live content"라고 말한 뒤 파일을 열었다.
-3. **접속 시점 catch-up.** MCP 서버가 접속하거나 재접속하면 첫 질의에 답하기 전에 크기와 수정 시각, 내용 해시를 작업 트리와 대조한다. MCP 서버가 떠 있지 않은 동안 생긴 변경, 예를 들어 터미널에서 실행한 `git pull`, 다른 편집기의 수정, 종료된 이전 세션의 편집이 다음 세션 첫 tool call에서 흡수된다.
+3. **접속 시점 catch-up.** MCP 서버가 접속하거나 재접속하면 첫 질의에 답하기 전에 크기와 수정 시각, 내용 해시를 worktree와 대조한다. MCP 서버가 떠 있지 않은 동안 생긴 변경, 예를 들어 터미널에서 실행한 `git pull`, 다른 편집기의 수정, 종료된 이전 세션의 편집이 다음 세션 첫 tool call에서 흡수된다.
 
 README는 흐름을 다음처럼 요약한다. 에이전트가 파일을 쓰면 100ms 안에 감시자가 반응하고, 기본 2초 debounce를 거쳐 동기화되며, 다음 질의부터 그 파일이 보인다. 상태는 MCP의 `codegraph_status`나 CLI `codegraph status`로 확인하고, 대기 중인 것이 있으면 파일 이름과 편집 경과 시간이 담긴 절이 표시된다.
 
@@ -176,7 +176,7 @@ CodeGraph는 웹 프레임워크 라우팅 파일을 탐지해 `route` 노드를
 | Express | 미들웨어 체인을 포함한 `app.get(...)`, `router.post(...)` |
 | NestJS | `@Controller`와 `@Get/@Post/...`, GraphQL `@Resolver`와 `@Query/@Mutation`, `@MessagePattern`, `@EventPattern`, `@SubscribeMessage` |
 | Laravel | `Route::get()`, `Route::resource()`, `Controller@action`, 튜플 문법 |
-| Drupal | `*.routing.yml` 라우트(`_controller`, `_form`, 엔티티 handler), `.module`/`.theme`/`.install`/`.inc`의 `hook_*` 구현 |
+| Drupal | `*.routing.yml` 라우트(`_controller`, `_form`, entity handler), `.module`/`.theme`/`.install`/`.inc`의 `hook_*` 구현 |
 | Rails | `get '/x', to: 'users#index'`와 해시 로켓 문법 |
 | Spring | 메서드의 `@GetMapping`, `@PostMapping`, `@RequestMapping` |
 | Play | `conf/routes`의 `GET`, `POST` 등 verb 라우트에서 `Controller.method` 액션으로 (Scala와 Java) |
@@ -283,7 +283,7 @@ CodeGraph는 익명 사용 통계를 수집한다. 어떤 도구와 명령이 �
 |---|---|
 | VS Code | 확장 호스트가 메인 프로세스와 어떻게 통신하는가 |
 | Excalidraw | Excalidraw는 캔버스 요소를 어떻게 렌더링하고 갱신하는가 |
-| Django | Django ORM은 QuerySet에서 쿼리를 어떻게 만들고 실행하는가 |
+| Django | Django ORM은 QuerySet에서 질의를 어떻게 만들고 실행하는가 |
 | Tokio | tokio는 런타임에서 비동기 task를 어떻게 스케줄하고 실행하는가 |
 | OkHttp | OkHttp는 인터셉터 체인을 통해 요청을 어떻게 처리하는가 |
 | Gin | gin은 미들웨어 체인을 통해 요청을 어떻게 라우팅하는가 |
@@ -355,7 +355,7 @@ README는 잔여분이 언제나 정적 분석의 진짜 한계라고 밝힌다.
 
 - **fair coverage**: symbol을 가진 소스 파일 중 해소된 cross-file 의존 대상을 하나 이상 갖는 파일의 비율. CodeGraph가 impact 질의의 품질을 재는 지표로 정의한 값이다.
 - **staleness banner**: debounce 구간 동안 아직 반영되지 않은 파일을 참조할 때 MCP 응답 머리에 붙는 경고. 에이전트에게 그 파일만 직접 읽으라고 알린다.
-- **catch-up sync**: MCP 서버가 접속하거나 재접속할 때 첫 질의 전에 크기와 수정 시각, 내용 해시를 작업 트리와 대조해 외부 편집을 흡수하는 단계.
+- **catch-up sync**: MCP 서버가 접속하거나 재접속할 때 첫 질의 전에 크기와 수정 시각, 내용 해시를 worktree와 대조해 외부 편집을 흡수하는 단계.
 - **provenance:'heuristic'**: 언어 경계를 잇느라 합성한 edge에 붙는 태그. 정적으로 증명된 관계와 구분된다.
 - **metadata.synthesizedBy**: 합성 edge가 어느 채널에서 왔는지 담는 필드. `swift-objc-bridge`, `rn-event-channel`, `fabric-native-impl`, `expo-module-extract`가 README에 예시로 나온다.
 - **route 노드**: 프레임워크 라우팅 파일에서 만들어져 `references` edge로 handler에 연결되는 노드 종류.

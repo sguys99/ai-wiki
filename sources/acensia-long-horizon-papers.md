@@ -58,7 +58,7 @@ policy는 현재 observation을 받아 다음 action을 정하는 함수를 말�
 
 12편 모두 2026년 논문이다. 두 흐름으로 갈린다.
 
-- **메모리 시스템**: Agent Memory는 stateful long-horizon 워크로드를 시스템 관점에서 처음 특성화하고 네 항목의 분류를 세운다. Memex(RL)은 수백 단계에 걸친 워크플로를 위해 색인된 경험 메모리를 둔다. Continuum Memory Architectures는 장시간 워크플로용 메모리를 다룬다. Meta-Cognitive Memory Policy Optimization은 압축된 메모리만 주어졌을 때 모델이 latent 과제 상태를 얼마나 모르는지 재는 "Belief Entropy"를 제안한다.
+- **메모리 시스템**: Agent Memory는 stateful long-horizon 워크로드를 시스템 관점에서 처음 특성화하고 네 항목의 분류를 세운다. Memex(RL)은 수백 단계에 걸친 워크플로를 위해 인덱싱된 경험 메모리를 둔다. Continuum Memory Architectures는 장시간 워크플로용 메모리를 다룬다. Meta-Cognitive Memory Policy Optimization은 압축된 메모리만 주어졌을 때 모델이 latent 과제 상태를 얼마나 모르는지 재는 "Belief Entropy"를 제안한다.
 - **강화학습과 평가**: Rethinking Agentic Reinforcement Learning은 long-horizon planning과 tool use에 초점을 둔 agentic LLM 강화학습을 다룬다. A Subgoal-driven Framework는 온라인 subgoal 분해와 함께 milestone 기반 dense reward로 학습하는 MiRA를 제시한다. subtask는 상위 추론이 텍스트로 내놓는 중간 단계 명령을 말한다.
 - **벤치마크와 방법론**: YC-Bench는 agent가 가상의 스타트업을 1년 기간 동안 수백 턴에 걸쳐 운영하게 한다. Beyond pass@1은 신뢰성 관점의 평가 방법론을 제안한다. AgentLAB은 적응형 다중 턴 공격이라는 보안 관점에서 long-horizon agent를 시험한다.
 - **그 밖**: The Y-Combinator for LLMs는 람다 계산으로 long-context rot 문제를 다루고, InfiAgent는 무한 지평 범용 자율 agent 프레임워크를 제안한다. KLong은 데이터 오류로 2026년 4월 저자가 철회했다.

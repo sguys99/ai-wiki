@@ -54,7 +54,7 @@ GitHub API가 보고한 `topics`는 빈 배열이므로 저장소에 등록된 �
 3. **에이전트 워크로드용 로컬 추론 엔진**: Rust로 작성하고 llama.cpp 위에 올린 ICN(Inference Control Node)을 Magnitude가 직접 설치하고 관리한다. 별도 추론 런타임을 사용자가 설치하거나 설정하지 않는다.
 4. **요청 시점 로드와 유휴 시 해제**: 다운로드한 모델은 디스크에 머물다가 요청이 오면 메모리에 올라가고, 유휴 상태이거나 기기 메모리가 부족해지면 해제된다. 해제는 선택과 다운로드를 유지한 채 추론 메모리만 반환한다.
 5. **모델 간 차이 정규화**: 로컬 모델마다 다른 reasoning 형식, tool call 형식, chat template, 대화 이력 규약을 서버가 흡수해 harness가 모델별 분기 코드를 갖지 않게 한다.
-6. **speculative decoding 자동 구성**: 카탈로그 구성마다 검토된 speculative decoding 방식과 필요한 draft 아티팩트를 선언해 두고, 설치와 로드 시점에 검증한 뒤 추론에서 자동 활성화한다. 사용자가 draft 모델을 짝지을 필요가 없다.
+6. **speculative decoding 자동 구성**: 카탈로그 구성마다 검토된 speculative decoding 방식과 필요한 draft artifact를 선언해 두고, 설치와 로드 시점에 검증한 뒤 추론에서 자동 활성화한다. 사용자가 draft 모델을 짝지을 필요가 없다.
 7. **harness 9종 연결**: Magnitude 자체 harness에 더해 Pi, OpenCode, Hermes, OpenClaw, Codex, Claude Code, Oh My Pi, Cline을 canonical ID로 관리하고, 연결 시 harness 설정 파일을 갱신하며 번들 스킬까지 설치한다.
 8. **로컬 모델에 맞춘 자체 harness**: 컨텍스트가 작은 모델을 전제로 compaction을 백그라운드에서 수행하고, tool call을 검증해 복구 피드백을 주며, 반복 tool call(doom loop)과 과도한 reasoning을 차단한다.
 9. **추론 검증 체계**: llama.cpp 원본과의 correctness parity, 동일 작업을 증명한 뒤에만 측정하는 performance parity, 스케줄링과 동시성까지 포함하는 composite benchmark를 3계층으로 분리했다.
@@ -77,7 +77,7 @@ clients (cli/web) → client-common → sdk → acn (daemon)
 | 패키지 | 역할 |
 |---|---|
 | `client-common` | 공유 상태, hook, 디스플레이 동기화. 연결 단위 Effect Query `AgentClient` 하나와 1차 Query, Mutation, Subscription 정의를 소유한다 |
-| `sdk` | 비공개 이식형 Effect RPC 클라이언트. 고정 엔드포인트 admission과 복구, 옵션인 서비스 시작. SQLite와 프로세스 감독, 쿼리 캐시는 담지 않는다 |
+| `sdk` | 비공개 이식형 Effect RPC 클라이언트. 고정 엔드포인트 admission과 복구, 옵션인 서비스 시작. SQLite와 프로세스 감독, 질의(query) 캐시는 담지 않는다 |
 | `daemon-management` | owner store, 프로세스 감독, 바이너리 취득, OS 서비스 구현. 특권 조립 지점만 import한다 |
 | `acn` | 에이전트 런타임, 세션, 파일 조작, 디스플레이 스트림을 호스팅하는 서버 데몬 |
 | `acn-protocol` | SDK와 ACN이 공유하는 wire contract(RPC, 스키마). 클라이언트는 import하지 않는다 |
@@ -185,7 +185,7 @@ assessment 결과가 잘 동작하지 않을 모델을 제외하고 나머지를
 | Memory | 실행 중 필요한 추정 메모리 | 다운로드 크기가 아니다. 다른 응용이 메모리를 많이 쓰면 로드 전에 닫아야 할 수 있다 |
 | Context | 이 서빙 구성에서 쓸 수 있는 대화와 작업 자료의 양 | 모델 아키텍처의 절대 최대치와 다를 수 있다. 소형 모델에는 더 작은 값이 선택될 수 있다 |
 | Intelligence | Artificial Analysis Intelligence Index 점수 | 퍼센트 기호로 표시하지만 확률이나 정답률이 아니다. 양자화 변형은 이 점수를 공유한다 |
-| Accuracy | 양자화 이후 로컬 아티팩트가 원본 모델을 얼마나 보존할 것으로 기대되는지 | 사실 정확도가 아니며 Intelligence와 별개다 |
+| Accuracy | 양자화 이후 로컬 artifact가 원본 모델을 얼마나 보존할 것으로 기대되는지 | 사실 정확도가 아니며 Intelligence와 별개다 |
 | Acceleration | 그 구성에 대해 준비된 speculative decoding 방식 | 방식 이름 단독보다 기기별 속도 근거가 우선한다 |
 | Capabilities | vision, tool use, structured output, reasoning 등 지원 기능 | 작업이 정해져 있으면 속도나 지능 차이보다 중요할 수 있다 |
 | ID | 이후 명령에 그대로 넣어야 하는 정확한 구성 식별자 | 표시용 이름은 명령 인자가 아니다 |
@@ -203,7 +203,7 @@ speculative decoding은 값싼 수단으로 여러 토큰을 미리 제안하고
 
 일반적 속도 순서는 `None → MTP → DFlash → DSpark`이지만 보장이 아니다. target과 draft 모델, draft 채택률, 프롬프트와 출력 내용, 컨텍스트 길이, 양자화, 하드웨어, 메모리 배치, 요청 동시성에 따라 이득이 없거나 부담이 될 수 있어, 문서는 방식 이름보다 기기별 속도 근거를 우선하라고 명시한다.
 
-카탈로그 모델의 검토된 구성이 정확한 방식과 필요한 draft 자료를 선언하고, `magnitude catalog pull`이 필요할 때 별도 draft 아티팩트를 함께 취득한다. assessment와 로드가 target, draft, 방식, 하드웨어 적합, 서빙 구성을 검증하고 나면 추론에서 자동 활성화된다. Magnitude는 임의의 draft 모델을 target에 붙이지 않으므로, 검토된 호환 방식이 없는 구성은 speculative decoding 없이 실행된다.
+카탈로그 모델의 검토된 구성이 정확한 방식과 필요한 draft 자료를 선언하고, `magnitude catalog pull`이 필요할 때 별도 draft artifact를 함께 취득한다. assessment와 로드가 target, draft, 방식, 하드웨어 적합, 서빙 구성을 검증하고 나면 추론에서 자동 활성화된다. Magnitude는 임의의 draft 모델을 target에 붙이지 않으므로, 검토된 호환 방식이 없는 구성은 speculative decoding 없이 실행된다.
 
 ### 3.8 런타임 동작
 
@@ -324,13 +324,13 @@ monorepo 루트에서 쓰는 ICN 빌드와 검증 명령은 14개다.
 | 프로토콜 생성 | `icn:generate`(OpenAPI exporter로 `packages/icn-protocol` 재생성), `icn:check-generated`(낡으면 실패) |
 | 진단 | `icn:verify-native-pin`, `icn:doctor`, `icn:version` |
 
-`bun icn:build:reference`는 Rust 바인딩이 쓰는 중첩 llama.cpp 소스에서 선언된 target만 빌드한다. target ID는 `focused-tests`, `oracle`, `llama-bench`, `llama-batched-bench`, `llama-perplexity`, `backend-ops`, `quantize-perf`다. 빌더는 소스, 설정, 아티팩트, oracle 다이제스트를 기록하고 호출마다 새 CMake 트리를 예약하며 이전 CMake 캐시를 parity 증거로 재사용하지 않는다.
+`bun icn:build:reference`는 Rust 바인딩이 쓰는 중첩 llama.cpp 소스에서 선언된 target만 빌드한다. target ID는 `focused-tests`, `oracle`, `llama-bench`, `llama-batched-bench`, `llama-perplexity`, `backend-ops`, `quantize-perf`다. 빌더는 소스, 설정, artifact, oracle 다이제스트를 기록하고 호출마다 새 CMake 트리를 예약하며 이전 CMake 캐시를 parity 증거로 재사용하지 않는다.
 
 세션 조사 도구는 `bun session`이다. `list`, `events <id>`, `event <id> <index>`, `search <keyword>`, `projection <id> <name>` 하위 명령으로 과거 세션의 이벤트를 인덱스 단위로 열거나 payload를 JSON으로 꺼내며, `--type`, `--from`, `--to`, `--at`, `--last`로 범위를 좁힌다. 재생 가능한 projection은 `Window`, `Fork`, `TaskGraph`, `Turn`, `Display`, `Compaction`, `WorkingState`, `SessionContext`, `Proposal`, `AgentRegistry`, `Artifact`, `ChatTitle`, `Replay` 13종이고 `all`로 전부 덤프한다. 세션은 `~/.magnitude/sessions/`에 UTC 타임스탬프 폴더 이름으로 저장된다.
 
 관측 도구로는 Motel이 있다. `http://127.0.0.1:27686`에서 HTTP API를 노출하는 로컬 OpenTelemetry 수집기로, health와 services, traces, spans, logs, 구조화 검색, AI SDK 호출 조사기를 `curl`로 조회한다. 이 밖에 `bun design-docs`로 파일에 적용되는 설계 문서를 찾고, `bun els overview`와 `bun els layerinfo`로 Effect export와 layer 의존성을 확인한다. 테스트는 `bunx --bun vitest`로 실행해야 하며, `--bun` 없이 실행하면 vitest worker가 Node에서 실행되어 Bun 전역이 없다.
 
-`design/`은 아키텍처와 동작의 지속적 진실 원천이고, `info/`는 사람과 LLM이 함께 읽는 간결한 고수준 문서를 담는다. 중요한 버그 보고나 큰 명세는 `bugs/YY-MM-DD/`나 `specs/YY-MM-DD/` 아래에 둔다.
+`design/`은 아키텍처와 동작의 지속적 진실의 원천(source of truth)이고, `info/`는 사람과 LLM이 함께 읽는 간결한 고수준 문서를 담는다. 중요한 버그 보고나 큰 명세는 `bugs/YY-MM-DD/`나 `specs/YY-MM-DD/` 아래에 둔다.
 
 ### 3.16 기여 정책
 
@@ -361,7 +361,7 @@ README와 공식 문서에는 공개된 정량 성능 수치가 없다. 대신 �
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
 - **공개 성능 근거 부재**: parity와 composite benchmark 체계를 갖췄지만 결과 수치는 저장소 문서에 공개되어 있지 않다. ICN이 `llama-server` 대비 어느 수준인지는 사용자가 직접 벤치마크를 실행해야 확인할 수 있다. 공개 하드웨어 벤치마크는 opt-in 설계로 언급만 되어 있다.
-- **속도와 지능 표시의 해석 부담**: Speed는 예측 범위이지 신뢰구간이 아니고, Intelligence는 index 점수이지 정답률이 아니며, 양자화 변형은 모델 수준 점수를 공유한다. 로컬 아티팩트의 품질 손실은 Accuracy라는 별도 항목이 담당한다. 세 지표를 함께 읽지 않으면 잘못된 기대를 갖기 쉽다.
+- **속도와 지능 표시의 해석 부담**: Speed는 예측 범위이지 신뢰구간이 아니고, Intelligence는 index 점수이지 정답률이 아니며, 양자화 변형은 모델 수준 점수를 공유한다. 로컬 artifact의 품질 손실은 Accuracy라는 별도 항목이 담당한다. 세 지표를 함께 읽지 않으면 잘못된 기대를 갖기 쉽다.
 - **플랫폼 제약**: macOS와 Linux만 지원하고 Windows는 WSL을 거쳐야 한다.
 - **서비스 의존성**: Codex와 Claude Code 연결은 백그라운드 서비스가 떠 있어야 유지된다. 서비스가 멈추면 호스팅 모델 사용까지 영향을 받아 `magnitude service start`로 되살려야 한다.
 - **메모리 압박 시 중단**: 실행 중 가용 메모리가 위험해지면 모델이 중단된다. 기기가 안정적으로 유지되는 대신 요청은 실패하고 다음 요청에서 다시 로드된다.

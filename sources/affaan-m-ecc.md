@@ -50,7 +50,7 @@ ECC는 `plan → test → implement → review → verify → remember → impro
 - 주 언어: JavaScript. Shell, TypeScript, Python, Go, Java, Perl, Markdown 자산이 함께 들어 있다
 - 저장소 생성 2026-01-18, 최종 push 2026-09-08, star 254,260, fork 38,104, watcher 1,289, open issue 184 (수집 시점 GitHub API 기준)
 - 웹사이트 https://ecc.tools, 커뮤니티 Discord, GitHub App `ecc-tools`
-- 배포 채널이 네 개로 나뉘고 식별자가 서로 다르다. GitHub 소스는 `affaan-m/ECC`, Claude 마켓플레이스와 플러그인 식별자는 `ecc@ecc`, npm 패키지는 `ecc-universal`과 `ecc-agentshield`, 호스팅 서비스는 GitHub App이다. 저장소는 이 불일치가 의도된 것이라고 명시한다. Anthropic 마켓플레이스 설치가 canonical 플러그인 식별자로 키를 잡기 때문에 도구 이름과 슬래시 명령 네임스페이스를 짧게 유지하려고 `ecc@ecc`를 쓴다
+- 배포 채널이 네 개로 나뉘고 식별자가 서로 다르다. GitHub 소스는 `affaan-m/ECC`, Claude 마켓플레이스와 플러그인 식별자는 `ecc@ecc`, npm 패키지는 `ecc-universal`과 `ecc-agentshield`, 호스팅 서비스는 GitHub App이다. 저장소는 이 불일치가 의도된 것이라고 명시한다. Anthropic 마켓플레이스 설치가 canonical 플러그인 식별자로 키를 잡기 때문에 도구 이름과 슬래시 커맨드 네임스페이스를 짧게 유지하려고 `ecc@ecc`를 쓴다
 - npm 릴리스는 커밋 단위가 아니라 버전 태그 단위로 잘린다. 따라서 `ecc-universal`은 2.1, 2.2 같은 릴리스를 따라가고 `main`의 모든 push를 따라가지 않는다
 - README는 13개 언어로 번역되어 있다 (영어, 포르투갈어, 간체 중국어, 번체 중국어, 일본어, 한국어, 튀르키예어, 러시아어, 베트남어, 태국어, 독일어, 스페인어, 우크라이나어)
 - 저장소 문서는 README 외에 `the-shortform-guide.md`, `the-longform-guide.md`, `the-security-guide.md` 세 편의 가이드를 둔다. README는 "이 저장소는 원 코드이고 가이드가 설명을 담당한다"고 역할을 나눈다
@@ -106,7 +106,7 @@ ECC는 `plan → test → implement → review → verify → remember → impro
 ECC/
 |-- agents/           # 68개 전문 서브에이전트
 |-- skills/           # 필요 시 로드되는 재사용 워크플로
-|-- commands/         # 유지되는 슬래시 명령 shim 94개
+|-- commands/         # 유지되는 슬래시 커맨드 shim 94개
 |-- rules/            # 선택 설치하는 공통과 언어별 표준
 |-- hooks/            # 런타임 자동화와 강제
 |-- scripts/          # 설치, 복구, 동기화, 오케스트레이션, 점검

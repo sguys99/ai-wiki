@@ -74,7 +74,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-LeanRAG는 지식 그래프 기반 RAG가 계층 구조로 진화하면서 남긴 두 결함, 곧 상위 요약 노드가 서로 연결되지 않아 생기는 semantic island와 retrieval이 구조를 활용하지 못하고 평면 탐색으로 퇴화하는 structure-retrieval mismatch를 함께 겨냥한다. 해결 수단은 두 가지다. 하나는 semantic aggregation으로, entity 임베딩을 Gaussian Mixture Model로 묶은 뒤 LLM이 상위 entity와 상위 entity 사이의 relation까지 만들어 모든 층이 이어진 semantic network를 구성한다. 다른 하나는 LCA 기반 bottom-up retrieval로, 쿼리를 base layer의 세밀한 entity에만 anchor한 뒤 seed들의 lowest common ancestor까지의 경로만 모아 최소 서브그래프를 만든다. UltraDomain의 Mix, CS, Legal, Agriculture 네 데이터셋에서 대부분의 지표가 1위이고 retrieval 토큰은 baseline 평균 대비 46% 줄었다.
+LeanRAG는 지식 그래프 기반 RAG가 계층 구조로 진화하면서 남긴 두 결함, 곧 상위 요약 노드가 서로 연결되지 않아 생기는 semantic island와 retrieval이 구조를 활용하지 못하고 평면 탐색으로 퇴화하는 structure-retrieval mismatch를 함께 겨냥한다. 해결 수단은 두 가지다. 하나는 semantic aggregation으로, entity 임베딩을 Gaussian Mixture Model로 묶은 뒤 LLM이 상위 entity와 상위 entity 사이의 relation까지 만들어 모든 층이 이어진 semantic network를 구성한다. 다른 하나는 LCA 기반 bottom-up retrieval로, 질의(query)를 base layer의 세밀한 entity에만 anchor한 뒤 seed들의 lowest common ancestor까지의 경로만 모아 최소 서브그래프를 만든다. UltraDomain의 Mix, CS, Legal, Agriculture 네 데이터셋에서 대부분의 지표가 1위이고 retrieval 토큰은 baseline 평균 대비 46% 줄었다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -104,9 +104,9 @@ LeanRAG는 지식 그래프 기반 RAG가 계층 구조로 진화하면서 남�
 
 ### 3.1 Preliminary
 
-지식 그래프를 $G = (V, R, D^{(\text{ver})}, D^{(\text{rel})})$로 둔다. $V$는 entity 집합, $R$은 relation 집합, $D^{(\text{ver})}$와 $D^{(\text{rel})}$은 각각 entity 설명문과 relation 설명문의 모음이다. KG 기반 RAG의 목표는 쿼리와 관련된 서브그래프를 만들어 LLM이 좋은 답을 내게 하는 것이다.
+지식 그래프를 $G = (V, R, D^{(\text{ver})}, D^{(\text{rel})})$로 둔다. $V$는 entity 집합, $R$은 relation 집합, $D^{(\text{ver})}$와 $D^{(\text{rel})}$은 각각 entity 설명문과 relation 설명문의 모음이다. KG 기반 RAG의 목표는 질의와 관련된 서브그래프를 만들어 LLM이 좋은 답을 내게 하는 것이다.
 
-쿼리 $q$가 주어지면 탐색은 다음과 같이 정의된다.
+질의 $q$가 주어지면 탐색은 다음과 같이 정의된다.
 
 $$\tilde{V} = \text{Top-}n_{v \in V}(\text{Sim}(q, d_v))$$
 
@@ -154,7 +154,7 @@ $\tau$는 data-dependent hyper-parameter다. 추상화 수준마다 그래프 �
 
 #### Initial Entity Anchoring
 
-쿼리 $q$를 가장 구체적인 사실에 붙이기 위해, 원래 그래프인 base layer $G_0$의 entity만 대상으로 dense retrieval을 수행한다.
+질의 $q$를 가장 구체적인 사실에 붙이기 위해, 원래 그래프인 base layer $G_0$의 entity만 대상으로 dense retrieval을 수행한다.
 
 $$V_{\text{seed}} = \text{Top-}n_{v \in V_0}(\text{sim}(q, d_v))$$
 
@@ -188,7 +188,7 @@ Figure 1은 본문에 없는 정보를 하나 담고 있다. 기존 그래프 �
 - **Baseline 6종**: NaiveRAG(Lewis et al. 2020), GraphRAG(Edge et al. 2024), LightRAG(Guo et al. 2024), KAG(Liang et al. 2025), FastGraphRAG, HiRAG(Huang et al. 2025a). FastGraphRAG만 저자 연도 인용이 없고 PageRank(Page et al. 1999) 인용으로 대신한다.
 - **GraphRAG 설정**: local search mode를 쓴다고 명시한다. global mode는 계산 비용이 크고 local 수준의 맥락 근거가 부족하다는 것이 이유다.
 - **평가 지표 4종**: Comprehensiveness(질의를 얼마나 빠짐없이 다루는가), Empowerment(실무적 유용성과 행동 가능한 정보 제공력), Diversity(정보와 관점의 폭), Overall(앞의 세 가지와 기타 요인을 함께 고려한 총괄 품질). HiRAG(Huang et al. 2025a)의 지표 정의를 따랐다.
-- **채점**: DeepSeek-V3(Liu et al. 2024)를 LLM-as-judge로 쓰고 1에서 10 척도로 채점한다. 각 쿼리와 답변 쌍을 5회 채점한다. 답변 품질을 직접 반영하기 위해 두 답변을 놓고 win rate를 재는 방식도 함께 쓴다.
+- **채점**: DeepSeek-V3(Liu et al. 2024)를 LLM-as-a-Judge로 쓰고 1에서 10 척도로 채점한다. 각 질의와 답변 쌍을 5회 채점한다. 답변 품질을 직접 반영하기 위해 두 답변을 놓고 win rate를 재는 방식도 함께 쓴다.
 - **생성 모델**: 모든 방법의 생성기를 DeepSeek-V3로 통일해 공정 비교를 맞췄다.
 - **임베딩**: BGE-M3(Chen et al. 2024).
 - **hyperparameter**: GMM 클러스터 개수를 포함한 주요 값은 held-out validation set에서 튜닝했다.
@@ -360,8 +360,8 @@ KG 기반 RAG는 지식을 entity와 relation의 그래프로 표현해 LLM에 �
 - **Aggregated relation $r_{\langle \alpha_j, \alpha_k \rangle}$**: 같은 층의 두 상위 entity 사이 relation. connectivity strength가 임계값을 넘으면 LLM이 요약하고, 넘지 않으면 원래 relation들을 텍스트로 이어 붙인다.
 - **Connectivity strength $\lambda_{j,k}$**: 클러스터 $C_j$와 $C_k$에 각각 속한 노드들을 잇던 base 층 relation의 개수.
 - **임계값 $\tau$**: connectivity strength의 판정 기준이 되는 data-dependent hyper-parameter. layer index와 그래프 밀도에 따라 달라진다.
-- **Hierarchical knowledge graph $H$**: 평면 KG $G_0$ 위에 상위 층 $G_1$에서 $G_k$까지를 쌓은 다중 해상도 구조. 같은 층 상위 entity 사이의 relation을 포함한다.
-- **Seed entity $V_{\text{seed}}$**: 쿼리 임베딩과 base 층 entity 설명문 임베딩의 유사도로 뽑은 상위 $n$개 entity. 구조 탐색의 출발점이다.
+- **계층 지식 그래프(hierarchical knowledge graph) $H$**: 평면 KG $G_0$ 위에 상위 층 $G_1$에서 $G_k$까지를 쌓은 다중 해상도 구조. 같은 층 상위 entity 사이의 relation을 포함한다.
+- **Seed entity $V_{\text{seed}}$**: 질의 임베딩과 base 층 entity 설명문 임베딩의 유사도로 뽑은 상위 $n$개 entity. 구조 탐색의 출발점이다.
 - **Lowest common ancestor $v_{\text{lca}}$**: hierarchy에서 seed들의 공통 조상 가운데 depth가 가장 작은 노드. 두 seed에서 이 노드까지의 경로 길이 합이 최소가 된다.
 - **LCA path $P_{\text{lca}}$**: 각 seed entity에서 $v_{\text{lca}}$까지의 shortest path를 모두 합집합한 경로. tree 구조이므로 자식에서 부모로 이어지는 chain이다.
 - **Inter-cluster relation $R_{\text{inter-cluster}}$**: 같은 층 상위 entity 사이에 새로 만든 relation 가운데 retrieval 결과에 포함되는 것들. cross-community 정보를 공급한다.

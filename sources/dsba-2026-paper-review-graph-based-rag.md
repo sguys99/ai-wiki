@@ -191,7 +191,7 @@ DSBA 연구실(서울대학교 산업공학과) 김도윤 박사과정이 2026-0
 | 비교 항목 | Vanilla RAG | Graph 기반 RAG |
 |---|---|---|
 | 지식 표현 방식 | 텍스트를 chunk로 분할한 뒤 벡터 임베딩으로 변환, 관계 정보 손실, 초기 인덱싱 구축 비용 비교적 낮음 | 노드와 관계로 구성된 지식 그래프로 저장, 관계와 맥락 보존, 새 정보는 기존 노드와 관계에 맞추어 추가 |
-| 검색 방식 | 질의와 chunk 간 벡터 유사도 기반, 단순하고 빠름 | 방법론별 핵심이 되는 부분, 서브그래프 탐지 후 나열이나 커뮤니티 탐지 후 요약본 활용 등 |
+| 검색 방식 | 질의와 chunk 간 벡터 유사도 기반, 단순하고 빠름 | 방법론별 핵심이 되는 부분, 서브그래프 탐지 후 나열이나 community detection 후 요약본 활용 등 |
 | 응답 생성 | 단순 사실 질의에 빠르고 정확함 | 복잡한 상호의존 관계를 포착해 맥락이 풍부함 |
 | 적합한 상황 | 고객 지원 챗봇(FAQ, 매뉴얼에서 즉시 답변), 제품 설명서 QA | 의학과 신약 연구 분석(수많은 논문에서 약물, 유전자, 질환 관계 추론), 법률 판례 분석(선례와 법령의 인용 관계 추적), 산업 트렌드 분석(기술 경영 관점의 혁신 인사이트 도출) |
 
@@ -240,9 +240,9 @@ entity가 포함된 passage를 함께 붙이는 관행 자체도 표준화되었
 
 | 방법론 | 슬라이드의 한 줄 정의 | 흐름도가 붙인 한계 |
 |---|---|---|
-| GraphRAG | LLM으로 지식 그래프와 커뮤니티 요약을 사전 구축해 전체 코퍼스에 대한 글로벌 질의응답(QFS)을 가능하게 하는 프레임워크 | LLM의 높은 토큰 비용과 글로벌 요약의 한계, 글로벌 요약으로 인한 precision 하락 |
-| HippoRAG | 인간 해마의 기억 메커니즘을 모방해 LLM으로 구축한 지식 그래프와 Personalized PageRank를 결합, 멀티홉 질의에서 효과적인 연상 검색을 구현 | 대규모 데이터에서 확장 어려움, entity 중심 검색으로 인한 정보 고립 |
-| HippoRAG2 | HippoRAG에 passage 노드와 LLM 필터링 triplet을 추가해 단순 QA부터 복잡한 멀티홉 추론까지 포괄 | 흐름도에 별도 표기 없음 |
+| GraphRAG | LLM으로 지식 그래프와 community summary를 사전 구축해 전체 코퍼스에 대한 글로벌 질의응답(QFS)을 가능하게 하는 프레임워크 | LLM의 높은 토큰 비용과 글로벌 요약의 한계, 글로벌 요약으로 인한 precision 하락 |
+| HippoRAG | 인간 해마의 기억 메커니즘을 모방해 LLM으로 구축한 지식 그래프와 Personalized PageRank를 결합, multi-hop 질의에서 효과적인 연상 검색을 구현 | 대규모 데이터에서 확장 어려움, entity 중심 검색으로 인한 정보 고립 |
+| HippoRAG2 | HippoRAG에 passage 노드와 LLM 필터링 triplet을 추가해 단순 QA부터 복잡한 multi-hop 추론까지 포괄 | 흐름도에 별도 표기 없음 |
 | LightRAG | entity(저수준)와 토픽(고수준)을 동시에 검색하는 이중 레벨 검색 패러다임과 graph 기반 텍스트 인덱싱으로 응답의 다양성과 포괄성을 높인 경량 RAG | 흐름도에 별도 표기 없음 |
 | CausalRAG | 단순 의미 유사도 대신 인과 그래프 기반 경로 탐색으로 검색 문맥을 결정해 응답의 인과적 근거와 충실도를 높임 | 인과 관계를 충분히 반영하지 못함 |
 | HugRAG | Hierarchical Causal Gating으로 전역 문맥과 지역 인과 경로 정제를 동시에 달성 | 흐름도에 별도 표기 없음 |
@@ -253,7 +253,7 @@ entity가 포함된 passage를 함께 붙이는 관행 자체도 표준화되었
 
 | 구분 | Multi-hop QA | Open-ended QA |
 |---|---|---|
-| 방식 | 문서 여러 건에 걸쳐 여러 번의 추론 단계를 거쳐 답을 생성 | 다양한 도메인의 문서를 기반으로 질문을 직접 생성한 뒤 LLM-as-judge로 평가 |
+| 방식 | 문서 여러 건에 걸쳐 여러 번의 추론 단계를 거쳐 답을 생성 | 다양한 도메인의 문서를 기반으로 질문을 직접 생성한 뒤 LLM-as-a-Judge로 평가 |
 | 지표 | Exact Match, Recall 등. 검색된 컨텍스트까지 고려할 때는 RAGAS(2024) | Comprehensiveness, Diversity, Empowerment, Overall 등 |
 | 예시 데이터셋 | HotpotQA(2018). 슬라이드 10장이 Mother Love Bone 관련 문항을 예시로 든다 | UltraDomain(2024) 코퍼스 |
 | 출처 | 슬라이드가 From RAG to Memory(2025), HugRAG(2026), RAGAS(2024)를 인용 | GraphRAG 연구부터 persona 또는 시나리오에 맞춰 질문을 직접 생성하는 방식이 차용되기 시작. MemoRAG(2024)와 LightRAG(2025)를 함께 인용 |
@@ -357,7 +357,7 @@ Recursive semantic clustering은 $G_{i-1}$을 대상으로 한다. 노드 descri
 | RQ2 ablation | high-level 키워드 검색을 제거할 때 성능 하락 폭이 가장 크다. 원문을 제거한 -Origin 조건에서는 오히려 간혹 성능이 향상된다. Agriculture 데이터셋에서 대부분의 지표가 향상되었고 나머지에서는 큰 차이가 없었다 |
 | RQ3 비용과 적응성 | Table 3에서 LLM 입출력 토큰 수와 API 호출 횟수가 현저히 낮다. Table 5와 7에서 새 document를 그래프에 추가할 때 걸리는 시간과 메모리가 훨씬 적다. Table 6에서 retrieval 시간도 현저히 적다 |
 
-Mix 데이터셋 예외에 대한 발표자 해석은 GraphRAG가 이미 커뮤니티 요약을 쓰고 있어 다양한 주제가 요약 안에 잘 담겼기 때문이라는 것이다. 다만 발표자는 승률 차이 자체가 크지는 않다고 덧붙인다.
+Mix 데이터셋 예외에 대한 발표자 해석은 GraphRAG가 이미 community summary를 쓰고 있어 다양한 주제가 요약 안에 잘 담겼기 때문이라는 것이다. 다만 발표자는 승률 차이 자체가 크지는 않다고 덧붙인다.
 
 원문 제거 시 성능이 오르는 현상에 대해 저자들은 원문에 noise나 무관한 내용이 포함되어 있을 가능성을 든다. 발표자는 이 결과를 기억해 두라고 청중에게 요청하는데, 이어서 볼 LeanRAG가 정반대 결과를 내기 때문이다.
 
@@ -428,10 +428,10 @@ RQ3의 Diversity 하락에 대해서는 계층적 관점이 곧 글로벌 관점
 | 1년의 과정 | 일련의 과정 | 00:05 구간 |
 | 428개의 원소 | 428권의 원서 | 00:25 구간 |
 | 쿠 3 14 빌리언 | Qwen3-14B | 00:45 구간 |
-| 멀파 Q웨이 | 판독 불가. 슬라이드는 HotpotQA를 멀티홉 QA 예시로 든다 | 00:10 구간 |
+| 멀파 Q웨이 | 판독 불가. 슬라이드는 HotpotQA를 multi-hop QA 예시로 든다 | 00:10 구간 |
 | 로이스트 커먼 액세스터 | Lowest Common Ancestor | 00:40, 00:50 구간 |
 
-두 자료 사이의 불일치도 있다. 슬라이드 17장은 LightRAG가 "쿼리 자체를 분류하기보다 쿼리로부터 두 level의 키워드를 추출해서 모두 활용한다"고 적는데, 같은 발표의 슬라이드 27장 take-away는 "기본적으로 query를 구분한 후 진행되지만"으로 시작한다. 두 문장이 가리키는 주어가 서로 다른 것으로 보이나 슬라이드만으로는 확정할 수 없다. 슬라이드 42장은 LCA를 "Lowest Ancestor Common"으로 적어 다른 슬라이드의 "Lowest Common Ancestor"와 어순이 어긋난다.
+두 자료 사이의 불일치도 있다. 슬라이드 17장은 LightRAG가 "쿼리 자체를 분류하기보다 쿼리로부터 두 level의 키워드를 추출해서 모두 활용한다"고 적는데, 같은 발표의 슬라이드 27장 take-away는 "기본적으로 query를 구분한 후 진행되지만"으로 시작한다. 두 문장이 가리키는 주어가 서로 다른 것으로 보이나 슬라이드만으로는 확정할 수 없다. 슬라이드 42장은 LCA를 "Lowest Ancestor Common"으로 적어 다른 슬라이드의 "Lowest Common Ancestor"와 어순이 어긋난다. <!-- lint-terms: ignore -->
 
 두 논문의 정량 수치(테이블 값)는 세미나에서 거의 인용되지 않는다. 슬라이드는 표 이미지를 붙이고 경향만 서술한다. 정확한 벤치마크 점수가 필요하면 각 원논문 페이지를 참조해야 한다.
 
@@ -464,7 +464,7 @@ RQ3의 Diversity 하락에 대해서는 계층적 관점이 곧 글로벌 관점
 - **Lowest Common Ancestor (LCA)**: 계층 그래프에서 여러 노드의 공통 조상 중 가장 낮은 노드. LeanRAG는 seed entity를 모두 연결하는 서브그래프를 LCA로 찾아 의미 중복을 줄인다.
 - **Seed entity**: LeanRAG retrieval에서 노드 임베딩 유사도로 고른 상위 n개 시작점 entity.
 - **Anchor 노드**: LCA 경로의 말단에 놓인 평면 KG entity. 출처 원문 chunk가 붙는다.
-- **Open-ended QA**: persona와 task 조합으로 질문을 자동 생성해 LLM-as-judge로 평가하는 방식. GraphRAG 연구부터 차용되었다.
+- **Open-ended QA**: persona와 task 조합으로 질문을 자동 생성해 LLM-as-a-Judge로 평가하는 방식. GraphRAG 연구부터 차용되었다.
 - **Comprehensiveness, Diversity, Empowerment, Overall**: open-ended QA의 평가 지표. 각각 답변의 포괄성, 관점의 다양성, 의사결정 지원력, 종합 품질을 본다.
 - **UltraDomain**: 18개 분야 428권의 원서로 구성된 다중 도메인 코퍼스.
 - **BIC (Bayesian Information Criterion)**: LeanRAG가 Gaussian Mixture Clustering의 클러스터 수 $m$을 정할 때 최소화하는 기준.

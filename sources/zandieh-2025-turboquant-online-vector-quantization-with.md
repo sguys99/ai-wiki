@@ -313,7 +313,7 @@ codebook을 데이터에서 학습하는 PQ, RabitQ와 달리 TurboQuant은 미�
 - **KV cache 압축 계열**: 저장할 key-value 쌍 수 자체를 줄이는 구조 변경(Multi-Query Attention, GQA, DeepSeekMoE), 중요도가 낮은 토큰을 잘라내거나 축출하는 방식(Longformer, H2O, Scissorhands, StreamingLLM, SnapKV, PyramidKV, BalanceKV), 그리고 양자화 방식(WKVQuant, QAQ, GEAR, Coupled Quantization, KIVI, KVQuant, Lexico, PolarQuant)으로 나뉜다. QJL은 sketching 기반 1비트 data-oblivious 양자화로 inner product 질의에 unbiased 추정을 제공하며, 본 논문이 그 기술을 그대로 사용한다.
 - **Product Quantization과 ANN**: PQ 원 논문(Jegou 외), Optimized PQ, Additive Quantization, learning to hash 서베이, anisotropic vector quantization은 모두 indexing 단계에서 k-means 변형으로 codebook을 만들어 online 설정에 맞지 않는다. RabitQ는 preprocessing을 없앴으나 이론 보장이 느슨하고 vectorization 부재로 느리다.
 - **고차원 확률과 정보이론**: 좌표 간 near-independence는 Vershynin의 고차원 확률론에 근거한다. SLB의 backward Gaussian test channel 증명은 Cover의 정보이론 교과서를 따른다.
-- **벤치마크와 모델, 응용**: LongBench, Needle-In-A-Haystack, Llama-3, GloVe, BEIR/DBpedia를 쓴다. 응용 맥락으로 벡터 데이터베이스(Elasticsearch, Qdrant, pgvector, Pinecone)와 retrieval-augmented generation 문헌(GraphRAG 포함), ColBERT 계열 정보 검색을 인용한다.
+- **벤치마크와 모델, 응용**: LongBench, Needle-In-A-Haystack, Llama-3, GloVe, BEIR/DBpedia를 쓴다. 응용 맥락으로 vector database(Elasticsearch, Qdrant, pgvector, Pinecone)와 retrieval-augmented generation 문헌(GraphRAG 포함), ColBERT 계열 정보 검색을 인용한다.
 
 ## 7. 용어집 (Glossary)
 

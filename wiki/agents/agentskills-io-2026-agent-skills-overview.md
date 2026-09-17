@@ -81,7 +81,7 @@ progressive disclosure는 필요한 시점에만 정보를 단계적으로 노�
 
 Discovery 단계가 읽는 양은 의도적으로 최소한이다. 사이트의 표현을 빌리면 "언제 이 스킬이 필요할지 알 만큼만" 담는다. 따라서 스킬이 열 개든 백 개든 시작 시점의 부담은 이름과 설명 길이의 합으로 제한된다.
 
-Activation은 작업이 스킬의 description과 맞아떨어질 때 일어난다. 즉 description이 두 가지 역할을 겸한다. Discovery 단계에서는 후보를 좁히는 색인이고, Activation 단계에서는 전문을 읽어들일지 결정하는 조건이다.
+Activation은 작업이 스킬의 description과 맞아떨어질 때 일어난다. 즉 description이 두 가지 역할을 겸한다. Discovery 단계에서는 후보를 좁히는 인덱스이고, Activation 단계에서는 전문을 읽어들일지 결정하는 조건이다.
 
 Execution 단계에서는 지시문을 따르면서 필요에 따라 번들된 코드를 실행하거나 참조 파일을 추가로 불러온다. 앞의 레이아웃에서 선택 항목이던 `scripts/`와 `references/`가 이 시점에 쓰인다.
 

@@ -668,7 +668,7 @@ image 한 장만 주면 4B가 15%, 5B-Video2World가 7%, 12B가 2%로 크기를 
 
 ## 6. 관련 연구 (Related Work)
 
-world model 개념은 Ha와 Schmidhuber의 2018년 연구에서 왔고, 이후 흐름은 backbone 기준으로 갈린다. 초기 계열과 Dreamer 계보는 오토인코더로 얻은 latent 공간에서 순환 신경망으로 상태 변화를 모델링했다. 최근에는 world model을 시각 공간의 조건부 생성 모델로 보는 쪽이 늘었고, 그 안에서 다시 autoregressive(Genie 등)와 diffusion(GameNGen 등)으로 나뉜다. 이 논문은 두 가지를 모두 만들어 같은 평가에 올렸다는 점이 다르다.
+world model 개념은 Ha와 Schmidhuber의 2018년 연구에서 왔고, 이후 흐름은 backbone 기준으로 갈린다. 초기 계열과 Dreamer 계보는 autoencoder로 얻은 latent 공간에서 순환 신경망으로 상태 변화를 모델링했다. 최근에는 world model을 시각 공간의 조건부 생성 모델로 보는 쪽이 늘었고, 그 안에서 다시 autoregressive(Genie 등)와 diffusion(GameNGen 등)으로 나뉜다. 이 논문은 두 가지를 모두 만들어 같은 평가에 올렸다는 점이 다르다.
 
 영상 생성 쪽으로는 Sora, Gen-3, Kling, Dream Machine 같은 최근 모델을 배경으로 두고, 비교 실험에서는 VideoLDM을 기준선으로 쓴다. 토크나이저는 FSQ와 causal 구조 선행 연구를 이어받았다. post-training 비교 대상은 camera control의 CamCo, action 조건 예측의 IRASim이다.
 

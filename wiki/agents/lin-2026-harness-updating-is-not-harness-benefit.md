@@ -125,7 +125,7 @@ end-to-end 점수 하나에 세 가지 원천이 섞여 들어간다. 첫째는 
 |---|---|---|
 | 프롬프트 | PromptWizard, ACE, GEPA | 피드백 기반 비판과 합성으로 프롬프트를 정제하고, contextual playbook을 생성과 반성과 큐레이션으로 진화시키며, trajectory 수준 반성으로 프롬프트를 진화시킨다 |
 | 메모리 | EvolveR, MemEvolve, MemMA, Evo-memory | 오프라인 전략 distillation과 온라인 retrieval을 연결하고, 메모리 시스템의 메타 진화를 다루며, 구성과 retrieval과 피드백 기반 수리로 긴 작업의 메모리를 개선한다 |
-| 스킬과 워크플로 | Voyager, AWM, SkillRL, EvoSkill, AutoSkill | 실행 가능한 스킬을 축적하고, 성공 trajectory에서 워크플로를 유도하며, 강화학습으로 스킬 라이브러리를 재귀 확장하고, agent 경험에서 스킬을 자동 발견한다 |
+| 스킬과 워크플로 | Voyager, AWM, SkillRL, EvoSkill, AutoSkill | 실행 가능한 스킬을 축적하고, 성공 trajectory에서 워크플로를 유도하며, 강화학습으로 skill library를 재귀 확장하고, agent 경험에서 스킬을 자동 발견한다 |
 | tool | Chen et al. 2025, Li et al. 2026a(Yunjue Agent) | agent가 tool과 tool use 지식을 합성하고 수정하고 축적한다 |
 
 ### 평가 방식의 공백

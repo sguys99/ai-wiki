@@ -55,7 +55,7 @@ figures:
 
 ## 요약
 
-OmniVLA-RL은 공간 지각과 online 강화학습이라는 두 가지 약점을 한꺼번에 다루는 manipulation용 VLA다. 구조 면에서는 Spatial Expert, Reasoning Expert, Action Expert 세 전문가가 Mixture-of-Transformers(MoT) backbone 하나를 공유하며, 3D 공간 특징과 언어 지시문(instruction)과 시각 의미가 Transformer 층 안에서 직접 섞인다. 학습 면에서는 flow matching의 결정론적 디노이징을 확률 미분방정식(SDE)으로 바꾸고, 그 위에 시퀀스 단위 policy 최적화인 GSPO를 action block 단위로 적용한 Flow-GSPO를 제안한다.
+OmniVLA-RL은 공간 지각과 online 강화학습이라는 두 가지 약점을 한꺼번에 다루는 manipulation용 VLA다. 구조 면에서는 Spatial Expert, Reasoning Expert, Action Expert 세 전문가가 Mixture-of-Transformers(MoT) backbone 하나를 공유하며, 3D 공간 특징과 언어 지시문(instruction)과 시각 의미가 Transformer 층 안에서 직접 섞인다. 학습 면에서는 flow matching의 결정론적 denoising을 확률 미분방정식(SDE)으로 바꾸고, 그 위에 시퀀스 단위 policy 최적화인 GSPO를 action block 단위로 적용한 Flow-GSPO를 제안한다.
 
 결과는 두 벤치마크에서 제시된다. LIBERO 4개 suite 평균 성공률 97.6%로 비교 대상 9개 방법 중 1위이며 π0.5(96.9%)를 0.7%p 앞선다. 다단계 과제로 구성된 LIBERO-Plus에서는 지도학습만 한 기준선 41.2%를 Flow-GSPO가 80.3%로 올려, 같은 조건의 PPO(78.7%)와 GRPO(65.7%)보다 높고 수렴도 빠르다. Spatial Expert를 빼면 기준선이 32.9%로 8.3%p 떨어져, 공간 전문가가 구조의 핵심임을 보인다.
 
@@ -147,7 +147,7 @@ a_t ~ p(a | z_spatial, z_sem, z_lang)   (식 8)
 
 | 토큰 블록 | 볼 수 있는 대상 | 볼 수 없는 대상 | 이유 |
 |---|---|---|---|
-| Reasoning, Spatial (omni-visible prefix) | prefix 전체 (양방향) | State, Action | 디노이징 노이즈가 장면 이해를 오염시키지 않게 한다 |
+| Reasoning, Spatial (omni-visible prefix) | prefix 전체 (양방향) | State, Action | denoising 노이즈가 장면 이해를 오염시키지 않게 한다 |
 | State | prefix 전체와 자기 자신 | Action | action 생성 전에 상태가 먼저 확정된다 |
 | Action (causal suffix) | prefix 전체, State, 자기 앞의 action 토큰 | 자기 뒤의 action 토큰 | autoregressive causality를 지킨다 |
 
@@ -155,7 +155,7 @@ prefix 안에서는 세밀한 공간 패치와 거시적 의미 컨텍스트가 
 
 ### Stochastic Flow Matching
 
-CFM이 생성하는 연속 action 시퀀스를 A_t = [a_{t,0}, ..., a_{t,H-1}]로 두고, 디노이징 step 수를 K, step 크기를 δ = 1/K로 둔다. A_t^τ는 τ번째 디노이징 단계의 action이고 A_t^0 ~ N(0, I)다. Rectified Flow 틀에서 목표 vector field를 u = A_t - ε (ε ~ N(0, I))로 두면 결정론적 갱신식은 다음과 같다.
+CFM이 생성하는 연속 action 시퀀스를 A_t = [a_{t,0}, ..., a_{t,H-1}]로 두고, denoising step 수를 K, step 크기를 δ = 1/K로 둔다. A_t^τ는 τ번째 denoising 단계의 action이고 A_t^0 ~ N(0, I)다. Rectified Flow 틀에서 목표 vector field를 u = A_t - ε (ε ~ N(0, I))로 두면 결정론적 갱신식은 다음과 같다.
 
 A_t^{τ+δ} = A_t^τ + δ v_θ(A_t^τ, s_t)   (식 9)
 
@@ -171,17 +171,17 @@ GRPO 같은 토큰 단위 최적화는 단일 step 편향이 누적되고 action
 
 - 상태 s_t마다 G개의 action 시퀀스 {A_{t,i}}를 샘플링한다.
 - 각 시퀀스의 우도는 K단계 Gaussian 전이의 곱이다(식 14): π_θ(A_{t,i}|s_t) = Π_{τ=0}^{K-1} N(A_{t,i}^{τ+δ} | μ_{τ,i}, Σ_{τ,i}).
-- |A_{t,i}| = H × K (action block 길이 × 디노이징 step 수)로 두고, action block 단위 importance ratio를 시퀀스 우도비의 1/|A_{t,i}| 제곱, 즉 step별 log 우도비의 평균의 지수로 정의한다(식 15).
+- |A_{t,i}| = H × K (action block 길이 × denoising step 수)로 두고, action block 단위 importance ratio를 시퀀스 우도비의 1/|A_{t,i}| 제곱, 즉 step별 log 우도비의 평균의 지수로 정의한다(식 15).
 - advantage는 G개 action block의 누적 reward R_total(A_{i,t}, s_t) = Σ_{h=0}^{H-1} γ^h R(s_t, a_{t,i,h})를 그룹 평균과 표준편차로 정규화한 값이다(식 16).
 - old policy와 new policy 사이의 action block 단위 KL divergence 항 β D_KL(π_θ || π_old)를 빼서 policy가 급격히 바뀌는 것을 막는다(식 17, 18).
 
-최종 목적함수 J_Flow-GSPO(θ)는 GSPO의 clip 목적함수 min(s_i Â_i, clip(s_i, 1-ε, 1+ε) Â_i)의 그룹 평균에서 KL 벌점을 뺀 형태다. GSPO 원형과의 차이는 시퀀스가 언어 토큰열이 아니라 디노이징 단계열이라는 점, 그리고 각 단계의 우도가 Gaussian 전이에서 닫힌 형태로 나온다는 점이다.
+최종 목적함수 J_Flow-GSPO(θ)는 GSPO의 clip 목적함수 min(s_i Â_i, clip(s_i, 1-ε, 1+ε) Â_i)의 그룹 평균에서 KL 벌점을 뺀 형태다. GSPO 원형과의 차이는 시퀀스가 언어 토큰열이 아니라 denoising 단계열이라는 점, 그리고 각 단계의 우도가 Gaussian 전이에서 닫힌 형태로 나온다는 점이다.
 
 ### gradient 분석
 
 논문은 목적함수의 gradient를 명시적으로 유도해 최적화가 어디에 작용하는지 보인다. clip 항을 무시하면 주 항의 gradient는 (1/G) Σ_i s_{t,i}(θ) Â_{i,t} ∇_θ log s_{t,i}(θ)의 기대값이다(식 19). 전이가 Gaussian이므로 각 step의 log 우도 gradient는 Σ^{-1}_{τ,i} (A^{τ+δ} - μ_{τ,i}) × ∇_θ μ_{τ,i}이고(식 21), μ_{τ,i}를 θ와 무관한 항 C_0 = A_t^τ (1 + σ_τ² δ / 2)와 θ에 의존하는 항 C_r = (1 + σ_τ² (1-τ)/2) δ × v_θ로 분해하면 ∇_θ μ_{τ,i} = C_r ∇_θ v_θ가 된다(식 22, 23).
 
-최종 gradient(식 24)는 각 디노이징 step에서 (예측 노이즈 잔차) × (1 + σ_τ²(1-τ)/2) δ × ∇_θ v_θ를 더한 뒤 (s Â / |A| + β) 가중치를 곱한 형태다. 즉 Flow-GSPO는 velocity network v_θ의 gradient를 advantage 가중 잔차로 되먹이는 구조이며, 노이즈 스케줄 σ_τ에 따라 step마다 기여가 달라진다. 지도학습의 CFM 손실이 목표 velocity와의 차이를 줄이는 것과 달리, 여기서는 reward가 높은 샘플 방향으로 velocity field가 이동한다.
+최종 gradient(식 24)는 각 denoising step에서 (예측 노이즈 잔차) × (1 + σ_τ²(1-τ)/2) δ × ∇_θ v_θ를 더한 뒤 (s Â / |A| + β) 가중치를 곱한 형태다. 즉 Flow-GSPO는 velocity network v_θ의 gradient를 advantage 가중 잔차로 되먹이는 구조이며, 노이즈 스케줄 σ_τ에 따라 step마다 기여가 달라진다. 지도학습의 CFM 손실이 목표 velocity와의 차이를 줄이는 것과 달리, 여기서는 reward가 높은 샘플 방향으로 velocity field가 이동한다.
 
 ### 3단계 학습
 
@@ -209,12 +209,12 @@ Stage III는 Stage II 체크포인트에서 모든 파라미터를 풀고 시작
 | clip 계수 ε | 0.2 |
 | KL 벌점 가중치 β | 0.01 |
 | 노이즈 스케줄 | σ_τ = σ_max (1-τ), σ_max = 0.1 |
-| 디노이징 step K | 10 |
+| denoising step K | 10 |
 | action horizon H | 16 |
 | optimizer | AdamW, 학습률 1e-5, weight decay 0.01 |
 | RL 갱신 step | 200, rollout buffer는 10 step마다 갱신 |
 
-노이즈 스케줄 σ_τ = 0.1 (1-τ)는 디노이징 초반(τ가 0에 가까울 때) 탐색 노이즈가 크고 마지막 step에서는 0에 수렴한다. 즉 탐색은 action의 대략적 형태를 정하는 초반에 집중되고, 최종 action은 거의 결정론적으로 정제된다. 연속 gripper-alignment reward는 이진 완료 reward만으로는 신호가 희소한 문제를 보완한다.
+노이즈 스케줄 σ_τ = 0.1 (1-τ)는 denoising 초반(τ가 0에 가까울 때) 탐색 노이즈가 크고 마지막 step에서는 0에 수렴한다. 즉 탐색은 action의 대략적 형태를 정하는 초반에 집중되고, 최종 action은 거의 결정론적으로 정제된다. 연속 gripper-alignment reward는 이진 완료 reward만으로는 신호가 희소한 문제를 보완한다.
 
 ## 결과
 
@@ -313,8 +313,8 @@ Spatial Expert를 빼면 41.2%에서 32.9%로 8.3%p 떨어진다. 구조 ablatio
 | Mixture-of-Transformers (MoT) | 모달리티마다 feed-forward와 projection 파라미터를 따로 두면서 attention 연산은 공유하는 Transformer 변형. OmniVLA-RL은 이 위에 세 expert를 둔다 |
 | Block-wise Causal Attention | 공간과 의미 토큰을 양방향 prefix로, action 토큰을 causal suffix로 두고 prefix가 action을 보지 못하게 막는 attention 마스크 |
 | GSPO | importance ratio를 토큰이 아니라 시퀀스 우도의 길이 정규화 값으로 정의한 그룹 기반 policy 최적화. GRPO의 토큰 단위 불안정을 줄이려는 방법 |
-| Flow-GSPO | flow matching의 ODE 디노이징을 SDE로 바꿔 Gaussian 전이 우도를 얻고, action block을 시퀀스 단위로 삼아 GSPO 목적함수와 KL 벌점으로 최적화하는 online 강화학습 방법 |
-| Stochastic Flow Matching | Fokker-Planck 방정식으로 결정론적 flow matching ODE를 SDE로 바꾸고 Euler-Maruyama로 이산화한 확률적 디노이징. 각 step의 전이가 등방성 Gaussian이 된다 |
+| Flow-GSPO | flow matching의 ODE denoising을 SDE로 바꿔 Gaussian 전이 우도를 얻고, action block을 시퀀스 단위로 삼아 GSPO 목적함수와 KL 벌점으로 최적화하는 online 강화학습 방법 |
+| Stochastic Flow Matching | Fokker-Planck 방정식으로 결정론적 flow matching ODE를 SDE로 바꾸고 Euler-Maruyama로 이산화한 확률적 denoising. 각 step의 전이가 등방성 Gaussian이 된다 |
 | LIBERO-Plus | LIBERO를 다단계 compositional long-horizon 과제로 확장한 벤치마크. 이 논문에서 online RL과 ablation의 무대 |
 
 ## 관련 페이지

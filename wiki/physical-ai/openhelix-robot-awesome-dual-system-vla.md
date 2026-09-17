@@ -190,7 +190,7 @@ humanoid 분류가 사실상 비어 있다. dual-system 쪽 humanoid는 Helix �
 
 - [[physical-ai/cui-2025-openhelix-a-short-survey-empirical]]: 이 저장소의 근거 논문이자 짝을 이루는 페이지. 논문 쪽은 판정 기준의 논거와 통제된 실험, OpenHelix 모델 자체를 다루고, 이 저장소는 그 기준을 적용한 목록과 갱신 상태를 유지한다.
 - [[physical-ai/keon-awesome-physical-ai]]: 같은 큐레이션 저장소지만 범위가 다르다. VLA와 world model을 중심으로 physical AI 논문 계보 전체를 16개 최상위 섹션에 배열한다.
-- [[physical-ai/natnew-awesome-physical-ai]]: 역시 큐레이션 저장소이며 논문보다 자료 색인에 가깝다. 시뮬레이터, 데이터셋, 벤치마크, 교재를 종류별로 묶고 초심자 학습 경로를 앞세운다. 이 저장소가 dual-system 하나로 범위를 좁히고 판정까지 내리는 것과 대비된다.
+- [[physical-ai/natnew-awesome-physical-ai]]: 역시 큐레이션 저장소이며 논문보다 자료 인덱스에 가깝다. 시뮬레이터, 데이터셋, 벤치마크, 교재를 종류별로 묶고 초심자 학습 경로를 앞세운다. 이 저장소가 dual-system 하나로 범위를 좁히고 판정까지 내리는 것과 대비된다.
 - [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]]: 배제 목록에 오른 모델. System 1이 실시간 perception 입력을 직접 받지 않는다는 것이 사유다.
 - [[physical-ai/black-2025-pi05-a-vision-language-action-model-with]]: 같은 사유로 배제 목록에 있다.
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]: humanoid 배제 목록의 유일한 항목이자 LIBERO 결과표의 single-system 행.

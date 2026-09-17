@@ -521,7 +521,7 @@ backend는 기본적으로 loopback 전용이고 인증이 없다. 같은 머신
 | API key | backend의 `OMNIVOICE_API_KEY` | 직접 클라이언트와 first-party 세션 bootstrap | 비loopback HTTP + WebSocket |
 | Trusted networks | `OMNIVOICE_TRUSTED_NETWORKS` (CIDR 목록) | 위 두 gate를 면제 | 비loopback 소비 라우트만 |
 
-share PIN은 sharing을 켤 때마다 새 6자리로 생성되고 디스크에 쓰지 않는다. `X-OmniVoice-Pin` 헤더, `?pin=` 쿼리, `ov_pin` 쿠키(첫 유효 PIN 뒤 backend가 자동 설정)로 낸다. PIN gate(`NetworkAccessMiddleware`)는 HTTP만 다루고 WebSocket을 gate하지 않으므로 받아쓰기 WebSocket은 API key나 trusted network가 필요하다. 6자리라 brute-force 가능하므로 관리 표면을 열지 못한다.
+share PIN은 sharing을 켤 때마다 새 6자리로 생성되고 디스크에 쓰지 않는다. `X-OmniVoice-Pin` 헤더, `?pin=` 질의(query) 파라미터, `ov_pin` 쿠키(첫 유효 PIN 뒤 backend가 자동 설정)로 낸다. PIN gate(`NetworkAccessMiddleware`)는 HTTP만 다루고 WebSocket을 gate하지 않으므로 받아쓰기 WebSocket은 API key나 trusted network가 필요하다. 6자리라 brute-force 가능하므로 관리 표면을 열지 못한다.
 
 API key는 GPU box, Docker, reverse proxy 호스트의 durable root 자격이다. `Authorization: Bearer`가 권장이고 legacy `ov_key` 쿠키와 `?api_key=`는 호환용이며 URL의 키는 proxy 로그와 브라우저 이력에 샌다. 키는 constant time으로 비교되고 로그에 남지 않으며, WebSocket에서 틀린 키는 close code 1008로 거부된다. first-party UI는 master key를 `POST /api/auth/session`에 한 번만 보내 8시간 한도의 세션(`ov_session` HttpOnly SameSite=Strict 쿠키 또는 sessionStorage의 bearer)으로 바꾸고 master를 저장하지 않는다. 실패한 세션 교환은 클라이언트당 60초에 10회로 제한되어 `429`와 `Retry-After`를 받으나 올바른 master는 항상 평가되어 잠금이 불가능하다. 쿠키 인증 mutation은 정확한 `Origin`과 `X-VoiceStudio-CSRF: 1`이 필요하고, WebSocket은 `POST /api/auth/ws-ticket`이 발급하는 path-bound 30초 일회용 ticket을 URL에 넣는다.
 

@@ -16,7 +16,7 @@ license: "MIT"
 
 ## 요약
 
-CodeGraph는 코딩 에이전트가 코드베이스를 파일 단위로 훑는 대신 미리 만들어 둔 그래프에 질의하게 만드는 로컬 도구다. tree-sitter가 20개 이상 언어의 소스를 파싱해 함수, 클래스, 메서드를 노드로, 호출과 import와 상속을 edge로 뽑아 프로젝트 폴더 안의 SQLite 데이터베이스에 넣고, MCP 서버가 그 그래프를 Claude Code를 비롯한 8종 에이전트에 도구로 노출한다.
+CodeGraph는 코딩 에이전트가 코드베이스를 파일 단위로 훑는 대신 미리 만들어 둔 그래프에 질의(query)하게 만드는 로컬 도구다. tree-sitter가 20개 이상 언어의 소스를 파싱해 함수, 클래스, 메서드를 노드로, 호출과 import와 상속을 edge로 뽑아 프로젝트 폴더 안의 SQLite 데이터베이스에 넣고, MCP 서버가 그 그래프를 Claude Code를 비롯한 8종 에이전트에 도구로 노출한다.
 
 설계에서 눈에 띄는 점은 LLM이 인덱싱 파이프라인에 전혀 등장하지 않는다는 것이다. 임베딩도, 요약도, 외부 API 호출도 없다. 추출은 전부 정적 파싱이고 검색은 SQLite의 FTS5 전문 검색이며, 데이터는 기기를 떠나지 않는다. 그 대가로 CodeGraph는 의미 유사도 질의를 못 하지만, 대신 인덱싱 비용이 API 요금이 아니라 CPU 시간이고 결과가 실행마다 같다.
 
@@ -96,10 +96,10 @@ Node.js가 없어도 설치된다. 릴리스마다 Node runtime을 함께 번들
 - 설치된 에이전트를 자동 탐지해 어느 것을 설정할지 묻는다.
 - `codegraph`를 PATH에 올릴지 묻는다. 에이전트가 MCP 서버를 띄우려면 필요하다.
 - 설정을 모든 프로젝트에 적용할지 현재 프로젝트에만 적용할지 묻는다.
-- 각 에이전트의 MCP 서버 설정을 쓰고, 지시문 파일(`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`)에 마커로 감싼 짧은 CodeGraph 절을 추가한다.
+- 각 에이전트의 MCP 서버 설정을 쓰고, 지시 파일(`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`)에 마커로 감싼 짧은 CodeGraph 절을 추가한다.
 - Claude Code가 대상이면 자동 허용 권한을 설정한다.
 
-지시문 파일에 절을 따로 쓰는 이유는 전달 경로가 둘로 갈리기 때문이다. MCP 서버의 자체 안내는 메인 에이전트에게만 도달하므로, 서브에이전트와 MCP를 쓰지 않는 환경은 그 지침을 볼 수 없다. 그래서 인스톨러가 네 줄짜리 절을 지시문 파일에 남겨 `codegraph explore`와 `codegraph node` CLI 등가 명령을 알린다.
+지시 파일에 절을 따로 쓰는 이유는 전달 경로가 둘로 갈리기 때문이다. MCP 서버의 자체 안내는 메인 에이전트에게만 도달하므로, 서브에이전트와 MCP를 쓰지 않는 환경은 그 지침을 볼 수 없다. 그래서 인스톨러가 네 줄짜리 절을 지시 파일에 남겨 `codegraph explore`와 `codegraph node` CLI 등가 명령을 알린다.
 
 스크립트와 CI에서 쓸 비대화 플래그도 있다.
 
@@ -121,7 +121,7 @@ Node.js가 없어도 설치된다. 릴리스마다 Node runtime을 함께 번들
 |---|---|---|
 | debounce된 파일 감시자 | 네이티브 FSEvents, inotify, ReadDirectoryChangesW가 소스 파일의 생성, 수정, 삭제를 잡아 debounce 구간 뒤 재인덱싱한다 | 세션 중 에이전트나 사람이 한 편집 |
 | 파일 단위 staleness banner | 아직 반영되지 않은 파일을 참조하게 될 응답 머리에 경고를 붙이고 직접 읽으라고 지시한다 | debounce가 끝나기 전의 짧은 구간 |
-| 접속 시점 catch-up | 첫 질의에 답하기 전에 크기, 수정 시각, 내용 해시를 작업 트리와 대조한다 | 서버가 꺼져 있던 동안 생긴 변경 |
+| 접속 시점 catch-up | 첫 질의에 답하기 전에 크기, 수정 시각, 내용 해시를 worktree와 대조한다 | 서버가 꺼져 있던 동안 생긴 변경 |
 
 debounce 기본값은 2000ms이고 `CODEGRAPH_WATCH_DEBOUNCE_MS`로 조절하되 100ms에서 60초 사이로 제한된다. 편집이 몰리면 여러 이벤트가 하나의 동기화로 합쳐진다. 예를 들어 에이전트가 파일을 쓰면 100ms 안에 감시자가 반응하고, 2초 debounce를 거쳐 동기화되며, 다음 질의부터 그 파일이 보인다.
 
@@ -158,7 +158,7 @@ MCP 서버는 사용법을 문서에 적어 두는 대신 `initialize` 응답에
 - 의도에 따라 도구를 고른다. 거의 모든 경우 `codegraph_explore`를 쓰고, symbol 위치만 찾을 때는 `codegraph_search`, 모든 호출 지점이 필요할 때는 `codegraph_callers`, symbol 하나의 전체 소스나 파일 읽기가 필요할 때는 `codegraph_node`를 쓴다.
 - 결과를 신뢰하고 grep으로 다시 검증하지 않는다. 편집 후에는 staleness banner를 확인한다.
 
-README는 이 지침 원문이 `src/mcp/server-instructions.ts`이며 메인 에이전트에 대한 단일 진실 원천이라고 밝힌다. 지침이 도구를 고르는 방법만이 아니라 위임 방식까지 다루는 데는 이유가 있다. CodeGraph는 에이전트가 직접 질의할 때만 도움이 되므로, 지침은 탐색을 파일 읽는 서브에이전트에 넘기지 말고 직접 답하라고 유도한다. 그렇게 하지 않으면 서브에이전트가 어차피 파일을 읽고 CodeGraph는 순수한 부담으로 남는다.
+README는 이 지침 원문이 `src/mcp/server-instructions.ts`이며 메인 에이전트에 대한 단일 진실의 원천(single source of truth)이라고 밝힌다. 지침이 도구를 고르는 방법만이 아니라 위임 방식까지 다루는 데는 이유가 있다. CodeGraph는 에이전트가 직접 질의할 때만 도움이 되므로, 지침은 탐색을 파일 읽는 서브에이전트에 넘기지 말고 직접 답하라고 유도한다. 그렇게 하지 않으면 서브에이전트가 어차피 파일을 읽고 CodeGraph는 순수한 부담으로 남는다.
 
 ### CLI와 CI 연동
 
@@ -196,7 +196,7 @@ CodeGraph는 웹 프레임워크의 라우팅 파일을 따로 인식해 `route`
 | Express | 미들웨어 체인을 포함한 `app.get(...)`, `router.post(...)` |
 | NestJS | `@Controller`와 `@Get/@Post`, GraphQL `@Resolver`와 `@Query/@Mutation`, `@MessagePattern`, `@EventPattern`, `@SubscribeMessage` |
 | Laravel | `Route::get()`, `Route::resource()`, `Controller@action`, 튜플 문법 |
-| Drupal | `*.routing.yml` 라우트(`_controller`, `_form`, 엔티티 handler), `.module`과 `.theme`과 `.install`과 `.inc`의 `hook_*` 구현 |
+| Drupal | `*.routing.yml` 라우트(`_controller`, `_form`, entity handler), `.module`과 `.theme`과 `.install`과 `.inc`의 `hook_*` 구현 |
 | Rails | `get '/x', to: 'users#index'`와 해시 로켓 문법 |
 | Spring | 메서드의 `@GetMapping`, `@PostMapping`, `@RequestMapping` |
 | Play | `conf/routes`의 verb 라우트에서 `Controller.method` 액션으로 (Scala와 Java) |
@@ -353,7 +353,7 @@ npm 패키지가 프로그래밍 API를 다시 export하므로 `import`와 `requ
 
 응답의 크기를 정하는 방식도 절감에 관여한다. `codegraph_explore`는 질문에 관련된 메커니즘과 실제 메서드를 원문 그대로 보여주되, 서로 바꿔 쓸 수 있는 중복 구현은 시그니처로 접는다. 응답 크기가 파일 개수가 아니라 답 자체의 크기를 따라가므로, 찾는 메서드가 수천 줄짜리 파일에 묻혀 있어도 그 파일을 통째로 읽지 않는다.
 
-비용 항목이 다른 항목보다 덜 줄어드는 이유도 여기서 나온다. CodeGraph는 잦은 소규모 grep과 read 왕복을 몇 번의 큰 도구 응답으로 바꾸는데, 이 응답은 캐시가 잘 적용된다. 처리 토큰 수는 크게 줄지만 요금으로 환산할 때는 캐시 읽기가 저렴하다는 점이 양쪽에 함께 작용해 차이가 좁아진다.
+비용 항목이 다른 항목보다 덜 줄어드는 이유도 여기서 나온다. CodeGraph는 잦은 소규모 grep과 read 왕복을 몇 번의 큰 도구 응답으로 바꾸는데, 이 응답은 캐시가 잘 적용된다. 처리 토큰 수는 크게 줄지만 요금으로 환산할 때는 cache read가 저렴하다는 점이 양쪽에 함께 작용해 차이가 좁아진다.
 
 저장소 크기가 절감폭을 결정하지 않는다는 점도 표에서 확인된다. 비용 절감이 가장 큰 Alamofire는 약 110개 파일로 가장 작은 편이고, 절감이 없는 Excalidraw는 약 640개다. 갈리는 기준은 규모가 아니라 답변 자체가 얼마나 무거운지다. 응답이 무거운 저장소에서는 사용 조건도 큰 도구 응답을 여러 번 받게 되어 미사용 조건과 요금이 비슷해진다. 반면 토큰과 tool call과 시간은 두 저장소 모두에서 줄어든다.
 
@@ -371,7 +371,7 @@ npm 패키지가 프로그래밍 API를 다시 export하므로 `import`와 `requ
 |---|---|
 | VS Code | 확장 호스트가 메인 프로세스와 어떻게 통신하는가 |
 | Excalidraw | 캔버스 요소를 어떻게 렌더링하고 갱신하는가 |
-| Django | ORM은 QuerySet에서 쿼리를 어떻게 만들고 실행하는가 |
+| Django | ORM은 QuerySet에서 질의를 어떻게 만들고 실행하는가 |
 | Tokio | 런타임에서 비동기 task를 어떻게 스케줄하고 실행하는가 |
 | OkHttp | 인터셉터 체인을 통해 요청을 어떻게 처리하는가 |
 | Gin | 미들웨어 체인을 통해 요청을 어떻게 라우팅하는가 |
@@ -464,7 +464,7 @@ CodeGraph가 이 무리에서 다른 점은 세 가지다.
 |---|---|
 | fair coverage | symbol을 가진 소스 파일 중 해소된 cross-file 의존 대상을 하나 이상 갖는 파일의 비율. CodeGraph가 impact 질의의 품질을 재는 지표로 정의한 값이다 |
 | staleness banner | debounce 구간 동안 아직 반영되지 않은 파일을 참조할 때 MCP 응답 머리에 붙는 경고. 에이전트에게 그 파일만 직접 읽으라고 알린다 |
-| catch-up sync | MCP 서버가 접속하거나 재접속할 때 첫 질의 전에 크기와 수정 시각과 내용 해시를 작업 트리와 대조해 외부 편집을 흡수하는 단계 |
+| catch-up sync | MCP 서버가 접속하거나 재접속할 때 첫 질의 전에 크기와 수정 시각과 내용 해시를 worktree와 대조해 외부 편집을 흡수하는 단계 |
 | provenance:'heuristic' | 언어 경계를 잇느라 합성한 edge에 붙는 태그. 정적으로 증명된 관계와 구분된다 |
 | metadata.synthesizedBy | 합성 edge가 어느 채널에서 왔는지 담는 필드. `swift-objc-bridge`, `rn-event-channel`, `fabric-native-impl`, `expo-module-extract`가 예시다 |
 | route 노드 | 프레임워크 라우팅 파일에서 만들어져 `references` edge로 handler에 연결되는 노드 종류 |

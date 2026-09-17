@@ -567,7 +567,7 @@ autoencoder는 VQGAN(Esser et al. [23])을 따라 perceptual 손실과 patch 기
 | 정규화 | 방식 | 가까운 모델 | 세부 |
 |---|---|---|---|
 | KL-reg | 학습된 latent에 표준정규 분포를 향한 약한 KL penalty를 건다 | VAE | KL 항 가중치 약 10^-6. diffusion 학습 시 z = E_μ(x) + E_σ(x) ε로 샘플링한다 |
-| VQ-reg | 디코더 안에 벡터 양자화(vector quantization) 층을 두고 코드북을 학습한다 | VQGAN(양자화 층을 디코더가 흡수한 형태) | 코드북 차원을 크게 잡아 정규화를 약하게 한다. diffusion 학습에는 양자화 이전의 z를 쓴다 |
+| VQ-reg | 디코더 안에 벡터 양자화(vector quantization) 층을 두고 codebook을 학습한다 | VQGAN(양자화 층을 디코더가 흡수한 형태) | codebook 차원을 크게 잡아 정규화를 약하게 한다. diffusion 학습에는 양자화 이전의 z를 쓴다 |
 
 전체 목표(부록 G, Eq 25)는 재구성 손실 L_rec, patch 기반 판별기 D_ψ의 adversarial 손실 L_adv, 정규화 손실 L_reg의 min-max 결합이다. 후속 diffusion model이 2차원 latent 구조를 그대로 다루므로 온화한 압축률로도 매우 좋은 재구성을 얻는다. VQGAN과 DALL-E는 latent를 임의의 1D 순서로 펼쳐 autoregressive하게 모델링하느라 고유 구조를 대부분 무시했다.
 
@@ -623,7 +623,7 @@ VQ-reg latent에서 학습한 LDM은 1단계 재구성이 KL-reg보다 조금 �
 
 ### 4.2 autoencoder 재구성(Table 8)
 
-OpenImages로 학습하고 ImageNet-Val에서 평가한 R-FID는 VQ-reg가 f = 32에서 31.83, f = 16에서 5.15, f = 8에서 1.14, f = 4에서 0.58, f = 2에서 0.16이고 KL-reg가 같은 순서로 2.04(c = 64), 0.87, 0.90, 0.27, 0.086이다. 비교 대상인 VQGAN f = 16(코드북 16384)은 4.98, DALL-E f = 8은 32.01이다. PSNR은 f = 4 VQ가 27.43, KL이 27.53이며 attention 없는 f = 4 VQ는 R-FID 1.06으로 조금 나빠진다. Fig 1의 DIV2K 예시(512²)에서 f = 4 모델(PSNR 27.4, R-FID 0.58)이 DALL-E f = 8(22.8, 32.01)과 VQGAN f = 16(19.9, 4.98)보다 세부를 잘 보존한다.
+OpenImages로 학습하고 ImageNet-Val에서 평가한 R-FID는 VQ-reg가 f = 32에서 31.83, f = 16에서 5.15, f = 8에서 1.14, f = 4에서 0.58, f = 2에서 0.16이고 KL-reg가 같은 순서로 2.04(c = 64), 0.87, 0.90, 0.27, 0.086이다. 비교 대상인 VQGAN f = 16(codebook 16384)은 4.98, DALL-E f = 8은 32.01이다. PSNR은 f = 4 VQ가 27.43, KL이 27.53이며 attention 없는 f = 4 VQ는 R-FID 1.06으로 조금 나빠진다. Fig 1의 DIV2K 예시(512²)에서 f = 4 모델(PSNR 27.4, R-FID 0.58)이 DALL-E f = 8(22.8, 32.01)과 VQGAN f = 16(19.9, 4.98)보다 세부를 잘 보존한다.
 
 ### 4.3 unconditional 합성(Table 1)
 

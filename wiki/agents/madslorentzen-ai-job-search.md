@@ -129,7 +129,7 @@ done
 | `04-job-evaluation.md` | 스킬 매칭 영역, 커리어 목표, 동기 필터 |
 | `05-cv-templates.md` | 직무 유형별 프로필 서술 템플릿 |
 | `07-interview-prep.md` | 실제 경험에서 뽑은 STAR 예시 |
-| `search-queries.md` | 보유 스킬과 지역에 맞춘 구직 검색 쿼리 |
+| `search-queries.md` | 보유 스킬과 지역에 맞춘 구직 검색 질의(query) |
 
 ### 공고 수집과 선별
 
@@ -245,7 +245,7 @@ CV가 2페이지를 넘기면 무엇을 지울지 정해야 한다. 이 프레�
 
 구직 검색 CLI 스킬의 출처는 README의 감사 표기가 밝힌다. Mikkel Krogholm과 그의 skills 저장소를 CLI 스킬의 출처로 명시한다.
 
-자기 나라 포털을 추가하려면 `/add-portal`을 쓴다. 포털의 검색 URL 패턴, 결과 페이지 구조, robots.txt와 접근 규칙을 먼저 조사하고, 기존 스킬과 같은 구조와 커맨드와 출력 계약으로 CLI 스킬을 스캐폴딩한 뒤, 실제 쿼리를 한 번 실행해 확인하고 등록한다. 인증 장벽이 있는 포털은 생성을 거절하고, 제약이 강한 약관의 포털은 생성된 스킬 안에 개인 사용 전용 경고를 눈에 띄게 넣는다. 생성된 스킬은 사용자의 fork에만 존재하는 시장 전용 자산이고, 재사용되는 보편적 부분은 생성기 쪽이다.
+자기 나라 포털을 추가하려면 `/add-portal`을 쓴다. 포털의 검색 URL 패턴, 결과 페이지 구조, robots.txt와 접근 규칙을 먼저 조사하고, 기존 스킬과 같은 구조와 커맨드와 출력 계약으로 CLI 스킬을 스캐폴딩한 뒤, 실제 질의를 한 번 실행해 확인하고 등록한다. 인증 장벽이 있는 포털은 생성을 거절하고, 제약이 강한 약관의 포털은 생성된 스킬 안에 개인 사용 전용 경고를 눈에 띄게 넣는다. 생성된 스킬은 사용자의 fork에만 존재하는 시장 전용 자산이고, 재사용되는 보편적 부분은 생성기 쪽이다.
 
 ### 지원 이후의 되먹임
 
@@ -290,7 +290,7 @@ CV가 2페이지를 넘기면 무엇을 지울지 정해야 한다. 이 프레�
 |---|---|
 | `CLAUDE.md` | 후보자 프로필 본문과 워크플로 규칙 |
 | `.claude/commands/` | 11개 커맨드 정의 |
-| `.claude/skills/job-application-assistant/` | 코어 지원 스킬. `SKILL.md`와 번호가 붙은 7개 지침 파일 |
+| `.claude/skills/job-application-assistant/` | 코어 지원 스킬. `SKILL.md`와 번호가 붙은 7개 지시 파일(instruction file) |
 | `.claude/skills/job-scraper/` | 구직 검색 오케스트레이션 |
 | `.claude/skills/upskill/` | 스킬 격차 분석과 학습 계획 |
 | `.claude/settings.json` | Claude Code 권한 설정 (공유, 범위 한정) |
@@ -315,7 +315,7 @@ CV가 2페이지를 넘기면 무엇을 지울지 정해야 한다. 이 프레�
 
 `applications/` 하위는 `/outcome`이 아카이브를 쓰는 자리이자 `/setup` Path A가 다시 읽는 자리다. 같은 폴더가 출력이자 입력이라 지원 기록이 쌓일수록 프로필이 정확해진다.
 
-코어 스킬의 지침 파일 일곱 개가 지원서 품질을 결정한다.
+코어 스킬의 지시 파일 일곱 개가 지원서 품질을 결정한다.
 
 | 파일 | 담는 내용 |
 |---|---|
@@ -409,6 +409,6 @@ README는 이 프로젝트가 Anthropic과 제휴, 승인, 후원, 유지보수 
 ## 관련 페이지
 
 - [[agents/ai-boost-awesome-harness-engineering]]: CLAUDE.md와 커맨드와 스킬로 구성된 이 저장소의 구조가 harness engineering의 실사례에 해당한다
-- [[agents/garrytan-gstack]]: Claude Code 슬래시 커맨드와 스킬 팩으로 도메인 워크플로 전체를 자동화하는 같은 패턴의 다른 사례
+- [[agents/garrytan-gstack]]: Claude Code 슬래시 커맨드와 skill pack으로 도메인 워크플로 전체를 자동화하는 같은 패턴의 다른 사례
 - [[agents/luis-carrijo-2026-claude-code-team-just-dropped]]: 이 저장소가 사용하는 Claude Code의 스킬, 권한, 서브에이전트 스폰 메커니즘을 설명하는 강좌
-- [[agents/osmani-2026-agent-skills]]: 스킬을 절차 지식 패키지로 설계하는 원리. `.claude/skills/`의 번호 붙은 지침 파일 구성이 이 원리를 따른다
+- [[agents/osmani-2026-agent-skills]]: 스킬을 절차 지식 패키지로 설계하는 원리. `.claude/skills/`의 번호 붙은 지시 파일 구성이 이 원리를 따른다

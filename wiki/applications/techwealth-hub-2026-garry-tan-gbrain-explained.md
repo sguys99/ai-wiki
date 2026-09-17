@@ -25,9 +25,9 @@ TechWealth Hub가 GBrain 공개 직후 올린 5분 45초 해설 영상이다. �
 
 ## 배경
 
-개인 지식 베이스를 AI 에이전트에 붙이는 시도는 대개 두 방향 중 하나로 흐른다. 하나는 대화 이력을 그대로 쌓아 두는 방향이고, 다른 하나는 문서를 벡터로 색인해 질문마다 꺼내 오는 방향이다. 두 방향 모두 원본이 어디에 있는지가 흐려진다는 공통 약점이 있다.
+개인 지식 베이스를 AI 에이전트에 붙이는 시도는 대개 두 방향 중 하나로 흐른다. 하나는 대화 이력을 그대로 쌓아 두는 방향이고, 다른 하나는 문서를 벡터로 인덱싱해 질문마다 꺼내 오는 방향이다. 두 방향 모두 원본이 어디에 있는지가 흐려진다는 공통 약점이 있다.
 
-GBrain은 그 약점을 자료 배치로 푼다. 사람이 읽고 고치는 markdown 저장소를 source of truth로 못 박고, 데이터베이스는 그 저장소에서 파생된 색인으로만 취급한다. 영상은 이 배치를 "GBrain is not pitched as another chat wrapper"라는 문장으로 요약한다.
+GBrain은 그 약점을 자료 배치로 푼다. 사람이 읽고 고치는 markdown 저장소를 source of truth로 못 박고, 데이터베이스는 그 저장소에서 파생된 인덱스로만 취급한다. 영상은 이 배치를 "GBrain is not pitched as another chat wrapper"라는 문장으로 요약한다.
 
 발표자는 Garry Tan의 시작 경위도 전한다. OpenClaw 에이전트를 설정하면서 markdown brain repo부터 만들었고, 이후 meeting 기록, 이메일, 트윗, Apple Notes, calendar 데이터, 그리고 본인의 아이디어를 계속 넣었다는 설명이다. 그 결과 1주일 만에 markdown 파일 1만 개 이상 규모로 커졌다.
 
@@ -37,7 +37,7 @@ GBrain은 그 약점을 자료 배치로 푼다. 사람이 읽고 고치는 mark
 
 ## 핵심 개념
 
-**source of truth와 derived index.** source of truth는 내용이 실제로 정의되는 원본 저장소를 말한다. derived index는 그 원본에서 만들어진 파생 색인이다. GBrain 문서가 vector database를 derived index로 규정한 것은 단순한 용어 선택이 아니라 운영 규칙의 근거다. 파생 색인이 낡으면 답도 낡기 때문에, 색인이 원본을 따라잡았는지 확인하는 절차가 필수가 된다.
+**source of truth와 derived index.** source of truth는 내용이 실제로 정의되는 원본 저장소를 말한다. derived index는 그 원본에서 만들어진 파생 인덱스다. GBrain 문서가 vector database를 derived index로 규정한 것은 단순한 용어 선택이 아니라 운영 규칙의 근거다. 파생 인덱스가 낡으면 답도 낡기 때문에, 인덱스가 원본을 따라잡았는지 확인하는 절차가 필수가 된다.
 
 **compounding thesis.** 컨텍스트를 매번 처음부터 다시 유도하는 대신, 대화 하나와 meeting 하나와 자료 하나가 지나갈 때마다 시스템이 더 똑똑해진다는 주장이다. 이 주장은 저장 구조만으로 성립하지 않는다. 에이전트가 답하기 전에 읽고 배운 뒤 되쓰는 루프가 함께 돌아야 성립한다.
 
@@ -75,7 +75,7 @@ GBrain은 그 약점을 자료 배치로 푼다. 사람이 읽고 고치는 mark
 
 세 층의 관계는 위계다. markdown repo가 source of truth이고, GBrain은 그 위의 retrieval 층이며, 에이전트는 전체를 살아 있게 유지하는 부분이다. 발표자는 README의 아키텍처 자체는 단순하지만 함의는 처음 보이는 것보다 크다고 평가한다.
 
-층을 나눈 결과 읽기와 쓰기의 방향이 고정된다. 사람과 에이전트는 왼쪽 markdown에 쓰고, 질의는 가운데 GBrain을 통해 읽는다. 가운데 층에 직접 쓰는 경로가 없다는 점이 뒤에 나오는 derived index 규정과 verification runbook의 전제가 된다.
+층을 나눈 결과 읽기와 쓰기의 방향이 고정된다. 사람과 에이전트는 왼쪽 markdown에 쓰고, 질의(query)는 가운데 GBrain을 통해 읽는다. 가운데 층에 직접 쓰는 경로가 없다는 점이 뒤에 나오는 derived index 규정과 verification runbook의 전제가 된다.
 
 ### brain agent loop
 
@@ -160,7 +160,7 @@ dream cycle은 사용자가 자는 동안 도는 야간 작업이다. 영상은 
 | 순서 | 절차 | 확인하는 것 |
 |---|---|---|
 | 1 | repo를 대상으로 sync 실행 | markdown 변경분을 데이터베이스에 반영한다 |
-| 2 | 낡은 chunk에 임베딩 backfill | 색인이 비어 있는 조각을 채운다 |
+| 2 | 낡은 chunk에 임베딩 backfill | 인덱스가 비어 있는 조각을 채운다 |
 | 3 | 페이지 수 검증 | 원본 페이지가 빠짐없이 들어왔는지 본다 |
 | 4 | 임베딩 채움 정도 검증 | 들어온 페이지가 검색 가능한 상태인지 본다 |
 | 5 | 페이지 하나 수정 | 실제 변경을 하나 만든다 |
@@ -184,7 +184,7 @@ dream cycle은 사용자가 자는 동안 도는 야간 작업이다. 영상은 
 | 1 | Bun이 설치돼 있는지 확인한 뒤 GitHub 저장소에서 `gbrain`을 바로 추가한다 |
 | 2 | init 명령을 Supabase와 함께 실행하고 setup wizard에서 데이터베이스를 연결한다 |
 | 3 | 보유한 markdown 저장소를 훑고(보통 Git 폴더나 Documents에 있다) 가장 적합한 하나를 골라 import한다 |
-| 4 | 실제 쿼리를 한 번 실행해 자기 데이터에서 검색이 동작함을 증명한다 |
+| 4 | 실제 질의를 한 번 실행해 자기 데이터에서 검색이 동작함을 증명한다 |
 
 4번 단계가 검증으로 끝난다는 점이 뒤의 verification runbook과 같은 관점에 서 있다. 설치가 끝났다는 사실과 검색이 동작한다는 사실을 따로 확인한다.
 
@@ -275,7 +275,7 @@ README는 이 흐름을 더 늘린다. 자동 sync, 낡은 임베딩 backfill, v
 | compounding thesis | 컨텍스트를 매번 재유도하는 대신 자료가 통과할 때마다 시스템이 더 똑똑해진다는 주장 |
 | compiled truth / append-only timeline | 페이지 윗부분은 정리된 현재 진실, 아랫부분은 덧붙이기만 하는 증거 기록 |
 | dream cycle | 대화를 훑고 빈약한 페이지를 보강하고 깨진 citation을 고치고 메모리를 통합하는 야간 배치 작업 |
-| derived index | source of truth가 아니라 원본에서 파생된 색인. 영상은 vector database가 여기에 해당한다고 인용한다 |
+| derived index | source of truth가 아니라 원본에서 파생된 인덱스. 영상은 vector database가 여기에 해당한다고 인용한다 |
 
 ## 관련 페이지
 

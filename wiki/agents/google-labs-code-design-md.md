@@ -390,7 +390,7 @@ Tailwind v4 출력이 쓰는 CSS 변수 네임스페이스는 8종이다.
 | `--radius-*` | 모서리 곡률 |
 | `--spacing-*` | 간격 |
 
-DESIGN.md의 토큰은 W3C Design Token Format에서 영감을 받았고, `dtcg` 출력이 그 표준의 tokens.json 형태다. 따라서 DESIGN.md를 원본으로 두고 기존 디자인 토큰 파이프라인에 연결하는 사용이 가능하다.
+DESIGN.md의 토큰은 W3C Design Token Format에서 영감을 받았고, `dtcg` 출력이 그 표준의 tokens.json 형태다. 따라서 DESIGN.md를 원본으로 두고 기존 design token 파이프라인에 연결하는 사용이 가능하다.
 
 ### spec
 

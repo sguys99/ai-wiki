@@ -66,7 +66,7 @@ Sudhir Mantena가 Hermes Agent가 이미 올라간 AWS EC2 VPS 위에 GBrain을 
 ### 3.2 4부 구성
 
 - **1부 GBrain 설치**. Bun 설치, 저장소 clone, `bun install`과 `bun link`, PATH 수정, brain repo 분리, `gbrain init`, 5분 cron 등록, `gbrain doctor` 순서다.
-- **2부 콘텐츠 ingest**. 사용자 지시에서 색인까지 여섯 단계다. 사용자가 Hermes에게 ingest를 지시한다. Hermes가 ingest 스킬을 읽는다. Hermes가 콘텐츠를 가져와 처리한다. Hermes가 `~/brain/`에 markdown을 쓴다. cron이 5분마다 sync한다. GBrain이 색인한다.
+- **2부 콘텐츠 ingest**. 사용자 지시에서 인덱싱까지 여섯 단계다. 사용자가 Hermes에게 ingest를 지시한다. Hermes가 ingest 스킬을 읽는다. Hermes가 콘텐츠를 가져와 처리한다. Hermes가 `~/brain/`에 markdown을 쓴다. cron이 5분마다 sync한다. GBrain이 인덱싱한다.
 - **3부 X 본인 게시물과 리포스트**. Bearer Token 저장, 숫자 사용자 ID 조회, Hermes에게 collector 제작 위임, cron 등록과 일정 조정 순서다.
 - **4부 X likes**. OAuth 2.0 PKCE로 사용자 컨텍스트 토큰을 얻어 likes까지 수집 범위를 넓힌다.
 

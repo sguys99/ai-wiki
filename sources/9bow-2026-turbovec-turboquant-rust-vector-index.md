@@ -14,7 +14,7 @@ tags: [turbovec, turboquant, vector-quantization, faiss, vector-index, rust, rag
 
 ## 한 줄 요약 (One-line Summary)
 
-PyTorch Korea User Group 운영자 9bow(박정환)가 2026년 5월 21일 PyTorchKR Discuss에 올린 한국어 소개글로, TurboQuant 알고리즘을 Rust로 구현한 벡터 인덱스 라이브러리 turbovec을 소개한다. 글이 앞세우는 문장은 "1,000만 건 규모의 임베딩을 float32로 저장하면 31GB가 필요하지만, turbovec은 같은 데이터를 4GB에 담으면서 FAISS보다 빠르게 검색한다"이다. FAISS의 PQ가 데이터로 코드북을 학습하는 것과 달리 TurboQuant은 무작위 직교 회전으로 좌표 분포를 미리 알려진 Beta 분포로 만들어 학습 없이 최적 버킷을 계산한다고 설명한다. 압축률, recall, 속도 수치와 Python 및 Rust 코드 예제를 함께 싣는다.
+PyTorch Korea User Group 운영자 9bow(박정환)가 2026년 5월 21일 PyTorchKR Discuss에 올린 한국어 소개글로, TurboQuant 알고리즘을 Rust로 구현한 벡터 인덱스 라이브러리 turbovec을 소개한다. 글이 앞세우는 문장은 "1,000만 건 규모의 임베딩을 float32로 저장하면 31GB가 필요하지만, turbovec은 같은 데이터를 4GB에 담으면서 FAISS보다 빠르게 검색한다"이다. FAISS의 PQ가 데이터로 codebook을 학습하는 것과 달리 TurboQuant은 무작위 직교 회전으로 좌표 분포를 미리 알려진 Beta 분포로 만들어 학습 없이 최적 버킷을 계산한다고 설명한다. 압축률, recall, 속도 수치와 Python 및 Rust 코드 예제를 함께 싣는다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -33,7 +33,7 @@ PyTorch Korea User Group 운영자 9bow(박정환)가 2026년 5월 21일 PyTorch
 |---|---|
 | turbovec 소개 | 라이브러리 정체, FAISS PQ와의 차이, 라이선스와 배포 채널, RAG 프레임워크 어댑터 |
 | 압축률과 메모리 효과 | d=1536 기준 2비트와 4비트 압축률, 1,000만 건 코퍼스 메모리 |
-| 검색 속도와 회복률 | 벤치마크 조건, recall 비교, ARM과 x86 속도 비교 |
+| 검색 속도와 회복률 | 벤치마크 조건, recall 비교, ARM과 x86 속도 비교 <!-- lint-terms: ignore 원문 절 제목 그대로 --> |
 | 핵심 알고리즘 흐름 | 다섯 단계 요약 |
 | Python API 사용 예시 | 기본 인덱스, 외부 ID 보존, 필터링된 검색 |
 | Rust 사용 예시 | 인덱스 생성, 저장, ID 맵 인덱스 |
@@ -43,7 +43,7 @@ PyTorch Korea User Group 운영자 9bow(박정환)가 2026년 5월 21일 PyTorch
 
 이 글은 1차 연구물이 아니라 한국어 입문 자료다. 글이 정리해 강조하는 turbovec과 TurboQuant의 요점은 다음과 같다.
 
-1. **학습이 필요 없는 양자화**: 글은 turbovec을 "Google Research가 ICLR 2026에서 공개한 TurboQuant 알고리즘을 Rust로 구현한 벡터 인덱스 라이브러리"로 소개한다. FAISS의 PQ와 달리 TurboQuant은 데이터에 무관한(data-oblivious) 양자화 방식을 쓰며, 무작위 직교 회전으로 회전된 좌표의 분포를 사전에 알려진 Beta 분포로 만들어 코드북 학습 없이 최적 버킷을 미리 계산한다.
+1. **학습이 필요 없는 양자화**: 글은 turbovec을 "Google Research가 ICLR 2026에서 공개한 TurboQuant 알고리즘을 Rust로 구현한 벡터 인덱스 라이브러리"로 소개한다. FAISS의 PQ와 달리 TurboQuant은 데이터에 무관한(data-oblivious) 양자화 방식을 쓰며, 무작위 직교 회전으로 회전된 좌표의 분포를 사전에 알려진 Beta 분포로 만들어 codebook 학습 없이 최적 버킷을 미리 계산한다.
 2. **메모리 절감**: d=1536 기준으로 2비트 양자화는 6,144바이트를 384바이트로 줄여 약 16배, 4비트 양자화는 768바이트로 약 8배 압축한다. 1,000만 건 코퍼스는 float32 약 31GB에서 2비트 4GB 수준으로 줄어든다.
 3. **FAISS보다 빠른 검색**: ARM(M3 Max)에서 FAISS FastScan 대비 12~20% 빠르고, x86(Xeon)에서는 4비트 설정에서 1~6% 우위라고 적는다.
 4. **편향 없는 점수**: 양자화 시 벡터당 길이 재정규화 스칼라를 저장해 내적 추정기가 편향 없이 동작하게 한다.
@@ -122,7 +122,7 @@ id_index.remove(1002);
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
-글이 밝힌 벤치마크 조건은 10만 벡터, 1,000 쿼리, k=64다. 하드웨어와 데이터셋 이름 외에 측정 방식은 적지 않는다.
+글이 밝힌 벤치마크 조건은 10만 벡터, 1,000 질의(query), k=64다. 하드웨어와 데이터셋 이름 외에 측정 방식은 적지 않는다.
 
 ### 압축률과 메모리
 
@@ -134,7 +134,7 @@ id_index.remove(1002);
 
 ### recall
 
-글은 recall을 "회복률"로 옮겨 적고 R@1 기준 차이를 점수로 표기한다.
+글은 recall을 "회복률"로 옮겨 적고 R@1 기준 차이를 점수로 표기한다. <!-- lint-terms: ignore -->
 
 | 데이터셋 | 차원 | TurboQuant과 FAISS의 R@1 차이 |
 |---|---|---|
@@ -174,8 +174,8 @@ x86의 2비트 설정에 대해서는 수치를 적지 않는다.
 
 - **turbovec**: TurboQuant 알고리즘을 Rust로 구현한 벡터 인덱스 라이브러리. Python 바인딩과 Rust 크레이트로 배포된다.
 - **TurboQuant**: 무작위 직교 회전으로 좌표 분포를 Beta 분포로 만든 뒤 스칼라 양자화를 적용하는 양자화 알고리즘.
-- **data-oblivious 양자화**: 입력 데이터로 코드북을 학습하지 않는 양자화. 회전으로 분포를 미리 정해두기 때문에 학습 단계가 없다.
-- **PQ (Product Quantization)**: 글이 비교 대상으로 드는 FAISS의 대표 양자화 방식. 글은 PQ가 데이터로 코드북을 학습한다는 점만 언급한다.
+- **data-oblivious 양자화**: 입력 데이터로 codebook을 학습하지 않는 양자화. 회전으로 분포를 미리 정해두기 때문에 학습 단계가 없다.
+- **PQ (Product Quantization)**: 글이 비교 대상으로 드는 FAISS의 대표 양자화 방식. 글은 PQ가 데이터로 codebook을 학습한다는 점만 언급한다.
 - **Lloyd-Max 스칼라 양자화**: 분포가 알려져 있을 때 버킷 경계와 중심값을 데이터 없이 계산하는 스칼라 양자화 방식.
 - **길이 재정규화 스칼라**: 벡터마다 저장해 두었다가 검색 커널에서 곱하는 값. 내적 추정기의 편향을 없앤다.
-- **recall**: 정답 이웃이 상위 k개 안에 들어오는 비율. R@1은 최근접 1개 기준이다. 글은 이를 회복률로 옮긴다.
+- **recall**: 정답 이웃이 top-k 안에 들어오는 비율. R@1은 최근접 1개 기준이다. 글은 이를 회복률로 옮긴다. <!-- lint-terms: ignore -->

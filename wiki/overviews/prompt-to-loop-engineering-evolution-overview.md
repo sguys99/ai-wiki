@@ -195,7 +195,7 @@ Claude Code의 슬래시 커맨드 두 개가 루프의 종료 방식을 가른�
 
 이론 쪽 연결은 [[agents/lee-jeongmin-2026-loop-engineering-claude-code]]가 맡는다. 이 한국어 카드 포스트는 loop engineering을 에이전트를 프롬프트하는 시스템을 설계하는 일로 정의하고, 그 정의를 RLM 구조에 묶는다. 서브에이전트 결과가 상위 컨텍스트가 아니라 REPL 안의 변수로 돌아오므로 상위 에이전트의 일이 결과 재생성에서 변수 검증으로 줄어든다는 것이 그 연결의 핵심이다. Claude Code의 dynamic workflow가 이 구조를 가져갔고 각 서브에이전트가 독립된 context window에서 작동한다고 적는다.
 
-이 단계가 사람에게 남기는 부담도 두 자료가 함께 짚는다. [[agents/osmani-2026-loop-engineering]]이 든 세 가지는 verification 부담과 comprehension debt와 comfortable passivity다. [[agents/kang-2026-no-longer-prompting-claude]]가 같은 자리에 붙인 한국어 이름은 검증 부채와 이해 부채와 인지적 저항이다.
+이 단계가 사람에게 남기는 부담도 두 자료가 함께 짚는다. [[agents/osmani-2026-loop-engineering]]이 든 세 가지는 verification 부담과 comprehension debt와 comfortable passivity다. [[agents/kang-2026-no-longer-prompting-claude]]가 같은 자리에 붙인 한국어 이름은 검증 부채와 이해 부채와 인지적 저항이다. <!-- lint-terms: ignore -->
 
 두 목록은 정의 수준에서 맞물리지만 세 번째 이름의 방향이 어긋난다. 게시물이 붙인 정의는 루프가 주는 결과를 판단 없이 수용하게 되는 상태이므로 comfortable passivity와 같은 것을 가리키는데, 인지적 저항이라는 이름은 문자 그대로 읽으면 받아들이지 않으려는 태도에 가깝다. 이름만 인용하면 뜻이 뒤집힌다.
 
@@ -221,7 +221,7 @@ Claude Code의 슬래시 커맨드 두 개가 루프의 종료 방식을 가른�
 
 ### progressive disclosure
 
-지침의 총량은 그대로 두고 한 번에 올라오는 양만 줄인다는 발상이다. [[agents/anthropic-2025-effective-context-engineering-for-ai]]가 just-in-time 전략으로 처음 정식화했고, 가벼운 식별자만 컨텍스트에 두었다가 런타임에 tool로 불러오는 방식이다. 파일 경로나 저장된 쿼리 같은 식별자에는 저장 효율을 넘어서는 쓸모가 하나 더 있다. 폴더 계층과 naming convention이 그 자체로 용도 신호가 된다는 점이다.
+지침의 총량은 그대로 두고 한 번에 올라오는 양만 줄인다는 발상이다. [[agents/anthropic-2025-effective-context-engineering-for-ai]]가 just-in-time 전략으로 처음 정식화했고, 가벼운 식별자만 컨텍스트에 두었다가 런타임에 tool로 불러오는 방식이다. 파일 경로나 저장된 질의 같은 식별자에는 저장 효율을 넘어서는 쓸모가 하나 더 있다. 폴더 계층과 naming convention이 그 자체로 용도 신호가 된다는 점이다.
 
 harness 단계로 오면 같은 원리가 파일 배치 규약이 된다. [[agents/lee-hoyeon-2026-harness-engineering]]은 지침을 한 파일에 몰아넣지 않고 상황과 참조 파일을 짝지어 두라고 권하며, 참조 구조를 제대로 갖춘 경우 CLAUDE.md가 약 30줄까지 줄어든다고 적는다. 같은 자료가 드는 관리 상한은 최대 200줄이다.
 

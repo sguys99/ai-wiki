@@ -60,7 +60,7 @@ README는 RAG 소개 절에서 구성 요소 네 개를 정의한다. 이후 카
 
 임베딩은 텍스트를 고정 차원 벡터로 바꾼 표현이다. vector similarity는 질의 임베딩과 문서 임베딩 사이의 거리로 관련성을 재는 방식을 뜻한다. 카탈로그의 여러 기법이 바로 이 지점을 문제 삼는다. 의미가 가까운 벡터가 반드시 질문에 답하는 문서는 아니기 때문이다.
 
-### 색인이 만들어지는 과정
+### 인덱스가 만들어지는 과정
 
 Indexing 단계의 서술에는 카탈로그를 읽는 데 필요한 전제가 몇 가지 들어 있다. README는 문서를 chunk로 나누고 각 chunk의 임베딩을 만들어 vector store에 넣는다고 적는다.
 
@@ -80,7 +80,7 @@ Indexing 단계의 서술에는 카탈로그를 읽는 데 필요한 전제가 �
 | web search 언급 | 8종 중 0종 | 5종 중 3종 (Basic Agentic, Corrective, Adaptive) |
 | LangGraph 사용 | 8종 중 1종 (Unstructured RAG) | 5종 중 4종 |
 
-web search 언급 비율의 차이가 두 묶음의 성격을 잘 보여준다. advanced RAG는 색인해 둔 문서 안에서 더 잘 찾는 문제를 다룬다. 반면 agentic RAG는 색인 밖으로 나가는 경로를 갖추는 것을 공통 특징으로 삼는다.
+web search 언급 비율의 차이가 두 묶음의 성격을 잘 보여준다. advanced RAG는 인덱싱해 둔 문서 안에서 더 잘 찾는 문제를 다룬다. 반면 agentic RAG는 인덱스 밖으로 나가는 경로를 갖추는 것을 공통 특징으로 삼는다.
 
 ### 평가를 파이프라인의 일부로 두는 구성
 
@@ -151,7 +151,7 @@ README의 Note는 이 저장소가 naive RAG를 기초로 삼아 advanced와 age
 | Basic Agentic RAG | LangChain, FAISS | 에이전트가 vectordb와 web search 같은 도구를 써서 답을 찾고 생성한다 | `basic_agentic_rag.ipynb` |
 | Corrective RAG | LangChain, LangGraph, Chromadb | 관련 문서를 정제하고 관련 없는 문서를 제거하거나 web search를 수행한다 | `corrective_rag.ipynb` |
 | Self RAG | LangChain, LangGraph, FAISS | 찾아온 데이터를 되짚어 정확하고 완결된 응답을 보장한다 | `self_rag.ipynb` |
-| Adaptive RAG | LangChain, LangGraph, FAISS | 질의 유형에 따라 색인 데이터와 web search 중에서 검색 방식을 조정한다 | `adaptive_rag.ipynb` |
+| Adaptive RAG | LangChain, LangGraph, FAISS | 질의 유형에 따라 인덱싱된 데이터와 web search 중에서 검색 방식을 조정한다 | `adaptive_rag.ipynb` |
 | ReAct RAG | LangChain, LangGraph, FAISS | 추론과 검색을 결합해 컨텍스트를 고려한 응답을 만든다 | `react_rag.ipynb` |
 
 5종이 내리는 결정의 종류는 서로 다르다. 무엇을 보고 무엇을 정하는지로 나누면 다음과 같다.
@@ -161,7 +161,7 @@ README의 Note는 이 저장소가 naive RAG를 기초로 삼아 advanced와 age
 | Basic Agentic RAG | 질의 | 어떤 도구를 호출할지 | 검색 전 |
 | Corrective RAG | 찾아온 문서 | 정제, 제거, web search 중 무엇을 할지 | 검색 후 |
 | Self RAG | 찾아온 데이터와 자기 응답 | 응답이 정확하고 완결됐는지 | 생성 전후 |
-| Adaptive RAG | 질의 유형 | 색인 데이터와 web search 중 어느 경로로 갈지 | 검색 전 |
+| Adaptive RAG | 질의 유형 | 인덱싱된 데이터와 web search 중 어느 경로로 갈지 | 검색 전 |
 | ReAct RAG | 진행 중인 추론 상태 | 다음에 추론할지 검색할지 | 매 단계 |
 
 판단 시점이 서로 다르다는 점이 선택 기준이 된다. Basic Agentic RAG와 Adaptive RAG는 검색 전에 한 번 결정하고 그대로 진행한다. Corrective RAG와 Self RAG는 결과를 본 뒤 되돌아가는 경로를 갖는다. ReAct RAG는 결정 지점을 매 단계에 둔다.

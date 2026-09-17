@@ -170,7 +170,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-**LightRAG**은 지식 그래프를 인덱스로 쓰면서도 GraphRAG의 community 처리를 걷어낸 경량 graph-based RAG이다. 핵심은 두 가지다. 첫째, entity와 relation을 **key-value 쌍**으로 직렬화해 벡터 인덱스를 단순화한다. 둘째, 질의에서 **low-level 키워드**(구체 entity)와 **high-level 키워드**(개념과 테마)를 동시에 뽑아 각각 entity 인덱스와 relation 인덱스에 매칭하는 **dual-level retrieval**을 쓴다. UltraDomain 4개 도메인에서 NaiveRAG, RQ-RAG, HyDE, GraphRAG 대비 페어와이즈 승률이 우세하고(특히 Diversity), retrieval 토큰과 API 호출, 문서 삽입 시간, 평균 질의 시간, 최종 저장 공간이 모두 GraphRAG보다 작다.
+**LightRAG**은 지식 그래프를 인덱스로 쓰면서도 GraphRAG의 community 처리를 걷어낸 경량 graph-based RAG이다. 핵심은 두 가지다. 첫째, entity와 relation을 **key-value 쌍**으로 직렬화해 벡터 인덱스를 단순화한다. 둘째, 질의에서 **low-level 키워드**(구체 entity)와 **high-level 키워드**(개념과 테마)를 동시에 뽑아 각각 entity 인덱스와 relation 인덱스에 매칭하는 **dual-level retrieval**을 쓴다. UltraDomain 4개 도메인에서 NaiveRAG, RQ-RAG, HyDE, GraphRAG 대비 pairwise 승률이 우세하고(특히 Diversity), retrieval 토큰과 API 호출, 문서 삽입 시간, 평균 질의 시간, 최종 저장 공간이 모두 GraphRAG보다 작다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -234,7 +234,7 @@ key 부여 규칙이 entity와 relation에서 다르다. Entity는 이름 하나
 질의를 분류하지 않고 양쪽 키워드를 동시에 뽑아 각각 검색한다.
 
 1. **Query Keyword Extraction**: 질의 $q$에서 local 키워드 $k^{(l)}$와 global 키워드 $k^{(g)}$를 LLM이 한 번에 뽑는다.
-2. **Keyword Matching**: 벡터 데이터베이스로 $k^{(l)}$은 후보 entity와, $k^{(g)}$는 global key가 붙은 relation과 매칭한다.
+2. **Keyword Matching**: vector database로 $k^{(l)}$은 후보 entity와, $k^{(g)}$는 global key가 붙은 relation과 매칭한다.
 3. **Incorporating High-Order Relatedness**: 검색된 node $v$와 edge $e$의 1-hop neighbor 집합 $\{v_i \mid v_i \in V \wedge (v_i \in N_v \vee v_i \in N_e)\}$까지 모아 subgraph를 넓힌다.
 
 Low-Level Retrieval은 특정 entity와 그 속성과 관계를 정밀하게 가져오는 층이고, High-Level Retrieval은 여러 entity와 relation에 걸친 정보를 모아 상위 개념과 요약을 다루는 층이다.
@@ -291,7 +291,7 @@ Baseline은 네 가지다.
 
 | Baseline | 방식 |
 |---|---|
-| Naive RAG (Gao et al., 2023) | 원문을 chunk로 나눠 임베딩으로 벡터 DB에 넣고 유사도 상위 chunk를 그대로 가져온다 |
+| Naive RAG (Gao et al., 2023) | 원문을 chunk로 나눠 임베딩으로 vector database에 넣고 유사도 상위 chunk를 그대로 가져온다 |
 | RQ-RAG (Chan et al., 2024) | LLM이 질의를 재작성, 분해, 모호성 해소를 거쳐 여러 sub-query로 쪼갠다 |
 | HyDE (Gao et al., 2022) | LLM이 가상의 문서를 생성해 그 문서로 관련 chunk를 검색한다 |
 | GraphRAG (Edge et al., 2024) | LLM으로 entity와 relation을 뽑아 node와 edge로 표현하고, node를 community로 묶어 community report를 만든 뒤 high-level 질의에서 community를 순회한다 |
@@ -309,7 +309,7 @@ Baseline은 네 가지다.
 
 질문 생성은 GraphRAG(Edge et al., 2024)의 방식을 따른다. 데이터셋 전체 텍스트를 컨텍스트로 주고 LLM에 사용자 5명을 만들게 하고, 사용자마다 과제 5개, (사용자, 과제) 쌍마다 질문 5개를 만들게 해 데이터셋당 125문항을 얻는다.
 
-평가는 GPT-4o-mini judge의 페어와이즈 비교다. 네 항목은 Comprehensiveness(질문의 모든 측면과 세부를 얼마나 철저히 다루는가), Diversity(관점과 통찰이 얼마나 다양하고 풍부한가), Empowerment(독자가 주제를 이해하고 판단하도록 얼마나 잘 돕는가), Overall(앞 세 항목의 종합)이다. 제시 순서에서 오는 편향을 줄이려고 두 답변의 위치를 번갈아 바꿔 측정하고 승률을 계산한다.
+평가는 GPT-4o-mini judge의 pairwise 비교다. 네 항목은 Comprehensiveness(질문의 모든 측면과 세부를 얼마나 철저히 다루는가), Diversity(관점과 통찰이 얼마나 다양하고 풍부한가), Empowerment(독자가 주제를 이해하고 판단하도록 얼마나 잘 돕는가), Overall(앞 세 항목의 종합)이다. 제시 순서에서 오는 편향을 줄이려고 두 답변의 위치를 번갈아 바꿔 측정하고 승률을 계산한다.
 
 ### 4.2 RAG Performance Comparison (RQ1)
 
@@ -448,7 +448,7 @@ wiki 내 다른 자료가 제기한 한계는 다음과 같고 근거가 본 논
 
 ### 6.1 Retrieval-Augmented Generation
 
-기존 RAG는 질의를 벡터 공간에 넣어 가장 가까운 컨텍스트 벡터를 찾는다(Gao et al., 2022, 2023; Chan et al., 2024; Yu et al., 2024). 조각난 chunk에 의존하고 상위 k개만 가져와 global 정보를 담기 어렵다.
+기존 RAG는 질의를 벡터 공간에 넣어 가장 가까운 컨텍스트 벡터를 찾는다(Gao et al., 2022, 2023; Chan et al., 2024; Yu et al., 2024). 조각난 chunk에 의존하고 top-k만 가져와 global 정보를 담기 어렵다.
 
 그래프 구조를 쓴 선행 연구(Edge et al., 2024)에 대해 저자는 두 한계를 든다. 첫째, 지식 그래프의 동적 갱신과 확장 능력이 부족해 새 정보를 넣기 어렵다. 둘째, 생성된 community마다 brute-force 검색에 의존해 대규모 질의에 비효율적이다.
 
@@ -473,7 +473,7 @@ LightRAG는 이 세 분류 어디에도 들어가지 않는다. GNN을 쓰지 �
 - **Incremental Update**: 새 데이터를 기존 지식 그래프에 합집합으로 합치는 알고리즘. GraphRAG의 community 재구축 비용을 없앤다.
 - **gleaning parameter**: entity와 relation 추출을 몇 번 더 반복해 놓친 것을 줍는지 정하는 값. 이 실험에서는 GraphRAG와 LightRAG 모두 1로 고정했다.
 - **UltraDomain**: 대학 교재 428권에서 뽑은 18개 도메인 코퍼스(Qian et al., 2024). graph-based RAG 평가에 널리 쓰인다.
-- **Open-ended QA (GraphRAG 방식)**: 사용자 5명과 과제 5개와 질문 5개 구조로 LLM이 자동 생성한 질문에 대해 LLM judge가 페어와이즈로 판정하는 평가.
+- **Open-ended QA (GraphRAG 방식)**: 사용자 5명과 과제 5개와 질문 5개 구조로 LLM이 자동 생성한 질문에 대해 LLM judge가 pairwise로 판정하는 평가.
 - **Comprehensiveness / Diversity / Empowerment / Overall**: open-ended QA의 네 평가 항목. 각각 질문의 모든 측면을 다루는 정도, 관점의 다양성, 독자의 이해와 판단을 돕는 정도, 앞 셋의 종합이다.
 
 ## 8. 그림 후보 (Figure Candidates)

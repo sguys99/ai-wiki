@@ -68,7 +68,7 @@ figures:
 
 이 논문은 retrieval을 retriever 설계 문제가 아니라 인터페이스 설계 문제로 다시 세운다. 임베딩 모델과 vector index로 corpus를 보여주는 방식은 접근을 단일 top-k 단계로 압축하는 저해상도 인터페이스이고, agent가 충분히 강하다면 원본 corpus에 `grep`과 `find`와 `bash`로 직접 접근하는 편이 낫다는 것이 논지다. 저자들은 이 방식을 Direct Corpus Interaction (DCI)으로 정식화하고 두 가지 scaffold로 검증한다.
 
-검증 결과는 세 영역 모두에서 일관된다. BrowseComp-Plus 830문항에서 같은 Claude Sonnet 4.6 backbone을 두고 retriever를 DCI로 바꾸면 정확도가 69.0%에서 80.0%로 11.0%p 오르고 비용은 $1,440에서 $1,016으로 29.4% 줄어든다. 다중 홉 QA 6종 평균은 52.3에서 83.0으로 30.7점, IR ranking 6종 평균 NDCG@10은 47.0에서 68.5로 21.5점 오른다.
+검증 결과는 세 영역 모두에서 일관된다. BrowseComp-Plus 830문항에서 같은 Claude Sonnet 4.6 backbone을 두고 retriever를 DCI로 바꾸면 정확도가 69.0%에서 80.0%로 11.0%p 오르고 비용은 $1,440에서 $1,016으로 29.4% 줄어든다. multi-hop QA 6종 평균은 52.3에서 83.0으로 30.7점, IR ranking 6종 평균 NDCG@10은 47.0에서 68.5로 21.5점 오른다.
 
 가장 주목할 부분은 DCI가 이기는 메커니즘이다. DCI는 gold 문서를 더 많이 찾아서 이기지 않는다. 같은 100문항 부분집합에서 gold 문서 평균 coverage는 retriever의 56.7보다 낮은 28.0인데, 문서 안에서 증거를 좁히는 localization 점수는 21.7 대 48.4로 두 배를 넘고 정확도는 28점 높다. 저자들은 이 차이를 "retrieval interface resolution"이라 부른다.
 
@@ -269,15 +269,15 @@ corpus 규모는 벤치마크마다 크게 다르다. BrowseComp-Plus는 문서 
 | BRIGHT-Earth Science | BRIGHT-Earth Science | 121,249 | 28 |
 | BRIGHT-Economics | BRIGHT-Economics | 50,220 | 52 |
 | BRIGHT-Robotics | BRIGHT-Robotics | 61,961 | 25 |
-| Wikipedia-18 | 다중 홉 QA 6종 | 21,015,324 | 100 |
+| Wikipedia-18 | multi-hop QA 6종 | 21,015,324 | 100 |
 | BEIR-ArguAna | BEIR-ArguAna | 8,674 | 167 |
 | BEIR-SciFact | BEIR-SciFact | 5,183 | 214 |
 
-다중 홉 QA가 쓰는 Wikipedia-18은 문서 2,100만 건으로 다른 corpus보다 두 자릿수 이상 크다. DCI가 대형 corpus에서도 동작함을 보이려는 설정이다.
+multi-hop QA가 쓰는 Wikipedia-18은 문서 2,100만 건으로 다른 corpus보다 두 자릿수 이상 크다. DCI가 대형 corpus에서도 동작함을 보이려는 설정이다.
 
 - **표본**: BRIGHT 4종과 Bamboogle은 전체 test set을 쓰고, 나머지는 데이터셋당 50문항을 무작위 표본으로 쓴다. QA에서는 모호한 질문과 corpus 수집 이후 정답이 바뀌었을 수 있는 시간 민감 문항을 제외한다.
-- **baseline 인덱스**: BrowseComp-Plus는 공식 배포 corpus와 BM25 및 Qwen3-Embedding-8B FAISS 인덱스를 오프라인 검색 엔진으로 쓴다. 다중 홉 QA의 retrieval agent baseline은 E5 임베딩으로 인덱스를 만든다.
-- **채점**: BrowseComp-Plus와 다중 홉 QA는 GPT-4.1을 judge로 쓰며, 예측 답과 짧은 참조 답만 비교한다. IR ranking은 NDCG@10을 쓴다.
+- **baseline 인덱스**: BrowseComp-Plus는 공식 배포 corpus와 BM25 및 Qwen3-Embedding-8B FAISS 인덱스를 오프라인 검색 엔진으로 쓴다. multi-hop QA의 retrieval agent baseline은 E5 임베딩으로 인덱스를 만든다.
+- **채점**: BrowseComp-Plus와 multi-hop QA는 GPT-4.1을 judge로 쓰며, 예측 답과 짧은 참조 답만 비교한다. IR ranking은 NDCG@10을 쓴다.
 비교 대상 retrieval agent는 모두 검색 능력을 강화학습으로 학습한 open-weight 모델이다. 학습 방식이 서로 달라 무엇과 비교하는지가 분명해진다.
 
 | baseline | 학습 방식 |
@@ -316,7 +316,7 @@ BrowseComp-Plus 830문항 전체 결과다. 같은 backbone에서 인터페이�
 
 Figure 1의 배치가 시사하는 바가 하나 더 있다. retriever agent 점들은 비용이 오를수록 정확도가 완만하게 오르는 하나의 곡선을 이루는데, DCI 점 두 개는 그 곡선 위가 아니라 위쪽에 따로 떨어져 있다. backbone을 더 비싼 것으로 바꾸는 것과 인터페이스를 바꾸는 것이 서로 다른 개선 경로라는 뜻이다.
 
-### 다중 홉 QA
+### multi-hop QA
 
 Wikipedia-18 corpus 위에서 QA 벤치마크 6종을 평가한 결과다.
 
@@ -338,10 +338,10 @@ Wikipedia-18 corpus 위에서 QA 벤치마크 6종을 평가한 결과다.
 | TriviaQA | 단일 홉 | 애호가가 작성한 트리비아 질문에 Wikipedia와 웹 근거를 붙였다 |
 | Bamboogle | 2홉 | 지름길 답을 막도록 수작업으로 구성했고 정확히 두 단계 추론을 요구한다 |
 | HotpotQA | 2홉 | Wikipedia 기반 bridge 질문과 comparison 질문으로 구성된다 |
-| 2WikiMultiHopQA | 다중 홉 | Wikidata 구조 지식과 비구조 Wikipedia 텍스트를 결합하고 추론 사슬 주석을 제공한다 |
-| MuSiQue | 다중 홉 | 단일 홉 질문을 이어 붙여 구성하며 각 단계가 앞 단계 결과에 의존한다 |
+| 2WikiMultiHopQA | multi-hop | Wikidata 구조 지식과 비구조 Wikipedia 텍스트를 결합하고 추론 사슬 주석을 제공한다 |
+| MuSiQue | multi-hop | 단일 홉 질문을 이어 붙여 구성하며 각 단계가 앞 단계 결과에 의존한다 |
 
-DCI agent 둘이 6개 데이터셋 전부에서 1위와 2위를 차지한다. 주목할 점은 격차가 과제 난이도에 따라 달라진다는 것이다. 단일 홉 성격이 강한 NQ에서는 ASearcher-Local-14B 대비 22점 차이지만, 다중 홉 성격이 강해질수록 벌어진다. HotpotQA에서 30점, 2Wiki에서 26점, MuSiQue에서는 50점 앞선다.
+DCI agent 둘이 6개 데이터셋 전부에서 1위와 2위를 차지한다. 주목할 점은 격차가 과제 난이도에 따라 달라진다는 것이다. 단일 홉 성격이 강한 NQ에서는 ASearcher-Local-14B 대비 22점 차이지만, multi-hop 성격이 강해질수록 벌어진다. HotpotQA에서 30점, 2Wiki에서 26점, MuSiQue에서는 50점 앞선다.
 
 MuSiQue는 단일 홉 질문을 이어 붙여 만든 벤치마크로, 각 추론 단계가 앞 단계의 결과에 의존하도록 설계되어 지름길을 막는다. 여기서 격차가 가장 크다는 사실이 DCI의 이득이 어디서 오는지를 시사한다. 중간 개체를 발견하고 다음 홉으로 잇는 작업에서 고해상도 인터페이스가 유리하다.
 
@@ -455,7 +455,7 @@ corpus를 네 배로 늘리면 tool call은 3.2배가 되고 latency는 11.6배�
 
 지표별 증가율이 서로 다르다는 점도 읽어 둘 만하다. tool call은 3.2배가 되는데 latency는 11.6배가 된다. 호출 횟수보다 호출 하나가 처리해야 하는 후보가 늘어나 개별 명령이 느려진다는 뜻이다. 반면 비용은 2.9배로 latency만큼 가파르지 않다. 논문은 이 편차의 원인을 설명하지 않으므로 해석은 열려 있다.
 
-한편 다중 홉 QA는 문서 2,100만 건의 Wikipedia-18에서 수행되었고 거기서도 DCI가 앞섰다. 두 결과를 함께 놓으면 문서 수 자체보다 후보 공간의 혼동도가 문제라는 해석이 가능하다. 확장 실험은 FineWeb distractor를 주입해 만든 것이라 정답과 구별하기 어려운 후보가 늘어난 조건이고, Wikipedia-18은 문서가 많되 개별 문서가 평균 100단어로 짧고 개체명으로 좁히기 쉽다.
+한편 multi-hop QA는 문서 2,100만 건의 Wikipedia-18에서 수행되었고 거기서도 DCI가 앞섰다. 두 결과를 함께 놓으면 문서 수 자체보다 후보 공간의 혼동도가 문제라는 해석이 가능하다. 확장 실험은 FineWeb distractor를 주입해 만든 것이라 정답과 구별하기 어려운 후보가 늘어난 조건이고, Wikipedia-18은 문서가 많되 개별 문서가 평균 100단어로 짧고 개체명으로 좁히기 쉽다.
 
 ### 컨텍스트 관리 정책
 
@@ -535,7 +535,7 @@ DCI-Agent-CC와 비교하면 차이가 보인다. Claude Code 쪽은 전체 읽�
 
 **성공 사례 (D.1)**는 Natural Questions의 "what is don quixote's horse's name"이다(정답 Rocinante). agent는 Grep으로 `wiki_dump.jsonl`에서 "Rocinante"를 찾아 문서 두 개를 확인한다. 이어서 `Don Quixote.*horse` 정규식으로 교차 확인을 시도하지만 파일이 너무 커서 비효율적이 되자, `grep -m 3 "Rocinante" wiki_corpus/wiki_dump.jsonl | head -c 1500`으로 전환해 매치 개수와 출력 바이트를 함께 제한하고 확인을 마친다. 도구가 막히면 같은 목적을 다른 명령 조합으로 우회하는 전형적 패턴이다.
 
-**DCI-Agent-CC 실패 사례 (D.8)**는 2019년 잉글랜드 경기의 물병 실랑이와 선수 임대 이력을 잇는 다중 홉 질문이다(정답 FC Krasnodar). agent는 corpus 문서로 Denis Suarez와 FC Barcelona까지 정확히 찾아내지만, UEFA 챔피언스리그 벤치 출전의 상대 팀을 잘못 귀속한다. 검색은 성공했으나 마지막 홉의 사실 연결에서 실패한 경우다.
+**DCI-Agent-CC 실패 사례 (D.8)**는 2019년 잉글랜드 경기의 물병 실랑이와 선수 임대 이력을 잇는 multi-hop 질문이다(정답 FC Krasnodar). agent는 corpus 문서로 Denis Suarez와 FC Barcelona까지 정확히 찾아내지만, UEFA 챔피언스리그 벤치 출전의 상대 팀을 잘못 귀속한다. 검색은 성공했으나 마지막 홉의 사실 연결에서 실패한 경우다.
 
 **DCI-Agent-Lite 실패 사례 (D.9)**는 2000년대 개봉작, 빈부 대비 줄거리, 1960년대생 배우 두 명, 2023년 11월 감독과 배우 형제의 분쟁이 맞물린 영화 식별 문제다(정답 Dosti: Friends Forever). agent는 정밀한 검색어를 만들지 못하고 지나치게 넓은 `rg` 패턴을 반복해 무관한 문서만 받다가, 표면 키워드만 일부 맞는 The Family Man (2000)을 환각으로 답한다.
 
@@ -552,7 +552,7 @@ Case 5a의 첫 turn은 tool 호출 분포에 잡힌 ToolSearch 2.8%가 무엇인
 | BrowseComp-Plus 정확도 | 62.9% | 80.0% |
 | BrowseComp-Plus 총비용 | $93 | $1,016 |
 | 같은 backbone retriever 대비 | +18.0%p, $12 절감 | +11.0%p, $424 절감 |
-| 다중 홉 QA 평균 | 68.0 | 83.0 |
+| multi-hop QA 평균 | 68.0 | 83.0 |
 | IR ranking 평균 NDCG@10 | 56.7 | 68.5 |
 | IR 6종 중 1위 개수 | 0개 (전체 2위) | 6개 |
 | 전체 문서 읽기 비중 | 0.1% | 9.1% |

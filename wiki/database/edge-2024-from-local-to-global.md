@@ -81,7 +81,7 @@ GraphRAG는 두 계열의 강점을 결합하는 것을 목표로 한다. 질의
 
 ## 핵심 개념
 
-**graph index**는 원본 문서를 벡터 대신 node와 edge로 색인한 구조를 말한다. node는 corpus의 주요 entity, edge는 entity 사이의 relationship에 대응한다. GraphRAG는 여기에 covariate로 claim을 덧붙인다.
+**graph index**는 원본 문서를 벡터 대신 node와 edge로 인덱싱한 구조를 말한다. node는 corpus의 주요 entity, edge는 entity 사이의 relationship에 대응한다. GraphRAG는 여기에 covariate로 claim을 덧붙인다.
 
 **claim**은 정답이라면 답에 담겨 있어야 하는 검증 가능한 사실 진술이다. GraphRAG는 entity에 관한 날짜, 사건, 다른 entity와의 상호작용을 claim으로 뽑아 graph에 붙인다.
 
@@ -387,7 +387,7 @@ GraphRAG의 위치는 세 가지 선행 연구 계열과 대비하면 분명해�
 | 계층적 요약 인덱스 | Kim 2023, Sarthi 2024 (RAPTOR) | 요약을 계층으로 쌓는 발상은 같지만, 분할 기준이 graph community가 아니라 텍스트 유사도다 |
 | LLM 기반 knowledge graph | Ban 2023, Melnyk 2022, Trajanoska 2023, Wang 2023b | KG를 프롬프트에 직접 넣거나 retrieval 보조로 쓴다. GraphRAG는 graph의 modularity를 써서 주제 단위로 분할하는 점이 다르다 |
 
-평가 방법론 쪽에서는 LLM-as-a-judge(Zheng et al., 2024)와 adaptive benchmarking(Yuan et al., 2024; Zhang et al., 2024b), persona 생성(Kosinski 2024; Salminen et al., 2024) 계열을 잇는다. 기존 QA 벤치마크인 HotPotQA, MultiHop-RAG, MT-Bench는 명시적 사실 검색 성능을 재도록 설계되어 있어 전역 질의 평가에 맞지 않고, RAGAS의 context relevance나 faithfulness 같은 지표도 마찬가지라는 것이 논문의 진단이다.
+평가 방법론 쪽에서는 LLM-as-a-Judge(Zheng et al., 2024)와 adaptive benchmarking(Yuan et al., 2024; Zhang et al., 2024b), persona 생성(Kosinski 2024; Salminen et al., 2024) 계열을 잇는다. 기존 QA 벤치마크인 HotPotQA, MultiHop-RAG, MT-Bench는 명시적 사실 검색 성능을 재도록 설계되어 있어 전역 질의 평가에 맞지 않고, RAGAS의 context relevance나 faithfulness 같은 지표도 마찬가지라는 것이 논문의 진단이다.
 
 ## 핵심 용어
 

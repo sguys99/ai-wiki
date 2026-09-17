@@ -49,7 +49,7 @@ LeanRAG는 지식 그래프를 인덱스로 쓰는 RAG에서 그래프를 만드
 
 출발점은 앞선 연구들이 계층 구조로 옮겨 가면서도 풀지 못한 두 가지 결함이다. 하나는 상위 요약 노드들이 서로 이어지지 않아 개념 무리 사이를 넘나드는 추론이 막히는 semantic island이고, 다른 하나는 retrieval이 그래프의 모양을 활용하지 못하고 평면 목록 위 유사도 탐색으로 되돌아가는 structure-retrieval mismatch다.
 
-해결책도 두 가지다. 첫째, semantic aggregation은 entity를 클러스터로 묶어 상위 entity를 만들 뿐 아니라 상위 entity 사이의 relation까지 LLM으로 만들어, 어느 층에서나 이동할 수 있는 semantic network를 구성한다. 둘째, LCA 기반 bottom-up retrieval은 쿼리를 가장 세밀한 base 층 entity에만 붙인 다음, 그 seed들의 최소 공통 조상까지 이어지는 경로만 모아 작은 서브그래프를 만든다.
+해결책도 두 가지다. 첫째, semantic aggregation은 entity를 클러스터로 묶어 상위 entity를 만들 뿐 아니라 상위 entity 사이의 relation까지 LLM으로 만들어, 어느 층에서나 이동할 수 있는 semantic network를 구성한다. 둘째, LCA 기반 bottom-up retrieval은 질의(query)를 가장 세밀한 base 층 entity에만 붙인 다음, 그 seed들의 최소 공통 조상까지 이어지는 경로만 모아 작은 서브그래프를 만든다.
 
 UltraDomain의 네 데이터셋에서 1에서 10 척도 지표 16칸 중 11칸이 단독 1위이고 1칸이 공동 1위이며, retrieval된 context의 토큰 수는 baseline 평균 대비 46% 줄었다. 두 ablation은 상위 relation이 Diversity에 가장 크게 기여한다는 점과, 그래프만으로는 부족하고 원문 chunk가 함께 있어야 한다는 점을 보인다.
 
@@ -93,7 +93,7 @@ LeanRAG가 문제로 세운 것은 다음 두 가지다. 이 구분이 논문 �
 
 논문은 비교 기준이 되는 KG 기반 RAG의 기본 절차를 먼저 형식화한다. 지식 그래프는 $G = (V, R, D^{(\text{ver})}, D^{(\text{rel})})$로 쓴다. $V$는 entity 집합, $R$은 relation 집합이고, $D^{(\text{ver})}$와 $D^{(\text{rel})}$은 각각 entity 설명문과 relation 설명문의 모음이다. 노드와 간선 양쪽에 자연어 설명문이 붙어 있다는 점이 이 형식화의 특징이다.
 
-쿼리 $q$가 들어오면 먼저 설명문 임베딩과의 유사도로 상위 $n$개 entity를 고른다.
+질의 $q$가 들어오면 먼저 설명문 임베딩과의 유사도로 상위 $n$개 entity를 고른다.
 
 $$\tilde{V} = \text{Top-}n_{v \in V}(\text{Sim}(q, d_v))$$
 
@@ -142,7 +142,7 @@ aggregated relation은 같은 층의 두 aggregated entity를 잇는 새 간선�
 
 connectivity strength는 두 클러스터에 각각 속한 노드들을 잇던 base 층 relation의 개수다. 이 값이 클수록 두 클러스터가 원래 그래프에서 긴밀하게 얽혀 있었다는 뜻이다.
 
-seed entity는 쿼리와 가장 비슷한 base 층 entity들이다. LeanRAG의 탐색은 항상 여기서 시작한다.
+seed entity는 질의와 가장 비슷한 base 층 entity들이다. LeanRAG의 탐색은 항상 여기서 시작한다.
 
 lowest common ancestor는 hierarchy에서 여러 seed의 공통 조상 가운데 depth가 가장 작은 노드다. 이 노드를 목적지로 삼으면 seed들에서 목적지까지의 경로 길이 합이 최소가 된다.
 
@@ -150,14 +150,14 @@ lowest common ancestor는 hierarchy에서 여러 seed의 공통 조상 가운데
 
 ### 전체 구조
 
-논문은 전체 파이프라인을 세 부분으로 그린다. 문서에서 삼중항을 뽑아 평면 KG를 만드는 구축 단계, 그 위에 층을 쌓는 aggregation 단계, 쿼리를 받아 서브그래프를 만들고 답을 생성하는 추론 단계다.
+논문은 전체 파이프라인을 세 부분으로 그린다. 문서에서 삼중항을 뽑아 평면 KG를 만드는 구축 단계, 그 위에 층을 쌓는 aggregation 단계, 질의를 받아 서브그래프를 만들고 답을 생성하는 추론 단계다.
 
 ![[assets/zhang-2026-leanrag-knowledge-graph-based-generation/fig02.png]]
-*Figure 2: LeanRAG 전체 구조. 왼쪽은 문서에서 삼중항을 추출해 평면 KG를 만드는 단계, 가운데는 클러스터 간 relation을 모아 aggregation relation을 생성하며 L0에서 L1, L2, Root로 층을 쌓는 단계, 오른쪽은 쿼리를 임베딩 매칭으로 base entity에 붙이고 아래에서 위로 올라가며 중복을 줄이는 추론 단계다 (Zhang 2026, p.4)*
+*Figure 2: LeanRAG 전체 구조. 왼쪽은 문서에서 삼중항을 추출해 평면 KG를 만드는 단계, 가운데는 클러스터 간 relation을 모아 aggregation relation을 생성하며 L0에서 L1, L2, Root로 층을 쌓는 단계, 오른쪽은 질의를 임베딩 매칭으로 base entity에 붙이고 아래에서 위로 올라가며 중복을 줄이는 추론 단계다 (Zhang 2026, p.4)*
 
 그림이 쓰는 예시는 Apache Spark다. 문서에서 뽑힌 삼중항은 SCALA와 SPARK를 잇는 "Spark applications"와 SPARK와 EC2를 잇는 "Spark can be run on" 같은 형태다. 이렇게 만들어진 L0 층은 평면적이고 서로 무관해 보이는 상태다.
 
-층이 올라가면 SPARK entity는 "Apache Distributed"로 시작하는 aggregated entity에 묶이고, 그 위에서 다시 "Apache Eco"로 시작하는 Aggregation A와 "AWS Deplo"로 시작하는 Aggregation B가 서로 relation으로 이어진다. 쿼리 "What is Apache Spark and what are its key features?"가 들어오면 base 층의 SPARK entity에 붙은 뒤 위쪽 두 aggregation까지 경로를 따라 올라간다.
+층이 올라가면 SPARK entity는 "Apache Distributed"로 시작하는 aggregated entity에 묶이고, 그 위에서 다시 "Apache Eco"로 시작하는 Aggregation A와 "AWS Deplo"로 시작하는 Aggregation B가 서로 relation으로 이어진다. 질의 "What is Apache Spark and what are its key features?"가 들어오면 base 층의 SPARK entity에 붙은 뒤 위쪽 두 aggregation까지 경로를 따라 올라간다.
 
 ### Apache Spark 예시로 따라가는 전체 흐름
 
@@ -169,7 +169,7 @@ L0에서 L1로 올라가는 단계에서는 색으로 구분된 여러 클러스
 
 L1에서 L2로 다시 올라가면 Aggregation A와 Aggregation B가 나타난다. 두 노드는 같은 층에 있으면서 서로 relation으로 이어져 있고 그 위에 Root가 놓인다. 가로 방향 연결이 없다면 Apache 생태계와 AWS 배포라는 두 주제는 Root를 거쳐야만 만나게 된다.
 
-추론 단계에서 쿼리가 들어오면 임베딩 매칭으로 base 층의 SPARK를 비롯한 seed entity들이 선택된다. 이어서 아래에서 위로 올라가는 경로가 그려지고, 그림은 이 방향을 "Retrieval bottom-top"으로, 그 효과를 "Reduce Redundancy"로 표시한다. 최종 답변은 "Apache Spark is a powerful open-source distributed computing"으로 시작하는 문장으로 제시된다.
+추론 단계에서 질의가 들어오면 임베딩 매칭으로 base 층의 SPARK를 비롯한 seed entity들이 선택된다. 이어서 아래에서 위로 올라가는 경로가 그려지고, 그림은 이 방향을 "Retrieval bottom-top"으로, 그 효과를 "Reduce Redundancy"로 표시한다. 최종 답변은 "Apache Spark is a powerful open-source distributed computing"으로 시작하는 문장으로 제시된다.
 
 ### 그래프를 쌓는 세 단계
 
@@ -222,7 +222,7 @@ $\tau$는 data-dependent hyper-parameter다. 추상화 수준마다 그래프 �
 
 #### 1단계 base 층 anchoring
 
-쿼리 $q$를 가장 구체적인 사실에 붙이기 위해, 원래 그래프인 base 층 $G_0$의 entity만 대상으로 밀집 탐색을 수행한다.
+질의 $q$를 가장 구체적인 사실에 붙이기 위해, 원래 그래프인 base 층 $G_0$의 entity만 대상으로 밀집 탐색을 수행한다.
 
 $$V_{\text{seed}} = \text{Top-}n_{v \in V_0}(\text{sim}(q, d_v))$$
 
@@ -258,7 +258,7 @@ $R_{\text{inter-cluster}}$가 결과에 항상 포함되는 것이 핵심이다.
 
 ### LCA 경로가 중복을 줄이는 이유
 
-두 방식의 차이는 경로를 어디서 찾느냐에 있다. 기존 방식은 평면 그래프 $G_0$ 안에서 seed 쌍마다 경로를 찾는다. seed가 $n$개면 쌍은 $n(n-1)/2$개이고, 각 경로가 지나는 중간 노드가 모두 결과에 들어온다. 이 중간 노드들은 쿼리와 직접 관련이 없어도 연결을 잇기 위해 포함되므로 잡음이 된다.
+두 방식의 차이는 경로를 어디서 찾느냐에 있다. 기존 방식은 평면 그래프 $G_0$ 안에서 seed 쌍마다 경로를 찾는다. seed가 $n$개면 쌍은 $n(n-1)/2$개이고, 각 경로가 지나는 중간 노드가 모두 결과에 들어온다. 이 중간 노드들은 질의와 직접 관련이 없어도 연결을 잇기 위해 포함되므로 잡음이 된다.
 
 LCA 방식은 경로를 hierarchy $H$ 안에서 찾는다. 목적지가 $v_{\text{lca}}$ 하나로 고정되므로 경로 개수가 seed 개수와 같아지고, tree 구조라서 각 경로는 부모 링크를 따라 올라가는 chain 하나가 된다.
 
@@ -284,7 +284,7 @@ LCA 방식은 경로를 hierarchy $H$ 안에서 찾는다. 목적지가 $v_{\tex
 | 구성 | 인덱스 | 탐색 방식 | 그림의 복잡도 표기 | 요약 지식 활용 |
 |---|---|---|---|---|
 | Naive LLM | 없음 | 없음 | 표기 없음 | 없음 |
-| Naive RAG | 텍스트 chunk | 쿼리와 chunk 유사도 | 표기 없음 | 없음 |
+| Naive RAG | 텍스트 chunk | 질의와 chunk 유사도 | 표기 없음 | 없음 |
 | 그래프 기반 RAG | 계층 그래프 | Graph Search | $O(n^2)$ | 모든 entity에서 매칭 |
 | LeanRAG | 상위 relation이 추가된 계층 그래프 | LCA Search | $\log(n)$ | 아래에서 위로 entity 매칭 |
 
@@ -323,7 +323,7 @@ LCA 방식은 경로를 hierarchy $H$ 안에서 찾는다. 목적지가 $v_{\tex
 | Diversity | 제시된 정보와 관점의 폭 |
 | Overall | 앞의 세 가지와 기타 요인을 함께 고려한 총괄 품질 |
 
-지표 정의는 HiRAG의 것을 따랐다. 채점은 DeepSeek-V3를 LLM-as-judge로 써서 1에서 10 척도로 매기며, 각 쿼리와 답변 쌍을 5회 채점한다. 여기에 더해 두 답변을 직접 놓고 어느 쪽이 나은지 고르게 하는 win rate 방식도 함께 쓴다.
+지표 정의는 HiRAG의 것을 따랐다. 채점은 DeepSeek-V3를 LLM-as-a-Judge로 써서 1에서 10 척도로 매기며, 각 질의와 답변 쌍을 5회 채점한다. 여기에 더해 두 답변을 직접 놓고 어느 쪽이 나은지 고르게 하는 win rate 방식도 함께 쓴다.
 
 두 방식은 결과를 읽는 법이 다르다. 점수 방식은 여러 방법을 한 표에 늘어놓고 절대 수준을 비교할 수 있지만, 상위권이 8점대에 몰리면 차이가 소수점 둘째 자리로 줄어 판별력이 떨어진다. win rate 방식은 두 답변을 직접 견주므로 작은 차이도 승패로 드러나지만 두 방법씩만 비교할 수 있다.
 
@@ -578,7 +578,7 @@ LightRAG 항목이 특히 주의할 지점이다. 이 논문은 LightRAG를 2024
 | Semantic islands | 계층 KG의 상위 요약 노드들이 서로를 잇는 explicit relation 없이 고립되어 개념 무리 사이 추론이 막히는 상태 |
 | Aggregated relation | 같은 층의 두 상위 entity를 잇는 새 relation. connectivity strength가 임계값을 넘으면 LLM이 요약하고, 넘지 않으면 원래 relation들을 텍스트로 이어 붙인다 |
 | Connectivity strength | 두 클러스터에 각각 속한 노드들을 잇던 base 층 relation의 개수 |
-| Seed entity | 쿼리 임베딩과 base 층 entity 설명문 임베딩의 유사도로 뽑은 상위 $n$개 entity. 구조 탐색의 출발점이다 |
+| Seed entity | 질의 임베딩과 base 층 entity 설명문 임베딩의 유사도로 뽑은 상위 $n$개 entity. 구조 탐색의 출발점이다 |
 | Lowest common ancestor | hierarchy에서 seed들의 공통 조상 가운데 depth가 가장 작은 노드. 이 노드를 목적지로 삼으면 경로 길이 합이 최소가 된다 |
 | Inter-cluster relation | 같은 층 상위 entity 사이 relation 가운데 retrieval 결과에 항상 포함되는 것들. cross-community 정보를 공급한다 |
 

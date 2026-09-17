@@ -45,7 +45,7 @@ Brij Kishore Pandey가 LinkedIn에 올린 약 260단어 분량의 짧은 포스�
 | Hybrid RAG | dense vector search와 sparse keyword search | semantic similarity만으로 부족할 때 |
 | GraphRAG | entity, relationship, knowledge graph | 답이 연결, 컨텍스트, 관계 위의 reasoning에 의존할 때 |
 | Agentic RAG | retrieval을 planning 워크플로로 전환 | agent가 도구 선택, 검색 시점, 충분한 confidence 여부를 판단해야 할 때 |
-| Corrective RAG (CRAG) | 검색 결과의 grading, 쿼리 재작성, 대체 소스 fallback | 검색 결과를 신뢰하기 전에 품질을 확인해야 할 때 |
+| Corrective RAG (CRAG) | 검색 결과의 grading, 질의(query) 재작성, 대체 소스 fallback | 검색 결과를 신뢰하기 전에 품질을 확인해야 할 때 |
 | Multimodal RAG | text, image, chart, table을 가로지르는 retrieval | enterprise 문서, report, slide deck, invoice, 시각 데이터를 다룰 때 |
 
 ### 3.1 Hybrid RAG
@@ -66,7 +66,7 @@ retrieval을 planning 워크플로로 바꾼다. agent가 결정하는 항목은
 
 ### 3.4 Corrective RAG (CRAG)
 
-검색된 문서를 신뢰하기 전에 먼저 grading한다. retrieval이 약하다고 판정되면 시스템이 쿼리를 다시 쓰거나 다른 소스로 fallback한다. 즉 retrieval과 generation 사이에 품질 판정 단계를 하나 더 둔 구조다. grading 기준이나 판정 레이블은 포스트에 없다.
+검색된 문서를 신뢰하기 전에 먼저 grading한다. retrieval이 약하다고 판정되면 시스템이 질의를 다시 쓰거나 다른 소스로 fallback한다. 즉 retrieval과 generation 사이에 품질 판정 단계를 하나 더 둔 구조다. grading 기준이나 판정 레이블은 포스트에 없다.
 
 ### 3.5 Multimodal RAG
 
@@ -119,7 +119,7 @@ Corrective RAG(CRAG)를 단독으로 다룬 페이지는 없다. 다만 `databas
 - Hybrid RAG: dense vector search와 sparse keyword search를 결합한 RAG. 포스트는 semantic similarity만으로 부족할 때의 선택지로 제시한다.
 - GraphRAG: entity, relationship, knowledge graph를 사용하는 RAG. 답이 연결과 컨텍스트, 관계 위의 reasoning에 의존할 때 쓴다.
 - Agentic RAG: retrieval을 planning 워크플로로 바꾼 RAG. agent가 도구, 검색 시점, 충분한 confidence 여부를 스스로 정한다.
-- Corrective RAG (CRAG): 검색된 문서를 신뢰하기 전에 grading하고, 결과가 약하면 쿼리를 다시 쓰거나 다른 소스로 fallback하는 RAG.
+- Corrective RAG (CRAG): 검색된 문서를 신뢰하기 전에 grading하고, 결과가 약하면 질의를 다시 쓰거나 다른 소스로 fallback하는 RAG.
 - Multimodal RAG: text, image, chart, table을 가로질러 retrieval하는 RAG. enterprise 문서를 다룰 때 결정적이라고 서술한다.
 - design space: 하나의 정답 구성이 아니라 요구에 따라 다른 조합을 고르는 설계 공간. 포스트가 RAG를 다시 정의하는 데 쓴 표현이다.
 - retrieval architecture: 어떤 vector database를 쓰느냐를 넘어, 무엇을 어떻게 검색하고 검증하고 다시 시도하는지까지 포함하는 설계. 포스트가 제안하는 질문의 대상이다.

@@ -27,7 +27,7 @@ Brij Kishore Pandey가 2026년 6월 2일 LinkedIn에 올린 약 260단어 분량
 | Hybrid RAG | dense vector search와 sparse keyword search | semantic similarity만으로 충분하지 않을 때 |
 | GraphRAG | entity, relationship, knowledge graph | 답이 연결과 컨텍스트, 관계 위의 추론에 의존할 때 |
 | Agentic RAG | retrieval을 planning 워크플로로 전환 | 에이전트가 도구와 검색 시점, confidence 충족 여부를 판단해야 할 때 |
-| Corrective RAG (CRAG) | 검색 결과의 grading, 쿼리 재작성, 다른 소스로의 fallback | 검색 결과를 신뢰하기 전에 품질을 확인해야 할 때 |
+| Corrective RAG (CRAG) | 검색 결과의 grading, 질의(query) 재작성, 다른 소스로의 fallback | 검색 결과를 신뢰하기 전에 품질을 확인해야 할 때 |
 | Multimodal RAG | text, image, chart, table을 가로지르는 retrieval | enterprise 문서와 report, slide deck, invoice, 시각 데이터를 다룰 때 |
 
 다섯 항목의 서술 형식이 모두 같다는 점이 이 포스트의 성격을 보여준다. 구현 절차나 성능 비교가 아니라 선택지의 목록과 각각의 적용 조건까지가 저자가 제공하는 범위다.
@@ -105,9 +105,9 @@ retrieval을 planning 워크플로로 바꾼다. 검색이 한 번의 조회가 
 
 ### Corrective RAG
 
-검색해 온 문서를 신뢰하기 전에 먼저 grading한다. retrieval이 약하다고 판정되면 시스템이 쿼리를 다시 쓰거나 다른 소스로 fallback한다. 검색과 생성 사이에 품질 판정 단계를 하나 더 두는 구조다.
+검색해 온 문서를 신뢰하기 전에 먼저 grading한다. retrieval이 약하다고 판정되면 시스템이 질의를 다시 쓰거나 다른 소스로 fallback한다. 검색과 생성 사이에 품질 판정 단계를 하나 더 두는 구조다.
 
-원문이 밝힌 대응은 쿼리 재작성과 다른 소스로의 전환 두 가지다. 반면 판정 기준, 판정 결과의 종류, 어떤 소스로 fallback하는지는 적혀 있지 않다. 이름 그대로 검색 결과를 교정하는 단계가 붙었다는 것까지가 확인 가능한 내용이다.
+원문이 밝힌 대응은 질의 재작성과 다른 소스로의 전환 두 가지다. 반면 판정 기준, 판정 결과의 종류, 어떤 소스로 fallback하는지는 적혀 있지 않다. 이름 그대로 검색 결과를 교정하는 단계가 붙었다는 것까지가 확인 가능한 내용이다.
 
 ### Multimodal RAG
 
@@ -183,7 +183,7 @@ text와 image, chart, table을 가로질러 retrieval을 수행한다. 원문은
 | Multimodal RAG | [[database/guo-2025-rag-anything-all-in-one-rag]], [[database/shanbhogue-2026-gemini-embedding-2-native-multimodal]] | 여러 형식을 한 파이프라인에서 다루는 구현과 임베딩 모델 |
 | 목록에 없는 변형 | [[database/vectifyai-pageindex]], [[database/geeksforgeeks-2026-vectorless-rag-pageindex]] | 벡터 검색을 쓰지 않는 계열로, 다섯 항목 어디에도 들어가지 않는다 |
 
-이 대응이 보여주는 것은 포스트의 역할이다. 다섯 이름은 이 wiki가 이미 개별적으로 보유한 자료들의 색인 역할을 하고, 각 항목의 수치와 구현 세부는 표의 오른쪽 페이지들이 채운다. 마지막 행은 포스트의 목록이 완결된 분류가 아니라는 근거이기도 하다.
+이 대응이 보여주는 것은 포스트의 역할이다. 다섯 이름은 이 wiki가 이미 개별적으로 보유한 자료들의 인덱스 역할을 하고, 각 항목의 수치와 구현 세부는 표의 오른쪽 페이지들이 채운다. 마지막 행은 포스트의 목록이 완결된 분류가 아니라는 근거이기도 하다.
 
 ## 핵심 용어
 
@@ -193,7 +193,7 @@ text와 image, chart, table을 가로질러 retrieval을 수행한다. 원문은
 | design space | 하나의 정답 구성이 아니라 요구에 따라 다른 조합을 고르는 설계 공간. 포스트가 RAG를 다시 정의하는 데 쓴 표현이다 |
 | Hybrid RAG | dense vector search와 sparse keyword search를 결합한 RAG. semantic similarity만으로 부족할 때의 선택지로 제시된다 |
 | Agentic RAG | retrieval을 planning 워크플로로 바꾼 RAG. 에이전트가 도구와 검색 시점, confidence 충족 여부를 스스로 정한다 |
-| Corrective RAG (CRAG) | 검색해 온 문서를 신뢰하기 전에 grading하고, 결과가 약하면 쿼리를 다시 쓰거나 다른 소스로 fallback하는 RAG |
+| Corrective RAG (CRAG) | 검색해 온 문서를 신뢰하기 전에 grading하고, 결과가 약하면 질의를 다시 쓰거나 다른 소스로 fallback하는 RAG |
 
 ## 관련 페이지
 

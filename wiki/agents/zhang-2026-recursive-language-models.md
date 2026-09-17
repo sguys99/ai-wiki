@@ -241,7 +241,7 @@ while True:
 | 구성 요소 | 구현 |
 |---|---|
 | 초기 prompt | REPL 변수 `context`에 문자열로 저장된다 |
-| sub-LM 호출 | `llm_query(prompt)`. 요약, 추출, 청크 단위 질의 응답 같은 단순 sub-task용이다 |
+| sub-LM 호출 | `llm_query(prompt)`. 요약, 추출, chunk 단위 질의 응답 같은 단순 sub-task용이다 |
 | sub-RLM 호출 | `rlm_query(context, query)`. 그 자체로 chunking이나 다단 추론이 필요한 sub-task용이며, 최대 depth에 도달하면 `llm_query`로 자동 fallback한다 |
 | stdout 처리 | 컨텍스트가 빠르게 차는 것을 막기 위해 잘라낸다 |
 | 종료 신호 | `FINAL(answer)`로 답을 직접 주거나 `FINAL_VAR(variable_name)`로 REPL 변수를 반환한다 |
@@ -251,7 +251,7 @@ while True:
 
 ### 시스템 프롬프트의 모델별 변형
 
-방법마다 task와 무관한 고정 prompt 하나를 쓴다. RLM prompt는 REPL 환경 안내, `llm_query` 사용법, 그리고 chunking 전략을 보여주는 코드 예시로 구성된다. 예시는 문자열 앞부분 훑기, 책을 절 단위로 순회하며 buffer에 정보를 모으기, 문서 리스트를 10등분해 청크마다 질의한 뒤 답을 합치기, Markdown 헤더로 쪼개 절마다 요약하기 네 가지다.
+방법마다 task와 무관한 고정 prompt 하나를 쓴다. RLM prompt는 REPL 환경 안내, `llm_query` 사용법, 그리고 chunking 전략을 보여주는 코드 예시로 구성된다. 예시는 문자열 앞부분 훑기, 책을 절 단위로 순회하며 buffer에 정보를 모으기, 문서 리스트를 10등분해 chunk마다 질의한 뒤 답을 합치기, Markdown 헤더로 쪼개 절마다 요약하기 네 가지다.
 
 같은 prompt를 모든 모델에 쓰면 동작이 달라진다. 그래서 변형을 두었다.
 
@@ -260,10 +260,10 @@ while True:
 | GPT-5 (depth=1) | 기준 prompt. sub-LM이 약 50만 문자를 담을 수 있다고 안내하고 sub-LM 하나에 문서 10개를 넣는 전략을 예시로 든다 |
 | Qwen3-Coder-480B-A35B | 맨 앞에 `llm_query` 남용 경고 한 줄을 추가한다. 호출당 약 20만 문자를 목표로 batch하라고 지시하며, 1000줄이면 개별 1000회가 아니라 5줄씩 묶어 200회를 부르라고 예시를 든다 |
 | depth > 1 | `rlm_query(context, query)` 함수 설명과 `llm_query`와의 선택 기준을 추가한다 |
-| Qwen3-8B (depth=1) | context window가 GPT-5의 272K에서 3만 2천 토큰으로 줄어든 만큼 조정한다. sub-LM 한도를 약 10만 문자로 낮추고, 청크 예시를 10,000자에서 1,000자로 줄이고, sub-LM 하나에 문서 2개에서 3개를 넣으라고 바꾼다 |
+| Qwen3-8B (depth=1) | context window가 GPT-5의 272K에서 3만 2천 토큰으로 줄어든 만큼 조정한다. sub-LM 한도를 약 10만 문자로 낮추고, chunk 예시를 10,000자에서 1,000자로 줄이고, sub-LM 하나에 문서 2개에서 3개를 넣으라고 바꾼다 |
 | REPL only (depth=0) | `llm_query` 설명을 빼고 regex로 관련 절을 찾아 buffer에 모으는 예시로 대체한다 |
 
-prompt에 실린 예시가 무엇인지 구체적으로 보면 뒤에 나오는 decomposition ablation을 읽기 쉬워진다. 문서 리스트를 10등분해 청크마다 질의한 뒤 답을 합치는 예시는 다음과 같은 코드로 들어 있다.
+prompt에 실린 예시가 무엇인지 구체적으로 보면 뒤에 나오는 decomposition ablation을 읽기 쉬워진다. 문서 리스트를 10등분해 chunk마다 질의한 뒤 답을 합치는 예시는 다음과 같은 코드로 들어 있다.
 
 ```python
 chunk_size = len(context) // 10
@@ -282,9 +282,9 @@ final_answer = llm_query(f"Aggregating all the answers per chunk, "
                          + "\n".join(answers))
 ```
 
-패턴은 세 단계로 고정돼 있다. 컨텍스트를 청크로 나누고, 청크마다 sub-LM에 같은 질문을 던지고, 모인 답을 sub-LM 한 번으로 종합한다. 마지막 줄의 `final_answer`는 다음 턴에 `FINAL_VAR(final_answer)`로 반환된다. prompt는 이 흐름을 책 순회 버전, Markdown 헤더 버전으로 한 번 더 보여준다.
+패턴은 세 단계로 고정돼 있다. 컨텍스트를 chunk로 나누고, chunk마다 sub-LM에 같은 질문을 던지고, 모인 답을 sub-LM 한 번으로 종합한다. 마지막 줄의 `final_answer`는 다음 턴에 `FINAL_VAR(final_answer)`로 반환된다. prompt는 이 흐름을 책 순회 버전, Markdown 헤더 버전으로 한 번 더 보여준다.
 
-한 가지 눈에 띄는 지시는 "확신이 있을 때만 답하라"는 조건이다. 청크 대부분에는 답의 근거가 없으므로, 이 조건이 없으면 sub-LM이 근거 없는 추측을 돌려주고 종합 단계가 오염된다. 저자들이 프롬프트에 심어 둔 오류 방지 장치다.
+한 가지 눈에 띄는 지시는 "확신이 있을 때만 답하라"는 조건이다. chunk 대부분에는 답의 근거가 없으므로, 이 조건이 없으면 sub-LM이 근거 없는 추측을 돌려주고 종합 단계가 오염된다. 저자들이 프롬프트에 심어 둔 오류 방지 장치다.
 
 Qwen3-Coder용 경고 한 줄은 선택이 아니라 필수였다. 이 문장이 없으면 모델이 모든 것에 sub-call을 걸어 기본 task에도 수천 회 호출이 발생한다. 저자들은 이 사실을 부정적 결과 절에 따로 기록해 두었다.
 
@@ -329,9 +329,9 @@ task 형식은 다음과 같다. 컨텍스트에는 사용자 ID가 붙은 일�
 | baseline | 구성 |
 |---|---|
 | Base Model | system prompt 없이 컨텍스트를 그대로 넣는다 |
-| CodeAct (+BM25) | ReAct loop 안에서 코드를 실행하는 CodeAct(Wang 2024)에 BM25 retriever를 붙였다. BrowseComp+ 외의 task는 색인할 대상이 없거나 이미 컨텍스트에 들어가므로 retriever를 뺀 변형을 쓴다 |
+| CodeAct (+BM25) | ReAct loop 안에서 코드를 실행하는 CodeAct(Wang 2024)에 BM25 retriever를 붙였다. BrowseComp+ 외의 task는 인덱싱할 대상이 없거나 이미 컨텍스트에 들어가므로 retriever를 뺀 변형을 쓴다 |
 | CodeAct (+sub-calls) | REPL 안에 sub-call 도구를 둔 변형. RLM과 달리 사용자 prompt를 코드 환경으로 offload하지 않고 모델에 직접 넣는다 |
-| Compaction agent | 컨텍스트가 찰 때마다 요약해 이어가는 agent. 단일 문서가 창을 넘으면 그 문서를 청크로 나눠 반복 압축한다 |
+| Compaction agent | 컨텍스트가 찰 때마다 요약해 이어가는 agent. 단일 문서가 창을 넘으면 그 문서를 chunk로 나눠 반복 압축한다 |
 | OpenCode | 코딩 agent. 컨텍스트를 파일로 offload하는 변형과 초기 prompt로 직접 넣는 변형을 모두 평가한다 |
 | Claude Code | 대응 모델과 함께 설계된 closed-source agent라서 Claude Opus 4.1 + Claude Code v2.0.0으로 평가한다. 메인 결과의 GPT-5와 출시 시점이 비슷한 버전이다 |
 
@@ -625,7 +625,7 @@ RLM이 실제로 어떻게 문제를 푸는지 저자들은 trajectory를 직접
 ![[assets/zhang-2026-recursive-language-models/fig08.png]]
 *Figure 8: RLM trajectory에서 반복 관찰된 세 가지 패턴. (a) 코드로 컨텍스트를 탐색하고 걸러낸다. (b) 큰 컨텍스트의 추론을 sub-LM 호출로 위임한다. (c) sub-LM 출력을 이어 붙여 긴 복합 출력을 만든다 (Zhang 2026, p.31).*
 
-첫째, 코드로 컨텍스트를 탐색하고 걸러낸다. 화면의 예시는 `find_snippets(keyword, window=200, max_hits=10)` 함수를 정의해 청크마다 키워드 위치를 찾고 주변 window를 잘라내는 코드다. 검색어 목록은 `dinengdeng`, `pinakbet`, `bagoong`, `Agoo`, `La Union`, `festival`이다. 실행 시간은 0.158초로 표시돼 있다. 모델의 사전 지식이 검색어 선택에 반영된다는 점이 흥미로운 부분이다.
+첫째, 코드로 컨텍스트를 탐색하고 걸러낸다. 화면의 예시는 `find_snippets(keyword, window=200, max_hits=10)` 함수를 정의해 chunk마다 키워드 위치를 찾고 주변 window를 잘라내는 코드다. 검색어 목록은 `dinengdeng`, `pinakbet`, `bagoong`, `Agoo`, `La Union`, `festival`이다. 실행 시간은 0.158초로 표시돼 있다. 모델의 사전 지식이 검색어 선택에 반영된다는 점이 흥미로운 부분이다.
 
 둘째, 큰 컨텍스트의 추론을 sub-LM 호출로 위임한다. `process_batch(questions_batch)`가 질문 여러 개를 한 prompt로 묶어 6개 카테고리 분류를 요청하고 `llm_query` 한 번으로 처리한다. root LM은 분류 결과만 받는다. 프롬프트의 절반이 컨텍스트로 채워지지 않으므로 root의 이력이 오염되지 않는다.
 
@@ -730,7 +730,7 @@ Appendix E는 실제 실행 4건을 단계별로 기술한다. 성공과 실패�
 
 | 사례 | 대상 | 비용 | 요지 |
 |---|---|---|---|
-| E.1 | RLM(GPT-5), BrowseComp-Plus Query 74 | $0.079 | 1000개 문서(약 830만 토큰)에서 regex로 먼저 탐색한다. 6번 청크에서 단서를 찾아 sub-LM을 호출하고, 답을 변수 `answer6`에 저장하면서 출력도 한다. 확인용 sub-LM 호출 2회를 더 거쳐 정답을 반환한다 |
+| E.1 | RLM(GPT-5), BrowseComp-Plus Query 74 | $0.079 | 1000개 문서(약 830만 토큰)에서 regex로 먼저 탐색한다. 6번 chunk에서 단서를 찾아 sub-LM을 호출하고, 답을 변수 `answer6`에 저장하면서 출력도 한다. 확인용 sub-LM 호출 2회를 더 거쳐 정답을 반환한다 |
 | E.2 | RLM(Qwen3-Coder), OOLONG-Pairs Query 3 | $1.12 | 실패 사례다. 1턴에서 sub-LM 분류와 코드로 정답 pair를 이미 변수에 만들어 놓는다. 그런데 `FINAL_VAR()` 반환이 받아들여지지 않자 검증을 반복하고, 같은 과정을 5회 다시 수행한다. 마지막에는 변수에 쌓아둔 답을 쓰지 않고 root LM이 직접 생성한 오답을 반환한다 |
 | E.3 | RLM(Qwen3-Coder), OOLONG Query 212 | $0.38 | 분류 함수를 줄마다 sub-LM 호출로 정의해 전체 컨텍스트에 적용하면서 수천 회 재귀 호출이 발생한다. 정답에는 도달했지만 훨씬 적은 sub-call로도 풀 수 있었다고 적는다 |
 | E.4 | RLM(GPT-5), CodeQA Query 44 | $0.27 | 90만 토큰 코드베이스를 부분으로 나눠 sub-LM에 단서를 묻고, 모은 단서를 별도 sub-call로 종합해 정답 선택지를 고른다. 정보 밀도가 낮은 task에서는 분할과 재귀 질의가 통한다는 예시다 |
@@ -738,14 +738,14 @@ Appendix E는 실제 실행 4건을 단계별로 기술한다. 성공과 실패�
 E.1의 단계 전개는 성공하는 RLM이 어떤 순서로 움직이는지 보여준다. 질문은 필리핀의 어느 야채 스튜 축제에서 열린 미인 대회 우승자의 이름을 묻는 multi-hop 문제이고, 컨텍스트는 근거 문서와 방해 문서가 섞인 1000개 문서다.
 
 1. root LM이 먼저 1000개 문서 목록에 regex 질의를 던진다. 검색어 선택에 모델의 사전 지식이 반영되며, 동시에 프롬프트에 등장한 `beauty pageant`와 `festival` 같은 키워드도 함께 찾는다.
-2. 6번 청크에서 흥미로운 조각을 찾고 그 조각에 대해 재귀 LM 호출을 던진다. sub-LM은 답이 `Maria Dalmacio`일 가능성이 높다고 판단하고, 그 정보가 변수 `answer6`에 저장되면서 root LM이 볼 수 있게 출력도 된다.
+2. 6번 chunk에서 흥미로운 조각을 찾고 그 조각에 대해 재귀 LM 호출을 던진다. sub-LM은 답이 `Maria Dalmacio`일 가능성이 높다고 판단하고, 그 정보가 변수 `answer6`에 저장되면서 root LM이 볼 수 있게 출력도 된다.
 3. root LM은 답할 근거가 충분하다고 판단하지만 바로 끝내지 않는다. 확인용 재귀 LM 호출 2회를 더 던져 앞의 판단과 일치하는지 검사한 뒤 최종 답을 반환한다.
 
 들여다보기, 위임하기, 교차 확인하기 세 동작이 순서대로 나타나는 셈이다. 전체 비용은 $0.079였다.
 
 E.2는 특히 값이 있는 실패 기록이다. 답은 1턴에서 이미 만들어졌는데 종료 판정이 실패해 같은 과정을 5회 더 반복하고, 결국 코드 환경에 쌓아둔 정답을 쓰지 않은 채 root LM이 생성한 오답을 냈다. 단계별로 보면 실패가 어디서 갈렸는지 분명하다.
 
-1. 컨텍스트를 훑어 데이터 형식을 파악하고, sub-LM 호출로 항목을 semantic 분류한다. 큰 컨텍스트에서의 실수를 피하려고 작은 청크 단위로 나눠 호출한다.
+1. 컨텍스트를 훑어 데이터 형식을 파악하고, sub-LM 호출로 항목을 semantic 분류한다. 큰 컨텍스트에서의 실수를 피하려고 작은 chunk 단위로 나눠 호출한다.
 2. 분류 결과를 코드로 집계해 조건을 만족하는 사용자를 찾고, unique pair 목록을 만들어 변수에 저장한다. 이 시점에 정답이 이미 준비돼 있다.
 3. `FINAL_VAR()` 태그로 반환을 시도하지만 받아들여지지 않는다. 모델은 대신 pair 목록을 검증하기 시작한다.
 4. 첫 pair와 마지막 pair를 출력해 root LM이 직접 확인하게 하고, 통계를 뽑아 만든 과정과 답이 맞는지 검사한다.
@@ -802,7 +802,7 @@ RLM을 새로운 학습 대상으로 보는 논거는 추론 모델 연구에서
 ### 저자가 명시한 한계
 
 - **평가 범위**: 더 어렵고 자연스러운 long-context 처리 task로의 확장, 그리고 RLM에 가드레일을 구현하는 최선의 방법이 모두 미탐구 상태다. 본 논문의 4개 task는 복잡도 스펙트럼을 덮도록 설계된 것이지 실무 워크로드를 대표하는 것이 아니다.
-- **복잡도 증가**: LLM 위에 추론 layer를 더하면서 sub-call 비용 폭증 같은 의도치 않은 부작용이 생길 수 있다. 비동기 sub-call과 sandbox REPL이 runtime과 비용을 줄일 수 있지만 복잡도를 더 키운다.
+- **복잡도 증가**: LLM 위에 추론 layer를 더하면서 sub-call 비용 폭증 같은 의도치 않은 부작용이 생길 수 있다. 비동기 sub-call과 샌드박스 REPL이 runtime과 비용을 줄일 수 있지만 복잡도를 더 키운다.
 - **꼬리 비용과 runtime**: 비용 percentile 그래프에서 RLM은 50 percentile에서 비슷하거나 더 낮지만 꼬리 구간에서 크게 오른다. 원인은 답을 찾지 못해 길게 헤매는 trajectory다. 95 percentile의 runtime이 특히 긴 것은 sub-LLM 호출을 전부 blocking, sequential로 구현한 탓이며, 드물게 발생하므로 timeout 로직으로 조기 종료할 수 있다고 적는다.
 - **runtime 수치의 해석**: 저자들은 runtime이 사용 머신, API 요청 지연, LM 호출의 비동기성 같은 구현 세부에 크게 의존하므로 비용 수치와 달리 조심해서 읽어야 한다고 명시한다.
 - **학습 규모**: 실험은 기존 frontier 모델 위에서 이루어졌고, 네이티브 학습은 Qwen3-8B 규모의 초기 증거뿐이다.
@@ -836,7 +836,7 @@ YOLOv3(Redmon and Farhadi 2018)의 서술 방식을 따라 실패한 시도를 �
 
 - **네이티브 RLM 학습의 확장**: 본 논문은 sample 1,000개와 8B 모델에 그쳤다. 모델 크기, 예제 수와 다양성, rollout 수를 키우고 가능하면 on-policy와 online으로 가는 것이 필요하다고 적는다. 저자들은 RLM 학습을 다음 세대 language model system의 새로운 규모 확장 방향으로 다룰 수 있기를 기대한다.
 - **reasoning으로의 재해석**: RLM trajectory를 추론의 한 형태(OpenAI o1 2024, DeepSeek-R1 2025)로 보고 STaR(Zelikman 2022)와 Quiet-STaR(Zelikman 2024) 방식으로 기존 모델을 bootstrap할 수 있다는 가설을 제시한다.
-- **비동기와 sandbox**: 비동기 sub-call과 sandbox REPL이 runtime과 비용을 줄일 수 있다고 보면서도, 그만큼 시스템 복잡도가 커진다는 점을 함께 적는다.
+- **비동기와 샌드박스**: 비동기 sub-call과 샌드박스 REPL이 runtime과 비용을 줄일 수 있다고 보면서도, 그만큼 시스템 복잡도가 커진다는 점을 함께 적는다.
 
 ## 핵심 용어
 

@@ -67,9 +67,9 @@ compilation step은 새 자료가 들어올 때 LLM이 수행하는 처리 단�
 
 이 네 가지가 stateless RAG와 LLM Wiki를 가르는 지점이다. RAG는 자료를 넣을 때 chunk를 만들고 벡터를 계산할 뿐 기존 지식과의 관계를 따로 계산하지 않는다. 반면 LLM Wiki는 넣는 시점에 기존 페이지를 읽고 고친다.
 
-### knowledge graph
+### 지식 그래프
 
-knowledge graph는 entity page를 노드로, `[[wiki-links]]`를 엣지로 본 wiki 내부의 연결망이다. 별도의 데이터베이스가 아니라 markdown 파일에 적힌 링크가 그대로 그래프의 정의가 된다.
+지식 그래프(knowledge graph)는 entity page를 노드로, `[[wiki-links]]`를 엣지로 본 wiki 내부의 연결망이다. 별도의 데이터베이스가 아니라 markdown 파일에 적힌 링크가 그대로 그래프의 정의가 된다.
 
 이 구조가 주는 이점은 두 가지다. 하나는 사람이 훑을 때 개념 사이의 거리를 눈으로 확인할 수 있다는 것이고, 다른 하나는 링크가 없는 페이지를 기계적으로 찾아낼 수 있다는 것이다. 뒤에 나오는 유지보수 패스의 첫 검사 항목인 orphan 페이지가 후자를 이용한다.
 

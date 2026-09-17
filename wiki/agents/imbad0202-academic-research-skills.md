@@ -133,9 +133,9 @@ v3.8은 그 앵커를 실제로 따라가는 감사 단계다. `ARS_CLAIM_AUDIT=
 | anchorless | locator anchor가 없어 대조가 불가능하다 |
 | constraint-violation-uncited | 제약 위반인데 인용조차 붙어 있지 않다 |
 
-v3.11의 citation-existence gate는 LLM 심사와 무관하게 결정적으로 동작한다. 인용된 문헌마다 Semantic Scholar, OpenAlex, Crossref, arXiv 네 개 색인을 조회해 `lookup_verified` 값을 `true`, `false`, `unresolvable` 중 하나로 기록한다. 검증 결과는 `~/.cache/ars/verification.db` SQLite 캐시에 90일 TTL로 보관되고 `/ars-cache-invalidate`로 비운다.
+v3.11의 citation-existence gate는 LLM 심사와 무관하게 결정적으로 동작한다. 인용된 문헌마다 Semantic Scholar, OpenAlex, Crossref, arXiv 네 개 인덱스를 조회해 `lookup_verified` 값을 `true`, `false`, `unresolvable` 중 하나로 기록한다. 검증 결과는 `~/.cache/ars/verification.db` SQLite 캐시에 90일 TTL로 보관되고 `/ars-cache-invalidate`로 비운다.
 
-`false`의 정의를 좁게 잡은 점이 이 게이트의 설계 판단이다. `false`는 "DOI나 arXiv ID로 정확히 조회했는데 확실히 실패한 경우"에만 붙고, 색인되지 않은 인문학이나 비영어권 문헌은 `unresolvable`로 남아 차단되지 않는다. README는 이를 recall보다 precision을 우선한 명시적 트레이드오프라고 적는다.
+`false`의 정의를 좁게 잡은 점이 이 게이트의 설계 판단이다. `false`는 "DOI나 arXiv ID로 정확히 조회했는데 확실히 실패한 경우"에만 붙고, 인덱싱되지 않은 인문학이나 비영어권 문헌은 `unresolvable`로 남아 차단되지 않는다. README는 이를 recall보다 precision을 우선한 명시적 트레이드오프라고 적는다.
 
 한 가지 더 유의할 점은 기본 동작이 차단이 아니라는 것이다. `false` 행이 실제로 파이프라인을 멈추려면 사용자가 `terminal_policies.citation_existence`를 `strict`로 설정해야 하고, 그러지 않으면 advisory로만 표시되며 `/ars-mark-read`로 확인 처리할 수 있다.
 
@@ -144,8 +144,8 @@ v3.11의 citation-existence gate는 LLM 심사와 무관하게 결정적으로 �
 | 버전 | 추가된 것 |
 |---|---|
 | v3.3 | Semantic Scholar API를 Tier 0 존재 검사로 도입. Levenshtein 유사도 0.70 이상 제목 매칭, DOI 불일치 탐지, S2 ID 기반 중복 제거 |
-| v3.9.0 | 단일 색인 오염 탐지를 OpenAlex와 Crossref를 더한 3색인 교차검증으로 확장(advisory) |
-| v3.11.0 | arXiv resolver를 더해 4개 색인 결정적 존재 검증 게이트로 승격 |
+| v3.9.0 | 단일 인덱스 오염 탐지를 OpenAlex와 Crossref를 더한 3개 인덱스 교차검증으로 확장(advisory) |
+| v3.11.0 | arXiv resolver를 더해 4개 인덱스 결정적 존재 검증 게이트로 승격 |
 | v3.18.0 | 캐시 스루에 나이 기반 staleness advisory와 opt-in 실시간 재검증 연결 |
 
 이 3단 구조에 앞서 v2.7이 검증 에이전트의 판정 어휘 자체를 정리해 두었다. `integrity_verification_agent` v2.0은 모델의 기억으로 인용을 확인하는 것을 금지하고(Anti-Hallucination Mandate), 애매한 중간 판정을 없애 VERIFIED, NOT_FOUND, MISMATCH 세 가지만 남겼다. 참고문헌마다 WebSearch 감사 기록을 남기게 했고 Stage 4.5에서는 앞선 결과를 참조하지 않는 독립 재검증을 요구한다.
@@ -290,7 +290,7 @@ v3.16.0의 연구질문 advisory 개선은 규칙 기반 검사의 일반화 사
 
 v3.8의 기본 활성화 전환 계획은 보정 증거가 쌓인 뒤로 명시적으로 미뤄져 있다(v3.8 spec §5).
 
-**검증의 잔여 공백.** 인용 검증에는 precision과 recall의 트레이드오프가 있다. `unresolvable` 분류로 색인되지 않은 문헌을 통과시키므로 색인 커버리지가 낮은 분야와 언어에서는 검증 공백이 남는다. 68건 중 21건 사례처럼 3중 게이트를 거쳐도 독립 감사가 추가 문제를 찾아낸 전례가 있어, 게이트 통과가 완전무결의 증명은 아니다.
+**검증의 잔여 공백.** 인용 검증에는 precision과 recall의 트레이드오프가 있다. `unresolvable` 분류로 인덱싱되지 않은 문헌을 통과시키므로 인덱스 커버리지가 낮은 분야와 언어에서는 검증 공백이 남는다. 68건 중 21건 사례처럼 3중 게이트를 거쳐도 독립 감사가 추가 문제를 찾아낸 전례가 있어, 게이트 통과가 완전무결의 증명은 아니다.
 
 README가 밝히는 다른 한계도 있다. ARS 자체를 코퍼스 규모로 평가한 결과는 아직 없으며 향후 과제로 남아 있다. Ren et al. survey 인용도 human-in-the-loop이 자율 파이프라인보다 낫다는 실증이 아니라 설계 근거로만 제시된다.
 

@@ -147,10 +147,10 @@ computer-use agent는 사람처럼 화면을 보고 마우스와 키보드로 �
 |---|---|---|---|
 | 손으로 큐레이션한 벤치마크 | OSWorld 계열 | reward 충실도가 높다 | 앱 커버리지가 좁고 규모를 못 키운다 |
 | 지도학습 데이터셋 | OpenCUA 계열 | 다양한 앱을 덮는다 | trajectory 수준 모방 목표만 주고 결과 reward가 없어 강화학습에 못 쓴다 |
-| VLM 심판 프레임워크 | ZeroGUI | 임의 task를 채점할 수 있다 | reward 노이즈가 policy 최적화를 불안정하게 만든다 |
+| VLM-as-a-Judge 프레임워크 | ZeroGUI | 임의 task를 채점할 수 있다 | reward 노이즈가 policy 최적화를 불안정하게 만든다 |
 | 코드 네이티브 웹 mock | GUI-Genesis, InfiniteWeb | 결정적 reward를 얻는다 | 브라우저 안에 갇혀 OS 수준 task와 앱 간 워크플로를 못 다룬다 |
 
-VLM 심판 쪽의 실패는 추측이 아니다. ZeroGUI 자신이 ablation으로 거짓 양성 reward가 강화학습을 불안정하게 만든다고 확인했다. 그래서 CUA-Gym은 프로그램 검증을 포기하지 않는 쪽을 택하고, 대신 프로그램 검증을 확장하는 문제를 풀기로 한다.
+VLM-as-a-Judge 쪽의 실패는 추측이 아니다. ZeroGUI 자신이 ablation으로 거짓 양성 reward가 강화학습을 불안정하게 만든다고 확인했다. 그래서 CUA-Gym은 프로그램 검증을 포기하지 않는 쪽을 택하고, 대신 프로그램 검증을 확장하는 문제를 풀기로 한다.
 
 ## 핵심 개념
 
@@ -383,7 +383,7 @@ task 다양성의 상한은 환경 다양성이다. 기존 벤치마크는 데�
 
 | 에이전트 | 하는 일 | 산출 |
 |---|---|---|
-| Plan Agent | 문서 크롤과 스크린샷 수집과 사용자 역할별 기능 목록화로 대상 앱을 파악 | `DESIGN.md`(색상 팔레트, 타이포그래피, 여백 토큰, 컴포넌트 스타일), `assets/README.md`(UI 레이아웃 서술과 주요 워크플로), `assets/data_model.md`(인메모리 상태의 엔티티 정의), `TODO.md`(P0/P1/P2 작업 큐) |
+| Plan Agent | 문서 크롤과 스크린샷 수집과 사용자 역할별 기능 목록화로 대상 앱을 파악 | `DESIGN.md`(색상 팔레트, 타이포그래피, 여백 토큰, 컴포넌트 스타일), `assets/README.md`(UI 레이아웃 서술과 주요 워크플로), `assets/data_model.md`(인메모리 상태의 entity 정의), `TODO.md`(P0/P1/P2 작업 큐) |
 | Dev Agent | 명세대로 Vite와 React 기반 단일 페이지 앱을 고정 레이아웃으로 구현 | `src/App.jsx`(라우팅), `src/context/AppContext.jsx`(전역 상태), `src/utils/dataManager.js`(상태 초기화와 localStorage 영속), `src/utils/stateTracker.js`(diff 계산), `vite.config.js`(state API 플러그인) |
 | Web Agent | headless Playwright로 배포된 mock을 구동하며 `TODO.md`의 모든 인터랙티브 요소를 눌러보고 실제 DOM을 기준과 대조 | `TEST.md`(기능과 시각 버그 리포트), `AUDIT.md`(죽은 핸들러, 추적되지 않는 상태 변경, diff API 누락 항목) |
 
@@ -448,9 +448,9 @@ diff 표현은 중첩이 아니라 평평한 키 경로 문자열이다. 개별 
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | 소스 LOC | 6,127 | 4,237 | 4,828 | 5,663 | 7,196 | 9,180 | 13,095 | 13,095 |
 | route 컴포넌트 | 15.0 | 4 | 8 | 14 | 20 | 27 | 60 | 60 |
-| 데이터 모델 엔티티 | 5.9 | 3 | 3 | 5 | 7 | 10 | 23 | 23 |
+| 데이터 모델 entity | 5.9 | 3 | 3 | 5 | 7 | 10 | 23 | 23 |
 
-측정 정의는 명시되어 있다. LOC는 `src/` 아래 JavaScript와 TypeScript와 CSS와 HTML 파일을 합산하고 `node_modules`와 빌드 산출물은 제외한다. route 수는 SPA의 React Router 설정에 있는 `<Route>` 선언 수이고, 엔티티 수는 `SCHEMA.md`나 `src/utils/dataManager.js`에 선언된 최상위 엔티티 수다.
+측정 정의는 명시되어 있다. LOC는 `src/` 아래 JavaScript와 TypeScript와 CSS와 HTML 파일을 합산하고 `node_modules`와 빌드 산출물은 제외한다. route 수는 SPA의 React Router 설정에 있는 `<Route>` 선언 수이고, entity 수는 `SCHEMA.md`나 `src/utils/dataManager.js`에 선언된 최상위 entity 수다.
 
 | 소스 LOC 구간 | mock 수 | 비율 |
 |---|---:|---:|
@@ -554,7 +554,7 @@ action primitive는 네 묶음 19종이다.
 ![[assets/wang-2026-cua-gym-scaling-verifiable-training-environments/fig04.png]]
 *Figure 4: 흔한 sliding window는 최근 5턴만 남기고 나머지를 버린다. trajectory slicing은 rollout 하나에서 같은 컨텍스트 예산으로 여러 학습 샘플을 만들되, 오래된 스크린샷만 `<image collapsed>`로 접고 assistant의 사고와 tool call은 원문 그대로 둔다 (Wang 2026, p.5)*
 
-slice는 `traj_slice_interval` 10 턴쌍마다 하나씩 나오고 정수 `collapsed_length`로 색인된다. slice의 prompt 부분은 시스템 메시지 다음에 앞쪽 `collapsed_length` 턴쌍이 오는데 그 턴쌍들의 스크린샷은 `"<image collapsed>"` 짧은 플레이스홀더 텍스트로 대체된다. response 부분은 rollout의 현재 지점까지 이어지는 이후 모든 턴이고 멀티모달 observation을 온전히 보존한다. 첫 slice는 `collapsed_length`가 0이라 trajectory를 원형 그대로 담는다. 이후 slice는 점점 더 오래된 턴을 텍스트 플레이스홀더로 보며 새 observation을 위한 컨텍스트 예산을 확보한다.
+slice는 `traj_slice_interval` 10 턴쌍마다 하나씩 나오고 정수 `collapsed_length`로 인덱싱된다. slice의 prompt 부분은 시스템 메시지 다음에 앞쪽 `collapsed_length` 턴쌍이 오는데 그 턴쌍들의 스크린샷은 `"<image collapsed>"` 짧은 플레이스홀더 텍스트로 대체된다. response 부분은 rollout의 현재 지점까지 이어지는 이후 모든 턴이고 멀티모달 observation을 온전히 보존한다. 첫 slice는 `collapsed_length`가 0이라 trajectory를 원형 그대로 담는다. 이후 slice는 점점 더 오래된 턴을 텍스트 플레이스홀더로 보며 새 observation을 위한 컨텍스트 예산을 확보한다.
 
 | 대상 | `loss_mask` |
 |---|---|
@@ -770,7 +770,7 @@ cross-app task는 12,311개로 코퍼스의 38.3%다. 쌍은 지시문의 키워
 | Gym-Anything | Desktop | 7,277 | 193 | VLM | 예 |
 | **CUA-Gym** | **Desktop+Web** | **32,112** | **110** | **Programmatic** | **예** |
 
-Programmatic은 코드 네이티브 assertion, VLM은 VLM-as-a-judge를 뜻한다. 원문 표의 별표는 공개를 약속했으나 아직 공개되지 않았다는 표시여서 위 표에서는 "아니오(공개 예정)"로 옮겼다. 환경 수만 보면 Gym-Anything이 193개로 더 많은데 reward가 VLM 심판이다. 프로그램 검증과 데스크톱 및 웹 동시 커버리지를 함께 갖춘 것으로는 CUA-Gym이 가장 크다는 것이 저자들의 주장이다.
+Programmatic은 코드 네이티브 assertion, VLM은 VLM-as-a-Judge를 뜻한다. 원문 표의 별표는 공개를 약속했으나 아직 공개되지 않았다는 표시여서 위 표에서는 "아니오(공개 예정)"로 옮겼다. 환경 수만 보면 Gym-Anything이 193개로 더 많은데 reward가 VLM-as-a-Judge다. 프로그램 검증과 데스크톱 및 웹 동시 커버리지를 함께 갖춘 것으로는 CUA-Gym이 가장 크다는 것이 저자들의 주장이다.
 
 ## 결과
 

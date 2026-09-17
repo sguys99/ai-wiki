@@ -159,7 +159,7 @@ FSQ는 VQ-VAE의 latent에서 벡터 양자화를 스칼라 양자화로 바꾼 
 
 논문의 기여는 세 가지다.
 
-1. **drop-in replacement 검증**: 이미지 생성의 MaskGIT(Chang et al., 2022)와 depth estimation, colorization, panoptic segmentation의 UViM(Kolesnikov et al., 2022)에 FSQ를 적용해 각 지표에서 0.5~3%의 하락만으로 매우 비슷한 시각 결과를 얻었다. 두 모델 계열은 오토인코더가 convolutional인지 Transformer 기반인지, 생성 Transformer가 masked인지 완전 autoregressive인지, decoder-only인지 encoder-decoder인지가 모두 다르다.
+1. **drop-in replacement 검증**: 이미지 생성의 MaskGIT(Chang et al., 2022)와 depth estimation, colorization, panoptic segmentation의 UViM(Kolesnikov et al., 2022)에 FSQ를 적용해 각 지표에서 0.5~3%의 하락만으로 매우 비슷한 시각 결과를 얻었다. 두 모델 계열은 autoencoder가 convolutional인지 Transformer 기반인지, 생성 Transformer가 masked인지 완전 autoregressive인지, decoder-only인지 encoder-decoder인지가 모두 다르다.
 2. **VQ 대 FSQ 트레이드오프 분석**: codebook 크기에 따른 두 방식의 scaling 거동을 특성화하고 압축 관점에서 표현의 복잡도를 분석했다. FSQ는 큰 codebook을 활용해 재구성 지표와 샘플 품질을 함께 높이고, 대부분의 모델에서 사용률이 약 100%다. 이 결과는 보조 손실 없이 얻은 것이다.
 3. **VQ 일반성의 실익 검증**: VQ 정식화의 완전한 일반성은 FSQ 대비 이득이 거의 없고, 큰 codebook에서는 VQ가 오히려 나쁘다. 저자들은 VQ가 최적화하기 어렵기 때문으로 본다. FSQ는 표준 VQ에서 a) 인코더 출력을 bound하고 b) codebook C를 고정한 형태로 볼 수 있다. FSQ의 암묵적 codebook은 VQ보다 차원이 훨씬 작다(FSQ는 보통 d < 10, VQ는 d ≥ 512).
 
@@ -183,7 +183,7 @@ FSQ의 착안점은 신경망 압축(neural compression) 문헌에서 왔다. �
 
 d차원 표현 z ∈ R^d를 유한한 codeword 집합으로 양자화한다. 먼저 bounding 함수 f를 적용하고 정수로 반올림한다. f는 ẑ = round(f(z))의 각 채널이 L개 값 중 하나를 갖도록 고른다(예: f: z ↦ ⌊L/2⌋ tanh(z)). 따라서 ẑ ∈ C이고, C는 채널별 codebook 집합의 곱집합으로 정의되는 암묵적 codebook이며 |C| = L^d다. C의 벡터를 열거하면 임의의 ẑ를 {1, ..., L^d}의 정수 하나로 보내는 전단사가 생긴다. 그래서 VQ 앞뒤 층의 출력과 입력 차원만 맞추면 Transformer 학습 등 VQ가 흔히 쓰이는 어떤 신경망 설정에서도 VQ를 FSQ로 바꿀 수 있다. i번째 채널을 L_i개 값으로 보내는 일반형은 |C| = ∏_{i=1}^{d} L_i다.
 
-Figure 1의 예는 d = 3, L = 3이고 codebook은 C = {(−1, −1, −1), (−1, −1, 0), (−1, −1, 1), ..., (1, 1, 1)}, |C| = 3^3 = 27이다. 반올림의 그래디언트는 VQ-VAE처럼 STE로 통과시키며 그래디언트를 1로 대체한다. ML 프레임워크에서는 stop gradient(sg) 연산으로 `round_ste: x ↦ x + sg(round(x) − x)`처럼 구현한다. 재구성 손실로 학습하는 오토인코더 안에 FSQ를 두면, 재구성 손실을 줄이는 방향의 그래디언트가 인코더에 전달되어 정보를 여러 양자화 bin에 퍼뜨리도록 강제한다. 그 결과 보조 손실 없이 모든 codeword를 쓰는 양자화기를 얻는다.
+Figure 1의 예는 d = 3, L = 3이고 codebook은 C = {(−1, −1, −1), (−1, −1, 0), (−1, −1, 1), ..., (1, 1, 1)}, |C| = 3^3 = 27이다. 반올림의 그래디언트는 VQ-VAE처럼 STE로 통과시키며 그래디언트를 1로 대체한다. ML 프레임워크에서는 stop gradient(sg) 연산으로 `round_ste: x ↦ x + sg(round(x) − x)`처럼 구현한다. 재구성 손실로 학습하는 autoencoder 안에 FSQ를 두면, 재구성 손실을 줄이는 방향의 그래디언트가 인코더에 전달되어 정보를 여러 양자화 bin에 퍼뜨리도록 강제한다. 그 결과 보조 손실 없이 모든 codeword를 쓰는 양자화기를 얻는다.
 
 ### bounding 함수의 구현 세부
 
@@ -216,7 +216,7 @@ VQ는 크기 |C| × d의 codebook을 학습한다. 흔한 |C| = 2^12 = 4096, d =
 
 ### 적용 대상 아키텍처
 
-MaskGIT(Chang et al., 2022)는 먼저 convolutional VQ-GAN 오토인코더(Esser et al., 2020)를 재구성 목적으로 학습하고(Stage I), 오토인코더를 얼린 뒤 BERT 방식의 masked Transformer로 양자화 표현을 예측하게 학습한다(Stage II). 표현 ẑ의 토큰 일부를 무작위로 MASK 토큰으로 바꾼 ẑ_M을 클래스 토큰과 함께 Transformer에 넣고, masked 토큰마다 분포를 예측한다. 추론에서는 처음에 MASK 토큰과 클래스 토큰만 넣고, 예측 확신도에 따라 일부 위치를 골라 토큰을 샘플링해 입력의 MASK를 교체하는 과정을 모든 토큰이 드러날 때까지 반복한다.
+MaskGIT(Chang et al., 2022)는 먼저 convolutional VQ-GAN autoencoder(Esser et al., 2020)를 재구성 목적으로 학습하고(Stage I), autoencoder를 얼린 뒤 BERT 방식의 masked Transformer로 양자화 표현을 예측하게 학습한다(Stage II). 표현 ẑ의 토큰 일부를 무작위로 MASK 토큰으로 바꾼 ẑ_M을 클래스 토큰과 함께 Transformer에 넣고, masked 토큰마다 분포를 예측한다. 추론에서는 처음에 MASK 토큰과 클래스 토큰만 넣고, 예측 확신도에 따라 일부 위치를 골라 토큰을 샘플링해 입력의 MASK를 교체하는 과정을 모든 토큰이 드러날 때까지 반복한다.
 
 UViM(Kolesnikov et al., 2022)은 여러 dense prediction 과제를 다루는 범용 아키텍처다. 1단계에서 Transformer 기반 VQ-VAE가 목표 과제의 레이블 공간을 모델링한다. VQ-VAE 인코더와 디코더는 과제 입력(depth estimation과 segmentation은 RGB 이미지, colorization은 grayscale 이미지)을 side information, 즉 "context"로 받을 수 있고 일부 과제에서 유익했다. 2단계에서 encoder-decoder Transformer가 과제 입력을 받아 VQ-VAE 인코더가 만든 양자화 토큰으로 dense 레이블을 예측하도록 학습한다. 추론에서는 입력에 조건화된 Transformer로 코드를 autoregressive하게 샘플링한 뒤 VQ-VAE 디코더에 넣는다. 세 과제가 아키텍처를 공유하되 가중치는 과제별로 따로 학습한다.
 
@@ -234,7 +234,7 @@ MaskGIT 추론은 cosine 스케줄로 12 스텝을 써서 이미지 한 장을 �
 
 | 지표 | 정의 |
 |---|---|
-| Reconstruction FID | GAN 손실로 학습한 오토인코더에 검증 이미지 5만 장을 통과시켜 얻은 FID. Stage II Transformer가 데이터를 완벽히 모델링했을 때 도달할 수 있는 FID다. ADM TensorFlow Suite(Dhariwal & Nichol, 2023)로 5만 장 재구성을 학습 집합과 비교해 계산한다 |
+| Reconstruction FID | GAN 손실로 학습한 autoencoder에 검증 이미지 5만 장을 통과시켜 얻은 FID. Stage II Transformer가 데이터를 완벽히 모델링했을 때 도달할 수 있는 FID다. ADM TensorFlow Suite(Dhariwal & Nichol, 2023)로 5만 장 재구성을 학습 집합과 비교해 계산한다 |
 | Codebook Usage | 검증 집합을 인코딩할 때 한 번 이상 쓰인 codeword의 비율 |
 | Sampling FID | Stage II Transformer로 클래스 조건부 샘플링한 표현 ẑ를 디코딩해 얻은 FID |
 | Compression Cost | 표현 밑에 깔린 이산 분포를 모델링하기 얼마나 어려운지(모델링 복잡도)의 대리 지표. 이산 코드의 분포를 예측하는 Transformer는 entropy coding과 결합해 표현을 무손실 압축할 수 있으며, masked Transformer는 입력을 점진적으로 드러내는 결정적 masking 스케줄만 있으면 된다. M2T(Mentzer et al., 2023)의 결정적 스케줄을 쓴다 |
@@ -377,7 +377,7 @@ Table 2의 값이다. 각 값은 3회 학습 평균과 표준편차이고, † �
 - **codebook splitting**: 쓰이지 않는 벡터를 가장 자주 쓰이는 임베딩을 둘로 쪼개 대체하는 VQ 보조 장치(Linde et al., 1980, UViM 사용).
 - **bounding 함수 f**: 인코더 출력의 각 채널을 L개 값의 범위로 묶는 함수. 기본형은 ⌊L/2⌋ tanh(z)이고 짝수 L은 비대칭 offset이 필요하다.
 - **CFG (classifier-free guidance)**: 조건부 logit과 무조건부 logit을 l' = l_c + α(l_c − l_∅)로 보간해 생성 품질을 조절하는 기법.
-- **Reconstruction FID / Sampling FID**: 오토인코더 재구성 품질과 Stage II Transformer 샘플 품질을 각각 FID로 잰 지표.
+- **Reconstruction FID / Sampling FID**: autoencoder 재구성 품질과 Stage II Transformer 샘플 품질을 각각 FID로 잰 지표.
 - **Compression Cost**: Transformer와 entropy coding으로 표현을 무손실 압축했을 때의 비트 수. 이산 분포의 모델링 난이도의 대리 지표.
 
 ## 8. 그림 후보 (Figure Candidates)

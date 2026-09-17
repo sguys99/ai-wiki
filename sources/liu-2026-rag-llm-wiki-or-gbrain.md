@@ -41,7 +41,7 @@ Yanli Liu가 쓴 15분 분량의 결정 프레임워크 에세이로, 에이전�
 | 2 | RAG 7개 failure point 중 3개 선별 | chunking, re-derivation, passivity. 2024년 논문이 정리한 7개 중 3개는 모델이 컨텍스트를 보기도 전에 발생한다 |
 | 3 | context window는 메모리가 아니라는 명제 | 100만 토큰을 담아도 30만에서 40만 토큰, 한도의 30~40%에서 성능 저하가 시작되고 세션 종료 시 초기화된다 |
 | 4 | LLM Wiki 3계층 정식화 | 하단 원본(immutable), 중간 wiki(모델 소유), 상단 schema(CLAUDE.md 같은 운영 규칙) |
-| 5 | 복리 누적의 정량 지표 | ingest 1회당 wiki page 10~15개 갱신. 합성 답변도 wiki page로 저장되며 slug는 질문에서 유도된다 |
+| 5 | compounding의 정량 지표 | ingest 1회당 wiki page 10~15개 갱신. 합성 답변도 wiki page로 저장되며 slug는 질문에서 유도된다 |
 | 6 | lint workflow | 모델이 wiki 전체를 주기 감사해 orphan page, 오래된 주장, 미생성 개념을 찾는다. "the machine does the maintenance humans always abandon" |
 | 7 | LLM Wiki 규모 천장 | 원본 100건에 page 수백 개는 정상, 1만 건에서 탐색 실패, 10만 건에서 retrieval 레이어가 필요해져 RAG로 회귀 |
 | 8 | thin harness, fat skills의 정량 근거 | harness를 약 200줄로 유지하고 지능은 전부 markdown 스킬에 둔다 |
@@ -54,7 +54,7 @@ Yanli Liu가 쓴 15분 분량의 결정 프레임워크 에세이로, 에이전�
 | 15 | cron을 자율 에이전트로 쓰는 패턴 | 잡 프롬프트가 "Read skills/{name}/SKILL.md and run it" 한 줄. 5분 시차, quiet hours 기본 23시부터 8시, idempotent, 감사 기록 |
 | 16 | latent 작업과 deterministic 작업의 분리 | 읽기와 합성은 모델이, 데이터베이스 쓰기와 계산은 코드가 맡는다. "Mixing them is how agents hallucinate" |
 | 17 | 2026년 수렴 예측 | LLM Wiki v2 커뮤니티 확장판의 retrieval 추가, GBrain의 pgvector 질의, Neo4j의 단일 access point 통합 |
-| 18 | Claude Code가 세 패턴을 암시한다는 관찰 | CLAUDE.md는 mini-wiki, auto-memory는 복리 누적, 스킬은 실행. "the same pressures produced the same solutions" |
+| 18 | Claude Code가 세 패턴을 암시한다는 관찰 | CLAUDE.md는 mini-wiki, auto-memory는 compounding, 스킬은 실행. "the same pressures produced the same solutions" |
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -62,11 +62,11 @@ Yanli Liu가 쓴 15분 분량의 결정 프레임워크 에세이로, 에이전�
 
 저자는 context window가 메모리가 아니라 세션마다 지워지는 화이트보드라는 전제를 먼저 못박는다. 100만 토큰을 담을 수 있어도 30만에서 40만 토큰 구간에서 성능 저하가 시작되고 세션 종료 시 전부 초기화된다.
 
-RAG는 이 문제에 대한 첫 번째 진지한 답이었다. 전부를 context window에 넣는 대신 문서를 벡터로 임베딩해 저장하고 질의 시점에 관련 청크만 가져온다. 저자는 수백만 개의 production 시스템이 이 위에서 동작한다고 인정한다. 다만 2024년 논문이 정리한 실패 지점 7개 가운데 세 가지가 에이전트에게 특히 문제가 된다.
+RAG는 이 문제에 대한 첫 번째 진지한 답이었다. 전부를 context window에 넣는 대신 문서를 벡터로 임베딩해 저장하고 질의 시점에 관련 chunk만 가져온다. 저자는 수백만 개의 production 시스템이 이 위에서 동작한다고 인정한다. 다만 2024년 논문이 정리한 실패 지점 7개 가운데 세 가지가 에이전트에게 특히 문제가 된다.
 
 | 실패 유형 | 증상 | 저자가 든 예시 |
 |---|---|---|
-| chunking problem | 관련 정보가 서로 다른 벡터로 흩어진다 | 30페이지 기술 명세가 500토큰 조각으로 쪼개져 컴플라이언스 요구사항 청크와 그 이유를 설명하는 청크가 분리된다. 검색기가 하나만 찾아 기술적으로는 맞지만 위험할 만큼 불완전한 답이 나온다 |
+| chunking problem | 관련 정보가 서로 다른 벡터로 흩어진다 | 30페이지 기술 명세가 500토큰 조각으로 쪼개져 컴플라이언스 요구사항 chunk와 그 이유를 설명하는 chunk가 분리된다. 검색기가 하나만 찾아 기술적으로는 맞지만 위험할 만큼 불완전한 답이 나온다 |
 | re-derivation problem | 모든 질의가 매번 처음부터 시작한다 | 어제 같은 문서를 분석해 같은 결론을 냈어도 내일 또 같은 일을 한다. Karpathy 인용은 "RAG rereads the same books for every exam, never actually learning the material" |
 | passivity problem | 물어볼 때까지 기다린다 | 지난 화요일 인덱싱한 문서가 오늘 문서와 모순되어도 알아채지 못하고, 세 자료가 중요한 세부에서 어긋나도 표시하지 않는다 |
 
@@ -74,13 +74,13 @@ RAG는 이 문제에 대한 첫 번째 진지한 답이었다. 전부를 context
 
 ### 3.2 RAG, The Retriever
 
-- **파이프라인**: embed, store, retrieve, generate. Pinecone이나 Chroma 같은 벡터 데이터베이스에 저장한다.
+- **파이프라인**: embed, store, retrieve, generate. Pinecone이나 Chroma 같은 vector database에 저장한다.
 - **성숙도**: LangChain과 LlamaIndex를 비롯한 여러 프레임워크가 표준화했고, 팀이 이미 만드는 법을 안다는 사실이 대부분의 아키텍처 비교가 인정하는 것보다 중요하다고 저자는 본다.
 - **규모**: 정책, 메모, 명세, Slack 내보내기까지 내부 문서 20만 건을 전부 인덱싱하고 같은 날 질의를 시작할 수 있다. wiki page 전처리도 스킬 작성도 필요 없다.
 - **신선도**: 문서가 바뀌면 다시 임베딩하면 되고 wiki 감사나 스킬 재작성이 따라붙지 않는다.
-- **약점 1, 구조적 chunking**: 청크 크기 조절로 풀리지 않는다. 7개 실패 지점 가운데 3개는 언어 모델이 컨텍스트를 보기도 전에 발생한다.
+- **약점 1, 구조적 chunking**: chunk 크기 조절로 풀리지 않는다. 7개 실패 지점 가운데 3개는 언어 모델이 컨텍스트를 보기도 전에 발생한다.
 - **약점 2, 누적 지연**: 임베딩과 vector search, reranking, 컨텍스트 패키징 각 단계가 밀리초를 더한다. 에이전트가 루프에서 tool call을 40번 하면 초 단위로 누적된다.
-- **규제 대응**: 데이터가 자기 vector store에 남고 retrieval이 감사 가능하며 생성이 추적 가능하다. 저자는 이 감사 가능성이 새 접근의 복리 누적 이점보다 중요하게 평가되는 경우가 많다고 본다.
+- **규제 대응**: 데이터가 자기 vector store에 남고 retrieval이 감사 가능하며 생성이 추적 가능하다. 저자는 이 감사 가능성이 새 접근의 compounding 이점보다 중요하게 평가되는 경우가 많다고 본다.
 
 **Verdict**: 코퍼스가 1만 건 이상이고 자주 바뀌며 알려진 trade-off로 production 출시를 서둘러야 할 때 쓴다. 에이전트가 자기 작업에서 학습하거나 자율 실행해야 하면 쓰지 않는다.
 
@@ -94,8 +94,8 @@ RAG는 이 문제에 대한 첫 번째 진지한 답이었다. 전부를 context
 | 중간 (wiki) | 모델 | 요약, entity page, 개념 정의, 상호 참조를 담은 markdown page |
 | 상단 (schema) | 사람 | CLAUDE.md 같은 설정 파일. 명명 규칙, 상호 참조 규칙, 모순의 정의 |
 
-- **복리 누적 경로 1, ingest**: 새 문서를 넣으면 기존 wiki와 대조해 영향받는 page를 전부 갱신한다. 한 번에 보통 10~15개 page를 건드리며 상호 참조 추가, 모순 표시, entity profile 갱신이 함께 일어난다.
-- **복리 누적 경로 2, 질의 루프**: 합성 답변이 새 지식이면 다시 wiki page로 저장되고 slug는 질문 자체에서 유도된다.
+- **compounding 경로 1, ingest**: 새 문서를 넣으면 기존 wiki와 대조해 영향받는 page를 전부 갱신한다. 한 번에 보통 10~15개 page를 건드리며 상호 참조 추가, 모순 표시, entity profile 갱신이 함께 일어난다.
+- **compounding 경로 2, 질의 루프**: 합성 답변이 새 지식이면 다시 wiki page로 저장되고 slug는 질문 자체에서 유도된다.
 - **lint workflow**: 모델이 주기적으로 wiki 전체를 감사해 들어오는 링크가 없는 orphan page, 오래된 주장, 언급만 되고 자기 page를 받지 못한 개념을 찾는다. 저자의 평가는 "the machine does the maintenance humans always abandon"이다.
 - **약점 1, 규모 천장**: BM25와 grep 탐색이 원본 100건에 page 수백 개까지는 잘 동작하지만 1만 건에서 실패하고 10만 건에서는 retrieval 레이어가 필요해져 다시 RAG처럼 보인다.
 - **약점 2, 선행 연산 비용**: 매 ingest마다 모델이 새 원본과 관련 기존 page를 읽고 다시 쓴다. 문서당 비용이 RAG 임베딩보다 상당히 크다.
@@ -194,7 +194,7 @@ frontmatter 아래에는 7단계 enrichment 프로토콜이 이어지고 세 등
 - Karpathy LLM Wiki v2의 커뮤니티 확장판이 컴파일된 wiki 위에 retrieval 레이어를 추가하고 있다.
 - GBrain 스킬은 이미 Postgres와 pgvector 백엔드에 질의한다.
 - Neo4j 같은 엔터프라이즈 플랫폼이 graph database, vector search, semantic reasoning을 단일 access point로 묶고 있다.
-- Claude Code가 CLAUDE.md는 mini-wiki, auto-memory는 복리 누적, 스킬은 실행으로 세 패턴을 이미 갖추고 있다.
+- Claude Code가 CLAUDE.md는 mini-wiki, auto-memory는 compounding, 스킬은 실행으로 세 패턴을 이미 갖추고 있다.
 
 저자는 데이터베이스가 SQL과 NoSQL 선택에서 둘 다 처리하는 hybrid로 진화한 것과 같은 경로를 예상한다. 글 마지막에는 시작 경로가 제시된다. RAG는 LangChain의 RAG 튜토리얼이 가장 빠른 길이고, LLM Wiki는 Karpathy의 gist가 오늘 바로 Claude나 GPT에 적용 가능한 200줄 schema이며, fat skills는 GBrain 저장소에서 코드보다 RESOLVER.md와 THIN_HARNESS_FAT_SKILLS.md를 먼저 읽으라고 권한다.
 
@@ -210,7 +210,7 @@ frontmatter 아래에는 7단계 enrichment 프로토콜이 이어지고 세 등
 | RAG 실패 지점 | 2024년 논문이 7개 매핑, 그중 3개는 모델이 컨텍스트를 보기 전에 발생 | 에이전트에 치명적인 3개는 chunking, re-derivation, passivity |
 | chunking 예시 규모 | 30페이지 명세가 500토큰 조각으로 분할 | 요구사항과 그 이유가 다른 벡터로 분리 |
 | RAG 지연 누적 | tool call 40회 루프에서 밀리초가 초 단위로 누적 | 임베딩, vector search, reranking, 컨텍스트 패키징 다단계 |
-| LLM Wiki 복리 누적 | ingest 1회당 wiki page 10~15개 갱신 | 상호 참조, 모순 표시, entity 갱신 |
+| LLM Wiki compounding | ingest 1회당 wiki page 10~15개 갱신 | 상호 참조, 모순 표시, entity 갱신 |
 | LLM Wiki 규모 한계 | 원본 100건에 page 수백 개는 정상, 1만 건에서 탐색 붕괴, 10만 건에서 RAG 회귀 | BM25와 grep 기반 탐색 |
 | GBrain harness | 약 200줄 | 스킬 24개는 end-to-end, 평가, 단위 테스트 전부 보유 |
 | GBrain cron | 5분 시차 슬롯, quiet hours 기본 23시부터 8시 | idempotent 강제, 결과는 `reports/{job-name}/{YYYY-MM-DD-HHMM}.md` |
@@ -233,7 +233,7 @@ frontmatter 아래에는 7단계 enrichment 프로토콜이 이어지고 세 등
 
 - [[applications/garrytan-gbrain]]: 본 글이 묘사하는 GBrain의 1차 자료다. 본 글이 `enrich` 스킬의 YAML frontmatter를 직접 인용해 대조 검증이 가능하다.
 - [[applications/kmyu-2026-akb-llmwiki-gbrain-comparison]]: AKB, llmwiki, GBrain을 6개 운영 항목으로 비교한 국내 전략 보고서다. 본 글과 대상은 겹치지만 관점이 다르며, 본 글은 아키텍처 선택 기준을, 이 보고서는 제품 포지셔닝을 다룬다.
-- [[applications/gajjar-2026-gbrain-vs-computer-memory]]: 같은 복리 누적 명제를 엔터프라이즈 관점에서 보완한다.
+- [[applications/gajjar-2026-gbrain-vs-computer-memory]]: 같은 compounding 명제를 엔터프라이즈 관점에서 보완한다.
 - [[applications/vectorize-2026-gbrain-review-honest-assessment]]: "skills as code, not config" 평가가 본 글의 fat skills 분석과 같은 설계 통찰을 다른 각도에서 진술한다.
 - [[applications/mantena-2026-hermes-gbrain-setup-vps]]: 본 글이 거론한 "can't npm install someone else's brain" 한계의 실전 우회를 보여준다.
 - [[applications/techwealth-hub-2026-garry-tan-gbrain-explained]]: 영상의 brain agent loop 정의를 본 글의 signal-detector 원칙과 묶어 읽을 수 있다.

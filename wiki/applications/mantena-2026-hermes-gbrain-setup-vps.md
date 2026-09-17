@@ -175,7 +175,7 @@ gbrain init
 | 3 | Hermes | 콘텐츠를 가져와 처리한다 |
 | 4 | Hermes | `~/brain/`에 markdown을 쓴다 |
 | 5 | cron | 5분마다 sync를 실행한다 |
-| 6 | GBrain | 들어온 내용을 색인한다 |
+| 6 | GBrain | 들어온 내용을 인덱싱한다 |
 
 사용자가 실제로 보내는 지시는 한 문장이다. 본문이 제시한 형태는 "Ingest this PDF: [URL or file path]. Write the brain page to ~/brain/"이며, 대상이 URL이든 로컬 파일 경로든 같은 형식을 쓴다.
 

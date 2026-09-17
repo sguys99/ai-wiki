@@ -45,7 +45,7 @@ DevRev의 Tech Lead Arth Gajjar가 "모든 AI agent는 매 세션마다 zero에�
 
 - **형식**: 논문이나 코드가 아니라 비교 에세이다. 새 알고리즘도, 새 벤치마크 설계도 없다.
 - **GBrain 서술 범위**: 글이 언급하는 GBrain 요소는 markdown과 people page와 calendar 인덱싱, git 저장소, Postgres와 pgvector 기반 hybrid search, compiled truth와 append-only timeline의 2층 페이지 schema, 야간 dream cycle이다. 순위 합산이나 중복 제거, typed edge 같은 검색 알고리즘 세부는 다루지 않는다.
-- **Computer Memory 서술 범위**: AirSync가 50개 이상의 시스템과 양방향으로 동기화한다는 점, 조직 단위로 지식을 누적한다는 점, SOC 2 준수 접근 제어를 갖췄다는 점만 서술된다. 내부 retrieval 구조, 즉 graph 사용 여부와 임베딩 모델과 색인 방식은 글에 나오지 않는다.
+- **Computer Memory 서술 범위**: AirSync가 50개 이상의 시스템과 양방향으로 동기화한다는 점, 조직 단위로 지식을 누적한다는 점, SOC 2 준수 접근 제어를 갖췄다는 점만 서술된다. 내부 retrieval 구조, 즉 graph 사용 여부와 임베딩 모델과 인덱싱 방식은 글에 나오지 않는다.
 - **권한 모델 대비**: 글은 GBrain 쪽을 flat-file access로, Computer Memory 쪽을 SOC 2 준수 접근 제어로 요약한다. 이 한 줄이 세 번째 차이 항목의 전부이고, 구체적인 권한 모델 설명은 양쪽 모두 없다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)

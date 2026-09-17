@@ -49,7 +49,7 @@ v3.12.1에서 `three-way-scan`과 `rebuttal-audit` 두 모드가 추가되며 �
 
 1. **스킬 4종 파이프라인**: Deep Research에서 시작해 Academic Paper, Academic Paper Reviewer를 거쳐 Academic Pipeline orchestrator로 이어지는 논문 생산 흐름을 하나로 묶었다. 각 스킬은 독립적으로 쓸 수도 있고 orchestrator로 연결할 수도 있다.
 2. **Human-in-the-loop의 설계 원칙 명문화**: Lu et al.(2026, *Nature*)의 완전자율 AI Scientist가 남긴 실패 모드 목록을 근거로, "AI가 보강한 인간 연구자가 AI 단독보다 이 실패 모드들을 더 잘 피한다"는 전제를 README 서두에 건다. 매 스테이지 사용자 확인 체크포인트가 필수이고 integrity gate는 건너뛸 수 없다.
-3. **3단계 인용 무결성 인프라**: v3.7.3의 3-layer locator anchor, v3.8의 claim-faithfulness audit, v3.11의 4개 색인 citation-existence gate를 순차로 쌓았다. Zhao et al.(2026-05)의 코퍼스 규모 감사 결과가 직접 동기다.
+3. **3단계 인용 무결성 인프라**: v3.7.3의 3-layer locator anchor, v3.8의 claim-faithfulness audit, v3.11의 4개 인덱스 citation-existence gate를 순차로 쌓았다. Zhao et al.(2026-05)의 코퍼스 규모 감사 결과가 직접 동기다.
 4. **Devil's Advocate Concession Threshold Protocol (v3.0)**: 저자가 직접 겪은 frame-lock, sycophancy, 의도 오판 세 가지 한계에서 나왔다. DA가 반박을 1점에서 5점으로 채점해 4점 이상일 때만 양보를 허용하고 연속 양보를 금지한다.
 5. **Anti-Context-Rot 장치 (v3.1)**: 스킬 4종에 걸쳐 anti-pattern 29개를 "왜 실패하는가"와 "올바른 행동" 열을 갖춘 표로 명시하고, 긴 대화에서도 깨지면 안 되는 규칙에 IRON RULE 표식 22개를 달았다. SKILL.md 총량은 142KB에서 85KB로 40% 줄이고 상세 프로토콜을 `references/`로 뺐다.
 6. **Model Tiering과 Cross-Model Verification**: opt-in `ARS_MODEL_TIERING` 스위치가 실행형 에이전트 13개를 세션 모델보다 한 단계 낮은 등급(economy, 하한은 Opus 계열)으로 내리고, integrity gate와 최종 리뷰의 판단형 에이전트를 frontier 등급(quality-boost)으로 올린다. 스위치를 켜지 않으면 이전 동작과 바이트 단위로 동일하다.
@@ -99,13 +99,13 @@ integrity gate는 실험 근거 주장마다 선언된 provenance와 대조해 A
 | v3.3 | Semantic Scholar API를 Tier 0 존재 검사로 도입. Levenshtein 유사도 0.70 이상 제목 매칭, DOI 불일치 탐지, S2 ID 기반 중복 제거 |
 | v3.7.3 | 모든 인용에 3-layer locator anchor(quote, page, section, paragraph)를 붙이는 locator 인프라 |
 | v3.8 | opt-in `ARS_CLAIM_AUDIT=1` claim-faithfulness audit. 앵커로 원문을 다시 가져와 주장이 실제로 뒷받침되는지 판정 |
-| v3.9.0 | Semantic Scholar 단일 색인 오염 탐지를 OpenAlex와 Crossref를 더한 3색인 교차검증(advisory)으로 확장 |
-| v3.11.0 | arXiv resolver를 더해 4개 색인 결정적 존재 검증 gate로 승격 |
+| v3.9.0 | Semantic Scholar 단일 인덱스 오염 탐지를 OpenAlex와 Crossref를 더한 3개 인덱스 교차검증(advisory)으로 확장 |
+| v3.11.0 | arXiv resolver를 더해 4개 인덱스 결정적 존재 검증 gate로 승격 |
 | v3.18.0 | 캐시 스루에 나이 기반 staleness advisory와 opt-in 실시간 재검증 연결 |
 
 v3.8이 도입한 HIGH-WARN 판정은 claim-not-supported, negative-constraint-violation, fabricated-reference, anchorless, constraint-violation-uncited 다섯 가지이며, formatter 종단 hard gate에서 출력을 거부한다.
 
-v3.11의 `lookup_verified` 값은 `true`, `false`, `unresolvable` 셋 중 하나다. `false`는 "DOI나 arXiv ID로 정확히 조회했는데 확실히 실패한 경우"로 좁혀 두어, 색인되지 않은 인문학이나 비영어권 인용은 `unresolvable`로 남고 차단되지 않는다. recall보다 precision을 우선한 명시적 트레이드오프다. 다만 `false` 행이 실제로 파이프라인을 멈추는 것은 사용자가 `terminal_policies.citation_existence`를 `strict`로 설정했을 때뿐이며, 기본 동작은 advisory이고 `/ars-mark-read`로 확인 처리할 수 있다. 검증 결과는 `~/.cache/ars/verification.db` SQLite 캐시에 90일 TTL로 보관되고 `/ars-cache-invalidate`로 비운다.
+v3.11의 `lookup_verified` 값은 `true`, `false`, `unresolvable` 셋 중 하나다. `false`는 "DOI나 arXiv ID로 정확히 조회했는데 확실히 실패한 경우"로 좁혀 두어, 인덱싱되지 않은 인문학이나 비영어권 인용은 `unresolvable`로 남고 차단되지 않는다. recall보다 precision을 우선한 명시적 트레이드오프다. 다만 `false` 행이 실제로 파이프라인을 멈추는 것은 사용자가 `terminal_policies.citation_existence`를 `strict`로 설정했을 때뿐이며, 기본 동작은 advisory이고 `/ars-mark-read`로 확인 처리할 수 있다. 검증 결과는 `~/.cache/ars/verification.db` SQLite 캐시에 90일 TTL로 보관되고 `/ars-cache-invalidate`로 비운다.
 
 ### 설치와 실행 환경
 
@@ -156,7 +156,7 @@ v3.9.4의 temporal integrity audit이 다루는 시간적 오류 유형은 다�
 - **claim-faithfulness audit이 opt-in이다**: `ARS_CLAIM_AUDIT=1`을 켜지 않으면 v3.8의 인용과 주장 정합성 감사는 동작하지 않는다. 기본 활성화 전환(ramp-on) 계획은 calibration 증거가 쌓인 뒤로 미뤄져 있다(v3.8 spec §5).
 - **citation-existence gate도 기본은 advisory다**: `lookup_verified == false` 행이 파이프라인을 실제로 막으려면 사용자가 `terminal_policies.citation_existence`를 `strict`로 설정해야 한다.
 - **재현성은 구성 문서일 뿐이다**: `repro_lock`을 두고 README가 "설정 문서화이지 replay 보장이 아니다"라고 스스로 밝힌다. LLM 출력은 바이트 단위로 재현되지 않는다.
-- **인용 검증의 precision과 recall 트레이드오프**: `unresolvable` 분류로 색인되지 않은 문헌을 통과시키므로 색인 커버리지가 낮은 분야와 언어에서는 검증 공백이 남는다.
+- **인용 검증의 precision과 recall 트레이드오프**: `unresolvable` 분류로 인덱싱되지 않은 문헌을 통과시키므로 인덱스 커버리지가 낮은 분야와 언어에서는 검증 공백이 남는다.
 - **사후 감사에서 드러난 잔여 오류**: 68건 중 21건 사례처럼 3중 integrity gate를 거쳐도 독립 감사가 추가로 문제를 찾아낸 전례가 있다. gate 통과가 완전무결의 증명은 아니다.
 - **다국어 지원의 비대칭성**: Socratic 모드와 Plan 모드는 의도 기반 활성화라 모든 언어에서 동작하지만, 스킬 활성화 여부를 결정하는 Trigger Keywords 절은 영어와 번체중문 키워드 위주다. 다른 언어에서는 활성화 신뢰도가 떨어지며 사용자가 `SKILL.md`에 키워드를 직접 추가해야 한다.
 - **버전 히스토리가 매우 촘촘하다**: v3.9.x대 후반부터 거의 매주 patch와 hotfix가 나오는 릴리스 리듬이라 특정 기능의 현재 상태를 파악하려면 CHANGELOG를 세심히 추적해야 한다.

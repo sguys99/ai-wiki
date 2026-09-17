@@ -94,7 +94,7 @@ README는 미국 연방준비제도 보고서의 "Financial Stability" 절을 �
 | `0007` | Monitoring Financial Vulnerabilities | 22에서 28 |
 | `0008` | Domestic and International Cooperation and Coordination | 28에서 31 |
 
-각 노드가 위치 범위와 요약을 함께 들고 있다는 점이 retrieval 단계에서 중요하다. 요약은 LLM이 절을 고를 때 읽는 정보이고, 위치 범위는 고른 뒤 본문을 가져올 때 쓰는 주소다. 즉 트리 하나가 색인과 주소록 역할을 겸한다.
+각 노드가 위치 범위와 요약을 함께 들고 있다는 점이 retrieval 단계에서 중요하다. 요약은 LLM이 절을 고를 때 읽는 정보이고, 위치 범위는 고른 뒤 본문을 가져올 때 쓰는 주소다. 즉 트리 하나가 인덱스와 주소록 역할을 겸한다.
 
 README는 이 구조를 목차와 비슷하지만 LLM 사용에 맞게 최적화한 semantic tree structure라고 부른다.
 

@@ -14,7 +14,7 @@ tags: [gstack, claude-code, slash-commands, agentic-workflow, garry-tan, command
 
 ## 한 줄 요약 (One-line Summary)
 
-PyTorch KR의 9bow(박정환)가 Garry Tan의 gstack을 한국어로 정리한 소개 글이다. gstack을 28가지 슬래시 명령어 모음으로 소개한 뒤, `Think → Plan → Build → Review → Test → Ship → Reflect` 사이클을 절 제목으로 걸고 명령어를 5개 그룹으로 묶어 역할 라벨과 한 줄 기능을 대응시킨다. 설치 명령 3종과 텔레메트리 수집 범위까지 카탈로그 형태로 담았다.
+PyTorch KR의 9bow(박정환)가 Garry Tan의 gstack을 한국어로 정리한 소개 글이다. gstack을 28가지 슬래시 커맨드 모음으로 소개한 뒤, `Think → Plan → Build → Review → Test → Ship → Reflect` 사이클을 절 제목으로 걸고 명령어를 5개 그룹으로 묶어 역할 라벨과 한 줄 기능을 대응시킨다. 설치 명령 3종과 텔레메트리 수집 범위까지 카탈로그 형태로 담았다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -25,7 +25,7 @@ PyTorch KR의 9bow(박정환)가 Garry Tan의 gstack을 한국어로 정리한 �
 
 ## 2. 주요 기여 (Key Contributions)
 
-1. gstack을 "Claude Code를 사용하는 개발자가 20인 팀처럼 출시할 수 있도록" 설계된 28가지 슬래시 명령어 모음이자 오픈소스 소프트웨어 팩토리로 규정하고, AI가 구조적으로 수행하는 역할을 CEO, 디자이너, 엔지니어링 매니저, QA 리드, 보안 담당자, 릴리즈 엔지니어로 열거한다.
+1. gstack을 "Claude Code를 사용하는 개발자가 20인 팀처럼 출시할 수 있도록" 설계된 28가지 슬래시 커맨드 모음이자 오픈소스 software factory로 규정하고, AI가 구조적으로 수행하는 역할을 CEO, 디자이너, 엔지니어링 매니저, QA 리드, 보안 담당자, 릴리즈 엔지니어로 열거한다.
 2. 명령어마다 영문 역할 라벨(YC Office Hours, Staff Engineer, QA Lead, Chief Security Officer 등)과 한 줄 기능을 붙여 카탈로그로 정리한다. 다만 본문에 이름이 실제로 나오는 명령어는 22개로, 소개문의 28가지와 수가 어긋난다.
 3. 글로벌 설치, 프로젝트별 설치, Codex CLI 및 Cursor 설치 명령을 그대로 인용해 재현 가능하게 제공하고, 권장 실행 순서 예시도 함께 제시한다.
 4. 텔레메트리가 기본 비활성화이고, 수집 항목이 스킬 이름, 실행 시간, 성공과 실패 여부, 버전, OS 정보에 한정되며, 코드와 파일 경로와 저장소 이름과 프롬프트 내용은 수집하지 않는다는 점을 명시한다.
@@ -67,8 +67,8 @@ PyTorch KR의 9bow(박정환)가 Garry Tan의 gstack을 한국어로 정리한 �
 
 ## 7. 용어집 (Glossary)
 
-- **software factory**: 반복 가능한 파이프라인으로 소프트웨어를 생산하는 체계. 글은 gstack을 오픈소스 소프트웨어 팩토리로 소개한다.
-- **슬래시 명령어**: Claude Code에서 `/이름` 형태로 특정 역할이나 작업을 호출하는 단위. 이 글에서는 명령어 하나가 역할 하나에 대응한다.
+- **software factory**: 반복 가능한 파이프라인으로 소프트웨어를 생산하는 체계. 글은 gstack을 오픈소스 software factory로 소개한다.
+- **슬래시 커맨드**: Claude Code에서 `/이름` 형태로 특정 역할이나 작업을 호출하는 단위. 이 글에서는 명령어 하나가 역할 하나에 대응한다.
 - **역할 라벨**: 글이 명령어마다 괄호로 붙인 영문 직함 표기. `/cso`의 Chief Security Officer처럼 어떤 전문가를 부르는 명령인지 알려준다.
 - **STRIDE**: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege 여섯 범주로 위협을 분류하는 모델링 프레임워크.
 - **텔레메트리**: 스킬 실행 현황을 제작자에게 전송하는 계측 데이터. gstack은 기본 비활성화 상태로 배포된다.

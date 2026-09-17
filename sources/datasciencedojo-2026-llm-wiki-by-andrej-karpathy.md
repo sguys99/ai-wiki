@@ -126,7 +126,7 @@ Data Science Dojo 블로그가 2026-04-16에 발행한 영어권 일반 독자�
 - **entity page**: Wikipedia 형식의 개념 페이지. 제목과 요약, 상세 설명, `[[wiki-links]]`, 출처 논문, 모순 표기의 5항목으로 구성한다.
 - **`[[wiki-links]]`**: 개념 사이의 내부 연결을 나타내는 markdown 문법. Obsidian이 이 문법을 그래프의 엣지로 렌더링한다.
 - **compilation step**: 새 자료가 들어올 때 LLM이 수행하는 단계. 기존 페이지 갱신, 새 페이지 생성, 링크 생성, 모순 표시의 네 가지 작업으로 이루어진다.
-- **knowledge graph**: entity page를 노드로, `[[wiki-links]]`를 엣지로 본 wiki 내부의 연결망.
+- **지식 그래프(knowledge graph)**: entity page를 노드로, `[[wiki-links]]`를 엣지로 본 wiki 내부의 연결망.
 - **Graph View**: Obsidian의 시각화 모드. Ctrl+G 또는 Cmd+G로 열어 wiki 구조를 한눈에 본다.
 - **linting**: orphan 페이지, 중복, 모순, 깨진 링크, 과도하게 긴 페이지의 다섯 항목을 점검하는 정기 유지보수 패스. 새 페이지 약 20개마다 실행한다.
 - **orphan page**: 들어오는 링크도 나가는 링크도 없는 entity page. 유지보수 프롬프트의 첫 검사 항목이다.

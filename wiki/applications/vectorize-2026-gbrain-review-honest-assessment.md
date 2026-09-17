@@ -50,7 +50,7 @@ GBrain은 Y Combinator CEO인 Garry Tan이 2026년 4월 5일에 공개한 오픈
 
 리뷰를 읽기 전에 정리해 둘 개념이 넷 있다.
 
-**personal brain**은 한 사람의 노트와 대화, 만남 기록을 에이전트가 읽고 쓸 수 있는 형태로 모아 둔 저장소를 뜻한다. GBrain은 이 저장소를 Markdown 파일과 git 저장소로 두고 Postgres에 색인을 만든다.
+**personal brain**은 한 사람의 노트와 대화, 만남 기록을 에이전트가 읽고 쓸 수 있는 형태로 모아 둔 저장소를 뜻한다. GBrain은 이 저장소를 Markdown 파일과 git 저장소로 두고 Postgres에 인덱스를 만든다.
 
 **compounding**은 쓰면 쓸수록 시스템이 스스로 나아지는 성질을 가리킨다. 저자가 GBrain의 가장 두드러진 특징으로 꼽는 것이 바로 이 성질이 사후에 덧붙은 기능이 아니라 설계에 들어 있다는 점이다.
 
@@ -179,7 +179,7 @@ brain 저장소는 Markdown을 git에 담는다. 이 단순한 결정에서 운�
 |---|---|
 | 단일 운영자 설계 | 다중 사용자 공유는 PGLite에서 Postgres로 전환하고, 여러 기기에 걸쳐 git 작업을 관리하고, index와 markdown의 동기화를 유지해야 한다 |
 | managed cloud 없음 | self-hosted 전용이다. 로컬은 PGLite, 공유 모드는 외부 Postgres를 쓴다. "Hindsight Cloud"에 해당하는 것이 없어 managed 가입 절차도 control plane도 없다 |
-| 통합 범위가 좁다 | first-class 스킬 팩은 OpenClaw와 Hermes Agent에만 있고 나머지는 개인이 유지하는 MCP 서버로 연결한다 |
+| 통합 범위가 좁다 | first-class skill pack은 OpenClaw와 Hermes Agent에만 있고 나머지는 개인이 유지하는 MCP 서버로 연결한다 |
 | 스키마 규율이 필요하다 | 스키마는 권장 문서에 있고 워크플로와 레시피는 사람이 쓴다. 기존 스킬에 맞지 않는 사실이 들어와도 구조가 자동 합성되지 않는다 |
 | retrieval 단계의 multi-hop graph와 temporal reasoning 부재 | write 시점에 typed entity edge를 뽑아 backlink 랭킹에 쓰지만 retriever가 multi-hop 순회를 우선하지 않는다 |
 | 성숙도와 설치 함정 | v0.30 계열은 breaking change가 잦고 README가 두 가지 설치 함정을 문서화하고 있다 |
@@ -261,7 +261,7 @@ BrainBench가 자체 벤치마크라면 나머지 둘은 외부 벤치마크다.
 
 30분 설치는 실제라고 저자는 평가한다. 다만 설치를 마쳐도 brain은 비어 있는 상태로 시작한다.
 
-`gbrain import ~/notes/`가 기존 markdown을 색인해 이 문제를 완화한다. Obsidian, Logseq, 일반 텍스트 노트가 대상이며, 기존 노트를 넣어 두면 첫날부터 의미 있는 retrieval을 얻는다. 아무것도 넣지 않고 시작하면 쓸 만한 retrieval을 얻기까지 실제 에이전트 운영과 페이지 write가 쌓여야 한다. day-one experience가 5점이 아니라 4점인 이유가 이 지점이다.
+`gbrain import ~/notes/`가 기존 markdown을 인덱싱해 이 문제를 완화한다. Obsidian, Logseq, 일반 텍스트 노트가 대상이며, 기존 노트를 넣어 두면 첫날부터 의미 있는 retrieval을 얻는다. 아무것도 넣지 않고 시작하면 쓸 만한 retrieval을 얻기까지 실제 에이전트 운영과 페이지 write가 쌓여야 한다. day-one experience가 5점이 아니라 4점인 이유가 이 지점이다.
 
 ### 장기 신호
 

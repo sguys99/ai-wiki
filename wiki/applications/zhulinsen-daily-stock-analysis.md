@@ -30,7 +30,7 @@ daily_stock_analysis는 관심종목 목록을 매일 자동으로 분석해 종
 
 README가 부제로 밝힌 흐름은 세 단계다. 관심종목을 매일 분석하고, 의사결정 대시보드를 생성하며, 텔레그램과 디스코드와 슬랙과 이메일과 위챗워크와 페이슈로 전송한다.
 
-이 구성에서 사용자가 감당해야 하는 준비물은 두 가지로 줄어든다. AI 모델 프로바이더의 API 키 하나와 알림 채널 하나다. 시장 데이터는 무료 소스가 기본 포함되어 있어 별도 자격증명 없이도 실행된다.
+이 구성에서 사용자가 감당해야 하는 준비물은 두 가지로 줄어든다. AI 모델 provider의 API 키 하나와 알림 채널 하나다. 시장 데이터는 무료 소스가 기본 포함되어 있어 별도 자격증명 없이도 실행된다.
 
 문서 구조도 같은 방향으로 설계되어 있다. README는 진입 절차만 담고, 상세 필드, 펀더멘털 P0 timeout 의미, 거래 규칙, 데이터 소스 우선순위, Web와 API 동작, 문제 해결 방법은 `full-guide_EN.md`로, 모델 설정은 `LLM_CONFIG_GUIDE_EN.md`로, 시장 경계는 `market-support.md`로 넘긴다.
 
@@ -82,11 +82,11 @@ README는 시스템 기능을 여섯 묶음으로 나눠 제시한다. 이 표�
 
 ### 데이터 소스 계층
 
-분석에 들어가는 원천 데이터는 네 종류다. 각 종류마다 여러 프로바이더를 선택할 수 있게 되어 있어, 한 곳이 막혀도 다른 경로로 대체할 여지를 남긴다.
+분석에 들어가는 원천 데이터는 네 종류다. 각 종류마다 여러 provider를 선택할 수 있게 되어 있어, 한 곳이 막혀도 다른 경로로 대체할 여지를 남긴다.
 
-| 구분 | 지원 프로바이더 |
+| 구분 | 지원 provider |
 |---|---|
-| AI 모델 | Anspire, AIHubMix, Gemini, OpenAI 호환 프로바이더, DeepSeek, Qwen, Claude, Ollama |
+| AI 모델 | Anspire, AIHubMix, Gemini, OpenAI 호환 provider, DeepSeek, Qwen, Claude, Ollama |
 | 시장 데이터 | TickFlow, AkShare, Tushare, Pytdx, Baostock, YFinance, Longbridge |
 | 뉴스 검색 | Anspire, SerpAPI, Tavily, Bocha, Brave, MiniMax, SearXNG |
 | 소셜 감성 | Stock Sentiment API를 통한 Reddit, X, Polymarket 데이터 |
@@ -104,9 +104,9 @@ README는 시스템 기능을 여섯 묶음으로 나눠 제시한다. 이 표�
 
 무료 소스만 쓰는 경우 로그에 "not configured" 메시지가 남는데, README는 이것이 안내 메시지일 뿐 실행에는 영향을 주지 않는다고 설명한다.
 
-### 모델 프로바이더 설정
+### 모델 provider 설정
 
-AI 모델은 최소 하나만 설정하면 동작한다. README는 프로바이더 하나와 API 키 하나로 시작하라고 권하고, 멀티 모델 라우팅과 이미지 인식과 로컬 모델과 고급 라우팅은 모델 설정 가이드로 넘긴다.
+AI 모델은 최소 하나만 설정하면 동작한다. README는 provider 하나와 API 키 하나로 시작하라고 권하고, 멀티 모델 라우팅과 이미지 인식과 로컬 모델과 고급 라우팅은 모델 설정 가이드로 넘긴다.
 
 | 설정 값 | 설명 | 필수 여부 |
 |---|---|---|
@@ -115,7 +115,7 @@ AI 모델은 최소 하나만 설정하면 동작한다. README는 프로바이�
 | `GEMINI_API_KEY` | Google Gemini API 키 | 선택 |
 | `ANTHROPIC_API_KEY` | Anthropic Claude API 키 | 선택 |
 | `OPENAI_API_KEY` | OpenAI 호환 API 키. DeepSeek과 Qwen 호환 서비스 포함 | 선택 |
-| `OPENAI_BASE_URL` / `OPENAI_MODEL` | OpenAI 호환 프로바이더를 쓸 때 지정 | 선택 |
+| `OPENAI_BASE_URL` / `OPENAI_MODEL` | OpenAI 호환 provider를 쓸 때 지정 | 선택 |
 
 배포 환경에 따라 모델 선택이 갈린다. README는 Ollama가 로컬이나 Docker 배포에 더 적합하고, GitHub Actions에서는 클라우드 API 쪽이 대체로 원활하다고 안내한다. 즉 서버 없이 무료 자동화 경로를 택하면 로컬 모델의 이점을 살리기 어렵다.
 
@@ -133,7 +133,7 @@ AI 모델은 최소 하나만 설정하면 동작한다. README는 프로바이�
 | `MINIMAX_API_KEYS` | 구조화된 검색 결과 | 선택 |
 | `SEARXNG_BASE_URLS` | 자체 호스팅 SearXNG 인스턴스 | 선택 |
 
-프로바이더 구성에서 시장별 편향이 드러난다. Anspire와 Bocha는 중국어 콘텐츠에, Brave는 미국 주식 뉴스에 강점이 있다고 표기되어 있어, 관심종목이 어느 시장에 몰려 있느냐에 따라 설정 조합이 달라진다.
+provider 구성에서 시장별 편향이 드러난다. Anspire와 Bocha는 중국어 콘텐츠에, Brave는 미국 주식 뉴스에 강점이 있다고 표기되어 있어, 관심종목이 어느 시장에 몰려 있느냐에 따라 설정 조합이 달라진다.
 
 `SEARXNG_BASE_URLS`는 성격이 다르다. 자체 호스팅 인스턴스를 지정하는 값이라 쿼터 제약 없는 폴백 경로로 쓸 수 있다.
 
@@ -297,11 +297,11 @@ GitHub stars 배지는 shields.io 이미지 링크만 삽입되어 있어 README
 | 펀더멘털 P0 timeout 의미, 거래 규칙, 데이터 소스 우선순위와 폴백 규칙 | `full-guide_EN.md` |
 | 멀티 모델 라우팅, 이미지 인식, 로컬 모델, 예산 가드 | `LLM_CONFIG_GUIDE_EN.md` |
 | 시장 경계와 데이터 소스 커버리지 | `market-support.md` |
-| 전체 문서 색인 | `INDEX_EN.md` |
+| 전체 문서 인덱스 | `INDEX_EN.md` |
 
 따라서 점수 산출 방식, 판정 임계값, 전략 15종의 구현 내용은 이 자료 범위 밖이다.
 
-권장 프로바이더 링크의 성격도 함께 보아야 한다. Anspire, AIHubMix, SerpAPI, TickFlow 링크에는 `share_code`, `aff`, `ref`, `utm_source` 같은 추천 파라미터가 붙어 있고, Anspire와 SerpAPI는 별도 Sponsors 절에 배너로도 노출된다. 프로바이더 권장 순서를 중립적인 기술 평가로만 읽기는 어렵다.
+권장 provider 링크의 성격도 함께 보아야 한다. Anspire, AIHubMix, SerpAPI, TickFlow 링크에는 `share_code`, `aff`, `ref`, `utm_source` 같은 추천 파라미터가 붙어 있고, Anspire와 SerpAPI는 별도 Sponsors 절에 배너로도 노출된다. provider 권장 순서를 중립적인 기술 평가로만 읽기는 어렵다.
 
 ### 면책 고지
 

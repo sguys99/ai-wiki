@@ -438,7 +438,7 @@ fine-tuning 혼합에 in-domain 데이터를 넣고 추가 데이터를 1 epoch 
 | **GUIEC** | Google Universal Embedding Challenge. 20만 장 인덱스에서 instance 단위로 검색한다. |
 | **ViDoRe V2** | 페이지 단위 시각 구조와 레이아웃, 삽입 텍스트 이해를 요구하는 문서 retrieval 벤치마크. |
 | **EncyclopedicVQA** | 이미지와 질문을 함께 임베딩해 정답을 검색하는 형태의 VQA retrieval. |
-| **mrr@10 / NDCG@10 / R@K** | 각각 상위 10개 안 정답의 역순위 평균, 상위 10개의 순위 품질, 상위 K개에 정답이 포함될 확률. |
+| **mrr@10 / NDCG@10 / R@K** | 각각 상위 10개 안 정답의 역순위 평균, 상위 10개의 순위 품질, top-K 안에 정답이 포함될 확률. |
 
 ## 8. 그림 후보 (Figure Candidates)
 

@@ -269,7 +269,7 @@ Multi-Agent LLM Systems(MAS)가 실패하는 이유를 7개 SOTA 프레임워크
 
 ### 3.1 MAS 정의
 
-- **Agent**: prompt specification(초기 상태), conversation trace(상태), tool use를 포함한 환경 상호작용 능력(action)을 갖춘 인공 엔티티.
+- **Agent**: prompt specification(초기 상태), conversation trace(상태), tool use를 포함한 환경 상호작용 능력(action)을 갖춘 인공 entity.
 - **MAS**: 오케스트레이션으로 상호작용하는 agent 집합. task decomposition, 병렬화, context isolation, 전문 모델 ensembling, 다양한 reasoning 토론을 지원한다.
 
 ### 3.2 데이터 구축 파이프라인 (5단계)

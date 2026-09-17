@@ -146,7 +146,7 @@ action chunk는 policy 호출 한 번에 예측하는 여러 timestep 분량의 
 
 Mixture-of-Transformers는 video Transformer와 action Transformer처럼 모달리티별 전문가를 두되 가중치는 나누고 attention은 공유하는 구조다. 약어 MoT로 쓴다. mixture-of-experts가 라우팅으로 전문가를 고르는 것과 달리 모달리티로 전문가를 가른다.
 
-DiT는 diffusion 모델의 denoising 신경망을 Transformer로 구현한 구조다. 이미지와 video와 action 토큰을 여러 스텝에 걸쳐 디노이징하며, timestep 조건을 블록에 주입할 때 adaptive layer normalization을 쓰는 것이 일반적이다.
+DiT는 diffusion 모델의 denoising 신경망을 Transformer로 구현한 구조다. 이미지와 video와 action 토큰을 여러 스텝에 걸쳐 denoising하며, timestep 조건을 블록에 주입할 때 adaptive layer normalization을 쓰는 것이 일반적이다.
 
 이 개념들 위에 VAE가 하나 더 붙는다. 고해상도 이미지와 video를 latent 표현으로 압축해 토큰 수를 크게 줄이는 장치이며, Wan 2.1의 VAE는 시간 방향 4배와 공간 방향 8×8 압축을, Wan 2.2-5B는 시간 방향 4배와 공간 방향 16×16 압축을 쓴다.
 
@@ -207,18 +207,18 @@ joint prediction 계열은 미래 video와 action을 같은 예측 단계에서 
 
 출발점은 GR-1이다. 인터넷 video 예측으로 pre-training한 GPT-2 계열 Transformer policy를 로봇 데이터에서 video 목적과 action 목적으로 함께 fine-tuning했다. 약 21M 파라미터 policy로 CALVIN ABC→D 분할에서 평균 완료 subtask 3.06/5를 기록했는데, 같은 표의 이전 방법들은 평균 1.0 미만에 머물렀다. 2026년 기준으로 수치 자체는 낡았고, 남는 것은 video 예측이 더 나은 시각 인코더가 아니라 더 나은 policy 표현을 만든다는 발견이다. R3M과 Voltron이 이미 video와 언어가 로보틱스 표현 학습에 도움이 된다는 것을 보였지만, GR-1은 그 대상을 이미지 수준 표현에서 policy 표현으로 옮겼다.
 
-현대판이 DreamZero다. Wan 2.1-I2V-14B-480P에서 시작해 video diffusion backbone을 joint world-action model로 바꾼다. 하나의 monolithic DiT 안에서 video 토큰과 action 토큰을 나란히 디노이징하며 별도 inverse dynamics 모듈을 두지 않는다. 즉 action은 같은 디노이징 과정 안의 또 하나의 생성 모달리티로 다뤄진다.
+현대판이 DreamZero다. Wan 2.1-I2V-14B-480P에서 시작해 video diffusion backbone을 joint world-action model로 바꾼다. 하나의 monolithic DiT 안에서 video 토큰과 action 토큰을 나란히 denoising하며 별도 inverse dynamics 모듈을 두지 않는다. 즉 action은 같은 denoising 과정 안의 또 하나의 생성 모달리티로 다뤄진다.
 
 | 설계 선택 | GR-1 (2024) | DreamZero (2026) |
 |---|---|---|
-| 주요 아이디어 | 미래 프레임 예측을 보조 목적으로 두고 action을 학습 | 미래 video와 로봇 action을 하나의 video diffusion backbone에서 함께 디노이징 |
+| 주요 아이디어 | 미래 프레임 예측을 보조 목적으로 두고 action을 학습 | 미래 video와 로봇 action을 하나의 video diffusion backbone에서 함께 denoising |
 | backbone | video 예측 readout 토큰을 둔 GPT-2 계열 Transformer policy | 로봇 제어용으로 적응시킨 Wan 2.1-I2V-14B-480P |
 | 규모 | 약 21M policy 파라미터. pre-training된 시각 인코더와 언어 인코더는 분리 | 14B Wan backbone을 end-to-end로 action 튜닝 |
-| 생성 목적 | 미래 video와 action에 대한 L2 재구성 | joint 미래 video와 action 생성에 대한 flow matching 계열 디노이징 |
+| 생성 목적 | 미래 video와 action에 대한 L2 재구성 | joint 미래 video와 action 생성에 대한 flow matching 계열 denoising |
 | latent video VAE | 없음. pre-training된 MAE/ViT 시각 feature 사용 | Wan의 latent video VAE 상속 |
 | 언어 조건화 | CLIP | Wan에서 상속한 T5 계열 텍스트 인코더 |
 
-두 모델은 joint prediction이라는 핵심 아이디어만 공유하고 나머지는 거의 전부 다르다. 따라서 이 대비를 깨끗한 통제 비교로 읽어서는 안 된다. 같은 흐름 주변에 GR-2와 Seer, PAD, UWM, UVA, DreamVLA가 있다. PAD는 하나의 joint 디노이징 과정 안에서 미래 이미지 예측과 로봇 action 생성을 함께 시도한 초기 사례이고, UWM은 video와 action에 독립적인 noise를 써서 joint Transformer 안에서 더 유연한 추론 모드를 지원한다.
+두 모델은 joint prediction이라는 핵심 아이디어만 공유하고 나머지는 거의 전부 다르다. 따라서 이 대비를 깨끗한 통제 비교로 읽어서는 안 된다. 같은 흐름 주변에 GR-2와 Seer, PAD, UWM, UVA, DreamVLA가 있다. PAD는 하나의 joint denoising 과정 안에서 미래 이미지 예측과 로봇 action 생성을 함께 시도한 초기 사례이고, UWM은 video와 action에 독립적인 noise를 써서 joint Transformer 안에서 더 유연한 추론 모드를 지원한다.
 
 ### representation-only 계열
 
@@ -228,11 +228,11 @@ representation-only 계열은 video backbone을 표현 추출에만 쓰고 추�
 
 ### action이 모델에 들어가는 방식
 
-pre-training된 backbone이 할 줄 아는 일은 시각 토큰 디노이징까지이고 연속적인 로봇 action은 모른다. 이 모달리티 불일치를 어떻게 메우느냐가 두 번째 기준이 된다. 현재 논문들에서 관찰되는 방식은 세 가지다.
+pre-training된 backbone이 할 줄 아는 일은 시각 토큰 denoising까지이고 연속적인 로봇 action은 모른다. 이 모달리티 불일치를 어떻게 메우느냐가 두 번째 기준이 된다. 현재 논문들에서 관찰되는 방식은 세 가지다.
 
 가장 단순한 기본값은 action 토큰과 action 헤드를 덧붙여 action을 video 옆에 놓인 또 하나의 모달리티로 다루는 방식이다. 토큰은 연속형일 수도 이산형일 수도 있다. UniPi와 GR-1, DreamZero, LingBot-VA, VPP, mimic-video, Fast-WAM이 모두 이 방식의 변형을 쓴다. 위험은 모달리티 불일치 그 자체다. action chunk는 backbone이 pre-training에서 본 시각 토큰과 성격이 다르므로, 모델이 action fine-tuning 구간에서 표현을 다시 맞춰야 한다.
 
-두 번째는 action-as-image다. 새 action 토큰이나 별도 action 헤드를 만드는 대신, action을 같은 생성 인터페이스 안의 시각적 목표로 인코딩해 pre-training된 video 표현을 흔들지 않는 접근이다. 초기 조상은 GENIMA로, Stable Diffusion을 fine-tuning해 RGB 이미지 위에 관절 목표를 그리게 하고 컨트롤러가 그 시각적 목표를 관절 위치 action으로 옮긴다. 현대판인 Cosmos Policy는 action과 proprioception과 value function 목표를 video 모델 자신의 디노이징 인터페이스 안쪽 합성 latent 프레임으로 인코딩한다. 추론 시점에는 예측된 action 이미지를 공간 차원으로 평균 내 action 벡터로 디코딩한다.
+두 번째는 action-as-image다. 새 action 토큰이나 별도 action 헤드를 만드는 대신, action을 같은 생성 인터페이스 안의 시각적 목표로 인코딩해 pre-training된 video 표현을 흔들지 않는 접근이다. 초기 조상은 GENIMA로, Stable Diffusion을 fine-tuning해 RGB 이미지 위에 관절 목표를 그리게 하고 컨트롤러가 그 시각적 목표를 관절 위치 action으로 옮긴다. 현대판인 Cosmos Policy는 action과 proprioception과 value function 목표를 video 모델 자신의 denoising 인터페이스 안쪽 합성 latent 프레임으로 인코딩한다. 추론 시점에는 예측된 action 이미지를 공간 차원으로 평균 내 action 벡터로 디코딩한다.
 
 세 번째는 action을 latent plan이나 latent action으로 압축하는 방식이다. 전체 video 예측은 비싸고 대부분의 픽셀은 제어에 필요하지 않다는 문제의식에서 출발한다. 두 개념은 정확히 같지는 않고 세밀도와 감독 경로에서 갈린다. plan은 보통 여러 스텝 구간을 덮고 짝지어진 로봇 데이터를 요구하는 반면, Genie나 LAPA 계열의 latent action은 라벨 없는 video에서 학습할 수 있다.
 
@@ -258,7 +258,7 @@ pre-training된 backbone이 할 줄 아는 일은 시각 토큰 디노이징까�
 | 구성 | 결합 강도 | 장점 | 한계 | 사례 |
 |---|---|---|---|---|
 | hierarchical | 약함. 정보가 한 방향으로만 흐른다 | action 헤드가 완전히 모듈이라 단순 CNN 회귀기부터 완전한 VLA 스택까지 교체 가능 | video와 action이 서로 강하게 영향을 주어야 하는 상황에 부적합 | UniPi, VPP, mimic-video, Pi-0.7 |
-| monolithic Transformer | 강함. 한 스택에서 video와 action을 함께 디노이징 | 두 흐름의 결합이 강하고, action-as-image 구성과 자연스럽게 맞는다 | 같은 가중치가 조밀한 시각 토큰과 훨씬 희소한 action 목표를 함께 감당해야 한다 | DreamZero, Cosmos Policy |
+| monolithic Transformer | 강함. 한 스택에서 video와 action을 함께 denoising | 두 흐름의 결합이 강하고, action-as-image 구성과 자연스럽게 맞는다 | 같은 가중치가 조밀한 시각 토큰과 훨씬 희소한 action 목표를 함께 감당해야 한다 | DreamZero, Cosmos Policy |
 | Mixture-of-Transformers | 중간. 가중치는 분리하고 attention은 공유 | 모듈성과 결합 사이의 실용적 절충 | 전문가별 가중치만큼 파라미터가 늘어난다 | Pi-0, Pi-0.5, LingBot-VA, Fast-WAM |
 
 MoT는 현대 VLA와 최근 WAM 양쪽에서 이미 기본값이다. 저자는 모듈성과 결합 사이의 절충이라는 실용적 이유로 WAM 쪽에서도 MoT 계열 설계가 지배적 아키텍처가 되리라 전망한다.
@@ -378,7 +378,7 @@ video backbone이 더 나은 기본값이라는 주장은 현재의 최신 VLA �
 - 분리된 action 헤드. flow matching 헤드의 그래디언트를 VLM 쪽으로 흘리지 않는다.
 - 훨씬 넓어진 데이터 혼합.
 
-아키텍처는 이미 하나로 수렴했다. MoT 레시피는 Transfusion이 비전 쪽에서 도입했고 Pi-0가 로보틱스에서 대중화했다. 그 뒤 달라진 것은 대부분 학습 레시피다. 초기 flow 기반 action 헤드는 이산 next-token pre-training에서 연속 action 디노이징으로 넘어가는 구간에 강한 교란을 일으켰고, 최근 레시피들은 그 교란을 줄이는 방향으로 설계된다.
+아키텍처는 이미 하나로 수렴했다. MoT 레시피는 Transfusion이 비전 쪽에서 도입했고 Pi-0가 로보틱스에서 대중화했다. 그 뒤 달라진 것은 대부분 학습 레시피다. 초기 flow 기반 action 헤드는 이산 next-token pre-training에서 연속 action denoising으로 넘어가는 구간에 강한 교란을 일으켰고, 최근 레시피들은 그 교란을 줄이는 방향으로 설계된다.
 
 교란의 원인은 최적화 목표의 긴장이다. VLM은 cross-entropy 손실로 이산 next-token prediction을 학습한 모델인 반면, 로봇 action은 보통 flow matching으로 모델링되는 연속 공간에 있다. 따라서 VLM을 flow matching 목적으로 그대로 fine-tuning하면 pre-training된 언어 능력과 비전 능력에 catastrophic forgetting이 일어난다. 이산 action tokenization을 쓴 co-training은 VLM을 자신이 선호하는 이산 공간에 가깝게 두면서 embodied 제어에 유용한 표현을 학습하게 하고, flow matching 헤드는 그 feature를 조건으로 자기 몫의 action 예측을 맡는다. 별도 action 헤드를 둔 시스템은 테스트 시점에 느린 autoregressive action 토큰 예측 경로를 생략할 수 있다는 이점도 얻는다.
 
@@ -422,7 +422,7 @@ foundation model 규모의 hybrid로는 Being-H0.7이 가장 뚜렷하다. pre-t
 
 - 깨끗한 비교가 아직 없다. 논문마다 video backbone이 다르고 대규모 pre-training 양이 제각각이며 하이퍼파라미터와 평가 셋업까지 갈린다. 저자가 세 기준으로 정리한 표조차 빠르게 움직이는 공간의 선별된 일부라는 단서를 달고 나온다.
 - 비용이 두 방향에서 걸린다. 총 FLOP에 더해 약 8,000 토큰 시퀀스를 다루는 14B 모델용 다중 노드 셋업과 데이터 필터링과 캡셔닝과 긴 시퀀스 DiT 인프라를 함께 갖춰야 한다. video 데이터 품질 요구까지 policy 레시피 안으로 들어온다.
-- 추론이 느리다. 추론 시점에 video latent을 생성하거나 디노이징하는 policy는 단순 VLA보다 훨씬 느리고, 긴 video 토큰 시퀀스가 GPU 메모리와 통신과 데이터 적재를 함께 압박한다.
+- 추론이 느리다. 추론 시점에 video latent을 생성하거나 denoising하는 policy는 단순 VLA보다 훨씬 느리고, 긴 video 토큰 시퀀스가 GPU 메모리와 통신과 데이터 적재를 함께 압박한다.
 - 평가가 풀리지 않았다. 논문 대부분이 여전히 LIBERO 같은 시뮬레이션에 기대고 있다. 저자는 벤치마크 점수만 올리는 방식을 어렵게 만들고 제대로 된 일반화를 요구하는 RoboLab과 MolmoSpaces 같은 평가가 더 나와야 한다고 본다.
 - 명령에서 동작까지의 간극이 여전히 열려 있다. 이산 action tokenization과 VLM 보존 co-training과 넓은 데이터 혼합을 갖춘 현대 VLA도 이 간극을 완전히 닫지 못했다. WAM은 video 쪽에서 공략하겠다고 약속하지만 현재 결과가 그것을 해결했다고 보이지는 않는다.
 

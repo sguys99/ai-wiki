@@ -108,7 +108,7 @@ PricewaterhouseCoopers U.S.가 SEC filing 1,200건과 150문항 벤치마크에�
 4. **small-to-big retrieval의 비용 대비 효과 측정**. baseline chunking 대비 65% win rate를 지연 0.2초 추가만으로 얻었고 질의당 비용은 0.000078달러로 변하지 않았다. 비동기 구현(0.17초)이 동기 구현(0.34초)보다 빨랐다.
 5. **hierarchical preprocessing 비용 구조 공개**. node tree 생성 모델 3종의 비용을 비교하고, node-level summary 포함 여부에 따른 토큰과 비용 차이를 별도 표로 제시했다. 10-K 한 건 기준 summary 포함 시 6.12달러, 미포함 시 0.97달러로 6.3배 차이다.
 
-부수 기여로 150문항 벤치마크의 구성 방식(난이도 3분류, 정답과 페이지 위치 수동 annotation, 실험별 하위 집합 분할)과 LLM-as-a-judge pairwise 평가 프로토콜(6개 기준)을 문서화했다.
+부수 기여로 150문항 벤치마크의 구성 방식(난이도 3분류, 정답과 페이지 위치 수동 annotation, 실험별 하위 집합 분할)과 LLM-as-a-Judge pairwise 평가 프로토콜(6개 기준)을 문서화했다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -129,7 +129,7 @@ PricewaterhouseCoopers U.S.가 SEC filing 1,200건과 150문항 벤치마크에�
 - chunking: 512 토큰 chunk에 50 토큰 overlap
 - 임베딩: OpenAI `text-embedding-ada-002`
 - 저장: metadata를 함께 넣은 Azure AI Search
-- 질의 시점: LLM agent가 검색 질의를 직접 만들고 hybrid search로 상위 k개 chunk를 가져온다. hybrid search는 semantic matching과 lexical matching을 결합한 것이다.
+- 질의 시점: LLM agent가 검색 질의를 직접 만들고 hybrid search로 top-k chunk를 가져온다. hybrid search는 semantic matching과 lexical matching을 결합한 것이다.
 - 서론(2쪽)은 이 baseline의 구성을 "hybrid search with metadata filtering (Anthropic, 2024), corrective RAG (Yan et al., 2024), and standard token-based chunking"으로 밝힌다. corrective RAG 인용은 이 문장에만 나오고 3.2.1 절의 시스템 서술에는 다시 등장하지 않는다.
 
 **(B) hierarchical node-based reasoning 시스템**. 임베딩을 전혀 쓰지 않는 비교 대상이다.
@@ -267,7 +267,7 @@ discussion 5.1은 같은 절 안에서 GPT-4o의 10-K preprocessing 비용을 �
 | non-vector와 index-free RAG | VectifyAI 2024 (PageIndex 저장소), VectifyAI 2025 (Mafin 2.5 블로그), OpenAI 2024, OpenAI 2025 (index-free long RAG 영상) |
 | 금융 QA 벤치마크 | Islam 2023 (FinanceBench), Chen 2021 (FinQA), Zhu 2021 (TAT-QA) |
 | 금융 RAG 시스템 | Setty 2024, Dadopoulos 2025 (metadata 기반), Wang 2025 (FinSage), Michel 2025 (FinCARE) |
-| LLM-as-a-judge | Zheng 2023 (MT-Bench와 Chatbot Arena), Gu 2024 (survey) |
+| LLM-as-a-Judge | Zheng 2023 (MT-Bench와 Chatbot Arena), Gu 2024 (survey) |
 | RAG 벤치마킹과 passage 활용 | Chen 2023, Izacard and Grave 2021 |
 | 인프라 | Cohere 2024 (rerank 문서), Microsoft Azure AI 2024 (Azure AI Search) |
 | 저자 선행 연구 | Toolshed 2024, MemTool 2025a, ScaleMCP 2025b, Tool-to-Agent Retrieval 2025c |
@@ -285,7 +285,7 @@ BM25는 관련 연구 2.2절에서 hybrid retrieval의 일반적 정의를 설�
 - **hybrid search**: semantic vector 검색과 lexical 검색을 결합한 검색이다.
 - **corrective RAG (CRAG, Yan 2024)**: retrieval 결과 품질을 평가해 미흡하면 질의 재작성 등으로 보정하는 RAG다. 이 논문은 vector baseline의 구성 요소로 서론에서 한 번 인용한다.
 - **contextual retrieval (Anthropic 2024)**: chunk마다 LLM이 만든 문맥 접두어를 붙여 임베딩 정확도를 올리는 기법이다. 이 논문은 metadata filtering의 근거로 인용한다.
-- **LLM-as-a-judge (pairwise)**: 두 시스템의 답변을 LLM이 비교해 승자를 고르고 여러 질의에 걸쳐 win rate를 집계하는 평가 방법이다.
+- **LLM-as-a-Judge (pairwise)**: 두 시스템의 답변을 LLM이 비교해 승자를 고르고 여러 질의에 걸쳐 win rate를 집계하는 평가 방법이다.
 - **SEC Form 10-K, 10-Q, 8-K**: 미국 증권거래위원회 공시 양식이다. 10-K는 100쪽에서 300쪽의 연차보고서, 10-Q는 30쪽에서 80쪽의 분기보고서, 8-K는 중요 사건 공시다.
 - **node tree**: 문서 구조를 표현하는 계층 자료다. 각 노드는 title, start_index, end_index, node_id를 갖고 하위 절은 중첩 nodes 배열로 담긴다.
 

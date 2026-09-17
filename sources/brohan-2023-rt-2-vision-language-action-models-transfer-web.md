@@ -338,7 +338,7 @@ Table 3의 지시문 그룹은 더 세분된다. symbol understanding은 문자�
 
 PaLM-E판을 수백 gradient step만 추가로 fine-tuning해 "Plan" 단계를 넣게 한다. 데이터를 "Instruction: I'm hungry. Plan: pick rxbar chocolate. Action: 1 128 124 136 121 158 111 255"처럼 자연어 계획 뒤에 action 토큰이 오도록 증강한다. 이 계획 단계가 VQA(시각 추론)와 조작(action 생성) 사이의 다리 역할을 한다.
 
-정성 롤아웃 예시는 다음과 같다. "못을 박아야 하는데 장면에서 무엇이 쓸모 있을까"라는 프롬프트에는 "Rocks"라는 답과 action을 함께 낸다. "다른 물체들과 다른 것을 집어라"에는 "Plan: pick rxbar chocolate"을, "졸리니 마실 것을 가져와라"에는 "Plan: pick redbull can"을 먼저 생성한다. LLM과 VLM을 planner로 쓰는 흐름과 저수준 policy를 한 VLA 안에 합칠 수 있다는 초기 근거다.
+정성 rollout 예시는 다음과 같다. "못을 박아야 하는데 장면에서 무엇이 쓸모 있을까"라는 프롬프트에는 "Rocks"라는 답과 action을 함께 낸다. "다른 물체들과 다른 것을 집어라"에는 "Plan: pick rxbar chocolate"을, "졸리니 마실 것을 가져와라"에는 "Plan: pick redbull can"을 먼저 생성한다. LLM과 VLM을 planner로 쓰는 흐름과 저수준 policy를 한 VLA 안에 합칠 수 있다는 초기 근거다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
@@ -390,10 +390,10 @@ VLM은 크게 두 계열이다. CLIP처럼 두 modality의 공통 임베딩을 �
 | fig04 | 8 | "seen과 unseen 전반 성능 막대그래프" | caption-region | ★ wiki 권장 (result) |
 | fig05 | 9 | "Language-Table 실세계 OOD 동작" | caption-region | (선택) |
 | fig06 | 10 | "emergent skill 비교 + 크기와 학습 전략 ablation" | caption-region | ★ wiki 권장 (result) |
-| fig07 | 11 | "chain-of-thought 롤아웃" | caption-region | ★ wiki 권장 (method) |
+| fig07 | 11 | "chain-of-thought rollout" | caption-region | ★ wiki 권장 (method) |
 | fig08 | 22 | "emergent 평가 장면 3범주 (Appendix)" | caption-region | (선택) |
 | fig09 | 23 | "실패 사례 + Table 4 (Appendix)" | caption-region | (선택) |
-| fig10 | 25 | "CoT 추가 롤아웃 (Appendix)" | caption-region | (선택) |
+| fig10 | 25 | "CoT 추가 rollout (Appendix)" | caption-region | (선택) |
 | tab01 | 9 | "Language-Table 성능표" | table-region | (선택) |
 | tab04 | 23 | "전체 성능 Table 4" | table-region | (선택) |
 | tab05 | 24 | "emergent 평가 Table 5" | table-region | (선택) |

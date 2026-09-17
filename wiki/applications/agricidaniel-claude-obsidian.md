@@ -92,7 +92,7 @@ Pro 트랙이 제공하는 것은 개발 중인 기능에 먼저 접근하는 �
 
 **methodology mode**는 vault를 어떤 철학으로 정리할지 고르는 설정이다. 폴더 구조와 파일명 규칙이 모드마다 다르고, 어느 모드를 골랐는지는 `.vault-meta/mode.json` 한 파일이 기준값으로 들고 있다.
 
-**contextual prefix**는 페이지 본문을 요약한 짧은 머리말을 검색 색인에 덧붙이는 기법이다. Anthropic이 2024년 9월에 공개한 contextual retrieval 연구에서 가져왔고, 원문 조각만으로는 무슨 문맥인지 알기 어려운 문제를 보완한다.
+**contextual prefix**는 페이지 본문을 요약한 짧은 머리말을 검색 인덱스에 덧붙이는 기법이다. Anthropic이 2024년 9월에 공개한 contextual retrieval 연구에서 가져왔고, 원문 조각만으로는 무슨 문맥인지 알기 어려운 문제를 보완한다.
 
 ## 방법
 
@@ -106,7 +106,7 @@ Pro 트랙이 제공하는 것은 개발 중인 기능에 먼저 접근하는 �
 | 2. Claude Code 플러그인 설치 | `claude plugin marketplace add`로 카탈로그를 등록한 뒤 `claude plugin install`로 설치 | 이미 다른 프로젝트에서 Claude Code를 쓰고 있을 때 |
 | 3. 기존 vault에 추가 | `WIKI.md`를 vault 루트에 복사하고 지정된 지시문을 Claude에 붙여넣기 | 이미 쌓아 둔 Obsidian vault가 있을 때 |
 
-경로 1의 `setup-vault.sh`는 Obsidian 설정 파일 세 개를 손본다. `graph.json`에 필터와 색을 넣고, `app.json`이 플러그인 디렉토리를 색인에서 제외하게 하며, `appearance.json`에서 CSS 스니펫을 활성화한다. Obsidian을 처음 열기 전에 한 번 실행하면 그래프 뷰와 색 구성, wiki 구조가 갖춰진 상태로 시작한다.
+경로 1의 `setup-vault.sh`는 Obsidian 설정 파일 세 개를 손본다. `graph.json`에 필터와 색을 넣고, `app.json`이 플러그인 디렉토리를 인덱스에서 제외하게 하며, `appearance.json`에서 CSS 스니펫을 활성화한다. Obsidian을 처음 열기 전에 한 번 실행하면 그래프 뷰와 색 구성, wiki 구조가 갖춰진 상태로 시작한다.
 
 경로 2는 두 단계로 나뉜다. 카탈로그를 먼저 등록하고 그 카탈로그에서 플러그인을 설치하는 방식이라, 설치 후 `claude plugin list`로 확인한다.
 
@@ -192,7 +192,7 @@ README는 사용자가 하는 일을 네 가지로 정리한다.
 | `.claude-plugin/` | `plugin.json`(manifest)과 `marketplace.json`(배포 카탈로그) |
 | `skills/` | 스킬 15개. 각각 자체 문서와 참조 자료를 갖는다 |
 | `agents/` | 에이전트 정의 3개 |
-| `commands/` | 슬래시 명령어 진입점 |
+| `commands/` | 슬래시 커맨드 진입점 |
 | `hooks/hooks.json` | SessionStart, Stop, PostToolUse 훅 정의 |
 | `scripts/` | transport와 잠금, 검색 등을 담당하는 헬퍼 스크립트 12개 |
 | `tests/` | hermetic 테스트 스위트 9개 |
@@ -211,7 +211,7 @@ README는 사용자가 하는 일을 네 가지로 정리한다.
 
 ### 명령어 표면
 
-사용자가 실제로 입력하는 것은 슬래시 명령어와 자연어 지시가 섞인 목록이다.
+사용자가 실제로 입력하는 것은 슬래시 커맨드와 자연어 지시가 섞인 목록이다.
 
 | 입력 | 동작 |
 |---|---|
@@ -257,7 +257,7 @@ README는 사용자가 하는 일을 네 가지로 정리한다.
 
 계층을 이렇게 나눈 이유는 각각 잡아내는 것이 다르기 때문이다. BM25는 정확한 단어가 겹치는 문서를 잘 찾고, 임베딩 기반 rerank는 표현이 달라도 뜻이 가까운 문서를 찾는다. contextual prefix는 조각난 본문에 문맥 정보를 덧붙여 두 방식 모두의 정확도를 올린다.
 
-파이프라인 준비는 `bash bin/setup-retrieve.sh` 한 번으로 끝난다. 이 스크립트가 BM25 색인을 만들고 egress 동의 여부를 묻고 ollama 연결을 검증한다. 어느 계층을 쓸 수 없는 상황이 와도 나머지 계층이 유효한 결과를 내도록 설계되어 있다.
+파이프라인 준비는 `bash bin/setup-retrieve.sh` 한 번으로 끝난다. 이 스크립트가 BM25 인덱스를 만들고 egress 동의 여부를 묻고 ollama 연결을 검증한다. 어느 계층을 쓸 수 없는 상황이 와도 나머지 계층이 유효한 결과를 내도록 설계되어 있다.
 
 ![[assets/agricidaniel-claude-obsidian/hybrid-retrieval.svg]]
 *Figure 3: 질의가 BM25와 선택적 contextual prefix 호출로 갈라진 뒤 local ollama 임베딩 기반 cosine rerank로 합쳐져, 점수 근거를 추적할 수 있는 후보 목록으로 나온다 (Agrici 2026, README Architecture 절).*
@@ -405,7 +405,7 @@ DragonScale Memory는 `bash bin/setup-dragonscale.sh`로만 켜지는 별도 확
 |---|---|
 | 로그 fold | 과거 항목을 rollup으로 접는다 |
 | 결정론적 페이지 주소 | 카운터 기반 고유 ID를 부여한다 |
-| 의미 단위 tiling lint | ollama로 청크 경계가 적절한지 검증한다 |
+| 의미 단위 tiling lint | ollama로 chunk 경계가 적절한지 검증한다 |
 | 경계 우선 autoresearch | vault의 frontier에 해당하는 영역을 먼저 연구한다 |
 
 ## 결과

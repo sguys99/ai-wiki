@@ -47,7 +47,7 @@ Sean's AI Stories가 공개한 20분 화이트보드 강의로, agent harness와
 2. **agent run을 관측 단위로 고정한다.** 사용자 입력 1회에서 응답 1회까지가 한 번의 agent run이며, 그 안에서 tool call이 몇 번 일어나든 단위는 변하지 않는다. 이 정의를 강의 후반의 tracing과 eval에서 그대로 관측 대상으로 재사용한다.
 3. **기본 agent run이 ephemeral하다는 점을 문제로 제시한다.** 질문과 현재 대화 이력, system prompt만 working memory로 조립하면 memory가 전혀 남지 않는다. 예시 질문은 "Sam Altman이 OpenAI에서 언제 해고됐나"이고, 대화 이력의 예시는 "Elon Musk가 Sam Altman을 몰아붙이듯이 말해 달라"는 앞선 지시다.
 4. **장기 memory 3종을 저장과 갱신, 검색 관점에서 분리한다.** procedural memory는 에이전트가 어떻게 행동해야 하는지를 담은 지시문이고, semantic memory는 지속되는 사실이며, episodic memory는 timestamp가 붙은 과거 이벤트의 시계열이다.
-5. **memory 종류에 따라 검색 경로가 갈린다는 점을 짚는다.** semantic memory는 사실과 텍스트라서 RAG로 충분하지만, episodic memory는 시계열이라 SQL 쿼리가 먼저 필요하고 질문에 따라 semantic search를 추가로 붙여야 한다.
+5. **memory 종류에 따라 검색 경로가 갈린다는 점을 짚는다.** semantic memory는 사실과 텍스트라서 RAG로 충분하지만, episodic memory는 시계열이라 SQL 질의(query)가 먼저 필요하고 질문에 따라 semantic search를 추가로 붙여야 한다.
 6. **memory 자동 진화 게이트를 설계 요소로 제시한다.** 대량 대화를 summarizer agent로 요약하고 distill해 semantic memory로 승격시키는 consolidation이다. summarizer agent 자체가 또 하나의 LLM harness이며 system prompt와 memory, 모델을 따로 설정할 수 있다.
 7. **loop engineering을 harness의 일부로 규정한다.** loop 역시 기술을 원하는 대로 달리게 하는 통제 수단이라는 이유에서다. 핵심 설계 질문은 "언제가 충분히 좋은 지점인가"이고, 그 답을 아키텍처로 정의하는 장치가 end-loop guardrail이다.
 8. **Claude Code 훅을 loop engineering의 일상 예시로 든다.** 권한 승인 대기가 걸리면 노트북에 알림을 보내도록 훅을 설정해, 루프가 멈춰 있는 것을 뒤늦게 발견하는 시간 낭비를 막는 방식이다.
@@ -106,8 +106,8 @@ semantic memory를 사람이 직접 입력하는 대신 시스템이 스스로 �
 
 | 질문 | 필요한 수단 | 이유 |
 |---|---|---|
-| "이 미국 고객과 나눈 최근 대화 10건은?" | SQL 쿼리 |  최근 이벤트를 날짜로 추리면 된다 |
-| "제품 품질 불만이 있었고 에이전트가 해결하지 못한 대화 20건은?" | SQL 쿼리에 semantic search 추가 | 불만 내용이 텍스트라서 의미를 맞춰야 한다 |
+| "이 미국 고객과 나눈 최근 대화 10건은?" | SQL 질의 |  최근 이벤트를 날짜로 추리면 된다 |
+| "제품 품질 불만이 있었고 에이전트가 해결하지 못한 대화 20건은?" | SQL 질의에 semantic search 추가 | 불만 내용이 텍스트라서 의미를 맞춰야 한다 |
 
 두 번째 질문에서 필요한 것은 2,000개 메시지 전부가 아니라 그중 정확히 관련된 20개다. 날짜 테이블만 훑는 SQL로는 그 20개를 고를 수 없으므로 RAG로 사용자 질문과 텍스트의 의미를 맞춰 working memory에 올릴 컨텍스트를 고른다.
 
@@ -141,7 +141,7 @@ agent run ──► ① tracing: 이벤트 트리
                 (질문, retrieval, tool call 횟수, latency, 토큰)
                      │
                      ▼
-              ② eval: good? healthy?  (LLM-as-judge 또는 결정론적 코드)
+              ② eval: good? healthy?  (LLM-as-a-Judge 또는 결정론적 코드)
                      │  대시보드와 metric
                      ▼
               ③ diagnose → 게이트
@@ -155,7 +155,7 @@ LLMOps가 필요한 이유는 harness만으로는 성능을 알 수 없기 때�
 
 **① tracing.** 모든 agent run을 이벤트 트리로 기록한다. 사용자가 실제로 무엇을 물었는지, 모델이 어떤 retrieval을 수행했는지, tool을 몇 번 호출하고 사용 결과가 어땠는지, 전체 실행에 걸린 시간이 얼마인지, 토큰을 얼마나 썼는지를 담는다. 데이터를 모으는 1단계다. 도구로는 LangFuse와 LangSmith를 예시로 든다.
 
-**② eval.** 모아 둔 데이터를 두 질문으로 가른다. 좋은 실행이었나(good), 그리고 건강했나(healthy). LLM-as-judge로 점수를 매길 수 있고 결정론적 코드로 검사할 수도 있다. metric 예시는 세 가지다.
+**② eval.** 모아 둔 데이터를 두 질문으로 가른다. 좋은 실행이었나(good), 그리고 건강했나(healthy). LLM-as-a-Judge로 점수를 매길 수 있고 결정론적 코드로 검사할 수도 있다. metric 예시는 세 가지다.
 
 | metric | 확인 내용 |
 |---|---|
@@ -202,7 +202,7 @@ LLMOps가 필요한 이유는 harness만으로는 성능을 알 수 없기 때�
 - **loop 설계는 사례마다 다르다.** 하나의 정답이 없다고 명시하므로 종료 조건은 태스크와 시스템 구성에 맞춰 직접 설계해야 한다.
 - **memory 시스템의 깊이를 생략한다.** 선행 영상으로 미루고 harness 관점에서만 빠르게 복습한다.
 - **자료 내부에 일관되지 않은 예시가 있다.** 불필요한 retrieval의 예시로 "내 생일은 언제인가"를 들며 모델이 이미 안다고 설명한다. 그런데 같은 강의가 앞서 유명하지 않은 개인의 사실은 모델이 학습하지 않았으므로 semantic memory에 직접 주입해야 한다고 말했다. 개인의 생일은 후자에 해당하므로 두 설명이 서로 어긋난다. 자막 오인식일 가능성도 있으나 확인할 수단이 없다.
-- **평가 자동화의 신뢰성을 다루지 않는다.** LLM-as-judge의 편향이나 재현성, 채점 기준 설계 같은 문제는 언급하지 않는다. wiki의 evaluations 카테고리 자료로 보완이 필요하다.
+- **평가 자동화의 신뢰성을 다루지 않는다.** LLM-as-a-Judge의 편향이나 재현성, 채점 기준 설계 같은 문제는 언급하지 않는다. wiki의 evaluations 카테고리 자료로 보완이 필요하다.
 - **보안과 권한 설계가 빠져 있다.** 에이전트가 Stripe와 Alipay의 환불을 실제로 실행하는 시나리오까지 제시하지만, 승인 절차나 권한 범위, 실패 시 롤백은 다루지 않는다.
 
 ## 6. 관련 연구 (Related Work)
@@ -228,5 +228,5 @@ LLMOps가 필요한 이유는 harness만으로는 성능을 알 수 없기 때�
 - **end-loop guardrail**: tool call 반복을 언제 멈출지 정하는 조건. task 완료 신호이거나 planning 단계에서 사용자와 확정한 종료 지점이다.
 - **LLMOps**: harness의 성능을 관측하고 진단하며 개선하는 feedback loop. large language model operations의 약어다.
 - **tracing**: 한 번의 agent run을 이벤트 트리로 기록하는 단계. 질문과 retrieval, tool call 횟수, latency, 토큰을 담는다.
-- **eval**: 기록된 데이터를 good과 healthy 두 질문으로 판정하는 단계. LLM-as-judge 또는 결정론적 코드로 수행한다.
+- **eval**: 기록된 데이터를 good과 healthy 두 질문으로 판정하는 단계. LLM-as-a-Judge 또는 결정론적 코드로 수행한다.
 - **latency**: 한 번의 실행이 응답까지 걸린 시간. 강의는 20초와 2밀리초를 대비 사례로 든다.

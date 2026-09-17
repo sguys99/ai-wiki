@@ -145,7 +145,7 @@ fig05는 이 배분을 개발자 대부분이 기대하는 10/70/20과 대비한
 | Testing | TDD의 부활. 에이전트가 테스트 계획을 먼저 쓰고 구현. 처음엔 모두 실패하고 점진적으로 통과 | unit(원자 단위), integration(기능 간), end-to-end(시스템 전체). unit 과몰입 경계 |
 | Review | 기능성, 품질, 확장성, 성능, 신뢰성, 보안, 프라이버시 7개 차원의 전문 swarm이 1차 보고서 작성. 사람이 각 보고서를 검토 | generalization principle: 한 건이 나오면 같은 유형이 다른 곳에도 있다고 보고 선제 탐색 |
 | Documentation | 사후 문서화에서 연속 생성으로. 요약, 설계 결정, 아키텍처 다이어그램, changelog를 실시간 생성 | API 문서, 기능 자료, 고객용 콘텐츠로 연결 |
-| Codify ADLC | Layer-1(개인)과 Layer-2(팀) 실천을 유지되고 스스로 진화하는 컨텍스트 파일, 스킬 라이브러리, MCP 도구로 인코딩 | 부족 지식에 머물지 않게 조직 전체로 확산. ADLC 도구 패키지를 알림 |
+| Codify ADLC | Layer-1(개인)과 Layer-2(팀) 실천을 유지되고 스스로 진화하는 컨텍스트 파일, skill library, MCP 도구로 인코딩 | 부족 지식에 머물지 않게 조직 전체로 확산. ADLC 도구 패키지를 알림 |
 
 Pro Tip: planning, building, testing 에이전트를 분리해 각 swarm이 코드베이스를 다른 관점에서 이해하게 한다. planning 에이전트는 지름길을 택한 building 에이전트, 커버리지를 건너뛴 testing 에이전트, 맞아 보이는 잘못된 구현에 치우친 review 에이전트를 challenge할 수 있고, review 에이전트는 모든 상류 에이전트의 실수와 누락에 책임을 묻는다.
 
@@ -240,7 +240,7 @@ Pro Tip: planning, building, testing 에이전트를 분리해 각 swarm이 코�
 - Daybreak와 Mythos: 에세이는 "Anthropic's Daybreak and Mythos"를 보안 경종으로 언급할 뿐 설명이 없다. Mythos는 이 wiki의 [[llms/9bow-2026-gpt-5-6-sol-terra-luna]]에서 Claude 모델명(Claude Mythos 5)으로 등장하고, Daybreak는 이 wiki에 다른 기술이 없다.
 - 사고 4건의 세부: 조직, 기술 스택, 효과가 있었던 완화책이 익명화되어 없다.
 - slopsquatting 방어: 패키지 allow-list나 게시일 임계값 같은 구체 컨트롤을 적지 않는다.
-- Codify ADLC의 거버넌스: 스스로 진화하는 컨텍스트 파일과 스킬 라이브러리의 권한, 버전, 롤백, 팀 간 충돌 해소 방법이 없다.
+- Codify ADLC의 거버넌스: 스스로 진화하는 컨텍스트 파일과 skill library의 권한, 버전, 롤백, 팀 간 충돌 해소 방법이 없다.
 
 ### 자료 안의 긴장
 

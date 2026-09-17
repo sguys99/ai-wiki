@@ -50,7 +50,7 @@ OKF(Open Knowledge Format)는 데이터와 시스템을 둘러싼 지식(메타�
 | 목표 3 | 시스템과 조직 사이의 지식 교환 촉진 |
 | 목표 4 | 런타임을 규정하지 않으면서, 에이전트가 유지하는 코퍼스를 신뢰할 수 있게 하는 소수의 frontmatter 필드 표준화 |
 | 비목표 1 | concept 타입의 고정 분류 체계 정의 |
-| 비목표 2 | 저장, 서빙, 질의 인프라 규정 |
+| 비목표 2 | 저장, 서빙, 질의(query) 인프라 규정 |
 | 비목표 3 | 도메인 스키마(Avro, Protobuf, OpenAPI 등) 대체. OKF는 이들을 참조할 뿐 흡수하지 않는다 |
 | 비목표 4 | executor와 attester가 가리키는 코드의 패키징이나 호출 표준. OKF는 인터페이스만 고정한다 |
 
@@ -121,12 +121,12 @@ bundle은 markdown 파일의 디렉토리 트리다. 디렉토리 구조는 도�
 | `id` | 선택 | 개별 주장을 귀속시키는 안정적 키. 본문이 이 source를 인용하면 있어야 한다(SHOULD) |
 | `title` | 선택 | 사람이 읽는 라벨 |
 | `author` | 선택 | source를 만든 주체. actor 규약을 따른다. 권위 신호 |
-| `usage_count` | 선택 | `usage_window` 동안 `resource`가 얼마나 쓰였는지(대시보드 조회, 쿼리 실행, 페이지 읽기). 채택과 생존 신호. 단일 산출물이면 그 산출물의 실행 횟수, 범위 서술이면 그 범위 안에서 concept에 닿는 실행 횟수 |
+| `usage_count` | 선택 | `usage_window` 동안 `resource`가 얼마나 쓰였는지(대시보드 조회, 질의 실행, 페이지 읽기). 채택과 생존 신호. 단일 산출물이면 그 산출물의 실행 횟수, 범위 서술이면 그 범위 안에서 concept에 닿는 실행 횟수 |
 | `last_modified` | 선택 | source 자체가 마지막으로 바뀐 시각. 최신성 신호. concept이 쓰인 시각인 `generated.at`과 구별된다 |
 
 `usage_window`는 `sources`의 형제 키로 한 번 적어 모든 `usage_count`에 `{ from, to }` 구간을 부여한다. 개별 항목이 자기 `usage_window`를 가져 공유 값을 덮어써도 된다(MAY).
 
-명세는 credibility score를 저장하지 않는 이유를 명시한다. 점수는 주관적이고 소비자 사이에서 이식되지 않으며 낡는다. 그래서 신뢰도는 trust tier와 같은 방식으로 신호에서 추론될 뿐 저장되지 않는다. `usage_count`에 대해서는 거친 신호라고 못 박는다. 살아 있는지 죽었는지, 자릿수가 어느 정도인지, 그 source 자신의 과거 이력과 비교해 어떤지 수준에서만 비교 가능하고, 종류가 다른 source 사이의 정밀한 순위로는 쓸 수 없다. 예약 쿼리의 실행 횟수와 사람이 일부러 본 대시보드 조회 수는 같은 무게가 아니기 때문이다. 소비자는 이를 생존과 추세로 읽어야 한다(SHOULD).
+명세는 credibility score를 저장하지 않는 이유를 명시한다. 점수는 주관적이고 소비자 사이에서 이식되지 않으며 낡는다. 그래서 신뢰도는 trust tier와 같은 방식으로 신호에서 추론될 뿐 저장되지 않는다. `usage_count`에 대해서는 거친 신호라고 못 박는다. 살아 있는지 죽었는지, 자릿수가 어느 정도인지, 그 source 자신의 과거 이력과 비교해 어떤지 수준에서만 비교 가능하고, 종류가 다른 source 사이의 정밀한 순위로는 쓸 수 없다. 예약 질의의 실행 횟수와 사람이 일부러 본 대시보드 조회 수는 같은 무게가 아니기 때문이다. 소비자는 이를 생존과 추세로 읽어야 한다(SHOULD).
 
 lineage는 별도 필드가 아니라 링크로 표현한다. `resource`가 같은 bundle의 다른 concept을 가리키면 파생 엣지는 이미 bundle 그래프에 있으므로, 소비자는 그 source의 `sources`로 재귀해 신뢰도를 전파시켜도 된다(MAY). 외부 말단 source는 자기 고유 신호만 갖는다. 명시적 외부 `derived_from`이나 데이터 lineage 같은 더 깊은 lineage는 v0.2 범위 밖이다.
 
@@ -224,7 +224,7 @@ Attested Computation concept은 값이 무엇을 뜻하는지만이 아니라 �
 
 계산은 두 방식 중 하나로 제공한다. 인라인 방식은 본문 `# Computation` 아래 코드 펜스 하나에 두며 계약과 함께 검토되는 짧은 계산에 맞는다. 파일 방식은 `computation`에 경로를 적고 본문 펜스를 생략하며, 길거나 생성된 계산 또는 OKF 외 도구와 공유하는 실제 파일에 맞는다(예: `computation: references/computations/lib/revenue.sql`).
 
-에이전트는 선언된 `parameters`의 값만 줄 수 있고(MAY) 계산을 쓰거나 고쳐서는 안 된다(MUST NOT). `computation`에 파라미터 값을 바인딩해 실행 가능한 산출물을 만드는 일은 소비자 몫이고, attester는 같은 바인딩을 독립적으로 다시 유도해 실제 실행된 것과 비교한다. 비교 대상이 receipt가 담은 전개되고 컴파일된 산출물(`executed_sql`, `compiled_sql`)이므로, 다시 쓴 쿼리, 바꿔치기한 계산 파일, 변조된 의존성은 검사에 실패한다. 타입이 있는 파라미터 전용 표면이 "승인된 것이 실행됐는가"를 판단이 아니라 기계적 비교로 만든다.
+에이전트는 선언된 `parameters`의 값만 줄 수 있고(MAY) 계산을 쓰거나 고쳐서는 안 된다(MUST NOT). `computation`에 파라미터 값을 바인딩해 실행 가능한 산출물을 만드는 일은 소비자 몫이고, attester는 같은 바인딩을 독립적으로 다시 유도해 실제 실행된 것과 비교한다. 비교 대상이 receipt가 담은 전개되고 컴파일된 산출물(`executed_sql`, `compiled_sql`)이므로, 다시 쓴 질의, 바꿔치기한 계산 파일, 변조된 의존성은 검사에 실패한다. 타입이 있는 파라미터 전용 표면이 "승인된 것이 실행됐는가"를 판단이 아니라 기계적 비교로 만든다.
 
 문서 하나가 계산 하나인 경우는 드물다. 매출, 이익, 마진을 논하는 손익계산서 개요는 읽을 수 있는 concept 하나로 남고 수치마다 Attested Computation 하나씩을 링크한다. 명세 예시는 `type: Metric`인 Revenue concept이 `# Definition`에서 `[the revenue computation](../computations/revenue.md)`를 가리키는 형태다. 계산마다 concept이 따로 있으므로 매출은 신선한데 이익은 `stale_after`를 넘긴 상태가 가능하고 각각 자기 실행에 대해 attest한다. 같은 폴더에 모으는 것(`computations/` 폴더와 `index.md`)은 디렉토리 선택이지 frontmatter 선택이 아니다.
 
@@ -287,7 +287,7 @@ README에 따르면 reference agent는 두 pass로 실행된다. BQ pass는 BigQ
 | 명령 또는 옵션 | 의미 |
 |---|---|
 | `python3.13 -m venv .venv` 후 `.venv/bin/pip install --index-url https://pypi.org/simple/ -e .[dev]` | 설치 |
-| `gcloud auth application-default login`, `gcloud config set project <id>` | BigQuery 자격 증명. 공개 데이터셋은 읽을 수 있지만 쿼리 바이트는 호출자 프로젝트에 과금된다 |
+| `gcloud auth application-default login`, `gcloud config set project <id>` | BigQuery 자격 증명. 공개 데이터셋은 읽을 수 있지만 질의 바이트는 호출자 프로젝트에 과금된다 |
 | `GEMINI_API_KEY` | AI Studio 경로의 Gemini 자격 증명 |
 | `GOOGLE_GENAI_USE_VERTEXAI=true`, `GOOGLE_CLOUD_PROJECT=<id>`, `GOOGLE_CLOUD_LOCATION=<region>` | Vertex AI 경로의 Gemini 자격 증명 |
 | `.venv/bin/python -m reference_agent enrich --source bq --dataset <project>.<dataset> --web-seed-file <path/to/seeds.txt> --out ./bundles/<name>` | 최소 실행. seed를 생략하거나 `--no-web`을 주면 BQ 전용 |

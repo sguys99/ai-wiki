@@ -64,7 +64,7 @@ after 응답은 다음과 같다.
 
 output style은 응답의 내용이 아니라 모양을 규정하는 지시를 뜻한다. 첫 줄에 무엇이 오는지, 단계에 번호가 붙는지, 마지막 줄이 무엇으로 끝나는지, 목록이 몇 개까지 보이는지가 대상이다. 이 저장소의 스킬은 사실이나 코드를 바꾸지 않고 output style만 바꾼다.
 
-이 wiki의 다른 스킬 저장소와 비교하면 성격이 뚜렷하다. [[agents/mattpocock-skills]]의 스킬 25개는 인터뷰, 스펙, TDD 같은 절차를 담고, [[agents/garrytan-gstack]]은 역할별 슬래시 명령어로 스프린트를 구조화한다. i-have-adhd는 슬래시 명령어 하나로 문체만 바꾸고 절차에는 관여하지 않는다.
+이 wiki의 다른 스킬 저장소와 비교하면 성격이 뚜렷하다. [[agents/mattpocock-skills]]의 스킬 25개는 인터뷰, 스펙, TDD 같은 절차를 담고, [[agents/garrytan-gstack]]은 역할별 슬래시 커맨드로 스프린트를 구조화한다. i-have-adhd는 슬래시 커맨드 하나로 문체만 바꾸고 절차에는 관여하지 않는다.
 
 ### 활성화 주체와 지속성
 
@@ -433,6 +433,6 @@ candidate blocker 3건 중 2건은 어떤 실행도 통과할 수 없는 케이�
 - [[agents/anthropic-2025-equipping-agents-for-the-real]]: Anthropic이 소개한 SKILL.md 포맷과 progressive disclosure. 이 스킬의 배포 단위가 여기서 나왔다
 - [[agents/mattpocock-skills]]: user-invoked 스킬에 `disable-model-invocation: true`와 Codex `policy.allow_implicit_invocation: false`를 함께 두는 같은 규약을 절차 스킬 25개에 적용한 저장소
 - [[agents/osmani-2026-agent-skills]]: 스킬 본문에 담을 원칙. 절차 규율을 다루는 반면 i-have-adhd는 응답 모양만 담는다
-- [[agents/garrytan-gstack]]: Claude Code 스킬 팩의 다른 사례. 슬래시 명령어 여러 개로 워크플로를 구조화하는 반면 i-have-adhd는 슬래시 명령어 하나로 문체만 바꾼다
+- [[agents/garrytan-gstack]]: Claude Code skill pack의 다른 사례. 슬래시 커맨드 여러 개로 워크플로를 구조화하는 반면 i-have-adhd는 슬래시 커맨드 하나로 문체만 바꾼다
 - [[overviews/agent-skills-overview]]: 규격, 표준화, 이식 마찰을 합성한 overview. i-have-adhd의 15개 harness 배포는 cross-vendor 채택의 한 사례다
 - [[evaluations/kim-2026-ai-prd-eval-plan]]: LLM 기능의 평가 계획. i-have-adhd의 evals는 스타일 스킬에 blind judge와 release gate를 적용한 실측이다

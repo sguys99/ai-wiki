@@ -175,7 +175,7 @@ Table 1은 dual-system으로 분류된 6종의 구성을 한 표에 모은다. �
 | 번호 | 설계 요소 | 쟁점 |
 |---|---|---|
 | 1 | MLLM 선택 | Flower의 foundation model은 공간 인지와 low-level vision이 강해 여러 과제에서 SOTA를 냈고, MiniVLA는 추론 비용을 줄이려 Qwen-VL 0.25B를 골랐다. 로봇 데이터로 pre-training된 MLLM이 필요한지는 미해결이다 |
-| 2 | policy 선택 | DiT 계열과 flow matching 계열이면 충분하다는 합의가 있다. CARP와 Dense Policy 같은 새 구조, System 1에 어떤 modality가 필수인지가 남은 쟁점이다 |
+| 2 | policy 선택 | DiT 계열과 flow matching 계열이면 충분하다는 합의가 있다. CARP와 Dense Policy 같은 새 구조, System 1에 어떤 모달리티가 필수인지가 남은 쟁점이다 |
 | 3 | latent representation 선택 | 가장 복잡하고 연구가 가장 필요한 항목이다 |
 | 4 | MLLM 학습 방식 | 일반화 능력을 잃지 않으면서 downstream과 잘 통합하는 방법 |
 | 5 | policy 학습 방식 | from-scratch와 pre-training된 policy fine-tuning 중 무엇을 쓸지 |

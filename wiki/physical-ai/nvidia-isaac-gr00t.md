@@ -119,7 +119,7 @@ DROID episode가 더 필요하면 `scripts/download_droid_sample.py --num-episod
 | 경로 | 내용 |
 |---|---|
 | `meta/info.json` | 데이터셋 메타데이터 |
-| `meta/episodes.jsonl` | episode 색인과 길이 |
+| `meta/episodes.jsonl` | episode 인덱스와 길이 |
 | `meta/tasks.jsonl` | 과제의 자연어 설명 |
 | `meta/modality.json` | state, action, video key 매핑 (GR00T 고유) |
 | `data/chunk-000/` | timestep별 state와 action이 담긴 parquet 파일 |

@@ -155,8 +155,8 @@ semantic memory를 시스템이 스스로 채우게 만드는 장치가 consolid
 
 | 질문 | 필요한 수단 | 이유 |
 |---|---|---|
-| "이 미국 고객과 나눈 최근 대화 10건은?" | SQL 쿼리 | 최근 이벤트를 날짜로 추리면 된다 |
-| "제품 품질 불만이 있었고 에이전트가 해결하지 못한 대화 20건은?" | SQL 쿼리에 semantic search 추가 | 불만 내용이 텍스트라서 의미를 맞춰야 한다 |
+| "이 미국 고객과 나눈 최근 대화 10건은?" | SQL 질의(query) | 최근 이벤트를 날짜로 추리면 된다 |
+| "제품 품질 불만이 있었고 에이전트가 해결하지 못한 대화 20건은?" | SQL 질의에 semantic search 추가 | 불만 내용이 텍스트라서 의미를 맞춰야 한다 |
 
 두 번째 질문에서 필요한 것은 2,000개 메시지 전부가 아니라 그중 정확히 관련된 20개다. SQL은 날짜가 붙은 이벤트를 테이블에서 가져오는 데까지만 유효하다. 불만의 내용은 자유 텍스트이므로 사용자 질문과 의미를 맞추는 단계가 따로 필요하고, 그 단계가 RAG다. 그렇게 골라낸 20개만 working memory로 올라간다.
 
@@ -219,7 +219,7 @@ agent run ──► ① tracing: 이벤트 트리
                 (질문, retrieval, tool call 횟수, latency, 토큰)
                      │
                      ▼
-              ② eval: good? healthy?  (LLM-as-judge 또는 결정론적 코드)
+              ② eval: good? healthy?  (LLM-as-a-Judge 또는 결정론적 코드)
                      │  대시보드와 metric
                      ▼
               ③ diagnose → 게이트
@@ -237,7 +237,7 @@ tracing 자체는 판정을 하지 않는다. 데이터를 모으는 1단계이�
 
 ### eval
 
-두 번째 단계는 모아 둔 데이터를 두 질문으로 가르는 것이다. 좋은 실행이었나(good), 그리고 건강했나(healthy). 판정 수단은 두 가지다. LLM-as-judge로 점수를 매길 수도 있고 결정론적 코드로 검사할 수도 있다.
+두 번째 단계는 모아 둔 데이터를 두 질문으로 가르는 것이다. 좋은 실행이었나(good), 그리고 건강했나(healthy). 판정 수단은 두 가지다. LLM-as-a-Judge로 점수를 매길 수도 있고 결정론적 코드로 검사할 수도 있다.
 
 good과 healthy는 별개의 시스템이 아니라 같은 절차 안의 두 질문이다. 앞의 질문은 산출물의 품질을 묻고 뒤의 질문은 실행 자체의 건전성을 묻는다.
 
@@ -318,7 +318,7 @@ memory 시스템의 깊이는 생략한다. 선행 영상으로 미루고 harnes
 
 자료 내부에 서로 어긋나는 예시가 있다. 불필요한 retrieval의 사례로 "내 생일은 언제인가"를 들며 모델이 이미 안다고 설명하는데, 같은 강의가 앞서 유명하지 않은 개인의 사실은 모델이 학습하지 않았으므로 semantic memory에 직접 주입해야 한다고 말했다. 개인의 생일은 후자에 해당하므로 두 설명이 충돌한다. 자동 자막의 오인식일 가능성도 있으나 확인할 수단이 없다.
 
-평가 자동화의 신뢰성을 다루지 않는다. LLM-as-judge의 편향이나 재현성, 채점 기준 설계 같은 문제는 언급되지 않는다. 평가 자동화 도구의 구체 사례로는 사용자의 QA와 corpus 데이터로 RAG module 조합을 자동 평가해 최적 파이프라인을 고르는 [[evaluations/marker-inc-korea-autorag]]를 참고할 수 있다.
+평가 자동화의 신뢰성을 다루지 않는다. LLM-as-a-Judge의 편향이나 재현성, 채점 기준 설계 같은 문제는 언급되지 않는다. 평가 자동화 도구의 구체 사례로는 사용자의 QA와 corpus 데이터로 RAG module 조합을 자동 평가해 최적 파이프라인을 고르는 [[evaluations/marker-inc-korea-autorag]]를 참고할 수 있다.
 
 보안과 권한 설계가 빠져 있다. 에이전트가 Stripe와 Alipay의 환불을 실제로 실행하는 시나리오까지 제시하지만, 승인 절차나 권한 범위, 실패 시 롤백은 다루지 않는다.
 
@@ -333,7 +333,7 @@ memory 시스템의 깊이는 생략한다. 선행 영상으로 미루고 harnes
 | consolidation | 대량 이벤트를 summarizer agent로 요약하고 distill해 semantic memory로 승격하는 자동 진화 장치 |
 | end-loop guardrail | tool call 반복을 언제 멈출지 정하는 조건. task 완료 신호이거나 planning 단계에서 확정한 종료 지점이다 |
 | tracing | 한 번의 agent run을 이벤트 트리로 기록하는 단계. 질문과 retrieval, tool call 횟수, latency, 토큰을 담는다 |
-| eval | 기록된 데이터를 good과 healthy 두 질문으로 판정하는 단계. LLM-as-judge 또는 결정론적 코드로 수행한다 |
+| eval | 기록된 데이터를 good과 healthy 두 질문으로 판정하는 단계. LLM-as-a-Judge 또는 결정론적 코드로 수행한다 |
 
 ## 관련 페이지
 

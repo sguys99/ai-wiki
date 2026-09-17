@@ -14,14 +14,14 @@ tags: [ai-coding, agentic-workflow, unknowns, claude-code, planning, prototyping
 
 ## 한 줄 요약 (One-line Summary)
 
-구현 전, 구현 중, 구현 후 세 구간에서 unknown unknowns를 값싸게 발견하는 11개 기법을 각각 동작하는 HTML 아티팩트로 시연한 companion 페이지다. 프레임은 Johari Window이고, 페이지가 내건 문장은 지도와 영토의 격차가 곧 사용자의 unknown이라는 것이다.
+구현 전, 구현 중, 구현 후 세 구간에서 unknown unknowns를 값싸게 발견하는 11개 기법을 각각 동작하는 HTML artifact로 시연한 companion 페이지다. 프레임은 Johari Window이고, 페이지가 내건 문장은 지도와 영토의 격차가 곧 사용자의 unknown이라는 것이다.
 
 ## 1. 자료 정보 (Document Information)
 
 - 유형: 블로그 포스트에 딸린 companion 페이지. 예시 데모 인덱스 역할을 한다.
 - 저자: Thariq (사이트 소유자). 페이지 자체에는 저자 표기가 없다.
 - URL: https://thariqs.github.io/html-effectiveness/unknowns/
-- 구성: 11개 self-contained HTML 아티팩트를 3개 phase(pre, during, post-implementation)로 묶은 인덱스다. 각 아티팩트는 실제로 클릭하고 조작할 수 있는 데모다.
+- 구성: 11개 self-contained HTML artifact를 3개 phase(pre, during, post-implementation)로 묶은 인덱스다. 각 artifact는 실제로 클릭하고 조작할 수 있는 데모다.
 - 원 블로그 포스트의 주제: "discovering unknowns before, during, and after implementation".
 - 취득 시 주의: 페이지에 발행일이 없어 year는 2026으로 추정했다. 본문 산문은 요약본으로 확보했고, 11개 데모의 이름과 설명만 원문 그대로 확보했다.
 
@@ -33,7 +33,7 @@ tags: [ai-coding, agentic-workflow, unknowns, claude-code, planning, prototyping
 
 - 발견 수단의 일반화: "every explainer, brainstorm, interview, and prototype is a cheap way to find out what you didn't know." explainer, brainstorm, interview, prototype을 모두 몰랐던 것을 값싸게 알아내는 수단으로 한데 묶는다.
 - 구간별 카탈로그: 11개 기법을 구현 타임라인의 세 구간에 배치한다. 8개가 구현 전에 몰려 있고, 페이지는 이 구간을 발견 비용이 가장 싼 단계로 적는다.
-- 실행 가능한 시연: 각 기법을 조작 가능한 HTML 아티팩트로 구현해 산출물의 형태를 직접 보여준다.
+- 실행 가능한 시연: 각 기법을 조작 가능한 HTML artifact로 구현해 산출물의 형태를 직접 보여준다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 

@@ -63,7 +63,7 @@ ai-wiki/
     ├── evaluations/
     ├── applications/
     ├── etc/
-    └── overviews/          # 합성(synthesis) 페이지 — 지식이 복리로 쌓이는 곳
+    └── overviews/          # 합성(synthesis) 페이지 — 지식이 계속 쌓이는 곳
 ```
 
 ---
@@ -105,7 +105,7 @@ ai-wiki/
 | `evaluations` | 평가 프레임워크(RAGAS, Braintrust), benchmark |
 | `applications` | RAG 응용, 도메인 적용 사례, 제품 패턴 |
 | `etc` | 미분류, 횡단(cross-cutting) 주제 |
-| `overviews` | 다수 자료를 합성한 페이지 (지식이 복리로 쌓이는 곳) |
+| `overviews` | 다수 자료를 합성한 페이지 (지식이 계속 쌓이는 곳) |
 
 분류 원칙: **방법(method)** 을 기준으로 분류한다. 평가지표(RAGAS)를 활용한 RAG 사례 논문이라면 `applications`보다 `evaluations`로 가는 게 적절할 수 있다 — "미래의 나에게 어느 카테고리에서 발견되어야 더 유용한가?"로 판단한다.
 
@@ -748,7 +748,7 @@ brew install ffmpeg    # videos 처리 시점에만 (옵션)
 
 ---
 
-## Knowledge Compounding (지식 복리)
+## Knowledge Compounding
 
 가장 가치 있는 페이지는 개별 자료 요약이 아니라, 여러 자료를 합성하는 `wiki/overviews/` 페이지다. 좋은 답이 나오면 저장하자:
 

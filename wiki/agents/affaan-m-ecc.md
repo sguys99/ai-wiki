@@ -47,9 +47,9 @@ ECC는 coding agent가 따라야 할 엔지니어링 절차를 프롬프트가 �
 
 2026년 1월 18일에 공개되어 수집 시점 기준 star 254,260개와 fork 38,104개를 기록했다. 단독 유지 관리자가 스폰서와 유료 GitHub App 수익으로 개발을 이어가는 구조다.
 
-배포 채널이 네 가지로 나뉘고 식별자도 서로 다르다. GitHub 소스는 `affaan-m/ECC`, Claude 마켓플레이스와 플러그인 식별자는 `ecc@ecc`, npm 패키지는 `ecc-universal`과 `ecc-agentshield`, 호스팅 서비스는 GitHub App `ecc-tools`다. 저장소는 이 불일치가 의도된 것이라고 밝힌다. Anthropic 마켓플레이스 설치가 canonical 플러그인 식별자를 기준으로 키를 잡기 때문에, 도구 이름과 슬래시 명령 네임스페이스를 검증기가 받아들일 만큼 짧게 유지하려고 `ecc@ecc`를 쓴다. npm 릴리스는 커밋 단위가 아니라 버전 태그 단위로 잘리므로 `ecc-universal`은 2.1이나 2.2 같은 릴리스를 따라가고 `main`의 모든 push를 반영하지 않는다.
+배포 채널이 네 가지로 나뉘고 식별자도 서로 다르다. GitHub 소스는 `affaan-m/ECC`, Claude 마켓플레이스와 플러그인 식별자는 `ecc@ecc`, npm 패키지는 `ecc-universal`과 `ecc-agentshield`, 호스팅 서비스는 GitHub App `ecc-tools`다. 저장소는 이 불일치가 의도된 것이라고 밝힌다. Anthropic 마켓플레이스 설치가 canonical 플러그인 식별자를 기준으로 키를 잡기 때문에, 도구 이름과 슬래시 커맨드 네임스페이스를 검증기가 받아들일 만큼 짧게 유지하려고 `ecc@ecc`를 쓴다. npm 릴리스는 커밋 단위가 아니라 버전 태그 단위로 잘리므로 `ecc-universal`은 2.1이나 2.2 같은 릴리스를 따라가고 `main`의 모든 push를 반영하지 않는다.
 
-저장소 자체는 원 코드이고 설명은 별도 가이드 세 편이 담당한다. `the-shortform-guide.md`가 설치와 첫날 사용, `the-longform-guide.md`가 컨텍스트 경제와 메모리, 평가, 병렬 agent, `the-security-guide.md`가 프롬프트 인젝션과 훅, MCP, AgentShield를 다룬다. README는 13개 언어로 번역되어 있다.
+저장소 자체는 원 코드이고 설명은 별도 가이드 세 편이 담당한다. `the-shortform-guide.md`가 설치와 첫날 사용, `the-longform-guide.md`가 컨텍스트 경제와 메모리, 평가, 병렬 agent, `the-security-guide.md`가 prompt injection과 훅, MCP, AgentShield를 다룬다. README는 13개 언어로 번역되어 있다.
 
 ## 배경
 
@@ -86,7 +86,7 @@ ECC가 설치하는 구성 요소는 다섯 종류이고, 서로 다른 문제�
 
 컨텍스트 소비 관점에서 규칙과 스킬의 차이가 중요하다. 규칙은 항상 로드되므로 하나를 추가할 때마다 모든 세션의 컨텍스트가 줄어든다. 반면 스킬은 과제가 필요로 할 때만 읽히므로 286개를 설치해도 평소 컨텍스트에는 부담을 주지 않는다. ECC가 규칙만은 "실제로 쓰는 언어 팩 하나만 고르라"고 반복해 권고하는 이유가 여기에 있다.
 
-스킬이 canonical 워크플로 표면이고 슬래시 명령은 이행기의 호환 진입점이다. 은퇴한 짧은 이름 명령(`/tdd`, `/eval`, `/verify`, `/e2e`, `/orchestrate`)은 `legacy-command-shims/`로 옮겨 명시적으로 선택해야만 쓰이도록 분리했다. 신규 워크플로 개발은 `skills/`에 먼저 들어간다.
+스킬이 canonical 워크플로 표면이고 슬래시 커맨드는 이행기의 호환 진입점이다. 은퇴한 짧은 이름 명령(`/tdd`, `/eval`, `/verify`, `/e2e`, `/orchestrate`)은 `legacy-command-shims/`로 옮겨 명시적으로 선택해야만 쓰이도록 분리했다. 신규 워크플로 개발은 `skills/`에 먼저 들어간다.
 
 ## 방법
 
@@ -98,7 +98,7 @@ ECC가 설치하는 구성 요소는 다섯 종류이고, 서로 다른 문제�
 ECC/
 |-- agents/           # 68개 전문 서브에이전트
 |-- skills/           # 필요 시 로드되는 재사용 워크플로
-|-- commands/         # 유지되는 슬래시 명령 shim 94개
+|-- commands/         # 유지되는 슬래시 커맨드 shim 94개
 |-- rules/            # 선택 설치하는 공통과 언어별 표준
 |-- hooks/            # 런타임 자동화와 강제
 |-- scripts/          # 설치, 복구, 동기화, 오케스트레이션, 점검

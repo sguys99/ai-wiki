@@ -35,7 +35,7 @@ ByteByteGo Newsletter가 OpenAI 데이터 플랫폼 엔지니어링 책임자 Em
 3. **단순함이 설계 의도라는 주장.** router와 multi-model 혼합과 fine-tuning을 모두 배제한 구조가 강한 데이터 기반 위에서는 충분히 동작한다는 사례를 제시한다.
 4. **tool curation 사례.** 약 40개였던 도구를 호출당 약 13개로 줄이고 기능이 겹치는 도구를 제거하자 문제가 해소됐다고 보고한다. 다만 성능 변화의 정량값은 공개하지 않았고 "the results were bad"라는 정성 서술만 있다.
 5. **Codex 사내 활용 사례 3건.** cross-cloud migration, open-source 패치 무인 릴리스, support 티켓 처리를 규모 수치와 함께 서술한다.
-6. **다른 팀을 위한 교훈 5가지.** 데이터 기반 우선, 도구 축소, 신뢰 가능한 쿼리만 retrieval, 경로가 아닌 목표 지시, 더 공격적인 일정.
+6. **다른 팀을 위한 교훈 5가지.** 데이터 기반 우선, 도구 축소, 신뢰 가능한 질의(query)만 retrieval, 경로가 아닌 목표 지시, 더 공격적인 일정.
 7. **향후 과제 2가지.** 질문마다 생성되는 맞춤 React 앱과, AI로 가속된 사용자 코드를 검증하는 플랫폼 측 에이전트.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
@@ -76,7 +76,7 @@ harness가 필요한 이유는 LLM 단독으로는 다음 토큰 예측만 가�
 
 | 구성 요소 | 구현 | 역할 |
 |---|---|---|
-| LLM | GPT-5.5 단일 모델 | 모든 요청에 같은 모델을 쓴다. 올바른 SQL 생성, 결과 검사, 쿼리 수정, 검증된 답까지의 추론을 담당한다 |
+| LLM | GPT-5.5 단일 모델 | 모든 요청에 같은 모델을 쓴다. 올바른 SQL 생성, 결과 검사, 질의 수정, 검증된 답까지의 추론을 담당한다 |
 | Runtime | agent loop orchestrator | 모델 출력을 파싱하고 요청된 tool call을 디스패치하며 결과를 다시 모델에 넣고 이 순환을 반복한다 |
 | Context Assembly | 6개 layer | 글이 "where the real engineering work lives"라고 지목한 층 |
 | Tools | 약 13개로 추린 집합 | 사내 컨텍스트 조회, 내부 knowledge base, Airflow와 Spark 같은 빅데이터 시스템, 메타데이터 서비스 |
@@ -87,14 +87,14 @@ harness가 필요한 이유는 LLM 단독으로는 다음 토큰 예측만 가�
 
 강한 모델도 적절한 컨텍스트 없이는 틀린 답을 낸다는 것이 이 층의 출발점이다. 스키마만으로는 테이블을 구분할 수 없다. 글이 드는 예는 다음과 같다. 두 테이블이 모두 `user_id` 컬럼을 가지고 있고 거의 동일해 보이지만, 하나는 로그아웃 상태 사용자를 포함하고 다른 하나는 포함하지 않는다. 스키마만으로는 어느 쪽이 질문에 답하는 테이블인지 모델이 판별할 수 없고 결국 잘못된 쪽을 고른다.
 
-그래서 팀은 모델의 테이블 선택과 쿼리 생성에 실제로 도움이 되는 신호를 먼저 식별했다. 테이블의 스키마와 사람들이 그 테이블을 어떻게 조회해 왔는지, 테이블 소유자가 남긴 메모, 그리고 pipeline 코드가 드러내는 생성 방식이다. 이 세 신호가 뒤의 앞선 세 layer로 이어진다.
+그래서 팀은 모델의 테이블 선택과 질의 생성에 실제로 도움이 되는 신호를 먼저 식별했다. 테이블의 스키마와 사람들이 그 테이블을 어떻게 조회해 왔는지, 테이블 소유자가 남긴 메모, 그리고 pipeline 코드가 드러내는 생성 방식이다. 이 세 신호가 뒤의 앞선 세 layer로 이어진다.
 
 ### 3.5 six layers of context
 
 | Layer | 내용 | 처리 방식 |
 |---|---|---|
-| Table usage metadata | 스키마, lineage, 조회 이력 | 데이터 사이언티스트가 쓴 인기 대시보드 쿼리를 가장 높게, 일회성 탐색 쿼리를 낮게 순위 매긴다 |
-| Human annotations | 테이블 소유자가 직접 쓴 설명. business meaning, ownership, criticality, 알려진 caveat | 스키마나 과거 쿼리에서 추론할 수 없는 정보를 담는다 |
+| Table usage metadata | 스키마, lineage, 조회 이력 | 데이터 사이언티스트가 쓴 인기 대시보드 질의를 가장 높게, 일회성 탐색 질의를 낮게 순위 매긴다 |
+| Human annotations | 테이블 소유자가 직접 쓴 설명. business meaning, ownership, criticality, 알려진 caveat | 스키마나 과거 질의에서 추론할 수 없는 정보를 담는다 |
 | Codex enrichment | 야간 Codex job이 각 테이블을 만드는 pipeline 코드를 읽는다 | 100개에서 200개 테이블 단위 batch, 테이블당 5분에서 10분 소요 |
 | Institutional knowledge | Slack 스레드, Google Docs, Notion 페이지 | 별도로 ingest하고 임베딩하며, access-controlled retrieval 서비스로 제공해 권한 없는 문서가 노출되지 않게 한다 |
 | Memory | 이전 대화에서 저장된 correction과 learning | global 또는 personal 범위로 구분한다 |
@@ -151,9 +151,9 @@ memory는 컨텍스트를 조립하는 또 하나의 출처다. 검색된 descri
 
 수십만 개 워크로드가 각각 새 클라우드를 가리키도록 작은 코드 변경을 필요로 했다. 그만큼의 pull request를 사람이 여는 것은 불가능해서 Codex가 대신 생성했고, Codex Skills가 PR마다 테스트와 검증을 처리했다. 팀은 그 주위에 자체 시스템을 만들어 두 가지 난제를 풀었다. 의존 관계 순서대로 변경이 진행되게 하는 ordering과, cutover 동안 각 워크로드가 옛 클라우드와 새 클라우드 양쪽에서 실행되는 사이 데이터 정합성을 유지하는 문제다. 이 시스템이 Codex가 안전하게 작업할 가드레일이 됐다. 비교 대상으로 글은 다른 회사의 유사한 cross-cloud migration이 수년간 이어져 왔다고 언급하지만 비교군의 정량값은 제시하지 않는다.
 
-**Open-source 패치 세부.** 플랫폼은 12개가 넘는 오픈소스 도구 위에서 구동되고, 팀은 각 도구의 자체 버전을 사내에 두고 커스텀 패치를 유지한다. 패치가 추가될 때마다 기존 테스트 스위트로 검증하고 스테이징에서 확인한 뒤 프로덕션으로 롤아웃해야 한다. 테스트 스위트는 길어서 몇 시간짜리도 있고 며칠씩 이어지는 것도 있다. 이전에는 엔지니어가 릴리스마다 붙어서 테스트를 지켜보고 실패를 진단하며 단계적으로 롤포워드했다.
+**Open-source 패치 세부.** 플랫폼은 12개가 넘는 오픈소스 도구 위에서 구동되고, 팀은 각 도구의 자체 버전을 사내에 두고 커스텀 패치를 유지한다. 패치가 추가될 때마다 기존 테스트 스위트로 검증하고 스테이징에서 확인한 뒤 프로덕션으로 rollout해야 한다. 테스트 스위트는 길어서 몇 시간짜리도 있고 며칠씩 이어지는 것도 있다. 이전에는 엔지니어가 릴리스마다 붙어서 테스트를 지켜보고 실패를 진단하며 단계적으로 롤포워드했다.
 
-Codex 기반 release agent는 네 가지를 담당한다. 테스트 스위트로 패치를 검증하고, 문제가 생기면 실패를 진단해 수정을 제안하며, 패치를 프로덕션까지 롤아웃하고, 팀에 수행 내용을 알린다.
+Codex 기반 release agent는 네 가지를 담당한다. 테스트 스위트로 패치를 검증하고, 문제가 생기면 실패를 진단해 수정을 제안하며, 패치를 프로덕션까지 rollout하고, 팀에 수행 내용을 알린다.
 
 **Support 세부.** 사용자 5,500명 규모의 플랫폼에는 파이프라인 실패, 대시보드 오류, 권한 링크 미작동 같은 문의가 꾸준히 들어온다. 각 건은 수정 전에 조사가 필요했고, 이 조사 작업이 시니어 엔지니어 시간의 상당 부분을 차지했다. 지금은 support bot이 흔한 질문을 먼저 받아 쉬운 것을 직접 해결하고, bot이 해결하지 못하면 on-call 엔지니어가 최소한의 컨텍스트만 붙여 Codex에 넘긴다. Codex가 조사하고 수정안을 찾아 적용하며 엔지니어는 검토하고 승인한다. 원문 표현으로 "The work is not easier. The engineer is amplified."
 
@@ -163,7 +163,7 @@ Codex 기반 release agent는 네 가지를 담당한다. 테스트 스위트로
 |---|---|
 | The data foundation matters more than the agent | 코딩 에이전트의 source of truth는 저장소 하나지만 data agent의 source of truth는 회사 전체다. 어느 것도 모델이 읽을 수 있는 형태가 아니면 어떤 에이전트 구조로도 해결되지 않는다 |
 | Fewer tools beat more tools | 약 40개 도구를 연결했을 때 모델이 잘못된 도구를 고르고 유사 도구들의 겹치는 응답에 혼란을 겪었다. 호출당 약 13개로 제한하고 겹치는 도구를 제거하자 문제가 해소됐다 |
-| Pick trusted queries for retrieval | 과거 쿼리를 전부 임베딩하는 방식을 시도했으나 실패했다. 대부분의 쿼리는 일회성 탐색이지 정본 예시가 아니다. 신뢰도 순위를 매기자 모델이 좋은 패턴을 모방하기 시작했다 |
+| Pick trusted queries for retrieval | 과거 질의를 전부 임베딩하는 방식을 시도했으나 실패했다. 대부분의 질의는 일회성 탐색이지 정본 예시가 아니다. 신뢰도 순위를 매기자 모델이 좋은 패턴을 모방하기 시작했다 |
 | Guide the goal, not the path | 질문 유형마다 단계별 지시를 상세히 준 실험에서 에이전트가 지시를 따르되 더 나쁜 답을 냈다. 상위 수준 지침이 더 나았다 |
 | Be more ambitious | 마이그레이션의 초기 추정치는 더 길었으나 용량 문제로 2개월을 밀어붙였고 기한을 맞췄다. Codex 이전의 일정 추정은 더 이상 적용되지 않는다는 것이 팀의 결론이다 |
 
@@ -220,7 +220,7 @@ Emma Tang이 든 실제 사례는 잘못된 Flink job이 클러스터에 올라�
 
 - **Data agent**: 자연어 질문을 받아 9만 개 테이블 중 적절한 것을 찾고 SQL을 작성해 실행하고 결과를 검증하는 사내 에이전트.
 - **Context assembly**: 질문에 답하는 데 필요한 정보를 여러 출처에서 모아 LLM 입력으로 조립하는 층. 본 사례가 실제 엔지니어링 작업이 놓인 자리로 지목한 곳이다.
-- **Table usage metadata**: 스키마와 lineage와 과거 조회 이력. 인기 대시보드 쿼리와 일회성 쿼리에 다른 가중치를 준다.
+- **Table usage metadata**: 스키마와 lineage와 과거 조회 이력. 인기 대시보드 질의와 일회성 질의에 다른 가중치를 준다.
 - **Codex enrichment**: pipeline 코드를 야간 batch로 읽어 테이블의 실제 내용, 생성 방식, 신선도, 대체 테이블 대비 사용 시점을 추출하는 작업.
 - **Institutional knowledge**: Slack과 Google Docs와 Notion에 흩어진 사내 지식. 별도 임베딩과 access-controlled retrieval로 제공된다.
 - **Runtime context**: offline description이 낡거나 없을 때 warehouse와 Airflow와 Spark에 즉시 질의해 채우는 경로.

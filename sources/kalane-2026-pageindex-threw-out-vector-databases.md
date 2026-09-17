@@ -50,7 +50,7 @@ Towards AI에 실린 PageIndex 사후 점검 리뷰로, vector RAG의 실패 유
 
 ### 대비군으로 삼은 vector RAG 파이프라인
 
-저자가 서술하는 표준 구성은 다음과 같다. 문서를 300~500 토큰 고정 크기로 자르고, `text-embedding-3-large` 같은 모델로 임베딩하고, Pinecone, Weaviate, Milvus, Chroma, pgvector 같은 vector DB에 저장한다. 질의 시점에는 질문을 임베딩해 코사인 거리 기준 상위 k개를 뽑아 LLM에 넣는다.
+저자가 서술하는 표준 구성은 다음과 같다. 문서를 300~500 토큰 고정 크기로 자르고, `text-embedding-3-large` 같은 모델로 임베딩하고, Pinecone, Weaviate, Milvus, Chroma, pgvector 같은 vector DB에 저장한다. 질의 시점에는 질문을 임베딩해 코사인 거리 기준 top-k를 뽑아 LLM에 넣는다.
 
 저자가 production에서 반복 목격했다고 밝힌 다섯 가지 실패 유형은 다음과 같다.
 

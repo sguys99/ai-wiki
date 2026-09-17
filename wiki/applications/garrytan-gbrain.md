@@ -145,7 +145,7 @@ v0.40.7.0부터는 사람이 아니라 에이전트가 이 스키마를 바꿀 �
 
 retrieval은 여러 층을 겹쳐 점수를 매긴다. 기본 층은 pgvector의 HNSW vector 검색, BM25 keyword 검색, 두 결과를 합치는 reciprocal-rank fusion, source-tier boost, 그리고 의도를 반영해 질의를 다시 쓰는 intent-aware query rewriting이다.
 
-비용과 품질의 조절값은 개별 설정이 아니라 세 가지 이름 있는 mode로 묶여 있다. README는 각 mode의 세부 값을 본문에 적지 않고 `docs/eval/SEARCH_MODE_METHODOLOGY.md`의 비용과 재현율 비교로 넘긴다.
+비용과 품질의 조절값은 개별 설정이 아니라 세 가지 이름 있는 mode로 묶여 있다. README는 각 mode의 세부 값을 본문에 적지 않고 `docs/eval/SEARCH_MODE_METHODOLOGY.md`의 비용과 recall 비교로 넘긴다.
 
 | search mode | README가 밝힌 내용 |
 |---|---|
@@ -193,7 +193,7 @@ Obsidian에서 옮겨온 vault에는 별도 설정이 필요하다. `[[struktura
 
 gap analysis가 이 층의 차별점으로 지목된다. 답변이 사용자에게 알리는 것은 네 가지다. 페이지가 오래됐을 때, claim에 인용이 없을 때, 두 페이지가 서로 모순될 때, 그리고 아직 채워지지 않은 구멍이 있을 때다.
 
-README는 brain layer를 `find_trajectory`와 함께 쓰는 조합을 복리 효과의 예로 든다. 회사 지표가 어떻게 변했는지, 팀이 지금 어떤 모습인지, 무엇을 약속하고 공유했는지, 마지막으로 언제 만났는지, 여기서 줄 수 있는 value-add가 무엇인지를 한 번에 점수와 인용이 붙은 형태로 답한다는 것이다.
+README는 brain layer를 `find_trajectory`와 함께 쓰는 조합을 compounding 효과의 예로 든다. 회사 지표가 어떻게 변했는지, 팀이 지금 어떤 모습인지, 무엇을 약속하고 공유했는지, 마지막으로 언제 만났는지, 여기서 줄 수 있는 value-add가 무엇인지를 한 번에 점수와 인용이 붙은 형태로 답한다는 것이다.
 
 ### Minions 작업 큐
 

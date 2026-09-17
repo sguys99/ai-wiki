@@ -128,21 +128,21 @@ action 헤드를 붙이기 전에 프런티어 video 모델이 이미 무엇을 
 
 inverse dynamics 계열은 미래를 먼저 상상해 놓고 그 영상에서 action을 거꾸로 읽어낸다. inverse dynamics 자체는 현재 observation과 k스텝 뒤 observation이 주어졌을 때 그 사이를 만든 action 묶음을 추론하는 문제다. 이렇게 짜면 어려운 언어 grounding이 video 단계로 넘어가고 action 헤드는 되짚기 하나에만 매달리면 된다. 이 레시피를 현대적으로 처음 구현한 사례가 2023년 UniPi다. 지금 그 자리는 LingBot-VA가 채운다. Wan 2.2-5B를 16,000시간 cross-embodiment 학습으로 로봇 video-action 모델로 바꾼 결과물이다. UniPi와의 차이는 규모에 그치지 않는다. LingBot-VA는 긴 시각 이력을 causal하게 학습해 closed-loop rollout까지 노린다. video 전문가와 action 전문가는 공유 self-attention으로 묶는 Mixture-of-Transformers 구조에 올렸다.
 
-joint prediction 계열은 미래 영상과 action을 한 번에 뽑는다. 출발점은 GR-1이다. 인터넷 영상 예측으로 pre-training한 GPT-2 계열 policy를 로봇 데이터에서 video 목적과 action 목적으로 함께 fine-tuning했다. 약 21M 파라미터 policy로 CALVIN ABC→D 평균 3.06/5를 냈다. 2026년 기준으로 수치 자체는 낡았다. 남는 것은 영상이 더 나은 시각 인코더가 아니라 더 나은 policy 표현을 만든다는 발견이다. 현대판은 DreamZero다. Wan 2.1-I2V-14B-480P에서 출발해 하나의 monolithic DiT 안에서 video 토큰과 action 토큰을 나란히 디노이징한다. 별도 inverse dynamics 모듈은 두지 않는다. action도 같은 디노이징 과정 속 또 하나의 생성 모달리티다.
+joint prediction 계열은 미래 영상과 action을 한 번에 뽑는다. 출발점은 GR-1이다. 인터넷 영상 예측으로 pre-training한 GPT-2 계열 policy를 로봇 데이터에서 video 목적과 action 목적으로 함께 fine-tuning했다. 약 21M 파라미터 policy로 CALVIN ABC→D 평균 3.06/5를 냈다. 2026년 기준으로 수치 자체는 낡았다. 남는 것은 영상이 더 나은 시각 인코더가 아니라 더 나은 policy 표현을 만든다는 발견이다. 현대판은 DreamZero다. Wan 2.1-I2V-14B-480P에서 출발해 하나의 monolithic DiT 안에서 video 토큰과 action 토큰을 나란히 denoising한다. 별도 inverse dynamics 모듈은 두지 않는다. action도 같은 denoising 과정 속 또 하나의 생성 모달리티다.
 
 나머지 하나가 representation-only다. video backbone은 표현을 뽑는 데만 쓰고 추론 시점의 video 생성은 건너뛴다. 여기 있는 모델이 Fast-WAM이다. LingBot-VA와 비슷한 Wan/MoT 구성을 쓰면서 16,000시간 로봇 pre-training 없이도 시뮬레이션에서 그 성능에 다가선다. 다만 이 가설을 뒷받침하는 공개 증거가 아직 얇다고 저자는 짚는다.
 
 ### action이 모델에 들어가는 방식
 
-pre-training된 backbone이 할 줄 아는 일은 시각 토큰 디노이징까지다. 연속적인 로봇 action은 모른다. 이 모달리티 불일치를 어떻게 메우느냐가 두 번째 기준이 된다.
+pre-training된 backbone이 할 줄 아는 일은 시각 토큰 denoising까지다. 연속적인 로봇 action은 모른다. 이 모달리티 불일치를 어떻게 메우느냐가 두 번째 기준이 된다.
 
-손쉬운 기본값부터 보자. action 토큰과 헤드를 덧붙여 action을 영상 옆에 놓인 또 하나의 모달리티로 취급하는 방식이다. UniPi와 GR-1, DreamZero, LingBot-VA, VPP, mimic-video, Fast-WAM이 전부 여기 속한다. 다음 방식은 action을 video 모델이 이미 아는 형태로 바꿔 준다. GENIMA에서는 fine-tuning한 Stable Diffusion이 RGB 이미지 위에 관절 목표를 그려 주고 컨트롤러가 그 그림을 관절 위치 action으로 옮긴다. Cosmos Policy는 action과 proprioception과 value 목표를 video 모델 자신의 디노이징 인터페이스 안쪽 합성 latent 프레임에 인코딩한다. 추론 시점에는 예측된 action 이미지를 공간 방향으로 평균 내 벡터로 디코딩한다.
+손쉬운 기본값부터 보자. action 토큰과 헤드를 덧붙여 action을 영상 옆에 놓인 또 하나의 모달리티로 취급하는 방식이다. UniPi와 GR-1, DreamZero, LingBot-VA, VPP, mimic-video, Fast-WAM이 전부 여기 속한다. 다음 방식은 action을 video 모델이 이미 아는 형태로 바꿔 준다. GENIMA에서는 fine-tuning한 Stable Diffusion이 RGB 이미지 위에 관절 목표를 그려 주고 컨트롤러가 그 그림을 관절 위치 action으로 옮긴다. Cosmos Policy는 action과 proprioception과 value 목표를 video 모델 자신의 denoising 인터페이스 안쪽 합성 latent 프레임에 인코딩한다. 추론 시점에는 예측된 action 이미지를 공간 방향으로 평균 내 벡터로 디코딩한다.
 
 마지막 방식은 action을 latent plan이나 latent action으로 압축하는 쪽이다. 뿌리는 2019년 Play-LMP까지 올라간다. 사후 네트워크가 짧은 trajectory 창을 latent plan으로 압축하고 사전 네트워크가 현재 observation과 목표 이미지에서 그 plan을 맞히는 구조를 그때 이미 갖췄다. Genie는 라벨 없는 인터넷 영상에서 latent action 토큰을 배울 수 있다는 것을 보여 줬다. Being-H0.7은 같은 사전/사후 논리를 foundation model 규모까지 밀어 올린다. 동결된 V-JEPA 2.1 인코더와 Perceiver 리샘플러가 미래 observation을 K개 임베딩까지 줄인다. 테스트 시점에는 사후 분기를 떼어낸다. 전체 video 시퀀스를 다시 생성하지 않고도 policy가 쓸 빠른 latent 인터페이스가 남는다. 학습 데이터는 20만 시간 1인칭 인간 영상과 1만 5천 시간 로봇 시연이다.
 
 ### 구성 요소를 묶는 방식
 
-hierarchical 구성이 가장 유연하다. action 헤드가 완전히 모듈이라 단순 CNN 회귀기(UniPi)부터 완전한 VLA 스택(Pi-0.7)까지 무엇이든 갈아 끼울 수 있다. 정보가 한 방향으로만 흐르는 점은 장점이면서 동시에 한계다. monolithic Transformer는 DreamZero처럼 video와 action 디노이징을 한 스택에 몰아넣어 결합을 세게 만든다. 대신 같은 가중치가 조밀한 시각 토큰과 훨씬 희소한 action 목표를 한꺼번에 감당해야 한다. Mixture-of-Transformers가 그 사이의 절충이다. 모달리티별로 가중치는 나누되 attention은 공유한다. Pi-0와 Pi-0.5 같은 현대 VLA도, LingBot-VA와 Fast-WAM도 모두 이 구조다. 저자는 WAM 쪽에서도 MoT가 주류가 되리라 전망한다.
+hierarchical 구성이 가장 유연하다. action 헤드가 완전히 모듈이라 단순 CNN 회귀기(UniPi)부터 완전한 VLA 스택(Pi-0.7)까지 무엇이든 갈아 끼울 수 있다. 정보가 한 방향으로만 흐르는 점은 장점이면서 동시에 한계다. monolithic Transformer는 DreamZero처럼 video와 action denoising을 한 스택에 몰아넣어 결합을 세게 만든다. 대신 같은 가중치가 조밀한 시각 토큰과 훨씬 희소한 action 목표를 한꺼번에 감당해야 한다. Mixture-of-Transformers가 그 사이의 절충이다. 모달리티별로 가중치는 나누되 attention은 공유한다. Pi-0와 Pi-0.5 같은 현대 VLA도, LingBot-VA와 Fast-WAM도 모두 이 구조다. 저자는 WAM 쪽에서도 MoT가 주류가 되리라 전망한다.
 
 ### 왜 하필 지금인가
 
@@ -182,7 +182,7 @@ hierarchical 구성이 가장 유연하다. action 헤드가 완전히 모듈이
 ## 6. 관련 연구 (Related Work)
 
 - Pi-0 / Pi-0.5 (Physical Intelligence): 비교 기준으로 삼는 VLA 레시피. RoboArena에서는 WAM의 상대로 서지만 MoT 구조와 flow matching action expert를 WAM 쪽에 빌려준 쪽이기도 하다.
-- Pi-0.7: hybrid의 hierarchical 버전. BAGEL 기반 world model이 만든 시각 subgoal에 action expert를 조건화한다. 절제 실험에서 subgoal이 복잡한 참조 과제의 지시 따르기를 개선했다.
+- Pi-0.7: hybrid의 hierarchical 버전. BAGEL 기반 world model이 만든 시각 subgoal에 action expert를 조건화한다. ablation에서 subgoal이 복잡한 참조 과제의 지시 따르기를 개선했다.
 - World Model for Robot Learning 서베이 (Hou 2026): 저자가 본문에서 직접 가리키는 NTU 서베이. 로보틱스 world model 전반의 조망.
 - Motus와 BagelVLA: 이해 컴포넌트와 video 생성 컴포넌트와 action expert가 attention을 공유하는 hybrid 첫 신호.
 - Cortex 2.0 (Sereact): 후보 미래 trajectory를 만들고 진행도와 위험과 효율로 점수 매겨 실행을 고르는 산업 쪽 hybrid 사례.

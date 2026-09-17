@@ -108,7 +108,7 @@ Gotchas 절의 항목은 전부 실제 PR에서 Claude가 저지른 실수를 �
 
 부작용이 있는 스킬에는 `disable-model-invocation: true`를 쓴다. `/ship`은 명시적으로 입력했을 때만 배포해야지, 모델이 관련 있다고 판단할 때 실행되어서는 안 된다.
 
-Go HTTP handler 스킬 예시는 `SKILL.md`, `templates/handler.go.tmpl`, `examples/healthz.go`로 구성된다. Stack 절에 Go 1.22와 chi 라우터, 타입 안전 쿼리용 sqlc, 구조화 로깅용 zap, 테이블 주도 테스트용 testify를 적고, Gotchas 절에 `chi.URLParam`이 누락 파라미터에 에러가 아닌 빈 문자열을 반환한다는 점, `httperr.Wrap`이 로깅하지 않으므로 반환 전에 별도로 로깅해야 한다는 점, 인증 미들웨어가 `context.Value(authkey.User)`로 주입하므로 `*models.User`로 타입 단언해야 한다는 점, sqlc의 nullable 문자열 `pgtype.Text`는 `.String` 호출 전에 `.Valid`를 확인해야 한다는 점, 테스트가 실제 서버 대신 `httptest.NewRecorder`와 `httptest.NewRequest`를 써야 한다는 점을 적는다.
+Go HTTP handler 스킬 예시는 `SKILL.md`, `templates/handler.go.tmpl`, `examples/healthz.go`로 구성된다. Stack 절에 Go 1.22와 chi 라우터, 타입 안전 질의(query)용 sqlc, 구조화 로깅용 zap, 테이블 주도 테스트용 testify를 적고, Gotchas 절에 `chi.URLParam`이 누락 파라미터에 에러가 아닌 빈 문자열을 반환한다는 점, `httperr.Wrap`이 로깅하지 않으므로 반환 전에 별도로 로깅해야 한다는 점, 인증 미들웨어가 `context.Value(authkey.User)`로 주입하므로 `*models.User`로 타입 단언해야 한다는 점, sqlc의 nullable 문자열 `pgtype.Text`는 `.String` 호출 전에 `.Valid`를 확인해야 한다는 점, 테스트가 실제 서버 대신 `httptest.NewRecorder`와 `httptest.NewRequest`를 써야 한다는 점을 적는다.
 
 커뮤니티 스킬로는 mattpocock/skills(`npx skills@latest add mattpocock/skills`로 설치, `/grill-me`는 코드 작성 전에 계획을 인터뷰하고, `/tdd`는 red-green-refactor를 엄격히 강제하며, `/diagnose`는 재현, 최소화, 가설, 수정, 회귀 테스트 순서를 따른다), Jeffallan/claude-skills(`go-pro`, `python-pro`, `java-architect`, `typescript-pro`, `rust-engineer`, `sql-pro` 등 언어별 프로필 66종, 조합해서 쓴다), addyosmani/web-quality-skills를 든다. Anthropic 공식 스킬은 `/code-review`, `/simplify`, `/batch`, `/webapp-testing` 네 가지다.
 
@@ -117,7 +117,7 @@ Go HTTP handler 스킬 예시는 `SKILL.md`, `templates/handler.go.tmpl`, `examp
 저자는 거의 배포될 뻔한 PR에서 null 체크 누락을 발견한 뒤 이 에이전트를 만들었다. frontmatter는 `tools: Read, Grep, Glob, Bash`와 `model: opus`를 지정하고, 본문은 Process, Flag, Do NOT flag, Output 네 절로 구성된다.
 
 - **Process**: `git diff main...HEAD` 실행, `git log main..HEAD --oneline` 실행, diff 컨텍스트가 아닌 전체 파일 읽기, `CLAUDE.md`와 `CLAUDE.local.md`와 `.claude/rules/`에 대조
-- **Flag**: 정확성 버그(off-by-one, null 처리, 에러 경로, race condition), 보안(injection, 인증 검사 누락, 코드 안의 비밀값), 새 로직의 테스트 누락, N+1 쿼리, 관례 위반
+- **Flag**: 정확성 버그(off-by-one, null 처리, 에러 경로, race condition), 보안(injection, 인증 검사 누락, 코드 안의 비밀값), 새 로직의 테스트 누락, N+1 질의, 관례 위반
 - **Do NOT flag**: 프로젝트 룰에 없는 스타일 취향, 동작하는 코드의 리팩터링 제안, 이 diff 바깥의 것
 - **Output**: 심각도별(Critical, High, Medium, Low) 묶음, 파일과 라인과 이슈와 수정안, 마지막에 SHIP, FIX FIRST, REWORK 중 하나의 판정
 

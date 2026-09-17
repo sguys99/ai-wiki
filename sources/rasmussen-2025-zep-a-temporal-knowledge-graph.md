@@ -54,7 +54,7 @@ Zep은 AI 에이전트를 위한 메모리 계층 서비스다. temporally-aware
 - **러닝 헤더**: "Using Knowledge Graphs to power LLM-Agent Memory"
 - **연계 저장소**: [getzep/graphiti](https://github.com/getzep/graphiti). 논문이 참고문헌 [6]으로 직접 인용하는 오픈소스 구현체다
 
-Zep은 상용 프로덕션 시스템이고, 이 논문은 그 메모리 검색 메커니즘의 정확도와 latency, 확장성을 두 벤치마크로 평가한다. knowledge graph는 엔티티를 노드로, 엔티티 사이의 관계를 엣지로 표현한 데이터 구조를 말한다. Zep의 차별점은 이 그래프에 시간 축을 넣어 각 사실이 언제 참이었고 언제 바뀌었는지를 함께 담는다는 데 있다.
+Zep은 상용 프로덕션 시스템이고, 이 논문은 그 메모리 검색 메커니즘의 정확도와 latency, 확장성을 두 벤치마크로 평가한다. knowledge graph는 entity를 노드로, entity 사이의 관계를 엣지로 표현한 데이터 구조를 말한다. Zep의 차별점은 이 그래프에 시간 축을 넣어 각 사실이 언제 참이었고 언제 바뀌었는지를 함께 담는다는 데 있다.
 
 논문의 문제 설정은 도입부에 정리돼 있다. 저자들은 chat 기반 에이전트의 능력이 LLM의 context window 크기, 그 context를 실제로 활용하는 정도, pre-training으로 얻은 지식의 범위에 갇힌다고 본다. 따라서 도메인 밖 지식을 공급하고 환각(hallucination)을 줄이려면 추가 context가 필요하다. 기존 RAG는 이 역할을 맡아 왔지만 정보 검색 분야가 지난 50년간 다듬은 기법을 대체로 정적인 코퍼스에 적용한다는 전제를 깔고 있다. 에이전트가 일상에서 문제를 자율적으로 풀려면 사용자와의 상호작용에서 끊임없이 늘어나는 데이터, 그리고 관련 업무 데이터와 세계 데이터에 접근해야 한다. 전체 대화 이력과 업무 데이터셋을 context window에 그대로 담을 수 없으므로 새로운 접근이 필요하다는 것이 논문의 출발점이다.
 
@@ -73,11 +73,11 @@ Zep은 상용 프로덕션 시스템이고, 이 논문은 그 메모리 검색 �
 
 Zep의 메모리는 G = (N, E, φ) 형태의 동적 knowledge graph다. N은 노드 집합, E는 엣지 집합, φ : E → N × N은 엣지가 어느 노드 쌍에 걸리는지 정하는 incidence 함수다. 이 그래프는 세 층의 하위 그래프로 나뉜다.
 
-- **Episode subgraph (G_e).** episodic 노드는 메시지, 텍스트, JSON 원본을 그대로 담는 non-lossy 저장 단위다. 여기서 의미 있는 엔티티와 관계가 추출되며, episodic 엣지 E_e ⊆ φ*(N_e × N_s)가 episode를 그 엔티티에 잇는다. 이 논문의 실험은 대화 메모리에 집중하므로 message 타입만 다룬다.
-- **Semantic entity subgraph (G_s).** episode에서 뽑아내고 기존 그래프 엔티티와 대조해 해소한 엔티티를 노드로 둔다. 엔티티 사이 관계는 semantic edge E_s ⊆ φ*(N_s × N_s), 곧 fact로 표현한다.
-- **Community subgraph (G_c).** 강하게 연결된 엔티티 군집을 community 노드로 묶고 그 군집의 고수준 요약을 담는다. community 엣지 E_c ⊆ φ*(N_c × N_s)가 community를 소속 엔티티에 잇는다. Zep 그래프의 최상위 층이며 G_s 구조를 조망하는 역할을 한다.
+- **Episode subgraph (G_e).** episodic 노드는 메시지, 텍스트, JSON 원본을 그대로 담는 non-lossy 저장 단위다. 여기서 의미 있는 entity와 관계가 추출되며, episodic 엣지 E_e ⊆ φ*(N_e × N_s)가 episode를 그 entity에 잇는다. 이 논문의 실험은 대화 메모리에 집중하므로 message 타입만 다룬다.
+- **Semantic entity subgraph (G_s).** episode에서 뽑아내고 기존 그래프 entity와 대조해 해소한 entity를 노드로 둔다. entity 사이 관계는 semantic edge E_s ⊆ φ*(N_s × N_s), 곧 fact로 표현한다.
+- **Community subgraph (G_c).** 강하게 연결된 entity 군집을 community 노드로 묶고 그 군집의 고수준 요약을 담는다. community 엣지 E_c ⊆ φ*(N_c × N_s)가 community를 소속 entity에 잇는다. Zep 그래프의 최상위 층이며 G_s 구조를 조망하는 역할을 한다.
 
-원본 episode와 거기서 파생된 semantic 정보를 함께 저장하는 이 이중 구조는 인간 기억을 다룬 심리학 모형을 본뜬 것이다. episodic memory는 개별 사건을 그대로 담는 기억 층이고 semantic memory는 개념 사이의 연관과 의미를 담는 기억 층이다. AriGraph가 두 층을 나누는 접근을 먼저 보였고, community 노드로 도메인 개념을 조망하는 부분은 GraphRAG에서 가져왔다. 저자들은 episode에서 fact로, fact에서 엔티티로, 엔티티에서 community로 올라가는 이 위계가 HiQA와 HIRO 같은 기존 계층형 RAG 전략의 확장이라고 본다.
+원본 episode와 거기서 파생된 semantic 정보를 함께 저장하는 이 이중 구조는 인간 기억을 다룬 심리학 모형을 본뜬 것이다. episodic memory는 개별 사건을 그대로 담는 기억 층이고 semantic memory는 개념 사이의 연관과 의미를 담는 기억 층이다. AriGraph가 두 층을 나누는 접근을 먼저 보였고, community 노드로 도메인 개념을 조망하는 부분은 GraphRAG에서 가져왔다. 저자들은 episode에서 fact로, fact에서 entity로, entity에서 community로 올라가는 이 위계가 HiQA와 HIRO 같은 기존 계층형 RAG 전략의 확장이라고 본다.
 
 ### Episode 처리와 bi-temporal 모델
 
@@ -85,19 +85,19 @@ Zep의 그래프 구축은 Episode라는 원본 데이터 단위를 받아들이
 
 각 메시지에는 발화 시각을 가리키는 기준 시각 t_ref가 붙는다. 이 시각 정보 덕에 Zep은 "다음 목요일", "2주 뒤", "지난여름" 같은 상대 날짜와 부분 날짜를 정확한 날짜로 환산해 추출할 수 있다. 시간 축은 둘로 나뉜다. T는 사건이 실제로 일어난 연대기적 순서를, T′는 Zep이 데이터를 받아들인 트랜잭션 순서를 나타낸다. T′가 전통적인 데이터베이스 감사 용도라면, T는 대화와 메모리의 시간적 변화를 모델링하는 차원을 더한다. 저자들은 이 접근을 LLM 기반 knowledge graph 구축의 새로운 진전으로 평가하며, 기존 graph 기반 RAG 제안과 Zep을 구분하는 근거로 든다.
 
-episodic 엣지 E_e는 episode를 거기서 추출된 엔티티 노드에 잇는다. episode와 파생된 semantic 엣지는 양방향 인덱스를 유지해 엣지와 원본 episode의 관계를 추적한다. 이 설계 덕에 순방향과 역방향 순회가 모두 가능하다. semantic 산출물은 인용이나 출처 표기를 위해 원본까지 거슬러 올라갈 수 있고, episode는 자기와 관련된 엔티티와 fact를 빠르게 가져올 수 있다. 저자들은 이 연결이 이번 실험에서는 직접 검증되지 않았고 후속 연구 대상이라고 밝힌다.
+episodic 엣지 E_e는 episode를 거기서 추출된 entity 노드에 잇는다. episode와 파생된 semantic 엣지는 양방향 인덱스를 유지해 엣지와 원본 episode의 관계를 추적한다. 이 설계 덕에 순방향과 역방향 순회가 모두 가능하다. semantic 산출물은 인용이나 출처 표기를 위해 원본까지 거슬러 올라갈 수 있고, episode는 자기와 관련된 entity와 fact를 빠르게 가져올 수 있다. 저자들은 이 연결이 이번 실험에서는 직접 검증되지 않았고 후속 연구 대상이라고 밝힌다.
 
-### 엔티티 추출과 중복 해소
+### entity 추출과 중복 해소
 
-엔티티 추출은 episode 처리의 첫 단계다. 시스템은 현재 메시지 내용과 직전 n개 메시지를 함께 넣어 named entity recognition의 맥락으로 삼는다. 이 논문과 Zep의 일반 구현에서 n = 4이며, 대화 두 턴 분량에 해당한다. 메시지 처리에 초점을 두므로 화자는 자동으로 엔티티로 추출된다. 1차 추출 뒤에는 reflexion에서 착안한 reflection 기법을 적용해 환각을 줄이고 추출 범위를 넓힌다. 시스템은 이어지는 엔티티 해소와 검색에 쓰려고 episode에서 엔티티 요약도 함께 추출한다.
+entity 추출은 episode 처리의 첫 단계다. 시스템은 현재 메시지 내용과 직전 n개 메시지를 함께 넣어 named entity recognition의 맥락으로 삼는다. 이 논문과 Zep의 일반 구현에서 n = 4이며, 대화 두 턴 분량에 해당한다. 메시지 처리에 초점을 두므로 화자는 자동으로 entity로 추출된다. 1차 추출 뒤에는 reflexion에서 착안한 reflection 기법을 적용해 환각을 줄이고 추출 범위를 넓힌다. 시스템은 이어지는 entity 해소와 검색에 쓰려고 episode에서 entity 요약도 함께 추출한다.
 
-추출 후에는 각 엔티티 이름을 1024차원 벡터 공간에 임베딩한다. 이 임베딩으로 기존 그래프 엔티티 노드를 대상으로 코사인 유사도 검색을 수행해 비슷한 노드를 가져오고, 별도로 기존 엔티티 이름과 요약을 대상으로 full-text 검색을 수행해 후보 노드를 더 모은다. 이 후보 노드들과 episode 맥락을 엔티티 해소 프롬프트에 담아 LLM에 넘기며, 중복으로 판정되면 갱신된 이름과 요약을 생성한다. 추출과 해소를 마친 데이터를 그래프에 반영할 때는 LLM이 생성한 데이터베이스 쿼리 대신 미리 정의한 Cypher 쿼리를 쓴다. 스키마 형식의 일관성을 지키고 환각 여지를 줄이려는 선택이다.
+추출 후에는 각 entity 이름을 1024차원 벡터 공간에 임베딩한다. 이 임베딩으로 기존 그래프 entity 노드를 대상으로 코사인 유사도 검색을 수행해 비슷한 노드를 가져오고, 별도로 기존 entity 이름과 요약을 대상으로 full-text 검색을 수행해 후보 노드를 더 모은다. 이 후보 노드들과 episode 맥락을 entity 해소 프롬프트에 담아 LLM에 넘기며, 중복으로 판정되면 갱신된 이름과 요약을 생성한다. 추출과 해소를 마친 데이터를 그래프에 반영할 때는 LLM이 생성한 데이터베이스 질의(query) 대신 미리 정의한 Cypher 질의를 쓴다. 스키마 형식의 일관성을 지키고 환각 여지를 줄이려는 선택이다.
 
 ### fact 추출과 중복 해소
 
-fact는 두 엔티티 사이의 관계를 담고 핵심 술어를 포함한다. 부록의 fact 추출 프롬프트는 이 술어를 `relation_type`이라는 짧은 대문자 표기로 요구하며 LOVES, IS_FRIENDS_WITH, WORKS_FOR를 예로 든다. 같은 fact가 서로 다른 엔티티 사이에서 여러 번 추출될 수 있고, Graphiti는 이를 hyper-edge 구현으로 다중 엔티티 fact까지 표현한다.
+fact는 두 entity 사이의 관계를 담고 핵심 술어를 포함한다. 부록의 fact 추출 프롬프트는 이 술어를 `relation_type`이라는 짧은 대문자 표기로 요구하며 LOVES, IS_FRIENDS_WITH, WORKS_FOR를 예로 든다. 같은 fact가 서로 다른 entity 사이에서 여러 번 추출될 수 있고, Graphiti는 이를 hyper-edge 구현으로 다중 entity fact까지 표현한다.
 
-추출 후 시스템은 그래프 통합을 준비하며 fact 임베딩을 생성하고, 엔티티 해소와 유사한 절차로 엣지 중복을 해소한다. 다만 관련 엣지를 찾는 hybrid 검색을 새 엣지와 같은 엔티티 쌍 사이에 이미 존재하는 엣지로 한정한다. 이 제약은 서로 다른 엔티티 사이의 유사 엣지가 잘못 합쳐지는 것을 막는다. 동시에 탐색 공간을 해당 엔티티 쌍과 관련된 엣지 부분집합으로 줄여 중복 해소의 계산 복잡도도 크게 낮춘다.
+추출 후 시스템은 그래프 통합을 준비하며 fact 임베딩을 생성하고, entity 해소와 유사한 절차로 엣지 중복을 해소한다. 다만 관련 엣지를 찾는 hybrid 검색을 새 엣지와 같은 entity 쌍 사이에 이미 존재하는 엣지로 한정한다. 이 제약은 서로 다른 entity 사이의 유사 엣지가 잘못 합쳐지는 것을 막는다. 동시에 탐색 공간을 해당 entity 쌍과 관련된 엣지 부분집합으로 줄여 중복 해소의 계산 복잡도도 크게 낮춘다.
 
 ### Temporal extraction과 edge invalidation
 
@@ -111,27 +111,27 @@ bi-temporal 모델에 맞춰 시스템은 네 개의 시각을 추적한다. T�
 
 episodic 하위 그래프와 semantic 하위 그래프를 세운 다음, 시스템은 community 탐지로 community 하위 그래프를 구축한다. 탐지 기법은 GraphRAG의 방식을 바탕으로 하되 Leiden 알고리즘 대신 label propagation을 쓴다. label propagation이 동적 확장으로 넘어가기 쉬워서, 새 데이터가 그래프에 들어와도 정확한 community 표현을 더 오래 유지할 수 있고 그만큼 전체 갱신을 늦출 수 있다는 것이 선택 이유다.
 
-동적 확장은 label propagation의 단일 재귀 단계를 그대로 구현한 것이다. 새 엔티티 노드 n_i ∈ N_s가 들어오면 시스템은 이웃 노드들의 community를 조사한 뒤, 이웃 다수가 속한 community에 새 노드를 배정하고 community 요약과 그래프를 갱신한다. 이 방식은 데이터가 흘러 들어오는 동안 효율적으로 community를 확장하지만, 그 결과는 label propagation을 처음부터 완전히 다시 수행한 결과에서 점점 멀어진다. 따라서 주기적인 community 전체 갱신은 여전히 필요하다. 그럼에도 이 동적 갱신 전략은 latency와 LLM 추론 비용을 크게 줄이는 실용적 heuristic 역할을 한다.
+동적 확장은 label propagation의 단일 재귀 단계를 그대로 구현한 것이다. 새 entity 노드 n_i ∈ N_s가 들어오면 시스템은 이웃 노드들의 community를 조사한 뒤, 이웃 다수가 속한 community에 새 노드를 배정하고 community 요약과 그래프를 갱신한다. 이 방식은 데이터가 흘러 들어오는 동안 효율적으로 community를 확장하지만, 그 결과는 label propagation을 처음부터 완전히 다시 수행한 결과에서 점점 멀어진다. 따라서 주기적인 community 전체 갱신은 여전히 필요하다. 그럼에도 이 동적 갱신 전략은 latency와 LLM 추론 비용을 크게 줄이는 실용적 heuristic 역할을 한다.
 
 community 노드의 요약은 GraphRAG와 마찬가지로 소속 노드를 map-reduce 방식으로 반복 요약해 만든다. 다만 검색 방식은 GraphRAG의 map-reduce 접근과 크게 다르다. Zep은 자체 검색 방법론을 뒷받침하려고 community 요약에서 핵심 용어와 관련 주제를 뽑아 community 이름을 생성하고, 이 이름을 임베딩해 저장해 코사인 유사도 검색이 가능하게 한다.
 
 ### 검색 파이프라인 3단계
 
-Zep의 그래프 검색 API는 텍스트 문자열 쿼리 α ∈ S를 받아 텍스트 문자열 context β ∈ S를 반환하는 함수 f : S → S로 정의된다. 출력 β는 LLM 에이전트가 α에 정확히 답하는 데 필요한 노드와 엣지 데이터를 정해진 형식으로 담는다. f(α) → β는 세 단계로 나뉜다.
+Zep의 그래프 검색 API는 텍스트 문자열 질의 α ∈ S를 받아 텍스트 문자열 context β ∈ S를 반환하는 함수 f : S → S로 정의된다. 출력 β는 LLM 에이전트가 α에 정확히 답하는 데 필요한 노드와 엣지 데이터를 정해진 형식으로 담는다. f(α) → β는 세 단계로 나뉜다.
 
-- **Search (ϕ).** 관련 정보를 담고 있을 후보 노드와 엣지를 찾는다. ϕ : S → E_s^n × N_s^n × N_c^n으로, 쿼리를 semantic edge, entity 노드, community 노드 세 목록의 3-tuple로 바꾼다. 이 셋이 관련 텍스트 정보를 담은 그래프 유형 전부다.
+- **Search (ϕ).** 관련 정보를 담고 있을 후보 노드와 엣지를 찾는다. ϕ : S → E_s^n × N_s^n × N_c^n으로, 질의를 semantic edge, entity 노드, community 노드 세 목록의 3-tuple로 바꾼다. 이 셋이 관련 텍스트 정보를 담은 그래프 유형 전부다.
 - **Reranker (ρ).** 검색 결과의 순서를 다시 매긴다. ρ : ϕ(α), ... → E_s^n × N_s^n × N_c^n으로, 결과 목록을 받아 순서를 바꾼 목록을 반환한다.
 - **Constructor (χ).** 관련 노드와 엣지를 텍스트 context로 바꾼다. χ : E_s^n × N_s^n × N_c^n → S이며, semantic edge에서는 fact와 t_valid, t_invalid 필드를, entity 노드에서는 이름과 요약 필드를, community 노드에서는 요약 필드를 반환한다.
 
-세 함수를 합성하면 f(α) = χ(ρ(ϕ(α))) = β가 된다. 논문은 이 결과로 만들어지는 context 문자열 템플릿도 함께 싣는다. 템플릿은 FACTS 블록과 ENTITIES 블록으로 나뉘고, FACTS 블록은 각 fact를 유효 기간과 함께 `FACT (Date range: from - to)` 형식으로 적으며 그 기간이 사건 발생 기간을 뜻한다고 명시한다. ENTITIES 블록은 `ENTITY_NAME: entity summary` 형식으로 엔티티 요약을 나열한다.
+세 함수를 합성하면 f(α) = χ(ρ(ϕ(α))) = β가 된다. 논문은 이 결과로 만들어지는 context 문자열 템플릿도 함께 싣는다. 템플릿은 FACTS 블록과 ENTITIES 블록으로 나뉘고, FACTS 블록은 각 fact를 유효 기간과 함께 `FACT (Date range: from - to)` 형식으로 적으며 그 기간이 사건 발생 기간을 뜻한다고 명시한다. ENTITIES 블록은 `ENTITY_NAME: entity summary` 형식으로 entity 요약을 나열한다.
 
 ### 세 가지 검색 함수
 
 Zep은 코사인 의미 유사도 검색 ϕ_cos, Okapi BM25 full-text 검색 ϕ_bm25, breadth-first search ϕ_bfs를 구현한다. 앞의 두 함수는 Neo4j의 Lucene 구현을 활용한다. 세 함수는 관련 문서를 찾는 성질이 서로 달라서, 합치면 reranking 전에 후보 결과를 폭넓게 확보한다.
 
-검색 대상 필드는 객체 유형마다 다르다. E_s에서는 fact 필드를, N_s에서는 엔티티 이름을, N_c에서는 community 이름을 검색한다. community 이름은 그 community가 다루는 핵심 키워드와 표현을 담은 값이다. 저자들은 이 community 검색 방식이 독자적으로 개발됐지만 LightRAG의 high-level key 검색 방법론과 병렬을 이룬다고 밝히고, LightRAG의 접근을 Graphiti 같은 graph 기반 시스템과 결합하는 것을 유망한 후속 방향으로 지목한다.
+검색 대상 필드는 객체 유형마다 다르다. E_s에서는 fact 필드를, N_s에서는 entity 이름을, N_c에서는 community 이름을 검색한다. community 이름은 그 community가 다루는 핵심 키워드와 표현을 담은 값이다. 저자들은 이 community 검색 방식이 독자적으로 개발됐지만 LightRAG의 high-level key 검색 방법론과 병렬을 이룬다고 밝히고, LightRAG의 접근을 Graphiti 같은 graph 기반 시스템과 결합하는 것을 유망한 후속 방향으로 지목한다.
 
-코사인 유사도와 full-text 검색은 RAG에서 이미 정착한 방식이지만, knowledge graph 위의 breadth-first search는 RAG 분야에서 관심을 거의 받지 못했고 AriGraph와 Distill-SynthKG 같은 graph 기반 RAG 시스템이 눈에 띄는 예외다. Graphiti에서 breadth-first search는 n-hop 안의 추가 노드와 엣지를 찾아 1차 검색 결과를 보강한다. 또 ϕ_bfs는 노드를 파라미터로 받을 수 있어 검색 함수를 더 세밀하게 통제할 수 있다. 최근 episode를 seed로 주면 방금 언급된 엔티티와 관계를 검색 context에 끌어올 수 있어 특히 유용하다.
+코사인 유사도와 full-text 검색은 RAG에서 이미 정착한 방식이지만, knowledge graph 위의 breadth-first search는 RAG 분야에서 관심을 거의 받지 못했고 AriGraph와 Distill-SynthKG 같은 graph 기반 RAG 시스템이 눈에 띄는 예외다. Graphiti에서 breadth-first search는 n-hop 안의 추가 노드와 엣지를 찾아 1차 검색 결과를 보강한다. 또 ϕ_bfs는 노드를 파라미터로 받을 수 있어 검색 함수를 더 세밀하게 통제할 수 있다. 최근 episode를 seed로 주면 방금 언급된 entity와 관계를 검색 context에 끌어올 수 있어 특히 유용하다.
 
 세 방식은 각기 다른 종류의 유사도를 겨냥한다. full-text 검색은 단어 유사도를, 코사인 유사도는 의미 유사도를, breadth-first search는 맥락 유사도를 잡는다. 맥락 유사도란 그래프에서 가까운 노드와 엣지가 더 비슷한 대화 맥락에 등장한다는 성질이다. 저자들은 이 다면적 후보 확보가 최적 context를 발견할 확률을 최대화한다고 설명한다.
 
@@ -141,9 +141,9 @@ Zep은 코사인 의미 유사도 검색 ϕ_cos, Okapi BM25 full-text 검색 ϕ_
 
 - **Reciprocal Rank Fusion (RRF).** 여러 검색 결과의 순위를 결합하는 기존 방식이다.
 - **Maximal Marginal Relevance (MMR).** 관련도와 다양성을 함께 고려하는 기존 방식이다.
-- **episode-mentions reranker.** 대화 안에서 엔티티나 fact가 언급된 빈도를 기준으로 우선순위를 정한다. 자주 참조된 정보가 더 쉽게 접근되는 시스템이 된다.
+- **episode-mentions reranker.** 대화 안에서 entity나 fact가 언급된 빈도를 기준으로 우선순위를 정한다. 자주 참조된 정보가 더 쉽게 접근되는 시스템이 된다.
 - **node distance reranker.** 지정한 중심 노드로부터의 그래프 거리를 기준으로 순서를 바꾼다. knowledge graph의 특정 영역에 국한된 context를 얻을 수 있다.
-- **cross-encoder.** 가장 정교한 방식이다. 쿼리와 노드, 엣지를 cross-attention으로 함께 평가해 관련도 점수를 생성하는 LLM을 쓰지만 계산 비용이 가장 크다.
+- **cross-encoder.** 가장 정교한 방식이다. 질의와 노드, 엣지를 cross-attention으로 함께 평가해 관련도 점수를 생성하는 LLM을 쓰지만 계산 비용이 가장 크다.
 
 ### 부록의 그래프 구축 프롬프트
 
@@ -153,7 +153,7 @@ Zep은 코사인 의미 유사도 검색 ϕ_cos, Okapi BM25 full-text 검색 ϕ_
 |---|---|---|
 | Entity Extraction | 이전 메시지, 현재 메시지 | 화자를 항상 첫 노드로 추출한다. 관계나 행위는 노드로 만들지 않는다. 날짜, 시각, 연도 같은 시간 정보도 노드로 만들지 않는다(나중에 엣지에 붙는다). 노드 이름은 전체 이름으로 최대한 명시적으로 적는다 |
 | Entity Resolution | 이전 메시지, 현재 메시지, 기존 노드, 새 노드 | 중복이면 `is_duplicate: true`와 기존 노드 uuid를 반환하고 가장 완전한 전체 이름을 새 이름으로 제시한다. 이름과 요약을 함께 보고 판정한다(중복 노드가 다른 이름을 가질 수 있다) |
-| Fact Extraction | 이전 메시지, 현재 메시지, 엔티티 목록 | 제공된 엔티티 사이의 fact만 추출한다. 각 fact는 서로 다른 두 노드 사이의 명확한 관계여야 한다. `relation_type`은 짧은 대문자 표기로 적는다(LOVES, IS_FRIENDS_WITH, WORKS_FOR) |
+| Fact Extraction | 이전 메시지, 현재 메시지, entity 목록 | 제공된 entity 사이의 fact만 추출한다. 각 fact는 서로 다른 두 노드 사이의 명확한 관계여야 한다. `relation_type`은 짧은 대문자 표기로 적는다(LOVES, IS_FRIENDS_WITH, WORKS_FOR) |
 | Fact Resolution | 기존 엣지 목록, 새 엣지 | 같은 사실 정보를 표현하면 중복으로 판정한다. 문장이 완전히 같아야 하는 것은 아니고 같은 정보를 전달하면 된다 |
 | Temporal Extraction | 이전 메시지, 현재 메시지, 기준 시각, fact | fact에 포함된 시간 정보만 추출한다. valid_at은 관계가 성립한 시점, invalid_at은 관계가 끝난 시점이다. ISO 8601 형식을 쓰고, 상대 시각은 기준 시각으로 환산한다. 관련 사건에서 날짜를 추론하지 않는다. 날짜만 있으면 00:00:00, 연도만 있으면 1월 1일 00:00:00을 쓴다 |
 
@@ -163,7 +163,7 @@ Zep은 코사인 의미 유사도 검색 ϕ_cos, Okapi BM25 full-text 검색 ϕ_
 
 실험은 LLM 메모리 벤치마크 두 개로 진행했다. DMR은 MemGPT 논문이 만든 과제로, "Beyond Goldfish Memory: Long-Term Open-Domain Conversation"이 소개한 Multi-Session Chat 데이터셋에서 500개 대화를 뽑은 부분집합이다. 두 번째는 LongMemEval 벤치마크이며, 그중 대화 context가 평균 11만 5천 토큰에 이르는 LongMemEval_s 데이터셋을 썼다.
 
-두 실험 모두 Zep API로 대화 이력을 Zep knowledge graph에 통합한 뒤, 3절의 기법으로 가장 관련 있는 엣지(fact)와 엔티티 노드(엔티티 요약) 상위 20개를 검색했다. 다만 DMR을 서술하는 4.2절은 같은 절차를 "상위 10개"로 적어 두 수치가 어긋난다. 시스템은 이 데이터를 Zep 메모리 API가 제공하는 것과 같은 형식의 context 문자열로 재구성했다. 저자들은 이 두 실험이 Graphiti의 핵심 검색 능력을 보여주지만 전체 검색 기능의 부분집합에 지나지 않는다고 명시한다.
+두 실험 모두 Zep API로 대화 이력을 Zep knowledge graph에 통합한 뒤, 3절의 기법으로 가장 관련 있는 엣지(fact)와 entity 노드(entity 요약) 상위 20개를 검색했다. 다만 DMR을 서술하는 4.2절은 같은 절차를 "상위 10개"로 적어 두 수치가 어긋난다. 시스템은 이 데이터를 Zep 메모리 API가 제공하는 것과 같은 형식의 context 문자열로 재구성했다. 저자들은 이 두 실험이 Graphiti의 핵심 검색 능력을 보여주지만 전체 검색 기능의 부분집합에 지나지 않는다고 명시한다.
 
 | 항목 | DMR | LongMemEval_s |
 |---|---|---|
@@ -246,7 +246,7 @@ single-session-assistant 유형의 성능 하락은 gpt-4o에서 17.7%, gpt-4o-m
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
-- **검색 기능의 일부만 평가.** 두 실험은 Graphiti 전체 검색 능력의 부분집합만 쓴다. community 검색이나 episode와 엔티티 사이의 양방향 순회 같은 기능은 이번 실험 밖이고 후속 과제로 남겼다.
+- **검색 기능의 일부만 평가.** 두 실험은 Graphiti 전체 검색 능력의 부분집합만 쓴다. community 검색이나 episode와 entity 사이의 양방향 순회 같은 기능은 이번 실험 밖이고 후속 과제로 남겼다.
 - **MemGPT와의 LongMemEval 직접 비교 부재.** MemGPT가 기존 메시지 이력의 직접 적재를 지원하지 않아 같은 조건 비교를 완주하지 못했다. 저자들은 다른 연구팀의 평가를 기다린다고 밝힌다.
 - **덜 유능한 모델의 시간 추론.** gpt-4o-mini는 일부 유형에서 오히려 하락했다. Zep의 bi-temporal 데이터를 충분히 활용하려면 추가 개발이 필요할 수 있다.
 - **single-session-assistant 하락.** 두 모델 모두에서 이 유형만 뚜렷하게 하락했고 저자들도 원인을 규명하지 못한 채 후속 과제로 남겼다.
@@ -255,7 +255,7 @@ single-session-assistant 유형의 성능 하락은 gpt-4o에서 17.7%, gpt-4o-m
 
 결론부는 후속 방향을 다섯 가지로 제시한다.
 
-- **추출 전용 fine-tuning 모델.** GraphRAG 계열에서 엔티티와 엣지 추출에 fine-tuning 모델을 쓰면 정확도가 오르고 비용과 latency가 낮아진다는 연구가 이미 있다(Distill-SynthKG, Triplex). Graphiti 프롬프트에 맞춰 fine-tuning한 모델도 특히 복잡한 대화의 지식 추출을 개선할 수 있다.
+- **추출 전용 fine-tuning 모델.** GraphRAG 계열에서 entity와 엣지 추출에 fine-tuning 모델을 쓰면 정확도가 오르고 비용과 latency가 낮아진다는 연구가 이미 있다(Distill-SynthKG, Triplex). Graphiti 프롬프트에 맞춰 fine-tuning한 모델도 특히 복잡한 대화의 지식 추출을 개선할 수 있다.
 - **도메인 ontology 도입.** LLM이 생성하는 knowledge graph 연구는 대체로 형식 ontology 없이 진행돼 왔다. ontology는 도메인의 개체 종류와 관계 타입을 고정된 집합으로 정의한 구조를 말한다. LLM 이전 knowledge graph 연구의 기반이었던 graph ontology를 Graphiti 프레임워크 안에서 더 탐색할 가치가 있다.
 - **메모리 벤치마크 확충.** 저자들이 찾은 기존 벤치마크는 선택지가 적고 견고성과 복잡성이 부족해 단순한 바늘 찾기식 사실 검색 질문으로 흐르는 경우가 많았다. 고객 경험 과제처럼 실제 업무 활용을 반영하는 메모리 벤치마크가 더 필요하다.
 - **대화와 정형 업무 데이터의 통합 평가.** 대화 이력과 정형 업무 데이터를 함께 처리하고 합성하는 Zep의 능력을 적절히 평가하는 기존 벤치마크가 없다.
@@ -269,7 +269,7 @@ single-session-assistant 유형의 성능 하락은 gpt-4o에서 17.7%, gpt-4o-m
 - **AriGraph.** episodic 하위 그래프와 semantic 하위 그래프를 나누는 접근으로 Zep의 그래프 구성에 영향을 줬다. graph 위 breadth-first search를 쓴 드문 선례로도 함께 인용된다.
 - **GraphRAG.** community 노드로 도메인을 조망하는 아이디어와 map-reduce 요약의 출처다. Zep은 여기에 동적 갱신과 시간 축을 더하고 community 탐지 알고리즘을 label propagation으로 교체했다.
 - **LightRAG.** high-level key 검색이 Zep의 community 검색과 병렬을 이룬다. 두 접근의 결합이 후속 과제로 제시되며, latency를 우선 보고하는 관행의 선례로도 인용된다.
-- **Reflexion.** 엔티티 추출의 reflection 단계가 여기서 착안했다.
+- **Reflexion.** entity 추출의 reflection 단계가 여기서 착안했다.
 - **Distill-SynthKG.** graph 기반 RAG에서 breadth-first search를 쓴 드문 선례이자, 추출용 fine-tuning 모델의 효과를 보인 연구로 인용된다.
 - **HiQA와 HIRO.** 계층형 RAG 전략의 선행 연구로, Zep의 episode에서 community까지의 위계가 이들의 확장이라고 저자들은 설명한다.
 - **LongMemEval.** 두 번째 평가 벤치마크의 출처이며, 대화가 길어질수록 LLM 성능이 급격히 떨어진다는 관찰로 DMR의 한계 논증을 뒷받침한다.
@@ -283,13 +283,13 @@ single-session-assistant 유형의 성능 하락은 gpt-4o에서 17.7%, gpt-4o-m
 
 - **Zep**: AI 에이전트용 메모리 계층 서비스. 이 논문이 소개하는 상용 프로덕션 시스템이다.
 - **Graphiti**: Zep을 떠받치는 temporally-aware knowledge graph 엔진. [getzep/graphiti](https://github.com/getzep/graphiti)로 오픈소스 공개돼 있다.
-- **episode**: 메시지, 텍스트, JSON 원본을 그대로 담는 non-lossy 저장 단위. 여기서 엔티티와 fact가 파생된다.
-- **fact (semantic edge)**: 두 엔티티 사이의 관계를 담은 엣지. 핵심 술어를 `relation_type` 대문자 표기로 갖고, 같은 fact가 여러 엔티티 쌍에서 반복되면 hyper-edge로 표현한다.
+- **episode**: 메시지, 텍스트, JSON 원본을 그대로 담는 non-lossy 저장 단위. 여기서 entity와 fact가 파생된다.
+- **fact (semantic edge)**: 두 entity 사이의 관계를 담은 엣지. 핵심 술어를 `relation_type` 대문자 표기로 갖고, 같은 fact가 여러 entity 쌍에서 반복되면 hyper-edge로 표현한다.
 - **bi-temporal 모델**: 사건이 일어난 시간 축 T와 데이터가 처리된 시간 축 T′를 분리해 추적하는 모델. 엣지마다 t′_created, t′_expired, t_valid, t_invalid 네 시각을 저장한다.
 - **edge invalidation**: 모순되는 새 fact가 오면 예전 엣지를 지우지 않고 t_invalid를 새 엣지의 t_valid로 설정해 유효 기간을 닫는 갱신 방식.
 - **label propagation**: Zep이 Leiden 대신 택한 community 탐지 알고리즘. 새 노드를 이웃 다수의 community에 배정하는 단일 재귀 단계로 증분 확장한다.
 - **Search, Reranker, Constructor**: 검색 파이프라인의 세 단계 함수 ϕ, ρ, χ. 합성하면 f(α) = χ(ρ(ϕ(α))) = β다.
-- **episode-mentions reranker**: 대화에서 엔티티나 fact가 언급된 빈도로 결과 순서를 정하는 Zep 고유의 reranker.
+- **episode-mentions reranker**: 대화에서 entity나 fact가 언급된 빈도로 결과 순서를 정하는 Zep 고유의 reranker.
 - **node distance reranker**: 지정한 중심 노드로부터의 그래프 거리로 결과 순서를 정하는 Zep 고유의 reranker.
 - **DMR (Deep Memory Retrieval)**: MemGPT 팀이 만든 메모리 검색 벤치마크. Multi-Session Chat의 500대화 부분집합이며 대화당 60메시지다.
 - **LongMemEval_s**: 평균 약 11만 5천 토큰짜리 장기 대화로 기업 시나리오를 반영한 메모리 벤치마크의 부분집합. 여섯 질문 유형을 담는다.

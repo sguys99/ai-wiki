@@ -69,12 +69,12 @@ DevRev의 Tech Lead인 Arth Gajjar가 2026년 5월에 게시한 짧은 비교 �
 
 ### 글이 정리한 GBrain
 
-글이 언급하는 GBrain 요소는 다섯 가지다. 저장 위치, 색인 대상, 검색 방식, 페이지 구조, 야간 처리로 나뉜다.
+글이 언급하는 GBrain 요소는 다섯 가지다. 저장 위치, 인덱싱 대상, 검색 방식, 페이지 구조, 야간 처리로 나뉜다.
 
 | 구성 요소 | 글의 서술 |
 |---|---|
 | 저장 위치 | git 저장소 안의 markdown 파일 |
-| 색인 대상 | markdown 파일, people page, calendar 데이터 |
+| 인덱싱 대상 | markdown 파일, people page, calendar 데이터 |
 | 검색 방식 | Postgres와 pgvector를 사용한 hybrid search |
 | 페이지 구조 | 상단 compiled truth, 하단 append-only timeline |
 | 야간 처리 | dream cycle이 entity page를 보강하고 메모리를 통합 |
@@ -92,7 +92,7 @@ Computer Memory에 관해 글이 서술하는 항목은 GBrain 쪽보다 적다.
 | 연결 대상 예시 | Salesforce, Jira, Zendesk, Slack |
 | 접근 제어 | SOC 2 준수 |
 
-내부 retrieval 구조는 서술되지 않는다. graph를 쓰는지, 어떤 임베딩 모델을 쓰는지, 색인을 어떻게 만드는지가 모두 글에 없다.
+내부 retrieval 구조는 서술되지 않는다. graph를 쓰는지, 어떤 임베딩 모델을 쓰는지, 인덱스를 어떻게 만드는지가 모두 글에 없다.
 
 ### 세 가지 차이
 

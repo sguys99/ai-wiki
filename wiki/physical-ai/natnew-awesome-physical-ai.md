@@ -17,7 +17,7 @@ figures: []
 
 ## 요약
 
-`natnew/awesome-physical-ai`는 Physical AI 영역의 도구, 데이터, 논문, 회사, 규제 문서를 한 목차로 모은 큐레이션 링크 색인이다. 정본 카테고리 14개에 항목 226개, 부록 10개 절에 항목 127개를 담아 합계 353개 항목을 배열한다. 라이선스는 MIT이고 GitHub Pages 기반 라이브 문서 사이트를 함께 운영한다.
+`natnew/awesome-physical-ai`는 Physical AI 영역의 도구, 데이터, 논문, 회사, 규제 문서를 한 목차로 모은 큐레이션 링크 인덱스다. 정본 카테고리 14개에 항목 226개, 부록 10개 절에 항목 127개를 담아 합계 353개 항목을 배열한다. 라이선스는 MIT이고 GitHub Pages 기반 라이브 문서 사이트를 함께 운영한다.
 
 이 저장소는 논문이나 코드가 아니라 자료로 가는 지도다. 따라서 이 페이지는 저장소가 무엇을 주장하는지가 아니라 어떤 뼈대로 자료를 배열했고 그 배열을 이 wiki에서 어떻게 쓸 것인지를 정리한다.
 
@@ -33,9 +33,9 @@ Physical AI 자료는 여러 곳에 흩어져 있다. 시뮬레이터 문서는 
 
 ## 핵심 개념
 
-awesome-list는 특정 주제의 우수 자료를 한 줄 설명과 함께 모은 GitHub 링크 색인을 가리키는 관행이다. 원저작을 담지 않으므로 각 항목의 깊이는 링크가 가리키는 원본에 있고, 목록 자체의 값은 배열과 선별에 있다.
+awesome-list는 특정 주제의 우수 자료를 한 줄 설명과 함께 모은 GitHub 링크 인덱스를 가리키는 관행이다. 원저작을 담지 않으므로 각 항목의 깊이는 링크가 가리키는 원본에 있고, 목록 자체의 값은 배열과 선별에 있다.
 
-이 저장소는 수록 자료를 정본 카테고리(canonical categories)와 부록(appendices) 두 층으로 나눈다. 정본 카테고리는 방법과 자원의 종류에 따른 14개 상위 분류이고, 부록은 학습 자료, 하드웨어, 커뮤니티, 인접 색인처럼 본 분류를 보조하는 절이다.
+이 저장소는 수록 자료를 정본 카테고리(canonical categories)와 부록(appendices) 두 층으로 나눈다. 정본 카테고리는 방법과 자원의 종류에 따른 14개 상위 분류이고, 부록은 학습 자료, 하드웨어, 커뮤니티, 인접 인덱스처럼 본 분류를 보조하는 절이다.
 
 policy는 현재 observation을 받아 다음 action을 정하는 함수를 말한다. 이 목록이 모으는 시뮬레이터, 데이터셋, 벤치마크, 모델은 결국 그 policy를 어떻게 학습하고 어떻게 검증하느냐를 둘러싼 자원이다.
 
@@ -83,7 +83,7 @@ Governance & Policy와 Production Patterns를 부록이 아니라 정본 카테�
 | Community | 6 | ROS Discourse, Robotics Stack Exchange, Discord 채널 |
 | Newsletters & Blogs | 14 | 심층 분석 6종, 산업 뉴스 3종, 연구와 기업 블로그 5종 |
 | People to Follow | 15 | 연구 리더 7명, 로보틱스와 하드웨어 4명, 산업 리더 4명 |
-| Related Awesome Lists | 13 | 인접 색인. 이 중 3개는 같은 저자의 agentic AI 계열 목록 |
+| Related Awesome Lists | 13 | 인접 인덱스. 이 중 3개는 같은 저자의 agentic AI 계열 목록 |
 
 Key Papers 절은 다른 절과 중복을 허용한다. 예를 들어 Radosavovic 등의 Real-World Humanoid Locomotion with RL은 Locomotion, Sim-to-Real, Key Papers 세 절에 모두 등장하고, MIT 6.4210 강의는 Manipulation과 Courses 두 절에 등장한다. 즉 한 항목을 한 절에만 넣는 배타적 분류가 아니라, 찾는 경로가 여럿이면 여러 자리에 두는 방식이다.
 
@@ -185,13 +185,13 @@ world model은 환경의 동역학을 학습해 미래를 예측하는 모델을
 - 노후화: 활발한 영역이라 링크와 항목은 시간이 지나면 낡는다. 저장소는 link-check 워크플로 배지로 링크 유효성을 관리하지만, 항목 자체의 최신성은 별도 문제다. 최신 VLA 버전이 반영되지 않은 것이 그 예다.
 - 중복 배치: 같은 자료가 여러 절에 반복 등장하므로 항목 수를 서로 다른 자료의 개수로 읽으면 실제보다 많게 집계된다.
 
-사용법은 발견용 색인으로 한정하는 것이 맞다. 특정 자료의 근거가 필요하면 그 원본을 `raw/`로 따로 수집해 3-tier에 태운 뒤 해당 페이지를 인용한다.
+사용법은 발견용 인덱스로 한정하는 것이 맞다. 특정 자료의 근거가 필요하면 그 원본을 `raw/`로 따로 수집해 3-tier에 태운 뒤 해당 페이지를 인용한다.
 
 ## 핵심 용어
 
 | 용어 | 뜻 |
 |---|---|
-| awesome-list | 특정 주제의 우수 자료를 한 줄 설명과 함께 모은 GitHub 링크 색인. `awesome.re` 배지가 이 관행을 표시한다 |
+| awesome-list | 특정 주제의 우수 자료를 한 줄 설명과 함께 모은 GitHub 링크 인덱스. `awesome.re` 배지가 이 관행을 표시한다 |
 | 정본 카테고리 | 이 저장소가 자료를 배치하는 14개 상위 분류. 부록 절과 구분된다 |
 | generalist policy | 과제별 fine-tuning 없이 하나의 모델로 여러 downstream 과제를 푸는 policy |
 | trajectory | observation과 action이 시간순으로 이어진 실행 기록. 데이터셋 규모의 표기 단위 |
@@ -201,7 +201,7 @@ world model은 환경의 동역학을 학습해 미래를 예측하는 모델을
 ## 관련 페이지
 
 - [[physical-ai/keon-awesome-physical-ai]]: 같은 주제의 다른 awesome 리스트. 16개 절로 논문을 중심에 놓고 최신 arXiv preprint까지 담아 갱신이 빠르며, 한 논문을 한 카테고리에만 넣는 배타적 분류를 쓴다.
-- [[physical-ai/openhelix-robot-awesome-dual-system-vla]]: dual-system VLA 한 주제만 다루는 좁은 색인. 배제 목록과 벤치마크 결과표를 둔 점이 특징이며, 갱신은 근거 논문 저자들의 커뮤니티 PR로 이루어진다.
+- [[physical-ai/openhelix-robot-awesome-dual-system-vla]]: dual-system VLA 한 주제만 다루는 좁은 인덱스. 배제 목록과 벤치마크 결과표를 둔 점이 특징이며, 갱신은 근거 논문 저자들의 커뮤니티 PR로 이루어진다.
 - [[physical-ai/cui-2025-openhelix-a-short-survey-empirical]]: 위 dual-system 목록의 근거 논문. 배제 판정 기준의 출처다.
 - [[overviews/physical-ai-overview]]: physical-ai 카테고리의 분류 뼈대와 학습 경로 허브. 이 목록은 그 허브가 앞으로 채울 자리를 바깥에서 보여주는 지도다.
 - [[physical-ai/zhang-2026-a-survey-of-physical-ai]]: Physical AI 전체 흐름을 서술로 정리한 서베이. 목록이 항목으로 나열한 영역을 산문으로 잇는다.

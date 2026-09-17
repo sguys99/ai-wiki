@@ -1,6 +1,6 @@
 # AI Wiki Index
 
-이 파일은 `wiki/` 안의 모든 페이지를 카탈로그화한 색인이다. 자료가 추가될 때마다 해당 카테고리 섹션에 한 줄씩 추가한다.
+이 파일은 `wiki/` 안의 모든 페이지를 카탈로그화한 인덱스다. 자료가 추가될 때마다 해당 카테고리 섹션에 한 줄씩 추가한다.
 
 > **참조 규칙**: 모든 응답은 `sources/`와 `wiki/`에 실재하는 자료만 인용한다. 자세한 운영 규칙은 [`CLAUDE.md`](./CLAUDE.md)의 **The Four Rules**를 참고한다.
 
@@ -23,7 +23,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[database/edge-2024-from-local-to-global|GraphRAG: From Local to Global]]: Microsoft의 GraphRAG 원논문. entity와 relationship으로 KG를 짓고 Leiden community 요약을 map-reduce로 합쳐 전역 답변을 낸다 (2024, paper)
 - [[database/microsoft-graphrag|microsoft/graphrag (repo)]]: GraphRAG 원논문의 공개 구현체. README는 알고리즘을 문서 사이트로 위임하고 인덱싱 비용 경고와 prompt tuning 권고를 전면에 둔다. 공식 지원 제품은 아니다 (2024, repo)
 - [[database/dsba-2025-graphrag-paper-review|GraphRAG Paper Review (DSBA, 김도윤)]]: GraphRAG 원논문을 다룬 한국어 발표 리뷰. 배경 개념을 먼저 세우고, 논문과 공식 코드가 어긋나는 세 지점과 평가 설계 비판을 발표자 견해로 남긴다 (2025, article)
-- [[database/guo-2025-lightrag-simple-and-fast|LightRAG]]: entity와 relation을 key-value로 색인하고 질의에서 구체와 추상 키워드를 함께 뽑는 dual-level retrieval로, community 처리 없이 검색 토큰을 61만에서 100 미만으로 줄였다 (2025, paper)
+- [[database/guo-2025-lightrag-simple-and-fast|LightRAG]]: entity와 relation을 key-value로 인덱싱하고 질의에서 구체와 추상 키워드를 함께 뽑는 dual-level retrieval로, community 처리 없이 검색 토큰을 61만에서 100 미만으로 줄였다 (2025, paper)
 - [[database/zhang-2026-leanrag-knowledge-graph-based-generation|LeanRAG]]: 계층 KG의 상위 노드 사이에 relation을 만들어 semantic island를 없애고, seed 노드의 LCA 경로만 모아 retrieval 토큰을 46% 줄인 AAAI-26 논문 (2026, paper)
 - [[database/guo-2025-rag-anything-all-in-one-rag|RAG-Anything]]: 이미지와 표와 수식을 텍스트와 같은 등급으로 다루는 multimodal RAG. dual-graph 구축과 cross-modal hybrid retrieval로 DocBench 63.4%를 기록했다 (2025, paper)
 - [[database/hkuds-rag-anything|HKUDS/RAG-Anything (repo)]]: LightRAG 위에 세운 all-in-one multimodal RAG 저장소. MinerU와 Docling과 PaddleOCR로 문서를 파싱해 이미지와 표와 수식을 knowledge graph 인덱스에 함께 올린다 (2025, repo)
@@ -33,11 +33,11 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval|Direct Corpus Interaction (DCI)]]: 임베딩과 인덱스 없이 agent가 grep과 bash로 원본 corpus를 직접 뒤지는 패러다임. 같은 backbone 대비 11.0%p 향상 (2026, paper)
 - [[database/shanbhogue-2026-gemini-embedding-2-native-multimodal|Gemini Embedding 2]]: Gemini를 bidirectional attention으로 fine-tuning한 native multimodal 임베더. 텍스트, 이미지, 비디오를 한 공간에 둔다 (2026, paper)
 - [[database/zhang-2026-your-embedding-model-is-smarter|SMART]]: 학습이 끝난 single-vector 임베더가 버리던 hidden state에 MaxSim late interaction을 더해 추가 학습 없이 multi-vector 검색 성능을 얻는다 (2026, paper)
-- [[database/geeksforgeeks-2026-vectorless-rag-pageindex|Vectorless RAG: PageIndex 튜토리얼]]: PageIndex 클라우드 API와 LangChain과 Gemini로 PDF를 색인하고 질의하는 코드 10단계 입문 튜토리얼. 벤치마크 수치는 없다 (2026, article)
+- [[database/geeksforgeeks-2026-vectorless-rag-pageindex|Vectorless RAG: PageIndex 튜토리얼]]: PageIndex 클라우드 API와 LangChain과 Gemini로 PDF를 인덱싱하고 질의하는 코드 10단계 입문 튜토리얼. 벤치마크 수치는 없다 (2026, article)
 - [[database/zhang-2025-pageindex-vectorless-reasoning-rag|PageIndex 소개글]]: PageIndex 팀이 직접 쓴 글. vector 검색의 다섯 가지 한계를 규정하고 문서 목차를 트리로 만들어 컨텍스트에 두는 대안을 제시한다. 정량 벤치마크는 없다 (2025, article)
 - [[database/sguys99-langchain-study-vectorless-rag|sguys99/langchain-study vectorless-rag]]: 기성 솔루션 없이 pymupdf4llm 파싱으로 DocumentTree를 직접 만드는 한글 학습용 구현. langgraph 에이전트가 네 단계로 트리를 내려간다 (2026, repo)
 - [[database/lumer-2025-rethinking-retrieval-from-traditional-retrieval|Rethinking Retrieval (PwC)]]: SEC filing 1,200건과 150문항으로 vector 기반 agentic RAG와 계층 node-based RAG를 비교한 금융 실험 (2025, paper)
-- [[database/gutierrez-2025-from-rag-to-memory-non|HippoRAG 2: From RAG to Memory]]: KG에 passage 노드를 더하고 쿼리를 triple에 이어, 사실 기억과 sense-making과 associativity 세 메모리 과제를 동시에 개선한 논문 (2025, paper)
+- [[database/gutierrez-2025-from-rag-to-memory-non|HippoRAG 2: From RAG to Memory]]: KG에 passage 노드를 더하고 질의를 triple에 이어, 사실 기억과 sense-making과 associativity 세 메모리 과제를 동시에 개선한 논문 (2025, paper)
 - [[database/kalane-2026-pageindex-threw-out-vector-databases|PageIndex 외부 리뷰]]: 출시 반년 뒤의 실무자 리뷰. vector RAG 실패 유형과 trade-off를 정리한다. 제목의 정확도는 PageIndex가 아니라 Mafin 2.5의 공급자 발표치다 (2026, article)
 - [[database/athina-ai-rag-cookbooks|Athina AI RAG Cookbooks]]: RAG 기법 13종(advanced 8, agentic 5)을 Colab 노트북 한 개씩으로 정리한 학습용 카탈로그. 13종 전부가 LangChain과 Athina AI 평가를 공통으로 쓴다 (2024, repo)
 - [[database/nirdiamant-rag-techniques|Advanced RAG Techniques (NirDiamant)]]: RAG 기법 노트북 42개를 10개 카테고리로 배열한 학습용 저장소. HyPE와 평가 4종 포함. README는 custom non-commercial license만 밝힌다 (2024, repo)
@@ -122,7 +122,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/engiuniverse-2025-14-key-physical-ai-papers|Physical AI 핵심 논문 14편 리뷰 (엥지유니버스)]]: RT-1 이후 3년의 VLA 연구를 네 단계로 배열한 한국어 27분 총결산 영상. 성능 비교가 아니라 계보를 훑는 지도로 쓴다 (2025, video)
 - [[physical-ai/learnopencv-2025-vision-language-action-models-vla|VLA & Policies for Robots (LearnOpenCV)]]: RT-2부터 Gemini Robotics까지 아홉 모델을 계보순으로 소개하고 네 모델은 실행 코드까지 붙인 튜토리얼 (2025, article)
 - [[physical-ai/engiuniverse-2025-rt1-rt2-robotics-transformer-review|구글 RT-1, RT-2 핵심 논문 리뷰 (엥지유니버스)]]: RT-1과 RT-2 두 논문의 아키텍처를 텐서 크기를 대입해 대조한 한국어 20분 영상. 벤치마크 수치는 다루지 않는다 (2025, video)
-- [[physical-ai/natnew-awesome-physical-ai|Awesome Physical AI (natnew, repo)]]: Physical AI 도구, 데이터, 논문, 규제 문서 353개를 14개 카테고리로 모은 큐레이션 색인. 개별 자료로 가는 지도로 쓰며 라이선스는 MIT다 (2026, repo)
+- [[physical-ai/natnew-awesome-physical-ai|Awesome Physical AI (natnew, repo)]]: Physical AI 도구, 데이터, 논문, 규제 문서 353개를 14개 카테고리로 모은 큐레이션 인덱스. 개별 자료로 가는 지도로 쓰며 라이선스는 MIT다 (2026, repo)
 - [[physical-ai/keon-awesome-physical-ai|Awesome Physical AI (keon)]]: Physical AI 논문과 리소스 485개를 16개 섹션으로 배열한 CC0 큐레이션 목록. 논문을 한 카테고리에만 넣는 규칙이라 방법 계보가 배치로 드러난다 (2026, repo)
 - [[physical-ai/acensia-long-horizon-papers|long-horizon-papers (acensia, repo)]]: long-horizon 논문 52편을 LLM agent, VLM planning, VLA manipulation으로 나눈 큐레이션 저장소. VLA는 실패를 막는 네 전략과 recovery까지 다섯 폴더로 배열한다 (2026, repo)
 - [[physical-ai/liu-2025-generative-physical-ai-in-vision|Generative Physical AI in Vision: A Survey]]: 생성 모델이 물리 법칙을 지키게 만드는 연구를 physics-aware generation이라는 이름으로 묶은 서베이 (2025, paper)
@@ -190,9 +190,9 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/anthropic-2025-equipping-agents-for-the-real|Equipping Agents with Agent Skills (Anthropic)]]: SKILL.md 폴더 포맷과 progressive disclosure 3레벨 로딩으로 에이전트에 절차 지식과 조직 맥락을 장착하는 설계 해설 (2025, article)
 - [[agents/agentskills-agentskills|Agent Skills (repo)]]: Agent Skills 포맷의 벤더 중립 오픈 표준 저장소. `SKILL.md` 폴더 규격과 discovery, activation, execution 3단계를 정의한다 (2026, repo)
 - [[agents/agentskills-io-2026-agent-skills-overview|Agent Skills Overview (agentskills.io)]]: 오픈 표준 공식 사이트 홈. progressive disclosure 3단계와 42개 클라이언트 Client Showcase로 채택 폭을 보인다 (2026, article)
-- [[agents/garrytan-gstack|gstack (repo)]]: Garry Tan의 Claude Code 스킬 팩. 역할별 슬래시 명령어로 개발을 스프린트 사이클로 구조화한다 (2026, repo)
-- [[agents/9bow-2026-gstack-claude-code-virtual-team|gstack 명령어 카탈로그 (9bow)]]: PyTorch KR이 gstack의 슬래시 명령어를 스프린트 사이클에 맞춰 5개 그룹으로 정리한 한국어 카탈로그. 설치 3종과 텔레메트리 범위까지 담았다 (2026, article)
-- [[agents/gpters-2026-yc-ai-agent-guide-gstack|Y Combinator의 AI 에이전트 사용법 완벽 정리 (GPTers)]]: gstack 9개 슬래시 명령어의 사용법 가이드. 브라우저 QA 데몬의 콜드 스타트 3~5초, 이후 호출 100~200ms 수치를 담았다 (2026, article)
+- [[agents/garrytan-gstack|gstack (repo)]]: Garry Tan의 Claude Code skill pack. 역할별 슬래시 커맨드로 개발을 스프린트 사이클로 구조화한다 (2026, repo)
+- [[agents/9bow-2026-gstack-claude-code-virtual-team|gstack 명령어 카탈로그 (9bow)]]: PyTorch KR이 gstack의 슬래시 커맨드를 스프린트 사이클에 맞춰 5개 그룹으로 정리한 한국어 카탈로그. 설치 3종과 텔레메트리 범위까지 담았다 (2026, article)
+- [[agents/gpters-2026-yc-ai-agent-guide-gstack|Y Combinator의 AI 에이전트 사용법 완벽 정리 (GPTers)]]: gstack 9개 슬래시 커맨드의 사용법 가이드. 브라우저 QA 데몬의 콜드 스타트 3~5초, 이후 호출 100~200ms 수치를 담았다 (2026, article)
 - [[agents/hada-2026-gstack-virtual-engineering-team|gstack으로 만드는 가상 엔지니어링 팀 (GeekNews)]]: gstack의 스프린트 사이클과 명령어 구조, 대상 사용자 세 부류를 정리한 커뮤니티 소개 글. 독자 댓글 4건을 함께 싣는다 (2026, article)
 - [[agents/mattpocock-skills|Skills For Real Engineers (repo)]]: Matt Pocock이 매일 쓰는 코딩 에이전트 스킬 25개. 인터뷰, 스펙, TDD, 디버깅, 리뷰를 작은 단위로 쪼개고 사람만 부르는 스킬과 모델도 부르는 스킬로 나눈다. MIT (2026, repo)
 - [[agents/ayghri-i-have-adhd|i-have-adhd (repo)]]: 코딩 에이전트 응답을 행동 우선, 단계 번호, 전문과 마무리 금지 규칙 10개로 바꾸는 단일 스킬. 15개 harness 배포와 blind judge 평가 harness를 갖춘다. MIT (2026, repo)
@@ -221,7 +221,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/microsoft-skillopt|SkillOpt (repo)]]: agent skill 문서를 학습 대상 파라미터로 삼아 딥러닝 옵티마이저의 규율로 훈련하는 Microsoft 프레임워크. 가중치를 고정한 채 `best_skill.md` 한 장만 배포한다 (2026, repo)
 - [[agents/yang-2026-skillopt-executive-strategy-for|SkillOpt]]: skill 문서를 external state로 두고 edit budget과 held-out gate로 훈련하는 text-space optimizer. 52개 셀 전부 best 또는 tied-best (2026, paper)
 - [[agents/rodrigues-2026-mcp-server-architecture-patterns|MCP Server Architecture Patterns]]: MCP 서버 15개를 코딩해 패턴 5종과 anti-pattern 4종을 정리한 산업 경험 논문. tool 10~15개가 Haiku급 정확도 예산이다 (2026, paper)
-- [[agents/headroomlabs-ai-headroom|Headroom (repo)]]: 에이전트가 읽는 tool 출력과 로그, RAG 청크를 LLM 도달 전에 압축해 토큰을 60~95% 줄인다는 context compression layer. library, proxy, wrap 세 형태로 도입한다 (2026, repo)
+- [[agents/headroomlabs-ai-headroom|Headroom (repo)]]: 에이전트가 읽는 tool 출력과 로그, RAG chunk를 LLM 도달 전에 압축해 토큰을 60~95% 줄인다는 context compression layer. library, proxy, wrap 세 형태로 도입한다 (2026, repo)
 - [[agents/tosea-2026-how-to-use-headroom-context|How to Use Headroom (Tosea.ai)]]: Headroom을 붙이는 다섯 방식과 선택 규칙, 도입하지 말아야 할 조건, 네이티브 compaction과의 스코프 차이를 정리한 실무 가이드 (2026, article)
 - [[agents/subratpati-2026-building-cost-efficient-agents-with|Building Cost-Efficient Agents with Headroom (Subrat Pati)]]: Headroom의 토큰 40~90% 절감을 유저당 하루 지출액으로 환산한 비용 관점 소개글 (2026, article)
 - [[agents/nedai-2026-headroom-token-compression-guide|Headroom 토큰 절감 사용법 (Nedai)]]: Headroom을 터미널 래핑, 로컬 proxy, MCP 등록으로 연동하는 절차와 Windows 인코딩 대응을 정리한 한국어 how-to (2026, article)
@@ -279,9 +279,9 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/mantena-2026-hermes-gbrain-setup-vps|Hermes + GBrain on AWS EC2 (Mantena)]]: AWS EC2 VPS에 GBrain을 설치하고 Hermes에게 ingest를 위임하는 4부 가이드. X Basic tier와 ngrok 없이 likes까지 모은다 (2026, article)
 - [[applications/techwealth-hub-2026-garry-tan-gbrain-explained|GBrain Explained (TechWealth Hub)]]: 공개 직후 올라온 5분 45초 3자 해설. 3-layer 구조와 brain agent loop, verification runbook을 압축한다 (2026, video)
 - [[applications/liu-2026-rag-llm-wiki-or-gbrain|RAG, LLM Wiki, or GBrain? (Liu)]]: 에이전트가 하는 일이 retrieve인지 compile인지 act인지로 RAG, LLM Wiki, fat skills를 가르는 결정 프레임워크 에세이 (2026, article)
-- [[applications/safishamsi-graphify|safishamsi/graphify (repo)]]: 임의의 폴더를 읽어 지식 그래프로 만드는 Claude Code 스킬. 원본 직접 읽기 대비 질의당 토큰 71.5배 절감을 보고하고, 엣지마다 발견과 추측을 라벨로 구분한다 (2026, repo)
+- [[applications/safishamsi-graphify|safishamsi/graphify (repo)]]: 임의의 폴더를 읽어 knowledge graph로 만드는 Claude Code 스킬. 원본 직접 읽기 대비 질의당 토큰 71.5배 절감을 보고하고, 엣지마다 발견과 추측을 라벨로 구분한다 (2026, repo)
 - [[applications/graphify-labs-graphify|graphify (Graphify-Labs)]]: Claude Code에서 /graphify 한 줄로 임의 폴더를 knowledge graph로 바꾸는 스킬이자 CLI. README 본문은 safishamsi/graphify 스냅샷과 글자 단위로 같다 (2026, repo)
-- [[applications/shamsi-2026-graphify-knowledge-graphs-for-ai|Graphify 공식 제품 페이지]]: 코드와 문서, 논문, 다이어그램을 임베딩 없이 하나의 지식 그래프로 묶는 오픈소스 스킬. 제품이 스스로 제시한 71.5배 토큰 감축 수치와 그 근거를 정리했다 (2026, article)
+- [[applications/shamsi-2026-graphify-knowledge-graphs-for-ai|Graphify 공식 제품 페이지]]: 코드와 문서, 논문, 다이어그램을 임베딩 없이 하나의 knowledge graph로 묶는 오픈소스 스킬. 제품이 스스로 제시한 71.5배 토큰 감축 수치와 그 근거를 정리했다 (2026, article)
 - [[applications/todaycode-2026-graphify-llm-token-reduction-wiki|Graphify 한국어 해설 (오늘코드todaycode)]]: legalize-kr 법령 시연과 9단계 파이프라인, tree-sitter, Leiden 해설. 71.5배와 657배 토큰 절감의 측정 조건을 구분했다 (2026, video)
 - [[applications/colbymchenry-codegraph|colbymchenry/codegraph (repo)]]: tree-sitter로 20개 이상 언어를 파싱해 로컬 SQLite 그래프로 만들고 MCP로 8종 코딩 에이전트에 노출하는 도구. LLM 없이 정적 추출만 쓰고 파일 감시자로 인덱스를 상시 동기화한다 (2026, repo)
 - [[applications/dnotitia-akb|dnotitia/AKB (repo)]]: MCP로 노출되는 에이전트용 조직 메모리 저장소. Git bare repo와 PostgreSQL 위에 hybrid retrieval을 올리고 PostgreSQL ACL로 vault를 격리한다. LongMemEval-S R@5 98.4% (2026, repo)
@@ -302,7 +302,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/patel-2026-production-ai-app-seven-layers|Production AI 앱의 7개 레이어 (Manthan Patel, LinkedIn)]]: 실제 Next.js 앱의 파일 트리를 7개 레이어로 해부하고 `.claude/`를 일곱 번째 레이어로 세운 짧은 게시글 (2026, article)
 - [[applications/shubhamsaboo-awesome-llm-apps|Awesome LLM Apps (Shubhamsaboo, repo)]]: 15개 카테고리 아래 107건의 실행 가능한 LLM 앱 템플릿을 담은 Apache-2.0 쿡북 저장소. 링크 모음이 아니라 full source code가 든 자족형 디렉토리다 (2026, repo)
 - [[applications/zhulinsen-daily-stock-analysis|ZhuLinsen/daily_stock_analysis (repo)]]: A주, 홍콩, 미국, 일본, 한국, 대만 6개 시장 종목을 매일 분석해 매수와 관망과 매도 대시보드를 만들고 6개 채널로 전송하는 MIT 오픈소스 (2026, repo)
-- [[applications/cheahjs-free-llm-api-resources|cheahjs/free-llm-api-resources (repo)]]: 무료 한도나 체험 크레딧으로 쓸 수 있는 LLM API 프로바이더 26곳을 요청 한도, 토큰 한도, 이용 조건, 제공 모델까지 정리한 큐레이션 저장소 (2026, repo)
+- [[applications/cheahjs-free-llm-api-resources|cheahjs/free-llm-api-resources (repo)]]: 무료 한도나 체험 크레딧으로 쓸 수 있는 LLM API provider 26곳을 요청 한도, 토큰 한도, 이용 조건, 제공 모델까지 정리한 큐레이션 저장소 (2026, repo)
 - [[applications/debpalash-voicestudio|debpalash/VoiceStudio (repo)]]: voice cloning, dubbing, 받아쓰기, 오디오북을 계정 없이 로컬에서 실행하는 AGPL 앱. TTS 16종과 ASR 11종을 registry로 묶고 OpenAI 호환 API와 MCP 서버를 낸다 (2026, repo)
 
 ## Etc (etc)

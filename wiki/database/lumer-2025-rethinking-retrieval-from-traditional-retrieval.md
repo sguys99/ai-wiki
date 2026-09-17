@@ -81,7 +81,7 @@ SEC filing은 일반 문서보다 훨씬 길고 용어가 좁다. 논문이 관�
 
 기존 RAG는 문서를 chunk로 잘라 임베딩으로 바꾸고 질의 임베딩과의 거리로 후보를 고른다. 임베딩은 텍스트를 고정 차원 벡터로 바꾼 표현이다. 이 방식에는 preprocessing 단계에서 전체 코퍼스를 임베딩해 저장해야 한다는 부담이 따른다.
 
-이에 대한 대안으로 문서의 목차 구조 자체를 색인으로 삼는 접근이 등장했다. 문서를 절 단위 노드의 트리로 바꾸고, 질의가 들어오면 LLM이 트리를 타고 내려가며 관련 노드를 골라 그 페이지 범위를 읽는다. 임베딩 계산이 아예 없어진다.
+이에 대한 대안으로 문서의 목차 구조 자체를 인덱스로 삼는 접근이 등장했다. 문서를 절 단위 노드의 트리로 바꾸고, 질의가 들어오면 LLM이 트리를 타고 내려가며 관련 노드를 골라 그 페이지 범위를 읽는다. 임베딩 계산이 아예 없어진다.
 
 논문은 이 계열의 출처로 두 자료를 인용한다. PageIndex 저장소(VectifyAI 2024)와 pageindex.ai의 Mafin 2.5 블로그 글(VectifyAI 2025)이다. 그리고 이 접근이 복잡한 질의에서 semantic vector 검색 대비 얼마나 효과적인지가 아직 불분명하다는 점을 연구 공백으로 지목한다.
 
@@ -194,7 +194,7 @@ SEC filing은 일반 문서보다 훨씬 길고 용어가 좁다. 논문이 관�
 
 | 설계 항목 | vector 기반 agentic RAG | hierarchical node-based |
 |---|---|---|
-| 색인 단위 | 512 토큰 chunk | 문서의 절에 대응하는 노드 |
+| 인덱싱 단위 | 512 토큰 chunk | 문서의 절에 대응하는 노드 |
 | preprocessing 산출물 | chunk 임베딩과 metadata | 페이지 범위를 담은 node tree |
 | 후보 선정 방식 | semantic과 lexical을 결합한 hybrid search | LLM의 계층 traversal |
 | 임베딩 사용 | 사용 | 사용하지 않음 |
@@ -208,7 +208,7 @@ SEC filing은 일반 문서보다 훨씬 길고 용어가 좁다. 논문이 관�
 
 - 문서를 512 토큰 chunk로 자르고 chunk 사이에 50 토큰 overlap을 둔다.
 - 각 chunk를 `text-embedding-ada-002`로 임베딩해 metadata와 함께 Azure AI Search에 저장한다.
-- 질의 시점에 LLM agent가 검색 질의를 직접 만들고 hybrid search로 상위 k개 chunk를 가져온다.
+- 질의 시점에 LLM agent가 검색 질의를 직접 만들고 hybrid search로 top-k chunk를 가져온다.
 
 논문 서론은 이 baseline을 "hybrid search with metadata filtering, corrective RAG, and standard token-based chunking"으로 요약한다. corrective RAG는 retrieval 결과 품질을 평가해 미흡하면 질의를 다시 쓰는 방식으로, Yan 2024의 CRAG를 인용한다. 다만 이 인용은 서론 한 문장에만 나오고 방법 절의 시스템 서술에서는 다시 언급되지 않아, 실제 구현 수준까지는 확인할 수 없다.
 
@@ -427,7 +427,7 @@ Gemini 2.5 Flash가 가장 저렴하지만 호환성 문제로 최종 채택되�
 | cross-encoder reranking | 질의와 후보 chunk를 한 입력으로 묶어 함께 인코딩해 점수를 매기는 2단계 정렬이다 |
 | small-to-big retrieval | 작은 chunk로 검색하고 LLM에 넘길 때는 인접 chunk를 붙여 컨텍스트를 넓히는 전략이다 |
 | hierarchical node-based reasoning RAG | 문서를 목차 트리로 바꾸고 LLM이 노드를 traversal해 페이지 범위를 읽는 임베딩 없는 방식이다 |
-| LLM-as-a-judge (pairwise) | 두 시스템의 답변을 LLM이 비교해 승자를 고르고 win rate를 집계하는 평가 방법이다 |
+| LLM-as-a-Judge (pairwise) | 두 시스템의 답변을 LLM이 비교해 승자를 고르고 win rate를 집계하는 평가 방법이다 |
 
 ## 관련 페이지
 
@@ -435,6 +435,6 @@ Gemini 2.5 Flash가 가장 저렴하지만 호환성 문제로 최종 채택되�
 - [[database/geeksforgeeks-2026-vectorless-rag-pageindex]]: 임베딩 없는 RAG를 입문 수준으로 소개하는 튜토리얼이다. 이 논문은 같은 접근을 금융 도메인에서 정량 비교해 반대 방향의 근거를 제시한다.
 - [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]: 임베딩 없이 원문을 직접 뒤지는 접근을 다룬 다른 논문이다. 결론 방향은 이 논문과 반대지만, 두 논문 모두 대상 task에 따라 architecture 선택이 갈린다는 관점을 공유한다.
 - [[database/gutierrez-2025-from-rag-to-memory-non]]: 임베딩 기반 chunk retrieval을 다른 방향에서 재검토한 논문으로, 이 논문의 vector baseline이 무엇을 전제하는지 비교해 읽을 수 있다.
-- [[database/edge-2024-from-local-to-global]]: 문서를 graph로 색인해 요약형 질의를 다루는 접근이다. 이 논문이 약세를 확인한 summary 유형 질의를 정면으로 겨냥한다는 점에서 대비된다.
+- [[database/edge-2024-from-local-to-global]]: 문서를 graph로 인덱싱해 요약형 질의를 다루는 접근이다. 이 논문이 약세를 확인한 summary 유형 질의를 정면으로 겨냥한다는 점에서 대비된다.
 - [[database/zhang-2026-leanrag-knowledge-graph-based-generation]]: knowledge graph의 계층 구조 위에서 후보 경로를 좁히는 방식이다. 이 논문이 후속 과제로 제안한 "후보를 먼저 좁힌 뒤 구조를 타고 내려간다"는 발상과 문제의식이 겹친다.
 - [[applications/pandey-2026-rag-is-no-longer-just]]: RAG를 단일 패턴이 아니라 설계 공간으로 보는 관점을 제공한다. 이 논문은 그 공간 안에서 hybrid search, agentic 구성, reranking, 컨텍스트 확장을 금융 도메인 수치로 채운 사례에 해당한다.

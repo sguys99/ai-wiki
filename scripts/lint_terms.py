@@ -72,6 +72,7 @@ RE_LATIN_PAREN = re.compile(r"\([A-Za-z][^)가-힣·—]*\)")
 # category였다면 진짜 위반이므로 예외로 등재하지 않는다 (Phase 5-5 판정).
 SUBSTRING_EXCEPTIONS = {
     "보상": ["계보상"],  # 계보(lineage) + 상 — "계보상의 변형으로 LightRAG가 있다"
+    "색인": ["검색인"],  # 검색(search) + 인 — "한 번의 top-k 검색인 반면" (Phase 7-1 4차 갱신, 색인→인덱싱 등재)
 }
 
 

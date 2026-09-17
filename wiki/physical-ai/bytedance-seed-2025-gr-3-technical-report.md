@@ -111,7 +111,7 @@ compounding error는 policy의 작은 예측 오차가 시간에 따라 누적�
 
 action chunk는 한 번의 추론으로 여러 timestep의 action을 묶어 내는 출력 단위다. GR-3는 길이 k의 action chunk a_t = a_{t:t+k}를 한 번에 생성하며, 이 값이 로봇의 19개 자유도를 제어한다.
 
-flow matching은 노이즈에서 시작해 정답 분포로 향하는 속도장을 학습하는 생성 기법이다. GR-3는 확산 모델 대신 flow matching으로 action chunk를 만들고, 추론 시 Euler 적분 5단계로 노이즈를 action으로 바꾼다.
+flow matching은 노이즈에서 시작해 정답 분포로 향하는 속도장을 학습하는 생성 기법이다. GR-3는 diffusion model 대신 flow matching으로 action chunk를 만들고, 추론 시 Euler 적분 5단계로 노이즈를 action으로 바꾼다.
 
 DiT는 diffusion 계열 생성을 Transformer 블록으로 구현한 구조다. GR-3의 action DiT는 VLM backbone의 KV cache를 조건으로 받아 action chunk를 예측한다.
 

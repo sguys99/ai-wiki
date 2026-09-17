@@ -150,7 +150,7 @@ perception부터 보자. vision encoder는 CNN 계열(ResNet, EfficientNet)이 �
 
 Gato, VIMA, GR-1과 GR-2는 brain을 Transformer 단독으로 쓴다. 생성 코어로 diffusion을 두고 Transformer가 denoising을 이끄는 DiT는 RDT-1B와 TriVLA가 택했다. π0, Octo, MinD는 Transformer backbone에 flow matching이나 diffusion head를 붙인 hybrid다. pre-trained VLM을 그대로 두뇌로 쓰는 방식은 RT-2 이후 사실상 표준이 됐다. 계층형에서는 VLM이 high-level planner를 맡는다.
 
-action space는 이산, 연속, 혼합 세 가지다. 이산은 bin으로 나눠 next-token 분류로 푼다. 연속은 관절 각도와 속도를 직접 회귀하는 방식이라 diffusion 및 flow matching과 잘 맞는다. 혼합에서는 BridgeVLA가 이동은 연속으로, 회전은 이산으로 가고 π0.5는 상위 skill은 이산으로, 하위 실행은 연속으로 간다. 디코딩은 autoregressive, non-autoregressive, hybrid 세 가지로 나뉜다. non-autoregressive는 양방향 attention 또는 diffusion과 flow matching으로 action horizon을 한 번에 뽑아 지연을 줄인다. hybrid는 청크 단위로는 autoregressive지만 청크 안에서는 병렬로 푼다. action chunking은 미래 여러 스텝의 action을 한 묶음으로 예측하는 방식을 말한다.
+action space는 이산, 연속, 혼합 세 가지다. 이산은 bin으로 나눠 next-token 분류로 푼다. 연속은 관절 각도와 속도를 직접 회귀하는 방식이라 diffusion 및 flow matching과 잘 맞는다. 혼합에서는 BridgeVLA가 이동은 연속으로, 회전은 이산으로 가고 π0.5는 상위 skill은 이산으로, 하위 실행은 연속으로 간다. 디코딩은 autoregressive, non-autoregressive, hybrid 세 가지로 나뉜다. non-autoregressive는 양방향 attention 또는 diffusion과 flow matching으로 action horizon을 한 번에 뽑아 지연을 줄인다. hybrid는 action chunk 단위로는 autoregressive지만 action chunk 안에서는 병렬로 푼다. action chunking은 미래 여러 스텝의 action을 한 묶음으로 예측하는 방식을 말한다.
 
 ### 3.2 도전 과제 1: multi-modal alignment와 물리 세계 표현
 

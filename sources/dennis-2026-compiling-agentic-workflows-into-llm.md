@@ -174,7 +174,7 @@ i14와 University of Melbourne 팀이 agent orchestration framework(LangGraph, C
 4. **비용 우위의 두 요인 분해**: (a) self-hosted vLLM(A100 시간당 2.50달러) 기준 토큰당 단가 약 65배 절감, (b) 고정 길이 프롬프트로 토큰 사용량 2~7배 절감. 두 요인이 곱해져 128~462배가 된다.
 5. **CI/CD 수준 재컴파일**: 데이터 생성 15~30분(병렬 API 호출) + fine-tuning 10~15분(H200 8장 BF16 데이터 병렬) + 평가 5~15분 = **전체 30~50분**. A100 1장 환경에서도 3~4시간이다.
 6. **full fine-tuning 권고**: 자매 논문[2026b]이 LoRA rank 16~128에서 절차 학습 실패를 보였고, 본 논문은 전부 전체 파라미터를 갱신하는 fine-tuning을 썼다. 저자 표현은 "절차 내재화는 문체 정렬보다 깊은 변화"다.
-7. **접근법 비공개 LLM-as-judge와 cross-judge 검증**. Claude Sonnet 4.5 judge를 기본으로 쓰고 GPT-4.1 judge로 전량 재채점해 self-preference bias를 통제했다. GPT-4.1에서도 in-context 대비 83~99%로 범위가 비슷했다.
+7. **접근법 비공개 LLM-as-a-Judge와 cross-judge 검증**. Claude Sonnet 4.5 judge를 기본으로 쓰고 GPT-4.1 judge로 전량 재채점해 self-preference bias를 통제했다. GPT-4.1에서도 in-context 대비 83~99%로 범위가 비슷했다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -257,7 +257,7 @@ Insurance가 Zoom보다 epoch 예산이 두 배인 이유로 저자는 절차가
 | Graceful Handling | 변경, 모호성, edge case를 얼마나 잘 처리했는가. 5점은 매끄러운 적응, 1점은 어떤 이탈에도 흐름이 깨짐. **사용자가 도전을 걸지 않은 대화는 3점이 상한이다** |
 | Naturalness | 숙련된 인간 상담원과 대화하는 것처럼 읽히는가. 5점은 인간과 구별 불가, 1점은 기계적이고 대본 같음 |
 
-- **통계 처리**: 같은 실행 회차에서 평가한 조건은 시나리오 인덱스로 짝지어 Wilcoxon signed-rank 검정을, 따로 평가한 조건은 Mann-Whitney U 검정을 쓴다. 사용자 시뮬레이터가 동적으로 응답하므로 짝지은 조건도 첫 턴 이후 대화가 갈라진다. 저자는 짝짓기가 내용이 아니라 시나리오 의도 수준이라고 명시한다. 효과 크기는 Cohen's d(합동 표준편차), 신뢰구간은 부트스트랩 95%(재표본 10,000회, 백분위법)이며, p값은 각 쌍대 비교 안에서 지표 5개에 대해 Holm-Bonferroni 보정(α = 0.05)을 적용한다.
+- **통계 처리**: 같은 실행 회차에서 평가한 조건은 시나리오 인덱스로 짝지어 Wilcoxon signed-rank 검정을, 따로 평가한 조건은 Mann-Whitney U 검정을 쓴다. 사용자 시뮬레이터가 동적으로 응답하므로 짝지은 조건도 첫 턴 이후 대화가 갈라진다. 저자는 짝짓기가 내용이 아니라 시나리오 의도 수준이라고 명시한다. 효과 크기는 Cohen's d(합동 표준편차), 신뢰구간은 부트스트랩 95%(재표본 10,000회, 백분위법)이며, p값은 각 pairwise 비교 안에서 지표 5개에 대해 Holm-Bonferroni 보정(α = 0.05)을 적용한다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -273,7 +273,7 @@ Table 1 (Claude judge, n = 200, 1~5점. 괄호는 부트스트랩 95% 신뢰구�
 | Graceful Handling | 4.07 [3.97, 4.17] | 3.87 [3.79, 3.94] | 4.62 [4.51, 4.71] | **4.96** [4.92, 4.99] |
 | Naturalness | 4.12 [4.03, 4.20] | 3.96 [3.88, 4.01] | 4.84 [4.79, 4.89] | **5.00** [5.00, 5.00] |
 
-Table 7의 쌍대 비교(Wilcoxon signed-rank, Holm-Bonferroni 보정). 차이는 앞 조건에서 뒤 조건을 뺀 값이다.
+Table 7의 pairwise 비교(Wilcoxon signed-rank, Holm-Bonferroni 보정). 차이는 앞 조건에서 뒤 조건을 뺀 값이다.
 
 | 비교 | 지표 | 차이 | d | 보정 p |
 |---|---|---|---|---|
@@ -309,7 +309,7 @@ Table 2 (Claude judge, n = 200. 괄호는 95% 신뢰구간):
 | Graceful Handling | 4.62 [4.54, 4.71] | 4.52 [4.42, 4.62] | **5.00** [4.99, 5.00] |
 | Naturalness | **4.87** [4.82, 4.91] | 4.64 [4.57, 4.71] | **5.00** [5.00, 5.00] |
 
-Table 8의 쌍대 비교(Mann-Whitney U, 실행 회차가 달라 비대응 검정):
+Table 8의 pairwise 비교(Mann-Whitney U, 실행 회차가 달라 비대응 검정):
 
 | 비교 | 지표 | 차이 | d | 보정 p |
 |---|---|---|---|---|
@@ -340,7 +340,7 @@ Table 3 (Claude judge, n = 200. 괄호는 95% 신뢰구간이며 부록 Table 9 
 | Graceful Handling | **4.96** [4.92, 4.99] | 4.38 [4.25, 4.51] | **4.81** [4.72, 4.88] |
 | Naturalness | **5.00** [4.99, 5.00] | 4.58 [4.50, 4.67] | **4.92** [4.87, 4.97] |
 
-Table 9의 쌍대 비교(Mann-Whitney U):
+Table 9의 pairwise 비교(Mann-Whitney U):
 
 | 비교 | 지표 | 차이 | d | 보정 p |
 |---|---|---|---|---|
@@ -535,7 +535,7 @@ agent framework 실패 분석은 본 논문의 동기다.
 | vLLM, PagedAttention [Kwon et al., SOSP 2023] | self-hosted 배치 추론. 비용 계산의 서빙 기반 |
 | LLM-Inference-Bench [Patel et al., 2024] | 8B 모델 A100 처리량 벤치마크. 토큰당 단가 계산 근거 |
 | LangGraph [LangChain, 2024], CrewAI [Moura, 2024], Google ADK [2026], OpenAI Agents SDK [2026], Semantic Kernel [Microsoft, 2026], Strands [AWS, 2026], LlamaIndex Workflows [2026] | 비교 대상 오케스트레이션 생태계. GitHub star 합계 29만 개 이상 |
-| LLM-as-judge [Zheng et al., NeurIPS 2023] | MT-Bench의 평가 방법론 |
+| LLM-as-a-Judge [Zheng et al., NeurIPS 2023] | MT-Bench의 평가 방법론 |
 | Panickssery et al. [2024] | judge가 자기 생성물을 선호하는 편향. cross-judge 통제의 동기 |
 
 ## 7. 용어집 (Glossary)
@@ -549,7 +549,7 @@ agent framework 실패 분석은 본 논문의 동기다.
 - **In-context baseline** - flowchart 전체를 직렬화해 system prompt에 넣고 frontier 모델이 스스로 절차를 수행하게 한 조건. 품질 상한이자 가장 비싼 baseline이다.
 - **LangGraph orchestrator** - 본 논문 비교의 대표 surface orchestration framework. 2026-03 기준 GitHub star 약 3만 개이고 Claude Sonnet 4.5로 운영했다.
 - **Dynamic user simulation** - Claude Sonnet 4.5가 시나리오 변수를 받아 고객 역할을 연기하는 평가 장치. flowchart를 모른다.
-- **LLM-as-judge** - Zheng et al. 2023의 평가 방법. 본 논문은 Claude judge와 GPT-4.1 cross-judge로 self-preference bias를 통제했다.
+- **LLM-as-a-Judge** - Zheng et al. 2023의 평가 방법. 본 논문은 Claude judge와 GPT-4.1 cross-judge로 self-preference bias를 통제했다.
 - **Recompile cycle** - 절차 변경 시 (1) 새 flowchart로 데이터 재생성, (2) 전체 파라미터 fine-tuning, (3) 평가로 이어지는 주기. H200 8장에서 30~50분, A100 1장에서 3~4시간이다.
 - **interview style** - 컴파일 모델이 학습 데이터에서 흡수한 턴당 질문 하나 패턴. 전체 턴의 64%가 정확히 질문 하나를 담는다.
 - **i14** - 저자 4명의 공통 소속 표기. 논문에 별도 설명이 없고 제1저자만 University of Melbourne을 함께 적었다.
@@ -568,9 +568,9 @@ agent framework 실패 분석은 본 논문의 동기다.
 | tab04 | 7 | "턴 수와 wall-clock 비교표" | table-region | 본문 표로 재현 (4.4절) |
 | tab05 | 7 | "실패 대화 수와 실패율 표" | table-region | 본문 표로 재현 (4.4절) |
 | tab06 | 8 | "대화당 추론 비용 비교표" | table-region | 본문 표로 재현 (4.6절) |
-| tab07 | 15 | "여행 예약 쌍대 비교 통계표" | table-region | 본문 표로 재현 (4.1절) |
-| tab08 | 15 | "Zoom 지원 쌍대 비교 통계표" | table-region | 본문 표로 재현 (4.2절), 크롭 결함 |
-| tab09 | 15 | "보험 청구 쌍대 비교 통계표" | table-region | 본문 표로 재현 (4.3절) |
+| tab07 | 15 | "여행 예약 pairwise 비교 통계표" | table-region | 본문 표로 재현 (4.1절) |
+| tab08 | 15 | "Zoom 지원 pairwise 비교 통계표" | table-region | 본문 표로 재현 (4.2절), 크롭 결함 |
+| tab09 | 15 | "보험 청구 pairwise 비교 통계표" | table-region | 본문 표로 재현 (4.3절) |
 | tab10 | 16 | "GPT-4.1 judge 재현 점수표" | table-region | 본문 표로 재현 (4.8절) |
 
 수치 표 크롭 10장(tab01에서 tab10)은 이미지 대신 본문 마크다운 표로 전량 재현했다. wiki에는 도식 4장만 임베드한다.

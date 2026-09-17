@@ -179,7 +179,7 @@ Browser Use Cloud의 무료 조건은 개수 제한이 아니라 동시 실행 �
 |---|---|
 | `BROWSER_USE_API_KEY` | Browser Use Cloud 브라우저와 호스팅 실행에 쓰는 키 |
 | provider별 API 키 | 모델 연결. `/connect` 대신 환경 변수로 설정할 때 쓴다 |
-| `DO_NOT_TRACK=1` | 익명 사용 트레이스 전송을 끈다 |
+| `DO_NOT_TRACK=1` | 익명 사용 trace 전송을 끈다 |
 
 ## 결과
 

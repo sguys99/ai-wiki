@@ -228,7 +228,7 @@ Figure 1 하단은 120개 Codeforces 문제에서 이 비교를 보인다. x는 
 | 모델 수준 alignment | 모델이 내부 chain-of-thought 공개를 거부한다 |
 | 시스템 수준 방어 | 입력 필터와 출력 substring 매칭 필터가 요청과 응답을 거른다 |
 
-호환되는 reasoning을 가진 덜 유능한 모델이 있으면 추출 난이도가 크게 낮아진다. Haiku 4.5 실험은 Figure 1의 모든 공격에 고정 추출 프롬프트 하나를 썼다. 반면 상대적으로 더 유능한 GPT-5.6 Luna는 reasoning 블록마다 다른 프롬프트 템플릿, best-of-n 샘플링, anti-distillation 안전장치를 피하기 위한 ad-hoc 우회가 필요했다. 우회의 예로 생성 토큰 50개 미만의 청크로 추출을 나누는 방법이 있다.
+호환되는 reasoning을 가진 덜 유능한 모델이 있으면 추출 난이도가 크게 낮아진다. Haiku 4.5 실험은 Figure 1의 모든 공격에 고정 추출 프롬프트 하나를 썼다. 반면 상대적으로 더 유능한 GPT-5.6 Luna는 reasoning 블록마다 다른 프롬프트 템플릿, best-of-n 샘플링, anti-distillation 안전장치를 피하기 위한 ad-hoc 우회가 필요했다. 우회의 예로 생성 토큰 50개 미만의 chunk로 추출을 나누는 방법이 있다.
 
 ### 평가 설정
 
@@ -246,7 +246,7 @@ Figure 1 하단은 120개 Codeforces 문제에서 이 비교를 보인다. x는 
 | provider | 디코더와 절차 | 어려움과 보정 |
 |---|---|---|
 | Claude | Haiku 4.5가 fuzzy 디코더다. 수작업 jailbreak와 prefill 공격(Andriushchenko 2025)을 결합해, 첫 사용자 메시지가 복호화를 요청하고 그다음 assistant 턴에 signed thought와 가시 `<thinking-copy>` prefill을 둔다. temperature 1에서도 출력이 일관되고 추출 토큰 대 과금 토큰 비가 약 1:1이다 | 실패는 세 유형이다. 옮겨 적기를 거부하거나, 템플릿의 마지막 메시지를 되풀이하거나, 앞선 대화나 사고가 없다고 혼동한다. 키워드 필터로 제거한다. 선택적 reconciliation 단계에서는 Haiku의 비거부 추출 최대 3개를 원본 signed thought와 함께 Opus 4.8에 주어 temperature 0에서 하나의 충실한 전사를 만들게 한다 |
-| GPT | GPT-5.6 Luna에서 후보 추출을 여러 개 샘플링하고 추출 오류가 가장 낮은 후보를 고른다. 추출 오류는 1에서 추출 토큰 수를 과금 토큰 수로 나눈 값을 뺀 것이다. Figure 1 실험은 최대 50개, secret 추출 실험은 최대 10개 후보를 뽑았다. 오류가 0.1을 넘으면 GPT-5.6 Terra로 절차를 되풀이한다 | Claude보다 훨씬 어려웠다. 추출 품질이 trace 길이와 출처에 따라 크게 달랐고, 예를 들어 Luna는 GPT-5-mini보다 GPT-5.6 Sol의 reasoning을 더 안정적으로 추출했다. GPT는 더 강한 anti-distillation 조치를 쓰는 것으로 보이는데, assistant 완성에 원본 reasoning의 연속 약 50토큰 이상이 그대로 담기면 API가 요청을 거부했다. 그래서 주로 수학과 프로그래밍 블록에서 완성을 50토큰으로 제한하고 청크 단위로 이어 추출했다. 같은 reasoning을 반복 주입하면 모델 수준 alignment 우회에 대체로 도움이 됐다 |
+| GPT | GPT-5.6 Luna에서 후보 추출을 여러 개 샘플링하고 추출 오류가 가장 낮은 후보를 고른다. 추출 오류는 1에서 추출 토큰 수를 과금 토큰 수로 나눈 값을 뺀 것이다. Figure 1 실험은 최대 50개, secret 추출 실험은 최대 10개 후보를 뽑았다. 오류가 0.1을 넘으면 GPT-5.6 Terra로 절차를 되풀이한다 | Claude보다 훨씬 어려웠다. 추출 품질이 trace 길이와 출처에 따라 크게 달랐고, 예를 들어 Luna는 GPT-5-mini보다 GPT-5.6 Sol의 reasoning을 더 안정적으로 추출했다. GPT는 더 강한 anti-distillation 조치를 쓰는 것으로 보이는데, assistant 완성에 원본 reasoning의 연속 약 50토큰 이상이 그대로 담기면 API가 요청을 거부했다. 그래서 주로 수학과 프로그래밍 블록에서 완성을 50토큰으로 제한하고 chunk 단위로 이어 추출했다. 같은 reasoning을 반복 주입하면 모델 수준 alignment 우회에 대체로 도움이 됐다 |
 | Gemini | Gemini Robotics ER-1.6이 fuzzy 디코더, Gemini 3.5 Flash가 선택적 reconciler다 | 샘플링한 복호화의 잡음이 커서 Claude보다 덜 안정적이었다. 비거부 복호화를 최대 20개 뽑아 추출 오류가 가장 낮은 3개를 reconciliation에 넘긴다 |
 
 reconciliation은 잡음 섞인 복호화 여러 개를 원본 signed thought와 함께 더 강한 모델에 주어 하나의 충실한 전사로 합치는 단계다. Claude의 경우 이 요청은 user 턴으로 끝나므로 assistant prefill에 기대지 않는다.
@@ -339,7 +339,7 @@ Figure 4의 예시에서 가시 답변은 자동차 제조사가 도난 방지�
 
 reasoning trace가 재현성을 위해 공개되거나(예: PostTrainBench, Rank 2026) 맥락을 넘어 전달되면 다른 사용자가 접근할 수 있다. 한 사용자 세션에서 만든 암호화 trace를 다른 사용자가 별도 세션에서 재생할 수 있다는 성질이 이 공격을 실용적으로 만든다. trace를 공개하는 사용자가 익명화와 정제를 하더라도 평문 수준에서만 가능하고 암호화 블록 안의 reasoning은 놓친다. 더 나쁜 것은 민감 정보가 reasoning 블록에 숨어 있음을 알아도 사용자에게 복호화 수단이 없어서, 삭제 외에는 안전하게 정제해 공유할 방법이 없다는 점이다.
 
-**대규모 추출의 규모**. GitHub와 Hugging Face에서 Claude, GPT, Gemini 모델이 만들었고 reasoning 블록을 아직 담고 있는 공개 agent trajectory 6,708개를 모았다. 서명된 모든 블록에 복호화 방식을 적용해 315,320개의 reasoning trace를 복원했고, 각 trace를 LLM-as-a-judge로 라벨링해 개인정보 침해 가능성을 표시했다.
+**대규모 추출의 규모**. GitHub와 Hugging Face에서 Claude, GPT, Gemini 모델이 만들었고 reasoning 블록을 아직 담고 있는 공개 agent trajectory 6,708개를 모았다. 서명된 모든 블록에 복호화 방식을 적용해 315,320개의 reasoning trace를 복원했고, 각 trace를 LLM-as-a-Judge로 라벨링해 개인정보 침해 가능성을 표시했다.
 
 | 지표 | 값 |
 |---|---|
@@ -362,7 +362,7 @@ Figure 5는 두 실제 예시를 보인다. 저장소 정제를 요청받은 GPT
 
 | 단계 | 모델과 프롬프트 | 역할 | 결과 |
 |---|---|---|---|
-| 1차 라벨러 | Haiku 4.5, Figure 44 | 블록에 개인정보 침해 가능성이 있는지 표시하고 고정된 2단계 taxonomy로 각 항목을 추출한다. 의도적으로 재현율을 높였다 | 315,320개 중 27,165개(8.6%) 표시. GPT 출처 237,209개 중 14,876개, Claude 출처 78,111개 중 12,289개 |
+| 1차 라벨러 | Haiku 4.5, Figure 44 | 블록에 개인정보 침해 가능성이 있는지 표시하고 고정된 2단계 taxonomy로 각 항목을 추출한다. 의도적으로 recall을 높였다 | 315,320개 중 27,165개(8.6%) 표시. GPT 출처 237,209개 중 14,876개, Claude 출처 78,111개 중 12,289개 |
 | 2차 분류기 | Figure 45 | 표시된 항목이 진짜 개인정보 침해인지, placeholder(sk-xxxx), 환경변수 이름, 벤치마크 fixture, 비밀이 아닌 일반 식별자 같은 비artifact인지 다시 라벨링한다 | 판정한 6,950개 블록 중 1,028개가 실제 artifact를 1개 이상 유지 |
 | 중복 제거와 벤치마크 제외 | 값과 범주로 묶어 고유값만 남기고 PostTrainBench, TerminalBench, ClawBench 같은 벤치마크 세션을 뺀다 | 실제 사용자 세션의 고유 artifact를 범주별로 센다 | Table 4 |
 
@@ -749,7 +749,7 @@ P1과 P2는 compaction 요구와 긴장 관계라 P2를 전역으로 보장하�
 | 2026년 8월 | provider의 완화 조치로 Figure 1의 결과가 같은 공격으로는 재현되지 않는다 |
 | 2026년 8월 10일 | arXiv v1 공개 |
 
-윤리 절차도 명시된다. PII artifact 367개와 credential 182개의 추출과 라벨링은 격리된 보안 환경에서 수행됐고, 복원한 secret은 자동 LLM-as-a-judge 분류와 집계 단계 직후 안전하게 삭제됐다. 공개 전 데이터셋 플랫폼과 provider와 조율해 영향받는 사용자의 즉각적 위험을 완화하게 했다. 전체 실험은 open과 closed 모델을 API로 접근해 수행했고 API 크레딧 약 3만 달러가 들었다.
+윤리 절차도 명시된다. PII artifact 367개와 credential 182개의 추출과 라벨링은 격리된 보안 환경에서 수행됐고, 복원한 secret은 자동 LLM-as-a-Judge 분류와 집계 단계 직후 안전하게 삭제됐다. 공개 전 데이터셋 플랫폼과 provider와 조율해 영향받는 사용자의 즉각적 위험을 완화하게 했다. 전체 실험은 open과 closed 모델을 API로 접근해 수행했고 API 크레딧 약 3만 달러가 들었다.
 
 ## 한계
 

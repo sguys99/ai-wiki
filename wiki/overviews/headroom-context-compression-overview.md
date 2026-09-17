@@ -34,7 +34,7 @@ study_path:
 
 ## 요약
 
-Headroom은 AI 에이전트가 읽어들이는 텍스트를 LLM에 닿기 전에 줄이는 context compression layer다. 압축 대상은 tool 출력과 로그, RAG 청크, 파일 내용, 대화 이력이며, 검색 품질을 개선해 읽을 양을 줄이는 대신 이미 확보된 텍스트의 부피만 줄인다는 점이 설계의 출발점이다. 이 규정은 [[agents/headroomlabs-ai-headroom]]과 [[agents/9bow-2026-headroom-ai-agent-context-compression]]이 같은 내용으로 적는다.
+Headroom은 AI 에이전트가 읽어들이는 텍스트를 LLM에 닿기 전에 줄이는 context compression layer다. 압축 대상은 tool 출력과 로그, RAG chunk, 파일 내용, 대화 이력이며, 검색 품질을 개선해 읽을 양을 줄이는 대신 이미 확보된 텍스트의 부피만 줄인다는 점이 설계의 출발점이다. 이 규정은 [[agents/headroomlabs-ai-headroom]]과 [[agents/9bow-2026-headroom-ai-agent-context-compression]]이 같은 내용으로 적는다.
 
 이 overview는 그 도구를 다루는 여섯 자료를 한 지도 위에 올린다. 1차 자료인 저장소 README 한 편, 영어 사용 안내 한 편, 비용 관점 소개 한 편, 한국어 how-to 한 편, 한국어 커뮤니티 소개 한 편, 그리고 공개 수치를 실제 트래픽에 재측정한 리포트 한 편이다.
 

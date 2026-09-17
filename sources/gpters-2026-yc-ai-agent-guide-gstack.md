@@ -14,7 +14,7 @@ tags: [gstack, claude-code, playwright, browser-daemon, greptile, qa-automation,
 
 ## 한 줄 요약 (One-line Summary)
 
-GPTERS의 editor_소연이 정리한 gstack 사용 가이드다. "역할 분리"라는 설계 동기에서 출발해 9개 슬래시 명령어의 쓰임을 차례로 짚고, Playwright 기반 브라우저 데몬의 동작 수치(콜드 스타트 3~5초, 이후 호출 100~200ms, Diff-Aware 테스트)와 FAQ 4항목까지 담았다.
+GPTERS의 editor_소연이 정리한 gstack 사용 가이드다. "역할 분리"라는 설계 동기에서 출발해 9개 슬래시 커맨드의 쓰임을 차례로 짚고, Playwright 기반 브라우저 데몬의 동작 수치(콜드 스타트 3~5초, 이후 호출 100~200ms, Diff-Aware 테스트)와 FAQ 4항목까지 담았다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -25,7 +25,7 @@ GPTERS의 editor_소연이 정리한 gstack 사용 가이드다. "역할 분리"
 
 ## 2. 주요 기여 (Key Contributions)
 
-1. **설계 동기 명료화**: gstack을 Claude Code의 "역할 부재"를 메우는 도구로 규정한다. 기본 Claude Code는 코드를 요청하면 곧바로 작성할 뿐 "이거 진짜 만들어야 하는 게 맞아?"를 먼저 묻지 않는다는 관찰에서 출발한다. Y Combinator의 CEO Garry Tan이 실제 팀의 역할 분담(CEO는 무엇을 만들지, 엔지니어링 매니저는 어떻게 만들지, 시니어 엔지니어는 코드 리뷰, QA는 실제 화면 테스트)을 각각 슬래시 명령어로 옮겼다고 설명한다.
+1. **설계 동기 명료화**: gstack을 Claude Code의 "역할 부재"를 메우는 도구로 규정한다. 기본 Claude Code는 코드를 요청하면 곧바로 작성할 뿐 "이거 진짜 만들어야 하는 게 맞아?"를 먼저 묻지 않는다는 관찰에서 출발한다. Y Combinator의 CEO Garry Tan이 실제 팀의 역할 분담(CEO는 무엇을 만들지, 엔지니어링 매니저는 어떻게 만들지, 시니어 엔지니어는 코드 리뷰, QA는 실제 화면 테스트)을 각각 슬래시 커맨드로 옮겼다고 설명한다.
 2. **브라우저 스택의 내부 수치**: Playwright 기반 헤드리스 Chromium(약 58MB)을 장기 실행 데몬으로 운용한다. 콜드 스타트 3~5초, 이후 호출 100~200ms이며 쿠키, localStorage, 로그인 상태를 유지한다.
 3. **Diff-Aware 테스트**: `git diff`를 읽어 변경된 페이지만 골라 테스트하는 방식을 소개한다.
 4. **Greptile 연동**: `/review`가 자동 코드 리뷰 코멘트 중 진짜 문제와 오탐을 구별한다.

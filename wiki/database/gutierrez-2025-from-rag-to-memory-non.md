@@ -47,7 +47,7 @@ figures:
 
 HippoRAG 2는 knowledge graph 위에서 Personalized PageRank를 실행하는 RAG 프레임워크로, 사실 기억과 sense-making과 associativity 세 가지 메모리 과제 전부에서 최강 dense retriever를 앞선 최초의 structure-augmented RAG다. ICML 2025에 발표됐고 저자는 Ohio State University와 University of Illinois Urbana-Champaign 소속이다.
 
-이 논문의 출발점은 선행 structure-augmented RAG가 하나의 능력에 특화되면서 다른 능력에서 표준 RAG보다 못해진다는 관찰이다. 요약 계층을 만드는 RAPTOR는 sense-making에는 강하지만 simple QA와 multi-hop QA에서 노이즈 탓에 성능이 내려가고, 개체 중심 그래프를 쓰는 HippoRAG는 multi-hop에는 강하지만 장편 담화 이해에서 가장 낮은 점수를 받는다. HippoRAG 2는 그래프에 passage 자체를 노드로 넣고 쿼리를 triple 단위로 잇는 두 가지 변경으로 이 상충을 해소한다.
+이 논문의 출발점은 선행 structure-augmented RAG가 하나의 능력에 특화되면서 다른 능력에서 표준 RAG보다 못해진다는 관찰이다. 요약 계층을 만드는 RAPTOR는 sense-making에는 강하지만 simple QA와 multi-hop QA에서 노이즈 탓에 성능이 내려가고, 개체 중심 그래프를 쓰는 HippoRAG는 multi-hop에는 강하지만 장편 담화 이해에서 가장 낮은 점수를 받는다. HippoRAG 2는 그래프에 passage 자체를 노드로 넣고 질의(query)를 triple 단위로 잇는 두 가지 변경으로 이 상충을 해소한다.
 
 ![[assets/gutierrez-2025-from-rag-to-memory-non/fig01.png]]
 *Figure 1: 세 가지 메모리 능력별 비교. HippoRAG는 sense-making에서 16.30으로 가장 낮고 RAPTOR는 associativity에서 48.37로 가장 낮은 반면, HippoRAG 2는 세 능력 모두에서 가장 높다 (Gutiérrez et al. 2025, p.2)*
@@ -81,7 +81,7 @@ sense-making이 필요한 질문은 여러 passage에 흩어진 정보를 통합
 
 선행 연구는 두 능력을 각각 겨냥해 왔다. sense-making 쪽은 LLM이 요약을 만들게 하거나 knowledge graph를 세워 흩어진 passage를 묶고, associativity 쪽은 HippoRAG가 Personalized PageRank로 multi-hop 추론을 붙였다.
 
-논문의 실험은 이들 방법이 자기 실험 설정 밖의 과제에서 가장 크게 하락한다는 사실을 보인다. 특히 표준 RAG가 이미 잘하는 simple QA에서 오히려 뒤처지는 경우가 많다. HippoRAG는 쿼리 기반 맥락화가 없어 장편 담화 이해에서 가장 크게 내려가고, RAPTOR는 LLM 요약이 corpus에 노이즈를 더해 simple QA와 multi-hop QA에서 함께 내려간다.
+논문의 실험은 이들 방법이 자기 실험 설정 밖의 과제에서 가장 크게 하락한다는 사실을 보인다. 특히 표준 RAG가 이미 잘하는 simple QA에서 오히려 뒤처지는 경우가 많다. HippoRAG는 질의 기반 맥락화가 없어 장편 담화 이해에서 가장 크게 내려가고, RAPTOR는 LLM 요약이 corpus에 노이즈를 더해 simple QA와 multi-hop QA에서 함께 내려간다.
 
 ### HiRAG와의 구분
 
@@ -89,7 +89,7 @@ HippoRAG 계열은 계층(hierarchical) 방법론이 아니다. 두 이름이 �
 
 | 항목 | HippoRAG 계열 | 계층 기반 방법 |
 |---|---|---|
-| 이름의 유래 | hippocampus, 인간 해마의 기억 색인 구조 | hierarchical, 계층 인덱싱 |
+| 이름의 유래 | hippocampus, 인간 해마의 기억 인덱스 구조 | hierarchical, 계층 인덱싱 |
 | 그래프 구조 | 하나의 평평한 schema 없는 KG. 상위 요약 노드가 없다 | 요약 노드를 층으로 쌓는다 |
 | 검색 방식 | seed node를 정하고 Personalized PageRank로 전파한다 | 계층을 오르내리며 단계별로 검색한다 |
 | 이 논문에서의 계층 언급 | RAPTOR를 설명할 때 한 번만 등장한다 | 해당 없음 |
@@ -168,25 +168,25 @@ HippoRAG 계열은 구성 요소마다 인간 기억의 대응물을 둔다.
 
 ### online retrieval 다섯 단계
 
-1. **Query to Triple**. 쿼리 전체를 임베딩으로 KG의 top-5 triple과 매칭한다. NER 단계가 사라진다.
-2. **Recognition memory**. LLM이 top-5 triple 중 쿼리와 관련 있는 것만 남겨 filtered triple 집합을 만든다.
+1. **Query to Triple**. 질의 전체를 임베딩으로 KG의 top-5 triple과 매칭한다. NER 단계가 사라진다.
+2. **Recognition memory**. LLM이 top-5 triple 중 질의와 관련 있는 것만 남겨 filtered triple 집합을 만든다.
 3. **Seed node selection**. filtered triple에 등장한 phrase node를 최대 5개까지 고른다. 각 phrase node의 ranking score는 그 노드가 등장한 filtered triple 점수의 평균이다. passage node는 전량이 seed가 된다.
 4. **Reset probability 배정**. phrase node는 ranking score를 그대로 reset probability로 쓰고, passage node는 임베딩 유사도에 weight factor를 곱한 값을 쓴다. 기본값은 0.05다.
 5. **PPR 실행과 QA**. python-igraph로 PPR을 실행해 passage node의 PageRank 점수로 순위를 매기고, 상위 5개를 QA reader의 context로 넣는다.
 
 passage node를 전량 seed로 삼는 이유는 상위 몇 개만 활성화하는 것보다 넓게 활성화하는 편이 multi-hop 추론 사슬 위의 passage를 찾아내는 데 낫기 때문이라고 밝힌다. filtered triple이 비면 그래프 검색을 건너뛰고 임베딩 검색 결과를 그대로 반환한다.
 
-### 쿼리를 그래프에 잇는 세 가지 방식
+### 질의를 그래프에 잇는 세 가지 방식
 
-HippoRAG의 쿼리 파싱은 NER에 기대므로 개념 중심으로 치우쳐 맥락 신호를 활용하지 못한다. 논문은 대안 두 가지를 함께 평가한다.
+HippoRAG의 질의 파싱은 NER에 기대므로 개념 중심으로 치우쳐 맥락 신호를 활용하지 못한다. 논문은 대안 두 가지를 함께 평가한다.
 
 | 방식 | 매칭 대상 | 입도 | 채택 여부 |
 |---|---|---|---|
-| NER to node | 쿼리에서 뽑은 개체를 KG 노드와 매칭 | phrase 수준 대 phrase 수준 | HippoRAG 원안 |
-| Query to node | 쿼리 전체를 KG 노드와 직접 매칭 | 문장 수준 대 phrase 수준 | 채택하지 않음 |
-| Query to triple | 쿼리 전체를 KG의 triple과 매칭 | 문장 수준 대 관계 수준 | HippoRAG 2 기본값 |
+| NER to node | 질의에서 뽑은 개체를 KG 노드와 매칭 | phrase 수준 대 phrase 수준 | HippoRAG 원안 |
+| Query to node | 질의 전체를 KG 노드와 직접 매칭 | 문장 수준 대 phrase 수준 | 채택하지 않음 |
+| Query to triple | 질의 전체를 KG의 triple과 매칭 | 문장 수준 대 관계 수준 | HippoRAG 2 기본값 |
 
-triple은 개념 사이의 기본적인 맥락 관계를 담고 있어서 쿼리의 의도를 더 온전히 반영한다. query-to-node가 NER-to-node보다 오히려 나쁜 이유로는 입도 불일치를 든다. NER 결과와 KG 노드는 둘 다 phrase 수준이지만 쿼리 전체는 그렇지 않다.
+triple은 개념 사이의 기본적인 맥락 관계를 담고 있어서 질의의 의도를 더 온전히 반영한다. query-to-node가 NER-to-node보다 오히려 나쁜 이유로는 입도 불일치를 든다. NER 결과와 KG 노드는 둘 다 phrase 수준이지만 질의 전체는 그렇지 않다.
 
 ### recognition memory 프롬프트
 
@@ -194,7 +194,7 @@ triple filter 프롬프트는 DSPy의 MIPROv2 optimizer와 Llama-3.3-70B-Instruc
 
 | 프롬프트 구성 | 내용 |
 |---|---|
-| 지시문 | 후보 목록에서 쿼리와 강하게 연결된 사실을 최대 4개까지 고르라고 지시한다. 관련 사실이 없으면 빈 리스트를 반환한다 |
+| 지시문 | 후보 목록에서 질의와 강하게 연결된 사실을 최대 4개까지 고르라고 지시한다. 관련 사실이 없으면 빈 리스트를 반환한다 |
 | 출력 형식 | `{"fact": [["s1", "p1", "o1"], ...]}` 형태의 JSON |
 | 제약 | 후보 목록에 있는 사실만 쓰고 새 사실을 만들지 않는다 |
 | 시연 | multi-hop 질문과 필터 전후 triple 목록을 짝지은 few-shot 예시 7건 |
@@ -218,7 +218,7 @@ seed phrase node의 점수가 1.0 부근인 반면 seed passage node의 점수�
 | 항목 | HippoRAG | HippoRAG 2 |
 |---|---|---|
 | KG 노드 | phrase node만 | phrase node와 passage node |
-| 쿼리 연결 | NER to node | query to triple |
+| 질의 연결 | NER to node | query to triple |
 | triple 필터 | 없음 | LLM recognition memory |
 | PPR seed | phrase node | phrase node와 모든 passage node |
 | passage 점수 결합 | 그래프 점수와 임베딩 점수를 사후 합산 | 그래프 구조 안에서 통합 |
@@ -357,7 +357,7 @@ multi-hop QA의 passage recall@5다.
 | w/o Passage Node | 63.7 | 90.3 | 88.9 | 81.0 | -6.1%p |
 | w/o Filter | 73.0 | 90.7 | 95.4 | 86.4 | -0.7%p |
 
-세 장치의 기여도가 뚜렷하게 갈린다. 쿼리 연결 방식이 가장 크고, passage node가 그다음이며, triple filter의 기여는 0.7%p로 작다. NER-to-node와 query-to-node에는 필터를 적용하지 않았으므로, query-to-triple의 우위는 필터 적용 여부와 무관하게 성립한다.
+세 장치의 기여도가 뚜렷하게 갈린다. 질의 연결 방식이 가장 크고, passage node가 그다음이며, triple filter의 기여는 0.7%p로 작다. NER-to-node와 query-to-node에는 필터를 적용하지 않았으므로, query-to-triple의 우위는 필터 적용 여부와 무관하게 성립한다.
 
 데이터셋별로 보면 2Wiki가 예외다. NER-to-node(91.2)와 필터 제거(90.7) 모두 기본 설정(90.4)보다 높다. 2Wiki는 개체 중심 질문이 많아 개체 매칭만으로도 충분한 경우가 많다는 뜻으로 읽힌다.
 

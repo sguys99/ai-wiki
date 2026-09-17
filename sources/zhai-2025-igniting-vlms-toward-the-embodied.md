@@ -182,7 +182,7 @@ zero-shot 집기-놓기에서는 pre-training 때 본 물체 지시에 task prog
 
 action 정확도 실험은 갈라지는 지점을 잘 보여준다. 시연이 넉넉한 collect-waste 1,000개에서는 WALL-OSS와 π0 모두 성공률 100%이고 pre-training 없이 학습한 Diffusion Policy는 80%다. 시연이 500개로 줄고 과제가 어려워지는 pick-place-cup에서는 앞의 둘이 90%대를 지키는 사이 Diffusion Policy가 20% 아래로 떨어진다. 새 환경에서 collect-waste를 시키면 Diffusion Policy는 80%에서 0%가 되고 나머지 둘은 80%대를 지킨다.
 
-long-horizon 과제는 subtask 생성이 성패를 갈랐다. set-table과 tidy-bedroom은 pre-training 데이터에 없고 단계가 다섯 개를 넘으며 실행 시간이 각각 3분과 5분을 넘는다. fine-tuning 데이터 중 subtask 라벨이 붙은 비율은 1%뿐인데도 모델은 쓸 만한 subtask 문장을 만들어낸다. 베이스라인은 subtask 안내가 없어 같은 자리에 수저를 반복해서 놓거나 시야 밖으로 나간 옷가지를 찾지 못한 채 효과 없는 동작을 반복한다.
+long-horizon 과제는 subtask 생성이 성패를 갈랐다. set-table과 tidy-bedroom은 pre-training 데이터에 없고 단계가 다섯 개를 넘으며 실행 시간이 각각 3분과 5분을 넘는다. fine-tuning 데이터 중 subtask 라벨이 붙은 비율은 1%뿐인데도 모델은 쓸 만한 subtask 문장을 만들어낸다. baseline은 subtask 안내가 없어 같은 자리에 수저를 반복해서 놓거나 시야 밖으로 나간 옷가지를 찾지 못한 채 효과 없는 동작을 반복한다.
 
 추론 과제인 block-spell에서는 baseline이 flat 설정에서 거의 0에 수렴해, GPT-4가 subtask를 실시간으로 불러 주는 설정으로만 비교했다. 그렇게 붙여도 WALL-OSS가 in-distribution과 out-of-distribution 모두에서 앞선다. 논문은 GPT-4가 옳은 subtask를 뽑아내더라도 시점이 늦고 가려진 1인칭 시야 같은 상황에 맞춰 주지 못하며, 상위 계획과 하위 실행 모듈이 끊겨 있어 지시 이행이 떨어진다고 본다.
 

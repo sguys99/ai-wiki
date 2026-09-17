@@ -156,13 +156,13 @@ README에는 성능 수치, 벤치마크, 사용자 사례가 없다. 도구 저
 |---|---|---|---|
 | OpenWiki | 저장소 안 `openwiki/` 문서 | `AGENTS.md`와 `CLAUDE.md`에 참조 프롬프트를 덧붙인다 | `--update`와 CI 예시 워크플로 |
 | [[applications/colbymchenry-codegraph]] | 프로젝트 폴더 안 SQLite 그래프 | MCP 서버가 그래프를 도구로 노출한다 | OS 파일 이벤트 감시로 증분 동기화 |
-| [[applications/lum1104-understand-anything]] | JSON 그래프와 대시보드 | `/understand` 슬래시 명령 플러그인 | 기본 증분 분석, `--auto-update`의 post-commit 훅 |
+| [[applications/lum1104-understand-anything]] | JSON 그래프와 대시보드 | `/understand` 슬래시 커맨드 플러그인 | 기본 증분 분석, `--auto-update`의 post-commit 훅 |
 | [[applications/safishamsi-graphify]] | `graphify-out/`의 HTML, Obsidian vault, wiki 문서, 그래프 JSON | `/graphify` 스킬과 `--mcp` 서버 | `--watch`가 코드 저장 시 재빌드 |
 | [[applications/wlsdks-ontology-atlas]] | 저장소 안 Markdown vault | MCP 서버 | 사람과 에이전트가 같은 파일을 편집하고 git diff가 판정한다 |
 
 문서와 그래프의 차이는 검색 방식의 차이로 이어진다. 그래프 계열은 노드와 엣지를 질의해 호출 관계나 영향 범위 같은 구조적 질문에 답한다. 문서 계열인 OpenWiki는 에이전트가 이미 잘하는 파일 읽기와 검색을 그대로 쓰되, 읽을 대상을 원본 소스 대신 요약된 문서로 바꾼다. 새 인터페이스를 도입하지 않는 대신 구조 질의 능력도 얻지 못한다.
 
-연결 방식에서도 차이가 난다. 그래프 계열 넷은 MCP 서버나 슬래시 명령처럼 에이전트 쪽 설정을 요구한다. OpenWiki는 지시 파일 한 줄로 끝나므로 도입 비용이 가장 낮다. 대신 에이전트가 그 참조를 실제로 따라가는지는 보장되지 않는다.
+연결 방식에서도 차이가 난다. 그래프 계열 넷은 MCP 서버나 슬래시 커맨드처럼 에이전트 쪽 설정을 요구한다. OpenWiki는 지시 파일 한 줄로 끝나므로 도입 비용이 가장 낮다. 대신 에이전트가 그 참조를 실제로 따라가는지는 보장되지 않는다.
 
 ## 한계
 
@@ -190,7 +190,7 @@ README에는 성능 수치, 벤치마크, 사용자 사례가 없다. 도구 저
 - [[applications/9bow-2026-openwiki-coding-agent-documentation]]: 같은 도구를 한국어로 정리한 소개 기사
 - [[applications/colbymchenry-codegraph]]: 코드베이스를 SQLite 그래프로 만들어 MCP로 노출하는 도구
 - [[applications/lum1104-understand-anything]]: 코드베이스를 knowledge graph로 바꿔 대시보드로 탐색하게 하는 플러그인
-- [[applications/safishamsi-graphify]]: 폴더 하나를 지식 그래프와 여러 산출물로 바꾸는 스킬
+- [[applications/safishamsi-graphify]]: 폴더 하나를 knowledge graph와 여러 산출물로 바꾸는 스킬
 - [[applications/wlsdks-ontology-atlas]]: 저장소 안 Markdown 폴더를 그래프로 컴파일하는 로컬 워크벤치
 - [[applications/datasciencedojo-2026-llm-wiki-by-andrej-karpathy]]: 출시 블로그가 영감으로 인용한 Karpathy LLM Wiki 개념
 - [[applications/kmyu-2026-llm-wiki-pattern-synthesis]]: 같은 패턴을 이 저장소 운영에 적용한 합성 페이지

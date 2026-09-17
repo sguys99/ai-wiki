@@ -160,7 +160,7 @@ Figure 2의 번호는 다음 단계에 대응한다.
 | 1 | Survey | 주제와 관련된 Wikipedia 문서를 찾아 목차를 모은다 |
 | 2 | Identify Perspectives | 모은 목차를 컨텍스트로 삼아 관점 집합 P를 도출한다 |
 | 3 | Read & Ask | writer가 주제, 관점, 대화 이력을 읽고 질문 하나를 만든다 |
-| 4 | Split Queries | expert가 질문을 여러 검색 쿼리로 분해한다 |
+| 4 | Split Queries | expert가 질문을 여러 검색 질의(query)로 분해한다 |
 | 5 | Search & Sift | 검색 결과를 신뢰 출처 규칙으로 걸러낸다 |
 | 6 | Synthesize | 남은 출처를 종합해 답을 만들고 출처를 R에 누적한다 |
 | 7 | Direct Generate | 주제만으로 draft outline O_D를 만든다 |
@@ -182,7 +182,7 @@ expert 쪽은 세 하위 단계로 답한다.
 
 | 하위 단계 | 하는 일 | 설계 이유 |
 |---|---|---|
-| Split Queries | 복잡한 질문 q_i를 여러 개의 검색 쿼리로 분해한다 | 질문 하나가 여러 사실을 동시에 묻는 경우가 많아 단일 쿼리로는 검색이 어렵다 |
+| Split Queries | 복잡한 질문 q_i를 여러 개의 검색 질의로 분해한다 | 질문 하나가 여러 사실을 동시에 묻는 경우가 많아 단일 질의로는 검색이 어렵다 |
 | Search & Sift | 검색 결과를 Wikipedia 신뢰 출처 지침 기반 규칙 필터로 걸러 신뢰할 수 없는 출처를 제외한다 | 대화 이력이 사실 정보를 담아야 후속 질문이 헛돌지 않는다 |
 | Synthesize | 남은 신뢰 출처를 종합해 답 a_i를 생성한다 | 답을 출처에 grounding해 환각을 억제한다 |
 
@@ -212,7 +212,7 @@ outline은 두 번에 걸쳐 만든다. 먼저 주제 t만 주고 draft outline 
 | 4 | 관련 주제 목록을 생성한다 |
 | 6~10 | 관련 주제마다 Wikipedia 문서를 가져와 목차를 추출한다 |
 | 11~12 | 목차로 관점을 생성하고 `[P0] + P[:N]`으로 목록을 확정한다 |
-| 15~29 | 관점마다 M라운드 대화를 반복 실행한다. 질문 생성, 쿼리 분해, 검색과 선별, 답 생성, 출처 누적 순이다 |
+| 15~29 | 관점마다 M라운드 대화를 반복 실행한다. 질문 생성, 질의 분해, 검색과 선별, 답 생성, 출처 누적 순이다 |
 | 31 | draft outline O_D를 직접 생성한다 |
 | 32 | draft outline과 대화 기록으로 outline을 정제한다 |
 
@@ -223,7 +223,7 @@ outline은 두 번에 걸쳐 만든다. 먼저 주제 t만 주고 draft outline 
 | `GenRelatedTopicsPrompt` | 주제와 밀접한 Wikipedia 문서 URL 목록을 추천받는다 |
 | `GenPerspectivesPrompt` | 서로 다른 관점, 역할, 소속을 가진 Wikipedia 편집자 집단을 설명과 함께 생성한다 |
 | `GenQnPrompt` | 배정된 관점과 대화 이력을 보고 한 번에 질문 하나만 만든다. 더 물을 것이 없으면 감사 인사로 대화를 끝낸다 |
-| `GenQueriesPrompt` | 질문에 답하기 위해 검색창에 입력할 쿼리 목록을 만든다 |
+| `GenQueriesPrompt` | 질문에 답하기 위해 검색창에 입력할 질의 목록을 만든다 |
 | `GenAnswerPrompt` | 수집한 정보만으로 모든 문장이 뒷받침되도록 답변을 작성한다 |
 | `DirectGenOutlinePrompt` | 주제만으로 draft outline을 만든다. 우물 정 기호로 수준을 표시하고 다른 정보는 넣지 않는다 |
 | `RefineOutlinePrompt` | draft outline과 대화 이력을 받아 더 포괄적인 outline으로 개선한다 |
@@ -258,7 +258,7 @@ outline은 두 번에 걸쳐 만든다. 먼저 주제 t만 주고 draft outline 
 | Direct Gen | LLM에 직접 outline을 생성하게 하고 그 outline으로 본문을 쓴다 | 외부 검색을 쓰지 않는다 |
 | RAG | 주제로 한 번 검색하고 검색 결과와 주제로 outline이나 본문 전체를 생성한다 | 단일 검색 |
 | oRAG | outline 생성은 RAG와 같고, 섹션 제목으로 추가 검색을 해서 섹션 단위로 본문을 생성한다 | 자동 평가에서 가장 강한 baseline |
-| RAG-expand | RAG가 만든 outline의 섹션 제목을 검색 쿼리로 써서 출처를 더 모으고, 새 출처와 초기 outline으로 outline을 다시 다듬는다 | outline 평가 전용. RAG 계열의 상한을 시험한다 |
+| RAG-expand | RAG가 만든 outline의 섹션 제목을 검색 질의로 써서 출처를 더 모으고, 새 출처와 초기 outline으로 outline을 다시 다듬는다 | outline 평가 전용. RAG 계열의 상한을 시험한다 |
 
 ### 자동 평가 지표
 
@@ -491,7 +491,7 @@ pre-writing 단계 유용성에는 편집자 10명 전원이 동의했다. 새 �
 
 - [[agents/stanford-oval-storm]]: 이 논문의 공식 구현체. 이 페이지가 논문의 방법과 평가를 다루고, 설치 절차, 모듈 구조, Co-STORM 확장은 구현체 페이지가 담당한다
 - [[agents/cemri-2025-why-do-multi-agent-llm-systems]]: 멀티에이전트 시스템의 실패 유형 분류. STORM의 writer와 expert 대화도 역할을 나눈 멀티에이전트 구성이라 실패 지점을 비교해 볼 수 있다
-- [[database/edge-2024-from-local-to-global]]: GraphRAG. 단순 주제 검색으로 드러나지 않는 정보를 다루려는 시도라는 점이 겹치며, STORM은 질문 대화로, GraphRAG는 knowledge graph 커뮤니티 요약으로 접근한다
+- [[database/edge-2024-from-local-to-global]]: GraphRAG. 단순 주제 검색으로 드러나지 않는 정보를 다루려는 시도라는 점이 겹치며, STORM은 질문 대화로, GraphRAG는 knowledge graph community summary로 접근한다
 - [[database/gutierrez-2025-from-rag-to-memory-non]]: HippoRAG 2. 검색 구조 자체를 바꾸는 계보로, STORM처럼 단일 검색의 한계를 출발점으로 삼는다
 
 ---

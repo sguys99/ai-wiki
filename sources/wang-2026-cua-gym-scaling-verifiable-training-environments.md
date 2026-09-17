@@ -376,7 +376,7 @@ Discriminator가 쓴 `reward.py`는 작성 시점에 정적 스캔을 받는다.
 
 집계 규칙은 과반, 즉 $\lceil V/2 \rceil + 1$ 명이 keep이나 modify_query를 내면 통과다. modify_query가 다수면 수정 의견 중 confidence가 가장 높은 revised_query를 정본으로 채택하고, keep이 다수면 원래 지시문을 유지하며, 동수면 기본값이 거부다. 튜플별 severity는 어떤 비평자든 부여한 최고 severity로 기록해 최악 기준 품질 등급을 릴리스 메타데이터에 남긴다.
 
-2단계는 teacher rollout이다. Claude Sonnet 4.6을 튜플마다 $N_{\text{teach}}$ 회 실행하고 rollout마다 두 점수를 매긴다. 하나는 `reward.py`가 구현한 프로그램 reward $r(s, \tau) \in [0,1]$ 이고, 다른 하나는 최종 상태 스크린샷과 지시문과 수용 기준 체크리스트를 받는 별도 VLM 심판의 점수 $\hat{r}_{\text{vlm}}(s, \tau) \in \{0, 1\}$ 이다. $r$ 은 파일 내용과 상태 diff와 라이브러리 introspection에 근거해 분산이 작지만 reward 작성자가 계측하기로 선택한 것만 본다. $\hat{r}_{\text{vlm}}$ 은 최종 시각 상태에 근거해 프로그램 reward가 놓치는 표면 실패를 잡는다. 데이터는 맞게 로드됐지만 색상 테마가 틀린 UI, 값은 맞지만 축 레이블이 없는 차트 같은 사례다.
+2단계는 teacher rollout이다. Claude Sonnet 4.6을 튜플마다 $N_{\text{teach}}$ 회 실행하고 rollout마다 두 점수를 매긴다. 하나는 `reward.py`가 구현한 프로그램 reward $r(s, \tau) \in [0,1]$ 이고, 다른 하나는 최종 상태 스크린샷과 지시문과 수용 기준 체크리스트를 받는 별도 VLM-as-a-Judge의 점수 $\hat{r}_{\text{vlm}}(s, \tau) \in \{0, 1\}$ 이다. $r$ 은 파일 내용과 상태 diff와 라이브러리 introspection에 근거해 분산이 작지만 reward 작성자가 계측하기로 선택한 것만 본다. $\hat{r}_{\text{vlm}}$ 은 최종 시각 상태에 근거해 프로그램 reward가 놓치는 표면 실패를 잡는다. 데이터는 맞게 로드됐지만 색상 테마가 틀린 UI, 값은 맞지만 축 레이블이 없는 차트 같은 사례다.
 
 | $N_{\text{teach}}$ 회 평균 조건 | 판정 |
 |---|---|
@@ -395,7 +395,7 @@ Discriminator가 쓴 `reward.py`는 작성 시점에 정적 스캔을 받는다.
 
 각 mock은 참조 앱의 표면 시각 레이아웃과 내비게이션 트리와 주요 기능 목록을 유지하되 인증을 제거하고, 데이터를 전부 세션 로컬로 합성 시딩하며, 외부 네트워크 호출을 in-process 상태 변경으로 대체한다. 공개 산출물에는 상표와 트레이드 드레스 준수 조치 여섯 가지가 적용된다. 일반 식별자로 전면 개명(`slack`은 `team-chat-mock`), 로고 미포함과 12색 중립 팔레트 교체, UI 문구 신규 작성, 참조 스크린샷 미배포, 이용약관 민감 분야의 추가 인간 검토, mock별 공시 문서 배포다.
 
-공개 프로덕션 묶음은 mock 94개이고 소스 트리에는 템플릿 스캐폴드 5개가 남아 있어 부록 통계는 99개 디렉토리 전체 값이다. 소스 LOC는 평균 6,127, p50 5,663, 최대 13,095이고 91%가 2,500에서 10,000 구간에 들어간다. route 컴포넌트는 평균 15.0에 최대 60, 데이터 모델 엔티티는 평균 5.9에 최대 23이다.
+공개 프로덕션 묶음은 mock 94개이고 소스 트리에는 템플릿 스캐폴드 5개가 남아 있어 부록 통계는 99개 디렉토리 전체 값이다. 소스 LOC는 평균 6,127, p50 5,663, 최대 13,095이고 91%가 2,500에서 10,000 구간에 들어간다. route 컴포넌트는 평균 15.0에 최대 60, 데이터 모델 entity는 평균 5.9에 최대 23이다.
 
 mock 합성에도 에이전트 셋이 붙고 서로 직접 메시지를 주고받지 않고 파일로만 조율한다. Plan Agent가 웹 리서치로 대상 앱을 파악해 `DESIGN.md`와 `assets/README.md`와 `assets/data_model.md`와 `TODO.md`를 낸다. Dev Agent가 Vite와 React 기반 단일 페이지 앱을 고정 레이아웃으로 구현하고, Web Agent가 headless Playwright로 모든 인터랙티브 요소를 눌러보며 실제 DOM을 기준과 대조해 `TEST.md`와 `AUDIT.md`를 돌려보낸다. 루프는 두 리포트가 모두 P0과 P1을 0건으로 보고할 때까지 반복하고, 라운드 예산 안에 수렴하지 못한 mock은 공개 묶음에서 제외한다. 최종 산출물에는 `SKILL.md`가 붙고 이게 그대로 task 합성 파이프라인의 입력이 된다.
 
@@ -414,7 +414,7 @@ mock 합성에도 에이전트 셋이 붙고 서로 직접 메시지를 주고�
 
 에이전트는 원본 스크린샷을 보고 tool call 태그로 감싼 action을 낸다. 스크린샷은 VM native 해상도로 캡처하고(OSWorld 데스크톱 task는 1000 곱하기 1000), vision 인코더는 최소 65,536 픽셀에서 최대 2,097,152 픽셀 토큰 예산 안에서 리사이즈한다. policy에는 `computer_use` 함수 하나만 노출하고 action primitive는 pointer 9종, keyboard 4종, navigation 4종, control 2종 합계 19종이다. XML 포맷은 하나의 `<tool_call>` 안에 연속된 `<function>` 블록 여럿을 허용하고 중간 스크린샷 없이 순서대로 실행되는데, policy가 이를 쓰도록 강제되지는 않는다.
 
-긴 호흡의 rollout은 컨텍스트 예산을 넘어선다. `max_turns` 100 에피소드에 턴당 최대 2,048 토큰 응답과 턴별 스크린샷을 더하면 약 20만 토큰까지 자라는데 하드 컨텍스트 상한은 14만 4천 토큰이다. trajectory slicing은 rollout 하나에서 같은 예산으로 여러 학습 샘플을 만든다. `traj_slice_interval` 10 턴쌍마다 정수 `collapsed_length`로 색인된 slice를 내고, 그 slice의 prompt 부분은 앞쪽 `collapsed_length` 턴쌍의 스크린샷을 `"<image collapsed>"` 플레이스홀더로 대체한다. response 부분은 이후 모든 턴이며 멀티모달 observation을 온전히 보존한다. 첫 slice는 `collapsed_length`가 0이라 trajectory 원형이다. gradient는 prompt 부분과 환경 observation에는 흐르지 않고 response 부분 assistant 메시지에만 흐른다. 각 slice는 부모 trajectory의 전체 에피소드 reward를 동일하게 복제받고 나누거나 할인하지 않는다. 접은 뒤에도 예산을 넘는 slice는 전량 마스킹 패딩인 dummy slice로 바뀌며 논문 실행에서는 1% 미만이었다.
+긴 호흡의 rollout은 컨텍스트 예산을 넘어선다. `max_turns` 100 에피소드에 턴당 최대 2,048 토큰 응답과 턴별 스크린샷을 더하면 약 20만 토큰까지 자라는데 하드 컨텍스트 상한은 14만 4천 토큰이다. trajectory slicing은 rollout 하나에서 같은 예산으로 여러 학습 샘플을 만든다. `traj_slice_interval` 10 턴쌍마다 정수 `collapsed_length`로 인덱싱된 slice를 내고, 그 slice의 prompt 부분은 앞쪽 `collapsed_length` 턴쌍의 스크린샷을 `"<image collapsed>"` 플레이스홀더로 대체한다. response 부분은 이후 모든 턴이며 멀티모달 observation을 온전히 보존한다. 첫 slice는 `collapsed_length`가 0이라 trajectory 원형이다. gradient는 prompt 부분과 환경 observation에는 흐르지 않고 response 부분 assistant 메시지에만 흐른다. 각 slice는 부모 trajectory의 전체 에피소드 reward를 동일하게 복제받고 나누거나 할인하지 않는다. 접은 뒤에도 예산을 넘는 slice는 전량 마스킹 패딩인 dummy slice로 바뀌며 논문 실행에서는 1% 미만이었다.
 
 | 방식 | 동작 | 문제 |
 |---|---|---|
@@ -691,7 +691,7 @@ GUI 에이전트의 task와 환경 합성에는 reward 검증 가능성과 환�
 | SKILL.md | 앱 도메인별 지침 문서. 라이브러리, 파일 레이아웃, setup과 reward 템플릿, bitter lessons 6절 구성 |
 | bitter lessons | `SKILL.md` 마지막 절. 개발 중 실제 디버깅 사례에서 뽑은 함정 목록 |
 | trajectory slicing | rollout 하나에서 오래된 스크린샷만 접어 여러 학습 샘플을 만드는 컨텍스트 관리 기법 |
-| collapsed_length | slice가 스크린샷을 플레이스홀더로 접은 앞쪽 턴쌍 수. slice를 색인하는 정수 |
+| collapsed_length | slice가 스크린샷을 플레이스홀더로 접은 앞쪽 턴쌍 수. slice를 인덱싱하는 정수 |
 | dummy slice | 접은 뒤에도 컨텍스트를 넘긴 slice를 대체하는 전량 마스킹 패딩. 배치 형태만 보존한다 |
 | GSPO | Group Sequence Policy Optimization. 중요도 비율을 시퀀스 단위로 잡는 RL 알고리즘 |
 | action batching | 한 턴에 여러 tool call을 묶어 내보내는, 학습 중 창발한 행동 |

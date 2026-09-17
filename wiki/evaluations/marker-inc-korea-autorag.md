@@ -96,7 +96,7 @@ RAG 최적화 전에 QA 데이터셋과 Corpus 데이터셋이 있어야 한다.
 ![[assets/marker-inc-korea-autorag/data_creation_pipeline.png]]
 *Figure 4: Raw Documents가 Parsing, Chunking, QA Creation 세 단계를 거쳐 Raw, Corpus, QA Data 세 산출물로 이어지는 Data Creation Process 도식 (AutoRAG docs data_creation_pipeline.png)*
 
-세 단계는 각각 산출물 하나를 낸다. Parsing은 Raw(파싱 결과), Chunking은 Corpus(청킹 결과), QA Creation은 QA를 만든다. Figure 5는 이 세 객체가 순서대로 변환되는 관계를 보여준다.
+세 단계는 각각 산출물 하나를 낸다. Parsing은 Raw(파싱 결과), Chunking은 Corpus(chunking 결과), QA Creation은 QA를 만든다. Figure 5는 이 세 객체가 순서대로 변환되는 관계를 보여준다.
 
 ![[assets/marker-inc-korea-autorag/data_creation_schema.png]]
 *Figure 5: Raw Document가 Parsing으로 Raw, Chunk로 Corpus, QA generation으로 QA가 되는 세 데이터 객체의 변환 순서도 (AutoRAG docs qa/data_creation_schema.png)*
@@ -387,7 +387,7 @@ raw가 README 스텁이라 내부 구현 세부는 확인할 수 없다. 커밋 
 ## 관련 페이지
 
 - [[evaluations/kim-2026-ai-prd-eval-plan]]: AI 제품의 Eval Plan을 다루는 글. 그 글이 개념으로 제시하는 Eval 셋과 합격 기준을 AutoRAG는 QA 데이터셋과 `strategy.metrics`로 RAG 파이프라인에 적용한다. 다만 README는 회귀 테스트를 언급하지 않는다.
-- [[agents/seans-ai-stories-2026-agent-harness-loop-engineering]]: 이 페이지를 평가 자동화 보완 자료로 역링크하는 영상 해설. AutoRAG README는 LLM-as-judge 편향이나 채점 재현성 같은 평가 신뢰성 문제를 다루지 않으므로, RAG 구성 요소를 지표로 비교하는 도구 사례로만 참고한다.
+- [[agents/seans-ai-stories-2026-agent-harness-loop-engineering]]: 이 페이지를 평가 자동화 보완 자료로 역링크하는 영상 해설. AutoRAG README는 LLM-as-a-Judge 편향이나 채점 재현성 같은 평가 신뢰성 문제를 다루지 않으므로, RAG 구성 요소를 지표로 비교하는 도구 사례로만 참고한다.
 
 ## 인용
 

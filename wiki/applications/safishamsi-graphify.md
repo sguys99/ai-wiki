@@ -81,7 +81,7 @@ pip install graphifyy && graphify install
 | Windows | 설치 후에도 `graphify` 명령을 인식하지 못한다 | Python Scripts 폴더(`%APPDATA%\Python\Python3xx\Scripts`)를 PATH에 추가하거나 `pipx install graphifyy`를 쓴다 |
 | macOS | `pip install`이 externally-managed-environment 오류로 실패한다 | `pipx install graphifyy`를 쓴다 |
 
-수동 설치 경로도 있다. `v1` 브랜치의 `skills/graphify/skill.md`를 `~/.claude/skills/graphify/SKILL.md`로 내려받은 뒤 `~/.claude/CLAUDE.md`에 스킬 항목을 추가한다. README가 제시하는 등록 문구는 사용자가 `/graphify`를 입력하면 다른 일을 하기 전에 Skill 도구로 `graphify` 스킬을 먼저 호출하라는 지시다. 즉 스킬 등록의 본질은 슬래시 명령과 스킬 호출을 연결하는 한 줄이다.
+수동 설치 경로도 있다. `v1` 브랜치의 `skills/graphify/skill.md`를 `~/.claude/skills/graphify/SKILL.md`로 내려받은 뒤 `~/.claude/CLAUDE.md`에 스킬 항목을 추가한다. README가 제시하는 등록 문구는 사용자가 `/graphify`를 입력하면 다른 일을 하기 전에 Skill 도구로 `graphify` 스킬을 먼저 호출하라는 지시다. 즉 스킬 등록의 본질은 슬래시 커맨드와 스킬 호출을 연결하는 한 줄이다.
 
 ### 입력 유형별 추출 경로
 

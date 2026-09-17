@@ -34,8 +34,8 @@ RAG는 외부 자료에서 관련 정보를 찾아 프롬프트에 넣고 답을
 
 | 단계 | 개입 대상 | 이 저장소의 해당 기법 |
 |---|---|---|
-| 색인 이전 | 자료를 쪼개는 단위 | Choose Chunk Size, Proposition Chunking, Semantic Chunking |
-| 색인 시점 | 무엇을 임베딩해 저장할지 | HyPE, Contextual Chunk Headers, Document Augmentation, Hierarchical Indices |
+| 인덱싱 이전 | 자료를 쪼개는 단위 | Choose Chunk Size, Proposition Chunking, Semantic Chunking |
+| 인덱싱 시점 | 무엇을 임베딩해 저장할지 | HyPE, Contextual Chunk Headers, Document Augmentation, Hierarchical Indices |
 | 질의 시점 | 질의 문자열 자체 | Query Transformations, HyDE, Adaptive Retrieval |
 | 후보 선택 | 어떤 후보를 얼마나 가져올지 | Fusion Retrieval, Multi-faceted Filtering, Dartboard Retrieval |
 | 후보 정제 | 가져온 후보를 다시 다듬는 처리 | Intelligent Reranking, Contextual Compression, Relevant Segment Extraction |
@@ -68,7 +68,7 @@ RAG는 외부 자료에서 관련 정보를 찾아 프롬프트에 넣고 답을
 
 **grounding**은 모델 출력을 검색해 온 근거에 붙들어 매는 것을 뜻한다. 근거에 없는 내용을 지어내는 환각을 줄이는 것이 목적이며, 이 저장소의 Reliable RAG와 Self RAG, Corrective RAG가 각기 다른 방식으로 이 문제를 다룬다.
 
-**multi-hop 질문**은 답을 얻으려면 서로 다른 자리의 정보를 두 번 이상 이어 붙여야 하는 질문을 가리킨다. 한 번의 유사도 검색으로는 중간 연결 고리가 걸리지 않아 답이 나오지 않는다. 이 저장소의 Graph RAG 계열과 하위 질의 분해가 이 문제를 겨냥한다.
+**multi-hop 질문**은 답을 얻으려면 서로 다른 자리의 정보를 두 번 이상 이어 붙여야 하는 질문을 가리킨다. 한 번의 유사도 검색으로는 중간 연결 고리가 걸리지 않아 답이 나오지 않는다. 이 저장소의 graph-based RAG 계열과 하위 질의 분해가 이 문제를 겨냥한다.
 
 **agentic RAG**는 검색과 생성을 한 번에 끝내지 않고, planning과 재시도를 포함한 여러 단계로 나눠 수행하는 구조다. planning은 목표를 하위 단계로 쪼개 실행 순서를 정하는 과정을 가리킨다. 단순 의미 유사도로는 풀리지 않는 복합 질문을 대상으로 한다.
 
@@ -195,12 +195,12 @@ HyDE와 HyPE는 같은 문제에 대한 반대 방향의 해법이다. HyDE는 �
 |---|---|---|
 | 무엇을 미리 만드는가 | 질의에 답할 법한 가상 자료 | chunk마다 나올 법한 가상 질문 여러 개 |
 | 만드는 시점 | 질의 시점 | 인덱싱 시점 |
-| 색인에 저장하는 것 | 원본 chunk의 임베딩 | 가상 질문의 임베딩 |
+| 인덱스에 저장하는 것 | 원본 chunk의 임베딩 | 가상 질문의 임베딩 |
 | retrieval이 맞추는 대상 | 가상 자료와 chunk | 사용자 질의와 가상 질문 |
 | 질의 시점 LLM 호출 | 필요 | 불필요 |
 | README가 적은 효과 | 질의와 데이터의 정렬 개선 | context precision 최대 42%p, claim recall 최대 45%p 향상 |
 
-HyPE가 질의 시점 LLM 호출을 없앤다는 점은 비용과 지연 양쪽에서 의미가 있다. 대신 인덱싱 비용이 늘어난다. chunk 하나당 질문을 여러 개 생성해야 하므로 색인을 만들 때 LLM 호출이 chunk 수의 배수만큼 발생한다. README는 인덱싱 비용 증가분을 수치로 적지 않는다.
+HyPE가 질의 시점 LLM 호출을 없앤다는 점은 비용과 지연 양쪽에서 의미가 있다. 대신 인덱싱 비용이 늘어난다. chunk 하나당 질문을 여러 개 생성해야 하므로 인덱스를 만들 때 LLM 호출이 chunk 수의 배수만큼 발생한다. README는 인덱싱 비용 증가분을 수치로 적지 않는다.
 
 ### 컨텍스트 보강
 
@@ -215,7 +215,7 @@ chunk는 잘리는 순간 주변 정보를 잃는다. 어느 문서의 어느 �
 | Contextual Compression | 질의 관련 내용을 보존하면서 검색된 chunk를 LLM으로 압축하거나 요약 |
 | Document Augmentation | 각 문서 조각에서 나올 법한 질문들을 LLM으로 생성해 붙여 검색될 확률을 높임 |
 
-이 여섯 기법은 개입 시점이 서로 다르다. Contextual Chunk Headers, Semantic Chunking, Document Augmentation은 색인을 만들 때 작동하고, Relevant Segment Extraction과 Contextual Compression은 검색이 끝난 뒤 작동한다. Context Enrichment Window는 색인은 문장 단위로 만들되 반환은 구간 단위로 하므로 양쪽에 걸친다.
+이 여섯 기법은 개입 시점이 서로 다르다. Contextual Chunk Headers, Semantic Chunking, Document Augmentation은 인덱스를 만들 때 작동하고, Relevant Segment Extraction과 Contextual Compression은 검색이 끝난 뒤 작동한다. Context Enrichment Window는 인덱스는 문장 단위로 만들되 반환은 구간 단위로 하므로 양쪽에 걸친다.
 
 Document Augmentation은 HyPE와 발상이 비슷하다. 둘 다 chunk에서 질문을 생성해 검색 가능성을 높인다. 차이는 생성한 질문을 chunk에 덧붙이는가(Document Augmentation) 아니면 chunk를 대신해 저장하는가(HyPE)에 있다.
 
@@ -261,7 +261,7 @@ Multi-modal Retrieval의 두 경로는 접근이 정반대다. 캡셔닝 경로�
 |---|---|---|---|
 | DeepEval | `deepeval` | correctness, faithfulness, contextual relevancy 테스트 케이스 | README에 명시 없음 |
 | GroUSE | `grouse` | GroUSE 프레임워크 6개 지표를 GPT-4로 평가. custom Llama 3.1 405B 평가자를 unit test로 meta-evaluate | GroUSE unit test |
-| End-to-End RAG Evaluation | RAGAS 연동 + LLM-as-judge | completeness, relevance, 환각 탐지 custom 지표 | RAG-12000 |
+| End-to-End RAG Evaluation | RAGAS 연동 + LLM-as-a-Judge | completeness, relevance, 환각 탐지 custom 지표 | RAG-12000 |
 | Open-RAG-Eval | `open-rag-eval` | UMBRELA 스코어링, AutoNuggetizer, 인용 및 환각 탐지 | FIQA 금융 데이터셋 |
 
 GroUSE 노트북은 평가자 자체를 평가한다는 점이 다르다. GPT-4로 6개 지표를 재는 데 그치지 않고, 직접 만든 Llama 3.1 405B 평가자가 GroUSE unit test를 제대로 통과하는지 확인한다. LLM을 심판으로 쓸 때 심판의 신뢰도를 먼저 검증한다는 발상이다.
@@ -285,8 +285,8 @@ Advanced Architectures의 일곱 항목은 단일 검색과 단일 생성으로 
 |---|---|
 | Agentic RAG with Contextual AI | Contextual AI 관리형 플랫폼으로 금융 문서 분석용 프로덕션 agentic RAG를 구성 |
 | Graph RAG with Milvus | 텍스트 구절과 관계 triplet을 서로 다른 Milvus 컬렉션에 저장해 multi-hop 질문에 대응 |
-| Knowledge Graph Integration | knowledge graph에서 질의 관련 엔티티와 관계를 검색해 비정형 텍스트와 결합 |
-| GraphRag (Microsoft) | text unit에서 엔티티와 관계를 추출하고 각 community 요약을 bottom-up으로 생성 |
+| Knowledge Graph Integration | knowledge graph에서 질의 관련 entity와 관계를 검색해 비정형 텍스트와 결합 |
+| GraphRag (Microsoft) | text unit에서 entity와 관계를 추출하고 각 community 요약을 bottom-up으로 생성 |
 | RAPTOR | abstractive summarization을 재귀 적용해 문서를 트리로 조직 |
 | Self RAG | retrieval 결정부터 유용성 평가까지 다단계 자가 점검 |
 | Corrective RAG | relevance 점수에 따라 정보 소싱 전략을 바꾸고 필요하면 여러 출처를 결합 |
@@ -431,12 +431,12 @@ README의 기법 설명은 Overview와 Implementation을 합쳐 대체로 두 �
 | Proposition Chunking | 문서를 간결하고 완결적인 사실 진술 단위로 분해한 뒤 정확성, 명료성, 완결성, 간결성으로 채점하는 chunking |
 | Dartboard Retrieval | relevance와 다양성을 Relevant Information Gain이라는 단일 스코어로 합쳐 직접 최적화하는 retrieval |
 | Corrective RAG (CRAG) | Retrieval Evaluator로 relevance를 판정해 지식 정제와 웹 검색 보강으로 소싱 전략을 교정하는 RAG |
-| GroUSE | 근거에 기반한 LLM 생성을 6개 지표로 평가하고, custom LLM 평가자를 unit test로 meta-evaluate하는 평가 프레임워크 |
+| GroUSE | 근거에 기반한 LLM 생성을 6개 지표로 평가하고, custom LLM-as-a-Judge를 unit test로 meta-evaluate하는 평가 프레임워크 |
 
 ## 관련 페이지
 
 - [[database/athina-ai-rag-cookbooks]]: 같은 형식의 RAG 기법 노트북 cookbook이다. athina 저장소 README는 MIT License를 명시하므로 상업 사용 조건에서 이 저장소와 다르다.
-- [[database/edge-2024-from-local-to-global]]: Microsoft GraphRAG 원논문이다. 이 저장소의 GraphRag (Microsoft) 노트북이 엔티티와 관계 추출, community 요약의 bottom-up 생성을 실습으로 다룬다.
-- [[database/guo-2025-lightrag-simple-and-fast]]: graph 기반 RAG를 다루는 논문이다. 이 저장소의 Graph RAG 노트북 두 개가 개념 소개 수준에서 그치는 주제를 설계와 비용까지 다룬다.
+- [[database/edge-2024-from-local-to-global]]: Microsoft GraphRAG 원논문이다. 이 저장소의 GraphRag (Microsoft) 노트북이 entity와 관계 추출, community 요약의 bottom-up 생성을 실습으로 다룬다.
+- [[database/guo-2025-lightrag-simple-and-fast]]: graph 기반 RAG를 다루는 논문이다. 이 저장소의 graph-based RAG 노트북 두 개가 개념 소개 수준에서 그치는 주제를 설계와 비용까지 다룬다.
 - [[database/hkuds-rag-anything]]: 멀티모달 RAG를 다루는 구현체 자료다. 이 저장소의 Multi-modal Retrieval 노트북과 주제가 겹치므로 두 경로의 실제 구현을 확인할 때 함께 본다.
 - [[database/vectifyai-pageindex]]: 임베딩과 vector store를 쓰지 않는 retrieval 접근이다. 이 저장소의 기법 대부분이 임베딩을 전제로 삼는 것과 대비된다.

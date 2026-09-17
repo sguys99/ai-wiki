@@ -239,7 +239,7 @@ post-training은 모델을 가정 내 mobile manipulation에 특화시키고 act
 ### 실제 가정집 세 곳
 
 ![[assets/black-2025-pi05-a-vision-language-action-model-with/fig07.png]]
-*Figure 7: 실제 집 평가의 롤아웃과 모델이 스스로 낸 subtask 예측, 과제별 평균 task progress (Black 2025, p.8)*
+*Figure 7: 실제 집 평가의 rollout과 모델이 스스로 낸 subtask 예측, 과제별 평균 task progress (Black 2025, p.8)*
 
 π0.5는 학습에 없던 집 세 곳의 부엌과 침실 청소 과제에서 일관되게 성공했다. 여러 물체를 옮기는 다단계 과제는 하나에 2~5분이 걸리고, 부엌이나 침실 전체를 치우는 긴 과제는 10~15분까지 이어진다.
 

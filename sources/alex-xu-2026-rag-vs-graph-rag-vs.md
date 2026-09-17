@@ -49,7 +49,7 @@ ByteByteGo 공동창업자 Alex Xu가 LinkedIn에 올린 짧은 비교 포스트
 
 ### 3.1 Standard RAG
 
-1. 질의를 임베딩으로 변환해 벡터 데이터베이스와 매칭한다.
+1. 질의를 임베딩으로 변환해 vector database와 매칭한다.
 2. 가장 가까운 top-K chunk를 꺼내 LLM에 컨텍스트로 전달한다.
 3. LLM이 검색된 내용만 써서 근거 있는 답을 작성한다.
 
@@ -58,7 +58,7 @@ ByteByteGo 공동창업자 Alex Xu가 LinkedIn에 올린 짧은 비교 포스트
 ### 3.2 Graph RAG
 
 1. 질의를 분류한다. 구체적 질문은 local search로, 광범위한 질문은 global search로 라우팅한다.
-2. **Local search**: 질의를 임베딩한다. 벡터 데이터베이스가 매칭되는 entity를 찾는다. 파이프라인이 knowledge graph를 순회하며 연결된 컨텍스트를 모은다. LLM이 최종 답을 합성한다.
+2. **Local search**: 질의를 임베딩한다. vector database가 매칭되는 entity를 찾는다. 파이프라인이 knowledge graph를 순회하며 연결된 컨텍스트를 모은다. LLM이 최종 답을 합성한다.
 3. **Global search**: 벡터 검색도 그래프 순회도 하지 않는다. community report를 배치 단위로 불러온다. LLM이 각 report의 관련도를 채점한다. 상위 컨텍스트를 모아 LLM이 최종 응답을 합성한다.
 
 ### 3.3 Agentic RAG
@@ -78,12 +78,12 @@ ByteByteGo 공동창업자 Alex Xu가 LinkedIn에 올린 짧은 비교 포스트
 
 fig01은 본문 세 절을 세 열로 배치한 그림인데, 본문 텍스트에 없는 구성 요소를 여럿 담고 있다. 아래는 그림에서만 확인되는 항목이다.
 
-- **Standard RAG 열의 3단계 구획**: retrieval, augmented, generation 세 구간이 색 블록으로 나뉜다. 벡터 데이터베이스에는 "offline indexing"과 "Index + Metadata"가 붙어 있고, 검색 결과가 LLM으로 바로 가지 않고 "Context augmentation" 블록에서 system prompt, user query, top-K chunk와 합쳐져 augmented prompt가 된다.
+- **Standard RAG 열의 3단계 구획**: retrieval, augmented, generation 세 구간이 색 블록으로 나뉜다. vector database에는 "offline indexing"과 "Index + Metadata"가 붙어 있고, 검색 결과가 LLM으로 바로 가지 않고 "Context augmentation" 블록에서 system prompt, user query, top-K chunk와 합쳐져 augmented prompt가 된다.
 - **Agentic RAG 열의 에이전트 이름과 분기**: 첫 에이전트는 "Planning agent (LLM + System Prompt)"이고 "Needs retrieval?"을 먼저 판정한다. 아니면 검색을 건너뛰고 direct query로 바로 LLM에 간다. 맞으면 "Sub-queries + tool selection"을 산출한다. 두 번째 에이전트는 "Evaluator agent (LLM + System Prompt)"로 "Scores retrieved context"와 "Pass or re-retrieve?" 두 동작을 수행한다.
-- **Agentic RAG의 검색 대상**: retrieval 블록이 벡터 데이터베이스 하나가 아니라 "Vector database", "Tools + APIs", "MCP servers" 셋을 나열한다. 본문의 "picks the sources"가 무엇을 뜻하는지 그림이 구체화한다.
-- **Graph RAG local 경로의 중간 산출물**: 벡터 데이터베이스가 "Find matching entities" 역할을 맡고 "Top K entity IDs"를 낸다. knowledge graph는 "Traverses linked context across connected node"로 표기되고 그 결과가 "Linked context"다. context augmentation 블록의 입력은 "entities, relationships, text chunks"로 명시된다.
+- **Agentic RAG의 검색 대상**: retrieval 블록이 vector database 하나가 아니라 "Vector database", "Tools + APIs", "MCP servers" 셋을 나열한다. 본문의 "picks the sources"가 무엇을 뜻하는지 그림이 구체화한다.
+- **Graph RAG local 경로의 중간 산출물**: vector database가 "Find matching entities" 역할을 맡고 "Top K entity IDs"를 낸다. knowledge graph는 "Traverses linked context across connected node"로 표기되고 그 결과가 "Linked context"다. context augmentation 블록의 입력은 "entities, relationships, text chunks"로 명시된다.
 - **Graph RAG global 경로의 map 단계 구조**: community report 배치가 "LLM mapping call"로 들어가고, 이 호출의 프롬프트는 "extract & rate"다. 배치는 "next batch until all processed"로 반복된다. 산출물은 "Key points + ratings"이고, 그다음 "Filter low rated points (Keep top ranked only)" 단계를 거쳐 "LLM final synthesis"가 "synthesize" 프롬프트로 최종 답을 만든다.
-- **인덱싱 시점 표시**: 벡터 데이터베이스, knowledge graph, community report 세 블록 모두에 "offline indexing"이 붙어 있다. 질의 시점 처리와 사전 구축 자산이 그림에서 구분된다.
+- **인덱싱 시점 표시**: vector database, knowledge graph, community report 세 블록 모두에 "offline indexing"이 붙어 있다. 질의 시점 처리와 사전 구축 자산이 그림에서 구분된다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
@@ -116,7 +116,7 @@ fig01은 본문 세 절을 세 열로 배치한 그림인데, 본문 텍스트�
 
 ## 7. 용어집 (Glossary)
 
-- **Standard RAG**: 질의를 임베딩해 벡터 데이터베이스에서 top-K chunk를 찾고, LLM이 그 chunk만으로 답을 쓰는 기본 구성.
+- **Standard RAG**: 질의를 임베딩해 vector database에서 top-K chunk를 찾고, LLM이 그 chunk만으로 답을 쓰는 기본 구성.
 - **Graph RAG**: knowledge graph 위에서 검색하는 RAG. 질의 범위에 따라 local search와 global search로 경로가 갈린다.
 - **Local search**: Graph RAG에서 구체적 질문에 쓰는 경로. 벡터 검색으로 entity를 찾은 뒤 knowledge graph를 순회해 연결된 컨텍스트를 모은다.
 - **Global search**: Graph RAG에서 광범위한 질문에 쓰는 경로. 벡터 검색과 그래프 순회 없이 community report를 LLM이 배치로 채점해 상위 항목만 쓴다.

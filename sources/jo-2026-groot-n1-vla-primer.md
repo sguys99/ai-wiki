@@ -186,7 +186,7 @@ System 1은 Diffusion Transformer 기반이고 flow matching으로 학습한다.
 
 가장 앞에 두는 것은 학습 데이터에 없던 양손 협업이 저절로 나타난 사례다. pre-training만 마친 모델에 사과를 왼손 쪽에만 놓고 "빨간 사과를 집어 바구니에 넣어라"를 시키면, 왼손으로 집어 오른손에 넘긴 뒤 바구니에 담는다. 비슷한 과제를 pre-training에서 거의 보지 않았는데도 나온 동작이라, 모델이 동작을 외운 게 아니라 목표를 이루려고 신체 자원을 어떻게 쓸지 판단했다는 근거로 읽는다.
 
-두 번째는 움직임의 부드러움과 grasping 정확도다. post-training을 마친 GR00T N1의 동작이 Diffusion Policy보다 눈에 띄게 매끄럽고 잡기 정확도도 상당히 높다고 적는다. 근거는 롤아웃 프레임 비교 캡처다.
+두 번째는 움직임의 부드러움과 grasping 정확도다. post-training을 마친 GR00T N1의 동작이 Diffusion Policy보다 눈에 띄게 매끄럽고 잡기 정확도도 상당히 높다고 적는다. 근거는 rollout 프레임 비교 캡처다.
 
 세 번째가 데이터 효율이다. 10% 데이터만으로 학습해도 전체 데이터로 학습한 Diffusion Policy보다 3.8%p 낮은 데 그친다. pre-training에서 쌓은 지식 덕분에 적은 데이터로도 현장에 맞춰 fine-tuning하기 쉽다는 뜻으로 정리한다. 원 논문 기준으로는 GR00T-N1-2B 10%가 42.6%, Diffusion Policy 전체가 46.4%다.
 
@@ -236,7 +236,7 @@ System 1은 Diffusion Transformer 기반이고 flow matching으로 학습한다.
 | fig15 | data pyramid (paper Fig 1) | fetched | (확인 필요, 논문 페이지에 이미 있음) |
 | fig16 | DexMimicGen 합성 데이터 생성 | fetched | (선택) |
 | fig17 | LAPA 3단계 latent action | fetched | (확인 필요, 논문 페이지에 이미 있음) |
-| fig18 | 좌→우 손 handover 롤아웃 (paper Fig 11) | fetched | (확인 필요, 논문 페이지에 이미 있음) |
-| fig19 | Diffusion Policy 대비 롤아웃 (paper Fig 12) | fetched | (확인 필요, 논문 페이지에 이미 있음) |
+| fig18 | 좌→우 손 handover rollout (paper Fig 11) | fetched | (확인 필요, 논문 페이지에 이미 있음) |
+| fig19 | Diffusion Policy 대비 rollout (paper Fig 12) | fetched | (확인 필요, 논문 페이지에 이미 있음) |
 | fig20 | GR-1 실제 로봇 결과표 (paper Table 3) | fetched | (선택) |
 | fig21 | 전체 페이지 스크린샷 | screenshot | (아카이브) |

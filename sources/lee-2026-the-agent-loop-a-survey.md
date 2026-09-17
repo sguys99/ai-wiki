@@ -202,7 +202,7 @@ LLM 에이전트의 분석 단위를 모델에서 그 모델이 실행되는 age
 - **연락처**: `omanma1928@korea.ac.kr`, `chanjun.park@ssu.ac.kr`
 - **분량**: 59페이지. 본문 39페이지에 부록 A와 B, 참고문헌 약 19페이지가 붙는다
 - **배포본**: SSRN 배포 PDF(`ssrn-7186738.pdf`). 본문에 arXiv ID나 DOI는 적혀 있지 않다
-- **동반 저장소**: `https://github.com/js-lee-AI/awesome-agent-loop-papers`. 인용 논문을 절 단위로 색인하고 7절의 오픈소스 산출물을 함께 정리한다고 밝힌다
+- **동반 저장소**: `https://github.com/js-lee-AI/awesome-agent-loop-papers`. 인용 논문을 절 단위로 인덱싱하고 7절의 오픈소스 산출물을 함께 정리한다고 밝힌다
 - **키워드**: large language models, autonomous agents, agent loop, control strategies, agent skills, tool use, verification, agent harness, evaluation, survey
 - **커버리지**: 2022년 ReAct부터 2026년 중반까지. 절마다 "Recent developments (2026)" 문단을 따로 두어 최신 흐름을 몰아 정리한다
 - **코퍼스 구성 방법**: loop paradigm, trained loop, loop mechanics, 스킬, harness, evaluation, safety 문헌을 대상으로 여덟 차례 하위 주제 스윕을 돌려 후보를 모으고 각 후보를 1차 출처로 검증했다고 밝힌다. 일반 LLM 에이전트 서베이 한 편과 상호 참조해 그 서베이가 지나가듯 다루는 루프와 스킬 차원에 집중했다고 적는다. 다만 본문은 스윕 대상 문헌을 일곱 개로 열거하면서 횟수는 여덟 번이라고 적어 두 수가 어긋난다
@@ -435,7 +435,7 @@ agent loop 점수를 단일 스칼라로 요약하면 안 된다. 튜플이 맞�
 논문이 남겨 둔 열린 문제는 다섯이다.
 
 - **루프를 누가 소유하는가**. 능력이 가중치, harness, 서드파티 스킬에 흩어졌을 때 책임 소재를 정하는 문제다. 지속 가능한 능력이 가중치 밖의 조합 가능한 구성 요소에 산다는 관점과, end-to-end agentic RL이 scaffold를 다시 가중치로 흡수해 세대마다 이전 harness를 오버헤드로 드러낼 것이라는 bitter-lesson 반론이 맞선다. 어느 쪽도 깔끔히 이기지 못한다. agentic RL도 학습 trajectory를 만들려면 scaffold가 필요하고 스킬은 거의 공짜 컨텍스트 비용으로 절차 지식을 나르므로, 최적 위치는 능력 수준에 따라 계속 움직인다.
-- **장기 지평의 신뢰성**. pass^k가 대략 p^k로 감쇠하므로 pass@1이 60%를 넘는 에이전트도 pass^8에서 25% 아래로 크게 하락할 수 있다. 여기에 장기 실패 대부분이 모델 품질이 아니라 오케스트레이션에서 온다는 관찰이 겹치는데, step당 정확도의 작은 개선이 초선형 지평 성장으로 복리된다는 낙관적 결과와 진짜로 긴장 관계에 있다. 둘 다 참이므로 성숙한 설명은 둘을 함께 붙들어야 한다.
+- **장기 지평의 신뢰성**. pass^k가 대략 p^k로 감쇠하므로 pass@1이 60%를 넘는 에이전트도 pass^8에서 25% 아래로 크게 하락할 수 있다. 여기에 장기 실패 대부분이 모델 품질이 아니라 오케스트레이션에서 온다는 관찰이 겹치는데, step당 정확도의 작은 개선이 compounding되어 초선형 지평 성장으로 이어진다는 낙관적 결과와 진짜로 긴장 관계에 있다. 둘 다 참이므로 성숙한 설명은 둘을 함께 붙들어야 한다.
 - **스킬 거버넌스와 에이전트 공급망**. 패키지 매니저가 코드를 다스리는 방식의 레지스트리, 서명, 출처, 리뷰 체계가 스킬에는 아직 없다. 오염은 고칠 수 있는 버그가 아니라 구조적 성질이다. 모델이 도구 메타데이터를 시스템이 쓴 것으로 취급하기 때문이다. 더 나쁜 것은 jailbreak되거나 오염된 에이전트가 multi-step tool use 역량을 대부분 유지한다는 점이어서, 오염된 스킬 하나가 도구를 잘 쓰는 에이전트를 유능한 악성 행위자로 바꾼다.
 - **표준화와 상호운용성, 재현 가능한 평가**. 프로토콜부터 표준으로 굳고 보안과 의미 명세가 뒤처지며 공유 프로토콜 하나는 공격면도 함께 표준으로 만든다. 측정 쪽은 반대로 표준화 공백이다. 공개 벤치마크는 오염을 부르고, harness를 밝히지 않으면 논문 간 비교가 모델 능력이 아니라 harness와 엔지니어링 노력을 재게 된다.
 - **비용을 의식한 설계와 안전과 능력의 공진화**. tool call과 지평과 자율성을 늘리면 능력과 함께 토큰 비용과 공격면이 같은 보폭으로 커진다. 비용 캐스케이드와 라우팅은 지출을 줄이지만 꼬리 신뢰성을 내주는데, 값싼 모델이 정확히 어려운 사례에서 실패하기 때문이다. 안전 쪽에서는 자율성을 크게 준 상태로 목표 압력을 걸면 frontier 모델이 내부자 위협 행동을 취한다는 통제 실험이 있지만, 저자들은 그것이 감독 없는 인위적 시나리오라는 원저자의 단서를 함께 적어 현재의 재앙이 아니라 자율성에 비례해 커지는 개연적 위험으로 읽는다.
@@ -450,7 +450,7 @@ agent loop 점수를 단일 스칼라로 요약하면 안 된다. 튜플이 맞�
 - **스킬 계보**: Voyager(Wang 2023a), CodeAct(Wang 2024b), ExpeL(Zhao 2023), Agent Workflow Memory(Wang 2024c), ReasoningBank(Ouyang 2025), Agent Skills와 SKILL.md(Anthropic 2025f), MCP(Anthropic 2024c), Gorilla(Patil 2024), library drift(Zhang 2026d), negative transfer(Huang 2026a).
 - **harness**: SWE-agent ACI(Yang 2024a), OpenHands(Wang 2024a), building effective agents(Anthropic 2024a), context engineering(Anthropic 2025e), 멀티에이전트 반대론(Yan 2025), 멀티에이전트 실패 분류(Cemri 2025), 토큰 예산 동일화 비교(Tran 2026), compound AI systems(Zaharia 2024).
 - **평가**: SWE-bench(Jimenez 2023), WebArena(Zhou 2024b), OSWorld(Xie 2024), τ-bench(Yao 2024), AI Agents That Matter(Kapoor 2024), harness 미공개 비교의 오도 가능성(Zhang 2026j), SWE-bench 암기 논증(Liang 2025), agentic benchmark 체크리스트(Zhu 2025b), 패치 의미 오류 재채점(Deng 2025).
-- **안전**: 간접 프롬프트 주입(Greshake 2023), InjecAgent(Zhan 2024), AgentDojo(Debenedetti 2024), instruction hierarchy(Wallace 2024), CaMeL(Debenedetti 2025), Progent(Shi 2025), MCPTox(Wang 2025a), AgentPoison(Chen 2024e), ETDI(Bhatt 2025), governance decay(Chen 2026b), 무한 agentic loop(Hou 2026a).
+- **안전**: 간접 prompt injection(Greshake 2023), InjecAgent(Zhan 2024), AgentDojo(Debenedetti 2024), instruction hierarchy(Wallace 2024), CaMeL(Debenedetti 2025), Progent(Shi 2025), MCPTox(Wang 2025a), AgentPoison(Chen 2024e), ETDI(Bhatt 2025), governance decay(Chen 2026b), 무한 agentic loop(Hou 2026a).
 
 이 wiki 안에서는 [[agents/lin-2026-harness-updating-is-not-harness-benefit]], [[agents/cemri-2025-why-do-multi-agent-llm-systems]], [[agents/dennis-2026-compiling-agentic-workflows-into-llm]], [[agents/zhou-2026-are-we-ready-for-an]], [[agents/bai-2026-how-do-ai-agents-spend]], [[agents/yang-2026-skillopt-executive-strategy-for]], [[agents/zhao-2026-generative-skill-composition-for-llm]]가 이 서베이의 개별 영역을 각각 깊게 파는 자료다.
 

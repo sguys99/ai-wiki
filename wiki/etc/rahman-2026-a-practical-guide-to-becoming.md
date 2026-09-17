@@ -130,7 +130,7 @@ verification inversion은 fig05의 제목으로, AI-native 작업에서 시간�
 
 ### Layer-1과 Layer-2
 
-Codify ADLC 단계에서 저자는 실천을 두 층으로 나눈다. Layer-1은 개인 실천으로 개인 전환 3단계가 다루는 내용이고, Layer-2는 팀 실천으로 팀 전환의 세 요건이 다루는 내용이다. 두 층을 유지되고 스스로 진화하는 컨텍스트 파일, 스킬 라이브러리, MCP 도구로 인코딩해야 ADLC 채택이 부족 지식에 머물지 않고 조직 전체로 확산된다.
+Codify ADLC 단계에서 저자는 실천을 두 층으로 나눈다. Layer-1은 개인 실천으로 개인 전환 3단계가 다루는 내용이고, Layer-2는 팀 실천으로 팀 전환의 세 요건이 다루는 내용이다. 두 층을 유지되고 스스로 진화하는 컨텍스트 파일, skill library, MCP 도구로 인코딩해야 ADLC 채택이 부족 지식에 머물지 않고 조직 전체로 확산된다.
 
 ## 방법
 
@@ -258,7 +258,7 @@ ADLC는 전통 SDLC의 각 단계를 에이전트가 사람과 함께 개발하�
 | Testing | TDD의 부활. 에이전트가 테스트 계획을 먼저 쓰고 구현. 처음엔 모든 테스트가 실패하고 점진적으로 통과 | unit(원자 단위), integration(기능 간), end-to-end(시스템 전체). unit에 과몰입해 integration과 system 테스트를 빠뜨리지 않는다 |
 | Review | 기능성, 품질, 확장성, 성능, 신뢰성, 보안, 프라이버시 7개 차원의 전문 swarm이 1차 보고서 작성. 사람이 각 보고서를 검토 | generalization principle: injection 취약점 한 건이 나오면 같은 유형이 다른 곳에도 있다고 보고 선제 탐색 |
 | Documentation | 사후 문서화에서 연속 생성으로. 요약, 설계 결정, 아키텍처 다이어그램, changelog를 실시간 생성 | API 문서, 기능 자료, 고객용 콘텐츠로 자연스럽게 연결 |
-| Codify ADLC | Layer-1(개인)과 Layer-2(팀) 실천을 유지되고 스스로 진화하는 컨텍스트 파일, 스킬 라이브러리, MCP 도구로 인코딩 | 부족 지식이나 일부 부서에 갇히지 않게 조직 전체로 확산. ADLC 도구 패키지를 알린다 |
+| Codify ADLC | Layer-1(개인)과 Layer-2(팀) 실천을 유지되고 스스로 진화하는 컨텍스트 파일, skill library, MCP 도구로 인코딩 | 부족 지식이나 일부 부서에 갇히지 않게 조직 전체로 확산. ADLC 도구 패키지를 알린다 |
 
 Planning을 가장 중요한 단계로 두는 이유는 나머지 단계가 모두 그 산출물 위에서 진행되기 때문이다. deep research와 planning 모드로 여러 에이전트가 병렬로 탐색하고, 명세는 추상적인 요구가 아니라 코드베이스를 기준으로 작성하며, 모호한 부분은 표시하고, 작업은 subtask로 나누고 난이도를 추정한다. version milestone이 있는 로드맵은 에이전트가 한 번에 끝내려 하지 않고 점진적으로 따라가게 만든다.
 
@@ -277,7 +277,7 @@ ADLC의 각 단계에서 사람과 에이전트가 맡는 일은 다르다. 글�
 | Testing | 테스트 계획을 먼저 쓰고 구현. 실패하는 테스트를 점진적으로 통과시킴 | unit에 과몰입하지 않고 integration과 system 테스트가 빠지지 않게 감독 |
 | Review | 7개 차원의 전문 swarm이 1차로 훑고 보고서 작성 | 각 보고서를 꼼꼼히 검토. 한 건의 취약점이 나오면 generalization principle을 적용해 같은 유형을 선제 탐색 |
 | Documentation | 요약, 설계 결정, 아키텍처 다이어그램, changelog를 실시간 생성 | 글에 명시 없음 |
-| Codify ADLC | 글에 명시 없음 | 개인과 팀의 실천을 컨텍스트 파일, 스킬 라이브러리, MCP 도구로 인코딩하고 도구 패키지를 알림 |
+| Codify ADLC | 글에 명시 없음 | 개인과 팀의 실천을 컨텍스트 파일, skill library, MCP 도구로 인코딩하고 도구 패키지를 알림 |
 
 ### agent swarm의 상호 견제
 
@@ -457,7 +457,7 @@ AI는 학습 루프의 첫 단계인 Build를 크게 압축한다. 그러나 압
 | Daybreak와 Mythos | 보안 경종으로 언급할 뿐 설명이 없다. Mythos는 이 wiki의 [[llms/9bow-2026-gpt-5-6-sol-terra-luna]]에서 Claude 모델명(Claude Mythos 5)으로 등장하고, Daybreak는 이 wiki에 다른 기술이 없다 |
 | 사고 4건의 세부 | 조직, 기술 스택, 효과가 있었던 완화책이 익명화되어 없다 |
 | slopsquatting 방어 | 패키지 allow-list나 게시일 임계값 같은 구체 컨트롤을 적지 않는다 |
-| Codify ADLC의 거버넌스 | 스스로 진화하는 컨텍스트 파일과 스킬 라이브러리의 권한, 버전, 롤백, 팀 간 충돌 해소 방법이 없다 |
+| Codify ADLC의 거버넌스 | 스스로 진화하는 컨텍스트 파일과 skill library의 권한, 버전, 롤백, 팀 간 충돌 해소 방법이 없다 |
 
 ### 자료 안의 긴장
 

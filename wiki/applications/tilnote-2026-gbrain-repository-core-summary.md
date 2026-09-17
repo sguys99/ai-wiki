@@ -17,7 +17,7 @@ tags: [gbrain, architecture, contract-first, operations, security, versioning, k
 
 tilnote가 garrytan/gbrain 저장소를 다섯 가지 관점으로 압축해 정리한 한국어 글이다. 아키텍처, 기능, 보안, 운영, 버전을 각각 한 절씩 다루며, 각 절은 한 줄짜리 항목의 목록으로 되어 있다.
 
-이 글이 제시하는 설계 원칙은 두 가지다. 실행기를 얇게 두고 행동 로직을 스킬에 두는 "thin harness, fat skills", 그리고 `operations.ts`를 단일 진실 공급원(single source of truth)으로 삼는 계약 우선(contract-first) 설계다.
+이 글이 제시하는 설계 원칙은 두 가지다. 실행기를 얇게 두고 행동 로직을 스킬에 두는 "thin harness, fat skills", 그리고 `operations.ts`를 단일 진실의 원천(single source of truth)으로 삼는 계약 우선(contract-first) 설계다.
 
 이 wiki의 gbrain 자료 가운데 버전이 자라온 순서를 담은 것은 이 글뿐이다. v0.3.0에서 v0.9.1 이후까지 다섯 개 시점을 늘어놓아, 저장소가 어떤 차례로 기능을 갖췄는지 보여준다. 반면 수치와 벤치마크는 하나도 없으므로 성능 근거는 다른 페이지에서 찾아야 한다.
 
@@ -31,9 +31,9 @@ tilnote가 garrytan/gbrain 저장소를 다섯 가지 관점으로 압축해 정
 
 ## 핵심 개념
 
-### 계약 우선과 단일 진실 공급원
+### 계약 우선과 단일 진실의 원천
 
-계약 우선(contract-first)은 작업 정의를 먼저 고정하고 그것을 쓰는 표면을 나중에 파생시키는 설계다. GBrain에서 그 정의가 놓이는 자리가 `operations.ts`이며, 원문은 이 파일을 단일 진실 공급원으로 부른다. 단일 진실 공급원은 같은 정보가 여러 곳에 흩어지지 않도록 원본을 한 자리로 정하는 원칙을 뜻한다.
+계약 우선(contract-first)은 작업 정의를 먼저 고정하고 그것을 쓰는 표면을 나중에 파생시키는 설계다. GBrain에서 그 정의가 놓이는 자리가 `operations.ts`이며, 원문은 이 파일을 단일 진실의 원천으로 부른다. 단일 진실의 원천은 같은 정보가 여러 곳에 흩어지지 않도록 원본을 한 자리로 정하는 원칙을 뜻한다.
 
 이 설계가 겨냥하는 결과가 기능 목록 첫 항목에 나온다. CLI와 MCP 양쪽에서 작업이 일관되게 처리된다는 서술이다. 다만 원문은 두 항목을 나란히 둘 뿐 인과를 명시하지 않는다. 연결 고리는 [[applications/garrytan-gbrain]]에서 확인할 수 있는데, 그 페이지는 두 엔진이 같은 `BrainEngine` interface를 구현하고 CLI와 MCP 서버가 그 한 곳에서 자동 생성된다고 기록한다.
 
@@ -41,7 +41,7 @@ tilnote가 garrytan/gbrain 저장소를 다섯 가지 관점으로 압축해 정
 
 harness는 모델을 감싸 도구와 검증, 상태를 제공하는 실행 환경이다. "thin harness, fat skills"는 이 harness를 최소한으로 두고 실제 행동 로직은 교체 가능한 스킬에 두자는 원칙이다.
 
-원문은 이 원칙을 핵심 방향으로만 제시하고 스킬의 개수나 구성은 다루지 않는다. 스킬 팩의 실제 규모와 라우팅 방식은 [[applications/garrytan-gbrain]]이 담는다.
+원문은 이 원칙을 핵심 방향으로만 제시하고 스킬의 개수나 구성은 다루지 않는다. skill pack의 실제 규모와 라우팅 방식은 [[applications/garrytan-gbrain]]이 담는다.
 
 ## 방법
 
@@ -129,7 +129,7 @@ harness는 모델을 감싸 도구와 검증, 상태를 제공하는 실행 환�
 | 용어 | 뜻 |
 |---|---|
 | 계약 우선(contract-first) | 작업 정의를 먼저 고정하고 CLI와 MCP 같은 표면을 거기서 파생시키는 설계. GBrain에서 그 정의가 놓이는 자리가 `operations.ts`다 |
-| 단일 진실 공급원(single source of truth) | 같은 정보가 여러 곳에 흩어지지 않도록 원본을 한 자리로 정하는 원칙 |
+| 단일 진실의 원천(single source of truth) | 같은 정보가 여러 곳에 흩어지지 않도록 원본을 한 자리로 정하는 원칙 |
 | thin harness, fat skills | harness는 얇게 두고 행동 로직은 교체 가능한 스킬에 두는 원칙. harness는 모델을 감싸 도구와 검증, 상태를 제공하는 실행 환경이다 |
 | 자체 포함형 HTML(self-contained HTML) | 외부 의존 없이 단일 파일만으로 열람할 수 있게 만든 발행 산출물 |
 | 백링크 강제 | 페이지 사이의 연결을 역방향까지 유지하도록 요구하는 운영 규칙. check-backlinks가 이를 검사한다 |

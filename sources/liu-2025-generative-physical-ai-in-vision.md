@@ -140,13 +140,13 @@ physics-aware generation(PAG)은 "실세계 물리에 대한 강한 이해를 �
 
 Gen-to-Sim(GtS)은 $P_\theta(G(X)) \rightarrow X'$ 로 쓴다. 생성 결과에 물리 속성을 사후에 입혀 시뮬레이션과 상호작용이 가능하게 만드는 순차 구성이다. 이 유형에 속한 연구가 가장 많다. PIE-NeRF는 NeRF 밀도장에 포아송 디스크 샘플링으로 입자를 뿌리고 보로노이 그룹으로 묶어 Q-GMLS와 라그랑주 dynamics를 적용한다. Video2Game은 실세계 영상 하나를 분할해 물체마다 질량, 마찰, 충돌 형상을 붙이고 WebGL 게임 엔진에서 강체로 시뮬레이션한다. Gaussian Splatting 계열은 더 활발하다. PhysGaussian은 이방성 정규화로 만든 가우시안 커널을 Material Point Method의 입자로 취급해 응력과 변형을 추적한다. GASP는 가우시안을 삼각 메시로 바꿔 MPM을 적용한 뒤 다시 가우시안으로 되돌리는 식이다. Spring-Gau는 앵커 점들을 스프링으로 잇고 미분 가능한 시뮬레이션으로 강성과 감쇠를 영상에서 학습한다. Feature Splatting은 vision-language model의 의미 특징을 가우시안에 심는다. 그러면 언어 의미로 재료 속성을 지정할 수 있다. Phys4DGen과 SimAnything은 Segment Anything과 LLM으로 부위별 물리 속성을 추론한다. 응용 사례로는 VR-GS(XPBD 기반 실시간 VR 조작), LIVE-GS(GPT-4로 물리 속성 추론해 수동 튜닝 제거), DreMa(장면 복원과 시뮬레이션을 묶어 로봇용 객체 중심 world model 구성)가 있다.
 
-시뮬레이터가 생성 모델의 하위 모듈로 들어가면 Sim-in-Gen(SiG), $G_{P_\theta}(X) \rightarrow X'$ 이다. GPT4Motion에서는 GPT-4가 프롬프트를 Blender 파이썬 스크립트로 옮겨 물리 시뮬레이션을 실행한다. 거기서 나온 깊이 맵과 엣지 맵이 ControlNet 조건으로 확산 모델에 들어간다. PhysGen은 사용자가 이미지에 가한 힘과 토크를 뉴턴 역학으로 풀어 영상을 만든다. PhysDiff는 확산의 매 denoising 단계마다 시뮬레이터로 보정한 동작을 다시 샘플링에 되먹여 사람 동작이 바닥을 뚫거나 미끄러지지 않게 한다.
+시뮬레이터가 생성 모델의 하위 모듈로 들어가면 Sim-in-Gen(SiG), $G_{P_\theta}(X) \rightarrow X'$ 이다. GPT4Motion에서는 GPT-4가 프롬프트를 Blender 파이썬 스크립트로 옮겨 물리 시뮬레이션을 실행한다. 거기서 나온 깊이 맵과 엣지 맵이 ControlNet 조건으로 diffusion model에 들어간다. PhysGen은 사용자가 이미지에 가한 힘과 토크를 뉴턴 역학으로 풀어 영상을 만든다. PhysDiff는 확산의 매 denoising 단계마다 시뮬레이터로 보정한 동작을 다시 샘플링에 되먹여 사람 동작이 바닥을 뚫거나 미끄러지지 않게 한다.
 
 Gen-and-Sim(GnS)은 $M_{P_\theta,G}(X) \rightarrow X'$, 공유 모델 하나가 생성과 시뮬레이션을 동시에 맡는 구성이다. PAC-NeRF는 오일러 격자로 NeRF 기하를, 라그랑주 입자로 물리 파라미터를 함께 추정하는 혼합 표현을 쓴다. PhysMotion은 생성, 시뮬레이션, 재생성을 번갈아 실행한다.
 
 시뮬레이션이 생성 학습에 제약이나 손실로 작용하는 경우가 Sim-Constrained Gen(ScG)이다. $G(X) \rightarrow X'$ subject to $P_\theta(X) \rightarrow X'$ 로 쓴다. Atlas3D는 스스로 서 있을 수 있게 하는 안정 평형 손실을, PhyRecon은 미분 가능한 입자 시뮬레이터를 손실로 쓴다. DiffuseBot은 미분 가능한 시뮬레이션으로 생성된 로봇 설계를 걸러 샘플링 분포를 조정한다. DSO는 시뮬레이션으로 자립 안정성을 라벨링한 뒤 DPO로 image-to-3D 모델을 fine-tuning한다.
 
-ScG와는 방향이 반대로, 생성 모델이 시뮬레이션에 사전 지식을 공급하는 구성이 Gen-Constrained Sim(GcS)이다. Physics3D는 score distillation sampling으로 물리 파라미터를 최적화한다. score distillation sampling은 pre-training된 확산 모델의 점수 함수를 손실 삼아 다른 표현을 최적화하는 기법이다. DreamPhysics는 색 편향을 줄이려 운동에 특화한 motion distillation sampling을 제안했다. PhysDreamer는 distillation 대신 image-to-video 모델이 만든 참조 영상과 시뮬레이션 렌더링의 시각적 유사도를 최대화해 영률 같은 값을 추정한다.
+ScG와는 방향이 반대로, 생성 모델이 시뮬레이션에 사전 지식을 공급하는 구성이 Gen-Constrained Sim(GcS)이다. Physics3D는 score distillation sampling으로 물리 파라미터를 최적화한다. score distillation sampling은 pre-training된 diffusion model의 점수 함수를 손실 삼아 다른 표현을 최적화하는 기법이다. DreamPhysics는 색 편향을 줄이려 운동에 특화한 motion distillation sampling을 제안했다. PhysDreamer는 distillation 대신 image-to-video 모델이 만든 참조 영상과 시뮬레이션 렌더링의 시각적 유사도를 최대화해 영률 같은 값을 추정한다.
 
 Sim-evaluated Gen(SeG)에서는 생성 결과가 시뮬레이션 환경에 배포되는 것을 전제로 평가된다. PhysPart는 교체 부품을 만든다. 3D 프린팅이나 로봇 조작에서 실제로 끼워 맞춰지도록 설계한 부품이다. PhyScene은 embodied AI용 상호작용 가능한 3D 장면을 물리 기반 안내로 생성한다.
 
@@ -160,7 +160,7 @@ Sim-evaluated Gen(SeG)에서는 생성 결과가 시뮬레이션 환경에 배�
 
 Fig. 6에 다섯 유형의 방법 트리가 있다. Sora, OpenSora, CogVideoX, ModelScope, Cosmos 계열은 모두 인터넷 규모 영상으로 학습했다. 이들은 일관된 물체 상호작용과 그럴듯한 운동을 보인다. 저자들은 이를 창발적 물리 추론이라 부르면서도 아직 초기 단계라고 분명히 한다. PhyGenBench는 이 모델들이 기본 물리 법칙조차 정확히 표현하지 못한다고 보고했다. Kang 등의 연구는 더 구체적으로 지적한다. 모델과 데이터셋 크기를 키우는 것만으로는 분포 밖 물리 일반화가 개선되지 않았다. 모델은 일반 규칙을 추상화하기보다 아주 비슷한 학습 예시의 존재에 의존한다는 것이다.
 
-NVIDIA의 Cosmos는 영상 데이터 파이프라인, 토크나이저, pre-training 모델과 post-training 모델을 묶은 오픈소스 플랫폼이다. 대규모 영상으로 학습한 world foundation model을 제공한다. Transformer 기반 확산 모델과 자기회귀 모델이 그 뼈대다. 로봇 manipulation, 카메라 제어, 자율주행으로 fine-tuning할 수 있다. Cosmos-Reason1은 embodied 의사결정용 multimodal LLM으로, 공간, 시간, 기초 물리 3개 대분류와 16개 세부 범주의 물리 상식 ontology를 정의하고 이진 2,828개와 객관식 2,909개를 합쳐 5,737개 문항을 모았다. 그중 604개는 426개 영상과 연결된 벤치마크로 따로 골라냈다. Cosmos-Transfer1은 분할 맵, 깊이 맵, 엣지 맵 같은 공간 입력으로 world 생성을 제어하는 ControlNet류 구조를 얹는다.
+NVIDIA의 Cosmos는 영상 데이터 파이프라인, 토크나이저, pre-training 모델과 post-training 모델을 묶은 오픈소스 플랫폼이다. 대규모 영상으로 학습한 world foundation model을 제공한다. Transformer 기반 diffusion model과 자기회귀 모델이 그 뼈대다. 로봇 manipulation, 카메라 제어, 자율주행으로 fine-tuning할 수 있다. Cosmos-Reason1은 embodied 의사결정용 multimodal LLM으로, 공간, 시간, 기초 물리 3개 대분류와 16개 세부 범주의 물리 상식 ontology를 정의하고 이진 2,828개와 객관식 2,909개를 합쳐 5,737개 문항을 모았다. 그중 604개는 426개 영상과 연결된 벤치마크로 따로 골라냈다. Cosmos-Transfer1은 분할 맵, 깊이 맵, 엣지 맵 같은 공간 입력으로 world 생성을 제어하는 ControlNet류 구조를 얹는다.
 
 남은 유형에서는 PhyT2V가 LLM으로 프롬프트를 반복 정제해 물체와 물리 규칙을 뽑고 생성 영상 캡션과 대조해 불일치를 고친다. WISA는 동역학, 열역학, 광학에 걸친 17가지 현상의 영상 약 32,000편으로 WISA-32K를 만들고 물리 속성 임베딩과 mixture-of-physical-experts attention, 물리 분류기를 붙여 학습한다. PISA는 실제 361편과 Kubric 합성 60편의 낙하 영상으로 분할, 광학 흐름, 깊이 정렬을 reward 삼는 post-training을 실행한다. 운동 제어에는 Generative Image Dynamics(단일 이미지에서 스펙트럼 볼륨을 거쳐 장기 픽셀 trajectory 생성), Motion Prompting(운동 trajectory를 조건으로), Motion Guidance(광학 흐름 추정기의 기울기로 확산 제어)가 있다. CoCoGen은 이산화한 편미분방정식 정보를 샘플링에 직접 주입해 다르시 흐름이나 버거스 방정식 데이터를 만든다.
 
@@ -219,7 +219,7 @@ VideoPhy는 CogVideoX, OpenSora 같은 공개 모델과 Pika, Gen-2 같은 비�
 | physical plausibility | 출력물이 물리 법칙에 어긋나지 않는 정도. visual fidelity와 구분되는 축 |
 | Material Point Method (MPM) | 입자와 격자를 오가며 연속체 변형을 푸는 수치 기법. Gaussian Splatting과 결합이 잦다 |
 | Gaussian Splatting (GS) | 장면을 평균, 공분산, 불투명도를 가진 3차원 가우시안 무리로 나타내는 명시적 복사장 표현 |
-| score distillation sampling (SDS) | pre-training된 확산 모델의 점수 함수를 손실로 삼아 다른 표현을 최적화하는 기법 |
+| score distillation sampling (SDS) | pre-training된 diffusion model의 점수 함수를 손실로 삼아 다른 표현을 최적화하는 기법 |
 | physical commonsense | 중력, 충돌, 상태 변화처럼 사람이 당연하게 아는 물리 지식. 벤치마크의 채점 대상 |
 
 ## 8. 그림 후보 (Figure Candidates)

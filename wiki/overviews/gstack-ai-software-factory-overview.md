@@ -14,7 +14,7 @@ tags: [gstack, claude-code, software-factory, slash-commands, agentic-workflow, 
 
 ## 요약
 
-gstack은 Y Combinator 대표 Garry Tan이 MIT 라이선스로 공개한 Claude Code용 스킬 팩이다. 저장소는 스스로를 software factory로 규정하고, 파는 것이 코드 생성 능력이 아니라 Think에서 Reflect까지 이어지는 스프린트 규율이라고 밝힌다. 슬래시 명령어 하나가 역할 하나에 대응하므로, 명령어를 고르는 행위가 곧 어떤 관점으로 검토받을지를 고르는 행위가 된다.
+gstack은 Y Combinator 대표 Garry Tan이 MIT 라이선스로 공개한 Claude Code용 skill pack이다. 저장소는 스스로를 software factory로 규정하고, 파는 것이 코드 생성 능력이 아니라 Think에서 Reflect까지 이어지는 스프린트 규율이라고 밝힌다. 슬래시 커맨드 하나가 역할 하나에 대응하므로, 명령어를 고르는 행위가 곧 어떤 관점으로 검토받을지를 고르는 행위가 된다.
 
 이 저장소가 보유한 gstack 자료는 저장소 한 편과 한국어 소개 세 편이다. 네 편은 같은 도구를 다루지만 담당하는 층이 다르고, 같은 항목을 서로 다르게 적는 자리도 있다. 이 페이지는 개별 자료의 요약을 반복하는 대신 네 편이 겹치는 지점과 갈리는 지점, 그리고 각 수치가 누구의 서술인지를 정리한다.
 
@@ -162,7 +162,7 @@ Build 단계가 가장 얇다는 점은 도구의 무게중심을 보여준다. 
 
 명령어 총수는 이 자료군에서 값이 하나로 모이지 않는 대표 항목이다.
 
-[[agents/9bow-2026-gstack-claude-code-virtual-team]]은 gstack을 28가지 슬래시 명령어 모음으로 소개하면서 본문에는 22개의 이름만 싣는다. 그룹별로 5개, 3개, 4개, 3개, 7개를 합한 값이며, 나머지 6개가 무엇인지는 그 자료에 나오지 않는다.
+[[agents/9bow-2026-gstack-claude-code-virtual-team]]은 gstack을 28가지 슬래시 커맨드 모음으로 소개하면서 본문에는 22개의 이름만 싣는다. 그룹별로 5개, 3개, 4개, 3개, 7개를 합한 값이며, 나머지 6개가 무엇인지는 그 자료에 나오지 않는다.
 
 네 자료를 겹쳐 보면 수가 조금 올라간다. [[agents/garrytan-gstack]]이 9bow 목록에 없는 `/autoplan`과 `/design-shotgun`과 `/design-html`과 `/pair-agent` 네 개를 더 적기 때문에, 이 저장소가 보유한 자료 전체에서 이름이 확인되는 명령어는 26개다. [[agents/gpters-2026-yc-ai-agent-guide-gstack]]의 9개와 [[agents/hada-2026-gstack-virtual-engineering-team]]의 9개는 모두 9bow의 22개 안에 들어가므로 새 이름을 더하지 않는다.
 
@@ -196,7 +196,7 @@ Build 단계가 가장 얇다는 점은 도구의 무게중심을 보여준다. 
 | 이후 호출 응답 시간 | 100밀리초에서 200밀리초 | [[agents/gpters-2026-yc-ai-agent-guide-gstack]]만 | 같음. 저장소 요약본에는 없다 |
 | 내장 브라우저 용량 | 약 58MB | [[agents/gpters-2026-yc-ai-agent-guide-gstack]]만 | Playwright headless Chromium 기준 |
 | Conductor 동시 세션 | 10개에서 15개 | [[agents/garrytan-gstack]]만 | 저장소 자기 서술. hada는 같은 기능을 강조하되 수치를 적지 않는다 |
-| 슬래시 명령어 총수 | 28개 | [[agents/9bow-2026-gstack-claude-code-virtual-team]]만 | 저장소 요약본에 없다. 네 자료를 합쳐 이름이 확인되는 것은 26개 |
+| 슬래시 커맨드 총수 | 28개 | [[agents/9bow-2026-gstack-claude-code-virtual-team]]만 | 저장소 요약본에 없다. 네 자료를 합쳐 이름이 확인되는 것은 26개 |
 | `/office-hours` 질문 수 | 6가지 | [[agents/9bow-2026-gstack-claude-code-virtual-team]], [[agents/hada-2026-gstack-virtual-engineering-team]] | 두 자료가 일치한다. 질문 내용은 어느 자료에도 없다 |
 | `/plan-design-review` 채점 범위 | 0점에서 10점 | [[agents/9bow-2026-gstack-claude-code-virtual-team]]만 | 채점 항목의 목록은 없다 |
 | 설치 소요 | 30초 | [[agents/garrytan-gstack]]만 | 저장소 자기 서술 |

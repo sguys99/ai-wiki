@@ -103,7 +103,7 @@ task가 지배적인 skill 하나에 깔끔하게 대응할 때는 기존 인터
 
 | 접근 | 동작 | 결정하는 것 | 놓치는 것 |
 |---|---|---|---|
-| Retrieval | LLM-as-a-judge나 task와 skill 임베딩 유사도로 skill을 독립 랭킹한다 | 어떤 skill (순서 없는 subset) | 개수와 실행 순서. 개수는 외부에서 k로 지정해야 한다 |
+| Retrieval | LLM-as-a-Judge나 task와 skill 임베딩 유사도로 skill을 독립 랭킹한다 | 어떤 skill (순서 없는 subset) | 개수와 실행 순서. 개수는 외부에서 k로 지정해야 한다 |
 | End-to-end planning | library 전체를 에이전트에 노출하고 에이전트가 task를 풀면서 필요할 때 skill을 촉발하게 한다 | 실행 trace 안에서 암묵적으로 | 명시적이고 검사 가능한 plan. 구성이 trace에 묻힌다 |
 | **Structured skill composition** | 순서 있는 실행 가능 skill 시퀀스를 직접 예측한다 | subset, 개수, 순서를 동시에 | (제안 방식) |
 
@@ -248,7 +248,7 @@ multi-skill 합성은 dependency edge에서 65%, workflow edge에서 35%를 뽑�
 | 그룹 | 개수 | 생성 | 목적과 순서의 근거 |
 |---|---|---|---|
 | Real anchor | 65 | 사람이 작성 (Li et al. 2026) | 실제 소프트웨어 엔지니어링 task와 gold skill 주석. 순서는 에이전트 trajectory 로그에서 복원하고, 로그가 없으면 Gemini 2.5 Pro 폴백으로 채운다 |
-| Single-skill synthetic | 2,880 | Gemini 2.5 Flash | 196개 skill을 균등하게 덮고, 단순 쿼리에서 skill 하나만 쓰고 종료하도록 calibration한다 |
+| Single-skill synthetic | 2,880 | Gemini 2.5 Flash | 196개 skill을 균등하게 덮고, 단순 질의(query)에서 skill 하나만 쓰고 종료하도록 calibration한다 |
 | Multi-skill synthetic | 6,927 | Gemini 2.5 Pro | skill 2개에서 5개까지의 조합. dependency edge와 workflow edge에서 순서를 얻는다 |
 
 single-skill 프롬프트는 호출 한 번에 task 5개를 요구하고 난이도를 easy 2개, medium 2개, hard 1개로 배분한다. 각 task가 서로 다른 도메인(금융, IoT 센서, 생물정보학, 물류, 소셜 미디어 분석 등)과 서로 다른 입력 형태(단일 파일, 파일 디렉터리, 스트리밍 데이터, API 응답, 데이터베이스 내보내기)를 쓰도록 지시한다. 핵심 제약은 task 설명에 대상 skill의 이름을 쓰지 못하게 막는 것이다. 그래서 모델이 표면형 일치가 아니라 의미로 skill 정체를 복원해야 한다.
@@ -465,13 +465,13 @@ pass rate 격차가 어디서 오는지 보기 위해 논문은 SkillsBench task
 | lean4-proof | **Retrieval (top-3)** | **1.00** | lean4-memories, lean4-theorem-proving, python-scala-functional |
 | lean4-proof | Gold Skills | 0.67 | lean4-memories, lean4-theorem-proving |
 
-### 상위 k개 절단으로 인한 핵심 skill 누락
+### top-k 절단으로 인한 핵심 skill 누락
 
 adaptive-cruise-control은 적응형 정속 주행 시뮬레이션을 구현하는 task다. verifier가 rise time 10초 미만, overshoot 5% 미만, 정상상태 속도 오차 0.5m/s 미만, 거리 정상상태 오차 2m 미만, 최소 간격 5m 초과를 검사한다.
 
 top-3 retrieval은 눈에 보이는 제어 skill 3개를 유지하면서 imc-tuning-rules를 잘라낸다. rise time과 overshoot 규격을 한 번에 만족하는 PID gain을 계산해 주는 IMC heuristic인데, 이것이 없으면 에이전트가 gain을 손으로 조정하다 3회 중 2회 규격을 놓쳐 0.33에 머문다.
 
-curated Gold Skills는 더 시사적이다. 제어기 튜닝이라는 병목에 아무 정보도 주지 않는 I/O 포맷 skill 2개(csv-processing, yaml-config)를 묶어 두고 자신도 0.33에 그친다. SkillComposer는 gold에서 벗어나 I/O wrapper를 버리고 gold가 빠뜨린 imc-tuning-rules를 채택해 1.00을 받는다. 이 사례가 말하는 것은 SkillComposer가 gold 정답으로 회귀하는 것이 아니라 실제로 유용한 skill을 식별한다는 점이다. 그리고 상위 k개 retrieval은 구조상 아슬아슬한 실패를 통과로 바꿀 그 skill 하나가 늘 빠질 수 있다.
+curated Gold Skills는 더 시사적이다. 제어기 튜닝이라는 병목에 아무 정보도 주지 않는 I/O 포맷 skill 2개(csv-processing, yaml-config)를 묶어 두고 자신도 0.33에 그친다. SkillComposer는 gold에서 벗어나 I/O wrapper를 버리고 gold가 빠뜨린 imc-tuning-rules를 채택해 1.00을 받는다. 이 사례가 말하는 것은 SkillComposer가 gold 정답으로 회귀하는 것이 아니라 실제로 유용한 skill을 식별한다는 점이다. 그리고 top-k retrieval은 구조상 아슬아슬한 실패를 통과로 바꿀 그 skill 하나가 늘 빠질 수 있다.
 
 ### 소규모 집합의 우위
 

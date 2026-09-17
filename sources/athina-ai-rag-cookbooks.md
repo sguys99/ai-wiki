@@ -99,7 +99,7 @@ README 표를 그대로 옮긴 것이다. 설명 열은 README의 한 줄 설명
 | Basic Agentic RAG | LangChain, FAISS, Athina AI | AI 에이전트가 vectordb와 web search 같은 도구를 써서 답을 찾고 생성한다 | `basic_agentic_rag.ipynb` |
 | Corrective RAG | LangChain, LangGraph, Chromadb, Athina AI | 관련 문서를 정제하고 관련 없는 문서를 제거하거나 web search를 수행한다 | `corrective_rag.ipynb` |
 | Self RAG | LangChain, LangGraph, FAISS, Athina AI | 찾아온 데이터를 되짚어 정확하고 완결된 응답을 보장한다 | `self_rag.ipynb` |
-| Adaptive RAG | LangChain, LangGraph, FAISS, Athina AI | 질의 유형에 따라 색인 데이터와 web search 중에서 검색 방식을 조정한다 | `adaptive_rag.ipynb` |
+| Adaptive RAG | LangChain, LangGraph, FAISS, Athina AI | 질의 유형에 따라 인덱싱된 데이터와 web search 중에서 검색 방식을 조정한다 | `adaptive_rag.ipynb` |
 | ReAct RAG | LangChain, LangGraph, FAISS, Athina AI | 추론과 검색을 결합해 컨텍스트를 고려한 응답을 만드는 시스템이다 | `react_rag.ipynb` |
 
 ### 스택 분포

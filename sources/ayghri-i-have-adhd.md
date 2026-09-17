@@ -308,7 +308,7 @@ gate는 "blocking finding이 없다"는 한 규칙에서 실패한다. candidate
 - **Agent Skills 표준** ([[agents/agentskills-agentskills]], [[agents/anthropic-2025-equipping-agents-for-the-real]]): 이 저장소의 `SKILL.md` 폴더 규격, `disable-model-invocation` frontmatter, `.cursor/skills/` 미러가 모두 이 규격 위에 있다
 - **mattpocock/skills** ([[agents/mattpocock-skills]]): user-invoked 스킬에 `disable-model-invocation: true`와 Codex `policy.allow_implicit_invocation: false`를 함께 두는 규약이 같다. 이 저장소는 그 규약을 출력 형식 스킬 하나에 적용한 사례다
 - **Addy Osmani의 Agent Skills** ([[agents/osmani-2026-agent-skills]]): 스킬 본문에 담을 원칙을 다룬다. i-have-adhd는 절차 규율이 아니라 응답 모양을 담은 스킬이라는 점에서 대비된다
-- **gstack** ([[agents/garrytan-gstack]]): Claude Code 스킬 팩의 다른 사례. 슬래시 명령어로 워크플로를 구조화하는 반면 i-have-adhd는 슬래시 명령어 하나로 문체만 바꾼다
+- **gstack** ([[agents/garrytan-gstack]]): Claude Code skill pack의 다른 사례. 슬래시 커맨드로 워크플로를 구조화하는 반면 i-have-adhd는 슬래시 커맨드 하나로 문체만 바꾼다
 - **Agent Skills 규격과 생태계** ([[overviews/agent-skills-overview]]): 규격, 표준화, 이식 마찰을 합성한 overview. i-have-adhd의 15개 harness 배포는 이 overview가 다루는 cross-vendor 채택의 한 사례다
 - **AI PRD 평가 계획** ([[evaluations/kim-2026-ai-prd-eval-plan]]): LLM 기능의 평가 계획을 다룬다. i-have-adhd의 evals는 스타일 스킬에 같은 종류의 blind judge와 release gate를 적용한 실측이다
 

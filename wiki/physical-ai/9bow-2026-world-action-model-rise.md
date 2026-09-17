@@ -99,7 +99,7 @@ WAM은 출발점을 바꿔 이 문제를 우회한다. 현대의 video 생성 �
 | joint prediction | 하나의 policy가 미래 observation과 action을 함께 예측하도록 학습하는 방식 |
 | action chunk | policy 호출 한 번에 예측하는 짧은 구간의 action 묶음 |
 | MoT | video와 action처럼 모달리티마다 Transformer를 따로 두되 attention은 공유하는 구조 |
-| DiT | diffusion과 flow matching 모델 안에서 이미지와 video와 action 토큰을 여러 단계로 디노이징하는 Transformer backbone |
+| DiT | diffusion과 flow matching 모델 안에서 이미지와 video와 action 토큰을 여러 단계로 denoising하는 Transformer backbone |
 
 하나를 덧붙이면 본문 읽기가 수월해진다. video backbone은 웹 규모 video로 pre-training되어 로봇 policy 안에서 중심 표현이나 생성기로 재사용되는 모델을 말한다. Wan과 Cosmos 계열이 현대 WAM의 표준 출발점이다.
 
@@ -134,13 +134,13 @@ inverse dynamics 계열의 선구적 사례는 2023년의 UniPi다. video diffus
 
 joint prediction 계열의 기반 논문은 GR-1이다. GPT-2 형태의 Transformer policy를 인터넷 video 예측으로 먼저 학습시킨 뒤, 미래 프레임과 action chunk를 함께 맞히는 목적으로 로봇 데이터에 fine-tuning했다. R3M과 Voltron 같은 앞선 연구가 이미 video와 언어가 로보틱스 표현 학습에 도움이 된다는 것을 보였지만, GR-1은 video를 이미지 수준의 시각 표현이 아니라 더 나은 policy 표현을 얻는 데 썼다는 점에서 전환점이 됐다.
 
-이 아이디어의 현대적 대규모 버전이 NVIDIA의 DreamZero다. video 예측 헤드를 덧붙인 작은 policy를 학습하는 대신, Wan 2.1-I2V-14B-480P에서 출발해 video diffusion backbone 자체를 world-action model로 바꾼다. 하나의 monolithic DiT 안에서 video 토큰과 action 토큰을 함께 디노이징하므로 별도의 inverse dynamics 모듈이 없고, action은 같은 디노이징 과정 안의 또 다른 생성 모달리티가 된다.
+이 아이디어의 현대적 대규모 버전이 NVIDIA의 DreamZero다. video 예측 헤드를 덧붙인 작은 policy를 학습하는 대신, Wan 2.1-I2V-14B-480P에서 출발해 video diffusion backbone 자체를 world-action model로 바꾼다. 하나의 monolithic DiT 안에서 video 토큰과 action 토큰을 함께 denoising하므로 별도의 inverse dynamics 모듈이 없고, action은 같은 denoising 과정 안의 또 다른 생성 모달리티가 된다.
 
 세 번째 선택지인 representation-only는 video backbone을 표현으로만 쓰고 추론 시점의 video 생성을 건너뛴다. Fast-WAM이 대표 사례로, LingBot-VA와 비슷한 Wan 기반 MoT 구성을 쓰면서 1만 6,000시간 규모의 로봇 pre-training 없이도 시뮬레이션 벤치마크에서 그 성능에 근접한다. 다만 저자는 이것이 표현 전용 가설을 뒷받침하는 몇 안 되는 공개 증거이고 지금은 시뮬레이션 증거뿐이라 확신하기 이르다고 단서를 단다.
 
 ### action을 모델에 넣는 세 가지 방법
 
-두 번째 기준이 중요한 이유는 모달리티 불일치 때문이다. pre-training된 backbone은 시각 토큰을 디노이징하는 법은 알지만 연속값인 로봇 action은 모른다.
+두 번째 기준이 중요한 이유는 모달리티 불일치 때문이다. pre-training된 backbone은 시각 토큰을 denoising하는 법은 알지만 연속값인 로봇 action은 모른다.
 
 | 방식 | 하는 일 | 사례 | 위험과 이점 |
 |---|---|---|---|
@@ -148,7 +148,7 @@ joint prediction 계열의 기반 논문은 GR-1이다. GPT-2 형태의 Transfor
 | action-as-image | action을 video 모델이 이미 아는 시각적 목표로 바꿔 같은 생성 인터페이스 안에 넣는다 | GENIMA, Cosmos Policy | pre-training된 video 표현을 흔들지 않는다 |
 | latent plan과 latent action | action을 압축한 latent 표현에 policy를 조건화한다 | Play-LMP, Genie, LAPA, Being-H0.7, DreamDojo | 전체 video 예측이 비싸고 대부분의 픽셀이 제어에 불필요하다는 점을 파고든다 |
 
-GENIMA는 Stable Diffusion을 fine-tuning해 RGB 이미지 위에 관절 목표를 그리고 컨트롤러가 그 시각적 목표를 관절 위치 action으로 옮긴다. Cosmos Policy는 같은 발상을 latent 층위로 올려, action과 proprioception과 value 목표를 video 모델 자신의 디노이징 인터페이스 안의 합성 프레임으로 부호화하고 추론 시 예측된 action 이미지를 공간 차원으로 평균해 action 벡터로 디코딩한다.
+GENIMA는 Stable Diffusion을 fine-tuning해 RGB 이미지 위에 관절 목표를 그리고 컨트롤러가 그 시각적 목표를 관절 위치 action으로 옮긴다. Cosmos Policy는 같은 발상을 latent 층위로 올려, action과 proprioception과 value 목표를 video 모델 자신의 denoising 인터페이스 안의 합성 프레임으로 부호화하고 추론 시 예측된 action 이미지를 공간 차원으로 평균해 action 벡터로 디코딩한다.
 
 latent 쪽 계보는 2019년 Play-LMP가 열었다. posterior 네트워크가 짧은 trajectory 창을 latent plan으로 압축하고, prior 네트워크가 현재 observation과 목표 이미지로부터 그 plan을 예측하며, 저수준 policy가 샘플된 plan을 action으로 디코딩한다. Being-H0.7은 같은 논리를 foundation model 규모로 실행한다. posterior 분기가 동결된 V-JEPA 2.1 시각 인코더와 Perceiver 리샘플러로 미래 observation을 K개 임베딩으로 압축하고, prior 분기가 학습 가능한 질의로 그 정보를 문맥에서 맞춘다. 테스트 시점에는 posterior 분기를 떼어내 전체 video를 다시 생성할 필요를 없앤다. 학습 데이터는 1인칭 인간 video 20만 시간과 로봇 시연 데이터 1만 5,000시간이다.
 
@@ -161,7 +161,7 @@ inverse dynamics와 latent action의 차이는 감독 경로에 있다. inverse 
 | 구성 | 결합 강도 | 이점 | 한계 | 사례 |
 |---|---|---|---|---|
 | hierarchical | 약함, 정보가 한 방향으로만 흐른다 | action 헤드가 완전한 모듈이라 단순 CNN 회귀기부터 완전한 VLA 스택까지 바꿔 끼울 수 있다 | video와 action이 서로 강하게 영향을 줘야 하는 상황에 부적합 | UniPi, VPP, mimic-video, Pi-0.7 |
-| monolithic Transformer | 강함, 한 스택에서 video와 action을 함께 디노이징한다 | 두 흐름의 결합이 강하고 action-as-image 구성과 잘 맞는다 | 같은 가중치가 조밀한 시각 토큰과 훨씬 희소한 action 목표를 함께 감당해야 한다 | DreamZero, Cosmos Policy |
+| monolithic Transformer | 강함, 한 스택에서 video와 action을 함께 denoising한다 | 두 흐름의 결합이 강하고 action-as-image 구성과 잘 맞는다 | 같은 가중치가 조밀한 시각 토큰과 훨씬 희소한 action 목표를 함께 감당해야 한다 | DreamZero, Cosmos Policy |
 | Mixture-of-Transformers | 중간, 가중치는 나누고 attention은 공유한다 | 모듈성과 결합 사이의 실용적 절충 | 전문가별 가중치만큼 파라미터가 늘어난다 | Pi-0, Pi-0.5, LingBot-VA, Fast-WAM |
 
 MoT는 현대 VLA와 최근 WAM 양쪽에서 이미 기본값이다. 저자는 같은 실용적 절충을 이유로 WAM 쪽에서도 MoT 계열이 지배적 구조가 되리라 추측한다.

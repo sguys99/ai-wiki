@@ -107,7 +107,7 @@ README가 직접 밝힌 제약은 네 가지다.
 ## 7. 용어집 (Glossary)
 
 - **data pipeline and transformation suite**: README가 프로젝트를 규정하는 표현. 검색 시스템이 아니라 텍스트를 구조화 데이터로 바꾸는 변환 층에 자기 정체성을 둔다.
-- **knowledge graph memory structure**: 추출된 엔티티와 관계를 그래프로 유지해 LLM이 참조하게 하는 구조. README가 이 저장소의 방법론을 요약하는 표현이다.
+- **knowledge graph memory structure**: 추출된 entity와 관계를 그래프로 유지해 LLM이 참조하게 하는 구조. README가 이 저장소의 방법론을 요약하는 표현이다.
 - **indexing**: README가 이름을 붙인 유일한 단계이자 비용 경고의 대상. 소스 텍스트를 그래프 형태의 인덱스로 바꾸는 전처리다.
 - **prompt tuning**: 대상 데이터에 맞춰 추출과 요약 프롬프트를 조정하는 절차. README는 기본 설정으로는 최선의 결과가 나오지 않을 수 있다며 이를 권고한다.
 - **breaking change**: 이전 config나 프롬프트 포맷과 호환되지 않는 변경. `breaking-changes.md`가 버전 관리 방침으로 다룬다.

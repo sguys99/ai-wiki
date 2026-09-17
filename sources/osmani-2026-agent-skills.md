@@ -149,7 +149,7 @@ Addy Osmani가 2026-05-03에 개인 블로그에 올린 에세이다. AI 코딩 
 
 본 wiki에서 이어지는 자료는 다음과 같다.
 
-- [[agents/hada-2026-agent-skills|Agent Skills (GeekNews)]]. 같은 글의 한국 커뮤니티 요약에 정량 스펙과 비판적 토론을 더한 짝 자료다.
+- [[agents/hada-2026-agent-skills|Agent Skills (GeekNews)]]. 같은 글의 한국 커뮤니티의 요약에 정량 스펙과 비판적 토론을 더한 짝 자료다.
 - [[agents/osmani-2026-loop-engineering|Loop Engineering (Osmani)]]. 같은 저자의 후속 에세이로, 스킬을 루프의 한 구성 요소로 다룬다.
 - [[agents/patel-2026-beyond-the-prompt-claude-code|Beyond the Prompt (Patel)]]. Boris Cherny의 "give Claude a way to verify its own work" 원칙을 실전으로 풀어쓴 가이드다. 본 글의 verification 원칙과 겹친다.
 - [[agents/lee-hoyeon-2026-harness-engineering|Harness Engineering (이호연)]]. 스킬을 harness 구성 항목 중 하나로 위치시키는 상위 프레임이다.

@@ -77,13 +77,13 @@ TurboQuant은 고차원 벡터를 좌표당 몇 비트로 압축하면서 벡터
 
 ### 벡터 양자화가 필요한 세 자리
 
-vector quantization은 Shannon의 source coding 이론에 뿌리를 둔 오래된 문제지만, 현재 수요는 대형 모델 서빙과 벡터 데이터베이스에서 나온다. 논문은 세 가지 응용을 든다.
+vector quantization은 Shannon의 source coding 이론에 뿌리를 둔 오래된 문제지만, 현재 수요는 대형 모델 서빙과 vector database에서 나온다. 논문은 세 가지 응용을 든다.
 
 | 응용 | 압축 대상 | 보존해야 하는 성질 |
 |---|---|---|
 | 대형 언어 모델 배포 | 가중치와 활성값 | 활성값과 가중치 사이의 inner product |
 | decoder 기반 Transformer의 KV cache | 이전에 생성한 토큰의 key와 value 임베딩 | 임베딩 사이의 inner product와 거리 |
-| 벡터 데이터베이스의 ANN search | 데이터베이스에 저장된 임베딩 | query 벡터와의 inner product 추정 정확도 |
+| vector database의 ANN search | 데이터베이스에 저장된 임베딩 | query 벡터와의 inner product 추정 정확도 |
 
 세 자리의 병목은 성격이 같다. 지연 시간의 상당 부분이 연산 자체가 아니라 가속기의 HBM과 SRAM 사이, 또는 분산 클러스터 노드 사이의 통신에서 발생한다. 벡터를 압축하면 이 통신량이 줄어 추론 비용이 내려간다.
 
@@ -451,7 +451,7 @@ recall 못지않게 큰 차이가 indexing 시간에서 나온다. 4비트 양�
 | RabitQ | arXiv:2409.09913 | grid 기반 PQ. preprocessing이 필요 없다는 점은 같으나 vectorization이 없어 느리다 |
 | RotateKV | arXiv:2501.16383 | outlier 채널에 더 높은 비트를 배정하는 전략의 출처 중 하나 |
 
-응용 맥락으로는 벡터 데이터베이스(Elasticsearch, Qdrant, pgvector, Pinecone)와 retrieval-augmented generation 문헌, ColBERT 계열 정보 검색을 인용한다. 참고문헌에 GraphRAG 논문도 포함되어 있다.
+응용 맥락으로는 vector database(Elasticsearch, Qdrant, pgvector, Pinecone)와 retrieval-augmented generation 문헌, ColBERT 계열 정보 검색을 인용한다. 참고문헌에 GraphRAG 논문도 포함되어 있다.
 
 ## 한계
 

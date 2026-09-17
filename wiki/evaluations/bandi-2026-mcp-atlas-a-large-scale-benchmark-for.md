@@ -78,7 +78,7 @@ MCP는 LLM 에이전트가 외부 도구를 발견하고 호출하는 계층의 
 |---|---|---|---|
 | 프로그램적 검증 | MCP-Universe, Toolathlon, MCPMark | 형식, 정적, 동적 evaluator와 실시간 ground truth 검증, 라이브 환경 전용 검증 스크립트 | 수작업 task 작성과 맞춤 검증기의 비용 때문에 task 250개 미만 |
 | 자동 생성 | MCPEval | 676개 task 규모 | task 품질과 자연스러움 |
-| 전체론적 LLM-as-judge | MCP-Bench, LiveMCPBench | 규모 | 문체 편향. 장황한 응답과 간결한 정답이 다른 점수를 받아 재현성 하락 |
+| 전체론적 LLM-as-a-Judge | MCP-Bench, LiveMCPBench | 규모 | 문체 편향. 장황한 응답과 간결한 정답이 다른 점수를 받아 재현성 하락 |
 | 서버 범위 확장 | MCPVerse, MCP-RADAR | 넓은 서버 범위 | 부분적으로 합성이나 mock 구현에 의존해 실제 성능 예측력 제한 |
 
 MCP-Universe가 제기한 unknown-tools 문제, 즉 에이전트가 도구를 호출하기 전에 어떤 도구가 관련 있는지 먼저 찾아내야 한다는 문제는 MCP-Atlas의 distractor 설계로 이어졌다.

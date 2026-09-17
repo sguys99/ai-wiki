@@ -44,7 +44,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-Headroom은 AI 에이전트가 읽어들이는 모든 텍스트, 곧 tool 출력과 로그, RAG 청크, 파일, 대화 이력을 LLM에 닿기 전에 압축하는 context compression layer다. README는 같은 답을 유지하면서 토큰을 60~95% 줄인다고 주장한다. 도입 방식은 세 가지다. 코드에 인라인으로 `compress(messages)`를 부르는 library, 코드를 한 줄도 고치지 않고 앞단에 세우는 proxy(`headroom proxy --port 8787`), 코딩 에이전트를 통째로 감싸는 `headroom wrap claude` 형태의 agent wrap이다. 여기에 MCP 서버(`headroom_compress`, `headroom_retrieve`, `headroom_stats`)와 Claude, Codex, Gemini가 공유하는 cross-agent memory, 압축 원본을 로컬에 캐시해 두었다가 필요할 때 되돌리는 reversible 압축(CCR)이 결합된다. 전부 로컬에서 실행되므로 데이터가 사용자 머신을 떠나지 않으며, 라이선스는 Apache 2.0이다.
+Headroom은 AI 에이전트가 읽어들이는 모든 텍스트, 곧 tool 출력과 로그, RAG chunk, 파일, 대화 이력을 LLM에 닿기 전에 압축하는 context compression layer다. README는 같은 답을 유지하면서 토큰을 60~95% 줄인다고 주장한다. 도입 방식은 세 가지다. 코드에 인라인으로 `compress(messages)`를 부르는 library, 코드를 한 줄도 고치지 않고 앞단에 세우는 proxy(`headroom proxy --port 8787`), 코딩 에이전트를 통째로 감싸는 `headroom wrap claude` 형태의 agent wrap이다. 여기에 MCP 서버(`headroom_compress`, `headroom_retrieve`, `headroom_stats`)와 Claude, Codex, Gemini가 공유하는 cross-agent memory, 압축 원본을 로컬에 캐시해 두었다가 필요할 때 되돌리는 reversible 압축(CCR)이 결합된다. 전부 로컬에서 실행되므로 데이터가 사용자 머신을 떠나지 않으며, 라이선스는 Apache 2.0이다.
 
 ## 1. 자료 정보 (Document Information)
 

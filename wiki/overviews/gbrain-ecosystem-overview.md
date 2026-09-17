@@ -69,7 +69,7 @@ GBrain은 공개 직후 빠르게 퍼졌다. [[applications/vectorize-2026-gbrai
 
 [[applications/liu-2026-rag-llm-wiki-or-gbrain]]은 같은 문제를 context window 쪽에서 설명한다. context window는 모델이 한 번에 받아들일 수 있는 토큰 길이 한도를 뜻하는데, 저자는 이를 세션이 끝날 때마다 지워지는 화이트보드에 비유한다. 한도가 100만 토큰이어도 30만에서 40만 토큰 구간, 즉 한도의 30~40% 지점에서 성능 저하가 시작되므로 한도를 늘리는 방향으로는 문제가 풀리지 않는다고 본다. 다만 이 성능 저하 수치의 출처는 원문이 밝히지 않는다.
 
-[[applications/techwealth-hub-2026-garry-tan-gbrain-explained]]는 문제를 저장 위치 쪽에서 잡는다. 대화 이력을 그대로 쌓는 방식과 문서를 벡터로 색인해 질의마다 꺼내 오는 방식 모두 원본이 어디에 있는지가 흐려진다는 공통 약점을 갖는다는 지적이다.
+[[applications/techwealth-hub-2026-garry-tan-gbrain-explained]]는 문제를 저장 위치 쪽에서 잡는다. 대화 이력을 그대로 쌓는 방식과 문서를 벡터로 인덱싱해 질의마다 꺼내 오는 방식 모두 원본이 어디에 있는지가 흐려진다는 공통 약점을 갖는다는 지적이다.
 
 세 자료의 진단이 하나로 모이는 지점이 compounding이라는 개념이다. 사용할수록 저장된 내용 자체가 정돈되고 두꺼워져야 한다는 요구이며, [[applications/gajjar-2026-gbrain-vs-computer-memory]]의 마지막 문장 "Memory that compounds beats memory that just retrieves"가 이를 압축한다.
 
@@ -100,9 +100,9 @@ Liu는 아키텍처 계보를 따라 가로로 자른다. 같은 개인 규모 �
 
 ## 핵심 개념
 
-**compounding**은 사용할수록 시스템이 스스로 나아지는 성질을 가리킨다. [[applications/vectorize-2026-gbrain-review-honest-assessment]]는 이 성질이 사후에 덧붙은 기능이 아니라 설계에 들어 있다는 점을 GBrain의 가장 두드러진 특징으로 꼽는다. [[applications/liu-2026-rag-llm-wiki-or-gbrain]]은 반대 사례로 RAG를 든다. 문서를 아무리 많이 색인해도 100번째 질의가 첫 번째 질의보다 나아지지 않는다는 것이다.
+**compounding**은 사용할수록 시스템이 스스로 나아지는 성질을 가리킨다. [[applications/vectorize-2026-gbrain-review-honest-assessment]]는 이 성질이 사후에 덧붙은 기능이 아니라 설계에 들어 있다는 점을 GBrain의 가장 두드러진 특징으로 꼽는다. [[applications/liu-2026-rag-llm-wiki-or-gbrain]]은 반대 사례로 RAG를 든다. 문서를 아무리 많이 인덱싱해도 100번째 질의가 첫 번째 질의보다 나아지지 않는다는 것이다.
 
-**source of truth와 derived index의 분리**는 이 시스템의 운영 규칙이 나오는 자리다. [[applications/techwealth-hub-2026-garry-tan-gbrain-explained]]가 인용한 문장은 "The vector database is a derived index, not the source of truth"다. 파생 색인이 낡으면 답도 낡으므로 색인이 원본을 따라잡았는지 확인하는 절차가 필수가 된다.
+**source of truth와 derived index의 분리**는 이 시스템의 운영 규칙이 나오는 자리다. [[applications/techwealth-hub-2026-garry-tan-gbrain-explained]]가 인용한 문장은 "The vector database is a derived index, not the source of truth"다. 파생 인덱스가 낡으면 답도 낡으므로 인덱스가 원본을 따라잡았는지 확인하는 절차가 필수가 된다.
 
 **compiled truth와 append-only timeline**은 페이지 하나의 내부 배치다. 상단에는 증거가 바뀔 때마다 다시 쓰이는 현재 결론이 놓이고, 하단에는 그 결론에 이르게 한 증거가 시간순으로 쌓이며 지워지지 않는다. [[applications/gajjar-2026-gbrain-vs-computer-memory]]와 [[applications/techwealth-hub-2026-garry-tan-gbrain-explained]], [[applications/vectorize-2026-gbrain-review-honest-assessment]], [[applications/liu-2026-rag-llm-wiki-or-gbrain]] 네 편이 같은 배치를 서술한다. Vectorize는 이 배치가 푸는 문제를 명시한다. 갱신할 때 옛 내용을 덮어쓰면 이력이 사라지고 계속 덧붙이면 페이지가 무한히 커지는데, 둘을 위아래로 나누면 두 요구를 함께 만족시킬 수 있다는 것이다.
 
@@ -126,7 +126,7 @@ Liu는 아키텍처 계보를 따라 가로로 자른다. 같은 개인 규모 �
 
 층을 나눈 결과 읽기와 쓰기의 방향이 고정된다. 사람과 에이전트는 왼쪽 markdown에 쓰고 질의는 가운데 층을 통해 읽으며, 가운데 층에 직접 쓰는 경로가 없다. 이 고정이 앞의 derived index 규정과 뒤의 검증 절차가 성립하는 전제다.
 
-[[applications/gajjar-2026-gbrain-vs-computer-memory]]도 같은 배치를 짧게 요약한다. 저장 위치는 git 저장소 안의 markdown, 색인 대상은 markdown 파일과 people page와 calendar 데이터, 검색 방식은 Postgres와 pgvector를 쓰는 hybrid search라는 서술이다. [[applications/mantena-2026-hermes-gbrain-setup-vps]]는 이 배치를 디렉토리 규칙으로 옮긴다. 코드가 있는 `~/gbrain`과 데이터가 쌓이는 `~/brain`을 섞어 쓰지 말라는 것이 가이드의 첫 번째 경고다.
+[[applications/gajjar-2026-gbrain-vs-computer-memory]]도 같은 배치를 짧게 요약한다. 저장 위치는 git 저장소 안의 markdown, 인덱싱 대상은 markdown 파일과 people page와 calendar 데이터, 검색 방식은 Postgres와 pgvector를 쓰는 hybrid search라는 서술이다. [[applications/mantena-2026-hermes-gbrain-setup-vps]]는 이 배치를 디렉토리 규칙으로 옮긴다. 코드가 있는 `~/gbrain`과 데이터가 쌓이는 `~/brain`을 섞어 쓰지 말라는 것이 가이드의 첫 번째 경고다.
 
 ### 에이전트 루프
 
@@ -178,7 +178,7 @@ Tan 본인이 운영하는 brain의 규모가 자료마다 다르다. 값이 틀
 
 두 자료가 반대 방향으로 서술한다. [[applications/vectorize-2026-gbrain-review-honest-assessment]]는 first-party 패키지가 없는 스택으로 Claude Code, Cursor, Codex, CrewAI, LangGraph, LlamaIndex, AutoGen, n8n, Dify, Pipecat, LiteLLM을 나열하며 Integration breadth에 5점 만점 중 2점을 준다.
 
-[[applications/garrytan-gbrain]]의 README는 Claude Code를 `claude mcp add gbrain -- gbrain serve` 한 줄로 붙이며 서버도 토큰도 터널도 필요 없다고 적고, Cursor와 Windsurf는 MCP 설정 항목 하나로 처리한다. 리뷰가 리뷰 시점의 README를 근거로 삼았으므로 그 사이에 통합이 추가됐을 수 있다. 판본 차이가 아니라면 first-class 스킬 팩이 있는 것과 MCP로 붙는 것을 리뷰가 구분해 세었다는 해석도 가능하다. 어느 쪽인지는 확정되지 않는다.
+[[applications/garrytan-gbrain]]의 README는 Claude Code를 `claude mcp add gbrain -- gbrain serve` 한 줄로 붙이며 서버도 토큰도 터널도 필요 없다고 적고, Cursor와 Windsurf는 MCP 설정 항목 하나로 처리한다. 리뷰가 리뷰 시점의 README를 근거로 삼았으므로 그 사이에 통합이 추가됐을 수 있다. 판본 차이가 아니라면 first-class skill pack이 있는 것과 MCP로 붙는 것을 리뷰가 구분해 세었다는 해석도 가능하다. 어느 쪽인지는 확정되지 않는다.
 
 ### 설치 명령의 상반된 권고
 
@@ -332,7 +332,7 @@ Tan 본인이 운영하는 brain의 규모가 자료마다 다르다. 값이 틀
 | 용어 | 뜻 |
 |---|---|
 | compounding | 사용할수록 저장된 내용 자체가 정돈되고 두꺼워져 같은 질문에 대한 답이 나아지는 성질 |
-| derived index | source of truth가 아니라 원본에서 파생된 색인. GBrain에서 vector database가 여기에 해당한다 |
+| derived index | source of truth가 아니라 원본에서 파생된 인덱스. GBrain에서 vector database가 여기에 해당한다 |
 | compiled truth와 append-only timeline | 페이지 상단에 현재 결론을 두고 하단에 증거를 시간순으로 쌓는 배치 |
 | typed edge | 페이지 사이 관계에 이름을 붙인 것. LLM 호출 없이 문법 매칭만으로 만들어진다 |
 | thin harness와 fat skills | 실행 환경을 약 200줄로 얇게 두고 지능을 전부 markdown 스킬 파일에 두는 설계 |

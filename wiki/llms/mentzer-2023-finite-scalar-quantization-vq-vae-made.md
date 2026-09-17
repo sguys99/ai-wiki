@@ -177,7 +177,7 @@ FSQ는 d차원 표현 z ∈ R^d를 유한한 codeword 집합으로 양자화한�
 
 Figure 1의 예는 d = 3, L = 3이다. codebook은 C = {(−1, −1, −1), (−1, −1, 0), (−1, −1, 1), ..., (1, 1, 1)}이고 |C| = 27이다. 그림에서 인코더 출력 z는 정육면체 안의 한 점이고, 양자화 결과 ẑ = (1, 0, −1)은 그 점에서 가장 가까운 격자점이다. C의 벡터를 열거하면 임의의 ẑ를 {1, ..., L^d}의 정수 하나로 보내는 전단사가 생기므로, VQ 앞뒤 층의 출력과 입력 차원만 맞추면 Transformer 학습 같은 어떤 설정에서도 VQ를 FSQ로 바꿀 수 있다.
 
-반올림의 그래디언트는 VQ-VAE처럼 STE로 통과시키며 그래디언트를 1로 대체한다. ML 프레임워크에서는 stop gradient(sg) 연산 한 줄로 `round_ste: x ↦ x + sg(round(x) − x)`처럼 구현한다. 재구성 손실로 학습하는 오토인코더 안에 FSQ를 두면 재구성 손실을 줄이는 방향의 그래디언트가 인코더에 전달되어 정보를 여러 양자화 bin에 퍼뜨리도록 강제한다. 즉 인코더가 모든 codeword를 쓰는 편이 손실이 낮으므로, 보조 손실 없이도 모든 codeword를 쓰는 양자화기가 된다.
+반올림의 그래디언트는 VQ-VAE처럼 STE로 통과시키며 그래디언트를 1로 대체한다. ML 프레임워크에서는 stop gradient(sg) 연산 한 줄로 `round_ste: x ↦ x + sg(round(x) − x)`처럼 구현한다. 재구성 손실로 학습하는 autoencoder 안에 FSQ를 두면 재구성 손실을 줄이는 방향의 그래디언트가 인코더에 전달되어 정보를 여러 양자화 bin에 퍼뜨리도록 강제한다. 즉 인코더가 모든 codeword를 쓰는 편이 손실이 낮으므로, 보조 손실 없이도 모든 codeword를 쓰는 양자화기가 된다.
 
 ### FSQ가 동작하는 직관
 
@@ -265,12 +265,12 @@ VQ는 크기 |C| × d의 codebook을 학습한다. 흔한 설정인 |C| = 2^12 =
 
 ### 적용 대상 모델
 
-FSQ를 검증하는 두 모델 계열은 설계가 크게 다르다. 오토인코더가 convolutional인지 Transformer 기반인지, 생성 Transformer가 masked인지 완전 autoregressive인지, decoder-only인지 encoder-decoder인지가 모두 다르다. 그런데도 양자화기만 바꾸는 방식이 양쪽에서 통했다는 점이 drop-in replacement 주장의 근거다.
+FSQ를 검증하는 두 모델 계열은 설계가 크게 다르다. autoencoder가 convolutional인지 Transformer 기반인지, 생성 Transformer가 masked인지 완전 autoregressive인지, decoder-only인지 encoder-decoder인지가 모두 다르다. 그런데도 양자화기만 바꾸는 방식이 양쪽에서 통했다는 점이 drop-in replacement 주장의 근거다.
 
 | 항목 | MaskGIT (Chang et al., 2022) | UViM (Kolesnikov et al., 2022) |
 |---|---|---|
 | 과제 | 클래스 조건부 이미지 생성 | depth estimation, colorization, panoptic segmentation |
-| Stage I | convolutional VQ-GAN 오토인코더(Esser et al., 2020)를 재구성 목적으로 학습한 뒤 고정 | Transformer 기반 VQ-VAE가 목표 과제의 레이블 공간을 모델링 |
+| Stage I | convolutional VQ-GAN autoencoder(Esser et al., 2020)를 재구성 목적으로 학습한 뒤 고정 | Transformer 기반 VQ-VAE가 목표 과제의 레이블 공간을 모델링 |
 | side information | 없음 | 인코더와 디코더가 과제 입력(RGB 또는 grayscale 이미지)을 context로 받을 수 있음 |
 | Stage II | BERT 방식 masked Transformer가 양자화 표현을 예측 | encoder-decoder Transformer가 과제 입력을 받아 양자화 토큰으로 dense 레이블을 예측 |
 | 추론 | MASK 토큰과 클래스 토큰으로 시작해 확신도 높은 위치부터 토큰을 채우는 과정을 반복 | 입력에 조건화해 코드를 autoregressive하게 샘플링한 뒤 VQ-VAE 디코더에 입력 |
@@ -300,7 +300,7 @@ MaskGIT의 Stage II는 표현 ẑ의 토큰 일부를 무작위로 MASK 토큰�
 
 | 지표 | 정의 | 비고 |
 |---|---|---|
-| Reconstruction FID | GAN 손실로 학습한 오토인코더에 검증 이미지 5만 장을 통과시켜 얻은 FID | Stage II Transformer가 데이터를 완벽히 모델링했을 때 도달할 수 있는 FID. ADM TensorFlow Suite로 5만 장 재구성을 학습 집합과 비교 |
+| Reconstruction FID | GAN 손실로 학습한 autoencoder에 검증 이미지 5만 장을 통과시켜 얻은 FID | Stage II Transformer가 데이터를 완벽히 모델링했을 때 도달할 수 있는 FID. ADM TensorFlow Suite로 5만 장 재구성을 학습 집합과 비교 |
 | Codebook Usage | 검증 집합을 인코딩할 때 한 번 이상 쓰인 codeword의 비율 | |
 | Sampling FID | Stage II Transformer로 클래스 조건부 샘플링한 표현을 디코딩해 얻은 FID | |
 | Compression Cost | Transformer 출력과 entropy coding으로 표현을 무손실 압축했을 때의 비트 수 | masked Transformer는 결정적 masking 스케줄만 있으면 되며 M2T(Mentzer et al., 2023)의 스케줄을 쓴다 |
@@ -493,7 +493,7 @@ codebook splitting은 UViM이 codebook 미활용을 막으려고 채택한 Linde
 
 ## 관련 페이지
 
-- [[llms/rombach-2022-high-resolution-image-synthesis-with-latent]]: LDM의 VQ-reg 오토인코더는 디코더 안에 벡터 양자화 층을 둔다. FSQ는 그 양자화 층을 단순화한 방식이라 latent tokenizer 계보에서 이어진다
+- [[llms/rombach-2022-high-resolution-image-synthesis-with-latent]]: LDM의 VQ-reg autoencoder는 디코더 안에 벡터 양자화 층을 둔다. FSQ는 그 양자화 층을 단순화한 방식이라 latent tokenizer 계보에서 이어진다
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform]]: Cosmos의 discrete tokenizer가 FSQ로 6차원 latent를 (8, 8, 8, 5, 5, 5) 레벨로 양자화해 어휘 크기 64,000을 만든다. 이 논문 Table 1의 2^16 권장값과 같은 구성이다
 - [[physical-ai/luo-2025-sonic-supersizing-motion-tracking]]: 모션 토큰에 VQ-VAE 대신 FSQ를 채택하며 codebook collapse가 없고 commitment 손실과 codebook EMA가 필요 없다는 점을 근거로 든다
 - [[overviews/glossary-llms]]: 양자화, 그래디언트, 임베딩 등 이 페이지가 따르는 용어 표기

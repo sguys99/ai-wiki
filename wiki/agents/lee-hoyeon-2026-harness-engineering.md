@@ -172,7 +172,7 @@ my-project/
 
 | 도구 | 역할 | 형태 |
 |---|---|---|
-| Skills | 반복 작업의 레시피화 | `/commit`, `/review` 같은 슬래시 명령 |
+| Skills | 반복 작업의 레시피화 | `/commit`, `/review` 같은 슬래시 커맨드 |
 | 훅 | 자동 안전장치 | Pre(차단), Post(검사), Stop(일지), Notification(알림) |
 | Agents | 전문가 팀원 | 서브에이전트 파견 또는 팀 구성 |
 | MCP | 외부 시스템 연결 | DB, Slack, Linear 등 연동 |

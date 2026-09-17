@@ -65,7 +65,7 @@ tags: [akb, llmwiki, gbrain, agent-memory, shared-memory, knowledge-base, memory
 
 **brain-first query policy**는 외부 검색을 하기 전에 내부 knowledge base를 먼저 조회하도록 시스템에 내장하는 정책이다. 보고서는 이를 GBrain에서 가져올 기능으로 분류한다.
 
-**tiered enrichment**는 엔티티에 단계적으로 메타 정보를 채워 넣는 방식이다. 사람, 회사, 프로젝트처럼 반복 등장하는 대상의 페이지를 자동으로 두껍게 만드는 기능을 가리키며, 보고서는 이를 GBrain의 강점으로 표기한다.
+**tiered enrichment**는 entity에 단계적으로 메타 정보를 채워 넣는 방식이다. 사람, 회사, 프로젝트처럼 반복 등장하는 대상의 페이지를 자동으로 두껍게 만드는 기능을 가리키며, 보고서는 이를 GBrain의 강점으로 표기한다.
 
 **memory governance**는 저장된 기억에 타입과 상태값과 출처를 부여해 품질과 수명을 통제하는 활동을 묶어 부르는 이름이다. 보고서는 AKB가 backend만으로는 차별화가 약하므로 governance까지 올라가야 한다고 본다.
 
@@ -178,7 +178,7 @@ AKB의 장점 세 가지가 모두 구조에 관한 것이고 단점 세 가지�
 | 검색 계층 | DB/MCP 중심 | wiki 탐색 + search index | multi-layer brain query |
 | 출판 / 공유 | 약함 | **매우 강함** | 중간 |
 | 정합성 / lint | 제한적 | 강함 | 강함 |
-| 엔티티 확장 | 제한적 | 위키 페이지 중심 | tiered enrichment 강함 |
+| entity 확장 | 제한적 | 위키 페이지 중심 | tiered enrichment 강함 |
 | 스케줄링 / recurring job | 약함 | 제한적 | **강함** |
 | 운영 오버헤드 | 낮음 | 낮음에서 중간 | 높음 |
 
@@ -260,7 +260,7 @@ AKB의 장점 세 가지가 모두 구조에 관한 것이고 단점 세 가지�
 | 3 | brain-first query policy | 외부 검색 전에 AKB를 먼저 조회하는 정책 내장 |
 | 4 | scheduled briefing / digest | 최근 업데이트, 위험 이슈, 열린 질문 자동 요약 |
 
-이 네 기능은 4.3절 보조 비교표에서 AKB가 낮은 평가를 받은 항목과 정확히 대응한다. maintenance jobs는 "정합성 / lint 제한적"에, entity enrichment는 "엔티티 확장 제한적"에, scheduled briefing은 "스케줄링 / recurring job 약함"에 각각 대응한다.
+이 네 기능은 4.3절 보조 비교표에서 AKB가 낮은 평가를 받은 항목과 정확히 대응한다. maintenance jobs는 "정합성 / lint 제한적"에, entity enrichment는 "엔티티 확장 제한적"에, scheduled briefing은 "스케줄링 / recurring job 약함"에 각각 대응한다. <!-- lint-terms: ignore -->
 
 brain-first query policy는 성격이 조금 다르다. 나머지 셋이 저장소 안에서 수행되는 작업이라면, 이것은 에이전트가 질문을 받았을 때 어디를 먼저 보는지를 정하는 규칙이다. 내부 knowledge base를 외부 검색보다 우선하게 만들어야 그 knowledge base에 투자할 이유가 생긴다.
 
@@ -301,7 +301,7 @@ Layer 2와 Layer 3의 순서에 주목할 만하다. 운영 계층이 인터페�
 | 단계 | 덮으려는 약점 서술 | 대응하는 비교표 항목 |
 |---|---|---|
 | Phase 1 | "memory의 품질 관리, 수명주기 관리, 정리 자동화가 부족해 보인다" (5절) | 자동 유지보수 "상대적으로 약함" (3절) |
-| Phase 2 | "enrichment, citation repair, staleness 관리, entity lifecycle 같은 고차 memory 운영 기능이 약하게 보인다" (4.1절) | 정합성 / lint "제한적", 엔티티 확장 "제한적", 스케줄링 / recurring job "약함" (4.3절) |
+| Phase 2 | "enrichment, citation repair, staleness 관리, entity lifecycle 같은 고차 memory 운영 기능이 약하게 보인다" (4.1절) | 정합성 / lint "제한적", entity 확장 "제한적", 스케줄링 / recurring job "약함" (4.3절) |
 | Phase 3 | "사람에게 바로 보여줄 수 있는 knowledge base 경험은 약하다" (4.2절) | 사람 친화적 가독성 "제한적" (3절), 출판 / 공유 "약함" (4.3절) |
 
 단계의 순서도 기능 사이의 의존 관계를 따른다. Phase 1이 memory schema와 lifecycle 상태값을 정의해야 Phase 2의 stale 탐지와 contradiction 탐지가 검사할 대상을 갖게 되고, Phase 1이 tenant 경계를 세워야 Phase 3의 permission-aware publishing이 나눌 기준을 갖게 된다.
@@ -356,7 +356,7 @@ Layer 2와 Layer 3의 순서에 주목할 만하다. 운영 계층이 인터페�
 | compiled artifact | 실시간 갱신 저장소가 아니라 한 번 정리해 만들어 낸 결과물. 보고서가 llmwiki의 성격을 규정할 때 쓴 표현이다 |
 | lifecycle 관리 | memory entry에 draft, active, stale, archived 같은 상태값을 부여해 수명을 추적하는 기능 |
 | brain-first query policy | 외부 검색을 하기 전에 내부 knowledge base를 먼저 조회하도록 내장하는 정책 |
-| tiered enrichment | 엔티티에 단계적으로 메타 정보를 채워 넣는 방식. 보고서가 GBrain의 강점으로 표기한 항목이다 |
+| tiered enrichment | entity에 단계적으로 메타 정보를 채워 넣는 방식. 보고서가 GBrain의 강점으로 표기한 항목이다 |
 
 ## 관련 페이지
 

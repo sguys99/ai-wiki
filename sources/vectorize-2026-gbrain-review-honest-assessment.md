@@ -97,7 +97,7 @@ Vectorize.io가 게시한 GBrain 리뷰로, 스스로를 비판이 아니라 hon
 |---|---|
 | 단일 운영자 설계 | 다중 사용자 공유는 PGLite에서 Postgres로 전환하고, 여러 기기에 걸쳐 git 작업을 관리하고, index와 markdown의 동기화를 유지해야 한다. 저자는 두 층을 구분한다. 원격 MCP HTTP 서버(`gbrain serve --http`)는 client별 scoping을 갖춘 OAuth 2.1로 multi-client 접근을 first-class 지원하지만, 서로 다른 사용자가 서로 다른 brain을 격리해 쓰는 multi-operator 접근은 설계 중심이 아니다 |
 | managed cloud 없음 | self-hosted 전용이다. 로컬은 PGLite, 공유 모드는 외부 Postgres를 쓴다(Tan은 Supabase). "Hindsight Cloud"에 해당하는 것이 없어 managed 가입 절차도 control plane도 없다. Postgres와 Bun을 직접 운영하는 팀에는 문제가 없지만 memory-as-a-service를 원하면 맞지 않는다 |
-| 통합 범위가 좁다 | first-class 스킬 팩은 OpenClaw와 Hermes Agent에만 있고 나머지는 개인이 유지하는 MCP 서버로 연결한다. Claude Code, Cursor, Codex, CrewAI, LangGraph, LlamaIndex, AutoGen, n8n, Dify, Pipecat, LiteLLM 어느 것에도 first-party 패키지가 없어 팀이 연결부를 직접 작성해야 한다 |
+| 통합 범위가 좁다 | first-class skill pack은 OpenClaw와 Hermes Agent에만 있고 나머지는 개인이 유지하는 MCP 서버로 연결한다. Claude Code, Cursor, Codex, CrewAI, LangGraph, LlamaIndex, AutoGen, n8n, Dify, Pipecat, LiteLLM 어느 것에도 first-party 패키지가 없어 팀이 연결부를 직접 작성해야 한다 |
 | 스키마 규율이 필요하다 | 스키마는 권장 문서에 있고 워크플로와 레시피는 사람이 쓴다. 기존 스킬에 맞지 않는 사실이 들어와도 구조가 자동 합성되지 않는다. 문서 자체가 set-and-forget이면 가치가 아니라 오류가 누적된다고 밝히고 있다 |
 | retrieval 단계의 multi-hop graph와 temporal reasoning 부재 | write 시점에 typed entity edge를 뽑아 backlink 랭킹에 쓰지만 retriever가 multi-hop 순회를 우선하지 않는다. "내가 YC에서 만난 사람들이 창업한 회사에 투자한 사람은 누구인가"는 graph 순회가, "지난주에는 참이었지만 지금은 아닌 것은 무엇인가"는 시간에 따른 상태 비교가 필요한데 둘 다 주된 전략이 아니다 |
 | 성숙도와 설치 gotcha | v0.30 계열은 breaking change가 잦다. 최근 릴리스 구간(v0.28.x, v0.30.x)은 BrainBench-Real session 캡처, Voyage 기반 멀티모달 ingestion, npm squat 탐지, dream-cycle synthesize 개선을 추가했다. 설치 함정은 `bun install -g github:garrytan/gbrain`(postinstall hook 차단)과 `npm install -g gbrain`(squat된 레지스트리 패키지)이고 둘 다 GitHub 이슈로 추적된다 |
@@ -142,7 +142,7 @@ Vectorize.io가 게시한 GBrain 리뷰로, 스스로를 비판이 아니라 hon
 
 ### 4.3 day-one 경험
 
-30분 설치는 실제라고 평가한다. 다만 brain은 import 전까지 비어 있다. `gbrain import ~/notes/`가 기존 markdown(Obsidian, Logseq, 일반 텍스트)을 색인해 day-one retrieval에 의미를 준다. 아무것도 넣지 않고 시작하면 쓸 만한 retrieval을 얻기까지 실제 에이전트 운영과 페이지 write가 필요하다.
+30분 설치는 실제라고 평가한다. 다만 brain은 import 전까지 비어 있다. `gbrain import ~/notes/`가 기존 markdown(Obsidian, Logseq, 일반 텍스트)을 인덱싱해 day-one retrieval에 의미를 준다. 아무것도 넣지 않고 시작하면 쓸 만한 retrieval을 얻기까지 실제 에이전트 운영과 페이지 write가 필요하다.
 
 ### 4.4 장기 신호
 

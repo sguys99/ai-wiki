@@ -23,7 +23,7 @@ A주, 홍콩, 미국, 일본, 한국, 대만 6개 시장의 관심종목을 매�
 - **라이선스**: MIT (README 본문에 "MIT License © 2026 ZhuLinsen"으로 표기. 저장소를 활용할 경우 원 저장소 링크를 남기는 attribution을 권장한다고 덧붙인다)
 - **스택**: Python 3.10 이상, FastAPI 서비스, GitHub Actions와 Docker 배포 지원
 - **원본**: 저장소 하위 디렉토리에 놓인 영문판 README. 본문 상단 언어 전환 링크가 간체 중국어판을 `../README.md`로 가리키므로 중국어판이 저장소 최상위 원본이고 영문판이 번역본이다. 번체 중국어판(`README_CHT.md`)도 함께 제공된다.
-- **README가 위임한 별도 문서**: `INDEX_EN.md`(문서 색인), `full-guide_EN.md`(전체 가이드), `LLM_CONFIG_GUIDE_EN.md`(모델 설정), `market-support.md`(시장 경계와 데이터 소스 커버리지). README는 세부 규칙 대부분을 이 문서들로 넘긴다.
+- **README가 위임한 별도 문서**: `INDEX_EN.md`(문서 인덱스), `full-guide_EN.md`(전체 가이드), `LLM_CONFIG_GUIDE_EN.md`(모델 설정), `market-support.md`(시장 경계와 데이터 소스 커버리지). README는 세부 규칙 대부분을 이 문서들로 넘긴다.
 - **후원과 배지**: README 상단에 GitHub stars, CI, MIT, Python 3.10+, GitHub Actions, Docker Hub 배지가 붙어 있다. 별도 Sponsors 절에 Anspire와 SerpAPI 배너가 있다.
 
 ## 2. 주요 기여 (Key Contributions)
@@ -49,7 +49,7 @@ README가 부제로 요약한 흐름은 세 단계다. 관심종목을 매일 �
 
 | 구분 | 지원 대상 |
 |---|---|
-| AI 모델 | Anspire, AIHubMix, Gemini, OpenAI 호환 프로바이더, DeepSeek, Qwen, Claude, Ollama |
+| AI 모델 | Anspire, AIHubMix, Gemini, OpenAI 호환 provider, DeepSeek, Qwen, Claude, Ollama |
 | 시장 데이터 | TickFlow, AkShare, Tushare, Pytdx, Baostock, YFinance, Longbridge |
 | 뉴스 검색 | Anspire, SerpAPI, Tavily, Bocha, Brave, MiniMax, SearXNG |
 | 소셜 감성 | Stock Sentiment API를 통한 Reddit, X, Polymarket 데이터. 미국 주식 전용 |
@@ -80,9 +80,9 @@ README는 Secrets를 네 묶음으로 나눈다. 모델과 알림은 각각 최�
 | `GEMINI_API_KEY` | Google Gemini API 키 | 선택 |
 | `ANTHROPIC_API_KEY` | Anthropic Claude API 키 | 선택 |
 | `OPENAI_API_KEY` | OpenAI 호환 API 키. DeepSeek과 Qwen 호환 서비스 포함 | 선택 |
-| `OPENAI_BASE_URL` / `OPENAI_MODEL` | OpenAI 호환 프로바이더를 쓸 때 지정 | 선택 |
+| `OPENAI_BASE_URL` / `OPENAI_MODEL` | OpenAI 호환 provider를 쓸 때 지정 | 선택 |
 
-README는 프로바이더 하나와 API 키 하나로 시작하라고 안내하고, 멀티 모델 라우팅과 이미지 인식과 로컬 모델과 고급 라우팅은 `LLM_CONFIG_GUIDE_EN.md`로 위임한다. Ollama는 로컬이나 Docker 배포에 더 적합하고 GitHub Actions에서는 클라우드 API 쪽이 대체로 원활하다고 덧붙인다.
+README는 provider 하나와 API 키 하나로 시작하라고 안내하고, 멀티 모델 라우팅과 이미지 인식과 로컬 모델과 고급 라우팅은 `LLM_CONFIG_GUIDE_EN.md`로 위임한다. Ollama는 로컬이나 Docker 배포에 더 적합하고 GitHub Actions에서는 클라우드 API 쪽이 대체로 원활하다고 덧붙인다.
 
 **알림 채널 (최소 하나 설정)**
 
@@ -112,7 +112,7 @@ README는 프로바이더 하나와 API 키 하나로 시작하라고 안내하�
 
 **뉴스 검색 (권장)**
 
-README는 뉴스 검색이 감성, 공시, 이벤트, 촉매 품질을 크게 높인다고 밝히고 가능하면 검색 프로바이더를 최소 하나 설정하라고 권한다.
+README는 뉴스 검색이 감성, 공시, 이벤트, 촉매 품질을 크게 높인다고 밝히고 가능하면 검색 provider를 최소 하나 설정하라고 권한다.
 
 | Secret | 설명 | 필수 여부 |
 |---|---|---|
@@ -206,7 +206,7 @@ README 상단에 Trendshift 배지가 붙어 있고 배지의 대체 텍스트�
 - **자매 프로젝트 통합은 계획 단계**: AlphaSift와 AlphaEvo는 현재 독립적으로 유지되며 후보 종목 임포트, 백테스트 검증, 리포트 핸드오프는 향후 통합 방향으로만 언급된다.
 - **멀티에이전트 오케스트레이션은 실험 단계**: README가 "experimental"로 표기한다.
 - **README 한 장으로는 검증 범위가 제한된다**: raw 자료가 README 단일 문서라서 내부 구현 세부는 확인할 수 없다. 펀더멘털 P0 timeout 의미, 거래 규칙, 데이터 소스 우선순위와 폴백 규칙, 예산 가드, `skill` 명명 호환성은 모두 `full-guide_EN.md`와 `LLM_CONFIG_GUIDE_EN.md`로 위임되어 있고 README에는 이름만 등장한다.
-- **추천 프로바이더 링크에 추천인 파라미터가 붙어 있다**: Anspire, AIHubMix, SerpAPI, TickFlow 링크에 `share_code`, `aff`, `ref`, `utm_source` 같은 추천 파라미터가 포함되어 있고 Anspire와 SerpAPI는 Sponsors 절에도 배너로 노출된다. 프로바이더 선택 근거를 읽을 때 참고할 사항이다.
+- **추천 provider 링크에 추천인 파라미터가 붙어 있다**: Anspire, AIHubMix, SerpAPI, TickFlow 링크에 `share_code`, `aff`, `ref`, `utm_source` 같은 추천 파라미터가 포함되어 있고 Anspire와 SerpAPI는 Sponsors 절에도 배너로 노출된다. provider 선택 근거를 읽을 때 참고할 사항이다.
 - **면책 고지**: README 말미의 Disclaimer는 이 프로젝트가 정보 제공과 교육 목적이며 AI가 생성한 분석은 투자 자문이 아니라고 밝힌다. 주식 투자에는 위험이 따르므로 직접 조사하고 필요하면 인가된 재무 자문가와 상의하라고 덧붙인다.
 
 ## 6. 관련 연구 (Related Work)

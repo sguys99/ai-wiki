@@ -417,7 +417,7 @@ raw transcript는 자동 생성 자막이라 고유명사가 상당수 잘못 �
 | transcript 표기 | 판정 표기 | 근거 |
 |---|---|---|
 | cloud code, clot code, claw code, clock code | Claude Code | 강좌 전체의 대상 제품이다 |
-| CloudMD | CLAUDE.md | 프로젝트 지시문 파일을 가리키는 문맥이다 |
+| CloudMD | CLAUDE.md | 프로젝트 지시 파일(instruction file)을 가리키는 문맥이다 |
 | enthropic | Anthropic | Claude Code 제작사다 |
 | Vortex AI, Vert.ex AI | Vertex AI | Google Cloud의 모델 서빙 제품이다 |
 | Asian platform, Asian factory | Agent Platform, Agent Factory | Google Cloud 제품명과 프로그램명이다 |

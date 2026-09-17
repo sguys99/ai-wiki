@@ -340,7 +340,7 @@ layer 하나는 target evidence, 로봇, observation 순서로 세 branch를 갱
 | K | 16 | 분포 갱신에 쓰는 상위 후보 수 |
 | M | 4 | 분포 갱신 반복 횟수 |
 
-각 반복 m에서 N개 시퀀스를 정규분포에서 뽑아 rollout하고 점수를 매긴 뒤, 상위 K개의 평균과 공분산으로 다음 분포를 갱신한다. planning value는 rollout 전체에 걸쳐 누적된다.
+각 반복 m에서 N개 시퀀스를 정규분포에서 뽑아 rollout하고 점수를 매긴 뒤, top-K 시퀀스의 평균과 공분산으로 다음 분포를 갱신한다. planning value는 rollout 전체에 걸쳐 누적된다.
 
 ```
 V(S_0, a_{0:T-1}) = Σ_t [ β_vis * Ĥ_vis_t − β_dist * |Ĥ_area_t − α| ]

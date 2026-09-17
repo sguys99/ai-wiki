@@ -145,7 +145,7 @@ project
         └── element
 ```
 
-`document`가 다섯 번째 authorable kind로, 이 척추 어디에든 붙는 개념을 서술한다. typed 관계가 의존, 연관, 포함, 서술의 의미를 더한다. 구현 증거는 노드의 path와 본문에 있지 별도의 `evidence` 관계를 만들어 두지 않았다. 모든 심볼을 색인하는 것이 목표가 아니라, 사람이나 에이전트가 capability를 이해하고 영향을 추적하고 올바른 증명을 실행하는 데 도움이 될 때 소스 산출물이 노드 자격을 얻는다. README는 이 원칙을 "curated, not exhaustive"로 요약한다.
+`document`가 다섯 번째 authorable kind로, 이 척추 어디에든 붙는 개념을 서술한다. typed 관계가 의존, 연관, 포함, 서술의 의미를 더한다. 구현 증거는 노드의 path와 본문에 있지 별도의 `evidence` 관계를 만들어 두지 않았다. 모든 심볼을 인덱싱하는 것이 목표가 아니라, 사람이나 에이전트가 capability를 이해하고 영향을 추적하고 올바른 증명을 실행하는 데 도움이 될 때 소스 산출물이 노드 자격을 얻는다. README는 이 원칙을 "curated, not exhaustive"로 요약한다.
 
 ### 관계는 선언한 파일이 소유한다
 

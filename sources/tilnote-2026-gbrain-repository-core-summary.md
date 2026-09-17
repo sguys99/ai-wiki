@@ -14,7 +14,7 @@ tags: [gbrain, architecture, contract-first, operations, security, versioning, k
 
 ## 한 줄 요약 (One-line Summary)
 
-GBrain 저장소를 두 가지 설계 원칙으로 읽어낸 한국어 정리다. 하나는 실행기를 얇게 두고 행동 로직을 스킬에 두는 "thin harness, fat skills"이고, 다른 하나는 `operations.ts`를 단일 진실 공급원(single source of truth)으로 삼는 계약 우선(contract-first) 설계다. v0.3.0부터 v0.9.1 이후까지의 버전 진화 순서를 하나의 흐름으로 제시한 점이 이 wiki의 다른 gbrain 자료와 구분되는 지점이다.
+GBrain 저장소를 두 가지 설계 원칙으로 읽어낸 한국어 정리다. 하나는 실행기를 얇게 두고 행동 로직을 스킬에 두는 "thin harness, fat skills"이고, 다른 하나는 `operations.ts`를 단일 진실의 원천(single source of truth)으로 삼는 계약 우선(contract-first) 설계다. v0.3.0부터 v0.9.1 이후까지의 버전 진화 순서를 하나의 흐름으로 제시한 점이 이 wiki의 다른 gbrain 자료와 구분되는 지점이다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -31,7 +31,7 @@ GBrain 저장소를 두 가지 설계 원칙으로 읽어낸 한국어 정리다
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
-**설계 원칙.** thin harness, fat skills와 계약 우선이다. 후자는 `operations.ts`를 단일 진실 공급원으로 삼는다는 뜻으로만 서술되며, 파생 경로의 구현은 설명하지 않는다.
+**설계 원칙.** thin harness, fat skills와 계약 우선이다. 후자는 `operations.ts`를 단일 진실의 원천으로 삼는다는 뜻으로만 서술되며, 파생 경로의 구현은 설명하지 않는다.
 
 **주요 기능 다섯 가지.**
 
@@ -69,7 +69,7 @@ GBrain 저장소를 두 가지 설계 원칙으로 읽어낸 한국어 정리다
 ## 7. 용어집 (Glossary)
 
 - **계약 우선(contract-first)**: 작업 정의를 먼저 고정하고 CLI와 MCP 같은 표면을 거기서 파생시키는 설계. GBrain에서 그 정의가 놓이는 자리가 `operations.ts`다.
-- **단일 진실 공급원(single source of truth)**: 같은 정보가 여러 곳에 흩어지지 않도록 원본을 한 자리로 정하는 원칙.
+- **단일 진실의 원천(single source of truth)**: 같은 정보가 여러 곳에 흩어지지 않도록 원본을 한 자리로 정하는 원칙.
 - **thin harness, fat skills**: harness는 얇게 두고 행동 로직은 교체 가능한 스킬에 두는 원칙. harness는 모델을 감싸 도구와 검증, 상태를 제공하는 실행 환경이다.
 - **자체 포함형 HTML(self-contained HTML)**: 외부 의존 없이 단일 파일만으로 열람할 수 있게 만든 발행 산출물.
 - **백링크 강제**: 페이지 사이의 연결을 한 방향만 남기지 않고 역방향까지 유지하도록 요구하는 운영 규칙. 점검 도구 check-backlinks가 이를 검사한다.

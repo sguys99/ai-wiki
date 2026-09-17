@@ -170,7 +170,7 @@ README 전체에서 추출한 서로 다른 `.ipynb` 파일명은 43개인데, �
 |---|---|---|---|
 | DeepEval | `deepeval` | correctness, faithfulness, contextual relevancy 테스트 케이스 | README에 명시 없음 |
 | GroUSE | `grouse` | GroUSE 프레임워크 6개 지표를 GPT-4로 평가하고, custom Llama 3.1 405B 평가자를 unit test로 meta-evaluate | GroUSE unit test |
-| End-to-End RAG Evaluation | RAGAS 연동 + LLM-as-judge | completeness, relevance, 환각 탐지 custom 지표 | RAG-12000 |
+| End-to-End RAG Evaluation | RAGAS 연동 + LLM-as-a-Judge | completeness, relevance, 환각 탐지 custom 지표 | RAG-12000 |
 | Open-RAG-Eval | `open-rag-eval` | UMBRELA 스코어링, AutoNuggetizer, 인용 및 환각 탐지 | FIQA 금융 데이터셋 |
 
 ### 3.9 Memory-Augmented와 Explainability
@@ -186,8 +186,8 @@ README 전체에서 추출한 서로 다른 `.ipynb` 파일명은 43개인데, �
 |---|---|
 | Agentic RAG with Contextual AI | Contextual AI 관리형 플랫폼으로 금융 문서 분석용 프로덕션 agentic RAG를 만든다. 구성 요소는 vision model로 복잡한 표와 차트, 다중 페이지 문서를 파싱하는 Document Parser, 상충 정보를 다루는 instruction-following reranker, RAG 용도로 환각을 최소화하도록 설계된 Grounded Language Model, 자연어 unit test 프레임워크 LMUnit이다 |
 | Graph RAG with Milvus | 텍스트 구절과 관계 triplet(subject-predicate-object)을 각각 다른 Milvus 컬렉션에 저장한다. 두 컬렉션에 모두 질의해 다중 경로로 검색하고, LLM으로 관계를 reranking한 뒤 가장 관련성 높은 관계를 근거로 최종 구절을 가져온다. 복잡한 multi-hop 질문에서 성능이 크게 개선된다고 서술한다 |
-| Knowledge Graph Integration | knowledge graph에서 질의와 관련된 엔티티와 관계를 검색해, 정형 데이터를 비정형 텍스트와 결합한다 |
-| GraphRag (Microsoft) | 입력 코퍼스의 text unit에서 엔티티와 관계를 추출하고, 각 community와 그 구성원의 요약을 bottom-up으로 생성한다 |
+| Knowledge Graph Integration | knowledge graph에서 질의와 관련된 entity와 관계를 검색해, 정형 데이터를 비정형 텍스트와 결합한다 |
+| GraphRag (Microsoft) | 입력 코퍼스의 text unit에서 entity와 관계를 추출하고, 각 community와 그 구성원의 요약을 bottom-up으로 생성한다 |
 | RAPTOR | abstractive summarization을 재귀적으로 적용해 검색 문서를 트리 구조로 조직하고 계층적 컨텍스트를 제공한다 |
 | Self RAG | retrieval 결정, 문서 retrieval, relevance 평가, 답변 생성, 근거 평가, 유용성 평가로 이어지는 다단계 과정을 구현한다 |
 | Corrective RAG | Retrieval Evaluator, Knowledge Refinement, Web Search Query Rewriter, Response Generator를 결합해, relevance 점수에 따라 정보 소싱 전략을 바꾸고 필요하면 여러 출처를 합친다 |
@@ -285,8 +285,8 @@ README의 기법 설명은 Overview와 Implementation을 합쳐 대체로 두 �
 ## 6. 관련 연구 (Related Work)
 
 - [[database/athina-ai-rag-cookbooks]] 는 같은 형식의 RAG 기법 노트북 cookbook이다. athina 저장소 README는 MIT License를 명시하므로 상업 사용 조건에서 이 저장소와 다르다.
-- [[database/edge-2024-from-local-to-global]] 는 Microsoft GraphRAG 원논문이다. 이 저장소의 GraphRag (Microsoft) 노트북이 엔티티와 관계 추출, community 요약의 bottom-up 생성을 실습으로 다룬다.
-- [[database/guo-2025-lightrag-simple-and-fast]] 와 [[database/hkuds-rag-anything]] 는 graph 기반 RAG와 멀티모달 RAG를 논문과 구현체 수준에서 다룬다. 이 저장소의 Graph RAG 노트북과 Multi-modal 노트북이 개념 소개에 머무는 지점을 더 깊이 다룬다.
+- [[database/edge-2024-from-local-to-global]] 는 Microsoft GraphRAG 원논문이다. 이 저장소의 GraphRag (Microsoft) 노트북이 entity와 관계 추출, community 요약의 bottom-up 생성을 실습으로 다룬다.
+- [[database/guo-2025-lightrag-simple-and-fast]] 와 [[database/hkuds-rag-anything]] 는 graph 기반 RAG와 멀티모달 RAG를 논문과 구현체 수준에서 다룬다. 이 저장소의 graph-based RAG 노트북과 Multi-modal 노트북이 개념 소개에 머무는 지점을 더 깊이 다룬다.
 - [[database/vectifyai-pageindex]] 와 [[database/zhang-2025-pageindex-vectorless-reasoning-rag]] 는 임베딩과 vector store를 쓰지 않는 retrieval 접근이다. 이 저장소의 기법 대부분이 임베딩을 전제로 삼는 것과 대비된다.
 - 평가 4종은 wiki `evaluations` 카테고리의 평가 프레임워크 자료와 맞닿는다.
 
@@ -302,7 +302,7 @@ README의 기법 설명은 Overview와 Implementation을 합쳐 대체로 두 �
 - **Self RAG**: retrieval 필요성, 문서 relevance, 답변 근거, 유용성을 모델이 스스로 평가하는 다단계 자가 점검 RAG.
 - **Corrective RAG (CRAG)**: Retrieval Evaluator로 relevance를 판정해 지식 정제와 웹 검색 보강으로 소싱 전략을 교정하는 RAG.
 - **MemoRAG**: key-value 추출과 surrogate query로 메모리를 만들어 다중 질의 retrieval을 수행하는 memory-augmented RAG.
-- **GroUSE**: 근거에 기반한 LLM 생성을 6개 지표로 평가하고, custom LLM 평가자를 unit test로 meta-evaluate하는 평가 프레임워크.
+- **GroUSE**: 근거에 기반한 LLM 생성을 6개 지표로 평가하고, custom LLM-as-a-Judge를 unit test로 meta-evaluate하는 평가 프레임워크.
 - **UMBRELA / AutoNuggetizer**: Open-RAG-Eval이 쓰는 오픈소스 평가 구성 요소. 각각 relevance 스코어링과 nugget 기반 평가를 담당한다.
 - **Colpali**: 문서를 텍스트 파싱 없이 이미지로 변환해 vision LLM으로 검색하는 multi-modal RAG 경로.
 - **LMUnit**: Contextual AI 플랫폼의 자연어 unit test 프레임워크. RAG 시스템 성능 평가와 최적화에 쓴다.

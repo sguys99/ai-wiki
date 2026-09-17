@@ -35,7 +35,7 @@ tags: [loop-engineering, verifier-gate, domain-transfer, trading-agent, coding-a
 | [[agents/seans-ai-stories-2026-agent-harness-loop-engineering]] | 입문 강의 | 이커머스 고객 응대 | 코딩 밖 예시로 harness 구조를 설명한 유일한 입문 자료. LLMOps 되먹임 경로 |
 | [[agents/lee-jeongmin-2026-loop-engineering-claude-code]] | 해설 게시물 | 코딩 | 서브에이전트 격리의 이론적 근거. 적용 범위를 비개발 업무까지 넓혀 잡은 자료 |
 | [[agents/movez-2026-loop-engineering-for-trading-agents]] | 제품 튜토리얼 | 트레이딩 | 코딩 밖에서 루프 전체를 끝까지 조립한 유일한 사례. 3개 verifier gate의 출처 |
-| [[agents/ai-boost-awesome-harness-engineering]] | 큐레이션 목록 | 여러 도메인 | 385개 항목의 상위 색인. 개별 구성 요소를 더 파고들 때의 출발점 |
+| [[agents/ai-boost-awesome-harness-engineering]] | 큐레이션 목록 | 여러 도메인 | 385개 항목의 상위 인덱스. 개별 구성 요소를 더 파고들 때의 출발점 |
 
 표의 도메인 열이 이 개괄의 출발 관찰을 담는다. 일곱 편 가운데 다섯 편이 코딩 도구를 예시로 쓰고, 코딩 밖을 예시로 삼은 자료는 두 편이다. 둘 중 [[agents/movez-2026-loop-engineering-for-trading-agents]]만 탐색부터 개선까지 전체 순환을 조립한다.
 
@@ -179,9 +179,9 @@ loopable은 매번 같은 구조로 답이 돌아와 스케줄에 올릴 수 있
 - [[agents/movez-2026-loop-engineering-for-trading-agents]]: 코딩 밖에서 루프 전체를 조립한 유일한 사례. 3개 루프와 12단계와 3개 verifier gate의 출처이며, 이 개괄의 트레이딩 열 전체를 담당한다.
 - [[agents/osmani-2026-loop-engineering]]: 전환에 이름을 붙인 에세이. 구성 요소 5+1과 verification distance의 출처이자 다른 여러 편이 참조하는 기준점이다.
 - [[agents/runkle-2026-the-art-of-loop-engineering]]: 루프를 네 겹의 중첩 층으로 나눈 구획. 검증과 개선이 각각 독립 층이 되는 근거와, 금전이 오가는 조작을 사람 검토 대상으로 분류한 대목을 담당한다.
-- [[agents/kang-2026-no-longer-prompting-claude]]: prompt에서 context와 harness를 거쳐 loop로 이어지는 4단계 좌표. 검증 부채와 이해 부채와 인지적 저항이라는 리스크 세 가지의 출처다.
+- [[agents/kang-2026-no-longer-prompting-claude]]: prompt에서 context와 harness를 거쳐 loop로 이어지는 4단계 좌표. 검증 부채와 comprehension debt와 인지적 저항이라는 리스크 세 가지의 출처다.
 - [[agents/seans-ai-stories-2026-agent-harness-loop-engineering]]: 고객 응대 에이전트를 예시로 harness와 LLMOps 되먹임을 설명한 입문 강의. loop을 harness의 일부로 규정한 배열의 출처다.
 - [[agents/lee-jeongmin-2026-loop-engineering-claude-code]]: 서브에이전트 격리의 이론적 근거와 실행 패턴 세 가지. 적용 범위를 비개발 업무까지 넓혀 잡은 자료이자 검증자 개수의 자제 기준을 적은 자리다.
-- [[agents/ai-boost-awesome-harness-engineering]]: 385개 항목을 문제 단위로 분류한 상위 색인. 이 개괄이 구성 요소 수준으로 더 내려갈 때의 출발점이다.
+- [[agents/ai-boost-awesome-harness-engineering]]: 385개 항목을 문제 단위로 분류한 상위 인덱스. 이 개괄이 구성 요소 수준으로 더 내려갈 때의 출발점이다.
 - [[overviews/agent-harness-engineering-overview]]: 같은 클러스터를 코딩 에이전트 안에서 다룬 자매 개괄. 통제 실험을 커버 자료로 삼으므로 실증 경계가 필요할 때 이동할 곳이다.
 - [[overviews/prompt-to-loop-engineering-evolution-overview]]: prompt에서 loop까지의 4단계 진화를 묶은 상위 진입 지도. 이 개괄은 그 사다리의 마지막 칸을 도메인 방향으로 넓힌 자리에 놓인다.

@@ -611,7 +611,7 @@ frozen backbone을 둘러싸고 reasoning, tool use, memory access, skill invoca
 |---|---|---|
 | Prompt | PromptWizard(Agarwal et al. 2024), ACE(Zhang et al. 2025b), GEPA(Agrawal et al. 2026) | 피드백 기반 비판과 합성으로 프롬프트를 정제하고, contextual playbook을 생성과 반성과 큐레이션으로 진화시키며, trajectory 수준 반성으로 프롬프트를 진화시킨다 |
 | Memory | EvolveR(Wu et al. 2025), MemEvolve(Zhang et al. 2025a), MemMA(Lin et al. 2026c), Evo-memory(Wei et al. 2025) | 오프라인 전략 distillation과 온라인 retrieval을 연결하고, 메모리 시스템의 meta-evolution을 다루며, 구성과 retrieval과 피드백 기반 수리로 long-horizon 메모리를 개선한다 |
-| Skill과 workflow | Voyager(Wang et al. 2023), AWM(Wang et al. 2024), SkillRL(Xia et al. 2026), EvoSkill(Alzubi et al. 2026), AutoSkill(Yang et al. 2026) | 실행 가능한 스킬을 축적하고, 성공 trajectory에서 워크플로를 유도하며, 강화학습으로 스킬 라이브러리를 재귀 확장하고, agent 경험에서 스킬을 자동 발견한다 |
+| Skill과 workflow | Voyager(Wang et al. 2023), AWM(Wang et al. 2024), SkillRL(Xia et al. 2026), EvoSkill(Alzubi et al. 2026), AutoSkill(Yang et al. 2026) | 실행 가능한 스킬을 축적하고, 성공 trajectory에서 워크플로를 유도하며, 강화학습으로 skill library를 재귀 확장하고, agent 경험에서 스킬을 자동 발견한다 |
 | Tool | Chen et al. 2025, Li et al. 2026a(Yunjue Agent) | agent가 tool과 tool use 지식을 합성하고 수정하고 축적한다 |
 | Unified | Zhou et al. 2026 | LLM agent의 externalization을 통합적으로 다룬다 |
 

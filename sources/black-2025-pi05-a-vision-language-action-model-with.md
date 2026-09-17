@@ -330,12 +330,12 @@ context가 짧은 것도 한계다. 방 사이를 오가거나 물건을 어디�
 | id | page | caption | strategy | 추천 |
 |---|---|---|---|---|
 | fig01 | 1 | 데이터 원천 → VLA policy → 새 집 배치 전체 그림 | caption-region | ★ wiki 권장 (architecture) |
-| fig02 | 2 | 새 부엌 청소 롤아웃 4컷 | caption-region | (확인 필요) |
+| fig02 | 2 | 새 부엌 청소 rollout 4컷 | caption-region | (확인 필요) |
 | fig03 | 4 | 모델 개요. pre-training(이산)과 post-training/추론(flow matching) | caption-region | ★ wiki 권장 (method) |
 | fig04 | 6 | 학습 mixture 여섯 슬라이스 실제 예시 | caption-region | ★ wiki 권장 (data) |
 | fig05 | 7 | 로봇 시스템 구성 | caption-region | ★ wiki 권장 (hardware) |
 | fig06 | 8 | mock과 실제 평가 환경 | caption-region | (확인 필요) |
-| fig07 | 8 | 실제 집 3곳 롤아웃 + 정량 결과 | caption-region | ★ wiki 권장 (result) |
+| fig07 | 8 | 실제 집 3곳 rollout + 정량 결과 | caption-region | ★ wiki 권장 (result) |
 | fig08 | 9 | 학습 환경 수에 따른 성능 | caption-region | ★ wiki 권장 (result) |
 | fig09 | 9 | 학습 환경 수에 따른 언어 지시 따르기 | caption-region | (확인 필요) |
 | fig10 | 10 | mock home mixture ablation | caption-region | ★ wiki 권장 (ablation) |

@@ -282,7 +282,7 @@ PaLM-E 기반 모델을 수백 gradient step만 추가로 fine-tuning해 action 
 이 계획 단계는 VQA 데이터의 시각 추론과 조작 데이터의 action 생성 사이를 잇는 다리 역할을 한다. 예를 들어 "못을 박아야 하는데 장면에서 무엇이 쓸모 있을까"라는 프롬프트에 모델은 "Rocks"라는 답과 action을 함께 낸다. "졸리니 마실 것을 가져와라"에는 "Plan: pick redbull can"을 먼저 생성한 뒤 action을 낸다.
 
 ![[assets/brohan-2023-rt-2-vision-language-action-models-transfer-web/fig07.png]]
-*Figure 7: chain-of-thought 롤아웃. 자연어 plan과 action 토큰을 함께 생성해 여러 단계의 의미 추론이 필요한 지시문을 처리한다 (Brohan 2023, p.11).*
+*Figure 7: chain-of-thought rollout. 자연어 plan과 action 토큰을 함께 생성해 여러 단계의 의미 추론이 필요한 지시문을 처리한다 (Brohan 2023, p.11).*
 
 chain-of-thought 평가는 정량 비교 없이 정성 수준에 머문다. 다만 LLM과 VLM을 planner로 쓰는 흐름과 저수준 policy를 하나의 VLA 안에 합칠 수 있다는 초기 근거가 된다.
 

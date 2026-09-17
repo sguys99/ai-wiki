@@ -83,7 +83,7 @@ Templates 절은 링크가 아니라 레포 안의 파일 4개를 표로 제시�
 | `templates/IMPLEMENT.md` | 구현 로그, 결정과 이탈 사항, 미해결 질문 |
 | `templates/HARNESS_CHECKLIST.md` | harness를 production에 넘기기 전 검토 체크리스트 |
 
-Foundations가 모은 정의는 하나로 수렴하지 않고 서로 보완한다. arXiv 2606.10106은 harness를 agent loop, 도구 인터페이스, 컨텍스트 관리, 제어 메커니즘 네 요소를 갖춘 런타임 층으로 규정하고, 이 기준으로 Claude Code, Codex CLI, Aider, Cline, OpenHands, SWE-agent를 판정한다. LangChain의 The Anatomy of an Agent Harness는 파일시스템, 코드 실행, 샌드박스, 메모리, 컨텍스트 관리 다섯 가지를 구성 요소로 든다. Martin Fowler는 context engineering, 아키텍처 제약, 엔트로피 관리 세 체계가 맞물린다고 본다. Birgitta Böckeler는 harness를 feedforward 안내와 feedback 센서의 결합으로 보고, 계산 기반 통제(linter, 테스트)와 추론 기반 통제(LLM-as-judge)를 구분한다.
+Foundations가 모은 정의는 하나로 수렴하지 않고 서로 보완한다. arXiv 2606.10106은 harness를 agent loop, 도구 인터페이스, 컨텍스트 관리, 제어 메커니즘 네 요소를 갖춘 런타임 층으로 규정하고, 이 기준으로 Claude Code, Codex CLI, Aider, Cline, OpenHands, SWE-agent를 판정한다. LangChain의 The Anatomy of an Agent Harness는 파일시스템, 코드 실행, 샌드박스, 메모리, 컨텍스트 관리 다섯 가지를 구성 요소로 든다. Martin Fowler는 context engineering, 아키텍처 제약, 엔트로피 관리 세 체계가 맞물린다고 본다. Birgitta Böckeler는 harness를 feedforward 안내와 feedback 센서의 결합으로 보고, 계산 기반 통제(linter, 테스트)와 추론 기반 통제(LLM-as-a-Judge)를 구분한다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 

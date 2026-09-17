@@ -29,7 +29,7 @@ ByteByteGo 공동창업자 Alex Xu가 LinkedIn에 올린 짧은 비교 포스트
 
 | 방식 | 검색 경로 | 검색 여부를 정하는 주체 | 적합한 상황 |
 |---|---|---|---|
-| Standard RAG | 질의 임베딩으로 벡터 데이터베이스에서 top-K chunk 조회 | 없다 (항상 검색한다) | 답이 문서 안에 있고 속도가 중요할 때 |
+| Standard RAG | 질의 임베딩으로 vector database에서 top-K chunk 조회 | 없다 (항상 검색한다) | 답이 문서 안에 있고 속도가 중요할 때 |
 | Graph RAG | 질의 분류 결과에 따라 local 경로 또는 global 경로 | 질의 분류 단계 | 법률, 컴플라이언스, 바이오메디컬처럼 구조화된 지식 |
 | Agentic RAG | Planning agent가 고른 여러 소스, 부족하면 재검색 | Planning agent와 Evaluator agent | 다단계 추론과 self-correction이 필요한 질문 |
 
@@ -48,7 +48,7 @@ RAG를 하나의 고정된 구성으로 이해하면 선택지를 잃는다. 포
 
 retrieval은 외부 지식에서 관련 정보를 찾아오는 단계를 뜻한다. 세 방식이 갈리는 지점이 바로 이 단계이며, 무엇을 검색 대상으로 삼고 누가 검색 여부를 판단하는지가 서로 다르다.
 
-임베딩은 텍스트를 고정 차원 벡터로 바꾼 표현이다. Standard RAG와 Graph RAG의 local 경로는 이 벡터의 거리로 후보를 찾지만, Graph RAG의 global 경로는 임베딩을 아예 쓰지 않는다.
+임베딩은 텍스트를 고정 차원 벡터로 바꾼 표현이다. Standard RAG와 Graph RAG의 local 경로는 이 벡터의 거리로 후보를 찾지만, Graph RAG의 global 경로는 임베딩을 아예 쓰지 않는다. vector database는 이 임베딩 벡터를 저장하고 유사도 기준으로 검색하는 데이터베이스다.
 
 knowledge graph는 문서에서 뽑아낸 entity와 그 사이 관계를 노드와 엣지로 표현한 구조다. entity는 인물, 조직, 개념처럼 문서에서 식별되는 개별 대상을 가리킨다. Graph RAG의 local 경로는 이 그래프를 따라가며 한 entity에 연결된 주변 정보를 모은다.
 
@@ -69,7 +69,7 @@ self-correction은 시스템이 자기 산출물의 부족함을 스스로 판�
 | 단계 | 처리 | 그림이 덧붙인 표기 |
 |---|---|---|
 | 1. 질의 벡터화 | 질의를 임베딩으로 변환한다 | Embedding model 블록, "Query → Vector" |
-| 2. 검색 | 벡터 데이터베이스에서 가장 가까운 top-K chunk를 꺼낸다 | 벡터 데이터베이스에 "offline indexing", "Index + Metadata" 표기 |
+| 2. 검색 | vector database에서 가장 가까운 top-K chunk를 꺼낸다 | vector database에 "offline indexing", "Index + Metadata" 표기 |
 | 3. 컨텍스트 결합 | 검색 결과를 프롬프트에 넣는다 | Context augmentation 블록에서 system prompt, user query, top-K chunk를 합쳐 augmented prompt 생성 |
 | 4. 생성 | LLM이 검색된 내용만 써서 답을 작성한다 | Generation 구간으로 별도 표시 |
 
@@ -95,7 +95,7 @@ local 경로는 특정 대상을 지목하는 질문에 쓴다. 벡터 검색으
 | 단계 | 처리 | 산출물 |
 |---|---|---|
 | 1 | 질의를 임베딩한다 | 질의 벡터 |
-| 2 | 벡터 데이터베이스가 매칭되는 entity를 찾는다 | 그림 표기 기준 "Top K entity IDs" |
+| 2 | vector database가 매칭되는 entity를 찾는다 | 그림 표기 기준 "Top K entity IDs" |
 | 3 | knowledge graph를 순회하며 연결된 컨텍스트를 모은다 | 그림 표기 기준 "Linked context" |
 | 4 | 모은 컨텍스트를 프롬프트에 결합한다 | 그림 표기 기준 entity, relationship, text chunk |
 | 5 | LLM이 최종 답을 합성한다 | 응답 |
@@ -154,7 +154,7 @@ Agentic RAG는 검색 자체를 에이전트의 판단 대상으로 삼는다. �
 | Tools + APIs | 외부 시스템 호출 |
 | MCP servers | 표준 프로토콜로 연결된 도구 서버 |
 
-Standard RAG의 검색 대상이 벡터 데이터베이스 하나로 고정된 것과 대비된다. Agentic RAG에서 검색은 조회 한 번이 아니라 tool call의 선택 문제가 된다.
+Standard RAG의 검색 대상이 vector database 하나로 고정된 것과 대비된다. Agentic RAG에서 검색은 조회 한 번이 아니라 tool call의 선택 문제가 된다.
 
 ### 사전 구축 자산 비교
 
@@ -175,7 +175,7 @@ Standard RAG의 검색 대상이 벡터 데이터베이스 하나로 고정된 �
 | 판단 지점 | Standard RAG | Graph RAG | Agentic RAG |
 |---|---|---|---|
 | 검색을 할지 말지 | 판단하지 않는다 | 판단하지 않는다 | Planning agent가 "Needs retrieval?"로 판정한다 |
-| 어디를 검색할지 | 벡터 데이터베이스 하나로 고정 | 질의 분류가 local과 global 중 하나를 고른다 | Planning agent가 벡터 데이터베이스, 도구와 API, MCP 서버 중에서 고른다 |
+| 어디를 검색할지 | vector database 하나로 고정 | 질의 분류가 local과 global 중 하나를 고른다 | Planning agent가 vector database, 도구와 API, MCP 서버 중에서 고른다 |
 | 검색 결과가 충분한지 | 판단하지 않는다 | 판단하지 않는다 | Evaluator agent가 채점해 통과와 재검색을 정한다 |
 | 후보를 추릴 때 LLM이 개입하는지 | 개입하지 않는다 (벡터 거리로만 정한다) | global 경로에서만 개입한다 (관련도 채점) | 검색 대상 선택과 결과 채점 양쪽에 개입한다 |
 | 실패했을 때 되돌아갈 경로 | 없다 | 없다 | 재검색 순환이 있다 |
@@ -233,7 +233,7 @@ Standard RAG의 약점 서술은 앞의 파이프라인 구조와 정확히 대�
 
 | 용어 | 뜻 |
 |---|---|
-| Standard RAG | 질의를 임베딩해 벡터 데이터베이스에서 top-K chunk를 찾고, LLM이 그 chunk만으로 답을 쓰는 기본 구성 |
+| Standard RAG | 질의를 임베딩해 vector database에서 top-K chunk를 찾고, LLM이 그 chunk만으로 답을 쓰는 기본 구성 |
 | Local search | Graph RAG에서 구체적 질문에 쓰는 경로. 벡터 검색으로 entity를 찾은 뒤 knowledge graph를 순회해 연결된 컨텍스트를 모은다 |
 | Global search | Graph RAG에서 광범위한 질문에 쓰는 경로. 벡터 검색과 그래프 순회 없이 community report를 LLM이 배치로 채점해 상위 항목만 쓴다 |
 | Community report | knowledge graph의 커뮤니티 단위를 요약해 미리 만들어 둔 문서. global search의 입력 단위다 |

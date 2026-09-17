@@ -32,7 +32,7 @@ figures:
 
 ## 요약
 
-PixelRAG는 문서를 텍스트로 파싱하지 않고 스크린샷으로 렌더링해 그 이미지 자체를 검색하는 RAG 프레임워크다. 검색 단위가 텍스트 청크가 아니라 페이지 스크린샷 조각이므로, HTML 파싱이 버리는 표와 차트와 레이아웃이 검색 단계까지 살아남는다.
+PixelRAG는 문서를 텍스트로 파싱하지 않고 스크린샷으로 렌더링해 그 이미지 자체를 검색하는 RAG 프레임워크다. 검색 단위가 텍스트 chunk가 아니라 페이지 스크린샷 조각이므로, HTML 파싱이 버리는 표와 차트와 레이아웃이 검색 단계까지 살아남는다.
 
 구현은 두 부분으로 이뤄진다. 하나는 웹페이지와 PDF와 이미지를 스크린샷 타일로 만드는 렌더러이고, 다른 하나는 그 타일 이미지를 검색 가능한 벡터로 바꾸는 임베딩 모델이다. 임베딩 모델은 `Qwen/Qwen3-VL-Embedding-2B`를 스크린샷 데이터로 LoRA fine-tuning한 것이다.
 
@@ -55,7 +55,7 @@ PixelRAG는 문서를 텍스트로 파싱하지 않고 스크린샷으로 렌더
 
 ## 배경
 
-텍스트 기반 RAG는 문서를 텍스트로 옮기는 단계에서 정보를 잃는다. HTML을 파싱해 텍스트 청크를 만들면 문자열은 남지만, 그 문자열이 어떤 표의 어느 칸에 있었는지, 어떤 차트의 어떤 축을 가리켰는지는 사라진다. 저장소의 표어가 이 문제를 그대로 말한다. "Search any document by how it looks, not just the text it contains."
+텍스트 기반 RAG는 문서를 텍스트로 옮기는 단계에서 정보를 잃는다. HTML을 파싱해 텍스트 chunk를 만들면 문자열은 남지만, 그 문자열이 어떤 표의 어느 칸에 있었는지, 어떤 차트의 어떤 축을 가리켰는지는 사라진다. 저장소의 표어가 이 문제를 그대로 말한다. "Search any document by how it looks, not just the text it contains."
 
 ![[assets/startrail-org-pixelrag/pipeline.png]]
 *Figure 2: 텍스트 기반 RAG는 파싱 과정에서 표를 잃고 답하지 못하지만, PixelRAG는 같은 페이지를 스크린샷 타일로 렌더링해 표를 그대로 남기고 수치를 읽어낸다 (PixelRAG README)*
@@ -70,11 +70,11 @@ README가 이름을 들어 언급하는 대상은 표, 차트, 레이아웃, 인
 
 Figure 2는 이 손실을 질문 하나로 보인다. 대상 문서는 2010 UEFA 챔피언스리그 결승 위키피디아 페이지이고, 질문은 "인터가 바이에른과의 2010 UCL 결승에서 유효 슈팅을 몇 개 기록했는가"다.
 
-텍스트 기반 경로에서는 HTML이 파싱을 거쳐 텍스트 청크가 된다. 이 과정에서 경기 통계 표가 사라지고, retriever가 가져온 청크에는 "Statistics"라는 제목과 그 뒤의 산문만 남는다. reader 모델은 "주어진 컨텍스트로는 답을 결정할 수 없다"고 답한다.
+텍스트 기반 경로에서는 HTML이 파싱을 거쳐 텍스트 chunk가 된다. 이 과정에서 경기 통계 표가 사라지고, retriever가 가져온 chunk에는 "Statistics"라는 제목과 그 뒤의 산문만 남는다. reader 모델은 "주어진 컨텍스트로는 답을 결정할 수 없다"고 답한다.
 
 PixelRAG 경로에서는 같은 페이지의 HTML과 CSS와 이미지가 함께 브라우저에서 렌더링돼 스크린샷 타일이 된다. 통계 표는 화면에 보이는 모습 그대로 타일 안에 남고, retriever가 그 타일을 가져오며, reader 모델은 표에서 유효 슈팅 값 7을 직접 읽는다.
 
-이 차이가 만들어지는 지점은 검색 알고리즘이 아니라 그 앞 단계다. 무엇을 색인 대상으로 삼을지가 결과를 가른다.
+이 차이가 만들어지는 지점은 검색 알고리즘이 아니라 그 앞 단계다. 무엇을 인덱싱 대상으로 삼을지가 결과를 가른다.
 
 ### 두 가지 핵심 요소
 
@@ -82,12 +82,12 @@ README는 이 접근이 성립하는 조건을 두 가지로 정리한다.
 
 | 요소 | 내용 | 없으면 생기는 문제 |
 |---|---|---|
-| 렌더링 | 문서를 파싱하지 않고 이미지로 만든다 | 시각 구조가 색인 전에 사라진다 |
-| 시각 임베딩 | 스크린샷 데이터로 LoRA fine-tuning한 `Qwen3-VL-Embedding`이 페이지 이미지를 임베딩한다 | 이미지가 남아도 질의로 찾아낼 수 없다 |
+| 렌더링 | 문서를 파싱하지 않고 이미지로 만든다 | 시각 구조가 인덱싱 전에 사라진다 |
+| 시각 임베딩 | 스크린샷 데이터로 LoRA fine-tuning한 `Qwen3-VL-Embedding`이 페이지 이미지를 임베딩한다 | 이미지가 남아도 질의(query)로 찾아낼 수 없다 |
 
 ## 핵심 개념
 
-**screenshot tile**은 한 페이지를 검색 단위로 자른 스크린샷 조각이다. 텍스트 RAG의 텍스트 청크가 맡던 자리를 이미지가 대신한다.
+**screenshot tile**은 한 페이지를 검색 단위로 자른 스크린샷 조각이다. 텍스트 RAG의 텍스트 chunk가 맡던 자리를 이미지가 대신한다.
 
 **visual search**는 텍스트가 아니라 이미지를 질의로 주고 인덱스를 검색하는 방식이다. 호스팅 엔드포인트가 이미지 질의를 받는다고 명시한다.
 
@@ -166,7 +166,7 @@ Chrome 조달 방식은 플랫폼에 따라 다르다.
 
 | 명령 | 인자 예시 | 역할 |
 |---|---|---|
-| `pixelrag chunk` | `--tiles-dir ./tiles` | 타일을 청크 단위로 분할 |
+| `pixelrag chunk` | `--tiles-dir ./tiles` | 타일을 chunk 단위로 분할 |
 | `pixelrag embed` | `--shard-dir ./tiles --output-dir ./embeddings --gpu-ids 0,1` | 타일을 임베딩 벡터로 변환, 다중 GPU 지정 가능 |
 | `pixelrag build-index` | `--embeddings-dir ./embeddings --output-dir ./index` | 임베딩을 FAISS 인덱스로 빌드 |
 
@@ -219,7 +219,7 @@ fine-tuning은 `train/` 아래 별도 uv 프로젝트 `wiki-screenshot-training`
 |---|---|---|
 | LoRA 어댑터 | `Chrisyichuan/wiki-screenshot-embedding-lora` (`lora_vit/ckpt200`) | 재학습 없이 바로 사용 |
 | 학습셋 | `Chrisyichuan/screenshot-training-natural-filtered-v2` | 다른 backbone에 같은 방식 적용 |
-| 데이터 큐레이션 문서 | `train/docs/synthetic_data_pipeline.md` | LLM 기반 쿼리 증강 생성, 필터링, hard-negative mining |
+| 데이터 큐레이션 문서 | `train/docs/synthetic_data_pipeline.md` | LLM 기반 질의 증강 생성, 필터링, hard-negative mining |
 
 학습셋까지 공개한 이유를 README는 명시한다. 더 큰 Qwen이나 다른 임베딩 모델을 backbone으로 바꿔 같은 방식을 적용해 보라는 것이다.
 
@@ -256,15 +256,15 @@ README가 직접 제시하는 사용 경로는 네 가지다. 각 경로가 저�
 
 | 접근 | 검색 단위 | 인덱스 구성 |
 |---|---|---|
-| 텍스트 청크 RAG (Figure 2의 비교 대상) | 파싱된 텍스트 청크 | 텍스트 임베딩 벡터 인덱스 |
+| 텍스트 chunk RAG (Figure 2의 비교 대상) | 파싱된 텍스트 chunk | 텍스트 임베딩 벡터 인덱스 |
 | 멀티모달 지식 그래프 (RAG-Anything) | 이미지와 표와 수식을 1급 단위로 포함한 그래프 노드 | 지식 그래프와 임베딩 병행 |
 | 네이티브 멀티모달 임베더 (Gemini Embedding 2) | 여러 modality를 하나의 backbone이 매핑한 벡터 | 단일 벡터 공간 |
 | 원문 직접 탐색 (DCI) | 원문 파일 자체 | 임베딩과 인덱스를 두지 않는다 |
 | PixelRAG | 페이지 스크린샷 타일 | 페이지 이미지 임베딩 FAISS 인덱스 |
 
-PixelRAG의 위치는 이 비교에서 분명해진다. 파싱을 개선하거나 그래프로 보완하는 대신 파싱 단계 자체를 렌더링으로 대체한다. 문서가 화면에 보이는 모습이 곧 색인 대상이 되므로, 파싱기가 표를 어떻게 처리하는지에 결과가 좌우되지 않는다.
+PixelRAG의 위치는 이 비교에서 분명해진다. 파싱을 개선하거나 그래프로 보완하는 대신 파싱 단계 자체를 렌더링으로 대체한다. 문서가 화면에 보이는 모습이 곧 인덱싱 대상이 되므로, 파싱기가 표를 어떻게 처리하는지에 결과가 좌우되지 않는다.
 
-대신 색인 대상이 텍스트에서 이미지로 바뀌면서 비용의 성격도 달라진다. 위키피디아 base 픽셀 인덱스 하나가 약 217GB이고, 같은 Hugging Face 저장소가 위키피디아 텍스트 인덱스를 따로 두고 있다. 두 인덱스가 같은 코퍼스를 서로 다른 형식으로 담고 있으므로, 저장 비용과 검색 품질의 교환 관계를 같은 조건에서 직접 확인할 수 있는 구조다.
+대신 인덱싱 대상이 텍스트에서 이미지로 바뀌면서 비용의 성격도 달라진다. 위키피디아 base 픽셀 인덱스 하나가 약 217GB이고, 같은 Hugging Face 저장소가 위키피디아 텍스트 인덱스를 따로 두고 있다. 두 인덱스가 같은 코퍼스를 서로 다른 형식으로 담고 있으므로, 저장 비용과 검색 품질의 교환 관계를 같은 조건에서 직접 확인할 수 있는 구조다.
 
 ## 결과
 
@@ -295,7 +295,7 @@ README에는 recall이나 latency 같은 정량 벤치마크 표가 없다. 대�
 |---|---|
 | PixelRAG | 문서를 텍스트로 파싱하지 않고 스크린샷 이미지로 렌더링해 그 이미지를 직접 검색하는 RAG 방식 |
 | pixelshot | 웹페이지와 PDF와 이미지를 스크린샷 타일로 변환하는 독립 CLI 명령. `pip install pixelrag`에 포함된다 |
-| screenshot tile | 한 페이지를 검색 단위로 자른 스크린샷 조각. 텍스트 RAG의 텍스트 청크에 대응한다 |
+| screenshot tile | 한 페이지를 검색 단위로 자른 스크린샷 조각. 텍스트 RAG의 텍스트 chunk에 대응한다 |
 | pixelbrowse | `pixelshot`을 호출해 Claude가 raw HTML 대신 스크린샷 이미지를 읽게 하는 Claude Code 플러그인 스킬 |
 | visual search | 텍스트가 아니라 이미지를 질의로 주고 인덱스를 검색하는 방식. 호스팅 API가 지원한다 |
 | Qwen3-VL-Embedding | PixelRAG가 스크린샷 데이터로 LoRA fine-tuning하는 비전 언어 임베딩 모델 |
@@ -304,5 +304,5 @@ README에는 recall이나 latency 같은 정량 벤치마크 표가 없다. 대�
 
 - [[database/guo-2025-rag-anything-all-in-one-rag]]: 이미지와 표와 수식을 1급 단위로 다루는 멀티모달 RAG. 텍스트 파싱이 잃는 정보를 그래프 구조로 되살리는 쪽이라, 파싱 자체를 렌더링으로 대체하는 PixelRAG와 해법이 갈린다.
 - [[database/shanbhogue-2026-gemini-embedding-2-native-multimodal]]: 하나의 backbone이 여러 modality를 단일 벡터 공간에 매핑하는 네이티브 멀티모달 임베더. PixelRAG는 기존 비전 언어 모델을 스크린샷 데이터로 LoRA fine-tuning해 같은 목표에 이르는 경로를 택한다.
-- [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]: 임베딩과 인덱스를 두지 않고 에이전트가 원문을 직접 탐색하는 대조 접근. 검색 인터페이스를 없애는 쪽과 색인 대상을 이미지로 바꾸는 쪽이라는 점에서 방향이 반대다.
+- [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]: 임베딩과 인덱스를 두지 않고 에이전트가 원문을 직접 탐색하는 대조 접근. 검색 인터페이스를 없애는 쪽과 인덱싱 대상을 이미지로 바꾸는 쪽이라는 점에서 방향이 반대다.
 - [[overviews/glossary-llms]]: fine-tuning, LoRA, backbone, 임베딩의 canonical 표기.

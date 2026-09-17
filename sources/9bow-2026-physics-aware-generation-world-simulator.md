@@ -81,7 +81,7 @@ PyTorch 한국 사용자 모임이 Physical AI 서베이 두 편을 묶어 소�
 
 - 개념 구분을 문장으로 풀었다. PAG-E와 PAG-I는 Table 1에서 "명시적 물리 모델" 행 하나로만 갈리고 "물리 세계 이해" 행은 둘 다 참이다. PUG는 물리 입출력도 명시적 모델도 없다. 이 둘을 표 아래 두 문장으로 짚는다. 원문 표만 봐서는 놓치기 쉽다.
 - Gaussian Splatting을 시뮬레이션과 잇는 이유: 장면을 입자처럼 다루기 때문에 물리 시뮬레이션과 결합이 자연스럽다. 그래서 PAG-E의 상당수가 가우시안을 시뮬레이션 요소로 재해석한다고 적는다. 원문은 NeRF와 Gaussian Splatting을 넓은 의미의 생성 모델로 포함시키는데 왜 그렇게 묶는지는 이 글이 한 문단으로 풀어 놓았다.
-- 확산 모델 계보를 배경으로 DDIM과 DPM-Solver 같은 가속 샘플러와 latent diffusion, classifier-free guidance를 함께 든다.
+- diffusion model 계보를 배경으로 DDIM과 DPM-Solver 같은 가속 샘플러와 latent diffusion, classifier-free guidance를 함께 든다.
 - 모델과 데이터셋을 키워도 분포 밖 물리 일반화가 나아지지 않았고 모델이 비슷한 학습 예시의 존재에 의존한다는 Kang 등의 발견을 특히 눈여겨볼 결과로 꼽아 "더 많은 데이터가 곧 더 나은 물리 이해는 아니다"라는 한 줄로 정리한다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)

@@ -78,9 +78,9 @@ tags: [graph-rag, paper-review, dsba, knowledge-graph, community-detection, leid
 | 항목 | KBQA | GraphRAG |
 |---|---|---|
 | 목적 | 구조화된 지식베이스에서 정확한 답 검색 | 그래프 구조를 활용한 검색 증강 생성 |
-| 지식 표현 | RDF 트리플, 지식그래프 (구조화) | 텍스트와 그래프 구조 (반구조화) |
+| 지식 표현 | RDF 트리플, knowledge graph (구조화) | 텍스트와 그래프 구조 (반구조화) |
 | 질의 처리 | 자연어를 SPARQL이나 논리형식으로 변환 | 자연어로 그래프 검색 후 LLM 생성 |
-| 답변 형태 | 정확한 팩트나 엔티티 | 생성된 자연어 텍스트 |
+| 답변 형태 | 정확한 팩트나 entity | 생성된 자연어 텍스트 |
 | 추론 방식 | 논리적 추론 (규칙 기반) | 그래프 탐색과 언어모델 추론 |
 | 데이터 소스 | Freebase, DBpedia, Wikidata 등 | 문서 컬렉션을 그래프로 변환 |
 

@@ -257,7 +257,7 @@ verification을 exit criteria로 두는 것이 이 원칙의 실질이다. 워�
 
 ## 관련 페이지
 
-- [[agents/hada-2026-agent-skills]]: 같은 글의 한국 커뮤니티 요약에 정량 스펙과 비판적 토론을 더한 짝 자료. 스킬 20개와 슬래시 커맨드 7개, MIT 라이선스, 800줄 스킬의 컨텍스트 부담 같은 본문이 비워 둔 수치를 채운다.
+- [[agents/hada-2026-agent-skills]]: 같은 글의 한국 커뮤니티의 요약에 정량 스펙과 비판적 토론을 더한 짝 자료. 스킬 20개와 슬래시 커맨드 7개, MIT 라이선스, 800줄 스킬의 컨텍스트 부담 같은 본문이 비워 둔 수치를 채운다.
 - [[agents/osmani-2026-loop-engineering]]: 같은 저자의 후속 에세이. 스킬을 루프를 이루는 여섯 구성 요소 중 하나로 확장하고, verification을 서브에이전트 분리 문제로 다시 다룬다.
 - [[agents/patel-2026-beyond-the-prompt-claude-code]]: Boris Cherny의 "give Claude a way to verify its own work" 원칙을 실전 절차로 풀어쓴 가이드. 본 글의 증거 기반 종료 원칙과 지향이 같다.
 - [[agents/lee-hoyeon-2026-harness-engineering]]: 스킬을 harness 구성 항목 중 하나로 위치시키는 상위 프레임. 본 글 마지막 절의 층위 배치와 대응한다.

@@ -59,7 +59,7 @@ v0.2 명세의 출발점은 지식 코퍼스가 사람이 한 번 쓰고 읽는 
 | 목표 3 | 시스템과 조직 사이의 지식 교환을 촉진한다 |
 | 목표 4 | 런타임을 규정하지 않으면서 에이전트가 유지하는 코퍼스를 신뢰할 수 있게 하는 소수의 frontmatter 필드를 표준화한다 |
 | 비목표 1 | concept 타입의 고정 분류 체계를 정의하지 않는다 |
-| 비목표 2 | 저장, 서빙, 질의 인프라를 규정하지 않는다 |
+| 비목표 2 | 저장, 서빙, 질의(query) 인프라를 규정하지 않는다 |
 | 비목표 3 | 도메인 스키마(Avro, Protobuf, OpenAPI 등)를 대체하지 않는다. OKF는 이들을 참조할 뿐 흡수하지 않는다 |
 | 비목표 4 | executor와 attester가 가리키는 코드의 패키징이나 호출 표준을 정하지 않는다. OKF는 인터페이스만 고정한다 |
 
@@ -74,7 +74,7 @@ README의 "Why OKF?" 절은 서비스가 소유하는 메타데이터 저장소�
 | 사람과 에이전트가 읽을 수 있다 | 독자와 내용 사이에 SDK나 질의 언어가 없다. 엔지니어는 concept을 `cat`하고 LLM은 그대로 컨텍스트에 넣는다 |
 | 즉시 버전 관리된다 | bundle이 git에 산다. pull request, 줄 단위 diff, blame, 리뷰 워크플로가 그대로 동작해 지식 큐레이션이 평범한 소프트웨어 공학 활동이 된다 |
 | 이식 가능하고 lock-in이 없다 | bundle은 디렉토리다. tarball로 보내고 어느 저장소에나 두고 어느 파일시스템에서나 마운트한다 |
-| 구조와 비구조를 의도적으로 섞는다 | 질의, 필터, 인덱스에 쓸 소수 필드(`type`, `resource`, `tags`, `generated`, `status`)만 frontmatter에 두고, 사람과 LLM이 실제로 읽는 산문, 스키마, 예시 쿼리는 본문에 둔다 |
+| 구조와 비구조를 의도적으로 섞는다 | 질의, 필터, 인덱스에 쓸 소수 필드(`type`, `resource`, `tags`, `generated`, `status`)만 frontmatter에 두고, 사람과 LLM이 실제로 읽는 산문, 스키마, 예시 질의는 본문에 둔다 |
 | trust, provenance, freshness가 1급이다 | 어디서 왔는지(`sources`와 source별 신뢰도 신호), 누가 만들고 확인했는지(`generated`, `verified`, 여기서 trust tier를 유도), 아직 현행인지(`status`, `stale_after`)를 질의 가능한 신호로 frontmatter에 둔다 |
 | 최소 규정이며 자유롭게 확장된다 | 소수의 필수 키가 상호운용성을 보장하고, bundle은 임의의 추가 키와 본문 절을 실을 수 있다 |
 | 기존 도구와 결합한다 | Notion, Obsidian, MkDocs, Hugo, Jekyll이 이미 markdown과 YAML frontmatter를 읽으므로 custom UI 없이 열람, 편집, 렌더가 된다 |
@@ -264,12 +264,12 @@ provenance, trust, lifecycle 세 계열은 "어디서 왔는가", "얼마나 믿
 | 신호 | 질문 | 해석 규칙 |
 |---|---|---|
 | `author` | 누가 만들었는가 | 권위 신호. actor 규약(`team:ga4-docs`처럼)으로 적는다 |
-| `usage_count` | 얼마나 쓰이는가 | 채택과 생존 신호. 대시보드 조회, 쿼리 실행, 페이지 읽기 횟수. 단일 산출물이면 그 산출물의 실행 횟수, 범위 서술이면 그 범위 안에서 concept에 닿는 실행 횟수 |
+| `usage_count` | 얼마나 쓰이는가 | 채택과 생존 신호. 대시보드 조회, 질의 실행, 페이지 읽기 횟수. 단일 산출물이면 그 산출물의 실행 횟수, 범위 서술이면 그 범위 안에서 concept에 닿는 실행 횟수 |
 | `last_modified` | 언제 바뀌었는가 | 최신성 신호. concept이 쓰인 시각인 `generated.at`과 구별된다 |
 
 `usage_window`는 `sources`의 형제 키로 한 번 적어 모든 `usage_count`에 `{ from, to }` 구간을 부여한다. 개별 항목이 자기 `usage_window`를 가져 공유 값을 덮어써도 된다(MAY). 구간이 없는 사용 횟수는 의미가 없으므로 이 키가 `usage_count`의 전제가 된다.
 
-`usage_count`는 명세 스스로 거친 신호라고 못 박는 값이다. 살아 있는지 죽었는지, 자릿수가 어느 정도인지, 그 source 자신의 과거 이력과 비교해 어떤지 수준에서만 비교할 수 있고, 종류가 다른 source 사이의 정밀한 순위로는 쓸 수 없다. 예약 쿼리의 실행 횟수와 사람이 일부러 본 대시보드 조회 수는 같은 무게가 아니기 때문이다. 따라서 소비자는 이 값을 생존과 추세로 읽어야 한다(SHOULD).
+`usage_count`는 명세 스스로 거친 신호라고 못 박는 값이다. 살아 있는지 죽었는지, 자릿수가 어느 정도인지, 그 source 자신의 과거 이력과 비교해 어떤지 수준에서만 비교할 수 있고, 종류가 다른 source 사이의 정밀한 순위로는 쓸 수 없다. 예약 질의의 실행 횟수와 사람이 일부러 본 대시보드 조회 수는 같은 무게가 아니기 때문이다. 따라서 소비자는 이 값을 생존과 추세로 읽어야 한다(SHOULD).
 
 lineage는 별도 필드가 아니라 링크로 표현한다. `resource`가 같은 bundle의 다른 concept을 가리키면 파생 엣지는 이미 bundle 그래프에 있으므로, 소비자는 그 source의 `sources`로 재귀해 신뢰도를 전파시켜도 된다(MAY). 외부 말단 source는 자기 고유 신호만 갖는다. 명시적 외부 `derived_from`이나 데이터 lineage 같은 더 깊은 lineage는 v0.2 범위 밖이다.
 
@@ -460,7 +460,7 @@ sources:
 
 에이전트는 선언된 `parameters`의 값만 줄 수 있고(MAY) 계산을 쓰거나 고쳐서는 안 된다(MUST NOT). `computation`에 파라미터 값을 바인딩해 실행 가능한 산출물을 만드는 일은 소비자 몫이고, attester는 같은 바인딩을 독립적으로 다시 유도해 실제 실행된 것과 비교한다.
 
-이 비교가 성립하는 이유는 비교 대상이 receipt에 담긴 전개되고 컴파일된 산출물(`executed_sql`, `compiled_sql`)이기 때문이다. 다시 쓴 쿼리, 바꿔치기한 계산 파일, 변조된 의존성은 모두 실제 실행된 SQL을 바꾸므로 검사에 실패한다. 에이전트에게 열린 표면이 타입 있는 파라미터뿐이라서 "승인된 것이 실행됐는가"는 판단이 아니라 기계적 비교가 된다.
+이 비교가 성립하는 이유는 비교 대상이 receipt에 담긴 전개되고 컴파일된 산출물(`executed_sql`, `compiled_sql`)이기 때문이다. 다시 쓴 질의, 바꿔치기한 계산 파일, 변조된 의존성은 모두 실제 실행된 SQL을 바꾸므로 검사에 실패한다. 에이전트에게 열린 표면이 타입 있는 파라미터뿐이라서 "승인된 것이 실행됐는가"는 판단이 아니라 기계적 비교가 된다.
 
 문서 하나가 계산 하나인 경우는 드물다. 매출, 이익, 마진을 논하는 손익계산서 개요는 읽을 수 있는 concept 하나로 남고 수치마다 Attested Computation 하나씩을 링크한다. 명세 예시는 `type: Metric`인 Revenue concept이 `# Definition`에서 `[the revenue computation](../computations/revenue.md)`를 가리키는 형태다. 계산마다 concept이 따로 있으므로 매출은 신선한데 이익은 `stale_after`를 넘긴 상태가 가능하고, 각각 자기 실행에 대해 attest한다. 같은 폴더에 모으는 것(`computations/` 폴더와 `index.md`)은 디렉토리 선택이지 frontmatter 선택이 아니다.
 
@@ -567,7 +567,7 @@ web pass에서 가져온 페이지마다 에이전트는 세 가지 중 하나�
 | 항목 | 내용 |
 |---|---|
 | 설치 | `python3.13 -m venv .venv` 후 `.venv/bin/pip install --index-url https://pypi.org/simple/ -e .[dev]` |
-| BigQuery | `gcloud auth application-default login`과 과금 프로젝트 설정 `gcloud config set project <id>`. 공개 데이터셋은 읽을 수 있지만 쿼리 바이트는 호출자 프로젝트에 과금된다 |
+| BigQuery | `gcloud auth application-default login`과 과금 프로젝트 설정 `gcloud config set project <id>`. 공개 데이터셋은 읽을 수 있지만 질의 바이트는 호출자 프로젝트에 과금된다 |
 | Gemini (AI Studio) | `GEMINI_API_KEY` 설정 |
 | Gemini (Vertex AI) | `GOOGLE_GENAI_USE_VERTEXAI=true`, `GOOGLE_CLOUD_PROJECT=<id>`, `GOOGLE_CLOUD_LOCATION=<region>` |
 | 테스트 | `.venv/bin/pytest` |

@@ -103,7 +103,7 @@ tags: [claude-code, agent-workflow, drafter-reviewer, job-search, cv-generation,
 | `/upskill` | 스킬 격차를 분석한다 | 프로필과 추적 중인 공고 사이의 격차를 분석한다. `/upskill <URL>`로 단일 공고만 대상으로 삼을 수도 있다. 우선순위가 매겨진 격차 히트맵과 함께, 웹에서 검색한 학습 자료와 소요 시간 추정을 담은 학습 계획을 낸다 |
 | `/html-report` | 오프라인 대시보드를 만든다 | `job_search_tracker.csv`와 지원 아카이브에서 self-contained HTML 대시보드를 생성한다. 통계 카드, 상태와 섹터와 채널과 funnel 차트(인라인 SVG, 외부 의존성 없음), 필터 가능한 지원 테이블로 구성된다. 브라우저에서 바로 열리며 완전히 오프라인으로 동작한다 |
 | `/add-template` | 커스텀 LaTeX 템플릿을 등록한다 | `.tex` 파일과 `.cls`, `.sty`, 번들 폰트를 받아 컴파일 엔진, 폰트와 그 위치, 지켜야 할 스타일 규칙, 페이지 상한을 인터뷰로 확보한다. `templates/` 아래에 저장하고 필수 테스트 컴파일을 실행한 뒤 `/apply`에 연결한다. 템플릿은 개인 정보 대신 `[PLACEHOLDER]` 토큰으로 저장하므로 commit과 공유가 안전하다. `--list`, `--use <name>`, `--use default` 플래그를 지원한다 |
-| `/add-portal` | 신규 구직 포털 스킬을 생성한다 | 포털의 검색 URL 패턴, 결과 페이지 구조, robots.txt와 접근 규칙을 조사하고, 기존 스킬과 같은 구조와 커맨드와 출력 계약으로 CLI 스킬을 스캐폴딩한 뒤 실제 쿼리를 실행해보고 등록한다. 인증 장벽이 있는 포털은 거절하고, 제약이 강한 약관의 포털은 생성된 스킬에 개인 사용 전용 경고를 눈에 띄게 넣는다 |
+| `/add-portal` | 신규 구직 포털 스킬을 생성한다 | 포털의 검색 URL 패턴, 결과 페이지 구조, robots.txt와 접근 규칙을 조사하고, 기존 스킬과 같은 구조와 커맨드와 출력 계약으로 CLI 스킬을 스캐폴딩한 뒤 실제 질의(query)를 실행해보고 등록한다. 인증 장벽이 있는 포털은 거절하고, 제약이 강한 약관의 포털은 생성된 스킬에 개인 사용 전용 경고를 눈에 띄게 넣는다 |
 | `/reset` | 프로필 데이터를 초기화한다 | `/reset profile`은 스킬 파일을 지우되 프레임워크 규칙은 보존하고, `/reset documents`는 `documents/` 폴더의 파일을 삭제하며, `/reset all`은 둘 다 수행한다. 삭제 대상을 먼저 보여주고 `RESET`을 타이핑해야 진행한다 |
 
 ### 3.4 저장소 구조
@@ -112,7 +112,7 @@ tags: [claude-code, agent-workflow, drafter-reviewer, job-search, cv-generation,
 |---|---|
 | `CLAUDE.md` | 후보자 프로필 본문과 워크플로 규칙 |
 | `.claude/commands/` | 11개 커맨드 정의 (`apply`, `setup`, `expand`, `add-template`, `add-portal`, `rank`, `outcome`, `interview`, `html-report`, `notion-sync`, `reset`) |
-| `.claude/skills/job-application-assistant/` | 코어 지원 스킬. `SKILL.md`와 번호가 붙은 7개 지침 파일 |
+| `.claude/skills/job-application-assistant/` | 코어 지원 스킬. `SKILL.md`와 번호가 붙은 7개 지시 파일(instruction file) |
 | `.claude/skills/job-scraper/` | 구직 검색 오케스트레이션 |
 | `.claude/skills/upskill/` | `/upskill`의 스킬 격차 분석과 학습 계획 |
 | `.claude/settings.json` | Claude Code 권한 설정 (공유, 범위 한정) |
@@ -126,7 +126,7 @@ tags: [claude-code, agent-workflow, drafter-reviewer, job-search, cv-generation,
 | `job_search_tracker.csv` | 지원 추적 스프레드시트 |
 | `.github/workflows/ci.yml` | CI 정의 |
 
-`job-application-assistant` 스킬의 7개 지침 파일은 `01-candidate-profile.md`(학력, 경력, 스킬), `02-behavioral-profile.md`(PI, DISC 등 성향 평가), `03-writing-style.md`(톤, 구조, 권장과 금지), `04-job-evaluation.md`(fit 채점 프레임워크), `05-cv-templates.md`(LaTeX CV 구조와 맞춤 규칙), `06-cover-letter-templates.md`, `07-interview-prep.md`(STAR 예시와 면접 프레임워크)다.
+`job-application-assistant` 스킬의 7개 지시 파일은 `01-candidate-profile.md`(학력, 경력, 스킬), `02-behavioral-profile.md`(PI, DISC 등 성향 평가), `03-writing-style.md`(톤, 구조, 권장과 금지), `04-job-evaluation.md`(fit 채점 프레임워크), `05-cv-templates.md`(LaTeX CV 구조와 맞춤 규칙), `06-cover-letter-templates.md`, `07-interview-prep.md`(STAR 예시와 면접 프레임워크)다.
 
 `/setup` 없이 파일을 직접 편집하려는 사용자를 위한 대응표도 README가 제공한다.
 
@@ -138,7 +138,7 @@ tags: [claude-code, agent-workflow, drafter-reviewer, job-search, cv-generation,
 | `04-job-evaluation.md` | 스킬 매칭 영역, 커리어 목표, 동기 필터 |
 | `05-cv-templates.md` | 직무 유형별 프로필 서술 템플릿 |
 | `07-interview-prep.md` | 실제 경험에서 뽑은 STAR 예시 |
-| `search-queries.md` | 보유 스킬과 지역에 맞춘 구직 검색 쿼리 |
+| `search-queries.md` | 보유 스킬과 지역에 맞춘 구직 검색 질의 |
 
 ### 3.5 구직 포털 스킬
 

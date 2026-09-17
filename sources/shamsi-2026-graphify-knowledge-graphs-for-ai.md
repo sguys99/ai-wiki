@@ -41,8 +41,8 @@ Graphify는 코드, 문서, 논문, 다이어그램을 Tree-sitter 정적 분석
 
 4. **토큰 절감 효과를 워크드 예제로 제시했다.** 아래 수치는 모두 제품 페이지가 자체적으로 보고한 값이며 제3자 검증 결과는 아니다.
    - httpx (HTTP transport layer를 모델링한 Python 6개 파일): 노드 144개, 엣지 330개, 커뮤니티 6개. god node는 `Client`, `AsyncClient`, `Response`, `Request`이고 surprise edge는 `DigestAuth → Response`다.
-   - Karpathy mixed corpus (GPT 프레임워크 저장소 3개, attention 논문 5편, 다이어그램 4개로 약 52개 파일, 약 9만 2천 단어): 노드 285개, 엣지 340개, 커뮤니티 53개. 쿼리당 평균 비용이 약 1,700 토큰으로, 전체를 그대로 넣는 naive 방식의 약 12만 3천 토큰 대비 71.5배 감소했다.
-   - 약 50만 단어 코퍼스에서도 BFS subgraph 쿼리가 약 2,000 토큰 수준을 유지한다. naive 방식은 약 67만 토큰이다. 두 값의 비는 약 335배에 해당하지만 페이지는 이 비율을 숫자로 제시하지 않고 "규모가 커져도 압축이 유지된다"고만 서술한다.
+   - Karpathy mixed corpus (GPT 프레임워크 저장소 3개, attention 논문 5편, 다이어그램 4개로 약 52개 파일, 약 9만 2천 단어): 노드 285개, 엣지 340개, 커뮤니티 53개. 질의(query)당 평균 비용이 약 1,700 토큰으로, 전체를 그대로 넣는 naive 방식의 약 12만 3천 토큰 대비 71.5배 감소했다.
+   - 약 50만 단어 코퍼스에서도 BFS subgraph 질의가 약 2,000 토큰 수준을 유지한다. naive 방식은 약 67만 토큰이다. 두 값의 비는 약 335배에 해당하지만 페이지는 이 비율을 숫자로 제시하지 않고 "규모가 커져도 압축이 유지된다"고만 서술한다.
 
 5. **프라이버시와 보안을 기본값으로 선언했다.** 원본 소스 파일은 외부 모델로 보내지 않고 문서와 다이어그램의 의미 기술(semantic descriptions)만 전송한다. telemetry는 수집하지 않는다. URL은 http와 https만 허용하고, 다운로드에 크기와 시간 제한을 걸며, 출력 경로를 containment 검사하고, 노드 라벨을 HTML escape 처리한다. 페이지는 이 조치가 SSRF, Cypher 인젝션, XSS를 막는다고 설명한다.
 
@@ -59,7 +59,7 @@ Graphify는 코드, 문서, 논문, 다이어그램을 Tree-sitter 정적 분석
 | Multi-Modal Extraction | `.py`, `.js`, `.go`, `.java` 등 코드와 Markdown, PDF, 이미지를 파싱한다. Tree-sitter가 AST, call graph, docstring을 뽑고, LLM이 산문에서 개념을 뽑으며, 비전 모델이 다이어그램을 읽는다 |
 | Knowledge Graph Build | 추출된 노드와 엣지를 NetworkX 그래프로 병합하고 Leiden 알고리즘으로 의미 커뮤니티를 탐지한다. 벡터 임베딩은 쓰지 않는다 |
 | God Nodes & Surprises | degree가 가장 높은 god node를 찾아내고, 검토할 가치가 있는 예상 밖 cross-file 또는 cross-domain 연결을 표시한다 |
-| Interactive Outputs | 인터랙티브 `graph.html`, 쿼리 가능한 `graph.json`, 사람이 읽는 감사 리포트 `GRAPH_REPORT.md`를 내보낸다 |
+| Interactive Outputs | 인터랙티브 `graph.html`, 질의 가능한 `graph.json`, 사람이 읽는 감사 리포트 `GRAPH_REPORT.md`를 내보낸다 |
 | Assistant Integration | `/graphify`, `/graphify query`, `/graphify path`, `/graphify explain` 명령을 Claude Code, Codex, OpenCode 등에 제공한다 |
 | Secure by Design | http와 https URL만 허용하고 크기와 타임아웃을 제한하며, 경로 containment 검사와 노드 라벨 HTML escape로 SSRF, 인젝션, XSS를 방어한다 |
 
@@ -75,7 +75,7 @@ Graphify는 코드, 문서, 논문, 다이어그램을 Tree-sitter 정적 분석
 | cluster | Leiden communities | Leiden 알고리즘으로 의미 커뮤니티를 나눈다 |
 | analyze | god nodes & surprises | 중심 노드와 예상 밖 엣지를 찾는다 |
 | report | GRAPH_REPORT.md | 사람이 읽는 감사 리포트를 쓴다 |
-| export | HTML / JSON / Obsidian | 시각화와 쿼리 가능한 산출물을 내보낸다 |
+| export | HTML / JSON / Obsidian | 시각화와 질의 가능한 산출물을 내보낸다 |
 
 ### 지원 모듈
 
@@ -102,7 +102,7 @@ Graphify는 코드, 문서, 논문, 다이어그램을 Tree-sitter 정적 분석
 |---|---|
 | `graph.html` | 인터랙티브 시각화 |
 | `GRAPH_REPORT.md` | 핵심 노드, surprise, 추천 질문 |
-| `graph.json` | 영속적이고 쿼리 가능한 그래프 |
+| `graph.json` | 영속적이고 질의 가능한 그래프 |
 | `cache/` | 증분 캐시 |
 
 ### LLM 분리 설계
@@ -113,7 +113,7 @@ Graphify는 자체 LLM을 번들링하지 않는다. AI 코딩 어시스턴트�
 
 페이지 상단은 네 가지 지표를 헤드라인으로 내건다. GitHub star 3,700개 이상, MIT 라이선스, 토큰 71.5배 감축, Python 3.10 이상 런타임이다.
 
-| 코퍼스 | 입력 규모 | 그래프 규모 | 쿼리당 토큰 비용 | 절감률 |
+| 코퍼스 | 입력 규모 | 그래프 규모 | 질의당 토큰 비용 | 절감률 |
 |---|---|---|---|---|
 | httpx | Python 6개 파일 (HTTP transport layer 모델링) | 노드 144개, 엣지 330개, 커뮤니티 6개 | 페이지 미공개 | 페이지 미공개 |
 | Karpathy mixed | 저장소 3개, 논문 5편, 다이어그램 4개 (약 52개 파일, 약 9만 2천 단어) | 노드 285개, 엣지 340개, 커뮤니티 53개 | 약 1,700 (naive 약 12만 3천) | 71.5배 |
@@ -132,9 +132,9 @@ Graphify는 자체 LLM을 번들링하지 않는다. AI 코딩 어시스턴트�
 
 | 프로젝트 | 초점 | 강점 | Graphify 대비 한계 (페이지 서술) |
 |---|---|---|---|
-| Sourcegraph | cross-repo 코드 검색 | 엔터프라이즈급 내비게이션 | knowledge graph가 아니며 설계 의미를 제한적으로만 다룬다 |
+| Sourcegraph | cross-repo 코드 검색 | 엔터프라이즈급 내비게이션 | 지식 그래프가 아니며 설계 의미를 제한적으로만 다룬다 |
 | Code2Vec | 함수 단위 임베딩 | 벡터 retrieval과 분류 | 그래프 구조가 없고 멀티모달 입력을 받지 못한다 |
-| Neo4j | 범용 그래프 데이터베이스 | 강력한 Cypher 쿼리 | 코드로부터 그래프를 스스로 생성하지 않는다 |
+| Neo4j | 범용 그래프 데이터베이스 | 강력한 Cypher 질의 | 코드로부터 그래프를 스스로 생성하지 않는다 |
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
@@ -173,7 +173,7 @@ Graphify는 자체 LLM을 번들링하지 않는다. AI 코딩 어시스턴트�
 
 아래 연결은 본 wiki의 큐레이션 판단이다. 페이지가 이 자료들을 언급하거나 참조한 것은 아니다.
 
-- **GraphRAG** (Edge 2024, `wiki/database/edge-2024-from-local-to-global.md`): knowledge graph를 만들고 커뮤니티를 탐지해 질의에 답하는 구조가 Graphify와 같다. 대상이 문서 코퍼스라는 점이 다르다.
+- **GraphRAG** (Edge 2024, `wiki/database/edge-2024-from-local-to-global.md`): 지식 그래프를 만들고 커뮤니티를 탐지해 질의에 답하는 구조가 Graphify와 같다. 대상이 문서 코퍼스라는 점이 다르다.
 - **LightRAG** (Guo 2025, `wiki/database/guo-2025-lightrag-simple-and-fast.md`): 경량 graph-based RAG. 일반 문서를 대상으로 한다.
 - **PageIndex** (Kalane 2026, `wiki/database/kalane-2026-pageindex-threw-out-vector-databases.md`): vector 데이터베이스 없이 구조를 이용하는 retrieval 계열로, Graphify의 임베딩 미사용 노선과 방향이 같다.
 - **RAG-Anything** (Guo 2025, `wiki/database/guo-2025-rag-anything-all-in-one-rag.md`): 멀티모달 RAG. Graphify의 멀티모달 입력과 비교 지점이 된다.
@@ -183,7 +183,7 @@ Graphify는 자체 LLM을 번들링하지 않는다. AI 코딩 어시스턴트�
 
 - **Tree-sitter**: Graphify가 코드에서 AST, call graph, docstring을 뽑는 데 쓰는 파서다. 페이지에 따르면 19개 언어를 로컬에서 처리하며 이 단계에서는 LLM을 호출하지 않는다.
 - **NetworkX**: BSD 라이선스로 배포되는 Python 그래프 라이브러리다. Graphify는 추출한 노드와 엣지를 이 라이브러리의 그래프로 병합한다.
-- **Leiden algorithm**: Graphify가 그래프에 적용하는 커뮤니티 탐지 알고리즘이다. 페이지는 임베딩이나 vector store 없이 그래프 토폴로지만으로 군집을 찾는다고 설명한다.
+- **Leiden algorithm**: Graphify가 그래프에 적용하는 community detection 알고리즘이다. 페이지는 임베딩이나 vector store 없이 그래프 토폴로지만으로 군집을 찾는다고 설명한다.
 - **god node**: 그래프에서 degree가 가장 높은 노드다. 페이지는 이를 시스템의 중심에 있는 노드로 규정한다.
 - **surprise edge**: 예상 밖의 cross-file 또는 cross-domain 연결이다. Graphify는 이런 엣지를 검토 대상으로 표시한다.
 - **semantic descriptions**: 외부 모델로 보내는 유일한 데이터다. 문서와 다이어그램의 의미를 기술한 내용이며 원본 소스 파일은 전송하지 않는다.

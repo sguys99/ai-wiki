@@ -36,7 +36,7 @@ TechWealth Hub가 GBrain 공개 직후 올린 5분 45초 해설 영상으로, br
 ## 2. 주요 기여 (Key Contributions)
 
 1. **3-layer 멘탈 모델의 간결한 정의.** 왼쪽은 사람이 언제든 읽고 고칠 수 있는 plain markdown brain repo, 가운데는 Postgres, vector, hybrid search, chunking, indexing을 얹은 GBrain, 오른쪽은 답하기 전에 읽고 새로 배운 뒤 되쓰는 AI 에이전트다.
-2. **brain agent loop의 단계 정의.** signal 도착, entity 검출, brain 우선 조회, 컨텍스트를 실은 답변, brain 갱신, 다음 질의를 위한 새 상태 sync의 6단계다. skill pack이 이 이름을 붙였다고 영상이 밝힌다.
+2. **brain agent loop의 단계 정의.** signal 도착, entity 검출, brain 우선 조회, 컨텍스트를 실은 답변, brain 갱신, 다음 질의(query)를 위한 새 상태 sync의 6단계다. skill pack이 이 이름을 붙였다고 영상이 밝힌다.
 3. **compounding thesis의 정식화.** 매번 컨텍스트를 처음부터 다시 유도하는 대신, 대화 하나와 meeting 하나와 자료 하나가 지나갈 때마다 시스템이 더 똑똑해진다는 주장이다.
 4. **4개 database primitive 호명.** entity registry, event ledger, fact store, relationship graph를 recommended schema가 정의한다고 전한다.
 5. **"compiled truth above the line, append-only timeline below" schema 강조.** 페이지 윗부분은 정리된 현재 진실, 아랫부분은 덧붙이기만 하는 timeline이다. 발표자는 현재 상태와 증거 기록을 의도적으로 분리한 점을 큰 아이디어로 평가한다.
@@ -113,7 +113,7 @@ live sync 절은 vector database가 파생 index일 뿐 source of truth가 아�
 | 1 | Bun이 설치돼 있는지 확인한 뒤 GitHub 저장소에서 `gbrain`을 바로 추가한다 |
 | 2 | init 명령을 Supabase와 함께 실행하고 setup wizard에서 데이터베이스를 연결한다 |
 | 3 | 보유한 markdown 저장소를 훑고(보통 Git 폴더나 Documents에 있다) 가장 적합한 하나를 골라 import한다 |
-| 4 | 실제 쿼리를 한 번 돌려 자기 데이터에서 검색이 동작함을 증명한다 |
+| 4 | 실제 질의를 한 번 돌려 자기 데이터에서 검색이 동작함을 증명한다 |
 
 그 다음부터 원문이 더 opinionated해진다고 영상은 전한다. recommended schema를 읽고, skill pack을 읽고, knowledge base 재구조화를 제안하고, entity detection과 source attribution과 backlink와 enrichment 같은 production pattern을 따르도록 에이전트 스킬을 갱신하고, daily check update cron을 추가하는 순서다.
 
@@ -177,5 +177,5 @@ Garry Tan의 시작 경위도 전한다. OpenClaw 에이전트를 설정하면�
 - **database primitive 4종**: entity registry, event ledger, fact store, relationship graph.
 - **dream cycle**: 대화를 훑고, 빈약한 페이지를 보강하고, 깨진 citation을 고치고, 오래 남을 메모리를 통합하는 야간 배치 작업.
 - **verification runbook**: sync가 실제로 동작했는지를 단계로 확인하게 만드는 운영 문서. 근거 문장은 "Sync ran is not the same as sync worked"다.
-- **derived index**: source of truth가 아니라 원본에서 파생된 색인. 영상은 vector database가 여기에 해당한다고 인용한다.
+- **derived index**: source of truth가 아니라 원본에서 파생된 인덱스. 영상은 vector database가 여기에 해당한다고 인용한다.
 - **memex**: Vannevar Bush가 구상한 개인 지식 확장 장치. 영상은 README가 GBrain을 이 이름으로 부른다고 전한다.

@@ -14,13 +14,13 @@ license: "MIT"
 tags: [claude-code, skill-pack, slash-commands, agentic-workflow, software-factory, garry-tan, yc]
 ---
 
-# gstack: Claude Code용 소프트웨어 팩토리
+# gstack: Claude Code용 software factory
 
 ## 요약
 
-gstack은 Y Combinator 대표 Garry Tan이 공개한 Claude Code용 오픈소스 스킬 팩이다. 저장소는 자신을 software factory로 규정한다. AI 에이전트를 하나의 만능 조수로 두지 않고, CEO부터 릴리즈 엔지니어까지 역할이 구분된 팀원으로 다루는 것이 설계의 출발점이다.
+gstack은 Y Combinator 대표 Garry Tan이 공개한 Claude Code용 오픈소스 skill pack이다. 저장소는 자신을 software factory로 규정한다. AI 에이전트를 하나의 만능 조수로 두지 않고, CEO부터 릴리즈 엔지니어까지 역할이 구분된 팀원으로 다루는 것이 설계의 출발점이다.
 
-도구가 제공하는 것은 새로운 모델이나 더 나은 코드 생성 능력이 아니다. 개발 작업을 Think에서 Reflect까지 이어지는 스프린트 사이클로 규정하고, 각 단계를 슬래시 명령어에 대응시켜 절차를 지키게 만드는 규율에 가깝다. 라이선스는 MIT이며 프리미엄 티어를 두지 않는다. Claude Code 외에 OpenClaw, Cursor, Codex CLI 같은 다른 에이전트에서도 동작한다.
+도구가 제공하는 것은 새로운 모델이나 더 나은 코드 생성 능력이 아니다. 개발 작업을 Think에서 Reflect까지 이어지는 스프린트 사이클로 규정하고, 각 단계를 슬래시 커맨드에 대응시켜 절차를 지키게 만드는 규율에 가깝다. 라이선스는 MIT이며 프리미엄 티어를 두지 않는다. Claude Code 외에 OpenClaw, Cursor, Codex CLI 같은 다른 에이전트에서도 동작한다.
 
 ## 배경
 
@@ -36,7 +36,7 @@ gstack은 Y Combinator 대표 Garry Tan이 공개한 Claude Code용 오픈소스
 
 **역할 분리**는 하나의 에이전트에게 모든 판단을 맡기지 않고, 상황마다 다른 관점을 가진 전문가를 부르는 구조를 말한다. 제품 방향을 정하는 시점과 코드를 리뷰하는 시점은 필요한 판단 기준이 다르기 때문에, gstack은 이를 별도의 스킬로 떼어 놓는다.
 
-**스킬**은 특정 작업 절차를 담아 에이전트에 제공하는 지침 패키지다. gstack에서는 스킬 하나가 슬래시 명령어 하나에 대응하며, 사용자는 `/review`처럼 명령어를 입력해 해당 역할을 호출한다.
+**스킬**은 특정 작업 절차를 담아 에이전트에 제공하는 지침 패키지다. gstack에서는 스킬 하나가 슬래시 커맨드 하나에 대응하며, 사용자는 `/review`처럼 명령어를 입력해 해당 역할을 호출한다.
 
 **prompt injection**은 모델이 읽는 외부 콘텐츠에 지시문을 심어 에이전트를 조종하려는 공격이다. gstack의 브라우저가 임의의 웹 페이지를 여는 구조이므로 이 위험이 직접적으로 발생하며, 저장소는 별도의 방어 장치를 둔다.
 
@@ -128,7 +128,7 @@ anti-bot 스텔스를 갖춘 실제 브라우저를 쓴다는 점이 이 구성�
 | 필수 도구 | Claude Code 액세스, Git, Bun v1.0 이상 |
 | 지원 플랫폼 | macOS, Linux (x64/arm64) |
 | Windows | WSL 경유. Node.js가 추가로 필요하다 |
-| 명령어 수 | 슬래시 명령어 28개 |
+| 명령어 수 | 슬래시 커맨드 28개 |
 | 텔레메트리 | 기본 비활성화 |
 
 설치는 적용 범위에 따라 세 가지 방식이 있다.
@@ -147,7 +147,7 @@ git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git .agen
   && cd .agents/skills/gstack && ./setup --host codex
 ```
 
-텔레메트리는 기본적으로 꺼져 있다. 켜더라도 수집 범위는 스킬 이름, 실행 시간, 성공 여부, 버전, OS 정보까지다. 코드, 파일 경로, 저장소 이름, 프롬프트 내용은 수집하지 않는다. 슬래시 명령어 28개 전체 목록과 명령어별 역할 배정은 [[agents/9bow-2026-gstack-claude-code-virtual-team]]과 [[agents/gpters-2026-yc-ai-agent-guide-gstack]]이 정리한다.
+텔레메트리는 기본적으로 꺼져 있다. 켜더라도 수집 범위는 스킬 이름, 실행 시간, 성공 여부, 버전, OS 정보까지다. 코드, 파일 경로, 저장소 이름, 프롬프트 내용은 수집하지 않는다. 슬래시 커맨드 28개 전체 목록과 명령어별 역할 배정은 [[agents/9bow-2026-gstack-claude-code-virtual-team]]과 [[agents/gpters-2026-yc-ai-agent-guide-gstack]]이 정리한다.
 
 ## 결과
 
@@ -169,7 +169,7 @@ git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git .agen
 
 제시된 지표가 모두 산출량 계열이라는 점도 함께 볼 부분이다. 줄 수와 기여 건수는 얼마나 많이 만들었는지를 보여 주지만, 결함률이나 유지보수 비용처럼 방법론의 품질 효과를 확인할 지표는 제시되지 않는다. 프로세스 규율을 내세우는 도구라는 점을 생각하면 검증되지 않은 채로 남은 부분이다.
 
-구조적인 제약도 있다. gstack은 스킬 팩이므로 단독으로 동작하지 않는다. Claude Code나 호환 에이전트가 있어야 하며, 그 실행 비용은 MIT 라이선스와 별개다. 브라우저 자동화를 포함하는 만큼 실행 환경 요건도 단순한 프롬프트 모음보다 무겁다.
+구조적인 제약도 있다. gstack은 skill pack이므로 단독으로 동작하지 않는다. Claude Code나 호환 에이전트가 있어야 하며, 그 실행 비용은 MIT 라이선스와 별개다. 브라우저 자동화를 포함하는 만큼 실행 환경 요건도 단순한 프롬프트 모음보다 무겁다.
 
 ## 핵심 용어
 
@@ -184,7 +184,7 @@ git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git .agen
 
 ## 관련 페이지
 
-- [[agents/9bow-2026-gstack-claude-code-virtual-team]]: 슬래시 명령어 28개를 다섯 묶음으로 나눠 정리한 한국어 해설
+- [[agents/9bow-2026-gstack-claude-code-virtual-team]]: 슬래시 커맨드 28개를 다섯 묶음으로 나눠 정리한 한국어 해설
 - [[agents/gpters-2026-yc-ai-agent-guide-gstack]]: 브라우저 데몬과 QA 스킬을 중심으로 본 실사용 안내
 - [[agents/hada-2026-gstack-virtual-engineering-team]]: 저장소 요약과 커뮤니티 반응을 함께 담은 짧은 해설
 - [[overviews/gstack-ai-software-factory-overview]]: gstack을 한국어 해설 세 편과 함께 묶은 합성 overview

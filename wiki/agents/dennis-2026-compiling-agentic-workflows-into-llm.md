@@ -119,7 +119,7 @@ subterranean agent는 절차가 지하에 묻힌 구조를 뜻한다. orchestrat
 |---|---|---|
 | 런타임 구성 | 사용자, orchestrator, LLM | 사용자, LLM |
 | 절차가 있는 곳 | 외부 orchestrator 또는 매 턴 프롬프트 | LLM 가중치 |
-| 턴마다 하는 일 | 프롬프트 주입, 출력 파싱, edge 라우팅 | LLM이 자연 대화를 생성 |
+| 턴마다 하는 일 | 프롬프트 삽입, 출력 파싱, edge 라우팅 | LLM이 자연 대화를 생성 |
 | orchestrator의 역할 | 런타임 전부 | 학습 데이터 생성에만 사용 |
 | system prompt | flowchart 전체 직렬화(in-context) 또는 node 템플릿(LangGraph) | 최소 지시문 한 문장 |
 | 라우팅 실패 가능성 | decision hub마다 존재 | 라우팅 단계가 없어 구조적으로 0 |
@@ -259,7 +259,7 @@ LangGraph를 고른 이유는 채택 규모다. 2026년 3월 기준 GitHub star�
 
 조건별 200개라는 규모는 도메인 3종과 조건 3~4개를 곱하면 대화 2천 건 이상이 된다. 시나리오를 무작위로 뽑지 않고 경로 범위와 사용자 성향을 고르게 덮도록 설계한 이유는, 특정 경로에 시나리오가 몰리면 decision hub 라우팅 실패가 과소 또는 과대 측정되기 때문이다.
 
-채점은 LLM-as-judge 방식이며 judge는 어느 시스템이 만든 대화인지 모른다. 기본 judge는 Claude Sonnet 4.5인데, 데이터 생성자와 judge가 같은 모델이라는 점이 문제가 된다. Panickssery et al. [2024]가 judge가 자기 생성물을 선호하는 편향을 보고했기 때문이다. 저자는 이를 통제하려고 GPT-4.1 judge로 전량을 다시 채점했다.
+채점은 LLM-as-a-Judge 방식이며 judge는 어느 시스템이 만든 대화인지 모른다. 기본 judge는 Claude Sonnet 4.5인데, 데이터 생성자와 judge가 같은 모델이라는 점이 문제가 된다. Panickssery et al. [2024]가 judge가 자기 생성물을 선호하는 편향을 보고했기 때문이다. 저자는 이를 통제하려고 GPT-4.1 judge로 전량을 다시 채점했다.
 
 #### 채점 지표
 
@@ -284,7 +284,7 @@ Graceful Handling에는 별도 규칙이 있다. 사용자가 아무 도전을 �
 | 짝짓기의 의미 | 사용자 시뮬레이터가 동적으로 응답하므로 짝지은 조건도 첫 턴 이후 대화가 갈라진다. 짝짓기는 내용이 아니라 시나리오 의도 수준이다 |
 | 효과 크기 | Cohen's d, 합동 표준편차 기준 |
 | 신뢰구간 | 부트스트랩 95%, 재표본 10,000회, 백분위법 |
-| 다중 비교 보정 | 각 쌍대 비교 안에서 지표 5개에 대해 Holm-Bonferroni 보정, α = 0.05 |
+| 다중 비교 보정 | 각 pairwise 비교 안에서 지표 5개에 대해 Holm-Bonferroni 보정, α = 0.05 |
 
 ## 결과
 
@@ -680,7 +680,7 @@ Zoom 사례는 다른 각도의 문제를 보여준다. orchestrator는 권고 4
 |---|---|
 | vLLM, PagedAttention [Kwon et al., SOSP 2023] | 자체 호스팅 배치 추론의 서빙 기반. 비용 계산이 이 처리량 위에 서 있다 |
 | LLM-Inference-Bench [Patel et al., 2024] | 8B 모델의 A100 처리량 벤치마크. 토큰당 단가 계산의 근거 수치다 |
-| LLM-as-judge [Zheng et al., NeurIPS 2023] | MT-Bench가 확립한 평가 방법론 |
+| LLM-as-a-Judge [Zheng et al., NeurIPS 2023] | MT-Bench가 확립한 평가 방법론 |
 | Panickssery et al. [2024] | judge가 자기 생성물을 선호하는 편향을 보고했다. GPT-4.1 교차 채점의 동기다 |
 
 ## 핵심 용어

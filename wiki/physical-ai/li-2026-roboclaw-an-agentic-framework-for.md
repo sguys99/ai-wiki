@@ -125,7 +125,7 @@ RoboClaw의 사용 방식은 단순하다. 사용자가 과제 지시문을 보�
 
 ### 세 계층 추상화
 
-RoboClaw는 structured memory와 모듈형 스킬 라이브러리를 OpenClaw 방식으로 결합하고, 시스템을 세 계층으로 나눈다. 상위 계층이 하위 계층을 호출하는 관계다.
+RoboClaw는 structured memory와 모듈형 skill library를 OpenClaw 방식으로 결합하고, 시스템을 세 계층으로 나눈다. 상위 계층이 하위 계층을 호출하는 관계다.
 
 | 계층 | 정의 | 예시 |
 |---|---|---|
@@ -354,7 +354,7 @@ Baseline 2의 설계 의도를 짚어둘 필요가 있다. 네 subtask를 각각
 
 - [[physical-ai/black-2025-pi05-a-vision-language-action-model-with]]: RoboClaw의 저수준 policy로 쓰인 π0.5의 원 논문. 이 논문은 π0.5를 그대로 가져와 LoRA로 fine-tuning하고 그 위에 감독 계층을 세운다.
 - [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]]: π0.5의 직전 버전이자 flow matching 기반 VLA의 출발점. action chunk 예측과 손실 정의가 RoboClaw의 policy 학습과 같은 계보다.
-- [[physical-ai/lu-2026-aspire-agentic-skills-discovery-for]]: 스킬 라이브러리를 agent가 스스로 키우는 또 다른 접근. ASPIRE는 코드로 스킬을 만들고 RoboClaw는 수집한 데이터로 policy를 학습시킨다는 점에서 대비된다.
+- [[physical-ai/lu-2026-aspire-agentic-skills-discovery-for]]: skill library를 agent가 스스로 키우는 또 다른 접근. ASPIRE는 코드로 스킬을 만들고 RoboClaw는 수집한 데이터로 policy를 학습시킨다는 점에서 대비된다.
 - [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model]]: 오픈소스 end-to-end VLA. RoboClaw의 Baseline 1이 상정하는 프레임워크 없는 단일 모델 구성에 해당한다.
 - [[physical-ai/brohan-2023-rt-2-vision-language-action-models-transfer-web]]: VLA 노선의 원형. 관련 연구에서 long-horizon compounding error의 사례로 언급된다.
 - [[physical-ai/zhao-2023-learning-fine-grained-bimanual-manipulation]]: action chunking을 제안한 ACT. 양팔 manipulation이라는 문제 영역도 겹친다.

@@ -306,7 +306,7 @@ compute를 늘렸을 때의 반응도 갈린다. OpenHomie는 8 GPU에서 정점
 ### VLA 주도 loco-manipulation
 
 ![[assets/luo-2025-sonic-supersizing-motion-tracking/fig05.png]]
-*Figure 5: VLA 주도 loco-manipulation 5개 과제의 시간축 롤아웃과 성공률 표. 페달을 밟아 쓰레기통 열기, 캔 버리기 등 (Luo 2025, p.10)*
+*Figure 5: VLA 주도 loco-manipulation 5개 과제의 시간축 rollout과 성공률 표. 페달을 밟아 쓰레기통 열기, 캔 버리기 등 (Luo 2025, p.10)*
 
 GR00T N1.5를 teleoperation 데이터로 fine-tuning해 universal token 인터페이스에 연결했다. 전신 과제에서 VLA는 universal motion token 64차원과 손 관절 14차원을 합친 78차원 action을 예측하며, 판정은 부분 점수가 없는 이진 판정이다.
 

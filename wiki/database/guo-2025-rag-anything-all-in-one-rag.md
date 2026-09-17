@@ -100,13 +100,13 @@ RAG는 LLM이 학습 시점에 고정된 지식의 경계를 넘도록 외부 �
 
 **atomic content unit**은 문서를 분해한 모달리티 일관 최소 단위를 말한다. 각 지식 원본 `k_i`는 `{c_j = (t_j, x_j)}` 열로 분해되며, `t_j`가 text, image, table, equation 같은 모달리티 유형이고 `x_j`가 그 단위의 원본 내용이다. 이 추상화 덕분에 PPT와 PDF와 XLS가 같은 처리 경로를 탄다.
 
-**anchor node**는 비텍스트 단위 하나를 대표하는 그래프 노드다. 논문 표기로 `v_mm_j`이며, 그 단위 안에서 추출된 세부 엔티티들이 이 노드에 `belongs_to` 엣지로 묶인다. 표 하나가 노드 하나로 축약되는 것이 아니라, 표를 대표하는 노드 아래에 행 헤더와 열 헤더와 셀과 단위가 각각 노드로 달리는 구조다.
+**anchor node**는 비텍스트 단위 하나를 대표하는 그래프 노드다. 논문 표기로 `v_mm_j`이며, 그 단위 안에서 추출된 세부 entity들이 이 노드에 `belongs_to` 엣지로 묶인다. 표 하나가 노드 하나로 축약되는 것이 아니라, 표를 대표하는 노드 아래에 행 헤더와 열 헤더와 셀과 단위가 각각 노드로 달리는 구조다.
 
 **dual-graph construction**은 비텍스트 자료에서 만든 그래프와 텍스트에서 만든 그래프를 따로 구축한 뒤 병합하는 전략이다. 논문은 처음부터 단일 통합 그래프를 만들면 모달리티 고유의 구조 신호를 놓칠 위험이 있다고 설명한다.
 
-**dereferencing**은 검색된 multimodal 청크의 텍스트 대리 표현을 원본 시각 자료로 되돌리는 과정이다. 검색은 텍스트 임베딩 공간에서 값싸게 하고, 생성 시점에는 원본 이미지를 VLM에 직접 입력해 해석 충실도를 확보하는 분업이다.
+**dereferencing**은 검색된 multimodal chunk의 텍스트 대리 표현을 원본 시각 자료로 되돌리는 과정이다. 검색은 텍스트 임베딩 공간에서 값싸게 하고, 생성 시점에는 원본 이미지를 VLM에 직접 입력해 해석 충실도를 확보하는 분업이다.
 
-**modality preference**는 질의의 어휘에서 추론한 모달리티 선호 신호다. 질의에 "figure", "chart", "table", "equation" 같은 단어가 있으면 관련 정보가 어느 모달리티에 있을지에 대한 명시적 단서가 된다는 것이 논문의 관찰이다.
+**모달리티 선호(modality preference)**는 질의의 어휘에서 추론한 신호다. 질의에 "figure", "chart", "table", "equation" 같은 단어가 있으면 관련 정보가 어느 모달리티에 있을지에 대한 명시적 단서가 된다는 것이 논문의 관찰이다.
 
 ## 방법
 
@@ -139,38 +139,38 @@ Parallel Parser가 입력 문서를 atomic content unit 열로 분해한다. 문
 | 표현 | 표기 | 용도 |
 |---|---|---|
 | 상세 서술 | `d_chunk_j` | cross-modal retrieval 최적화. 그래프 추출의 입력이기도 하다 |
-| 엔티티 요약 | `e_entity_j` | 그래프 구축용. entity name, type, description을 담는다 |
+| entity 요약 | `e_entity_j` | 그래프 구축용. entity name, type, description을 담는다 |
 
 생성은 컨텍스트를 함께 본다. 각 단위를 지역 이웃 `C_j = {c_k | |k - j| <= δ}`와 함께 처리하며 `δ`가 컨텍스트 윈도우 크기를 정한다. 이 장치가 있어야 표현이 그 단위의 문서 내 역할을 반영한다는 것이 논문의 설명이다.
 
-그래프 구조는 비텍스트 단위를 anchor로 삼아 만든다. 추출 루틴 `R(·)`이 `d_chunk_j`를 읽어 세부 엔티티 집합 `V_j`와 관계 집합 `E_j`를 낸다.
+그래프 구조는 비텍스트 단위를 anchor로 삼아 만든다. 추출 루틴 `R(·)`이 `d_chunk_j`를 읽어 세부 entity 집합 `V_j`와 관계 집합 `E_j`를 낸다.
 
 - `(V_j, E_j) = R(d_chunk_j)`
 - `Ṽ = {v_mm_j}_j ∪ ⋃_j V_j`
 - `Ẽ = ⋃_j E_j ∪ ⋃_j {(u -belongs_to-> v_mm_j) : u ∈ V_j}`
 
-즉 노드 집합은 anchor 노드들과 각 단위 내부 엔티티들의 합집합이고, 엣지 집합은 내부 관계들과 각 내부 엔티티를 자기 anchor에 잇는 `belongs_to` 엣지들의 합집합이다. 이 구조가 비텍스트 내용을 주변 텍스트 맥락에 결속시키면서도 모달리티 고유의 grounding을 유지한다.
+즉 노드 집합은 anchor 노드들과 각 단위 내부 entity들의 합집합이고, 엣지 집합은 내부 관계들과 각 내부 entity를 자기 anchor에 잇는 `belongs_to` 엣지들의 합집합이다. 이 구조가 비텍스트 내용을 주변 텍스트 맥락에 결속시키면서도 모달리티 고유의 grounding을 유지한다.
 
 ### text-based knowledge graph
 
-`t_j = text`인 청크에는 named entity recognition과 relation extraction을 적용해 전통적 그래프를 만든다. 논문은 이 부분을 LightRAG(Guo et al., 2024)와 GraphRAG(Edge et al., 2024)에서 확립된 방법론과 유사한 방식이라고만 밝힌다. 텍스트는 이미 의미 정보가 풍부하므로 multimodal 컨텍스트 통합이 필요 없다는 것이 이 부분을 단순하게 둔 이유다.
+`t_j = text`인 chunk에는 named entity recognition과 relation extraction을 적용해 전통적 그래프를 만든다. 논문은 이 부분을 LightRAG(Guo et al., 2024)와 GraphRAG(Edge et al., 2024)에서 확립된 방법론과 유사한 방식이라고만 밝힌다. 텍스트는 이미 의미 정보가 풍부하므로 multimodal 컨텍스트 통합이 필요 없다는 것이 이 부분을 단순하게 둔 이유다.
 
 두 그래프의 차이를 나란히 보면 dual-graph라는 이름의 의미가 분명해진다.
 
 | 기준 | Cross-Modal KG | Text-Based KG |
 |---|---|---|
-| 입력 | 이미지, 표, 수식 단위 | 텍스트 청크 |
+| 입력 | 이미지, 표, 수식 단위 | 텍스트 chunk |
 | 추출 도구 | MLLM이 만든 `d_chunk_j`에 추출 루틴 적용 | named entity recognition과 relation extraction |
 | 컨텍스트 반영 | 지역 이웃 `C_j`를 함께 입력 | 필요 없음 |
-| 고유 구조 | anchor 노드와 `belongs_to` 엣지 | 엔티티와 의미 관계 |
+| 고유 구조 | anchor 노드와 `belongs_to` 엣지 | entity와 의미 관계 |
 | 담당하는 것 | 모달리티 grounding | 텍스트 의미 연결의 포괄적 확보 |
 
 ### 그래프 병합과 인덱스 생성
 
 두 그래프는 상보적인 측면을 담고 있어 병합했을 때 시각과 텍스트의 연합, 그리고 세밀한 텍스트 관계를 함께 쓸 수 있다.
 
-- **Entity Alignment and Graph Fusion**: entity name을 1차 매칭 키로 삼아 두 그래프에서 의미가 같은 엔티티를 찾고 표현을 통합해 `G = (V, E)`를 만든다.
-- **Dense Representation Generation**: 모든 그래프 엔티티, 관계, 그리고 모달리티를 가리지 않은 atomic content 청크를 인코딩해 임베딩 테이블 `T = {emb(s) : s ∈ V ∪ E ∪ {c_j}_j}`를 만든다.
+- **Entity Alignment and Graph Fusion**: entity name을 1차 매칭 키로 삼아 두 그래프에서 의미가 같은 entity를 찾고 표현을 통합해 `G = (V, E)`를 만든다.
+- **Dense Representation Generation**: 모든 그래프 entity, 관계, 그리고 모달리티를 가리지 않은 atomic content chunk를 인코딩해 임베딩 테이블 `T = {emb(s) : s ∈ V ∪ E ∪ {c_j}_j}`를 만든다.
 - 최종 검색 인덱스는 그래프와 임베딩 테이블의 쌍 `I = (G, T)`다. 구조 표현과 dense vector 공간을 함께 갖는 형태다.
 
 인덱싱 전체는 단계별 산출물로 나눌 수 있다. 각 단계가 앞 단계의 산출물을 입력으로 받는 직선 구조이며, 그래프 구축 단계에서만 두 경로로 나뉘었다가 다시 합쳐진다.
@@ -178,11 +178,11 @@ Parallel Parser가 입력 문서를 atomic content unit 열로 분해한다. 문
 | 단계 | 입력 | 산출물 |
 |---|---|---|
 | Multimodal Knowledge Unification | 원본 문서 `k_i` | atomic content unit 열 `{c_j = (t_j, x_j)}` |
-| Multi-modal Processors | 비텍스트 단위 `c_j`와 지역 이웃 `C_j` | 상세 서술 `d_chunk_j`와 엔티티 요약 `e_entity_j` |
-| Cross-Modal KG 구축 | `d_chunk_j` | anchor 노드 `v_mm_j`와 내부 엔티티 및 `belongs_to` 엣지, 즉 `(Ṽ, Ẽ)` |
-| Text-Based KG 구축 | 텍스트 청크 `x_j` | 엔티티와 의미 관계 |
+| Multi-modal Processors | 비텍스트 단위 `c_j`와 지역 이웃 `C_j` | 상세 서술 `d_chunk_j`와 entity 요약 `e_entity_j` |
+| Cross-Modal KG 구축 | `d_chunk_j` | anchor 노드 `v_mm_j`와 내부 entity 및 `belongs_to` 엣지, 즉 `(Ṽ, Ẽ)` |
+| Text-Based KG 구축 | 텍스트 chunk `x_j` | entity와 의미 관계 |
 | Entity Alignment and Graph Fusion | 위 두 그래프 | 통합 그래프 `G = (V, E)` |
-| Dense Representation Generation | `V`, `E`, 모든 청크 | 임베딩 테이블 `T` |
+| Dense Representation Generation | `V`, `E`, 모든 chunk | 임베딩 테이블 `T` |
 | 최종 | `G`와 `T` | 검색 인덱스 `I = (G, T)` |
 
 ### cross-modal hybrid retrieval
@@ -195,8 +195,8 @@ Parallel Parser가 입력 문서를 atomic content unit 열로 분해한다. 문
 
 | 경로 | 해결하는 문제 | 동작 | 산출 |
 |---|---|---|---|
-| Structural Knowledge Navigation | 중간 엔티티를 거쳐 연결된 지식이나 cross-modal 관계를 키워드 검색이 놓친다 | 키워드 매칭과 엔티티 인식으로 그래프 구성 요소를 찾고, 질의어와의 정확 매칭에서 출발해 지정된 hop 거리 안에서 이웃을 확장한다 | `C_stru(q)` |
-| Semantic Similarity Matching | 구조적으로 직접 연결되어 있지 않지만 의미상 관련된 내용을 구조 탐색이 놓친다 | `e_q`와 임베딩 테이블 `T`의 모든 구성 요소 사이에서 dense vector 유사도 검색을 수행한다 | 코사인 유사도 상위 k개 `C_seman(q)` |
+| Structural Knowledge Navigation | 중간 entity를 거쳐 연결된 지식이나 cross-modal 관계를 키워드 검색이 놓친다 | 키워드 매칭과 entity 인식으로 그래프 구성 요소를 찾고, 질의어와의 정확 매칭에서 출발해 지정된 hop 거리 안에서 이웃을 확장한다 | `C_stru(q)` |
+| Semantic Similarity Matching | 구조적으로 직접 연결되어 있지 않지만 의미상 관련된 내용을 구조 탐색이 놓친다 | `e_q`와 임베딩 테이블 `T`의 모든 구성 요소 사이에서 dense vector 유사도 검색을 수행한다 | 코사인 유사도 top-k `C_seman(q)` |
 
 두 경로의 결과는 `C(q) = C_stru(q) ∪ C_seman(q)`로 모인다. 그대로 합치면 각 경로가 제공하는 서로 다른 근거를 무시하게 되고 중복도 처리하지 못하므로, multi-signal fusion scoring이 세 신호를 결합해 최종 순위 `C*(q)`를 정한다.
 
@@ -213,7 +213,7 @@ Parallel Parser가 입력 문서를 atomic content unit 열로 분해한다. 문
 합성 단계가 다루는 문제는 시각 의미를 보존하면서 여러 정보원에 걸친 grounding을 유지하는 것이다. 텍스트만 쓰면 시각 정보를 잃고, 단순한 multimodal 방식은 모달리티 통합에 실패한다는 것이 논문의 진단이다.
 
 1. **텍스트 컨텍스트 구성**: 상위 후보 `C*(q)`에 속한 구성 요소의 텍스트 표현을 이어 붙인다. entity summary, relationship description, chunk content가 모두 들어가며, 모달리티 유형과 계층 출처를 나타내는 구분자를 사이에 삽입한다. 이 구분자가 있어야 언어 모델이 이질적 지식 요소를 구분해 읽는다.
-2. **시각 내용 복원**: 시각 자료에 대응하는 multimodal 청크는 dereferencing으로 원본을 복원해 `V*(q)`를 만든다.
+2. **시각 내용 복원**: 시각 자료에 대응하는 multimodal chunk는 dereferencing으로 원본을 복원해 `V*(q)`를 만든다.
 3. **통합 생성**: `Response = VLM(q, P(q), V*(q))`로 질의와 텍스트 컨텍스트와 시각 자료를 함께 조건으로 삼는다.
 
 ### 모달리티별 프롬프트 설계
@@ -269,7 +269,7 @@ DocBench는 금융 보고서가 평균 192페이지로 가장 길고 News가 1�
 |---|---|---|
 | GPT-4o-mini | 텍스트와 이미지를 함께 이해하는 모델. 128K 토큰 context window로 문서 전체를 직접 처리한다 | 검색 구조 없이 컨텍스트에 모두 담는 방식이다 |
 | LightRAG (Guo et al., 2024) | 구조화 지식 표현과 dual-level retrieval을 결합한 graph 기반 RAG | 텍스트 전용 처리로 제한된다 |
-| MMGraphRAG (Wan & Yu, 2025) | 텍스트와 시각 내용을 아우르는 통합 KG를 만들고, multimodal 엔티티 분석에 spectral clustering을 쓰며 추론 경로를 따라 컨텍스트를 검색한다 | 기본적인 이미지 처리만 더했을 뿐 표와 수식을 plain text로 취급해 구조 정보를 잃는다 |
+| MMGraphRAG (Wan & Yu, 2025) | 텍스트와 시각 내용을 아우르는 통합 KG를 만들고, multimodal entity 분석에 spectral clustering을 쓰며 추론 경로를 따라 컨텍스트를 검색한다 | 기본적인 이미지 처리만 더했을 뿐 표와 수식을 plain text로 취급해 구조 정보를 잃는다 |
 
 ### 구현 설정과 판정 방식
 
@@ -280,7 +280,7 @@ DocBench는 금융 보고서가 평균 192페이지로 가장 길고 News가 1�
 | 임베딩 모델 | text-embedding-3-large, 3072차원 |
 | reranker | bge-reranker-v2-m3 |
 | entity와 relation 합산 토큰 한도 | 20,000 토큰 |
-| 청크 토큰 한도 | 12,000 토큰 |
+| chunk 토큰 한도 | 12,000 토큰 |
 | 출력 형식 | 한 문장으로 제약 |
 | GPT-4o-mini baseline 입력 | 문서를 최대 50페이지까지 144 dpi 이미지로 이어 붙여 입력 |
 | 정확도 판정 | GPT-4o-mini judge |
@@ -353,7 +353,7 @@ Figure 2는 두 벤치마크 각각에 대해 정확도 선 그래프와 QA 쌍 
 | MMLongBench | 51~100 페이지 | 값 미공개 | 값 미공개 | 9.3%p |
 | MMLongBench | 101~200 페이지 | 값 미공개 | 값 미공개 | 7.9%p |
 
-짧은 문서에서는 두 방법이 비슷하고 길이가 늘수록 격차가 커진다는 것이 저자의 관찰이다. 저자가 제시한 설명은 dual-graph가 페이지를 넘나드는 엔티티 정렬을 제공하고, 구조 탐색과 의미 검색의 결합이 흩어진 multimodal 근거를 모은다는 것이다.
+짧은 문서에서는 두 방법이 비슷하고 길이가 늘수록 격차가 커진다는 것이 저자의 관찰이다. 저자가 제시한 설명은 dual-graph가 페이지를 넘나드는 entity 정렬을 제공하고, 구조 탐색과 의미 검색의 결합이 흩어진 multimodal 근거를 모은다는 것이다.
 
 이 결과를 읽을 때 함께 볼 것이 QA 쌍 개수 막대다. DocBench는 1~10페이지 약 340개, 11~50페이지 약 350개, 51~100페이지 약 160개, 101~200페이지 약 155개, 200페이지 초과 약 80개로 분포한다. MMLongBench는 11~50페이지 구간에 약 700개가 몰려 있고 200페이지 초과 구간은 거의 비어 있다. 가장 큰 격차가 나타나는 구간이 표본이 가장 적은 구간이기도 하다는 점은 결과 해석의 폭을 좁힌다.
 
@@ -365,7 +365,7 @@ Figure 2는 두 벤치마크 각각에 대해 정확도 선 그래프와 QA 쌍 
 | w/o Reranker | 60.9 | 63.5 | 58.8 | 60.2 | 68.6 | 81.7 | 74.7 | 45.4 | 62.4 |
 | RAG-Anything | 61.4 | 67.0 | 61.5 | 60.2 | 66.3 | 85.0 | 76.3 | 46.0 | 63.4 |
 
-Chunk-only는 dual-graph construction을 건너뛰고 전통적 청크 검색만 쓰는 변형이고, w/o Reranker는 cross-modal reranking만 제거하고 그래프 구조는 유지한 변형이다. 두 변형을 순서대로 보면 각 구성 요소의 기여를 분리할 수 있다.
+Chunk-only는 dual-graph construction을 건너뛰고 전통적 chunk 검색만 쓰는 변형이고, w/o Reranker는 cross-modal reranking만 제거하고 그래프 구조는 유지한 변형이다. 두 변형을 순서대로 보면 각 구성 요소의 기여를 분리할 수 있다.
 
 | 구성 요소 | 기여 | 산출 근거 |
 |---|---|---|
@@ -388,7 +388,7 @@ Chunk-only는 dual-graph construction을 건너뛰고 전통적 청크 검색만
 
 두 번째 사례는 Novo Nordisk의 2020년 임금 총액을 묻는 질의다. 정답은 DKK 26,778백만이다. GPT-4o-mini는 32,928백만, MMGraphRAG와 LightRAG는 둘 다 11,503백만으로 답했다. RAG-Anything은 행 헤더, 열 헤더인 연도, 데이터 셀, 단위를 각각 노드로 두고 `row-of`, `column-of`, `header-applies-to`, `unit-of` 엣지로 잇는다. 이 구조가 "Share-based payment costs" 같은 인접 항목과의 혼동을 막았다.
 
-저자가 이 두 사례에서 끌어낸 결론은 MMGraphRAG의 실패 원인이 이미지 모달리티 엔티티만 다루고 표 셀과 행 헤더와 열 헤더 같은 다른 모달리티 엔티티를 무시하는 데 있다는 것이다.
+저자가 이 두 사례에서 끌어낸 결론은 MMGraphRAG의 실패 원인이 이미지 모달리티 entity만 다루고 표 셀과 행 헤더와 열 헤더 같은 다른 모달리티 entity를 무시하는 데 있다는 것이다.
 
 Appendix A.2는 같은 형식의 사례를 둘 더 싣는다.
 
@@ -407,7 +407,7 @@ Figure 5 사례에서 RAG-Anything은 막대와 축 라벨과 범례를 노드�
 | 막대 그래프 | 막대, 축 라벨, 범례 | `bar-of`, `label-applies-to` |
 | 다중 패널 그림 | 패널, 축 제목, 범례, 캡션 | 패널이 플롯을 담는 관계, 캡션이 맥락을 제공하는 관계, 부그림 사이의 계층 관계 |
 
-이 목록이 MMGraphRAG와의 차이를 설명한다. MMGraphRAG는 이미지 모달리티 엔티티만 다루므로 표 셀과 행 헤더와 열 헤더에 해당하는 노드 자체가 없고, 그래서 표 질의에서 구조적 모호성을 해소하지 못한다.
+이 목록이 MMGraphRAG와의 차이를 설명한다. MMGraphRAG는 이미지 모달리티 entity만 다루므로 표 셀과 행 헤더와 열 헤더에 해당하는 노드 자체가 없고, 그래서 표 질의에서 구조적 모호성을 해소하지 못한다.
 
 ## 한계
 
@@ -478,10 +478,10 @@ Multimodal RAG 쪽 선행 연구는 모달리티별 전용 구조에 의존한�
 | 용어 | 뜻 |
 |---|---|
 | atomic content unit | 문서를 분해한 모달리티 일관 최소 단위 `c_j = (t_j, x_j)`. `t_j`가 모달리티 유형이고 `x_j`가 원본 내용이다 |
-| anchor node `v_mm_j` | 비텍스트 단위 하나를 대표하는 그래프 노드. 그 단위에서 추출된 세부 엔티티들이 `belongs_to` 엣지로 이 노드에 묶인다 |
+| anchor node `v_mm_j` | 비텍스트 단위 하나를 대표하는 그래프 노드. 그 단위에서 추출된 세부 entity들이 `belongs_to` 엣지로 이 노드에 묶인다 |
 | dual-graph construction | cross-modal KG와 text-based KG를 따로 만든 뒤 entity name 매칭으로 병합하는 전략 |
 | multi-signal fusion scoring | 구조 중요도, 의미 유사도, 모달리티 선호 세 신호를 결합해 검색 후보를 재랭킹하는 방식 |
-| dereferencing | 검색된 multimodal 청크의 텍스트 대리 표현을 원본 시각 자료로 되돌려 VLM에 직접 입력하는 과정 |
+| dereferencing | 검색된 multimodal chunk의 텍스트 대리 표현을 원본 시각 자료로 되돌려 VLM에 직접 입력하는 과정 |
 | architectural fragmentation | 모달리티마다 별도 파이프라인을 두는 구조가 낳는 파편화. 논문이 기존 multimodal RAG의 근본 문제로 지목한 개념이다 |
 
 ## 관련 페이지
@@ -490,6 +490,6 @@ Multimodal RAG 쪽 선행 연구는 모달리티별 전용 구조에 의존한�
 - [[database/guo-2025-lightrag-simple-and-fast]]: 같은 연구실의 선행작. RAG-Anything의 text-based KG가 이 계열의 방법론과 유사하다고 논문이 밝힌 대상이며, LightRAG의 학회 게재 정보와 인덱싱 비용 실측치는 이 논문이 아니라 그 페이지가 근거다.
 - [[database/9bow-2026-rag-anything-multimodal-rag-framework]]: RAG-Anything을 다룬 한국어 소개글. 설치와 코드 예제 중심의 입문 자료이므로, 벤치마크 수치나 방법 세부를 인용할 때는 논문인 이 페이지를 우선한다.
 - [[database/edge-2024-from-local-to-global]]: RAG-Anything이 계보의 출발점으로 지목한 GraphRAG 원논문. local search와 global search라는 이원 구성이 원논문이 아니라 공식 구현체의 것이라는 구분도 그 페이지에서 확인할 수 있다.
-- [[database/zhang-2026-leanrag-knowledge-graph-based-generation]]: 계층 지식 그래프와 LCA 기반 검색으로 LightRAG를 확장한 연구. RAG-Anything이 모달리티 방향으로 확장했다면 LeanRAG는 추상화 수준 방향으로 확장한 사례여서 비교 대상이 된다.
+- [[database/zhang-2026-leanrag-knowledge-graph-based-generation]]: 계층 knowledge graph와 LCA 기반 검색으로 LightRAG를 확장한 연구. RAG-Anything이 모달리티 방향으로 확장했다면 LeanRAG는 추상화 수준 방향으로 확장한 사례여서 비교 대상이 된다.
 - [[database/dsba-2026-paper-review-graph-based-rag]]: LightRAG와 LeanRAG를 함께 다룬 세미나 자료. 그래프 기반 RAG 계열의 논문과 구현 사이 간극을 비판적으로 검토한다.
 - [[overviews/lightrag-family-graph-rag-overview]]: GraphRAG부터 LightRAG와 RAG-Anything과 LeanRAG까지 묶은 계열 overview. 데이터셋과 judge 설정이 서로 달라 head-to-head 비교가 불가능한 지점을 정리해 두었다.

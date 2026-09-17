@@ -258,7 +258,7 @@ Agent Lightning v1.0은 이 control plane을 선언적 rollout 추상화와 reco
 
 | 컴포넌트 | 역할 | 내부 구성 |
 |---|---|---|
-| API Gateway | rollout, 모델, 이벤트를 저장하고 harness가 보낸 LLM 호출을 학습기가 등록해 둔 엔드포인트로 넘긴다. 생애주기 상태와 append-only 이벤트의 진실 원천이다 | Rollout API, LLM API Proxy |
+| API Gateway | rollout, 모델, 이벤트를 저장하고 harness가 보낸 LLM 호출을 학습기가 등록해 둔 엔드포인트로 넘긴다. 생애주기 상태와 append-only 이벤트의 진실의 원천(source of truth)이다 | Rollout API, LLM API Proxy |
 | Rollout Controller | Gateway에서 rollout을 polling해 해당 agent 작업을 Kubernetes Job이나 로컬 프로세스 풀로 띄우고 상태를 Gateway에 다시 보고한다 | K8S Reconciler, Local Reconciler |
 | Customized Trainer | VERL 위에 구현돼 rollout을 등록하고 종료 상태에 이를 때까지 기다렸다가 기록된 이벤트를 모아 학습 sample로 조립한다 | Sample Adapter, Monitoring |
 

@@ -269,7 +269,7 @@ Flaw #3을 저자들은 가장 중요한 차이로 꼽는다. 기존 self-delega
 |---|---|
 | 실행 환경 | Python REPL. sub-LM과 sub-RLM을 포함한 모든 도구가 모듈로 노출된다 |
 | 초기 prompt | REPL 변수 `context`에 문자열로 저장된다 |
-| sub-LM 호출 | `llm_query(prompt)`. 단순 요약, 추출, 청크 단위 질의 응답용 |
+| sub-LM 호출 | `llm_query(prompt)`. 단순 요약, 추출, chunk 단위 질의 응답용 |
 | sub-RLM 호출 | `rlm_query(context, query)`. 그 자체로 chunking이나 다단 추론이 필요한 복잡한 sub-task용. 최대 depth에 도달하면 `llm_query`로 자동 fallback한다 |
 | stdout 처리 | 컨텍스트가 빠르게 차는 것을 막기 위해 잘라낸다 |
 | 종료 신호 | `FINAL(answer)`로 답을 직접 주거나 `FINAL_VAR(variable_name)`로 REPL 변수를 반환한다 |
@@ -279,14 +279,14 @@ Flaw #3을 저자들은 가장 중요한 차이로 꼽는다. 기존 self-delega
 
 ### 3.4 시스템 프롬프트 (Appendix C)
 
-방법마다 task와 무관한 고정 prompt 하나를 쓴다. RLM prompt는 REPL 환경 안내, `llm_query` 사용법, 그리고 chunking 전략을 보여주는 코드 예시(문자열 앞부분 훑기, 책을 절 단위로 순회하기, 문서 리스트를 10등분해 청크마다 질의하기, Markdown 헤더로 쪼개기)로 구성된다. 모델별 차이는 다음과 같다.
+방법마다 task와 무관한 고정 prompt 하나를 쓴다. RLM prompt는 REPL 환경 안내, `llm_query` 사용법, 그리고 chunking 전략을 보여주는 코드 예시(문자열 앞부분 훑기, 책을 절 단위로 순회하기, 문서 리스트를 10등분해 chunk마다 질의하기, Markdown 헤더로 쪼개기)로 구성된다. 모델별 차이는 다음과 같다.
 
 | 변형 | 차이 |
 |---|---|
 | GPT-5 (depth=1) | 기준 prompt. sub-LM이 약 50만 문자를 담을 수 있다고 안내하고 sub-LM 하나에 문서 10개를 넣는 전략을 예시로 든다 |
 | Qwen3-Coder-480B-A35B | 맨 앞에 `llm_query` 남용 경고 한 줄을 추가한다. 호출당 약 20만 문자를 목표로 batch하라고 지시하며, 1000줄이면 개별 1000회가 아니라 5줄씩 묶어 200회를 부르라고 예시를 든다. 이 문장이 없으면 모든 것에 sub-call을 걸어 기본 task에도 수천 회 호출이 발생한다 |
 | depth > 1 | `rlm_query(context, query)` 함수 설명과 `llm_query`와의 선택 기준을 추가한다 |
-| Qwen3-8B (depth=1) | context window가 GPT-5의 272K에서 3만 2천 토큰으로 줄어든 만큼 조정한다. sub-LM 한도를 약 10만 문자로 낮추고, 청크 예시를 10,000자에서 1,000자로 줄이고, sub-LM 하나에 문서 2개에서 3개를 넣으라고 바꾼다 |
+| Qwen3-8B (depth=1) | context window가 GPT-5의 272K에서 3만 2천 토큰으로 줄어든 만큼 조정한다. sub-LM 한도를 약 10만 문자로 낮추고, chunk 예시를 10,000자에서 1,000자로 줄이고, sub-LM 하나에 문서 2개에서 3개를 넣으라고 바꾼다 |
 | REPL only (depth=0) | `llm_query` 설명을 빼고 regex로 관련 절을 찾아 buffer에 모으는 예시로 대체한다 |
 
 ### 3.5 평가 task 4종과 복잡도 설계
@@ -308,9 +308,9 @@ OOLONG-Pairs의 컨텍스트 길이는 1,024에서 1,048,576까지 11개 지점�
 | baseline | 구성 |
 |---|---|
 | Base Model | system prompt 없이 컨텍스트를 그대로 넣는다 |
-| CodeAct (+BM25) | ReAct loop 안에서 코드를 실행하는 CodeAct(Wang 2024)에 BM25 retriever를 붙였다. BrowseComp+ 외의 task는 색인할 대상이 없거나 이미 컨텍스트에 들어가므로 retriever를 뺀 변형을 쓴다 |
+| CodeAct (+BM25) | ReAct loop 안에서 코드를 실행하는 CodeAct(Wang 2024)에 BM25 retriever를 붙였다. BrowseComp+ 외의 task는 인덱싱할 대상이 없거나 이미 컨텍스트에 들어가므로 retriever를 뺀 변형을 쓴다 |
 | CodeAct (+sub-calls) | REPL 안에 sub-call 도구를 둔 변형. RLM과 달리 사용자 prompt를 코드 환경으로 offload하지 않고 모델에 직접 넣는다 |
-| Compaction agent | 컨텍스트가 찰 때마다 요약해 이어가는 agent. 단일 문서가 창을 넘으면 그 문서를 청크로 나눠 반복 압축한다. GPT-5 실험에서는 비용 때문에 압축은 GPT-5-nano가, 최종 답변은 GPT-5가 담당한다 |
+| Compaction agent | 컨텍스트가 찰 때마다 요약해 이어가는 agent. 단일 문서가 창을 넘으면 그 문서를 chunk로 나눠 반복 압축한다. GPT-5 실험에서는 비용 때문에 압축은 GPT-5-nano가, 최종 답변은 GPT-5가 담당한다 |
 | OpenCode | 코딩 agent. 컨텍스트를 파일로 offload하는 변형과 초기 prompt로 직접 넣는 변형을 모두 평가한다 |
 | Claude Code | 대응 모델과 함께 설계된 closed-source agent라서 Claude Opus 4.1 + Claude Code v2.0.0으로 평가한다. 메인 결과의 GPT-5와 출시 시점이 비슷한 버전이다 |
 
@@ -512,7 +512,7 @@ Qwen3-4B-Instruct-0527을 짧은 split에서만 RL 학습하고 긴 split으로 
 
 Figure 8은 세 가지 패턴을 실제 코드 화면으로 보여준다.
 
-- **(a) 코드로 컨텍스트를 탐색하고 걸러낸다.** `find_snippets(keyword, window=200, max_hits=10)` 같은 함수를 정의해 청크마다 키워드 위치를 찾고 주변 window를 잘라낸다. 화면의 키워드 목록은 `dinengdeng`, `pinakbet`, `bagoong`, `Agoo`, `La Union`, `festival`이다. 실행 시간은 0.158초다.
+- **(a) 코드로 컨텍스트를 탐색하고 걸러낸다.** `find_snippets(keyword, window=200, max_hits=10)` 같은 함수를 정의해 chunk마다 키워드 위치를 찾고 주변 window를 잘라낸다. 화면의 키워드 목록은 `dinengdeng`, `pinakbet`, `bagoong`, `Agoo`, `La Union`, `festival`이다. 실행 시간은 0.158초다.
 - **(b) 큰 컨텍스트의 추론을 sub-LM 호출로 위임한다.** `process_batch(questions_batch)`가 질문 여러 개를 한 prompt로 묶어 6개 카테고리 분류를 요청하고 `llm_query` 한 번으로 처리한다. root LM은 결과만 받는다.
 - **(c) sub-LM 출력을 이어 붙여 긴 복합 출력을 만든다.** pair 리스트를 문자열로 포맷해 `"\n".join`으로 합치고 `FINAL_VAR(final_result)`로 반환한다. 화면의 출력은 최종 결과에 pair 10,731개가 담겼음을 보여준다. 단일 LM 출력으로는 만들 수 없는 길이다.
 
@@ -520,7 +520,7 @@ Appendix E는 개별 trajectory 4건을 단계별로 기술한다.
 
 | 사례 | 대상 | 비용 | 요지 |
 |---|---|---|---|
-| E.1 | RLM(GPT-5), BrowseComp-Plus Query 74 | $0.079 | 1000개 문서(약 830만 토큰)에서 regex로 먼저 탐색한다. 모델이 사전 지식으로 검색어를 고르면서 prompt의 `beauty pageant`, `festival` 같은 키워드도 함께 찾는다. 6번 청크에서 단서를 찾아 sub-LM을 호출하고, 답을 변수 `answer6`에 저장하면서 출력도 한다. 확인용 sub-LM 호출 2회를 더 거쳐 정답을 반환한다 |
+| E.1 | RLM(GPT-5), BrowseComp-Plus Query 74 | $0.079 | 1000개 문서(약 830만 토큰)에서 regex로 먼저 탐색한다. 모델이 사전 지식으로 검색어를 고르면서 prompt의 `beauty pageant`, `festival` 같은 키워드도 함께 찾는다. 6번 chunk에서 단서를 찾아 sub-LM을 호출하고, 답을 변수 `answer6`에 저장하면서 출력도 한다. 확인용 sub-LM 호출 2회를 더 거쳐 정답을 반환한다 |
 | E.2 | RLM(Qwen3-Coder), OOLONG-Pairs Query 3 | $1.12 | 실패 사례다. 1턴에서 sub-LM 분류와 코드로 정답 pair를 이미 변수에 만들어 놓는다. 그런데 `FINAL_VAR()` 반환이 받아들여지지 않자 검증을 반복하고, Step 5부터 11까지 같은 과정을 5회 다시 수행한다. 마지막에는 변수에 쌓아둔 답을 쓰지 않고 root LM이 직접 생성한 오답을 반환한다 |
 | E.3 | RLM(Qwen3-Coder), OOLONG Query 212 | $0.38 | 분류 함수를 줄마다 sub-LM 호출로 정의해 전체 컨텍스트에 적용하면서 수천 회 재귀 호출이 발생한다. 정답에는 도달했지만 훨씬 적은 sub-call로도 풀 수 있었다고 적는다 |
 | E.4 | RLM(GPT-5), CodeQA Query 44 | $0.27 | 90만 토큰 코드베이스를 부분으로 나눠 sub-LM에 단서를 묻고, 모은 단서를 별도 sub-call로 종합해 정답 선택지 1을 고른다. 정보 밀도가 낮은 task에서는 분할과 재귀 질의가 통한다는 예시다 |
@@ -611,7 +611,7 @@ trajectory당 평균 sub-call 횟수를 정답과 오답으로 나눈 결과다.
 ### 5.1 명시된 한계
 
 - **평가 범위**: 더 어렵고 자연스러운 long-context 처리 task로의 확장, 그리고 RLM에 가드레일을 구현하는 최선의 방법이 모두 미탐구 상태라고 적는다.
-- **복잡도 증가**: LLM 위에 추론 layer를 더하면서 sub-call 비용 폭증 같은 의도치 않은 부작용이 생길 수 있다. 비동기 sub-call과 sandbox REPL이 runtime과 비용을 줄일 수 있지만 복잡도를 더 키운다.
+- **복잡도 증가**: LLM 위에 추론 layer를 더하면서 sub-call 비용 폭증 같은 의도치 않은 부작용이 생길 수 있다. 비동기 sub-call과 샌드박스 REPL이 runtime과 비용을 줄일 수 있지만 복잡도를 더 키운다.
 - **학습 규모**: 실험은 기존 frontier 모델 위에서 이루어졌고, 네이티브 학습은 Qwen3-8B 규모의 초기 증거뿐이다.
 
 ### 5.2 부정적 결과 (Appendix B)

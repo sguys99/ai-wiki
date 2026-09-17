@@ -45,10 +45,10 @@ figures:
 
 1. **파싱 대신 렌더링한다.** 웹페이지, PDF, 이미지를 스크린샷으로 만들어 그 이미지 자체를 검색 대상으로 삼는다. HTML 파싱이 흔히 버리는 표, 차트, 레이아웃, 인포그래픽 같은 시각 구조가 그대로 남아, reader 모델이 그 내용을 실제로 답할 수 있게 된다.
 2. **스크린샷 데이터로 LoRA fine-tuning한 임베딩 모델.** `Qwen/Qwen3-VL-Embedding-2B`를 웹페이지 검색용으로 LoRA fine-tuning해, 페이지 이미지를 시각 내용까지 검색 가능한 공간에 배치한다. 학습된 어댑터는 `Chrisyichuan/wiki-screenshot-embedding-lora`의 `lora_vit/ckpt200`으로 공개돼 있어, 재학습 없이 그대로 쓸 수 있다.
-3. **위키피디아 828만 페이지 사전 구축 인덱스를 무료 호스팅 API로 공개.** `https://api.pixelrag.ai/search`는 설정도 API 키도 없이 즉시 호출되며, 텍스트 쿼리뿐 아니라 이미지를 쿼리로 받는 visual search도 지원한다. 위키피디아 828만 문서가 사전 구축 인덱스로 함께 배포되지만, 파이프라인 자체는 특정 코퍼스에 묶이지 않은 범용이다.
+3. **위키피디아 828만 페이지 사전 구축 인덱스를 무료 호스팅 API로 공개.** `https://api.pixelrag.ai/search`는 설정도 API 키도 없이 즉시 호출되며, 텍스트 질의(query)뿐 아니라 이미지를 질의로 받는 visual search도 지원한다. 위키피디아 828만 문서가 사전 구축 인덱스로 함께 배포되지만, 파이프라인 자체는 특정 코퍼스에 묶이지 않은 범용이다.
 4. **단계별로 쪼개 설치하는 파이프라인.** 캡처는 독립 명령 `pixelshot`이고, 나머지는 `pixelrag <stage>` 우산 명령 아래 있다. `embed`, `index`, `serve` extras가 각각 따로 설치되므로 필요한 단계만 설치하면 된다.
 5. **Claude Code 플러그인 `pixelbrowse`.** 렌더러가 Claude Code 스킬로도 배포된다. Claude가 raw HTML을 가져오는 대신 `pixelshot`으로 페이지를 스크린샷해 이미지를 읽으므로, 차트, 다이어그램, 표, 레이아웃을 사람이 보는 방식으로 인식한다. MCP 서버도 백엔드도 없이 로컬에서 `pixelshot`만 호출한다.
-6. **학습 자산 전면 공개.** LoRA 어댑터뿐 아니라 전체 학습셋 `Chrisyichuan/screenshot-training-natural-filtered-v2`를 공개해, 더 큰 Qwen이나 다른 임베딩 모델 같은 다른 backbone에 같은 방식을 적용할 수 있게 했다. 데이터 큐레이션 파이프라인(LLM 기반 쿼리 증강 생성, 필터링, hard-negative mining)은 `train/docs/synthetic_data_pipeline.md`에 문서화돼 있다.
+6. **학습 자산 전면 공개.** LoRA 어댑터뿐 아니라 전체 학습셋 `Chrisyichuan/screenshot-training-natural-filtered-v2`를 공개해, 더 큰 Qwen이나 다른 임베딩 모델 같은 다른 backbone에 같은 방식을 적용할 수 있게 했다. 데이터 큐레이션 파이프라인(LLM 기반 질의 증강 생성, 필터링, hard-negative mining)은 `train/docs/synthetic_data_pipeline.md`에 문서화돼 있다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -91,7 +91,7 @@ Chrome 조달 방식은 플랫폼마다 다르다. 번들된 turbo `headless_she
 
 | 명령 | 인자 예시 | 역할 |
 |---|---|---|
-| `pixelrag chunk` | `--tiles-dir ./tiles` | 타일을 청크 단위로 분할 |
+| `pixelrag chunk` | `--tiles-dir ./tiles` | 타일을 chunk 단위로 분할 |
 | `pixelrag embed` | `--shard-dir ./tiles --output-dir ./embeddings --gpu-ids 0,1` | 타일을 임베딩 벡터로 변환, 다중 GPU 지정 가능 |
 | `pixelrag build-index` | `--embeddings-dir ./embeddings --output-dir ./index` | 임베딩을 FAISS 인덱스로 빌드 |
 
@@ -107,7 +107,7 @@ Chrome 조달 방식은 플랫폼마다 다르다. 번들된 turbo `headless_she
 
 ### 3.5 서빙과 사전 구축 인덱스
 
-`pixelrag serve --index-dir <경로> --port 30001`로 로컬 검색 API를 띄운다. 요청 형식은 호스팅 API와 같다. `POST /search`에 `{"queries": [{"text": "What is the capital of France?"}], "n_docs": 5}` 꼴의 JSON을 보낸다. 호스팅 엔드포인트는 이미지도 쿼리로 받는다고 명시한다.
+`pixelrag serve --index-dir <경로> --port 30001`로 로컬 검색 API를 띄운다. 요청 형식은 호스팅 API와 같다. `POST /search`에 `{"queries": [{"text": "What is the capital of France?"}], "n_docs": 5}` 꼴의 JSON을 보낸다. 호스팅 엔드포인트는 이미지도 질의로 받는다고 명시한다.
 
 사전 구축 인덱스는 Hugging Face 데이터셋 저장소 `StarTrail-org/pixelrag-faiss-indexes`에 있고, FAISS 인덱스 네 개를 담는다.
 
@@ -128,7 +128,7 @@ fine-tuning은 `train/` 아래 별도 uv 프로젝트 `wiki-screenshot-training`
 |---|---|---|
 | LoRA 어댑터 | `Chrisyichuan/wiki-screenshot-embedding-lora` (`lora_vit/ckpt200`) | 재학습 없이 바로 사용 |
 | 학습셋 | `Chrisyichuan/screenshot-training-natural-filtered-v2` | 다른 backbone에 같은 방식 적용 |
-| 데이터 큐레이션 문서 | `train/docs/synthetic_data_pipeline.md` | LLM 기반 쿼리 증강 생성, 필터링, hard-negative mining |
+| 데이터 큐레이션 문서 | `train/docs/synthetic_data_pipeline.md` | LLM 기반 질의 증강 생성, 필터링, hard-negative mining |
 
 ### 3.7 pixelbrowse 플러그인
 
@@ -155,7 +155,7 @@ fine-tuning은 `train/` 아래 별도 uv 프로젝트 `wiki-screenshot-training`
 
 샘플 PDF 한 개를 인덱싱하는 데 걸리는 시간은 Apple M 시리즈에서 약 3분, GPU에서 약 1분이라고 안내한다. 이 예시는 GPU 없이도 동작하며 macOS(Apple Silicon)나 Python 3.10 이상이 있는 아무 기기에서 실행된다.
 
-Figure 2의 워크된 예시는 방식 차이를 하나의 질문으로 보여준다. 2010 UEFA 챔피언스리그 결승 위키피디아 페이지에 "인터가 바이에른과의 2010 UCL 결승에서 유효 슈팅을 몇 개 기록했는가"를 묻는다. 텍스트 기반 RAG는 HTML을 파싱해 텍스트 청크로 만드는 과정에서 통계 표를 잃고, reader 모델이 "주어진 컨텍스트로는 답을 결정할 수 없다"고 답한다. PixelRAG는 같은 페이지를 스크린샷 타일로 렌더링해 통계 표가 들어 있는 타일을 검색하고, reader 모델이 표에서 값 7을 그대로 읽는다.
+Figure 2의 워크된 예시는 방식 차이를 하나의 질문으로 보여준다. 2010 UEFA 챔피언스리그 결승 위키피디아 페이지에 "인터가 바이에른과의 2010 UCL 결승에서 유효 슈팅을 몇 개 기록했는가"를 묻는다. 텍스트 기반 RAG는 HTML을 파싱해 텍스트 chunk로 만드는 과정에서 통계 표를 잃고, reader 모델이 "주어진 컨텍스트로는 답을 결정할 수 없다"고 답한다. PixelRAG는 같은 페이지를 스크린샷 타일로 렌더링해 통계 표가 들어 있는 타일을 검색하고, reader 모델이 표에서 값 7을 그대로 읽는다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
@@ -179,9 +179,9 @@ Figure 2의 워크된 예시는 방식 차이를 하나의 질문으로 보여�
 
 - **PixelRAG**: 문서를 텍스트로 파싱하지 않고 스크린샷 이미지로 렌더링해 그 이미지를 직접 검색하는 RAG 방식.
 - **pixelshot**: 웹페이지, PDF, 이미지를 스크린샷 타일로 변환하는 독립 CLI 명령. `pip install pixelrag`에 포함된다.
-- **screenshot tile**: 한 페이지를 검색 단위로 자른 스크린샷 조각. 텍스트 RAG의 텍스트 청크에 대응하는 단위다.
+- **screenshot tile**: 한 페이지를 검색 단위로 자른 스크린샷 조각. 텍스트 RAG의 텍스트 chunk에 대응하는 단위다.
 - **pixelbrowse**: `pixelshot`을 호출해 Claude가 raw HTML 대신 스크린샷 이미지를 읽게 하는 Claude Code 플러그인 스킬.
-- **visual search**: 텍스트가 아니라 이미지를 쿼리로 주고 인덱스를 검색하는 방식. 호스팅 API가 지원한다.
+- **visual search**: 텍스트가 아니라 이미지를 질의로 주고 인덱스를 검색하는 방식. 호스팅 API가 지원한다.
 - **Qwen3-VL-Embedding**: PixelRAG가 스크린샷 데이터로 LoRA fine-tuning하는 비전 언어 임베딩 모델.
 
 ## 8. 그림 후보 (Figure Candidates)

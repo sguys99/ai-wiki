@@ -218,7 +218,7 @@ figures:
 
 1. **HippoRAG 2 프레임워크**. 사실 기억, sense-making, associativity 세 가지 벤치마크 유형 전부에서 최강 임베딩 모델을 앞선 structure-augmented RAG다. 논문은 기존 structure-augmented 방법이 자기 실험 설정 밖의 과제에서 가장 크게 하락한다는 점을 실험으로 보이고 그 문제를 해결 대상으로 삼는다.
 2. **Dense-Sparse Integration**. phrase node(개념, sparse coding)만 있던 HippoRAG의 KG에 passage node(맥락, dense coding)를 더하고 "contains" context edge로 잇는다. 뇌의 dense coding과 sparse coding 이론(Beyeler et al., 2019)에서 착안했다.
-3. **Deeper Contextualization**. 쿼리를 KG에 잇는 방식을 NER-to-node에서 query-to-triple로 바꿨다. multi-hop recall@5 평균이 74.6에서 87.1로 12.5%p 올랐다.
+3. **Deeper Contextualization**. 질의(query)를 KG에 잇는 방식을 NER-to-node에서 query-to-triple로 바꿨다. multi-hop recall@5 평균이 74.6에서 87.1로 12.5%p 올랐다.
 4. **Recognition Memory**. 인간 기억의 recall과 recognition 이중 구조(Uner & Roediger III, 2022)를 본떠, retrieval된 top-5 triple을 LLM이 한 번 더 걸러 seed node를 정한다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
@@ -235,28 +235,28 @@ HippoRAG 계열은 구성 요소마다 인간 기억의 대응물을 둔다. LLM
 
 ### Online Retrieval
 
-1. **Query to Triple**. 쿼리 전체를 임베딩으로 KG의 top-5 triple과 매칭한다. NER 단계가 사라진다.
-2. **Recognition memory (triple filtering)**. LLM이 top-5 triple 중 쿼리와 관련 있는 것만 남겨 T′를 만든다. 프롬프트는 최대 4개까지 고르라고 지시하고, 없으면 빈 리스트를 반환하게 한다.
+1. **Query to Triple**. 질의 전체를 임베딩으로 KG의 top-5 triple과 매칭한다. NER 단계가 사라진다.
+2. **Recognition memory (triple filtering)**. LLM이 top-5 triple 중 질의와 관련 있는 것만 남겨 T′를 만든다. 프롬프트는 최대 4개까지 고르라고 지시하고, 없으면 빈 리스트를 반환하게 한다.
 3. **Seed node selection**. T′에 등장한 phrase node를 최대 5개까지 고른다. 각 phrase node의 ranking score는 그것이 등장한 filtered triple 점수의 평균이다. passage node는 전량이 seed가 된다. 상위 몇 개만 활성화하는 것보다 넓게 활성화하는 편이 multi-hop 추론 사슬을 따라가는 데 낫다고 보고한다. T′가 비면 그래프 검색을 건너뛰고 임베딩 검색 결과를 그대로 반환한다.
 4. **Reset probability 배정**. phrase node는 ranking score를 그대로 쓰고, passage node는 임베딩 유사도에 weight factor를 곱한 값을 쓴다. 기본값은 0.05다.
 5. **PPR 실행과 QA**. python-igraph로 PPR을 돌려 passage node의 PageRank 점수로 순위를 매기고, 상위 5개를 QA reader의 context로 넣는다.
 
-### 쿼리 연결 방식 세 가지
+### 질의 연결 방식 세 가지
 
 | 방식 | 설명 | 출처 |
 |---|---|---|
-| NER to node | 쿼리에서 개체를 뽑아 임베딩으로 KG 노드와 매칭 | HippoRAG 원안 |
-| Query to node | 쿼리 전체를 KG 노드와 직접 매칭 | 본 논문 대안 |
-| Query to triple | 쿼리 전체를 KG의 triple과 매칭 | HippoRAG 2 기본값 |
+| NER to node | 질의에서 개체를 뽑아 임베딩으로 KG 노드와 매칭 | HippoRAG 원안 |
+| Query to node | 질의 전체를 KG 노드와 직접 매칭 | 본 논문 대안 |
+| Query to triple | 질의 전체를 KG의 triple과 매칭 | HippoRAG 2 기본값 |
 
-query-to-node가 NER-to-node보다 나쁜 이유로, 쿼리와 KG 노드의 입도가 다르다는 점을 든다. NER 결과와 KG 노드는 둘 다 phrase 수준이지만 쿼리 전체는 그렇지 않다.
+query-to-node가 NER-to-node보다 나쁜 이유로, 질의와 KG 노드의 입도가 다르다는 점을 든다. NER 결과와 KG 노드는 둘 다 phrase 수준이지만 질의 전체는 그렇지 않다.
 
 ### HippoRAG와 HippoRAG 2 차이
 
 | 항목 | HippoRAG | HippoRAG 2 |
 |---|---|---|
 | KG 노드 | phrase node만 | phrase node와 passage node |
-| 쿼리 연결 | NER to node | query to triple |
+| 질의 연결 | NER to node | query to triple |
 | triple 필터 | 없음 | LLM recognition memory |
 | PPR seed | phrase node | phrase node와 모든 passage node |
 | passage 점수 결합 | 그래프 점수와 임베딩 점수 사후 합산 | 그래프 구조 안에서 통합 |

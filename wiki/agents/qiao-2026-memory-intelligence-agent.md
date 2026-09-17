@@ -373,7 +373,7 @@ Router의 역할이 label leakage 관점에서 미묘하다. G개 rollout 중 �
 
 TTL의 자기 진화 흐름은 탐색, 환경 feedback 획득, non-parametric memory 추출, parametric memory 갱신 순이다. 이 흐름은 ground truth가 있을 때 온전히 작동한다. 정답이 workflow에 positive와 negative label을 붙이고 Planner 학습의 reward 신호를 준다. 개방 환경의 사용자는 매번 정답을 제공하지 않으므로 두 신호가 모두 사라진다.
 
-통상의 LLM-as-a-judge는 단일 프롬프트로 복잡한 trajectory를 판정한다. 논문은 이 방식이 "hallucinated objectivity"에 빠진다고 지적한다. 심사자가 미묘한 논리 오류를 놓치거나 사실 정확성 대신 문체의 유창함을 보는 현상이다. 환각은 모델이 근거 없는 내용을 사실처럼 만들어내는 문제를 말한다.
+통상의 LLM-as-a-Judge는 단일 프롬프트로 복잡한 trajectory를 판정한다. 논문은 이 방식이 "hallucinated objectivity"에 빠진다고 지적한다. 심사자가 미묘한 논리 오류를 놓치거나 사실 정확성 대신 문체의 유창함을 보는 현상이다. 환각은 모델이 근거 없는 내용을 사실처럼 만들어내는 문제를 말한다.
 
 대안은 학회 심사를 모사한 4-agent 구조다. 네 인스턴스 모두 Qwen3-32B이고 프롬프트만 다르다.
 
@@ -422,7 +422,7 @@ Planner의 학습 데이터를 FVQA-train과 MATPO의 혼합으로 둔 이유가
 
 | 도구 백엔드 | 학습 시 | 평가 시 |
 |---|---|---|
-| 텍스트 검색 | wiki25 코퍼스를 E5-base-v2 임베딩과 FAISS 인덱스로 색인한 오프라인 retriever, top-3 | 벤치마크에 따라 wiki25 또는 Serper 온라인 검색, Serper는 top-5 |
+| 텍스트 검색 | wiki25 코퍼스를 E5-base-v2 임베딩과 FAISS 인덱스로 인덱싱한 오프라인 retriever, top-3 | 벤치마크에 따라 wiki25 또는 Serper 온라인 검색, Serper는 top-5 |
 | 이미지 검색 | ImgBB로 공개 URL을 만든 뒤 Serper image search API를 부르고 결과를 로컬 캐시, top-3 | 모든 멀티모달 데이터셋에서 Serper |
 
 메모리 검색용 임베딩(sup-simcse-bert-base-uncased)과 검색 도구용 임베딩(E5-base-v2)이 서로 다른 모델이라는 점에 유의한다. 앞은 메모리 단위 유사도, 뒤는 문서 검색에 쓰인다.

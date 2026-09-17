@@ -70,7 +70,7 @@ Foundations 28개 항목은 harness engineering이 무엇인지를 각자 다른
 | arXiv 2606.10106 | 필요충분조건을 갖춘 런타임 층 | agent loop, 도구 인터페이스, 컨텍스트 관리, 제어 메커니즘 |
 | LangChain, The Anatomy of an Agent Harness | 다섯 가지 primitive의 조합 | 파일시스템, 코드 실행, 샌드박스, 메모리, 컨텍스트 관리 |
 | Martin Fowler | 맞물린 세 체계 | context engineering, 아키텍처 제약, 엔트로피 관리 |
-| Birgitta Böckeler | feedforward 안내와 feedback 센서의 결합 | 계산 기반 통제(linter, 테스트)와 추론 기반 통제(LLM-as-judge) |
+| Birgitta Böckeler | feedforward 안내와 feedback 센서의 결합 | 계산 기반 통제(linter, 테스트)와 추론 기반 통제(LLM-as-a-Judge) |
 | Red Hat | 사람과 에이전트의 협업 구조 | vibes, specs, 스킬, 에이전트 네 요소 |
 | deepset | 실패 유형별 대응 구조 | 컨텍스트, 제약, verification, planning 실패에 각 harness 구성 요소를 대응 |
 | Architectural Design Decisions in AI Agent Harnesses | 설계 결정의 비교 대상 | 서브에이전트 구조, 컨텍스트 관리, 도구 체계, 안전 장치, 오케스트레이션 |
@@ -102,7 +102,7 @@ Design Primitives는 harness를 12개 문제로 쪼갠다. 하위 절의 규모�
 
 Agent Loop 절은 이론과 구현을 함께 놓는다. ReAct 논문이 Thought, Action, Observation 순환의 원형을 제공하고, LangGraph는 그 순환을 타입이 붙은 상태와 조건부 간선, 체크포인트를 갖춘 방향 그래프로 모델링한다. LangChain의 미들웨어 글은 `before_agent`, `before_model`, `wrap_model_call`, `wrap_tool_call`, `after_model`, `after_agent` 여섯 개 훅으로 루프의 모든 단계를 가로채는 설계를 제시한다. 프롬프트로 부탁하는 대신 결정적 코드로 강제하는 방식이며, 개인정보 마스킹처럼 프롬프트에 맡길 수 없는 처리에 쓴다.
 
-Context Delivery & Compaction 절은 컨텍스트를 압축 문제가 아니라 탐색 문제로 다시 보는 흐름을 담는다. Token Savior는 코드베이스를 함수와 클래스, 호출 그래프 단위로 색인해 에이전트가 파일 전체를 읽는 대신 포인터로 이동하게 한다. Trellis는 비대해진 단일 지시문 파일을 단계별로 필요한 규약과 태스크 명세, 세션 기록만 불러오는 구조로 대체한다. OpenViking은 메모리와 리소스, 스킬을 파일시스템 형태로 통합해 에이전트가 필요한 경로만 가져가게 한다.
+Context Delivery & Compaction 절은 컨텍스트를 압축 문제가 아니라 탐색 문제로 다시 보는 흐름을 담는다. Token Savior는 코드베이스를 함수와 클래스, 호출 그래프 단위로 인덱싱해 에이전트가 파일 전체를 읽는 대신 포인터로 이동하게 한다. Trellis는 비대해진 단일 지시 파일(instruction file)을 단계별로 필요한 규약과 태스크 명세, 세션 기록만 불러오는 구조로 대체한다. OpenViking은 메모리와 리소스, 스킬을 파일시스템 형태로 통합해 에이전트가 필요한 경로만 가져가게 한다.
 
 Permissions & Authorization 절은 승인 피로 문제를 다룬다. Anthropic의 Claude Code Auto Mode 글은 사용자가 승인 요청의 93%를 그대로 승인한다는 관찰에서 출발한다. 승인 절차가 형식만 남았다는 뜻이다. 대안으로 제시된 것은 2단계 분류기로, 빠른 단일 토큰 판정을 먼저 돌리고 위험 표시가 붙은 행동에만 chain-of-thought 추론을 적용한다.
 
@@ -188,7 +188,7 @@ Templates 절은 링크 대신 레포 안의 파일 4개를 제공한다. 목록
 | deepset | 랭킹 20계단 이상 상승 | 모델 교체 없이 harness만 변경 |
 | Claude compaction | 100턴 web search 평가에서 토큰 84% 절감 | 서버 측 자동 요약 |
 | Code Execution with MCP | 실험에서 최대 98.7% 토큰 절감 | tool call 대신 코드로 MCP 서버와 상호작용 |
-| Token Savior | 활성 토큰 77% 절감, 벤치마크 실행 시간 76% 단축 | 심볼 색인으로 파일 전체 대신 포인터 탐색 |
+| Token Savior | 활성 토큰 77% 절감, 벤치마크 실행 시간 76% 단축 | 심볼 인덱스로 파일 전체 대신 포인터 탐색 |
 | AdaptOrch | 모델 선택만으로 얻는 성능 대비 12~23% 향상 | 태스크 의존 그래프로 오케스트레이션 토폴로지 선택 |
 | StaminaBench | 통과 횟수 최대 12배 차이 | 테스트 피드백과 재시도 능력 유무. 같은 모델도 최선과 최악 harness 사이에 6배 격차 |
 | Live-SWE-agent | SWE-bench Verified 77.4% | 실패 신호를 받아 harness가 스스로 진화 |
@@ -234,7 +234,7 @@ awesome-list 특성상 각 항목에는 한두 문장의 주석만 붙는다. �
 
 ## 관련 페이지
 
-이 목록은 wiki의 harness와 loop engineering 클러스터를 묶는 상위 색인 역할을 한다.
+이 목록은 wiki의 harness와 loop engineering 클러스터를 묶는 상위 인덱스 역할을 한다.
 
 - [[agents/lee-hoyeon-2026-harness-engineering]]: 프롬프트에서 컨텍스트, harness로 이어지는 3단계 진화를 다룬 한국어 강의 자료
 - [[agents/walkinglabs-learn-harness-engineering]]: 이 목록의 Tutorials 절이 추천하는 프로젝트 기반 강의 과정

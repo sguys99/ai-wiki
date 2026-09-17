@@ -134,7 +134,7 @@ VLA 기반 로봇 시스템의 데이터 수집과 policy 학습과 과제 실�
 
 ### 3.2 세 계층 추상화
 
-RoboClaw는 structured memory와 모듈형 스킬 라이브러리를 OpenClaw 방식으로 결합하고, 시스템을 세 계층으로 나눈다. 상위 계층이 하위 계층을 호출한다.
+RoboClaw는 structured memory와 모듈형 skill library를 OpenClaw 방식으로 결합하고, 시스템을 세 계층으로 나눈다. 상위 계층이 하위 계층을 호출한다.
 
 | 계층 | 정의 | 예시 |
 |---|---|---|
@@ -309,7 +309,7 @@ VLA 계열로 PaLM-E와 RT-2와 OpenVLA와 π0가 언어 조건 로봇 제어를
 
 계층적 접근으로 SayCan과 HAMSTER와 HiRobot과 Agentic Robot이 구조화된 subtask 추상화와 계획 검증 장치를 도입했고, π0.5는 단일 VLA 프레임워크 안에서 다단계 추론을 강화했다. Inner Monologue와 LITEN은 재계획으로 강건성을 높였다. 저자들은 실행 중의 지속적 과정 수준 감독은 여전히 거의 탐구되지 않았다고 본다.
 
-RoboClaw는 추론 시점에 동작하는 컨텍스트 인식 감독 agent를 제안하며, 특정 과제 구조나 스킬 라이브러리에 묶이지 않는다는 점을 차별점으로 든다.
+RoboClaw는 추론 시점에 동작하는 컨텍스트 인식 감독 agent를 제안하며, 특정 과제 구조나 skill library에 묶이지 않는다는 점을 차별점으로 든다.
 
 ## 7. 용어집 (Glossary)
 

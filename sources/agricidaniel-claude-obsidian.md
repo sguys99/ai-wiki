@@ -315,7 +315,7 @@ README가 명시적으로 인용한 외부 자료는 다음과 같다.
 - **Contextual prefix**: 페이지 본문을 Anthropic API로 보내 검색용 prefix를 생성하는 계층. Anthropic의 2024년 9월 연구에서 가져왔고 `--allow-egress` 동의로만 켜진다.
 - **Six-cut과 agent kernel**: 저자의 `best-practices` 저장소에서 정의한 코드 리뷰 규율. `agents/verifier.md`가 스테이징된 diff에 적용한다.
 - **10-principle thinking framework**: `OBSERVE-OBSERVE-LISTEN-THINK-CONNECT-CONNECT-FEEL-ACCEPT-CREATE-GROW` 10단계 사고 루프. v1.9에서 `skills/think/SKILL.md`로 도입됐다.
-- **DragonScale Memory**: `bash bin/setup-dragonscale.sh`로 켜는 선택 확장. 로그 fold(과거 항목 rollup), 결정론적 페이지 주소(카운터 기반 고유 ID), 의미 단위 tiling lint(ollama로 청크 경계 검증), 경계 우선 autoresearch(vault의 frontier부터 연구) 4종을 더한다.
+- **DragonScale Memory**: `bash bin/setup-dragonscale.sh`로 켜는 선택 확장. 로그 fold(과거 항목 rollup), 결정론적 페이지 주소(카운터 기반 고유 ID), 의미 단위 tiling lint(ollama로 chunk 경계 검증), 경계 우선 autoresearch(vault의 frontier부터 연구) 4종을 더한다.
 - **Web egress hygiene**: v1.8.2 이후 autoresearch에 적용되는 웹 수집 위생 정책. URL 검증과 콘텐츠 정제, 응답 본문 50KB 제한을 포함한다.
 
 ## 8. 그림 후보 (Figure Candidates)

@@ -146,7 +146,7 @@ figures:
 
 ## 한 줄 요약 (One-line Summary)
 
-임베딩과 vector index 없이 agent가 `grep`, `find`, `bash` 같은 범용 터미널 도구로 원본 corpus를 직접 탐색하는 Direct Corpus Interaction (DCI)을 retrieval 패러다임으로 정식화하고, BrowseComp-Plus 정확도 80.0% (동일 backbone retriever agent 69.0%), 다중 홉 QA 평균 83.0, IR ranking 평균 NDCG@10 68.5로 기존 retriever 기반 agent를 일관되게 능가함을 보인 paper다.
+임베딩과 vector index 없이 agent가 `grep`, `find`, `bash` 같은 범용 터미널 도구로 원본 corpus를 직접 탐색하는 Direct Corpus Interaction (DCI)을 retrieval 패러다임으로 정식화하고, BrowseComp-Plus 정확도 80.0% (동일 backbone retriever agent 69.0%), multi-hop QA 평균 83.0, IR ranking 평균 NDCG@10 68.5로 기존 retriever 기반 agent를 일관되게 능가함을 보인 paper다.
 
 ## 1. 자료 정보 (Document Information)
 
@@ -163,7 +163,7 @@ figures:
 저자가 서론 말미에 명시한 기여는 세 가지다.
 
 1. **DCI를 retrieval 패러다임으로 정식화하고 다양한 agentic search 설정에서 체계적으로 평가한다.** 오프라인 인덱싱이 필요 없고 계속 바뀌는 로컬 corpus에 자연스럽게 적응한다.
-2. **DCI가 document ranking, 다중 홉 QA, end-to-end agentic search 세 영역 모두에서 경쟁력 있는 방법임을 보인다.** 외부 retriever 없이 대부분의 벤치마크에서 강한 baseline을 능가한다.
+2. **DCI가 document ranking, multi-hop QA, end-to-end agentic search 세 영역 모두에서 경쟁력 있는 방법임을 보인다.** 외부 retriever 없이 대부분의 벤치마크에서 강한 baseline을 능가한다.
 3. **"retrieval interface resolution"을 DCI의 효과를 설명하는 개념 렌즈로 제안하고 coverage와 localization 두 trajectory 지표로 뒷받침한다.** resolution은 문서나 passage 전체보다 작고 정밀한 단위로 corpus를 다룰 수 있는 능력을 뜻한다.
 
 논문이 문제로 규정한 것은 임베딩 모델의 품질이 아니라 인터페이스의 형태다. 기존 retrieval 시스템은 lexical이든 semantic이든 corpus를 고정된 유사도 인터페이스로 노출하고, 추론 전에 접근을 단일 top-k 단계로 압축한다. 이 추상화는 효율적이지만 agentic search에서는 병목이 된다. 저자가 든 구체적 실패 유형은 네 가지다.
@@ -261,7 +261,7 @@ compaction은 누적 tool 결과가 24만 자를 넘을 때 발동해 최근 12 
 
 ### 3.6 평가 설정
 
-- **Judge**: BrowseComp-Plus와 다중 홉 QA는 GPT-4.1을 LLM-as-judge로 쓴다. judge는 예측 답과 참조 답만 비교하고, 참조 답이 짧고 잘 정의되어 있어 비교가 대체로 모호하지 않다. IR ranking은 NDCG@10을 주 지표로 쓴다.
+- **Judge**: BrowseComp-Plus와 multi-hop QA는 GPT-4.1을 LLM-as-a-Judge로 쓴다. judge는 예측 답과 참조 답만 비교하고, 참조 답이 짧고 잘 정의되어 있어 비교가 대체로 모호하지 않다. IR ranking은 NDCG@10을 주 지표로 쓴다.
 - **corpus 통계 (Table 7)**:
 
 | corpus | 사용 벤치마크 | 문서 수 | 평균 길이(단어) |
@@ -276,7 +276,7 @@ compaction은 누적 tool 결과가 24만 자를 넘을 때 발동해 최근 12 
 | BEIR-SciFact | BEIR-SciFact | 5,183 | 214 |
 
 - **표본**: BRIGHT 4종과 Bamboogle은 전체 test set을 쓰고, 나머지는 데이터셋당 50문항을 무작위 표본으로 쓴다. QA에서는 모호한 질문과 corpus 수집 이후 정답이 바뀌었을 수 있는 시간 민감 문항을 제외한다.
-- **baseline 인덱스**: BrowseComp-Plus는 공식 배포 corpus와 BM25 및 Qwen3-Embedding-8B FAISS 인덱스를 오프라인 검색 엔진으로 쓴다. 다중 홉 QA의 retrieval agent baseline은 E5 임베딩으로 인덱스를 만든다.
+- **baseline 인덱스**: BrowseComp-Plus는 공식 배포 corpus와 BM25 및 Qwen3-Embedding-8B FAISS 인덱스를 오프라인 검색 엔진으로 쓴다. multi-hop QA의 retrieval agent baseline은 E5 임베딩으로 인덱스를 만든다.
 - **프롬프트 (§C)**: DCI agent 지시문은 `@corpus` 안의 문서만 쓰고 온라인 검색과 서브에이전트를 금지하며, 한 응답에서 검색 여러 개를 병렬 실행하고, 결론 전에 경쟁 후보를 배제하며, 근거마다 문서 경로를 인용하게 한다. 출력은 Explanation, Exact Answer, Confidence 세 칸이다. IR 지시문에는 recall과 precision이 동등하게 중요하다는 설명과 최대 20개 문서를 관련도 순으로 정렬하라는 조건이 붙는다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
@@ -296,7 +296,7 @@ BrowseComp-Plus 830문항 전체에서, 같은 Claude Sonnet 4.6 backbone을 두
 
 마지막 행은 Figure 1의 "+18.0pp, $12 saved" 주석에서 역산한 값이다. Figure 1은 GLM-4.7, Kimi K2, Claude Haiku 4.5, Claude Sonnet 4.5, GPT-5.2도 retriever agent backbone으로 함께 그리지만 수치 레이블 없이 30%대에서 50%대 초반 구간에 놓는다. DCI-Agent-Lite는 GPT-5.4 nano만으로 62.9%를 $93에 달성해, o3와 retriever 조합(66.0%, $740) 대비 정확도를 3.1%p만 내주면서 비용을 $647 줄인다.
 
-### 4.2 다중 홉 QA (Table 2, RQ1)
+### 4.2 multi-hop QA (Table 2, RQ1)
 
 | 모델 | NQ | Trivia | Bam. | Hotpot | 2Wiki | MuSiQue | 평균 | Δ평균 |
 |---|---|---|---|---|---|---|---|---|
@@ -308,7 +308,7 @@ BrowseComp-Plus 830문항 전체에서, 같은 Claude Sonnet 4.6 backbone을 두
 | DCI-Agent-Lite (GPT-5.4 nano) | 72 | 84 | 72 | 72 | 68 | 40 | 68.0 | +15.7 |
 | DCI-Agent-CC (Sonnet 4.6) | 78 | 96 | 80 | 88 | 82 | 74 | 83.0 | +30.7 |
 
-DCI agent 둘이 6개 데이터셋 전부에서 1위와 2위를 차지한다. 다중 홉 성격이 강할수록 격차가 커진다. ASearcher-Local-14B 대비 HotpotQA에서 30점, 2Wiki에서 26점, MuSiQue에서 50점 앞선다.
+DCI agent 둘이 6개 데이터셋 전부에서 1위와 2위를 차지한다. multi-hop 성격이 강할수록 격차가 커진다. ASearcher-Local-14B 대비 HotpotQA에서 30점, 2Wiki에서 26점, MuSiQue에서 50점 앞선다.
 
 ### 4.3 IR ranking (Table 3, RQ1)
 
@@ -455,7 +455,7 @@ trajectory 100건에서 수집한 bash 명령 3,168개의 분포다. 정답 실�
 부록 D는 사례 9건의 전체 trajectory를 싣는다. 핵심 세 건은 다음과 같다.
 
 - **Case 1 (D.1, 성공)**: Natural Questions의 "what is don quixote's horse's name"(정답 Rocinante). Grep으로 `wiki_dump.jsonl`에서 "Rocinante"를 찾아 문서 두 개를 확인하고, 이어진 `Don Quixote.*horse` 검색이 파일이 너무 커서 비효율적이 되자 `grep -m 3 "Rocinante" wiki_corpus/wiki_dump.jsonl | head -c 1500`으로 전환해 확인을 마친다. 정규식 검색이 막히면 매치 개수와 출력 바이트를 함께 제한해 우회하는 전형적 패턴이다.
-- **Case 5a (D.8, DCI-Agent-CC 실패)**: 2019년 잉글랜드 경기의 물병 실랑이와 임대 이력을 잇는 다중 홉 질문이다(정답 FC Krasnodar). Denis Suarez와 FC Barcelona까지는 정확히 찾아내지만 UEFA 챔피언스리그 벤치 출전의 상대 팀을 잘못 귀속한다.
+- **Case 5a (D.8, DCI-Agent-CC 실패)**: 2019년 잉글랜드 경기의 물병 실랑이와 임대 이력을 잇는 multi-hop 질문이다(정답 FC Krasnodar). Denis Suarez와 FC Barcelona까지는 정확히 찾아내지만 UEFA 챔피언스리그 벤치 출전의 상대 팀을 잘못 귀속한다.
 - **Case 5b (D.9, DCI-Agent-Lite 실패)**: 2000년대 개봉작, 빈부 대비 줄거리, 1960년대생 배우 두 명, 2023년 11월 감독과 배우 형제의 분쟁이 맞물린 영화 식별 문제다(정답 Dosti: Friends Forever). 정밀한 검색어를 만들지 못하고 지나치게 넓은 `rg` 패턴을 반복하다 표면 키워드만 일부 맞는 The Family Man (2000)을 환각으로 답한다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
@@ -513,7 +513,7 @@ trajectory 100건에서 수집한 bash 명령 3,168개의 분포다. 정답 실�
 | fig05 | 10 | corpus 규모 확장 (크롭 결함) | caption-region | 제외 (페이지 전체를 잡아 Table 4와 본문이 섞였다) |
 | fig06 | 21 | DCI-Agent-Lite의 bash 명령 분포 | caption-region | wiki 권장 (analysis) |
 | tab01 | 5 | 컨텍스트 관리 정책 구성표 | table-region | 제외 (본문 마크다운 표로 이관) |
-| tab02 | 8 | 다중 홉 QA 정확도 | table-region | 제외 (본문 마크다운 표로 이관) |
+| tab02 | 8 | multi-hop QA 정확도 | table-region | 제외 (본문 마크다운 표로 이관) |
 | tab03 | 8 | IR ranking NDCG@10 | table-region | 제외 (본문 마크다운 표로 이관) |
 | tab04 | 10 | trajectory 분석 | table-region | 제외 (본문 마크다운 표로 이관) |
 | tab05 | 10 | 도구 구성 ablation | table-region | 제외 (본문 마크다운 표로 이관) |
