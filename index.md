@@ -89,6 +89,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/brohan-2023-rt-2-vision-language-action-models-transfer-web|RT-2 (Google DeepMind)]]: VLA라는 범주를 세운 논문. action을 텍스트 토큰으로 적어 웹 VQA와 함께 fine-tune하면 VLM을 그대로 policy로 쓸 수 있다 (2023, paper)
 - [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model|OpenVLA (Stanford, Berkeley, TRI)]]: RT-2 계보의 첫 오픈소스 generalist VLA. 97만 개 시연 데이터로 fine-tune해 55B RT-2-X를 앞선다 (2024, paper)
 - [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model|π0 (Physical Intelligence)]]: PaliGemma에 action expert를 붙인 3.3B VLA. action을 이산 토큰 대신 flow matching으로 내어 50Hz 제어가 된다 (2024, paper)
+- [[physical-ai/google-deepmind-2025-gemini-robotics-bringing-ai-into|Gemini Robotics (Google DeepMind)]]: Gemini 2.0 기반 embodied reasoning VLM과 클라우드 backbone에 온보드 decoder를 붙인 VLA 기술 보고서 (2025, paper)
 - [[physical-ai/shukor-2025-smolvla-a-vision-language-action-model|SmolVLA (Hugging Face)]]: π0의 구도를 450M으로 줄이고 커뮤니티 공개 데이터로 학습한 VLA. GPU 한 장 학습과 asynchronous inference로 배포 비용을 겨냥한다 (2025, paper)
 - [[physical-ai/physical-intelligence-2024-our-first-generalist-policy|π0: Our First Generalist Policy (블로그)]]: π0 논문과 같은 날 나온 공식 발표문. zero-shot 과제별 점수와 무편집 데모 영상을 싣는다 (2024, article)
 - [[physical-ai/black-2025-pi05-a-vision-language-action-model-with|π0.5 (Physical Intelligence)]]: π0의 후속. 규모가 아니라 학습 데이터 구성을 바꿔, 여러 원천을 한 mixture에 넣는 co-training으로 처음 보는 가정집에서 동작한다 (2025, paper)

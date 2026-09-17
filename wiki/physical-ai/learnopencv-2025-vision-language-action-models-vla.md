@@ -452,4 +452,4 @@ GR00T N1의 System 1을 diffusion으로 설명한 부분도 코드 출력과 어
 - [[overviews/physical-ai-overview]]: physical-ai 카테고리의 분류 뼈대와 학습 경로 허브.
 - [[overviews/glossary-physical-ai]]: generalist policy와 action tokenization 등 이 페이지가 쓰는 canonical 표기.
 
-이 글에 등장하지만 저장소에 원본이 없는 자료는 Octo, QUAR-VLA와 QUART-2, Gemini Robotics, SayCan, PaLM-E, SuSIE, HybridVLA, RDT-1B, OpenVLA-OFT다. ingest 후보로 남겨 둔다.
+이 글에 등장하지만 저장소에 원본이 없는 자료는 Octo, QUAR-VLA와 QUART-2, SayCan, PaLM-E, SuSIE, HybridVLA, RDT-1B, OpenVLA-OFT다. ingest 후보로 남겨 둔다. Gemini Robotics는 [[physical-ai/google-deepmind-2025-gemini-robotics-bringing-ai-into]]로 들어왔다.

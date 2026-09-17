@@ -1,0 +1,1465 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig01.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 | Overview of the Gemini Robotics family of embodied AI models. Gemini 2.0 already exhibits capabilities relevant to robotics such as semantic safety understanding and long contexts. The robotics-specific training and the optional specialization processes enable the Gemini Robotics models t",
+    "bbox": [
+      56.36,
+      62.7,
+      562.05,
+      360.08
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0745,
+      0.9442,
+      0.4277
+    ],
+    "dpi": 300,
+    "area_frac": 0.3,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig02.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2 | Gemini 2.0 excels at embodied reasoning capabilities — detecting objects and points in 2D, leveraging 2D pointing for grasping and trajectories, and corresponding points and detecting objects in 3D. All results shown are obtained with Gemini 2.0 Flash.",
+    "bbox": [
+      56.36,
+      79.04,
+      539.11,
+      333.15
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9057,
+      0.3957
+    ],
+    "dpi": 300,
+    "area_frac": 0.245,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig03.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3 | Example questions from the Embodied Reasoning Question Answering (ERQA) benchmark, with answers in bold.",
+    "bbox": [
+      79.63,
+      78.78,
+      515.53,
+      279.77
+    ],
+    "bbox_norm": [
+      0.1338,
+      0.0936,
+      0.866,
+      0.3323
+    ],
+    "dpi": 300,
+    "area_frac": 0.175,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig04.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig04.png",
+    "page": 4,
+    "caption": "Figure 4 | ERQA question categories.",
+    "bbox": [
+      359.87,
+      600.05,
+      536.55,
+      740.32
+    ],
+    "bbox_norm": [
+      0.6045,
+      0.7127,
+      0.9014,
+      0.8793
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig05.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig05.png",
+    "page": 6,
+    "caption": "Figure 5 | Examples of questions and reasoning traces with Gemini 2.0 Pro Experimental. Red answers were obtained without the CoT prompt; green answers obtained with CoT prompt.",
+    "bbox": [
+      56.11,
+      78.79,
+      539.55,
+      274.31
+    ],
+    "bbox_norm": [
+      0.0943,
+      0.0936,
+      0.9064,
+      0.3258
+    ],
+    "dpi": 300,
+    "area_frac": 0.189,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig06.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig06.png",
+    "page": 7,
+    "caption": "Figure 6 | 2D Detection examples with Gemini 2.0 Flash. Left: detect by object category. Middle: detect by spatial description. Right: detect by affordance. Predicted object labels are not shown for left and middle images to reduce visual clutter.",
+    "bbox": [
+      56.36,
+      79.04,
+      539.47,
+      228.24
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9063,
+      0.2711
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig07.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig07.png",
+    "page": 7,
+    "caption": "Figure 7 | Gemini 2.0 can predict 2D points from natural language queries. Examples are obtained with Gemini 2.0 Flash. Predicted point labels are not visualized.",
+    "bbox": [
+      56.36,
+      249.57,
+      581.67,
+      444.71
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.2964,
+      0.9772,
+      0.5282
+    ],
+    "dpi": 300,
+    "area_frac": 0.205,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig08.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig08.png",
+    "page": 8,
+    "caption": "Figure 8 | Gemini 2.0 can predict 2D trajectories by first predicting start and end points. Examples are obtained with Gemini 2.0 Flash. Predicted point labels are not visualized.",
+    "bbox": [
+      56.36,
+      208.01,
+      539.08,
+      371.81
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.2471,
+      0.9056,
+      0.4416
+    ],
+    "dpi": 300,
+    "area_frac": 0.158,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig09.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig09.png",
+    "page": 9,
+    "caption": "Figure 9 | Gemini Robotics-ER can predict top-down grasps by leveraging Gemini 2.0’s 2D pointing capability. Examples are obtained with Gemini Robotics-ER.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.98,
+      248.48
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9054,
+      0.2951
+    ],
+    "dpi": 300,
+    "area_frac": 0.163,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig10.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig10.png",
+    "page": 10,
+    "caption": "Figure 10 | Gemini 2.0 can understand 3D scenes by correlating 2D points across different views. For each image pair, the left image with the point coordinates and the right image without coordinates are given, and the model predicts which of the labeled points in the left image are visible in the r",
+    "bbox": [
+      103.42,
+      192.54,
+      491.86,
+      466.96
+    ],
+    "bbox_norm": [
+      0.1737,
+      0.2287,
+      0.8263,
+      0.5547
+    ],
+    "dpi": 300,
+    "area_frac": 0.213,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig11.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig11.png",
+    "page": 10,
+    "caption": "Figure 11 | Gemini 2.0 can directly predict open-vocabulary 3D object bounding boxes. Examples are obtained with Gemini 2.0 Flash.",
+    "bbox": [
+      44.47,
+      534.97,
+      544.62,
+      722.13
+    ],
+    "bbox_norm": [
+      0.0747,
+      0.6354,
+      0.9149,
+      0.8577
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig12.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig12.png",
+    "page": 11,
+    "caption": "Figure 12 | Overview of the perception and control APIs, and agentic orchestration during an episode. This system is used for zero-shot control.",
+    "bbox": [
+      66.92,
+      485.72,
+      527.13,
+      707.42
+    ],
+    "bbox_norm": [
+      0.1124,
+      0.5769,
+      0.8855,
+      0.8403
+    ],
+    "dpi": 300,
+    "area_frac": 0.204,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig13.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig13.png",
+    "page": 13,
+    "caption": "Figure 13 | Overview of few-shot in-context learning pipeline. Gemini can receive observations, language instructions and trajectories in the prompt, and generate new language reasoning and trajectories for unseen instances of the tasks.",
+    "bbox": [
+      59.57,
+      79.04,
+      527.14,
+      246.86
+    ],
+    "bbox_norm": [
+      0.1001,
+      0.0939,
+      0.8855,
+      0.2932
+    ],
+    "dpi": 300,
+    "area_frac": 0.157,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig14.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig14.png",
+    "page": 14,
+    "caption": "Figure 14 | Overview of the architecture, input and output of the Gemini Robotics model. Gemini Robotics is a derivative of Gemini fine-tuned to predict robot actions. The model ingests a multimodal prompt consisting of a set of images of the current status of the scene and a text instruction of the",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      276.01
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3278
+    ],
+    "dpi": 300,
+    "area_frac": 0.19,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig15.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig15.png",
+    "page": 15,
+    "caption": "Figure 15 | A robot’s movement in a few example tasks that require dexterous manipulation in cluttered environments. From top to bottom: “open the eyeglasses case”, “pour pulses”, “unfasten file folder”, “wrap headphone wire”.",
+    "bbox": [
+      103.42,
+      79.04,
+      491.85,
+      385.87
+    ],
+    "bbox_norm": [
+      0.1737,
+      0.0939,
+      0.8263,
+      0.4583
+    ],
+    "dpi": 300,
+    "area_frac": 0.238,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig16.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig16.png",
+    "page": 16,
+    "caption": "Figure 16 | Gemini Robotics can solve a wide variety of tasks out of the box. We sample 20 tasks from the dataset, which require varying levels of dexterity, and evaluate our model and the baselines on them. Gemini Robotics significantly outperforms the baselines.",
+    "bbox": [
+      53.53,
+      78.19,
+      553.65,
+      336.02
+    ],
+    "bbox_norm": [
+      0.0899,
+      0.0929,
+      0.9301,
+      0.3991
+    ],
+    "dpi": 300,
+    "area_frac": 0.257,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig17.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig17.png",
+    "page": 17,
+    "caption": "Figure 17 | Gemini Robotics can precisely follow novel language instructions in cluttered scenes which were never seen during training. Left: scene including objects seen during training. Middle: scene including novel objects. Right: success rate on “Pick” and “Pick and Place” tasks with detailed in",
+    "bbox": [
+      56.36,
+      78.93,
+      538.92,
+      210.41
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0937,
+      0.9053,
+      0.2499
+    ],
+    "dpi": 300,
+    "area_frac": 0.127,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig18.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig18.png",
+    "page": 18,
+    "caption": "Figure 18 | Example tasks for measuring different types of visual generalization in the generalization benchmark for a given instruction. Left: in-distribution scene. From left to right: The scene can have new distractors, a different background or different lighting conditions.",
+    "bbox": [
+      97.9,
+      78.79,
+      483.79,
+      211.47
+    ],
+    "bbox_norm": [
+      0.1645,
+      0.0936,
+      0.8127,
+      0.2512
+    ],
+    "dpi": 300,
+    "area_frac": 0.102,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig19.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig19.png",
+    "page": 18,
+    "caption": "Figure 19 | Example tasks for measuring different types of instruction generalization in the generalization benchmark. Left: in distribution instruction. From left to right: The task instruction can have typos, be expressed in a new language, or be described with different sentences and level of det",
+    "bbox": [
+      17.54,
+      255.9,
+      539.31,
+      378.74
+    ],
+    "bbox_norm": [
+      0.0295,
+      0.304,
+      0.906,
+      0.4499
+    ],
+    "dpi": 300,
+    "area_frac": 0.128,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig20",
+    "label": "Figure 20",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig20.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig20.png",
+    "page": 18,
+    "caption": "Figure 20 | Example tasks for measuring different types of action generalization in the generalization benchmark. Left: We show the different initial positions compared to those in-distribution. Right: We show the difference between new object instances and those we collected data for. In particular",
+    "bbox": [
+      19.13,
+      423.13,
+      569.35,
+      652.85
+    ],
+    "bbox_norm": [
+      0.0321,
+      0.5026,
+      0.9564,
+      0.7755
+    ],
+    "dpi": 300,
+    "area_frac": 0.252,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig21",
+    "label": "Figure 21",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig21.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig21.png",
+    "page": 19,
+    "caption": "Figure 21 | Breakdown of Gemini Robotics generalization capabilities. Gemini Robotics consistently outperforms the baselines and handles all three types of variations more effectively. Notably, even when baselines experience catastrophic failure — such as with instructions in a new language or visua",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      323.57
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3843
+    ],
+    "dpi": 300,
+    "area_frac": 0.235,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig22",
+    "label": "Figure 22",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig22.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig22.png",
+    "page": 20,
+    "caption": "Figure 22 | Gemini Robotics successfully accomplishes a variety of long-horizon dexterous tasks on the ALOHA. From top to bottom: “make an origami fox”, “pack a lunch-box”, “spelling board game”, “play a game of cards”, “add snap peas to salad with tongs” and “add nuts to salad”.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      518.49
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.6159
+    ],
+    "dpi": 300,
+    "area_frac": 0.423,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig23",
+    "label": "Figure 23",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig23.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig23.png",
+    "page": 21,
+    "caption": "Figure 23 | Performance on new, dexterous and long-horizon tasks after specialization. Gemini Robotics is the only model that can consistently solve the extremely challenging tasks like “Origami” and “Lunch-box”, achieving a 100% success rate on the latter, while baselines struggle with these tasks.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      244.97
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.291
+    ],
+    "dpi": 300,
+    "area_frac": 0.16,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig24",
+    "label": "Figure 24",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig24.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig24.png",
+    "page": 23,
+    "caption": "Figure 24 | Performance on real-world robot tasks that require embodied reasoning. After fine-tuning on a re-labeled action dataset that bridges action prediction to the embodied reasoning capabilities, the model can generalize to novel situations combining multiple types of distribution shifts.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.89,
+      289.19
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3435
+    ],
+    "dpi": 300,
+    "area_frac": 0.202,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p23.png"
+  },
+  {
+    "id": "fig25",
+    "label": "Figure 25",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig25.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig25.png",
+    "page": 23,
+    "caption": "Figure 25 | Visualizations of predicted trajectories utilized as part of the reasoning-enhanced Gemini Robotics model’s internal chain of thought. The trajectories represent the model-predicted motion paths, leveraging embodied reasoning knowledge, for the left arm (red) and right arm (blue) for the",
+    "bbox": [
+      80.6,
+      326.11,
+      519.43,
+      626.75
+    ],
+    "bbox_norm": [
+      0.1354,
+      0.3874,
+      0.8726,
+      0.7445
+    ],
+    "dpi": 300,
+    "area_frac": 0.263,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p23.png"
+  },
+  {
+    "id": "fig26",
+    "label": "Figure 26",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig26.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig26.png",
+    "page": 24,
+    "caption": "Figure 26 | Fast adaptation to new tasks with a limited number of demonstrations. Fine-tuning Gemini Robotics achieves over 70% success on 7 out of 8 tasks with at most 100 demonstrations, reaching 100% success on two tasks. While baselines perform well on easier tasks, Gemini Robotics excels on cha",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      315.23
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3744
+    ],
+    "dpi": 300,
+    "area_frac": 0.227,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig27",
+    "label": "Figure 27",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig27.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig27.png",
+    "page": 25,
+    "caption": "Figure 27 | The Gemini Robotics model can be fine-tuned to control different robots. Top: The Apollo humanoid robot packs a lunch bag. Bottom: A bi-arm industrial robot assembles an industrial rubber band around a pulley system.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      304.18
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3613
+    ],
+    "dpi": 300,
+    "area_frac": 0.217,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig28",
+    "label": "Figure 28",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig28.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig28.png",
+    "page": 26,
+    "caption": "Figure 28 | Breakdown of generalization metrics when the Gemini Robotics model is adapted to a new embodiment, the bi-arm Franka robot. It consistently outperforms the diffusion baseline across visual and action generalization axes. We do not analyze instruction generalization as the single task dif",
+    "bbox": [
+      134.0,
+      79.04,
+      461.26,
+      285.92
+    ],
+    "bbox_norm": [
+      0.2251,
+      0.0939,
+      0.7749,
+      0.3396
+    ],
+    "dpi": 300,
+    "area_frac": 0.135,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p26.png"
+  },
+  {
+    "id": "fig29",
+    "label": "Figure 29",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig29.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig29.png",
+    "page": 27,
+    "caption": "Figure 29 | Safety benchmarking and mitigation via constitutions and safety post-training",
+    "bbox": [
+      55.59,
+      83.21,
+      540.35,
+      567.09
+    ],
+    "bbox_norm": [
+      0.0934,
+      0.0988,
+      0.9077,
+      0.6736
+    ],
+    "dpi": 300,
+    "area_frac": 0.468,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig30",
+    "label": "Figure 30",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig30.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig30.png",
+    "page": 40,
+    "caption": "Figure 30 | Environments used for simulated ALOHA 2 tasks. Top-left: Banana in Bowl, and Banana Handover. Top-middle: Banana Lift and Fruit Bowl. Top-right: Mug on Plate. Bottom-left: Bowl on Rack. Bottom-right: Pack Toy.",
+    "bbox": [
+      76.86,
+      79.04,
+      518.41,
+      251.84
+    ],
+    "bbox_norm": [
+      0.1291,
+      0.0939,
+      0.8709,
+      0.2991
+    ],
+    "dpi": 300,
+    "area_frac": 0.152,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p40.png"
+  },
+  {
+    "id": "fig31",
+    "label": "Figure 31",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig31.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig31.png",
+    "page": 40,
+    "caption": "Figure 31 | Environments used for real ALOHA 2 tasks. From left to right: Banana Handover, Fold Dress, and Wiping.",
+    "bbox": [
+      76.86,
+      297.62,
+      518.42,
+      415.49
+    ],
+    "bbox_norm": [
+      0.1291,
+      0.3535,
+      0.8709,
+      0.4935
+    ],
+    "dpi": 300,
+    "area_frac": 0.104,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p40.png"
+  },
+  {
+    "id": "fig32",
+    "label": "Figure 32",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig32.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig32.png",
+    "page": 44,
+    "caption": "Figure 32 | Example of planning by Gemini whilst carrying out a robot control task.",
+    "bbox": [
+      126.95,
+      209.37,
+      468.67,
+      466.91
+    ],
+    "bbox_norm": [
+      0.2133,
+      0.2487,
+      0.7873,
+      0.5546
+    ],
+    "dpi": 300,
+    "area_frac": 0.176,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p44.png"
+  },
+  {
+    "id": "fig33",
+    "label": "Figure 33",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig33.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig33.png",
+    "page": 45,
+    "caption": "Figure 33 | Example of grasping and lifting by Gemini whilst carrying out a robot control task. Output is by Gemini except for the environment feedback and “* environment output not shown for brevity *” (shown in gray). Other colors refer to the following: blue — planning; orange — code; green — ana",
+    "bbox": [
+      68.13,
+      100.74,
+      527.16,
+      691.25
+    ],
+    "bbox_norm": [
+      0.1144,
+      0.1197,
+      0.8856,
+      0.8211
+    ],
+    "dpi": 300,
+    "area_frac": 0.541,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p45.png"
+  },
+  {
+    "id": "fig34",
+    "label": "Figure 34",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig34.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig34.png",
+    "page": 46,
+    "caption": "Figure 34 | Examples of error detection and retrying by Gemini when carrying out a robot control task. Output is by Gemini except for the environment output and “*intermediate steps not shown for brevity*” (shown in gray). Other colors refer to the following: orange — code; green — analysis or discu",
+    "bbox": [
+      105.77,
+      252.78,
+      489.88,
+      539.86
+    ],
+    "bbox_norm": [
+      0.1777,
+      0.3003,
+      0.823,
+      0.6413
+    ],
+    "dpi": 300,
+    "area_frac": 0.22,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p46.png"
+  },
+  {
+    "id": "fig35",
+    "label": "Figure 35",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig35.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig35.png",
+    "page": 48,
+    "caption": "Figure 35 | Initial scene configuration and instructions used for our out-of-the-box evaluation in Figure 16 .",
+    "bbox": [
+      27.0,
+      125.91,
+      562.05,
+      688.95
+    ],
+    "bbox_norm": [
+      0.0454,
+      0.1496,
+      0.9442,
+      0.8183
+    ],
+    "dpi": 300,
+    "area_frac": 0.601,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p48.png"
+  },
+  {
+    "id": "fig36",
+    "label": "Figure 36",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig36.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig36.png",
+    "page": 49,
+    "caption": "Figure 36 | Examples of the initial scene configurations and instructions used for the instruction following analysis in Section 3.3 .",
+    "bbox": [
+      49.59,
+      139.97,
+      539.35,
+      556.28
+    ],
+    "bbox_norm": [
+      0.0833,
+      0.1663,
+      0.906,
+      0.6607
+    ],
+    "dpi": 300,
+    "area_frac": 0.407,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p49.png"
+  },
+  {
+    "id": "fig37",
+    "label": "Figure 37",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig37.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig37.png",
+    "page": 50,
+    "caption": "Figure 37 | Examples of initial scene configurations and instructions used for instruction generalization evaluations in in Section 3.4 .",
+    "bbox": [
+      14.94,
+      240.94,
+      539.23,
+      606.59
+    ],
+    "bbox_norm": [
+      0.0251,
+      0.2862,
+      0.9058,
+      0.7205
+    ],
+    "dpi": 300,
+    "area_frac": 0.383,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p50.png"
+  },
+  {
+    "id": "fig38",
+    "label": "Figure 38",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig38.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig38.png",
+    "page": 51,
+    "caption": "Figure 38 | Examples of initial scene configurations and instructions used for visual generalization evaluations in Section 3.4 .",
+    "bbox": [
+      97.9,
+      78.79,
+      487.24,
+      486.62
+    ],
+    "bbox_norm": [
+      0.1645,
+      0.0936,
+      0.8185,
+      0.578
+    ],
+    "dpi": 300,
+    "area_frac": 0.317,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p51.png"
+  },
+  {
+    "id": "fig39",
+    "label": "Figure 39",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig39.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig39.png",
+    "page": 52,
+    "caption": "Figure 39 | Examples of initial scene configurations and instructions used for action generalization evaluations in Section 3.4 .",
+    "bbox": [
+      19.18,
+      78.79,
+      575.63,
+      404.36
+    ],
+    "bbox_norm": [
+      0.0322,
+      0.0936,
+      0.967,
+      0.4803
+    ],
+    "dpi": 300,
+    "area_frac": 0.361,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p52.png"
+  },
+  {
+    "id": "fig40",
+    "label": "Figure 40",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig40.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig40.png",
+    "page": 53,
+    "caption": "Figure 40 | Breakdown of Gemini Robotics generalization capabilities with success rate. Gemini Robotics consistently outperforms the baselines and handles all three types of variations more effectively. Notably, even when baselines experience catastrophic failure — such as with instructions in a new",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      323.57
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3843
+    ],
+    "dpi": 300,
+    "area_frac": 0.235,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p53.png"
+  },
+  {
+    "id": "fig41",
+    "label": "Figure 41",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig41.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig41.png",
+    "page": 54,
+    "caption": "Figure 41 | Fast adaptation results (Section 4.3 ) with the 𝜋 0 openpi baseline. The results are consistent between 𝜋 0 openpi and 𝜋 0 re-implement in 5 out of 8 tasks, while our own implementation achieves better results for the other 3 tasks.",
+    "bbox": [
+      79.89,
+      428.71,
+      515.38,
+      637.76
+    ],
+    "bbox_norm": [
+      0.1342,
+      0.5092,
+      0.8658,
+      0.7575
+    ],
+    "dpi": 300,
+    "area_frac": 0.182,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p54.png"
+  },
+  {
+    "id": "fig42",
+    "label": "Figure 42",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig42.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig42.png",
+    "page": 55,
+    "caption": "Figure 42 | Average task progress score on new, dexterous and long-horizon tasks after specialization. This Figure complements Figure 23 . The average task progress score highlights that on all tasks but Spelling game, all methods show non-zero progress towards the completion of the tasks. However, ",
+    "bbox": [
+      56.36,
+      404.94,
+      538.92,
+      570.87
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.481,
+      0.9053,
+      0.6781
+    ],
+    "dpi": 300,
+    "area_frac": 0.16,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p55.png"
+  },
+  {
+    "id": "fig43",
+    "label": "Figure 43",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig43.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig43.png",
+    "page": 58,
+    "caption": "Figure 43 | Tasks for fast adaptation experiments. From top to bottom: “Draw card”, “Play card”, “Pour lettuce”, “Salad dressing”, “Seal container”, “Put container in lunch-box”, “Zip lunch-box”, and “Origami first fold”.",
+    "bbox": [
+      49.28,
+      65.94,
+      546.99,
+      688.19
+    ],
+    "bbox_norm": [
+      0.0828,
+      0.0783,
+      0.9189,
+      0.8174
+    ],
+    "dpi": 300,
+    "area_frac": 0.618,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p58.png"
+  },
+  {
+    "id": "fig44",
+    "label": "Figure 44",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig44.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig44.png",
+    "page": 60,
+    "caption": "Figure 44 | Model rollouts for the 4 tasks with the bi-arm Franka robot. From top to bottom: tape hanging on a workshop wall, plug insertion into socket, round belt assembly in NIST task board 2, timing belt assembly in NIST task board 2.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      413.68
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.4914
+    ],
+    "dpi": 300,
+    "area_frac": 0.322,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p60.png"
+  },
+  {
+    "id": "fig45",
+    "label": "Figure 45",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig45.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig45.png",
+    "page": 62,
+    "caption": "Figure 45 | Example tasks used for visual generalization studies when the Gemini Robotics model is adapted to the bi-arm Franka robot.",
+    "bbox": [
+      79.65,
+      132.44,
+      515.58,
+      675.81
+    ],
+    "bbox_norm": [
+      0.1338,
+      0.1573,
+      0.8661,
+      0.8027
+    ],
+    "dpi": 300,
+    "area_frac": 0.473,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p62.png"
+  },
+  {
+    "id": "fig46",
+    "label": "Figure 46",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig46.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig46.png",
+    "page": 63,
+    "caption": "Figure 46 | Example tasks used for action generalization studies when the Gemini Robotics model is adapted to the bi-arm Franka robot.",
+    "bbox": [
+      40.74,
+      157.71,
+      595.28,
+      611.98
+    ],
+    "bbox_norm": [
+      0.0684,
+      0.1873,
+      1.0,
+      0.7269
+    ],
+    "dpi": 300,
+    "area_frac": 0.503,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p63.png"
+  },
+  {
+    "id": "fig47",
+    "label": "Figure 47",
+    "kind": "figure",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/fig47.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/fig47.png",
+    "page": 64,
+    "caption": "Figure 47 | Breakdown of generalization metrics (success rate) when the Gemini Robotics model is adapted to the bi-arm Franka robot. Similar to the progress score used in Fig. 28 , our model significantly outperforms the diffusion baseline.",
+    "bbox": [
+      134.0,
+      294.59,
+      461.26,
+      501.47
+    ],
+    "bbox_norm": [
+      0.2251,
+      0.3499,
+      0.7749,
+      0.5956
+    ],
+    "dpi": 300,
+    "area_frac": 0.135,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p64.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/tab01.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/tab01.png",
+    "page": 5,
+    "caption": "Table 1 | Comparing VLMs on benchmarks that assess a wide range of embodied reasoning capabilities, including our new ERQA benchmark. Benchmarks are evaluated by accuracies of multiple-choice answers. Results obtained in Feb 2025.",
+    "bbox": [
+      59.48,
+      75.66,
+      535.8,
+      165.96
+    ],
+    "bbox_norm": [
+      0.0999,
+      0.0899,
+      0.9001,
+      0.1971
+    ],
+    "dpi": 300,
+    "area_frac": 0.086,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/tab02.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/tab02.png",
+    "page": 5,
+    "caption": "Table 2 | Performances on the ERQA benchmark with and without Chain-of-Thought (CoT) prompting.",
+    "bbox": [
+      122.14,
+      663.95,
+      473.13,
+      736.31
+    ],
+    "bbox_norm": [
+      0.2052,
+      0.7886,
+      0.7948,
+      0.8746
+    ],
+    "dpi": 300,
+    "area_frac": 0.051,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/tab03.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/tab03.png",
+    "page": 8,
+    "caption": "Table 3 | 2D Pointing Benchmarks evaluating open-vocabulary pointing capabilities. Scores are accuracies (1 if predicted point is within the ground truth region mask, 0 otherwise).",
+    "bbox": [
+      59.48,
+      75.66,
+      535.8,
+      176.06
+    ],
+    "bbox_norm": [
+      0.0999,
+      0.0899,
+      0.9001,
+      0.2091
+    ],
+    "dpi": 300,
+    "area_frac": 0.095,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/tab04.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/tab04.png",
+    "page": 10,
+    "caption": "Table 4 | Gemini Robotics-ER achieves a new state-of-the-art performance on the SUN-RGBD 3D object detection benchmark. (* ImVoxelNet ( Rukhovich et al. , 2022 ) performance measured on an easier set of 10 categories).",
+    "bbox": [
+      53.53,
+      82.4,
+      547.7,
+      149.12
+    ],
+    "bbox_norm": [
+      0.0899,
+      0.0979,
+      0.9201,
+      0.1771
+    ],
+    "dpi": 300,
+    "area_frac": 0.066,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/tab05.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/tab05.png",
+    "page": 12,
+    "caption": "Table 5 | Success rates on the ALOHA 2 Sim Task suite. Reported numbers are the average success rate over 50 trials with random initial conditions.",
+    "bbox": [
+      53.53,
+      166.59,
+      541.75,
+      288.03
+    ],
+    "bbox_norm": [
+      0.0899,
+      0.1979,
+      0.9101,
+      0.3421
+    ],
+    "dpi": 300,
+    "area_frac": 0.118,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/tab06.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/tab06.png",
+    "page": 12,
+    "caption": "Table 6 | Real world success rates of Gemini Robotics-ER on ALOHA 2 tasks. Reported rates are the average over 10 trials for banana handover and 9 for fold dress and wiping. For tasks that require dexterous motions, the zero-shot success rate is not high, but they will be significantly improved in t",
+    "bbox": [
+      183.24,
+      384.07,
+      412.04,
+      472.37
+    ],
+    "bbox_norm": [
+      0.3078,
+      0.4562,
+      0.6922,
+      0.5611
+    ],
+    "dpi": 300,
+    "area_frac": 0.04,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/google-deepmind-2025-gemini-robotics-bringing-ai-into/tab07.png",
+    "raw": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/tab07.png",
+    "page": 39,
+    "caption": "Table 7 | Gemini Robotics model card",
+    "bbox": [
+      56.36,
+      59.61,
+      538.91,
+      214.45
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0708,
+      0.9053,
+      0.2547
+    ],
+    "dpi": 300,
+    "area_frac": 0.149,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/google-deepmind-2025-gemini-robotics-bringing-ai-into-figures/_overlay/p39.png"
+  }
+]

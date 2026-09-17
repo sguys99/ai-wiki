@@ -74,7 +74,7 @@ long-horizon 과제는 여러 단계를 이어야 끝나는 긴 과제를 말한
 | π₀ | 2024 | 아키텍처 재설계 | 2410.24164 | [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]] |
 | CogACT | 2024 | 아키텍처 재설계 | 2411.19650 | 없음 |
 | RoboVLMs | 2024 | 아키텍처 재설계 | 2412.14058 | 없음 |
-| Gemini Robotics | 2025 | 대규모 인프라와 추론 | 2503.20020 | 없음 |
+| Gemini Robotics | 2025 | 대규모 인프라와 추론 | 2503.20020 | [[physical-ai/google-deepmind-2025-gemini-robotics-bringing-ai-into]] |
 | GR00T N1 | 2025 | 대규모 인프라와 추론 | 2503.14734 | [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]] |
 | BitVLA | 2025 | 온디바이스 최적화 | 2506.07530 | 없음 |
 | PD-VLA | 2025 | 온디바이스 최적화 | 2503.02310 | 없음 |
@@ -89,9 +89,9 @@ long-horizon 과제는 여러 단계를 이어야 끝나는 긴 과제를 말한
 | Cosmos | GR00T의 world foundation model이 올라가는 플랫폼 | [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform]] |
 | Diffusion Policy | flow matching의 비교 대상 | 없음 |
 
-두 표를 합치면 16건이고 그중 8건은 저장소가 원본 자료를 이미 보유하고 있다. 나머지 8건은 Octo, CogACT, RoboVLMs, Gemini Robotics, BitVLA, PD-VLA, RTC, Diffusion Policy다. 이 8건의 arXiv ID는 frontmatter `papers_reviewed`에 적어 두었으므로 이후 수집 후보 목록으로 쓸 수 있다.
+두 표를 합치면 16건이고 그중 9건은 저장소가 원본 자료를 보유하고 있다 (Gemini Robotics는 2026-09 ingest). 나머지 7건은 Octo, CogACT, RoboVLMs, BitVLA, PD-VLA, RTC, Diffusion Policy다. 이 7건의 arXiv ID는 frontmatter `papers_reviewed`에 적어 두었으므로 이후 수집 후보 목록으로 쓸 수 있다.
 
-원본이 없는 논문 가운데 일부는 저장소의 서베이 페이지가 대신 다룬다. CogACT와 Gemini Robotics와 BitVLA는 [[physical-ai/xu-2025-an-anatomy-of-vision-language-action-models]]가, BitVLA와 RTC는 [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics]]가 짚는다. 따라서 개별 논문의 수치가 필요하면 두 서베이를 먼저 확인하는 편이 낫다.
+원본이 없는 논문 가운데 일부는 저장소의 서베이 페이지가 대신 다룬다. CogACT와 BitVLA는 [[physical-ai/xu-2025-an-anatomy-of-vision-language-action-models]]가, BitVLA와 RTC는 [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics]]가 짚는다. 따라서 개별 논문의 수치가 필요하면 두 서베이를 먼저 확인하는 편이 낫다.
 
 ## 발표 구성
 
@@ -273,7 +273,8 @@ RTC가 남은 문제를 맡는다. 디코딩이 빨라져도 고주파 제어 �
 - [[physical-ai/black-2024-pi0-a-vision-language-action-flow-model]]: flow matching과 action expert 구조의 원논문. 발표가 가장 길게 설명한 대목의 근거다.
 - [[physical-ai/nvidia-2025-gr00t-n1-an-open-foundation]]: GR00T N1 원논문. 발표의 시뮬레이션 서사와 강조점이 다르므로 대조해서 읽는다.
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform]]: 발표가 물리적 상상력의 엔진이라 부른 WFM의 원 플랫폼 문서.
-- [[physical-ai/xu-2025-an-anatomy-of-vision-language-action-models]]: CogACT와 Gemini Robotics와 BitVLA를 함께 다루는 서베이. 저장소에 원논문이 없는 세 논문의 대체 근거다.
+- [[physical-ai/xu-2025-an-anatomy-of-vision-language-action-models]]: CogACT와 Gemini Robotics와 BitVLA를 함께 다루는 서베이. 저장소에 원논문이 없는 CogACT와 BitVLA의 대체 자료다.
+- [[physical-ai/google-deepmind-2025-gemini-robotics-bringing-ai-into]]: 발표가 대규모 인프라와 추론 항목의 대표로 꼽은 Gemini Robotics 기술 보고서의 원본 페이지.
 - [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics]]: BitVLA와 RTC를 실제 적용 관점에서 정리한 서베이.
 - [[physical-ai/learnopencv-2025-vision-language-action-models-vla]]: 같은 계보를 영어 튜토리얼로 훑은 글. 실행 코드와 VLA 유형 분류를 더하는 대신 온디바이스 최적화 단계가 없다.
 - [[physical-ai/li-2025-a-comprehensive-survey-on-world]]: world model 서베이. 발표가 WFM을 물리적 상상력으로 설명한 대목의 학술 좌표계.
