@@ -184,6 +184,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/ginwind-vla-jepa|VLA-JEPA (ginwind, repo)]]: VLA-JEPA 공식 코드 저장소. starVLA 기반 학습 코드 일부와 LIBERO, LIBERO-Plus, SimplerEnv 평가 스크립트, 체크포인트 2종 사용법 (2026, repo)
 - [[physical-ai/fastcrest-tether|Tether (FastCrest, repo)]]: 학습이 끝난 VLA policy를 ONNX로 변환해 서빙하고 배포 가부를 PROMOTE, HOLD, ROLLBACK으로 판정하는 CLI (2026, repo)
 - [[physical-ai/fastcrest-2026-cupel-and-tether-studio|FastCrest 제품 소개]]: 로봇 데이터 준비 도구 Cupel과 policy 개발 워크스페이스 Tether Studio를 소개하는 회사 랜딩 페이지 (2026, article)
+- [[physical-ai/shao-2026-one-step-drifting-action-heads|One-Step Drifting Action Heads (GR00T N1.7)]]: action head를 단발 평가형으로 바꿔 45.3 ms를 5.0 ms로 줄였으나 LIBERO 성공률은 하락한 교환 관계 보고 (2026, paper)
 
 ## Agents (agents)
 
