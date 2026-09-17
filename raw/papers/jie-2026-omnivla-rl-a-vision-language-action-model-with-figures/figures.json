@@ -1,0 +1,164 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/jie-2026-omnivla-rl-a-vision-language-action-model-with/fig01.png",
+    "raw": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/fig01.png",
+    "page": 5,
+    "caption": "Figure 1: Overall architecture of OmniVLA-RL. The VLA model adopts a Mixture-of-Transformers (MoT) backbone shared across three experts. The Reasoning Expert (centre) encodes multi-view RGB observations via a Vision Encoder and task instructions via a Text Encoder, producing semantic and linguistic ",
+    "bbox": [
+      85.99,
+      78.97,
+      513.2,
+      238.72
+    ],
+    "bbox_norm": [
+      0.1405,
+      0.0997,
+      0.8386,
+      0.3014
+    ],
+    "dpi": 300,
+    "area_frac": 0.141,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/jie-2026-omnivla-rl-a-vision-language-action-model-with/fig02.png",
+    "raw": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/fig02.png",
+    "page": 7,
+    "caption": "Figure 2: Block-wise Causal Attention mask of OmniVLA-RL. Tokens from the Spatial and Reasoning Experts form an omni-visible prefix with full bidirectional attention among themselves (dark blocks), enabling rich cross-modal alignment between spatial and semantic representations. Action tokens form a",
+    "bbox": [
+      206.2,
+      81.37,
+      406.45,
+      262.1
+    ],
+    "bbox_norm": [
+      0.3369,
+      0.1027,
+      0.6641,
+      0.3309
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/jie-2026-omnivla-rl-a-vision-language-action-model-with/fig03.png",
+    "raw": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/fig03.png",
+    "page": 9,
+    "caption": "Figure 3: Three-stage progressive training paradigm of OmniVLA-RL. Stage I (Spatial Pre-training): the Reasoning and Spatial Experts are jointly trained on large-scale 3D datasets with the Action Expert frozen, establishing stable spatial-semantic representations via point cloud, camera, and surface",
+    "bbox": [
+      84.77,
+      94.2,
+      527.28,
+      201.22
+    ],
+    "bbox_norm": [
+      0.1385,
+      0.1189,
+      0.8616,
+      0.2541
+    ],
+    "dpi": 300,
+    "area_frac": 0.098,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/jie-2026-omnivla-rl-a-vision-language-action-model-with/fig04.png",
+    "raw": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/fig04.png",
+    "page": 11,
+    "caption": "Figure 4: Comparison of training success rates on the LIBERO-Plus multi-task benchmark. Flow-GSPO exhibits superior convergence speed and higher final success rates compared to PPO and GRPO baselines.",
+    "bbox": [
+      66.0,
+      66.0,
+      546.01,
+      368.11
+    ],
+    "bbox_norm": [
+      0.1078,
+      0.0833,
+      0.8922,
+      0.4648
+    ],
+    "dpi": 300,
+    "area_frac": 0.299,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/jie-2026-omnivla-rl-a-vision-language-action-model-with/tab01.png",
+    "raw": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/tab01.png",
+    "page": 10,
+    "caption": "Table 1: Performance comparison on the LIBERO benchmark. Bold indicates best performance.",
+    "bbox": [
+      68.87,
+      83.34,
+      543.13,
+      233.29
+    ],
+    "bbox_norm": [
+      0.1125,
+      0.1052,
+      0.8875,
+      0.2946
+    ],
+    "dpi": 300,
+    "area_frac": 0.147,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/jie-2026-omnivla-rl-a-vision-language-action-model-with/tab02.png",
+    "raw": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/tab02.png",
+    "page": 12,
+    "caption": "Table 2: Ablation study of OmniVLA-RL components on LIBERO-Plus.",
+    "bbox": [
+      146.64,
+      195.16,
+      465.36,
+      288.52
+    ],
+    "bbox_norm": [
+      0.2396,
+      0.2464,
+      0.7604,
+      0.3643
+    ],
+    "dpi": 300,
+    "area_frac": 0.061,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/jie-2026-omnivla-rl-a-vision-language-action-model-with-figures/_overlay/p12.png"
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/hirose-2025-omnivla-project-page/fig01.png",
+    "raw": "raw/articles/hirose-2025-omnivla-project-page-figures/fig01.png",
+    "caption": "",
+    "source_url": "https://omnivla-nav.github.io/static/images/omniVLA.png",
+    "bytes": 115838,
+    "width": 1376,
+    "height": 754,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/hirose-2025-omnivla-project-page/fig02.png",
+    "raw": "raw/articles/hirose-2025-omnivla-project-page-figures/fig02.png",
+    "caption": "",
+    "source_url": "https://omnivla-nav.github.io/static/images/dataset.png",
+    "bytes": 67566,
+    "width": 1428,
+    "height": 199,
+    "strategy": "fetched",
+    "curated": false,
+    "note": "MIN_IMG_SIDE=200 필터(높이 199px)로 스크립트가 건너뛴 이미지를 수동 추가"
+  },
+  {
+    "id": "fig03",
+    "file": "assets/hirose-2025-omnivla-project-page/page-full.png",
+    "raw": "raw/articles/hirose-2025-omnivla-project-page-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]

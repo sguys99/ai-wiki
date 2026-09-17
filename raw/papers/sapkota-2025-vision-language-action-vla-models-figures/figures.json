@@ -1,0 +1,628 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig01.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Evolution from isolated modalities to unified Vi- sion–Language–Action models. Integrated perception, language, and action enable adaptive, generalizable embodied intelligence.",
+    "bbox": [
+      311.91,
+      466.32,
+      549.87,
+      681.68
+    ],
+    "bbox_norm": [
+      0.524,
+      0.5539,
+      0.9237,
+      0.8097
+    ],
+    "dpi": 300,
+    "area_frac": 0.102,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig02.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig02.png",
+    "page": 2,
+    "caption": "Figure 2: Mind map of core VLA concepts. Each color-coded branch highlights a foundational dimension: definitions (foundation), historical evolution, multi- modal integration, tokenization and encoding, learning paradigms, and adaptive execution in embodied settings.",
+    "bbox": [
+      60.0,
+      398.0,
+      266.0,
+      627.0
+    ],
+    "bbox_norm": [
+      0.1008,
+      0.4727,
+      0.4469,
+      0.7448
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig03.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig03.png",
+    "page": 3,
+    "caption": "Figure 3: Mind map illustrating VLA model ecosystem: progress in training e ffi ciency (architectural innovations, data / parameter e ffi ciency, acceleration) alongside key challenges (inference constraints, multimodal action, safety, generalization, ethics) that must be overcome for scalable real-",
+    "bbox": [
+      35.41,
+      75.73,
+      557.38,
+      314.73
+    ],
+    "bbox_norm": [
+      0.0595,
+      0.0899,
+      0.9363,
+      0.3738
+    ],
+    "dpi": 300,
+    "area_frac": 0.249,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig04.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig04.png",
+    "page": 4,
+    "caption": "Figure 4: Flow and structure of this paper, from conclusion and future roadmap back through applications, progress, concepts, to introduction.",
+    "bbox": [
+      38.08,
+      75.41,
+      288.2,
+      724.6
+    ],
+    "bbox_norm": [
+      0.064,
+      0.0896,
+      0.4841,
+      0.8607
+    ],
+    "dpi": 300,
+    "area_frac": 0.324,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig05.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig05.png",
+    "page": 5,
+    "caption": "Figure 5: Foundational Concept of VLA Models (in an Apple-Picking Scenario) This illustration depicts a robotic arm autonomously picking a ripe apple in an orchard, guided by a VLA model. On the right, a flowchart outlines the four key stages of VLA models: Multimodal Integration, Tokenization and R",
+    "bbox": [
+      82.37,
+      75.22,
+      510.41,
+      343.24
+    ],
+    "bbox_norm": [
+      0.1384,
+      0.0893,
+      0.8574,
+      0.4077
+    ],
+    "dpi": 300,
+    "area_frac": 0.229,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig06.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig06.png",
+    "page": 6,
+    "caption": "Figure 6: Comprehensive timeline of Vision–Language–Action (VLA) models (2022–2025), organized by year with high-contrast color coding and thematic grouping.",
+    "bbox": [
+      35.67,
+      69.77,
+      565.56,
+      633.21
+    ],
+    "bbox_norm": [
+      0.0599,
+      0.0829,
+      0.9501,
+      0.7521
+    ],
+    "dpi": 300,
+    "area_frac": 0.596,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig07.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig07.png",
+    "page": 7,
+    "caption": "Figure 7: A diagram illustrating the end-to-end tokenization and representation process in VLA models. Visual input (e.g., cluttered tabletop) is encoded by a vision encoder (e.g., ViT), while natural language instructions (e.g., “stack the green blocks”) are processed by a language encoder (e.g., T",
+    "bbox": [
+      300.61,
+      339.48,
+      561.16,
+      525.46
+    ],
+    "bbox_norm": [
+      0.505,
+      0.4032,
+      0.9427,
+      0.6241
+    ],
+    "dpi": 300,
+    "area_frac": 0.097,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig08.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig08.png",
+    "page": 8,
+    "caption": "Figure 8: Illustrating how VLA models utilize prefix, state, and action tokens in real-world scenarios. In robotic manipulation, state tokens detect arm extension near fragile objects, enabling path adjustment. In navigation, they represent LiDAR and odometry data. The apple-picking task shows how p",
+    "bbox": [
+      22.97,
+      75.22,
+      292.17,
+      363.38
+    ],
+    "bbox_norm": [
+      0.0386,
+      0.0893,
+      0.4908,
+      0.4316
+    ],
+    "dpi": 300,
+    "area_frac": 0.155,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig09.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig09.png",
+    "page": 8,
+    "caption": "Figure 9: Illustrating the process of how VLAs Encode the World. VLAs encode the world by converting vision, language, and sensor inputs into tokens, fusing them through cross-attention, predicting action sequences via transform- ers, and executing tasks with real-time feedback - enabling robots to ",
+    "bbox": [
+      300.61,
+      404.41,
+      561.16,
+      649.42
+    ],
+    "bbox_norm": [
+      0.505,
+      0.4804,
+      0.9427,
+      0.7714
+    ],
+    "dpi": 300,
+    "area_frac": 0.127,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig10.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig10.png",
+    "page": 10,
+    "caption": "Figure 10: Learning Paradigms: Data Sources and Training Strategies for VLAs.",
+    "bbox": [
+      109.78,
+      75.22,
+      486.72,
+      293.44
+    ],
+    "bbox_norm": [
+      0.1844,
+      0.0893,
+      0.8176,
+      0.3485
+    ],
+    "dpi": 300,
+    "area_frac": 0.164,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig11.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig11.png",
+    "page": 19,
+    "caption": "Figure 11: Mind-map of application domains for Vision–Language–Action models, with Humanoid Robotics positioned at the top and remaining domains arranged clockwise to match the order of discussion in this section.",
+    "bbox": [
+      32.21,
+      75.81,
+      307.37,
+      379.43
+    ],
+    "bbox_norm": [
+      0.0541,
+      0.0901,
+      0.5164,
+      0.4507
+    ],
+    "dpi": 300,
+    "area_frac": 0.167,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig12.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig12.png",
+    "page": 20,
+    "caption": "Figure 12: This figure illustrates “Helix,” a next-generation humanoid robot executing a household task using a VLA framework. Upon receiving a verbal command, Helix integrates a vision-language model (e.g., SigLIP) and a language model (e.g., LLaMA-4) to jointly perceive and interpret the environme",
+    "bbox": [
+      95.37,
+      75.22,
+      497.4,
+      306.61
+    ],
+    "bbox_norm": [
+      0.1602,
+      0.0893,
+      0.8356,
+      0.3642
+    ],
+    "dpi": 300,
+    "area_frac": 0.186,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig13.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig13.png",
+    "page": 21,
+    "caption": "Figure 13: This illustration depicts an autonomous delivery vehicle powered by a VLA system, integrating VLMs for visual grounding, LLMs for instruction parsing, and a VLA decoder for path planning. Agentic AI enables adaptive trajectory refinement in dynamic environments, exemplifying how multi-mod",
+    "bbox": [
+      300.61,
+      75.22,
+      561.16,
+      266.73
+    ],
+    "bbox_norm": [
+      0.505,
+      0.0893,
+      0.9427,
+      0.3168
+    ],
+    "dpi": 300,
+    "area_frac": 0.1,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig14.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig14.png",
+    "page": 22,
+    "caption": "Figure 14: a) This figure illustrates a VLA surgical system executing the task “apply a suture to the left coronary artery.” The vision module identifies anatomical targets, the language model interprets the instruction, and the action decoder generates precise motor commands, enabling adaptive tool",
+    "bbox": [
+      300.61,
+      74.32,
+      561.16,
+      428.97
+    ],
+    "bbox_norm": [
+      0.505,
+      0.0883,
+      0.9427,
+      0.5095
+    ],
+    "dpi": 300,
+    "area_frac": 0.184,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig15.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig15.png",
+    "page": 24,
+    "caption": "Figure 15: Conceptual illustration of VLA models in precision and automated agriculture. A ground robot combines vision encoders and language instructions (e.g., “pick only Grade A fruits”) to generate action tokens for damage-free harvesting, while aerial robots use VLA reasoning for language-guide",
+    "bbox": [
+      69.37,
+      75.22,
+      523.42,
+      388.62
+    ],
+    "bbox_norm": [
+      0.1165,
+      0.0893,
+      0.8793,
+      0.4616
+    ],
+    "dpi": 300,
+    "area_frac": 0.284,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig16.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig16.png",
+    "page": 24,
+    "caption": "Figure 16: Showing how VLA models enable interactive AR navigation by fus- ing real-time visual perception, language understanding, and action planning. In dynamic environments such as airports, VLAs interpret user queries like “avoid stairs to Gate 22,” analyze visual scenes (e.g., detecting escala",
+    "bbox": [
+      296.26,
+      481.62,
+      565.51,
+      648.96
+    ],
+    "bbox_norm": [
+      0.4977,
+      0.5721,
+      0.95,
+      0.7708
+    ],
+    "dpi": 300,
+    "area_frac": 0.09,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig17.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig17.png",
+    "page": 29,
+    "caption": "Figure 17: Figure maps six core VLA challenges; namely real-time inference, multimodal fusion safety, dataset bias, integration complexity, compute demands, and robustness / ethics; against six targeted solutions: adaptive pruning, hybrid policy architectures, meta / transfer learning, LoRA / quanti",
+    "bbox": [
+      95.37,
+      75.22,
+      497.42,
+      326.28
+    ],
+    "bbox_norm": [
+      0.1602,
+      0.0893,
+      0.8356,
+      0.3876
+    ],
+    "dpi": 300,
+    "area_frac": 0.201,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig18.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig18.png",
+    "page": 29,
+    "caption": "Figure 18: This conceptual illustration presents “Eva,” a future humanoid as- sistant powered by Vision-Language Models (VLMs), VLA frameworks, and agentic AI systems. VLMs enable semantic scene understanding and object af- fordance prediction, while VLAs translate language-grounded instructions int",
+    "bbox": [
+      36.64,
+      374.28,
+      287.15,
+      548.9
+    ],
+    "bbox_norm": [
+      0.0616,
+      0.4446,
+      0.4824,
+      0.652
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/fig19.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/fig19.png",
+    "page": 31,
+    "caption": "Figure 19: Future research roadmap for Vision-Language-Action (VLA) models (Fig. 19). Dashed boxes denote prioritized directions addressing the core limitations of VLA models identified in this work: (i) E ffi cient Deployment (latency, compute, energy), (ii) Reliable & Safe Intelligence (grounding,",
+    "bbox": [
+      31.98,
+      75.55,
+      561.0,
+      526.46
+    ],
+    "bbox_norm": [
+      0.0537,
+      0.0897,
+      0.9424,
+      0.6253
+    ],
+    "dpi": 300,
+    "area_frac": 0.476,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p31.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/tab01.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/tab01.png",
+    "page": 13,
+    "caption": "Table 1 further highlights how recent VLAs balance these trade-o ff s. Models such as OpenDriveVLA [293] and Combat- VLA [34] prioritize hierarchical planning in dynamic, safety- critical domains, whereas lightweight, edge-targeted systems like Edge VLA [20] and TinyVLA [242] emphasize real-time low",
+    "bbox": [
+      23.76,
+      69.77,
+      571.51,
+      763.7
+    ],
+    "bbox_norm": [
+      0.0399,
+      0.0829,
+      0.9601,
+      0.9071
+    ],
+    "dpi": 300,
+    "area_frac": 0.758,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p13.png",
+    "duplicate_pages": [
+      13
+    ]
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/tab02.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/tab02.png",
+    "page": 14,
+    "caption": "Table 2: Compact summary of representative Vision–Language–Action (VLA) models. Each row reports the primary encoders / decoders, training data, and the main distinctive capability.",
+    "bbox": [
+      31.92,
+      99.32,
+      563.36,
+      732.36
+    ],
+    "bbox_norm": [
+      0.0536,
+      0.118,
+      0.9464,
+      0.8699
+    ],
+    "dpi": 300,
+    "area_frac": 0.671,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/tab03.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/tab03.png",
+    "page": 18,
+    "caption": "Table 3: Comparison of representative Vision-Language-Action (VLA) methodologies, application areas, and key innovations.",
+    "bbox": [
+      31.61,
+      93.68,
+      564.74,
+      755.35
+    ],
+    "bbox_norm": [
+      0.0531,
+      0.1113,
+      0.9487,
+      0.8972
+    ],
+    "dpi": 300,
+    "area_frac": 0.704,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/sapkota-2025-vision-language-action-vla-models/tab04.png",
+    "raw": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/tab04.png",
+    "page": 26,
+    "caption": "Table 4: Challenges, potential solutions, and expected impact of VLA models.",
+    "bbox": [
+      43.07,
+      93.68,
+      552.21,
+      474.02
+    ],
+    "bbox_norm": [
+      0.0723,
+      0.1113,
+      0.9277,
+      0.563
+    ],
+    "dpi": 300,
+    "area_frac": 0.386,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/sapkota-2025-vision-language-action-vla-models-figures/_overlay/p26.png"
+  }
+]

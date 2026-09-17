@@ -171,6 +171,8 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/bytedance-gr-1|GR-1 (bytedance, repo)]]: GR-1 논문의 공식 코드 저장소(Apache-2.0). CALVIN 평가 경로와 가중치만 공개하고 pre-training과 fine-tuning 코드는 없다 (2024, repo)
 - [[physical-ai/hu-2026-cst-wm-a-causally-structured-world|CST-WM (NYU Abu Dhabi)]]: 사람을 따라가는 embodied visual tracking용 world model. action이 target evidence를 직접 갱신하는 경로를 아키텍처로 끊고 MPC로 추종과 재획득을 함께 처리한다 (2026, paper)
 - [[physical-ai/skild-2026-introducing-s1-in-context-learning|S1 (Skild AI)]]: unseen 과제를 영상 시연 하나로 수행하는 in-context learning 로봇 foundation model. pre-training이 늘수록 VLA와 격차가 커진다 (2026, article)
+- [[physical-ai/jie-2026-omnivla-rl-a-vision-language-action-model-with|OmniVLA-RL]]: 세 expert MoT 구조와 SDE flow matching 위의 GSPO(Flow-GSPO)로 online RL하는 manipulation VLA. LIBERO 평균 97.6% (2026, paper)
+- [[physical-ai/hirose-2025-omnivla-project-page|OmniVLA 프로젝트 페이지 (UC Berkeley)]]: 2D pose, goal 이미지, 자연어와 그 조합으로 goal을 지정하는 navigation VLA. OpenVLA 기반, 9,500시간 주행 데이터, 실제 로봇 배포 영상 6종 (2025, article)
 - [[physical-ai/parada-2026-gemini-robotics-2-whole-body|Gemini Robotics 2]]: humanoid whole-body control, dexterous manipulation, 다중 로봇 협업을 갖춘 Google DeepMind의 세 모델 발표문과 성공률 차트 (2026, article)
 
 ## Agents (agents)
