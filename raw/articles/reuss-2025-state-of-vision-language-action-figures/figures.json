@@ -1,0 +1,238 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/reuss-2025-state-of-vision-language-action/fig01.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/fig01.png",
+    "caption": "Vision-Language-Action (VLA) models research overview and trends at ICLR 2026",
+    "source_url": "https://mbreuss.github.io/images/blog_header.png",
+    "bytes": 795030,
+    "width": 1297,
+    "height": 733,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/reuss-2025-state-of-vision-language-action/fig02.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/fig02.png",
+    "caption": "Flowchart for determining if your model is a VLA",
+    "source_url": "https://mbreuss.github.io/images/vla_or_not_chart.png",
+    "bytes": 122376,
+    "width": 1860,
+    "height": 887,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/reuss-2025-state-of-vision-language-action/fig03.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/fig03.png",
+    "caption": "Taxonomy diagram to determine if your model is a LBM",
+    "source_url": "https://mbreuss.github.io/images/lbm_flow_chart.png",
+    "bytes": 139287,
+    "width": 1909,
+    "height": 992,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/reuss-2025-state-of-vision-language-action/fig04.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/fig04.png",
+    "caption": "VLA Simulation Setups Overview",
+    "source_url": "https://mbreuss.github.io/images/vla_sim_setups.png",
+    "bytes": 466001,
+    "width": 1276,
+    "height": 397,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/reuss-2025-state-of-vision-language-action/fig05.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/fig05.png",
+    "caption": "Discrete Diffusion VLA Architecture",
+    "source_url": "https://mbreuss.github.io/images/discrete_diff_comp.png",
+    "bytes": 181896,
+    "width": 2100,
+    "height": 520,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/reuss-2025-state-of-vision-language-action/fig06.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/fig06.png",
+    "caption": "FASTer Tokenizer Overview",
+    "source_url": "https://mbreuss.github.io/images/faster_tokenizer.png",
+    "bytes": 82173,
+    "width": 787,
+    "height": 282,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/reuss-2025-state-of-vision-language-action/fig07.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/fig07.png",
+    "caption": "Video Pretraining for VLAs",
+    "source_url": "https://mbreuss.github.io/images/video_policy_header.png",
+    "bytes": 1264637,
+    "width": 1946,
+    "height": 1206,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/reuss-2025-state-of-vision-language-action/fig08.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/fig08.png",
+    "caption": "ROBOTARENA Overview",
+    "source_url": "https://mbreuss.github.io/images/roboarena_real2sim.png",
+    "bytes": 1324138,
+    "width": 2128,
+    "height": 924,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/reuss-2025-state-of-vision-language-action/fig09.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/fig09.png",
+    "caption": "X-VLA Overview",
+    "source_url": "https://mbreuss.github.io/images/xvla_cross_embedding.png",
+    "bytes": 262482,
+    "width": 2648,
+    "height": 694,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/reuss-2025-state-of-vision-language-action/fig10.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/fig10.png",
+    "caption": "VLAs Overview",
+    "source_url": "https://mbreuss.github.io/images/closed_vs_open_VLAs.png",
+    "bytes": 1005920,
+    "width": 1930,
+    "height": 857,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/reuss-2025-state-of-vision-language-action/fig11.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/fig11.png",
+    "caption": "Zero-Shot Gap Illustration",
+    "source_url": "https://mbreuss.github.io/images/roboarena_leaderboard.png",
+    "bytes": 119250,
+    "width": 1033,
+    "height": 480,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/reuss-2025-state-of-vision-language-action/page-full.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop01.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop02.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop03.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop04.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop05.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop06.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop07.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop08.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop09.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop10.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig23",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop11.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig24",
+    "file": "assets/reuss-2025-state-of-vision-language-action/crop12.png",
+    "raw": "raw/articles/reuss-2025-state-of-vision-language-action-figures/crop12.png",
+    "caption": "인라인 SVG 성장 차트 크롭 (VLA Submissions Growth at ICLR)",
+    "strategy": "crop",
+    "curated": false
+  }
+]

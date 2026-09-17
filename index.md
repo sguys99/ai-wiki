@@ -125,6 +125,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/liu-2025-generative-physical-ai-in-vision|Generative Physical AI in Vision: A Survey]]: 생성 모델이 물리 법칙을 지키게 만드는 연구를 physics-aware generation이라는 이름으로 묶은 서베이 (2025, paper)
 - [[physical-ai/9bow-2026-physics-aware-generation-world-simulator|물리를 이해하는 생성 모델과 월드 시뮬레이터 (9bow)]]: 위 Liu 2025 서베이를 한글로 풀어 쓴 PyTorch KR 해설. 논문 페이지로 넘어가기 전 진입로로 쓴다 (2026, article)
 - [[physical-ai/zhang-2026-a-survey-of-physical-ai|A Survey of Physical AI (ChatGPT → World Models → Embodied Agents)]]: LLM의 world knowledge에서 출발해 여섯 층 로드맵으로 문헌을 재배치한 preprint 서베이 (2026, paper)
+- [[physical-ai/reuss-2025-state-of-vision-language-action|State of VLA Research at ICLR 2026]]: ICLR 2026 투고작 164편으로 본 VLA 정의, 벤치마크 해석 기준, 아홉 가지 연구 흐름과 frontier 격차 (2025, article)
 - [[physical-ai/reuss-2026-pretrained-to-imagine-fine-tuned|Pretrained to Imagine, Fine-Tuned to Act: The Rise of World-Action Models]]: 대규모 video pre-training에서 출발하는 policy 계열 지형도 (2026, article)
 - [[physical-ai/9bow-2026-world-action-model-rise|World Action Model의 부상 (9bow)]]: Reuss 2026 지형도의 PyTorch KR 한국어판. 용어 풀이 상자와 원문 도식 23장을 함께 싣는다 (2026, article)
 - [[physical-ai/huggingface-lerobot|LeRobot (Hugging Face, repo)]]: 하드웨어 제어부터 데이터 수집, policy 학습, 평가까지 담은 PyTorch 로봇 학습 프레임워크. policy 22종이 같은 데이터 형식과 CLI 위에서 동작하며 라이선스는 Apache-2.0이다 (2026, repo)
