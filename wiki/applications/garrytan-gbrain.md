@@ -246,6 +246,8 @@ SLUG=$(gbrain capture "..." --quiet)
 
 에이전트 설치 경로는 HTTPS로 파일을 읽고 shell 명령을 실행할 수 있는 에이전트면 동작한다. README는 Codex, Claude Code, Claude Cowork, Cursor, AlphaClaw에서 검증했다고 적는다. 에이전트 플랫폼을 써 본 적이 없는 사용자를 위해 personal-brain 튜토리얼이 플랫폼 선택부터 첫 질의 검증까지를 따로 안내한다.
 
+CLI 단독 경로의 `bun install -g github:garrytan/gbrain`은 README 버전에 따라 권장 여부가 다르다. [[applications/vectorize-2026-gbrain-review-honest-assessment]]는 v0.30 시점 README가 이 명령을 postinstall hook 차단 때문에 피해야 할 설치 함정으로 적었다고 보고하는 반면, 이 페이지가 근거로 삼은 v0.41 시점 README는 같은 명령을 표준 경로로 제시한다.
+
 ### MCP 서버와 클라이언트
 
 GBrain은 MCP로 30개가 넘는 도구를 노출한다. 서버는 두 가지 모습으로 실행된다.

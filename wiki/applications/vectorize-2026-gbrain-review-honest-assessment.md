@@ -215,6 +215,8 @@ README가 문서화한 설치 함정은 두 가지이며 둘 다 GitHub 이슈�
 | `bun install -g github:garrytan/gbrain` | postinstall hook이 차단된다 |
 | `npm install -g gbrain` | npm 레지스트리에 squat된 패키지가 있다 |
 
+이 표는 리뷰 시점인 v0.30 README를 근거로 한다. [[applications/garrytan-gbrain]]이 정리한 v0.41 시점 README는 `bun install -g github:garrytan/gbrain`을 CLI 단독 설치의 표준 경로로 제시하므로, 이 명령의 권장 여부는 README 버전에 따라 갈린다.
+
 저자는 이 단계 프로젝트에서 정상적인 일이라고 하면서도, 안정성이 중요한 팀이라면 버전 고정, 이슈 추적, 패치 시간 확보가 여전히 필요하다고 본다.
 
 ### 배포 형태별 평가

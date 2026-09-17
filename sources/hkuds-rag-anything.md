@@ -34,7 +34,7 @@ HKUDS의 RAG-Anything은 LightRAG 위에 세운 all-in-one multimodal RAG 프레
 - **동반 기술 보고서**: arXiv [2510.12323](https://arxiv.org/abs/2510.12323). README News 2025.10 항목이 "technical report of RAG-Anything"을 공개했다고 적는다.
 - **인용 정보**: BibTeX 키 `guo2025raganythingallinoneragframework`, 저자 Zirui Guo, Xubin Ren, Lingrui Xu, Jiahao Zhang, Chao Huang, primaryClass `cs.AI`.
 - **커뮤니티 창구**: Discord 초대 링크, WeChat 그룹(issue 7), 중국어 README(`README_zh.md`), Trendshift 배지(repositories/14959), pepy 다운로드 배지.
-- **라이선스**: 수집된 raw 파일의 frontmatter가 `license: "MIT"`로 적는다. 다만 README 본문에는 라이선스 조항이나 `LICENSE` 파일 언급이 한 번도 등장하지 않는다.
+- **라이선스**: 수집된 raw 파일의 frontmatter가 `license: "MIT"`로 적는다. 이 값은 스텁 전환 전 클론에 있던 `LICENSE` 파일(MIT License, Copyright 2025 Data Intelligence Lab@HKU)에서 온 것으로 git 이력(`0507ad0^`)에서 확인된다. 다만 README 본문에는 라이선스 조항이나 `LICENSE` 파일 언급이 한 번도 등장하지 않는다.
 
 ### 자료 범위에 관한 주의
 
@@ -235,7 +235,7 @@ MinerU 설치 확인은 `mineru --version`과 `rag.check_parser_installation()` 
 - **운영체제 수준 의존**. Office 문서에 LibreOffice, PaddleOCR 경로에 `paddlepaddle`이 필요하다. `raganything[all]`도 Python 의존만 해결하므로 LibreOffice는 여전히 따로 설치해야 한다.
 - **파이프라인 실패 유형이 따로 문서화될 만큼 많다**. README는 OCR, 표, retrieval 편향, 디버깅 요령을 다루는 점검 목록 `docs/multimodal_rag_failure_modes.md`를 별도로 두고 이슈 207번과 213번을 함께 가리킨다.
 - **extras 목록의 내적 불일치**. Quick Start의 Optional Dependencies 절은 `[image]`, `[text]`, `[all]` 세 가지만 나열하는데, 뒤의 Parser Configuration과 Processing Requirements 절은 `[paddleocr]`를 추가로 안내한다. 같은 README 안에서 extras 목록이 어긋난다.
-- **라이선스 조항이 README 본문에 없다**. 수집된 raw 파일의 frontmatter만 `license: "MIT"`를 적고, README 본문에는 라이선스 절도 `LICENSE` 파일 링크도 없다. 저장소 클론이 스텁으로 바뀌면서 `LICENSE` 파일이 함께 사라진 결과다.
+- **라이선스 조항이 README 본문에 없다**. README 본문에는 라이선스 절도 `LICENSE` 파일 링크도 없고, 라이선스는 raw 파일 frontmatter의 `license: "MIT"`로만 기록돼 있다. 이 값은 스텁 전환 전 클론의 `LICENSE` 파일에서 온 것이라 frontmatter와 본문이 어긋나지는 않는다.
 - **성능 특성 서술 없음**. README는 인덱싱 비용, 지연 시간, 처리량을 수치로 밝히지 않는다. `max_workers`로 병렬 처리를 조절하라는 안내가 전부다.
 
 ## 6. 관련 연구 (Related Work)

@@ -121,14 +121,14 @@ anti-bot 스텔스를 갖춘 실제 브라우저를 쓴다는 점이 이 구성�
 
 ## 실행 요건과 설치
 
-아래 실행 요건과 설치 절차는 이 저장소를 다룬 한국어 해설 3편이 기록한 값이다. 저장소 자체는 clone 후 `./setup` 실행이라는 30초 설치만 안내한다.
+아래 실행 요건과 설치 절차는 이 저장소를 다룬 한국어 해설 2편(9bow와 GPTERS)이 기록한 값이다. 저장소 자체는 clone 후 `./setup` 실행이라는 30초 설치만 안내한다.
 
 | 항목 | 값 |
 |---|---|
 | 필수 도구 | Claude Code 액세스, Git, Bun v1.0 이상 |
 | 지원 플랫폼 | macOS, Linux (x64/arm64) |
-| Windows | WSL 경유. Node.js가 추가로 필요하다 |
-| 명령어 수 | 슬래시 커맨드 28개 |
+| Windows | GPTERS 해설은 WSL 경유로, 9bow 해설은 Node.js 추가 설치로 적는다 |
+| 명령어 수 | 슬래시 커맨드 28개 (9bow 해설 단독 값. README 자체는 총수를 적지 않는다) |
 | 텔레메트리 | 기본 비활성화 |
 
 설치는 적용 범위에 따라 세 가지 방식이 있다.
@@ -147,7 +147,7 @@ git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git .agen
   && cd .agents/skills/gstack && ./setup --host codex
 ```
 
-텔레메트리는 기본적으로 꺼져 있다. 켜더라도 수집 범위는 스킬 이름, 실행 시간, 성공 여부, 버전, OS 정보까지다. 코드, 파일 경로, 저장소 이름, 프롬프트 내용은 수집하지 않는다. 슬래시 커맨드 28개 전체 목록과 명령어별 역할 배정은 [[agents/9bow-2026-gstack-claude-code-virtual-team]]과 [[agents/gpters-2026-yc-ai-agent-guide-gstack]]이 정리한다.
+텔레메트리는 기본적으로 꺼져 있다. 켜더라도 수집 범위는 스킬 이름, 실행 시간, 성공 여부, 버전, OS 정보까지다. 코드, 파일 경로, 저장소 이름, 프롬프트 내용은 수집하지 않는다. 슬래시 커맨드 목록과 명령어별 역할 배정은 [[agents/9bow-2026-gstack-claude-code-virtual-team]](22개 열거, 총수 28개로 기록)과 [[agents/gpters-2026-yc-ai-agent-guide-gstack]](9개 열거)이 나눠 정리하며, 전체 목록을 한 곳에 적은 페이지는 없다.
 
 ## 결과
 

@@ -62,7 +62,7 @@ GraphRAG는 문서 집합 전체를 LLM으로 knowledge graph로 바꾼 뒤, 그
 
 이 논문이 겨냥하는 질문은 "이 데이터셋의 주요 테마는 무엇인가" 같은 corpus 전역 질의다. 기존 RAG는 질의와 유사한 문서 조각 몇 개를 찾아 오는 구조라서, 답이 특정 조각에 있지 않고 전체에 흩어져 있는 질문에는 원리적으로 대응하지 못한다.
 
-Microsoft Research가 2024년 4월에 공개하고 2025년 2월에 v2로 갱신한 preprint이며, 공식 구현체 [[database/microsoft-graphrag]]가 MIT 라이선스로 배포된다. 약 100만 토큰 규모 corpus 두 개에서 vector RAG 대비 comprehensiveness와 diversity 승률이 72%에서 83% 사이로 나왔고, 가장 추상적인 root-level 요약만 써도 원본 텍스트 요약 대비 토큰을 9배에서 43배 줄이면서 우위를 유지한다.
+Microsoft Research가 2024년 4월에 공개하고 2025년 2월에 v2로 갱신한 preprint이며, 공식 구현체 [[database/microsoft-graphrag]]가 MIT 라이선스로 배포된다. 논문 1절에 따르면 GraphRAG 방법의 변형은 LangChain, LlamaIndex, NebulaGraph, Neo4J의 확장으로도 제공된다. 약 100만 토큰 규모 corpus 두 개에서 vector RAG 대비 comprehensiveness와 diversity 승률이 72%에서 83% 사이로 나왔고, 가장 추상적인 root-level 요약만 써도 원본 텍스트 요약 대비 토큰을 9배에서 43배 줄이면서 우위를 유지한다.
 
 ![[assets/edge-2024-from-local-to-global/fig01.png]]
 *Figure 1: GraphRAG 파이프라인 전체 구조. 왼쪽 인덱싱 시점에 원본 문서가 text chunk, entity와 relationship, knowledge graph, graph community, community summary로 차례로 바뀌고, 오른쪽 질의 시점에 community answer를 거쳐 global answer가 나온다 (Edge 2024, Figure 1).*

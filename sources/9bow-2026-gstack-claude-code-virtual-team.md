@@ -55,7 +55,7 @@ PyTorch KR의 9bow(박정환)가 Garry Tan의 gstack을 한국어로 정리한 �
 - 저장소 소개 성격의 글이라 명령어를 직접 실행해 검증하지 않고, 정리와 전달에 초점을 둔다.
 - 생산성 수치는 도구 저자 본인의 자기 보고를 인용한 것으로, 독립 검증 자료가 아니다.
 - 명령어 총수(28가지)와 본문 열거 수(22개)가 일치하지 않아, 전체 명령어 목록으로는 완결되지 않는다.
-- 필요 환경의 Windows 항목이 원 저장소 문서 정리와 다르다. 이 글은 Node.js 추가 설치로 적고, [[agents/garrytan-gstack]]은 WSL 경유로 적는다.
+- 필요 환경의 Windows 항목이 다른 한국어 해설과 다르다. 이 글은 Node.js 추가 설치로 적고, GPTERS 해설([[agents/gpters-2026-yc-ai-agent-guide-gstack]])은 WSL 경유로 적는다. 원 저장소 README에는 Windows 항목이 없다.
 - 브라우저 데몬 내부 동작, GBrain, Conductor 병렬 스프린트 같은 고급 기능은 다루지 않는다.
 
 ## 6. 관련 연구 (Related Work)

@@ -24,7 +24,7 @@ DESIGN.md는 디자인 시스템을 코딩 에이전트에게 넘기기 위한 �
 
 이 페이지는 저장소 본체의 규격과 사용법을 다룬다. 이 포맷을 실제 제품 환경에서 검증한 결과는 [[agents/hall-2026-atlassians-design-md-is-here]]가 담당한다.
 
-DESIGN.md가 담는 디자인 값을 원어로는 design token이라 부르고, 이 페이지는 이를 줄여 토큰으로 적는다. 언어 모델이 소비하는 단위를 뜻할 때만 컨텍스트 토큰이라고 구분해 적는다.
+DESIGN.md가 담는 디자인 값은 design token으로, 언어 모델이 소비하는 단위는 토큰으로 구분해 적는다.
 
 ## 배경
 
@@ -32,17 +32,17 @@ DESIGN.md가 담는 디자인 값을 원어로는 design token이라 부르고, 
 
 지속성(persistent)이라는 단어가 문제의 성격을 짚는다. 에이전트가 화면을 여러 번 만들 때 디자인 언어가 매 회차에 다시 필요하다면, 그 언어는 세션 밖에 파일로 남아 있어야 한다. DESIGN.md는 그 파일의 형식을 정하는 규격이다.
 
-여기서 이 저장소가 선택하지 않은 길도 분명하다. 새로운 렌더링 언어를 만들거나 토큰 표준을 다시 세우지 않는다. PHILOSOPHY.md는 스펙이 토큰 요구사항을 받거나 권장하지 않는 이유로 "앞선 언어와 도구가 수십 년간 쌓은 작업을 다시 만들지 않기 위해"라고 적는다. 따라서 DESIGN.md가 하려는 일은 값의 표준화가 아니라 의도의 전달이다.
+여기서 이 저장소가 선택하지 않은 길도 분명하다. 새로운 렌더링 언어를 만들거나 design token 표준을 다시 세우지 않는다. PHILOSOPHY.md는 스펙이 design token 요구사항을 받거나 권장하지 않는 이유로 "앞선 언어와 도구가 수십 년간 쌓은 작업을 다시 만들지 않기 위해"라고 적는다. 따라서 DESIGN.md가 하려는 일은 값의 표준화가 아니라 의도의 전달이다.
 
 ## 핵심 개념
 
 **design token**은 색이나 크기, 타이포그래피처럼 재사용 가능한 디자인 값에 이름을 붙인 것이다. `primary: "#1A1C1E"`처럼 이름과 값을 짝지어 두면 이후에는 값이 아니라 이름으로 가리킬 수 있다.
 
-**token reference**는 `{colors.primary}`처럼 다른 토큰을 가리키는 표기다. 버튼의 배경색을 직접 hex로 쓰는 대신 팔레트의 이름을 참조해 두면, 팔레트를 고칠 때 버튼이 함께 따라온다.
+**token reference**는 `{colors.primary}`처럼 다른 design token을 가리키는 표기다. 버튼의 배경색을 직접 hex로 쓰는 대신 팔레트의 이름을 참조해 두면, 팔레트를 고칠 때 버튼이 함께 따라온다.
 
 **산문(prose)**은 YAML 아래에 오는 Markdown 본문을 뜻한다. 같은 값이 왜 그 값인지, 어디에 쓰고 어디에는 쓰지 않는지를 문장으로 적는 자리다. PHILOSOPHY.md가 스펙에서 가장 중요한 부분으로 규정하는 층이 여기다.
 
-**normative value**는 스펙이 규정하는 기준값을 뜻한다. README는 YAML의 토큰을 normative value로 부르고, 산문은 그 값을 어떻게 적용하는지의 컨텍스트를 제공한다고 설명한다.
+**normative value**는 스펙이 규정하는 기준값을 뜻한다. README는 YAML의 design token을 normative value로 부르고, 산문은 그 값을 어떻게 적용하는지의 컨텍스트를 제공한다고 설명한다.
 
 **negative constraint**는 "하지 말 것"에 해당하는 제약이다. PHILOSOPHY.md의 핵심 주장 하나가 구체적인 레퍼런스를 적으면 이 제약이 자동으로 따라온다는 것이다.
 
@@ -56,8 +56,8 @@ DESIGN.md 파일은 두 층으로 구성되고, 각 층의 독자가 다르다.
 
 | 레이어 | 위치 | 독자 | 역할 |
 |---|---|---|---|
-| YAML front matter | 파일 상단 `---` 펜스 안 | 기계 | 토큰을 정의한다. README가 normative value로 규정하는 층 |
-| Markdown body | 펜스 아래 `##` 섹션 | 사람 | 설계 근거를 서술한다. 토큰을 어떻게 적용하는지의 컨텍스트 |
+| YAML front matter | 파일 상단 `---` 펜스 안 | 기계 | design token을 정의한다. README가 normative value로 규정하는 층 |
+| Markdown body | 펜스 아래 `##` 섹션 | 사람 | 설계 근거를 서술한다. design token을 어떻게 적용하는지의 컨텍스트 |
 
 README의 예시 파일을 보면 두 층이 어떻게 맞물리는지 드러난다.
 
@@ -101,7 +101,7 @@ Architectural Minimalism meets Journalistic Gravitas.
 
 YAML만 보면 `tertiary`는 벽돌색 하나에 불과하다. 산문이 붙으면 그 색이 "Boston Clay"라는 이름을 갖고 상호작용에만 쓰이는 유일한 색이라는 사실이 함께 전달된다. README는 이 파일을 읽은 에이전트가 Public Sans로 조판한 짙은 잉크색 헤드라인, 따뜻한 석회석 배경, Boston Clay 색 행동 유도 버튼을 갖춘 UI를 만들어 낸다고 설명한다.
 
-### 토큰 스키마
+### design token 스키마
 
 최상위 키는 아래 형태를 따른다.
 
@@ -124,7 +124,7 @@ components:
 
 표준화된 카테고리는 `name`과 함께 colors, typography, spacing, rounded, components 다섯 가지다. `version`과 `description`은 선택이다. 이 다섯 가지 밖의 키는 스펙이 정의하지 않지만 금지하지도 않는다.
 
-### 토큰 타입
+### design token 타입
 
 값에 쓸 수 있는 타입은 네 가지다.
 
@@ -166,7 +166,7 @@ Markdown 본문의 섹션은 `##` 헤딩으로 쓴다. 섹션은 생략할 수 �
 
 순서를 벗어나면 린터가 `section-order` 경고를 낸다. 다만 경고이므로 파일이 거부되지는 않는다.
 
-### 컴포넌트 토큰
+### 컴포넌트 design token
 
 컴포넌트는 이름 하나를 하위 속성 묶음에 대응시키는 구조다. 배경색과 글자색을 팔레트에서 참조해 오는 방식이 전형적인 사용법이다.
 
@@ -187,7 +187,7 @@ components:
 |---|---|
 | `backgroundColor` | 배경색 |
 | `textColor` | 글자색 |
-| `typography` | 적용할 타이포그래피 토큰 |
+| `typography` | 적용할 타이포그래피 design token |
 | `rounded` | 모서리 곡률 |
 | `padding` | 내부 여백 |
 | `size` | 크기 |
@@ -203,8 +203,8 @@ hover와 active, pressed 같은 변형(variant)을 위한 별도 문법은 없�
 | 상황 | consumer 동작 |
 |---|---|
 | 미지의 섹션 헤딩 | 보존한다. 에러로 만들지 않는다 |
-| 미지의 색 토큰 이름 | 값이 유효하면 수용한다 |
-| 미지의 타이포그래피 토큰 이름 | 유효한 타이포그래피로 수용한다 |
+| 미지의 색 design token 이름 | 값이 유효하면 수용한다 |
+| 미지의 타이포그래피 design token 이름 | 유효한 타이포그래피로 수용한다 |
 | 미지의 컴포넌트 속성 | 경고와 함께 수용한다 |
 | 중복 섹션 헤딩 | 에러. 파일을 거부한다 |
 
@@ -216,7 +216,7 @@ PHILOSOPHY.md는 핵심 명제를 한 문장으로 제시한다. "생성된 디�
 
 ### 산문 우선
 
-문서는 산문을 "디자인이 사는 자리"로 부르고, 문서의 나머지 전부는 산문을 뒷받침하기 위해 존재한다고 적는다. 토큰 값은 렌더링 지시가 아니라 산문 안에서 참조되는 레퍼런스에 머문다.
+문서는 산문을 "디자인이 사는 자리"로 부르고, 문서의 나머지 전부는 산문을 뒷받침하기 위해 존재한다고 적는다. design token 값은 렌더링 지시가 아니라 산문 안에서 참조되는 레퍼런스에 머문다.
 
 PHILOSOPHY.md가 든 색 섹션 예시는 이 구조를 잘 보여준다. YAML은 색 네 개를 정의하고, 산문은 각 색에 금지 조건을 붙인다.
 
@@ -228,7 +228,7 @@ colors:
   rule-gray: '#B8B0A2'
 ```
 
-| 토큰 | 산문이 덧붙이는 규정 |
+| design token | 산문이 덧붙이는 규정 |
 |---|---|
 | `paper` | 캔버스. 따뜻해진 복사용지 색이며 순백은 절대 아니다 |
 | `ink` | 흑연에 가까운 따뜻한 검정. 모든 타이포그래피와 괘선, 도식 선을 담당하며 순검정은 절대 아니다 |
@@ -237,7 +237,7 @@ colors:
 
 같은 정보를 YAML만으로 표현할 방법은 없다. "순백은 아니다"라거나 "페이지 번호에는 쓰지 않는다"는 조건은 값이 아니라 문장이기 때문이다.
 
-README와 PHILOSOPHY.md의 표현에는 강조점 차이가 있다. README는 토큰을 normative value로 부르고 산문을 그 적용 컨텍스트로 설명한다. PHILOSOPHY.md는 토큰 값 자체를 컨텍스트로 규정하고 산문을 스펙에서 가장 중요한 부분으로 적는다. 두 문서가 공통으로 말하는 것은 산문이 스펙의 초점이라는 점이다.
+README와 PHILOSOPHY.md의 표현에는 강조점 차이가 있다. README는 design token을 normative value로 부르고 산문을 그 적용 컨텍스트로 설명한다. PHILOSOPHY.md는 design token 값 자체를 컨텍스트로 규정하고 산문을 스펙에서 가장 중요한 부분으로 적는다. 두 문서가 공통으로 말하는 것은 산문이 스펙의 초점이라는 점이다.
 
 ### 구체적 레퍼런스
 
@@ -275,7 +275,7 @@ PHILOSOPHY.md가 실은 Do's and Don'ts 예시는 12개 항목이다. 성격별�
 | 크기 지침 | 작은 크기 차이를 신뢰한다. 섹션 제목은 본문의 다섯 배가 아니라 약 1.9배다 |
 | 여백 지침 | 페이지에 눈에 보이는 여백을 남긴다. 3분의 2 지점에서 끝나는 페이지는 덜 채운 것이 아니라 올바른 것이다 |
 
-목록의 항목들이 값이 아니라 판단 기준이라는 점을 눈여겨볼 만하다. "Bold를 쓰지 않는다"는 어떤 토큰 값으로도 표현할 수 없다.
+목록의 항목들이 값이 아니라 판단 기준이라는 점을 눈여겨볼 만하다. "Bold를 쓰지 않는다"는 어떤 design token 값으로도 표현할 수 없다.
 
 ### 열린 카테고리
 
@@ -286,7 +286,7 @@ PHILOSOPHY.md가 실은 Do's and Don'ts 예시는 12개 항목이다. 성격별�
 | 스펙이 표준화한 것(일관성이 도움이 되는 자리) | colors, typography, spacing, rounded, components |
 | 스펙이 열어둔 것(유연성이 더 도움이 되는 자리) | motion, iconography, elevation, text casing, paragraph measure |
 
-문서가 든 근거는 motion의 사례다. 어느 팀의 motion 토큰은 CSS 애니메이션 커브이고 다른 팀은 버퍼 블록 단위로 재는 오디오 도메인 시간 상수다. 올바른 형태가 시스템마다 다르므로 스펙이 하나로 정하면 오히려 방해가 된다.
+문서가 든 근거는 motion의 사례다. 어느 팀의 motion design token은 CSS 애니메이션 커브이고 다른 팀은 버퍼 블록 단위로 재는 오디오 도메인 시간 상수다. 올바른 형태가 시스템마다 다르므로 스펙이 하나로 정하면 오히려 방해가 된다.
 
 실제 작성 예시는 커스텀 키와 산문이 같은 방식으로 맞물린다는 것을 보여준다.
 
@@ -299,7 +299,7 @@ motion:
 
 산문 쪽에는 전환이 빠르고 기계적이며 아무것도 튀거나 넘치거나 머물지 않는다고 적는다. 상태 변화가 문이 닫히는 느낌이 아니라 전등 스위치 느낌이어야 한다는 비유가 붙는다. 적용 규칙은 상호작용 피드백에 `{motion.feedback}`, 콘텐츠 전환에 `{motion.content}`, 둘 다 같은 easing이고, UI의 어떤 요소도 300ms를 넘겨 애니메이션하지 않으며, `prefers-reduced-motion`을 존중해 모든 지속 시간을 0ms로 접는다는 내용이다.
 
-여기서 스펙 변경은 한 줄도 필요하지 않았다. 린터가 값을 수용하고 에이전트는 산문을 읽는다. 토큰이 지시가 아니라 컨텍스트이기 때문에 가능한 확장이다.
+여기서 스펙 변경은 한 줄도 필요하지 않았다. 린터가 값을 수용하고 에이전트는 산문을 읽는다. design token이 지시가 아니라 컨텍스트이기 때문에 가능한 확장이다.
 
 ## CLI 사용법
 
@@ -310,8 +310,8 @@ motion:
 | 명령 | 하는 일 | 필수 인자 |
 |---|---|---|
 | `lint` | DESIGN.md의 구조적 정확성을 검증한다 | `file` |
-| `diff` | 두 DESIGN.md를 비교해 토큰 수준 변화를 보고한다 | `before`, `after` |
-| `export` | 토큰을 다른 포맷으로 내보낸다 | `file`, `--format` |
+| `diff` | 두 DESIGN.md를 비교해 design token 수준 변화를 보고한다 | `before`, `after` |
+| `export` | design token을 다른 포맷으로 내보낸다 | `file`, `--format` |
 | `spec` | 포맷 스펙을 출력한다 | 없음 |
 
 ### lint
@@ -340,7 +340,7 @@ cat DESIGN.md | npx @google/design.md lint -
 
 ### diff
 
-`diff`는 디자인 시스템의 두 버전을 비교해 토큰 수준 변화와 산문의 회귀를 감지한다.
+`diff`는 디자인 시스템의 두 버전을 비교해 design token 수준 변화와 산문의 회귀를 감지한다.
 
 ```bash
 npx @google/design.md diff DESIGN.md DESIGN-v2.md
@@ -362,7 +362,7 @@ npx @google/design.md diff DESIGN.md DESIGN-v2.md
 
 ### export
 
-`export`는 토큰을 다른 도구가 읽을 수 있는 포맷으로 변환한다. 받는 `--format` 값은 4개이고 실제 출력 대상은 3종이다.
+`export`는 design token을 다른 도구가 읽을 수 있는 포맷으로 변환한다. 받는 `--format` 값은 4개이고 실제 출력 대상은 3종이다.
 
 | `--format` 값 | 출력 | 설명 |
 |---|---|---|
@@ -390,7 +390,7 @@ Tailwind v4 출력이 쓰는 CSS 변수 네임스페이스는 8종이다.
 | `--radius-*` | 모서리 곡률 |
 | `--spacing-*` | 간격 |
 
-DESIGN.md의 토큰은 W3C Design Token Format에서 영감을 받았고, `dtcg` 출력이 그 표준의 tokens.json 형태다. 따라서 DESIGN.md를 원본으로 두고 기존 design token 파이프라인에 연결하는 사용이 가능하다.
+DESIGN.md의 design token은 W3C Design Token Format에서 영감을 받았고, `dtcg` 출력이 그 표준의 tokens.json 형태다. 따라서 DESIGN.md를 원본으로 두고 기존 design token 파이프라인에 연결하는 사용이 가능하다.
 
 ### spec
 
@@ -444,13 +444,13 @@ console.log(report.designSystem);   // Parsed DesignSystemState
 
 | 규칙 | 심각도 | 검사 내용 |
 |---|---|---|
-| `broken-ref` | error | 정의된 토큰으로 해소되지 않는 token reference |
+| `broken-ref` | error | 정의된 design token으로 해소되지 않는 token reference |
 | `missing-primary` | warning | 색은 정의됐으나 `primary` 색이 없다. 에이전트가 하나를 자동 생성한다 |
 | `contrast-ratio` | warning | 컴포넌트의 `backgroundColor`와 `textColor` 조합이 WCAG AA 최소치 4.5:1 미만 |
-| `orphaned-tokens` | warning | 정의됐으나 어떤 컴포넌트도 참조하지 않는 색 토큰 |
-| `token-summary` | info | 섹션별로 토큰이 몇 개 정의됐는지 요약 |
-| `missing-sections` | info | 다른 토큰이 있는데 선택 섹션(spacing, rounded)이 빠져 있다 |
-| `missing-typography` | warning | 색은 정의됐으나 타이포그래피 토큰이 없다. 에이전트가 기본 폰트를 쓴다 |
+| `orphaned-tokens` | warning | 정의됐으나 어떤 컴포넌트도 참조하지 않는 색 design token |
+| `token-summary` | info | 섹션별로 design token이 몇 개 정의됐는지 요약 |
+| `missing-sections` | info | 다른 design token이 있는데 선택 섹션(spacing, rounded)이 빠져 있다 |
+| `missing-typography` | warning | 색은 정의됐으나 타이포그래피 design token이 없다. 에이전트가 기본 폰트를 쓴다 |
 | `section-order` | warning | 섹션이 스펙의 canonical 순서를 벗어났다 |
 | `unknown-key` | warning | 최상위 YAML 키가 알려진 스키마 키의 오타처럼 보인다. 커스텀 확장 키는 조용히 통과한다 |
 
@@ -474,9 +474,9 @@ README는 설치 절에 Windows 관련 문제 해결을 별도로 실었다. 자
 
 ## 한계
 
-**alpha 상태다.** README의 Status 절은 스펙과 토큰 스키마, CLI가 모두 활발히 개발 중이며 포맷이 성숙하는 과정에서 변경을 예상해야 한다고 적는다. 프로덕션 의존은 이르다.
+**alpha 상태다.** README의 Status 절은 스펙과 design token 스키마, CLI가 모두 활발히 개발 중이며 포맷이 성숙하는 과정에서 변경을 예상해야 한다고 적는다. 프로덕션 의존은 이르다.
 
-**파일 전체를 한 번에 올리는 구조가 비용을 만든다.** 부분만 참조하는 선택적 로딩 메커니즘이 스펙에 없으므로 디자인 시스템이 커지면 컨텍스트 토큰 비용도 함께 커진다. [[agents/hall-2026-atlassians-design-md-is-here]]가 보고한 Atlassian 실측에서는 DESIGN.md가 디자인 시스템 컨텍스트를 약 30%만 확보하면서(MCP는 약 80%) 평균 컨텍스트 토큰은 MCP의 약 2배를 소비했다. 이 수치는 이 저장소가 제시한 것이 아니라 그 자료의 실측이다.
+**파일 전체를 한 번에 올리는 구조가 비용을 만든다.** 부분만 참조하는 선택적 로딩 메커니즘이 스펙에 없으므로 디자인 시스템이 커지면 토큰 비용도 함께 커진다. [[agents/hall-2026-atlassians-design-md-is-here]]가 보고한 Atlassian 실측에서는 DESIGN.md가 디자인 시스템 컨텍스트를 약 30%만 확보하면서(MCP는 약 80%) 평균 토큰은 MCP의 약 1.9배(721만 대 375만)를 소비했다. 이 수치는 이 저장소가 제시한 것이 아니라 그 자료의 실측이다.
 
 **정본 스펙이 이 자료 범위 밖에 있다.** README는 자기 내용이 요약본(condensed reference)이라고 밝히고 정본은 저장소의 `docs/spec.md`라고 안내한다. 이 raw 스냅샷에는 `README.md`와 `PHILOSOPHY.md`만 들어 있어 스펙 전문은 확인할 수 없다.
 
@@ -489,9 +489,9 @@ README는 설치 절에 Windows 관련 문제 해결을 별도로 실었다. 자
 | 용어 | 뜻 |
 |---|---|
 | design token | 색이나 크기, 타이포그래피처럼 재사용 가능한 디자인 값에 이름을 붙인 것. YAML front matter에 정의한다 |
-| token reference | `{colors.primary}` 형태로 다른 토큰을 가리키는 표기 |
-| 산문(prose) | 토큰의 이유와 적용 방식을 서술하는 Markdown 본문. PHILOSOPHY.md가 스펙에서 가장 중요한 부분으로 규정한다 |
-| normative value | 스펙이 규정하는 기준값. README가 YAML의 토큰을 이렇게 부른다 |
+| token reference | `{colors.primary}` 형태로 다른 design token을 가리키는 표기 |
+| 산문(prose) | design token의 이유와 적용 방식을 서술하는 Markdown 본문. PHILOSOPHY.md가 스펙에서 가장 중요한 부분으로 규정한다 |
+| normative value | 스펙이 규정하는 기준값. README가 YAML의 design token을 이렇게 부른다 |
 | negative constraint | 하지 말 것에 해당하는 제약. 구체적인 레퍼런스가 자동으로 내포한다 |
 | consumer | DESIGN.md 파일을 읽어 처리하는 쪽(린터, 변환기, 에이전트). 미지 내용 처리 규칙이 이 동작을 규정한다 |
 

@@ -86,7 +86,7 @@ Garry Tan이 공개한 Claude Code용 오픈소스 skill pack이다. AI 에이�
 ## 6. 관련 연구 (Related Work)
 
 - `garrytan/gbrain`: 같은 저자의 세션 간 지속 메모리 저장소다. 이 저장소는 GBrain을 gstack의 고급 기능으로 소개한다.
-- 한국어 해설 3편(9bow, GPTers, GeekNews): 같은 저장소를 다루며, 슬래시 커맨드 28개 전체 목록, 실행 요건, 설치 명령, 텔레메트리 정책처럼 이 raw에 없는 세부를 기록한다.
+- 한국어 해설 3편(9bow, GPTers, GeekNews): 같은 저장소를 다루며 이 raw에 없는 세부를 기록한다. 실행 요건과 설치 명령은 9bow와 GPTers 2편이, 슬래시 커맨드 총수 28개와 텔레메트리 정책은 9bow가 적는다. GeekNews는 실행 요건과 설치 명령을 적지 않는다.
 - 에이전트 harness와 loop engineering 계보: Claude Code를 오케스트레이션 층에서 다루는 흐름과 맞닿는다.
 
 ## 7. 용어집 (Glossary)

@@ -162,7 +162,7 @@ Garry Tan의 시작 경위도 전한다. OpenClaw 에이전트를 설정하면�
 
 ## 6. 관련 연구 (Related Work)
 
-- [[applications/garrytan-gbrain]]: 영상이 묘사하는 1차 시스템이다. 4개 database primitive와 verification runbook이 저장소 문서와 일치한다.
+- [[applications/garrytan-gbrain]]: 영상이 묘사하는 1차 시스템이다. 영상이 인용하는 4개 database primitive와 verification runbook은 현 저장소 README 본문에 없다. README는 recommended schema 문서를 링크만 하고 verification runbook은 언급하지 않으므로, 두 항목이 저장소 문서와 일치하는지는 이 wiki 범위에서 확인되지 않는다.
 - [[applications/vectorize-2026-gbrain-review-honest-assessment]]: "Sync ran ≠ sync worked" 같은 정직한 서술을 두 자료가 함께 강조한다.
 - [[applications/mantena-2026-hermes-gbrain-setup-vps]]: 영상의 install 4단계와 실전 가이드의 cron 및 검증 절차가 같은 관점에 서 있다.
 - [[applications/gajjar-2026-gbrain-vs-computer-memory]]: compounding thesis가 두 자료의 공통 핵심 메시지다.

@@ -217,7 +217,7 @@ cp -Rf ~/.claude/skills/gstack .claude/skills/gstack \
 
 **숫자가 어긋난다.** 원문은 도입부에서 "8명의 전문가를 데리고 일하듯"이라고 쓰고, 뒤의 요약표에는 9개 스킬을 싣는다. 두 숫자 가운데 어느 쪽이 의도된 값인지는 본문에서 확인되지 않는다.
 
-**저장소 명령어의 일부만 다룬다.** 이 글이 설명하는 명령어는 9개다. [[agents/garrytan-gstack]] 기준으로 저장소가 제공하는 명령어는 28개이므로, 안전 장치 계열(`/careful`, `/freeze`, `/guard`)이나 보안 감사(`/cso`), 디버깅(`/investigate`) 같은 명령은 이 가이드의 범위 밖이다. 전체 명령어 목록이 필요하면 저장소 페이지나 카탈로그 성격의 소개글을 함께 봐야 한다.
+**저장소 명령어의 일부만 다룬다.** 이 글이 설명하는 명령어는 9개다. 저장소가 제공하는 명령어 수는 9bow 해설([[agents/9bow-2026-gstack-claude-code-virtual-team]])이 28개로 기록하므로(저장소 README 자체는 총수를 적지 않는다), 안전 장치 계열(`/careful`, `/freeze`, `/guard`)이나 보안 감사(`/cso`), 디버깅(`/investigate`) 같은 명령은 이 가이드의 범위 밖이다. 전체 명령어 목록이 필요하면 저장소 페이지나 카탈로그 성격의 소개글을 함께 봐야 한다.
 
 ## 핵심 용어
 
@@ -232,7 +232,7 @@ cp -Rf ~/.claude/skills/gstack .claude/skills/gstack \
 
 ## 관련 페이지
 
-- [[agents/garrytan-gstack]]: 이 가이드가 설명하는 원 저장소. 명령어 28개 전체와 텔레메트리 정책, 저자의 생산성 자기 보고 수치를 담고 있다
+- [[agents/garrytan-gstack]]: 이 가이드가 설명하는 원 저장소. 주요 스킬과 텔레메트리 정책, 저자의 생산성 자기 보고 수치를 담고 있다. 명령어 수 28개는 9bow 해설의 값이다
 - [[overviews/gstack-ai-software-factory-overview]]: gstack을 여러 한국어 자료와 함께 묶은 합성 overview
 - [[agents/9bow-2026-gstack-claude-code-virtual-team]]: 같은 도구를 명령어 카탈로그 중심으로 정리한 한국어 소개
 - [[agents/hada-2026-gstack-virtual-engineering-team]]: 대상 사용자 구분과 Conductor 병렬 스프린트에 초점을 둔 소개

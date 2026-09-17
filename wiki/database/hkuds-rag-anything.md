@@ -350,7 +350,7 @@ python examples/text_format_test.py --check-reportlab --file dummy
 
 **extras 목록이 절마다 어긋난다.** Quick Start의 Optional Dependencies 절은 `[image]`, `[text]`, `[all]` 세 가지만 나열하는데, 뒤의 Parser Configuration과 Processing Requirements 절은 `[paddleocr]`를 추가로 안내한다. 같은 README 안에서 목록이 맞지 않는다.
 
-**라이선스 조항이 README 본문에 없다.** 수집된 raw 파일의 frontmatter만 `license: "MIT"`를 적고, README 본문에는 라이선스 절도 `LICENSE` 파일 링크도 없다. 저장소 클론을 README 스텁으로 바꾸는 과정에서 `LICENSE` 파일이 함께 빠진 결과이므로, 라이선스를 근거로 삼아야 하는 용도라면 저장소 원본을 다시 확인해야 한다.
+**라이선스 조항이 README 본문에 없다.** README 본문에는 라이선스 절도 `LICENSE` 파일 링크도 없고, 라이선스는 raw 파일 frontmatter의 `license: "MIT"`로만 기록돼 있다. 이 값은 스텁 전환 전 클론에 있던 `LICENSE` 파일(MIT License, Copyright 2025 Data Intelligence Lab@HKU)에서 온 것으로 git 이력(`0507ad0^`)에서 확인된다. 따라서 frontmatter와 본문은 서로 어긋나지 않으며, README 본문만으로는 라이선스를 확인할 수 없다는 뜻이다.
 
 ### 이 페이지가 다루지 않는 것
 
