@@ -99,6 +99,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/ai-2026-pi07-a-steerable-generalist-robotic|π0.7 (Physical Intelligence)]]: prompt에 episode의 속도와 품질, 실수 여부를 적어 걸러낼 데이터까지 학습에 쓰는 5B VLA. 조합적 일반화를 보인다 (2026, paper)
 - [[physical-ai/physical-intelligence-2026-a-steerable-model-with-emergent|π0.7: a Steerable Model with Emergent Capabilities (블로그)]]: π0.7 논문과 같은 날 나온 공식 발표문. 영상 시연과 회사가 강조한 메시지를 담는다 (2026, article)
 - [[physical-ai/physical-intelligence-openpi|openpi (Physical Intelligence, repo)]]: π0 계열의 공식 구현. Apache-2.0으로 base와 플랫폼별 checkpoint를 열고, RTX 4090 한 장에서 LoRA fine-tuning이 된다 (2025, repo)
+- [[physical-ai/bytedance-seed-2025-gr-3-technical-report|GR-3 (ByteDance Seed)]]: Qwen2.5-VL-3B에 flow matching DiT를 붙인 4B VLA. VL co-training과 사람 trajectory few-shot 적응을 양팔 이동 로봇에서 검증한다 (2025, paper)
 - [[physical-ai/generalist-ai-2026-gen-1-5-embodied-foundation|GEN-1.5 (Generalist AI, 블로그)]]: 시연 하나를 context window에 넣는 것만으로 새 조작 과제를 하는 로봇 foundation model 발표문. 설계 없이 나타난 능력이라고 본다 (2026, article)
 - [[physical-ai/huang-2026-mobilevla-r1-2-0-rl-enhanced-reasoning-for|MobileVLA-R1 2.0 (Peking University)]]: chain-of-thought 내부 표현을 학습형 decoder로 (Vx, Vy, ω, α) 명령으로 바꾸고 GRPO로 다시 학습시킨 이동 로봇 VLA. 학습에 쓰지 않은 Unitree G1에서 mobile manipulation을 수행한다 (2026, paper)
 - [[physical-ai/zhang-2024-vision-and-language-navigation-today|Vision-and-Language Navigation Today and Tomorrow (Survey)]]: LAW framework로 VLN 연구를 top-down 정리한 서베이. 벤치마크 24종 분류표를 싣는다 (2024, paper)
