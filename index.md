@@ -72,6 +72,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/li-2026-roboclaw-an-agentic-framework-for|RoboClaw (AgiBot)]]: 데이터 수집과 policy 학습과 과제 실행을 하나의 VLM 컨트롤러 아래로 합친 agentic 프레임워크. forward 동작에 inverse 복구 동작을 짝지어 사람 없이 환경을 리셋한다 (2026, paper)
 - [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics|VLA for Robotics, Full-Stack Review (Survey)]]: 400편 넘게 인용한 VLA 종합 서베이. 아키텍처와 로봇 플랫폼, 데이터 수집, 평가를 함께 놓는다 (2025, paper)
 - [[physical-ai/xu-2025-an-anatomy-of-vision-language-action-models|An Anatomy of VLA Models (Survey)]]: 285편을 인용한 VLA 서베이. perception, brain, action 3모듈로 해부하고 도전 과제 분석을 본문 절반에 둔다 (2025, paper)
+- [[physical-ai/sapkota-2025-vision-language-action-vla-models|VLA Concepts, Progress, Applications, Challenges (Survey)]]: 세 토큰 구조로 VLA 80편 이상을 정리한 서베이. 45종 타임라인, 51종 분류표, 도전-해법 대응표 수록 (2025, paper)
 - [[physical-ai/hou-2026-world-model-for-robot-learning|World Model for Robot Learning (Survey)]]: NTU MARS 주도 9개 기관의 world model 서베이. policy 결합 방식 5분류로 문헌을 가르고 실행 가능한 미래 예측을 병목으로 진단한다 (2026, paper)
 - [[physical-ai/li-2025-a-comprehensive-survey-on-world|A Comprehensive Survey on World Models for Embodied AI]]: 로보틱스, 자율주행, 범용 비디오 세 분야의 world model을 공통 분류 기준으로 정리한 17페이지 서베이 (2025, paper)
 - [[physical-ai/luo-2025-sonic-supersizing-motion-tracking|SONIC (NVIDIA GEAR)]]: motion tracking을 humanoid 제어의 기본 과제로 놓고 파라미터 42M, 모션 1억 프레임으로 키운 whole-body control foundation model (2025, paper)
