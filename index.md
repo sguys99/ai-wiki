@@ -182,6 +182,8 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/sun-2026-vla-jepa-enhancing-vision-language-action-model-with|VLA-JEPA (USTC)]]: 미래 프레임을 목표로만 쓰는 leakage-free 예측으로 사람 영상에서 latent action을 배우는 VLA. LIBERO-Plus 79.5% (2026, paper)
 - [[physical-ai/sun-2026-vla-jepa-project-page|VLA-JEPA 프로젝트 페이지]]: VLA-JEPA 논문의 공식 페이지. 실제 Franka 로봇 시연 영상과 고해상도 도식, 논문 결과 표 4개를 싣는다 (2026, article)
 - [[physical-ai/ginwind-vla-jepa|VLA-JEPA (ginwind, repo)]]: VLA-JEPA 공식 코드 저장소. starVLA 기반 학습 코드 일부와 LIBERO, LIBERO-Plus, SimplerEnv 평가 스크립트, 체크포인트 2종 사용법 (2026, repo)
+- [[physical-ai/fastcrest-tether|Tether (FastCrest, repo)]]: 학습이 끝난 VLA policy를 ONNX로 변환해 서빙하고 배포 가부를 PROMOTE, HOLD, ROLLBACK으로 판정하는 CLI (2026, repo)
+- [[physical-ai/fastcrest-2026-cupel-and-tether-studio|FastCrest 제품 소개]]: 로봇 데이터 준비 도구 Cupel과 policy 개발 워크스페이스 Tether Studio를 소개하는 회사 랜딩 페이지 (2026, article)
 
 ## Agents (agents)
 

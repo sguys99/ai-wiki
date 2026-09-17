@@ -1,0 +1,22 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/fastcrest-2026-cupel-and-tether-studio/fig01.png",
+    "raw": "raw/articles/fastcrest-2026-cupel-and-tether-studio-figures/fig01.png",
+    "caption": "",
+    "source_url": "https://fastcrest.com/logo.png",
+    "bytes": 35478,
+    "width": 512,
+    "height": 512,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/fastcrest-2026-cupel-and-tether-studio/page-full.png",
+    "raw": "raw/articles/fastcrest-2026-cupel-and-tether-studio-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]
