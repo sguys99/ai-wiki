@@ -1109,6 +1109,11 @@ Phase 6이 규명한 것 중 다음 Phase로 넘길 값이 있는 것은 세 가
 - [ ] 7-3. 전 저장소 계량 3열 대비 기록 (아래 5절 표)
 - [ ] 7-4. 자동 메모리 갱신: physical-ai-lint-clean-state를 저장소 전체 clean-state로 승격
 - [ ] 7-5. 후속 과제 기록 (남는 이월 항목을 이 문서 7절에 확정)
+- [ ] 7-6. 완료 카테고리 잔여 오류 정정 (2026-09-17 범위 추가, 사용자 승인). Phase 5 종합(10건), 6-1(6건), 6-2(2건), 6-3(6건)이 "Phase 7 판단 후보"로 남긴 다른 페이지의 오류 24건을 raw와 대조해 정정한다. 오류가 아닌 것으로 판정된 항목(관점 차이 등)은 사유를 남기고 편집하지 않는다
+- [ ] 7-7. 다른 세션 ingest 잔여 지표 정리 (2026-09-17 범위 추가, 사용자 승인). Phase 5 진행 중 다른 세션이 ingest한 physical-ai 자료가 남긴 index.md Physical AI 절 200자 초과 16건, `bare-wikilink` 35건(sources 9편), audit_captions 중복 30건(sources 5편), `lint_figures` candidate-table-mismatch 157건과 figures-partial 5건, orphan-figures-dir 2건을 정리해 여섯 lint 전부 `--all --strict` exit 0을 만든다. `physical-ai-overview`의 낡은 수치(용어집 "147개 용어"는 실측 155개)도 함께 고친다
+- [ ] 7-8. 사이트 study_path 다중 트랙 렌더 결함 수정 (2026-09-17 범위 추가, 사용자 승인). `site/lib/markdown.mjs`의 `spliceStudyPath()`가 `### 트랙` 하위 헤딩이 있는 절에서 첫 트랙 목록을 두 번 렌더하는 결함(6-4 발견)을 고치고, CLAUDE.md study_path 규약에 다중 트랙 구조를 명시한다
+
+실행 순서는 7-1 → 7-2 → 7-6 → 7-7 → 7-8 → 7-3 → 7-4 → 7-5다. 계량(7-3)은 편집이 전부 끝난 뒤여야 최종 열이 의미를 가지므로 추가 항목 셋을 그 앞에 둔다. 항목마다 subagent가 수행하고 오케스트레이터가 계획서 기록과 커밋을 직렬로 맡는다 (6절 수칙 6).
 
 ## 5. 검증과 계량
 
