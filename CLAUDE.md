@@ -231,6 +231,8 @@ study_path:
 
 Obsidian에서는 frontmatter가 본문에 보이지 않는다. 그래서 같은 순서를 본문 `## 학습 경로` 섹션에 `[[wikilink]]` 목록으로 한 번 더 적는다. 사람이 읽는 쪽이 본문, 기계가 읽는 쪽이 frontmatter다.
 
+트랙이 여럿이면 `## 학습 경로` 절 안에 `### A 트랙 VLA 계보`처럼 `###` 하위 헤딩을 두고 트랙마다 번호 목록을 적는다. frontmatter `study_path`는 그중 기본 트랙 하나, 즉 절에서 첫 번째로 나오는 번호 목록과 순서와 대상이 일치해야 한다. 사이트 빌드(`site/lib/markdown.mjs`의 `spliceStudyPath`)는 절 전체가 아니라 그 첫 번호 목록 블록만 단계 컴포넌트로 교체하므로 도입 문단, 다른 트랙, 곁길 표, 꼬리 안내 문단은 웹에서도 Obsidian과 같이 보인다. 첫 목록의 항목 수와 `study_path` 단계 수가 다르면 빌드 콘솔이 `[study] WARN`으로 알린다 (빌드는 실패하지 않는다).
+
 ---
 
 ## Adding New Material (유형별 6-step)

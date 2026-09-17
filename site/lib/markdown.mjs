@@ -158,29 +158,59 @@ export function extractWikiTargets(src) {
   return targets;
 }
 
-// ── 학습 경로 섹션 대체 ────────────────────────────────────────────────────────
+// ── 학습 경로 목록 대체 ────────────────────────────────────────────────────────
 //
-// study_path 가 선언된 페이지는 본문에도 같은 순서를 `## 학습 경로` 의 wikilink 목록으로
+// study_path 가 선언된 페이지는 본문에도 같은 순서를 `## 학습 경로` 절의 번호 목록으로
 // 한 번 더 적는다(Obsidian 은 frontmatter 를 본문에 보여주지 않는다). 사이트가 둘을 다
-// 출력하면 같은 내용이 두 번 나오므로, 헤딩은 그대로 두고 그 아래 목록만 frontmatter 로
-// 렌더한 단계 컴포넌트로 갈아끼운다. 헤딩이 남아 있어 목차·앵커·본문 위치가 유지된다.
+// 출력하면 같은 내용이 두 번 나오므로, 절 안의 **첫 번호 목록 블록**만 frontmatter 로
+// 렌더한 단계 컴포넌트로 갈아끼운다. 헤딩·도입 문단·`###` 트랙 하위 헤딩·표·꼬리 안내
+// 문단은 그대로 남아 Obsidian 독자가 보는 것과 같은 텍스트가 된다.
 //
-// 헤딩을 못 찾으면 본문 끝에 붙인다 — frontmatter 만 있고 본문 섹션을 안 쓴 페이지도
-// 컴포넌트는 나오게 한다. 코드펜스 안의 `## 학습 경로` 예시는 건드리지 않는다.
+// 절 전체를 지우던 이전 방식은 다중 트랙 페이지(physical-ai-overview: `### A 트랙` 번호
+// 목록 + `### B 트랙` 번호 목록 + …)에서 첫 `###` 헤딩에 멈춰 A 트랙 목록이 그대로 남아
+// 같은 목록이 두 번 렌더됐다. 종료 조건을 `##` 로 올리면 B·C 트랙이 웹에서 사라진다.
+//
+// 번호 목록 블록: `^\d+\.\s` 로 시작하는 줄과 그 뒤에 이어지는 들여쓴 줄(`^\s+\S`)의 연속.
+// 항목 사이 빈 줄은 허용하되, 빈 줄 뒤에 번호 줄도 들여쓴 줄도 아닌 줄이 오면 블록이 끝난다.
+// 절 안에 번호 목록이 없으면 헤딩 바로 아래에 끼우고, 헤딩이 없으면 본문 끝에 붙인다 —
+// frontmatter 만 있고 본문 절을 안 쓴 페이지도 컴포넌트는 나오게 한다.
+// 코드펜스 안의 `## 학습 경로` / `1.` 예시는 건드리지 않는다.
+//
+// 반환 { src, replaced, listItems }: 호출 측(build.mjs)이 listItems 를 frontmatter 단계 수와
+// 대조해 어긋나면 `[study] WARN` 을 찍는다. 이 함수는 페이지 이름을 모른다.
+//
 // `## 학습 경로` / `## 학습 경로 (Study Path)` 둘 다 받는다. 한글은 \w 가 아니라
 // 단어 경계(\b)로 끝을 잡을 수 없어 뒤에 오는 문자로 직접 제한한다.
 const STUDY_HEADING_RE = /^##\s+학습\s*경로(?:\s|$)/;
+// 절의 끝 — 다음 h1/h2 헤딩. `###` 이하(트랙 하위 헤딩)는 절 안이다.
+const SECTION_END_RE = /^#{1,2}\s/;
+// 번호 목록 항목 시작 줄 / 항목에 이어지는 들여쓴 줄
+const LIST_ITEM_RE = /^\d+\.\s/;
+const LIST_CONT_RE = /^\s+\S/;
 
 function spliceStudyPath(src, html) {
   const lines = src.split('\n');
   const out = [];
   let inFence = false;
   let fenceTok = '';
-  let skipping = false;
-  let found = false;
+  // before(헤딩 전) → section(절 안, 목록 탐색) → block(목록 소비 중) → done
+  let state = 'before';
+  let insertAt = -1; // 절에 목록이 없을 때 컴포넌트를 끼울 out 위치(헤딩 바로 다음)
+  let listItems = 0;
+  let pendingBlank = 0; // 블록 안 빈 줄 — 다음 줄이 블록을 잇지 않으면 블록 밖으로 돌려준다
+  let replaced = false;
+
+  const inject = () => ['', html, ''];
+  const endBlock = () => {
+    out.push(...inject());
+    for (; pendingBlank > 0; pendingBlank--) out.push('');
+    state = 'done';
+    replaced = true;
+  };
 
   for (const line of lines) {
     const fence = line.match(/^\s*(```+|~~~+)/);
+    const wasInFence = inFence;
     if (fence) {
       const tok = fence[1][0];
       if (!inFence) {
@@ -189,30 +219,50 @@ function spliceStudyPath(src, html) {
       } else if (tok === fenceTok) {
         inFence = false;
       }
-      if (!skipping) out.push(line);
-      continue;
     }
-    if (inFence) {
-      if (!skipping) out.push(line);
-      continue;
-    }
+    const codeLine = Boolean(fence) || wasInFence;
 
-    if (skipping) {
-      if (/^#{1,6}\s/.test(line)) skipping = false;
-      else continue;
-    }
-
-    if (!found && STUDY_HEADING_RE.test(line)) {
-      found = true;
-      skipping = true;
-      out.push(line, '', html, '');
+    if (state === 'block') {
+      // 항목 안에서 열린(들여쓴) 펜스는 닫힐 때까지 블록의 일부다.
+      if (wasInFence) continue;
+      if (!line.trim()) {
+        pendingBlank++;
+        continue;
+      }
+      if (LIST_ITEM_RE.test(line)) {
+        listItems++;
+        pendingBlank = 0;
+        continue;
+      }
+      if (LIST_CONT_RE.test(line)) {
+        pendingBlank = 0;
+        continue;
+      }
+      endBlock(); // 이 줄부터는 블록 밖 — 아래 done 처리로 내려간다
+    } else if (state === 'section' && !codeLine) {
+      if (SECTION_END_RE.test(line)) {
+        out.splice(insertAt, 0, ...inject()); // 절에 목록 없음 — 헤딩 바로 아래
+        state = 'done';
+      } else if (LIST_ITEM_RE.test(line)) {
+        state = 'block';
+        listItems = 1;
+        pendingBlank = 0;
+        continue;
+      }
+    } else if (state === 'before' && !codeLine && STUDY_HEADING_RE.test(line)) {
+      out.push(line);
+      insertAt = out.length;
+      state = 'section';
       continue;
     }
     out.push(line);
   }
 
-  if (!found) out.push('', html, '');
-  return out.join('\n');
+  if (state === 'block') endBlock(); // 목록이 본문 끝까지 이어진 경우
+  else if (state === 'section') out.splice(insertAt, 0, ...inject());
+  else if (state === 'before') out.push(...inject());
+
+  return { src: out.join('\n'), replaced, listItems };
 }
 
 function wikilinkExtension(resolve, broken) {
@@ -240,8 +290,9 @@ function wikilinkExtension(resolve, broken) {
   };
 }
 
-// 본문 → { html, toc:[{depth,id,text}], broken:[target,...] }
-// studyPath: 학습 경로 단계 컴포넌트 HTML(옵션) — 본문의 `## 학습 경로` 목록을 이걸로 대체.
+// 본문 → { html, toc:[{depth,id,text}], broken:[target,...], study }
+// studyPath: 학습 경로 단계 컴포넌트 HTML(옵션) — 본문의 `## 학습 경로` 첫 번호 목록을 이걸로 대체.
+// study: studyPath 를 줬을 때만 { replaced, listItems } (spliceStudyPath 결과), 아니면 null.
 export function renderMarkdown(body, { resolve, hrefFn, studyPath = '' }) {
   const toc = [];
   const broken = [];
@@ -249,7 +300,12 @@ export function renderMarkdown(body, { resolve, hrefFn, studyPath = '' }) {
 
   let pre = transformFigures(protectCurrency(body), hrefFn);
   // figure/통화 전처리 뒤에 끼운다 — 주입한 HTML이 그 변환을 다시 타지 않도록.
-  if (studyPath) pre = spliceStudyPath(pre, studyPath);
+  let study = null;
+  if (studyPath) {
+    const sp = spliceStudyPath(pre, studyPath);
+    pre = sp.src;
+    study = { replaced: sp.replaced, listItems: sp.listItems };
+  }
   const md = new Marked({ gfm: true, breaks: false });
 
   // 수식 렌더: $…$ (인라인) / $$…$$ (디스플레이) → KaTeX HTML. 잘못된 LaTeX는 빌드를 깨지 않고
@@ -274,5 +330,5 @@ export function renderMarkdown(body, { resolve, hrefFn, studyPath = '' }) {
   });
 
   const html = md.parse(pre);
-  return { html, toc, broken };
+  return { html, toc, broken, study };
 }

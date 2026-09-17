@@ -89,6 +89,8 @@ async function main() {
 
   // 2.7) 학습 경로 — overview frontmatter 의 study_path 를 페이지로 해석한 결과.
   //      깨진 참조는 빌드를 실패시키지 않고 리포트만 한다(깨진 위키링크와 같은 취급).
+  //      본문 목록 항목 수와 단계 수의 불일치는 렌더(5)에서야 알 수 있어 그 뒤에 같은
+  //      `[study] WARN` 접두로 찍는다.
   const sp = content.studyPaths;
   if (sp.pageCount) {
     console.log(
@@ -132,14 +134,19 @@ async function main() {
   //    + Phase 5: 관련 페이지(neighborhood) · 같은 카테고리 이전/다음.
   const sectionBySlug = new Map(sections.map((s) => [s.slug, s]));
   const brokenByPage = []; // { id, targets:[...] }
+  const studyMismatch = []; // { id, listItems, steps } — 본문 목록 항목 수 ≠ frontmatter 단계 수
   let rendered = 0;
   for (const page of pages.values()) {
-    const { html, toc, broken } = renderMarkdown(page.body, {
+    const { html, toc, broken, study } = renderMarkdown(page.body, {
       resolve: resolveLink,
       hrefFn: href,
       studyPath: studyPathSection(page.studyPath),
     });
     if (broken.length) brokenByPage.push({ id: page.id, targets: broken });
+    // 본문 `## 학습 경로` 의 첫 번호 목록을 컴포넌트로 바꿨는데 항목 수가 frontmatter 와
+    // 다르면 둘 중 하나가 갱신에서 빠진 것이다. 실패시키지 않고(STRICT 포함) 경고만 남긴다.
+    if (study && study.replaced && study.listItems !== page.studyPath.length)
+      studyMismatch.push({ id: page.id, listItems: study.listItems, steps: page.studyPath.length });
 
     // 관련 페이지: 무방향 직접 이웃 → degree 내림차순(동률은 제목순). 그래프 노드=위키 페이지.
     const neighbors = (adjacency.get(page.id) || [])
@@ -174,6 +181,8 @@ async function main() {
     );
     rendered++;
   }
+  for (const m of studyMismatch)
+    console.log(`[study] WARN ${m.id}: 본문 목록 ${m.listItems}항목, frontmatter ${m.steps}단계`);
   console.log(`[render] pages rendered: ${rendered}`);
 
   // 6) 홈(랜딩) — Constellation 히어로 + 카테고리 밴드 + 카드 그리드
