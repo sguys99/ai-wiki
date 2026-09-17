@@ -1116,7 +1116,11 @@ Phase 6이 규명한 것 중 다음 Phase로 넘길 값이 있는 것은 세 가
   - 완료 (2026-09-18). 착수 재실측은 띄어쓰기 `pseudo action` 21건(4파일) 대 하이픈 12건이었고(0-2의 21건 대 12건과 동일), 21건 전부를 하이픈으로 통일했다. wiki와 sources의 `jo-2026-groot-n1-5-vla-primer`(9건과 8건, 헤딩 2곳과 frontmatter caption 5줄 포함), `jo-2026-groot-n1-vla-primer` wiki 2건, 용어집 `latent action` 행과 `Inverse Dynamics Model` 행 비고 2건이다. 저장소 산문의 pseudo-action 33건이 전부 하이픈이 됐고 `raw/`와 `index.md`에는 출현이 없다.
   - 재발 방지로 `glossary-physical-ai`의 `pseudo-action` 행 금지 표기에 띄어쓰기 변형 `pseudo action`을 추가했다(금지 213→214종). "pseudo action"은 "pseudo-action"의 부분 문자열이 아니라 canonical은 걸리지 않고 복수형 "pseudo actions"는 잡힌다. 7-1이 glossary-agents 표기 원칙에 넣은 "영문 철자 변형도 금지 표기로 둘 수 있다" 규약을 공통 원칙의 원본인 glossary-physical-ai 표기 원칙 절에도 한 줄 넣어 두 용어집을 맞췄다.
   - 게이트: `lint_terms --all --strict` 0건, `--category physical-ai` 두 lint exit 0, 편집 4파일 `lint_links` 0건, caption이 바뀐 2파일 `audit_captions`와 `lint_figures` 0건. 바꾼 헤딩(`### neural trajectory와 pseudo-action` 등)을 앵커로 참조하는 링크는 없다.
-- [ ] 7-3. 전 저장소 계량 3열 대비 기록 (아래 5절 표)
+- [x] 7-3. 전 저장소 계량 3열 대비 기록 (아래 5절 표)
+  - 완료 (2026-09-18, HEAD `cab7a02`). 5절 표 21행의 최종 열을 2절 정의대로 실측해 채웠고, 착수 기준선 커밋 `c1ebc6f`의 트리에서 같은 스크립트로 착수 열 전체(135편, 표 195개, 표 0개 48편, 중앙값 5,326자, 얇은 페이지 128편, index 101개, 고아 5편, physical-ai 737개 9.70개 등)가 재현됨을 먼저 확인했다. **21행 중 20행이 목표 도달**이고, 미달 1행은 "wiki가 sources보다 얇은 페이지" 잔여 1편(`database/volcengine-openviking`, 다른 세션이 09-14에 ingest한 repo 페이지, 압축비 0.90)으로 재작성 범위 밖이라 7-5로 이월한다. 원래 범위 135편 기준으로는 0편이다.
+  - 핵심 수치. lint_style error 9,202→**0**, warning 212→**0**, lint_terms 270→**0**, bilingual-heading 906→**0**(sources 번호 병기 헤딩 2,002개 보존), 중간점과 em dash lint 4,004/4,280→**0/0**(마스킹 전 잔여는 인라인 코드 안 수식 곱셈 142개와 원제 인용 8개, 용어집 3편 규약 표기, 코드 펜스, frontmatter title 4개뿐), 표 0개 페이지 48→**0**, 표 편당 1.44→**18.55개**(physical-ai 현재 10.96개), `## 핵심 용어` 0/135→**146/146**, 본문 중앙값 5,326→**18,102자**(산문 4,147→11,356자, physical-ai 현재 15,231자), caption 정비 682→**0**, wiki-uncurated-figure 210→**0**, figures-missing 12→**0**, bare-wikilink 143→**0**, link-unresolved 1→**0**, axis-misuse 94→**0**, frontmatter 100줄 초과 18편→비-PAI 5편(전부 curated figure 항목 때문, 최악 14.5%로 정상 판정), index 200자 초과 101→**0**, 고아 sources 5→**0**, glossary-agents 36행→**77행**(3편 합 290행, 금지 332종).
+  - 규모 변화의 영향. 측정 시점 wiki는 274편(착수 253편)이고 비-PAI는 146편(착수 135편)인데, 신규 11편의 압축비가 0.90~1.40으로 원래 135편과 같은 수준이라 146편 값과 135편 값이 거의 같다(표 편당 18.55 대 18.64개, 중앙값 18,102 대 18,025자). physical-ai도 76편에서 115편으로 늘었으나 표 편당(9.70→10.96)과 중앙값(14,156→15,231)의 방향이 같아 비교 기준으로 쓸 수 있다.
+  - 예상 밖 발견: `physical-ai-overview`만 overviews 10편 중 `## 핵심 용어` 절이 없다(physical-ai 계획 소관). 비-PAI 압축비 중앙값 1.38은 physical-ai 완료치 1.95보다 낮으나 sources도 함께 두꺼워진 결과라 문제로 보지 않는다.
 - [ ] 7-4. 자동 메모리 갱신: physical-ai-lint-clean-state를 저장소 전체 clean-state로 승격
 - [ ] 7-5. 후속 과제 기록 (남는 이월 항목을 이 문서 7절에 확정)
 - [x] 7-6. 완료 카테고리 잔여 오류 정정 (2026-09-17 범위 추가, 사용자 승인). Phase 5 종합(10건), 6-1(6건), 6-2(2건), 6-3(6건)이 "Phase 7 판단 후보"로 남긴 다른 페이지의 오류 24건을 raw와 대조해 정정한다. 오류가 아닌 것으로 판정된 항목(관점 차이 등)은 사유를 남기고 편집하지 않는다
@@ -1143,36 +1147,81 @@ Phase 6이 규명한 것 중 다음 Phase로 넘길 값이 있는 것은 세 가
 
 ## 5. 검증과 계량
 
-Phase 7-3에서 아래 표를 채운다. 착수 열은 Phase 0-2의 재실측(수정된 lint 기준, 2026-09-06 확정)이고, 최종 열은 Phase 7 완료 시점이다. 측정 정의는 2절 머리의 정의 표를 따른다.
+Phase 7-3(2026-09-18, HEAD `cab7a02`)에서 최종 열을 채웠다. 착수 열은 Phase 0-2의 재실측(수정된 lint 기준, 2026-09-06 확정)이고, 최종 열은 Phase 7-8 완료 시점이다. 측정 정의는 2절 머리의 정의 표를 따르며, 정의는 착수 기준선 커밋 `c1ebc6f`의 트리를 `git archive`로 떠서 같은 스크립트로 착수 열 전체가 재현됨을 확인한 뒤 적용했다. 계량 스크립트는 스크래치 `phase7-3-measure.py`, `symcount.py`, `symresidual.py`이고 원 결과 문서는 `phase7-3-result.md`다.
 
-| 지표 | 착수 (0-2 재실측) | 최종 |
+| 지표 | 착수 (0-2 재실측) | 최종 (2026-09-18, HEAD cab7a02) |
 |---|---|---|
-| lint_style error (전 저장소) | 9,202건 | 목표 0건 |
-| lint_style warning | 212건 (Phase 1-7의 `axis-misuse` 신설로 306건이 된다. 파일럿 3편 해소분을 빼면 현재 300건) | 목표 0건 |
-| lint_terms 경고 | 270건 (0-2 재실측은 117건, Phase 0-3 용어집 3차 등재로 +153건) | 목표 0건 |
-| bilingual-heading (wiki) | 906건 | 0건 (sources 번호 병기 헤딩 보존 확인 동반) |
-| 중간점, em dash (본문) | 중간점 4,004건, em dash 4,280건 (발생 개수로는 9,805개와 4,510개) | 수식 곱셈 예외만 (건수와 위치 명기) |
-| 표 0개 페이지 | 48편 | 0편 |
-| 표 편당 (비-PAI) | 1.44개 (135편 195개) | physical-ai 완료치 9.70개 수준 |
-| `## 핵심 용어` 절 보유 (비-PAI) | 0 / 135 | 135 / 135 |
-| wiki가 sources보다 얇은 페이지 | 128편 | 0편 수렴 (예외는 사유 명기) |
-| wiki 본문 중앙값 (비-PAI) | 5,326자 (산문 4,147자) | physical-ai 완료치 14,156자 수준 |
-| figures caption 정비 대상 | 682건 (금지 기호 532, 영어 전용 139, 중복 36. 착수 원측은 700건이고 파일럿 3편이 18건을 해소했다) | 0건 |
-| wiki-uncurated-figure (Phase 1-7 신설) | 210건 (agents 109, llms 41, evaluations 32, database 24, applications 4) | 0건 |
-| figures-missing (Phase 1-7 신설) | 12건 (database 6, agents 4, llms 2) | 0건 |
-| bare-wikilink (Phase 1-7 신설) | 143건 (sources 129, wiki 14) | 0건 |
-| link-unresolved (Phase 1-7 신설) | 1건 (`applications/karpathy-2024-software-3-llms`, 배치 B3 판단) | 0건 |
-| axis-misuse (Phase 1-7 신설) | 94건 (agents 50, applications 18, overviews 10, database 8, llms 4, evaluations 3, etc 1, physical-ai 0) | 0건 |
-| frontmatter 100줄 초과 | 18편 (최악 364줄/504줄 = 72%) | 잔여는 curated 비중으로 정상 판정 |
-| index.md 200자 초과 항목 | 101개 (비-physical-ai 148항목 중) | 0개 |
-| 고아 sources | 5편 (Phase 1-6 완료로 4편) | 0편 |
-| glossary-agents 등재 행 | 36행 | (3차, 4차 갱신 후 기록) |
+| lint_style error (전 저장소) | 9,202건 | **0건** (목표 달성). `--all` 검사 파일 536개, `--strict` exit 0, JSON `warnings: []` |
+| lint_style warning | 212건 (Phase 1-7의 `axis-misuse` 신설로 306건이 된다. 파일럿 3편 해소분을 빼면 현재 300건) | **0건** (목표 달성). 규칙별 `banned-vocab`, `axis-misuse`, `k-number`, `connective-comma`, `no-table` 전부 0건 |
+| lint_terms 경고 | 270건 (0-2 재실측은 117건, Phase 0-3 용어집 3차 등재로 +153건) | **0건** (목표 달성). 검사 파일 533개, `--strict` exit 0 |
+| bilingual-heading (wiki) | 906건 | **0건** (목표 달성). 용어집 3편 포함 wiki 전체에서 라틴 괄호 병기 헤딩 grep 0건. sources 번호 병기 헤딩은 2,002개, 261편 전부 보존(편당 7개 이상 261편, 착수 216편 1,621개에서 증가) |
+| 중간점, em dash (본문) | 중간점 4,004건, em dash 4,280건 (발생 개수로는 9,805개와 4,510개) | lint **0건 / 0건**, lint와 같은 정의(마스킹 후, 용어집 면제)의 발생 개수 **0개 / 0개** (목표 달성). 마스킹 전 원문 잔여는 전부 예외 구간이다: 인라인 코드 안 중간점 142개(13파일, 전부 수식 곱셈 기호), 인라인 코드 안 em dash 8개(5파일, 원제와 도식 라벨의 원문 인용), `lint-style: ignore` 마커 2줄(원문 인용), 용어집 3편의 중간점 193개와 em dash 129개(금지 표기 구분자와 "검사 없음" 대시, rule 면제), 코드 펜스 안 100개, frontmatter `title` 4개(제품명 원어 표기, 2파일). 위치는 2절 참고 |
+| 표 0개 페이지 | 48편 | **0편** (목표 달성). wiki 274편 전체 기준으로도 0편 |
+| 표 편당 (비-PAI) | 1.44개 (135편 195개) | **18.55개** (146편 2,709개) (목표 달성). 원래 135편만 세면 18.64개(2,517개). physical-ai는 현재 115편 10.96개(1,260개), 76편 완료치는 9.70개 |
+| `## 핵심 용어` 절 보유 (비-PAI) | 0 / 135 | **146 / 146** (목표 달성). 원래 135편 전부 포함 |
+| wiki가 sources보다 얇은 페이지 | 128편 | **1편** (목표 0편 수렴, 잔여 이월). `database/volcengine-openviking` wiki 11,283자 대 sources 12,573자(압축비 0.90, sources 8절 표 395자를 빼도 895자 부족, 산문 7,570자 대 9,698자). 다른 세션이 2026-09-14 커밋 `bdc310b`로 ingest한 repo 페이지라 원래 135편 범위 밖이다. 원래 135편은 0편. wiki 전체로는 4편이고 나머지 3편(physical-ai `brohan-2022-rt-1`, `ma-2026-current-as-touch-project-page`, `skild-2026-introducing-s1-in-context-learning`)은 sources에만 있는 8절 그림 후보 표(2,100자, 1,476자, 2,199자) 때문이며 그 표를 빼면 wiki가 651자, 1,320자, 1,585자 더 길어 정상 판정 |
+| wiki 본문 중앙값 (비-PAI) | 5,326자 (산문 4,147자) | **18,102자** (산문 11,356.5자) (목표 달성). 146편이 짝수라 가운데 두 값 18,025자와 18,179자의 평균. 원래 135편만은 18,025자. physical-ai는 현재 115편 15,231자(산문 10,610자), 76편 완료치 14,156자(산문 9,724.5자) |
+| figures caption 정비 대상 | 682건 (금지 기호 532, 영어 전용 139, 중복 36. 착수 원측은 700건이고 파일럿 3편이 18건을 해소했다) | **0건** (목표 달성). 금지 기호 0, 영어 전용 0, 중복 0 |
+| wiki-uncurated-figure (Phase 1-7 신설) | 210건 (agents 109, llms 41, evaluations 32, database 24, applications 4) | **0건** (목표 달성). `lint_figures --all` error 0건, warning은 `orphan-figures-dir` 2건뿐 |
+| figures-missing (Phase 1-7 신설) | 12건 (database 6, agents 4, llms 2) | **0건** (목표 달성) |
+| bare-wikilink (Phase 1-7 신설) | 143건 (sources 129, wiki 14) | **0건** (목표 달성). `lint_links --all` error 0건 warning 0건 |
+| link-unresolved (Phase 1-7 신설) | 1건 (`applications/karpathy-2024-software-3-llms`, 배치 B3 판단) | **0건** (목표 달성). 사이트 빌드 `[links] unresolved wikilinks: 0`과 일치 |
+| axis-misuse (Phase 1-7 신설) | 94건 (agents 50, applications 18, overviews 10, database 8, llms 4, evaluations 3, etc 1, physical-ai 0) | **0건** (목표 달성) |
+| frontmatter 100줄 초과 | 18편 (최악 364줄/504줄 = 72%) | 비-PAI **5편**, 전부 curated 비중으로 정상 판정 (목표 달성). 최악 `agents/lee-2026-the-agent-loop-a-survey` 126줄/867줄 = 14.5%(curated 14개), `agents/zhang-2026-recursive-language-models` 114/861 = 13.2%(10개), `agents/zhou-2026-are-we-ready-for-an` 104/655 = 15.9%(9개), `agents/dsba-2026-paper-review-graph-based-rag` 104/541 = 19.2%(8개), `applications/wang-2026-cua-gym-scaling-verifiable-training-environments` 104/1,068 = 9.7%(9개). 초과분은 전부 `curated: true` figure 항목이고(`wiki-uncurated-figure` 0건) 비중 9.7~19.2%로 physical-ai 정상 판정 기준(14~23%) 안이다. wiki 전체는 19편이며 physical-ai 14편의 최악은 `google-deepmind-2025-gemini-robotics-bringing-ai-into` 164줄/728줄 = 22.5%(curated 15개). 착수 최악 `xie-2024-osworld`는 94줄/684줄로 기준 아래 |
+| index.md 200자 초과 항목 | 101개 (비-physical-ai 148항목 중) | **0개** (목표 달성). 275항목(절 안 274개와 상단 문법 예시 1줄) 전부 200자 이하, 절별 최장 database 197, llms 199, physical-ai 200, agents 200, evaluations 198, applications 200, etc 199, overviews 199. `lint_index` error 0건 warning 0건 |
+| 고아 sources | 5편 (Phase 1-6 완료로 4편) | **0편** (목표 달성). sources 261편 전부에 같은 stem의 wiki 페이지가 있다. 역방향으로 sources 없는 wiki 13편은 overviews 9편, physical-ai-overview 1편, glossary 3편으로 전부 합성 페이지라 정상 |
+| glossary-agents 등재 행 | 36행 | **77행** (금지 66종). glossary-llms 59행(금지 52종), glossary-physical-ai 154행(금지 214종). 3편 합계 290행, 금지 332종 (`lint_terms.py --all` 첫 줄) |
 
 착수 열의 lint 건수는 라인 단위 검출 건수라 수정 대상 라인 수보다 많다. 전 저장소 경고 9,414건은 고유 (파일, 라인) 8,042줄에 걸쳐 있고, 그중 1,344줄에 규칙이 둘 이상 걸린다. 가장 흔한 겹침은 middot과 emdash가 같은 줄에 함께 있는 1,212줄이다. error 규칙만 보면 9,202건이 7,934줄에 몰려 있고, middot과 emdash 8,284건은 7,045줄이다.
 
 lint_terms 착수 열은 Phase 0-3 완료 시점 값이다. Phase 0-2 재실측 당시에는 117건이었으나, 0-3의 용어집 3차 등재 7행이 신규 위반 196건을 드러냈고 그중 physical-ai 43건만 즉시 정리해 270건이 됐다. 남은 153건은 Phase 2에서 5까지의 배치가 페이지를 재작성하며 흡수한다. 카테고리별 착수값은 agents 122, applications 55, database 50, overviews 18, evaluations 13, etc 12, llms 0, physical-ai 0이다.
 
 bilingual-heading 906건은 다른 규칙과 거의 겹치지 않는다. 906줄 중 26줄만 다른 규칙과 함께 잡히며 상대는 emdash 18줄, middot 6줄, banned-vocab 1줄, no-table 1줄이다. 헤딩 재작성 작업량은 실질적으로 906줄로 봐도 된다.
+
+### 5-1. 참고 규모와 카테고리별 실태 (2026-09-18)
+
+**저장소 규모.** wiki 274편(agents 68, applications 34, database 26, llms 11, evaluations 5, etc 2, overviews 13, physical-ai 115), sources 261편, index.md 절 안 항목 274개. 착수 시점(wiki 224편, sources 216편, index 225항목) 대비 wiki 50편, sources 45편이 늘었다. 증가분은 physical-ai 39편(전부 다른 세션의 ingest), 비-physical-ai 11편이다. 비-physical-ai 11편은 고아 sources에서 신설한 4편(`9bow-2026-gstack-claude-code-virtual-team`, `gpters-2026-yc-ai-agent-guide-gstack`, `hada-2026-gstack-virtual-engineering-team`, `dnotitia-2026-akb-product-introduction`)과 다른 세션의 ingest 7편(agents `affaan-m-ecc`, `ayghri-i-have-adhd`, `magnitudedev-magnitude`, `mattpocock-skills`, applications `debpalash-voicestudio`, database `volcengine-openviking`, llms `k2-fsa-omnivoice`)이다.
+
+**사이트 빌드** (`cd site && npm run build:strict`, exit 0). 요약 줄의 값은 다음과 같다 (원문 로그는 `phase7-3-build.log`).
+
+| 요약 줄 | 값 |
+|---|---|
+| `[content]` | wiki pages 274, catalog entries 274, sections 8 |
+| `[content] sections` | database 26, llms 11, physical-ai 115, agents 68, evaluations 5, applications 34, etc 2, overviews 13 |
+| `[study]` | study_path 선언 페이지 8, 단계 64, 미해석 참조 0 |
+| `[links]` | unresolved wikilinks 0 |
+
+**카테고리별 실태 (2-3절 표와 같은 열).**
+
+| 카테고리 | 편수 | 얇은 페이지 | 압축비 중앙값 | 본문 중앙값 | 산문 중앙값 | 표 총수 | 표 편당 | 표 0개 | frontmatter 100줄 초과 |
+|---|---|---|---|---|---|---|---|---|---|
+| agents | 68 | 0 | 1.42 | 17,761자 | 10,766.5자 | 1,247 | 18.34 | 0 | 4 |
+| applications | 34 | 0 | 1.34 | 13,641자 | 8,106.5자 | 499 | 14.68 | 0 | 0 |
+| database | 26 | 1 | 1.31 | 19,511자 | 11,724.5자 | 526 | 20.23 | 0 | 1 |
+| llms | 11 | 0 | 1.31 | 26,509자 | 13,703자 | 262 | 23.82 | 0 | 0 |
+| evaluations | 5 | 0 | 1.39 | 19,150자 | 12,459자 | 113 | 22.60 | 0 | 0 |
+| etc | 2 | 0 | 1.31 | 31,903.5자 | 15,272.5자 | 62 | 31.00 | 0 | 0 |
+| **비-PAI 합계** | **146** | **1** | **1.38** | **18,102자** | **11,356.5자** | **2,709** | **18.55** | **0** | **5** |
+| (참고) physical-ai | 115 | 3 | 1.63 | 15,231자 | 10,610자 | 1,260 | 10.96 | 0 | 14 |
+| (참고) overviews, glossary 제외 | 10 | 대응 sources 없음 | 없음 | 20,800자 | 14,659자 | 98 | 9.80 | 0 | 0 |
+
+착수 2-3절과 비교하면 압축비 중앙값 0.68에서 1.38, 표 편당 1.44개에서 18.55개, 본문 중앙값 5,326자에서 18,102자다. 비-physical-ai 압축비(1.38)가 physical-ai(1.63)보다 낮은 것은 sources 쪽도 함께 두꺼워졌기 때문이며(2-4절의 얇은 paper sources 2편 재추출 보강 등), 절대 분량은 표 편당과 본문 중앙값 모두 physical-ai 완료치를 넘는다.
+
+**physical-ai 현재값.** 76편 완료치(표 편당 9.70개, 본문 중앙값 14,156자, 산문 9,724.5자, 압축비 1.95)와 달리 현재 115편은 표 편당 10.96개, 본문 중앙값 15,231자, 산문 10,610자, 압축비 1.63이다. 다른 세션이 39편을 ingest하며 분량 중앙값은 올라가고 압축비는 내려갔다. `## 핵심 용어`는 115편 전부 보유, 표 0개 0편이다.
+
+**overviews.** glossary를 뺀 10편 중 `physical-ai-overview`만 `## 핵심 용어` 절이 없다(9/10). physical-ai 계획 소관이라 이 계획의 지표 밖이다.
+
+**본문 기호 잔여 위치 (마스킹 전 원문, lint는 전부 통과).** 인라인 코드 안 중간점 142개는 `sources/zandieh-2025-turboquant-online-vector-quantization-with.md`(47개, 19줄), `wiki/database/zandieh-2025-turboquant-online-vector-quantization-with.md`(53개, 23줄), `sources/qiao-2026-memory-intelligence-agent.md`(12개), `sources/wang-2026-chain-of-interaction-benchmark-coin.md`와 `wiki/physical-ai/wang-2026-chain-of-interaction-benchmark-coin.md`(각 6개), `wiki/physical-ai/shukor-2025-smolvla-a-vision-language-action-model.md`(5개), `sources/choi-2026-reactree-hierarchical-llm-agent-trees.md`(3개), `wiki/physical-ai/black-2024-pi0-a-vision-language-action-flow-model.md`(3개), `sources/zhao-2026-generative-skill-composition-for-llm.md`와 `wiki/agents/zhao-2026-generative-skill-composition-for-llm.md`(각 2개), `sources/guo-2025-rag-anything-all-in-one-rag.md`, `wiki/database/guo-2025-rag-anything-all-in-one-rag.md`, `sources/shukor-2025-smolvla-a-vision-language-action-model.md`(각 1개)다. 전부 백틱 안의 수식(내적, 가중합, 추출 루틴 표기)이라 CLAUDE.md의 "수식 곱셈 예외"에 해당한다. 인라인 코드 안 em dash 8개는 `sources/runkle-2026-the-art-of-loop-engineering.md` 239, 241, 243, 245행(도식 라벨 원문 4개)과 `sources/dnotitia-akb.md` 26행, `sources/patel-2026-production-ai-app-seven-layers.md` 32행, `sources/shamsi-2026-graphify-knowledge-graphs-for-ai.md` 22행, `sources/xguru-2026-gbrain-open-source-personal-knowledge.md` 21행(원제 인용, 본문은 규약대로 콜론 표기로 바꿨음을 설명하는 줄)이다. `lint-style: ignore` 2줄은 `sources/thariq-2026-know-your-unknowns.md` 32행(영문 인용문의 em dash)과 `sources/yongkyun-2026-cutting-llm-token-costs-with.md` 65행(원문 부제의 중간점)이다. frontmatter `title`의 중간점 4개는 `sources/9bow-2026-gpt-5-6-sol-terra-luna.md`와 `wiki/llms/9bow-2026-gpt-5-6-sol-terra-luna.md` 2행의 제품명(GPT-5.6 Sol, Terra, Luna를 중간점으로 이은 원어 표기)이며 스키마의 "title은 원어 그대로" 규약에 따른다.
+
+### 5-2. 최종 열 해설
+
+**목표 미달 행은 한 행이다.** "wiki가 sources보다 얇은 페이지"의 잔여 1편 `database/volcengine-openviking`은 이 계획의 재작성 범위(135편)에 없던 페이지로, 다른 세션이 2026-09-14에 ingest한 repo 자료다. 사유는 sources 8절 표가 아니라 wiki 산문 자체의 부족(7,570자 대 9,698자)이므로 정상 판정이 아니라 이월이다. Phase 7-5 후속 과제에 "volcengine-openviking wiki 보강(압축비 0.90)"으로 올리는 것이 적절하다. 나머지 20행은 전부 목표에 도달했다. frontmatter 100줄 초과 5편은 목표 서술("잔여는 curated 비중으로 정상 판정")대로 전부 curated figure 항목이 원인이고 비중이 physical-ai 기준 안이다.
+
+**5절 표 밖의 잔여는 두 가지다.** 첫째, `lint_figures --all`의 `orphan-figures-dir` warning 2건(`raw/articles/unigen-x-2026-unifolm-wla-1-0-figures`는 다른 세션의 Step 3 대기분, `raw/papers/2511.18177v1-figures`는 lumer-2025 논문의 옛 arXiv id 디렉토리 잔재)은 7-7이 이미 사용자 판단으로 이월한 항목이며, 여섯 lint 중 `lint_figures`만 `--strict`가 아닌 warning 상태다. 둘째, `physical-ai-overview`의 `## 핵심 용어` 부재는 physical-ai 계획 소관이다.
+
+**저장소 규모 변화가 비교에 미치는 영향.** 착수 시점 wiki 224편이 274편으로 늘었고, 비-physical-ai는 135편에서 146편이 됐다. 늘어난 11편 중 7편은 다른 세션이 write-wiki 스킬 v2.2.0 이후 규약으로 ingest한 페이지라 착수 열의 재작성 대상이 아니었고, 그 7편의 압축비는 0.90에서 1.40 사이로 원래 135편(중앙값 1.38)과 같은 수준이다. 따라서 146편 기준 최종값과 원래 135편만의 값이 거의 같다(표 편당 18.55개 대 18.64개, 본문 중앙값 18,102자 대 18,025자). physical-ai 비교 기준은 76편 완료치와 현재 115편 값을 표에 함께 적었는데, 두 값은 방향이 같고(표 편당 9.70개 대 10.96개, 본문 중앙값 14,156자 대 15,231자) 비-physical-ai 최종값은 어느 쪽과 비교해도 상회한다. 착수 열의 lint 건수(9,202건 등)는 착수 시점 파일 집합의 값이고 최종 열 0건은 늘어난 파일 집합(536개) 전체의 값이라, 0건 도달은 규모 증가와 무관하게 성립한다.
+
+**예상 밖 발견.** (1) `brohan-2022-rt-1`의 sources가 9,778자에서 11,051자로 늘어 착수 열의 역검증 참조값과 달라졌다. 7-7이 8절 그림 후보 표를 9행에서 26행으로 전개한 결과이고 wiki는 9,602자 그대로다. 정의 검증은 기준선 스냅샷에서 9,602자와 9,778자를 재현해 마쳤다. (2) 비-physical-ai 압축비 중앙값 1.38은 physical-ai 완료치 1.95에 못 미치지만, 표 편당과 본문 중앙값은 그보다 크다. sources 쪽 분량이 함께 늘어난 결과라 얇은 페이지 지표(0편)와 함께 보면 문제가 아니다. (3) 용어집 금지 종 수를 표에서 직접 세면 physical-ai가 215종으로 `lint_terms` 출력(214종)과 1 차이가 나는데, 스크립트가 중복 표기를 하나로 합치는 것으로 보이며 표에는 스크립트 출력값을 썼다.
 
 ## 6. 리스크와 회귀 방지 수칙
 
