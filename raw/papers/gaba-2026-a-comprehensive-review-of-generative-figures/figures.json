@@ -1,0 +1,328 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/fig01.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/fig01.png",
+    "page": 4,
+    "caption": "Figure 1: Overview of a GPAI system. Data (real-world or simulated) trains the system and logs embodiment actions. The environment contains the embodiment with perception, cognition & reasoning, and actuation components. Evaluation compares outcomes against ground truth for closed-loop feedback.",
+    "bbox": [
+      81.0,
+      51.14,
+      531.5,
+      354.16
+    ],
+    "bbox_norm": [
+      0.1324,
+      0.0646,
+      0.8685,
+      0.4472
+    ],
+    "dpi": 300,
+    "area_frac": 0.282,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/fig02.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/fig02.png",
+    "page": 7,
+    "caption": "Figure 2: Taxonomy of GPAI showing major model families and their functional roles across control, policy generation, and data synthesis.",
+    "bbox": [
+      68.4,
+      37.62,
+      556.0,
+      218.25
+    ],
+    "bbox_norm": [
+      0.1118,
+      0.0475,
+      0.9085,
+      0.2756
+    ],
+    "dpi": 300,
+    "area_frac": 0.182,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/fig03.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/fig03.png",
+    "page": 8,
+    "caption": "Figure 3: RFM architecture with multimodal encoder system processing action inputs, natural language instructions, sensor data, and visual inputs through specialized encoders. The fusion encoder unifies modalities into token sequences by cross- modal attention in transformer layers. The token sequen",
+    "bbox": [
+      52.12,
+      53.2,
+      562.15,
+      297.7
+    ],
+    "bbox_norm": [
+      0.0852,
+      0.0672,
+      0.9185,
+      0.3759
+    ],
+    "dpi": 300,
+    "area_frac": 0.257,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/fig04.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/fig04.png",
+    "page": 10,
+    "caption": "Figure 4: General architecture of a VLA. Image, language, and proprioceptive inputs are separately encoded into embeddings, fused by an LLM into contextualized multimodal embeddings, and then decoded into action tokens by the Action Decoder for robot control.",
+    "bbox": [
+      94.98,
+      41.52,
+      547.62,
+      308.54
+    ],
+    "bbox_norm": [
+      0.1552,
+      0.0524,
+      0.8948,
+      0.3896
+    ],
+    "dpi": 300,
+    "area_frac": 0.249,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/fig05.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/fig05.png",
+    "page": 12,
+    "caption": "Figure 5: Large Behavior Model (LBM) architecture comprising two phases: (left) pre-training with reinforcement learning guided by dual feedback mechanisms (authenticity via discriminator and plausibility via physics-coherence evaluation) on expert demonstration data, and (right) inference with embe",
+    "bbox": [
+      78.12,
+      54.78,
+      533.89,
+      390.72
+    ],
+    "bbox_norm": [
+      0.1276,
+      0.0692,
+      0.8724,
+      0.4933
+    ],
+    "dpi": 300,
+    "area_frac": 0.316,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/fig06.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/fig06.png",
+    "page": 13,
+    "caption": "Figure 6: Architecture of Diffusion Policy Models. The observations are processed through a multimodal transformer encoder to generate observation embeddings ( O t ). These embeddings condition an iterative denoising model that predicts noise ( ϵ ) and refines initially noisy actions ( A k",
+    "bbox": [
+      70.5,
+      41.52,
+      556.8,
+      273.7
+    ],
+    "bbox_norm": [
+      0.1152,
+      0.0524,
+      0.9098,
+      0.3456
+    ],
+    "dpi": 300,
+    "area_frac": 0.233,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/fig07.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/fig07.png",
+    "page": 15,
+    "caption": "Figure 7: WFM training and closed-loop control architecture. Raw sensor streams and video data are tokenized to train the WFM to predict future states ( x t +1 = f ( x t , a t ) ). During control, the planner/MPC queries the WFM to generate simulated rollouts and select optimal candidate actions, wh",
+    "bbox": [
+      54.22,
+      49.73,
+      557.81,
+      305.72
+    ],
+    "bbox_norm": [
+      0.0886,
+      0.0628,
+      0.9115,
+      0.386
+    ],
+    "dpi": 300,
+    "area_frac": 0.266,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/fig08.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/fig08.png",
+    "page": 17,
+    "caption": "Figure 8: Applications of GPAI across domains including ADAS, robotics, healthcare, humanoids, assistive technolo- gies, manufacturing, and digital twins.",
+    "bbox": [
+      59.97,
+      50.67,
+      289.07,
+      181.86
+    ],
+    "bbox_norm": [
+      0.098,
+      0.064,
+      0.4723,
+      0.2296
+    ],
+    "dpi": 300,
+    "area_frac": 0.062,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table I",
+    "kind": "table",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/tab01.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/tab01.png",
+    "page": 3,
+    "caption": "Table I: Comparison of related surveys in Physical AI.",
+    "bbox": [
+      42.96,
+      64.81,
+      569.04,
+      371.96
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0818,
+      0.9298,
+      0.4696
+    ],
+    "dpi": 300,
+    "area_frac": 0.333,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p03.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table II",
+    "kind": "table",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/tab02.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/tab02.png",
+    "page": 3,
+    "caption": "Table II: Major acronyms used in the survey.",
+    "bbox": [
+      305.98,
+      431.09,
+      569.04,
+      742.76
+    ],
+    "bbox_norm": [
+      0.5,
+      0.5443,
+      0.9298,
+      0.9378
+    ],
+    "dpi": 300,
+    "area_frac": 0.169,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p03.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table III",
+    "kind": "table",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/tab03.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/tab03.png",
+    "page": 16,
+    "caption": "Table III: Comparison of different GPAI model types for embodied AI systems.",
+    "bbox": [
+      42.96,
+      64.81,
+      569.04,
+      362.49
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.0818,
+      0.9298,
+      0.4577
+    ],
+    "dpi": 300,
+    "area_frac": 0.323,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table IV",
+    "kind": "table",
+    "file": "assets/gaba-2026-a-comprehensive-review-of-generative/tab04.png",
+    "raw": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/tab04.png",
+    "page": 20,
+    "caption": "Table IV: Summary of key limitations, challenges, risks, and emerging solutions in GPAI systems.",
+    "bbox": [
+      45.53,
+      64.81,
+      566.47,
+      396.37
+    ],
+    "bbox_norm": [
+      0.0744,
+      0.0818,
+      0.9256,
+      0.5005
+    ],
+    "dpi": 300,
+    "area_frac": 0.356,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/gaba-2026-a-comprehensive-review-of-generative-figures/_overlay/p20.png"
+  }
+]
