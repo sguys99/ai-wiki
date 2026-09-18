@@ -7,16 +7,19 @@
       "Read",
       "Edit",
       "Write",
-      "Bash",
-      "WebFetch",
-      "WebSearch"
+      "Bash"
     ],
     "deny": [
+      "WebSearch",
       "Bash(rm -rf*)",
       "Bash(git push --force*)",
       "Bash(git reset --hard*)"
     ],
-    "ask": []
+    "ask": [
+      "WebFetch",
+      "Bash(git commit*)",
+      "Bash(git push*)"
+    ]
   },
   "hooks": {
     "PostToolUse": [

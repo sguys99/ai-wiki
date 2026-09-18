@@ -1,5 +1,5 @@
 ---
-name: 한글 텍스트 윤문 정책 (2026-09 개정)
+name: wiki/sources 자동 윤문 금지
 description: wiki·sources는 자동 humanize 제외 — 생성 시점 교재 문체 가이드 + lint가 담당. humanize는 명시 요청 시에만.
 type: feedback
 ---
