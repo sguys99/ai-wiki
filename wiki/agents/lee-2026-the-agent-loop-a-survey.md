@@ -396,7 +396,7 @@ production 시스템은 이것을 1급 파라미터로 노출해 호출자가 �
 | credit assignment 불안정 | RAGEN은 multi-turn RL이 반복적이고 자기 강화적인 추론으로 좁아지는 Echo Trap을 진단하고 trajectory 수준 목표인 StarPO를 제안한다. 안정화 변형 StarPO-S는 붕괴를 늦출 뿐 없애지 못하고 알고리즘에 특화되어 일반적이지 않다 |
 | 환경 병목 | 진전은 optimizer보다 reward를 대량으로 내주는 실행 가능 환경에 좌우된다. SWE-Gym은 실제 과제의 첫 실행 가능 학습 환경이지만 task 인스턴스가 수천 개 규모에 그친다 |
 | 내재화의 대가 | Chain-of-Agents는 멀티에이전트 시스템을 단일 모델 trajectory로 접고 그 위에 agentic RL을 결합한다. 오케스트레이션 오버헤드를 없애지만 모듈성과 검사 가능성과 step 단위 개입 가능성을 잃고 교사 scaffold의 비효율까지 복사한다 |
-| 길이 제어의 양방향 실패 | overthinking을 줄이려 L1처럼 길이를 프롬프트 제약으로 학습시키지만, underthinking은 토큰이 많은 것이 아니라 유망한 사고 흐름을 너무 일찍 갈아타는 것이라 짧게 쓰라는 압력이 조기 이탈과 분석 마비를 부른다 |
+| 길이 제어의 양방향 실패 | overthinking을 줄이려 L1처럼 길이를 프롬프트 제약으로 학습시키지만, underthinking은 토큰이 많은 것이 아니라 유망한 사고 흐름을 너무 일찍 바꾸는 것이라 짧게 쓰라는 압력이 조기 이탈과 분석 마비를 부른다 |
 
 credit assignment 쪽 보완책도 계보가 있다. GiGPO는 critic이 없는 두 수준(에피소드와 anchor 상태 step) advantage 추정기로 같은 메모리에서 GRPO보다 ALFWorld와 WebShop 성공률을 올린다. ARPO는 tool call 직후의 불확실성 높은 라운드에서 entropy로 분기 샘플링을 발동해 trajectory 수준 예산의 일부로 step 수준 tool use를 정렬한다. 반성 루프도 프롬프트 대신 학습 대상이 될 수 있지만(Retroformer, Reflect-Retry-Reward, SAMULE) 각각 같은 credit assignment 취약성을 반성 토큰 자체에 물려받는다.
 

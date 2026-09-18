@@ -146,7 +146,7 @@ action chunk는 policy 호출 한 번에 예측하는 여러 timestep 분량의 
 
 Mixture-of-Transformers는 video Transformer와 action Transformer처럼 모달리티별 전문가를 두되 가중치는 나누고 attention은 공유하는 구조다. 약어 MoT로 쓴다. mixture-of-experts가 라우팅으로 전문가를 고르는 것과 달리 모달리티로 전문가를 가른다.
 
-DiT는 diffusion 모델의 denoising 신경망을 Transformer로 구현한 구조다. 이미지와 video와 action 토큰을 여러 스텝에 걸쳐 denoising하며, timestep 조건을 블록에 주입할 때 adaptive layer normalization을 쓰는 것이 일반적이다.
+DiT는 diffusion model의 denoising 신경망을 Transformer로 구현한 구조다. 이미지와 video와 action 토큰을 여러 스텝에 걸쳐 denoising하며, timestep 조건을 블록에 주입할 때 adaptive layer normalization을 쓰는 것이 일반적이다.
 
 이 개념들 위에 VAE가 하나 더 붙는다. 고해상도 이미지와 video를 latent 표현으로 압축해 토큰 수를 크게 줄이는 장치이며, Wan 2.1의 VAE는 시간 방향 4배와 공간 방향 8×8 압축을, Wan 2.2-5B는 시간 방향 4배와 공간 방향 16×16 압축을 쓴다.
 

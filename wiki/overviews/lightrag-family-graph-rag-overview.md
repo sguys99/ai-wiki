@@ -54,9 +54,9 @@ study_path:
 
 ### GraphRAG가 연 문제 설정
 
-이 계열은 벡터 RAG가 원리적으로 답하지 못하는 query 유형에서 출발한다. query는 사용자가 시스템에 던지는 질문 하나를 가리킨다. [[database/edge-2024-from-local-to-global|GraphRAG 원논문]]은 이 유형을 sensemaking이라 부르는데, 사람과 장소와 사건 사이의 연결에 의미를 부여해 흐름을 예측하고 행동하기 위한 과정을 가리킨다. "이 데이터셋의 주요 테마는 무엇인가" 같은 질문이 여기 해당한다.
+이 계열은 벡터 RAG가 원리적으로 답하지 못하는 질의(query) 유형에서 출발한다. 질의는 사용자가 시스템에 던지는 질문 하나를 가리킨다. [[database/edge-2024-from-local-to-global|GraphRAG 원논문]]은 이 유형을 sensemaking이라 부르는데, 사람과 장소와 사건 사이의 연결에 의미를 부여해 흐름을 예측하고 행동하기 위한 과정을 가리킨다. "이 데이터셋의 주요 테마는 무엇인가" 같은 질문이 여기 해당한다.
 
-답이 소수의 chunk 안에 국소적으로 들어 있지 않으므로 유사도 검색으로는 근거를 모을 수 없다. GraphRAG의 해법은 코퍼스 전체를 지식 그래프로 바꾼 뒤 그 그래프를 주제 단위 community로 나누고, community마다 요약문을 미리 만들어 두는 것이다. query가 들어오면 요약문마다 부분 답변을 만들고 그것들을 다시 합쳐 최종 답을 낸다.
+답이 소수의 chunk 안에 국소적으로 들어 있지 않으므로 유사도 검색으로는 근거를 모을 수 없다. GraphRAG의 해법은 코퍼스 전체를 지식 그래프로 바꾼 뒤 그 그래프를 주제 단위 community로 나누고, community마다 요약문을 미리 만들어 두는 것이다. 질의가 들어오면 요약문마다 부분 답변을 만들고 그것들을 다시 합쳐 최종 답을 낸다.
 
 [[database/dsba-2026-paper-review-graph-based-rag|DSBA 2026 세미나]]는 이 구도를 vanilla RAG와 대비해 정리한다. vanilla RAG는 문서를 chunk로 자르는 순간 chunk 사이의 관계를 버리고, graph-based RAG는 그 관계를 노드와 엣지로 남기는 대신 인덱싱 단계에서 LLM 호출 비용을 치른다. 세미나가 graph-based RAG에 적합하다고 본 영역은 의학과 신약 연구 분석, 법률 판례 분석, 산업 트렌드 분석 세 가지이고, vanilla RAG가 여전히 나은 영역은 고객 지원 챗봇의 FAQ 조회나 단일 제품 설명서 QA다.
 
@@ -73,7 +73,7 @@ study_path:
 | [[database/guo-2025-lightrag-simple-and-fast\|LightRAG]] | paper | 비용 분기 | key-value 인덱스, dual-level retrieval, 비용 실측, 원문 제거 ablation |
 | [[database/zhang-2026-leanrag-knowledge-graph-based-generation\|LeanRAG]] | paper | 추상화 분기 | semantic island 문제 정의, aggregated relation, LCA 검색, 원문 제거 ablation |
 | [[database/guo-2025-rag-anything-all-in-one-rag\|RAG-Anything]] | paper | 모달리티 분기 | dual-graph 구축, dereferencing, DocBench와 MMLongBench 수치 |
-| [[database/hkuds-rag-anything\|HKUDS/RAG-Anything]] | repo | 모달리티 분기의 운영 인터페이스 | 파서 세 종, query 방식 세 가지, 설치와 운영 의존 |
+| [[database/hkuds-rag-anything\|HKUDS/RAG-Anything]] | repo | 모달리티 분기의 운영 인터페이스 | 파서 세 종, 질의 방식 세 가지, 설치와 운영 의존 |
 | [[database/9bow-2026-rag-anything-multimodal-rag-framework\|RAG-Anything 한국어 소개]] | article | 모달리티 분기의 한국어 진입로 | 소개 순서와 강조점, 도메인별 ablation 증감 |
 | [[database/dsba-2026-paper-review-graph-based-rag\|Graph-based RAG 세미나 (DSBA 2026)]] | video | 두 분기를 나란히 놓은 비교 | retrieval 패턴 다섯 가지, 연구 흐름도, 원문 첨부 상충, 남은 연구 질문 |
 
@@ -90,11 +90,11 @@ study_path:
 | 그래프의 정보 반영 효율 | 문서 본문 대비 지식 그래프가 얼마나 효율적으로 전체 정보를 반영하느냐가 핵심으로 보인다 | LightRAG가 key-value 직렬화로 검색 컨텍스트를 줄이고, LeanRAG가 retrieval 토큰을 baseline 평균 대비 약 46% 줄였다고 보고한다 |
 | 고정된 프롬프트 | 고정된 프롬프트로 지식 그래프를 구축했고, 사용자 목적에 맞게 구축하는 방법이 성능을 좌우할 것으로 보인다 | RAG-Anything이 모달리티별 전용 프롬프트와 확장 가능한 처리기를 두어 도메인 확장 경로를 연다 |
 | 요약의 상세 손실 | community summary를 쓰면 글로벌 정보는 반영되지만 본문의 상세 정보 손실은 불가피하다 | LeanRAG가 계층 구조와 상위 relation으로 같은 손실을 다르게 다룬다 |
-| hybrid scheme의 필요 | 임베딩 벡터를 활용하는 hybrid scheme이 필수 불가결이며, community summary를 query 임베딩 유사도로 취사선택했으면 어땠을지 아쉬움이 남는다 | LightRAG의 키워드 임베딩 매칭과 LeanRAG의 base 층 anchoring이 모두 이 방향이다 |
+| hybrid scheme의 필요 | 임베딩 벡터를 활용하는 hybrid scheme이 필수 불가결이며, community summary를 질의 임베딩 유사도로 취사선택했으면 어땠을지 아쉬움이 남는다 | LightRAG의 키워드 임베딩 매칭과 LeanRAG의 base 층 anchoring이 모두 이 방향이다 |
 
-네 번째 항목이 특히 직접적이다. 모든 community 요약을 훑는 대신 query와 가까운 것만 골라 쓰자는 제안인데, LightRAG와 LeanRAG가 실제로 그 방향으로 갔다. 그 대응 관계는 [[database/dsba-2025-graphrag-paper-review]] 자신이 본문에서 밝힌다.
+네 번째 항목이 특히 직접적이다. 모든 community 요약을 훑는 대신 질의와 가까운 것만 골라 쓰자는 제안인데, LightRAG와 LeanRAG가 실제로 그 방향으로 갔다. 그 대응 관계는 [[database/dsba-2025-graphrag-paper-review]] 자신이 본문에서 밝힌다.
 
-별도로 남는 것이 논문과 코드의 간극이다. 같은 자료가 슬라이드 42에서 공식 코드에 DRIFT(Dynamic Reasoning and Inference with Flexible Traversal) 같은 추가 절차가 있다고 지적하고, [[database/edge-2024-from-local-to-global]] 페이지도 공식 구현체에 local search와 global search와 DRIFT search가 다중 검색 모드로 들어가 있다고 적는다. 원논문이 규정한 query 절차는 community summary 기반 map-reduce 단일 모드다.
+별도로 남는 것이 논문과 코드의 간극이다. 같은 자료가 슬라이드 42에서 공식 코드에 DRIFT(Dynamic Reasoning and Inference with Flexible Traversal) 같은 추가 절차가 있다고 지적하고, [[database/edge-2024-from-local-to-global]] 페이지도 공식 구현체에 local search와 global search와 DRIFT search가 다중 검색 모드로 들어가 있다고 적는다. 원논문이 규정한 질의 절차는 community summary 기반 map-reduce 단일 모드다.
 
 ### 분기가 바꾼 것
 
@@ -106,7 +106,7 @@ study_path:
 | LeanRAG | 평면 community 분할 | Gaussian Mixture Model 기반 계층 클러스터, 상위 entity 사이의 aggregated relation, LCA 경로 검색 | community가 성기고 상위 요약끼리 연결이 없다는 점 | [[database/zhang-2026-leanrag-knowledge-graph-based-generation]] |
 | RAG-Anything | 텍스트 전용 인덱스라는 전제 | atomic content unit 추상화, cross-modal 그래프와 텍스트 그래프의 이중 구축, 합성 시점 dereferencing | 비텍스트 정보가 인덱스에 들어가지 못하거나 평문으로 평탄화되는 손실 | [[database/guo-2025-rag-anything-all-in-one-rag]] |
 
-분기 사이의 위치 관계도 중요하다. RAG-Anything은 트렁크에서 바로 갈라지지 않고 LightRAG 위에 선다. [[database/hkuds-rag-anything]]의 README가 상단 배지와 시스템 개요에서 LightRAG 기반임을 명시하고, 텍스트 쪽 지식 그래프 인덱스와 query 모드를 그대로 받는다. 그 관계는 한 방향이 아니어서, 같은 README의 2026년 6월 항목은 LightRAG가 RAG-Anything을 통합해 multimodal RAG를 지원하게 됐다고 적는다.
+분기 사이의 위치 관계도 중요하다. RAG-Anything은 트렁크에서 바로 갈라지지 않고 LightRAG 위에 선다. [[database/hkuds-rag-anything]]의 README가 상단 배지와 시스템 개요에서 LightRAG 기반임을 명시하고, 텍스트 쪽 지식 그래프 인덱스와 질의 모드를 그대로 받는다. 그 관계는 한 방향이 아니어서, 같은 README의 2026년 6월 항목은 LightRAG가 RAG-Anything을 통합해 multimodal RAG를 지원하게 됐다고 적는다.
 
 LeanRAG의 직전 참조점은 HiRAG다. [[database/zhang-2026-leanrag-knowledge-graph-based-generation]]은 HiRAG를 당시 state-of-the-art로 인정하면서 상위 요약 노드 사이에 relation이 없다는 한계를 문제로 세운다. [[database/dsba-2026-paper-review-graph-based-rag]]의 연구 흐름도도 같은 자리에 LeanRAG를 놓는다. HiRAG 자체는 이 저장소에 없으므로 baseline 쪽 세부는 두 페이지가 인용한 범위로 제한된다.
 
@@ -116,7 +116,7 @@ LeanRAG의 직전 참조점은 HiRAG다. [[database/zhang-2026-leanrag-knowledge
 
 첫째, 지식 그래프를 LLM이 코퍼스에서 뽑아낸다. 외부에서 주어진 고정 지식 그래프를 쓰지 않는다. [[database/dsba-2026-paper-review-graph-based-rag]]는 entity에서 이름과 타입과 설명을, relationship에서 출발 entity와 도착 entity와 관계 설명을 뽑는 프롬프트 형식이 GraphRAG 이후 사실상 표준이 되었다고 정리한다. 그래서 이후 방법론의 차이는 그래프를 어떻게 만드는가가 아니라 만들어진 그래프에서 무엇을 어떻게 뽑는가에서 생긴다.
 
-둘째, 평가가 정답 없는 개방형 query를 전제한다. GraphRAG가 정립한 절차는 코퍼스 설명에서 persona 5명을 만들고 persona마다 task 5개, 조합마다 질문 5개를 만들어 데이터셋당 125문항을 얻는 방식이다. LightRAG와 LeanRAG가 이 절차를 그대로 가져다 쓴다. RAG-Anything만 정답이 있는 문서 QA 벤치마크로 옮겨 간다.
+둘째, 평가가 정답 없는 개방형 질의를 전제한다. GraphRAG가 정립한 절차는 코퍼스 설명에서 persona 5명을 만들고 persona마다 task 5개, 조합마다 질문 5개를 만들어 데이터셋당 125문항을 얻는 방식이다. LightRAG와 LeanRAG가 이 절차를 그대로 가져다 쓴다. RAG-Anything만 정답이 있는 문서 QA 벤치마크로 옮겨 간다.
 
 셋째, 검색은 임베딩 유사도와 구조 정보의 결합이다. 단일 벡터 검색만으로 부족하다는 것이 공통 가정이고, 결합 방식이 방법마다 다르다. GraphRAG는 community 요약으로, LightRAG는 키워드 임베딩과 1-hop 확장으로, LeanRAG는 base 층 anchoring과 LCA 경로로, RAG-Anything은 구조 탐색과 dense 검색의 병렬 실행으로 처리한다.
 
@@ -128,10 +128,10 @@ LeanRAG의 직전 참조점은 HiRAG다. [[database/zhang-2026-leanrag-knowledge
 
 같은 지식 그래프를 놓고도 무엇을 뽑느냐에 따라 완전히 다른 시스템이 된다. [[database/dsba-2026-paper-review-graph-based-rag]]는 뽑는 대상을 주요 노드, 주요 관계, 주요 경로, 서브그래프, 이 넷을 종합한 hybrid 다섯 가지로 나눈다. 이 저장소가 보유한 네 방법을 그 구분 위에 놓으면 다음과 같다.
 
-| 방법 | 인덱스 단위 | query 시점 동작 | 글로벌 정보의 출처 | 원문 chunk | 검색 LLM 호출 |
+| 방법 | 인덱스 단위 | 질의 시점 동작 | 글로벌 정보의 출처 | 원문 chunk | 검색 LLM 호출 |
 |---|---|---|---|---|---|
 | GraphRAG | entity, relationship, claim, 4단계 community summary | 한 level의 요약을 무작위로 섞어 자른 뒤 chunk마다 부분 답변과 0에서 100 사이 helpfulness score를 만들고 점수 순으로 합친다 | community summary 자체 | 쓰지 않는다. TS 조건만 원본 chunk를 직접 쓴다 | 요약 chunk 수만큼 |
-| LightRAG | entity와 relation의 key-value 쌍 | query에서 low-level 키워드와 high-level 키워드를 한 번에 뽑아 각각 entity 인덱스와 relation 인덱스에 매칭하고 1-hop 이웃까지 넓힌다 | relation의 상위 테마 키워드 | 등장 횟수가 높은 상위 원문만 붙인다 | 키워드 추출 1회 |
+| LightRAG | entity와 relation의 key-value 쌍 | 질의에서 low-level 키워드와 high-level 키워드를 한 번에 뽑아 각각 entity 인덱스와 relation 인덱스에 매칭하고 1-hop 이웃까지 넓힌다 | relation의 상위 테마 키워드 | 등장 횟수가 높은 상위 원문만 붙인다 | 키워드 추출 1회 |
 | LeanRAG | base entity, aggregated entity, aggregated relation | base 층 entity만 대상으로 seed를 고른 뒤 seed들의 lowest common ancestor까지 부모 링크를 따라 올라간다 | 상위 층 aggregated entity와 같은 층 aggregated relation | base entity의 출처 chunk를 붙인다 | 본문에 명시 없음 |
 | RAG-Anything | atomic content unit, anchor 노드, 통합 그래프와 임베딩 테이블 | 구조 탐색과 dense 유사도 검색을 병렬로 수행한 뒤 구조 중요도와 의미 유사도와 모달리티 선호 세 신호로 순위를 정한다 | 통합 그래프의 구조 탐색 | 텍스트 표현을 붙이고 시각 자료는 원본으로 복원한다 | 본문에 명시 없음 |
 
@@ -145,9 +145,9 @@ GraphRAG의 검색이 성립하는 근거는 community 분할의 성질에 있�
 
 ### dual-level retrieval
 
-LightRAG의 핵심 판단은 query를 사전에 분류하지 않는다는 것이다. query 하나에서 low-level 키워드와 high-level 키워드를 함께 뽑아 둘 다 쓴다. query를 미리 글로벌형과 로컬형으로 나누려면 분류기가 필요하고 분류가 틀리면 회복할 방법이 없는데, 두 종류를 함께 뽑으면 그 위험이 사라진다.
+LightRAG의 핵심 판단은 질의를 사전에 분류하지 않는다는 것이다. 질의 하나에서 low-level 키워드와 high-level 키워드를 함께 뽑아 둘 다 쓴다. 질의를 미리 글로벌형과 로컬형으로 나누려면 분류기가 필요하고 분류가 틀리면 회복할 방법이 없는데, 두 종류를 함께 뽑으면 그 위험이 사라진다.
 
-이 설계가 성립하려면 entity와 relation에 key를 다르게 붙여야 한다. entity의 key는 이름 하나이고 고유명사에 가까워 query에 담긴 구체적인 단어와 맞는다. relation의 key는 연결된 두 entity에서 LLM이 합성한 상위 테마 키워드이고 여러 개일 수 있으며 개념어에 가까워 query에 담긴 추상적인 단어와 맞는다. 결국 어느 인덱스에 그 단어를 던지느냐로 검색의 추상 수준을 조절한다.
+이 설계가 성립하려면 entity와 relation에 key를 다르게 붙여야 한다. entity의 key는 이름 하나이고 고유명사에 가까워 질의에 담긴 구체적인 단어와 맞는다. relation의 key는 연결된 두 entity에서 LLM이 합성한 상위 테마 키워드이고 여러 개일 수 있으며 개념어에 가까워 질의에 담긴 추상적인 단어와 맞는다. 결국 어느 인덱스에 그 단어를 던지느냐로 검색의 추상 수준을 조절한다.
 
 여기에 논문과 코드의 간극이 하나 남는다. [[database/dsba-2026-paper-review-graph-based-rag]]는 논문이 low-level 키워드를 entity 이름과 비교한다고 적는 반면 공식 코드는 이름과 설명 양쪽을 검색 대상으로 쓴다고 지적하고, 발표자 본인은 코드 기준으로 설명을 진행한다. 같은 자료가 임베딩 모델도 코드에 BGE-M3와 OpenAI text-embedding-3-large가 함께 확인된다고 적는데, [[database/guo-2025-lightrag-simple-and-fast]] 논문 본문은 임베딩 모델을 아예 밝히지 않는다.
 
@@ -262,7 +262,7 @@ ablation은 성능 상승분의 출처를 가른다. 그래프 구축을 건너�
 | 검색 1회 토큰 | 약 61만 | 100 미만 | [[database/guo-2025-lightrag-simple-and-fast]] |
 | 검색 1회 API 호출 | 본문 표현으로 수백 회 | 1회 | 같은 페이지 |
 | 증분 갱신 토큰 | 약 1,399만에 추출 오버헤드 | 추출 오버헤드만 | 같은 페이지 |
-| 평균 query 시간 | 23.6초 | 11.2초 | 같은 페이지 |
+| 평균 질의 시간 | 23.6초 | 11.2초 | 같은 페이지 |
 | 최종 저장 공간 | 286.7MB | 39.5MB | 같은 페이지 |
 
 수치가 어디서 나왔는지를 따라가면 구조가 보인다. GraphRAG는 Legal 코퍼스에서 community를 1,399개 만들고 그중 level-2 community 610개를 검색에 쓰는데, report 하나가 평균 1,000 토큰이므로 610개면 61만 토큰이다. 증분 갱신에서는 기존 community 구조를 해체하고 report를 전부 다시 써야 하므로 report 하나를 약 5,000 토큰으로 잡아 1,399개 기준 비용이 나온다. LightRAG는 새 부분 그래프를 합집합으로 붙이므로 추출 오버헤드만 남는다.
@@ -330,12 +330,12 @@ RAG-Anything 쪽 공백이 실무에서 가장 크다. LightRAG는 chunk마다 L
 
 | 상황 | 자료가 뒷받침하는 선택 | 근거 |
 |---|---|---|
-| 코퍼스 전체를 종합해야 답이 되는 개방형 query | GraphRAG 계열의 community 요약 | 벡터 RAG 대비 comprehensiveness 72%에서 83% 승률 ([[database/edge-2024-from-local-to-global]]) |
-| 인덱싱과 검색 비용이 우선 조건 | LightRAG | 검색 토큰 61만에서 100 미만, query 시간 23.6초에서 11.2초 ([[database/guo-2025-lightrag-simple-and-fast]]) |
+| 코퍼스 전체를 종합해야 답이 되는 개방형 질의 | GraphRAG 계열의 community 요약 | 벡터 RAG 대비 comprehensiveness 72%에서 83% 승률 ([[database/edge-2024-from-local-to-global]]) |
+| 인덱싱과 검색 비용이 우선 조건 | LightRAG | 검색 토큰 61만에서 100 미만, 질의 시간 23.6초에서 11.2초 ([[database/guo-2025-lightrag-simple-and-fast]]) |
 | 문서가 자주 추가되는 환경 | LightRAG | 합집합 갱신으로 community 재구축 비용이 사라진다 (같은 페이지) |
 | 여러 도메인이 섞인 코퍼스 | LeanRAG | Mix에서 두 번째로 높은 방법과 0.51점 차이. 나머지 세 도메인에서는 0.1점 미만 ([[database/zhang-2026-leanrag-knowledge-graph-based-generation]]) |
 | 이미지와 표와 수식이 본문만큼 정보를 담는 문서 | RAG-Anything | 멀티모달 질문에서 76.3%로 두 번째보다 10.3%p 높다 ([[database/guo-2025-rag-anything-all-in-one-rag]]) |
-| 근거가 없다고 판단해야 하는 query가 많은 환경 | RAG-Anything은 불리하다 | 답변 불가 항목 46.0%로 네 방법 중 최저 (같은 페이지) |
+| 근거가 없다고 판단해야 하는 질의가 많은 환경 | RAG-Anything은 불리하다 | 답변 불가 항목 46.0%로 네 방법 중 최저 (같은 페이지) |
 | Office 문서와 스캔 이미지가 섞인 입력 | HKUDS/RAG-Anything의 파서 선택 | MinerU, Docling, PaddleOCR를 문자열 인자로 고른다 ([[database/hkuds-rag-anything]]) |
 | 외부에서 주어진 고정 지식 그래프 | 네 방법 모두 미검증 | 남은 연구 질문의 첫 항목 ([[database/dsba-2026-paper-review-graph-based-rag]]) |
 
@@ -374,7 +374,7 @@ RAG-Anything 쪽 공백이 실무에서 가장 크다. LightRAG는 chunk마다 L
 | 용어 | 뜻 |
 |---|---|
 | community summary | 지식 그래프를 community 단위로 나눈 뒤 각 community를 LLM으로 미리 요약해 둔 문서. GraphRAG가 도입했고 세 분기가 모두 이 장치의 비용이나 손실을 출발점으로 삼는다 |
-| dual-level retrieval | query를 분류하지 않고 low-level 키워드와 high-level 키워드를 함께 뽑아 각각 entity 인덱스와 relation 인덱스에 매칭하는 LightRAG의 검색 방식 |
+| dual-level retrieval | 질의를 분류하지 않고 low-level 키워드와 high-level 키워드를 함께 뽑아 각각 entity 인덱스와 relation 인덱스에 매칭하는 LightRAG의 검색 방식 |
 | semantic islands | 계층 지식 그래프의 상위 요약 노드들이 서로를 잇는 relation 없이 고립되어 개념 무리 사이 추론이 막히는 상태. LeanRAG의 첫 번째 문제 정의다 |
 | aggregated relation | 같은 층의 두 상위 entity를 잇는 새 relation. connectivity strength가 임계값을 넘으면 LLM이 요약하고 넘지 않으면 원래 relation들을 텍스트로 이어 붙인다 |
 | lowest common ancestor | 계층 구조에서 여러 seed entity의 공통 조상 가운데 depth가 가장 작은 노드. 이 노드를 목적지로 삼으면 경로 길이 합이 최소가 되어 중복이 줄어든다 |
@@ -387,6 +387,6 @@ RAG-Anything 쪽 공백이 실무에서 가장 크다. LightRAG는 chunk마다 L
 - [[database/guo-2025-lightrag-simple-and-fast]]: 비용 분기의 원전. key-value 인덱스와 dual-level retrieval의 정의, 비용 실측, 원문 제거 ablation의 표와 본문이 어긋나는 지점까지 담는다.
 - [[database/zhang-2026-leanrag-knowledge-graph-based-generation]]: 추상화 분기의 원전. semantic island 문제 정의와 aggregated relation, LCA 검색의 상세를 담고, LeanRAG 실험의 GraphRAG baseline이 구현체 모드라는 점을 짚는다.
 - [[database/guo-2025-rag-anything-all-in-one-rag]]: 모달리티 분기의 원전. dual-graph 구축과 dereferencing, DocBench와 MMLongBench 수치, 저자가 밝힌 두 가지 실패 유형을 담는다.
-- [[database/hkuds-rag-anything]]: 모달리티 분기의 운영 인터페이스. 파서 세 종과 query 방식 세 가지, 설치 의존과 환경 변수를 담고, raw가 README 스텁이라 확인 범위가 어디까지인지도 함께 밝힌다.
+- [[database/hkuds-rag-anything]]: 모달리티 분기의 운영 인터페이스. 파서 세 종과 질의 방식 세 가지, 설치 의존과 환경 변수를 담고, raw가 README 스텁이라 확인 범위가 어디까지인지도 함께 밝힌다.
 - [[database/9bow-2026-rag-anything-multimodal-rag-framework]]: 모달리티 분기의 한국어 진입로. 한국어 커뮤니티가 이 도구를 어떤 순서로 소개했는지와 도메인별 ablation 증감 계산을 담는다.
 - [[database/dsba-2026-paper-review-graph-based-rag]]: 두 분기를 나란히 놓은 세미나. retrieval 패턴 분류와 연구 흐름도, 원문 첨부 상충의 1차 출처이며 남은 연구 질문 네 가지를 제시한다.

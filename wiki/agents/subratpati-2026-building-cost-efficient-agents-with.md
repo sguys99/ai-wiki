@@ -145,3 +145,4 @@ CCR은 Compress-Cache-Retrieve의 약어이고, 저자가 Headroom의 시그니�
 - [[agents/nedai-2026-headroom-token-compression-guide]]: 한국어 사용법 소개
 - [[agents/9bow-2026-headroom-ai-agent-context-compression]]: 한국어 커뮤니티 소개
 - [[agents/lee-hoyeon-2026-harness-engineering]]: 압축과 캐시 정렬이 놓이는 harness 계층을 다룬 페이지
+- [[overviews/headroom-context-compression-overview]]: Headroom 자료 6편을 묶은 overview. 이 페이지는 그중 소개글 한 편으로 들어간다
