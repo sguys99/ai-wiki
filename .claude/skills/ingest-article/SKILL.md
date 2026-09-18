@@ -1,7 +1,7 @@
 ---
 name: ingest-article
 version: "1.0.0"
-description: URL 하나로 웹 기사·블로그·LinkedIn/X 포스트의 본문 전문과 이미지를 raw/articles/ 에 수집하는 스킬 (CLAUDE.md Articles Step 1 ~ 2.5). 트리거 — "이 URL 기사로 수집해줘", "이 링크 wiki에 넣어줘", "이 주소 ingest", "기사 가져와서 wiki 작성", "이 글 raw에 저장해줘", "URL 넣으면 기사랑 이미지 캡처해줘". WebFetch 로는 원문 전문이 남지 않으므로(요약기라서) 기사 수집에는 항상 이 스킬을 쓴다. PDF 논문·리포트·도서·강의 슬라이드는 해당 없음 — `ingest-paper` 를 쓸 것. 유튜브 자막·GitHub README 는 CLAUDE.md 의 videos/repos 절차를 따를 것.
+description: URL 하나로 웹 기사·블로그·LinkedIn/X 포스트의 본문 전문과 이미지를 raw/articles/ 에 수집하는 스킬 (Articles Step 1 ~ 2.5). 수집까지만 담당하고 sources/wiki 작성은 `write-wiki` 로 이어진다. 트리거 — "이 URL 기사로 수집해줘", "이 링크 wiki에 넣어줘", "이 주소 ingest", "기사 가져와서 wiki 작성", "이 글 raw에 저장해줘", "URL 넣으면 기사랑 이미지 캡처해줘". WebFetch 로는 원문 전문이 남지 않으므로(요약기라서) 기사 수집에는 항상 이 스킬을 쓴다. PDF 논문·리포트·도서·강의 슬라이드는 해당 없음 — `ingest-paper` 를 쓸 것. 유튜브 자막·GitHub README 는 CLAUDE.md 의 videos/repos 절차를 따를 것.
 ---
 
 # Article Ingest — URL → raw/articles/
@@ -17,12 +17,14 @@ Step 1    raw/articles/{stem}.md      ← 여기
 Step 2    본문을 LLM 입력으로 사용      ← 여기
 Step 2.5  {stem}-figures/ + figures.json ← 여기
 ──────────────────────────────────────
-Step 3    sources/{stem}.md            ← 기존 대화형 흐름
+Step 3    sources/{stem}.md            ← `write-wiki` 스킬
 Step 3.5  사용자 confirm → curated: true
 Step 4    wiki/{category}/{stem}.md + index.md
 ```
 
-스크립트는 `sources/`·`wiki/`·`index.md` 를 건드리지 않고 git commit 도 하지 않는다. Step 3 부터는 사람이 개입하는 기존 절차 그대로다.
+**다음 단계**: Step 2.5 까지 끝나면 `write-wiki` 스킬로 이어진다. 수집만 하고 멈추지 않는다.
+
+스크립트는 `sources/`·`wiki/`·`index.md` 를 건드리지 않고 git commit 도 하지 않는다.
 
 ## 왜 WebFetch 를 쓰지 않는가
 
@@ -92,6 +94,6 @@ Step 4    wiki/{category}/{stem}.md + index.md
 
 ## 건드리면 안 되는 것
 
-- **본문은 원문 그대로 둔다.** 요약·번역·윤문 금지. `raw/` 는 불변 아카이브다. (humanize 훅은 `Write`/`Edit` 도구에만 걸리고 스크립트는 Bash 로 쓰므로 발동하지 않는다 — 의도된 동작이다.)
+- **본문은 원문 그대로 둔다.** 요약·번역·윤문 금지. `raw/` 는 불변 아카이브다. (lint 훅은 `Write`/`Edit` 도구에만 걸리고 스크립트는 Bash 로 쓰므로 발동하지 않는다. `raw/` 는 원저자의 원문이라 검사 대상이 아니므로 의도된 동작이다.)
 - **git commit·push 하지 않는다.** 사용자가 명시적으로 지시할 때만.
 - **기존 `{stem}.md` 를 덮어쓰지 않는다.** 스크립트가 존재를 감지하면 중단한다.

@@ -248,7 +248,9 @@ Step 3.5  사용자 confirm — wiki에 넣을 fig ID 지정 → curated: true
 Step 4    wiki/{category}/{stem}.md 작성 + curated figure를 wiki/assets/{stem}/로 cp + 본문 임베드 + index.md 갱신
 ```
 
-Step 3~4(sources·wiki 작성)는 `write-wiki` 스킬을 사용한다. 스킬이 도메인 용어집 로드, 전문 용어 표기 규칙, 교재식 구조와 문체 가이드, 작성 후 lint 검증(`lint_terms.py`, `lint_style.py`, `lint_links.py`, `lint_figures.py`, `audit_captions.py`, `lint_index.py` 여섯 게이트)을 담당한다.
+Step 1~2.5(수집과 추출)는 `ingest-paper`와 `ingest-article` 스킬이, Step 3~4(sources와 wiki 작성)는 `write-wiki` 스킬이 담당한다. 어느 유형이 어느 스킬로 가는지는 아래 "유형별 Step 1 ~ 2.5 진입점" 표에 있다.
+
+`write-wiki`는 도메인 용어집 로드, 전문 용어 표기 규칙, 교재식 구조와 문체 가이드, 작성 후 lint 검증을 담당한다. 검증은 두 층이다. `.claude/hooks/wiki-lint-reminder.sh`가 저장 직후 `lint_terms.py`와 `lint_style.py`를 자동으로 돌리고, 스킬의 완료 게이트가 `lint_links.py`, `lint_figures.py`, `audit_captions.py`, `lint_index.py` 넷을 맡는다.
 
 ### 공통 Step 3 — `sources/{stem}.md` 작성
 
@@ -362,178 +364,32 @@ cp raw/papers/{stem}-figures/fig05.png wiki/assets/{stem}/
 
 > **Obsidian 임베드 syntax 주의**: `![[fig02]]` shortlink는 vault 내 동명 파일과 충돌 위험 → 항상 `![[assets/{stem}/figNN.png]]` 처럼 **상대경로 명시**로 통일한다. 캡션은 임베드 바로 아래 `*Figure N: ...*` 형식으로 한 줄 둔다.
 
-#### wiki 교재 문체 가이드 (Prose Style — 생성 시점 적용)
+#### wiki 산문 문체
 
-`wiki/`는 "이 페이지만 읽어도 핵심을 이해할 수 있는" 한국어 기술 문서를 지향한다. **구조와 상세도는 교재식**(개념 선행 풀이, 단계적 전개, 표와 불릿)을 따르되, **서술은 표준 기술문서체**로 쓴다. 칼럼, 블로그, 강의록의 말투(자문자답, 화자 개입, 극적 표현)를 쓰지 않는다. 종결어미는 하다체. `sources/`와 `wiki/`의 한글은 처음 쓸 때부터 아래를 지킨다. **humanize 자동 윤문은 이 두 폴더에 적용하지 않는다** (사용자가 명시 요청할 때만). 준수 여부는 `scripts/lint_style.py`와 `scripts/lint_terms.py`가 검사한다.
+`wiki/` 와 `sources/` 의 한글 산문 규칙은 **`write-wiki` 스킬의 "6. wiki 교재 문체 가이드"가 정본**이다. 여기서 재서술하지 않는다. 교재식 전개, 하다체, 자문자답과 화자 개입 금지, 어휘 치환표, 중간점(`·`)과 em dash(`—`) 금지, 수치 표기, 상세도 목표가 모두 그 절에 있다.
 
-**전개와 문단**
+기계 검사는 `scripts/lint_style.py` 와 `scripts/lint_terms.py` 가 맡고, `.claude/hooks/wiki-lint-reminder.sh` 가 Write/Edit 저장 직후 자동으로 돌려 위반이 있을 때만 알려준다.
 
-- 문단은 1~3문장으로 짧게 끊고 문단 사이를 띄운다. 5문장 넘는 덩어리 문단을 만들지 않는다.
-- 문단은 두괄식으로 쓴다. 첫 문장이 문단의 주제를 담고 나머지가 뒷받침한다.
-- 결론을 먼저 서술하고 근거를 붙인다. **자문자답 금지**: "왜 ~일까?"로 질문을 던지고 답하는 구성을 쓰지 않는다.
-- 개념을 쓰기 전에 먼저 풀이한다. 배경, 개념, 본론, 요약 순서로 쌓아 올린다.
-- 긴 절 끝의 요약 문단은 유지하되 담화 표지 없이 평서문으로 시작한다. "정리하면 ~"이 아니라 "RT-1의 성능은 세 요소가 함께 만든 결과다"처럼 쓴다.
-- 문장 사이의 관계(인과, 대조, 부연, 예시)를 접속 표현으로 명시한다: 따라서, 반면, 즉, 예를 들어. 짧은 단정문("~다.")을 접속 없이 3개 이상 나열하지 않는다.
-- 지시어 "이/그"의 지시 대상은 직전 문장 안에서 확인되어야 한다. "이쪽/그쪽" 대신 대상을 명시한다 ("원 논문 페이지 참고").
-- 수치는 던져두지 말고 의미를 한 문장 붙인다 ("RT-1은 3Hz로 동작한다. 즉 1초에 3번 새로운 action을 낸다").
-- 원문에 비유나 예시가 있으면 살린다. 없으면 독자가 그림을 그릴 수 있는 예시를 자료 범위 안에서 만든다.
-
-**금지 서술 (칼럼, 블로그, 강의록 문체)**
-
-- 화자 개입 표현 금지: "한 줄로 말하면", "한 문장으로 줄이면", "~쪽 결론은 분명하다", "표에서 읽을 수 있는 것은 세 가지다" 등.
-- 극적, 구어적 동사 금지. 아래로 치환한다.
-
-| 금지 | 대체 |
-|---|---|
-| 무너지다 | 크게 하락하다 |
-| 급락하다 | 하락하다 |
-| 파괴적이다 | 영향이 가장 크다 |
-| 버티다 | 유지하다, 안정적으로 동작하다 |
-| 긁다 | 수집하다 |
-| 건지다 | 참고하다 |
-| 얹다 | 결합하다 |
-| 끼우다 | 삽입하다 |
-| 따지다 | 검토하다 |
-| 넣다 (기법 적용 의미) | 적용하다 |
-
-- 헤딩도 명사형 기술체로 쓴다. "부록에서 건질 것" ❌ → "부록의 주요 분석".
-
-**어휘 치환표 (한국어 기술문서에서 쓰지 않는 표현)**
-
-| 금지 | 대체 |
-|---|---|
-| 판 ("키운 판이다") | 버전, 변형 |
-| 축 ("네 축", "평가 축") | 항목, 기준, 측면 (`축`은 좌표축 의미로만) |
-| 벌 ("예제 두 벌") | 개, 종류 |
-| 갈래 ("네 갈래") | 가지 |
-| 기둥 ("두 기둥") | 핵심 요소 |
-| 돌다/돌리다 | 실행되다, 구동하다 |
-| 이쪽/그쪽 | 지시 대상을 명시 |
-| 차선 ("차선 대비") | 두 번째로 높은 모델 대비 |
-| 실+명사 조어 (실기기, 실오브젝트, 실데이터, 실로봇) | 실제 기기, 실제 물체, 실제 데이터, 실제 로봇 (단 "실세계", "실시간" 등 표준어는 유지) |
-
-**구조 요소 (적극 사용)**
-
-- 항목 3개 이상 열거는 문장에 압축하지 말고 불릿이나 표로 꺼낸다. 비교, 분류, 수치는 표 우선.
-- 긴 절은 `###` 하위 헤딩으로 나눈다. 헤딩은 한글 단독 명사형으로 쓰고 "X: Y" 콜론 부제 형식은 피한다.
-- 논문이나 survey 기반 페이지에 표가 하나도 없으면 구조화가 부족하다는 신호로 본다.
-
-**금지 기호**
-
-- 중간점(`·`) 금지. 키워드 나열은 "와/과", 쉼표, "/"를 쓴다. "CLIP·SigLIP·DINOv2"가 아니라 "CLIP, SigLIP, DINOv2"로 쓴다.
-- em dash(`—`) 전면 금지 (제목과 본문 모두). 쉼표, 괄호, 문장 분리로 대체한다.
-
-**용어 (단일 표기 원칙)**
-
-- 문서 생성 전 대상 도메인 용어집(`wiki/overviews/glossary-*.md`)을 로드해 표기를 확정하고, 문서 전체에서 하나의 표기만 쓴다. 원어와 번역어를 같은 문서에서 섞지 않는다.
-- 원어 canonical 용어(policy, action, observation, odometry, feature, extrinsic, ablation 등 원어가 표준인 개념): 괄호 병기 없이 첫 등장 시 서술형 풀이 한 문장을 둔다.
-- 번역어 canonical 용어(시연 데이터, 지시문 등): 첫 등장 시 원어를 괄호 병기하고("시연 데이터(demonstration)") 이후에는 한 표기만 쓴다.
-- 반쪽 번역 금지: "raw 점"처럼 용어의 절반만 번역하지 않는다. "raw point"로 쓰거나 완전한 번역어를 쓴다.
-- 한 문장에 영어 용어가 4개 이상이면 문장을 나누거나 번역어로 바꿔 밀도를 낮춘다.
-
-**수치와 표기**
-
-- 큰 수는 한국식 단위로 쓴다: 130k ❌ → 13만 개.
-- 본문 수치에 단위를 생략하지 않는다: "92에서 90으로" ❌ → "92%에서 90%로".
-- %(비율)와 %p(비율 차이)를 구분한다.
-
-**문장**
-
-- 흔한 어휘 우선: 잘 안 쓰는 문어체나 문학체 어휘를 피한다. "포개다, 결이 다르다, 복리로 쌓인다"보다 "겹친다, 성격이 다르다, 계속 쌓인다". 고를 때 "일반 기술 문서에서 쓰는 말인가?"를 자문한다.
-- "-고, / -며, / -지만, / -어서," 연결어미 직후 쉼표를 남발하지 않는다.
-- 명사 강조 볼드는 절제한다. 볼드는 표, 헤딩, 문서당 핵심어 한두 개에만.
-
-**상세도**
-
-- wiki는 sources의 압축본이 아니라 **교재식 재구성본**이다. 같은 stem의 sources 본문보다 짧아지지 않는 것을 기본으로 한다.
-- 분량 목표는 **산문 기준**으로 잰다 (표 마크업, 이미지 임베드, 캡션 제외). 표를 적극 쓰라는 지시와 총 글자 수 상한이 서로 당기기 때문이다. 실측상 본문의 20~30%가 표 마크업이다.
-  - 논문 기반: 산문 8,000~16,000자 (survey는 분류표가 많아 더 커진다)
-  - article 기반: 산문 5,000~12,000자 (원문 구조에 따름)
-  - repo 기반: 산문 4,000~8,000자
-- 이 목표는 상한이 아니라 기준선이다. **1차 게이트는 "sources 본문보다 길 것"이고, 목표 범위와 충돌하면 1차 게이트를 따른다.** 실험 수치와 ablation을 삭제해 목표에 맞추지 않는다.
-- sources의 용어집에서 3~6개를 골라 `## 핵심 용어` 표로 옮긴다. 실험 수치, ablation, 한계 세부는 삭제하지 않는다.
-
-**불변**
-
-- 사실, 수치, 고유명사, 인용, YAML key, 파일명, 영문 기술용어(RAG, Transformer 등), 용어집 canonical 표기는 문체와 무관하게 그대로 둔다.
-
-**생성 후 자체 검토**
-
-완성 후 다음을 검사하고 위반 시 수정한다.
-
-1. 금지 어휘(치환표)와 금지 표현(화자 개입, 극적 동사)이 남아 있는가
-2. 용어집과 다른 표기가 있는가 (원어와 번역어 혼용 포함)
-3. "왜 ~일까?" 자문자답 패턴이 남아 있는가
-4. 각 문단의 첫 문장이 문단 주제를 담고 있는가
+humanize 자동 윤문은 이 두 폴더에 적용하지 않는다 (사용자가 명시 요청할 때만). 자동 윤문이 불릿과 표를 산문으로 녹여 wiki 품질을 떨어뜨린 전례가 있다.
 
 ---
 
-### Papers (PDF)
+### 유형별 Step 1 ~ 2.5 진입점
 
-**Step 1** — PDF를 `raw/papers/`에 복사 (symlink 금지).
+Step 1(원본 수집), Step 2(텍스트 추출), Step 2.5(이미지 추출)은 자료 유형마다 절차가 다르다. 명령과 옵션은 아래 스킬이 정본이고, 여기서는 어디로 가는지만 적는다.
 
-**Step 2** — `pypdf`로 첫 ~30페이지, ~40,000자 추출. 방법론뿐 아니라 실험 세부와 ablation까지 sources에 담기 위한 상한이다 (과거 12,000자 상한은 상세도 부족의 상류 원인이었다). 참고문헌과 부록만 있는 뒷부분은 자연히 잘려도 무방하다.
+| 유형 | 담당 | 주요 산출물 |
+|---|---|---|
+| `papers` | `ingest-paper` 스킬 | `raw/papers/{stem}.pdf`, `{stem}-figures/` |
+| `reports` (PDF) | `ingest-paper` 스킬 (`--type reports`) | `raw/reports/{stem}.pdf`, `{stem}-figures/` |
+| `books` | `ingest-paper` 스킬 (`--type books`) | `raw/books/{stem}.pdf` 또는 `{stem}/ch{N}.pdf` |
+| `lectures` | `ingest-paper` 스킬 (`--type lectures`) | `raw/lectures/{stem}/`, `{stem}-figures/` |
+| `articles` | `ingest-article` 스킬 | `raw/articles/{stem}.md`, `{stem}-figures/` |
+| `reports` (웹) | `ingest-article` 과 같이 다룬다 | `raw/reports/{stem}.md` |
+| `repos` | 아래 절차 (전용 스킬 없음) | `raw/repos/{stem}.md` |
+| `videos` | 아래 절차 (전용 스킬 없음) | `raw/videos/{stem}.md`, `{stem}-figures/` |
 
-> **환경**: 이 프로젝트는 Homebrew Python(PEP 668) 환경이라 `pip3 install pypdf`가 막힌다. 대신 프로젝트 `.venv`(uv로 생성, 부트스트랩에서 자동 수행)를 사용하고, PDF 추출은 `.venv/bin/python3`로 실행한다.
-
-```bash
-# 최초 1회 (이미 부트스트랩에서 수행됨)
-# uv venv .venv --python python3
-# uv pip install --python .venv/bin/python pypdf
-
-.venv/bin/python3 -c "
-import pypdf, sys
-reader = pypdf.PdfReader(sys.argv[1])
-text = ''
-for page in reader.pages[:30]:
-    t = page.extract_text()
-    if t: text += t + '\n'
-    if len(text) > 40000: break
-print(text[:40000])
-" "/path/to/paper.pdf"
-```
-
-**Step 2.5 (이미지 추출)** — `scripts/extract_figures.py`가 캡션을 앵커로 삼아 figure·table 영역만 잘라낸다. `--dry-run`으로 검출표를 먼저 보고, 추출한 뒤 오버레이로 확인하는 2단계다.
-
-```bash
-.venv/bin/python scripts/extract_figures.py <stem> --dry-run     # 검출표만
-.venv/bin/python scripts/extract_figures.py <stem>               # 실제 추출
-```
-
-산출물은 `raw/papers/{stem}-figures/`에 들어간다. `figNN.png`·`tabNN.png`(300 DPI 크롭), `figures.json`(매니페스트), `_overlay/pNN.png`(검출 영역을 빨간 사각형으로 표시한 확인용 — git 추적 제외).
-
-**id는 논문 라벨과 일치한다.** Figure 3 → `fig03`, Table 2 → `tab02`. IEEE식 로마 숫자(Table IV)도 `tab04`로 정규화한다. 그래서 예전처럼 `(paper Figure N)` 대응 주석을 손으로 달 필요가 없다.
-
-검출은 캡션마다 폴백 사다리를 내려가고, 어디서 나왔는지는 `strategy`에 남는다.
-
-| strategy | 뜻 |
-|---|---|
-| `caption-region` | 캡션에서 바깥으로 자라며 여백에서 멈춰 그래픽을 감쌌다 |
-| `table-region` | 가로 괘선 뭉치 / `find_tables()` / 캡션에 붙은 텍스트 덩어리 |
-| `column-band` | 그래픽을 못 찾아 캡션 위 여백 밴드를 통째로 잡았다 |
-| `page-region` | 전부 실패 — 페이지 전체 |
-| `manual` | `--bbox`로 사람이 지정했다 |
-
-**확인과 보정** — 추출 후 `_overlay/pNN.png`를 열어 빨간 사각형이 도식을 제대로 감쌌는지 본다. `column-band`·`page-region`·`low_confidence`는 스크립트가 마지막에 "⚠ 확인 필요"로 짚어준다. 틀린 것만 0~1 정규화 좌표로 다시 자른다.
-
-```bash
-.venv/bin/python scripts/extract_figures.py <stem> --force \
-    --bbox fig03=4:0.10,0.28,0.90,0.62
-```
-
-`--bbox`의 id가 검출 목록에 없으면 새 항목으로 추가된다 — 스크립트가 놓친 도식을 손으로 넣는 경로다.
-
-| 옵션 | 뜻 |
-|---|---|
-| `--type` | `papers`(기본) · `reports` · `books` · `lectures` |
-| `--dry-run` | 검출표만 출력하고 파일은 안 쓴다 |
-| `--force` | 기존 `-figures/`를 덮어쓴다 (기본은 중단) |
-| `--bbox ID=PAGE:x0,y0,x1,y1` | 수동 크롭. 반복 지정 가능 |
-| `--overlay-only` | 오버레이만 다시 만든다 |
-| `--page-shots` | 검출된 페이지의 전면 렌더도 `page-pNN.png`로 남긴다 |
-| `--dpi` | 크롭 해상도 (기본 300) |
-
-캡션이 `Figure N` 꼴이 아닌 자료(슬라이드 덱, 한글 제품 소개서 등)는 "캡션을 하나도 못 찾았다"로 멈춘다. 그때는 `--bbox`로 직접 지정하거나 사용자가 PNG를 수동 저장한다.
+repos 와 videos 만 여기에 절차를 남긴다. 전용 스킬이 없고 분량이 짧아서다.
 
 ### Repos
 
@@ -569,45 +425,6 @@ tags: []
 
 **비고**: `license` 키 작성 필수. 사용/인용 시 라이선스 조건 준수.
 
-### Articles
-
-**Step 1 (기본 경로)** — 사용자가 URL로 수집을 지시하면 `scripts/fetch_article.py`를 쓴다. Step 1·2·2.5를 한 번에 처리하고 거기서 멈춘다 — `sources/`·`wiki/`·`index.md`는 건드리지 않고 git commit도 하지 않는다. 자세한 절차는 `ingest-article` 스킬 참고.
-
-```bash
-.venv/bin/python scripts/fetch_article.py "<URL>" --dry-run            # stem 제안
-.venv/bin/python scripts/fetch_article.py "<URL>" --stem <stem> --crop  # 실제 수집
-```
-
-추출은 무료 경로부터 내려가는 4단 사다리다: `jina`(r.jina.ai, 키 불필요) → `chrome`(로컬 Chrome) → `profile`(본인 로그인 세션, `--profile` 명시 시에만) → `firecrawl`(`FIRECRAWL_API_KEY` 있을 때만). 성공한 tier는 frontmatter `extractor_tier`에 기록된다. Jina 무료 티어는 rate limit이 잦아 chrome 폴백이 자주 발동하는데, 정상 동작이다.
-
-**Step 1 (폴백)** — 사다리가 전부 막히면 사용자가 본문을 직접 `raw/articles/{stem}.md`로 저장한다. 원본 URL은 frontmatter `url`에 기록한다.
-
-**Step 2** — 저장된 `.md` 본문을 그대로 LLM 입력으로 사용한다. 본문은 원문 그대로 두며 요약·번역·윤문하지 않는다. (`.claude/hooks/humanize-reminder.sh`는 `Write`/`Edit` 도구에만 걸리고 스크립트는 Bash로 파일을 쓰므로 발동하지 않는다 — 의도된 동작이다. `raw/`의 기사 본문은 원저자의 원문이라 윤문 대상이 아니다.)
-
-**Step 2.5 (이미지)** — 스크립트가 세 가지를 함께 수집해 `raw/articles/{stem}-figures/`에 넣고 `figures.json` 매니페스트를 쓴다:
-
-| 산출물 | strategy | 설명 |
-|---|---|---|
-| `figNN.{ext}` | `fetched` | 본문 `<img>` 원본 다운로드. 확장자는 `Content-Type`으로 판정 (URL 확장자는 신뢰하지 않는다) |
-| `page-full.png` | `screenshot` | 전체 페이지 캡처. 6,000px 초과 시 상단만 남기고 절단 |
-| `cropNN.png` | `crop` | `--crop` 지정 시 도식 영역별 캡처 |
-
-사용자가 직접 PNG를 넣는 기존 방식도 그대로 유효하며, 이 경우 `strategy: manual`로 표기한다. 도식이 없는 article은 `figures:` 키를 생략한다.
-
-### Reports
-
-**Step 1** — PDF면 `raw/reports/`에 복사(papers와 동일). 웹 페이지면 본문을 `.md`로 변환하여 저장한다.
-
-**Step 2** — PDF는 `pypdf`로 추출, `.md`는 그대로 사용.
-
-**Step 2.5 (이미지 추출)** — PDF reports는 papers와 같은 스크립트에 `--type reports`만 붙인다.
-
-```bash
-.venv/bin/python scripts/extract_figures.py <stem> --type reports --dry-run
-```
-
-웹 reports(.md)는 articles와 동일하게 사용자 수동 저장.
-
 ### Videos
 
 **Step 1** — youtube transcript(자막)를 사용자가 직접 `raw/videos/{stem}.md`로 저장한다. `yt-dlp` 등 **로컬 도구**로 자막을 받는 것은 허용된다 (네트워크 fetch는 사용자가 수동 수행). 채널·URL·duration 등 메타데이터는 frontmatter에 기록한다.
@@ -633,57 +450,6 @@ done
 ```
 
 자동 키프레임 검출(`-vf "select=eq(pict_type,I)"`)은 슬라이드 전환과 무관한 I-frame을 너무 많이 잡아 노이즈가 큼 → **수동 timestamp 권장**. sources의 `figures:` frontmatter에는 `strategy: keyframe`, `page` 대신 `timestamp` 키로 표기 (예: `timestamp: "03:12"`).
-
-### Books (PDF/EPUB)
-
-**Step 1** — 도서 파일을 `raw/books/`에 복사. 단일 모드는 `raw/books/{stem}.pdf`, 챕터 분할 모드는 `raw/books/{stem}/{ch01.pdf, ch02.pdf, ...}`.
-
-**Step 2** — 추출 전략은 두 모드 중 선택 (frontmatter의 `extraction_mode`에 기록):
-
-- **`toc` (기본, 단일 source)**: 처음 5–10페이지에서 목차를 뽑은 뒤, 사용자가 지정한 핵심 챕터(또는 첫 1–2개 챕터)를 ~40,000자까지 `pypdf`로 추출. papers와 동일한 도구·환경 사용. 책 한 권 = `sources/{stem}.md` 한 개.
-- **`chapters` (챕터 분할)**: 챕터별로 분할된 PDF 각각을 ~40,000자씩 추출하여 **챕터별 source 다수 생성** (`sources/{stem}-ch01.md`, `{stem}-ch02.md`, ...). wiki는 각 챕터를 별도 페이지로 둘 수도, 합쳐서 한 페이지로 둘 수도 있고, 책 전체에 대한 `wiki/overviews/{stem}-overview.md`를 별도로 작성하는 것이 권장된다.
-
-```bash
-# papers와 동일한 .venv/bin/python3 사용
-.venv/bin/python3 -c "
-import pypdf, sys
-reader = pypdf.PdfReader(sys.argv[1])
-text = ''
-for page in reader.pages[:30]:
-    t = page.extract_text()
-    if t: text += t + '\n'
-    if len(text) > 40000: break
-print(text[:40000])
-" "raw/books/{stem}.pdf"
-```
-
-**Step 2.5 (이미지 추출)** — `--type books`로 papers와 같은 스크립트를 쓴다. chapters 모드에서는 챕터별로 따로 부른다 — `raw/books/{stem}/ch01.pdf` → `raw/books/{stem}/ch01-figures/` 처럼 챕터 stem에 `-figures/` suffix가 붙는다. sources도 챕터별로 분리되므로 (`sources/{stem}-ch01.md` 등) figures 키도 챕터별 source에 들어간다.
-
-> **분류 팁**: 책은 보통 한 카테고리에 들어가지만, 실무 도서(예: AI Engineering)는 여러 카테고리에 걸친다. 챕터 분할 모드에서는 챕터별로 다른 카테고리에 wiki 페이지를 두고, overview 페이지에서 묶는 것을 권장한다.
-
-### Lectures (코스 패키지)
-
-**Step 1** — 강의 자료를 `raw/lectures/{stem}/` 하위 폴더에 모은다. 일반적인 구성:
-
-```
-raw/lectures/karpathy-2023-zero-to-hero/
-├── transcripts/         # 강의 자막 (.md)
-├── slides/              # 슬라이드 PDF
-├── notes/               # 보조 노트
-└── code/                # 실습 코드 스냅샷
-```
-
-**Step 2** — 자료 종류별로 추출:
-
-- 슬라이드 PDF → `pypdf` (papers와 동일)
-- transcript/notes (.md) → 그대로 사용
-- code → README + 디렉토리 트리 + 핵심 파일 헤더 (repos와 동일)
-
-**Step 2.5 (이미지 추출)** — 슬라이드 PDF가 도식의 주된 출처다. `--type lectures`로 슬라이드 PDF에 적용한다 (경로: `raw/lectures/{stem}/slides/*.pdf` → `raw/lectures/{stem}-figures/`). 슬라이드는 캡션이 `Figure N` 꼴이 아닌 경우가 많아 "캡션을 못 찾았다"로 멈추기 쉽다 — 그때는 `--bbox`로 필요한 슬라이드 영역을 직접 지정한다. transcript에서 강조된 슬라이드 번호를 사용자가 큐레이션 시점에 알려준다.
-
-`source: {stem}.md`는 코스 한 권 단위로 작성한다. 강의가 너무 길면 모듈/섹션 단위로 분할해 `sources/{stem}-mod{N}.md`로 만들 수 있다 (책의 chapters 모드와 동일).
-
-> **video와의 구분**: 단일 영상(예: Karpathy의 단일 youtube 강연)은 `videos`로 충분. `lectures`는 슬라이드·노트·실습이 함께 있는 **코스 패키지**일 때 사용한다.
 
 ---
 
@@ -724,16 +490,7 @@ Step 4    큐레이션 사본  → wiki/assets/{stem}/ + 본문 ![[]] 임베드
 7. **트레이서빌리티**: 큐레이션에서 빠진 후보도 **sources** frontmatter에 `curated: false`로 남긴다 — 미래에 재선택 가능. wiki frontmatter에는 curated 항목만 복제한다.
 8. **자료에 도식 없음**: `figures:` 키 자체를 생략 (빈 리스트도 OK).
 
-### 유형별 도구·전략 (요약표)
-
-| 유형 | Step 2.5 도구 | 전략 | 자동/수동 |
-|---|---|---|---|
-| Papers / Reports(PDF) / Books / Lectures(slides) | `scripts/extract_figures.py` | caption-region · table-region → column-band → page-region | 자동 (오버레이 확인 + `--bbox` 보정) |
-| Repos | `find` | in-place 후보 나열 | 자동 (큐레이션 수동) |
-| Articles | `scripts/fetch_article.py` | 원본 img 다운로드 + 전체 스크린샷 + 도식 크롭 | 자동 (사용자 수동 저장도 유효) |
-| Videos | `ffmpeg` | 사용자 timestamp + 키프레임 캡처 | 수동 timestamp |
-
-상세 명령은 위 유형별 섹션의 "Step 2.5" 참조.
+Step 2.5 의 유형별 도구와 실행 절차는 위 "유형별 Step 1 ~ 2.5 진입점" 표가 가리키는 스킬과 절을 따른다.
 
 ### 환경
 
