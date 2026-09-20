@@ -62,6 +62,8 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[llms/chen-2025-eagle-25-boosting-long-context-post-training|Eagle 2.5]]: NVIDIA long-context VLM. 텍스트 우선 샘플링과 progressive post-training, Eagle-Video-110K로 512프레임 Video-MME 72.4를 낸다 (2025, paper)
 - [[llms/nvlabs-eagle|NVlabs/EAGLE (repo)]]: Eagle, Eagle 2, Eagle 2.5, LocateAnything 네 계열의 공식 저장소이자 11개 모델의 model zoo. GR00T N1부터 N1.6까지의 backbone 채택 시점을 월 단위로 기록한다 (2026, repo)
 - [[llms/k2-fsa-omnivoice|k2-fsa/OmniVoice (repo)]]: 600개 이상 언어를 지원하는 diffusion 기반 zero-shot TTS. voice cloning과 voice design을 하나의 API로 제공하고 FlashInfer로 추론을 2~2.9배 가속한다 (2026, repo)
+- [[llms/typesafe-ai-2026-introduction|TypeSafe AI 공식 문서 도입부]]: 첫 System One model인 Jev를 소개한다. Choice, Score, Noul 세 primitive와 질문을 원자 단위로 쪼개 코드에서 조합하는 설계 지침을 다룬다 (2026, article)
+- [[llms/hada-2026-jev-judgment-probability-model|Jev 발표 요약과 토론 (GeekNews)]]: 텍스트 대신 타입이 정해진 판단과 보정된 확률을 병렬 반환하는 Jev. RLCD 학습, 가격과 속도, 평가 설계의 편향 단서를 정리한다 (2026, article)
 
 ## Physical AI (physical-ai)
 
