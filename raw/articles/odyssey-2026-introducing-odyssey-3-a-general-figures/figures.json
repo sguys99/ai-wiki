@@ -1,0 +1,94 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/odyssey-2026-introducing-odyssey-3-a-general/fig01.jpg",
+    "raw": "raw/articles/odyssey-2026-introducing-odyssey-3-a-general-figures/fig01.jpg",
+    "caption": "",
+    "source_url": "https://framerusercontent.com/images/ukXuJU0anDGIC4NS3x3orWD06gY.jpg?width=3000&height=3000",
+    "bytes": 1954092,
+    "width": 3000,
+    "height": 3000,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/odyssey-2026-introducing-odyssey-3-a-general/fig02.jpg",
+    "raw": "raw/articles/odyssey-2026-introducing-odyssey-3-a-general-figures/fig02.jpg",
+    "caption": "",
+    "source_url": "https://framerusercontent.com/images/O3bwQaKUwfM3rebTaX6a9IL32Gg.jpeg?width=640&height=640",
+    "bytes": 65482,
+    "width": 640,
+    "height": 640,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/odyssey-2026-introducing-odyssey-3-a-general/fig03.jpg",
+    "raw": "raw/articles/odyssey-2026-introducing-odyssey-3-a-general-figures/fig03.jpg",
+    "caption": "",
+    "source_url": "https://framerusercontent.com/images/D4BBvZ5VT3DIphQ3pemyUJ4.jpg?width=1942&height=809",
+    "bytes": 138054,
+    "width": 1942,
+    "height": 809,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/odyssey-2026-introducing-odyssey-3-a-general/fig04.png",
+    "raw": "raw/articles/odyssey-2026-introducing-odyssey-3-a-general-figures/fig04.png",
+    "caption": "",
+    "source_url": "https://framerusercontent.com/images/3MyEMMdcZGpKPGdkvxJLs6NmBKI.png?width=540&height=540",
+    "bytes": 87608,
+    "width": 540,
+    "height": 540,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/odyssey-2026-introducing-odyssey-3-a-general/fig05.png",
+    "raw": "raw/articles/odyssey-2026-introducing-odyssey-3-a-general-figures/fig05.png",
+    "caption": "",
+    "source_url": "https://framerusercontent.com/images/eymfPWbAZ07D7RSarP9qqX74HY.png?width=540&height=540",
+    "bytes": 77698,
+    "width": 540,
+    "height": 540,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/odyssey-2026-introducing-odyssey-3-a-general/fig06.png",
+    "raw": "raw/articles/odyssey-2026-introducing-odyssey-3-a-general-figures/fig06.png",
+    "caption": "",
+    "source_url": "https://framerusercontent.com/images/6uQKXYZX2S51Hnxcp6niCCGOr3Q.png?width=540&height=540",
+    "bytes": 68420,
+    "width": 540,
+    "height": 540,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/odyssey-2026-introducing-odyssey-3-a-general/fig07.png",
+    "raw": "raw/articles/odyssey-2026-introducing-odyssey-3-a-general-figures/fig07.png",
+    "caption": "",
+    "source_url": "https://framerusercontent.com/images/7xELAgMXWZN29fTyVF6eaN6Rjcg.png?width=540&height=540",
+    "bytes": 76189,
+    "width": 540,
+    "height": 540,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/odyssey-2026-introducing-odyssey-3-a-general/page-full.png",
+    "raw": "raw/articles/odyssey-2026-introducing-odyssey-3-a-general-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]
