@@ -261,6 +261,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/browser-use-browsercode|BrowserCode (repo)]]: OpenCode fork에 브라우저 도구 `browser_execute(code)` 하나만 더한 코딩 에이전트. CDP로 에이전트가 쓴 JavaScript를 직접 실행한다 (2026, repo)
 - [[agents/magnitudedev-magnitude|Magnitude (repo)]]: 하드웨어를 프로파일링해 맞는 로컬 모델을 추천, 다운로드, 튜닝, 실행하고 Claude Code 등 harness 9종에 loopback API로 연결하는 오픈소스 추론 서버. Apache-2.0 (2026, repo)
 - [[agents/affaan-m-ecc|ECC (repo)]]: 계획, TDD, 새 컨텍스트 리뷰, verification, instinct 학습을 harness에 설치물로 심는 MIT 시스템. agent 68개와 스킬 286개, 훅 런타임, 메모리 vault, AgentShield를 한 플러그인으로 배포한다 (2026, repo)
+- [[agents/trycua-cua|Cua (repo)]]: 에이전트에게 조작할 컴퓨터를 주는 MIT 스택. 데스크톱 드라이버, 클라우드 샌드박스, Apple Silicon VM, 컴퓨터 사용 특화 소형 모델, 벤치마크를 한 저장소에 모았다 (2026, repo)
 
 ## Evaluations (evaluations)
 
