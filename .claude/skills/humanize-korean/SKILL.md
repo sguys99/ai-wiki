@@ -1,15 +1,17 @@
 ---
 name: humanize-korean
-version: "1.5.0"
+version: "1.6.1"
 description: AI(ChatGPT·Claude·Gemini 등)가 쓴 한글 텍스트를 "사람이 쓴 글처럼" 윤문해주는 오케스트레이터 스킬. 번역투·영어 인용 과다·기계적 병렬·관용구·피동태 남용·접속사 남발·리듬 균일성·이모지/불릿 과다 등 10대 카테고리 40+ AI 티 패턴을 탐지·분류해 내용은 한 글자도 건드리지 않고 문체·리듬·표현만 자연스러운 한국어로 재작성한다. 트리거 — "AI 티 없애줘", "AI 같은 글 자연스럽게", "GPT/ChatGPT 문체", "AI 번역투 고쳐", "사람이 쓴 것처럼 윤문", "AI 윤문", "ChatGPT 티 제거", "한글 AI 탐지·윤문", "AI 글 사람처럼", "번역투 제거", "영어 인용 많은 글 윤문", "AI 글 티 안 나게", "휴머나이저", "humanize Korean", "AI detector bypass 한글". 후속 작업 — "특정 카테고리만 다시", "윤문 강도 조정", "장르 바꿔서", "이 문단만", "2차 윤문" 도 모두 이 스킬. 단순 맞춤법·오탈자 교정은 직접 처리, 번역은 번역 스킬, 내용 추가·삭제를 동반한 재작성은 별도 집필 스킬.
 ---
 
-# Humanize Korean — AI 한글 티 제거 오케스트레이터 (v1.5)
+# Humanize Korean — AI 한글 티 제거 오케스트레이터 (v1.6.1)
 
+> **v1.6.1 현행** — Fast 경로의 도구 호출을 **3회로 캡**하고, monolith가 읽는 룰북을 `references/quick-rules.md` 하나로 좁혔다. 분류 체계는 v2.0 자산(taxonomy 확장, post-editese 지표)을 별도로 유지한다. 아래 v1.5 고지는 설계 배경 이력이다.
+>
 > **v1.5 변경 고지 (2026-04-26) — v1.1 베이스라인 + Monolith Fast Path**
 > v1.2(voice profile)·v1.3(candidate pool)·v1.4(역할별 모델 분산)는 모두 핫패스 비용을 잡지 못해 5,000자 입력에 25분이 걸렸습니다. v1.5는 **v1.1 단순 구조로 롤백한 뒤 단일 호출 monolith 에이전트만 추가**한 설계입니다.
 >
-> - **Fast 모드(디폴트)** — `humanize-monolith` 에이전트가 한 콜에서 탐지·윤문·자체검증 일괄 처리. 도구 호출 4~5회. 5,000자 이하 wall-clock 2~3분 목표.
+> - **Fast 모드(디폴트)** — `humanize-monolith` 에이전트가 한 콜에서 탐지·윤문·자체검증 일괄 처리. 도구 호출 3회 캡(v1.6.1). 5,000자 이하 wall-clock 2~3분 목표.
 > - **Strict 모드(`--strict`)** — v1.1 5인 파이프라인 그대로(detector·rewriter·auditor·reviewer + taxonomist 분류 자산 유지). 정밀 검증·장문(8,000자+) 처리·etc.
 > - **삭제됨**: voice profile·candidate pool·promotion-checklist·sample-collection·권한 위계 §1~§6.
 > - **유지됨**: 분류 체계 본진(C-9·C-10·D-7·H-3·I-3·I-4 등 v1.2~v1.3.1 신규 패턴)·rewriting-playbook·5인 에이전트 정의(strict 모드 백본).
@@ -163,14 +165,23 @@ v1.1 5인 파이프라인 그대로. 검증 분리·재윤문 루프가 의미 �
 
 **모델:** 모두 `model: opus` 통일 (v1.1 베이스라인). 모델 다운그레이드는 v1.4에서 시도했으나 도구 호출 chain이 진짜 병목이라 효과 미미했음.
 
-**에이전트 정의 위치:** 저장소 루트 `agents/`에 12종 정의(플러그인 컨벤션). Claude Code 탐색 경로:
-1. 플러그인 설치 시 — `humanize-korean` 플러그인이 `agents/`를 번들로 제공(전역).
-2. 스크립트 설치 시 — `install.sh`가 `agents/*.md`를 `~/.claude/agents/`에 심링크(전역).
+**에이전트 정의 위치:** 이 저장소는 `.claude/agents/`에 12개를 둔다. 플러그인으로 배포할 때는 저장소 루트 `agents/`가 컨벤션이고, 스크립트 설치 시에는 `install.sh`가 `~/.claude/agents/`로 심링크한다.
 
-필요 에이전트 6종:
-- `humanize-monolith` (v1.5 신규, fast 전용)
-- `ai-tell-detector` · `korean-style-rewriter` · `content-fidelity-auditor` · `naturalness-reviewer` (strict 5인 중 4명)
-- `korean-ai-tell-taxonomist` (분류 체계 유지·확장 — 본 스킬 실행 중에는 호출 안 됨, 별도 명령으로만 트리거)
+12개 중 이 스킬이 실행 중에 호출하는 것은 5개다.
+
+| 에이전트 | 쓰이는 곳 |
+|---|---|
+| `humanize-monolith` | Fast 모드 (단일 호출) |
+| `ai-tell-detector` | Strict Phase A |
+| `korean-style-rewriter` | Strict Phase B |
+| `content-fidelity-auditor` | Strict Phase C |
+| `naturalness-reviewer` | Strict Phase C |
+
+나머지 7개는 **유지보수와 확장 전용**이라 윤문 실행 중에는 호출되지 않는다. 별도 명령으로만 트리거한다.
+
+- `korean-ai-tell-taxonomist`, `taxonomy-gap-analyzer`, `translationese-research-distiller`, `korean-translation-scholar` — 분류 체계 유지와 승격
+- `post-editese-metric-engineer`, `quick-rules-integrator` — 지표와 룰북 통합
+- `humanize-web-architect` — 웹 서비스 확장 설계
 
 ## 테스트 시나리오
 
