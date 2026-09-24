@@ -1,0 +1,304 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/kim-2026-safe-embodied-ai-for-long-horizon/fig01.png",
+    "raw": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/fig01.png",
+    "page": 3,
+    "caption": "Fig. 1. Motivating illustration of long-horizon manipulation safety as a cross-layer problem. A multi-stage tabletop manipulation task can appear locally competent at each step while hidden risk accumulates across grounding, action generation, and contact-rich execution. Small early errors may there",
+    "bbox": [
+      71.76,
+      60.24,
+      540.25,
+      425.51
+    ],
+    "bbox_norm": [
+      0.1173,
+      0.0761,
+      0.8828,
+      0.5373
+    ],
+    "dpi": 300,
+    "area_frac": 0.353,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/kim-2026-safe-embodied-ai-for-long-horizon/fig02.png",
+    "raw": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/fig02.png",
+    "page": 8,
+    "caption": "Fig. 2. Intervention-locus organization of the survey. Planning-time methods shape task representations before rollout, policy-time methods constrain or align action generation before commitment, and execution-time methods monitor, gate, recover, or regulate behavior during physical interaction.",
+    "bbox": [
+      106.0,
+      60.23,
+      506.01,
+      573.79
+    ],
+    "bbox_norm": [
+      0.1732,
+      0.0761,
+      0.8268,
+      0.7245
+    ],
+    "dpi": 300,
+    "area_frac": 0.424,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/kim-2026-safe-embodied-ai-for-long-horizon/fig03.png",
+    "raw": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/fig03.png",
+    "page": 13,
+    "caption": "Fig. 3. Overview of planning-time safety. Section 3.1 grounds goals, initial states, constraints, and executable task intent into inspectable planning objects. Section 3.2 then organizes those objects into a long-horizon plan structure through decomposition, verification, and executability checks. S",
+    "bbox": [
+      85.05,
+      64.84,
+      532.37,
+      270.33
+    ],
+    "bbox_norm": [
+      0.139,
+      0.0819,
+      0.8699,
+      0.3413
+    ],
+    "dpi": 300,
+    "area_frac": 0.19,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/kim-2026-safe-embodied-ai-for-long-horizon/fig04.png",
+    "raw": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/fig04.png",
+    "page": 19,
+    "caption": "Fig. 4. Graphical overview of policy-time safety. Policy substrates determine the policy class Π and the interfaces available before environmental commitment (Section 4.1 ). Safety is then integrated either through explicit constraints that restrict admissible behavior during policy generation (Sect",
+    "bbox": [
+      74.04,
+      60.24,
+      537.95,
+      346.41
+    ],
+    "bbox_norm": [
+      0.121,
+      0.0761,
+      0.879,
+      0.4374
+    ],
+    "dpi": 300,
+    "area_frac": 0.274,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/kim-2026-safe-embodied-ai-for-long-horizon/fig05.png",
+    "raw": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/fig05.png",
+    "page": 24,
+    "caption": "Fig. 5. Graphical overview of execution-time safety. Once behavior is already being executed in the world, safety depends on recognizing emerging risk during rollout, deciding whether to gate or redirect behavior, restoring task progress after disruption, and regulating physical interaction once con",
+    "bbox": [
+      74.04,
+      60.24,
+      537.95,
+      364.24
+    ],
+    "bbox_norm": [
+      0.121,
+      0.0761,
+      0.879,
+      0.4599
+    ],
+    "dpi": 300,
+    "area_frac": 0.291,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/kim-2026-safe-embodied-ai-for-long-horizon/fig06.png",
+    "raw": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/fig06.png",
+    "page": 44,
+    "caption": "Fig. 6. Illustration of roadmap for Section 7 . Section 7.1 identifies five pathways toward cross-layer safety that bridge gaps in safety evidence from the prior literature. Section 7.2 highlights adjacent opportunities from semantic and multimodal safety, deployment assurance, and safety data/evalu",
+    "bbox": [
+      71.76,
+      60.24,
+      540.23,
+      372.7
+    ],
+    "bbox_norm": [
+      0.1173,
+      0.0761,
+      0.8827,
+      0.4706
+    ],
+    "dpi": 300,
+    "area_frac": 0.302,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/_overlay/p44.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/kim-2026-safe-embodied-ai-for-long-horizon/tab01.png",
+    "raw": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/tab01.png",
+    "page": 4,
+    "caption": "Table 1. Qualitative comparison of representative embodied robotics domains for safety analysis.",
+    "bbox": [
+      71.76,
+      84.95,
+      540.24,
+      160.86
+    ],
+    "bbox_norm": [
+      0.1173,
+      0.1073,
+      0.8827,
+      0.2031
+    ],
+    "dpi": 300,
+    "area_frac": 0.073,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/_overlay/p04.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/kim-2026-safe-embodied-ai-for-long-horizon/tab02.png",
+    "raw": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/tab02.png",
+    "page": 4,
+    "caption": "Table 2. Positioning of this survey relative to adjacent surveys.",
+    "bbox": [
+      71.76,
+      246.75,
+      540.24,
+      473.09
+    ],
+    "bbox_norm": [
+      0.1173,
+      0.3116,
+      0.8827,
+      0.5973
+    ],
+    "dpi": 300,
+    "area_frac": 0.219,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/_overlay/p04.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/kim-2026-safe-embodied-ai-for-long-horizon/tab03.png",
+    "raw": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/tab03.png",
+    "page": 9,
+    "caption": "Table 3. Taxonomy of evidence categories and their claim boundaries.",
+    "bbox": [
+      71.76,
+      60.64,
+      540.24,
+      254.71
+    ],
+    "bbox_norm": [
+      0.1173,
+      0.0766,
+      0.8827,
+      0.3216
+    ],
+    "dpi": 300,
+    "area_frac": 0.188,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/kim-2026-safe-embodied-ai-for-long-horizon/tab04.png",
+    "raw": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/tab04.png",
+    "page": 11,
+    "caption": "Table 4. Lifecycle intervention map for long-horizon robotic manipulation, covering the main safety mechanisms reviewed in Sections 3–5. Rows follow the manuscript’s current",
+    "bbox": [
+      140.88,
+      33.6,
+      458.88,
+      774.24
+    ],
+    "bbox_norm": [
+      0.2302,
+      0.0424,
+      0.7498,
+      0.9776
+    ],
+    "dpi": 300,
+    "area_frac": 0.486,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/_overlay/p11.png",
+    "duplicate_pages": [
+      12
+    ]
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/kim-2026-safe-embodied-ai-for-long-horizon/tab05.png",
+    "raw": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/tab05.png",
+    "page": 36,
+    "caption": "Table 5. Representative capability-oriented benchmarks, diagnostic manipulation benchmarks, and safety-aware evaluation protocols organized by evidence object and claim boundary.",
+    "bbox": [
+      98.04,
+      41.52,
+      507.84,
+      766.32
+    ],
+    "bbox_norm": [
+      0.1602,
+      0.0524,
+      0.8298,
+      0.9676
+    ],
+    "dpi": 300,
+    "area_frac": 0.613,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/kim-2026-safe-embodied-ai-for-long-horizon-figures/_overlay/p36.png"
+  }
+]

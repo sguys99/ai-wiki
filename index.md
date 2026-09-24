@@ -191,6 +191,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/3587jjh-huro|HuRo (3587jjh, repo)]]: HuRo 논문의 robotization 파이프라인 공개 저장소. 원본 에고센트릭 영상을 LeRobot V2.0 데이터셋으로 바꾸는 10단계 스크립트 (2026, repo)
 - [[physical-ai/gaba-2026-a-comprehensive-review-of-generative|Generative Physical AI 종합 서베이]]: RFM, VLA, LBM, DPM, WFM 다섯 계열로 GPAI를 분류하고 일곱 분야 배치 사례와 한계 9가지를 정리한다 (2026, paper)
 - [[physical-ai/odyssey-2026-introducing-odyssey-3-a-general|Odyssey-3 (Odyssey)]]: 하나의 foundation world model 위에 action decoder만 과제별로 학습시켜 로봇 팔, humanoid, 자동차, 드론, 게임을 제어했다는 발표문 (2026, article)
+- [[physical-ai/kim-2026-safe-embodied-ai-for-long-horizon|Safe Embodied AI (Survey)]]: long-horizon manipulation 안전 문헌을 intervention locus와 evidence boundary 두 기준으로 재배치한 서베이 (2026, paper)
 
 ## Agents (agents)
 
