@@ -77,6 +77,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/sapkota-2025-vision-language-action-vla-models|VLA Concepts, Progress, Applications, Challenges (Survey)]]: 세 토큰 구조로 VLA 80편 이상을 정리한 서베이. 45종 타임라인, 51종 분류표, 도전-해법 대응표 수록 (2025, paper)
 - [[physical-ai/hou-2026-world-model-for-robot-learning|World Model for Robot Learning (Survey)]]: NTU MARS 주도 9개 기관의 world model 서베이. policy 결합 방식 5분류로 문헌을 가르고 실행 가능한 미래 예측을 병목으로 진단한다 (2026, paper)
 - [[physical-ai/li-2025-a-comprehensive-survey-on-world|A Comprehensive Survey on World Models for Embodied AI]]: 로보틱스, 자율주행, 범용 비디오 세 분야의 world model을 공통 분류 기준으로 정리한 17페이지 서베이 (2025, paper)
+- [[physical-ai/jena-2026-do-world-models-make-better|Do World Models Make Better Robots? (Survey)]]: 로봇 평가 벤치마크 160개를 모아 world model과 VLA를 맞대결시키는 벤치마크가 11개뿐임을 보인 평가 서베이 (2026, paper)
 - [[physical-ai/luo-2025-sonic-supersizing-motion-tracking|SONIC (NVIDIA GEAR)]]: motion tracking을 humanoid 제어의 기본 과제로 놓고 파라미터 42M, 모션 1억 프레임으로 키운 whole-body control foundation model (2025, paper)
 - [[physical-ai/nvlabs-gr00t-wholebodycontrol|GR00T-WholeBodyControl (repo)]]: SONIC의 공식 구현. Isaac Lab 학습 코드, Jetson Orin용 C++/TensorRT 배포 스택, Unitree G1 체크포인트 2종이 한 저장소에 있다 (2026, repo)
 - [[physical-ai/nvlabs-2026-gear-sonic-project-page|GEAR-SONIC 프로젝트 페이지]]: SONIC 공식 데모 사이트. 텍스트는 abstract뿐이고 실질 내용은 영상이라, 수치로는 판단하기 어려운 동작 품질을 육안으로 확인하는 용도다 (2026, article)
@@ -146,6 +147,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/genesis-embodied-ai-genesis-world|Genesis World (Genesis AI, repo)]]: multi-physics 엔진, 렌더러 Nyx, 컴파일러 Quadrants를 한 Python API로 묶은 오픈소스 시뮬레이션 플랫폼. 예제와 설치만 다루고 성능 수치는 없다 (2026, repo)
 - [[physical-ai/wang-2026-chain-of-interaction-benchmark-coin|COIN (BIGAI, USTC)]]: 환경을 건드려 정보를 얻고 계획을 고치는 interactive reasoning을 재는 manipulation 벤치마크. 과제 90개에서 사람은 40%, 최고 모델은 3.26%다 (2026, paper)
 - [[physical-ai/liu-2026-libero-recover-beyond-task-success-towards|LIBERO-Recover (DUT, Beta Infinity)]]: VLA와 WAM의 실제 실패 2,117건을 네 단계로 나눈 복구 벤치마크. LIBERO 90%대 모델 6종이 5.8%에서 34.0%에 그친다 (2026, paper)
+- [[physical-ai/lin-2026-failsafe-reasoning-and-recovery-from|FailSafe (NTU, A*STAR, AI2, UW)]]: ManiSkill에서 실패와 실행 가능한 7-DoF 회복 명령 13만 건을 자동 수집하는 파이프라인. VLA 3종 성공률을 최대 22.6%p 올린다 (2026, paper)
 - [[physical-ai/xu-2020-fast-lio-a-fast-robust-lidar-inertial|FAST-LIO (HKU MaRS)]]: LiDAR와 IMU를 iterated EKF로 융합하는 LiDAR-inertial odometry. Kalman gain 역행렬을 상태 차원으로 옮겨 실시간으로 동작한다 (2020, paper)
 - [[physical-ai/hku-mars-fast-lio|FAST_LIO (hku-mars, repo)]]: FAST-LIO 계열 공식 구현. direct 방식과 ikd-Tree 기반 LiDAR-inertial odometry의 ROS 패키지, GPL-2.0 (2020, repo)
 - [[physical-ai/taeyoung-2022-fast-lio-paper-review|FAST-LIO 리뷰 (Taeyoung's Blog)]]: FAST-LIO 논문의 수식 전개를 단계별로 풀어 쓴 한국어 리뷰. iterated error state Kalman filter의 update 절차를 논문 절과 짝지어 해설한다 (2022, article)
@@ -192,6 +194,8 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/gaba-2026-a-comprehensive-review-of-generative|Generative Physical AI 종합 서베이]]: RFM, VLA, LBM, DPM, WFM 다섯 계열로 GPAI를 분류하고 일곱 분야 배치 사례와 한계 9가지를 정리한다 (2026, paper)
 - [[physical-ai/odyssey-2026-introducing-odyssey-3-a-general|Odyssey-3 (Odyssey)]]: 하나의 foundation world model 위에 action decoder만 과제별로 학습시켜 로봇 팔, humanoid, 자동차, 드론, 게임을 제어했다는 발표문 (2026, article)
 - [[physical-ai/kim-2026-safe-embodied-ai-for-long-horizon|Safe Embodied AI (Survey)]]: long-horizon manipulation 안전 문헌을 intervention locus와 evidence boundary 두 기준으로 재배치한 서베이 (2026, paper)
+- [[physical-ai/lou-2026-know-your-body-a-harness|KnowBody (Nanjing University, Ant Group)]]: 가중치를 고정한 VLM에 질의 가능한 신체 기하 모델을 붙인 harness. 신체 추정을 고치면 그에 의존하던 경험 규칙을 다시 검증해 재사용한다 (2026, paper)
+- [[physical-ai/yuan-2026-representation-world-model-learning-states|RWM (Tsinghua IIIS)]]: 시작과 목표 표현을 interpolation한 경로에 IDM 지도를 걸어 추론 시점 탐색 없이 planning하는 world model (2026, paper)
 
 ## Agents (agents)
 
