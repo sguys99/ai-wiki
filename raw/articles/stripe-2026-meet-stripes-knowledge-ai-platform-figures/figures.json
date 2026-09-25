@@ -1,0 +1,110 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/stripe-2026-meet-stripes-knowledge-ai-platform/fig01.gif",
+    "raw": "raw/articles/stripe-2026-meet-stripes-knowledge-ai-platform-figures/fig01.gif",
+    "caption": "",
+    "source_url": "https://stripe.dev/images/meet-stripes-knowledge-ai-platform/image5.gif",
+    "bytes": 765621,
+    "width": 1202,
+    "height": 900,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/stripe-2026-meet-stripes-knowledge-ai-platform/fig02.png",
+    "raw": "raw/articles/stripe-2026-meet-stripes-knowledge-ai-platform-figures/fig02.png",
+    "caption": "",
+    "source_url": "https://stripe.dev/images/meet-stripes-knowledge-ai-platform/image3.png",
+    "bytes": 447763,
+    "width": 1999,
+    "height": 1284,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/stripe-2026-meet-stripes-knowledge-ai-platform/fig03.png",
+    "raw": "raw/articles/stripe-2026-meet-stripes-knowledge-ai-platform-figures/fig03.png",
+    "caption": "",
+    "source_url": "https://stripe.dev/images/meet-stripes-knowledge-ai-platform/image4.png",
+    "bytes": 123909,
+    "width": 1230,
+    "height": 902,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/stripe-2026-meet-stripes-knowledge-ai-platform/fig04.png",
+    "raw": "raw/articles/stripe-2026-meet-stripes-knowledge-ai-platform-figures/fig04.png",
+    "caption": "",
+    "source_url": "https://stripe.dev/images/meet-stripes-knowledge-ai-platform/image1.png",
+    "bytes": 198572,
+    "width": 1600,
+    "height": 1060,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/stripe-2026-meet-stripes-knowledge-ai-platform/fig05.png",
+    "raw": "raw/articles/stripe-2026-meet-stripes-knowledge-ai-platform-figures/fig05.png",
+    "caption": "",
+    "source_url": "https://stripe.dev/images/meet-stripes-knowledge-ai-platform/image2.png",
+    "bytes": 320591,
+    "width": 2842,
+    "height": 1782,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/stripe-2026-meet-stripes-knowledge-ai-platform/page-full.png",
+    "raw": "raw/articles/stripe-2026-meet-stripes-knowledge-ai-platform-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/stripe-2026-meet-stripes-knowledge-ai-platform/crop01.png",
+    "raw": "raw/articles/stripe-2026-meet-stripes-knowledge-ai-platform-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/stripe-2026-meet-stripes-knowledge-ai-platform/crop02.png",
+    "raw": "raw/articles/stripe-2026-meet-stripes-knowledge-ai-platform-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/stripe-2026-meet-stripes-knowledge-ai-platform/crop03.png",
+    "raw": "raw/articles/stripe-2026-meet-stripes-knowledge-ai-platform-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/stripe-2026-meet-stripes-knowledge-ai-platform/crop04.png",
+    "raw": "raw/articles/stripe-2026-meet-stripes-knowledge-ai-platform-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/stripe-2026-meet-stripes-knowledge-ai-platform/crop05.png",
+    "raw": "raw/articles/stripe-2026-meet-stripes-knowledge-ai-platform-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

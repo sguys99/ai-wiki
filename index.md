@@ -267,6 +267,9 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/magnitudedev-magnitude|Magnitude (repo)]]: 하드웨어를 프로파일링해 맞는 로컬 모델을 추천, 다운로드, 튜닝, 실행하고 Claude Code 등 harness 9종에 loopback API로 연결하는 오픈소스 추론 서버. Apache-2.0 (2026, repo)
 - [[agents/affaan-m-ecc|ECC (repo)]]: 계획, TDD, 새 컨텍스트 리뷰, verification, instinct 학습을 harness에 설치물로 심는 MIT 시스템. agent 68개와 스킬 286개, 훅 런타임, 메모리 vault, AgentShield를 한 플러그인으로 배포한다 (2026, repo)
 - [[agents/trycua-cua|Cua (repo)]]: 에이전트에게 조작할 컴퓨터를 주는 MIT 스택. 데스크톱 드라이버, 클라우드 샌드박스, Apple Silicon VM, 컴퓨터 사용 특화 소형 모델, 벤치마크를 한 저장소에 모았다 (2026, repo)
+- [[agents/stripe-2026-meet-stripes-knowledge-ai-platform|Kai: Stripe의 지식 AI 플랫폼]]: 비개발자 지식 업무용 사내 에이전트. API, Agent Studio, 제품용 에이전트와 공유하는 실행 환경 세 계층으로 1,000개 이상의 스킬을 연결한다 (2026, article)
+- [[agents/langchain-2026-how-stripe-built-kai-on|Stripe가 Deep Agents로 Kai를 만든 방법]]: Kai의 harness를 LangChain 쪽에서 기술한 사례 연구. filesystem, 샌드박스, 요약 미들웨어와 스킬 150개 초과 시 품질 저하 관찰을 담았다 (2026, article)
+- [[agents/hada-2026-stripe-kai-internal-ai-platform|Stripe Kai (GeekNews)]]: Kai 발표문의 한국어 요약과 Hacker News 반응. 영업 성과 수치의 내부 정합성과 발표 자료 완성도에 대한 반론이 모여 있다 (2026, article)
 
 ## Evaluations (evaluations)
 
