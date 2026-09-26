@@ -77,6 +77,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/sapkota-2025-vision-language-action-vla-models|VLA Concepts, Progress, Applications, Challenges (Survey)]]: 세 토큰 구조로 VLA 80편 이상을 정리한 서베이. 45종 타임라인, 51종 분류표, 도전-해법 대응표 수록 (2025, paper)
 - [[physical-ai/hou-2026-world-model-for-robot-learning|World Model for Robot Learning (Survey)]]: NTU MARS 주도 9개 기관의 world model 서베이. policy 결합 방식 5분류로 문헌을 가르고 실행 가능한 미래 예측을 병목으로 진단한다 (2026, paper)
 - [[physical-ai/li-2025-a-comprehensive-survey-on-world|A Comprehensive Survey on World Models for Embodied AI]]: 로보틱스, 자율주행, 범용 비디오 세 분야의 world model을 공통 분류 기준으로 정리한 17페이지 서베이 (2025, paper)
+- [[physical-ai/jena-2026-do-world-models-make-better|Do World Models Make Better Robots? (Survey)]]: 로봇 평가 벤치마크 160개를 모아 world model과 VLA를 맞대결시키는 벤치마크가 11개뿐임을 보인 평가 서베이 (2026, paper)
 - [[physical-ai/luo-2025-sonic-supersizing-motion-tracking|SONIC (NVIDIA GEAR)]]: motion tracking을 humanoid 제어의 기본 과제로 놓고 파라미터 42M, 모션 1억 프레임으로 키운 whole-body control foundation model (2025, paper)
 - [[physical-ai/nvlabs-gr00t-wholebodycontrol|GR00T-WholeBodyControl (repo)]]: SONIC의 공식 구현. Isaac Lab 학습 코드, Jetson Orin용 C++/TensorRT 배포 스택, Unitree G1 체크포인트 2종이 한 저장소에 있다 (2026, repo)
 - [[physical-ai/nvlabs-2026-gear-sonic-project-page|GEAR-SONIC 프로젝트 페이지]]: SONIC 공식 데모 사이트. 텍스트는 abstract뿐이고 실질 내용은 영상이라, 수치로는 판단하기 어려운 동작 품질을 육안으로 확인하는 용도다 (2026, article)
