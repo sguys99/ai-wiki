@@ -1,0 +1,94 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/langchain-2026-how-stripe-built-kai-on/fig01.jpg",
+    "raw": "raw/articles/langchain-2026-how-stripe-built-kai-on-figures/fig01.jpg",
+    "caption": "",
+    "source_url": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6a10d5ed01e84b2e809523b1_sofia-sulikowski.jpeg",
+    "bytes": 81918,
+    "width": 512,
+    "height": 512,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/langchain-2026-how-stripe-built-kai-on/fig02.png",
+    "raw": "raw/articles/langchain-2026-how-stripe-built-kai-on-figures/fig02.png",
+    "caption": "",
+    "source_url": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6aac050276d05ec9f2a755d8_included-health.png",
+    "bytes": 50275,
+    "width": 1200,
+    "height": 675,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/langchain-2026-how-stripe-built-kai-on/fig03.png",
+    "raw": "raw/articles/langchain-2026-how-stripe-built-kai-on-figures/fig03.png",
+    "caption": "",
+    "source_url": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6aa22070277878d400373d95_credit_genie_case%20study2.png",
+    "bytes": 71770,
+    "width": 1200,
+    "height": 675,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/langchain-2026-how-stripe-built-kai-on/fig04.jpg",
+    "raw": "raw/articles/langchain-2026-how-stripe-built-kai-on-figures/fig04.jpg",
+    "caption": "",
+    "source_url": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6aa1b473b3afd2e4dd5c2a15_Kara_Kadri.jpeg",
+    "bytes": 673494,
+    "width": 2316,
+    "height": 3088,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/langchain-2026-how-stripe-built-kai-on/fig05.png",
+    "raw": "raw/articles/langchain-2026-how-stripe-built-kai-on-figures/fig05.png",
+    "caption": "",
+    "source_url": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6a5fb9060b07c60550bfa079_apollo-ai-assistant.png",
+    "bytes": 64723,
+    "width": 1200,
+    "height": 675,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/langchain-2026-how-stripe-built-kai-on/page-full.png",
+    "raw": "raw/articles/langchain-2026-how-stripe-built-kai-on-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/langchain-2026-how-stripe-built-kai-on/crop01.png",
+    "raw": "raw/articles/langchain-2026-how-stripe-built-kai-on-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/langchain-2026-how-stripe-built-kai-on/crop02.png",
+    "raw": "raw/articles/langchain-2026-how-stripe-built-kai-on-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/langchain-2026-how-stripe-built-kai-on/crop03.png",
+    "raw": "raw/articles/langchain-2026-how-stripe-built-kai-on-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
