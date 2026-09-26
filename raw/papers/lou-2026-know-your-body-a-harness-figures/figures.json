@@ -1,0 +1,331 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/lou-2026-know-your-body-a-harness/fig01.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1. Knowing the task is not knowing the body. A VLM is able to recognize what to write, but the robot receives an end- effector pose while writing acts at the held tip. K NOW B ODY makes this command–effect relation explicit for action decision and out- comes interpretation.",
+    "bbox": [
+      306.12,
+      192.0,
+      562.92,
+      394.08
+    ],
+    "bbox_norm": [
+      0.5002,
+      0.2424,
+      0.9198,
+      0.4976
+    ],
+    "dpi": 300,
+    "area_frac": 0.107,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/lou-2026-know-your-body-a-harness/fig02.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/fig02.png",
+    "page": 2,
+    "caption": "Figure 2. KnowBody separates online state feedback from validated cross-episode revision. At each decision, the VLM receives the task, current observations, current state M , eligible rules K , and selected original evidence E . It queries the partial body model, issues waypoints and gripper command",
+    "bbox": [
+      46.4,
+      25.82,
+      612.0,
+      396.21
+    ],
+    "bbox_norm": [
+      0.0758,
+      0.0326,
+      1.0,
+      0.5003
+    ],
+    "dpi": 300,
+    "area_frac": 0.432,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/lou-2026-know-your-body-a-harness/fig03.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3. Action-relevant relations exposed by the body model. (a) Achieved robot motion is paired with the displacement of stationary landmarks in the wrist image, supporting visual-direction queries within the observed domain. (b) Permanent end-effector geometry is composed with the current attach",
+    "bbox": [
+      0.0,
+      66.0,
+      559.5,
+      269.48
+    ],
+    "bbox_norm": [
+      0.0,
+      0.0833,
+      0.9142,
+      0.3403
+    ],
+    "dpi": 300,
+    "area_frac": 0.235,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/lou-2026-know-your-body-a-harness/fig04.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/fig04.png",
+    "page": 7,
+    "caption": "Figure 4. Real-robot evaluation setup. A Franka Research 3 with a Robotiq 2F-85 gripper operates over the worktable. A ZED Mini provides the wrist view, while two ZED 2i cameras provide third-person views. The same robot and camera arrangement is used in both evaluation protocols.",
+    "bbox": [
+      316.84,
+      69.65,
+      557.34,
+      235.55
+    ],
+    "bbox_norm": [
+      0.5177,
+      0.0879,
+      0.9107,
+      0.2974
+    ],
+    "dpi": 300,
+    "area_frac": 0.082,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/lou-2026-know-your-body-a-harness/fig05.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/fig05.png",
+    "page": 8,
+    "caption": "Figure 5. Task examples and two evaluation protocols. Left: illustrative development sequences for duck placement, apple pushing, writing, and pouring. Upper right: reasoning rounds for five successive successful completions per task under the continual-interaction protocol. Knowledge is retained ac",
+    "bbox": [
+      52.5,
+      65.97,
+      559.54,
+      378.54
+    ],
+    "bbox_norm": [
+      0.0858,
+      0.0833,
+      0.9143,
+      0.478
+    ],
+    "dpi": 300,
+    "area_frac": 0.327,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p08.png",
+    "duplicate_pages": [
+      9
+    ]
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/lou-2026-know-your-body-a-harness/tab01.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/tab01.png",
+    "page": 8,
+    "caption": "Table 1. Task success on the DROID setup. Entries report suc- cessful trials over total attempts.",
+    "bbox": [
+      338.61,
+      505.42,
+      532.15,
+      571.56
+    ],
+    "bbox_norm": [
+      0.5533,
+      0.6382,
+      0.8695,
+      0.7217
+    ],
+    "dpi": 300,
+    "area_frac": 0.026,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p08.png"
+  },
+  {
+    "id": "taba1",
+    "label": "Table A1",
+    "kind": "table",
+    "file": "assets/lou-2026-know-your-body-a-harness/taba1.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/taba1.png",
+    "page": 12,
+    "caption": "Table A1. The four clocks used by the harness. A read-only query can occur within a model call without advancing the physical- interaction clock.",
+    "bbox": [
+      52.5,
+      285.98,
+      561.15,
+      451.86
+    ],
+    "bbox_norm": [
+      0.0858,
+      0.3611,
+      0.9169,
+      0.5705
+    ],
+    "dpi": 300,
+    "area_frac": 0.174,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tabb1",
+    "label": "Table B1",
+    "kind": "table",
+    "file": "assets/lou-2026-know-your-body-a-harness/tabb1.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/tabb1.png",
+    "page": 14,
+    "caption": "Table B1. Representation contract. “Model view” is the selected projection used for a decision, not necessarily the complete stored object.",
+    "bbox": [
+      52.5,
+      87.32,
+      559.5,
+      350.72
+    ],
+    "bbox_norm": [
+      0.0858,
+      0.1103,
+      0.9142,
+      0.4428
+    ],
+    "dpi": 300,
+    "area_frac": 0.276,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tabc1",
+    "label": "Table C1",
+    "kind": "table",
+    "file": "assets/lou-2026-know-your-body-a-harness/tabc1.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/tabc1.png",
+    "page": 16,
+    "caption": "Table C1. Text blocks for one planner call, in serialization order. The final method-context block carries the durable task contract, remaining resources, unresolved reviews, and continuation provenance.",
+    "bbox": [
+      52.5,
+      102.26,
+      559.5,
+      325.57
+    ],
+    "bbox_norm": [
+      0.0858,
+      0.1291,
+      0.9142,
+      0.4111
+    ],
+    "dpi": 300,
+    "area_frac": 0.234,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p16.png"
+  },
+  {
+    "id": "taba2",
+    "label": "Table A2",
+    "kind": "table",
+    "file": "assets/lou-2026-know-your-body-a-harness/taba2.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/taba2.png",
+    "page": 13,
+    "caption": "Table A2. Authority boundaries in KnowBody. Model assessments can propose state changes or candidates, whereas execution and publication pass through separate contracts.",
+    "bbox": [
+      52.5,
+      102.26,
+      549.66,
+      215.98
+    ],
+    "bbox_norm": [
+      0.0858,
+      0.1291,
+      0.8981,
+      0.2727
+    ],
+    "dpi": 300,
+    "area_frac": 0.117,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tabb2",
+    "label": "Table B2",
+    "kind": "table",
+    "file": "assets/lou-2026-know-your-body-a-harness/tabb2.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/tabb2.png",
+    "page": 14,
+    "caption": "Table B2. Choice-specific planner output.",
+    "bbox": [
+      311.25,
+      589.37,
+      559.5,
+      710.31
+    ],
+    "bbox_norm": [
+      0.5086,
+      0.7442,
+      0.9142,
+      0.8969
+    ],
+    "dpi": 300,
+    "area_frac": 0.062,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tabc2",
+    "label": "Table C2",
+    "kind": "table",
+    "file": "assets/lou-2026-know-your-body-a-harness/tabc2.png",
+    "raw": "raw/papers/lou-2026-know-your-body-a-harness-figures/tabc2.png",
+    "page": 17,
+    "caption": "Table C2. Bounded model-facing inputs. These limits bound context, not the number of physical trials.",
+    "bbox": [
+      42.96,
+      87.46,
+      312.0,
+      227.76
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.1104,
+      0.5098,
+      0.2876
+    ],
+    "dpi": 300,
+    "area_frac": 0.078,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/lou-2026-know-your-body-a-harness-figures/_overlay/p17.png"
+  }
+]
