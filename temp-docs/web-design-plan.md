@@ -1,16 +1,120 @@
-# AI Wiki → GitHub Pages 웹사이트 상세 설계 계획
+# AI Wiki → GitHub Pages 웹사이트 (사양과 이력)
 
 `ai-wiki`(Karpathy LLM Wiki 패턴 기반 개인 AI 지식 베이스)를 **저장소 자체의 GitHub Pages**로
-배포해 웹·모바일에서 `index.md` 카탈로그를 둘러보고 개별 wiki 페이지를 읽을 수 있게 한다.
-디자인 방향은 **Constellation(지식 그래프)**, 한글 폰트는 **Pretendard**, 전체 검색·라이트/다크·
-TOC·교차링크를 갖추며 웹/모바일을 동시에 고려한다.
-
-원본 콘텐츠(`wiki/`, `sources/`, `raw/`, `index.md`)는 **단일 소스로 유지하며 읽기 전용**,
+배포해 웹·모바일에서 `index.md` 카탈로그를 둘러보고 개별 wiki 페이지를 읽게 한다.
+원본 콘텐츠(`wiki/`, `sources/`, `raw/`, `index.md`)는 **단일 소스로 유지하며 읽기 전용**이고,
 빌드 산출물만 새로 만든다.
+
+이 문서는 두 층이다. 앞의 **현행 사양**은 지금 배포되는 사이트의 스냅샷이고, 뒤의
+**착수 시점 결정 · 아키텍처 · Phase 이력**은 그 사이트가 만들어진 경위다. 이력의 수치는
+그 시점의 기록이므로 고치지 않는다.
+
+정본의 위치는 셋으로 갈린다. 시각 설계는 `DESIGN.md`(v3.0), 콘텐츠 규칙은 `CLAUDE.md`,
+수집·작성 명령은 `.claude/skills/`의 세 스킬이다. 이 문서는 그 셋을 다시 설명하지 않는다.
+
+**배포 URL**: `https://sguys99.github.io/ai-wiki/`
 
 ---
 
-## 확정된 결정 사항
+## 현행 사양 (2026-09-27 측정)
+
+### 규모
+
+카운트는 이 절에만 둔다. 다른 절과 이력 메모의 숫자는 그 시점 기록이다.
+
+| 항목 | 값 | 확인 방법 |
+|---|---|---|
+| wiki 페이지 | 293 | 빌드 콘솔 `[content] wiki pages` |
+| 카탈로그 항목 | 293 (섹션 8) | 빌드 콘솔 `[content] catalog entries` |
+| 카테고리 분포 | physical-ai 127 · agents 72 · applications 35 · database 26 · llms 13 · overviews 13 · evaluations 5 · etc 2 | 빌드 콘솔 `[content] sections` |
+| 태그 | 916 (page-tag 링크 2,242 · 병합 slug 4) | 빌드 콘솔 `[tags]` |
+| 학습 경로 | 선언 페이지 8 · 단계 64 · 미해석 0 | 빌드 콘솔 `[study]` |
+| 그래프 | 노드 293 · 엣지 2,222 | 빌드 콘솔 `[graph]` |
+| 태그 페이지 | 916 (+ `/tags/` 인덱스) | 빌드 콘솔 `[render]` |
+| wiki 자산 | 162 디렉토리 · 888 이미지 | `find wiki/assets -type f` |
+
+```bash
+cd site && npm run build        # 위 지표 전부를 콘솔에 찍는다
+```
+
+### 기술 스택과 명령
+
+프레임워크 없는 커스텀 Node 빌드다. Node 24, 런타임 의존성은 `marked` · `gray-matter` ·
+`katex` · `marked-katex-extension` 넷이고, `pagefind` · `serve` · 폰트 패키지 3종이 devDependency다.
+
+| 명령 | 동작 |
+|---|---|
+| `npm run build` | `dist/` 생성 (BASE 없음, 로컬용) |
+| `npm run build:strict` | `STRICT=1` — 카탈로그 가드 위반 시 빌드 실패 |
+| `npm run build:deploy` | `STRICT=1 BASE=/ai-wiki` + `pagefind` 인덱싱 (Actions가 쓴다) |
+| `npm run preview` | 빌드 + pagefind + `serve ../dist -l 4173` |
+
+### 라우트
+
+| 경로 | 내용 |
+|---|---|
+| `/` | 홈 — 히어로 constellation, 카테고리 필터바, 카드 밴드 |
+| `/{category}/{stem}/` | wiki 페이지 293개 |
+| `/tags/` · `/tags/{slug}/` | 태그 인덱스와 태그별 목록 |
+| `/graph/` | 전체 그래프 탐색기 |
+| `/about/` | 프로젝트 소개 |
+| `/graph.json` · `/pagefind/` | 그래프 데이터, 검색 인덱스 |
+
+### lib 모듈
+
+| 모듈 | 역할 |
+|---|---|
+| `content.mjs` | wiki frontmatter 글롭 + `index.md` 카탈로그 머지, 태그 인덱스, `study_path` 해석, 링크 리졸버 |
+| `markdown.mjs` | `marked` 설정, `[[wikilink]]`·`![[embed]]` 재작성, heading id와 TOC 추출, KaTeX, `spliceStudyPath` |
+| `graph.mjs` | `[[…]]` 인접 파싱 → nodes/edges/degree (노드에 `domain` 필드) |
+| `nav.mjs` | `prevNext`와 `neighborhood` 두 함수뿐이다. 카테고리 그룹핑은 `content.mjs`, TOC 추출은 `markdown.mjs` 소관 |
+| `templates.mjs` | `layout` / `home` / `wiki` / `about` / `tagIndex` / `tag` / `graphPage` / `studyPathSection` |
+| `config.mjs` | `BASE` · `STRICT` · `href` · `absUrl` · `RECENT_DAYS`(14) |
+| `about.mjs` | About 본문. **자동 추출이 아니라 수기 한글(해요체)** 이다 |
+| `dates.mjs` | git 최초 커밋일(rename 승계) → 홈 정렬과 NEW 뱃지 |
+| `domains.mjs` | 카테고리 → `core`/`physical` 도메인 맵. 미등록 카테고리는 `core` |
+
+### 카탈로그 계약
+
+`index.md` 한 줄 문법은 `- [[category/stem|표시 이름]]: 한 줄 설명 (YYYY, type)` 하나다.
+
+- 구분자 정본은 `]]: `다. 레거시 `]] — `도 파싱은 되지만 `legacy-separator` issue로 표시된다.
+- 파싱은 head + tail 2단이다. 머리는 링크와 구분자, 꼬리는 말미 `(YYYY, type)`에 앵커한다. 표시 이름은 lazy 매치라 `]`를 포함할 수 있다.
+- `STRICT=1`에서 빌드를 **실패시키는 조건은 둘**이다. ① 절 안 `- [[` 줄이 머리 문법과 안 맞아 카드에서 빠지는 경우 ② 어떤 섹션의 카드가 0개인데 `wiki/{slug}/`에는 페이지가 있는 경우. 그 밖(꼬리 누락, 레거시 구분자, 미등재 페이지, 깨진 study_path 참조)은 경고만 하고 통과한다.
+- 소비자가 셋이다. `index.md` 머리의 문법 선언 · `site/lib/content.mjs` · `scripts/lint_index.py`. 문법을 바꾸면 셋을 함께 고치고 `npm run build:strict`로 절별 카드 수를 확인한다.
+
+### 기능
+
+- **홈**: 히어로 constellation(ambient drift, reduced-motion 시 정지), 카드 hover 시 그래프 이웃 강조, sticky 카테고리 필터바, 밴드 top-6 접기와 `+ 더 보기`, 전 카테고리 통합 "최근 추가" 밴드와 NEW 뱃지(14일), 빈 카테고리는 "준비 중" 밴드.
+- **wiki 페이지**: 리딩 컬럼 72ch, 데스크톱 우측 TOC rail(scrollspy)과 모바일 접이식 `<details>`, 상단 진행바, figure 임베드와 캡션, 관련 페이지 방사형 SVG + 텍스트 목록, 같은 카테고리 이전/다음, 원문(`raw_path`)·`sources`·이 페이지 `.md` GitHub 링크.
+- **탐색**: `/tags/` 태그 클라우드(도메인별, 4단계 크기), `/graph/` force-directed 탐색기, Pagefind 모달(`Cmd/Ctrl+K`·`/`)에 category·tag 패싯 필터.
+- **학습 경로**: overview의 `study_path` frontmatter를 번호 단계 컴포넌트로 렌더한다. `spliceStudyPath`는 `## 학습 경로` 절 안의 **첫 번호 목록 블록만** 교체하므로 도입 문단·다른 트랙·꼬리 문단은 그대로 남는다. 단계 수가 frontmatter와 다르면 `[study] WARN`만 찍고 빌드는 통과한다.
+- **수식**: KaTeX 빌드타임 렌더 + self-host. `nonStandard` 옵션의 부작용을 막기 위해 코드 밖의 `$`+숫자를 통화로 보고 보호한다.
+- **테마**: 다크 기본 + `data-theme` 라이트 오버라이드, FOUC 방지 인라인 스크립트, `prefers-reduced-motion` 전역 존중.
+
+### 디자인 시스템
+
+정본은 `DESIGN.md` v3.0이다. 핵심만 옮기면, 강조색은 단일 aqua가 아니라 **core(aqua) / physical(amber) 2도메인**이고,
+`--signal` 토큰을 `[data-domain]` 스코프가 재지정해 링크·hover·필터칩·진행바·태그·그래프가 함께 물든다.
+헤더·푸터·검색 모달 같은 전역 크롬은 도메인과 무관하게 aqua로 고정한다.
+
+### 배포, 그리고 문서와 배포의 관계
+
+`.github/workflows/deploy.yml` 하나가 전부다. `push(main)` + paths 필터(`wiki/**` · `index.md` ·
+`README.md` · `CLAUDE.md` · `site/**` · workflow 자체)와 `workflow_dispatch`로 돌고,
+checkout은 **`fetch-depth: 0`**(dates.mjs가 git 이력을 읽는다) → `npm ci` → `build:deploy` → Pages 배포다.
+
+여기서 한 가지를 구분해야 한다. `README.md`와 `CLAUDE.md`는 **빌드 입력이 아니다.** About 본문은
+`site/lib/about.mjs`에 수기로 들어 있어서 두 문서를 고쳐도 산출물은 바뀌지 않는다. 다만 paths 필터에
+들어 있어 두 파일을 커밋하면 재배포가 돈다. 그래서 문서만 고친 커밋에서 배포가 실패한다면 원인은
+대기 중이던 콘텐츠 문제다 — 푸시 전 `npm run build:strict` 한 번이 그 오진을 막는다.
+`temp-docs/**`는 필터에 없어 배포를 트리거하지 않는다.
+
+---
+
+## 착수 시점 결정 (2026-06)
+
+아래 표는 작업을 시작할 때의 결정이다. 현행과 달라진 두 행에는 주석을 달았다.
 
 | 항목 | 결정 |
 |---|---|
@@ -20,122 +124,79 @@ TOC·교차링크를 갖추며 웹/모바일을 동시에 고려한다.
 | 디자인 방향 | **Constellation (지식 그래프)** — frontend-design 신규 도출 |
 | 한글 폰트 | **Pretendard** (필수, self-host) |
 | 부가 기능 | 전체 검색(Pagefind) · 라이트/다크 토글 · 위키 내 TOC(scrollspy) · 교차링크/관련 페이지 |
-| About | README/CLAUDE.md 기반 자동 생성 |
+| About | README/CLAUDE.md 기반 자동 생성 — **현행은 `site/lib/about.mjs` 수기 한글 본문** |
 | 반응형 | 웹/모바일 동시 (1→2→3 col, 모바일 햄버거·접이식 TOC) |
+| 콘텐츠 규모 | 당시 `wiki/` 45개 페이지 · 카테고리 7개 — **현행은 "현행 사양" 절 참조** |
 
-**배포 URL(예상)**: `https://sguys99.github.io/ai-wiki/`
-
-**환경**: Node v24.13 · npm 11.6 사용 가능, 기존 웹 빌드 도구 전무(blank slate), Pretendard 미존재.
-**콘텐츠 규모**: `wiki/` 45개 페이지 (database 21 · applications 13 · agents 7 · llms 2 · overviews 2, evaluations·etc 비어있음).
-
----
-
-## 디자인 시스템 — Constellation
-
-> **시그니처 (단 하나의 기억점)**: 이 위키가 실제로 **그래프**라는 사실을 화면에 드러낸다.
-> `[[wikilinks]]`로 만든 **실제 인접 그래프**를 (1) 홈 히어로의 ambient node-constellation,
-> (2) 각 카드의 ref-count(`↳ N`), (3) 각 wiki 페이지 하단의 "관련 페이지 neighborhood 그래프"로 표현한다.
-> 장식이 아니라 *복리로 쌓이는 교차참조*라는 본질을 그대로 시각화한다.
-> 대담함은 이 한 곳에만 쓰고 주변은 절제한다.
->
-> AI 디자인의 흔한 3대 디폴트(크림+세리프+테라코타 / 흑배경+형광 / 브로드시트 신문)는 의도적으로 회피했다.
-
-### 폰트 (3-role, self-host woff2)
-
-- **Display (Latin·숫자 전용)**: **Space Grotesk** — 워드마크 `ai-wiki`, 큰 카운트("45"), eyebrow 라벨, constellation 노드 라벨.
-- **Body & 한글 헤딩**: **Pretendard** (400/600/700) — 한글 제목·본문·영문 인라인 기술용어. 한글 헤딩은 Pretendard 600/700 + `tracking-tight`.
-  - ⚠️ 한글·Latin 혼합 seam 방지: 한글이 포함된 헤딩은 **전부 Pretendard**로 렌더(혼합 X). Space Grotesk는 순수 Latin/숫자 표면에만 적용.
-- **Mono (유틸)**: **JetBrains Mono** — taxonomy 태그(`PAPER·2024`), arxiv id, ref-count, 코드블록, footer 메타.
-
-### 컬러 토큰 (dark-first, light pair) — CSS 변수
-
-| 토큰 | Dark (기본) | Light |
-|---|---|---|
-| `--bg` | `#0B0E14` (deep space ink) | `#F7F8FA` |
-| `--surface` (카드) | `#141923` | `#FFFFFF` |
-| `--surface-2` (elevated) | `#1B2230` | `#F1F3F7` |
-| `--text` | `#E6E9EF` | `#161A22` |
-| `--muted` | `#8A93A3` | `#5C6473` |
-| `--faint` | `#5A6373` | `#9AA2B0` |
-| `--hairline` | `#232A38` | `#E3E7EE` |
-| `--signal` (단일 강조) | `#5EEAD4` (luminous aqua) | `#0FB89B` |
-| `--signal-dim` (edge/glow) | `rgba(94,234,212,.25)` | `rgba(15,184,155,.18)` |
-
-- **강조는 단 하나(aqua signal)** — active 노드·엣지·링크 hover·focus ring에만. 브랜드 보조색·그라데이션 없음.
-- 자료 type 구분은 색이 아니라 **모노 라벨**로(색 노이즈 회피). "trending/recent"도 별도 색 대신 signal의 가중치로 표현.
-
-### 레이아웃 & app shell
-
-- **Header (sticky, frosted)**: 좌 워드마크 `ai-wiki`(Space Grotesk) / 우 [검색] [About] [테마토글 ◐]. 모바일은 아이콘 행 + 햄버거.
-- **Home**: 히어로 constellation → 카테고리 밴드(헤더 `이름 + count` eyebrow) → 카드 그리드 `grid-cols-1 sm:2 lg:3`, gap-4.
-- **Card**: 상단 mono 태그(`TYPE·YEAR`) → 제목(Pretendard 600) → 한 줄 설명(`line-clamp-3`) → 하단 `↳ N links` + tag chip. hover 시 테두리→signal + 연결 카드 하이라이트.
-- **Wiki page**: 가운데 리딩 컬럼(~72ch) + 데스크톱 우측 TOC rail(h2/h3 scrollspy) + 상단 진행바. 헤더(카테고리 eyebrow + 제목 + 메타). 본문(figure 임베드 + 캡션). 하단 "관련 페이지" neighborhood 그래프 + 이전/다음(같은 카테고리) + 원문(`raw`)·`source` 링크.
-- **About**: README/CLAUDE.md에서 추출(프로젝트 철학·THE FOUR RULES·3-tier 파이프라인).
-- **Footer**: repo·owner·license·"built on Karpathy LLM Wiki pattern" + GitHub 링크.
-
-### 모션 (절제, `prefers-reduced-motion` 존중)
-
-- 히어로 constellation: 노드 ambient drift + 엣지 fade-in (reduced-motion 시 정지 이미지).
-- 카드 hover: 테두리/글로우 transition + 연결 카드 강조. 그 외 마이크로 모션 최소.
+**환경**: Node v24.13 · npm 11.6, 기존 웹 빌드 도구 전무(blank slate), Pretendard 미존재.
 
 ---
 
 ## 아키텍처
 
-### 디렉터리 (신규 — 모두 `site/`·`dist/`·`.github/` 내부)
+### 디렉터리
 
 ```
 site/
-  build.mjs              # 엔트리: 콘텐츠 로드 → 그래프 빌드 → 렌더 → dist 출력
+  build.mjs              # 엔트리: 콘텐츠 로드 → 그래프/태그 빌드 → 렌더 → dist 출력
   lib/
-    content.mjs          # wiki/**/*.md frontmatter glob + index.md 카탈로그 머지 → 섹션 모델
-    graph.mjs            # [[wikilinks]] 인접 파싱 → graph.json (nodes/edges/degree)
-    markdown.mjs         # marked 설정: [[wikilink]]→<a>, ![[embed]]→<figure>, heading id
-    templates.mjs        # layout / home / wiki / about HTML 템플릿(tagged template)
-    nav.mjs              # 카테고리 그룹핑, 이전/다음, TOC 추출
+    content.mjs          # 콘텐츠 로더 + 카탈로그 머지 + 태그 인덱스 + study_path + 링크 리졸버
+    markdown.mjs         # marked 설정, wikilink/embed 재작성, heading id·TOC, KaTeX, study_path splice
+    graph.mjs            # [[wikilinks]] 인접 파싱 → graph.json (nodes/edges/degree/domain)
+    nav.mjs              # prevNext + neighborhood
+    templates.mjs        # layout / home / wiki / about / tagIndex / tag / graphPage
+    config.mjs           # BASE · STRICT · href · absUrl · 사이트 상수
+    about.mjs            # About 본문 (수기 한글)
+    dates.mjs            # git 최초 커밋일 → 정렬·NEW 뱃지
+    domains.mjs          # 카테고리 → core/physical 도메인
   assets/
-    css/styles.css       # Constellation 토큰 + 레이아웃 + light/dark
-    js/constellation.js  # 히어로 그래프 + 페이지별 neighborhood (canvas/SVG)
-    js/theme.js          # 테마 토글 + localStorage + FOUC 인라인
-    js/reader.js         # 진행바 + TOC scrollspy + 모바일 내비
-    js/search.js         # Pagefind UI 초기화
-    fonts/               # Pretendard / Space Grotesk / JetBrains Mono woff2
-    img/                 # og 이미지, favicon
+    css/styles.css       # @layer tokens/base/components/utilities
+    js/constellation.js  # 히어로 그래프 + 카드 hover 이웃 강조
+    js/graph-core.js     # force 배치 공용 코어
+    js/graph-explorer.js # /graph/ 탐색기
+    js/filter.js         # 홈 카테고리 필터바 + 밴드 접기
+    js/search.js         # Pagefind 모달 + 패싯
+    js/reader.js         # 진행바 + TOC scrollspy
+    js/nav.js            # 모바일 햄버거 + 접이식 TOC
+    js/theme.js          # 테마 토글 + localStorage
+    img/                 # favicon.svg · og.png · og.svg
+    fonts/               # 실제 woff2는 node_modules → dist/static/fonts 복사
   package.json
 dist/                    # 빌드 산출물 (gitignore, Actions가 배포)
 .github/workflows/deploy.yml
-temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 ```
 
 ### 데이터 모델 (`content.mjs`)
 
 - `wiki/**/*.md` glob → `gray-matter`로 frontmatter 추출이 **메타 진실원천**(title, type, year, category, tags, authors/url/org, source, figures).
-- `index.md`는 카테고리 멤버십 + **한 줄 설명** + 정렬 출처로 머지(stem 기준). 카탈로그 항목 정규식:
-  `- \[\[([^/\]]+)/([^|\]]+)\|?([^\]]*)\]\]\s*—\s*([\s\S]+?)\s*\((\d{4}),\s*([^)]+)\)\s*$` (말미 `(YYYY, type)`에 앵커).
-- 카테고리 헤더(`## Database (database)` …)로 그룹. 빈 카테고리(evaluations·etc)는 렌더 생략 또는 "준비 중" 표시.
+- `index.md`는 카테고리 멤버십 + **한 줄 설명** + 정렬 출처로 머지한다(stem 기준). 항목 문법과 파싱 규칙은 위 "카탈로그 계약" 절이 정본이다.
+- 카테고리 헤더(`## Database (database)` …)로 그룹을 만든다. 빈 카테고리는 "준비 중" 밴드로 렌더한다.
+- 홈 정렬과 NEW 뱃지는 `dates.mjs`가 읽는 git 최초 커밋일을 쓴다. 그래서 Actions checkout이 `fetch-depth: 0`이어야 한다.
 
 ### 렌더링 (`markdown.mjs`)
 
-- `gray-matter`로 frontmatter 분리 → 본문만 `marked`.
-- **`[[category/stem|display]]`** → `<a href="{BASE}/{category}/{stem}/">display</a>`. bare `[[category/stem]]` → 페이지 title 사용. `[[stem]]`(카테고리 생략) → stem→page 맵으로 해석. 미해석 링크 → muted span + 빌드 로그 경고.
-- **`![[assets/{stem}/figNN.png]]`** + 다음 줄 `*Figure …*` → `<figure><img …><figcaption>…</figcaption></figure>`로 래핑.
-- `wiki/assets/**` → `dist/assets/**` 복사.
-- 모든 h2/h3에 안정 `id`(scrollspy·앵커).
-- **수식**: 콘텐츠는 unicode + `_` 첨자(LaTeX `$…$` 아님) → KaTeX 미도입(plain text). `$` 수식 등장 시 추후 추가(Known Gap).
+- `gray-matter`로 frontmatter를 떼고 본문만 `marked`에 넘긴다.
+- **`[[category/stem|display]]`** → `<a href="{BASE}/{category}/{stem}/">display</a>`. bare `[[category/stem]]`은 페이지 title을, `[[stem]]`은 stem→page 맵을 쓴다. `[[page#heading]]`·`[[#heading]]` 앵커, `[[category]]`→홈 밴드 앵커, `[[sources/…]]`→GitHub 원문도 해석한다. 미해석 링크는 muted span + 빌드 경고.
+- **`![[assets/{stem}/figNN.png]]`** + 다음 줄 `*Figure …*` → `<figure><img …><figcaption>…</figcaption></figure>`.
+- `wiki/assets/**` → `dist/assets/**` 복사. 모든 h2/h3에 안정 `id`(scrollspy·앵커).
+- **수식**: `marked-katex-extension`으로 빌드타임 렌더하고 `katex.min.css`와 폰트를 `dist/static/katex/`에 self-host한다. 통화 표기(`$0.97`)가 수식으로 잡히지 않도록 코드 밖의 `$`+숫자를 먼저 보호한다.
 
 ### 그래프 (`graph.mjs`)
 
-- 모든 wiki 페이지 본문에서 `[[…]]` 추출 → 방향성 인접 리스트 → `dist/graph.json`(`{nodes:[{id,title,category,degree}], edges:[{source,target}]}`).
-- 홈 히어로 + 페이지별 neighborhood가 이 JSON을 소비. degree로 카드의 `↳ N links` 표기.
+- 모든 wiki 페이지 본문에서 `[[…]]`를 추출해 인접 리스트를 만들고 `dist/graph.json`(`{nodes:[{id,title,category,domain,degree}], edges:[{source,target}]}`)으로 쓴다.
+- 홈 히어로 · 페이지별 neighborhood · `/graph/` 탐색기가 이 JSON을 함께 소비한다. degree는 카드의 `↳ N links` 표기에도 쓴다.
 
 ### 라우팅 / base path
 
-- 출력: 홈 `dist/index.html`, wiki `dist/{category}/{stem}/index.html`, about `dist/about/index.html` (clean URL).
-- `BASE` 상수로 로컬(`''`)·배포(`/ai-wiki/`) 분기 → 모든 링크·에셋·폰트·Pagefind·graph.json 경로에 적용.
+- 출력은 clean URL이다. 홈 `dist/index.html`, wiki `dist/{category}/{stem}/index.html`, 나머지도 같은 규칙을 따른다.
+- `BASE` 상수로 로컬(`''`)과 배포(`/ai-wiki/`)를 분기해 모든 링크·에셋·폰트·Pagefind·graph.json 경로에 적용한다.
 
 ---
-
 ## 단계별 작업 계획 (체크리스트)
+
+> 아래 체크리스트와 결과 메모의 수치(45 · 58페이지, sources 57 등)는 **그 시점 기록**이다.
+> 고치지 않고 그대로 둔다. 현행 수치는 위 "현행 사양" 절을 본다.
+> 이후에 해소된 항목에는 `→ 해소` 꼬리표만 덧붙였다.
 
 ### Phase 0 — 셋업 & 기반
 - [x] `site/` + `package.json`(ESM, `build`/`preview` 스크립트)
@@ -155,7 +216,7 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 > - 리졸버는 Obsidian 문법 전부 처리: `[[cat/stem|disp]]` · 베어 `[[stem]]` · 교차카테고리 고유 stem 폴백 · `[[page#heading]]`/`[[#heading]]` 앵커(heading id와 동일 슬러그) · `[[category]]`→홈 밴드 앵커 · `[[sources/…]]`/`[[../../sources/…]]`→GitHub 원문(.md).
 > - `lib/nav.mjs`(prev/next + neighborhood) 선작성 — Phase 4·5에서 소비.
 > - 페이지 HTML은 **INTERIM 셸**(파이프라인 검증용). Phase 2~4에서 `lib/templates.mjs`(Constellation)로 교체.
-> - ⚠️ **콘텐츠 측 발견**(읽기전용, 미수정): `index.md` 카탈로그에 누락된 wiki 2건 — `database/lumer-2025-rethinking-retrieval-from-traditional-retrieval`, `database/sguys99-langchain-study-vectorless-rag`. 빌드는 자동 포함하지만 카탈로그 설명/정렬이 없음 → 추후 `index.md` 보강 권장.
+> - ⚠️ **콘텐츠 측 발견**(읽기전용, 미수정): `index.md` 카탈로그에 누락된 wiki 2건 — `database/lumer-2025-rethinking-retrieval-from-traditional-retrieval`, `database/sguys99-langchain-study-vectorless-rag`. 빌드는 자동 포함하지만 카탈로그 설명/정렬이 없음 → 추후 `index.md` 보강 권장. **→ 해소**(두 건 모두 등재, 미등재 페이지 0건).
 
 ### Phase 2 — 디자인 시스템 (CSS 토큰 · 폰트 · light/dark)
 - [x] Pretendard + Space Grotesk + JetBrains Mono woff2 self-host
@@ -171,7 +232,7 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 > - **다크모드**: `<html data-theme="dark">` 기본 + head 인라인 FOUC 스크립트(localStorage → prefers-color-scheme). `theme.js`가 토글·localStorage 저장·미선택 시 OS 추종. `@media (prefers-reduced-motion)` 트랜지션 무력화.
 > - **styles.css 구조**: `@layer tokens, base, components, utilities` — Phase 3/4가 `components`에 헤더·카드·constellation append 예정(현재 `components`엔 placeholder `.topbar`/`.theme-toggle`/`.shell`만). INTERIM 셸은 인라인 `<style>` 제거 후 토큰 클래스 사용.
 > - **검증**: `npm run build` 깨진 링크 0(58페이지) · `dist/static` 전 에셋 200(HTTP 스모크) · `BASE=/ai-wiki` 빌드 시 `/ai-wiki/static/…` 정상.
-> - ⚠️ 미해결(범위 밖): Phase 1 메모의 index.md 카탈로그 누락 2건 여전(`database/lumer-2025-…`, `database/sguys99-langchain-study-vectorless-rag`) — 빌드 자동 포함되나 카탈로그 설명 없음.
+> - ⚠️ 미해결(범위 밖): Phase 1 메모의 index.md 카탈로그 누락 2건 여전(`database/lumer-2025-…`, `database/sguys99-langchain-study-vectorless-rag`) — 빌드 자동 포함되나 카탈로그 설명 없음. **→ 해소**(Phase 7 이후 등재).
 
 ### Phase 3 — 홈(랜딩)
 - [x] sticky frosted 헤더(워드마크 + 검색 + About + 테마토글)
@@ -188,7 +249,7 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 > - **카드/밴드**: `card-grid` 1→2→3열(`640/1024px`), 카드 `TYPE·YEAR` 모노 태그 + 제목 + 설명 `line-clamp:3` + `↳ N` + tag chip(최대 2). 밴드 헤더 `이름 + count + desc`, `id={slug}`로 `[[category]]` 앵커와 호환.
 > - **헤더/푸터**: sticky frosted(`backdrop-filter`), 워드마크 `ai·wiki`(Space Grotesk). **검색은 placeholder 버튼**(Pagefind=Phase 5, `data-search-trigger`만), **About는 임시로 GitHub README 링크**(About 페이지=Phase 6). 푸터는 repo·owner·Karpathy gist 링크(LICENSE 파일 없음 → 라이선스 표기 생략).
 > - **검증**: 빌드 깨진 링크 0(58페이지) · 홈/constellation.js/graph.json/위키 HTTP 200 · `BASE=/ai-wiki` 시 워드마크·카드·canvas `data-graph`·스크립트 전부 `/ai-wiki/...` 정상. stats=pages 58·links 333·categories 7.
-> - ⚠️ 육안 확인 권장(헤드리스 미확인): 캔버스 drift 애니메이션 · 카드 hover 연결 강조 · light/dark 양쪽 대비. ⚠️ 밴드 카드 수는 카탈로그(56) 기준 — index.md 누락 2건은 카드 미표시(그래프·stats엔 58 포함).
+> - ⚠️ 육안 확인 권장(헤드리스 미확인): 캔버스 drift 애니메이션 · 카드 hover 연결 강조 · light/dark 양쪽 대비. ⚠️ 밴드 카드 수는 카탈로그(56) 기준 — index.md 누락 2건은 카드 미표시(그래프·stats엔 58 포함). **→ 해소**.
 
 ### Phase 4 — 위키(절) 페이지
 - [x] 공통 레이아웃(헤더/푸터 공유) + 리딩 컬럼(~72ch)
@@ -239,7 +300,7 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 > - **반응형/대비/접근성**: 브레이크포인트 모바일(≤560 햄버거)·태블릿(561–1079 인라인+접이식TOC)·데스크톱(≥1080 rail) 일관. 햄버거 바·시트·모바일 TOC는 모두 CSS 토큰 사용(light/dark 추종), constellation은 런타임 토큰 read로 기존부터 양 테마 대응. a11y: skip-link·`<main id=main>`·`<nav aria-label>`·테마토글 `aria-pressed`·햄버거 `aria-expanded`/`aria-controls`·`hamburger-bars aria-hidden`·`:focus-visible`·Esc 키 처리 전부 확인. 모션은 기존 `prefers-reduced-motion` 전역 무력화에 포함.
 > - **검증**: 빌드 깨진 링크 0(58) · about 페이지 렌더 · HTTP 200(홈·`/about/`·favicon.svg·og.svg·nav.js·theme.js·css·graph.json·위키) · `BASE=/ai-wiki` 시 favicon·og:image·canonical·`/about/`·nav.js 전부 `/ai-wiki/...` 정상 · CSS brace balanced · pagefind 여전히 **위키 58개만** 인덱싱(about은 `data-pagefind-body` 없어 검색 노이즈 제외) · `node --check` 전 파일 통과.
 > - ⚠️ 육안 확인 권장(헤드리스 브라우저 미가용): 햄버거 시트 열림/X 전환·바깥클릭 닫기 · 모바일 `<details>` 목차 펼침 · light/dark 양쪽 about/카드/코드블록 대비 · 360/768/1280px 레이아웃.
-> - ⚠️ **Known Gap**: `og:image`가 SVG라 일부 SNS(Twitter/Facebook 등)는 미리보기 이미지를 렌더하지 않을 수 있음(파비콘 SVG는 모던 브라우저 지원). 필요 시 PNG OG 이미지로 후속 교체. ⚠️ About 본문이 나열하는 빈 카테고리(`evaluations`·`etc`) 앵커는 홈에 밴드가 없어 클릭 시 홈 최상단으로 안착(깨진 링크 아님, 자료 추가 시 자동 해소).
+> - ⚠️ **Known Gap**: `og:image`가 SVG라 일부 SNS(Twitter/Facebook 등)는 미리보기 이미지를 렌더하지 않을 수 있음(파비콘 SVG는 모던 브라우저 지원). 필요 시 PNG OG 이미지로 후속 교체. **→ 해소**(og.png, Phase 8-8). ⚠️ About 본문이 나열하는 빈 카테고리(`evaluations`·`etc`) 앵커는 홈에 밴드가 없어 클릭 시 홈 최상단으로 안착(깨진 링크 아님, 자료 추가 시 자동 해소). **→ 해소**(두 카테고리 모두 자료 보유, 빈 카테고리는 "준비 중" 밴드로 렌더).
 
 ### Phase 7 — 배포 & 검수
 - [x] `.github/workflows/deploy.yml`: push(main) → node setup → `npm ci` → build → pagefind → Pages 아티팩트 업로드/배포
@@ -255,31 +316,56 @@ temp-docs/web-design-plan.md  # 이 작업 계획 (체크리스트)
 > - **남은 2건은 사용자/배포 후 작업**: (1) GitHub **Settings → Pages → Source = "GitHub Actions"** 1회 설정 필요(이게 없으면 deploy 잡이 실패). (2) 최초 배포 성공 후 실제 `/ai-wiki/` 환경에서 base path·폰트·검색·graph.json 로드 육안 확인.
 > - ⚠️ 헤드리스 환경이라 브라우저 육안 검증(검색 WASM·constellation 모션·테마·반응형)은 여전히 미확인 — `npm run preview` 로컬 브라우저 권장.
 
+### Phase 8 — 탐색 · 도메인 · 학습 경로 (2026-07 ~ 2026-09)
+
+Phase 7로 배포가 끝난 뒤, 콘텐츠가 45편에서 수백 편으로 불면서 필요해진 것들이다.
+카드 그리드만으로는 자료를 찾을 수 없게 된 시점이 기준이었다.
+
+- [x] 8-1 **태그 인덱스** — `/tags/` 클라우드 + `/tags/{slug}/` 상세. `tagsOf`로 frontmatter 태그를 모으고 slug 충돌은 대표 표기로 병합해 콘솔에 리포트한다(`rag` ← `RAG`, `swe-bench` ← `SWE-bench` 등). Pagefind의 `tag:` 패싯과 같은 라벨을 쓴다.
+- [x] 8-2 **그래프 탐색기** — `/graph/` force-directed 전체 그래프. 배치 계산은 로드 시 1회만 하고 단위 좌표로 캐시한다. `graph-core.js`를 히어로와 공유한다.
+- [x] 8-3 **홈 탐색 개선** — sticky 카테고리 필터바, 밴드 top-6 접기와 `+ 더 보기`, 전 카테고리 통합 "최근 추가" 밴드, NEW 뱃지(`RECENT_DAYS=14`). 기준 날짜는 `dates.mjs`가 읽는 git 최초 커밋일이고 rename을 승계한다 → Actions checkout에 `fetch-depth: 0`이 필요하다.
+- [x] 8-4 **2도메인 강조색** — `domains.mjs`의 카테고리→도메인 맵, `graph.json` 노드의 `domain` 필드, `[data-domain]` 토큰 오버라이드. 태그의 도메인은 보유 페이지 다수결로 정한다. 전역 크롬은 aqua 고정. 시각 정본은 `DESIGN.md` v3.0으로 이관했다.
+- [x] 8-5 **학습 경로** — overview frontmatter `study_path` 스키마, `resolveStudyPaths` + `studyPathSection()` + `spliceStudyPath()`. 본문 `## 학습 경로`와 frontmatter에 같은 순서를 이중 기재하고(사람은 본문, 기계는 frontmatter), splice는 절 안 **첫 번호 목록만** 교체한다(다중 트랙 페이지에서 목록이 두 번 렌더되던 버그 수정 — 커밋 `cab7a02`). 단계 수 불일치는 `[study] WARN` 비차단.
+- [x] 8-6 **KaTeX** — 빌드타임 렌더 + self-host. `nonStandard` 옵션이 통화 표기를 수식으로 잡는 부작용을 `protectCurrency()`로 막았다(커밋 `759a67b`).
+- [x] 8-7 **카탈로그 계약 강화** — 구분자를 `]]: `로 확정하고 head/tail 2단 파서로 바꿨다. 이 전환에서 옛 단일 정규식이 전량 미스해 홈 카드가 254개 중 12개만 남은 사고가 있었고, 그래서 `build:strict` 가드(파싱 불가 항목 · 카드 0개 절)와 작성 시점 검사 `scripts/lint_index.py`를 함께 붙였다.
+- [x] 8-8 **메타 · About** — `og:image`를 `og.png`(1200×630)로 교체(커밋 `91f3b16`). `about.mjs` 본문을 해요체 수기 한글로 두고 8카테고리·7유형을 반영했다.
+
+> **Phase 8 후속 과제 (미체크)**
+> - [ ] `site/build.mjs` 상단 주석이 아직 "Phase 1 … 페이지 HTML 레이아웃은 아직 INTERIM"이다. 코드 주석도 문서와 같은 종류로 낡아 있어 정리가 필요하다.
+> - [ ] constellation과 `/graph/`의 노드가 293개를 넘었다. 현재는 배치 1회 계산으로 버티지만 성능 관찰이 필요하고, 넘치면 카테고리별 서브그래프로 쪼갠다.
+> - [ ] 태그 slug 병합의 대표 표기 판정이 수동이다(`GRPO` vs `grpo`). 규칙화 여지가 있다.
+> - [ ] Phase 7에서 이월된 2건(Pages 소스 설정 확인, 배포 후 base path 육안 검증)이 그대로 남아 있다.
+
 ---
 
 ## 검증 방법 (Verification)
 
-1. **로컬 빌드**: `cd site && npm install && npm run build` → `dist/` 생성, 콘솔에 45개 페이지 변환 + 그래프 노드/엣지 수 + 깨진 링크 0 리포트.
-2. **로컬 미리보기**(`npm run preview`, BASE=''):
-   - 홈: constellation 렌더, 카테고리 카드, hover 연결 강조, CTA·GitHub·About 동작
-   - 위키: 본문·figure·TOC scrollspy·진행바·관련 그래프·이전/다음·원문 링크
-   - 검색: 키워드로 페이지 검색·이동
-   - 테마 토글 light/dark + 새로고침 유지(FOUC 없음)
-   - 모바일 폭(≤480px) 햄버거·1열·접이식 TOC
-3. **무결성**: 45개 + 홈 + About 라우트 200, 내부 `[[link]]` 깨짐 0, figure 경로 정상.
-4. **배포 확인**: Actions 성공 후 `https://sguys99.github.io/ai-wiki/`에서 base path 하 에셋·폰트·검색·graph.json 로드 확인.
+수치를 문서에 박지 않고 명령 출력으로 확인한다.
+
+1. **빌드 가드**: `cd site && npm run build:strict` — 카탈로그 파싱 불가 항목이나 카드 0개 절이 있으면 실패한다. 콘솔이 `[content]`·`[tags]`·`[study]`·`[graph]`·`[links]` 지표를 찍는다. `[links] unresolved wikilinks: 0`과 `[study] 미해석 참조: 0`을 확인한다.
+2. **작성 시점 검사**: `python3 scripts/lint_index.py --all` — 빌드 가드와 같은 문법을 저장 시점에 잡는다. `python3 scripts/lint_links.py --all`로 위키링크·임베드도 함께 본다.
+3. **로컬 미리보기**: `npm run preview` (BASE='', pagefind 포함)
+   - 홈: constellation 렌더, 카테고리 필터바, 밴드 접기, 최근 추가와 NEW 뱃지, 카드 hover 이웃 강조
+   - wiki: 본문·figure·TOC scrollspy·진행바·관련 페이지 그래프·이전/다음·원문 링크
+   - 탐색: `/tags/`, `/graph/`, 검색 모달(`Cmd/Ctrl+K`)과 category·tag 패싯
+   - 테마: light/dark 토글 + 새로고침 유지(FOUC 없음), physical-ai 페이지에서 amber로 전환되는지
+   - 모바일 폭(≤560px): 햄버거, 1열, 접이식 TOC
+4. **배포 확인**: Actions 성공 후 `https://sguys99.github.io/ai-wiki/`에서 base path 하 에셋·폰트·검색·graph.json 로드를 확인한다.
 
 ---
 
 ## 원문 보존 원칙
 
-- `wiki/**`, `sources/**`, `raw/**`, `index.md`, `CLAUDE.md`, `README.md`는 **읽기 전용**(빌드 입력). 콘텐츠 수정 없음.
-- 신규 산출물은 `site/`, `dist/`, `.github/`, `temp-docs/web-design-plan.md`, 그리고 `.gitignore`·`README.md` 링크 추가에 한정.
+- `wiki/**`, `sources/**`, `raw/**`, `index.md`는 빌드 **입력**이다. 사이트 작업이 이 파일들을 고치지 않는다.
+- `README.md`·`CLAUDE.md`는 빌드 입력이 **아니다**(About 본문은 `about.mjs` 수기). 다만 deploy.yml paths 필터에 있어 커밋하면 재배포가 돈다.
+- 사이트 작업의 산출물은 `site/`, `dist/`, `.github/`, 이 문서, 그리고 `.gitignore`·`README.md`의 링크 추가로 한정한다.
 
 ---
 
 ## Known Gaps (의도적 보류)
 
-- LaTeX `$…$` 수식 미렌더(현 콘텐츠는 unicode/첨자). 등장 시 KaTeX 추가.
-- 빈 카테고리(evaluations·etc)는 자료 추가 전까지 비표시 또는 "준비 중".
-- constellation 그래프는 노드 수 증가(현 45) 시 성능 고려 — 초기엔 전체, 추후 카테고리별 서브그래프로 분할 가능.
+- constellation과 `/graph/`의 노드 수가 계속 는다. 배치 계산을 1회로 줄여 버티고 있으나 상한을 정해 두지 않았다.
+- 태그 slug 병합의 대표 표기를 사람이 고른다. `[tags] merged` 리포트를 보고 판단한다.
+- `study_path`의 미해석 참조와 단계 수 불일치는 **비차단 경고**다. 콘솔을 보지 않으면 조용히 누락된다.
+- 헤드리스 환경이라 브라우저 육안 검증(검색 WASM · constellation 모션 · 테마 대비 · 반응형)은 상시 미확인이다. `npm run preview`로 사람이 본다.
+- Pages 소스 설정과 최초 배포 후 base path 검증 2건은 저장소 설정 사항으로 이월돼 있다(Phase 7).
