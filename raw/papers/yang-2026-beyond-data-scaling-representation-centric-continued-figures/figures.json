@@ -1,0 +1,704 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig01.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig01.png",
+    "page": 3,
+    "caption": "Figure 1: Overview of VLAct. VLAct adopts representation-centric continued pre-training to learn general- izable action-aware representations across tasks, embodiments, environments, and action heads.",
+    "bbox": [
+      55.66,
+      91.64,
+      564.14,
+      304.62
+    ],
+    "bbox_norm": [
+      0.091,
+      0.1157,
+      0.9218,
+      0.3846
+    ],
+    "dpi": 300,
+    "area_frac": 0.223,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig02.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Action supervision reshapes VLA backbone representations. Keeping the VLM backbone ﬁxed, we vary the action head used during pre-training and ﬁne-tuning. Discrete FAST supervision can transfer to a continuous GR00T head, but retaining the FAST head suffers from discretization-induced infor",
+    "bbox": [
+      43.95,
+      60.33,
+      528.0,
+      223.89
+    ],
+    "bbox_norm": [
+      0.0718,
+      0.0762,
+      0.8627,
+      0.2827
+    ],
+    "dpi": 300,
+    "area_frac": 0.163,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig03.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3: Overview of VLAct. During pre-training, 1 ⃝ VLAct preserves the VLM prior through shallow- layer protection and caption mixing (§ 3.2), 2 ⃝ uses multi-head continuous supervision to avoid head-speciﬁc representation collapse (§ 3.3), and 3 ⃝ aligns cross-embodiment action semantics with a ",
+    "bbox": [
+      64.35,
+      27.33,
+      564.05,
+      243.83
+    ],
+    "bbox_norm": [
+      0.1051,
+      0.0345,
+      0.9217,
+      0.3079
+    ],
+    "dpi": 300,
+    "area_frac": 0.223,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig04.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig04.png",
+    "page": 7,
+    "caption": "Figure 4: Uniﬁed action space design. We compare separate embodiment-speciﬁc heads, a naively uniﬁed action space, and our partially uniﬁed action space. VLAct shares physically aligned dimensions, such as gripper open/close, while masking unavailable or embodiment-speciﬁc dimensions.",
+    "bbox": [
+      84.0,
+      66.0,
+      527.95,
+      172.93
+    ],
+    "bbox_norm": [
+      0.1373,
+      0.0833,
+      0.8627,
+      0.2183
+    ],
+    "dpi": 300,
+    "area_frac": 0.098,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig05.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig05.png",
+    "page": 12,
+    "caption": "Figure 5: Real-machine evaluation and cross-embodiment transfer. (a)–(c) Real-machine evaluation re- sults on single-arm short-range, single-arm long-horizon, and dual-arm coordination tasks, where VLAct consistently improves over the baseline across diverse manipulation settings. (d) Cross-embodime",
+    "bbox": [
+      0.63,
+      55.7,
+      535.61,
+      322.55
+    ],
+    "bbox_norm": [
+      0.001,
+      0.0703,
+      0.8752,
+      0.4073
+    ],
+    "dpi": 300,
+    "area_frac": 0.295,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig06.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig06.png",
+    "page": 22,
+    "caption": "Figure 6: Layer-wise attention visualization. Lower layers attend more broadly to visual and spatial infor- mation, while deeper layers focus more on semantic and task-relevant regions. This motivates freezing the vision encoder and lower LLM layers during VLA pre-training to reduce representation d",
+    "bbox": [
+      84.0,
+      66.0,
+      527.99,
+      218.26
+    ],
+    "bbox_norm": [
+      0.1373,
+      0.0833,
+      0.8627,
+      0.2756
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig07.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig07.png",
+    "page": 24,
+    "caption": "Figure 7: Examples from the processed VLM data mixture. We show representative samples from cap- tioning, grounding, and spatial-reasoning datasets used during VLA pre-training.",
+    "bbox": [
+      94.8,
+      213.48,
+      517.19,
+      679.6
+    ],
+    "bbox_norm": [
+      0.1549,
+      0.2695,
+      0.8451,
+      0.8581
+    ],
+    "dpi": 300,
+    "area_frac": 0.406,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig08.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig08.png",
+    "page": 25,
+    "caption": "Figure 8: Effect of auxiliary co-training data. We compare different non-action supervision sources under the same robot data, model, and pre-training budget. Caption data gives the strongest single-source gain, while grounding, spatial-QA, and pure language instruction data also improve over robot-",
+    "bbox": [
+      94.8,
+      66.0,
+      517.2,
+      257.11
+    ],
+    "bbox_norm": [
+      0.1549,
+      0.0833,
+      0.8451,
+      0.3246
+    ],
+    "dpi": 300,
+    "area_frac": 0.167,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig09.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig09.png",
+    "page": 29,
+    "caption": "Figure 9: Comparison of representative VLA action heads studied in this work. FAST preserves the VLM’s autoregressive interface by discretizing action chunks into action tokens. OFT attaches a lightweight MLP head to VLM action features and predicts continuous actions in parallel. PI and GR00T use a",
+    "bbox": [
+      88.87,
+      68.82,
+      525.11,
+      191.19
+    ],
+    "bbox_norm": [
+      0.1452,
+      0.0869,
+      0.858,
+      0.2414
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig10.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig10.png",
+    "page": 32,
+    "caption": "Figure 10: Overviews of our robot setting and real-world training dataset. (a) Robot setting for the experi- ments. (b) We collect real-world robot trajectories for eleven task suites.",
+    "bbox": [
+      86.46,
+      68.02,
+      526.45,
+      205.45
+    ],
+    "bbox_norm": [
+      0.1413,
+      0.0859,
+      0.8602,
+      0.2594
+    ],
+    "dpi": 300,
+    "area_frac": 0.125,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p32.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig11.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig11.png",
+    "page": 32,
+    "caption": "Figure 11: Schematic illustrations of real-robot in-domain and out-of-domain evaluation tasks.",
+    "bbox": [
+      86.56,
+      233.39,
+      525.78,
+      458.22
+    ],
+    "bbox_norm": [
+      0.1414,
+      0.2947,
+      0.8591,
+      0.5786
+    ],
+    "dpi": 300,
+    "area_frac": 0.204,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p32.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig12.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig12.png",
+    "page": 35,
+    "caption": "Figure 12: Detailed Visualization of Training Data for Each Real-World Robotic Arm Task.",
+    "bbox": [
+      149.88,
+      94.37,
+      462.71,
+      674.03
+    ],
+    "bbox_norm": [
+      0.2449,
+      0.1192,
+      0.7561,
+      0.851
+    ],
+    "dpi": 300,
+    "area_frac": 0.374,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p35.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig13.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig13.png",
+    "page": 36,
+    "caption": "Figure 13: Detailed visualization for Single arm short range real-world robotic arm task inference demo We show the inference visualization for Single arm short range real-world task, including In-Domain and Out-of-Domain tasks.",
+    "bbox": [
+      98.67,
+      152.39,
+      515.86,
+      595.84
+    ],
+    "bbox_norm": [
+      0.1612,
+      0.1924,
+      0.8429,
+      0.7523
+    ],
+    "dpi": 300,
+    "area_frac": 0.382,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p36.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/fig14.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/fig14.png",
+    "page": 37,
+    "caption": "Figure 14: Detailed visualization for Single arm long horizon and Dual arm coordination real-world robotic arm task inference demo We show the inference visualization for Single arm long horizon and Dual arm coordination real-world task, including In-Domain and Out-of-Domain tasks.",
+    "bbox": [
+      97.88,
+      152.81,
+      517.17,
+      594.47
+    ],
+    "bbox_norm": [
+      0.1599,
+      0.1929,
+      0.845,
+      0.7506
+    ],
+    "dpi": 300,
+    "area_frac": 0.382,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p37.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab01.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab01.png",
+    "page": 8,
+    "caption": "Table 1: Results on LIBERO-Plus. Per-dimension success rate (%) on the LIBERO-Plus robustness bench- mark. All models are trained on standard LIBERO and evaluated on the perturbed test set. Dark blue high- lights VLAct and per-column best results; light blue highlights the strongest prior method by ",
+    "bbox": [
+      104.21,
+      117.01,
+      507.79,
+      275.24
+    ],
+    "bbox_norm": [
+      0.1703,
+      0.1477,
+      0.8297,
+      0.3475
+    ],
+    "dpi": 300,
+    "area_frac": 0.132,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab02.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab02.png",
+    "page": 9,
+    "caption": "Table 2: RoboTwin 2.0 results. Task success rate (%) under the Clean and Random regimes. Base uses 50 clean trajectories per task; Data Scaling additionally uses 500 randomized trajectories per task. Each regime evaluates 50 tasks with 100 episodes per task. Published numbers are taken from the cite",
+    "bbox": [
+      163.89,
+      127.92,
+      448.11,
+      354.34
+    ],
+    "bbox_norm": [
+      0.2678,
+      0.1615,
+      0.7322,
+      0.4474
+    ],
+    "dpi": 300,
+    "area_frac": 0.133,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab03.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab03.png",
+    "page": 11,
+    "caption": "Table 3: RoboDojo simulation results. Top 20 policies from the ofﬁcial August 24, 2026 leaderboard, ordered by average score. Each cell reports partial-progress score / success rate (%). Gen.-Std. and Gen.-Rand. denote the standard and randomized Generalization settings. The full leaderboard contain",
+    "bbox": [
+      84.0,
+      134.74,
+      528.02,
+      340.01
+    ],
+    "bbox_norm": [
+      0.1373,
+      0.1701,
+      0.8628,
+      0.4293
+    ],
+    "dpi": 300,
+    "area_frac": 0.188,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab04.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab04.png",
+    "page": 21,
+    "caption": "Table 4: VLA-Arena results. Success rate (%) averaged over difﬁculty levels L0 / L1 / L2 within each task category. The ﬁnal average follows the ofﬁcial suite weighting over 11 task suites. Dark blue highlights VLAct and per-column best results; light blue highlights the strongest public baseline by",
+    "bbox": [
+      162.05,
+      117.01,
+      449.95,
+      263.88
+    ],
+    "bbox_norm": [
+      0.2648,
+      0.1477,
+      0.7352,
+      0.3332
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab05.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab05.png",
+    "page": 21,
+    "caption": "Table 5: DOMINO dynamic manipulation results. We evaluate one policy on all 35 DOMINO dynamic manipulation tasks under the clean dynamic setting. DOMINO reports Success Rate (SR) and Manipulation Score (MS). Dark blue highlights VLAct-OFT; light blue highlights the strongest baseline.",
+    "bbox": [
+      162.05,
+      117.01,
+      449.95,
+      263.88
+    ],
+    "bbox_norm": [
+      0.2648,
+      0.1477,
+      0.7352,
+      0.3332
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab06.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab06.png",
+    "page": 22,
+    "caption": "Table 6: Ablation on shallow-layer protection. Freezing the vision encoder and lower LLM layers during VLA pre-training reduces representation drift and improves downstream ﬁne-tuning. Dark blue highlights the full design; light blue highlights the strongest partial variant.",
+    "bbox": [
+      157.96,
+      312.92,
+      454.04,
+      375.08
+    ],
+    "bbox_norm": [
+      0.2581,
+      0.3951,
+      0.7419,
+      0.4736
+    ],
+    "dpi": 300,
+    "area_frac": 0.038,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab07.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab07.png",
+    "page": 23,
+    "caption": "Table 7: Auxiliary data used during VLA pre-training. The mixture covers captioning, grounding, spatial reasoning, and pure language instruction supervision.",
+    "bbox": [
+      152.91,
+      382.48,
+      459.09,
+      514.49
+    ],
+    "bbox_norm": [
+      0.2499,
+      0.4829,
+      0.7501,
+      0.6496
+    ],
+    "dpi": 300,
+    "area_frac": 0.083,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab08.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab08.png",
+    "page": 26,
+    "caption": "Table 8: Head diversity reduces decoder lock-in. PI ﬁne-tuning degrades after OFT-only pre-training, but improves after OFT+GR00T pre-training even though PI is excluded during pre-training. Light blue highlights the key unseen-head comparison; dark blue marks the full conﬁguration with direct PI ex",
+    "bbox": [
+      159.82,
+      106.1,
+      452.18,
+      178.23
+    ],
+    "bbox_norm": [
+      0.2611,
+      0.134,
+      0.7389,
+      0.225
+    ],
+    "dpi": 300,
+    "area_frac": 0.044,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab09.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab09.png",
+    "page": 26,
+    "caption": "Table 9: Same-head adaptation under head-diverse pre-training. Head-diverse pre-training improves downstream performance even when the ﬁne-tuning head matches one of the pre-training heads. Within each row, blue and lighter-blue cells mark the best and second-best results.",
+    "bbox": [
+      108.57,
+      220.48,
+      503.43,
+      282.65
+    ],
+    "bbox_norm": [
+      0.1774,
+      0.2784,
+      0.8226,
+      0.3569
+    ],
+    "dpi": 300,
+    "area_frac": 0.051,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab10.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab10.png",
+    "page": 28,
+    "caption": "Table 10: Ablation of uniﬁed joint space and wrap-aware loss on RoboTwin. All models are trained under the base setting using 50 tasks with 50 trajectories per task, and evaluated on the Clean split. The pre-training and ﬁne-tuning protocols are kept identical across all variants. Dark blue highligh",
+    "bbox": [
+      130.54,
+      117.01,
+      481.46,
+      179.17
+    ],
+    "bbox_norm": [
+      0.2133,
+      0.1477,
+      0.7867,
+      0.2262
+    ],
+    "dpi": 300,
+    "area_frac": 0.045,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab11.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab11.png",
+    "page": 28,
+    "caption": "Table 11: Adding heterogeneous UMI trajectories to continued pre-training. Adding 20K trajectories from 10Kh-RealOmin-OpenData [37], collected with a different embodiment and a UMI-style interface, im- proves downstream LIBERO-Plus performance. All other training and downstream ﬁne-tuning settings a",
+    "bbox": [
+      130.54,
+      117.01,
+      481.46,
+      179.17
+    ],
+    "bbox_norm": [
+      0.2133,
+      0.1477,
+      0.7867,
+      0.2262
+    ],
+    "dpi": 300,
+    "area_frac": 0.045,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/yang-2026-beyond-data-scaling-representation-centric-continued/tab12.png",
+    "raw": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/tab12.png",
+    "page": 31,
+    "caption": "Table 12: Effect of uniﬁed action representation design. We compare separate heads, a uniﬁed head, and the full uniﬁed action representation on RoboTwin and LIBERO-Plus. Dark blue highlights the full design; light blue highlights the uniﬁed-head intermediate.",
+    "bbox": [
+      183.16,
+      106.1,
+      428.84,
+      168.26
+    ],
+    "bbox_norm": [
+      0.2993,
+      0.134,
+      0.7007,
+      0.2125
+    ],
+    "dpi": 300,
+    "area_frac": 0.032,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2026-beyond-data-scaling-representation-centric-continued-figures/_overlay/p31.png"
+  }
+]
