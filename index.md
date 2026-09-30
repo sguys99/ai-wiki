@@ -256,6 +256,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/donchitos-claude-code-game-studios|Claude Code Game Studios (repo)]]: Claude Code 세션에 게임 스튜디오 조직을 입히는 MIT 템플릿. 에이전트 3계층과 슬래시 커맨드, 훅, 경로 기반 규칙으로 품질 게이트를 건다 (2026, repo)
 - [[agents/llmsresearch-paperbanana|PaperBanana (repo)]]: 방법론 텍스트를 받아 7개 에이전트가 다이어그램과 통계 플롯을 만드는 프레임워크. CLI, Python API, MCP 서버, Claude Code 스킬을 제공한다 (2026, repo)
 - [[agents/imbad0202-academic-research-skills|Academic Research Skills (repo)]]: Claude Code 스킬 4종으로 논문 연구부터 심사까지 잇는 파이프라인. 환각 인용을 막는 3단 검증 인프라와 건너뛸 수 없는 무결성 게이트가 핵심이다 (2026, repo)
+- [[agents/alphaxiv-openresearch|OpenResearch (repo)]]: coding agent를 연구 에이전트로 바꾸는 local-first 작업 공간. git 브랜치 기반 experiment tree와 run command 고정 규칙으로 autoresearch 루프의 결과를 비교 가능하게 만든다 (2026, repo)
 - [[agents/yongkyun-2026-cutting-llm-token-costs-with|Cutting LLM Token Costs (Yongkyun)]]: headroom, rtk, caveman의 60~90% 절감 주장을 저자 본인 세션 6억 1,400만 토큰에 재생해 지출 3.7%만 줄었음을 보인 실측 리포트 (2026, article)
 - [[agents/rasmussen-2025-zep-a-temporal-knowledge-graph|Zep: A Temporal Knowledge Graph]]: 시간 정보를 가진 knowledge graph로 에이전트 메모리를 구현한 논문. DMR 94.8%, LongMemEval에서 latency 약 90% 절감 (2025, paper)
 - [[agents/getzep-graphiti|Graphiti (repo)]]: Zep 상용 서비스의 코어를 공개한 temporal context graph 엔진. 사실마다 유효 기간을 붙여 증분 갱신하고 hybrid retrieval로 질의한다 (2025, repo)
