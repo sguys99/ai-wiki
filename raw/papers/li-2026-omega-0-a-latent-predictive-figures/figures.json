@@ -1,0 +1,1381 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig01.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1 Overview of ω -0 and the ω -HOME dataset. ω -0 generates whole-body action latents from language, multi-view observations, and robot states, while ω -HOME provides 40h of multimodal household humanoid demonstrations for training and evaluation.",
+    "bbox": [
+      55.2,
+      433.56,
+      556.8,
+      696.62
+    ],
+    "bbox_norm": [
+      0.0902,
+      0.5474,
+      0.9098,
+      0.8796
+    ],
+    "dpi": 300,
+    "area_frac": 0.272,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig02.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig02.png",
+    "page": 5,
+    "caption": "Figure 2 Overview of ω -0. We first train a whole-body VLM for action-aware visual-language representation learning, and then use a joint video-action latent predictor to couple future visual latents with whole-body action generation. The predictor uses prefix-guided dual-query attention with token-",
+    "bbox": [
+      64.87,
+      57.73,
+      547.1,
+      242.78
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0729,
+      0.894,
+      0.3065
+    ],
+    "dpi": 300,
+    "area_frac": 0.184,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig03.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig03.png",
+    "page": 9,
+    "caption": "Figure 3 ω -HOME dataset statistics and representative multimodal demonstrations.",
+    "bbox": [
+      61.72,
+      14.93,
+      586.66,
+      325.05
+    ],
+    "bbox_norm": [
+      0.1009,
+      0.0189,
+      0.9586,
+      0.4104
+    ],
+    "dpi": 300,
+    "area_frac": 0.336,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig04.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig04.png",
+    "page": 9,
+    "caption": "Figure 4 Real-robot teleoperation setup. We use a Pico 4 Ultra headset, handheld controllers, Pico trackers, and a ZED Mini camera to capture human head motion, hand commands, lower-body cues, and egocentric observations. The captured signals are retargeted to the humanoid with Inspire dexterous han",
+    "bbox": [
+      300.0,
+      342.48,
+      593.52,
+      525.55
+    ],
+    "bbox_norm": [
+      0.4902,
+      0.4324,
+      0.9698,
+      0.6636
+    ],
+    "dpi": 300,
+    "area_frac": 0.111,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig05.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig05.png",
+    "page": 13,
+    "caption": "Figure 5 Real-world task setup. We evaluate ω -0 on diverse long-horizon household loco-manipulation tasks involving whole-body motion, locomotion, tool use, articulated-object interaction, and dexterous manipulation. The task instruction is overlaid on each rollout sequence, and key sub-task progre",
+    "bbox": [
+      88.38,
+      338.68,
+      523.61,
+      519.78
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.4276,
+      0.8556,
+      0.6563
+    ],
+    "dpi": 300,
+    "area_frac": 0.163,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig06.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig06.png",
+    "page": 15,
+    "caption": "Figure 6 Real-world task setup. We evaluate ω -0 on diverse long-horizon household loco-manipulation tasks involving whole-body motion, locomotion, tool use, articulated-object interaction, and dexterous manipulation. The task instruction is overlaid on each rollout sequence, and key sub-task progre",
+    "bbox": [
+      88.38,
+      57.78,
+      523.67,
+      347.23
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.073,
+      0.8557,
+      0.4384
+    ],
+    "dpi": 300,
+    "area_frac": 0.26,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig07.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig07.png",
+    "page": 15,
+    "caption": "Figure 7 Generalization and human-data transfer.We evaluate ω -0 on out-of-distribution objects and scenes, including novel object appearances, layouts, and household environments. We further fine-tune the model with human demonstration data and deploy it on the real humanoid, where it successfully ",
+    "bbox": [
+      88.38,
+      400.98,
+      523.64,
+      579.86
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.5063,
+      0.8556,
+      0.7321
+    ],
+    "dpi": 300,
+    "area_frac": 0.161,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig08.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig08.png",
+    "page": 16,
+    "caption": "Figure 8 Real-world long-horizon tasks.",
+    "bbox": [
+      76.16,
+      57.78,
+      291.48,
+      298.51
+    ],
+    "bbox_norm": [
+      0.1244,
+      0.073,
+      0.4763,
+      0.3769
+    ],
+    "dpi": 300,
+    "area_frac": 0.107,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig09.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig09.png",
+    "page": 27,
+    "caption": "Figure 9 Per-task success rate comparison across seven models on 11 real-world household loco-manipulation tasks. Success rate is computed as the percentage of trials in which all progress stages of a task are completed.",
+    "bbox": [
+      64.87,
+      70.31,
+      547.14,
+      239.17
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0888,
+      0.894,
+      0.302
+    ],
+    "dpi": 300,
+    "area_frac": 0.168,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig10.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig10.png",
+    "page": 27,
+    "caption": "Figure 10 Per-task task progress comparison across seven models. Task progress measures the normalized fraction of completed progress stages and provides a fine-grained view of partial task completion.",
+    "bbox": [
+      64.87,
+      292.08,
+      547.14,
+      460.94
+    ],
+    "bbox_norm": [
+      0.106,
+      0.3688,
+      0.894,
+      0.582
+    ],
+    "dpi": 300,
+    "area_frac": 0.168,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig11.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig11.png",
+    "page": 27,
+    "caption": "Figure 11 Per-task average score comparison across seven models. The score denotes the average number of completed progress stages for each task.",
+    "bbox": [
+      64.87,
+      513.85,
+      547.13,
+      682.72
+    ],
+    "bbox_norm": [
+      0.106,
+      0.6488,
+      0.894,
+      0.862
+    ],
+    "dpi": 300,
+    "area_frac": 0.168,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig12.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig12.png",
+    "page": 28,
+    "caption": "Figure 12 Task card of arrange_fruit_in_the_closet , which evaluates spatial arrangement and precise fruit placement in a closet.",
+    "bbox": [
+      88.38,
+      406.36,
+      523.65,
+      695.25
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.5131,
+      0.8556,
+      0.8778
+    ],
+    "dpi": 300,
+    "area_frac": 0.259,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p28.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig13.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig13.png",
+    "page": 29,
+    "caption": "Figure 13 Task card of clean_bed , which evaluates tool use, bed cleaning, object sweeping, and whole-body turning.",
+    "bbox": [
+      88.38,
+      82.85,
+      523.65,
+      358.72
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.1046,
+      0.8556,
+      0.4529
+    ],
+    "dpi": 300,
+    "area_frac": 0.248,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig14.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig14.png",
+    "page": 29,
+    "caption": "Figure 14 Task card of mop_floor , which evaluates locomotion with tool use and contact-rich floor cleaning.",
+    "bbox": [
+      88.38,
+      425.74,
+      523.65,
+      681.15
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.5376,
+      0.8556,
+      0.86
+    ],
+    "dpi": 300,
+    "area_frac": 0.229,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig15.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig15.png",
+    "page": 30,
+    "caption": "Figure 15 Task card of wipe_table , which evaluates sustained contact-rich tabletop cleaning.",
+    "bbox": [
+      88.38,
+      90.75,
+      523.65,
+      346.15
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.1146,
+      0.8556,
+      0.4371
+    ],
+    "dpi": 300,
+    "area_frac": 0.229,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p30.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig16.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig16.png",
+    "page": 30,
+    "caption": "Figure 16 Task card of pick_and_place_apple , which evaluates object grasping, transport, and placement.",
+    "bbox": [
+      88.38,
+      428.99,
+      523.65,
+      673.24
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.5417,
+      0.8556,
+      0.8501
+    ],
+    "dpi": 300,
+    "area_frac": 0.219,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p30.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig17.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig17.png",
+    "page": 31,
+    "caption": "Figure 17 Task card of pick_clothes_from_washing_machine , which evaluates articulated-object interaction, laundry retrieval, and placement.",
+    "bbox": [
+      88.38,
+      71.26,
+      523.65,
+      349.0
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.09,
+      0.8556,
+      0.4407
+    ],
+    "dpi": 300,
+    "area_frac": 0.249,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig18.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig18.png",
+    "page": 31,
+    "caption": "Figure 18 Task card of pick_garbage , which evaluates long-horizon object collection and dual-hand coordination.",
+    "bbox": [
+      88.38,
+      403.83,
+      523.65,
+      692.72
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.5099,
+      0.8556,
+      0.8747
+    ],
+    "dpi": 300,
+    "area_frac": 0.259,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig19.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig19.png",
+    "page": 32,
+    "caption": "Figure 19 Task card of put_apple_and_close_drawer , which evaluates tabletop manipulation and drawer operation.",
+    "bbox": [
+      88.38,
+      82.88,
+      523.65,
+      349.3
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.1046,
+      0.8556,
+      0.441
+    ],
+    "dpi": 300,
+    "area_frac": 0.239,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p32.png"
+  },
+  {
+    "id": "fig20",
+    "label": "Figure 20",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig20.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig20.png",
+    "page": 32,
+    "caption": "Figure 20 Task card of put_clothes_into_bucket , which evaluates deformable-object handling and basket placement.",
+    "bbox": [
+      88.38,
+      416.4,
+      523.65,
+      681.11
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.5258,
+      0.8556,
+      0.86
+    ],
+    "dpi": 300,
+    "area_frac": 0.238,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p32.png"
+  },
+  {
+    "id": "fig21",
+    "label": "Figure 21",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig21.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig21.png",
+    "page": 33,
+    "caption": "Figure 21 Task card of put_towel_into_washing_machine , which evaluates towel handling and appliance loading.",
+    "bbox": [
+      88.38,
+      76.84,
+      523.65,
+      332.27
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.097,
+      0.8556,
+      0.4195
+    ],
+    "dpi": 300,
+    "area_frac": 0.229,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p33.png"
+  },
+  {
+    "id": "fig22",
+    "label": "Figure 22",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig22.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig22.png",
+    "page": 33,
+    "caption": "Figure22 Task card of retrieve_from_the_upper_fridge , which evaluates long-horizon object retrieval and refrigerator interaction.",
+    "bbox": [
+      88.38,
+      387.29,
+      523.65,
+      676.19
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.489,
+      0.8556,
+      0.8538
+    ],
+    "dpi": 300,
+    "area_frac": 0.259,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p33.png"
+  },
+  {
+    "id": "fig23",
+    "label": "Figure 23",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig23.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig23.png",
+    "page": 35,
+    "caption": "Figure 23 Task card of brush_toilet , which evaluates bathroom cleaning with tool use.",
+    "bbox": [
+      88.38,
+      62.27,
+      523.65,
+      265.61
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.0786,
+      0.8556,
+      0.3354
+    ],
+    "dpi": 300,
+    "area_frac": 0.183,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p35.png"
+  },
+  {
+    "id": "fig24",
+    "label": "Figure 24",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig24.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig24.png",
+    "page": 35,
+    "caption": "Figure 24 Task card of classify_gadgets , which evaluates semantic sorting and object classification.",
+    "bbox": [
+      88.38,
+      291.48,
+      523.65,
+      485.54
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.368,
+      0.8556,
+      0.6131
+    ],
+    "dpi": 300,
+    "area_frac": 0.174,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p35.png"
+  },
+  {
+    "id": "fig25",
+    "label": "Figure 25",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig25.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig25.png",
+    "page": 35,
+    "caption": "Figure 25 Task card of collect_books , which evaluates object collection and tabletop organization.",
+    "bbox": [
+      88.38,
+      511.41,
+      523.65,
+      701.72
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.6457,
+      0.8556,
+      0.886
+    ],
+    "dpi": 300,
+    "area_frac": 0.171,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p35.png"
+  },
+  {
+    "id": "fig26",
+    "label": "Figure 26",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig26.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig26.png",
+    "page": 36,
+    "caption": "Figure 26 Task card of collect_fruits_from_the_closet , which evaluates fruit retrieval from structured storage.",
+    "bbox": [
+      88.38,
+      60.4,
+      523.65,
+      273.03
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.0763,
+      0.8556,
+      0.3447
+    ],
+    "dpi": 300,
+    "area_frac": 0.191,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p36.png"
+  },
+  {
+    "id": "fig27",
+    "label": "Figure 27",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig27.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig27.png",
+    "page": 36,
+    "caption": "Figure 27 Task card of collect_toys_from_the_bed , which evaluates object collection from soft household surfaces.",
+    "bbox": [
+      88.38,
+      295.19,
+      523.65,
+      487.37
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.3727,
+      0.8556,
+      0.6154
+    ],
+    "dpi": 300,
+    "area_frac": 0.173,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p36.png"
+  },
+  {
+    "id": "fig28",
+    "label": "Figure 28",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig28.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig28.png",
+    "page": 36,
+    "caption": "Figure 28 Task card of fruit_bucket_arrangement , which evaluates fruit arrangement and container organization.",
+    "bbox": [
+      88.38,
+      509.52,
+      523.65,
+      703.58
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.6433,
+      0.8556,
+      0.8884
+    ],
+    "dpi": 300,
+    "area_frac": 0.174,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p36.png"
+  },
+  {
+    "id": "fig29",
+    "label": "Figure 29",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig29.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig29.png",
+    "page": 37,
+    "caption": "Figure 29 Task card of grab_fruit_bucket , which evaluates whole-body reaching and container grasping.",
+    "bbox": [
+      88.38,
+      61.97,
+      523.65,
+      254.18
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.0783,
+      0.8556,
+      0.3209
+    ],
+    "dpi": 300,
+    "area_frac": 0.173,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p37.png"
+  },
+  {
+    "id": "fig30",
+    "label": "Figure 30",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig30.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig30.png",
+    "page": 37,
+    "caption": "Figure 30 Task card of hang_clothes , which evaluates clothes handling and hanging.",
+    "bbox": [
+      88.38,
+      279.46,
+      523.65,
+      473.38
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.3529,
+      0.8556,
+      0.5977
+    ],
+    "dpi": 300,
+    "area_frac": 0.174,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p37.png"
+  },
+  {
+    "id": "fig31",
+    "label": "Figure 31",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig31.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig31.png",
+    "page": 37,
+    "caption": "Figure 31 Task card of move_table_with_human , which evaluates human-robot collaborative furniture moving.",
+    "bbox": [
+      88.38,
+      498.67,
+      523.65,
+      702.01
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.6296,
+      0.8556,
+      0.8864
+    ],
+    "dpi": 300,
+    "area_frac": 0.183,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p37.png"
+  },
+  {
+    "id": "fig32",
+    "label": "Figure 32",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig32.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig32.png",
+    "page": 38,
+    "caption": "Figure 32 Task card of push_chair , which evaluates furniture interaction and whole-body pushing.",
+    "bbox": [
+      88.38,
+      113.57,
+      523.65,
+      305.76
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.1434,
+      0.8556,
+      0.3861
+    ],
+    "dpi": 300,
+    "area_frac": 0.173,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p38.png"
+  },
+  {
+    "id": "fig33",
+    "label": "Figure 33",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig33.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig33.png",
+    "page": 38,
+    "caption": "Figure 33 Task card of put_the_beverage_in_the_lower_fridge , which evaluates beverage placement and lower- fridge interaction.",
+    "bbox": [
+      88.38,
+      434.24,
+      523.65,
+      639.46
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.5483,
+      0.8556,
+      0.8074
+    ],
+    "dpi": 300,
+    "area_frac": 0.184,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p38.png"
+  },
+  {
+    "id": "fig34",
+    "label": "Figure 34",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig34.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig34.png",
+    "page": 39,
+    "caption": "Figure 34 Task card of put_the_bottle_in_the_upper_fridge , which evaluates bottle placement into an upper refrigerator compartment.",
+    "bbox": [
+      88.38,
+      108.05,
+      523.65,
+      313.27
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.1364,
+      0.8556,
+      0.3955
+    ],
+    "dpi": 300,
+    "area_frac": 0.184,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p39.png"
+  },
+  {
+    "id": "fig35",
+    "label": "Figure 35",
+    "kind": "figure",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/fig35.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/fig35.png",
+    "page": 39,
+    "caption": "Figure 35 Task card of wipe_basin , which evaluates bathroom surface cleaning.",
+    "bbox": [
+      64.87,
+      441.67,
+      547.16,
+      655.94
+    ],
+    "bbox_norm": [
+      0.106,
+      0.5577,
+      0.8941,
+      0.8282
+    ],
+    "dpi": 300,
+    "area_frac": 0.213,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p39.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab01.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab01.png",
+    "page": 12,
+    "caption": "Table 1 Real-world household loco-manipulation task suite. The tasks are designed to evaluate coordinated upper- and lower-body control across tabletop, cleaning, laundry, and object-transfer scenarios.",
+    "bbox": [
+      77.14,
+      58.18,
+      534.86,
+      211.99
+    ],
+    "bbox_norm": [
+      0.126,
+      0.0735,
+      0.874,
+      0.2677
+    ],
+    "dpi": 300,
+    "area_frac": 0.145,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab02.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab02.png",
+    "page": 13,
+    "caption": "Table 2 Overall real-world evaluation across 11 household loco-manipulation tasks. All methods are trained on the real-world dataset and evaluated under the same protocol. Success rate measures the fraction of successful trials. Score measures the average number of completed subtasks, with a maximum",
+    "bbox": [
+      64.87,
+      58.18,
+      547.13,
+      284.53
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0735,
+      0.894,
+      0.3593
+    ],
+    "dpi": 300,
+    "area_frac": 0.225,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab03.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab03.png",
+    "page": 13,
+    "caption": "Table 3 Effect of using ω -HOME as additional real-world humanoid pre-training data.",
+    "bbox": [
+      64.87,
+      581.9,
+      548.49,
+      665.57
+    ],
+    "bbox_norm": [
+      0.106,
+      0.7347,
+      0.8962,
+      0.8404
+    ],
+    "dpi": 300,
+    "area_frac": 0.083,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab04.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab04.png",
+    "page": 14,
+    "caption": "Table 4 Ablation studies of ω -0 on real-world household loco-manipulation tasks. We evaluate the effect of robot state conditioning, the Whole-Body VLM prefix, future visual latent prediction through video queries, training-time RTC, and the current-image encoder. All variants are trained and evalu",
+    "bbox": [
+      64.87,
+      58.18,
+      547.13,
+      183.67
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0735,
+      0.894,
+      0.2319
+    ],
+    "dpi": 300,
+    "area_frac": 0.125,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab05.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab05.png",
+    "page": 18,
+    "caption": "Table 5 Effect of future video latent prediction on gener- alization. The maximum scores are 13 for cross-object generalization, 6 for cross-scene generalization, and 3 for human-data transfer.",
+    "bbox": [
+      67.28,
+      58.09,
+      548.71,
+      154.14
+    ],
+    "bbox_norm": [
+      0.1099,
+      0.0733,
+      0.8966,
+      0.1946
+    ],
+    "dpi": 300,
+    "area_frac": 0.095,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab06.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab06.png",
+    "page": 24,
+    "caption": "Table 6 Per-trial progress annotations of ω - 0 Ego on put_apple_and_close_drawer .",
+    "bbox": [
+      67.64,
+      220.93,
+      544.38,
+      288.03
+    ],
+    "bbox_norm": [
+      0.1105,
+      0.2789,
+      0.8895,
+      0.3637
+    ],
+    "dpi": 300,
+    "area_frac": 0.066,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab07.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab07.png",
+    "page": 24,
+    "caption": "Table 7 Per-trial progress annotations of ω - 0 Ego on wipe_table .",
+    "bbox": [
+      67.35,
+      389.95,
+      544.66,
+      459.27
+    ],
+    "bbox_norm": [
+      0.11,
+      0.4924,
+      0.89,
+      0.5799
+    ],
+    "dpi": 300,
+    "area_frac": 0.068,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab08.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab08.png",
+    "page": 24,
+    "caption": "Table 8 Per-trial progress annotations of ω - 0 Ego on pick_garbage .",
+    "bbox": [
+      67.35,
+      389.95,
+      544.66,
+      459.27
+    ],
+    "bbox_norm": [
+      0.11,
+      0.4924,
+      0.89,
+      0.5799
+    ],
+    "dpi": 300,
+    "area_frac": 0.068,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab09.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab09.png",
+    "page": 24,
+    "caption": "Table 9 Per-trial progress annotations of ω - 0 Ego on clean_bed .",
+    "bbox": [
+      67.43,
+      482.89,
+      544.58,
+      545.91
+    ],
+    "bbox_norm": [
+      0.1102,
+      0.6097,
+      0.8898,
+      0.6893
+    ],
+    "dpi": 300,
+    "area_frac": 0.062,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab10.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab10.png",
+    "page": 24,
+    "caption": "Table 10 Per-trial progress annotations of ω - 0 Ego on mop_floor .",
+    "bbox": [
+      67.5,
+      569.55,
+      544.51,
+      625.53
+    ],
+    "bbox_norm": [
+      0.1103,
+      0.7191,
+      0.8897,
+      0.7898
+    ],
+    "dpi": 300,
+    "area_frac": 0.055,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab11.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab11.png",
+    "page": 25,
+    "caption": "Table 11 Per-trial progress annotations of ω - 0 Ego on pick_and_place .",
+    "bbox": [
+      67.55,
+      73.66,
+      544.46,
+      130.38
+    ],
+    "bbox_norm": [
+      0.1104,
+      0.093,
+      0.8896,
+      0.1646
+    ],
+    "dpi": 300,
+    "area_frac": 0.056,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab12.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab12.png",
+    "page": 25,
+    "caption": "Table 12 Per-trial progress annotations of ω - 0 Ego on put_clothes_into_bucket .",
+    "bbox": [
+      67.48,
+      179.03,
+      544.53,
+      234.56
+    ],
+    "bbox_norm": [
+      0.1103,
+      0.226,
+      0.8898,
+      0.2962
+    ],
+    "dpi": 300,
+    "area_frac": 0.055,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab13.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab13.png",
+    "page": 25,
+    "caption": "Table 13 Per-trial progress annotations of ω - 0 Ego on washing_machine .",
+    "bbox": [
+      67.5,
+      283.2,
+      544.51,
+      339.04
+    ],
+    "bbox_norm": [
+      0.1103,
+      0.3576,
+      0.8897,
+      0.4281
+    ],
+    "dpi": 300,
+    "area_frac": 0.055,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab14.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab14.png",
+    "page": 25,
+    "caption": "Table 14 Per-trial progress annotations of ω - 0 Ego on arrange_fruit_in_the_closet .",
+    "bbox": [
+      67.67,
+      387.71,
+      544.33,
+      455.49
+    ],
+    "bbox_norm": [
+      0.1106,
+      0.4895,
+      0.8894,
+      0.5751
+    ],
+    "dpi": 300,
+    "area_frac": 0.067,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab15",
+    "label": "Table 15",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab15.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab15.png",
+    "page": 25,
+    "caption": "Table 15 Per-trial progress annotations of ω - 0 Ego on pick_clothes_from_washing_machine .",
+    "bbox": [
+      67.33,
+      504.13,
+      544.69,
+      565.18
+    ],
+    "bbox_norm": [
+      0.11,
+      0.6365,
+      0.89,
+      0.7136
+    ],
+    "dpi": 300,
+    "area_frac": 0.06,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab16",
+    "label": "Table 16",
+    "kind": "table",
+    "file": "assets/li-2026-omega-0-a-latent-predictive/tab16.png",
+    "raw": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/tab16.png",
+    "page": 25,
+    "caption": "Table 16 Per-trial progress annotations of ω - 0 Ego on retrieve_from_fridge .",
+    "bbox": [
+      67.66,
+      613.82,
+      544.35,
+      690.31
+    ],
+    "bbox_norm": [
+      0.1106,
+      0.775,
+      0.8895,
+      0.8716
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-omega-0-a-latent-predictive-figures/_overlay/p25.png"
+  }
+]

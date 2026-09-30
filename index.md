@@ -191,6 +191,8 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/shao-2026-one-step-drifting-action-heads|One-Step Drifting Action Heads (GR00T N1.7)]]: action head를 단발 평가형으로 바꿔 45.3 ms를 5.0 ms로 줄였으나 LIBERO 성공률은 하락한 교환 관계 보고 (2026, paper)
 - [[physical-ai/jeong-2026-huro-robotizing-human-videos|HuRo (RLWRLD, Yonsei)]]: 사람 영상의 팔을 지우고 로봇을 합성하며 손 동작도 retargeting해 만든 63만 episode 데이터셋. 실제 과제 completion 51.5%에서 80.3% (2026, paper)
 - [[physical-ai/3587jjh-huro|HuRo (3587jjh, repo)]]: HuRo 논문의 robotization 파이프라인 공개 저장소. 원본 에고센트릭 영상을 LeRobot V2.0 데이터셋으로 바꾸는 10단계 스크립트 (2026, repo)
+- [[physical-ai/li-2026-omega-0-a-latent-predictive|ω-0 (NTU, PKU, BAAI)]]: 미래 임베딩만 예측하며 SONIC용 whole-body action latent를 생성하는 humanoid WAM과 ω-HOME 데이터셋. 가정 과제 11개 성공률 81.8% (2026, paper)
+- [[physical-ai/gentlefress-omega-0|OMEGA-0 (gentlefress, repo)]]: ω-0 공식 코드. Unitree G1 teleoperation 수집, 두 단계 학습, 추론 서버 배치를 담고 체크포인트는 미공개 (2026, repo)
 - [[physical-ai/gaba-2026-a-comprehensive-review-of-generative|Generative Physical AI 종합 서베이]]: RFM, VLA, LBM, DPM, WFM 다섯 계열로 GPAI를 분류하고 일곱 분야 배치 사례와 한계 9가지를 정리한다 (2026, paper)
 - [[physical-ai/odyssey-2026-introducing-odyssey-3-a-general|Odyssey-3 (Odyssey)]]: 하나의 foundation world model 위에 action decoder만 과제별로 학습시켜 로봇 팔, humanoid, 자동차, 드론, 게임을 제어했다는 발표문 (2026, article)
 - [[physical-ai/kim-2026-safe-embodied-ai-for-long-horizon|Safe Embodied AI (Survey)]]: long-horizon manipulation 안전 문헌을 intervention locus와 evidence boundary 두 기준으로 재배치한 서베이 (2026, paper)
