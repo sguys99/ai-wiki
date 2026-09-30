@@ -254,6 +254,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/madslorentzen-ai-job-search|MadsLorentzen/ai-job-search (repo)]]: Claude Code 기반 구직 지원 프레임워크. drafter-reviewer 2단계로 LaTeX CV를 쓰고 PDF 컴파일과 ATS 텍스트 레이어까지 검증한다 (2026, repo)
 - [[agents/stablyai-orca|Orca (repo)]]: 여러 CLI 코딩 에이전트를 각자 독립된 git worktree에서 병렬 실행하고 한 곳에서 추적하는 stablyai의 데스크톱 오케스트레이터. 지원 에이전트 29종 명시, MIT (2026, repo)
 - [[agents/donchitos-claude-code-game-studios|Claude Code Game Studios (repo)]]: Claude Code 세션에 게임 스튜디오 조직을 입히는 MIT 템플릿. 에이전트 3계층과 슬래시 커맨드, 훅, 경로 기반 규칙으로 품질 게이트를 건다 (2026, repo)
+- [[agents/revfactory-varco-platform|VARCO Game Studio (repo)]]: VARCO API로 게임을 기획부터 출시 판정까지 만드는 Claude Code harness. 에이전트 15개가 5단계를 진행하고 공용 클라이언트가 크레딧 예산과 호출 장부를 통제한다 (2026, repo)
 - [[agents/llmsresearch-paperbanana|PaperBanana (repo)]]: 방법론 텍스트를 받아 7개 에이전트가 다이어그램과 통계 플롯을 만드는 프레임워크. CLI, Python API, MCP 서버, Claude Code 스킬을 제공한다 (2026, repo)
 - [[agents/imbad0202-academic-research-skills|Academic Research Skills (repo)]]: Claude Code 스킬 4종으로 논문 연구부터 심사까지 잇는 파이프라인. 환각 인용을 막는 3단 검증 인프라와 건너뛸 수 없는 무결성 게이트가 핵심이다 (2026, repo)
 - [[agents/alphaxiv-openresearch|OpenResearch (repo)]]: coding agent를 연구 에이전트로 바꾸는 local-first 작업 공간. git 브랜치 기반 experiment tree와 run command 고정 규칙으로 autoresearch 루프의 결과를 비교 가능하게 만든다 (2026, repo)
@@ -335,6 +336,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 
 - [[etc/rahman-2026-a-practical-guide-to-becoming|AI-Native Engineer 실전 가이드 (Shah Rahman, ByteByteGo)]]: Meta Ads ML 총괄의 에세이. orchestrator로의 전환에 필요한 4 Core Practices, ADLC 6절, 가드레일 9종 (2026, article)
 - [[etc/google-okf|Open Knowledge Format (OKF)]]: 지식을 YAML frontmatter markdown 디렉토리로 표현하는 벤더 중립 포맷 명세 v0.2. provenance, trust, lifecycle 필드와 승인된 계산을 검사하는 Attested Computation 타입을 정의한다 (2026, repo)
+- [[etc/designsystems-one-2026-design-systems-explained-gallery-guides|DesignSystems.one]]: design system 120개 갤러리와 playbook, 무료 도구. 에이전트 대응도를 채점한 Agent-Ready Index를 공개한다 (2026, article)
 
 ## Overviews (overviews)
 
