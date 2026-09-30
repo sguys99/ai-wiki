@@ -1,0 +1,50 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/designsystems-one-2026-agent-ready-design-systems-index-who/page-full.png",
+    "raw": "raw/articles/designsystems-one-2026-agent-ready-design-systems-index-who-figures/page-full.png",
+    "caption": "Agent-Ready Index 페이지 전체 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/designsystems-one-2026-agent-ready-design-systems-index-who/fig02.png",
+    "raw": "raw/articles/designsystems-one-2026-agent-ready-design-systems-index-who-figures/fig02.png",
+    "caption": "신호별 채택 수 막대와 점수 분포 막대. 0점 19개, 1점 8개, 2점 7개, 3점 2개, 4점 1개, 5점 0개",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/designsystems-one-2026-agent-ready-design-systems-index-who/fig03.png",
+    "raw": "raw/articles/designsystems-one-2026-agent-ready-design-systems-index-who-figures/fig03.png",
+    "caption": "37개 시스템 점수표 1부. Carbon부터 Spectrum까지 10개 시스템의 신호별 판정",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/designsystems-one-2026-agent-ready-design-systems-index-who/fig04.png",
+    "raw": "raw/articles/designsystems-one-2026-agent-ready-design-systems-index-who-figures/fig04.png",
+    "caption": "37개 시스템 점수표 2부. Canvas부터 Apple HIG까지 10개 시스템",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/designsystems-one-2026-agent-ready-design-systems-index-who/fig05.png",
+    "raw": "raw/articles/designsystems-one-2026-agent-ready-design-systems-index-who-figures/fig05.png",
+    "caption": "37개 시스템 점수표 3부. Audi UI부터 Linear까지 9개 시스템",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/designsystems-one-2026-agent-ready-design-systems-index-who/fig06.png",
+    "raw": "raw/articles/designsystems-one-2026-agent-ready-design-systems-index-who-figures/fig06.png",
+    "caption": "37개 시스템 점수표 4부. Mailchimp부터 U.S. Web Design System까지 8개 시스템",
+    "strategy": "crop",
+    "curated": false
+  }
+]

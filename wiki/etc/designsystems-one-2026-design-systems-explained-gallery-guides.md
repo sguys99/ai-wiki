@@ -38,7 +38,7 @@ DesignSystems.one은 실제 기업과 오픈소스 프로젝트가 공개한 des
 
 이 wiki에서 이 자료가 갖는 의미는 2026년판에 추가된 AI 관련 축에 있다. 사이트는 design system이 Cursor, Claude Code, v0 같은 코딩 에이전트에 얼마나 준비되어 있는지를 5점 척도로 채점한 Agent-Ready Index를 공개했고(2026-09-04 감사, 37개 시스템), 가장 높은 Carbon도 4/5에 그쳤다. 또한 design token, MCP server, 에이전트를 묶어 design system을 AI-ready로 전환하는 허브를 "2026 wedge"라는 이름으로 전면에 배치했다. 즉 design system 업계의 레퍼런스 사이트가 에이전트 대응을 네 가지 핵심 질문 중 하나로 올려 둔 사례다.
 
-이 페이지는 사이트의 랜딩 페이지만을 근거로 한다. Agent-Ready Index의 채점 기준, AI-ready 허브의 세부, playbook 각 장의 본문은 하위 페이지에 있어 이번 수집 범위 밖이다.
+이 페이지는 사이트의 랜딩 페이지만을 근거로 한다. 같은 사이트의 AI-ready 허브는 [[etc/designsystems-one-2026-ai-ready-design-systems-make-yours]]에서, Agent-Ready Index의 채점 기준과 37개 시스템 점수표는 [[etc/designsystems-one-2026-agent-ready-design-systems-index-who]]에서 따로 다룬다. playbook 각 장의 본문과 선택 가이드는 아직 수집하지 않았다.
 
 ## 배경
 
@@ -70,7 +70,7 @@ MCP는 모델이 외부 도구와 데이터 원천에 표준화된 방식으로 
 
 drift는 에이전트가 만든 코드가 design system의 정의에서 조금씩 벗어나는 현상을 이 페이지에서 가리키는 말이다. AI-ready 허브는 design token, 컴포넌트, 패턴을 "without drift" 상태로 코딩 에이전트에 노출하는 것을 목표로 적는다.
 
-Agent-Ready Index는 design system이 코딩 에이전트에 얼마나 준비되어 있는지를 "AI n/5" 점수로 매긴 사이트 자체 지표다. 점수가 무엇을 측정하는지는 랜딩 페이지에 나오지 않는다.
+Agent-Ready Index는 design system이 코딩 에이전트에 얼마나 준비되어 있는지를 "AI n/5" 점수로 매긴 사이트 자체 지표다. 점수가 무엇을 측정하는지는 랜딩 페이지에 나오지 않으며, 다섯 가지 채점 신호는 [[etc/designsystems-one-2026-agent-ready-design-systems-index-who]]에 정리했다.
 
 ## 사이트 구성
 
@@ -108,7 +108,7 @@ stripe-design.md 카드는 [[agents/google-labs-code-design-md]]가 정의한 DE
 
 이 표는 두 가지 사실을 보여 준다. 첫째, 1위인 Carbon도 5점 만점에 이르지 못했으므로 사이트 기준으로는 완전히 agent-ready인 design system이 아직 없다. 둘째, 5위의 점수가 이미 2/5이므로 37개 중 나머지 32개는 2/5 이하다. 즉 사이트가 보는 업계 전반의 에이전트 대응 수준은 낮은 편이다.
 
-Atlassian Design System이 2/5로 5위에 있다는 점은 [[agents/hall-2026-atlassians-design-md-is-here]]와 함께 읽을 만하다. 그 글은 Atlassian이 MCP server와 스킬을 이미 운영하며 DESIGN.md와 비교 실측할 만큼 에이전트 대응을 진행한 사례인데, 이 지표에서는 중간 이하 점수를 받았다. 채점 기준이 공개되지 않아 두 자료의 차이가 어디서 오는지는 이 자료만으로 판단할 수 없다.
+Atlassian Design System이 2/5로 5위에 있다는 점은 [[agents/hall-2026-atlassians-design-md-is-here]]와 함께 읽을 만하다. 그 글은 Atlassian이 MCP server와 스킬을 이미 운영하며 DESIGN.md와 비교 실측할 만큼 에이전트 대응을 진행한 사례인데, 이 지표에서는 중간 이하 점수를 받았다. 지표 페이지([[etc/designsystems-one-2026-agent-ready-design-systems-index-who]])에 따르면 점수는 MCP server, llms.txt, DTCG design token, component registry, Figma Code Connect 다섯 신호의 공개 여부이며, Atlassian은 MCP server와 llms.txt가 확인되고 DTCG와 Code Connect가 unknown이다. 즉 이 점수는 산출물의 공개 여부를 센 것이고, 실측 글이 잰 토큰 비용이나 컨텍스트 확보율과는 측정 대상이 다르다.
 
 ### 네 가지 진입 경로
 
@@ -189,8 +189,8 @@ Accessibility Checker 카드는 대비 값 세 개를 예로 보여 준다. 12.6
 
 이 자료를 인용할 때 고려해야 할 제약은 다음과 같다.
 
-- **입구 페이지만 수집했다.** Agent-Ready Index의 채점 항목, AI-ready 허브의 세 가지 pillar, playbook 8개 챕터의 제목과 본문, 선택 가이드의 실제 추천은 모두 하위 페이지에 있다. 이 페이지로는 각 항목의 존재와 규모만 확인할 수 있다.
-- **채점 기준이 드러나지 않는다.** "AI n/5" 점수가 무엇을 측정하는지 랜딩 페이지에 설명이 없다. 점수를 인용할 때는 사이트 자체 감사 결과라는 점과 감사일(2026-09-04)을 함께 밝혀야 한다.
+- **입구 페이지만 다룬다.** playbook 8개 챕터의 제목과 본문, 선택 가이드의 실제 추천은 하위 페이지에 있고 아직 수집하지 않았다. AI-ready 허브와 Agent-Ready Index는 별도 페이지로 수집했다.
+- **랜딩 페이지에는 채점 기준이 없다.** "AI n/5" 점수의 기준은 지표 페이지에만 있다. 점수를 인용할 때는 사이트 자체 감사 결과라는 점과 감사일(2026-09-04)을 함께 밝혀야 한다.
 - **1인 제작 큐레이션이다.** 푸터의 "Built by Kiryl Zhukouski"와 Support the project 링크로 보아 개인이 운영하는 사이트이며, 비교와 추천에는 제작자의 관점이 반영된다.
 - **시점에 의존한다.** 감사일이 명시된 지표이므로 시간이 지나면 순위와 점수가 바뀔 수 있다. 사이트 스스로도 선택 가이드에서 2023년 이후 답이 바뀌었다고 적는다.
 - **제작자 확인 경로.** 제작자 이름은 텍스트 본문이 아니라 전체 페이지 스크린샷의 푸터에서 확인했다.
@@ -208,6 +208,8 @@ Accessibility Checker 카드는 대비 값 세 개를 예로 보여 준다. 12.6
 
 ## 관련 페이지
 
+- [[etc/designsystems-one-2026-ai-ready-design-systems-make-yours]]: 같은 사이트의 AI-ready 허브. design token, MCP server, 컴포넌트 계약의 세 pillar와 readiness 체크리스트
+- [[etc/designsystems-one-2026-agent-ready-design-systems-index-who]]: 같은 사이트의 Agent-Ready Index 원자료. 다섯 신호 채점 규칙과 37개 시스템 점수표
 - [[agents/google-labs-code-design-md]]: design system을 Markdown 파일 하나로 코딩 에이전트에 넘기는 DESIGN.md 규격. 히어로의 stripe-design.md 카드와 같은 계열의 전달 방식이다
 - [[agents/hall-2026-atlassians-design-md-is-here]]: Atlassian Design System에서 DESIGN.md, MCP server, 스킬을 실측 비교한 글. Atlassian은 이 사이트의 Agent-Ready Index에서 2/5로 5위다
 - [[overviews/design-md-overview]]: DESIGN.md, MCP server, Agent Skills의 로딩 방식과 토큰 비용을 비교한 overview. AI-ready 허브가 다루는 주제와 겹친다

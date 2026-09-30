@@ -43,7 +43,7 @@ DesignSystems.one은 실제 design system 120개를 모아 비교하고, 구축 
 
 ## 1. 자료 정보 (Document Information)
 
-- 형식: 웹사이트 랜딩 페이지(<https://www.designsystems.one/>). 개별 글이 아니라 사이트 전체의 입구 페이지다. 하위 페이지(`/playbook`, `/ai-ready`, `/design-systems/which-one` 등)의 본문은 이번 수집 범위에 포함되지 않았다.
+- 형식: 웹사이트 랜딩 페이지(<https://www.designsystems.one/>). 개별 글이 아니라 사이트 전체의 입구 페이지다. 하위 페이지 중 `/ai-ready`와 `/ai-ready/systems`는 별도 자료로 수집했다([[etc/designsystems-one-2026-ai-ready-design-systems-make-yours]], [[etc/designsystems-one-2026-agent-ready-design-systems-index-who]]). `/playbook`, `/design-systems/which-one` 등의 본문은 수집하지 않았다.
 - 제작자: Kiryl Zhukouski. 텍스트 본문에는 이름이 없고 전체 페이지 스크린샷(fig01)의 푸터 "Built by Kiryl Zhukouski"에서 확인했다.
 - 사이트 자기소개(푸터, fig01): "A curated gallery of 120 real-world design systems, foundations and guidelines from fourteen years of practice, plus free interactive tools." 즉 14년의 실무 경험에서 나온 foundations와 가이드라인, 그리고 무료 인터랙티브 도구를 함께 담은 큐레이션 갤러리다.
 - 연도: 발행일 표기는 없다. Agent-Ready Index 감사일(2026-09-04), "Which design system to choose in 2026" 카드, 푸터의 "© 2026"을 근거로 2026년으로 기록한다.
@@ -76,7 +76,7 @@ DesignSystems.one은 실제 design system 120개를 모아 비교하고, 구축 
 | 4 | Ant Design | AI 2/5 |
 | 5 | Atlassian Design System | AI 2/5 |
 
-제목은 "The systems closest to agent-ready today"이고, 전체 지표는 `/ai-ready/systems`에 37개 시스템으로 있다. 채점 기준(5개 항목의 내용)은 랜딩 페이지에 나오지 않는다. 상위 1위도 5점 만점이 아니라는 점에서 사이트는 현재 어느 design system도 완전히 agent-ready 상태가 아니라고 본다.
+제목은 "The systems closest to agent-ready today"이고, 전체 지표는 `/ai-ready/systems`에 37개 시스템으로 있다. 채점 기준(5개 항목의 내용)은 랜딩 페이지에 나오지 않으며 지표 페이지([[etc/designsystems-one-2026-agent-ready-design-systems-index-who]])에 있다. 상위 1위도 5점 만점이 아니라는 점에서 사이트는 현재 어느 design system도 완전히 agent-ready 상태가 아니라고 본다.
 
 ### 3.3 네 가지 진입 경로 ("Start where you are")
 
@@ -134,13 +134,15 @@ Site 링크 목록: Tools, Design systems library, What is a design system?, Fou
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
-- **입구 페이지만 수집했다.** Agent-Ready Index의 채점 기준, AI-ready 허브의 세 가지 pillar 내용, playbook 8개 챕터 제목, 선택 가이드의 추천 결과는 모두 하위 페이지에 있어 이 자료로는 알 수 없다.
+- **입구 페이지만 다룬다.** playbook 8개 챕터 제목과 선택 가이드의 추천 결과는 하위 페이지에 있어 이 자료로는 알 수 없다. Agent-Ready Index의 채점 기준과 AI-ready 허브의 세 pillar는 별도 자료로 수집했다.
 - **채점 방법 비공개(랜딩 기준).** "AI n/5" 점수가 무엇을 측정하는지 랜딩 페이지에 설명이 없다. 점수를 인용할 때는 사이트 자체 감사 결과라는 점을 함께 밝혀야 한다.
 - **1인 제작 큐레이션.** 제작자 한 명이 운영하는 사이트로 보이며(푸터 "Built by Kiryl Zhukouski", "Support the project"), 비교와 추천에는 제작자의 관점이 반영된다.
 - **시점 의존.** 감사일이 명시된 지표라 시간이 지나면 순위와 점수가 바뀔 수 있다. 사이트 스스로도 2023년 이후 답이 바뀌었다고 적는다.
 
 ## 6. 관련 연구 (Related Work)
 
+- [[etc/designsystems-one-2026-ai-ready-design-systems-make-yours]]: 같은 사이트의 AI-ready 허브. design token, MCP server, 컴포넌트 계약의 세 pillar와 readiness 체크리스트.
+- [[etc/designsystems-one-2026-agent-ready-design-systems-index-who]]: 같은 사이트의 Agent-Ready Index 원자료. 다섯 신호 채점 규칙과 37개 시스템 점수표.
 - [[agents/google-labs-code-design-md]]: design system을 코딩 에이전트에게 넘기는 Google Labs의 DESIGN.md 포맷. 히어로의 "stripe-design.md Ready to download" 카드와 같은 계열의 Markdown 전달 방식이다.
 - [[agents/hall-2026-atlassians-design-md-is-here]]: Atlassian Design System에서 DESIGN.md를 MCP, 스킬과 비교 실측한 글. Atlassian은 이 사이트의 Agent-Ready Index에서 2/5로 5위다.
 - [[overviews/design-md-overview]]: DESIGN.md, MCP server, Agent Skills의 로딩 방식과 토큰 비용을 비교한 overview. AI-ready 허브가 다루는 "design token, MCP server, 에이전트" 주제와 겹친다.

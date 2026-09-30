@@ -339,6 +339,8 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[etc/rahman-2026-a-practical-guide-to-becoming|AI-Native Engineer 실전 가이드 (Shah Rahman, ByteByteGo)]]: Meta Ads ML 총괄의 에세이. orchestrator로의 전환에 필요한 4 Core Practices, ADLC 6절, 가드레일 9종 (2026, article)
 - [[etc/google-okf|Open Knowledge Format (OKF)]]: 지식을 YAML frontmatter markdown 디렉토리로 표현하는 벤더 중립 포맷 명세 v0.2. provenance, trust, lifecycle 필드와 승인된 계산을 검사하는 Attested Computation 타입을 정의한다 (2026, repo)
 - [[etc/designsystems-one-2026-design-systems-explained-gallery-guides|DesignSystems.one]]: design system 120개 갤러리와 playbook, 무료 도구. 에이전트 대응도를 채점한 Agent-Ready Index를 공개한다 (2026, article)
+- [[etc/designsystems-one-2026-ai-ready-design-systems-make-yours|DesignSystems.one AI-ready 허브]]: design system을 에이전트가 읽게 하는 세 pillar(design token, MCP server, 컴포넌트 계약)와 여섯 문항 체크리스트 (2026, article)
+- [[etc/designsystems-one-2026-agent-ready-design-systems-index-who|Agent-Ready Design Systems Index]]: design system 37개를 MCP, llms.txt, DTCG 등 다섯 신호로 채점한 감사. 최고 Carbon 4/5, 19개가 0점 (2026, article)
 
 ## Overviews (overviews)
 

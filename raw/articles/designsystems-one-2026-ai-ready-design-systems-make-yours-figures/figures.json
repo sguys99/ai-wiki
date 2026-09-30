@@ -1,0 +1,42 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/designsystems-one-2026-ai-ready-design-systems-make-yours/page-full.png",
+    "raw": "raw/articles/designsystems-one-2026-ai-ready-design-systems-make-yours-figures/page-full.png",
+    "caption": "AI-ready 허브 페이지 전체 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/designsystems-one-2026-ai-ready-design-systems-make-yours/fig02.png",
+    "raw": "raw/articles/designsystems-one-2026-ai-ready-design-systems-make-yours-figures/fig02.png",
+    "caption": "세 pillar의 적층 구조. Tokens가 substrate, MCP server가 query, Components가 contract 층을 맡는다",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/designsystems-one-2026-ai-ready-design-systems-make-yours/fig03.png",
+    "raw": "raw/articles/designsystems-one-2026-ai-ready-design-systems-make-yours-figures/fig03.png",
+    "caption": "세 pillar 카드. 각 pillar의 설명과 핵심 항목 세 가지",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/designsystems-one-2026-ai-ready-design-systems-make-yours/fig04.png",
+    "raw": "raw/articles/designsystems-one-2026-ai-ready-design-systems-make-yours-figures/fig04.png",
+    "caption": "readiness 체크리스트 여섯 질문",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/designsystems-one-2026-ai-ready-design-systems-make-yours/fig05.png",
+    "raw": "raw/articles/designsystems-one-2026-ai-ready-design-systems-make-yours-figures/fig05.png",
+    "caption": "지난 12개월의 네 가지 신호 카드",
+    "strategy": "crop",
+    "curated": false
+  }
+]
