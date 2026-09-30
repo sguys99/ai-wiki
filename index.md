@@ -325,6 +325,8 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/cheahjs-free-llm-api-resources|cheahjs/free-llm-api-resources (repo)]]: 무료 한도나 체험 크레딧으로 쓸 수 있는 LLM API provider 26곳을 요청 한도, 토큰 한도, 이용 조건, 제공 모델까지 정리한 큐레이션 저장소 (2026, repo)
 - [[applications/debpalash-voicestudio|debpalash/VoiceStudio (repo)]]: voice cloning, dubbing, 받아쓰기, 오디오북을 계정 없이 로컬에서 실행하는 AGPL 앱. TTS 16종과 ASR 11종을 registry로 묶고 OpenAI 호환 API와 MCP 서버를 낸다 (2026, repo)
 - [[applications/mrmps-classifier-dev|classifier.dev (mrmps, repo)]]: 키도 가입도 없이 URL만으로 zero-shot 텍스트 분류를 주는 MIT Cloudflare Worker. 생성 모델 대신 TypeSafe Jev를 호출해 요청당 1,000건과 보정된 신뢰도를 얻는다 (2026, repo)
+- [[applications/li-2026-genrec-an-llm-backed-recommendation|GenRec 논문 (Netflix)]]: 사내 LLM을 랭킹용으로 post-training한 ranker. 레이블 40배 적게 쓰고 production 대비 MRR 1.6%, 온라인 지표도 유의하게 개선 (2026, paper)
+- [[applications/netflix-2026-genrec-towards-llm-native-recommendation|GenRec 블로그 (Netflix)]]: GenRec 해설 글. feature engineering에서 context engineering으로 옮겨 가는 LLM-native 추천의 방향을 제시한다 (2026, article)
 
 ## Etc (etc)
 

@@ -73,6 +73,10 @@ tags: [glossary, terminology, llms, synthesis]
 | zero-shot | zero-shot | — | zero-shot은 해당 과제의 예시를 하나도 보여 주지 않고 지시만으로 과제를 풀게 하는 설정이다 | few-shot, one-shot도 원어. 음차 "제로샷"은 2회로 원어가 정착했다. 지침만. 2026-09 4차 갱신 등재 (원어 207회) |
 | reasoning trace | reasoning trace | — | reasoning trace는 모델이 답에 이르기까지 생성한 중간 추론 텍스트의 기록이다 | glossary-agents의 reasoning 행이 canonical을 "추론"으로 두지만 복합어는 원어로 쓴다. "추론 기록"은 일반 서술이라 기계 검사 없이 지침만. 2026-09 4차 갱신 등재 (원어 44회 대 추론 흔적 3회, 추론 기록 10회) |
 | next-token prediction | next-token prediction | — | next-token prediction은 이전 토큰들로 다음 토큰을 맞히는 학습 목표다 | "다음 토큰 예측"은 병용 허용 (지침) |
+| verbalization | verbalization | 언어화·버벌라이제이션 | verbalization은 사용자 이력, 컨텍스트, 아이템 메타데이터 같은 구조화 신호를 자연어나 가볍게 구조화한 텍스트로 풀어 쓰는 입력 표현 방식이다 | verbalizer도 원어. "텍스트로 풀어 쓴다" 같은 일반 서술은 허용한다. 2026-09 등재 (GenRec 2편, Li 2026) |
+| prefill-only inference | prefill-only inference | 프리필 전용 추론 | prefill-only inference는 생성형 모델을 토큰 단위 decoding 없이 입력을 한 번 읽는 prefill 단계만으로 실행해 후보 전체 점수를 내는 추론 방식이다 | prefill-only mode도 원어. 단독 prefill도 원어로 쓴다. 2026-09 등재 (GenRec 2편, Li 2026) |
+| catalog-aware scoring head | catalog-aware scoring head | — | catalog-aware scoring head는 LLM의 pooled hidden state와 아이템별 학습 임베딩을 결합해 카탈로그 안의 아이템만 채점하는 출력 head다 | catalog-aware ranking head와 같은 개념이며 두 표기 모두 원문 표기라 허용한다. 한글 표기 0건이라 지침만. 2026-09 등재 (GenRec 2편, Li 2026) |
+| MRR | MRR | — | MRR(Mean Reciprocal Rank)은 정답 아이템 순위의 역수를 평균낸 랭킹 지표다 | 약어 그대로. 풀어 쓴 한글 표기 0건이라 지침만. 2026-09 등재 (GenRec 2편, Li 2026) |
 | MLLM | MLLM | 멀티모달 대형 언어 모델·다중모달 LLM | MLLM은 이미지와 텍스트를 함께 받아 처리하는 대형 언어 모델을 가리킨다 | 약어 그대로. VLM과 거의 같은 뜻이지만 로보틱스 dual-system 문헌은 MLLM 표기를 쓴다 |
 | modality | 모달리티 | — | 모달리티는 텍스트, 이미지, 음성, 센서 신호처럼 모델이 다루는 입력이나 출력의 종류다 | 음차 canonical. 3차 보류분(원어 147회 대 음차 48회)에서 음차가 2.6배 늘어 원어 155회 대 음차 125회로 대등해졌고, 배치 재작성이 음차를 택한 방향을 따른다. 원어 잔존은 지침으로 정리한다. 코드 식별자(modality config 등)는 원어 그대로. 2026-09 4차 갱신 등재 |
 | prompt tuning | prompt tuning | 프롬프트 튜닝 | prompt tuning은 모델 파라미터를 전부 얼린 채 어휘에 추가한 토큰의 임베딩만 학습시키는 방식이다 | LoRA와 달리 원래 가중치를 하나도 안 건드린다. dual-system VLA에서 일반화 보존에 유리 (Cui 2025) |

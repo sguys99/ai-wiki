@@ -1,0 +1,166 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/li-2026-genrec-an-llm-backed-recommendation/fig01.png",
+    "raw": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/fig01.png",
+    "page": 3,
+    "caption": "Figure 1: GenRec inference pipeline. Raw logs of user history, item metadata, and context are transformed via context engineering into natural - language prompts and fed into the GenRec model, which runs on vLLM in prefill - only mode and outputs scores for the entire item catalog, inducing a recomm",
+    "bbox": [
+      55.2,
+      73.2,
+      569.04,
+      275.28
+    ],
+    "bbox_norm": [
+      0.0902,
+      0.0924,
+      0.9298,
+      0.3476
+    ],
+    "dpi": 300,
+    "area_frac": 0.214,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/li-2026-genrec-an-llm-backed-recommendation/fig02.png",
+    "raw": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Two-phase training framework. Phase 1 trains a foundational LLM on Netflix data for user and content un- derstanding, and Phase 2 post-trains on recommendation- ranking-specific data and objectives.",
+    "bbox": [
+      47.8,
+      279.22,
+      300.05,
+      376.38
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.3525,
+      0.4903,
+      0.4752
+    ],
+    "dpi": 300,
+    "area_frac": 0.051,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/li-2026-genrec-an-llm-backed-recommendation/fig03.png",
+    "raw": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3: Online metrics of GenRec vs. production model. GenRec achieves statistically significant improvements on both short-term and long-term online metrics. 2",
+    "bbox": [
+      312.24,
+      73.2,
+      578.22,
+      247.56
+    ],
+    "bbox_norm": [
+      0.5102,
+      0.0924,
+      0.9448,
+      0.3126
+    ],
+    "dpi": 300,
+    "area_frac": 0.096,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/li-2026-genrec-an-llm-backed-recommendation/fig04.png",
+    "raw": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/fig04.png",
+    "page": 7,
+    "caption": "Figure 4: Phase-2 data scaling for the ∼ 10B model.",
+    "bbox": [
+      59.81,
+      77.69,
+      288.03,
+      237.78
+    ],
+    "bbox_norm": [
+      0.0977,
+      0.0981,
+      0.4706,
+      0.3002
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/li-2026-genrec-an-llm-backed-recommendation/fig05.png",
+    "raw": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/fig05.png",
+    "page": 8,
+    "caption": "Figure 5: Normalized offline ranking metric (MRR) vs. num- ber of user engagement events included in the prompt. The dashed line marks the baseline elbow point: increasing the number of events beyond this yields diminishing returns.",
+    "bbox": [
+      47.8,
+      77.69,
+      300.05,
+      254.7
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.4903,
+      0.3216
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/li-2026-genrec-an-llm-backed-recommendation/tab01.png",
+    "raw": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1: Impact of Phase 1 vs. Phase 2 training",
+    "bbox": [
+      311.95,
+      100.97,
+      567.19,
+      177.07
+    ],
+    "bbox_norm": [
+      0.5097,
+      0.1275,
+      0.9268,
+      0.2236
+    ],
+    "dpi": 300,
+    "area_frac": 0.04,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/li-2026-genrec-an-llm-backed-recommendation-figures/_overlay/p07.png"
+  }
+]

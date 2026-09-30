@@ -1,0 +1,156 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/fig01.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/fig01.png",
+    "caption": "",
+    "source_url": "https://miro.medium.com/v2/resize:fit:700/1*7Jb6-3knD_VCB_wWN5M3Mw.png",
+    "bytes": 131724,
+    "width": 700,
+    "height": 268,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/fig02.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/fig02.png",
+    "caption": "",
+    "source_url": "https://miro.medium.com/v2/resize:fit:700/1*Z8IJ48SEZuHf3rViZXKZsA.png",
+    "bytes": 53437,
+    "width": 700,
+    "height": 385,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/fig03.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/fig03.png",
+    "caption": "",
+    "source_url": "https://miro.medium.com/v2/resize:fit:700/1*1EcVs9E3h7XFfypn7nBX7g.png",
+    "bytes": 35966,
+    "width": 700,
+    "height": 376,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/fig04.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/fig04.png",
+    "caption": "",
+    "source_url": "https://miro.medium.com/v2/resize:fit:700/1*W_u0qbjvFHQ7z9deBnyPsA.png",
+    "bytes": 58448,
+    "width": 700,
+    "height": 403,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/page-full.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/crop01.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/crop02.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/crop03.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/crop04.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/crop05.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/crop06.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/crop07.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/crop08.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/crop09.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/fig15.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/fig15.png",
+    "caption": "",
+    "source_url": "https://miro.medium.com/v2/resize:fit:700/1*2Gpp9wQ1MBAqeAZ0ojd1ew.png",
+    "bytes": 27294,
+    "width": 700,
+    "height": 155,
+    "strategy": "fetched",
+    "curated": false,
+    "note": "fetch_article.py 다운로드 누락분을 원본 URL에서 수동 보충 (2026-09-30)"
+  },
+  {
+    "id": "fig16",
+    "file": "assets/netflix-2026-genrec-towards-llm-native-recommendation/fig16.png",
+    "raw": "raw/articles/netflix-2026-genrec-towards-llm-native-recommendation-figures/fig16.png",
+    "caption": "",
+    "source_url": "https://miro.medium.com/v2/resize:fit:700/1*HEMkanM7bkzEMji36XkMoQ.png",
+    "bytes": 31495,
+    "width": 700,
+    "height": 178,
+    "strategy": "fetched",
+    "curated": false,
+    "note": "fetch_article.py 다운로드 누락분을 원본 URL에서 수동 보충 (2026-09-30)"
+  }
+]
