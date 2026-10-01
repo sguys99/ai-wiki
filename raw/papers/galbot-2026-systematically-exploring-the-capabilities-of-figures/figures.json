@@ -1,0 +1,1587 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig01.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 Control modes, interfaces, and low-level control. Direct uses Astra-generated commands with analytic control. Hybrid combines Astra with a learned task policy or whole-body controller: Astra reviews policy proposals or supplies commands or motion references to frozen controllers. Observatio",
+    "bbox": [
+      63.29,
+      74.89,
+      546.96,
+      293.75
+    ],
+    "bbox_norm": [
+      0.1034,
+      0.0946,
+      0.8937,
+      0.3709
+    ],
+    "dpi": 300,
+    "area_frac": 0.218,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig02.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2 Gripper manipulation results. (a,b) RoboDojo Score and final success on ten tasks. Public references are reweighted to the same task and scene mixture, whereas Direct and Hybrid use paired starts. Direct has 48 valid Score entries; success is computed over all 50 task instances. (c) RoboLab",
+    "bbox": [
+      64.87,
+      57.78,
+      547.13,
+      362.15
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.4573
+    ],
+    "dpi": 300,
+    "area_frac": 0.303,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig03.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig03.png",
+    "page": 7,
+    "caption": "Figure 3 Astra corrections in dexterous manipulation. (a) Primary reasons for Astra correction decisions across 50 Hybrid cases. (b) Executed steps comprise 88.02% unmodified π 0 . 5 actions and 11.98% Astra corrections.",
+    "bbox": [
+      64.87,
+      57.78,
+      547.14,
+      237.62
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.3
+    ],
+    "dpi": 300,
+    "area_frac": 0.179,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig04.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig04.png",
+    "page": 7,
+    "caption": "",
+    "bbox": [
+      61.32,
+      287.04,
+      308.94,
+      433.68
+    ],
+    "bbox_norm": [
+      0.1002,
+      0.3624,
+      0.5048,
+      0.5476
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig05.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig05.png",
+    "page": 8,
+    "caption": "Figure 5 Bimanual disk stacking: successful placement and failed seating. Cropped wrist-camera observations show (a) Astra corrections followed by policy release and (b) persistent placement failure despite further corrections. Labels give control steps; outcomes follow the native success criterion.",
+    "bbox": [
+      75.13,
+      57.78,
+      536.87,
+      303.03
+    ],
+    "bbox_norm": [
+      0.1228,
+      0.073,
+      0.8772,
+      0.3826
+    ],
+    "dpi": 300,
+    "area_frac": 0.234,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig06.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig06.png",
+    "page": 9,
+    "caption": "Figure 6 Continuous rotation over five paired initial states. Rows show cylinder results over 20 s and cuboid results over 10 s. Columns report orientation error, axial speed over the preceding second, cumulative at-goal rate, and cumulative reward. Curves and shading show means and one sample SD am",
+    "bbox": [
+      64.87,
+      57.78,
+      548.07,
+      307.93
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.8955,
+      0.3888
+    ],
+    "dpi": 300,
+    "area_frac": 0.249,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig07.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig07.png",
+    "page": 10,
+    "caption": "Figure 7 Per-case terminal errors for Allegro tasks. (a) Translation at 15 s. (b,c) Translation and rotation: Astra at its 120-decision endpoint, RL at matched control steps, and RL at 15 s. Shading and dashed lines mark the 22 . 4 -mm position and 10 ◦ rotation success thresholds.",
+    "bbox": [
+      64.87,
+      88.96,
+      547.16,
+      355.0
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1123,
+      0.8941,
+      0.4482
+    ],
+    "dpi": 300,
+    "area_frac": 0.265,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig08.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig08.png",
+    "page": 11,
+    "caption": "Figure 8 Cooperation changes the RoboCasa capability profile. (a) Success on matched physical starts. Error bars show descriptive episode-level 95% Wilson intervals [ 52 ]. (b) Step shares from accepted proposals and Astra actions.",
+    "bbox": [
+      64.87,
+      57.78,
+      547.15,
+      228.57
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.2886
+    ],
+    "dpi": 300,
+    "area_frac": 0.17,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig09.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig09.png",
+    "page": 12,
+    "caption": "Figure 9 RoboCasa outcomes from matched physical starts. Rows identify four task/seed pairs. Initial images come from the independent-policy run; subsequent columns show each condition's terminal view. Labels report native outcomes and executed steps. All images are saved observations; the coffee ca",
+    "bbox": [
+      107.19,
+      57.78,
+      504.82,
+      491.55
+    ],
+    "bbox_norm": [
+      0.1751,
+      0.073,
+      0.8249,
+      0.6206
+    ],
+    "dpi": 300,
+    "area_frac": 0.356,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig10.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig10.png",
+    "page": 13,
+    "caption": "",
+    "bbox": [
+      61.32,
+      192.0,
+      550.68,
+      363.98
+    ],
+    "bbox_norm": [
+      0.1002,
+      0.2424,
+      0.8998,
+      0.4596
+    ],
+    "dpi": 300,
+    "area_frac": 0.174,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig11.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig11.png",
+    "page": 14,
+    "caption": "Figure 11 Two navigation successes and one budget-limited failure. Rows show initial, midpoint, and final front views beside the executed route on the Habitat navigation mesh. These evaluator-only maps were not shown to Astra.",
+    "bbox": [
+      88.38,
+      262.33,
+      523.62,
+      555.52
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.3312,
+      0.8556,
+      0.7014
+    ],
+    "dpi": 300,
+    "area_frac": 0.263,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig12.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig12.png",
+    "page": 17,
+    "caption": "Figure 12 Results across 30 HumanoidBench tasks. Green bars show Astra mean returns and sample SDs. Left bars reproduce published method returns [ 44 ]. Axes are task-specific; dashed lines mark native thresholds. Appendix E gives exact values and reference protocols.",
+    "bbox": [
+      77.15,
+      57.78,
+      534.85,
+      526.53
+    ],
+    "bbox_norm": [
+      0.1261,
+      0.0729,
+      0.8739,
+      0.6648
+    ],
+    "dpi": 300,
+    "area_frac": 0.443,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig13.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig13.png",
+    "page": 18,
+    "caption": "",
+    "bbox": [
+      61.32,
+      239.52,
+      550.68,
+      386.16
+    ],
+    "bbox_norm": [
+      0.1002,
+      0.3024,
+      0.8998,
+      0.4876
+    ],
+    "dpi": 300,
+    "area_frac": 0.148,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig14.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig14.png",
+    "page": 19,
+    "caption": "Figure 14 Interactive scenes from egocentric video. Source frames and reconstructed geometry for two apple-transfer cases. Object and support layout is recovered, while table edges and furniture remain approximate.",
+    "bbox": [
+      64.87,
+      57.78,
+      547.14,
+      166.93
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.2108
+    ],
+    "dpi": 300,
+    "area_frac": 0.109,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig15.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig15.png",
+    "page": 25,
+    "caption": "Figure 15 Action and development loops. Path 01 illustrates Direct control; paths 02 and 03 illustrate Hybrid with a task policy or whole-body controller. The action loop returns only study-permitted observations and feedback; task evaluation is a separate branch. The outer loop represents researche",
+    "bbox": [
+      64.87,
+      120.27,
+      547.14,
+      411.03
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1519,
+      0.894,
+      0.519
+    ],
+    "dpi": 300,
+    "area_frac": 0.289,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig16.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig16.png",
+    "page": 28,
+    "caption": "Figure 16 The ten RoboDojo manipulation tasks. Task images from our evaluation website are reproduced without alteration. They illustrate the environments rather than evaluation outcomes; the Direct and Hybrid results in Table 2 use the paired episodes.",
+    "bbox": [
+      64.87,
+      88.96,
+      547.13,
+      419.52
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1123,
+      0.894,
+      0.5297
+    ],
+    "dpi": 300,
+    "area_frac": 0.329,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p28.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig17.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig17.png",
+    "page": 31,
+    "caption": "Figure 17 Example initial states for dexterous manipulation. Panels show eight benchmark tasks, with one initial state each.",
+    "bbox": [
+      64.87,
+      466.71,
+      547.12,
+      646.56
+    ],
+    "bbox_norm": [
+      0.106,
+      0.5893,
+      0.894,
+      0.8164
+    ],
+    "dpi": 300,
+    "area_frac": 0.179,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig18.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig18.png",
+    "page": 35,
+    "caption": "Figure 18 The four dexterous-manipulation tasks. (a–b) The Sharpa hand rotates a cylinder or cuboid continuously about world-frame + Z at the stated target speed. (c) The Allegro Hand translates the cylinder center to a Cartesian target. (d) The second Allegro task additionally requires a − 40 ◦ lon",
+    "bbox": [
+      64.87,
+      374.45,
+      547.14,
+      527.15
+    ],
+    "bbox_norm": [
+      0.106,
+      0.4728,
+      0.894,
+      0.6656
+    ],
+    "dpi": 300,
+    "area_frac": 0.152,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p35.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig19.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig19.png",
+    "page": 39,
+    "caption": "Figure 19 Per-case in-hand rotation performance. Columns report mean orientation error, axial-speed MAE, At-goal rate, and cumulative environment reward. Cylinder bars use all executed steps within the 20-s horizon; cuboid bars use the complete 10-s window. Reward is comparable only within each task",
+    "bbox": [
+      64.87,
+      78.0,
+      547.16,
+      486.2
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0985,
+      0.894,
+      0.6139
+    ],
+    "dpi": 300,
+    "area_frac": 0.406,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p39.png"
+  },
+  {
+    "id": "fig20",
+    "label": "Figure 20",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig20.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig20.png",
+    "page": 40,
+    "caption": "Figure 20 Paired rotation sequences from identical saved starts. (a) Cylinder case 004: Astra drops the object at 16.3 s; RL completes 20 s. (b) Cuboid case 004: Astra rotates gradually with little contact reconfiguration, while RL continues reorientation through 10 s. Axes above the hand and on the",
+    "bbox": [
+      64.87,
+      57.78,
+      547.16,
+      351.81
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.8941,
+      0.4442
+    ],
+    "dpi": 300,
+    "area_frac": 0.293,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p40.png"
+  },
+  {
+    "id": "fig21",
+    "label": "Figure 21",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig21.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig21.png",
+    "page": 41,
+    "caption": "Figure 21 Qualitative Allegro rollouts from paired initial states. (a) Translation case 000. (b) Translation-and-rotation case 003, with a − 40 ◦ long-axis target. Each row shows the same front view at 0, 5, 10, and 15 s. Astra reaches its 120-decision endpoint at 6.0 s in (b), so its terminal frame",
+    "bbox": [
+      64.87,
+      88.96,
+      547.13,
+      462.45
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1123,
+      0.894,
+      0.5839
+    ],
+    "dpi": 300,
+    "area_frac": 0.372,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p41.png"
+  },
+  {
+    "id": "fig22",
+    "label": "Figure 22",
+    "kind": "figure",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/fig22.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/fig22.png",
+    "page": 43,
+    "caption": "Figure 22 Navigation observation and execution adapters. Astra, LightNav-0, and Uni-NaVid share the front-camera specification; OmniNav Flow uses three views. Habitat executes adapted outputs and returns RGB observations. Goal distances and metrics remain evaluator-only.",
+    "bbox": [
+      64.51,
+      99.92,
+      548.52,
+      674.71
+    ],
+    "bbox_norm": [
+      0.1054,
+      0.1262,
+      0.8963,
+      0.8519
+    ],
+    "dpi": 300,
+    "area_frac": 0.574,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p43.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab01.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab01.png",
+    "page": 3,
+    "caption": "Table 1 Evaluation scope and comparison conditions. Direct uses Astra-generated commands with analytic control; Hybrid adds a learned task policy or whole-body controller. Sample sizes are reported separately for each study.",
+    "bbox": [
+      64.87,
+      88.96,
+      547.13,
+      389.72
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1123,
+      0.894,
+      0.4921
+    ],
+    "dpi": 300,
+    "area_frac": 0.299,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p03.png",
+    "duplicate_pages": [
+      3
+    ]
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab02.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab02.png",
+    "page": 5,
+    "caption": "Table 2 RoboDojo task-level Score. Public references are reweighted to the evaluation task and scene mixture. Direct and Hybrid are our paired evaluations; the Direct Score uses 48 valid entries, while success uses all 50 task instances.",
+    "bbox": [
+      64.87,
+      88.96,
+      547.18,
+      270.72
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1123,
+      0.8941,
+      0.3418
+    ],
+    "dpi": 300,
+    "area_frac": 0.181,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab03.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab03.png",
+    "page": 6,
+    "caption": "Table 3 Dexterous manipulation scores on a custom simulation benchmark. Scores measure subgoal completion on a 0–100 scale. The evaluation protocol and scoring details are provided in Appendix G.4 .",
+    "bbox": [
+      135.4,
+      88.96,
+      476.6,
+      257.48
+    ],
+    "bbox_norm": [
+      0.2212,
+      0.1123,
+      0.7788,
+      0.3251
+    ],
+    "dpi": 300,
+    "area_frac": 0.119,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab04.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab04.png",
+    "page": 9,
+    "caption": "Table 4 Paired in-hand rotation results. Full, Budget, and Drop denote runs reaching the horizon, exhausting Astra’s decision limit, or losing the object, respectively. At-goal is the fraction of steps with quaternion geodesic error below 0 . 1 rad . Error and Speed MAE are means over executed steps",
+    "bbox": [
+      64.87,
+      411.22,
+      547.16,
+      493.81
+    ],
+    "bbox_norm": [
+      0.106,
+      0.5192,
+      0.894,
+      0.6235
+    ],
+    "dpi": 300,
+    "area_frac": 0.082,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab05.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab05.png",
+    "page": 10,
+    "caption": "Table 5 Paired in-hand translation and reorientation results. Errors are measured at the stated terminal endpoint. Joint success requires both position error below 22 . 4 mm and long-axis rotation error below 10 ◦ at the same endpoint.",
+    "bbox": [
+      64.87,
+      89.19,
+      546.88,
+      140.39
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1126,
+      0.8936,
+      0.1773
+    ],
+    "dpi": 300,
+    "area_frac": 0.051,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab06.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab06.png",
+    "page": 11,
+    "caption": "Table 6 RoboCasa completion on matched initial states. Each group contains five tasks with five episodes each; entries give successes/episodes and percentage. All conditions use the same 20-step feedback cadence and task horizons. Task groups describe the policy’s training coverage.",
+    "bbox": [
+      113.61,
+      309.94,
+      498.4,
+      387.55
+    ],
+    "bbox_norm": [
+      0.1856,
+      0.3913,
+      0.8144,
+      0.4893
+    ],
+    "dpi": 300,
+    "area_frac": 0.062,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p11.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab07.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab07.png",
+    "page": 13,
+    "caption": "Table 7 Navigation on four fixed subsets, 50 episodes each. Task, dataset, and split are listed separately. All metric values are percentages; RxR uses English guide instructions. ObjectNav has no instruction-specific reference trajectory.",
+    "bbox": [
+      64.87,
+      88.96,
+      547.13,
+      166.88
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1123,
+      0.894,
+      0.2107
+    ],
+    "dpi": 300,
+    "area_frac": 0.078,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab08.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab08.png",
+    "page": 14,
+    "caption": "Table 8 Local evaluation of released navigation policies on the same episode lists. Each dataset contains 50 episodes per system; values are percentages. The first three systems share the front-camera specification. OmniNav Flow uses three wider-angle views and is separated accordingly. All systems ",
+    "bbox": [
+      64.87,
+      111.08,
+      547.14,
+      227.92
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1403,
+      0.894,
+      0.2878
+    ],
+    "dpi": 300,
+    "area_frac": 0.116,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab09.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab09.png",
+    "page": 15,
+    "caption": "Table 9 PASSAGE and sequential Astra attempts on one matched open-clutter course. Progress is the reduction in planar distance to the goal, so a negative value denotes motion away from it. The Astra rows are successive stages of one adaptation trajectory, not independent trials.",
+    "bbox": [
+      64.95,
+      99.92,
+      547.05,
+      203.42
+    ],
+    "bbox_norm": [
+      0.1061,
+      0.1262,
+      0.8939,
+      0.2568
+    ],
+    "dpi": 300,
+    "area_frac": 0.103,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab10.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab10.png",
+    "page": 15,
+    "caption": "Table 10 Paired analytic interface feasibility study over six courses and two physics backends. Each course–backend cell contains one rollout. Contact magnitudes are useful failure diagnostics, but are not treated as calibrated measurements across simulators. These rollouts do not use Astra.",
+    "bbox": [
+      64.95,
+      99.92,
+      547.05,
+      203.42
+    ],
+    "bbox_norm": [
+      0.1061,
+      0.1262,
+      0.8939,
+      0.2568
+    ],
+    "dpi": 300,
+    "area_frac": 0.103,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab11.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab11.png",
+    "page": 16,
+    "caption": "Table 11 HumanoidBench returns against published methods. Entries are mean returns; bold marks the highest value per task. DreamerV3, TD-MPC2, and SAC results follow HumanoidBench [ 44 ]. Threshold denotes the native task criterion. Appendix E documents result sources and evaluation protocols.",
+    "bbox": [
+      128.34,
+      99.92,
+      483.66,
+      229.31
+    ],
+    "bbox_norm": [
+      0.2097,
+      0.1262,
+      0.7903,
+      0.2895
+    ],
+    "dpi": 300,
+    "area_frac": 0.095,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab12.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab12.png",
+    "page": 18,
+    "caption": "Table 12 Astra with ScaleBFM on SIMPLE L2. Success under the official evaluation protocol, with ten scenes per task.",
+    "bbox": [
+      81.82,
+      475.33,
+      285.83,
+      592.08
+    ],
+    "bbox_norm": [
+      0.1337,
+      0.6002,
+      0.467,
+      0.7476
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab13.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab13.png",
+    "page": 20,
+    "caption": "Table 13 Inference demands across studies. M denotes million tokens; rounded totals may not sum exactly. Units and recording scope are listed for each study. Full manipulation accounting appears in Tables 17 and 37 .",
+    "bbox": [
+      64.87,
+      88.96,
+      547.13,
+      229.35
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1123,
+      0.894,
+      0.2896
+    ],
+    "dpi": 300,
+    "area_frac": 0.14,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab14.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab14.png",
+    "page": 26,
+    "caption": "Table 14 expands the aggregate results in Section 3.2 . Direct Score averages the 48 episodes with valid Scores; its success rate uses all 50 instances. Published policy scores are reweighted to the same task and scene mixture. Direct and Hybrid share scene configurations and seeds.",
+    "bbox": [
+      61.32,
+      364.66,
+      550.68,
+      580.2
+    ],
+    "bbox_norm": [
+      0.1002,
+      0.4604,
+      0.8998,
+      0.7326
+    ],
+    "dpi": 300,
+    "area_frac": 0.218,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p26.png",
+    "duplicate_pages": [
+      26
+    ]
+  },
+  {
+    "id": "tab15",
+    "label": "Table 15",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab15.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab15.png",
+    "page": 27,
+    "caption": "Table 15 RoboLab task success. Each method contributes five outcomes per task. Cosmos denotes Cosmos3-Nano- Policy [ 30 ]; DreamZero follows Ye et al. [ 56 ].",
+    "bbox": [
+      88.36,
+      88.96,
+      523.64,
+      257.48
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.1123,
+      0.8556,
+      0.3251
+    ],
+    "dpi": 300,
+    "area_frac": 0.151,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p27.png"
+  },
+  {
+    "id": "tab16",
+    "label": "Table 16",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab16.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab16.png",
+    "page": 27,
+    "caption": "Table 16 Focused online Astra runs under separately frozen configurations. Push uses calibrated examples, with seeds 3 and 5 reproducing supplied physical trajectories; its physical outcome gives the final box-to-goal error and native success. Walk uses a gait frequency calibrated offline and a supp",
+    "bbox": [
+      78.38,
+      326.34,
+      533.62,
+      456.03
+    ],
+    "bbox_norm": [
+      0.1281,
+      0.4121,
+      0.8719,
+      0.5758
+    ],
+    "dpi": 300,
+    "area_frac": 0.122,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p27.png"
+  },
+  {
+    "id": "tab17",
+    "label": "Table 17",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab17.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab17.png",
+    "page": 28,
+    "caption": "Table 17 RoboDojo action and token accounting. Mean simulated duration is the total control-step count multiplied by 0.04 s and divided by 50 slots. Token totals include cached input and exclude earlier attempts.",
+    "bbox": [
+      111.88,
+      88.96,
+      500.12,
+      205.41
+    ],
+    "bbox_norm": [
+      0.1828,
+      0.1123,
+      0.8172,
+      0.2594
+    ],
+    "dpi": 300,
+    "area_frac": 0.093,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab18",
+    "label": "Table 18",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab18.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab18.png",
+    "page": 29,
+    "caption": "Table 18 expands the HumanoidBench study in Section 8 , reporting Astra returns across all 30 tasks. Task- specific return thresholds and observed physical outcomes are reported separately. The separate SIMPLE development records follow below. Figure 12 reproduces published returns from HumanoidBenc",
+    "bbox": [
+      61.32,
+      73.2,
+      550.68,
+      504.96
+    ],
+    "bbox_norm": [
+      0.1002,
+      0.0924,
+      0.8998,
+      0.6376
+    ],
+    "dpi": 300,
+    "area_frac": 0.436,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p29.png",
+    "duplicate_pages": [
+      29
+    ]
+  },
+  {
+    "id": "tab19",
+    "label": "Table 19",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab19.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab19.png",
+    "page": 30,
+    "caption": "Table 19 SIMPLE Handover development records. Native success and success with the additional hold check have identical counts in these trials and are reported together. Rows describe separate development conditions and are excluded from the L2 total in Table 12 .",
+    "bbox": [
+      64.87,
+      332.35,
+      547.14,
+      483.95
+    ],
+    "bbox_norm": [
+      0.106,
+      0.4196,
+      0.894,
+      0.6111
+    ],
+    "dpi": 300,
+    "area_frac": 0.151,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p30.png"
+  },
+  {
+    "id": "tab20",
+    "label": "Table 20",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab20.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab20.png",
+    "page": 32,
+    "caption": "Table 20 Dexterous manipulation tasks and evaluation horizons. Task instructions reproduce the prompts used for training and evaluation. K is the number of subgoals used for partial-credit scoring. t max and the continuous verification window are measured in simulation time. Subgoal predicates are s",
+    "bbox": [
+      64.87,
+      99.92,
+      547.13,
+      356.82
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1262,
+      0.894,
+      0.4505
+    ],
+    "dpi": 300,
+    "area_frac": 0.256,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p32.png"
+  },
+  {
+    "id": "tab21",
+    "label": "Table 21",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab21.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab21.png",
+    "page": 33,
+    "caption": "Table 21 Dexterous manipulation implementation details.",
+    "bbox": [
+      64.87,
+      78.0,
+      547.13,
+      437.11
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0985,
+      0.894,
+      0.5519
+    ],
+    "dpi": 300,
+    "area_frac": 0.357,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p33.png"
+  },
+  {
+    "id": "tab22",
+    "label": "Table 22",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab22.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab22.png",
+    "page": 34,
+    "caption": "Table 22 Task-specific completion criteria. Positions refer to object roots unless stated otherwise. Full credit additionally requires continuous stability within 1 cm and the verification windows in Table 20 ; all tasks require release except pot holding. Headset and mahjong release conditions also",
+    "bbox": [
+      64.87,
+      99.92,
+      547.13,
+      532.16
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1262,
+      0.894,
+      0.6719
+    ],
+    "dpi": 300,
+    "area_frac": 0.43,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p34.png"
+  },
+  {
+    "id": "tab23",
+    "label": "Table 23",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab23.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab23.png",
+    "page": 35,
+    "caption": "",
+    "bbox": [
+      61.32,
+      152.4,
+      550.68,
+      318.84
+    ],
+    "bbox_norm": [
+      0.1002,
+      0.1924,
+      0.8998,
+      0.4026
+    ],
+    "dpi": 300,
+    "area_frac": 0.168,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p35.png"
+  },
+  {
+    "id": "tab24",
+    "label": "Table 24",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab24.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab24.png",
+    "page": 36,
+    "caption": "Table 24 Training provenance of the evaluated RL policies. N is the number of parallel training environments and H is the rollout length per PPO update. The translation baseline uses the released checkpoint without retraining; training counts are listed for the three policies trained in this study.",
+    "bbox": [
+      64.87,
+      99.92,
+      547.13,
+      221.37
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1262,
+      0.894,
+      0.2795
+    ],
+    "dpi": 300,
+    "area_frac": 0.121,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p36.png"
+  },
+  {
+    "id": "tab25",
+    "label": "Table 25",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab25.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab25.png",
+    "page": 38,
+    "caption": "Table 25 Cylinder rotation over the 20-s analysis window. All five saved initial states are held out from the RL grasp bank.",
+    "bbox": [
+      64.88,
+      479.93,
+      547.12,
+      635.2
+    ],
+    "bbox_norm": [
+      0.106,
+      0.606,
+      0.894,
+      0.802
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p38.png"
+  },
+  {
+    "id": "tab26",
+    "label": "Table 26",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab26.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab26.png",
+    "page": 39,
+    "caption": "Table 26 Cuboid rotation over the 10-s analysis window. Cases 000–003 overlap the RL initialization set; 004 is held out.",
+    "bbox": [
+      64.87,
+      78.24,
+      546.92,
+      233.04
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0988,
+      0.8937,
+      0.2942
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p39.png"
+  },
+  {
+    "id": "tab27",
+    "label": "Table 27",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab27.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab27.png",
+    "page": 40,
+    "caption": "Table 27 records no object drops during translation.",
+    "bbox": [
+      61.32,
+      552.36,
+      550.68,
+      738.6
+    ],
+    "bbox_norm": [
+      0.1002,
+      0.6974,
+      0.8998,
+      0.9326
+    ],
+    "dpi": 300,
+    "area_frac": 0.188,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p40.png",
+    "duplicate_pages": [
+      40
+    ]
+  },
+  {
+    "id": "tab28",
+    "label": "Table 28",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab28.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab28.png",
+    "page": 41,
+    "caption": "Table 28 Translation-and-rotation terminal results. All Astra endpoints occur after 120 decisions. Error pairs are position in millimeters / long-axis rotation in degrees. Outcomes are listed for Astra / matched RL / full-horizon RL.",
+    "bbox": [
+      64.87,
+      89.19,
+      546.3,
+      179.3
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1126,
+      0.8926,
+      0.2264
+    ],
+    "dpi": 300,
+    "area_frac": 0.089,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p41.png"
+  },
+  {
+    "id": "tab29",
+    "label": "Table 29",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab29.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab29.png",
+    "page": 42,
+    "caption": "Table 29 Navigation termination and travel. Each row has 50 episodes. Steps count primitive turns, forward moves, and STOP, rather than model requests or waypoint submissions. Mean path measures translation; turning consumes steps without adding equivalent path length.",
+    "bbox": [
+      64.87,
+      99.92,
+      547.13,
+      177.53
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1262,
+      0.894,
+      0.2242
+    ],
+    "dpi": 300,
+    "area_frac": 0.077,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p42.png"
+  },
+  {
+    "id": "tab30",
+    "label": "Table 30",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab30.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab30.png",
+    "page": 42,
+    "caption": "Table 30 Source commits and released checkpoints. LightNav-0 and Uni-NaVid use their official Hugging Face releases; OmniNav uses the official ModelScope Flow release. Uni-NaVid is the uninavid-7b-full-224-video-fps-1-grid-2 checkpoint. The open models are evaluated without local finetuning.",
+    "bbox": [
+      64.87,
+      99.92,
+      547.13,
+      177.53
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1262,
+      0.894,
+      0.2242
+    ],
+    "dpi": 300,
+    "area_frac": 0.077,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p42.png"
+  },
+  {
+    "id": "tab31",
+    "label": "Table 31",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab31.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab31.png",
+    "page": 43,
+    "caption": "Table 31 Route agreement and termination on every fixed subset. Each system–dataset row contains 50 episodes. nDTW and sDTW are percentages and apply only to VLN-CE. Successes, failed STOP, and step-limit terminations sum to 50 in every row. OmniNav Flow uses the separate three-view observation cond",
+    "bbox": [
+      64.87,
+      99.92,
+      547.13,
+      333.75
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1262,
+      0.894,
+      0.4214
+    ],
+    "dpi": 300,
+    "area_frac": 0.233,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p43.png"
+  },
+  {
+    "id": "tab32",
+    "label": "Table 32",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab32.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab32.png",
+    "page": 44,
+    "caption": "Table 32 VLN-CE: subset-to-full-benchmark reference comparison. Published rows report R2R and RxR Val-Unseen results under the published protocols; the Astra row uses only 50 fixed episodes per dataset. Values are percentages. Each row retains its source protocol for observations, actions, and scori",
+    "bbox": [
+      64.87,
+      110.88,
+      547.13,
+      292.64
+    ],
+    "bbox_norm": [
+      0.106,
+      0.14,
+      0.894,
+      0.3695
+    ],
+    "dpi": 300,
+    "area_frac": 0.181,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p44.png"
+  },
+  {
+    "id": "tab33",
+    "label": "Table 33",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab33.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab33.png",
+    "page": 44,
+    "caption": "Table 33 Object-goal navigation: subset-to-full-benchmark reference comparison. Published rows report full validation- benchmark results; the Astra row uses only 50 fixed episodes per dataset. Values are percentages. Coverage and protocols differ, as in Table 32 . RGB without a view count preserves ",
+    "bbox": [
+      64.87,
+      110.88,
+      547.13,
+      292.64
+    ],
+    "bbox_norm": [
+      0.106,
+      0.14,
+      0.894,
+      0.3695
+    ],
+    "dpi": 300,
+    "area_frac": 0.181,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p44.png"
+  },
+  {
+    "id": "tab34",
+    "label": "Table 34",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab34.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab34.png",
+    "page": 45,
+    "caption": "Table 34 All RoboCasa tasks and control horizons. Every method uses five matched initial states per task. Horizons count 20 Hz simulator steps. A single success changes a task’s observed rate by 20 percentage points.",
+    "bbox": [
+      65.56,
+      88.96,
+      546.44,
+      322.79
+    ],
+    "bbox_norm": [
+      0.1071,
+      0.1123,
+      0.8929,
+      0.4076
+    ],
+    "dpi": 300,
+    "area_frac": 0.232,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p45.png"
+  },
+  {
+    "id": "tab35",
+    "label": "Table 35",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab35.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab35.png",
+    "page": 45,
+    "caption": "Table 35 Paired outcomes on 75 shared starts. Hybrid adds optional π 0 . 5 . Two-sided exact McNemar tests [ 10 ] use discordant pairs. Exploratory p -values are unadjusted for multiple comparisons and account for neither within-task dependence nor harness differences.",
+    "bbox": [
+      65.56,
+      88.96,
+      546.44,
+      322.79
+    ],
+    "bbox_norm": [
+      0.1071,
+      0.1123,
+      0.8929,
+      0.4076
+    ],
+    "dpi": 300,
+    "area_frac": 0.232,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p45.png"
+  },
+  {
+    "id": "tab36",
+    "label": "Table 36",
+    "kind": "table",
+    "file": "assets/galbot-2026-systematically-exploring-the-capabilities-of/tab36.png",
+    "raw": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/tab36.png",
+    "page": 45,
+    "caption": "Table 36 Harness configuration coverage for the two Astra conditions. Counts identify the configuration at the end of each trajectory; resumed trajectories may span multiple configurations. The independent policy does not use Astra context or proposal-review tools.",
+    "bbox": [
+      88.36,
+      373.16,
+      523.64,
+      437.83
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.4712,
+      0.8556,
+      0.5528
+    ],
+    "dpi": 300,
+    "area_frac": 0.058,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/galbot-2026-systematically-exploring-the-capabilities-of-figures/_overlay/p45.png"
+  }
+]

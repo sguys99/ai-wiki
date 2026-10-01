@@ -174,6 +174,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied|HiVLA (HKU, Shanghai AI Lab)]]: VLM 계획과 DiT 제어를 subtask 문장 하나와 bounding box 하나로 잇는 계층형 manipulation 시스템 (2026, paper)
 - [[physical-ai/yang-2026-hivla-project-page|HiVLA 프로젝트 페이지]]: HiVLA 논문의 공식 프로젝트 페이지. 초록과 도식 두 장, RoboTwin 결과 표만 싣고 시연 영상은 없다 (2026, article)
 - [[physical-ai/cai-2026-tau0-vla-a-hierarchical-robot-foundation|τ0-VLA (Shanghai Innovation Institute, Agibot Finch)]]: subtask 선택을 world model과 value model의 beam search로 푸는 계층형 VLA (2026, paper)
+- [[physical-ai/galbot-2026-systematically-exploring-the-capabilities-of|GPT-6 Astra as Embodied Policies]]: 추론 모델 GPT-6 Astra를 여섯 로봇 도메인에서 policy로 평가했다. navigation은 강하지만 접촉 조정과 보행이 약하다 (2026, paper)
 - [[physical-ai/sii-research-2026-tau0-vla-project-page|τ0-VLA 프로젝트 페이지]]: τ0-VLA 논문의 공식 프로젝트 페이지. rollout 영상 일곱 편과 고해상도 구조도를 싣고, 논문에 없는 execution memory 단독 개선 폭 11.0%p를 밝힌다 (2026, article)
 - [[physical-ai/sii-research-tau-0-vla|τ0-VLA (sii-research, repo)]]: τ0-VLA 공식 코드. low-level policy post-training과 serving, proposal model과 world model 추론, LIBERO 재현 레시피(평균 97.35%) 공개 (2026, repo)
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform|Cosmos World Foundation Model Platform (NVIDIA)]]: 영상 curation과 토크나이저, WFM 8종을 함께 공개한 NVIDIA의 world model 플랫폼 논문 (2025, paper)
@@ -280,6 +281,8 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/stripe-2026-meet-stripes-knowledge-ai-platform|Kai: Stripe의 지식 AI 플랫폼]]: 비개발자 지식 업무용 사내 에이전트. API, Agent Studio, 제품용 에이전트와 공유하는 실행 환경 세 계층으로 1,000개 이상의 스킬을 연결한다 (2026, article)
 - [[agents/langchain-2026-how-stripe-built-kai-on|Stripe가 Deep Agents로 Kai를 만든 방법]]: Kai의 harness를 LangChain 쪽에서 기술한 사례 연구. filesystem, 샌드박스, 요약 미들웨어와 스킬 150개 초과 시 품질 저하 관찰을 담았다 (2026, article)
 - [[agents/hada-2026-stripe-kai-internal-ai-platform|Stripe Kai (GeekNews)]]: Kai 발표문의 한국어 요약과 Hacker News 반응. 영업 성과 수치의 내부 정합성과 발표 자료 완성도에 대한 반론이 모여 있다 (2026, article)
+- [[agents/earendil-works-pi|Pi agent harness (repo)]]: 서브에이전트와 plan mode를 빼고 extension, 스킬, package로 직접 만들게 하는 MIT 터미널 코딩 에이전트. LLM API, agent runtime, TUI를 패키지로 공개한다 (2025, repo)
+- [[agents/earendil-works-2026-pi-project-page|Pi (pi.dev)]]: Pi 공식 홈. minimal agent harness 철학과 자기 수정, provider 15곳 이상, tree 세션, context engineering, 네 가지 모드를 데모 중심으로 소개한다 (2026, article)
 
 ## Evaluations (evaluations)
 
