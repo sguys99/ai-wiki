@@ -638,3 +638,4 @@ harness가 Magnitude를 쓰지 못할 때는 서비스 실행 여부를 확인�
 - [[agents/stablyai-orca]]: Codex와 Claude Code, OpenCode, Pi를 각각 독립된 git worktree에서 동시에 실행하고 한 곳에서 추적하는 MIT 라이선스 데스크톱 앱. harness 위쪽에서 여러 실행을 묶는 반면 Magnitude는 harness 아래 모델 실행 계층을 다룬다.
 - [[agents/ai-boost-awesome-harness-engineering]]: harness를 모델과 분리된 공학 분야로 규정하고 자료 385개를 문제 단위로 분류한 CC0 awesome-list. harness라는 용어가 어디까지를 가리키는지 확인할 수 있다.
 - [[agents/lee-hoyeon-2026-harness-engineering]]: harness engineering을 구조와 맥락, 계획, 실행, 검증, 개선 여섯 단계로 정리한 54장 한국어 슬라이드. Magnitude가 연결 대상으로 삼는 harness 계층을 사람 쪽 작업 절차로 본다.
+- [[agents/earendil-works-pi]]: Magnitude가 연결하는 외부 harness 중 하나인 Pi의 저장소. 세션 중 `/model`로 provider를 바꾸는 구조라 Magnitude 전환이 재시작 없이 된다.

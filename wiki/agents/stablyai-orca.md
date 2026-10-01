@@ -264,3 +264,4 @@ Android가 스토어 배포 대신 APK 직접 배포를 쓰고 버전이 0.0.31�
 - [[agents/magnitudedev-magnitude]]: 브라우저 에이전트 프레임워크를 다룬 페이지로, 해당 페이지가 Orca를 harness 위쪽 계층으로 지목한다
 - [[agents/ai-boost-awesome-harness-engineering]]: harness engineering을 컨텍스트 전달과 도구 인터페이스와 verification 루프와 샌드박스를 설계하는 분야로 규정한 awesome-list다. Orca의 worktree 격리는 그 가운데 환경 격리 항목에 해당하는 도구다
 - [[agents/luis-carrijo-2026-claude-code-team-just-dropped]]: Claude Code의 dynamic workflow와 서브에이전트 구성을 다룬 강좌다. 오케스트레이션을 단일 에이전트 안에서 다루는 접근과, Orca처럼 여러 에이전트 위에서 다루는 접근을 대비해 읽을 수 있다
+- [[agents/earendil-works-pi]]: Orca가 나란히 실행하는 CLI 에이전트 중 하나인 Pi의 저장소. 서브에이전트를 내장하지 않고 extension으로 만들게 하는 단일 에이전트 harness다

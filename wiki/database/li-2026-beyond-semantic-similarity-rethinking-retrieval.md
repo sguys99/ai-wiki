@@ -628,3 +628,4 @@ Case 5a의 첫 turn은 tool 호출 분포에 잡힌 ToolSearch 2.8%가 무엇인
 - [[database/lumer-2025-rethinking-retrieval-from-traditional-retrieval]]: 금융 도메인에서 vector 방식과 non-vector 방식을 같은 조건으로 비교한 논문이다. 도메인 한정 비교라는 점에서 이 논문의 일반 벤치마크 결과와 상호 보완된다.
 - [[database/vectifyai-pageindex]]: PageIndex의 구현체 페이지다. tree 구축 비용과 도구 구성을 확인할 수 있다.
 - [[overviews/lightrag-family-graph-rag-overview]]: knowledge graph를 미리 구축하는 계열의 개요다. 사전 구조화 비용을 크게 치르는 방향이라 DCI와 정반대 지점에 있다. 사전 구조화 비용과 런타임 검색 비용의 교환을 비교할 때 함께 본다.
+- [[agents/earendil-works-pi]]: DCI-Agent-Lite가 기반 harness로 쓴 Pi의 저장소. 최소 system prompt와 extension 구조를 확인할 수 있다.

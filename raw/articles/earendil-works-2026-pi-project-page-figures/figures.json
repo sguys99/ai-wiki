@@ -1,0 +1,30 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/earendil-works-2026-pi-project-page/fig01.png",
+    "raw": "raw/articles/earendil-works-2026-pi-project-page-figures/fig01.png",
+    "caption": "Doom running in Pi",
+    "source_url": "https://pi.dev/doom-extension.png",
+    "bytes": 171987,
+    "width": 1600,
+    "height": 1442,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/earendil-works-2026-pi-project-page/page-full.png",
+    "raw": "raw/articles/earendil-works-2026-pi-project-page-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/earendil-works-2026-pi-project-page/crop01.png",
+    "raw": "raw/articles/earendil-works-2026-pi-project-page-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
