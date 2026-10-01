@@ -175,6 +175,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/yang-2026-hivla-project-page|HiVLA 프로젝트 페이지]]: HiVLA 논문의 공식 프로젝트 페이지. 초록과 도식 두 장, RoboTwin 결과 표만 싣고 시연 영상은 없다 (2026, article)
 - [[physical-ai/cai-2026-tau0-vla-a-hierarchical-robot-foundation|τ0-VLA (Shanghai Innovation Institute, Agibot Finch)]]: subtask 선택을 world model과 value model의 beam search로 푸는 계층형 VLA (2026, paper)
 - [[physical-ai/sii-research-2026-tau0-vla-project-page|τ0-VLA 프로젝트 페이지]]: τ0-VLA 논문의 공식 프로젝트 페이지. rollout 영상 일곱 편과 고해상도 구조도를 싣고, 논문에 없는 execution memory 단독 개선 폭 11.0%p를 밝힌다 (2026, article)
+- [[physical-ai/sii-research-tau-0-vla|τ0-VLA (sii-research, repo)]]: τ0-VLA 공식 코드. low-level policy post-training과 serving, proposal model과 world model 추론, LIBERO 재현 레시피(평균 97.35%) 공개 (2026, repo)
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform|Cosmos World Foundation Model Platform (NVIDIA)]]: 영상 curation과 토크나이저, WFM 8종을 함께 공개한 NVIDIA의 world model 플랫폼 논문 (2025, paper)
 - [[physical-ai/wu-2023-unleashing-large-scale-video-generative|GR-1 (ByteDance Research)]]: 사람 영상에서 미래 프레임 예측을 배운 뒤 로봇 데이터로 학습한 manipulation policy. video generative pre-training의 출발점 (2023, paper)
 - [[physical-ai/bytedance-gr-1|GR-1 (bytedance, repo)]]: GR-1 논문의 공식 코드 저장소(Apache-2.0). CALVIN 평가 경로와 가중치만 공개하고 pre-training과 fine-tuning 코드는 없다 (2024, repo)

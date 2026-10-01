@@ -206,6 +206,7 @@ Milk Tea에서는 두 변형 모두 이미 평균 91% 이상의 순서를 완료
 
 ## 관련 페이지
 
+- [[physical-ai/sii-research-tau-0-vla]]: 공식 코드 저장소. low-level policy와 proposal model, world model을 공개하고 LIBERO 재현 레시피를 싣는다. value model과 reflective model은 미공개다.
 - [[physical-ai/cai-2026-tau0-vla-a-hierarchical-robot-foundation]]: 이 페이지가 요약하는 원 논문. 알고리즘, 학습 세부, 전체 성능표는 원 논문 페이지에 있다.
 - [[physical-ai/peng-2026-cortex-project-page]]: 같은 형식의 VLA 프로젝트 페이지. 논문과 페이지를 나란히 수집한 다른 사례다.
 - [[physical-ai/x2robot-2025-wall-oss-project-page]]: 또 다른 VLA 프로젝트 페이지 사례.

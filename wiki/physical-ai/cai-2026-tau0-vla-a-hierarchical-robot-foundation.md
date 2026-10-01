@@ -400,6 +400,7 @@ closed-loop 실제 로봇 평가는 하위 모델을 고정한 채 TTC만 켜고
 ## 관련 페이지
 
 - [[physical-ai/sii-research-2026-tau0-vla-project-page]]: 같은 연구의 프로젝트 페이지. rollout 영상과 고해상도 구조도가 있고, 논문에 없는 execution memory 단독 개선 폭 11.0%p를 밝힌다.
+- [[physical-ai/sii-research-tau-0-vla]]: 공식 코드 저장소. low-level policy와 proposal model, world model을 공개하고 LIBERO 재현 레시피를 싣는다. value model과 reflective model은 미공개다.
 - [[physical-ai/black-2025-pi05-a-vision-language-action-model-with]]: long-horizon 표와 embodiment 표 양쪽에서 가장 강한 기준선인 π0.5의 원 논문. 계층 구조를 하나의 모델 안에 담는 대안적 설계를 보여준다.
 - [[physical-ai/nvidia-2025-gr00t-n1-5-an-improved-open]]: 비교 기준선 GR00T 계열. τ0-VLA 실험에서는 후속 판인 GR00T N1.7이 쓰였다.
 - [[physical-ai/hou-2026-world-model-for-robot-learning]]: world model을 로봇 학습에 쓰는 방식의 정리. τ0-VLA가 예측을 결정 이전으로 옮긴 선택의 좌표를 잡아 준다.
