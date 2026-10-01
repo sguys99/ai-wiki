@@ -370,3 +370,4 @@ neural trajectory는 world model 논의와 직접 이어진다. [[physical-ai/ho
 - [[llms/chen-2025-eagle-25-boosting-long-context-post-training]]: System 2로 쓰인 Eagle 계열의 다음 세대 기술 보고서.
 - [[llms/cai-2026-vlm3-vision-language-models]]: 이 논문이 한계로 지목한 더 강한 vision-language backbone 논의.
 - [[overviews/physical-ai-overview]]: physical-ai 분류 기준과 학습 경로 허브.
+- [[overviews/vla-evolution-groot-pi-gemini-robotics-overview]]: GR00T, π, Gemini Robotics 세 계열을 세대별로 나란히 놓은 비교 overview.

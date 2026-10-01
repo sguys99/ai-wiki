@@ -356,6 +356,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[overviews/gstack-ai-software-factory-overview|gstack 자료 지도와 명령어 출처 대조]]: 저장소 1편과 한국어 소개 3편을 묶어 역할 분담과 갈리는 서술, 자기 보고 수치의 근거 등급을 정리한다 (2026, overview)
 - [[overviews/prompt-to-loop-engineering-evolution-overview|Prompt에서 Loop까지 4단계 진화]]: prompt, context, harness, loop 네 단계를 자료 13편으로 채운 최상위 진입 지도. 12단계 학습 경로와 자매 overview 3편 라우팅을 담는다 (2026, overview)
 - [[overviews/physical-ai-overview|Physical AI 카테고리 지도와 학습 경로]]: physical-ai 페이지를 프로젝트 단위 클러스터로 묶은 허브. 학습 경로 세 트랙(VLA 계보, world model, 고전 스택)과 각 겹의 역할을 정리한다 (2026, overview)
+- [[overviews/vla-evolution-groot-pi-gemini-robotics-overview|VLA 발전 과정과 3대 계열 비교]]: RT-2 이후 네 가지 전환을 정리하고 GR00T, π, Gemini Robotics를 세대별 연표와 설계 비교표로 대조한다. 12단계 학습 경로 포함 (2026, overview)
 - [[overviews/glossary-physical-ai|용어집: Physical AI]]: policy, observation, trajectory 등 physical-ai 전문 용어의 canonical 표기를 정한 SSOT. 원어 유지와 첫 등장 서술형 풀이 원칙, lint 금지 표기 목록을 담는다 (2026, overview)
 - [[overviews/glossary-agents|용어집: Agents]]: tool use, harness, 오케스트레이션 등 agentic 시스템 용어의 canonical 표기 SSOT. 정착 음차(프롬프트, 컨텍스트, 메모리)와 원어 유지 개념어를 가른다 (2026, overview)
 - [[overviews/glossary-llms|용어집: LLMs]]: pre-training, fine-tuning, 임베딩 등 모델 학습 일반 용어의 canonical 표기 SSOT. 전 카테고리에 적용된다 (2026, overview)

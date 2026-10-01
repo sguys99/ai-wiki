@@ -376,3 +376,4 @@ action 표현은 다른 두 논문에서 가져왔다. action chunking은 [[phys
 - [[physical-ai/sa-2026-vision-language-action-models-for]]: π0부터 π0.7까지 flow 계열 전개를 정리한 서베이
 - [[physical-ai/kawaharazuka-2025-vision-language-action-models-for-robotics]]: VLA 전반 서베이
 - [[overviews/physical-ai-overview]]: 도메인 허브
+- [[overviews/vla-evolution-groot-pi-gemini-robotics-overview]]: π 계열을 GR00T, Gemini Robotics와 세대별로 비교한 overview

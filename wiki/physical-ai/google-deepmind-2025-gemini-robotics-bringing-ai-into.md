@@ -726,3 +726,4 @@ in-context learning으로 로봇을 제어하는 발상은 [[physical-ai/skild-2
 - [[physical-ai/learnopencv-2025-vision-language-action-models-vla]]: Gemini Robotics를 포함한 아홉 VLA를 계보 순으로 소개하는 튜토리얼.
 - [[physical-ai/engiuniverse-2025-14-key-physical-ai-papers]]: 이 보고서를 대규모 인프라와 추론 항목의 대표 논문으로 꼽는 발표 정리.
 - [[overviews/physical-ai-overview]]: physical-ai 분류 기준과 학습 경로 허브.
+- [[overviews/vla-evolution-groot-pi-gemini-robotics-overview]]: Gemini Robotics 계열을 GR00T, π와 세대별로 비교한 overview.

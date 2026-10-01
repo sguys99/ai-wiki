@@ -339,6 +339,7 @@ CLAUDE.md는 `wiki/physical-ai/`가 40페이지를 넘으면 하위 폴더 분�
 
 - [[overviews/glossary-physical-ai]]: 이 도메인 전문 용어의 canonical 표기 SSOT. 이 페이지의 표기도 그 표를 따른다
 - [[overviews/glossary-llms]]: pre-training과 fine-tuning 등 학습 일반 용어. physical-ai 페이지에도 함께 적용된다
+- [[overviews/vla-evolution-groot-pi-gemini-robotics-overview]]: A 트랙 VLA 계보 중 GR00T, π, Gemini Robotics 세 계열을 세대별로 확대 비교한 overview
 - [[physical-ai/zhang-2026-a-survey-of-physical-ai]]: Physical AI 전체를 6층 로드맵으로 정리한 서베이. 이 허브가 저장소 기준 지도라면 그 서베이는 분야 기준 지도다
 - [[physical-ai/keon-awesome-physical-ai]], [[physical-ai/natnew-awesome-physical-ai]]: 외부 큐레이션 목록 둘. 아직 갖고 있지 않은 자료를 찾을 때 출발점이다
 - [[llms/cai-2026-vlm3-vision-language-models]]: 3D 인식을 표준 VLM의 SFT로 푸는 논문. 물리 상호작용이 없어 `llms`에 남아 있지만 VLA backbone 쪽과 맞닿는다
