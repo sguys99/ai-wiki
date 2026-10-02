@@ -179,6 +179,9 @@ tags: [glossary, terminology, physical-ai, synthesis]
 | System 0 | System 0 | 시스템 0 | System 0는 로봇 형상에 의존하는 저수준 실행 층을 가리키며, 상위 policy가 형상별 구동 방식을 직접 배우지 않아도 되게 한다 | dual-process theory와 dual-system VLA 행이 세운 System 1 / System 2 구도에 실행 층을 하나 더 붙인 이름이다. MobileVLA-R1 2.0이 System 2에서 System 1을 거쳐 System 0로 내려가는 구도로 쓴다 (2026-09 등재) |
 | causal hallucination | causal hallucination | 인과 환각·인과적 환각 | causal hallucination은 action 조건부 예측에서 모델이 현재 action과 target 관련 observation 사이의 상관을 이용해 action에서 target evidence로 가는 직접 인과를 만들어내는 실패 양상이다 | Hu 2026(CST-WM)이 embodied visual tracking 문맥에서 이름 붙였다. glossary-agents의 환각 행이 일반 환각을 가리키는 것과 달리 이 행은 예측 구조 안에서 생기는 특정 실패를 가리킨다 (2026-09 등재) |
 | target evidence | target evidence | 목표 증거·타깃 증거 | target evidence는 target이 보이는지와 겉보기 크기가 유효한 추종 거리와 맞는지를 요약한 표현이다 | CST-WM의 latent branch 이름이자 planning 입력이다. world model 계열에서 재사용될 개념이라 표기를 고정한다 (2026-09 등재) |
+| modality collapse | modality collapse | 모달리티 붕괴·모달 붕괴 | modality collapse는 강한 시각 prior가 드문 언어 신호를 압도해 policy가 지시문 의미를 무시하게 되는 현상이다 | Zhan 2026(RSS)이 VLA 지시문 취약성의 원인으로 이름 붙였다. manifold sparsity와 prior dominance 두 원인으로 나눠 설명한다 (2026-10 등재) |
+| instruction blindness | instruction blindness | 지시 맹목·지시문 맹목·지시문 맹시 | instruction blindness는 VLA가 지시문을 거의 무시하고 장면만으로 가장 그럴듯한 action을 내는 현상이다 | LIBERO-Plus와 RADAR 분석이 보고한 증상으로, modality collapse 행이 그 원인 진단에 해당한다. 지시문 행의 번역어 canonical과 달리 현상 이름이라 원어로 고정한다 (2026-10 등재) |
+| steering coefficient | steering coefficient | 조향 계수·스티어링 계수·조종 계수 | steering coefficient는 지시문을 준 출력과 비운 출력의 차이를 몇 배로 키울지 정하는 값이다 | 기호는 γ이며 1보다 크게 둔다. classifier-free guidance의 guidance scale과 같은 위치의 값이다. 너무 크면 손상된 지시문에 과민해진다 (Zhan 2026, 2026-10 등재) |
 | model-predictive control | model-predictive control | — | model-predictive control은 학습한 동역학으로 후보 action을 여러 스텝 앞까지 예측해 점수를 매기고 첫 action만 실행한 뒤 다시 계획하는 제어 방식이다 | 약어 MPC 병용 가능. 번역어 "모델 예측 제어"는 Nav2의 MPPI 설명에서 일반 서술로 이미 쓰이고 있어 기계 검사에서 뺐다. 지침만 (2026-09 등재) |
 
 ## 신규 용어 추가 절차
