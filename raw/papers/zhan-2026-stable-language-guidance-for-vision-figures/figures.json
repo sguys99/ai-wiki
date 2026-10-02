@@ -1,0 +1,736 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/fig01.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Taxonomy of Language Instruction Per- turbations. We identify three distinct failure modes in VLA instruction following: (1) Destructive Instruc- tion Overwriting , where critical semantic tokens are lost or masked (e.g., masking the drawer location); (2) Obfuscated Instruction Reinterpret",
+    "bbox": [
+      300.14,
+      213.91,
+      581.16,
+      344.07
+    ],
+    "bbox_norm": [
+      0.5042,
+      0.2541,
+      0.9763,
+      0.4087
+    ],
+    "dpi": 300,
+    "area_frac": 0.073,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/fig02.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Overview of Residual Semantic Steering (RSS). To combat instruction blindness, RSS operates in two stages. Left: Monte Carlo Syntactic Integration utilizes an Oracle Teacher to generate a dense linguistic neighborhood around a seed instruction. Optimizing over this distribution forces the ",
+    "bbox": [
+      38.79,
+      61.7,
+      556.55,
+      357.27
+    ],
+    "bbox_norm": [
+      0.0652,
+      0.0733,
+      0.9349,
+      0.4244
+    ],
+    "dpi": 300,
+    "area_frac": 0.305,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/fig03.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3: Comparison on the LIBERO variant R3- Reasoning Chain . In the \"open the top drawer and put the bowl inside\" task, our model consistently out- performs the baseline under reasoning-chain–perturbed instructions, demonstrating a stronger ability to follow multi-step semantic constraints and a",
+    "bbox": [
+      297.59,
+      234.78,
+      538.77,
+      415.16
+    ],
+    "bbox_norm": [
+      0.4999,
+      0.2789,
+      0.9051,
+      0.4931
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/fig04.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/fig04.png",
+    "page": 8,
+    "caption": "Figure 4: Ablation of steering coefficient and denoising steps on destructive instruction overwriting. Success rates (SR, %) across instruction variants under different steering coefficients for π 0 (a) and π 0 . 5 (b), and different denoising steps for π 0 (c) and π 0 . 5 (d), illustrating the effe",
+    "bbox": [
+      53.47,
+      30.68,
+      530.4,
+      168.04
+    ],
+    "bbox_norm": [
+      0.0898,
+      0.0364,
+      0.891,
+      0.1996
+    ],
+    "dpi": 300,
+    "area_frac": 0.131,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/fig05.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/fig05.png",
+    "page": 8,
+    "caption": "Figure 5: Training loss curves. We report the training loss trajectories of different model variants through- out optimization. RAS : Residual Affordance Steering; MCSI : Monte Carlo Syntactic Integration.",
+    "bbox": [
+      54.66,
+      219.29,
+      306.61,
+      369.53
+    ],
+    "bbox_norm": [
+      0.0918,
+      0.2605,
+      0.5151,
+      0.4389
+    ],
+    "dpi": 300,
+    "area_frac": 0.076,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/fig06.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/fig06.png",
+    "page": 19,
+    "caption": "Figure 6: Qualitative comparison under destructive instruction overwriting ( π 0 . 5 ). We visualize representative rollout trajectories for the task “Put the wine bottle on top of the cabinet” when the instruction is partially blanked. The base model is π 0 . 5 ( Intelligence et al. , 2025 ). RAS :",
+    "bbox": [
+      155.57,
+      113.38,
+      440.15,
+      317.0
+    ],
+    "bbox_norm": [
+      0.2613,
+      0.1347,
+      0.7394,
+      0.3765
+    ],
+    "dpi": 300,
+    "area_frac": 0.116,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/fig07.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/fig07.png",
+    "page": 19,
+    "caption": "Figure 7: Qualitative comparison under destructive instruction overwriting ( π 0 ). We visualize representative rollout trajectories for the task “Put the wine bottle on top of the cabinet” when the instruction is partially blanked. The base model is π 0 . 5 ( Black et al. , 2024 ). RAS : Residual A",
+    "bbox": [
+      155.57,
+      467.96,
+      439.95,
+      672.35
+    ],
+    "bbox_norm": [
+      0.2613,
+      0.5558,
+      0.7391,
+      0.7986
+    ],
+    "dpi": 300,
+    "area_frac": 0.116,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/fig08.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/fig08.png",
+    "page": 20,
+    "caption": "Figure 8: R1-Distraction. The instruction is augmented with task-irrelevant conversational or contextual content, such as background descriptions or auxiliary remarks, while keeping the core action and target unchanged.",
+    "bbox": [
+      110.22,
+      201.35,
+      485.06,
+      608.76
+    ],
+    "bbox_norm": [
+      0.1852,
+      0.2392,
+      0.8148,
+      0.7231
+    ],
+    "dpi": 300,
+    "area_frac": 0.305,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/fig09.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/fig09.png",
+    "page": 21,
+    "caption": "Figure 9: R2-Common Sense. Object names are replaced with commonsense-based descriptive phrases that implicitly convey their functional or physical properties. Although the task intent remains unchanged, this variant requires the model to extract relevant semantics from more abstract and verbose des",
+    "bbox": [
+      110.22,
+      133.53,
+      485.06,
+      664.24
+    ],
+    "bbox_norm": [
+      0.1852,
+      0.1586,
+      0.8148,
+      0.789
+    ],
+    "dpi": 300,
+    "area_frac": 0.397,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/fig10.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/fig10.png",
+    "page": 22,
+    "caption": "Figure 10: R3-Reasoning Chain. The instruction is reformulated to emphasize implicit reasoning, execution order, or final-state constraints, either by introducing lightweight reasoning cues or by abstracting intermediate steps. The target task remains identical, but the linguistic form encourages re",
+    "bbox": [
+      110.22,
+      176.15,
+      485.06,
+      621.9
+    ],
+    "bbox_norm": [
+      0.1852,
+      0.2092,
+      0.8148,
+      0.7387
+    ],
+    "dpi": 300,
+    "area_frac": 0.333,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/fig11.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/fig11.png",
+    "page": 23,
+    "caption": "Figure 11: R4-Confusion. The instruction explicitly introduces distractor objects or actions through negation or contrast, while still specifying the correct target object and goal. This variant probes the model’s ability to resist object-level confusion and focus on task-relevant semantics.",
+    "bbox": [
+      110.22,
+      195.78,
+      485.06,
+      601.92
+    ],
+    "bbox_norm": [
+      0.1852,
+      0.2325,
+      0.8148,
+      0.715
+    ],
+    "dpi": 300,
+    "area_frac": 0.304,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab01.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab01.png",
+    "page": 5,
+    "caption": "Table 1: Robustness evaluation under Destructive Instruction Overwriting. Results are reported as task Success Rates (SR) in percentages (%). Bold and underlined entries denote the best and second-best performance per column, respectively. Values in parentheses represent the absolute improvement ove",
+    "bbox": [
+      66.81,
+      122.96,
+      530.41,
+      271.38
+    ],
+    "bbox_norm": [
+      0.1122,
+      0.1461,
+      0.891,
+      0.3223
+    ],
+    "dpi": 300,
+    "area_frac": 0.137,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab02.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab02.png",
+    "page": 5,
+    "caption": "Table 2: Obfuscated instruction reinterpretation result. Bold entries denote the best results per column, and underlined entries indicate the second-best. Values in parentheses report the absolute SR improvement (in percentage points) over the corresponding baseline under the same setting. All numbe",
+    "bbox": [
+      120.2,
+      326.55,
+      476.27,
+      497.66
+    ],
+    "bbox_norm": [
+      0.2019,
+      0.3879,
+      0.8001,
+      0.5911
+    ],
+    "dpi": 300,
+    "area_frac": 0.122,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab03.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab03.png",
+    "page": 6,
+    "caption": "Table 3: Examples of obfuscated instruction reinterpretation variants (R0–R4) on LIBERO-Goal. All variants preserve the original task semantics while introducing different forms of linguistic perturbations.",
+    "bbox": [
+      67.25,
+      99.12,
+      528.03,
+      227.74
+    ],
+    "bbox_norm": [
+      0.113,
+      0.1177,
+      0.887,
+      0.2705
+    ],
+    "dpi": 300,
+    "area_frac": 0.118,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab04.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab04.png",
+    "page": 6,
+    "caption": "Table 4: Out-of-distribution semantic transfer re- sult. Bold entries denote the best results per column. The base model is π 0 . 5 ( Intelligence et al. , 2025 ). RAS : Residual Affordance Steering; MCSI : Monte Carlo Syn- tactic Integration.",
+    "bbox": [
+      61.27,
+      302.13,
+      304.83,
+      390.74
+    ],
+    "bbox_norm": [
+      0.1029,
+      0.3589,
+      0.5121,
+      0.4641
+    ],
+    "dpi": 300,
+    "area_frac": 0.043,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab05.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab05.png",
+    "page": 9,
+    "caption": "Table 5: Generalization to paraphrased instructions generated by different VLMs on LIBERO. Without retraining, MCSI consistently improves robustness to linguistic variations and reduces performance drift compared to the baseline π 0 . 5 ( Intelligence et al. , 2025 ). RAS : Residual Affordance Steer",
+    "bbox": [
+      139.54,
+      122.99,
+      457.84,
+      313.06
+    ],
+    "bbox_norm": [
+      0.2344,
+      0.1461,
+      0.7691,
+      0.3719
+    ],
+    "dpi": 300,
+    "area_frac": 0.121,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab06.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab06.png",
+    "page": 9,
+    "caption": "Table 6: Utilize different VLMs for instruction generation to train the MCSI & RAS model. MCSI and RAS shows consistent performance across VLM choices with minimal variation, indicating robustness to the choice of instruction generator and generalization to underlying task semantics.",
+    "bbox": [
+      109.48,
+      356.01,
+      488.17,
+      434.52
+    ],
+    "bbox_norm": [
+      0.1839,
+      0.4229,
+      0.8201,
+      0.5161
+    ],
+    "dpi": 300,
+    "area_frac": 0.059,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab07.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab07.png",
+    "page": 14,
+    "caption": "Table 7: LIBERO-Plus task performance (success rate, SR) results. Bold denotes the best performance per column, respectively. Values in parentheses represent the absolute improvement over the corresponding baseline. RAS : Residual Affordance Steering; MCSI : Monte Carlo Syntactic Integration.",
+    "bbox": [
+      89.29,
+      124.5,
+      507.73,
+      294.51
+    ],
+    "bbox_norm": [
+      0.15,
+      0.1479,
+      0.8529,
+      0.3498
+    ],
+    "dpi": 300,
+    "area_frac": 0.142,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab08.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab08.png",
+    "page": 14,
+    "caption": "Table 8: LIBERO (original instruction) task performance (success rate, SR) results. Results are reported on the four standard LIBERO sub-tasks (Libero-Spatial, Libero-Object, Libero-Goal, and Libero-Long) along with the overall average. This setting evaluates model performance under unmodified, cano",
+    "bbox": [
+      112.14,
+      375.91,
+      485.06,
+      571.82
+    ],
+    "bbox_norm": [
+      0.1884,
+      0.4465,
+      0.8148,
+      0.6792
+    ],
+    "dpi": 300,
+    "area_frac": 0.146,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab09.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab09.png",
+    "page": 14,
+    "caption": "Table 9: LIBERO (blank instruction) task performance (success rate, SR) results. In this variant, task instructions are fully blanked to remove explicit linguistic guidance. RAS : Residual Affordance Steering; MCSI : Monte Carlo Syntactic Integration.",
+    "bbox": [
+      112.21,
+      641.31,
+      485.05,
+      764.98
+    ],
+    "bbox_norm": [
+      0.1885,
+      0.7617,
+      0.8148,
+      0.9087
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab10.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab10.png",
+    "page": 15,
+    "caption": "Table 10: LIBERO (simple-word instruction) task performance (success rate, SR) results. All task instructions are replaced by a single generic command (e.g., ”do something“), completely removing the original semantic content. RAS : Residual Affordance Steering; MCSI : Monte Carlo Syntactic Integrati",
+    "bbox": [
+      112.21,
+      146.28,
+      485.05,
+      269.96
+    ],
+    "bbox_norm": [
+      0.1885,
+      0.1738,
+      0.8148,
+      0.3207
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab11.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab11.png",
+    "page": 15,
+    "caption": "Table 11: LIBERO (multi-word instruction) task performance (success rate, SR) results. Instructions are rewritten by replacing words in the original sentence with simple lexical alternatives, while largely preserving the overall task semantics. RAS : Residual Affordance Steering; MCSI : Monte Carlo ",
+    "bbox": [
+      112.21,
+      382.93,
+      485.05,
+      506.6
+    ],
+    "bbox_norm": [
+      0.1885,
+      0.4548,
+      0.8148,
+      0.6017
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab12.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab12.png",
+    "page": 15,
+    "caption": "Table 12: LIBERO (random-lang instruction) task performance (success rate, SR) results. Instructions are constructed by randomly shuffling the word order of the original sentence, disrupting syntactic structure while retaining the same lexical content. RAS : Residual Affordance Steering; MCSI : Mont",
+    "bbox": [
+      112.21,
+      619.57,
+      485.05,
+      743.25
+    ],
+    "bbox_norm": [
+      0.1885,
+      0.7359,
+      0.8148,
+      0.8828
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab13.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab13.png",
+    "page": 16,
+    "caption": "Table 13: LIBERO (random-mask instruction) task performance (success rate, SR) results. Each word in the instruction is independently masked with a predefined probability, introducing controlled semantic degradation while preserving the original word order. RAS : Residual Affordance Steering; MCSI :",
+    "bbox": [
+      112.21,
+      229.56,
+      485.05,
+      671.92
+    ],
+    "bbox_norm": [
+      0.1885,
+      0.2727,
+      0.8148,
+      0.7981
+    ],
+    "dpi": 300,
+    "area_frac": 0.329,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab14.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab14.png",
+    "page": 17,
+    "caption": "Table 14: Ablation on steering coefficient (SC) across different language perturbation benchmarks. Denoising steps are fixed to 10. All values are average success rate (SR, %).",
+    "bbox": [
+      78.3,
+      142.49,
+      519.08,
+      343.42
+    ],
+    "bbox_norm": [
+      0.1315,
+      0.1693,
+      0.872,
+      0.4079
+    ],
+    "dpi": 300,
+    "area_frac": 0.177,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab15",
+    "label": "Table 15",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab15.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab15.png",
+    "page": 17,
+    "caption": "Table 15: Ablation on denoising steps across different destructive instruction overwriting benchmarks. The base model is π 0 ( Black et al. , 2024 ). The steering coefficient is fixed to 1.5. All values are average success rate (SR, %).",
+    "bbox": [
+      78.28,
+      460.77,
+      519.07,
+      533.27
+    ],
+    "bbox_norm": [
+      0.1315,
+      0.5473,
+      0.872,
+      0.6334
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab16",
+    "label": "Table 16",
+    "kind": "table",
+    "file": "assets/zhan-2026-stable-language-guidance-for-vision/tab16.png",
+    "raw": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/tab16.png",
+    "page": 17,
+    "caption": "Table 16: Ablation on denoising steps across different destructive instruction overwriting benchmarks. The base model is π 0 . 5 ( Intelligence et al. , 2025 ). The steering coefficient is fixed to 1.25. All values are average success rate (SR, %).",
+    "bbox": [
+      78.28,
+      662.58,
+      519.07,
+      735.08
+    ],
+    "bbox_norm": [
+      0.1315,
+      0.787,
+      0.872,
+      0.8731
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhan-2026-stable-language-guidance-for-vision-figures/_overlay/p17.png"
+  }
+]

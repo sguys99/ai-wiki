@@ -202,6 +202,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/kim-2026-safe-embodied-ai-for-long-horizon|Safe Embodied AI (Survey)]]: long-horizon manipulation 안전 문헌을 intervention locus와 evidence boundary 두 기준으로 재배치한 서베이 (2026, paper)
 - [[physical-ai/lou-2026-know-your-body-a-harness|KnowBody (Nanjing University, Ant Group)]]: 가중치를 고정한 VLM에 질의 가능한 신체 기하 모델을 붙인 harness. 신체 추정을 고치면 그에 의존하던 경험 규칙을 다시 검증해 재사용한다 (2026, paper)
 - [[physical-ai/yuan-2026-representation-world-model-learning-states|RWM (Tsinghua IIIS)]]: 시작과 목표 표현을 interpolation한 경로에 IDM 지도를 걸어 추론 시점 탐색 없이 planning하는 world model (2026, paper)
+- [[physical-ai/zhan-2026-stable-language-guidance-for-vision|RSS (Sun Yat-sen Univ.)]]: 지시문 바꿔 쓰기 평균 손실(MCSI)과 지시문 없는 forward를 뺀 잔차 증폭(RAS)으로 VLA의 지시문 취약성을 줄인다. LIBERO-Plus 평균 90.0% (2026, paper)
 - [[physical-ai/bai-2026-latent-reasoning-vla-latent-thinking|LaRA-VLA (XJTU, BAAI)]]: 텍스트와 visual CoT를 3단계 curriculum으로 연속 latent에 내재화해 CoT 생성 없이 action을 낸다. LIBERO 97.9%, 지연 135 ms (2026, paper)
 - [[physical-ai/bai-2026-lara-vla-project-page|LaRA-VLA 프로젝트 페이지]]: 논문 요약과 결과 그림에 실제 로봇 rollout 영상 8편(LaRA-VLA와 GR00T N1.5 각 4편)을 더한 소개 페이지 (2026, article)
 - [[physical-ai/loveju1y-lara-vla|LaRA-VLA (LoveJu1y, repo)]]: LaRA-VLA 공식 코드. StarVLA 기반 4단계 VLM 학습과 VLA 학습 스크립트, LIBERO와 SimplerEnv 평가, 데이터와 가중치 공개 (2026, repo)
