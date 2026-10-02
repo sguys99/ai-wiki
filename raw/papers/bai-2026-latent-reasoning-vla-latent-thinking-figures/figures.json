@@ -1,0 +1,465 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/fig01.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1. Comparison of CoT formulations in VLA models. (a) Textual CoT-based VLA explicitly generates discrete textual rea- soning tokens, which are subsequently decoded into actions via downstream modules such as autoregressive (AR) policies or ac- tion experts (AE). (b) Most visual CoT-based VLA ",
+    "bbox": [
+      301.8,
+      175.4,
+      547.07,
+      427.03
+    ],
+    "bbox_norm": [
+      0.4931,
+      0.2215,
+      0.8939,
+      0.5392
+    ],
+    "dpi": 300,
+    "area_frac": 0.127,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/fig02.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/fig02.png",
+    "page": 5,
+    "caption": "Figure 2. Overview of LaRA-VLA. Training proceeds in three stages: (i) explicit CoT fine-tuning with aligned visual prediction latents",
+    "bbox": [
+      54.3,
+      61.06,
+      542.59,
+      292.01
+    ],
+    "bbox_norm": [
+      0.0887,
+      0.0771,
+      0.8866,
+      0.3687
+    ],
+    "dpi": 300,
+    "area_frac": 0.233,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/fig03.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3. Attention mechanism used in LaRA-VLA.",
+    "bbox": [
+      81.39,
+      249.33,
+      263.5,
+      423.38
+    ],
+    "bbox_norm": [
+      0.133,
+      0.3148,
+      0.4306,
+      0.5346
+    ],
+    "dpi": 300,
+    "area_frac": 0.065,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/fig04.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/fig04.png",
+    "page": 7,
+    "caption": "Figure 4. Real-world setup of four long-horizon tasks.",
+    "bbox": [
+      57.09,
+      233.84,
+      287.79,
+      432.09
+    ],
+    "bbox_norm": [
+      0.0933,
+      0.2953,
+      0.4703,
+      0.5456
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/fig05.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/fig05.png",
+    "page": 7,
+    "caption": "Figure 5. Real-world results.",
+    "bbox": [
+      298.16,
+      233.85,
+      550.72,
+      365.51
+    ],
+    "bbox_norm": [
+      0.4872,
+      0.2953,
+      0.8999,
+      0.4615
+    ],
+    "dpi": 300,
+    "area_frac": 0.069,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/fig06.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/fig06.png",
+    "page": 8,
+    "caption": "Figure 6. Latent collapse analysis.",
+    "bbox": [
+      298.16,
+      61.06,
+      550.71,
+      211.93
+    ],
+    "bbox_norm": [
+      0.4872,
+      0.0771,
+      0.8998,
+      0.2676
+    ],
+    "dpi": 300,
+    "area_frac": 0.079,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/fig07.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/fig07.png",
+    "page": 8,
+    "caption": "Figure 7. Inference time comparison on an NVIDIA A100 GPU.",
+    "bbox": [
+      298.16,
+      225.61,
+      550.73,
+      366.5
+    ],
+    "bbox_norm": [
+      0.4872,
+      0.2849,
+      0.8999,
+      0.4627
+    ],
+    "dpi": 300,
+    "area_frac": 0.073,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/fig08.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/fig08.png",
+    "page": 12,
+    "caption": "Figure 8. Example of Training Data Formats.",
+    "bbox": [
+      49.44,
+      172.01,
+      547.45,
+      491.04
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.2172,
+      0.8945,
+      0.62
+    ],
+    "dpi": 300,
+    "area_frac": 0.328,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/fig09.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/fig09.png",
+    "page": 14,
+    "caption": "Figure 9. Data collection pipline.",
+    "bbox": [
+      61.59,
+      61.06,
+      535.28,
+      329.11
+    ],
+    "bbox_norm": [
+      0.1006,
+      0.0771,
+      0.8746,
+      0.4155
+    ],
+    "dpi": 300,
+    "area_frac": 0.262,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/fig10.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/fig10.png",
+    "page": 15,
+    "caption": "Figure 10. Prompt for Object Identification.",
+    "bbox": [
+      49.44,
+      222.47,
+      547.45,
+      553.52
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.2809,
+      0.8945,
+      0.6989
+    ],
+    "dpi": 300,
+    "area_frac": 0.34,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/fig11.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/fig11.png",
+    "page": 16,
+    "caption": "Figure 11. Prompt for Subtask Description Generation.",
+    "bbox": [
+      49.44,
+      217.49,
+      547.45,
+      558.5
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.2746,
+      0.8945,
+      0.7052
+    ],
+    "dpi": 300,
+    "area_frac": 0.35,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/tab01.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/tab01.png",
+    "page": 3,
+    "caption": "Table 1. A taxonomy of VLA models based on the representation forms of chain-of-thought CoT and actions. Specifically, we categorize",
+    "bbox": [
+      42.96,
+      95.38,
+      556.8,
+      300.62
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.1204,
+      0.9098,
+      0.3796
+    ],
+    "dpi": 300,
+    "area_frac": 0.218,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p03.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/tab02.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/tab02.png",
+    "page": 6,
+    "caption": "Table 2. Performance comparisons with state-of-the-art methods on LIBERO, grouped by different CoT paradigms.",
+    "bbox": [
+      76.62,
+      71.62,
+      520.08,
+      253.1
+    ],
+    "bbox_norm": [
+      0.1252,
+      0.0904,
+      0.8498,
+      0.3196
+    ],
+    "dpi": 300,
+    "area_frac": 0.166,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p06.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/tab03.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/tab03.png",
+    "page": 7,
+    "caption": "Table 3. Performance comparisons with state-of-the-art methods on SimplerEnv-WindowX, grouped by different CoT paradigms.",
+    "bbox": [
+      76.62,
+      75.58,
+      520.08,
+      230.14
+    ],
+    "bbox_norm": [
+      0.1252,
+      0.0954,
+      0.8498,
+      0.2906
+    ],
+    "dpi": 300,
+    "area_frac": 0.141,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/tab04.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/tab04.png",
+    "page": 8,
+    "caption": "Table 4. Ablation study of different forms of CoT supervision on",
+    "bbox": [
+      42.96,
+      104.88,
+      304.04,
+      184.2
+    ],
+    "bbox_norm": [
+      0.0702,
+      0.1324,
+      0.4968,
+      0.2326
+    ],
+    "dpi": 300,
+    "area_frac": 0.043,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p08.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/tab05.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/tab05.png",
+    "page": 13,
+    "caption": "Table 5. Hyperparameter settings in LaRA-VLA across LIBERO, SimplerEnv, and real robot experiments.",
+    "bbox": [
+      51.76,
+      78.59,
+      545.13,
+      298.39
+    ],
+    "bbox_norm": [
+      0.0846,
+      0.0992,
+      0.8907,
+      0.3768
+    ],
+    "dpi": 300,
+    "area_frac": 0.224,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/bai-2026-latent-reasoning-vla-latent-thinking/tab06.png",
+    "raw": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/tab06.png",
+    "page": 14,
+    "caption": "Table 6. Subtask-level and overall success rates (%) on real-world robot tasks.",
+    "bbox": [
+      51.24,
+      613.03,
+      545.65,
+      675.49
+    ],
+    "bbox_norm": [
+      0.0837,
+      0.774,
+      0.8916,
+      0.8529
+    ],
+    "dpi": 300,
+    "area_frac": 0.064,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/bai-2026-latent-reasoning-vla-latent-thinking-figures/_overlay/p14.png"
+  }
+]

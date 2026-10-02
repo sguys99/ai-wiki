@@ -262,3 +262,4 @@ README는 보고된 실험 설정은 논문을 따르고, 특정 checkpoint를 �
 - [[physical-ai/nvidia-isaac-gr00t]]: GR00T 저장소. GR00T head와 LeRobot 데이터 형식, embodiment tag 방식의 출처
 - [[physical-ai/noietch-eva-client]]: StarVLA를 policy 학습 프레임워크이자 서빙 backend로 지원하는 로봇 클라이언트
 - [[physical-ai/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied]]: StarVLA의 Qwen-GR00T 변형을 비교 대상으로 쓴 HiVLA 논문
+- [[physical-ai/loveju1y-lara-vla]]: StarVLA 코드베이스에서 출발해 latent CoT 학습을 구현한 LaRA-VLA 저장소. 설정에 `QwenGR00T` 프레임워크 이름이 남아 있다

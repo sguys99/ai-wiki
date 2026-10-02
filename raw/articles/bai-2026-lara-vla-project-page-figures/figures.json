@@ -1,0 +1,94 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/bai-2026-lara-vla-project-page/fig01.png",
+    "raw": "raw/articles/bai-2026-lara-vla-project-page-figures/fig01.png",
+    "caption": "Model architecture",
+    "source_url": "https://loveju1y.github.io/Latent-Reasoning-VLA/static/images/2_1.png",
+    "bytes": 314599,
+    "width": 1666,
+    "height": 743,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/bai-2026-lara-vla-project-page/fig02.png",
+    "raw": "raw/articles/bai-2026-lara-vla-project-page-figures/fig02.png",
+    "caption": "LIBERO results",
+    "source_url": "https://loveju1y.github.io/Latent-Reasoning-VLA/static/images/3.png",
+    "bytes": 350570,
+    "width": 1668,
+    "height": 645,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/bai-2026-lara-vla-project-page/fig03.png",
+    "raw": "raw/articles/bai-2026-lara-vla-project-page-figures/fig03.png",
+    "caption": "SimplerEnv WidowX results",
+    "source_url": "https://loveju1y.github.io/Latent-Reasoning-VLA/static/images/5.png",
+    "bytes": 220680,
+    "width": 1592,
+    "height": 509,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/bai-2026-lara-vla-project-page/fig04.png",
+    "raw": "raw/articles/bai-2026-lara-vla-project-page-figures/fig04.png",
+    "caption": "Real-world task results",
+    "source_url": "https://loveju1y.github.io/Latent-Reasoning-VLA/static/images/6.png",
+    "bytes": 74144,
+    "width": 1036,
+    "height": 506,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/bai-2026-lara-vla-project-page/fig05.png",
+    "raw": "raw/articles/bai-2026-lara-vla-project-page-figures/fig05.png",
+    "caption": "Latent collapse analysis",
+    "source_url": "https://loveju1y.github.io/Latent-Reasoning-VLA/static/images/11.png",
+    "bytes": 359080,
+    "width": 1027,
+    "height": 597,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/bai-2026-lara-vla-project-page/fig06.png",
+    "raw": "raw/articles/bai-2026-lara-vla-project-page-figures/fig06.png",
+    "caption": "Inference time comparison",
+    "source_url": "https://loveju1y.github.io/Latent-Reasoning-VLA/static/images/12.png",
+    "bytes": 49056,
+    "width": 986,
+    "height": 526,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/bai-2026-lara-vla-project-page/fig07.png",
+    "raw": "raw/articles/bai-2026-lara-vla-project-page-figures/fig07.png",
+    "caption": "Ablation study",
+    "source_url": "https://loveju1y.github.io/Latent-Reasoning-VLA/static/images/10.png",
+    "bytes": 31365,
+    "width": 952,
+    "height": 295,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/bai-2026-lara-vla-project-page/page-full.png",
+    "raw": "raw/articles/bai-2026-lara-vla-project-page-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  }
+]

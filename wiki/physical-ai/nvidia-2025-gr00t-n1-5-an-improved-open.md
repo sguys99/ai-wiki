@@ -292,3 +292,4 @@ VLM backbone의 계보는 이름이 겹쳐 혼동하기 쉬운 지점이다. Eag
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform]]: DreamGen이 바탕으로 삼은 영상 생성 기술.
 - [[physical-ai/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x]]: pre-training mixture의 OpenXE와 이어지는 공개 데이터셋.
 - [[overviews/physical-ai-overview]]: 카테고리 지도. GR00T와 GEAR 클러스터의 위치를 보여준다.
+- [[physical-ai/bai-2026-latent-reasoning-vla-latent-thinking]]: GR00T N1.5를 실제 로봇 long-horizon 과제 4종의 baseline으로 쓴 LaRA-VLA 논문. 평균 47.9% 대 56.2%.
