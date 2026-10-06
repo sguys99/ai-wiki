@@ -319,6 +319,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 - [[applications/dnotitia-akb|dnotitia/AKB (repo)]]: MCP로 노출되는 에이전트용 조직 메모리 저장소. Git bare repo와 PostgreSQL 위에 hybrid retrieval을 올리고 PostgreSQL ACL로 vault를 격리한다. LongMemEval-S R@5 98.4% (2026, repo)
 - [[applications/dnotitia-2026-akb-product-introduction|AKB 제품 소개 슬라이드 (Dnotitia)]]: AKB와 Collector, Gardener 3종을 23장 슬라이드로 소개한다. 다중 경로 탐색과 9개 vault 운영, 21일 무인 운영 실측, XDR 적용 구상을 담는다 (2026, report)
 - [[applications/wlsdks-ontology-atlas|wlsdks/ontology-atlas (repo)]]: 코드베이스 ontology를 Markdown 폴더 하나로 유지하는 로컬 워크벤치. 다섯 kind와 typed 관계로 폴더를 계산 가능하게 하고, 사람은 git diff로 에이전트는 MCP로 한 그래프를 다룬다 (2026, repo)
+- [[applications/fabio-rovai-open-ontologies|Open Ontologies (repo)]]: 운영 ontology의 변경을 적용 전에 계획해 의미 변화까지 보고하고, 유도한 결론을 Lean 4 checker가 검사하는 certificate로 남겨 감사인이 엔진 없이 재검증하게 한다 (2026, repo)
 - [[applications/datasciencedojo-2026-llm-wiki-by-andrej-karpathy|LLM Wiki 입문 튜토리얼 (Data Science Dojo)]]: Karpathy의 LLM Wiki 패턴을 코딩 없이 25~35분에 따르는 6단계로 푼 가이드. 컴파일과 유지보수 프롬프트를 원문대로 싣는다 (2026, article)
 - [[applications/kmyu-2026-llm-wiki-pattern-synthesis|Karpathy LLM Wiki 패턴 한국어 종합 정리]]: Karpathy의 LLM Wiki Gist와 한국어 커뮤니티 논의를 11개 절로 합성한 기술 리포트. 여섯 가지 비판과 한국어 운영 아홉 항목을 함께 정리한다 (2026, article)
 - [[applications/pandey-2026-rag-is-no-longer-just|RAG is no longer just vector search + LLM (Pandey, LinkedIn)]]: RAG를 Hybrid, GraphRAG, Agentic, Corrective, Multimodal 다섯 가지로 나눈 포스트 (2026, article)
