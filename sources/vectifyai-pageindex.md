@@ -6,77 +6,105 @@ category: database
 raw_path: raw/repos/vectifyai-pageindex.md
 raw_filename: "vectifyai-pageindex.md"
 source_collection: external
-tags: [rag, vectorless-rag, reasoning-based-rag, tree-index, long-document, llm, pdf, agentic-rag, litellm]
+tags: [rag, vectorless-rag, reasoning-based-rag, tree-index, long-document, llm, pdf, agentic-rag, litellm, sdk, pageindex-flash]
 org: "VectifyAI"
 repo: "PageIndex"
 url: "https://github.com/VectifyAI/PageIndex"
 license: "MIT"
+fetched_at: "2026-10-06"
 figures:
   - id: fig01
     label: Figure 1
     kind: figure
     file: assets/vectifyai-pageindex/fig01.png
     raw: https://docs.pageindex.ai/images/cookbook/vectorless-rag.png
-    caption: "README 서두에 실린 PageIndex 프레임워크 도해, 프레임워크 소개 블로그로 연결된다"
+    caption: "PageIndex의 vectorless RAG 흐름도, 문서에서 트리를 만들고 질의를 받아 LLM이 그 트리를 탐색해 답을 낸다"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig02
     label: Figure 2
     kind: figure
     file: assets/vectifyai-pageindex/fig02.png
-    raw: https://github.com/user-attachments/assets/571aa074-d803-43c7-80c4-a04254b782a3
-    caption: "FinanceBench 사례 연구 절의 성능 이미지, Mafin2.5-FinanceBench 저장소로 연결된다"
+    raw: https://raw.githubusercontent.com/VectifyAI/PageIndex/main/assets/index-cost-light.png
+    caption: "문서 길이별 로컬 인덱싱 비용, 9쪽에서 1,098쪽까지 PDF 9건이 쪽당 0.0011달러 기준선을 따른다"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig03
     label: Figure 3
     kind: figure
     file: assets/vectifyai-pageindex/fig03.png
-    raw: https://github.com/user-attachments/assets/46201e72-675b-43bc-bfbd-081cc6b65a1d
-    caption: "저장소 최상단 배너 이미지, 제품 소개 페이지로 연결된다"
+    raw: https://raw.githubusercontent.com/VectifyAI/PageIndex/main/assets/index-time-light.png
+    caption: "문서 길이별 로컬 인덱싱 시간, 같은 PDF 9건이 약 13초에서 4.5분 사이에 끝난다"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig04
     label: Figure 4
     kind: figure
     file: assets/vectifyai-pageindex/fig04.png
-    raw: https://github.com/user-attachments/assets/eae4ff38-48ae-4a7c-b19f-eab81201d794
-    caption: "후원 요청 절에 놓인 star 추이 이미지"
+    raw: https://raw.githubusercontent.com/VectifyAI/PageIndex/main/assets/results-light.png
+    caption: "질의당 평균 비용 대비 정확도, 모델 3개와 reasoning effort 4단계의 조합을 로그 축에 올렸다"
     strategy: manual
-    curated: false
+    curated: true
   - id: fig05
     label: Figure 5
     kind: figure
     file: assets/vectifyai-pageindex/fig05.png
-    raw: https://github.com/user-attachments/assets/eb35d8ae-865c-4e60-a33b-ebbd00c41732
-    caption: "PageIndex OCR 소개 이미지, HTML 주석으로 비활성화된 블록 안에 있다"
+    raw: https://raw.githubusercontent.com/VectifyAI/PageIndex/main/assets/query-cost-light.png
+    caption: "질의 한 건의 비용 비교, PDF를 통째로 넣는 쪽이 52쪽에서 2.1배, 420쪽에서 16.6배가 된다"
+    strategy: manual
+    curated: true
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/vectifyai-pageindex/fig06.png
+    raw: https://raw.githubusercontent.com/VectifyAI/PageIndex/main/assets/financebench-light.png
+    caption: "FinanceBench 정확도 비교, PageIndex 98.7%와 vector RAG 50%를 막대 두 개로 보인다"
+    strategy: manual
+    curated: true
+  - id: fig07
+    label: Figure 7
+    kind: figure
+    file: assets/vectifyai-pageindex/fig07.png
+    raw: https://github.com/user-attachments/assets/bae02956-6c4e-4a0b-adea-257b0be4aaa1
+    caption: "저장소 최상단 배너 이미지, 제품 소개 페이지로 연결된다"
+    strategy: manual
+    curated: false
+  - id: fig08
+    label: Figure 8
+    kind: figure
+    file: assets/vectifyai-pageindex/fig08.png
+    raw: https://github.com/user-attachments/assets/eae4ff38-48ae-4a7c-b19f-eab81201d794
+    caption: "후원 요청 절에 놓인 star 추이 이미지"
     strategy: manual
     curated: false
 ---
 
 ## 한 줄 요약 (One-line Summary)
 
-PageIndex는 vector DB와 chunking 없이 긴 문서를 목차 형태의 계층 트리로 변환한 뒤 LLM이 그 트리를 추론으로 탐색해 관련 구간을 찾는 vectorless RAG 프로젝트이고, 이 저장소는 Vectify AI가 제시하는 세 가지 배포 방식 가운데 자체 호스팅 경로를 담당하는 오픈소스 코드다.
+PageIndex는 vector database와 chunking 없이 긴 문서를 목차 형태의 계층 트리로 바꾼 뒤 LLM이 그 트리를 추론으로 탐색해 관련 구간을 찾는 vectorless RAG 엔진이고, 이 저장소는 `pip install -U pageindex`로 설치하는 Python SDK의 공개 코드다. 2026년 8월 개편으로 로컬 실행과 PageIndex Cloud를 같은 클라이언트로 쓰는 구조가 되었고, README는 인덱싱 비용과 시간, 질의 비용 대비 정확도, PDF 직접 입력과의 비용 비교, FinanceBench 결과까지 네 묶음의 정량 근거를 싣는다.
 
 ## 1. 자료 정보 (Document Information)
 
 - **저장소**: `VectifyAI/PageIndex` (https://github.com/VectifyAI/PageIndex)
-- **제작사**: Vectify AI. README 하단의 저작권 표기는 "© 2026 Vectify AI"다.
-- **라이선스**: 이 자료의 frontmatter는 `license: "MIT"`로 기록하지만, 현재 raw에 남은 README 본문에는 라이선스 조항이 없어 확인할 수 없다. 커밋 `0507ad0`이 저장소 클론을 README 스텁으로 교체하면서 `LICENSE` 파일이 함께 삭제됐다.
-- **인용 요청**: Mingtian Zhang, Yu Tang and PageIndex Team, "PageIndex: Next-Generation Vectorless, Reasoning-based RAG", PageIndex Blog, Sep 2025. README는 BibTeX 형식도 함께 제공하고 `note` 필드로 `https://pageindex.ai/blog/pageindex-intro`를 가리킨다. 즉 README는 인용 대상을 저장소가 아니라 블로그 글로 지정한다.
-- **공식 채널**: 웹사이트 `vectify.ai`와 `pageindex.ai`, 챗 플랫폼 `chat.pageindex.ai`, 개발자 페이지 `pageindex.ai/developer`, 문서 `docs.pageindex.ai`, Discord, Twitter `@PageIndexAI`, LinkedIn `vectify-ai`.
-- **README가 문서화한 진입점**: `run_pageindex.py`(PDF와 Markdown을 트리 구조로 변환하는 CLI), `examples/agentic_vectorless_rag_demo.py`(OpenAI Agents SDK 기반 예제), 노트북 두 개(`cookbook/pageindex_RAG_simple.ipynb`, `cookbook/vision_RAG_pageindex.ipynb`).
+- **패키지**: PyPI 배포명 `pageindex`, `pyproject.toml` 기준 버전 0.2.10, 설명은 "Python SDK for PageIndex, reasoning-based, vectorless document retrieval, cloud and local"이다. 작성자 필드는 "Ray <ray@vectify.ai>"다.
+- **라이선스**: MIT. `LICENSE` 파일의 저작권 표기는 "Copyright (c) 2025 Vectify AI"다. README 하단 저작권 표기는 "© 2026 PageIndex AI"로, 2026-06 스냅샷의 "© 2026 Vectify AI"에서 바뀌었다.
+- **실행 요구사항**: Python 3.10 이상. `pyproject.toml`의 classifiers는 3.10부터 3.13까지를 명시하고 개발 단계는 "3 - Alpha"다.
+- **인용 요청**: Mingtian Zhang, Yu Tang and PageIndex Team, "PageIndex: Next-Generation Vectorless, Reasoning-based RAG", PageIndex Blog, Sep 2025. BibTeX의 `note` 필드가 `https://pageindex.ai/blog/pageindex-intro`를 가리킨다. 즉 인용 대상은 저장소가 아니라 블로그 글이다.
+- **공식 채널**: 웹사이트 `pageindex.ai`, 클라우드 `developer.pageindex.ai`, 문서 `docs.pageindex.ai`, 블로그 `pageindex.ai/blog`, 문의 `pageindex.ai/contact`, 앱 `app.pageindex.ai`.
+- **수집 범위**: 최상위 README 전문에 `LICENSE`, `requirements.txt`, `pyproject.toml`을 이어 붙였다. 패키지 내부 모듈과 함수 구현은 수집하지 않았다.
 
-> 자료 범위 주의. 이 README에는 패키지 내부의 모듈, 클래스, 함수 이름이 하나도 등장하지 않는다. 소스 트리와 `LICENSE`와 `requirements.txt`의 내용은 커밋 `0507ad0`에서 삭제됐고, 현재 근거로 쓸 수 있는 것은 README 본문뿐이다.
+> 스냅샷 교체 주의. 이 자료의 raw는 2026-10-06 판이며, 2026-06-17 커밋 `0507ad0`이 저장한 이전 README를 교체한 것이다. 이전 판은 `run_pageindex.py` CLI와 선택 인자 일곱 개, 트리 노드 JSON 예시, Ecosystem 절(OpenKB, ChatIndex, ConDB, PageIndex MCP)을 싣고 있었고 현재 판에는 그 내용이 없다. 2026년 4월 이전에 쓰인 PageIndex 소개 자료는 CLI 방식을 전제하므로 현재 저장소와 명령이 일치하지 않는다.
 
 ## 2. 주요 기여 (Key Contributions)
 
-1. **similarity와 relevance를 분리한 문제 제기.** README는 전통적 vector RAG가 semantic similarity에 의존하지만 retrieval이 실제로 필요로 하는 것은 relevance이고 relevance에는 추론이 필요하다고 주장한다. 원문 표현은 "similarity ≠ relevance"와 "what we truly need in retrieval is relevance, and that requires reasoning"이다. 도메인 지식과 다단계 추론이 필요한 전문 문서에서는 similarity 검색이 유사하지만 관련 없는 결과를 돌려주고 관련 있지만 유사하지 않은 부분을 놓친다고 설명한다.
-2. **2단계 retrieval 절차 정식화.** 문서에서 목차에 해당하는 tree structure index를 만드는 단계와, 그 트리를 tree search로 탐색해 추론 기반 retrieval을 수행하는 단계로 나눈다. README는 이 구성이 AlphaGo에서 영감을 받았다고 밝힌다.
-3. **트리 노드 스키마 공개.** README는 미국 연방준비제도 보고서의 "Financial Stability" 절을 예로 들어 노드 하나가 `title`, `node_id`, `start_index`, `end_index`, `summary`, `nodes` 필드를 갖는 JSON임을 보인다.
-4. **자체 호스팅 CLI 제공.** `run_pageindex.py` 한 개의 명령으로 PDF나 Markdown에서 트리를 생성하고, 일곱 개의 선택 인자로 모델과 노드 크기 상한과 부가 정보 생성 여부를 조정한다.
-5. **agentic vectorless RAG 예제 추가.** README의 Updates 절 최상단 항목이 `examples/agentic_vectorless_rag_demo.py`이며, 자체 호스팅 PageIndex와 OpenAI Agents SDK를 결합한 완결형 예제로 소개한다.
-6. **corpus 규모 확장 발표.** PageIndex File System은 파일 단위 트리 층으로, 문서 한 개가 아니라 corpus 전체를 대상으로 추론하게 해 대규모 문서 검색을 가능하게 한다고 Updates 절이 밝힌다.
+1. **similarity와 relevance를 분리한 문제 제기.** vector 기반 RAG는 semantic similarity로 검색하지만 retrieval이 실제로 필요로 하는 것은 relevance이고 relevance에는 추론이 필요하다고 주장한다. 원문 표현은 "similarity ≠ relevance"다. 맥락 이해와 도메인 지식과 다단계 추론이 필요한 전문 문서에서 similarity 검색은 관련 있지만 닮지 않은 부분을 놓치고 닮았지만 관련 없는 부분을 가져온다고 설명한다.
+2. **2단계 retrieval의 정식화.** Index 단계에서 문서마다 tree structure index를 만들고, Retrieve 단계에서 LLM 추론으로 그 트리를 agentic하게 탐색한다. README는 이 구성이 AlphaGo에서 영감을 받았다고 밝힌다.
+3. **SDK 단일 클라이언트 제공.** `pip install -U pageindex`로 설치하고 `PageIndexClient`의 `index`와 `chat` 인자만 바꿔 로컬 실행과 PageIndex Cloud를 전환한다. 2026년 8월 Updates 항목이다.
+4. **PageIndex Flash 도입.** 텍스트 기반 PDF를 빠르게 트리 인덱스로 만드는 방식이며 SDK local mode의 기본 인덱싱 방식이다. 2026년 8월 Updates 항목이다.
+5. **로컬 실행의 비용과 시간 측정치 공개.** 인덱싱은 쪽당 약 0.001달러이고, 9쪽에서 1,098쪽까지의 PDF 9건이 약 13초에서 4.5분 사이에 끝났다고 보고한다.
+6. **오픈소스 구성에 대한 재현 가능한 벤치마크 공개.** `PageIndex-OSS-Benchmark`가 quickstart와 같은 설정, 즉 local mode와 flash 인덱싱과 OCR 없음으로 PDF 34건 1,945쪽에서 뽑은 62개 질문을 측정한다.
+7. **PDF 직접 입력과의 비용 비교.** 같은 답을 내는 문서에서 PDF를 통째로 모델에 넣는 쪽이 52쪽에서 2.1배, 420쪽에서 16.6배 비싸고, 805쪽에서는 context window를 넘어 아예 불가능하다고 보고한다.
+8. **Local과 Cloud의 기능 경계 명시.** OCR과 이미지 이해, 메타데이터, 폴더, MCP 서버, 블록 단위 인용은 Cloud 전용이며 PageIndex File System도 Cloud 전용이라고 못박는다.
 
 ## 3. 방법론 및 아키텍처 (Methodology and Architecture)
 
@@ -84,165 +112,213 @@ PageIndex는 vector DB와 chunking 없이 긴 문서를 목차 형태의 계층 
 
 README가 제시하는 절차는 두 단계다.
 
-1. 문서의 목차에 해당하는 tree structure index를 생성한다.
-2. tree search로 그 인덱스를 탐색해 추론 기반 retrieval을 수행한다.
+1. **Index**: 문서마다 tree structure index를 만든다.
+2. **Retrieve**: LLM 추론으로 그 트리를 agentic하게 탐색한다.
 
-README는 이 방식이 사람 전문가가 복잡한 문서를 훑어 지식을 꺼내는 과정을 흉내 낸다고 설명하며, 그 결과 retrieval이 추적 가능(traceable)하고 설명 가능(explainable)해진다고 주장한다.
+README는 이 동작을 사람 전문가가 긴 보고서에서 맞는 절을 펼쳐 읽는 과정에 빗댄다. TL;DR 블록은 PageIndex를 "vectorless, reasoning-based RAG 엔진으로, 사람이 읽는 방식을 본떠 추적 가능하고 설명 가능하며 컨텍스트를 반영하는 retrieval을 제공하고 vector database나 chunking을 쓰지 않는다"로 요약한다.
 
-### 3.2 핵심 특성
+두 단계는 비용 구조가 다르다. Index는 문서 분량에 비례하는 일회성 작업이고 결과 트리는 이후 질의마다 재사용된다. Retrieve는 트리와 질의만 보고 판단하므로 본문 전체를 모델에 넣지 않는다.
 
-README의 Core Features 절이 vector 기반 RAG와 대비해 다섯 가지를 든다.
+### 3.2 vector RAG와의 대조
 
-| 특성 | README 설명 |
-|---|---|
-| No Vector DB | vector similarity 검색 대신 문서 구조와 LLM 추론으로 retrieval한다 |
-| No Chunking | 인위적 chunk가 아니라 문서의 자연스러운 절 단위로 조직한다 |
-| Better Traceability & Explainability | 페이지와 절 참조에 근거해 결과를 추적하고 해석할 수 있다. 불투명한 근사 검색에 기대는 "vibe retrieval"을 벗어난다 |
-| Context-Aware Retrieval | 대화 이력과 도메인 지식을 포함한 전체 컨텍스트에 따라 retrieval이 달라지고 새 컨텍스트를 쉽게 반영한다 |
-| Human-like Retrieval | 사람 전문가가 복잡한 문서를 탐색하고 지식을 추출하는 방식을 흉내 낸다 |
+README의 Compare with Vector RAG 표는 네 행이다.
 
-### 3.3 트리 노드 스키마
-
-README의 JSONC 예시에서 읽히는 필드는 여섯 개다.
-
-| 필드 | 예시 값 | 뜻 |
+| 기준 | Vector RAG | PageIndex |
 |---|---|---|
-| `title` | `"Financial Stability"` | 절 제목 |
-| `node_id` | `"0006"` | 노드 식별자. 예시는 네 자리 문자열이다 |
-| `start_index` | `21` | 절이 시작하는 위치 |
-| `end_index` | `22` | 절이 끝나는 위치 |
-| `summary` | `"The Federal Reserve ..."` | 절 요약 |
-| `nodes` | 하위 노드 배열 | 자식 절을 재귀적으로 담는다 |
+| Index | vector index | tree index |
+| Retrieval | semantic similarity 검색 | 트리 위에서의 LLM 추론 |
+| Result | 불투명한 "vibe retrieval" | 명시적 참조로 추적 가능 |
+| Context | 질의 임베딩만 | 대화 이력과 도메인 지식을 포함한 전체 컨텍스트 |
 
-예시의 최상위 노드 `"0006"`은 `"0007"`(Monitoring Financial Vulnerabilities, 22에서 28)과 `"0008"`(Domestic and International Cooperation and Coordination, 28에서 31)을 자식으로 갖는다. README는 이 구조를 목차와 비슷하지만 LLM 사용에 맞게 최적화한 semantic tree structure라고 부르고, 재무 보고서, 규제 신고 서류, 학술 교과서, 법률이나 기술 매뉴얼처럼 LLM의 context 한계를 넘어서는 문서에 적합하다고 밝힌다.
+적합한 대상으로는 재무 보고서, 법률 문서, 규제 신고 서류, 기술 매뉴얼, 의학 문헌, 학술 교과서를 비롯해 길고 복잡한 전문 문서를 든다.
 
-### 3.4 CLI 사용 절차
+### 3.3 quickstart
 
-Package Usage 절이 세 단계를 제시한다.
-
-| 단계 | 명령 또는 설정 | 비고 |
-|---|---|---|
-| 1. 의존성 설치 | `pip3 install --upgrade -r requirements.txt` | README는 `requirements.txt`의 내용을 나열하지 않는다 |
-| 2. LLM API 키 설정 | 루트에 `.env` 생성 후 `OPENAI_API_KEY=your_openai_key_here` | LiteLLM을 통해 multi-LLM을 지원한다고 밝힌다 |
-| 3. 트리 생성 | `python3 run_pageindex.py --pdf_path /path/to/your/document.pdf` | 출력 파일의 위치와 이름은 README에 없다 |
-
-Package Usage 절 머리에는 이 패키지가 standard PDF parsing을 쓴다는 주의 문구가 붙어 있고, 복잡한 PDF에는 MCP와 API로 제공되는 클라우드 서비스가 향상된 OCR과 트리 생성과 retrieval을 제공한다고 안내한다.
-
-### 3.5 CLI 선택 인자
-
-README의 접힌 블록이 일곱 개를 나열한다.
-
-| 인자 | 뜻 | 기본값 |
-|---|---|---|
-| `--model` | 사용할 LLM 모델 | `gpt-4o-2024-11-20` |
-| `--toc-check-pages` | 목차 존재 여부를 확인할 페이지 수 | 20 |
-| `--max-pages-per-node` | 노드 하나가 담을 최대 페이지 수 | 10 |
-| `--max-tokens-per-node` | 노드 하나가 담을 최대 토큰 수 | 20000 |
-| `--if-add-node-id` | 노드 식별자 부여 여부 | yes |
-| `--if-add-node-summary` | 노드 요약 생성 여부 | yes |
-| `--if-add-doc-description` | 문서 설명 생성 여부 | yes |
-
-`--toc-check-pages`가 존재한다는 사실 자체가 파이프라인이 문서 앞부분에서 목차를 먼저 찾는다는 것을 보여준다. 다만 목차를 찾지 못했을 때의 처리 방식은 README가 설명하지 않는다.
-
-### 3.6 Markdown 모드
-
-`--md_path` 플래그로 Markdown 파일에서도 트리를 만들 수 있다.
+설치와 실행은 두 블록이다.
 
 ```bash
-python3 run_pageindex.py --md_path /path/to/your/document.md
+pip install -U pageindex
 ```
 
-이 모드는 `#` 기호로 노드 제목과 레벨을 판정한다. `##`가 레벨 2, `###`이 레벨 3이다. README는 PDF나 HTML에서 변환한 Markdown에는 이 모드를 권장하지 않는데, 기존 변환 도구 대부분이 원래의 계층 구조를 보존하지 못하기 때문이라고 밝힌다. 대안으로는 계층 보존을 목표로 만든 자사의 PageIndex OCR로 PDF를 Markdown으로 변환한 뒤 이 모드를 쓰라고 안내한다.
+```python
+import os
+from pageindex import PageIndexClient
 
-### 3.7 agentic 예제
+os.environ["OPENAI_API_KEY"] = "your-openai-key"
 
-자체 호스팅 PageIndex와 OpenAI Agents SDK를 결합한 end-to-end 예제가 `examples/agentic_vectorless_rag_demo.py`다. 실행 절차는 두 줄이다.
+client = PageIndexClient(
+    index="gpt-5.6-luna",               # model to build the tree index
+    chat="gpt-5.6-sol",                 # model to search the tree
+)
+doc_id = client.submit_document("report.pdf")["doc_id"]
 
-```bash
-pip3 install openai-agents
-python3 examples/agentic_vectorless_rag_demo.py
+answer = client.chat("What was the 2023 operating margin?", doc_id=doc_id)
+print(answer)
 ```
 
-`openai-agents`는 선택 의존성으로 표시되어 있다. 예제 내부에서 어떤 도구를 노출하고 어떤 지시문(instruction)을 쓰는지는 README에 나오지 않는다.
+인터페이스는 세 호출로 끝난다. 클라이언트를 만들고, 문서를 올려 `doc_id`를 받고, 그 `doc_id`에 질의한다.
 
-### 3.8 배포 방식
+### 3.4 모델 선택 지침
 
-README는 Deployment Options 절에서 세 가지를 구분한다.
+README는 `index`와 `chat`에 서로 다른 기준을 제시한다.
 
-| 방식 | 내용 | 접근 경로 |
+| 인자 | 권장 | README가 드는 이유 |
 |---|---|---|
-| Self-host | 이 오픈소스 저장소로 로컬 실행. standard PDF parsing 사용 | 저장소 클론 |
-| Cloud Service | 향상된 OCR과 트리 생성과 retrieval을 갖춘 production 등급 파이프라인 | 챗 플랫폼, MCP, API |
-| Enterprise | VPC나 온프레미스 전용 또는 프라이빗 배포 | 문의 양식, 데모 예약 |
+| `index` | 기본 수준 모델로 충분하다 | 트리 구조 자체는 LLM 없이 문서 레이아웃에서 추출하고, index 모델은 그 결과를 요약하고 다듬는 일만 한다 |
+| `chat` | 감당할 수 있는 가장 좋은 모델 | chat 모델이 트리를 탐색해 정보를 찾는 주체다 |
 
-세 방식의 서열은 README 안에서 일관된다. Package Usage 절과 Tree Structure 절 모두 더 나은 결과를 원하면 자사 API를 쓰라고 안내한다.
+이 지침은 Flash 인덱싱의 성격을 드러낸다. 구조 추출이 레이아웃 기반이므로 인덱싱 품질이 모델 성능에 크게 좌우되지 않고, 실제 실험에서도 기본 수준 모델이 품질을 떨어뜨리지 않았다고 밝힌다.
 
-### 3.9 생태계
+SDK 문서로 연결되는 항목에는 다른 모델 설정, 스트리밍, 여러 문서를 함께 검색하는 기능, 인용 생성이 있다. 에이전트 결합 쪽으로는 OpenAI Agents SDK, Claude Agent SDK, 그 밖의 프레임워크에 PageIndex 도구를 넣을 수 있다고 안내한다.
 
-README의 Ecosystem 절이 PageIndex 생태계의 다른 오픈소스 프로젝트 네 개를 든다.
+### 3.5 Local과 Cloud
 
-| 프로젝트 | 설명 |
+클라우드 전환은 `PAGEINDEX_API_KEY`를 설정하고 `index`를 `"cloud"`로 바꾸는 것으로 끝난다. 문서 제출 시 `wait=True`를 주는 형태가 예시로 제시된다.
+
+```python
+client = PageIndexClient(
+    index="cloud",                       # build and store the index in PageIndex Cloud
+    chat="gpt-5.6-sol",                  # use your preferred compatible model for chat
+)
+doc_id = client.submit_document("report.pdf", wait=True)["doc_id"]
+```
+
+두 방식의 차이는 표로 정리된다.
+
+| 항목 | Local | Cloud |
+|---|---|---|
+| 처리 대상 | 텍스트 기반 PDF | 텍스트 기반, 스캔본, 이미지가 많은 문서 |
+| 인덱싱 | 사용자 기기에서 | PageIndex가 관리 |
+| 저장 | 로컬 디렉토리 | 클라우드 저장소 |
+| 인용 단위 | 페이지 단위 | 블록 단위 |
+| OCR과 이미지 이해 | 없음 | 제공 |
+| 메타데이터 | 없음 | 제공 |
+| 폴더 | 없음 | 제공 |
+| MCP 서버 | 없음 | 제공 |
+
+chat과 retrieval 층은 Cloud에서도 사용자가 쓰는 모델과 호환된다고 밝힌다. 즉 클라우드로 옮기는 것은 파싱, OCR, 이미지 이해, 트리 인덱스 구축, 저장이고 답을 만드는 모델은 그대로 둔다.
+
+PageIndex File System은 파일 단위 트리 인덱싱 층으로 corpus 전체를 대상으로 추론하게 한다고 소개되며, Cloud 전용임이 명시된다. 전용 배포(VPC나 온프레미스)는 문의와 데모 예약으로 안내한다.
+
+### 3.6 패키지 의존성
+
+`requirements.txt`는 15개 항목을 싣고 일부는 버전을 고정한다.
+
+| 묶음 | 항목 |
 |---|---|
-| OpenKB | 문서를 상호 연결된 wiki로 컴파일하는 LLM 지식 베이스 |
-| ChatIndex | 트리 인덱싱과 retrieval을 긴 대화 이력에 적용한다 |
-| ConDB | 트리 기반 retrieval을 위한 KV cache 네이티브 컨텍스트 데이터베이스 |
-| PageIndex MCP | PageIndex의 MCP 서버 |
+| 모델 호출 | `litellm==1.97.0`, `openai>=1.70.0`, `openai-agents>=0.18.1`, `mcp>=1.19.0,<3` |
+| PDF 처리 | `PyPDF2==3.0.1`, `pypdfium2==5.13.0`, `Pillow>=9.0`. `pymupdf`는 주석 처리된 선택 항목이다 |
+| 공통 유틸리티 | `requests>=2.28.0`, `urllib3>=1.26`, `python-dotenv==1.2.2`, `pyyaml==6.0.2`, `regex>=2024.0.0`, `sortedcontainers==2.4.0` |
+
+`pyproject.toml`은 같은 목록을 하한만 둔 형태로 선언하고 선택 의존성을 extras로 나눈다. `claude` extras가 `claude-agent-sdk>=0.1.53`을, `anthropic` extras가 `anthropic>=0.122.0`을 가져오며, `openai` extras는 `pip install "pageindex[openai]"`를 유효하게 두기 위한 빈 항목이라고 주석이 밝힌다. 패키지에는 `pageindex/config.yaml`과 `pageindex/flash/data/*.json`이 포함되고 `pageindex/flash/assets`는 제외된다. 즉 Flash는 클라우드 기능이 아니라 패키지에 함께 배포되는 구성 요소다.
+
+`urllib3>=1.26` 하한에는 MCP 재시도가 `Retry(allowed_methods=...)`를 쓴다는 주석이, `openai-agents>=0.18.1` 하한에는 구버전이 현재 openai와 함께 요청 전에 중단된다는 주석이 붙어 있다.
 
 ## 4. 주요 결과와 벤치마크 (Key Results and Benchmarks)
 
-README가 제시하는 정량 수치는 하나뿐이다.
+### 4.1 로컬 인덱싱 비용과 시간
 
-| 항목 | 값 | 출처와 조건 |
+| 항목 | 값 | 조건 |
 |---|---|---|
-| FinanceBench accuracy | 98.7% | 측정 대상은 PageIndex가 아니라 이를 retrieval 층으로 쓰는 Mafin 2.5다. VectifyAI 자체 보고이며 독립 재검증은 없다. README는 state-of-the-art로 표기 |
+| 인덱싱 비용 | 쪽당 약 0.001달러 | index 모델 `gpt-5.6-luna`, 로컬 실행. 차트의 기준선은 쪽당 0.0011달러이고 기준선 주변의 분산은 길이가 아니라 텍스트 밀도 때문이라고 설명한다 |
+| 1,000쪽 교과서 | 1달러를 조금 넘는 비용과 몇 분 | 한 번만 치르고 이후 질의는 그 트리를 재사용한다 |
+| 인덱싱 시간 | 약 13초에서 4.5분 | 같은 로컬 설정, 9쪽에서 1,098쪽까지의 PDF 9건 |
 
-세부 사항은 다음과 같다.
+차트에 이름이 붙은 문서는 bitcoin 백서, Attention 논문, KIMI K3, DeepSeek-R1, Situational Awareness, Fed 2023 Annual Report, SpaceX Prospectus, PRML, Murphy ML이다. 두 차트 모두 가로축이 문서 쪽수, 세로축이 비용 또는 시간이며 로그 축이다.
 
-- **Mafin 2.5**는 PageIndex를 retrieval 층으로 쓰는 재무 문서 분석용 reasoning 기반 RAG 시스템이다. 즉 98.7%는 이 저장소의 코드가 단독으로 낸 수치가 아니고, 보고 주체도 VectifyAI 자신이다. 전체 벤치마크 결과는 별도 저장소 `VectifyAI/Mafin2.5-FinanceBench`에, 상세 비교와 성능 지표는 블로그 `vectify.ai/blog/Mafin2.5`에 있다고 안내한다.
-- **FinanceBench**는 arXiv 2311.11944로 링크된다. README는 이 벤치마크의 저자나 구성은 밝히지 않는다.
-- README는 PageIndex의 계층 인덱싱과 추론 기반 retrieval이 SEC 신고 서류와 실적 공시 같은 복잡한 재무 보고서에서 정확한 탐색과 추출을 가능하게 한다고 설명한다.
-- vector 기반 RAG와의 비교는 "vastly outperforming"과 "significantly outperforming"이라는 정성 표현 두 곳뿐이고, 대조군의 수치는 제시되지 않는다.
-- 이 저장소에 벤치마크 재현용 코드가 포함되는지 여부는 README가 밝히지 않는다.
+### 4.2 질의 비용과 정확도
+
+`PageIndex-OSS-Benchmark`는 quickstart와 동일한 설정을 측정한다.
+
+| 측정 설정 | 내용 |
+|---|---|
+| 구성 | `PageIndexClient()` local mode, flash 인덱싱, OCR 없음 |
+| 문항 | 62개 lookup 질문 |
+| 문서 | PDF 34건, 합계 1,945쪽. 출처는 `MMLongBench-Doc-V2` |
+| 문항 성격 | 모든 정답이 본문에 문장으로 적혀 있어, 틀리면 추론 실패가 아니라 retrieval 또는 독해 실패다 |
+
+결과 차트는 모델 3개와 reasoning effort 4단계의 조합을 질의당 평균 비용과 정확도 평면에 놓는다. reasoning effort는 모델이 답하기 전에 들이는 추론 분량을 단계로 조절하는 설정이다.
+
+| 모델 | 질의당 평균 비용 | 정확도 |
+|---|---|---|
+| `gpt-5.6-luna` | 약 0.003달러 | none과 low 85.5%, medium 92%, high 96.8% |
+| `gpt-5.6-terra` | 약 0.03달러 | none 90.3%, low 95.2%, medium은 97%대, high 100% |
+| `gpt-5.6-sol` | 약 0.10달러 | none과 low 96.8%, medium과 high 100% |
+
+차트 설명문이 요약하는 모양은 두 가지다. 모델 하나 안에서 reasoning effort를 올리면 비용은 거의 그대로인 채 정확도만 수직으로 오르고, 모델을 바꾸면 한 단계마다 비용이 10배 수준으로 뛴다.
+
+### 4.3 PDF 직접 입력과의 비용 비교
+
+retrieval을 쓰지 않는 대안은 질의마다 PDF 전체를 모델에 넣는 것이다. 그 비용은 문서가 길어질수록 커지지만 PageIndex는 추론이 닿는 노드만 읽으므로 그렇지 않다고 설명한다.
+
+| PDF 쪽수 | PDF 직접 입력의 상대 비용 |
+|---|---|
+| 52쪽 | 2.1배 |
+| 85쪽 | 3.4배 |
+| 198쪽 | 7.8배 |
+| 420쪽 | 16.6배 |
+| 805쪽 | context window를 넘어 불가능 |
+
+측정 조건은 `gpt-5.6-sol`, prompt caching 제외, 양쪽이 같은 답을 내는 문서다. 차트 범례는 PDF 직접 입력의 분량을 쪽당 약 1,650 토큰으로 적는다.
+
+### 4.4 FinanceBench
+
+| 항목 | 값 | 조건 |
+|---|---|---|
+| FinanceBench 정확도 | PageIndex 98.7%, vector RAG 50% | VectifyAI 자체 보고이며 독립 재검증은 없다. README는 state-of-the-art로 표기한다. 상세 결과는 `VectifyAI/Mafin2.5-FinanceBench` 저장소와 `vectify.ai/blog/Mafin2.5` 블로그에 있다 |
+
+이전 스냅샷과 비교할 때 달라진 점은 대조군 수치가 생겼다는 것이다. 2026-06 판은 "vastly outperforming" 같은 정성 표현만 두었으나, 현재 판은 차트에 vector RAG 50%를 함께 싣는다. 다만 그 50%가 어떤 vector RAG 구성인지는 README에 없다. 측정 대상 시스템이 PageIndex를 retrieval 층으로 쓰는 Mafin 2.5라는 점은 링크된 저장소 이름으로만 드러난다.
 
 ## 5. 한계와 향후 과제 (Limitations and Future Work)
 
-- **자체 호스팅과 클라우드의 품질 격차가 명시적이다.** 오픈소스 코드는 standard PDF parsing만 쓰고, 복잡한 PDF에는 클라우드 서비스의 향상된 OCR을 쓰라는 안내가 Deployment Options, Tree Structure, Package Usage 세 곳에 반복된다.
-- **Markdown 모드의 권장 입력을 오픈소스만으로 만들 수 없다.** README는 변환된 Markdown을 권장하지 않으면서 대안으로 클라우드 전용 PageIndex OCR을 지목한다. 즉 이 모드를 권장 방식대로 쓰려면 유료 경로가 필요하다.
-- **라이선스를 현재 raw로 검증할 수 없다.** README 본문에 라이선스 조항이 없고 `LICENSE` 파일은 스텁 전환에서 삭제됐다.
-- **README 내부에 비활성 블록이 있다.** PageIndex OCR을 소개하는 절과 Cookbooks 목록이 HTML 주석으로 감싸져 있어 렌더링된 README에는 보이지 않는다. 그러면서 본문 여러 곳은 PageIndex OCR을 설명 없이 링크로만 언급한다.
-- **비용과 지연에 관한 정보가 없다.** 목차 확인 페이지 수와 노드 토큰 상한 같은 인자만 노출될 뿐, 문서 한 건을 처리할 때의 LLM 호출 횟수나 소요 시간은 README에 없다.
-- **클라우드 API의 스펙과 요금이 README에 없다.** 엔드포인트, 요청 형식, 무료 사용 범위는 모두 외부 문서 사이트로 위임된다.
-- **corpus 규모 지원의 현재 상태가 불분명하다.** PageIndex File System은 Updates 절에서 발표되지만, 그 기능이 이 오픈소스 저장소에 포함되는지 아니면 클라우드 전용인지 README는 밝히지 않는다.
-- **목차가 없는 문서의 처리 방식이 문서화되어 있지 않다.** `--toc-check-pages` 인자는 목차 탐색이 파이프라인의 첫 단계임을 시사하지만, 탐색 실패 시의 대체 경로는 설명되지 않는다.
+- **오픈소스 구성은 텍스트 기반 PDF로 한정된다.** 스캔본과 이미지가 많은 문서는 Cloud가 담당한다고 표가 명시한다. OCR과 이미지 이해가 Local 칸에서 비어 있다.
+- **인용 단위가 Local에서는 페이지 단위다.** 블록 단위 인용은 Cloud 전용이다. 긴 페이지에서 근거 구간을 좁게 가리키려면 유료 경로가 필요하다.
+- **PageIndex File System은 Cloud 전용임이 명시됐다.** 이전 스냅샷에서는 이 기능이 오픈소스에 포함되는지 불분명했는데, 현재 판은 Cloud 전용으로 못박아 그 불확실성이 해소됐다.
+- **벤치마크 문항이 lookup으로 한정된다.** 62개 질문은 모두 정답이 본문에 문장으로 적혀 있는 유형이며, 표나 그림에서 읽어야 하는 질문이나 다단계 추론 질문은 포함되지 않는다.
+- **FinanceBench 50% 대조군의 구성이 불명이다.** 어떤 임베딩 모델과 chunk 크기와 top-k 설정의 vector RAG인지 README에 없다.
+- **벤치마크의 보고 주체가 모두 개발사다.** 두 벤치마크 저장소와 블로그가 모두 VectifyAI 소유이며 제3자 재검증은 제시되지 않는다.
+- **트리 노드 스키마가 README에서 빠졌다.** 2026-06 판에 있던 노드 필드 여섯 개와 JSON 예시가 현재 판에는 없다. 인덱싱 결과물의 형태를 알려면 문서 사이트를 거쳐야 한다.
+- **인덱싱 출력의 저장 위치와 형식이 README에 없다.** Local의 저장 위치가 "로컬 디렉토리"라고만 적혀 있고 경로나 파일 형식은 밝히지 않는다.
+- **목차가 없는 문서의 처리 방식이 문서화되어 있지 않다.** 트리 구조를 문서 레이아웃에서 추출한다고만 밝히고, 레이아웃에서 계층을 찾지 못했을 때의 대체 경로는 설명하지 않는다.
+- **Markdown 입력 경로가 README에서 사라졌다.** 2026-06 판의 `--md_path` 모드에 해당하는 설명이 현재 판에 없어, SDK가 Markdown을 받는지는 이 자료로 확인할 수 없다.
+- **패키지가 Alpha 단계다.** `pyproject.toml`의 개발 단계 분류가 "3 - Alpha"이고 버전은 0.2.10이다.
 
 ## 6. 관련 연구 (Related Work)
 
-- **PageIndex 팀 소개글** (`sources/zhang-2025-pageindex-vectorless-reasoning-rag.md`). README가 인용 대상으로 지정한 블로그 글이다. 이 저장소가 코드를 담당하고 그 글이 동기와 설계 철학을 담당한다.
-- **PageIndex Cloud 튜토리얼** (`sources/geeksforgeeks-2026-vectorless-rag-pageindex.md`). README가 스펙을 문서 사이트로 위임한 클라우드 API 쪽을 다룬다.
-- **3자 리뷰** (`sources/kalane-2026-pageindex-threw-out-vector-databases.md`). 같은 FinanceBench 결과를 외부 시각에서 검토한 글이다. 이 저장소의 README와 함께 98.7%를 싣는 두 자료 가운데 하나이며, 두 자료의 근거 문서는 VectifyAI의 Mafin 2.5 벤치마크 저장소와 블로그로 같다.
+- **PageIndex 팀 소개글** (`sources/zhang-2025-pageindex-vectorless-reasoning-rag.md`). README가 인용 대상으로 지정한 블로그 글이며 동기와 설계 철학을 담당한다.
+- **한국어 소개글** (`sources/9bow-2026-pageindex-vectorless-tree-index-rag.md`). 2026년 4월 시점의 PageIndex를 한국어로 정리한 글이다. CLI 방식을 전제하므로 현재 저장소의 SDK 방식과 명령이 다르다.
+- **PageIndex Cloud 튜토리얼** (`sources/geeksforgeeks-2026-vectorless-rag-pageindex.md`). README가 스펙을 문서 사이트로 위임한 클라우드 경로를 코드 예제로 보인다.
+- **3자 리뷰** (`sources/kalane-2026-pageindex-threw-out-vector-databases.md`). 같은 FinanceBench 결과를 외부 시각에서 검토한다. 다만 근거 문서는 VectifyAI의 Mafin 2.5 저장소와 블로그로 같다.
 - **한글 학습용 직접 구현** (`sources/sguys99-langchain-study-vectorless-rag.md`). PageIndex API 없이 문서 트리를 직접 만들어 같은 아이디어를 재현한다.
-- **LightRAG 계열** (`sources/guo-2025-lightrag-simple-and-fast.md`, `sources/zhang-2026-leanrag-knowledge-graph-based-generation.md`). 긴 문서 RAG에서 vector 단독의 한계를 넘으려는 동일 문제의식을 knowledge graph로 푼다. PageIndex는 문서에 이미 들어 있는 목차 구조를 계층의 출처로 삼는다.
-- **RAG-Anything** (`sources/guo-2025-rag-anything-all-in-one-rag.md`, `sources/hkuds-rag-anything.md`). 멀티모달 확장에 초점을 두는 반면 PageIndex는 문서 구조에 초점을 둔다.
-- **AlphaGo**. README가 "Inspired by AlphaGo"라며 tree search 비유의 출처로 명시한다. 이 wiki에 미수록.
-- **OpenAI Agents SDK**와 **LiteLLM**. 각각 agentic 예제의 선택 의존성과 multi-LLM 호출 경로로 언급된다. 이 wiki에 미수록.
+- **LightRAG 계열** (`sources/guo-2025-lightrag-simple-and-fast.md`, `sources/zhang-2026-leanrag-knowledge-graph-based-generation.md`). 긴 문서 RAG에서 vector 단독의 한계를 넘으려는 같은 문제의식을 knowledge graph로 푼다.
+- **RAG-Anything** (`sources/hkuds-rag-anything.md`). 멀티모달 확장에 초점을 두는 반면 PageIndex는 문서 구조에 초점을 둔다.
+- **MMLongBench-Doc-V2**. 질의 벤치마크의 문서 출처로 지목된 `VectifyAI/MMLongBench-Doc-V2`다. 이 wiki에 미수록이다.
+- **AlphaGo**. README가 tree search 비유의 출처로 명시한다. 이 wiki에 미수록이다.
+- **OpenAI Agents SDK와 Claude Agent SDK**. 에이전트 결합 경로로 언급되며 선택 의존성으로 선언된다. 이 wiki에 미수록이다.
 
 ## 7. 용어집 (Glossary)
 
-- **vectorless RAG**: vector DB와 embedding similarity 검색 없이 LLM의 추론만으로 retrieval을 수행하는 RAG 방식. PageIndex가 스스로를 규정하는 이름이다.
-- **PageIndex tree structure**: 문서 하나를 목차 형태의 계층 JSON으로 표현한 것. 노드마다 제목, 식별자, 시작과 끝 위치, 요약, 하위 노드를 갖는다.
-- **tree search**: 생성된 트리를 LLM이 위에서 아래로 탐색하며 관련 절을 고르는 retrieval 단계. README가 AlphaGo에서 가져온 비유다.
-- **PageIndex File System**: 파일 단위 트리 층. 문서 한 개가 아니라 corpus 전체를 대상으로 추론하게 한다고 Updates 절이 밝힌다.
-- **PageIndex OCR**: 문서의 전역 구조를 보존하도록 설계됐다고 주장하는 클라우드 전용 OCR. Markdown 모드의 권장 전처리 경로다.
-- **Mafin 2.5**: 같은 팀의 재무 문서 분석 시스템. PageIndex를 retrieval 층으로 쓴다. FinanceBench 98.7%는 이 시스템에 대한 VectifyAI 자체 보고 수치이고 독립 재검증은 없다.
+- **vectorless RAG**: vector database와 임베딩 유사도 검색 없이 LLM의 추론으로 retrieval을 수행하는 방식. PageIndex가 스스로를 규정하는 이름이다.
+- **PageIndex tree index**: 문서 하나를 목차 형태의 계층 구조로 표현한 인덱스. 트리 구조 자체는 문서 레이아웃에서 추출하고 index 모델이 요약과 정리를 맡는다.
+- **PageIndex Flash**: 텍스트 기반 PDF를 빠르게 트리 인덱스로 만드는 방식이며 SDK local mode의 기본값이다. 패키지의 `pageindex/flash/` 하위에 데이터가 포함된다.
+- **PageIndex File System**: 파일 단위 트리 인덱싱 층. corpus 전체를 대상으로 추론하게 하며 Cloud 전용이다.
+- **local mode와 cloud mode**: 같은 `PageIndexClient`로 인덱싱과 저장을 사용자 기기에서 할지 PageIndex Cloud에서 할지 고르는 두 운영 방식. `index` 인자 값과 API 키로 구분된다.
+- **reasoning effort**: 모델이 답하기 전에 들이는 추론 분량을 none, low, medium, high로 조절하는 설정. 벤치마크 차트의 세로 사다리가 이 단계다.
+- **Mafin 2.5**: 같은 팀의 재무 문서 분석 시스템. PageIndex를 retrieval 층으로 쓴다. FinanceBench 98.7%의 측정 대상이다.
 
 ## 8. 그림 후보 (Figure Candidates)
 
-repo 유형이라 `-figures/` 디렉토리를 만들지 않고 README 안의 이미지를 원래 위치에서 참조한다. 아래 다섯 장은 모두 외부 호스트에 있어 내려받지 않았고, 캡션은 이미지 자체가 아니라 README 마크업이 밝힌 위치와 링크 대상만으로 작성했다.
+repo 유형이라 `-figures/` 디렉토리를 만들지 않는다. 사용자 지시에 따라 README가 참조하는 차트 이미지를 내려받아 `wiki/assets/vectifyai-pageindex/`에 보관했고, `raw` 필드에는 원본 URL을 남겼다. 다크 모드 변형(`*-dark.png`)은 받지 않았다.
 
 | id | 위치 | caption | strategy | 추천 |
 |---|---|---|---|---|
-| fig01 | Introduction 절 | README 서두에 실린 PageIndex 프레임워크 도해 | manual | (확인 필요, 내용 미확인) |
-| fig02 | Case Study 절 | FinanceBench 사례 연구 절의 성능 이미지 | manual | (확인 필요, 내용 미확인) |
-| fig03 | 최상단 | 저장소 배너 | manual | (제외 권장) |
-| fig04 | Support Us 절 | star 추이 | manual | (제외 권장) |
-| fig05 | 주석 블록 | PageIndex OCR 소개 이미지 | manual | (제외 권장, 비활성 블록) |
+| fig01 | What is PageIndex 절 | PageIndex의 vectorless RAG 흐름도 | manual | ★ wiki 권장 (method) |
+| fig02 | Benchmarks 절 | 문서 길이별 로컬 인덱싱 비용 | manual | ★ wiki 권장 (result) |
+| fig03 | Benchmarks 절 | 문서 길이별 로컬 인덱싱 시간 | manual | ★ wiki 권장 (result) |
+| fig04 | Benchmarks 절 | 질의당 평균 비용 대비 정확도 | manual | ★ wiki 권장 (result) |
+| fig05 | Benchmarks 절 | PDF 직접 입력과의 질의 비용 비교 | manual | ★ wiki 권장 (result) |
+| fig06 | Benchmarks 절 | FinanceBench 정확도 비교 | manual | ★ wiki 권장 (result) |
+| fig07 | 최상단 | 저장소 배너 | manual | (제외 권장) |
+| fig08 | Support Us 절 | star 추이 | manual | (제외 권장) |
+
+fig01은 한국어 소개글의 workflow 도식과 같은 그림이다. 두 페이지가 같은 이미지를 각자의 경로로 임베드한다.

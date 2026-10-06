@@ -392,5 +392,6 @@ README는 구현과 실행 추적에서 두드러진 고려 사항을 일곱 항
 - [[database/vectifyai-pageindex]]: README가 링크한 PageIndex OSS 구현체. 이 저장소가 알면서도 쓰지 않기로 결정한 기성 솔루션이다
 - [[database/geeksforgeeks-2026-vectorless-rag-pageindex]]: README의 참고 자료 목록에 있는 PageIndex 튜토리얼. 같은 개념을 기성 API로 구현하는 경로를 다루므로 이 페이지의 자체 구현과 짝을 이룬다
 - [[database/kalane-2026-pageindex-threw-out-vector-databases]]: PageIndex에 대한 제3자 리뷰. 개념 소개와 자체 구현 사이에서 외부 평가를 제공한다
+- [[database/9bow-2026-pageindex-vectorless-tree-index-rag]]: PageIndex를 한국어로 소개한 글. 이 저장소가 쓰지 않기로 한 기성 솔루션의 발상을 짧게 훑을 수 있다
 - [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]: 임베딩 없이 코퍼스를 직접 다루는 다른 방향의 연구. 이 페이지가 문서 트리 탐색으로 유사도를 대체한다면 해당 연구는 tool use로 대체한다
 - [[applications/pandey-2026-rag-is-no-longer-just]]: RAG 설계 공간을 정리한 글. 이 구현은 그중 agentic 방향에 해당한다

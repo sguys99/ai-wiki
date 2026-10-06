@@ -1,0 +1,70 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/9bow-2026-pageindex-vectorless-tree-index-rag/fig01.jpg",
+    "raw": "raw/articles/9bow-2026-pageindex-vectorless-tree-index-rag-figures/fig01.jpg",
+    "caption": "PageIndex: 벡터 DB와 청킹 없이 LLM 추론으로 문서를 검색하는 계층형 인덱스 기반 RAG 시스템",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/original/3X/0/1/0176c8fe1950beda792d5634adf9bf7fd64795a8.jpeg",
+    "bytes": 143306,
+    "width": 1680,
+    "height": 1014,
+    "strategy": "fetched",
+    "curated": true
+  },
+  {
+    "id": "fig02",
+    "file": "assets/9bow-2026-pageindex-vectorless-tree-index-rag/fig02.jpg",
+    "raw": "raw/articles/9bow-2026-pageindex-vectorless-tree-index-rag-figures/fig02.jpg",
+    "caption": "image",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/original/3X/9/2/92c9aa976eda6db30046a3c2bf3ca4166a5bfec2.jpeg",
+    "bytes": 71962,
+    "width": 1028,
+    "height": 579,
+    "strategy": "fetched",
+    "curated": true
+  },
+  {
+    "id": "fig03",
+    "file": "assets/9bow-2026-pageindex-vectorless-tree-index-rag/fig03.png",
+    "raw": "raw/articles/9bow-2026-pageindex-vectorless-tree-index-rag-figures/fig03.png",
+    "caption": "PageIndex Workflow",
+    "source_url": "https://discuss.pytorch.kr/uploads/default/original/3X/6/4/64d286b4ea9a2390b37ba79f587b4cce51866b5f.png",
+    "bytes": 81892,
+    "width": 1784,
+    "height": 822,
+    "strategy": "fetched",
+    "curated": true
+  },
+  {
+    "id": "fig04",
+    "file": "assets/9bow-2026-pageindex-vectorless-tree-index-rag/page-full.png",
+    "raw": "raw/articles/9bow-2026-pageindex-vectorless-tree-index-rag-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/9bow-2026-pageindex-vectorless-tree-index-rag/crop01.png",
+    "raw": "raw/articles/9bow-2026-pageindex-vectorless-tree-index-rag-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/9bow-2026-pageindex-vectorless-tree-index-rag/crop02.png",
+    "raw": "raw/articles/9bow-2026-pageindex-vectorless-tree-index-rag-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/9bow-2026-pageindex-vectorless-tree-index-rag/crop03.png",
+    "raw": "raw/articles/9bow-2026-pageindex-vectorless-tree-index-rag-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

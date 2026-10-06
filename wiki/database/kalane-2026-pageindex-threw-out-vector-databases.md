@@ -429,3 +429,4 @@ FinanceBench는 실제 SEC 제출 문서(10-K, 10-Q, 8-K)를 대상으로 정확
 - [[database/vectifyai-pageindex]]: 이 글의 코드 예제가 사용하는 오픈소스 구현체다. 98.7%가 Mafin 2.5에 귀속되고 VectifyAI 자체 자산을 근거로 제시된다는 사실, 그리고 대규모 corpus를 다루는 PageIndex File System의 존재를 이 페이지에서 확인할 수 있다.
 - [[database/geeksforgeeks-2026-vectorless-rag-pageindex]]: 같은 PageIndex Cloud API를 다루는 튜토리얼로 이 글의 파이썬 예제와 짝을 이룬다. 사용법 중심이라 이 페이지의 검증 관점과는 성격이 다르다.
 - [[database/sguys99-langchain-study-vectorless-rag]]: Cloud API 없이 직접 구현한 한글 학습용 코드다. SaaS 경로를 쓰는 이 글의 예제와 비교하면 어디까지가 프레임워크의 기여이고 어디까지가 API 서비스의 기여인지 가늠할 수 있다.
+- [[database/9bow-2026-pageindex-vectorless-tree-index-rag]]: 같은 98.7%를 전언 형식으로 싣는 한국어 소개글. 측정 조건을 적지 않아, 수치의 귀속을 따지는 이 리뷰와 대비된다.

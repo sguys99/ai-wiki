@@ -474,4 +474,5 @@ print(answer)
 - [[database/vectifyai-pageindex]]: PageIndex의 오픈소스 저장소 페이지. 이 튜토리얼이 쓰는 것은 API key로 접속하는 클라우드 서비스이므로 두 페이지의 인터페이스는 서로 다른 대상이다. 자체 호스팅 구성과 라이선스와 저장소 구조는 그 페이지에서 확인한다.
 - [[database/kalane-2026-pageindex-threw-out-vector-databases]]: 제3자가 쓴 리뷰. 이 페이지가 절차만 다루는 데 비해 그 리뷰는 평가 관점을 담고 있어 튜토리얼을 따라 해 본 뒤 판단 근거를 보탤 때 함께 읽는다.
 - [[database/sguys99-langchain-study-vectorless-rag]]: 클라우드 API 없이 같은 아이디어를 직접 구현한 한글 학습용 코드. 이 페이지의 코드가 서버에 맡기는 트리 탐색을 로컬에서 어떻게 쓰는지 대조할 수 있다.
+- [[database/9bow-2026-pageindex-vectorless-tree-index-rag]]: 자체 호스팅 CLI 시절을 기록한 한국어 소개글. 이 페이지가 다루는 클라우드 API 경로와 다른 진입점을 보여준다.
 - [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]: 임베딩 인덱스 자체를 두지 않는 또 다른 접근. 구조를 미리 만들어 두는 이 페이지의 방식과 구조 없이 원문을 직접 뒤지는 방식을 양쪽 끝으로 놓고 볼 수 있다.

@@ -303,5 +303,6 @@ wiki에는 PageIndex를 다루는 페이지가 다섯 개 있다. 자료의 성�
 - [[database/geeksforgeeks-2026-vectorless-rag-pageindex]]: PageIndex Cloud API를 코드로 따라가는 입문 튜토리얼. 이 글의 개념이 실제 호출 시퀀스로 어떻게 나타나는지 확인할 수 있다.
 - [[database/kalane-2026-pageindex-threw-out-vector-databases]]: 출시 6개월 뒤에 나온 3rd-party 리뷰. 이 글이 비워 둔 정량 표와 trade-off 진단을 채운다. FinanceBench 98.7% 수치의 조건을 확인하려면 이 페이지를 본다.
 - [[database/sguys99-langchain-study-vectorless-rag]]: PageIndex API 없이 트리 구축과 탐색을 직접 구현한 한글 학습용 코드. 이 글의 개념을 라이브러리 없이 재현할 때 무엇이 필요한지 보여준다.
+- [[database/9bow-2026-pageindex-vectorless-tree-index-rag]]: 같은 개념을 한국어로 정리한 2026년 4월 소개글. 이 글의 문제 의식을 입문용 분량으로 요약하지만 설계 세부와 측정 조건은 빠져 있다.
 - [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]: 의미 유사도의 한계를 다루는 별개 자료. 이 글의 두 번째 한계와 같은 문제를 다른 관점에서 논의한다.
 - [[database/lumer-2025-rethinking-retrieval-from-traditional-retrieval]]: 계층 구조 기반 RAG를 별도 설정에서 평가한 논문. 평가 설정이 달라지면 결론도 달라진다는 대조 사례로 함께 읽는다.
