@@ -492,3 +492,4 @@ latent action 토큰 수는 항상 프레임 수에서 1을 뺀 값이므로 미
 - [[physical-ai/liu-2026-libero-recover-beyond-task-success-towards]]: LIBERO 벤치마크를 실패 복구 관점으로 확장한 연구. 반복 grasping 관찰과 연결된다
 - [[physical-ai/yang-2026-hivla-a-visual-grounded-centric-hierarchical-embodied]]: HiVLA. VLA-JEPA 코드의 기반인 starVLA 코드베이스를 비교 대상으로 쓴 논문
 - [[physical-ai/bai-2026-latent-reasoning-vla-latent-thinking]]: LaRA-VLA. 다음 프레임 visual latent 예측을 EMA 목표 인코더로 감독하고 텍스트 CoT까지 latent로 내재화한 VLA. 미래 latent 예측을 쓴다는 점에서 비교된다
+- [[physical-ai/zhang-2026-h-jepa-end-to-end-learning-of]]: H-JEPA. 같은 JEPA 계열 latent 예측을 여러 시간 척도의 계층으로 쌓아 planning에 쓰는 world model

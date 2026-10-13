@@ -1,0 +1,869 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig01.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Hierarchical abstractions support planning at multiple timescales. Left: visualization of hierarchi- cal planning in Visual AntMaze. Level 3 plans toward the final goal in the most abstract latent space. Its first predicted state becomes a subgoal for the level-2 planner; this decompositio",
+    "bbox": [
+      102.0,
+      428.38,
+      510.0,
+      614.3
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.5409,
+      0.8333,
+      0.7756
+    ],
+    "dpi": 300,
+    "area_frac": 0.156,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig02.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2: H-JEPA training across temporal scales. (a) With w 2 =1 and s 2 =2 , level 2 encodes every other level-1 state pointwise and aggregates the intervening action embeddings. Faded columns are retained at level 1 but skipped at level 2. (b) Each level predicts the next latent state conditioned",
+    "bbox": [
+      102.0,
+      75.86,
+      510.02,
+      243.95
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8334,
+      0.308
+    ],
+    "dpi": 300,
+    "area_frac": 0.141,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig03.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3: Planning runs top-down through the hierarchy, and the lower level is steered by subgoals the upper level predicted. Two-level instance ( L =2 ) of §2.2. Current and goal observations o 0 and o g are encoded bottom-up into initial states z (1)",
+    "bbox": [
+      102.0,
+      75.86,
+      510.01,
+      259.15
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.3272
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig04.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig04.png",
+    "page": 5,
+    "caption": "Figure 4: Selective abstraction across hierarchy levels. Left : MLP-probe NMSE (mean ± SE over three training seeds) at successive levels of four-level H-JEPAs on Visual AntMaze and FourRoomDistractors. Body state or distractor position becomes less recoverable at higher levels while agent position ",
+    "bbox": [
+      102.0,
+      75.86,
+      510.02,
+      217.23
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8334,
+      0.2743
+    ],
+    "dpi": 300,
+    "area_frac": 0.119,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig05.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig05.png",
+    "page": 5,
+    "caption": "Figure 5: Larger temporal-frequency gaps correlate with stronger selective abstraction. The x-axis mea- sures temporal separation in each training dataset: the ratio of the characteristic frequencies (spectral centroids) of the fastest- and slowest-varying state components, shown on a log scale. The",
+    "bbox": [
+      300.0,
+      393.8,
+      510.0,
+      551.07
+    ],
+    "bbox_norm": [
+      0.4902,
+      0.4972,
+      0.8333,
+      0.6958
+    ],
+    "dpi": 300,
+    "area_frac": 0.068,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig06.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig06.png",
+    "page": 6,
+    "caption": "Figure 6: Gradient-based planning across compute budgets and hierarchy depths , comparing LeWM [ 53 ], H-JEPA, and the hierarchical world model baseline HWM [ 92 ]. Error bars in both panels show one SE over three seeds. Top: success versus planner FLOPs per episode, sweeping action-sample counts wi",
+    "bbox": [
+      102.0,
+      75.86,
+      510.0,
+      299.28
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.3779
+    ],
+    "dpi": 300,
+    "area_frac": 0.188,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig07.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig07.png",
+    "page": 7,
+    "caption": "Figure 7: Planning cost geometry on AntMaze. Dis- tance to anchor ⋆ in each latent space of a three-level H-JEPA (blue near, red far; one training seed). Higher levels show more graded costs along corridors and a broader low-cost region around the anchor.",
+    "bbox": [
+      103.59,
+      75.86,
+      510.0,
+      183.19
+    ],
+    "bbox_norm": [
+      0.1693,
+      0.0958,
+      0.8333,
+      0.2313
+    ],
+    "dpi": 300,
+    "area_frac": 0.09,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig08.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig08.png",
+    "page": 8,
+    "caption": "Figure 8: Temporal decomposition of planning costs. We analyze a two-level H-JEPA with s 2 = 3 . Top: Goal cost in level-1 and level-2 space. For a held-out expert trajectory we encode each frame at both levels, and compute the distance between each timestep’s latent z ( ℓ )",
+    "bbox": [
+      102.0,
+      75.86,
+      509.99,
+      247.59
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.3126
+    ],
+    "dpi": 300,
+    "area_frac": 0.145,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig09.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig09.png",
+    "page": 9,
+    "caption": "Figure 9: Scene diversity makes the inverse-dynamics loss necessary, and a second level adds performance at a lower planner budget. (a) First frames of three Cube and three DROID clips, showing scene variation across episodes. (b) DROID at 5 fps, Fréchet fidelity (%), showing the slow-feature-collap",
+    "bbox": [
+      105.57,
+      66.67,
+      506.44,
+      244.24
+    ],
+    "bbox_norm": [
+      0.1725,
+      0.0842,
+      0.8275,
+      0.3084
+    ],
+    "dpi": 300,
+    "area_frac": 0.147,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig10.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig10.png",
+    "page": 21,
+    "caption": "Figure 10: Per-level training losses of the four-level H-JEPA models and of the DROID models. Top three rows: unweighted prediction loss and SIGReg statistic of each level of the four-level models over training, and their total training objective, the sum over levels of the prediction loss plus the ",
+    "bbox": [
+      102.0,
+      150.06,
+      510.01,
+      547.1
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1895,
+      0.8333,
+      0.6908
+    ],
+    "dpi": 300,
+    "area_frac": 0.334,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig11.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig11.png",
+    "page": 25,
+    "caption": "Figure 11: Successful hierarchical planner executions. Selected H-JEPA executions on one evaluation task per environment, using three-level models for FourRoom and AntMaze and two-level models for Cube and Push-T. These checkpoints also appear in Fig. 6 (bottom); the recordings use their original ev",
+    "bbox": [
+      102.0,
+      75.86,
+      510.0,
+      299.21
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.3778
+    ],
+    "dpi": 300,
+    "area_frac": 0.188,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig12.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig12.png",
+    "page": 27,
+    "caption": "Figure 12: Temporal-frequency separation and selective abstraction. (a) One AntMaze episode: normalized global position (red) and 13 body-state dimensions (blue) over 81 level-1 frames (left), and cumulative absolute normalized increments averaged across dimensions (right). Inverse spectral centroid",
+    "bbox": [
+      102.0,
+      75.86,
+      510.0,
+      401.63
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.5071
+    ],
+    "dpi": 300,
+    "area_frac": 0.274,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig13.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig13.png",
+    "page": 28,
+    "caption": "Figure 13: Planning with different training datasets on Visual AntMaze. Planning success rate (GD online, mean over three seeds), using explore , stitch , or their union for training. Left: flat level-1 planning, with one model trained on each of the three datasets. Middle: two-level hierarchical pl",
+    "bbox": [
+      102.0,
+      75.86,
+      510.0,
+      191.61
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0958,
+      0.8333,
+      0.2419
+    ],
+    "dpi": 300,
+    "area_frac": 0.097,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p28.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig14.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig14.png",
+    "page": 31,
+    "caption": "Figure 14: On OGBench Cube, where the outcome is observable, Fréchet fidelity separates the episodes that can succeed from those that cannot, but not the ones that do. One frozen checkpoint, 9 configuration groups × 3 planner seeds × 50 episodes. (a) One point per planner configuration; in the shade",
+    "bbox": [
+      111.9,
+      75.86,
+      500.11,
+      216.5
+    ],
+    "bbox_norm": [
+      0.1828,
+      0.0958,
+      0.8172,
+      0.2734
+    ],
+    "dpi": 300,
+    "area_frac": 0.113,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig15.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig15.png",
+    "page": 31,
+    "caption": "Figure 15: Against a continuous outcome the same offline metric ranks degree of progress. RoboCasa CloseDrawer, one frozen checkpoint, 99 planner configurations × 32 held-out episodes, budget 200 steps; the configurations are varied to spread the outcomes, not tuned for task performance. x is Fréche",
+    "bbox": [
+      141.6,
+      278.53,
+      470.42,
+      420.41
+    ],
+    "bbox_norm": [
+      0.2314,
+      0.3517,
+      0.7687,
+      0.5308
+    ],
+    "dpi": 300,
+    "area_frac": 0.096,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig16.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig16.png",
+    "page": 33,
+    "caption": "Figure 16: What the DROID planner imagines, on every clip of the evaluation set. Two-level stagewise model, held-out, training seed 1; all 16 clips ordered best to worst by Fréchet fidelity, down the left column then the right, +75% down to +0% at the zero-action floor. Each clip is two strips: abov",
+    "bbox": [
+      102.0,
+      200.35,
+      510.0,
+      531.67
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.253,
+      0.8333,
+      0.6713
+    ],
+    "dpi": 300,
+    "area_frac": 0.279,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p33.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig17.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig17.png",
+    "page": 34,
+    "caption": "Figure 17: SIGReg restores representation rank; the inverse-dynamics term is what turns rank into planning fidelity. Full grid around the level-1 DROID configuration of table 5: SIGReg ∈{ 0 , 0 . 08 } × IDM weight ∈{ 0 , 50 , 100 , 200 } × prediction-target detachment, 16 cells, one training seed ea",
+    "bbox": [
+      71.19,
+      45.05,
+      576.15,
+      205.33
+    ],
+    "bbox_norm": [
+      0.1163,
+      0.0569,
+      0.9414,
+      0.2593
+    ],
+    "dpi": 300,
+    "area_frac": 0.167,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p34.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig18.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig18.png",
+    "page": 35,
+    "caption": "Figure 18: The SIGReg and inverse-dynamics coefficients are chosen jointly, once per level. DROID at 5 fps; Fréchet fidelity (%, higher is better), mean and standard error over three training seeds, each averaged over three planner seeds. Left , the level-1 grid on single-level models; right , the l",
+    "bbox": [
+      161.4,
+      75.86,
+      450.62,
+      281.17
+    ],
+    "bbox_norm": [
+      0.2637,
+      0.0958,
+      0.7363,
+      0.355
+    ],
+    "dpi": 300,
+    "area_frac": 0.123,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p35.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/fig19.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/fig19.png",
+    "page": 36,
+    "caption": "Figure 19: Scene diversity sends latent vari- ance between episodes. Within-episode (the slow- feature degree χ of Definition 1) and between- episode shares of the latent variance. Bars are ± 1 standard error (SE) over three training seeds.",
+    "bbox": [
+      315.84,
+      189.01,
+      510.01,
+      293.49
+    ],
+    "bbox_norm": [
+      0.5161,
+      0.2387,
+      0.8333,
+      0.3706
+    ],
+    "dpi": 300,
+    "area_frac": 0.042,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p36.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab01.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1: Changing only the cost on AntMaze. Suc- cess (%, mean ± SE, three seeds). Within each column, the first four rows share level-1 dynamics and planner settings; only the cost space changes. Hierarchical plan- ning is a separate reference.",
+    "bbox": [
+      103.59,
+      76.26,
+      306.45,
+      178.92
+    ],
+    "bbox_norm": [
+      0.1693,
+      0.0963,
+      0.5007,
+      0.2259
+    ],
+    "dpi": 300,
+    "area_frac": 0.043,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab02.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab02.png",
+    "page": 18,
+    "caption": "Table 2: Notation reference. Symbols are introduced in §2 unless the row names another section. Level superscripts are always parenthesized, ( ℓ ) ; a bare subscript is a time index and a : b is a half-open range. Appendix-local symbols are defined where they are used.",
+    "bbox": [
+      104.44,
+      143.86,
+      507.56,
+      675.59
+    ],
+    "bbox_norm": [
+      0.1707,
+      0.1816,
+      0.8294,
+      0.853
+    ],
+    "dpi": 300,
+    "area_frac": 0.442,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab03.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab03.png",
+    "page": 20,
+    "caption": "Table 3: Temporal layout of one training sample and the clips it leaves per epoch. The minimum clip length is the shortest episode segment that yields one training sample, in environment steps, including both endpoint observations. All H-JEPA models use stride two and window one at every level above",
+    "bbox": [
+      103.32,
+      376.95,
+      508.68,
+      484.57
+    ],
+    "bbox_norm": [
+      0.1688,
+      0.4759,
+      0.8312,
+      0.6118
+    ],
+    "dpi": 300,
+    "area_frac": 0.09,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab04.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab04.png",
+    "page": 22,
+    "caption": "Table 4: Per-environment architecture and training settings. Upper-level predictor dimensions and H-JEPA epoch counts apply to every depth. H-JEPA models are initialized independently of the LeWM baselines.",
+    "bbox": [
+      135.96,
+      328.49,
+      476.04,
+      436.11
+    ],
+    "bbox_norm": [
+      0.2222,
+      0.4148,
+      0.7778,
+      0.5506
+    ],
+    "dpi": 300,
+    "area_frac": 0.076,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab05.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab05.png",
+    "page": 23,
+    "caption": "Table 5: Training hyperparameters on DROID. Predictors are causal transformers, given as width/depth. The grouping row gives the shape of the tensor SIGReg tests: ( T, N, D ) tests normality within each timestep, over the N sequences of the batch. The architecture and loss settings do not depend on ",
+    "bbox": [
+      205.63,
+      221.98,
+      406.37,
+      570.52
+    ],
+    "bbox_norm": [
+      0.336,
+      0.2803,
+      0.664,
+      0.7204
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab06.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab06.png",
+    "page": 24,
+    "caption": "Table 6: Probing data and probed entities per environment. Transition counts are for fitting (train) and scoring (eval). Visual AntMaze is scored on one evaluation set with equal numbers of explore and stitch episodes. On FourRoomDistractors and Visual AntMaze, whose state separates into slow and fa",
+    "bbox": [
+      114.94,
+      245.57,
+      497.06,
+      382.85
+    ],
+    "bbox_norm": [
+      0.1878,
+      0.3101,
+      0.8122,
+      0.4834
+    ],
+    "dpi": 300,
+    "area_frac": 0.108,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab07.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab07.png",
+    "page": 26,
+    "caption": "Table 7: Planning settings for the simulated depth comparison. S : candidate sequences; η : AdamW learning rate; H : configured horizon in predicted steps of that level, used by the schedule described above. Tuples list levels from lowest to highest, except the H-JEPA learning-rate row, which lists ",
+    "bbox": [
+      103.54,
+      136.04,
+      508.46,
+      288.71
+    ],
+    "bbox_norm": [
+      0.1692,
+      0.1718,
+      0.8308,
+      0.3645
+    ],
+    "dpi": 300,
+    "area_frac": 0.128,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab08.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab08.png",
+    "page": 26,
+    "caption": "Table 8: Planning settings on DROID. S : candidate sequences; η : AdamW learning rate; H : configured horizon in predicted steps of that level. Tuples list levels from lowest to highest. Every level runs AdamW for at most 90 iterations with early stopping when the best cost stalls; the cross-level a",
+    "bbox": [
+      103.54,
+      136.04,
+      508.46,
+      288.71
+    ],
+    "bbox_norm": [
+      0.1692,
+      0.1718,
+      0.8308,
+      0.3645
+    ],
+    "dpi": 300,
+    "area_frac": 0.128,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab09.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab09.png",
+    "page": 29,
+    "caption": "Table 9: Planning-cost ablations across environments. Success (%, mean ± SE, three seeds), using the same protocol as Table 1. Within each H-JEPA row, only the cost space varies across the four level-1 planning columns; LeWM and hierarchical H-JEPA are references. For FourRoom, bold marks the highes",
+    "bbox": [
+      119.76,
+      255.18,
+      492.24,
+      441.88
+    ],
+    "bbox_norm": [
+      0.1957,
+      0.3222,
+      0.8043,
+      0.5579
+    ],
+    "dpi": 300,
+    "area_frac": 0.143,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p29.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab10.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab10.png",
+    "page": 29,
+    "caption": "Table 10 expands the comparison in §4.2. It reports goal-cost monotonicity over full held-out trajectories and subgoal-cost monotonicity within shorter segments, using the two-level HWM and H-JEPA models in the four simulated benchmarks. These measurements characterize costs along expert trajectorie",
+    "bbox": [
+      102.0,
+      529.65,
+      510.0,
+      670.14
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.6687,
+      0.8333,
+      0.8461
+    ],
+    "dpi": 300,
+    "area_frac": 0.118,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p29.png",
+    "duplicate_pages": [
+      29
+    ]
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab11.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab11.png",
+    "page": 35,
+    "caption": "Table 11: Our distributed SIGReg is exactly invariant to how a fixed total batch is sharded; a single- GPU implementation is not. One fixed Gaussian matrix ( n = 256 , D = 32 , M = 64 directions) sharded contiguously across W ranks in float64 . The reference is the SIGReg released with LeWM [ 53 ], ",
+    "bbox": [
+      159.82,
+      401.87,
+      452.18,
+      479.4
+    ],
+    "bbox_norm": [
+      0.2611,
+      0.5074,
+      0.7389,
+      0.6053
+    ],
+    "dpi": 300,
+    "area_frac": 0.047,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p35.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab12.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab12.png",
+    "page": 38,
+    "caption": "Table 12: Training without the inverse-dynamics term: the SIGReg ladder (top) and time repulsion at its largest coefficient (middle). Level-1 models at 5 fps, γ = 0 , three train seeds, 100 epochs. These runs use the SIGReg grouping that places time in the sample axis, so they carry the ∆ of Proposi",
+    "bbox": [
+      104.19,
+      165.92,
+      507.81,
+      304.17
+    ],
+    "bbox_norm": [
+      0.1702,
+      0.2095,
+      0.8298,
+      0.3841
+    ],
+    "dpi": 300,
+    "area_frac": 0.115,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p38.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/zhang-2026-h-jepa-end-to-end-learning-of/tab13.png",
+    "raw": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/tab13.png",
+    "page": 40,
+    "caption": "Table 13: Model-based hierarchical control methods along four axes that define H-JEPA. Pixels : operates from high-dimensional visual observations rather than a low-dimensional state. Task-agnostic : reward-free training with no task signal; the task objective (a goal or a planning cost) is defined ",
+    "bbox": [
+      102.0,
+      165.87,
+      510.02,
+      294.51
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.2094,
+      0.8334,
+      0.3719
+    ],
+    "dpi": 300,
+    "area_frac": 0.108,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/zhang-2026-h-jepa-end-to-end-learning-of-figures/_overlay/p40.png"
+  }
+]

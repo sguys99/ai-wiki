@@ -365,4 +365,5 @@ interpolation IDM 항을 빼면 96.00%에서 39.37%로 떨어진다. 반대로 �
 - [[physical-ai/li-2025-a-comprehensive-survey-on-world]]: embodied AI 관점에서 world model 문헌을 정리한 서베이. RWM이 비교 대상으로 삼는 DINO-WM과 Dreamer 계열의 위치를 확인할 수 있다
 - [[physical-ai/hu-2026-cst-wm-a-causally-structured-world]]: 예측기를 rollout해 model-predictive control로 후보 action을 채점하는 world model. RWM이 없애려는 추론 시점 탐색을 반대로 정교하게 쓰는 설계다
 - [[physical-ai/sun-2026-vla-jepa-enhancing-vision-language-action-model-with]]: 미래 프레임을 학습 목표로만 쓰는 latent world model pre-training. action 라벨 없는 영상을 다룬다는 점에서 RWM의 action 라벨 전제와 대비된다
+- [[physical-ai/zhang-2026-h-jepa-end-to-end-learning-of]]: LeWM을 level 1로 두고 그 위에 상위 JEPA level을 쌓아 subgoal planning하는 계층 world model. RWM이 추론 시점 탐색을 없애는 반면 H-JEPA는 탐색을 level별로 나눠 줄인다
 - [[overviews/physical-ai-overview]]: physical-ai 카테고리 허브

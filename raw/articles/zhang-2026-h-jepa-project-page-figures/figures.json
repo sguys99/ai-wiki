@@ -1,0 +1,158 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/zhang-2026-h-jepa-project-page/fig01.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/fig01.png",
+    "caption": "Image 1: Three-level planning in Visual AntMaze, with coarse subgoals refined into raw actions. The accompanying plot compares planning success and compute.",
+    "source_url": "https://h-jepa.com/assets/figures/overview.png",
+    "bytes": 282783,
+    "width": 2375,
+    "height": 1067,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/zhang-2026-h-jepa-project-page/fig02.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/fig02.png",
+    "caption": "Image 2: Goal-cost surfaces in different latent spaces illustrate how upper-level representations change the planning objective.",
+    "source_url": "https://h-jepa.com/assets/figures/goal-costs.png",
+    "bytes": 226351,
+    "width": 975,
+    "height": 479,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/zhang-2026-h-jepa-project-page/fig03.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/fig03.png",
+    "caption": "Image 3: Planning success versus compute across FourRoom, AntMaze, Cube, and Push-T, comparing flat LeWM with two- and three-level H-JEPA.",
+    "source_url": "https://h-jepa.com/assets/figures/planning-results-pareto.png",
+    "bytes": 172162,
+    "width": 2600,
+    "height": 774,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/zhang-2026-h-jepa-project-page/page-full.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop01.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop02.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop03.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop04.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop05.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop06.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop07.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop08.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop09.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop10.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop11.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop12.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop13.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop13.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/zhang-2026-h-jepa-project-page/crop14.png",
+    "raw": "raw/articles/zhang-2026-h-jepa-project-page-figures/crop14.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

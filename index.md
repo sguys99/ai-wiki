@@ -207,6 +207,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/bai-2026-latent-reasoning-vla-latent-thinking|LaRA-VLA (XJTU, BAAI)]]: 텍스트와 visual CoT를 3단계 curriculum으로 연속 latent에 내재화해 CoT 생성 없이 action을 낸다. LIBERO 97.9%, 지연 135 ms (2026, paper)
 - [[physical-ai/bai-2026-lara-vla-project-page|LaRA-VLA 프로젝트 페이지]]: 논문 요약과 결과 그림에 실제 로봇 rollout 영상 8편(LaRA-VLA와 GR00T N1.5 각 4편)을 더한 소개 페이지 (2026, article)
 - [[physical-ai/loveju1y-lara-vla|LaRA-VLA (LoveJu1y, repo)]]: LaRA-VLA 공식 코드. StarVLA 기반 4단계 VLM 학습과 VLA 학습 스크립트, LIBERO와 SimplerEnv 평가, 데이터와 가중치 공개 (2026, repo)
+- [[physical-ai/zhang-2026-h-jepa-end-to-end-learning-of|H-JEPA (NYU, AMI Labs)]]: level마다 자기 latent 공간에서 더 멀리 예측하는 계층 JEPA world model로 subgoal planning. AntMaze 18%에서 73% (2026, paper)
 
 ## Agents (agents)
 

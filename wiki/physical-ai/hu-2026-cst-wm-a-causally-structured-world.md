@@ -481,6 +481,7 @@ diffusion rollout과 후보 최적화를 결합한 방식이라 연산 비용이
 - [[physical-ai/zhang-2024-vision-and-language-navigation-today]]: 같은 실내 navigation 영역을 언어 조건 과제 관점에서 정리한 서베이. CST-WM은 언어 지시 대신 움직이는 target 추종을 다루지만 장면과 관찰 조건은 겹친다.
 - [[physical-ai/nvidia-2025-cosmos-world-foundation-model-platform]]: world model을 여러 downstream 환경으로 옮기는 대규모 접근. controllability를 평가 개념으로 세운 자료로, CST-WM의 비유출 제약이 겨냥하는 성질과 대비해 읽을 수 있다.
 - [[overviews/glossary-physical-ai]]: causal hallucination, target evidence, model-predictive control 표기의 SSOT.
+- [[physical-ai/zhang-2026-h-jepa-end-to-end-learning-of]]: H-JEPA. 단일 level rollout 대신 계층 latent 공간에서 위에서 아래로 subgoal을 넘기며 gradient 기반으로 planning하는 world model
 
 ## 외부 참조
 
