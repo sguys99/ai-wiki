@@ -360,4 +360,5 @@ Baseline 2의 설계 의도를 짚어둘 필요가 있다. 네 subtask를 각각
 - [[physical-ai/zhao-2023-learning-fine-grained-bimanual-manipulation]]: action chunking을 제안한 ACT. 양팔 manipulation이라는 문제 영역도 겹친다.
 - [[physical-ai/nasiriany-2024-robocasa-large-scale-simulation-of-everyday]]: 관련 연구에서 시뮬레이터 기반 대규모 시연 합성의 사례로 인용된 RoboCasa. RoboClaw는 같은 목표를 실제 로봇에서 푼다.
 - [[agents/rodrigues-2026-mcp-server-architecture-patterns]]: RoboClaw가 로봇 제어 통로로 삼은 MCP의 서버 구성 패턴.
+- [[physical-ai/huh-2026-homebody-a-humanoid-that-explores]]: frontier VLM이 공간 메모리와 고전 스킬로 humanoid를 조종하는 HomeBody. VLM이 실행을 지휘하는 같은 구도에서 스킬을 학습 없이 구성한다.
 - [[overviews/glossary-physical-ai]]: policy, action chunk, flow matching 등 이 페이지 용어의 canonical 표기.

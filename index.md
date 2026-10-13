@@ -210,6 +210,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/bai-2026-lara-vla-project-page|LaRA-VLA 프로젝트 페이지]]: 논문 요약과 결과 그림에 실제 로봇 rollout 영상 8편(LaRA-VLA와 GR00T N1.5 각 4편)을 더한 소개 페이지 (2026, article)
 - [[physical-ai/loveju1y-lara-vla|LaRA-VLA (LoveJu1y, repo)]]: LaRA-VLA 공식 코드. StarVLA 기반 4단계 VLM 학습과 VLA 학습 스크립트, LIBERO와 SimplerEnv 평가, 데이터와 가중치 공개 (2026, repo)
 - [[physical-ai/zhang-2026-h-jepa-end-to-end-learning-of|H-JEPA (NYU, AMI Labs)]]: level마다 자기 latent 공간에서 더 멀리 예측하는 계층 JEPA world model로 subgoal planning. AntMaze 18%에서 73% (2026, paper)
+- [[physical-ai/huh-2026-homebody-a-humanoid-that-explores|HomeBody (Stanford TML)]]: 학습된 VLA 없이 frontier VLM이 공간 메모리와 조합형 스킬로 Unitree G1을 조종해 처음 보는 주방을 정리한다. 프로젝트 페이지와 SIM 저장소 통합 (2026, article)
 
 ## Agents (agents)
 

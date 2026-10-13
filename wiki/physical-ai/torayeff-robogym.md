@@ -438,3 +438,4 @@ README는 에이전트 성능 벤치마크를 싣지 않는다. 대신 실시간
 - [[physical-ai/robocasa-robocasa]]: MuJoCo 기반 시뮬레이션 프레임워크. 과제 수와 데이터 규모를 중심으로 한 설계라 단일 환경의 실시간 제어에 집중한 robogym과 대비된다
 - [[physical-ai/li-2026-roboclaw-an-agentic-framework-for]]: VLM 컨트롤러가 로봇 과제를 지휘하는 agentic 프레임워크. robogym이 겨냥하는 "에이전트가 로봇을 제어하는" 사용 방식의 연구 사례다
 - [[physical-ai/deepmind-2025-gemini-robotics-15-brings-ai-agents]]: 에이전트가 VLA를 도구처럼 호출하는 agentic 구성을 설명하는 발표문
+- [[physical-ai/huh-2026-homebody-a-humanoid-that-explores]]: VLM agent가 MuJoCo 안 Unitree G1을 스킬 단위 tool call로 조종하는 HomeBody SIM. robogym이 HTTP 저수준 제어라면 HomeBody는 navigate, pick, place 스킬 계약을 둔다
