@@ -292,6 +292,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/hada-2026-stripe-kai-internal-ai-platform|Stripe Kai (GeekNews)]]: Kai 발표문의 한국어 요약과 Hacker News 반응. 영업 성과 수치의 내부 정합성과 발표 자료 완성도에 대한 반론이 모여 있다 (2026, article)
 - [[agents/earendil-works-pi|Pi agent harness (repo)]]: 서브에이전트와 plan mode를 빼고 extension, 스킬, package로 직접 만들게 하는 MIT 터미널 코딩 에이전트. LLM API, agent runtime, TUI를 패키지로 공개한다 (2025, repo)
 - [[agents/earendil-works-2026-pi-project-page|Pi (pi.dev)]]: Pi 공식 홈. minimal agent harness 철학과 자기 수정, provider 15곳 이상, tree 세션, context engineering, 네 가지 모드를 데모 중심으로 소개한다 (2026, article)
+- [[agents/dandacompany-deskrpg|DeskRPG (repo)]]: Hermes Agent profile을 3D 가상 오피스의 AI 직원으로 배치해 대화, 회의, kanban, cron을 다루는 self-hosted 멀티플레이어 앱. 런타임 없이 기존 Hermes gateway에 붙는다 (2026, repo)
 
 ## Evaluations (evaluations)
 
