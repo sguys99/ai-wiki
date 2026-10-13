@@ -1,0 +1,30 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/park-2026-rea-reverse-engineer-anything/fig01.png",
+    "raw": "raw/articles/park-2026-rea-reverse-engineer-anything-figures/fig01.png",
+    "caption": "thumbnail",
+    "source_url": "https://static.wikidocs.net/images/blog/33128/featured.png",
+    "bytes": 738727,
+    "width": 1280,
+    "height": 640,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/park-2026-rea-reverse-engineer-anything/page-full.png",
+    "raw": "raw/articles/park-2026-rea-reverse-engineer-anything-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/park-2026-rea-reverse-engineer-anything/crop01.png",
+    "raw": "raw/articles/park-2026-rea-reverse-engineer-anything-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

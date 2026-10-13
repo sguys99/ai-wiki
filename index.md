@@ -293,6 +293,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/earendil-works-pi|Pi agent harness (repo)]]: 서브에이전트와 plan mode를 빼고 extension, 스킬, package로 직접 만들게 하는 MIT 터미널 코딩 에이전트. LLM API, agent runtime, TUI를 패키지로 공개한다 (2025, repo)
 - [[agents/earendil-works-2026-pi-project-page|Pi (pi.dev)]]: Pi 공식 홈. minimal agent harness 철학과 자기 수정, provider 15곳 이상, tree 세션, context engineering, 네 가지 모드를 데모 중심으로 소개한다 (2026, article)
 - [[agents/dandacompany-deskrpg|DeskRPG (repo)]]: Hermes Agent profile을 3D 가상 오피스의 AI 직원으로 배치해 대화, 회의, kanban, cron을 다루는 self-hosted 멀티플레이어 앱. 런타임 없이 기존 Hermes gateway에 붙는다 (2026, repo)
+- [[agents/park-2026-rea-reverse-engineer-anything|REA (article + repo)]]: 바이너리, 앱, 웹, 펌웨어 등 23종 대상을 하나의 MCP 서버로 분석해 에이전트가 소스 없이 기능을 파악하고 구현하게 하는 리버스 엔지니어링 도구. 결론마다 근거와 한계를 붙인다 (2026, article)
 
 ## Evaluations (evaluations)
 

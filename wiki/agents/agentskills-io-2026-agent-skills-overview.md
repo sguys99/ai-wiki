@@ -171,3 +171,4 @@ Junie(JetBrains), Gemini CLI(Google), Autohand Code CLI, OpenCode, OpenHands, Mu
 - [[agents/anthropic-2025-equipping-agents-for-the-real]]: 포맷을 처음 공개한 Anthropic의 발표글. 설계 의도와 도식이 있다
 - [[agents/osmani-2026-agent-skills]]: 스킬을 실제 개발 절차에 적용한 사례. 포맷이 아니라 스킬에 무엇을 담을지를 다룬다
 - [[agents/mattpocock-skills]]: 코딩 에이전트용 스킬 25개를 묶은 실사용 저장소
+- [[agents/park-2026-rea-reverse-engineer-anything]]: MCP 서버와 짝을 이루는 조사 절차 스킬을 함께 배포하는 사례. 스킬만 설치하면 MCP 서버가 등록되지 않는다는 점을 명시한다

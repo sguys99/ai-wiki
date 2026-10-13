@@ -790,3 +790,4 @@ MIT 라이선스로 https://github.com/rodriguescarson/mcp-patterns-icsme2026 �
 - [[agents/qiao-2026-memory-intelligence-agent]]: 에이전트 메모리를 다룬다. Stateful Session Server의 서버측 세션 상태와 에이전트 장기 메모리의 경계를 함께 보면 좋다
 - [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]: Direct Corpus Interaction을 제안한다. retrieval-over-tools와 마찬가지로 무엇을 context에 노출할지를 retrieval 문제로 보는 관점이다
 - [[agents/wang-2026-cua-gym-scaling-verifiable-training-environments]]: 검증 가능한 학습 환경을 대규모로 합성한다. 이 논문의 tool 수 예산이 학습 데이터 쪽에서는 환경 인벤토리 설계 문제로 나타난다
+- [[agents/park-2026-rea-reverse-engineer-anything]]: 분석 도구 하나가 아니라 분석 대상 23종을 기준으로 여러 리버스 엔지니어링 도구를 묶은 MCP 서버 사례다. 결과를 Evidence 레코드로 고정해 반환한다
