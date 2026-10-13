@@ -147,6 +147,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/robocasa-robocasa|robocasa (repo)]]: RoboCasa와 RoboCasa365 공식 구현으로 코드는 MIT, asset은 CC BY 4.0이다. 설치와 첫 실행까지만 담고 과제 목록과 학습 절차는 문서 사이트로 넘긴다 (2026, repo)
 - [[physical-ai/robocasa-2026-robocasa365-project-page|RoboCasa 프로젝트 페이지 (robocasa.ai)]]: 논문 두 편과 코드, 문서, leaderboard 링크를 한 페이지에 모은 공식 홈. 프로젝트 현황을 확인하는 진입로로 쓴다 (2026, article)
 - [[physical-ai/genesis-embodied-ai-genesis-world|Genesis World (Genesis AI, repo)]]: multi-physics 엔진, 렌더러 Nyx, 컴파일러 Quadrants를 한 Python API로 묶은 오픈소스 시뮬레이션 플랫폼. 예제와 설치만 다루고 성능 수치는 없다 (2026, repo)
+- [[physical-ai/torayeff-robogym|robogym (Robominder, repo)]]: AI 에이전트가 HTTP로 MuJoCo 로봇을 제어하는 서버. 시뮬레이션이 실시간으로 계속 진행되며 SO-101 양팔 협업 환경 하나를 제공한다 (2026, repo)
 - [[physical-ai/wang-2026-chain-of-interaction-benchmark-coin|COIN (BIGAI, USTC)]]: 환경을 건드려 정보를 얻고 계획을 고치는 interactive reasoning을 재는 manipulation 벤치마크. 과제 90개에서 사람은 40%, 최고 모델은 3.26%다 (2026, paper)
 - [[physical-ai/liu-2026-libero-recover-beyond-task-success-towards|LIBERO-Recover (DUT, Beta Infinity)]]: VLA와 WAM의 실제 실패 2,117건을 네 단계로 나눈 복구 벤치마크. LIBERO 90%대 모델 6종이 5.8%에서 34.0%에 그친다 (2026, paper)
 - [[physical-ai/lin-2026-failsafe-reasoning-and-recovery-from|FailSafe (NTU, A*STAR, AI2, UW)]]: ManiSkill에서 실패와 실행 가능한 7-DoF 회복 명령 13만 건을 자동 수집하는 파이프라인. VLA 3종 성공률을 최대 22.6%p 올린다 (2026, paper)
