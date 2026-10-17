@@ -1,0 +1,66 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/alexwang-2026-you-could-have-invented-transformers/page-full.png",
+    "raw": "raw/articles/alexwang-2026-you-could-have-invented-transformers-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/alexwang-2026-you-could-have-invented-transformers/crop01.png",
+    "raw": "raw/articles/alexwang-2026-you-could-have-invented-transformers-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/alexwang-2026-you-could-have-invented-transformers/crop02.png",
+    "raw": "raw/articles/alexwang-2026-you-could-have-invented-transformers-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/alexwang-2026-you-could-have-invented-transformers/crop03.png",
+    "raw": "raw/articles/alexwang-2026-you-could-have-invented-transformers-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/alexwang-2026-you-could-have-invented-transformers/crop04.png",
+    "raw": "raw/articles/alexwang-2026-you-could-have-invented-transformers-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/alexwang-2026-you-could-have-invented-transformers/crop05.png",
+    "raw": "raw/articles/alexwang-2026-you-could-have-invented-transformers-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/alexwang-2026-you-could-have-invented-transformers/crop06.png",
+    "raw": "raw/articles/alexwang-2026-you-could-have-invented-transformers-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/alexwang-2026-you-could-have-invented-transformers/crop07.png",
+    "raw": "raw/articles/alexwang-2026-you-could-have-invented-transformers-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

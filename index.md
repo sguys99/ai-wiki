@@ -66,6 +66,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[llms/typesafe-ai-2026-introduction|TypeSafe AI 공식 문서 도입부]]: 첫 System One model인 Jev를 소개한다. Choice, Score, Noul 세 primitive와 질문을 원자 단위로 쪼개 코드에서 조합하는 설계 지침을 다룬다 (2026, article)
 - [[llms/hada-2026-jev-judgment-probability-model|Jev 발표 요약과 토론 (GeekNews)]]: 텍스트 대신 타입이 정해진 판단과 보정된 확률을 병렬 반환하는 Jev. RLCD 학습, 가격과 속도, 평가 설계의 편향 단서를 정리한다 (2026, article)
 - [[llms/nandhakishorm-laya|NandhaKishorM/laya (repo)]]: Jev 인터페이스를 공개 가중치로 구현한 non-autoregressive decision model. 세 checkpoint와 언어 Router, 한 번의 forward pass로 choice, score, noul에 답한다 (2026, repo)
+- [[llms/alexwang-2026-you-could-have-invented-transformers|Transformers from Memory]]: linear layer, MLP, self-attention을 associative memory로 보고 간섭으로 용량을 어림한 해설. 용량은 64개에서 120만 개로 커진다 (2026, article)
 
 ## Physical AI (physical-ai)
 
