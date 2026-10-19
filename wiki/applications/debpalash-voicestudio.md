@@ -825,3 +825,4 @@ README는 voice cloning(`demo_voice.wav`와 `demo_clone_output.wav`), voice desi
 - [[agents/rodrigues-2026-mcp-server-architecture-patterns]]: MCP 서버 설계 패턴. VoiceStudio의 output mode(base64 대 파일 경로)와 base path 보안 경계, 에이전트별 voice binding이 그 사례다
 - [[agents/mattpocock-skills]]: VoiceStudio가 스킬 배포에 쓰는 skills.sh 생태계(`npx skills add`)
 - [[applications/cheahjs-free-llm-api-resources]]: hosted TTS와 Whisper API의 무료 quota 정리. 로컬 실행이 대체하는 비용 구조를 보여준다
+- [[applications/storytold-artcraft]]: 같은 local-first + MCP 서버 패턴을 이미지 편집, 영상, CAD 등 창작 앱 13종(Crafting Apps)에 적용한 사례
