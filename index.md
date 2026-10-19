@@ -215,6 +215,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/zhang-2026-h-jepa-end-to-end-learning-of|H-JEPA (NYU, AMI Labs)]]: level마다 자기 latent 공간에서 더 멀리 예측하는 계층 JEPA world model로 subgoal planning. AntMaze 18%에서 73% (2026, paper)
 - [[physical-ai/huh-2026-homebody-a-humanoid-that-explores|HomeBody (Stanford TML)]]: 학습된 VLA 없이 frontier VLM이 공간 메모리와 조합형 스킬로 Unitree G1을 조종해 처음 보는 주방을 정리한다. 프로젝트 페이지와 SIM 저장소 통합 (2026, article)
 - [[physical-ai/alibaba-2026-lambda0-scaling-open-world-egocentric|λ0 (Alibaba Token Hub, Amap)]]: 500시간 egocentric 전신 사람 데이터를 G1에 맞게 정렬해 mid-training하는 VLA. 실세계 progress 59.9%에서 80.4% (2026, paper)
+- [[physical-ai/cai-2026-has-gpt-6-astra-achieved-embodied-intelligence|GPT-6-Astra embodied 검증 (SenseNova 외)]]: 벤치마크 12개, 실제 로봇 8대 평가. ICL과 10배 budget으로 포화 근접, 비용과 복구는 과제 (2026, paper)
 
 ## Agents (agents)
 
