@@ -67,6 +67,8 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[llms/hada-2026-jev-judgment-probability-model|Jev 발표 요약과 토론 (GeekNews)]]: 텍스트 대신 타입이 정해진 판단과 보정된 확률을 병렬 반환하는 Jev. RLCD 학습, 가격과 속도, 평가 설계의 편향 단서를 정리한다 (2026, article)
 - [[llms/nandhakishorm-laya|NandhaKishorM/laya (repo)]]: Jev 인터페이스를 공개 가중치로 구현한 non-autoregressive decision model. 세 checkpoint와 언어 Router, 한 번의 forward pass로 choice, score, noul에 답한다 (2026, repo)
 - [[llms/alexwang-2026-you-could-have-invented-transformers|Transformers from Memory]]: linear layer, MLP, self-attention을 associative memory로 보고 간섭으로 용량을 어림한 해설. 용량은 64개에서 120만 개로 커진다 (2026, article)
+- [[llms/raschka-2026-gpt-6-astra-looped-transformers-and|Looped Transformer와 GPT-6 Astra]]: 가중치를 공유하는 깊이 반복의 구조와 비용, 반복 횟수 결정, Huginn 결과, CoT monitorability 논쟁을 세 글로 통합 정리 (2026, article)
+- [[llms/yang-2023-looped-transformers-are-better-at|Looped Transformers (ICLR 2024)]]: 1층 블록을 입력 주입과 함께 반복하는 looped transformer 학습법. 12층 대비 1/12 파라미터로 in-context 회귀에서 대등하거나 낫다 (2023, paper)
 
 ## Physical AI (physical-ai)
 

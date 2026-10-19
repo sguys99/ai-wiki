@@ -1,0 +1,523 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig01.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1: How can a transformer be trained to learn an iterative learning algorithm? Here we con- sider the task of training a transformer to solve linear regression in context. The provided prompt ( x 1 , y 1 , x 2 , y 2 , · · · , x k , y k , x test ) is fed into a decoder transformer. The objectiv",
+    "bbox": [
+      110.28,
+      206.26,
+      501.72,
+      332.3
+    ],
+    "bbox_norm": [
+      0.1802,
+      0.2604,
+      0.8198,
+      0.4196
+    ],
+    "dpi": 300,
+    "area_frac": 0.102,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig02.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig02.png",
+    "page": 3,
+    "caption": "Figure 2: The looped transformer can emulate iterative learning algorithms, offering performance comparable to standard transformers with reduced parameters . We train a looped transformer to solve linear regression in-context. (Left) : While trained for 30 loop iterations, the looped transformer du",
+    "bbox": [
+      126.04,
+      74.37,
+      485.96,
+      168.64
+    ],
+    "bbox_norm": [
+      0.2059,
+      0.0939,
+      0.7941,
+      0.2129
+    ],
+    "dpi": 300,
+    "area_frac": 0.07,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig03.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig03.png",
+    "page": 5,
+    "caption": "Figure 3: Test error for the linear re- gression problem using looped trans- former, comparing models with default input injection to those without. With- out input injection, the transformer’s performance deteriorates beyond the trained loop iterations.",
+    "bbox": [
+      369.19,
+      169.34,
+      520.04,
+      285.14
+    ],
+    "bbox_norm": [
+      0.6032,
+      0.2138,
+      0.8497,
+      0.36
+    ],
+    "dpi": 300,
+    "area_frac": 0.036,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig04.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig04.png",
+    "page": 5,
+    "caption": "Figure 4: Evaluation of the looped transformer on in-context learning linear functions with different b and T during training ( b and T are defined in Eq. 1). The figure from left to right is trained with T = 5 , 10 , 15 , and different colors present different b values (denoted in the legend). The ",
+    "bbox": [
+      104.16,
+      528.6,
+      507.84,
+      639.6
+    ],
+    "bbox_norm": [
+      0.1702,
+      0.6674,
+      0.8298,
+      0.8076
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig05.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig05.png",
+    "page": 7,
+    "caption": "Figure 5: Performance of trans- former on linear functions with d = 10 and k = 21 , when trained with different numbers of distinct prompts/functions.",
+    "bbox": [
+      373.44,
+      207.84,
+      520.08,
+      303.0
+    ],
+    "bbox_norm": [
+      0.6102,
+      0.2624,
+      0.8498,
+      0.3826
+    ],
+    "dpi": 300,
+    "area_frac": 0.029,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig06.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig06.png",
+    "page": 7,
+    "caption": "",
+    "bbox": [
+      91.92,
+      65.28,
+      520.08,
+      200.04
+    ],
+    "bbox_norm": [
+      0.1502,
+      0.0824,
+      0.8498,
+      0.2526
+    ],
+    "dpi": 300,
+    "area_frac": 0.119,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig07.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig07.png",
+    "page": 8,
+    "caption": "Figure 7: Let D be the transformer embedding dimension, L be the number of layers, and h be the number of heads. For linear functions with problem dimension d = 20 , and in-context samples k = 40 , we test the following: (left) the standard (unlooped) transformer and looped transformer with D = 256 ",
+    "bbox": [
+      133.22,
+      62.93,
+      553.2,
+      181.04
+    ],
+    "bbox_norm": [
+      0.2177,
+      0.0795,
+      0.9039,
+      0.2286
+    ],
+    "dpi": 300,
+    "area_frac": 0.102,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig08.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig08.png",
+    "page": 8,
+    "caption": "Figure 8: How do the transformer and the looped transformer encode information across layers/iterations? We train a 2-layer MLP probing model to recover the target probe from the transformer’s output at t -th layer/loop iteration. The dashed line indicates the minimal probe error obtained in a contr",
+    "bbox": [
+      122.52,
+      348.82,
+      483.36,
+      455.86
+    ],
+    "bbox_norm": [
+      0.2002,
+      0.4404,
+      0.7898,
+      0.5756
+    ],
+    "dpi": 300,
+    "area_frac": 0.08,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig09.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig09.png",
+    "page": 9,
+    "caption": "Figure 9: Evaluation of the looped transformeron in-context learning data generated from a) the sparse linear function, b) the random decision tree, and c) the 2-layer ReLU neural network with T = 10 and different b during training ( b is defined in Eq. 1). The solid lines of various colors depict h",
+    "bbox": [
+      98.04,
+      329.02,
+      513.96,
+      455.86
+    ],
+    "bbox_norm": [
+      0.1602,
+      0.4154,
+      0.8398,
+      0.5756
+    ],
+    "dpi": 300,
+    "area_frac": 0.109,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig10.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig10.png",
+    "page": 10,
+    "caption": "Figure 10: Performance evaluation of the trained transformer on in-context learning data from: a) sparse linear functions, b) random decision trees, and c) 2-layer ReLU neural networks. The looped transformer matches or even surpasses the transformer’s performance using only 1/12th of the parameters",
+    "bbox": [
+      102.0,
+      61.55,
+      499.14,
+      162.09
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0777,
+      0.8156,
+      0.2047
+    ],
+    "dpi": 300,
+    "area_frac": 0.082,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig11.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig11.png",
+    "page": 10,
+    "caption": "Figure 11 : Performance of looped transformer in solving sparse linear functions with problem di- mension d = 20 . We examine sparsity levels s = 1 , 3 , 6 , 9 , 12 , where only s entries are non-zero. Across all sparsity levels, the looped transformer con- sistently matches or outperforms the unloo",
+    "bbox": [
+      91.92,
+      306.84,
+      312.0,
+      413.88
+    ],
+    "bbox_norm": [
+      0.1502,
+      0.3874,
+      0.5098,
+      0.5226
+    ],
+    "dpi": 300,
+    "area_frac": 0.049,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig12.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig12.png",
+    "page": 16,
+    "caption": "Figure 12: We evaluate the looped transformer on in-context learning of a) linear functions, and b) sparse linear functions with different b and T during training ( b and T is defined in Eq. 1). For each block of figures, from left to right is with T = 5 , 10 , 15 . (top) Performance with respect to",
+    "bbox": [
+      75.45,
+      126.69,
+      507.21,
+      593.57
+    ],
+    "bbox_norm": [
+      0.1233,
+      0.16,
+      0.8288,
+      0.7495
+    ],
+    "dpi": 300,
+    "area_frac": 0.416,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig13.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig13.png",
+    "page": 17,
+    "caption": "Figure 13: We evaluate the looped transformer on in-context learning of a) random decision tree, and b) 2-layer ReLU neural network with different b and T during training ( b and T is defined in Eq. 1). For each block of figures, from left to right is with T = 5 , 10 , 15 . (top) Performance with re",
+    "bbox": [
+      79.42,
+      126.92,
+      509.48,
+      593.55
+    ],
+    "bbox_norm": [
+      0.1298,
+      0.1603,
+      0.8325,
+      0.7494
+    ],
+    "dpi": 300,
+    "area_frac": 0.414,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig14.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig14.png",
+    "page": 18,
+    "caption": "Figure 14: Performance of the standard transformer and the looped transformer on linear regression problem with problem dimension d = 5 , 10 , 20 , when trained with a different number of distinct prompts/functions.",
+    "bbox": [
+      102.0,
+      70.07,
+      499.15,
+      184.84
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0885,
+      0.8156,
+      0.2334
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig15.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig15.png",
+    "page": 19,
+    "caption": "Figure 15: Evaluating the transformer of the different number of layers L , and looped transformer, with the number of layer to be L = 1 , trained to maximum b loop iterations during training. The transformer is trained on the linear regression task, but evaluated on different out-of-distribution ta",
+    "bbox": [
+      119.31,
+      90.4,
+      492.69,
+      323.78
+    ],
+    "bbox_norm": [
+      0.1949,
+      0.1141,
+      0.805,
+      0.4088
+    ],
+    "dpi": 300,
+    "area_frac": 0.18,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig16.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig16.png",
+    "page": 19,
+    "caption": "Figure 16: Evaluating the transformer of the different number of layers L , and looped transformer, with the number of layer to be L = 1 , trained to maximum b loop iterations during training. The transformer is trained on the linear regression task, but evaluated on scaled prompt x or scaled linear",
+    "bbox": [
+      99.92,
+      425.33,
+      509.44,
+      649.71
+    ],
+    "bbox_norm": [
+      0.1633,
+      0.537,
+      0.8324,
+      0.8203
+    ],
+    "dpi": 300,
+    "area_frac": 0.19,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/fig17.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/fig17.png",
+    "page": 20,
+    "caption": "Figure 17: Performance of the looped transformer with respect to a varying number of in-context samples. We compared the trained looped transformer in solving (a) linear regression, (b) sparse linear regression, (c) decision tree, and (d) 2-layer ReLU NN, when trained with (solid line) or without (d",
+    "bbox": [
+      134.76,
+      69.24,
+      477.24,
+      348.94
+    ],
+    "bbox_norm": [
+      0.2202,
+      0.0874,
+      0.7798,
+      0.4406
+    ],
+    "dpi": 300,
+    "area_frac": 0.198,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/tab01.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/tab01.png",
+    "page": 21,
+    "caption": "Table 1: OpenML dataset used in the experiments. We only use numerical features for the input features.",
+    "bbox": [
+      153.03,
+      467.02,
+      458.97,
+      609.88
+    ],
+    "bbox_norm": [
+      0.25,
+      0.5897,
+      0.75,
+      0.77
+    ],
+    "dpi": 300,
+    "area_frac": 0.09,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/yang-2023-looped-transformers-are-better-at/tab02.png",
+    "raw": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/tab02.png",
+    "page": 22,
+    "caption": "Table 2: The test accuracy for transformer and looped transformer, for different test dataset id. Looped transformer demonstrates comparable, and in some cases, better performance compared to vanilla transformer.",
+    "bbox": [
+      135.99,
+      161.11,
+      476.01,
+      303.96
+    ],
+    "bbox_norm": [
+      0.2222,
+      0.2034,
+      0.7778,
+      0.3838
+    ],
+    "dpi": 300,
+    "area_frac": 0.1,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yang-2023-looped-transformers-are-better-at-figures/_overlay/p22.png"
+  }
+]
