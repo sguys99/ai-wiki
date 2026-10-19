@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/gupta-2026-googles-harness2-the-open-source/fig01.jpg",
+    "raw": "raw/articles/gupta-2026-googles-harness2-the-open-source-figures/fig01.jpg",
+    "caption": "Image 2",
+    "source_url": "https://miro.medium.com/v2/resize:fit:700/0*hwSQ5y8onEaGbuzp",
+    "bytes": 21924,
+    "width": 700,
+    "height": 467,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/gupta-2026-googles-harness2-the-open-source/page-full.png",
+    "raw": "raw/articles/gupta-2026-googles-harness2-the-open-source-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/gupta-2026-googles-harness2-the-open-source/crop01.png",
+    "raw": "raw/articles/gupta-2026-googles-harness2-the-open-source-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/gupta-2026-googles-harness2-the-open-source/crop02.png",
+    "raw": "raw/articles/gupta-2026-googles-harness2-the-open-source-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

@@ -697,3 +697,4 @@ evolver 쪽 계측은 우선순위가 낮다. evolver를 바꿔 얻는 최대 �
 - [[agents/zou-2026-task-focused-memorization-multimodal-agents]]: 장기 메모리를 학습 가능한 memorization policy로 재정식화해 adapter 벡터로 흡수한다. skill을 컨텍스트에 로드해 따르게 하는 경로 자체를 줄이려는 시도다.
 - [[applications/liu-2026-rag-llm-wiki-or-gbrain]]: retrieve, compile, act 세 기준의 결정 프레임워크를 제시한다. act 기준이 이 논문의 SkillsBench 설정과 대응하고, 하나의 skill에 하나의 실행 레시피를 담으라는 권고는 절차 동형성 관찰과 부합한다.
 - [[applications/dnotitia-akb]]: MCP를 전제로 한 agent knowledge base다. 이 논문의 로드율 측정은 약한 모델을 외부 저장소와 결합할 때 호출을 학습시키지 않으면 저장소가 쓰이지 않는다는 운영 시사점을 준다.
+- [[agents/xu-2026-harness2-recursive-agent-harnessing-for]]: 정답 없이 실행 대조로 harness를 고치는 Harness²다. 약한 실행자(GLM-5)가 더 큰 이득을 얻었다는 결과가 이 논문의 수혜 능력 측정과 대비된다.

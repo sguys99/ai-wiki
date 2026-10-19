@@ -313,3 +313,4 @@ harness가 모델보다 큰 지렛대라는 명제를 수치로 말한 자료는
 - [[overviews/prompt-to-loop-engineering-evolution-overview]]: 프롬프트에서 컨텍스트와 harness를 거쳐 루프로 이어지는 4단계 진화를 묶은 상위 진입 지도. 이 개괄은 그 사다리에서 harness 칸을 확대한 자리에 놓인다.
 - [[overviews/agent-skills-overview]]: 스킬 포맷의 설계 근거와 오픈 표준화, 생태계를 묶은 합성 페이지. 이 개괄이 재료로만 다룬 `SKILL.md` 규격과 구현 세부를 담당한다.
 - [[overviews/loop-engineering-cross-domain-overview]]: 같은 프레임이 코딩 밖 도메인으로 옮겨가는지 검토한 개괄. 이 개괄이 코딩 에이전트 안에서 다룬 논의를 도메인 바깥으로 넓힌다.
+- [[agents/xu-2026-harness2-recursive-agent-harnessing-for]]: harness를 사람 대신 자동 루프가 작업마다 고치는 사례. 구성 요소 8개 파일 분해와 정답 없는 실행 대조, 도메인별 경험 library를 담는다.

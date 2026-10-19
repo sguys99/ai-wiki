@@ -283,6 +283,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/zhou-2026-are-we-ready-for-an|Are We Ready For An Agent-Native Memory System?]]: 에이전트 메모리를 표현, 추출, retrieval, 유지 네 모듈로 분해해 12개 시스템을 통합 벤치마크한 연구 (2026, paper)
 - [[agents/lee-2026-the-agent-loop-a-survey|The Agent Loop: A Survey]]: 분석 단위를 모델에서 agent loop로 옮긴 서베이. 루프 모양, mechanics, trained loop, 스킬, harness를 묶고 통제 실험 4건으로 반증을 실측한다 (2026, paper)
 - [[agents/he-2026-agent-lightning-v1-0-towards-harnessed|Agent Lightning v1.0]]: 배포용 harness가 agent loop를 쥔 채 RL을 수행할 때 생기는 retokenization, advantage, loss 정규화, 스케줄링 문제를 정리한 프레임워크 논문 (2026, paper)
+- [[agents/xu-2026-harness2-recursive-agent-harnessing-for|Harness² (Google Cloud AI Research)]]: 모델을 고정한 채 실행 대조로 작업마다 harness를 고치고 개선 경험을 library에 쌓는 2단 recursion. 논문, 저장소, 해설 통합 (2026, paper)
 - [[agents/block-buzz|Buzz (repo)]]: 사람과 에이전트가 같은 채널의 멤버가 되고 대화, 패치, 승인이 Nostr relay의 서명 이벤트 하나로 쌓이는 Block의 self-host 워크스페이스 (2026, repo)
 - [[agents/browser-use-browser-use|browser-use (repo)]]: LLM이 Chrome DevTools Protocol로 Chromium을 직접 제어해 웹 과제를 수행하는 MIT 라이선스 Python 패키지. CLI 스킬과 라이브러리 두 경로를 제공한다 (2026, repo)
 - [[agents/browser-use-browsercode|BrowserCode (repo)]]: OpenCode fork에 브라우저 도구 `browser_execute(code)` 하나만 더한 코딩 에이전트. CDP로 에이전트가 쓴 JavaScript를 직접 실행한다 (2026, repo)
