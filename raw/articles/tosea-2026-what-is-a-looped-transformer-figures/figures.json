@@ -1,0 +1,70 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/tosea-2026-what-is-a-looped-transformer/fig01.png",
+    "raw": "raw/articles/tosea-2026-what-is-a-looped-transformer-figures/fig01.png",
+    "caption": "Image 1: OpenAI's official Path to Astra post, published September 1, 2026, stating that Astra meets the Critical cybersecurity capability threshold under the Preparedness Framework and is the first model designated at that level",
+    "source_url": "https://hfuvjqdlirlwwnkyhfyk.supabase.co/storage/v1/object/public/blog-content/images/looped-transformer-astra-openai-post.png",
+    "bytes": 164645,
+    "width": 1700,
+    "height": 767,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/tosea-2026-what-is-a-looped-transformer/page-full.png",
+    "raw": "raw/articles/tosea-2026-what-is-a-looped-transformer-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/tosea-2026-what-is-a-looped-transformer/crop01.png",
+    "raw": "raw/articles/tosea-2026-what-is-a-looped-transformer-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/tosea-2026-what-is-a-looped-transformer/crop02.png",
+    "raw": "raw/articles/tosea-2026-what-is-a-looped-transformer-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/tosea-2026-what-is-a-looped-transformer/crop03.png",
+    "raw": "raw/articles/tosea-2026-what-is-a-looped-transformer-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/tosea-2026-what-is-a-looped-transformer/crop04.png",
+    "raw": "raw/articles/tosea-2026-what-is-a-looped-transformer-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/tosea-2026-what-is-a-looped-transformer/crop05.png",
+    "raw": "raw/articles/tosea-2026-what-is-a-looped-transformer-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/tosea-2026-what-is-a-looped-transformer/crop06.png",
+    "raw": "raw/articles/tosea-2026-what-is-a-looped-transformer-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

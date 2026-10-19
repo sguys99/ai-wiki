@@ -462,3 +462,4 @@ OpenAI는 GPT-5.6 시리즈를 "지금까지 가장 견고한 안전 스택(our 
 
 - [[llms/panfilov-2026-stealing-reasoning-traces-from-proprietary]]: GPT-5.6 Sol과 GPT-5.6 Luna 사이의 방어 격차를 이용해 reasoning trace를 추출하는 공격을 다룬 논문이다. 이 글이 소개한 세 티어가 그 논문에서 공격 대상과 디코더로 등장하며, 이 글이 전하는 prompt injection 방어 만점과 나란히 읽으면 방어 지표가 덮지 못하는 공격 표면이 드러난다.
 - [[agents/magnitudedev-magnitude]]: GPT-5.6 Sol, Terra, Luna의 Artificial Analysis 지수를 로컬 모델 추천의 눈금으로 쓰는 도구 문서다. 그 표의 설정 열에 적힌 max effort가 이 글이 소개하는 max 추론 강도이며, 세 티어의 지수 61, 57, 52는 이 페이지의 벤치마크와 다른 척도의 비교를 제공한다.
+- [[llms/raschka-2026-gpt-6-astra-looped-transformers-and]]: GPT-5.6 계열 위에 나온 GPT-6 Astra와 looped transformer 보도를 다룬 페이지다. Astra와 Sol의 토큰 사용량 비교, Luna가 Sol보다 토큰을 80% 더 쓴다는 근거가 이 계열의 티어 구성과 이어진다.

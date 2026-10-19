@@ -1,0 +1,558 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig01.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig01.jpg",
+    "caption": "Image 1: artificial-intelligence",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!W5FA!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd02ced21-56da-4b5b-a520-33f0a20567cf_8058x5120.png",
+    "bytes": 131096,
+    "width": 1456,
+    "height": 925,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig02.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig02.jpg",
+    "caption": "Image 2: computer-use-flow",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!f_sZ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F105c079e-822e-4de9-bd16-2afe56286541_4879x2744.png",
+    "bytes": 149332,
+    "width": 1456,
+    "height": 819,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig03.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig03.jpg",
+    "caption": "Image 3: nanbeige",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!v0Tz!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd41d18af-38d4-4925-97c3-175a1b9443cd_2682x2664.png",
+    "bytes": 275395,
+    "width": 1456,
+    "height": 1446,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig04.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig04.png",
+    "caption": "Image 4: nanbeige-two-passes",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!Q34R!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c447af3-6466-473a-8ba3-0759b798e187_1867x3427.png",
+    "bytes": 369208,
+    "width": 1456,
+    "height": 2673,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig05.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig05.jpg",
+    "caption": "Image 5: hypothetical-size",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!kism!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1c43d5a9-a977-49ef-a3f8-6e643c381f13_4708x2488.png",
+    "bytes": 117717,
+    "width": 1456,
+    "height": 769,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig06.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig06.jpg",
+    "caption": "Image 6: Understanding and Coding the KV Cache in LLMs from Scratch",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!lRr3!,w_1300,h_650,c_fill,f_auto,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1045ae83-d2ba-4b44-ac93-4159d8a610a1_3659x2622.png",
+    "bytes": 51798,
+    "width": 1300,
+    "height": 650,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig07.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig07.jpg",
+    "caption": "Image 7: adaptive-halting",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!p9bV!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2a0d4a0f-621b-4f6e-a7cd-7778c7346efb_4694x2256.png",
+    "bytes": 91028,
+    "width": 1456,
+    "height": 700,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig08.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig08.jpg",
+    "caption": "Image 8: mor",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!yd6s!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb9850015-07f9-4f73-9034-5d7a3224d767_6922x4628.png",
+    "bytes": 134897,
+    "width": 1456,
+    "height": 973,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig09.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig09.jpg",
+    "caption": "Image 9: mor-routing",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!f2pT!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F971afd67-da8b-4d14-8aac-36279754b7c5_6312x2851.png",
+    "bytes": 76011,
+    "width": 1456,
+    "height": 658,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig10.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig10.jpg",
+    "caption": "Image 10: rnn",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!ABM6!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb12eda20-8fb1-4c5c-a9fa-6212d0abb759_4088x3398.png",
+    "bytes": 133760,
+    "width": 1456,
+    "height": 1210,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig11.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig11.png",
+    "caption": "Image 11: rnn-vs-looped-transformer",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!r_Ux!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7a37b812-26b3-4d55-846a-2c86c28e518a_5055x2663.png",
+    "bytes": 162409,
+    "width": 1456,
+    "height": 767,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig12.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig12.jpg",
+    "caption": "Image 12: backtracking",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!nZf1!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5e45da87-e3ca-47cd-b84f-c1a10c102e34_2942x1521.png",
+    "bytes": 142436,
+    "width": 1456,
+    "height": 753,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig13.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig13.jpg",
+    "caption": "Image 13: latent-reasoning",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!0qA7!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F825fc53f-1111-40a6-b264-17bc092c6ea0_7393x3148.png",
+    "bytes": 116429,
+    "width": 1456,
+    "height": 620,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig14.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig14.jpg",
+    "caption": "Image 14: capacity",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!RtTH!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F92b8a84b-b032-45b7-bdfe-8bc0ea30dc39_8185x5312.png",
+    "bytes": 180059,
+    "width": 1456,
+    "height": 945,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/fig15.jpg",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/fig15.jpg",
+    "caption": "Image 15: length",
+    "source_url": "https://substackcdn.com/image/fetch/$s_!Zkhe!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4d348be9-2792-4405-9325-adab29ce5323_7946x4070.png",
+    "bytes": 88898,
+    "width": 1456,
+    "height": 746,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/page-full.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop01.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop02.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop03.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop04.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop05.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop06.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig23",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop07.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig24",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop08.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig25",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop09.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig26",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop10.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig27",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop11.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig28",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop12.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig29",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop13.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop13.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig30",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop14.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop14.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig31",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop15.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop15.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig32",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop16.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop16.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig33",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop17.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop17.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig34",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop18.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop18.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig35",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop19.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop19.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig36",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop20.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop20.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig37",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop21.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop21.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig38",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop22.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop22.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig39",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop23.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop23.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig40",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop24.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop24.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig41",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop25.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop25.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig42",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop26.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop26.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig43",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop27.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop27.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig44",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop28.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop28.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig45",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop29.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop29.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig46",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop30.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop30.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig47",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop31.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop31.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig48",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop32.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop32.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig49",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop33.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop33.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig50",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop34.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop34.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig51",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop35.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop35.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig52",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop36.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop36.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig53",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop37.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop37.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig54",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop38.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop38.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig55",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop39.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop39.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig56",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop40.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop40.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig57",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop41.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop41.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig58",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop42.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop42.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig59",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop43.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop43.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig60",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop44.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop44.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig61",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop45.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop45.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig62",
+    "file": "assets/raschka-2026-gpt-6-astra-looped-transformers-and/crop46.png",
+    "raw": "raw/articles/raschka-2026-gpt-6-astra-looped-transformers-and-figures/crop46.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

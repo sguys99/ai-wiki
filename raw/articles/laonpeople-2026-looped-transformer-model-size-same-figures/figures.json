@@ -1,0 +1,206 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/fig01.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/fig01.png",
+    "caption": "Image 2",
+    "source_url": "https://laonpeople.com/wp-content/uploads/2026/09/Looped-Transformer2-1.png",
+    "bytes": 221588,
+    "width": 900,
+    "height": 550,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/fig02.jpg",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/fig02.jpg",
+    "caption": "Image 3",
+    "source_url": "https://laonpeople.com/wp-content/uploads/2026/09/%EA%B7%B8%EB%A6%BC1%EC%88%98%EC%A0%95-4-1024x770.jpg",
+    "bytes": 60685,
+    "width": 1024,
+    "height": 770,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/fig03.jpg",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/fig03.jpg",
+    "caption": "Image 4",
+    "source_url": "https://laonpeople.com/wp-content/uploads/2026/09/%EA%B7%B8%EB%A6%BC2-1024x389.jpg",
+    "bytes": 38431,
+    "width": 1024,
+    "height": 389,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/fig04.jpg",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/fig04.jpg",
+    "caption": "Image 5",
+    "source_url": "https://laonpeople.com/wp-content/uploads/2026/09/%EB%A3%A8%ED%94%84%EA%B5%AC%EC%A1%B0-1024x268.jpg",
+    "bytes": 20799,
+    "width": 1024,
+    "height": 268,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/fig05.jpg",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/fig05.jpg",
+    "caption": "Image 6",
+    "source_url": "https://laonpeople.com/wp-content/uploads/2026/09/%ED%91%9C1-1024x387.jpg",
+    "bytes": 34666,
+    "width": 1024,
+    "height": 387,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/fig06.jpg",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/fig06.jpg",
+    "caption": "Image 7",
+    "source_url": "https://laonpeople.com/wp-content/uploads/2026/09/%EA%B7%B8%EB%A6%BC3-1024x389.jpg",
+    "bytes": 31034,
+    "width": 1024,
+    "height": 389,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/fig07.jpg",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/fig07.jpg",
+    "caption": "Image 8",
+    "source_url": "https://laonpeople.com/wp-content/uploads/2026/09/%ED%91%9C2-1024x755.jpg",
+    "bytes": 80882,
+    "width": 1024,
+    "height": 755,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/page-full.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop01.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop02.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig11",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop03.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig12",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop04.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig13",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop05.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig14",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop06.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig15",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop07.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig16",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop08.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop08.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig17",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop09.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop09.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig18",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop10.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop10.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig19",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop11.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop11.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig20",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop12.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop12.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig21",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop13.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop13.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig22",
+    "file": "assets/laonpeople-2026-looped-transformer-model-size-same/crop14.png",
+    "raw": "raw/articles/laonpeople-2026-looped-transformer-model-size-same-figures/crop14.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

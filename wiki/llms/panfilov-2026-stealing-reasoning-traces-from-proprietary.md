@@ -791,6 +791,7 @@ P1과 P2는 compaction 요구와 긴장 관계라 P2를 전역으로 보장하�
 
 - [[llms/shumailov-2024-ununlearning-unlearning-is-not-sufficient]]: 이 논문의 공동 1저자 Ilia Shumailov가 1저자인 position paper. unlearning만으로는 콘텐츠 규제가 충분하지 않다는 주장으로, 같은 배치의 모델 보안 계열 페이지다
 - [[llms/9bow-2026-gpt-5-6-sol-terra-luna]]: 이 논문이 GPT 디코더로 쓰는 GPT-5.6 Luna와 목표 모델 GPT-5.6 Sol이 속한 GPT-5.6 계열의 공개 소식. 그 글은 Sol과 Terra의 prompt injection 방어 벤치마크 점수를 전하고, 이 논문은 숨은 reasoning 채널을 통한 injection 사례를 보여 두 페이지를 함께 읽으면 공격 표면의 차이가 드러난다
+- [[llms/raschka-2026-gpt-6-astra-looped-transformers-and]]: OpenAI가 reasoning trace를 사용자에게 숨겨 온 맥락과, looped transformer가 추론을 latent 상태로 옮긴다는 CoT monitorability 논쟁을 다룬 페이지
 - [[agents/lee-2026-the-agent-loop-a-survey]]: agent loop의 공격면과 prompt injection 벤치마크를 다루는 survey. 이 논문의 prompt injection 벡터가 실행되는 long-horizon agent 워크플로의 맥락을 준다
 - [[overviews/glossary-llms]]: chain-of-thought, distillation, alignment, perplexity 등 용어의 canonical 표기
 - [[overviews/glossary-agents]]: prompt, compaction, scaffold, trajectory 등 agentic 용어
