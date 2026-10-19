@@ -477,3 +477,4 @@ CodeGraph가 이 무리에서 다른 점은 세 가지다.
 - [[applications/garrytan-gbrain]]: markdown 지식 저장소를 파생 인덱스로 sync하는 에이전트 메모리 MCP. 에이전트가 read loop 대신 MCP 도구로 답을 받게 한다는 점이 같다.
 - [[database/li-2026-beyond-semantic-similarity-rethinking-retrieval]]: 임베딩 없이 에이전트가 grep과 bash로 원본 corpus를 직접 탐색하는 Direct Corpus Interaction. CodeGraph는 직접 탐색이되 대상이 미리 만든 그래프라는 점에서 상보적이다.
 - [[agents/lee-hoyeon-2026-harness-engineering]]: harness 설계를 구조, 맥락, 계획, 실행, 검증, 개선 순서로 정리한 자료. CodeGraph는 그중 맥락을 코드 쪽에서 채우는 도구에 해당한다.
+- [[agents/park-2026-rea-reverse-engineer-anything]]: 로컬 분석 결과를 MCP 도구로 에이전트에 노출하는 같은 구성. 입력이 소스가 아니라 바이너리와 패키지 같은 배포 artifact이고 결과마다 근거와 한계를 붙인다.

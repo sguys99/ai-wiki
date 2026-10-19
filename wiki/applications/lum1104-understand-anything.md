@@ -316,3 +316,4 @@ Understand Anything이 이 넷 중에서 유일하게 갖춘 것은 학습 순�
 - [[database/hkuds-rag-anything]]: 파서로 뽑고 LLM으로 보강하는 구성이 같다. 대상이 멀티모달 문서라는 점이 다르다
 - [[agents/lee-hoyeon-2026-harness-engineering]]: 생성과 평가를 분리하는 구성이 겹친다. `--review` 플래그가 검증을 별도 LLM 에이전트로 올리는 선택지다
 - [[agents/dennis-2026-compiling-agentic-workflows-into-llm]]: Understand Anything은 프롬프트 단에서 에이전트를 조율하는 쪽에 속한다. 에이전트 동작을 모델 가중치로 컴파일하는 접근과 대비된다
+- [[agents/park-2026-rea-reverse-engineer-anything]]: 소스가 없는 바이너리, 앱, 웹 캡처를 MCP로 분석하는 리버스 엔지니어링 도구. Understand Anything이 소스 저장소를 다룬다면 REA는 배포된 artifact를 다룬다

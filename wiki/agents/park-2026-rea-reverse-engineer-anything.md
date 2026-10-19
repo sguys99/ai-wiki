@@ -41,7 +41,14 @@ figures:
 
 REA(Reverse Engineer Anything)는 AI 코딩 에이전트가 소스 코드 없이 다른 앱의 기능을 분석하고 그 결과로 비슷한 기능을 구현하게 해주는 오픈소스 도구다. 네이티브 바이너리, 자바스크립트와 일렉트론 앱, .NET 어셈블리, 안드로이드 앱, 웹사이트, 펌웨어, 네트워크 캡처 등 23종 대상을 하나의 MCP 서버와 CLI로 다룬다. 저장소는 morluto/rea이고 npm 패키지 이름은 `rea-agents`이며 라이선스는 MIT다.
 
-이 페이지는 두 자료를 합쳐 정리한다. 하나는 박재홍의 실리콘밸리 블로그가 REA를 한국어로 해설한 글이고 다른 하나는 원저장소의 README, DISCLAIMER.md, 번들 스킬 문서다. 해설 글은 개념 풀이와 위험 분석을, 저장소 문서는 분석 대상 전체 목록과 에이전트 조사 절차를 담당한다.
+이 페이지는 해설 글 하나와 원저장소 문서를 합쳐 정리한다. 해설 글은 개념 풀이와 위험 분석을, 저장소 문서는 분석 대상 전체 목록, 설치와 업데이트 절차, 에이전트 조사 절차를 담당한다.
+
+| 자료 | 링크 | 수집일 | 이 페이지에서 맡는 부분 |
+|---|---|---|---|
+| 박재홍의 실리콘밸리, "REA: 무엇이든 리버스 엔지니어링하라" | [wikidocs.net/blog/@jaehong/33128](https://wikidocs.net/blog/@jaehong/33128/) | 2026-10-14 | 배경, 핵심 개념 풀이, 사용 예시, 데이터 경로와 클린룸 설계 위험 |
+| 저장소 morluto/rea (MIT): README, DISCLAIMER.md, 번들 스킬 SKILL.md와 references/evidence-workflows.md | [github.com/morluto/rea](https://github.com/morluto/rea) | 2026-10-14 최초, 2026-10-19 갱신 | 분석 대상 23종 표, 분석 엔진(Kuna 포함), 설치와 업데이트, 스킬 version 42의 조사 절차, Evidence와 검증 도구, 책임 있는 사용 범위 |
+
+해설 글은 저장소 링크를 글 맨 끝의 원본 표기 한 줄로만 싣는다. 따라서 저장소에서 온 내용은 본문에서 README, DISCLAIMER.md, 스킬 문서를 출처로 명시해 해설 글의 서술과 구분한다. 저장소 문서는 2026-10-19 main 스냅숏 기준이다.
 
 REA의 설계 원칙은 README 한 문장에 담겨 있다. "Analysis runs locally, and results include the evidence and limitations behind each conclusion." 즉 분석은 사용자 컴퓨터에서 실행되고 결과에는 결론마다 그 결론을 뒷받침하는 근거와 한계가 함께 붙는다. 이 원칙이 결과 형식(Evidence 레코드), 에이전트 지침(관찰, 추론, 미지 구분), 검증 도구(`verify_reconstruction`)까지 일관되게 이어진다.
 
@@ -56,7 +63,7 @@ MCP가 2024년 말 공개된 뒤, 분석 도구 하나를 에이전트에 연결
 
 REA는 이 문제를 분석 대상 기준의 통합으로 접근한다. 대상이 무엇이든 에이전트는 같은 MCP 서버를 부르고 REA가 대상에 맞는 외부 도구를 골라 실행한다. 프로젝트 소개 문구는 쓰임새를 이렇게 요약한다. "See a feature you like. Understand how it works, down to the binary level." 마음에 드는 기능을 봤다면, 그 기능이 어떻게 동작하는지 바이너리 수준까지 이해하라는 뜻이다.
 
-REA의 인기는 빠르게 커졌다. 해설 글은 작성 시점 GitHub 스타가 8만 개를 넘겼다고 적었고 README는 18만 개 돌파를 감사하는 문구를 싣고 있으며 수집 시점(2026-10-14) GitHub API 값은 205,652개다. 저장소 생성일은 2026-04-14이고 최신 릴리스는 rea-agents-6.4.0(2026-10-11)이다.
+REA의 인기는 빠르게 커졌다. 해설 글은 작성 시점 GitHub 스타가 8만 개를 넘겼다고 적었고 최초 수집 시점(2026-10-14) GitHub API 값은 205,652개였다. 닷새 뒤 재수집한 2026-10-19 README는 30만 개 돌파를 감사하는 문구를 싣고 있으며 같은 날 GitHub API 값은 326,245개다. 저장소 생성일은 2026-04-14이고 재수집 시점 최신 릴리스는 rea-agents-6.7.0(2026-10-18)이다. 닷새 사이 릴리스가 6.4.0에서 6.7.0으로 세 단계 올랐고 저장소 파일 수는 3,613개에서 4,432개로 늘었다. 즉 REA는 문서와 기능이 주 단위로 바뀌는 프로젝트이며, 이 페이지의 세부 옵션은 2026-10-19 main 기준이다.
 
 ## 핵심 개념
 
@@ -115,6 +122,8 @@ npx rea-agents setup
 
 로컬 MCP 서버를 지원하는 에이전트라면 목록에 없어도 MCP 서버를 수동 등록해 쓸 수 있다. skills.sh에서 REA 스킬만 따로 설치할 수도 있지만 스킬만 설치하면 MCP 서버가 등록되지 않는다. 따라서 해설 글과 README 모두 `npx rea-agents setup`으로 둘을 함께 설치하라고 권한다.
 
+리눅스에는 선행 조건이 하나 더 있다. Ghidra, JADX, 펌웨어 도구를 띄우거나 정적 자바스크립트/일렉트론 분석을 실행할 때 REA는 자신이 띄운 프로세스인지 소유권을 확인하는데, 이를 위해 REA의 `PATH`에 procps 호환 `ps` 명령이 있어야 한다. `ps`가 없으면 이 확인 단계에서 분석이 막히며, 복구 절차는 저장소 docs/installation.md의 "Linux owned-process prerequisite" 절에 있다.
+
 ### 분석 엔진 준비
 
 실행 파일을 깊이 분석하려면 분석 엔진이 하나 필요하다. 엔진마다 준비 방식이 다르다.
@@ -124,11 +133,12 @@ npx rea-agents setup
 | Hopper | 사용자가 승인하면 setup이 설치 | 필요할 때 REA가 직접 실행. macOS 첫 실행에서 데모 모드와 라이선스 활성화 중 하나를 고르는 창이 뜰 수 있다 |
 | Ghidra | 이미 설치된 것을 사용 | Windows 지원은 실험 단계. 16비트 DOS 프로그램도 분석 |
 | IDA | 이미 설치된 것을 사용 | mrexodia/ida-pro-mcp의 설치와 등록을 재사용 |
+| Kuna | 사용자가 공급, `REA_KUNA_COMMAND`로 지정 | 전체 프로그램을 C와 어셈블리로 한 번 export해 캐시하고 그 파일에서 답한다. 2026-10-19 README에 추가됐다 |
 | GNU objdump, Rizin | 사용자가 공급 | 오프라인 네이티브 검사용. REA가 설치하거나 업데이트하지 않는다 |
 
 Hopper의 macOS 첫 실행 대화상자는 첫 CLI나 MCP 작업 전에 같은 사용자 세션에서 처리해 둬야 한다. 큰 바이너리를 열다가 시간이 부족하면 `REA_GHIDRA_STARTUP_TIMEOUT_MS` 또는 `REA_HOPPER_STARTUP_TIMEOUT_MS` 환경 변수로 시작 제한 시간을 늘린다.
 
-자바스크립트 정적 분석과 .NET 분석은 분석 엔진 없이 동작한다. 반면 setup은 Node.js, npm, Homebrew, Java, Ghidra, IDA, JADX, Binwalk, Unblob을 설치하거나 업그레이드하지 않는다. 즉 REA가 대신 갖춰 주는 외부 도구는 Hopper 하나뿐이다.
+자바스크립트 정적 분석과 .NET 분석은 분석 엔진 없이 동작한다. 반면 setup은 Node.js, npm, Homebrew, Java, Ghidra, IDA, JADX, Kuna, Binwalk, Unblob을 설치하거나 업그레이드하지 않는다. 즉 REA가 대신 갖춰 주는 외부 도구는 Hopper 하나뿐이다.
 
 ![[assets/park-2026-rea-reverse-engineer-anything/repo-fig01.png]]
 *Figure 3: Hopper에서 REA 분석 브리지가 bootstrap.py를 실행한 화면 (morluto/rea README)*
@@ -155,11 +165,11 @@ npx -y rea-agents@latest analyze-javascript-application /absolute/path/to/app --
 | 용도 | 명령 |
 |---|---|
 | 전역 설치 | `npm install --global rea-agents` 후 `rea --help` |
-| 전역 설치본 업데이트 | `rea update` (Bun은 1.2.17 이상) |
+| 전역 설치본 업데이트 | `rea update` (Bun은 1.2.17 이상). `rea --update`는 같은 워크플로의 별칭 |
 | npx 사용자의 에이전트 설정 갱신 | `npx rea-agents@latest setup` |
 | 일회성 명령 | `npx rea-agents@latest <명령>`, Bun은 `bunx rea-agents@latest <명령>` |
 
-네이티브 분석 명령을 CLI로 쓰려면 먼저 분석 엔진을 설정해야 하며 엔진 선택, 분석 스냅숏, 스크립트 작성은 저장소의 CLI 가이드(docs/cli.md)가 다룬다. REA는 빠르게 바뀌고 릴리스마다 버그 수정이 잦아, README는 늘 최신 버전을 유지하라고 권한다. 버그를 만나면 먼저 업데이트한 뒤 같은 작업을 다시 해 보고 문제가 남으면 REA 버전, 대상 종류, 재현 절차, 오류 출력을 담아 이슈를 연다.
+네이티브 분석 명령을 CLI로 쓰려면 먼저 분석 엔진을 설정해야 하며 엔진 선택, 분석 스냅숏, 스크립트 작성은 저장소의 CLI 가이드(docs/cli.md)가 다룬다. REA는 빠르게 바뀌고 릴리스마다 버그 수정이 잦아, README는 늘 최신 버전을 유지하라고 권한다. 업데이트 명령 자체도 방어적으로 설계돼 있다. stdout과 stderr를 합쳐 최대 4 MiB만 보존하고, 너무 큰 메타데이터 응답은 명령이 끝난 뒤 거부하며, 사람이 보는 진행 출력은 터미널 backpressure를 따라 제출한 쓰기가 끝날 때까지 기다린다. `rea --update` 별칭은 같은 전역 출력 플래그를 받지만, 다른 명령 제어와 함께 쓸 때는 `rea update` 형식을 쓴다. 버그를 만나면 먼저 업데이트한 뒤 같은 작업을 다시 해 보고 문제가 남으면 REA 버전, 대상 종류, 재현 절차, 오류 출력을 담아 이슈를 연다.
 
 ### 분석 대상
 
@@ -182,7 +192,7 @@ REA는 대상 종류마다 다른 분석 도구를 하나의 MCP 서버로 묶�
 
 | 대상 | REA가 돌려주는 것 | 필요한 것 |
 |---|---|---|
-| 자바스크립트/일렉트론 | 모듈, import, 소스맵, 라우트, IPC, 네이티브 애드온 관계 | Node.js, npm |
+| 자바스크립트/일렉트론 | 모듈, import, 소스맵, 라우트, IPC, 네이티브 애드온 관계 | Node.js, npm, 리눅스는 procps 호환 `ps` |
 | 웹사이트 | 페이지 구조, 스크립트, 네트워크 관찰 결과, 요청한 스크린샷 | 크롬 계열 브라우저 |
 | 저장된 네트워크 캡처 | 요청, 응답, 노출된 페이로드, 소스 위치 | HAR 또는 Fiddler SAZ, 리눅스의 mitmdump |
 | SQLite 데이터베이스 | 테이블, 컬럼, 인덱스, 뷰, 트리거, 선택한 행 | 로컬 DB/WAL 스냅숏, Node.js 24.15 이상 또는 26 이상 |
@@ -216,7 +226,7 @@ REA가 대상을 하나의 서버로 묶은 대가는 환경 요구의 분산이
 
 ### 번들 스킬의 조사 절차
 
-`reverse-engineer-anything` 스킬(version 41)은 REA를 언제 쓰고 어떤 순서로 조사할지를 에이전트에게 지시한다. 스킬 description은 "출시된 artifact나 요청된 런타임 근거로 기능 설명, 버전 비교, 디컴파일, 재구성 안내"를 범위로 잡고 완전한 소스 저장소의 일반 아키텍처 분석에는 REA를 쓰지 말라고 명시한다. artifact는 여기서 배포된 실행 파일, 패키지, 아카이브처럼 소스가 아닌 산출 단위를 가리킨다.
+`reverse-engineer-anything` 스킬(version 42)은 REA를 언제 쓰고 어떤 순서로 조사할지를 에이전트에게 지시한다. 스킬 description은 "출시된 artifact나 요청된 런타임 근거로 기능 설명, 버전 비교, 디컴파일, 재구성 안내"를 범위로 잡고 완전한 소스 저장소의 일반 아키텍처 분석에는 REA를 쓰지 말라고 명시한다. artifact는 여기서 배포된 실행 파일, 패키지, 아카이브처럼 소스가 아닌 산출 단위를 가리킨다.
 
 **필요할 때만 연결한다.** 도구가 이미 세션에 보이면 진단 없이 바로 대상으로 간다. 도구가 없거나 엔진이 없을 때만 원인을 구분해 복구한다.
 
@@ -239,11 +249,27 @@ REA가 대상을 하나의 서버로 묶은 대가는 환경 요구의 분산이
 | 관리 코드 PE/CLI | `inspect_managed_artifact` |
 | 펌웨어 | `inspect_firmware_regions`, 추출 요청 시 `extract_firmware` |
 | 열린 브라우저 페이지 / Electron 런타임 | `list_browser_targets` / `list_electron_targets` |
+| 에이전트가 직접 수행할 브라우저 동작(클릭, 입력, 이동) | 선언한 action으로 `capture_browser_scenario` |
 | HAR/SAZ/mitmproxy/qlog 캡처 | `inspect_web_network_capture` |
 | 리눅스 ELF 레이아웃 / ELF 코어 | `inspect_binary_layout` / `inspect_recorded_crash` |
 | 네이티브 실행 파일과 라이브러리 | `open_binary` 후 분석 도구, 필요 시 `binary_overview` |
 
 사용자가 이름이나 경로 없이 "내 앱"이라고만 하면 artifact를 찾기 전에 어떤 앱인지 묻는다. 관련 없는 보고서의 경로나 근처 테스트 픽스처가 대상을 정하지 않으며 예시 앱을 사용자 대신 고르지 않는다. IDA는 `provider_id: "ida"`로 원본 바이너리를 열고 `.idb`나 `.i64` 데이터베이스를 넘기지 않는다.
+
+version 42에서 런타임 관찰 쪽에 두 가지 절차가 추가됐다. 첫째, 클릭, 입력, 페이지 이동처럼 에이전트가 브라우저에서 직접 동작해야 하는 경우 수동 관찰 대신 `capture_browser_scenario`에 동작 목록을 선언해 넘긴다. 둘째, 이미 열린 Electron 앱의 메인 프로세스에 Inspector로 붙기 전에 `inspect_electron_fuses`로 패키지에 굳어진 fuse 설정을 확인한다. fuse는 Electron이 빌드 시점에 켜고 끄는 기능 스위치이며, `EnableNodeCliInspectArguments`가 꺼져 있으면 앱은 `--inspect` 인자를 무시한다. 따라서 이 확인 없이 연결을 시도하면 실패 원인을 잘못 짚게 된다.
+
+**Kuna provider는 캐시한 export에서 답한다.** `REA_KUNA_COMMAND`를 설정하면 `provider_id: "kuna"`가 함수 목록, 조회, 의사 코드, 어셈블리, `analyze_function`을 Kuna가 한 번 만들어 둔 전체 프로그램 export에서 답한다. 다른 엔진처럼 함수마다 디컴파일을 요청하지 않는 구조다.
+
+| 항목 | Kuna의 동작 |
+|---|---|
+| 호출자와 피호출자 | 세션이 공유하는 본문 없는 별도 그래프에서 답한다 |
+| `xrefs` | 정확한 주소의 들어오는 지점을 돌려주고 forwarding alias를 거른다 |
+| 첫 응답 | 단일 함수 실행에서 올 수 있고 한계 항목이 그 사실을 밝힌다. 어셈블리는 export를 기다린다 |
+| 결과 위치 | `raw_result.source`가 캐시된 `.c`/`.asm` 파일과 바이트 구간을 가리켜, 함수마다 호출하는 대신 파일을 직접 검색할 수 있다 |
+| 캐시 수명 | 참조 캐시는 세션을 닫으면 만료되고 새 CLI 프로세스는 네이티브 참조 탐색을 다시 한다 |
+| 미지원 | 타입 참조, CFG, raw memory 도구, 주석 |
+
+간접 호출 대상은 미지로 남기 때문에 Kuna가 돌려주는 호출 관계는 부분 coverage일 수 있다. 이 점은 REA의 Evidence 원칙과 같은 방향이다. 즉 엔진이 모르는 것은 모른다고 결과에 남긴다.
 
 **요약부터 본다.** 크기가 크거나 모르는 자바스크립트 앱과 ELF는 `"detail": "summary"`로 호출하고 반환된 `parent_evidence_id`를 `inspect_analysis_view`로 페이지 단위로 연다. 같은 분석이나 거부된 호출을 입력 변화 없이 반복하지 않는다. 전송 한도를 넘었다는 오류(`resource_constraint`)가 나면 같은 세션의 Evidence 참조로 작은 뷰를 보거나 `export_evidence_bundle`로 파일에 쓴다. 클라이언트가 결과를 잘라 보여 준 미리보기는 불완전한 것으로 보고 정본 JSON으로 파싱하지 않는다.
 
@@ -278,6 +304,15 @@ REA의 Evidence 생성 도구는 MCP `structuredContent`와 CLI JSON에 완전�
 | `verify_reconstruction` | 유한한 타입 명세 | 전역 동등성 (선언한 주장만 덮음) |
 
 프로세스 캡처는 opt-in 행동 근거이며 보안 샌드박스가 아니다. 제한 시간에 걸린 대상이 최종 보고를 써야 하면 `finalization_ms`를 지정하는데, REA는 SIGTERM을 보내 관찰을 계속하다가 구간 끝까지 종료하지 않으면 SIGKILL을 한 번 보낸다. HAR Evidence에 `api-surface` 뷰를 적용하면 관찰된 요청을 메서드, origin, 경로 템플릿으로 묶어 보여 주지만 이는 handler 정체나 서버 스키마가 아니라 추론이며 요청을 재전송하지 않는다.
+
+같은 HAR Evidence에 `inspect_analysis_view`의 `environment-manifest` 뷰를 적용하면 한 단계 더 나아가, 주 origin의 요청 줄을 에이전트 환경에서 쓸 이름 붙은 도구 목록으로 투영한다. 각 도구에는 경로 템플릿, 파라미터, 관찰된 query 이름, 값이 빠진 본문 형태, 원래 레코드를 가리키는 포인터가 붙는다. 예를 들어 웹 앱을 쓰며 저장한 HAR 파일에서 `GET /items/{id}` 같은 요청 형태를 뽑아 에이전트가 호출할 수 있는 도구 정의의 초안으로 삼는 용도다.
+
+| 원칙 | 내용 |
+|---|---|
+| 값 비복사 | 헤더, 쿠키, 본문 값은 복사하지 않고 형태만 남긴다 |
+| 추론 표시 | 모든 템플릿, 파라미터, 병합한 형제 요청은 추론으로 표시된다 |
+| opt-in 규칙 | 기록된 식별자를 템플릿으로 바꾸는 `template_rules`는 필요할 때만 켠다 |
+| 미지 보존 | 명시된 세 가지 미지는 해소되지 않은 채 남는다 |
 
 이 설계 전체는 해설 글의 해석과 일치한다. 의사 코드는 원본 소스와 같지 않으므로, REA는 결론의 근거와 경계를 항상 결과에 남겨 개발자가 직접 확인하고 어디까지 믿을지 정하게 한다.
 
@@ -329,7 +364,9 @@ README 상단은 공식 배포처를 morluto/rea, rea.tools, rea-agents npm 패�
 
 ### 기술적 제약
 
-- 깊은 네이티브 분석에는 Hopper, Ghidra, IDA 중 하나가 필요하고 Windows Ghidra는 실험 단계다.
+- 깊은 네이티브 분석에는 Hopper, Ghidra, IDA, Kuna 중 하나가 필요하고 Windows Ghidra는 실험 단계다.
+- 리눅스에서는 procps 호환 `ps`가 없으면 Ghidra, JADX, 펌웨어 도구 실행과 정적 자바스크립트/일렉트론 분석이 시작 단계에서 막힌다.
+- Kuna provider는 타입 참조, CFG, raw memory, 주석을 지원하지 않고 간접 호출 대상을 미지로 남긴다.
 - ELF, EVM, 크래시, 패킷, 신호 분석과 펌웨어 추출은 리눅스(대부분 x64) 전용이다.
 - 다수 외부 도구를 사용자가 직접 공급해야 하고 REA setup은 Hopper 외에는 설치하지 않는다.
 - 정적 차이와 패턴 일치는 후보와 가설이며 페이지 소진은 네트워크나 소스의 완전성을 증명하지 않는다.
@@ -348,7 +385,7 @@ README 상단은 공식 배포처를 morluto/rea, rea.tools, rea-agents npm 패�
 | 용어 | 뜻 |
 |---|---|
 | 리버스 엔지니어링 | 완성된 프로그램을 거꾸로 분석해 소스 코드 없이 동작 원리를 알아내는 일 (역공학) |
-| 분석 엔진 (provider) | REA가 네이티브 분석에 쓰는 디스어셈블러 겸 디컴파일러. Hopper, Ghidra, IDA |
+| 분석 엔진 (provider) | REA가 네이티브 분석에 쓰는 디스어셈블러 겸 디컴파일러. Hopper, Ghidra, IDA, Kuna |
 | 의사 코드 (pseudocode) | 디컴파일러가 기계어를 C 비슷한 모양으로 되돌린 코드. 원본 소스와 같지 않다 |
 | Evidence 레코드 | REA 결과 단위. `evidence_id`, `normalized_result`, 한계, coverage, 미지 항목을 담는다 |
 | finding ledger | 결론마다 Evidence ID, 근거 유형, 탐색 경계, 남은 미지를 연결한 조사 기록 |
@@ -361,3 +398,5 @@ README 상단은 공식 배포처를 morluto/rea, rea.tools, rea-agents npm 패�
 - [[agents/osmani-2026-agent-skills]]: 에이전트 스킬 구성 요소 정리. 스킬이 tool call 순서와 보고 형식을 지시하는 방식을 비교할 수 있다
 - [[agents/browser-use-browser-use]]: 에이전트용 브라우저 자동화 도구. REA의 웹사이트 분석과 런타임 관찰 기능과 겹치는 영역이 있다
 - [[agents/trycua-cua]]: 컴퓨터 사용 에이전트 인프라. 에이전트가 로컬 앱을 직접 다루는 다른 접근이다
+- [[applications/lum1104-understand-anything]]: 소스 코드베이스를 knowledge graph로 바꿔 탐색하는 도구. 소스가 있는 저장소를 대상으로 하므로, 소스 없는 artifact를 다루는 REA와 쓰임새가 나뉜다
+- [[applications/colbymchenry-codegraph]]: tree-sitter 그래프를 MCP로 에이전트에 노출하는 로컬 코드 이해 도구. REA처럼 로컬 실행과 MCP 노출을 택했지만 입력이 소스 코드다
