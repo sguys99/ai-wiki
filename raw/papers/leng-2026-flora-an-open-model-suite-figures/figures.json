@@ -1,0 +1,678 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig01.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Capabilities. Flora produces timestamped captions by first segmenting videos and then captioning individual segments. Flora can also produce outcome and process rewards, and rewards based on rubrics specified at test-time.",
+    "bbox": [
+      56.36,
+      385.79,
+      539.06,
+      692.79
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.4582,
+      0.9056,
+      0.8229
+    ],
+    "dpi": 300,
+    "area_frac": 0.296,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig03.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig03.png",
+    "page": 2,
+    "caption": "Figure 3: Annotation quality versus cost. Flora achieves competitive quality at substantially lower cost compared to GPT-6 Astra. Evaluation and cost assumptions appear in Appendix D .",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      413.04
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.4906
+    ],
+    "dpi": 300,
+    "area_frac": 0.322,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig04.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig04.png",
+    "page": 4,
+    "caption": "Figure 4: One data engine, complementary capabilities. Timestamped caption and reward labeling results across six tasks. All values are scaled by 100. Full comparisons appear in Appendix A .",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      409.04
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.4859
+    ],
+    "dpi": 300,
+    "area_frac": 0.318,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig05.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig05.png",
+    "page": 5,
+    "caption": "Figure 5: Complete pipelines on WGO-Bench. Equal-subset mean scores (%, ↑ ), with generation backbones shown. Full results and protocols appear in Appendix B.6 .",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      271.04
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3219
+    ],
+    "dpi": 300,
+    "area_frac": 0.185,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig06.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig06.png",
+    "page": 7,
+    "caption": "Figure 6: From intended actions to execution quality. Selected examples show temporal coverage (top), human action captions (middle), and failure recognition and partial progress on DenseRewardBench and RoboRewardBench (bottom).",
+    "bbox": [
+      56.36,
+      79.04,
+      539.06,
+      431.04
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9056,
+      0.512
+    ],
+    "dpi": 300,
+    "area_frac": 0.339,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig07.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig07.png",
+    "page": 8,
+    "caption": "Figure 7: From video to reusable supervision. Overlapping windows are stitched into event intervals for contextual captioning. One reward model provides dense, outcome, or rubric labels. Timelines are schematic.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      334.04
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3968
+    ],
+    "dpi": 300,
+    "area_frac": 0.246,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig08.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig08.png",
+    "page": 24,
+    "caption": "Figure 8: Annotation quality versus conditional throughput. The 50-episode quality scores match Figure 3 . API rates follow the quota scenarios in Table 10 . The Flora rate assumes 12 independent eight-GPU replicas. Vertical bars are episode-bootstrap 95% intervals. Throughput is modeled, not measur",
+    "bbox": [
+      56.36,
+      269.38,
+      538.91,
+      533.66
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.32,
+      0.9053,
+      0.6339
+    ],
+    "dpi": 300,
+    "area_frac": 0.254,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig09.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig09.png",
+    "page": 25,
+    "caption": "Figure 9: Actions and rewards over time. Three consecutive actions (top) and a localized grasp failure (bottom), from two separate episodes.",
+    "bbox": [
+      56.36,
+      106.14,
+      539.06,
+      508.14
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.1261,
+      0.9056,
+      0.6036
+    ],
+    "dpi": 300,
+    "area_frac": 0.387,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig10.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig10.png",
+    "page": 26,
+    "caption": "Figure 10: Example episode outputs across embodiments. Timestamped intended-action captions appear above dense execution-quality and outcome labels. Robot mosaics retain synchronized scene and wrist views. Selected captions and rationales illustrate the structured records generated by the engine.",
+    "bbox": [
+      60.36,
+      101.04,
+      534.91,
+      560.55
+    ],
+    "bbox_norm": [
+      0.1014,
+      0.12,
+      0.8986,
+      0.6658
+    ],
+    "dpi": 300,
+    "area_frac": 0.435,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p26.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig11.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig11.png",
+    "page": 27,
+    "caption": "Figure 11: Qualitative comparison with GPT-6 Astra. Flora captures better dense actions (a) and local manipulation details (c,e), but can over-segment coarse events (b) and confuse action phases or objects (d,f). Parentheses denote segment counts. Temporal and caption scores are F1@0.5 and point qua",
+    "bbox": [
+      80.07,
+      78.85,
+      515.57,
+      520.26
+    ],
+    "bbox_norm": [
+      0.1345,
+      0.0937,
+      0.8661,
+      0.618
+    ],
+    "dpi": 300,
+    "area_frac": 0.384,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig12.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig12.png",
+    "page": 28,
+    "caption": "Figure 12: Flora-Rewarder flags failures and credits progress that GPT-6 Astra misjudges. Selected examples. (a–d) DenseRewardBench: Astra calls a falling wing and a missed grasp suboptimal, although its own rationales describe",
+    "bbox": [
+      80.07,
+      78.85,
+      515.57,
+      553.59
+    ],
+    "bbox_norm": [
+      0.1345,
+      0.0937,
+      0.8661,
+      0.6576
+    ],
+    "dpi": 300,
+    "area_frac": 0.413,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p28.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig13.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig13.png",
+    "page": 31,
+    "caption": "Figure 13: Windowed localization and contextual captioning. Overlapping windows emit fragments from their central regions. Timestamp projection and stitching reconstruct episode intervals, which are captioned independently with before, target, and after visual evidence.",
+    "bbox": [
+      60.69,
+      109.42,
+      534.59,
+      352.38
+    ],
+    "bbox_norm": [
+      0.1019,
+      0.13,
+      0.8981,
+      0.4186
+    ],
+    "dpi": 300,
+    "area_frac": 0.23,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig14.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig14.png",
+    "page": 31,
+    "caption": "Figure 14: Synchronized views and temporal context. Each mosaic aligns cameras at a source time. Mosaics retain their temporal order within the before, target, and after blocks.",
+    "bbox": [
+      60.69,
+      415.73,
+      534.59,
+      582.16
+    ],
+    "bbox_norm": [
+      0.1019,
+      0.4938,
+      0.8981,
+      0.6915
+    ],
+    "dpi": 300,
+    "area_frac": 0.157,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/leng-2026-flora-an-open-model-suite/fig15.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/fig15.png",
+    "page": 36,
+    "caption": "Figure 15: Three interfaces, one reward model. Outcome prompts score episode completion, dense prompts label temporal groups with rationales, and rubric prompts assign discrete credit to user-defined task steps.",
+    "bbox": [
+      76.86,
+      134.19,
+      518.42,
+      429.03
+    ],
+    "bbox_norm": [
+      0.1291,
+      0.1594,
+      0.8709,
+      0.5096
+    ],
+    "dpi": 300,
+    "area_frac": 0.26,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p36.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/leng-2026-flora-an-open-model-suite/tab01.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/tab01.png",
+    "page": 3,
+    "caption": "Table 1: Benchmark scores. Flora is competitive with GPT-6 Astra while beating other baselines. Values are scaled by 100. Full comparisons appear in Appendix A .",
+    "bbox": [
+      50.55,
+      103.45,
+      544.72,
+      721.61
+    ],
+    "bbox_norm": [
+      0.0849,
+      0.1229,
+      0.9151,
+      0.8571
+    ],
+    "dpi": 300,
+    "area_frac": 0.61,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p03.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/leng-2026-flora-an-open-model-suite/tab02.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/tab02.png",
+    "page": 13,
+    "caption": "Table 2: WGO-Bench results. Subset scores and equal-weight averages (%, ↑ ). Off-the-shelf models use the common pipeline , and Flora uses its default pipeline (Section 4.1 ).",
+    "bbox": [
+      56.36,
+      204.69,
+      538.91,
+      424.52
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.2431,
+      0.9053,
+      0.5042
+    ],
+    "dpi": 300,
+    "area_frac": 0.212,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/leng-2026-flora-an-open-model-suite/tab03.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/tab03.png",
+    "page": 13,
+    "caption": "Table 3: DenseCaptionBench results. Scores on 100 human, 100 parallel-gripper (Grip.), and 100 dexterous-hand (Dex.) episodes under the shared point-quality protocol (%, ↑ ). Off-the-shelf models use the common pipeline , and Flora uses its production pipeline (Section 4.1 ).",
+    "bbox": [
+      56.36,
+      499.81,
+      537.54,
+      732.0
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.5937,
+      0.903,
+      0.8695
+    ],
+    "dpi": 300,
+    "area_frac": 0.223,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/leng-2026-flora-an-open-model-suite/tab04.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/tab04.png",
+    "page": 14,
+    "caption": "Table 4: Public reward benchmarks. Flora-Rewarder has the lowest reported MAE and exceeds the specialized reward baselines on their reported metrics. Published specialized-model scores retain their original protocols. All metrics are multiplied by 100.",
+    "bbox": [
+      56.36,
+      141.41,
+      538.92,
+      435.05
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.168,
+      0.9053,
+      0.5168
+    ],
+    "dpi": 300,
+    "area_frac": 0.283,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/leng-2026-flora-an-open-model-suite/tab05.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/tab05.png",
+    "page": 14,
+    "caption": "Table 5: Internal reward benchmarks. Flora-Rewarder achieves the best value on all four DenseRewardBench metrics and grades rubrics more accurately than nine of the ten general-purpose models. All metrics are multiplied by 100",
+    "bbox": [
+      56.36,
+      498.49,
+      538.91,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.5921,
+      0.9053,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.273,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/leng-2026-flora-an-open-model-suite/tab06.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/tab06.png",
+    "page": 15,
+    "caption": "Table 6: DenseCaptionBench composition. Reference intervals may include idle gaps and concurrent intended actions.",
+    "bbox": [
+      55.97,
+      322.38,
+      540.51,
+      781.68
+    ],
+    "bbox_norm": [
+      0.094,
+      0.3829,
+      0.908,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.444,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/leng-2026-flora-an-open-model-suite/tab07.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/tab07.png",
+    "page": 16,
+    "caption": "Table 7: Baseline decoding configurations. Output limits are in thousands of tokens (k = 1,024). Default denotes an omitted request field, not a verified reasoning level.",
+    "bbox": [
+      55.99,
+      525.53,
+      539.08,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0941,
+      0.6242,
+      0.9056,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.247,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/leng-2026-flora-an-open-model-suite/tab08.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/tab08.png",
+    "page": 19,
+    "caption": "Table 8: WGO-Bench pipeline comparison. Subset scores and equal-weight averages (%, ↑ ). Subsequent off-the-shelf model comparisons use the common pipeline as a simple reference protocol that standardizes input construction and prompts while limiting API-call and visual-token overhead.",
+    "bbox": [
+      55.97,
+      117.3,
+      540.58,
+      781.68
+    ],
+    "bbox_norm": [
+      0.094,
+      0.1393,
+      0.9081,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.642,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/leng-2026-flora-an-open-model-suite/tab09.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/tab09.png",
+    "page": 20,
+    "caption": "Table 9: Pipeline comparison with Gemini 3.8 Flash. Scores are percentages ( ↑ ). Avg equally weights the three WGO subsets. Green numbers identify Flora variants. Shaded cells mark the best averages, including ties. The Pegasus and trained Flora results match Figure 5 .",
+    "bbox": [
+      56.36,
+      270.14,
+      538.92,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.3209,
+      0.9053,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.493,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/leng-2026-flora-an-open-model-suite/tab10.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/tab10.png",
+    "page": 23,
+    "caption": "Table 10: Quota scenarios for throughput estimates. RPM denotes requests per minute. M denotes million tokens per minute.",
+    "bbox": [
+      55.99,
+      203.48,
+      539.74,
+      781.68
+    ],
+    "bbox_norm": [
+      0.0941,
+      0.2417,
+      0.9067,
+      0.9285
+    ],
+    "dpi": 300,
+    "area_frac": 0.558,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/leng-2026-flora-an-open-model-suite/tab11.png",
+    "raw": "raw/papers/leng-2026-flora-an-open-model-suite-figures/tab11.png",
+    "page": 36,
+    "caption": "Table 11: Sample scoring rubric for an apple-cutting task.",
+    "bbox": [
+      56.36,
+      475.51,
+      538.91,
+      645.41
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.5648,
+      0.9053,
+      0.7666
+    ],
+    "dpi": 300,
+    "area_frac": 0.164,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/leng-2026-flora-an-open-model-suite-figures/_overlay/p36.png"
+  }
+]
