@@ -218,6 +218,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/alibaba-2026-lambda0-scaling-open-world-egocentric|λ0 (Alibaba Token Hub, Amap)]]: 500시간 egocentric 전신 사람 데이터를 G1에 맞게 정렬해 mid-training하는 VLA. 실세계 progress 59.9%에서 80.4% (2026, paper)
 - [[physical-ai/cai-2026-has-gpt-6-astra-achieved-embodied-intelligence|GPT-6-Astra embodied 검증 (SenseNova 외)]]: 벤치마크 12개, 실제 로봇 8대 평가. ICL과 10배 budget으로 포화 근접, 비용과 복구는 과제 (2026, paper)
 - [[physical-ai/leng-2026-flora-an-open-model-suite|Flora (NVIDIA GEAR)]]: 로봇 영상에 timestamped caption, outcome, dense, rubric reward를 다는 data engine. Astra급 품질에 약 125배 저렴 (프로젝트 페이지 통합) (2026, paper)
+- [[physical-ai/chen-2025-pirl-online-rl-fine-tuning-for|πRL (Tsinghua, PKU 외)]]: flow 기반 VLA(π0, π0.5)를 Flow-Noise와 Flow-SDE로 online RL fine-tuning. 네 벤치마크 평균 약 30%p 향상 (2025, paper)
 
 ## Agents (agents)
 
