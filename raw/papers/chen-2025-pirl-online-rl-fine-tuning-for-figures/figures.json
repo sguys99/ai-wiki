@@ -1,0 +1,813 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig01.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1. π RL : An online RL framework for flow-based VLAs. Incorporating two solutions, Flow-Noise and Flow-SDE, π RL enhances the",
+    "bbox": [
+      53.75,
+      191.35,
+      543.29,
+      467.84
+    ],
+    "bbox_norm": [
+      0.0878,
+      0.2416,
+      0.8877,
+      0.5907
+    ],
+    "dpi": 300,
+    "area_frac": 0.279,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig02.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2. Illustration for the noise injection in π RL .",
+    "bbox": [
+      51.65,
+      63.52,
+      293.5,
+      214.64
+    ],
+    "bbox_norm": [
+      0.0844,
+      0.0802,
+      0.4796,
+      0.271
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig03.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3. Illustration of the MDP formulations in π RL .",
+    "bbox": [
+      311.09,
+      61.21,
+      537.43,
+      254.8
+    ],
+    "bbox_norm": [
+      0.5083,
+      0.0773,
+      0.8782,
+      0.3217
+    ],
+    "dpi": 300,
+    "area_frac": 0.09,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig04.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig04.png",
+    "page": 6,
+    "caption": "Figure 4. Illustration of the two critic placement configurations.",
+    "bbox": [
+      65.45,
+      62.39,
+      543.41,
+      203.69
+    ],
+    "bbox_norm": [
+      0.107,
+      0.0788,
+      0.8879,
+      0.2572
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig05.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig05.png",
+    "page": 7,
+    "caption": "Figure 5. Comprehensive OOD evaluation results on CALVIN ABC-D, ManiSkill OOD, and MetaWorld ML45 benchmarks.",
+    "bbox": [
+      70.59,
+      211.59,
+      526.74,
+      369.01
+    ],
+    "bbox_norm": [
+      0.1153,
+      0.2672,
+      0.8607,
+      0.4659
+    ],
+    "dpi": 300,
+    "area_frac": 0.148,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig06.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig06.png",
+    "page": 8,
+    "caption": "Figure 6. Ablation on the critic design within Flow-SDE π 0 on the LIBERO-Long, indicating that the critic V vlm attached after the VLM",
+    "bbox": [
+      59.15,
+      61.06,
+      538.06,
+      183.0
+    ],
+    "bbox_norm": [
+      0.0967,
+      0.0771,
+      0.8792,
+      0.2311
+    ],
+    "dpi": 300,
+    "area_frac": 0.12,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig07.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig07.png",
+    "page": 8,
+    "caption": "Figure 7. Ablation on the MDP formulation within Flow-SDE of π 0 on the LIBERO-Goal.",
+    "bbox": [
+      57.91,
+      172.78,
+      538.97,
+      332.88
+    ],
+    "bbox_norm": [
+      0.0946,
+      0.2182,
+      0.8807,
+      0.4203
+    ],
+    "dpi": 300,
+    "area_frac": 0.159,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig08.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig08.png",
+    "page": 8,
+    "caption": "Figure 8. Ablation on the injection strategy within Flow-SDE of π 0 on the LIBERO-Long.",
+    "bbox": [
+      110.76,
+      350.83,
+      486.51,
+      472.25
+    ],
+    "bbox_norm": [
+      0.181,
+      0.443,
+      0.7949,
+      0.5963
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig09.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig09.png",
+    "page": 9,
+    "caption": "Figure 9. Ablation on the noise level a , conducted with the Flow-SDE π 0 on the LIBERO-Spatial.",
+    "bbox": [
+      49.44,
+      209.18,
+      547.83,
+      330.81
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.2641,
+      0.8951,
+      0.4177
+    ],
+    "dpi": 300,
+    "area_frac": 0.125,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig10.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig10.png",
+    "page": 9,
+    "caption": "Figure 10. Ablation on the denoise step, conducted with the Flow-SDE π 0 on the LIBERO-Spatial.",
+    "bbox": [
+      110.76,
+      348.75,
+      486.11,
+      470.03
+    ],
+    "bbox_norm": [
+      0.181,
+      0.4403,
+      0.7943,
+      0.5935
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig11.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig11.png",
+    "page": 9,
+    "caption": "Figure 11. Ablation on the chunk size, conducted with the Flow-SDE π 0 on the LIBERO-Spatial.",
+    "bbox": [
+      110.76,
+      487.97,
+      486.5,
+      609.25
+    ],
+    "bbox_norm": [
+      0.181,
+      0.6161,
+      0.7949,
+      0.7693
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig12.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig12.png",
+    "page": 17,
+    "caption": "Figure 12. Real-world deployment of an RL refined policy performing a pick and place task.",
+    "bbox": [
+      49.44,
+      206.73,
+      547.47,
+      280.46
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.261,
+      0.8946,
+      0.3541
+    ],
+    "dpi": 300,
+    "area_frac": 0.076,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig13.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig13.png",
+    "page": 19,
+    "caption": "Figure 13. Ablation study on the effectiveness of VLM during RL.",
+    "bbox": [
+      110.76,
+      61.06,
+      486.12,
+      182.49
+    ],
+    "bbox_norm": [
+      0.181,
+      0.0771,
+      0.7943,
+      0.2304
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig14.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig14.png",
+    "page": 19,
+    "caption": "Figure 14. Ablation study on the learning rate scheduler.",
+    "bbox": [
+      110.76,
+      200.04,
+      486.51,
+      321.88
+    ],
+    "bbox_norm": [
+      0.181,
+      0.2526,
+      0.795,
+      0.4064
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig15.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig15.png",
+    "page": 20,
+    "caption": "Figure 15. Training curves in ManiSkill.",
+    "bbox": [
+      110.76,
+      61.06,
+      486.48,
+      175.61
+    ],
+    "bbox_norm": [
+      0.181,
+      0.0771,
+      0.7949,
+      0.2217
+    ],
+    "dpi": 300,
+    "area_frac": 0.089,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig16.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig16.png",
+    "page": 20,
+    "caption": "Figure 16. Episode length: π 0 . 5 RL training in ManiSkill.",
+    "bbox": [
+      195.24,
+      193.55,
+      401.64,
+      321.74
+    ],
+    "bbox_norm": [
+      0.319,
+      0.2444,
+      0.6563,
+      0.4062
+    ],
+    "dpi": 300,
+    "area_frac": 0.055,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/fig17.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/fig17.png",
+    "page": 21,
+    "caption": "Figure 17. Illustration for the architecture of GR00T-N1.5.",
+    "bbox": [
+      122.34,
+      61.06,
+      474.53,
+      235.64
+    ],
+    "bbox_norm": [
+      0.1999,
+      0.0771,
+      0.7754,
+      0.2975
+    ],
+    "dpi": 300,
+    "area_frac": 0.127,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab01.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1. Comprehensive ID performance comparison across four benchmarks.",
+    "bbox": [
+      46.02,
+      57.36,
+      553.74,
+      210.34
+    ],
+    "bbox_norm": [
+      0.0752,
+      0.0724,
+      0.9048,
+      0.2656
+    ],
+    "dpi": 300,
+    "area_frac": 0.16,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab02.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab02.png",
+    "page": 9,
+    "caption": "Table 2. Ablation study of hyperparameters for Flow-SDE on the LIBERO-Spatial. Train refers to policy performance during the stochastic",
+    "bbox": [
+      49.44,
+      71.04,
+      531.47,
+      205.89
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.0897,
+      0.8684,
+      0.26
+    ],
+    "dpi": 300,
+    "area_frac": 0.134,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab03.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab03.png",
+    "page": 14,
+    "caption": "Table 3. Evaluation results on the LIBERO benchmark, evaluated based on the success rate (%).",
+    "bbox": [
+      49.44,
+      78.62,
+      547.44,
+      318.97
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.0993,
+      0.8945,
+      0.4027
+    ],
+    "dpi": 300,
+    "area_frac": 0.247,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab04.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab04.png",
+    "page": 14,
+    "caption": "Table 4. Evaluation results on the ManiSkill benchmark, with more specific OOD results depicted in Tab. 7 .",
+    "bbox": [
+      49.44,
+      78.62,
+      547.44,
+      318.97
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.0993,
+      0.8945,
+      0.4027
+    ],
+    "dpi": 300,
+    "area_frac": 0.247,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab05.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab05.png",
+    "page": 15,
+    "caption": "Table 5. Evaluation results on the CALVIN benchmark (Scene D), reporting the average completed subtasks and success rates for task",
+    "bbox": [
+      49.44,
+      88.59,
+      547.44,
+      216.33
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1118,
+      0.8945,
+      0.2731
+    ],
+    "dpi": 300,
+    "area_frac": 0.131,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab06.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab06.png",
+    "page": 15,
+    "caption": "Table 6. Evaluation results on the MetaWorld MT50 benchmark.",
+    "bbox": [
+      49.44,
+      234.25,
+      547.44,
+      402.87
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.2958,
+      0.8945,
+      0.5087
+    ],
+    "dpi": 300,
+    "area_frac": 0.173,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab07.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab07.png",
+    "page": 16,
+    "caption": "Table 7. Specific generalization evaluation results in the ManiSkill OOD setting.",
+    "bbox": [
+      49.44,
+      78.6,
+      547.44,
+      281.42
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.0992,
+      0.8945,
+      0.3553
+    ],
+    "dpi": 300,
+    "area_frac": 0.208,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab08.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab08.png",
+    "page": 17,
+    "caption": "Table 8. Evaluation results on the SIMPLER benchmark for π 0 and π 0 . 5 with Flow-Noise method.",
+    "bbox": [
+      49.44,
+      78.62,
+      547.44,
+      206.37
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.0993,
+      0.8945,
+      0.2606
+    ],
+    "dpi": 300,
+    "area_frac": 0.131,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab09.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab09.png",
+    "page": 18,
+    "caption": "Table 9. Comparison of the PPO and GRPO with Flow-SDE on the LIBERO.",
+    "bbox": [
+      49.44,
+      78.62,
+      547.44,
+      206.37
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.0993,
+      0.8945,
+      0.2606
+    ],
+    "dpi": 300,
+    "area_frac": 0.131,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab10.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab10.png",
+    "page": 21,
+    "caption": "Table 10. Results of Finetuning GR00T using PPO with Flow-SDE on the LIBERO.",
+    "bbox": [
+      49.44,
+      270.32,
+      547.44,
+      345.25
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.3413,
+      0.8945,
+      0.4359
+    ],
+    "dpi": 300,
+    "area_frac": 0.077,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab11.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab11.png",
+    "page": 23,
+    "caption": "Table 11. Hyperparameters across LIBERO.",
+    "bbox": [
+      49.44,
+      100.03,
+      547.44,
+      366.28
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.1263,
+      0.8945,
+      0.4625
+    ],
+    "dpi": 300,
+    "area_frac": 0.274,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab12.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab12.png",
+    "page": 23,
+    "caption": "Table 12. Hyperparameters across SIMPLER and ManiSkill.",
+    "bbox": [
+      49.44,
+      423.04,
+      547.44,
+      699.25
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.5341,
+      0.8945,
+      0.8829
+    ],
+    "dpi": 300,
+    "area_frac": 0.284,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/chen-2025-pirl-online-rl-fine-tuning-for/tab13.png",
+    "raw": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/tab13.png",
+    "page": 24,
+    "caption": "Table 13. Hyperparameters across MetaWorld and CALVIN benchmarks.",
+    "bbox": [
+      49.44,
+      266.52,
+      547.44,
+      532.77
+    ],
+    "bbox_norm": [
+      0.0808,
+      0.3365,
+      0.8945,
+      0.6727
+    ],
+    "dpi": 300,
+    "area_frac": 0.274,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/chen-2025-pirl-online-rl-fine-tuning-for-figures/_overlay/p24.png"
+  }
+]
