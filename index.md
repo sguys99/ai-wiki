@@ -93,6 +93,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/jo-2026-gemini-robotics-1-5-vla-primer|03-16. Gemini Robotics 1.5 (모두의 로보틱스)]]: 1.5의 한국어 입문 해설. orchestrator, Thinking VLA, Motion Transfer를 예시로 세운 뒤 두 모델의 분업을 짚는다 (2026, article)
 - [[physical-ai/nvidia-2025-gr00t-n1-5-an-improved-open|GR00T N1.5 (NVIDIA GEAR Lab)]]: N1의 골격을 두고 네 군데만 손본 후속 버전의 공식 프로젝트 페이지. VLM 고정과 FLARE 손실, DreamGen 합성 데이터가 변경점이다 (2025, article)
 - [[physical-ai/nvidia-isaac-gr00t|Isaac GR00T (N1.7, repo)]]: GR00T 계열 VLA의 공식 구현이자 N1.7 GA 배포처. backbone을 Cosmos-Reason2-2B로 바꾸고 relative EEF action space로 사람 영상까지 pre-training에 썼다 (2026, repo)
+- [[physical-ai/nvidia-gr00t-n1-7-3b|GR00T-N1.7-3B 모델 카드와 LeRobot 통합]]: N1.7 베이스 체크포인트의 입출력 규격, 9개 플랫폼 추론 지연, 학습 비용과 LeRobot `groot` policy의 fine-tuning, rollout 레시피 (2026, repo)
 - [[physical-ai/nvidia-2025-accelerate-generalist-humanoid-robot-development|Isaac GR00T N1 릴리스 공지 (NVIDIA)]]: GR00T N1 공개 당일의 NVIDIA 기술 블로그. 논문에 없는 GPU 사양과 다섯 단계 절차가 실무 진입점이다 (2025, article)
 - [[physical-ai/figure-ai-2025-helix-a-vision-language-action|Helix (Figure AI)]]: humanoid 상체를 자연어로 제어하는 dual-system VLA의 공식 발표문. 7B VLM과 80M Transformer를 함께 학습해 200Hz로 35-DoF를 낸다 (2025, article)
 - [[physical-ai/9bow-2025-helix-generalist-humanoid-vla|Helix 한국어 소개 (9bow)]]: PyTorch 한국 사용자 모임이 Helix 발표를 옮긴 글. 원문에서 iframe에 가려 수집되지 않는 System 1과 System 2 구조도가 여기에는 실려 있다 (2025, article)
@@ -217,6 +218,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/alibaba-2026-lambda0-scaling-open-world-egocentric|λ0 (Alibaba Token Hub, Amap)]]: 500시간 egocentric 전신 사람 데이터를 G1에 맞게 정렬해 mid-training하는 VLA. 실세계 progress 59.9%에서 80.4% (2026, paper)
 - [[physical-ai/cai-2026-has-gpt-6-astra-achieved-embodied-intelligence|GPT-6-Astra embodied 검증 (SenseNova 외)]]: 벤치마크 12개, 실제 로봇 8대 평가. ICL과 10배 budget으로 포화 근접, 비용과 복구는 과제 (2026, paper)
 - [[physical-ai/leng-2026-flora-an-open-model-suite|Flora (NVIDIA GEAR)]]: 로봇 영상에 timestamped caption, outcome, dense, rubric reward를 다는 data engine. Astra급 품질에 약 125배 저렴 (프로젝트 페이지 통합) (2026, paper)
+- [[physical-ai/chen-2025-pirl-online-rl-fine-tuning-for|πRL (Tsinghua, PKU 외)]]: flow 기반 VLA(π0, π0.5)를 Flow-Noise와 Flow-SDE로 online RL fine-tuning. 네 벤치마크 평균 약 30%p 향상 (2025, paper)
 
 ## Agents (agents)
 

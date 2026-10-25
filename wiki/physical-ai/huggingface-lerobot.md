@@ -286,3 +286,4 @@ policy 목록에 world model이 별도 범주로 서 있는 것은 [[physical-ai
 - [[physical-ai/reuss-2026-pretrained-to-imagine-fine-tuned]]: world model 범주가 놓인 흐름.
 - [[physical-ai/learnopencv-2025-vision-language-action-models-vla]]: 이 프레임워크를 실제로 실행해 보는 튜토리얼. 저장소 clone부터 `lerobot/pi0` 체크포인트 평가, 커스텀 데이터셋 fine-tuning까지 명령 단위로 적혀 있다.
 - [[overviews/physical-ai-overview]]: physical-ai 카테고리의 분류 뼈대와 학습 경로 허브.
+- [[physical-ai/nvidia-gr00t-n1-7-3b]]: `groot` policy type의 사용 문서와 베이스 체크포인트 모델 카드. fine-tuning, LIBERO 결과(평균 96.5%), SO-101 rollout 명령을 정리한다.

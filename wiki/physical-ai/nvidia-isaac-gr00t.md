@@ -265,3 +265,4 @@ GR00T N1.7은 HuggingFace LeRobot에서도 `groot` policy type으로 쓸 수 있
 - [[physical-ai/huggingface-lerobot]]: 데이터 형식의 바탕이자 `groot` policy type으로 N1.7을 싣는 반대 방향의 연결.
 - [[physical-ai/openhelix-robot-awesome-dual-system-vla]]: System 1이 실시간 perception 입력을 직접 받아야 한다는 기준으로 GR00T를 dual-system VLA에서 제외한 목록.
 - [[overviews/physical-ai-overview]]: physical-ai 카테고리 허브. GEAR와 GR00T와 SONIC과 GEAR-SONIC 이름 구분표가 있다.
+- [[physical-ai/nvidia-gr00t-n1-7-3b]]: 이 저장소가 배포하는 베이스 체크포인트의 Hugging Face 모델 카드와 LeRobot 통합 문서. 플랫폼별 추론 지연 시간과 LeRobot 레시피를 다룬다.
