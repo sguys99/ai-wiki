@@ -314,6 +314,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[evaluations/xie-2024-osworld-benchmarking-multimodal-agents-for|OSWorld]]: VM 위 Ubuntu에 369개 task와 실행 채점 스크립트를 둔 computer-use agent 벤치마크. 사람 72.36% 대 최고 12.24%, 실패 75% 이상이 클릭 좌표 오류 (2024, paper)
 - [[evaluations/xlang-ai-osworld|xlang-ai/OSWorld (repo)]]: OSWorld 논문 저자 조직의 환경과 벤치마크 저장소. desktop_env가 여섯 provider를 추상화하고, 2025년 OSWorld-Verified가 문제 수정과 AWS 병렬 평가(1시간 이내)를 더했다 (2024, repo)
 - [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for|MCP-Atlas]]: 실제 MCP 서버 36개와 도구 220개 위 1,000개 task로 tool use를 재는 벤치마크. 최종 답의 원자 claim으로 채점하며 20개 모델 실패의 63.3%가 인지 계열이었다 (2026, paper)
+- [[evaluations/hightouch-2026-llm-judges-for-identity-resolution|LLM Judges for Identity Resolution]]: IDR의 over-merging 판정 실험. 보정된 Jev의 불확실 구간만 Opus에 넘겨 Opus 수준 정확도를 4배 낮은 비용으로 냈다 (2026, article)
 
 ## Applications (applications)
 

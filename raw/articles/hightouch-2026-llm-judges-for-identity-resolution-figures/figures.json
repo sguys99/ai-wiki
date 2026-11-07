@@ -1,0 +1,122 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/hightouch-2026-llm-judges-for-identity-resolution/fig01.svg",
+    "raw": "raw/articles/hightouch-2026-llm-judges-for-identity-resolution-figures/fig01.svg",
+    "caption": "Pareto frontier of different evaluator models (accuracy at detecting over-merging vs cost per 1,000 identities)",
+    "source_url": "https://cdn.sanity.io/media-libraries/mlxe9VfpyM52/images/ffae4175d740119dca77e91b5f8ecf682fbddc39-920x511.svg",
+    "bytes": 4736,
+    "width": 920,
+    "height": 511,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/hightouch-2026-llm-judges-for-identity-resolution/fig02.svg",
+    "raw": "raw/articles/hightouch-2026-llm-judges-for-identity-resolution-figures/fig02.svg",
+    "caption": "IDR tuning loop: identity resolution engine, LLM judge, accuracy estimate, update configuration",
+    "source_url": "https://cdn.sanity.io/media-libraries/mlxe9VfpyM52/images/a09aa0bc5f215ddc35c059dfe3807575ff4cc6bf-920x387.svg",
+    "bytes": 3676,
+    "width": 920,
+    "height": 387,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/hightouch-2026-llm-judges-for-identity-resolution/fig03.png",
+    "raw": "raw/articles/hightouch-2026-llm-judges-for-identity-resolution-figures/fig03.png",
+    "caption": "Accuracy by prompt stage: plain prompt, + error examples, + data context (50% cutoff)",
+    "source_url": "https://hightouch.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fpwmfmi47%2Fproduction%2Fdf96c7a40b30826817162201732a2cddc84120fd-3600x2000.png&w=3840&q=75",
+    "bytes": 50808,
+    "width": 3600,
+    "height": 2000,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/hightouch-2026-llm-judges-for-identity-resolution/fig04.png",
+    "raw": "raw/articles/hightouch-2026-llm-judges-for-identity-resolution-figures/fig04.png",
+    "caption": "False positives and false negatives vs confidence cutoff, Jev (60%) and GPT-6 Luna (70%)",
+    "source_url": "https://hightouch.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fpwmfmi47%2Fproduction%2F3fb56e1537efb66bf5273bb96b044566bacff137-3685x1622.png&w=3840&q=75",
+    "bytes": 44017,
+    "width": 3685,
+    "height": 1622,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/hightouch-2026-llm-judges-for-identity-resolution/fig05.svg",
+    "raw": "raw/articles/hightouch-2026-llm-judges-for-identity-resolution-figures/fig05.svg",
+    "caption": "Accuracy on first test vs harder test for each model",
+    "source_url": "https://cdn.sanity.io/media-libraries/mlxe9VfpyM52/images/1bea32aee8c73094ee8d2615dec07df2a611bc8c-664x321.svg",
+    "bytes": 3755,
+    "width": 664,
+    "height": 321,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/hightouch-2026-llm-judges-for-identity-resolution/fig06.png",
+    "raw": "raw/articles/hightouch-2026-llm-judges-for-identity-resolution-figures/fig06.png",
+    "caption": "Jev's mistakes vs Opus' mistakes by Jev confidence bucket (easier test)",
+    "source_url": "https://hightouch.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fpwmfmi47%2Fproduction%2Fa08e0df347930514a01f4aa2f25fbd372c9fa8d0-3680x2080.png&w=3840&q=75",
+    "bytes": 51315,
+    "width": 3680,
+    "height": 2080,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/hightouch-2026-llm-judges-for-identity-resolution/fig07.png",
+    "raw": "raw/articles/hightouch-2026-llm-judges-for-identity-resolution-figures/fig07.png",
+    "caption": "GPT-6 Luna's mistakes vs Opus' mistakes by Luna confidence bucket (easier test)",
+    "source_url": "https://hightouch.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fpwmfmi47%2Fproduction%2Fbe3b567247bd47c3cc1d1f5da95a9902ed0ae98a-3680x2080.png&w=3840&q=75",
+    "bytes": 44713,
+    "width": 3680,
+    "height": 2080,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/hightouch-2026-llm-judges-for-identity-resolution/fig08.png",
+    "raw": "raw/articles/hightouch-2026-llm-judges-for-identity-resolution-figures/fig08.png",
+    "caption": "Jev's mistakes vs Opus' mistakes by Jev confidence bucket (harder test)",
+    "source_url": "https://hightouch.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fpwmfmi47%2Fproduction%2F340d8793247d266ab71debd7bab78e01f7041540-3680x2080.png&w=3840&q=75",
+    "bytes": 45948,
+    "width": 3680,
+    "height": 2080,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/hightouch-2026-llm-judges-for-identity-resolution/fig09.png",
+    "raw": "raw/articles/hightouch-2026-llm-judges-for-identity-resolution-figures/fig09.png",
+    "caption": "GPT-6 Luna's mistakes vs Opus' mistakes by Luna confidence bucket (harder test)",
+    "source_url": "https://hightouch.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fpwmfmi47%2Fproduction%2F18fe348bd377162acdf49bfd344cb656a012fdbb-3680x2080.png&w=3840&q=75",
+    "bytes": 44889,
+    "width": 3680,
+    "height": 2080,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/hightouch-2026-llm-judges-for-identity-resolution/fig10.svg",
+    "raw": "raw/articles/hightouch-2026-llm-judges-for-identity-resolution-figures/fig10.svg",
+    "caption": "Hybrid evaluator routing: decision model sends uncertain-band identities to an LLM",
+    "source_url": "https://cdn.sanity.io/media-libraries/mlxe9VfpyM52/images/fd5716e39d782941c2bdaeb17f4993e910a9d17b-920x286.svg",
+    "bytes": 2682,
+    "width": 920,
+    "height": 286,
+    "strategy": "fetched",
+    "curated": false
+  }
+]

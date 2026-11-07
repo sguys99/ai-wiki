@@ -1,0 +1,26 @@
+<svg font-family="Helvetica, Arial, sans-serif" viewBox="0 0 760 236" style="fill:#000000;font-size:18px" xmlns="http://www.w3.org/2000/svg" width="920" height="286"><rect x="0" y="0" width="100%" height="100%" fill="#ffffff"></rect>
+<defs style="fill:#000000"><marker id="arr2" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10" style="fill:#000000"><path d="M0 0 L10 5 L0 10 z" style="fill:#c4c4c4"></path></marker></defs>
+<g style="fill:none;stroke:#c4c4c4;stroke-width:1.5px;font-size:18px;marker-end:url(#arr2)">
+<line x1="150" x2="206" y1="118" y2="118" style="fill:none;stroke:#c4c4c4;stroke-width:1.5px;marker-end:url(#arr2)"></line>
+<path d="M346 118 L380 118 L380 40 L432 40" style="fill:none;stroke:#c4c4c4;stroke-width:1.5px;marker-end:url(#arr2)"></path>
+<path d="M346 118 L380 118 L380 196 L432 196" style="fill:none;stroke:#c4c4c4;stroke-width:1.5px;marker-end:url(#arr2)"></path>
+<line x1="346" x2="432" y1="118" y2="118" style="fill:none;stroke:#c4c4c4;stroke-width:1.5px;marker-end:url(#arr2)"></line>
+<line x1="600" x2="620" y1="118" y2="118" style="fill:none;stroke:#c4c4c4;stroke-width:1.5px;marker-end:url(#arr2)"></line>
+</g>
+<g style="fill:#ffffff;stroke:#c4c4c4;stroke-width:1.2px;font-size:18px">
+<rect height="52" rx="3" width="130" x="20" y="92" style="fill:#ffffff;stroke:#c4c4c4;stroke-width:1.2px"></rect>
+<rect height="76" rx="3" width="140" x="206" y="80" style="fill:#ffffff;stroke:#c4c4c4;stroke-width:1.2px"></rect>
+</g>
+<rect height="44" rx="3" style="fill:#eef2fd" width="168" x="432" y="18"></rect>
+<rect height="44" rx="3" style="fill:#f1f1f1" width="168" x="432" y="96"></rect>
+<rect height="44" rx="3" style="fill:#f0f0f0" width="168" x="432" y="174"></rect>
+<rect height="52" rx="3" style="fill:#ffffff;stroke:#111111;stroke-width:1.4px" width="132" x="620" y="92"></rect>
+<g text-anchor="middle" style="fill:#000000;font-size:18px">
+<text style="fill:#111111;font-size:13px;font-weight:600" x="85" y="123">Every identity</text>
+<text style="fill:#111111;font-size:13px;font-weight:600" x="276" y="123">Decision model</text>
+<text style="fill:#2d5be3;font-size:12.5px;font-weight:600" x="516" y="36">below the band</text><text x="516" y="52" style="fill:#707070;font-size:11.5px">accept: one person</text>
+<text style="fill:#8c8c8c;font-size:12.5px;font-weight:600" x="516" y="123">in the uncertain band</text>
+<text style="fill:#111111;font-size:12.5px;font-weight:600" x="516" y="192">above the band</text><text x="516" y="208" style="fill:#707070;font-size:11.5px">accept: over-merged</text>
+<text style="fill:#111111;font-size:13px;font-weight:600" x="686" y="123">LLM</text>
+</g>
+</svg>
