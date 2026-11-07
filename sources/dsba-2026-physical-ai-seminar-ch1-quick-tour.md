@@ -590,7 +590,7 @@ figures:
 | 업로드 | 2026-10-27 |
 | 길이 | 55분 17초 |
 | 언어 | 한국어 (자동 자막) |
-| 커리큘럼 | https://uye01.github.io/physical-ai-curriculum-2026/ |
+| 커리큘럼 | [physical-ai-curriculum-2026](https://uye01.github.io/physical-ai-curriculum-2026/) |
 | 키프레임 | 슬라이드 61장과 Genie 3 데모 프레임 1장 (1080p) |
 
 강의는 업로더 챕터 마커 기준으로 여덟 부분으로 나뉜다. 슬라이드 하단 번호와 목차 번호(00~06)를 함께 적는다.
