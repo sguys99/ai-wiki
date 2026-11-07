@@ -128,6 +128,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/jo-2026-smolvla-vla-primer|03-10. SmolVLA (모두의 로보틱스 - VLA 입문)]]: SmolVLA 논문의 한국어 입문 해설. 설계 선택 하나를 설명한 직후 근거가 되는 ablation 표를 붙이는 편집이 특징이다 (2026, article)
 - [[physical-ai/kim-2026-silicon-valley-rfm-part-1|실리콘밸리 RFM 기술 및 현황 1편 (Kim & Kim)]]: RFM 스타트업이 학습 전 과정을 직접 수행하는 이유를 현지 시각에서 정리한 LinkedIn 연재 1편. 논문 자료를 보완하는 산업 구조 레퍼런스 (2026, article)
 - [[physical-ai/kim-2026-silicon-valley-rfm-part-2|실리콘밸리 RFM 기술 및 현황 2편 (Kim & Kim)]]: VLM에서 VLA로 이어지는 개념을 LLM 원리에서 풀어낸 LinkedIn 연재 2편. Single Model과 Dual System 두 구조를 대비한다 (2026, article)
+- [[physical-ai/dsba-2026-physical-ai-seminar-ch1-quick-tour|피지컬AI 빠르게 둘러보기 (DSBA 세미나 Ch.1)]]: VLA와 world model 중심으로 네 병목, 기본 구성 요소, 기업 진영, 확장 방향을 73장 슬라이드로 훑는 한국어 55분 강의. 슬라이드 20장 임베드 (2026, video)
 - [[physical-ai/engiuniverse-2025-14-key-physical-ai-papers|Physical AI 핵심 논문 14편 리뷰 (엥지유니버스)]]: RT-1 이후 3년의 VLA 연구를 네 단계로 배열한 한국어 27분 총결산 영상. 성능 비교가 아니라 계보를 훑는 지도로 쓴다 (2025, video)
 - [[physical-ai/learnopencv-2025-vision-language-action-models-vla|VLA & Policies for Robots (LearnOpenCV)]]: RT-2부터 Gemini Robotics까지 아홉 모델을 계보순으로 소개하고 네 모델은 실행 코드까지 붙인 튜토리얼 (2025, article)
 - [[physical-ai/engiuniverse-2025-rt1-rt2-robotics-transformer-review|구글 RT-1, RT-2 핵심 논문 리뷰 (엥지유니버스)]]: RT-1과 RT-2 두 논문의 아키텍처를 텐서 크기를 대입해 대조한 한국어 20분 영상. 벤치마크 수치는 다루지 않는다 (2025, video)

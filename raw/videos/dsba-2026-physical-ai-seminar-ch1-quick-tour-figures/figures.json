@@ -1,0 +1,622 @@
+[
+  {
+    "id": "slide06",
+    "label": "Slide 6",
+    "kind": "figure",
+    "file": "slide06.png",
+    "timestamp": "01:51",
+    "strategy": "keyframe",
+    "caption": "Physical AI의 정의와 범위 (manipulation, locomotion, humanoid 등 6개 영역)",
+    "curated": false
+  },
+  {
+    "id": "slide07",
+    "label": "Slide 7",
+    "kind": "figure",
+    "file": "slide07.png",
+    "timestamp": "02:31",
+    "strategy": "keyframe",
+    "caption": "Digital AI와 Physical AI 비교표 (출력, 시간, 세계, 감각, 오류 비용, 데이터)",
+    "curated": false
+  },
+  {
+    "id": "slide08",
+    "label": "Slide 8",
+    "kind": "figure",
+    "file": "slide08.png",
+    "timestamp": "03:36",
+    "strategy": "keyframe",
+    "caption": "Physical AI 시장 전망 (Goldman Sachs humanoid 시장 2035년 1,380억 달러)",
+    "curated": false
+  },
+  {
+    "id": "slide09",
+    "label": "Slide 9",
+    "kind": "figure",
+    "file": "slide09.png",
+    "timestamp": "04:08",
+    "strategy": "keyframe",
+    "caption": "Robotics 및 Physical AI VC 투자 흐름과 주요 기업 밸류에이션",
+    "curated": false
+  },
+  {
+    "id": "slide10",
+    "label": "Slide 10",
+    "kind": "figure",
+    "file": "slide10.png",
+    "timestamp": "04:33",
+    "strategy": "keyframe",
+    "caption": "중국, 한국, 일본, EU, 미국의 국가 전략과 인재 수요",
+    "curated": false
+  },
+  {
+    "id": "slide11",
+    "label": "Slide 11",
+    "kind": "figure",
+    "file": "slide11.png",
+    "timestamp": "04:52",
+    "strategy": "keyframe",
+    "caption": "로보틱스 역사 네 시기 (고전 로보틱스, Deep RL, 데이터와 Transformer, foundation model 경쟁)",
+    "curated": true
+  },
+  {
+    "id": "slide12",
+    "label": "Slide 12",
+    "kind": "figure",
+    "file": "slide12.png",
+    "timestamp": "05:44",
+    "strategy": "keyframe",
+    "caption": "패러다임 전환 (모듈형 파이프라인에서 end-to-end를 거쳐 robot foundation model로)",
+    "curated": true
+  },
+  {
+    "id": "slide13",
+    "label": "Slide 13",
+    "kind": "figure",
+    "file": "slide13.png",
+    "timestamp": "06:24",
+    "strategy": "keyframe",
+    "caption": "지금 Physical AI가 성장하는 네 가지 이유 (VLM 성숙, 하드웨어 가격 하락, 데이터 인프라, 컴퓨팅과 자본)",
+    "curated": false
+  },
+  {
+    "id": "slide14",
+    "label": "Slide 14",
+    "kind": "figure",
+    "file": "slide14.png",
+    "timestamp": "06:56",
+    "strategy": "keyframe",
+    "caption": "2026년 주요 데모 6종 (Skild AI S1, π0.7, Gemini Robotics 2, Figure Helix 2.5, GEN-1.5, AgiBot)",
+    "curated": false
+  },
+  {
+    "id": "slide15",
+    "label": "Slide 15",
+    "kind": "figure",
+    "file": "slide15.png",
+    "timestamp": "07:58",
+    "strategy": "keyframe",
+    "caption": "기대와 현실 비교 (되는 것, 아직 안 되는 것, 데모의 이면)",
+    "curated": false
+  },
+  {
+    "id": "slide16",
+    "label": "Slide 16",
+    "kind": "figure",
+    "file": "slide16.png",
+    "timestamp": "08:54",
+    "strategy": "keyframe",
+    "caption": "Physical AI에 모이는 여러 분야의 문제의식 10가지",
+    "curated": false
+  },
+  {
+    "id": "slide18",
+    "label": "Slide 18",
+    "kind": "figure",
+    "file": "slide18.png",
+    "timestamp": "09:38",
+    "strategy": "keyframe",
+    "caption": "Moravec's Paradox와 PI의 해석 (본질은 데이터 부족)",
+    "curated": false
+  },
+  {
+    "id": "slide19",
+    "label": "Slide 19",
+    "kind": "figure",
+    "file": "slide19.png",
+    "timestamp": "10:22",
+    "strategy": "keyframe",
+    "caption": "병목 1 데이터 격차 (학습 데이터 규모 로그 스케일 비교)",
+    "curated": true
+  },
+  {
+    "id": "slide20",
+    "label": "Slide 20",
+    "kind": "figure",
+    "file": "slide20.png",
+    "timestamp": "11:08",
+    "strategy": "keyframe",
+    "caption": "병목 2 embodiment 이질성과 대응 방법 (Open X-Embodiment, CrossFormer)",
+    "curated": false
+  },
+  {
+    "id": "slide21",
+    "label": "Slide 21",
+    "kind": "figure",
+    "file": "slide21.png",
+    "timestamp": "11:52",
+    "strategy": "keyframe",
+    "caption": "병목 3 실시간성과 closed-loop와 비가역성 (VLM 추론 주기와 로봇 제어 주기 비교)",
+    "curated": true
+  },
+  {
+    "id": "slide22",
+    "label": "Slide 22",
+    "kind": "figure",
+    "file": "slide22.png",
+    "timestamp": "12:24",
+    "strategy": "keyframe",
+    "caption": "병목 4 일반화 격차 (LIBERO-PRO, LIBERO-Plus, LIBERO-Gen, BEHAVIOR 수치)",
+    "curated": true
+  },
+  {
+    "id": "slide23",
+    "label": "Slide 23",
+    "kind": "figure",
+    "file": "slide23.png",
+    "timestamp": "13:11",
+    "strategy": "keyframe",
+    "caption": "Scaling 논쟁 (scaling 진영과 구조 진영의 근거)",
+    "curated": false
+  },
+  {
+    "id": "slide25",
+    "label": "Slide 25",
+    "kind": "figure",
+    "file": "slide25.png",
+    "timestamp": "13:59",
+    "strategy": "keyframe",
+    "caption": "기본 용어와 closed-loop 파이프라인 (observation, policy, action, 환경)",
+    "curated": true
+  },
+  {
+    "id": "slide26",
+    "label": "Slide 26",
+    "kind": "figure",
+    "file": "slide26.png",
+    "timestamp": "14:43",
+    "strategy": "keyframe",
+    "caption": "하드웨어 세팅과 로봇 형태별 가격대",
+    "curated": false
+  },
+  {
+    "id": "slide27",
+    "label": "Slide 27",
+    "kind": "figure",
+    "file": "slide27.png",
+    "timestamp": "15:24",
+    "strategy": "keyframe",
+    "caption": "주요 시뮬레이터 비교 (Isaac Sim과 Isaac Lab, MuJoCo, ManiSkill3, Genesis, Newton)",
+    "curated": false
+  },
+  {
+    "id": "slide28",
+    "label": "Slide 28",
+    "kind": "figure",
+    "file": "slide28.png",
+    "timestamp": "15:52",
+    "strategy": "keyframe",
+    "caption": "시뮬레이션으로 가능한 것 네 가지와 sim2real gap의 원인과 대응",
+    "curated": false
+  },
+  {
+    "id": "slide29",
+    "label": "Slide 29",
+    "kind": "figure",
+    "file": "slide29.png",
+    "timestamp": "16:51",
+    "strategy": "keyframe",
+    "caption": "데이터 수집 방식 네 가지 (teleoperation, UMI, human egocentric video, 시뮬레이션 합성)",
+    "curated": true
+  },
+  {
+    "id": "slide30",
+    "label": "Slide 30",
+    "kind": "figure",
+    "file": "slide30.png",
+    "timestamp": "17:47",
+    "strategy": "keyframe",
+    "caption": "대표 데이터셋과 NVIDIA GR00T data pyramid",
+    "curated": true
+  },
+  {
+    "id": "slide31",
+    "label": "Slide 31",
+    "kind": "figure",
+    "file": "slide31.png",
+    "timestamp": "18:25",
+    "strategy": "keyframe",
+    "caption": "학습 패러다임 비교 (imitation learning과 RL)와 VLA 표준 학습 레시피 4단계",
+    "curated": true
+  },
+  {
+    "id": "slide32",
+    "label": "Slide 32",
+    "kind": "figure",
+    "file": "slide32.png",
+    "timestamp": "19:32",
+    "strategy": "keyframe",
+    "caption": "VLA 구조 (VLM backbone과 action expert)와 대표 모델 사양표",
+    "curated": false
+  },
+  {
+    "id": "slide33",
+    "label": "Slide 33",
+    "kind": "figure",
+    "file": "slide33.png",
+    "timestamp": "20:21",
+    "strategy": "keyframe",
+    "caption": "대표적인 policy 구조 (입력, encoder, backbone, action head, 로봇 제어기)",
+    "curated": true
+  },
+  {
+    "id": "slide34",
+    "label": "Slide 34",
+    "kind": "figure",
+    "file": "slide34.png",
+    "timestamp": "21:05",
+    "strategy": "keyframe",
+    "caption": "로봇의 action 표현 (joint space와 end-effector space)과 제어 계층",
+    "curated": true
+  },
+  {
+    "id": "slide35",
+    "label": "Slide 35",
+    "kind": "figure",
+    "file": "slide35.png",
+    "timestamp": "22:23",
+    "strategy": "keyframe",
+    "caption": "action 표현의 변화 (이산 토큰 자기회귀 생성에서 연속 생성으로)",
+    "curated": false
+  },
+  {
+    "id": "slide36",
+    "label": "Slide 36",
+    "kind": "figure",
+    "file": "slide36.png",
+    "timestamp": "22:59",
+    "strategy": "keyframe",
+    "caption": "action chunking의 원리와 효과 (16스텝 예측 중 앞 8스텝 실행)",
+    "curated": true
+  },
+  {
+    "id": "slide37",
+    "label": "Slide 37",
+    "kind": "figure",
+    "file": "slide37.png",
+    "timestamp": "24:54",
+    "strategy": "keyframe",
+    "caption": "Diffusion Policy와 flow matching 비교 (다봉 분포 표현과 학습 목적식)",
+    "curated": true
+  },
+  {
+    "id": "slide38",
+    "label": "Slide 38",
+    "kind": "figure",
+    "file": "slide38.png",
+    "timestamp": "26:23",
+    "strategy": "keyframe",
+    "caption": "System 2와 System 1 계층 구조와 모델별 주기",
+    "curated": true
+  },
+  {
+    "id": "slide39",
+    "label": "Slide 39",
+    "kind": "figure",
+    "file": "slide39.png",
+    "timestamp": "28:02",
+    "strategy": "keyframe",
+    "caption": "평가 방식 비교 (시뮬레이션 벤치마크와 실제 환경 평가)",
+    "curated": false
+  },
+  {
+    "id": "slide40",
+    "label": "Slide 40",
+    "kind": "figure",
+    "file": "slide40.png",
+    "timestamp": "28:48",
+    "strategy": "keyframe",
+    "caption": "연구 주제 규모별 필요 GPU와 로봇 데이터 자원",
+    "curated": false
+  },
+  {
+    "id": "slide42",
+    "label": "Slide 42",
+    "kind": "figure",
+    "file": "slide42.png",
+    "timestamp": "30:11",
+    "strategy": "keyframe",
+    "caption": "World model이 필요한 이유 (반응형 VLA와 상상 후 행동하는 world model)",
+    "curated": true
+  },
+  {
+    "id": "slide43",
+    "label": "Slide 43",
+    "kind": "figure",
+    "file": "slide43.png",
+    "timestamp": "30:45",
+    "strategy": "keyframe",
+    "caption": "World model의 계보와 네 가지 유형 분류",
+    "curated": false
+  },
+  {
+    "id": "slide44",
+    "label": "Slide 44",
+    "kind": "figure",
+    "file": "slide44.png",
+    "timestamp": "32:17",
+    "strategy": "keyframe",
+    "caption": "대표 world model 연구 (Genie 3, NVIDIA Cosmos, V-JEPA 2, 1X World Model)",
+    "curated": false
+  },
+  {
+    "id": "frame3404",
+    "label": "Frame 34:04",
+    "kind": "figure",
+    "file": "frame3404.png",
+    "timestamp": "34:04",
+    "strategy": "keyframe",
+    "caption": "Genie 3 소개 영상 화면 (텍스트로 생성한 세계에서 키보드 조작)",
+    "curated": false
+  },
+  {
+    "id": "slide46",
+    "label": "Slide 46",
+    "kind": "figure",
+    "file": "slide46.png",
+    "timestamp": "34:55",
+    "strategy": "keyframe",
+    "caption": "World model 활용 다섯 가지 (데이터 생성, policy 평가, 계획, 상상 속 RL, policy backbone)",
+    "curated": true
+  },
+  {
+    "id": "slide47",
+    "label": "Slide 47",
+    "kind": "figure",
+    "file": "slide47.png",
+    "timestamp": "35:45",
+    "strategy": "keyframe",
+    "caption": "World model의 남은 과제 (물리적 환각, 조건부 충실도, 장기 일관성, 비용)",
+    "curated": false
+  },
+  {
+    "id": "slide49",
+    "label": "Slide 49",
+    "kind": "figure",
+    "file": "slide49.png",
+    "timestamp": "37:30",
+    "strategy": "keyframe",
+    "caption": "Physical AI 진영 지형도 (VLM 대 world model, 하드웨어 수직계열화 대 플랫폼)",
+    "curated": true
+  },
+  {
+    "id": "slide50",
+    "label": "Slide 50",
+    "kind": "figure",
+    "file": "slide50.png",
+    "timestamp": "38:29",
+    "strategy": "keyframe",
+    "caption": "NVIDIA의 플랫폼 전략 (학습, 시뮬레이션과 합성 데이터, 배치)",
+    "curated": false
+  },
+  {
+    "id": "slide51",
+    "label": "Slide 51",
+    "kind": "figure",
+    "file": "slide51.png",
+    "timestamp": "38:58",
+    "strategy": "keyframe",
+    "caption": "Google DeepMind의 VLM 중심 전략 (RT-1에서 Gemini Robotics 2까지)",
+    "curated": false
+  },
+  {
+    "id": "slide52",
+    "label": "Slide 52",
+    "kind": "figure",
+    "file": "slide52.png",
+    "timestamp": "39:33",
+    "strategy": "keyframe",
+    "caption": "Meta와 AMI Labs의 latent 예측 전략 (V-JEPA 2)",
+    "curated": false
+  },
+  {
+    "id": "slide53",
+    "label": "Slide 53",
+    "kind": "figure",
+    "file": "slide53.png",
+    "timestamp": "40:03",
+    "strategy": "keyframe",
+    "caption": "Physical Intelligence의 연구 흐름 (π0에서 π0.7까지)",
+    "curated": false
+  },
+  {
+    "id": "slide54",
+    "label": "Slide 54",
+    "kind": "figure",
+    "file": "slide54.png",
+    "timestamp": "40:42",
+    "strategy": "keyframe",
+    "caption": "풀스택 humanoid 기업 비교 (Tesla Optimus, Figure AI, 1X)",
+    "curated": false
+  },
+  {
+    "id": "slide55",
+    "label": "Slide 55",
+    "kind": "figure",
+    "file": "slide55.png",
+    "timestamp": "41:22",
+    "strategy": "keyframe",
+    "caption": "데이터와 scaling 우선 기업 (Generalist AI, Skild AI)",
+    "curated": false
+  },
+  {
+    "id": "slide56",
+    "label": "Slide 56",
+    "kind": "figure",
+    "file": "slide56.png",
+    "timestamp": "41:54",
+    "strategy": "keyframe",
+    "caption": "중국의 하드웨어 규모와 자본시장 (Unitree, AgiBot)",
+    "curated": false
+  },
+  {
+    "id": "slide57",
+    "label": "Slide 57",
+    "kind": "figure",
+    "file": "slide57.png",
+    "timestamp": "42:29",
+    "strategy": "keyframe",
+    "caption": "국내 생태계 (삼성, LG, 현대차그룹, RLWRLD)와 정부 사업 일정",
+    "curated": false
+  },
+  {
+    "id": "slide58",
+    "label": "Slide 58",
+    "kind": "figure",
+    "file": "slide58.png",
+    "timestamp": "43:05",
+    "strategy": "keyframe",
+    "caption": "핵심 질문별 각 진영의 입장 정리표",
+    "curated": false
+  },
+  {
+    "id": "slide60",
+    "label": "Slide 60",
+    "kind": "figure",
+    "file": "slide60.png",
+    "timestamp": "44:04",
+    "strategy": "keyframe",
+    "caption": "Base VLA의 한계와 여섯 가지 확장 방향",
+    "curated": true
+  },
+  {
+    "id": "slide61",
+    "label": "Slide 61",
+    "kind": "figure",
+    "file": "slide61.png",
+    "timestamp": "44:36",
+    "strategy": "keyframe",
+    "caption": "3D 확장 (명시적 3D 입력과 암묵적 표현 alignment)",
+    "curated": false
+  },
+  {
+    "id": "slide62",
+    "label": "Slide 62",
+    "kind": "figure",
+    "file": "slide62.png",
+    "timestamp": "45:10",
+    "strategy": "keyframe",
+    "caption": "촉각과 힘 확장 (반응 속도 비교와 대표 연구)",
+    "curated": false
+  },
+  {
+    "id": "slide63",
+    "label": "Slide 63",
+    "kind": "figure",
+    "file": "slide63.png",
+    "timestamp": "46:44",
+    "strategy": "keyframe",
+    "caption": "Memory 확장 (RoboMME 벤치마크의 memory 유무별 성공률)",
+    "curated": false
+  },
+  {
+    "id": "slide64",
+    "label": "Slide 64",
+    "kind": "figure",
+    "file": "slide64.png",
+    "timestamp": "47:40",
+    "strategy": "keyframe",
+    "caption": "비동기 실시간 실행 (동기식과 비동기식 추론 실행 타임라인)",
+    "curated": true
+  },
+  {
+    "id": "slide65",
+    "label": "Slide 65",
+    "kind": "figure",
+    "file": "slide65.png",
+    "timestamp": "48:19",
+    "strategy": "keyframe",
+    "caption": "Reasoning 확장 (explicit reasoning과 latent reasoning)",
+    "curated": false
+  },
+  {
+    "id": "slide66",
+    "label": "Slide 66",
+    "kind": "figure",
+    "file": "slide66.png",
+    "timestamp": "49:09",
+    "strategy": "keyframe",
+    "caption": "VLA와 WAM 비교 (DreamZero, Cosmos Policy, mimic-video)",
+    "curated": true
+  },
+  {
+    "id": "slide68",
+    "label": "Slide 68",
+    "kind": "figure",
+    "file": "slide68.png",
+    "timestamp": "50:09",
+    "strategy": "keyframe",
+    "caption": "문제의식과 연구 방향 지도",
+    "curated": false
+  },
+  {
+    "id": "slide69",
+    "label": "Slide 69",
+    "kind": "figure",
+    "file": "slide69.png",
+    "timestamp": "50:22",
+    "strategy": "keyframe",
+    "caption": "데이터 부족 대응 (human video, 시뮬레이션, 합성 데이터)",
+    "curated": false
+  },
+  {
+    "id": "slide70",
+    "label": "Slide 70",
+    "kind": "figure",
+    "file": "slide70.png",
+    "timestamp": "51:12",
+    "strategy": "keyframe",
+    "caption": "일반화 연구 (co-training, compositional generalization, cross-embodiment)",
+    "curated": false
+  },
+  {
+    "id": "slide71",
+    "label": "Slide 71",
+    "kind": "figure",
+    "file": "slide71.png",
+    "timestamp": "51:50",
+    "strategy": "keyframe",
+    "caption": "신뢰성을 위한 RL post-training 사례",
+    "curated": false
+  },
+  {
+    "id": "slide72",
+    "label": "Slide 72",
+    "kind": "figure",
+    "file": "slide72.png",
+    "timestamp": "53:02",
+    "strategy": "keyframe",
+    "caption": "그 밖의 연구 방향과 대표 연구 (dexterity, continual learning, 효율, 평가, 안전, humanoid)",
+    "curated": false
+  },
+  {
+    "id": "slide73",
+    "label": "Slide 73",
+    "kind": "figure",
+    "file": "slide73.png",
+    "timestamp": "53:57",
+    "strategy": "keyframe",
+    "caption": "결론과 전망 네 가지",
+    "curated": false
+  }
+]
