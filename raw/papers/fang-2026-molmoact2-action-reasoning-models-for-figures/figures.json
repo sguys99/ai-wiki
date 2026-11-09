@@ -1,0 +1,1057 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig01.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 Overview of MolmoAct2. MolmoAct2 is a fully open action reasoning model for real-world deployment. From a suite of high-quality robot datasets that we collect, filter, and curate at scale across three platforms spanning the low-to-medium cost range ( left ), we train MolmoAct2 and its adapt",
+    "bbox": [
+      67.7,
+      72.59,
+      544.28,
+      227.76
+    ],
+    "bbox_norm": [
+      0.1106,
+      0.0917,
+      0.8893,
+      0.2876
+    ],
+    "dpi": 300,
+    "area_frac": 0.153,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig02.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig02.png",
+    "page": 7,
+    "caption": "Figure 2 Overview of the MolmoAct2 training data. Our data mixture combines public academic robot datasets, MolmoAct2-BimanualYAM Dataset , MolmoAct2-DROID Dataset , MolmoAct2-SO100/101 Dataset , multimodal web data, and embodied-reasoning data.",
+    "bbox": [
+      69.43,
+      87.33,
+      547.91,
+      365.82
+    ],
+    "bbox_norm": [
+      0.1134,
+      0.1103,
+      0.8953,
+      0.4619
+    ],
+    "dpi": 300,
+    "area_frac": 0.275,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig03.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig03.png",
+    "page": 8,
+    "caption": "Figure 3 MolmoAct2-BimanualYAM Dataset collection setup. Our standardized MolmoAct2-BimanualYAM Dataset collection setup. Every component is readily available for purchase, and the total cost of the entire setup is under $6,000 USD.",
+    "bbox": [
+      158.88,
+      66.84,
+      452.93,
+      302.07
+    ],
+    "bbox_norm": [
+      0.2596,
+      0.0844,
+      0.7401,
+      0.3814
+    ],
+    "dpi": 300,
+    "area_frac": 0.143,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig04.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig04.png",
+    "page": 11,
+    "caption": "Figure 4 Overview of MolmoAct2. Image observations, language instructions, and robot states are tokenized and processed by a pre-trained VLA backbone with self-attention layers. Post-training attaches a DiT-style action expert with the same number of layers as the backbone. At each layer, the backbo",
+    "bbox": [
+      61.32,
+      53.4,
+      550.68,
+      271.32
+    ],
+    "bbox_norm": [
+      0.1002,
+      0.0674,
+      0.8998,
+      0.3426
+    ],
+    "dpi": 300,
+    "area_frac": 0.22,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig05.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig05.png",
+    "page": 15,
+    "caption": "Figure 5 Overview of MolmoAct2-Think. MolmoAct2-Think augments the MolmoAct2 action-generation pipeline with adaptive depth-token reasoning, reusing cached depth codes for static regions and regenerating depth codes for changed regions before conditioning the action expert.",
+    "bbox": [
+      158.92,
+      57.78,
+      453.09,
+      308.08
+    ],
+    "bbox_norm": [
+      0.2597,
+      0.0729,
+      0.7403,
+      0.389
+    ],
+    "dpi": 300,
+    "area_frac": 0.152,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig06.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig06.png",
+    "page": 21,
+    "caption": "Figure 6 Performance comparison on the RoboEval benchmark. (A) Task-wise success rates (%) across eight manipulation tasks for Diffusion Policy, GR00T N1.5, X-VLA, π 0 . 5 -DROID, and MolmoAct. MolmoAct achieves the highest or near-highest success rates on most tasks, with particularly strong perfor",
+    "bbox": [
+      63.84,
+      70.84,
+      547.15,
+      210.02
+    ],
+    "bbox_norm": [
+      0.1043,
+      0.0894,
+      0.894,
+      0.2652
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig07.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig07.png",
+    "page": 23,
+    "caption": "Figure 7 Overview of efficient fine-tuning of MolmoAct2. We conduct a comprehensive evaluation across 8 real-world tasks outside of a laboratory setting, ranging from preparing a pipette for a chemist to placing toys back onto a shelf. MolmoAct2 , fine-tuned on the collected evaluation data, outperf",
+    "bbox": [
+      64.87,
+      57.77,
+      547.09,
+      391.71
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0729,
+      0.8939,
+      0.4946
+    ],
+    "dpi": 300,
+    "area_frac": 0.332,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p23.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig08.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig08.png",
+    "page": 27,
+    "caption": "Figure 8 Inference control rate after caching and CUDA Graph optimizations. Control rate is action horizon divided by end-to-end action-generation latency; measurements use horizon 10 on LIBERO with a single H100.",
+    "bbox": [
+      116.6,
+      57.78,
+      495.41,
+      299.21
+    ],
+    "bbox_norm": [
+      0.1905,
+      0.0729,
+      0.8095,
+      0.3778
+    ],
+    "dpi": 300,
+    "area_frac": 0.189,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig09.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig09.png",
+    "page": 45,
+    "caption": "Figure 9 Sample trajectories from the DROID evaluation of MolmoAct2.",
+    "bbox": [
+      64.87,
+      80.53,
+      547.13,
+      357.79
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1017,
+      0.894,
+      0.4518
+    ],
+    "dpi": 300,
+    "area_frac": 0.276,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p45.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig10.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig10.png",
+    "page": 46,
+    "caption": "Figure 10 Sample trajectories from the Bimanual YAM evaluation of MolmoAct2.",
+    "bbox": [
+      64.87,
+      96.53,
+      547.13,
+      474.65
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1219,
+      0.894,
+      0.5993
+    ],
+    "dpi": 300,
+    "area_frac": 0.376,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p46.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig11.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig11.png",
+    "page": 46,
+    "caption": "Figure 11 Sample trajectories from the out-of-distribution Bimanual YAM evaluation of MolmoAct2.",
+    "bbox": [
+      64.87,
+      569.04,
+      547.14,
+      667.46
+    ],
+    "bbox_norm": [
+      0.106,
+      0.7185,
+      0.894,
+      0.8428
+    ],
+    "dpi": 300,
+    "area_frac": 0.098,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p46.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig12.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig12.png",
+    "page": 47,
+    "caption": "Figure 12 Sample trajectories from the SO-100 evaluation of MolmoAct2.",
+    "bbox": [
+      64.87,
+      456.58,
+      547.15,
+      705.7
+    ],
+    "bbox_norm": [
+      0.106,
+      0.5765,
+      0.894,
+      0.891
+    ],
+    "dpi": 300,
+    "area_frac": 0.248,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p47.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig13.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig13.png",
+    "page": 48,
+    "caption": "Figure 13 Action verb distribution before and after language annotation.",
+    "bbox": [
+      79.68,
+      207.84,
+      520.08,
+      469.32
+    ],
+    "bbox_norm": [
+      0.1302,
+      0.2624,
+      0.8498,
+      0.5926
+    ],
+    "dpi": 300,
+    "area_frac": 0.238,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p48.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/fig14.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/fig14.png",
+    "page": 49,
+    "caption": "Figure 14 Sample trajectories from the SO10x dataset partition.",
+    "bbox": [
+      88.38,
+      57.78,
+      523.62,
+      261.12
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.073,
+      0.8556,
+      0.3297
+    ],
+    "dpi": 300,
+    "area_frac": 0.183,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p49.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab01.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab01.png",
+    "page": 4,
+    "caption": "Table1 MolmoAct2multimodalwebdatatrainingcorpus(combiningdatafromMolmo2, Molmo2-ER,andTulu-3). Sizes denote the number of samples used in our mixture (we subsample several datasets to balance the mixture). Sampling weights are the marginal proportion of each group within the non-robotics portion of ",
+    "bbox": [
+      115.58,
+      114.49,
+      496.42,
+      235.12
+    ],
+    "bbox_norm": [
+      0.1888,
+      0.1446,
+      0.8112,
+      0.2969
+    ],
+    "dpi": 300,
+    "area_frac": 0.095,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p04.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab02.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab02.png",
+    "page": 10,
+    "caption": "Table 2 Embodiment mixture for MolmoAct2-FAST Tokenizer training. The tokenizer is trained on one million subsampled action sequences spanning the main robot embodiments used by MolmoAct2 , plus smaller sources that broaden control-mode coverage.",
+    "bbox": [
+      113.89,
+      102.04,
+      498.11,
+      212.68
+    ],
+    "bbox_norm": [
+      0.1861,
+      0.1288,
+      0.8139,
+      0.2685
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p10.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab03.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab03.png",
+    "page": 18,
+    "caption": "Table 3 Embodied reasoning results. We evaluate on benchmarks across spatial reasoning, pointing, and embodied QA tasks. The best-performing open-weight model on each benchmark is in bold , and the second best is underlined .",
+    "bbox": [
+      64.87,
+      89.65,
+      547.16,
+      366.42
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1132,
+      0.8941,
+      0.4626
+    ],
+    "dpi": 300,
+    "area_frac": 0.275,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab04.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab04.png",
+    "page": 19,
+    "caption": "Table 4 Results across MolmoSpace tasks. We evaluate all models on four manipulation skill categories—Pick, Pick & Place, Open, and Close—and report mean success rate (%) with standard error across three independent evaluation runs. Bold denotes the best and underline the second-best per task. Molmo",
+    "bbox": [
+      91.54,
+      167.97,
+      520.45,
+      266.43
+    ],
+    "bbox_norm": [
+      0.1496,
+      0.2121,
+      0.8504,
+      0.3364
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab05.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab05.png",
+    "page": 19,
+    "caption": "Table 5 Evaluation on simulation held-out environments. Simulation success rates are evaluated over 1000 episodes per task. For pick-and-place tasks, we report both oracle success (first number, which is the success conditions being fulfilled at any timestep) and success at end (second number, the s",
+    "bbox": [
+      91.54,
+      167.97,
+      520.45,
+      266.43
+    ],
+    "bbox_norm": [
+      0.1496,
+      0.2121,
+      0.8504,
+      0.3364
+    ],
+    "dpi": 300,
+    "area_frac": 0.087,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab06.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab06.png",
+    "page": 20,
+    "caption": "Table 6 Success rates (%) across manipulation tasks. Each cell reports the percentage of successful trajectories out of 15 trials. Bold denotes the best and underline the second-best per task.",
+    "bbox": [
+      69.45,
+      90.88,
+      542.55,
+      146.55
+    ],
+    "bbox_norm": [
+      0.1135,
+      0.1148,
+      0.8865,
+      0.185
+    ],
+    "dpi": 300,
+    "area_frac": 0.054,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab07.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab07.png",
+    "page": 20,
+    "caption": "Table 7 Success rates (%) across manipulation tasks on the SO-100 platform. Each cell reports the mean score over 15 trials, where partial credit is awarded for sub-task completion (0.25 for reaching, 0.5 for pickup, 1.0 for successful placement). Bold denotes the best and underline the second-best ",
+    "bbox": [
+      69.83,
+      191.36,
+      542.17,
+      250.71
+    ],
+    "bbox_norm": [
+      0.1141,
+      0.2416,
+      0.8859,
+      0.3165
+    ],
+    "dpi": 300,
+    "area_frac": 0.058,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p20.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab08.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab08.png",
+    "page": 22,
+    "caption": "Table 8 LIBERO benchmark success rates across four task categories (Spatial, Object, Goal, and Long-horizon) along with the average performance. MolmoAct2 achieves the highest overall average success rate of 97.2%, outperforming all strong baselines, with strong performance across all categories, pa",
+    "bbox": [
+      120.01,
+      123.44,
+      488.92,
+      313.15
+    ],
+    "bbox_norm": [
+      0.1961,
+      0.1559,
+      0.7989,
+      0.3954
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab09.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab09.png",
+    "page": 24,
+    "caption": "Table 9 Robustness of MolmoAct2 under environmental perturbations. We evaluate MolmoAct2 against four baselines on out-of-distribution scenarios spanning spatial variation, lighting, language rephrasing, and visual distractors. MolmoAct2 is the most robust, achieving an average success rate of 50.69",
+    "bbox": [
+      87.36,
+      122.93,
+      524.64,
+      224.69
+    ],
+    "bbox_norm": [
+      0.1427,
+      0.1552,
+      0.8573,
+      0.2837
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab10.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab10.png",
+    "page": 25,
+    "caption": "Table 10 Backbone ablation on LIBERO Long. Both variants are trained directly from the VLM checkpoint with only discrete action prediction using MolmoAct2-FAST Tokenizer . The final row is marked in pink, which is what we initialize with for MolmoAct2-Pretrain .",
+    "bbox": [
+      173.54,
+      102.22,
+      435.15,
+      156.45
+    ],
+    "bbox_norm": [
+      0.2836,
+      0.1291,
+      0.711,
+      0.1975
+    ],
+    "dpi": 300,
+    "area_frac": 0.029,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab11.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab11.png",
+    "page": 25,
+    "caption": "Table 11 Ablation of the VLM-to-action-expert conditioning source on LIBERO. All variants are trained from MolmoAct2-Pretrain with the same configuration. Bold denotes the best result per column. The final row is marked in pink, which is what we use in all MolmoAct2 and MolmoAct2-Think post-training",
+    "bbox": [
+      64.49,
+      165.68,
+      548.5,
+      332.69
+    ],
+    "bbox_norm": [
+      0.1054,
+      0.2092,
+      0.8962,
+      0.4201
+    ],
+    "dpi": 300,
+    "area_frac": 0.167,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab12.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab12.png",
+    "page": 25,
+    "caption": "Table 12 Ablation of the number of flow samples on LIBERO. All rows use per-layer KV conditioning and are trained from MolmoAct2-Pretrain with the same configuration. Bold denotes the best result per column. The final row is marked in pink, which is what we stick to in all of MolmoAct2 and MolmoAct2",
+    "bbox": [
+      64.51,
+      455.78,
+      549.08,
+      539.1
+    ],
+    "bbox_norm": [
+      0.1054,
+      0.5755,
+      0.8972,
+      0.6807
+    ],
+    "dpi": 300,
+    "area_frac": 0.083,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p25.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab13.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab13.png",
+    "page": 26,
+    "caption": "Table 13 Ablation of MolmoAct2 fine-tuning design choices on LIBERO. Component columns indicate whether each design choice is enabled: ✓ denotes enabled and ✗ denotes disabled. Bold denotes the best result per column. The final row is the MolmoAct2-LIBERO recipe, where its training design is marked ",
+    "bbox": [
+      91.41,
+      181.38,
+      517.27,
+      289.87
+    ],
+    "bbox_norm": [
+      0.1494,
+      0.229,
+      0.8452,
+      0.366
+    ],
+    "dpi": 300,
+    "area_frac": 0.095,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab14.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab14.png",
+    "page": 26,
+    "caption": "Table 14 Ablation of MolmoAct2-Think depth fine-tuning choices on LIBERO. Mixed training denotes uniform sampling of action-only and depth-and-action examples. ✓ denotes enabled and ✗ denotes disabled. Bold denotes the best result per column. The final all-enabled row is the MolmoAct2-Think-LIBERO r",
+    "bbox": [
+      64.51,
+      299.34,
+      549.04,
+      394.92
+    ],
+    "bbox_norm": [
+      0.1054,
+      0.3779,
+      0.8971,
+      0.4986
+    ],
+    "dpi": 300,
+    "area_frac": 0.096,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p26.png"
+  },
+  {
+    "id": "tab15",
+    "label": "Table 15",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab15.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab15.png",
+    "page": 36,
+    "caption": "Table 15 MolmoAct2 architecture hyperparameters. The image encoder, connector, and LLM columns follow the 4B Molmo2-ER backbone used by MolmoAct2 . The action-expert column describes the MolmoAct2 continuous flow-matching module used for continuous action prediction.",
+    "bbox": [
+      155.8,
+      56.69,
+      456.2,
+      363.95
+    ],
+    "bbox_norm": [
+      0.2546,
+      0.0716,
+      0.7454,
+      0.4595
+    ],
+    "dpi": 300,
+    "area_frac": 0.19,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p36.png"
+  },
+  {
+    "id": "tab16",
+    "label": "Table 16",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab16.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab16.png",
+    "page": 42,
+    "caption": "Table16 MolmoAct2traininghyperparameters. We summarize the stage-level hyperparameters used for pre-training, post-training, and embodiment-specific fine-tuning. We only show the fine-tuning hyperparameters for the training on major datasets.",
+    "bbox": [
+      95.77,
+      58.18,
+      516.23,
+      316.07
+    ],
+    "bbox_norm": [
+      0.1565,
+      0.0735,
+      0.8435,
+      0.3991
+    ],
+    "dpi": 300,
+    "area_frac": 0.224,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p42.png"
+  },
+  {
+    "id": "tab17",
+    "label": "Table 17",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab17.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab17.png",
+    "page": 44,
+    "caption": "Table 17 Summary of performance metrics across all methods on the combined variation. Bold values indicate the best result for each metric within the task. Values are reported as mean ± 95% confidence interval. The final row reports human demonstration statistics (computed from successful teleoperat",
+    "bbox": [
+      64.86,
+      170.5,
+      547.14,
+      636.15
+    ],
+    "bbox_norm": [
+      0.106,
+      0.2153,
+      0.894,
+      0.8032
+    ],
+    "dpi": 300,
+    "area_frac": 0.463,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p44.png"
+  },
+  {
+    "id": "tab18",
+    "label": "Table 18",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab18.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab18.png",
+    "page": 45,
+    "caption": "Table 18 Per-task and per-position success rates across policies. Each task uses 15 trajectories (5 per position).",
+    "bbox": [
+      64.87,
+      441.51,
+      572.59,
+      692.69
+    ],
+    "bbox_norm": [
+      0.106,
+      0.5575,
+      0.9356,
+      0.8746
+    ],
+    "dpi": 300,
+    "area_frac": 0.263,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p45.png"
+  },
+  {
+    "id": "tab19",
+    "label": "Table 19",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab19.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab19.png",
+    "page": 47,
+    "caption": "Table 19 Overall success rate (%) across 8 manipulation tasks (50 episodes each). Best model per task is bold .",
+    "bbox": [
+      153.34,
+      79.61,
+      458.66,
+      262.95
+    ],
+    "bbox_norm": [
+      0.2506,
+      0.1005,
+      0.7494,
+      0.332
+    ],
+    "dpi": 300,
+    "area_frac": 0.115,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p47.png"
+  },
+  {
+    "id": "tab20",
+    "label": "Table 20",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab20.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab20.png",
+    "page": 47,
+    "caption": "Table 20 Zero-shot success rate (%) on SO-100 tasks with fixed initial camera position. Each task is graded with partial credit at three milestones; partial scores of 0.25, 0.5, and 1.0 are awarded for reaching the corresponding stage. 15 episodes per task. Best model per task is bold .",
+    "bbox": [
+      86.28,
+      303.57,
+      525.72,
+      459.2
+    ],
+    "bbox_norm": [
+      0.141,
+      0.3833,
+      0.859,
+      0.5798
+    ],
+    "dpi": 300,
+    "area_frac": 0.141,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p47.png"
+  },
+  {
+    "id": "tab21",
+    "label": "Table 21",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab21.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab21.png",
+    "page": 48,
+    "caption": "Table 21 Summary statistics for the SO-100/101 training subset. We report statistics for the final filtered MolmoAct2-SO100/101 Dataset partition.",
+    "bbox": [
+      197.92,
+      540.46,
+      411.26,
+      699.05
+    ],
+    "bbox_norm": [
+      0.3234,
+      0.6824,
+      0.672,
+      0.8826
+    ],
+    "dpi": 300,
+    "area_frac": 0.07,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p48.png"
+  },
+  {
+    "id": "tab22",
+    "label": "Table 22",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab22.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab22.png",
+    "page": 49,
+    "caption": "Table 22 SO-10x data partition breakdown by robot type.",
+    "bbox": [
+      186.31,
+      303.72,
+      422.87,
+      367.96
+    ],
+    "bbox_norm": [
+      0.3044,
+      0.3835,
+      0.691,
+      0.4646
+    ],
+    "dpi": 300,
+    "area_frac": 0.031,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p49.png"
+  },
+  {
+    "id": "tab23",
+    "label": "Table 23",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab23.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab23.png",
+    "page": 50,
+    "caption": "Table 23 Recording and feature metadata. Most demonstrations are recorded at 30 Hz with two camera streams; all final filtered datasets use six-dimensional action and state vectors.",
+    "bbox": [
+      174.9,
+      117.26,
+      434.28,
+      275.85
+    ],
+    "bbox_norm": [
+      0.2858,
+      0.1481,
+      0.7096,
+      0.3483
+    ],
+    "dpi": 300,
+    "area_frac": 0.085,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p50.png"
+  },
+  {
+    "id": "tab24",
+    "label": "Table 24",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab24.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab24.png",
+    "page": 50,
+    "caption": "Table 24 Dataset Language Annotation Diversity. Running the language annotation pipeline increases the number of unique instructions for all of the robotics datasets in MolmoAct2 ’s training mix.",
+    "bbox": [
+      114.14,
+      372.42,
+      495.04,
+      482.25
+    ],
+    "bbox_norm": [
+      0.1865,
+      0.4702,
+      0.8089,
+      0.6089
+    ],
+    "dpi": 300,
+    "area_frac": 0.086,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p50.png"
+  },
+  {
+    "id": "tab25",
+    "label": "Table 25",
+    "kind": "table",
+    "file": "assets/fang-2026-molmoact2-action-reasoning-models-for/tab25.png",
+    "raw": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/tab25.png",
+    "page": 50,
+    "caption": "Table 25 Past Tabletop Bimanual Manipulation Datasets. MolmoAct2-BimanualYAM Dataset is the largest open-source tabletop bimanual robotics dataset. In this table, we compare against other open and closed-source tabletop bimanual datasets from the literature.",
+    "bbox": [
+      64.87,
+      588.8,
+      565.09,
+      698.93
+    ],
+    "bbox_norm": [
+      0.106,
+      0.7434,
+      0.9233,
+      0.8825
+    ],
+    "dpi": 300,
+    "area_frac": 0.114,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/fang-2026-molmoact2-action-reasoning-models-for-figures/_overlay/p50.png"
+  }
+]
