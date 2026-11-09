@@ -106,6 +106,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/shukor-2025-smolvla-a-vision-language-action-model|SmolVLA (Hugging Face)]]: π0의 구도를 450M으로 줄이고 커뮤니티 공개 데이터로 학습한 VLA. GPU 한 장 학습과 asynchronous inference로 배포 비용을 겨냥한다 (2025, paper)
 - [[physical-ai/physical-intelligence-2024-our-first-generalist-policy|π0: Our First Generalist Policy (블로그)]]: π0 논문과 같은 날 나온 공식 발표문. zero-shot 과제별 점수와 무편집 데모 영상을 싣는다 (2024, article)
 - [[physical-ai/black-2025-pi05-a-vision-language-action-model-with|π0.5 (Physical Intelligence)]]: π0의 후속. 규모가 아니라 학습 데이터 구성을 바꿔, 여러 원천을 한 mixture에 넣는 co-training으로 처음 보는 가정집에서 동작한다 (2025, paper)
+- [[physical-ai/wu-2026-a-pragmatic-vla-foundation-model|LingBot-VLA]]: dual-arm 로봇 9종, 약 2만 시간 실제 데이터로 pre-training한 VLA. GM-100 과제 100개 실제 평가에서 π0.5를 앞서고 데이터 scaling이 포화 없이 이어짐을 보인다 (2026, paper)
 - [[physical-ai/physical-intelligence-2025-a-vla-with-open-world|π0.5: a VLA with Open-World Generalization (블로그)]]: π0.5 논문과 같은 날 나온 공식 발표문. 논문이 그래프로만 준 언어 ablation 수치를 값으로 적는다 (2025, article)
 - [[physical-ai/amin-2025-pistar06-a-vla-that-learns|π*0.6 / RECAP (Physical Intelligence)]]: 배치된 로봇의 experience와 전문가 개입을 강화학습 신호로 바꿔 학습에 반영하는 VLA. 학습 레시피 이름은 RECAP이다 (2025, paper)
 - [[physical-ai/physical-intelligence-2025-a-vla-that-learns-from|π*0.6: a VLA that Learns from Experience (블로그)]]: π*0.6 논문과 같은 날 나온 공식 발표문. 논문에 없는 배치 현장의 실행 시간과 규모를 적는다 (2025, article)

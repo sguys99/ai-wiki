@@ -1,0 +1,462 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/fig01.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1. Overview of LingBot-VLA . We scale dual-arm robot data collected in the real world for pre-training. LingBot-VLA can be easily and efficiently transferred to downstream tasks. Moreover, we conduct a systematic assessment across three robotic embodiments, which demonstrates the clear superi",
+    "bbox": [
+      64.87,
+      64.87,
+      547.13,
+      390.77
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0819,
+      0.894,
+      0.4934
+    ],
+    "dpi": 300,
+    "area_frac": 0.324,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/fig02.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2. Visualization of pre-training dataset used by LingBot-VLA .",
+    "bbox": [
+      64.87,
+      64.86,
+      559.12,
+      279.28
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0819,
+      0.9136,
+      0.3526
+    ],
+    "dpi": 300,
+    "area_frac": 0.219,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/fig03.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3. Word cloud of atomic actions in (a) Pre-training datasets and (b) Benchmark.",
+    "bbox": [
+      65.73,
+      64.87,
+      547.13,
+      210.27
+    ],
+    "bbox_norm": [
+      0.1074,
+      0.0819,
+      0.894,
+      0.2655
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/fig04.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/fig04.png",
+    "page": 8,
+    "caption": "Figure 4. Training throughput analysis of the (a) Qwen2.5-VL-3B- π and (b) PaliGemma-3B-pt-224- π models.",
+    "bbox": [
+      64.87,
+      64.86,
+      547.13,
+      223.79
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0819,
+      0.894,
+      0.2826
+    ],
+    "dpi": 300,
+    "area_frac": 0.158,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/fig05.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/fig05.png",
+    "page": 9,
+    "caption": "Figure 5. Scaling behavior across dataset size. With increased data scale, our model exhibits scaling laws in terms of success rate and progress rate.",
+    "bbox": [
+      64.87,
+      64.86,
+      547.13,
+      239.31
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0819,
+      0.894,
+      0.3022
+    ],
+    "dpi": 300,
+    "area_frac": 0.174,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/fig06.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/fig06.png",
+    "page": 9,
+    "caption": "Figure 6. Data efficiency of LingBot-VLA post-training.",
+    "bbox": [
+      326.34,
+      357.1,
+      530.19,
+      497.0
+    ],
+    "bbox_norm": [
+      0.5332,
+      0.4509,
+      0.8663,
+      0.6275
+    ],
+    "dpi": 300,
+    "area_frac": 0.059,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p09.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/tab01.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1. Experiment results of real-world evaluation on GM-100 [ 29 ] benchmark. ‘SR’ refers to success rate, and ‘PS’ refers to progress score.",
+    "bbox": [
+      68.03,
+      94.09,
+      543.54,
+      188.19
+    ],
+    "bbox_norm": [
+      0.1112,
+      0.1188,
+      0.8881,
+      0.2376
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tabs1",
+    "label": "Table S1",
+    "kind": "table",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/tabs1.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/tabs1.png",
+    "page": 12,
+    "caption": "Table S1. Real-world evaluation on GM-100 [ 29 ] benchmark ( Wheeled Humanoid Robot : AgileX, Part I).",
+    "bbox": [
+      71.03,
+      104.9,
+      540.97,
+      708.02
+    ],
+    "bbox_norm": [
+      0.1161,
+      0.1324,
+      0.8839,
+      0.894
+    ],
+    "dpi": 300,
+    "area_frac": 0.585,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p12.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/tab02.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/tab02.png",
+    "page": 7,
+    "caption": "Table 2. Experiment results of simulation evaluation on RoboTwin 2.0 [ 8 ] benchmark.",
+    "bbox": [
+      61.32,
+      203.88,
+      550.68,
+      271.32
+    ],
+    "bbox_norm": [
+      0.1002,
+      0.2574,
+      0.8998,
+      0.3426
+    ],
+    "dpi": 300,
+    "area_frac": 0.068,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tabs2",
+    "label": "Table S2",
+    "kind": "table",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/tabs2.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/tabs2.png",
+    "page": 13,
+    "caption": "Table S2. Real-world evaluation on GM-100 [ 29 ] benchmark ( Wheeled Humanoid Robot : AgileX, Part II).",
+    "bbox": [
+      71.03,
+      110.38,
+      540.97,
+      702.54
+    ],
+    "bbox_norm": [
+      0.1161,
+      0.1394,
+      0.8839,
+      0.887
+    ],
+    "dpi": 300,
+    "area_frac": 0.574,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tabs3",
+    "label": "Table S3",
+    "kind": "table",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/tabs3.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/tabs3.png",
+    "page": 14,
+    "caption": "Table S3. Real-world evaluation on GM-100 [ 29 ] benchmark ( Wheeled Humanoid Robot : AgibotG1, Part I).",
+    "bbox": [
+      66.55,
+      104.9,
+      545.45,
+      708.02
+    ],
+    "bbox_norm": [
+      0.1087,
+      0.1324,
+      0.8913,
+      0.894
+    ],
+    "dpi": 300,
+    "area_frac": 0.596,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tabs4",
+    "label": "Table S4",
+    "kind": "table",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/tabs4.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/tabs4.png",
+    "page": 15,
+    "caption": "Table S4. Real-world evaluation on GM-100 [ 29 ] benchmark ( Wheeled Humanoid Robot : AgibotG1, Part II).",
+    "bbox": [
+      75.52,
+      110.38,
+      536.48,
+      702.54
+    ],
+    "bbox_norm": [
+      0.1234,
+      0.1394,
+      0.8766,
+      0.887
+    ],
+    "dpi": 300,
+    "area_frac": 0.563,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p15.png"
+  },
+  {
+    "id": "tabs5",
+    "label": "Table S5",
+    "kind": "table",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/tabs5.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/tabs5.png",
+    "page": 16,
+    "caption": "Table S5. Real-world evaluation on GM-100 [ 29 ] benchmark ( Wheeled Humanoid Robot : Galaxea R1Pro, Part I).",
+    "bbox": [
+      71.03,
+      104.9,
+      540.97,
+      708.02
+    ],
+    "bbox_norm": [
+      0.1161,
+      0.1324,
+      0.8839,
+      0.894
+    ],
+    "dpi": 300,
+    "area_frac": 0.585,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p16.png"
+  },
+  {
+    "id": "tabs6",
+    "label": "Table S6",
+    "kind": "table",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/tabs6.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/tabs6.png",
+    "page": 17,
+    "caption": "Table S6. Real-world evaluation on GM-100 [ 29 ] benchmark ( Wheeled Humanoid Robot : Galaxea R1Pro, Part II).",
+    "bbox": [
+      75.52,
+      110.38,
+      536.48,
+      702.54
+    ],
+    "bbox_norm": [
+      0.1234,
+      0.1394,
+      0.8766,
+      0.887
+    ],
+    "dpi": 300,
+    "area_frac": 0.563,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p17.png"
+  },
+  {
+    "id": "tabs7",
+    "label": "Table S7",
+    "kind": "table",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/tabs7.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/tabs7.png",
+    "page": 18,
+    "caption": "Table S7. Real-world evaluation on GM-100 [ 29 ] benchmark ( Bipedal Humanoid Robot : Leju KUAVO 4 Pro, Part I).",
+    "bbox": [
+      64.87,
+      110.38,
+      552.73,
+      702.54
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1394,
+      0.9032,
+      0.887
+    ],
+    "dpi": 300,
+    "area_frac": 0.596,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p18.png"
+  },
+  {
+    "id": "tabs8",
+    "label": "Table S8",
+    "kind": "table",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/tabs8.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/tabs8.png",
+    "page": 19,
+    "caption": "Table S8. Real-world evaluation on GM-100 [ 29 ] benchmark ( Bipedal Humanoid Robot : Leju KUAVO 4 Pro, Part II).",
+    "bbox": [
+      71.03,
+      126.82,
+      540.97,
+      686.1
+    ],
+    "bbox_norm": [
+      0.1161,
+      0.1601,
+      0.8839,
+      0.8663
+    ],
+    "dpi": 300,
+    "area_frac": 0.542,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p19.png"
+  },
+  {
+    "id": "tabs9",
+    "label": "Table S9",
+    "kind": "table",
+    "file": "assets/wu-2026-a-pragmatic-vla-foundation-model/tabs9.png",
+    "raw": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/tabs9.png",
+    "page": 20,
+    "caption": "Table S9. Simulation evaluation on RoboTwin 2.0 [ 8 ] benchmark, under “clean” and “randomized” settings.",
+    "bbox": [
+      76.13,
+      110.38,
+      533.63,
+      702.54
+    ],
+    "bbox_norm": [
+      0.1244,
+      0.1394,
+      0.8719,
+      0.887
+    ],
+    "dpi": 300,
+    "area_frac": 0.559,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/wu-2026-a-pragmatic-vla-foundation-model-figures/_overlay/p20.png"
+  }
+]
