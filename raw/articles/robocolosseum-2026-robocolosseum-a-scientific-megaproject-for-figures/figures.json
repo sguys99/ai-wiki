@@ -1,0 +1,90 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for/fig01.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for-figures/fig01.png",
+    "caption": "Image 1: The two tracks. (a) Fine-tune track: bring your own models (MLP, transformer or diffusion), fine-tune on fixed datasets collected at fixed scenes, then evaluate on fixed scenes, with new scenes added over time. (b) Open track: any training data, evaluate on any task in open-world scenes such as a kitchen, laundry, warehouse or outdoors, then compare two policies pairwise.",
+    "source_url": "https://robocolosseum.ai/blog/evaluating-physical-intelligence-in-the-wild/tracks.png",
+    "bytes": 1479279,
+    "width": 2025,
+    "height": 777,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for/fig02.webp",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for-figures/fig02.webp",
+    "caption": "Image 2: The four standardized setups with their parts labelled: MolmoAct2 YAMs, SO-101, Franka DROID and the G1 humanoid.",
+    "source_url": "https://robocolosseum.ai/blog/evaluating-physical-intelligence-in-the-wild/setups.webp",
+    "bytes": 92278,
+    "width": 2048,
+    "height": 487,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for/page-full.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for/crop01.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for/crop02.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for/crop03.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for-figures/crop03.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for/crop04.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for-figures/crop04.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for/crop05.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for-figures/crop05.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for/crop06.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for-figures/crop06.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig10",
+    "file": "assets/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for/crop07.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-a-scientific-megaproject-for-figures/crop07.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]

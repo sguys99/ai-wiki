@@ -1,0 +1,515 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig01.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 RoboColosseum overview. RoboColosseum connects distributed evaluation sites through shared robot interfaces, policy-serving infrastructure, and two complementary evaluation tracks. In the Fine-tune Track , policies receive the same 100 demonstrations per task and are evaluated on predefined",
+    "bbox": [
+      64.87,
+      57.79,
+      547.12,
+      378.96
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.4785
+    ],
+    "dpi": 300,
+    "area_frac": 0.32,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig02.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig02.png",
+    "page": 5,
+    "caption": "Figure 2 Robot platforms and hardware configurations. From left to right: Bimanual-YAM, SO-101, Franka in the DROID configuration, and Unitree G1, shown from the front and rear. Annotations identify cameras, grippers, computing equipment, and supporting hardware. These platforms span bimanual manipu",
+    "bbox": [
+      64.87,
+      57.78,
+      547.14,
+      181.7
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0729,
+      0.894,
+      0.2294
+    ],
+    "dpi": 300,
+    "area_frac": 0.123,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig03.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig03.png",
+    "page": 9,
+    "caption": "Figure 3 Open Track DCR ratings across embodiments. Points show posterior mean DCR ratings on an Elo-style scale, with 95% credible intervals; n is the number of evaluations involving each system.",
+    "bbox": [
+      64.87,
+      57.78,
+      547.12,
+      248.02
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.3132
+    ],
+    "dpi": 300,
+    "area_frac": 0.189,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig04.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig04.png",
+    "page": 10,
+    "caption": "Figure 4 Task progress of frontier AI models versus VLA policies. Comparison of normalized task progress across 901 Open Track evaluations, each involving a frontier AI model and a VLA policy on the same task. (a) Percentage of comparisons in which the agent makes more progress, the VLA makes more p",
+    "bbox": [
+      64.87,
+      57.78,
+      547.14,
+      228.2
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.2881
+    ],
+    "dpi": 300,
+    "area_frac": 0.17,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig06.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig06.png",
+    "page": 12,
+    "caption": "Figure 6 Physical task performance across human-rated task difficulty. Open Track policy executions grouped by the human-rated difficulty of the task, with each pairwise evaluation contributing one execution per compared system. (a) Success rate, with 95% Wilson confidence intervals. (b) Mean normal",
+    "bbox": [
+      88.38,
+      57.78,
+      523.63,
+      222.57
+    ],
+    "bbox_norm": [
+      0.1444,
+      0.073,
+      0.8556,
+      0.281
+    ],
+    "dpi": 300,
+    "area_frac": 0.148,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig07.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig07.png",
+    "page": 12,
+    "caption": "Figure 7 Task progress reachability. Percentage of trials satisfying at least a given fraction of task criteria, averaged over the five tasks of each embodiment with equal weight. The 100% point is the full success rate. † LingBot-VLA v2 on FT-YAM-02 was stopped after n = 1 trial, and GR00T N1.7 on ",
+    "bbox": [
+      64.87,
+      276.32,
+      547.15,
+      447.5
+    ],
+    "bbox_norm": [
+      0.106,
+      0.3489,
+      0.894,
+      0.565
+    ],
+    "dpi": 300,
+    "area_frac": 0.17,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig08.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig08.png",
+    "page": 14,
+    "caption": "Figure 8 Policy-specific failure stages after fine-tuning. We show two tasks whose progress criteria form an ordered sequence: SO-101 cube_drawer and DROID/Franka close_laptop . Each bar divides a policy’s 25 evaluation trials into full-task successes (green) and failures, shaded by the first criter",
+    "bbox": [
+      64.87,
+      57.78,
+      547.15,
+      217.38
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.2745
+    ],
+    "dpi": 300,
+    "area_frac": 0.159,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig09.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig09.png",
+    "page": 15,
+    "caption": "Figure 9 Cross-track ranking consistency by embodiment. Open Track and Fine-tune Track rankings of the five VLA policies on (a) SO-101, (b) DROID/Franka, and (c) Bimanual-YAM. For each embodiment, the Open Track rank is computed from the DCR rating, while the Fine-tuning rank is computed from the me",
+    "bbox": [
+      64.87,
+      57.78,
+      547.12,
+      250.14
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.3158
+    ],
+    "dpi": 300,
+    "area_frac": 0.191,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig10.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig10.png",
+    "page": 16,
+    "caption": "Figure 10 Ranking consistency. a. Cross-embodiment ranking consistency based on Fine-tune Track progress score (PS) across SO-101, DROID, Bimanual-YAM, and Unitree G1. Rank 1 denotes the best-performing model on an",
+    "bbox": [
+      64.87,
+      57.78,
+      540.01,
+      227.85
+    ],
+    "bbox_norm": [
+      0.106,
+      0.0729,
+      0.8824,
+      0.2877
+    ],
+    "dpi": 300,
+    "area_frac": 0.167,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig11.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig11.png",
+    "page": 17,
+    "caption": "Figure 11 Ranking efficiency and stability under limited evaluation budgets. a. Active matchmaking improves ranking efficiency. Ranking agreement with the full-data DCR leaderboard is shown as a function of the number of physical A/B evaluations. Active matchmaking prioritizes uncertain model pairs,",
+    "bbox": [
+      65.11,
+      57.78,
+      544.58,
+      227.85
+    ],
+    "bbox_norm": [
+      0.1064,
+      0.073,
+      0.8898,
+      0.2877
+    ],
+    "dpi": 300,
+    "area_frac": 0.168,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig12.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig12.png",
+    "page": 29,
+    "caption": "Figure 12 Per-task progress reachability on SO-101. Percentage of the 25 trials per model satisfying at least a given fraction of the task’s K progress criteria.",
+    "bbox": [
+      64.87,
+      57.78,
+      547.14,
+      380.27
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.4801
+    ],
+    "dpi": 300,
+    "area_frac": 0.321,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig13.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig13.png",
+    "page": 30,
+    "caption": "Figure 13 Per-task progress reachability on DROID. Percentage of the 25 trials per model satisfying at least a given fraction of the task’s K progress criteria.",
+    "bbox": [
+      64.87,
+      57.78,
+      547.14,
+      380.27
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.4801
+    ],
+    "dpi": 300,
+    "area_frac": 0.321,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p30.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig14.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig14.png",
+    "page": 31,
+    "caption": "Figure 14 Per-task progress reachability on Bimanual-YAM. Percentage of completed trials satisfying at least a given fraction of the task’s K progress criteria. Hollow markers denote evaluations stopped early for safety, with the number of completed trials n given in the panel title; all other curve",
+    "bbox": [
+      64.87,
+      57.78,
+      547.14,
+      380.27
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.4801
+    ],
+    "dpi": 300,
+    "area_frac": 0.321,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/fig15.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/fig15.png",
+    "page": 32,
+    "caption": "Figure 15 Per-task progress reachability on Unitree G1. Percentage of the 25 trials per model satisfying at least a given fraction of the task’s K progress criteria.",
+    "bbox": [
+      64.87,
+      57.78,
+      547.14,
+      380.27
+    ],
+    "bbox_norm": [
+      0.106,
+      0.073,
+      0.894,
+      0.4801
+    ],
+    "dpi": 300,
+    "area_frac": 0.321,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p32.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/tab01.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/tab01.png",
+    "page": 5,
+    "caption": "Table 1 Embodiments in RoboColosseum . Each embodiment has a fixed observation and action specification shared by all policies and sites. Open Track checkpoints are trained on the listed embodiment dataset; Fine-tune Track checkpoints use only the task demonstrations ( Section 3.2.1 ). Action dimens",
+    "bbox": [
+      85.64,
+      298.61,
+      526.4,
+      371.33
+    ],
+    "bbox_norm": [
+      0.1399,
+      0.377,
+      0.8601,
+      0.4688
+    ],
+    "dpi": 300,
+    "area_frac": 0.066,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p05.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/tab02.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/tab02.png",
+    "page": 13,
+    "caption": "Table 2 Per-task results on the Fine-tune track. Cells report normalized progress score (PS, %) and full-success rate (SR, %) as mean ± standard error (SE), using 25 trial slots per policy and task. Unexecuted trials following a safety stop are scored zero. Embodiment averages weight the five tasks ",
+    "bbox": [
+      64.87,
+      122.84,
+      547.13,
+      416.53
+    ],
+    "bbox_norm": [
+      0.106,
+      0.1551,
+      0.894,
+      0.5259
+    ],
+    "dpi": 300,
+    "area_frac": 0.292,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/tab03.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/tab03.png",
+    "page": 21,
+    "caption": "Table 3 Fine-tuning settings shared by all models.",
+    "bbox": [
+      66.52,
+      211.57,
+      545.5,
+      347.29
+    ],
+    "bbox_norm": [
+      0.1087,
+      0.2671,
+      0.8913,
+      0.4385
+    ],
+    "dpi": 300,
+    "area_frac": 0.134,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/tab04.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/tab04.png",
+    "page": 21,
+    "caption": "Table 4 Per-model fine-tuning hyperparameters. Peak learning rates are after linear scaling from the recipe’s batch size to the effective batch size. “Upstream default” denotes the value in the cited recipe, left unchanged.",
+    "bbox": [
+      64.87,
+      386.4,
+      543.12,
+      718.97
+    ],
+    "bbox_norm": [
+      0.106,
+      0.4879,
+      0.8875,
+      0.9078
+    ],
+    "dpi": 300,
+    "area_frac": 0.328,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p21.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at/tab05.png",
+    "raw": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/tab05.png",
+    "page": 32,
+    "caption": "Table 5 Agents evaluated in the Open Track .",
+    "bbox": [
+      131.18,
+      433.43,
+      480.83,
+      499.56
+    ],
+    "bbox_norm": [
+      0.2143,
+      0.5473,
+      0.7857,
+      0.6308
+    ],
+    "dpi": 300,
+    "area_frac": 0.048,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nguyen-2026-robocolosseum-evaluating-physical-intelligence-at-figures/_overlay/p32.png"
+  }
+]

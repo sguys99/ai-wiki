@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/robocolosseum-2026-robocolosseum-the-proving-ground-for/page-full.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-the-proving-ground-for-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/robocolosseum-2026-robocolosseum-the-proving-ground-for/crop01.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-the-proving-ground-for-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/robocolosseum-2026-robocolosseum-the-proving-ground-for/crop02.png",
+    "raw": "raw/articles/robocolosseum-2026-robocolosseum-the-proving-ground-for-figures/crop02.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
