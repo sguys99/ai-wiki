@@ -66,6 +66,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[llms/typesafe-ai-2026-introduction|TypeSafe AI 공식 문서 도입부]]: 첫 System One model인 Jev를 소개한다. Choice, Score, Noul 세 primitive와 질문을 원자 단위로 쪼개 코드에서 조합하는 설계 지침을 다룬다 (2026, article)
 - [[llms/hada-2026-jev-judgment-probability-model|Jev 발표 요약과 토론 (GeekNews)]]: 텍스트 대신 타입이 정해진 판단과 보정된 확률을 병렬 반환하는 Jev. RLCD 학습, 가격과 속도, 평가 설계의 편향 단서를 정리한다 (2026, article)
 - [[llms/nandhakishorm-laya|NandhaKishorM/laya (repo)]]: Jev 인터페이스를 공개 가중치로 구현한 non-autoregressive decision model. 세 checkpoint와 언어 Router, 한 번의 forward pass로 choice, score, noul에 답한다 (2026, repo)
+- [[llms/huggingface-2026-decision-models-in-hugging-face|Decision Models in Hugging Face]]: decision model 해설과 발표. primitive와 confidence, transformers와 llama.cpp 공통 /v1/systemone API (2026, article)
 - [[llms/alexwang-2026-you-could-have-invented-transformers|Transformers from Memory]]: linear layer, MLP, self-attention을 associative memory로 보고 간섭으로 용량을 어림한 해설. 용량은 64개에서 120만 개로 커진다 (2026, article)
 - [[llms/raschka-2026-gpt-6-astra-looped-transformers-and|Looped Transformer와 GPT-6 Astra]]: 가중치를 공유하는 깊이 반복의 구조와 비용, 반복 횟수 결정, Huginn 결과, CoT monitorability 논쟁을 세 글로 통합 정리 (2026, article)
 - [[llms/yang-2023-looped-transformers-are-better-at|Looped Transformers (ICLR 2024)]]: 1층 블록을 입력 주입과 함께 반복하는 looped transformer 학습법. 12층 대비 1/12 파라미터로 in-context 회귀에서 대등하거나 낫다 (2023, paper)
@@ -307,6 +308,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/earendil-works-2026-pi-project-page|Pi (pi.dev)]]: Pi 공식 홈. minimal agent harness 철학과 자기 수정, provider 15곳 이상, tree 세션, context engineering, 네 가지 모드를 데모 중심으로 소개한다 (2026, article)
 - [[agents/dandacompany-deskrpg|DeskRPG (repo)]]: Hermes Agent profile을 3D 가상 오피스의 AI 직원으로 배치해 대화, 회의, kanban, cron을 다루는 self-hosted 멀티플레이어 앱. 런타임 없이 기존 Hermes gateway에 붙는다 (2026, repo)
 - [[agents/park-2026-rea-reverse-engineer-anything|REA (article + repo)]]: 바이너리, 앱, 웹, 펌웨어 등 23종 대상을 하나의 MCP 서버로 분석해 에이전트가 소스 없이 기능을 파악하고 구현하게 하는 리버스 엔지니어링 도구. 결론마다 근거와 한계를 붙인다 (2026, article)
+- [[agents/github-spec-kit|Spec Kit (repo)]]: GitHub의 spec-driven development 툴킷. 명세를 진실의 원천으로 두고 constitution, 템플릿, 슬래시 커맨드로 명세에서 계획, task, 코드를 생성한다. MIT (2025, repo)
 
 ## Evaluations (evaluations)
 

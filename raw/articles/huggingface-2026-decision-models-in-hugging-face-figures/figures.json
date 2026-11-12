@@ -1,0 +1,30 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/huggingface-2026-decision-models-in-hugging-face/fig01.png",
+    "raw": "raw/articles/huggingface-2026-decision-models-in-hugging-face-figures/fig01.png",
+    "caption": "Image 1: state and primitives for the decision models",
+    "source_url": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/decision/decision-models.png",
+    "bytes": 89215,
+    "width": 982,
+    "height": 542,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/huggingface-2026-decision-models-in-hugging-face/page-full.png",
+    "raw": "raw/articles/huggingface-2026-decision-models-in-hugging-face-figures/page-full.png",
+    "caption": "전체 페이지 스크린샷",
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/huggingface-2026-decision-models-in-hugging-face/crop01.png",
+    "raw": "raw/articles/huggingface-2026-decision-models-in-hugging-face-figures/crop01.png",
+    "caption": "도식 영역 크롭",
+    "strategy": "crop",
+    "curated": false
+  }
+]
