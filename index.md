@@ -312,6 +312,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/park-2026-rea-reverse-engineer-anything|REA (article + repo)]]: 바이너리, 앱, 웹, 펌웨어 등 23종 대상을 하나의 MCP 서버로 분석해 에이전트가 소스 없이 기능을 파악하고 구현하게 하는 리버스 엔지니어링 도구. 결론마다 근거와 한계를 붙인다 (2026, article)
 - [[agents/github-spec-kit|Spec Kit (repo)]]: GitHub의 spec-driven development 툴킷. 명세를 진실의 원천으로 두고 constitution, 템플릿, 슬래시 커맨드로 명세에서 계획, task, 코드를 생성한다. MIT (2025, repo)
 - [[agents/nvidia-auto-ontology|Auto Ontology (repo)]]: 기업 DB 메타데이터에서 term, SQL attribute, relationship ontology를 생성해 사람이 인증하고, 에이전트가 이를 근거로 text-to-SQL 답과 SQL을 돌려준다. MCP로 노출. Apache-2.0 (2026, repo)
+- [[agents/yu-2026-dm-call-decision-model-guided-function-calling|DM-Call (paper + repo)]]: 함수 호출 후보를 schema check와 decision model의 두 질문으로 검증하고 거부 이력을 feedback으로 되돌려 수정한다. MIT (2026, paper)
 
 ## Evaluations (evaluations)
 

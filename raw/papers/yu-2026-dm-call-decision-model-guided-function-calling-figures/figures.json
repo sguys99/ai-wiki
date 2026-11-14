@@ -1,0 +1,164 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/yu-2026-dm-call-decision-model-guided-function-calling/fig01.png",
+    "raw": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1: Comparison of conventional function-calling ap- proaches and DM-Call. (a) Conventional approaches rely on schema validation or self-review, which may fail to detect semantically incorrect calls. (b) DM-Call separately verifies function selection and argument correctness through prob- abili",
+    "bbox": [
+      311.95,
+      176.18,
+      564.21,
+      428.44
+    ],
+    "bbox_norm": [
+      0.5097,
+      0.2225,
+      0.9219,
+      0.541
+    ],
+    "dpi": 300,
+    "area_frac": 0.131,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/yu-2026-dm-call-decision-model-guided-function-calling/fig02.png",
+    "raw": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/fig02.png",
+    "page": 4,
+    "caption": "Figure 2: Effect of repair budget 𝑟 on DM-Call using gpt-5-nano , BFCL, and Jev . (a) Call accuracy, (b) mean and p95 latency, and (c) latency comparison with baselines.",
+    "bbox": [
+      47.8,
+      77.69,
+      300.05,
+      157.91
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.4903,
+      0.1994
+    ],
+    "dpi": 300,
+    "area_frac": 0.042,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/_overlay/p04.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/yu-2026-dm-call-decision-model-guided-function-calling/tab01.png",
+    "raw": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/tab01.png",
+    "page": 3,
+    "caption": "Table 1: Comparison of function-calling methods across four LLM generators on BFCL and API-Bank. We report three-run mean accuracy (%) at 𝑟 ★ = 3 (s.d. 0.00–2.89) and total inference cost (USD). Decision. Generation refers to function-call generation guided by separate decision-model verification. B",
+    "bbox": [
+      106.13,
+      133.85,
+      505.87,
+      260.99
+    ],
+    "bbox_norm": [
+      0.1734,
+      0.169,
+      0.8266,
+      0.3295
+    ],
+    "dpi": 300,
+    "area_frac": 0.105,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/_overlay/p03.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/yu-2026-dm-call-decision-model-guided-function-calling/tab02.png",
+    "raw": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/tab02.png",
+    "page": 3,
+    "caption": "Table 2: Ablation study of DM-Call on BFCL using gpt-5-nano and Jev ( 𝑟 = 3 ), reporting three-run mean accuracy (%) ± stan- dard deviation for overall function calling, function selection, and argument correctness. Bold and underline indicate the best and second-best results per metric, respectivel",
+    "bbox": [
+      311.95,
+      331.42,
+      564.4,
+      394.57
+    ],
+    "bbox_norm": [
+      0.5097,
+      0.4185,
+      0.9222,
+      0.4982
+    ],
+    "dpi": 300,
+    "area_frac": 0.033,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/_overlay/p03.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/yu-2026-dm-call-decision-model-guided-function-calling/tab03.png",
+    "raw": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/tab03.png",
+    "page": 3,
+    "caption": "Table 3: Comparison of Numeric, Text, and Hybrid feedback representations. Results show three-run mean accuracy (%) (s.d. 0.02–0.54), with overall-averages across generators. Bold and underline indicate the highest and second-highest aver- age scores per decision model, respectively.",
+    "bbox": [
+      312.59,
+      476.91,
+      563.57,
+      555.88
+    ],
+    "bbox_norm": [
+      0.5108,
+      0.6022,
+      0.9209,
+      0.7019
+    ],
+    "dpi": 300,
+    "area_frac": 0.041,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/_overlay/p03.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/yu-2026-dm-call-decision-model-guided-function-calling/tab04.png",
+    "raw": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/tab04.png",
+    "page": 4,
+    "caption": "Table 4: Case studies of DM-Call with Jev at 𝑟 ★ = 3 , illustrating function correction, argument refinement, no-call decisions, and multi-step repair. Each step reports prob. ( 𝑝 𝑓 , 𝑝 𝑎 ) and correctness, with – indicating skipped argument verification.",
+    "bbox": [
+      311.73,
+      133.85,
+      564.2,
+      301.86
+    ],
+    "bbox_norm": [
+      0.5094,
+      0.169,
+      0.9219,
+      0.3811
+    ],
+    "dpi": 300,
+    "area_frac": 0.088,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/yu-2026-dm-call-decision-model-guided-function-calling-figures/_overlay/p04.png"
+  }
+]
