@@ -11,18 +11,29 @@ org: "mattpocock"
 repo: "skills"
 url: "https://github.com/mattpocock/skills"
 license: "MIT"
-tags: [agent-skills, claude-code, skill-md, coding-agent, grilling, tdd, code-review, domain-modeling, adr, spec-driven-development, deep-modules, developer-workflow]
+tags: [agent-skills, claude-code, skill-md, coding-agent, grilling, tdd, code-review, domain-modeling, adr, spec-driven-development, deep-modules, developer-workflow, subagent, retrospective]
 ---
 
 ## 요약
 
-`mattpocock/skills`는 TypeScript 교육자 Matt Pocock이 실무에서 매일 쓰는 코딩 에이전트용 스킬 25개를 묶은 MIT 라이선스 저장소다. 스킬은 특정 작업 절차를 담아 에이전트가 불러 쓰는 지침 패키지를 뜻한다. 이 저장소의 스킬은 인터뷰, 스펙 작성, 티켓 분해, 테스트 주도 개발, 디버깅, 코드 리뷰처럼 소프트웨어를 만드는 과정 전체를 덮는다.
+`mattpocock/skills`는 TypeScript 교육자 Matt Pocock이 실무에서 매일 쓰는 코딩 에이전트용 스킬 27개를 묶은 MIT 라이선스 저장소다. 스킬은 특정 작업 절차를 담아 에이전트가 불러 쓰는 지침 패키지를 뜻한다. 이 저장소의 스킬은 인터뷰, 스펙 작성, 티켓 분해, 테스트 주도 개발, 디버깅, 코드 리뷰, PR 작성, 회고처럼 소프트웨어를 만드는 과정 전체를 덮는다.
 
 저장소의 성격을 규정하는 것은 스킬의 개수가 아니라 배치 원리다. 스킬을 기능 목록으로 나열하지 않고, 코딩 에이전트가 실무에서 반복적으로 실패하는 네 지점에 하나씩 대응시켜 배치했다. 각 대응에는 The Pragmatic Programmer, Domain-Driven Design, Extreme Programming Explained, A Philosophy of Software Design 같은 소프트웨어 공학 고전의 인용이 근거로 붙는다.
 
 설계 원칙은 작고 교체 가능한 단위다. 저자는 GSD, BMAD, Spec-Kit처럼 개발 프로세스를 통째로 소유하는 방법론이 사용자의 통제권을 가져가고, 그 결과 프로세스 자체에 생긴 문제를 해결하기 어렵게 만든다고 본다. 이 저장소의 스킬은 작게 쪼개져 있어 사용자가 직접 고쳐 자기 것으로 만들 수 있고, 특정 모델에 묶이지 않는다.
 
-이 페이지는 저장소의 README와 함께 수집한 스킬 정의 25개, 설계 규약 문서, ADR 2건을 근거로 삼는다. star 약 25만 개를 기록했고 Claude Code 공식 마켓플레이스에 등재되어 있다.
+이 페이지는 저장소의 README와 함께 수집한 스킬 정의 27개, 설계 규약 문서, 기여 범위 문서 `SCOPE.md`, ADR 2건을 근거로 삼는다. 2026-09-06에 처음 수집했고 이후 upstream 커밋 97개를 반영해 2026-11-15에 재수집했다. 재수집 시점 star는 약 32만 개이며 Claude Code 공식 마켓플레이스에 등재되어 있고 Codex, GitHub Copilot, Gemini CLI용 설치 경로도 제공한다.
+
+재수집 사이의 주요 변경은 다음과 같다.
+
+| 변경 | 내용 |
+|---|---|
+| 용어집 파일 개명 | 도메인 용어집 관례 `CONTEXT.md`, `CONTEXT-MAP.md`가 `GLOSSARY.md`, `GLOSSARY-MAP.md`로 바뀌었다 |
+| 스킬 승격 | `pr`, `retro`, `implement-spec`이 engineering 버킷으로 승격됐다 |
+| 스킬 삭제 | `resolving-merge-conflicts`가 삭제되고 문서 페이지만 archived로 남았다 |
+| 서브에이전트 규칙 | 서브에이전트를 띄우는 모든 스킬이 fork가 아니라 새 context window로 시작하라고 적는다 |
+| 배포 | Codex 네이티브 플러그인이 가능해졌고 Copilot과 Gemini CLI 경로가 추가됐다 |
+| 기여 정책 | `SCOPE.md`가 이슈 판정 기준을 두고 새 스킬 제안을 닫았다 |
 
 ## 배경
 
@@ -41,7 +52,7 @@ tags: [agent-skills, claude-code, skill-md, coding-agent, grilling, tdd, code-re
 | 실패 모드 | 진단 | 대응 스킬 |
 |---|---|---|
 | 에이전트가 원하는 것을 만들지 않음 | 사람과 에이전트 사이의 의사소통 격차 | `grill-me`, `grill-with-docs` |
-| 에이전트가 지나치게 장황함 | 프로젝트 전문 용어를 모르는 상태로 투입되어 한 단어로 될 말에 스무 단어를 씀 | `grill-with-docs`가 만드는 `CONTEXT.md` 공용 언어 |
+| 에이전트가 지나치게 장황함 | 프로젝트 전문 용어를 모르는 상태로 투입되어 한 단어로 될 말에 스무 단어를 씀 | `grill-with-docs`가 만드는 `GLOSSARY.md` 공용 언어 |
 | 코드가 동작하지 않음 | 산출물이 실제로 어떻게 실행되는지에 대한 피드백 부재 | `tdd`, `diagnosing-bugs` |
 | 설계가 무너진 코드베이스 | 에이전트가 코딩 속도를 높이면서 소프트웨어 엔트로피 증가도 함께 가속 | `to-spec`, `improve-codebase-architecture` |
 
@@ -71,7 +82,15 @@ tags: [agent-skills, claude-code, skill-md, coding-agent, grilling, tdd, code-re
 
 `engineering/`과 `productivity/`가 승격 버킷이다. 승격 버킷의 스킬은 세 곳에 빠짐없이 등록되어야 한다. 최상위 `README.md`의 참조, `.claude-plugin/plugin.json`의 `skills` 배열 항목, 그리고 `docs/{버킷}/{스킬명}.md` 문서 페이지다. 비승격 버킷의 스킬은 셋 중 어디에도 나타나면 안 된다.
 
-이 불변 조건은 `AGENTS.md`에 명문화되어 있어 에이전트가 저장소를 수정할 때 지켜야 하는 규칙으로 작동한다. 스킬을 추가하거나 이름을 바꾸거나 동작을 바꿀 때마다 문서 페이지와 라우터를 다시 맞추라는 지시도 함께 있다. 저자는 그 이유를 "새 스킬을 한 번도 언급하지 않거나 사라진 스킬로 여전히 안내하는 라우터는 거짓말을 하는 라우터"라고 적는다.
+이 불변 조건은 저장소의 `CLAUDE.md`에 명문화되어 있어 에이전트가 저장소를 수정할 때 지켜야 하는 규칙으로 작동한다. 최초 수집 시점에는 `AGENTS.md`에 있던 내용이며, 지금 `AGENTS.md`에는 `CLAUDE.md`를 가리키는 한 줄만 남았다. 스킬을 추가하거나 이름을 바꾸거나 동작을 바꿀 때마다 문서 페이지와 라우터를 다시 맞추라는 지시도 함께 있다. 저자는 그 이유를 "새 스킬을 한 번도 언급하지 않거나 사라진 스킬로 여전히 안내하는 라우터는 거짓말을 하는 라우터"라고 적는다.
+
+승격 스킬을 아예 삭제할 때의 규칙도 있다. 문서 페이지는 지우지 않고 본문을 그대로 둔 채 첫머리에 archived 안내(삭제된 버전과 대체 스킬)를 달아, 공개 URL이 계속 해소되게 한다. `resolving-merge-conflicts`가 이 경로를 밟았다.
+
+### 서브에이전트의 새 context window
+
+서브에이전트는 상위 에이전트가 위임한 작업을 격리된 컨텍스트에서 수행하는 에이전트를 말한다. 저장소의 `CLAUDE.md`는 서브에이전트를 띄우는 모든 스킬이 그것을 새 context window로 시작하라고 적도록 규정한다.
+
+근거는 harness의 기본 동작 차이다. Codex를 비롯한 일부 harness는 기본값으로 부모 대화를 fork한다. fork는 부모의 컨텍스트를 그대로 물려받으므로, 서브에이전트가 애초에 벗어나려던 컨텍스트를 다시 끌고 오게 된다. 그래서 `code-review`, `grilling`, `research`, `wayfinder`, `implement-spec`이 모두 이 문구를 명시한다.
 
 ### user-invoked와 model-invoked
 
@@ -117,31 +136,35 @@ Skill tool은 한 번에 스킬 하나만 받는다. 두 스킬이 필요한 단
 
 진행은 라운드 단위다. 한 라운드에서 frontier 전체를 한꺼번에 묻는다. 질문마다 번호를 붙이고 추천 답을 함께 제시한 뒤 사용자의 답을 기다린다. 답이 들어오면 트리가 재구성된다. 정해진 결정이 frontier를 바깥으로 밀어내면서 그에 의존하던 질문이 열린다. 같은 라운드에 아직 열려 있는 질문에 답이 걸린 질문은 이번 라운드가 아니라 다음 라운드에 속한다.
 
-역할 분담이 명확하게 규정되어 있다. 사실을 찾는 일은 에이전트의 몫이다. frontier 질문이 파일 시스템이나 도구에서 얻을 수 있는 사실을 필요로 하면 서브에이전트를 보내 찾고 사용자에게 묻지 않는다. 서브에이전트는 상위 에이전트가 위임한 작업을 격리된 컨텍스트에서 수행한다.
+역할 분담이 명확하게 규정되어 있다. 사실을 찾는 일은 에이전트의 몫이다. frontier 질문이 파일 시스템이나 도구에서 얻을 수 있는 사실을 필요로 하면 새 context window로 시작한 서브에이전트를 보내 찾고 사용자에게 묻지 않는다.
 
 다만 그 탐색을 기다리느라 인터뷰를 멈추지는 않는다. 진행 중인 탐색은 미해결 선행 조건이므로 그 아래에 걸린 질문만 기다리고 나머지 frontier는 지금 묻는다. 결정은 사용자의 몫이므로 각각을 사용자에게 제시하고 기다린다.
 
 세션은 frontier가 비면 끝난다. 설계 트리의 모든 가지를 방문했고 조용히 가정된 것이 남지 않은 상태다. 사용자가 공통된 이해에 도달했다고 확인하기 전에는 실행에 들어가지 않는다.
 
+질문의 문구에도 규칙이 있다. 각 질문은 사용자가 "yes"라고만 답하면 추천 답을 수락하는 형태로 적는다. 사용자가 대부분의 질문을 한 단어로 넘길 수 있게 하려는 장치다.
+
 이 primitive를 감싸는 진입점이 둘 있다. `grill-me`는 `grilling`만 호출하는 상태 없는 래퍼이고, `grill-with-docs`는 `grilling`과 `domain-modeling`을 함께 호출해 결과를 문서로 남기는 래퍼다. 작업 디렉터리가 있으면 후자가 항상 낫다. 같은 인터뷰를 진행하면서 기록까지 남기기 때문이다.
 
 ### 공용 언어와 도메인 문서
 
-`domain-modeling`은 도메인 모델을 능동적으로 만들고 벼리는 규율이다. 저자는 이 스킬의 경계를 명확히 긋는다. `CONTEXT.md`를 읽어 어휘만 참고하는 것은 이 스킬이 아니라 어느 스킬이나 하는 한 줄짜리 습관이다. 용어를 도전하고 시나리오로 압박하고 문서를 그 자리에서 갱신하는 능동적 규율만 이 스킬에 해당한다.
+`domain-modeling`은 도메인 모델을 능동적으로 만들고 벼리는 규율이다. 이 스킬이 관리하는 용어집 파일은 `GLOSSARY.md`다. 최초 수집 시점에는 `CONTEXT.md`라는 이름이었고, 저장소가 관례 이름을 바꾸면서 `setup-matt-pocock-skills`가 옛 이름을 발견하면 `git mv`로 옮기자고 제안하도록 갱신됐다.
+
+저자는 이 스킬의 경계를 명확히 긋는다. `GLOSSARY.md`를 읽어 어휘만 참고하는 것은 이 스킬이 아니라 어느 스킬이나 하는 한 줄짜리 습관이다. 용어를 도전하고 시나리오로 압박하고 문서를 그 자리에서 갱신하는 능동적 규율만 이 스킬에 해당한다.
 
 세션 중 수행하는 동작은 다섯 가지다.
 
-- 사용자가 쓴 용어가 `CONTEXT.md`의 기존 언어와 충돌하면 즉시 지적한다
+- 사용자가 쓴 용어가 `GLOSSARY.md`의 기존 언어와 충돌하면 즉시 지적한다
 - 모호하거나 과부하된 용어에는 정확한 canonical 용어를 제안한다
 - 도메인 관계가 논의될 때 경계를 파고드는 구체적 시나리오로 압박한다
 - 사용자가 진술한 동작을 코드와 대조해 모순이 있으면 드러낸다
-- 용어가 정해지는 즉시 `CONTEXT.md`를 그 자리에서 갱신한다
+- 용어가 정해지는 즉시 `GLOSSARY.md`를 그 자리에서 갱신한다
 
 마지막 항목에는 단서가 붙는다. 갱신을 모아 두었다가 일괄 처리하지 않는다. 결정이 일어나는 순간 붙잡아 기록한다.
 
-`CONTEXT.md`의 성격도 좁게 규정된다. 구현 세부가 전혀 없어야 하고 스펙이나 메모장이나 구현 결정 저장소로 쓰지 않는다. 용어집이며 그 외의 것이 아니다.
+`GLOSSARY.md`의 성격도 좁게 규정된다. 구현 세부가 전혀 없어야 하고 스펙이나 메모장이나 구현 결정 저장소로 쓰지 않는다. 용어집이며 그 외의 것이 아니다.
 
-저장소 자체의 `CONTEXT.md`가 이 형식의 예시가 된다. Issue tracker, Issue, Decision ticket, Triage role 네 용어를 정의하고 각각에 피해야 할 표현을 함께 적는다. 예를 들어 Issue tracker 항목에는 backlog manager, backlog backend, issue host를 쓰지 말라고 명시한다. 문서 끝에는 해소된 모호함도 기록한다. "backlog"가 이슈를 담는 도구와 그 안의 작업 덩어리 두 가지를 동시에 뜻하던 문제를 Issue tracker로 정리했다는 기록이다.
+저장소 자체의 `GLOSSARY.md`가 이 형식의 예시가 된다. Issue tracker, Issue, Decision ticket, Triage role 네 용어를 정의하고 각각에 피해야 할 표현을 함께 적는다. 예를 들어 Issue tracker 항목에는 backlog manager, backlog backend, issue host를 쓰지 말라고 명시한다. 문서 끝에는 해소된 모호함도 기록한다. "backlog"가 이슈를 담는 도구와 그 안의 작업 덩어리 두 가지를 동시에 뜻하던 문제를 Issue tracker로 정리했다는 기록이다.
 
 ADR은 아껴서 제안한다. 세 조건이 모두 참일 때만 만든다. 되돌리기 어렵고 맥락 없이는 놀랍고 실제 절충의 결과여야 한다. 하나라도 빠지면 ADR을 만들지 않는다.
 
@@ -151,7 +174,7 @@ ADR은 아껴서 제안한다. 세 조건이 모두 참일 때만 만든다. 되
 
 좋은 테스트의 기준은 공개 interface를 통해 동작을 검증하는 것이다. 구현 세부를 검증하지 않는다. 코드가 통째로 바뀌어도 테스트는 바뀌지 않아야 한다. "사용자가 유효한 장바구니로 결제할 수 있다"라는 테스트는 어떤 기능이 존재하는지를 정확히 알려 주고, 내부 구조에 무관심하기 때문에 리팩터링을 견딘다.
 
-seam은 테스트가 놓이는 공개 경계를 말한다. 내부에 손을 뻗지 않고 동작을 관찰하는 자리다. 규칙은 사전에 합의된 seam에서만 테스트한다는 것이다. 테스트를 쓰기 전에 대상 seam을 적어 사용자에게 확인받고, 확인되지 않은 seam에는 테스트를 쓰지 않는다.
+seam은 테스트가 놓이는 공개 경계를 말한다. 내부에 손을 뻗지 않고 동작을 관찰하는 자리다. 규칙은 사전에 합의된 seam에서만 테스트한다는 것이다. 테스트를 쓰기 전에 대상 seam을 적어 사용자에게 확인받고, 확인되지 않은 seam에는 테스트를 쓰지 않는다. 제안하는 seam마다 그 seam이 잡아내는 것과 놓치는 것을 한 줄씩 붙여, 사용자가 어떤 위험을 감수하는지 보고 고를 수 있게 한다.
 
 이 규칙의 근거는 자원 배분이다. 모든 것을 테스트할 수는 없으므로 seam을 먼저 합의하는 것이 테스트 노력을 임계 경로와 복잡한 로직에 집중시키는 방법이다. 모든 예외 상황에 테스트를 흩뿌리는 대신이다.
 
@@ -205,7 +228,7 @@ loop를 확보한 다음에는 loop 자체를 제품처럼 다듬는다. 더 빠
 
 | 단계 | 내용 |
 |---|---|
-| 2. 재현과 최소화 | loop를 실행해 실패를 확인한 뒤, 여전히 실패하는 가장 작은 시나리오까지 입력과 호출자와 설정을 하나씩 줄인다 |
+| 2. 재현과 최소화 | loop를 실행해 실패를 확인한 뒤, 여전히 실패하는 가장 작은 시나리오까지 입력과 호출자와 설정을 하나씩 줄인다. 코드나 fixture를 변형해 실패를 강제했다면 원본 사본과 `diff`해 변형이 실제로 적용됐는지 증명한 뒤에 그 red를 믿는다 |
 | 3. 가설 | 3~5개 가설을 반증 가능한 형태로 만들어 순위를 매기고, 시험 전에 사용자에게 보여 준다 |
 | 4. 계측 | 예측 하나당 탐침 하나를 대응시키고 변수는 한 번에 하나만 바꾼다 |
 | 5. 수정과 회귀 테스트 | 올바른 seam이 있을 때만 회귀 테스트를 먼저 쓰고 수정한다 |
@@ -316,7 +339,9 @@ fog of war는 이 스킬의 핵심 장치다. 오고 있다는 것은 알지만 
 
 `code-review`는 고정점과 `HEAD` 사이의 diff를 두 기준으로 검토한다. Standards는 저장소의 문서화된 코딩 표준을 따르는지 보고, Spec은 원래 이슈나 스펙을 충실히 구현했는지 본다.
 
-두 기준은 각각 별도의 서브에이전트로 병렬 실행된다. 서로의 컨텍스트를 오염시키지 않기 위해서다. 그 뒤 상위 스킬이 두 보고를 나란히 제시한다.
+두 기준은 각각 새 context window로 시작한 별도의 서브에이전트로 병렬 실행된다. 서로의 컨텍스트를 오염시키지 않기 위해서다. 두 호출은 foreground에서 함께 발행하고, 상위 스킬이 돌아온 두 보고를 나란히 제시한다.
+
+Standards의 출처를 모으는 방식도 구체적이다. 저장소에서 코드 작성법을 문서화한 파일을 모두 검색하고, `CODING_STANDARDS.md`나 `CONTRIBUTING.md`가 있으면 반드시 목록에 넣는다.
 
 분리하는 근거는 한 기준을 통과하면서 다른 기준에서 실패하는 변경이 실재하기 때문이다. 표준을 다 지켰지만 엉뚱한 것을 구현한 코드는 Standards 통과에 Spec 실패다. 이슈가 요구한 대로 동작하지만 프로젝트 관례를 깬 코드는 그 반대다. 그래서 최종 보고에서 두 기준의 발견 사항을 병합하거나 다시 순위 매기지 않는다. 기준을 가로질러 하나의 승자를 뽑는 것이 분리로 막으려는 바로 그 행위다.
 
@@ -379,13 +404,21 @@ progressive disclosure는 이 사다리를 내려가는 이동을 말한다. 필
 
 `ask-matt` 라우터가 스킬 사이의 경로를 정의한다. 대부분의 작업이 지나는 경로는 아이디어에서 출시까지의 단일 흐름이다.
 
-1. `grill-with-docs`로 아이디어를 인터뷰로 벼린다. 작업 디렉터리가 있으면 항상 여기서 시작한다. `CONTEXT.md`와 ADR에 학습 내용이 남는 상태 유지형이기 때문이다.
+1. `grill-with-docs`로 아이디어를 인터뷰로 벼린다. 작업 디렉터리가 있으면 항상 여기서 시작한다. `GLOSSARY.md`와 ADR에 학습 내용이 남는 상태 유지형이기 때문이다.
 2. 대화만으로 모든 질문을 정리할 수 없으면 `prototype`으로 우회한다. 상태나 비즈니스 로직이나 눈으로 봐야 하는 UI처럼 실행해 봐야 답이 나오는 질문이 여기 해당한다. 왕복 양방향 모두 `handoff`가 다리 역할을 한다.
-3. 여러 세션에 걸치는 작업이면 `to-spec`으로 스펙을 만들고 `to-tickets`로 티켓을 쪼갠 뒤 티켓마다 `implement`를 실행한다. 한 세션에 들어가면 곧바로 `implement`로 간다.
+3. 여러 세션에 걸치는 작업이면 `to-spec`으로 스펙을 만들고 `to-tickets`로 티켓을 쪼갠 뒤 티켓을 구현한다. 한 세션에 들어가면 곧바로 `implement`로 간다.
+4. `retro`로 흐름을 닫는다. 빌드가 끝난 뒤, 특히 일이 어긋난 빌드 뒤에 세션을 돌아보고 코드가 아니라 에이전트의 환경을 고칠 후보를 제시한다.
 
-`implement`는 사전에 합의된 seam에서 `tdd`를 구동하고 마무리로 `code-review`를 실행한 뒤 커밋한다.
+3단계의 티켓 구현 방법은 두 가지다.
 
-컨텍스트 위생 규칙이 이 흐름에 붙는다. 1단계부터 3단계까지는 하나의 끊기지 않은 context window 안에서 진행하고 `to-tickets` 이전에는 compact나 clear를 하지 않는다. 인터뷰와 스펙과 티켓이 같은 사고 위에 쌓이도록 하기 위해서다. 반면 `implement`는 티켓마다 새 컨텍스트에서 시작한다. 각 티켓이 자체 완결이므로 직전 티켓의 컨텍스트는 버려도 된다.
+| 방법 | 진행 방식 | 적합한 상황 |
+|---|---|---|
+| `implement` 반복 | 티켓마다 `implement`를 실행하고 사이사이 `/clear`로 컨텍스트를 비운다. 로컬 트래커면 블로커부터 손으로 처리한다 | 티켓 하나하나를 직접 운전하고 싶을 때 |
+| `implement-spec` | 티켓을 task graph로 읽고 준비된 frontier에 implementer 서브에이전트를 병렬로 띄워 하나의 integration branch에 모은다 | 개별 티켓 대신 전체 빌드를 지휘하고 싶을 때 |
+
+`implement`는 티켓 참조를 받으면 이슈 트래커에서 가져와 제목을 먼저 밝힌다. 이어 사전에 합의된 seam에서 `tdd`를 구동하고, 타입 검사와 단일 테스트 파일은 수시로, 전체 테스트는 마지막에 한 번 실행한다. 마무리로 `code-review`를 실행한 뒤 현재 브랜치에 커밋한다. `implement-spec`에서는 각 implementer가 `tdd`를 구동하고 `code-review`는 integration branch 전체에 한 번 실행한다. 작업을 pull request로 올릴 때는 model-invoked 스킬 `pr`이 본문의 형태를 정한다.
+
+컨텍스트 위생 규칙이 이 흐름에 붙는다. 1단계부터 3단계까지는 하나의 끊기지 않은 context window 안에서 진행하고 `to-tickets` 이전에는 compact나 clear를 하지 않는다. 인터뷰와 스펙과 티켓이 같은 사고 위에 쌓이도록 하기 위해서다. 반면 `implement`는 티켓마다 새 컨텍스트에서 시작한다. 각 티켓이 자체 완결이므로 직전 티켓의 컨텍스트는 버려도 된다. `retro`는 돌아볼 세션 안에서 clear 전에 실행하고, 이미 clear했다면 그 세션의 로그를 가리켜 실행한다.
 
 이 규칙의 한계는 smart zone이다. 저자는 최신 모델 기준 약 15만 토큰을 모델이 여전히 예리하게 추론하는 구간으로 본다. 그 안에서 `to-tickets`에 도달하지 못하면 성능이 저하된 채 밀어붙이지 말고 가장 가까운 단계 경계에서 compact하라고 지시한다.
 
@@ -394,7 +427,7 @@ progressive disclosure는 이 사다리를 내려가는 이동을 말한다. 필
 | 진입로 | 상황 | 합류 지점 |
 |---|---|---|
 | `triage` | 직접 만들지 않은 이슈가 쌓임. 버그 신고, 들어온 기능 요청 | 에이전트가 집을 수 있는 이슈를 만들어 `implement`로 넘긴다 |
-| `diagnosing-bugs` | 무언가 고장남. 한눈에 안 잡히는 버그, 간헐적 실패, 회귀 | 고정할 seam이 없다는 결론이면 `improve-codebase-architecture`로 넘긴다 |
+| `diagnosing-bugs` | 무언가 고장남. 한눈에 안 잡히는 버그, 간헐적 실패, 회귀 | 수정 후 같은 세션에서 `retro`로 무엇이 버그를 막았을지 묻는다. 고정할 seam이 없다는 결론이면 `improve-codebase-architecture`로 넘긴다 |
 | `wayfinder` | 한 세션에 담기지 않는 크고 안개 낀 작업 | 지도가 걷히면 `to-spec`으로 합류한다 |
 
 `triage`의 적용 범위에 단서가 붙는다. 직접 만들지 않은 이슈만 대상이다. `to-tickets`가 만든 티켓은 이미 에이전트용이므로 triage하지 않는다.
@@ -403,26 +436,128 @@ progressive disclosure는 이 사다리를 내려가는 이동을 말한다. 필
 
 단계 경계에서의 선택지도 다섯 가지로 정리되어 있다. 그대로 진행하기, `/clear`로 창을 비우기, `handoff`로 이식 가능한 마크다운 파일을 쓰기, 서브에이전트에 좁게 범위를 정한 작업을 보내기, `/compact`로 현재 컨텍스트를 압축해 새 세션에 넘기기다. `handoff`의 용도는 좁게 규정된다. 다른 harness, 다른 디렉터리, 동료에게 넘길 때, 그리고 단계 중간에 곁가지 작업을 떼어낼 때만 쓴다.
 
+### 스펙 전체의 병렬 구현
+
+`implement-spec`은 `to-spec`과 `to-tickets`의 결과를 한 번에 코드로 옮기는 user-invoked 스킬이다. 목표 상태가 명확하게 정의된다. 스펙 전체가 하나의 integration branch에 구현되고, 모든 티켓이 이슈 트래커의 종료 방식대로 해소된 상태다. integration branch는 여러 티켓의 작업을 한데 모으는 단일 브랜치를 말한다.
+
+이 스킬은 티켓을 순서대로 처리할 단계 목록으로 보지 않는다. 티켓 사이의 블로킹 관계를 간선으로 하는 task graph로 읽는다. 따라서 언제나 지금 집을 수 있는 티켓의 frontier가 존재하고, frontier 전체를 동시에 진행할 수 있다.
+
+서브에이전트 운영 원칙은 두 가지다.
+
+- 모든 서브에이전트는 새 context window로 시작한다
+- 서브에이전트와의 소통은 스펙, 티켓, 조사 노트, 이전 커밋을 가리키는 context pointer로 최소화한다. 포인터로 얻을 수 있는 정보를 메시지에 다시 적지 않는다
+
+진행 절차는 9단계다.
+
+| 단계 | 내용 |
+|---|---|
+| 1 | 스펙과 티켓을 읽어 task graph를 파악한다 |
+| 2 (선택) | exploration 서브에이전트가 티켓에 필요한 코드와 외부 문서를 조사해 저장소 밖 디렉터리에 마크다운 노트로 남긴다 |
+| 3 | integration branch를 만든다. 트래커가 PR로 작업을 닫거나 사용자가 원하면 첫 merge 이후 draft PR을 연다 |
+| 4 | 티켓마다 새 implementer 서브에이전트를 각자의 worktree와 브랜치에서 띄운다 |
+| 5 | implementer가 끝나면 merger 서브에이전트가 그 결과를 integration branch에 합친다 |
+| 6 | frontier가 바뀌면 새로 열린 티켓에 implementer를 추가로 띄운다 |
+| 7 | 모든 티켓이 끝나면 integration branch에 `code-review`를 실행하고, 지적 사항 전부를 새 implementer 하나가 한 번에 고친다 |
+| 8 | draft PR이 있으면 리뷰 준비 상태로 바꾸고, 없으면 트래커 방식대로 티켓을 해소한 뒤 integration branch를 보고한다 |
+| 9 | implementer worktree를 모두 정리한다 |
+
+2단계의 탐색 분리는 implementer가 탐색 대신 구현에 집중하게 하려는 장치다. 노트를 저장소 밖에 두는 이유는 이후 모든 서브에이전트가 같은 노트를 참조할 수 있게 하면서 저장소를 오염시키지 않기 위해서다.
+
+4단계의 implementer는 세 가지를 지킨다. 시작 전에 자기 worktree가 integration branch를 기반으로 하는지 확인하고 아니면 그 위로 재설정한다. 구현은 Skill tool로 `tdd`를 불러 진행한다. 완료 보고 전에는 integration branch의 최신 끝을 자기 브랜치에 merge해 충돌을 미리 해소한다. implementer는 가능하면 background에서 실행해 동시성을 최대로 끌어올린다.
+
+### PR 본문의 형태
+
+`pr`은 pull request 본문을 쓸 때 모델이 스스로 불러 쓰는 model-invoked 스킬이다. Humanlayer의 Dex Horthy가 만든 `show-me` 스킬에서 출발했다고 출처를 밝힌다. 본문은 Summary, Evidence, Merge Danger 세 절로 고정되며 서문 없이 짧게 쓰고 `GLOSSARY.md`의 도메인 언어를 쓴다.
+
+Summary는 요점을 드러내는 가장 작은 시각 자료를 고르는 절이다. 무엇을 보여 주려는지에 따라 형태가 정해진다.
+
+| 보여 줄 대상 | 형태 |
+|---|---|
+| 로직이나 알고리즘 | pseudocode |
+| 런타임 제어 흐름 | call tree |
+| UI 구조 | 상태와 모듈 경계를 포함한 component tree |
+| 파일 책임이나 넓은 리팩터링 | 얕은 file tree |
+| 컴포넌트 상호작용, 데이터 흐름 | Mermaid sequence diagram |
+| 기존 형태 위의 변경점 | 주제에 맞춘 `diff` (component, file layout, call tree, 상태 흐름) |
+| 대부분이 새 코드인 블록 | 블록 전체 |
+
+예를 들어 저장 시 캐시를 추가하는 변경이라면 `on(save)` 아래의 상태 흐름을 `diff` 형태로 보여 주고, 화면에 버튼 하나를 추가하는 변경이라면 component tree에 `+` 줄 하나를 더해 보여 준다. 시각 자료는 그것이 뒷받침하는 짧은 글 옆에 두고, 질문에 답하는 데 필요한 호출, 파일, prop, 상태, 경계만 남긴다. 여러 형태를 섞을 수 있지만 전부 쓸 일은 드물다.
+
+Evidence는 변경이 동작한다는 before와 after 쌍이다. 증거에는 등급이 있다. 시각적 변경이고 환경이 갖춰져 있으면 스크린샷이 최상급(S-tier)이고, 테스트 결과나 콘솔 출력 같은 실행 기반 증거가 그다음(A-tier)이다. 실행 기반 증거는 실패에서 통과로 바뀐 바로 그 테스트를 pseudocode로 보인다.
+
+Merge Danger는 되돌릴 수 있는지와 영향 범위를 밝힌다. two-way door는 되돌아 나올 수 있는 결정이라 롤백 비용이 낮고, 파괴적 작업이나 되돌리기 어려운 결정은 one-way door다. blast radius는 레이아웃 변화, 소비자 측 장애, 모바일 대응까지 포함해 변경이 미칠 수 있는 범위를 한 단어로 요약하고, 필요하면 그 파급을 덧붙인다.
+
+### 환경 개선 회고
+
+`retro`는 코딩 세션을 회고해 다음 실행을 개선할 에이전트 환경의 변경 후보를 심각도 순으로 제시하는 user-invoked 스킬이다. 고치는 대상이 코드가 아니라 환경이라는 점이 핵심이다. 다음 빌드가 더 나은 환경에서 시작하게 하는 것이 목적이다.
+
+절차는 짧다. 먼저 Skill tool로 `writing-for-agents`를 불러 문체 가이드를 얻는다. 이어 사용자가 지정한 세션의 로그를 읽고(지정이 없으면 현재 세션), 아래 일곱 범주에서 후보를 찾아 심각도 순으로 제시한다.
+
+| 범주 | 살펴볼 내용 | 적용 조건 |
+|---|---|---|
+| Navigation | 올바른 파일을 찾기 쉬웠는지, 파일 사이의 숨은 의존, navigation pointer 필요 여부 | 정보를 찾는 데 오래 걸린 세션 |
+| Automated checks | lint, 타입, 테스트, 파일 시스템 linter로 잡을 수 있었던 실수 | 자동 검사로 잡을 수 있던 실수, 또는 guardrail이 전혀 없음 |
+| Coding standards | reviewer agent에 줄 규칙의 추가, 삭제, 명확화 | reviewer agent가 실수를 놓침 |
+| Global AGENTS.md | 코딩 표준이나 자동 검사로 옮겨야 할 steering 지시 | AGENTS.md가 지나치게 큼 |
+| Tool economy | 비싼 tool call, 토큰 효율이 낮은 CLI나 MCP | 비싼 tool call 발생 |
+| No-ops | 에이전트 행동을 바꾸지 않는 steering 지시 | steering 파일이 크고 다루기 어려움 |
+| Information access | dev server 로그 tee, 외부 서비스 읽기 전용 접근 등 정보 접근 확대 | 결정적 정보가 에이전트에 없었음 |
+
+Automated checks 범주에는 순서 규칙이 있다. 저장소의 기존 검사 명령(`package.json`의 lint나 check 스크립트, CI workflow)을 먼저 읽는다. 이미 있으나 연결되지 않았거나 조용히 깨진 검사를 찾는 것이 새 검사를 다시 만드는 것보다 우선이다. pre-commit hook도 CI job도 없는 저장소는 그 자체가 발견으로 기록된다. 저자는 lint가 없는 저장소를 중립적 기본값이 아니라 계속 놓치고 있는 기회로 본다.
+
+Coding standards 범주는 위반을 먼저 분류한다. 고정된 구문 패턴, 금지 API, import 형태, 파일 위치 규칙 같은 기계적 위반은 결정론적 검사로 만든다. 저장소의 linter에 맞춤 규칙을 추가하거나 pre-commit hook이나 CI job을 새로 두는 방식 중 가장 비용이 낮은 것을 고른다. `CODING_STANDARDS.md`는 파일 간 일관성이나 주변 스타일과의 일치처럼 어떤 guardrail로도 대체할 수 없는 판단 문제에만 남긴다.
+
+이 범주 구분의 근거는 구현과 검토의 컨텍스트 압박 차이다. 구현 에이전트는 탐색, 코드 작성, 디버깅을 모두 맡아 컨텍스트 압박이 가장 크다. 반면 검토 에이전트는 diff만 받으므로 탐색도 디버깅도 필요 없고 압박이 가장 작다. 따라서 코딩 표준을 강제하는 책임은 검토 에이전트에 둔다.
+
+파일 역할도 같은 논리로 정해진다.
+
+| 파일 | 읽히는 시점 | 용도 |
+|---|---|---|
+| `CLAUDE.md`, `AGENTS.md` | 저장소에서 일하는 모든 에이전트의 컨텍스트에 항상 | 아주 아껴 쓰고 주로 navigation pointer만 둔다 |
+| `CODING_STANDARDS.md` | 구현이 아니라 검토 때 | 판단이 필요한 규칙. 1,000줄을 넘으면 문서 폴더를 가리키는 포인터를 둔다 |
+| 문서 | 다른 파일이 가리킬 때 | 참고 자료. 새로 쓰기 전에 기존 문서를 찾는다 |
+| 스킬 | `description`이 항상 컨텍스트에 있음 | 문서 전달이나 user-invoked 명령 |
+
+### 기여 범위
+
+`SCOPE.md`는 저장소를 저자가 매일 쓰는 스킬의 큐레이션으로 규정하고, 이슈가 열린 채로 남는 기준 두 가지를 둔다. 아이디어와 피드백은 환영하되 각각 이 기준으로 판정한다.
+
+| 기준 | 내용 |
+|---|---|
+| 관찰된 실패 | 실제 세션에서 무엇을 실행했고, 스킬이 무엇을 했으며, 무엇을 기대했는지를 적은 것. "이렇게 하면 더 좋겠다" 같은 가정적 개선은 통과하지 못한다 |
+| 철학 부합 | `.out-of-scope/`의 기각 기록이나 과거 기각과 겹치지 않고, 설정 옵션이나 특정 harness 전용 분기나 한 사람의 워크플로 맞춤이 아닐 것 |
+
+두 번째 기준에서 걸러지는 요구는 개인 `CLAUDE.md`나 `AGENTS.md`, 또는 fork에 두라고 안내한다. skills.sh가 편집 가능한 사본을 주는 이유와 연결된다. 변경의 크기는 판정과 무관하며 반응 이모지와 +1 댓글도 반영되지 않는다.
+
+버킷별 처리도 다르다. engineering, productivity, in-progress는 위 기준을 적용한다. `misc/`는 동결되어 모든 이슈를 닫는다. 새 스킬 제안과 기여도 닫혀 있다. 원하는 동작이 기존 스킬의 조합으로 나온다면 새 스킬을 만들지 않는다는 원칙이다.
+
+`.out-of-scope/` 아래에는 기각된 개념 하나당 파일 하나가 이유와 함께 남는다. 서브에이전트 재귀는 스킬이 아니라 harness의 일이라는 판단, 네이티브 질문 도구, 질문 수 제한, 주류 이슈 트래커만 지원한다는 결정 등이 여기 있다. 판단할 수 없는 이슈는 질문 한 번과 `needs-info` 라벨을 받고, 14일 동안 답이 없으면 닫힌다.
+
 ## 결과
 
 이 저장소는 정량 벤치마크를 제시하지 않는다. 스킬의 효과를 재는 A/B 비교나 평가 지표가 없고, 근거는 저자의 실무 경험과 소프트웨어 공학 고전 인용이다. 대신 ADR 0002가 배포 경로에 대한 검증 기록을 구체적으로 남긴다.
 
-### 배포 경로 두 가지
+### 에이전트별 설치 경로
 
-두 경로가 있고 서로 배타적이다.
+README는 스스로 갱신되는 플러그인 설치를 앞세운다. 플러그인은 자동으로 갱신되고, skills.sh는 편집 가능한 파일을 프로젝트에 복사하므로 사용자가 직접 갱신한다. 둘 다 설치하면 모든 스킬이 두 번씩 들어가므로 에이전트마다 하나만 고르라고 명시한다.
 
-| 경로 | 방식 | 갱신 | 편집 |
-|---|---|---|---|
-| Claude Code 플러그인 | 관리되는 읽기 전용 묶음을 구독 | 저자가 배포하면 자동 | 불가 |
-| skills.sh 설치기 | 편집 가능한 파일을 프로젝트에 복사 | `npx skills update`로 수동 | 가능 |
+| 에이전트 | 설치 경로 | 갱신 |
+|---|---|---|
+| Claude Code | `claude plugin install mattpocock-skills@claude-plugins-official` | 기본값으로 자동 |
+| Codex | 저장소 마켓플레이스를 추가한 뒤 `mattpocock-skills@mattpocock` 설치 | 시작 시 자동 |
+| GitHub Copilot (CLI, VS Code) | 저장소 마켓플레이스 설치 후 `~/.copilot/settings.json`에 `autoUpdate`를 한 번 설정 | 자동 (VS Code는 매일) |
+| Gemini CLI | `gemini skills install`로 engineering과 productivity 경로를 각각 설치 | 명령 재실행 (수동) |
+| 그 밖의 에이전트, 편집용 | `npx skills@latest add mattpocock/skills -a <agent>` (cursor, opencode, devin, windsurf, amp, pi) | `npx skills@latest update` (수동) |
 
-둘 다 설치하면 모든 스킬이 두 벌씩 남는다. 그래서 README는 하나만 고르라고 명시한다.
+이 표는 ADR 0002가 세 차례 갱신된 결과다. 처음에는 Claude Code 플러그인과 skills.sh 두 경로만 있었다. 아래는 그 출발점이 된 결정과 이후의 변화를 순서대로 정리한다.
 
-두 경로가 갈린 이유는 플러그인 매니페스트 형식의 차이다. Claude Code의 `.claude-plugin/plugin.json`은 `skills`를 명시적 경로 배열로 받는다. 그래서 승격된 스킬만 하나씩 나열해 나머지를 모호함 없이 제외할 수 있다. Codex의 `.codex-plugin/plugin.json`은 `skills`를 단일 경로 문자열로만 받고 배열은 거부하며, 그 경로 아래에서 `SKILL.md`를 재귀 탐색한다. 버킷 두 개를 한 경로로 지정할 방법이 없다.
+### 최초 결정과 Codex 연기
+
+처음에 경로가 둘로 갈린 이유는 플러그인 매니페스트 형식의 차이다. Claude Code의 `.claude-plugin/plugin.json`은 `skills`를 명시적 경로 배열로 받는다. 그래서 승격된 스킬만 하나씩 나열해 나머지를 모호함 없이 제외할 수 있다. Codex의 `.codex-plugin/plugin.json`은 `skills`를 단일 경로 문자열로만 받고 배열은 거부하며, 그 경로 아래에서 `SKILL.md`를 재귀 탐색한다. 버킷 두 개를 한 경로로 지정할 방법이 없다.
 
 두 가지 우회책을 시험하고 기각했다. `./skills/`를 통째로 가리키면 `deprecated/`, `in-progress/`, `personal/`, `misc/`까지 함께 배포된다. 심볼릭 링크로 만든 평면 디렉터리는 설치를 견디지 못한다. Codex가 플러그인 트리를 캐시로 복사하면서 심볼릭 링크를 버리기 때문에 스킬이 빈 채로 도착한다.
 
-남은 선택지는 `skills/`를 승격 스킬만 담도록 재구성하거나 평면 디렉터리에 사본을 커밋하는 것인데, 둘 다 구조적 결정이라 플러그인 배포에 끼워 넣을 일이 아니라고 판단했다. 결론은 Claude Code 플러그인을 먼저 배포하고 skills.sh를 범용 설치기로 유지하며 Codex 네이티브 플러그인은 연기하는 것이다.
+남은 선택지는 `skills/`를 승격 스킬만 담도록 재구성하거나 평면 디렉터리에 사본을 커밋하는 것인데, 둘 다 구조적 결정이라 플러그인 배포에 끼워 넣을 일이 아니라고 판단했다. 결론은 Claude Code 플러그인을 먼저 배포하고 skills.sh를 범용 설치기로 유지하며 Codex 네이티브 플러그인은 연기하는 것이었다.
 
 ### 공식 마켓플레이스 검증 기록
 
@@ -438,7 +573,26 @@ Claude Code 2.1.222에서 검증한 내용은 다음과 같다.
 
 네 번째 항목은 배포 지연이 관측된 사례라는 점에서 의미가 있다. 공식 마켓플레이스가 커밋 sha를 고정하므로 저자가 릴리스를 태그해도 그 고정점이 갱신되기 전까지는 사용자에게 도달하지 않는다.
 
-`setup-matt-pocock-skills`가 저장소별 설정을 만든다. 이슈 트래커(GitHub, GitLab, 로컬 마크다운, 기타), triage 라벨 어휘(다섯 개 canonical 역할), 도메인 문서 배치를 각각 한 섹션씩 물어 `docs/agents/` 아래에 기록한다. 각 섹션은 추천 답을 먼저 제시해 사용자가 한 단어로 수락할 수 있게 하고, 탐색 단계에서 이미 정해진 섹션은 아예 건너뛴다.
+### Codex 제약 해소와 관리형 설치 우선
+
+2026-10-07 업데이트는 Codex 제약이 더 이상 유효하지 않다고 기록한다. Codex `main`이 `skills`를 문자열 배열로 받게 되었고, `.codex-plugin/`이 없으면 `.claude-plugin/`을 대신 읽는다. 다만 심볼릭 링크는 여전히 버린다.
+
+검증 결과는 다음과 같다.
+
+- Codex 0.161.0에서 `@mattpocock` 마켓플레이스 설치가 승격된 model-invoked 스킬만 로드했고 `misc/`와 `in-progress/`는 하나도 로드하지 않았다
+- Copilot CLI가 같은 매니페스트를 읽어 "Installed 27 skills"를 보고했다
+
+2026-10-08 업데이트에서 Codex, Copilot, VS Code의 기본 경로가 저장소 자체 마켓플레이스 `@mattpocock`으로 바뀌었다. Copilot은 한 번의 opt-in 설정이 대가로 필요하다. Claude Code는 기본 자동 갱신이 되고 `marketplace add`가 필요 없으므로 `claude-plugins-official`에 남는다. 버전 불변 조건은 모든 관리형 경로로 확장되었고, `npm run version`이 `scripts/sync-plugin-version.mjs`를 실행해 이를 맞춘다. `marketplace.json`에는 `version` 필드가 없어 어긋날 일이 없다.
+
+### 저장소별 설정
+
+`setup-matt-pocock-skills`가 저장소별 설정을 만든다. 이슈 트래커(GitHub, GitLab, 로컬 마크다운, 사용자가 설명하는 기타 트래커), triage 라벨 어휘(다섯 개 canonical 역할), 도메인 문서 배치를 각각 한 섹션씩 물어 `docs/agents/` 아래에 기록한다. 각 섹션은 추천 답을 먼저 제시해 사용자가 한 단어로 수락할 수 있게 하고, 탐색 단계에서 이미 정해진 섹션은 아예 건너뛴다.
+
+재수집 시점에 세 가지 동작이 추가됐다.
+
+- GitHub나 GitLab 트래커를 고르면 도달 가능한 저장소가 필요하다. 그 호스트를 가리키는 `git remote`가 없으면 사용자에게 URL을 받아 연결하고, `gh repo view`나 `glab repo view`가 프로젝트를 출력할 때 완료로 본다
+- 트래커에 없는 triage 라벨을 `gh label create`나 `glab label create`로 직접 만든다
+- 옛 이름 `CONTEXT.md`나 `CONTEXT-MAP.md`가 있으면 `GLOSSARY` 이름으로 `git mv`할지 제안한다
 
 ADR 0001은 이 설정에 대한 의존성을 두 종류로 나눈다.
 
@@ -451,11 +605,12 @@ ADR 0001은 이 설정에 대한 의존성을 두 종류로 나눈다.
 
 ## 한계
 
-- **Codex 네이티브 플러그인 부재.** 매니페스트가 승격 부분집합을 표현하지 못해 연기된 상태다. 해소하려면 `skills/`를 재구성하거나 평면 디렉터리에 사본을 커밋해야 한다. 전자는 `CLAUDE.md`와 스크립트와 버킷 README와 로컬 개발 흐름까지 영향 범위가 넓고, 후자는 동기화 부담과 두 번째 진실의 원천(source of truth)을 만든다. Codex가 `skills` 배열이나 포함 목록을 지원하거나 설치 시 심볼릭 링크를 보존하면 재검토한다.
+- **심볼릭 링크 미보존과 수동 갱신 경로.** 최초 수집 시점의 한계였던 Codex 네이티브 플러그인 부재는 2026-10-07에 해소됐다. 다만 Codex는 여전히 설치 시 심볼릭 링크를 버리고, Gemini CLI와 skills.sh 경로는 갱신을 사용자가 직접 해야 한다.
+- **새 스킬 제안 비수용.** `SCOPE.md`가 새 스킬 제안과 기여를 닫아 두었고 `misc/`는 동결 상태다. 원하는 동작이 기존 스킬 조합으로 나오지 않으면 fork나 개인 설정 파일로 확장해야 한다.
 - **정량 평가 없음.** 스킬의 효과를 재는 벤치마크나 비교 실험이 없다. 각 규율의 근거는 저자의 실무 경험과 고전 인용이므로 다른 팀과 다른 코드베이스에서 같은 효과가 나오는지는 확인되지 않았다.
 - **저장소별 설정 선행 조건.** engineering 스킬 상당수가 `setup-matt-pocock-skills`가 만든 설정에 의존한다. 강한 의존 스킬은 설정 없이는 출력이 틀린다.
 - **`improve-codebase-architecture`의 범위 한정.** 저자 스스로 이 스킬을 구조 조사이지 구제가 아니라고 밝힌다. 오래된 코드베이스에서 실제 후보를 찾아 주기는 하지만 얽힌 구조를 대신 풀어 주지는 않는다.
-- **in-progress 버킷의 미완성 스킬.** `retro`, `loop-me`, `writing-beats`를 포함한 8개가 의도적으로 공개되어 있으나 플러그인에는 포함되지 않고 문서 페이지도 없다. 설치기로 가져올 수는 있으나 완성도를 보장하지 않는다.
+- **in-progress 버킷의 미완성 스킬.** `chief-of-staff`, `software-factory`, `claude-handoff`, `loop-me`, `writing-beats`를 포함한 8개가 의도적으로 공개되어 있으나 플러그인에는 포함되지 않고 문서 페이지도 없다. 설치기로 가져올 수는 있으나 예고 없이 바뀌거나 사라질 수 있다. 최초 수집 시점에 in-progress였던 `retro`와 `pr`은 engineering으로 승격됐다.
 - **smart zone 가정.** 컨텍스트 위생 규칙이 약 15만 토큰이라는 경험적 수치에 기대고 있다. context window와 추론 품질의 관계가 모델마다 다르므로 모델이 바뀌면 함께 조정해야 한다.
 
 ## 핵심 용어
@@ -468,8 +623,9 @@ ADR 0001은 이 설정에 대한 의존성을 두 종류로 나눈다.
 | tracer bullet | 모든 계층을 관통하는 좁지만 완전한 수직 슬라이스. 단독으로 시연 가능하고 새 컨텍스트 하나에 들어간다 |
 | tight loop | 빠르고 결정적이며 이 버그에서 실패로 바뀌는 재현 loop. `diagnosing-bugs` 1단계의 산출물이자 나머지 단계의 전제다 |
 | context pointer | 컨텍스트 밖 자료를 가리키고 도달 조건을 담은 참조. 도달 여부를 정하는 것은 대상이 아니라 포인터의 문구다 |
+| task graph | `implement-spec`이 티켓을 읽는 방식. 티켓은 단계 목록이 아니라 블로킹 관계를 가진 그래프이며, 언제나 집을 수 있는 frontier가 있다 |
 
-나머지 용어(frontier, fog of war, decision ticket, completion criterion, leading word, smell baseline, wide refactor, smart zone)는 요약 source(`sources/mattpocock-skills.md`)의 용어집에 정리했다.
+나머지 용어(frontier, fog of war, decision ticket, completion criterion, leading word, smell baseline, wide refactor, smart zone, integration branch, one-way door, blast radius, navigation pointer)는 요약 source(`sources/mattpocock-skills.md`)의 용어집에 정리했다.
 
 ## 관련 페이지
 
