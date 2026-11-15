@@ -15,9 +15,9 @@ figures:
   - id: fig01
     file: assets/orkas-ai-orkas/task-en.png
     raw: resources/app-ui/task-en.png
-    caption: "Orkas 데스크톱 앱 화면. 작업 대화와 그 결과로 나온 산출물을 함께 보여 준다."
+    caption: "Orkas 데스크톱 앱의 작업 화면. 사용자가 예산 $5,000 이하의 데스크 램프 출시 계획을 요청하자 Commander가 3분 만에 포지셔닝, 단계별 예산표, 출시 계획 Markdown 파일과 경쟁사 비교 CSV 파일을 돌려준다. 왼쪽 사이드바에는 To-do, Auto, AI Team, Skills, Connectors, Library, Apps 메뉴와 프로젝트별 작업 목록이 있다."
     strategy: manual
-    curated: false
+    curated: true
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -215,8 +215,8 @@ README가 밝힌 적합 대상은 단일 비서보다 에이전트 팀을 원하
 
 ## 8. 그림 후보 (Figure Candidates)
 
-figure의 `raw:` 값은 README가 참조하는 저장소 내부 상대 경로다. repos 유형은 `-figures/` 디렉토리를 만들지 않는다. README 상단의 데모 영상(GitHub user-attachments)은 정지 이미지가 아니라 후보에서 제외했다. 이미지 사본은 아직 `wiki/assets/`에 저장하지 않아 curated는 false로 둔다.
+figure의 `raw:` 값은 README가 참조하는 저장소 내부 상대 경로다. repos 유형은 `-figures/` 디렉토리를 만들지 않는다. README 상단의 데모 영상(GitHub user-attachments)은 정지 이미지가 아니라 후보에서 제외했다. README 본문의 유일한 정지 이미지라 wiki 사본을 `wiki/assets/orkas-ai-orkas/`에 저장했다.
 
 | id | strategy | caption | 추천 |
 |---|---|---|---|
-| fig01 | manual | 데스크톱 앱의 작업 대화와 산출물 화면 | (확인 필요) 사본 저장 시 wiki 권장 (product UI) |
+| fig01 | manual | 데스크톱 앱의 작업 대화와 산출물 화면 | ★ wiki 권장 (product UI) |

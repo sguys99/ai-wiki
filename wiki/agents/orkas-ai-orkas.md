@@ -12,6 +12,13 @@ repo: "Orkas"
 url: "https://github.com/Orkas-AI/Orkas"
 license: "MIT"
 tags: [multi-agent, desktop-app, local-first, orchestration, coding-agent, self-improvement]
+figures:
+  - id: fig01
+    file: assets/orkas-ai-orkas/task-en.png
+    raw: resources/app-ui/task-en.png
+    caption: "Orkas 데스크톱 앱의 작업 화면. 사용자가 예산 $5,000 이하의 데스크 램프 출시 계획을 요청하자 Commander가 3분 만에 포지셔닝, 단계별 예산표, 출시 계획 Markdown 파일과 경쟁사 비교 CSV 파일을 돌려준다. 왼쪽 사이드바에는 To-do, Auto, AI Team, Skills, Connectors, Library, Apps 메뉴와 프로젝트별 작업 목록이 있다."
+    strategy: manual
+    curated: true
 ---
 
 ## 요약
@@ -27,6 +34,11 @@ Orkas는 MIT 라이선스로 공개된 local-first 멀티에이전트 데스크�
 | 형태 | 데스크톱 앱 (패키지 앱과 소스 실행) |
 | 플랫폼 | macOS 12 이상, Windows 10 이상, glibc 2.34 이상 Linux(소스 실행만) |
 | 모델 | 내장 Orkas 모델, 사용자 provider 키, 로컬 OpenAI 호환 endpoint |
+
+![[assets/orkas-ai-orkas/task-en.png]]
+*Figure 1: Orkas 작업 화면. 출시 계획 요청에 Commander가 포지셔닝, 단계별 예산표, 계획 파일과 경쟁사 비교 파일을 산출물로 돌려준다 (Orkas README)*
+
+화면 예시에서 사용자는 "예산 $5,000 이하로 데스크 램프 Luma의 출시를 준비해 달라"고 요청한다. Commander는 약 3분 뒤 포지셔닝 문장, 14일을 세 단계로 나눈 예산표(합계 $4,500, 조정용 $500 별도), `Luma-launch-plan.md`와 `Competitor-comparison.csv` 두 파일을 돌려준다. 즉 답변 텍스트와 함께 바로 쓸 수 있는 파일이 산출물로 남는다.
 
 ## 배경
 
