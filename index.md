@@ -314,6 +314,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/nvidia-auto-ontology|Auto Ontology (repo)]]: 기업 DB 메타데이터에서 term, SQL attribute, relationship ontology를 생성해 사람이 인증하고, 에이전트가 이를 근거로 text-to-SQL 답과 SQL을 돌려준다. MCP로 노출. Apache-2.0 (2026, repo)
 - [[agents/yu-2026-dm-call-decision-model-guided-function-calling|DM-Call (paper + repo)]]: 함수 호출 후보를 schema check와 decision model의 두 질문으로 검증하고 거부 이력을 feedback으로 되돌려 수정한다. MIT (2026, paper)
 - [[agents/orkas-ai-orkas|Orkas (repo)]]: Commander가 목표를 할 일로 나눠 내장 전문 에이전트 16개와 Claude Code, Codex 등 CLI 에이전트에 위임하는 local-first 멀티에이전트 데스크톱 앱. MIT (2026, repo)
+- [[agents/jakeschincariol-instagram-agent-skill|The Instagram agent skill (repo)]]: Reel 대본, 캡션, DM 등 Instagram 운영을 Claude 스킬 13개로 나누고 hook 점수기, humanizer 등 로컬 도구로 잰다. 게시는 사람이 직접. MIT (2026, repo)
 
 ## Evaluations (evaluations)
 
