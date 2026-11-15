@@ -238,7 +238,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/9bow-2026-gstack-claude-code-virtual-team|gstack 명령어 카탈로그 (9bow)]]: PyTorch KR이 gstack의 슬래시 커맨드를 스프린트 사이클에 맞춰 5개 그룹으로 정리한 한국어 카탈로그. 설치 3종과 텔레메트리 범위까지 담았다 (2026, article)
 - [[agents/gpters-2026-yc-ai-agent-guide-gstack|Y Combinator의 AI 에이전트 사용법 완벽 정리 (GPTers)]]: gstack 9개 슬래시 커맨드의 사용법 가이드. 브라우저 QA 데몬의 콜드 스타트 3~5초, 이후 호출 100~200ms 수치를 담았다 (2026, article)
 - [[agents/hada-2026-gstack-virtual-engineering-team|gstack으로 만드는 가상 엔지니어링 팀 (GeekNews)]]: gstack의 스프린트 사이클과 명령어 구조, 대상 사용자 세 부류를 정리한 커뮤니티 소개 글. 독자 댓글 4건을 함께 싣는다 (2026, article)
-- [[agents/mattpocock-skills|Skills For Real Engineers (repo)]]: Matt Pocock이 매일 쓰는 코딩 에이전트 스킬 25개. 인터뷰, 스펙, TDD, 디버깅, 리뷰를 작은 단위로 쪼개고 사람만 부르는 스킬과 모델도 부르는 스킬로 나눈다. MIT (2026, repo)
+- [[agents/mattpocock-skills|Skills For Real Engineers (repo)]]: Matt Pocock이 매일 쓰는 코딩 에이전트 스킬 27개. 인터뷰, 스펙, TDD, 병렬 구현, 리뷰, PR, 회고를 작은 단위로 쪼개고 사람만 부르는 스킬과 모델도 부르는 스킬로 나눈다. MIT (2026, repo)
 - [[agents/ayghri-i-have-adhd|i-have-adhd (repo)]]: 코딩 에이전트 응답을 행동 우선, 단계 번호, 전문과 마무리 금지 규칙 10개로 바꾸는 단일 스킬. 15개 harness 배포와 blind judge 평가 harness를 갖춘다. MIT (2026, repo)
 - [[agents/shao-2024-assisting-in-writing-wikipedia-like-articles|STORM]]: 주제 이름만 받아 관점 발견과 시뮬레이션 대화로 pre-writing을 자동화하는 Wikipedia 글 생성 시스템. FreshWiki 데이터셋과 outline 평가 지표를 함께 제안한다 (2024, paper)
 - [[agents/qiao-2026-memory-intelligence-agent|Memory Intelligence Agent (MIA)]]: Manager, Planner, Executor 3-agent 메모리 프레임워크. trajectory를 압축 workflow와 Planner 가중치로 나눠 담고 추론 중에도 계속 학습한다 (2026, paper)
@@ -313,6 +313,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/github-spec-kit|Spec Kit (repo)]]: GitHub의 spec-driven development 툴킷. 명세를 진실의 원천으로 두고 constitution, 템플릿, 슬래시 커맨드로 명세에서 계획, task, 코드를 생성한다. MIT (2025, repo)
 - [[agents/nvidia-auto-ontology|Auto Ontology (repo)]]: 기업 DB 메타데이터에서 term, SQL attribute, relationship ontology를 생성해 사람이 인증하고, 에이전트가 이를 근거로 text-to-SQL 답과 SQL을 돌려준다. MCP로 노출. Apache-2.0 (2026, repo)
 - [[agents/yu-2026-dm-call-decision-model-guided-function-calling|DM-Call (paper + repo)]]: 함수 호출 후보를 schema check와 decision model의 두 질문으로 검증하고 거부 이력을 feedback으로 되돌려 수정한다. MIT (2026, paper)
+- [[agents/orkas-ai-orkas|Orkas (repo)]]: Commander가 목표를 할 일로 나눠 내장 전문 에이전트 16개와 Claude Code, Codex 등 CLI 에이전트에 위임하는 local-first 멀티에이전트 데스크톱 앱. MIT (2026, repo)
 
 ## Evaluations (evaluations)
 
