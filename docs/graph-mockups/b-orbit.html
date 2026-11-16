@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시안 B 궤도</title>
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="shared/mock-base.css">
+<style>
+  #canvas { cursor: grab; }
+  #canvas.is-pointing { cursor: pointer; }
+  #canvas.is-dragging { cursor: grabbing; }
+  #canvas:focus-visible { outline-offset: -4px; border-radius: 0; }
+
+  /* 방문 경로: 검색 아래 한 줄. 넘치면 이 줄 안에서만 가로로 밀린다 */
+  .trail {
+    top: calc(var(--space-4) + 36px + var(--space-2));
+    left: var(--space-4);
+    max-width: calc(100% - var(--panel-w) - 4 * var(--space-4));
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    height: 28px;
+    padding: 0 var(--space-1) 0 0;
+    font-size: var(--text-xs);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .trail::-webkit-scrollbar { display: none; }
+  .trail-back {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    display: inline-grid;
+    place-items: center;
+    padding: 0;
+    color: var(--muted);
+    background: var(--glass);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+  }
+  .trail-back:hover:not(:disabled) { color: var(--text); border-color: var(--signal); }
+  .trail-back:disabled { opacity: 0.4; cursor: default; }
+  .trail ol { display: flex; align-items: center; margin: 0; padding: 0 0 0 var(--space-1); list-style: none; }
+  .trail li { display: flex; align-items: center; flex: none; }
+  .trail li + li::before { content: '/'; color: var(--faint); padding: 0 6px; }
+  .trail button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    max-width: 180px;
+    padding: 2px 4px;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .trail button span:last-child { overflow: hidden; text-overflow: ellipsis; }
+  .trail button:hover { color: var(--text); }
+  .trail li[aria-current] button { color: var(--text); font-weight: 600; }
+  .trail-more { color: var(--faint); padding: 0 4px; }
+
+  /* 좌하단: 범례와 조작 안내 */
+  .dock { display: flex; align-items: flex-end; gap: var(--space-3); }
+  .mk-legend li { outline-offset: 0; }
+  .mk-legend li[aria-pressed='true'] .mk-swatch { box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 30%, transparent); }
+  .mk-legend li[aria-pressed='true'][data-cat='overviews'] .mk-swatch { box-shadow: inset 0 0 0 2px var(--c), 0 0 0 3px color-mix(in srgb, var(--c) 30%, transparent); }
+  .hint {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-2xs);
+    line-height: 1.7;
+    color: var(--faint);
+  }
+  .hint kbd {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    padding: 0 4px;
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-sm);
+  }
+
+  /* 패널: 이웃 목록은 카테고리별로 묶어 궤도의 색 호와 같은 순서로 둔다 */
+  .nb-group { margin: var(--space-3) 0 var(--space-1); display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-xs); color: var(--muted); }
+  .nb-group .mk-deg { margin-left: auto; }
+  .mk-neighbors li { outline-offset: -2px; }
+  .mk-neighbors li span.t { min-width: 0; }
+  .mk-neighbors li.is-hot { color: var(--c); }
+  .orbit-note { margin: var(--space-4) 0 0; color: var(--muted); font-size: var(--text-xs); line-height: 1.6; }
+  .linkish { padding: 0; color: var(--signal); background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  #panel-toggle { display: none; }
+
+  @media (max-width: 640px) {
+    .trail { max-width: calc(100% - 2 * var(--space-4)); }
+    .hint { display: none; }
+    .mk-stage > .dock { bottom: calc(var(--sheet, 0px) + var(--space-2)); }
+    .mk-legend { display: flex; gap: 10px; padding: 8px 10px; }
+    .mk-legend li { padding: 0; }
+    .mk-legend li .lbl, .mk-legend li .mk-legend-n { display: none; }
+    .mk-legend .mk-swatch { width: 10px; height: 10px; }
+    .mk-panel.is-peek .mk-panel-body { display: none; }
+    .mk-panel.is-peek .mk-panel-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: var(--text-base); }
+    .mk-panel-head { padding: var(--space-3) var(--space-4) var(--space-2); }
+    .mk-panel-foot { padding: var(--space-2) var(--space-4) var(--space-3); }
+    #panel-toggle { display: inline-flex; }
+  }
+</style>
+<script src="shared/graph-data.js"></script>
+<script src="shared/mock-base.js"></script>
+</head>
+<body>
+<header class="mk-bar">
+  <h1 class="mk-title">궤도</h1>
+  <span class="mk-subtitle" id="mk-stats"></span>
+  <div class="mk-bar-end">
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="테마 전환" aria-pressed="false">☀</button>
+  </div>
+</header>
+
+<main class="mk-stage" id="stage">
+  <canvas id="canvas" tabindex="0" aria-label="선택한 페이지를 중심에 두고 이웃을 궤도에 놓은 관계 그래프. 방향키로 궤도를 돌고 Enter로 중심을 옮긴다" aria-describedby="live"></canvas>
+  <p class="mk-sr" id="live" aria-live="polite"></p>
+
+  <div class="mk-float is-tl mk-search">
+    <label class="mk-sr" for="q">페이지 검색</label>
+    <input id="q" type="search" placeholder="페이지 제목으로 찾기" autocomplete="off" role="combobox" aria-controls="results" aria-expanded="false">
+    <ul class="mk-results mk-glass" id="results" role="listbox" hidden></ul>
+  </div>
+
+  <nav class="mk-float trail" aria-label="지나온 페이지">
+    <button type="button" class="trail-back" id="back" aria-label="이전 중심으로" title="이전 중심으로 (Backspace)">←</button>
+    <ol id="crumbs"></ol>
+  </nav>
+
+  <div class="mk-float is-bl dock" id="dock">
+    <ul class="mk-glass mk-legend" id="legend" aria-label="카테고리 필터"></ul>
+    <p class="hint"><kbd>← →</kbd> 궤도를 돈다<br><kbd>↑ ↓</kbd> 안팎 궤도로 옮긴다<br><kbd>Enter</kbd> 중심에 둔다<br><kbd>Esc</kbd> 이전 중심으로</p>
+  </div>
+
+  <div class="mk-tip" id="tip" hidden></div>
+
+  <aside class="mk-panel mk-glass is-peek" id="panel" aria-label="중심 페이지">
+    <div class="mk-panel-head">
+      <div style="display:flex;align-items:center;gap:var(--space-2)">
+        <span class="mk-panel-cat" id="p-cat"><span class="mk-swatch"></span><span></span></span>
+        <button type="button" class="mk-icon-btn" id="p-close" aria-label="패널 닫기">×</button>
+      </div>
+      <h2 class="mk-panel-title" id="p-title"></h2>
+      <div class="mk-panel-meta" id="p-meta"></div>
+    </div>
+    <div class="mk-panel-body" id="p-body"></div>
+    <div class="mk-panel-foot">
+      <a class="mk-btn is-primary" id="p-open" href="#">페이지 열기</a>
+      <button type="button" class="mk-btn" id="panel-toggle" aria-expanded="false">이웃 보기</button>
+    </div>
+  </aside>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var data = window.GRAPH_DATA;
+  var T = Mock.readTokens();
+  var RM = Mock.reduceMotion();
+  var TAU = Math.PI * 2, START = -Math.PI / 2;
+  var CAP2 = 48;        // 바깥 궤도에 두는 2-hop 수. 넘치면 "+k" 로 접는다
+  var TRACK = 24;       // 한 궤도가 여러 겹일 때 겹 사이 간격 (world px)
+  var LABEL_ROOM = 150; // 안쪽 궤도 라벨이 들어갈 두 궤도 사이 폭
+
+  var CAT_ORDER = {};
+  Mock.CATEGORIES.forEach(function (c, i) { CAT_ORDER[c.id] = i; });
+
+  // ── 데이터 ─────────────────────────────────────────────────────────────
+  var byId = {}, nb = {}, outE = new Set(), counts = {};
+  data.nodes.forEach(function (n) {
+    byId[n.id] = n; nb[n.id] = new Set();
+    counts[n.category] = (counts[n.category] || 0) + 1;
+    n.short = shortTitle(n.title);
+    n.r = Math.min(20, 2 + 1.6 * Math.sqrt(n.degree));
+  });
+  data.edges.forEach(function (e) {
+    nb[e.source].add(e.target); nb[e.target].add(e.source);
+    outE.add(e.source + '>' + e.target);
+  });
+  var hub = data.nodes.slice().sort(function (a, b) { return b.degree - a.degree; })[0];
+
+  // 궤도 라벨은 제목의 머리만 쓴다 ("Helix: Figure AI가 …" → "Helix"). 전체 제목은 툴팁과 패널이 보인다
+  function shortTitle(t) {
+    var m = t.match(/^(.{2,40}?)(?::\s|\s\(|\s[—–]\s|\s-\s)/);
+    return m ? m[1] : t;
+  }
+  function primaryTag(n) {
+    for (var i = 0; i < n.tags.length; i++) if (n.tags[i] !== n.category && n.tags[i] !== 'physical-ai') return n.tags[i];
+    return '';
+  }
+
+  document.getElementById('mk-stats').textContent =
+    '페이지 ' + data.nodes.length + '개, 연결 ' + data.edges.length.toLocaleString() + '개';
+
+  // ── 배치: 중심, 1-hop 안쪽 궤도, 2-hop 바깥 궤도 ───────────────────────
+  function placeRing(list, R, tracks, reserve, ring, pos, arcs, arcR, cap) {
+    if (!list.length) return;
+    var groups = 1;
+    for (var i = 1; i < list.length; i++) if (list[i].category !== list[i - 1].category) groups++;
+    var gap = groups > 1 ? Math.min(0.09, 0.7 / groups) : 0;
+    var step = (TAU - reserve - gap * (groups > 1 ? groups : 0)) / list.length;
+    var a = START + reserve / 2 + gap / 2, arc = null;
+    list.forEach(function (n, i) {
+      if (i > 0 && n.category !== list[i - 1].category) a += gap;
+      var ang = a + step / 2;
+      var tr = tracks > 1 ? i % tracks : 0;
+      pos.set(n.id, { rad: R + tr * TRACK, ang: ang, ring: ring, cap: cap });
+      if (!arc || arc.cat !== n.category) { arc = { cat: n.category, a0: a, a1: a + step, r: arcR }; arcs.push(arc); }
+      else arc.a1 = a + step;
+      a += step;
+    });
+  }
+  function catThenTag(list) {
+    var freq = {};
+    list.forEach(function (n) { var k = n.category + '|' + primaryTag(n); freq[k] = (freq[k] || 0) + 1; });
+    return function (a, b) {
+      var ka = a.category + '|' + primaryTag(a), kb = b.category + '|' + primaryTag(b);
+      return CAT_ORDER[a.category] - CAT_ORDER[b.category] || freq[kb] - freq[ka] || (ka < kb ? -1 : ka > kb ? 1 : 0) || b.degree - a.degree;
+    };
+  }
+
+  function layout(cid, expanded) {
+    var pos = new Map(), arcs = [], edges = [];
+    pos.set(cid, { rad: 0, ang: 0, ring: 0 });
+
+    var r1 = Array.from(nb[cid]).map(function (id) { return byId[id]; });
+    r1.sort(catThenTag(r1));
+    var tracks1 = r1.length <= 40 ? 1 : r1.length <= 90 ? 2 : 3;
+    var R1 = Math.max(130, r1.length / tracks1 * 21 / TAU);
+    placeRing(r1, R1, tracks1, 0, 1, pos, arcs, R1 - 16, 0.4 * TAU * R1 / Math.max(1, r1.length / tracks1));
+    var R1o = R1 + (tracks1 - 1) * TRACK;
+
+    // 2-hop: 안쪽 궤도와 공유하는 이웃이 많은 순으로 CAP2 개
+    var set1 = new Set(r1.map(function (n) { return n.id; })), par = new Map();
+    r1.forEach(function (n) {
+      nb[n.id].forEach(function (y) {
+        if (y === cid || set1.has(y)) return;
+        if (!par.has(y)) par.set(y, []);
+        par.get(y).push(n.id);
+      });
+    });
+    var cand = Array.from(par.keys()).map(function (id) { return byId[id]; });
+    cand.sort(function (a, b) { return par.get(b.id).length - par.get(a.id).length || b.degree - a.degree; });
+    var kept = expanded ? cand : cand.slice(0, CAP2);
+    var hidden = cand.length - kept.length;
+    // 같은 카테고리 안에서는 부모들의 평균 각도 순으로 둬서 엣지가 짧아지게 한다
+    var mean = {};
+    kept.forEach(function (n) {
+      var sx = 0, sy = 0;
+      par.get(n.id).forEach(function (p) { var q = pos.get(p); sx += Math.cos(q.ang); sy += Math.sin(q.ang); });
+      mean[n.id] = ((Math.atan2(sy, sx) - START) % TAU + TAU) % TAU;
+    });
+    kept.sort(function (a, b) { return CAT_ORDER[a.category] - CAT_ORDER[b.category] || mean[a.id] - mean[b.id]; });
+    var tracks2 = Math.min(3, Math.max(1, Math.ceil(kept.length / 72)));
+    var R2 = Math.max(R1o + LABEL_ROOM, kept.length / tracks2 * 16 / TAU);
+    var reserve = hidden > 0 ? Math.min(0.5, 70 / R2) : 0;
+    placeRing(kept, R2, tracks2, reserve, 2, pos, arcs, R2 - 14, 0.4 * (TAU * R2 - 70) / Math.max(1, kept.length / tracks2));
+    var R2o = R2 + (tracks2 - 1) * TRACK;
+
+    r1.forEach(function (n) {
+      edges.push([cid, n.id, 0]);
+      nb[n.id].forEach(function (b) { if (set1.has(b) && n.id < b) edges.push([n.id, b, 1]); });
+    });
+    kept.forEach(function (n) { par.get(n.id).forEach(function (p) { edges.push([p, n.id, 2]); }); });
+
+    var guides = [];
+    for (var t = 0; t < tracks1; t++) guides.push(R1 + t * TRACK);
+    if (kept.length) for (t = 0; t < tracks2; t++) guides.push(R2 + t * TRACK);
+    return {
+      cid: cid, pos: pos, arcs: arcs, edges: edges, guides: guides,
+      r1: r1.map(function (n) { return n.id; }), r2: kept.map(function (n) { return n.id; }),
+      R1: R1, R1o: R1o, R2: R2, R2o: R2o, hidden: hidden, total2: cand.length,
+      extent: (kept.length ? R2o : R1o) + 130,
+    };
+  }
+
+  // ── 캔버스와 카메라 ───────────────────────────────────────────────────
+  var stage = document.getElementById('stage');
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  var panel = document.getElementById('panel');
+  var W = 0, H = 0;
+  var cam = { tx: 0, ty: 0, k: 1 }, camFrom = null, camTo = null;
+  var coarse = matchMedia('(pointer: coarse)').matches;
+  function isMobile() { return W <= 640; }
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = canvas.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width = Math.max(1, Math.floor(W * dpr));
+    canvas.height = Math.max(1, Math.floor(H * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    syncSheet();
+    if (view) { cam = fitCam(view); camFrom = camTo = null; }
+    request();
+  }
+  function syncSheet() {
+    stage.style.setProperty('--sheet', isMobile() && panelOpen ? panel.offsetHeight + 'px' : '0px');
+  }
+  // 그래프를 패널과 상단 컨트롤을 뺀 영역 가운데 맞춘다
+  function fitCam(v) {
+    var top = isMobile() ? 100 : 96, bottom = 16, left = 16, right = 16;
+    if (panelOpen) {
+      if (isMobile()) bottom = panel.offsetHeight + 52;
+      else right = 360 + 32;
+    } else if (isMobile()) bottom = 52;
+    var aw = Math.max(80, W - left - right), ah = Math.max(80, H - top - bottom);
+    var k = Math.max(0.22, Math.min(1.5, Math.min(aw, ah) / (2 * v.extent)));
+    return { tx: left + aw / 2, ty: top + ah / 2, k: k };
+  }
+
+  // ── 상태 ──────────────────────────────────────────────────────────────
+  var view = null, prevView = null;
+  var disp = new Map(); // id → { from, to, cur, delay, polar, lt }
+  var anim = null;
+  var hoverId = null, focusId = null, hotPlus = false;
+  var expanded = false;
+  var trail = [];
+  var filter = new Set(), preview = null;
+  var panelOpen = true;
+  var raf = 0;
+
+  function request() { if (!raf) raf = requestAnimationFrame(frame); }
+  function ease(t) { return 1 - Math.pow(1 - t, 4); }
+  function clamp(t) { return t < 0 ? 0 : t > 1 ? 1 : t; }
+  function lerpAng(a, b, t) { var d = ((b - a) % TAU + TAU * 1.5) % TAU - TAU / 2; return a + d * t; }
+
+  function transition(v, reveal) {
+    prevView = view; view = v;
+    var ids = new Set(v.pos.keys());
+    disp.forEach(function (d, id) { if (d.cur.a > 0.001) ids.add(id); });
+    var next = new Map();
+    ids.forEach(function (id) {
+      var d = disp.get(id), np = v.pos.get(id), cur = d && d.cur.a > 0.001 ? d.cur : null;
+      var from = cur ? { rad: cur.rad, ang: cur.ang, a: cur.a }
+        : { rad: np.rad * (reveal ? 0.4 : 1.16), ang: np.ang, a: 0 };
+      var to = np ? { rad: np.rad, ang: np.ang, a: 1 } : { rad: cur.rad * 1.14 + 20, ang: cur.ang, a: 0 };
+      var delay = 0;
+      if (reveal && np) delay = np.ring === 0 ? 0 : np.ring === 1 ? 60 + 140 * frac(np.ang) : 200 + 160 * frac(np.ang);
+      next.set(id, { from: from, to: to, cur: { rad: from.rad, ang: from.ang, a: from.a, x: 0, y: 0 }, delay: delay,
+        polar: from.rad > 24 && to.rad > 24, ring: np ? np.ring : -1, lt: 0, cap: np ? np.cap : d.cap });
+    });
+    disp = next;
+    camFrom = { tx: cam.tx, ty: cam.ty, k: cam.k };
+    camTo = fitCam(v);
+    if (reveal) camFrom = camTo;
+    anim = { t0: performance.now(), dur: 600, reveal: reveal };
+    if (RM) anim.t0 = -1e9;
+    request();
+  }
+  function frac(ang) { return (((ang - START) % TAU) + TAU) % TAU / TAU; }
+
+  function frame(now) {
+    raf = 0;
+    var busy = false;
+    var e = anim ? now - anim.t0 : 1e9;
+    disp.forEach(function (d) {
+      var lt = clamp((e - d.delay) / (anim ? anim.dur : 1));
+      if (lt < 1) busy = true;
+      d.lt = lt;
+      var t = ease(lt), c = d.cur;
+      c.a = d.from.a + (d.to.a - d.from.a) * t;
+      if (d.polar) {
+        c.rad = d.from.rad + (d.to.rad - d.from.rad) * t;
+        c.ang = lerpAng(d.from.ang, d.to.ang, t);
+        c.x = Math.cos(c.ang) * c.rad; c.y = Math.sin(c.ang) * c.rad;
+      } else {
+        var fx = Math.cos(d.from.ang) * d.from.rad, fy = Math.sin(d.from.ang) * d.from.rad;
+        var tx = Math.cos(d.to.ang) * d.to.rad, ty = Math.sin(d.to.ang) * d.to.rad;
+        c.x = fx + (tx - fx) * t; c.y = fy + (ty - fy) * t;
+        c.rad = Math.hypot(c.x, c.y); c.ang = c.rad > 0.01 ? Math.atan2(c.y, c.x) : d.to.ang;
+      }
+    });
+    if (anim && camFrom && camTo) {
+      var ct = ease(clamp(e / 480));
+      cam = { tx: camFrom.tx + (camTo.tx - camFrom.tx) * ct, ty: camFrom.ty + (camTo.ty - camFrom.ty) * ct, k: camFrom.k + (camTo.k - camFrom.k) * ct };
+      if (ct < 1) busy = true;
+    }
+    var et = !anim ? 1 : anim.reveal ? clamp((e - 420) / 360) : clamp(e / 600);
+    if (et < 1) busy = true;
+    draw(et);
+    if (busy) request();
+    else if (anim) {
+      anim = null; camFrom = camTo = null; prevView = null;
+      disp.forEach(function (d, id) { if (d.to.a === 0) disp.delete(id); });
+    }
+  }
+
+  // ── 그리기 ────────────────────────────────────────────────────────────
+  function sx(x) { return cam.tx + x * cam.k; }
+  function sy(y) { return cam.ty + y * cam.k; }
+  // 궤도가 붐비면 겹치지 않게 반지름에 상한을 둔다 (밝기와 글로우는 그대로라 위계는 남는다)
+  function nodeR(n) {
+    var d = disp.get(n.id), r = n.r * Math.sqrt(cam.k);
+    if (d && d.cap) r = Math.max(2.5, Math.min(r, d.cap * cam.k));
+    return r * (view && n.id === view.cid ? 1.25 : 1);
+  }
+  function activeCats() { return preview ? new Set([preview]) : filter.size ? filter : null; }
+  function passes(id, cats) { return !cats || cats.has(byId[id].category); }
+
+  function draw(et) {
+    var cats = activeCats();
+    var hot = hoverId || focusId;
+    var hotNb = hot ? nb[hot] : null;
+    ctx.fillStyle = T.bg;
+    ctx.fillRect(0, 0, W, H);
+    ctx.lineCap = 'round';
+
+    // 궤도 안내선과 카테고리 호. 직전 화면과 교차 페이드한다
+    [[prevView, 1 - et], [view, et]].forEach(function (p) {
+      var v = p[0], a = p[1];
+      if (!v || a <= 0) return;
+      ctx.globalAlpha = a;
+      ctx.strokeStyle = T.hairline;
+      ctx.lineWidth = 1;
+      v.guides.forEach(function (R) { ctx.beginPath(); ctx.arc(cam.tx, cam.ty, R * cam.k, 0, TAU); ctx.stroke(); });
+      ctx.lineWidth = 2;
+      v.arcs.forEach(function (arc) {
+        ctx.globalAlpha = a * (cats && !cats.has(arc.cat) ? T.dimAlpha : 0.75);
+        ctx.strokeStyle = T.cat[arc.cat];
+        ctx.beginPath();
+        ctx.arc(cam.tx, cam.ty, arc.r * cam.k, arc.a0 + 0.004, Math.max(arc.a0 + 0.008, arc.a1 - 0.004));
+        ctx.stroke();
+      });
+    });
+
+    if (prevView && et < 1) drawEdges(prevView, 1 - et, null, cats);
+    drawEdges(view, et, hot, cats);
+
+    // 노드: 바깥 궤도부터, 중심과 강조 노드는 마지막에
+    var order = Array.from(disp.keys()).sort(function (a, b) {
+      return rank(a) - rank(b);
+      function rank(id) { var d = disp.get(id); return id === hot ? 9 : d.ring === 0 ? 8 : d.ring === -1 ? 0 : 3 - d.ring; }
+    });
+    order.forEach(function (id) {
+      var d = disp.get(id), n = byId[id], c = d.cur;
+      if (c.a <= 0.004) return;
+      var x = sx(c.x), y = sy(c.y), r = nodeR(n);
+      var col = T.cat[n.category] || T.cat.etc;
+      var a = c.a * (d.ring === 2 ? 0.55 : 1);
+      if (!passes(id, cats)) a *= T.dimAlpha;
+      else if (hot && id !== hot && !hotNb.has(id) && id !== view.cid) a *= 0.35;
+      if (id === hot || id === view.cid) a = Math.max(a, c.a);
+      if (T.glowAlpha > 0 && n.degree >= 30 && (d.ring === 0 || r >= n.r * Math.sqrt(cam.k) - 0.5)) { // 붐벼서 줄인 노드는 글로우를 생략
+        ctx.globalAlpha = a * T.glowAlpha; ctx.fillStyle = col;
+        ctx.beginPath(); ctx.arc(x, y, r * 2.6, 0, TAU); ctx.fill();
+      }
+      ctx.globalAlpha = a;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, TAU);
+      if (n.category === 'etc') { ctx.strokeStyle = col; ctx.lineWidth = 1.5; ctx.stroke(); }
+      else {
+        ctx.fillStyle = col; ctx.fill();
+        if (T.theme === 'light') { ctx.strokeStyle = T.ring; ctx.lineWidth = 1; ctx.stroke(); }
+      }
+      if (n.category === 'overviews') {
+        ctx.strokeStyle = col; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(x, y, r + 2.5, 0, TAU); ctx.stroke();
+      }
+      if (id === view.cid) {
+        ctx.strokeStyle = col; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.arc(x, y, r + 5, 0, TAU); ctx.stroke();
+      }
+      if (id === hoverId || id === focusId) {
+        ctx.strokeStyle = col; ctx.lineWidth = id === focusId ? 1.5 : 1;
+        ctx.beginPath(); ctx.arc(x, y, r + 4, 0, TAU); ctx.stroke();
+      }
+    });
+    ctx.globalAlpha = 1;
+
+    drawLabels(hot, cats);
+
+    // 접힌 2-hop 수: 바깥 궤도 꼭대기의 빈자리에 적는다. 누르면 펼친다
+    if (view.hidden > 0 || expanded) {
+      ctx.globalAlpha = et;
+      ctx.font = '500 11px ' + T.fontMono;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillStyle = hotPlus ? T.text : T.muted;
+      var txt = expanded ? '접기' : '+' + view.hidden;
+      var px = cam.tx, py = cam.ty - view.R2 * cam.k;
+      halo(txt, px, py);
+      ctx.fillText(txt, px, py);
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  function drawEdges(v, mix, hot, cats) {
+    if (!v || mix <= 0) return;
+    var hiList = [];
+    var buckets = {}; // 기본 엣지는 종류별, 바큇살은 카테고리별로 한 번에 긋는다
+    v.edges.forEach(function (e) {
+      var da = disp.get(e[0]), db = disp.get(e[1]);
+      if (!da || !db) return;
+      if (hot && (e[0] === hot || e[1] === hot)) { hiList.push(e); return; }
+      var dim = cats && (!passes(e[0], cats) || !passes(e[1], cats));
+      var key = (e[2] === 0 ? 's:' + byId[e[1]].category : 'k' + e[2]) + (dim ? ':d' : '');
+      (buckets[key] || (buckets[key] = [])).push(e);
+    });
+    var base = hot ? 0.3 : 1;
+    Object.keys(buckets).forEach(function (key) {
+      var list = buckets[key], kind = key.charAt(0) === 's' ? 0 : +key.charAt(1);
+      var a = kind === 0 ? T.edgeHiAlpha * 0.32 : kind === 1 ? T.edgeAlpha * 2.2 : T.edgeAlpha * 1.6;
+      if (/:d$/.test(key)) a *= 0.25;
+      ctx.globalAlpha = a * mix * base;
+      ctx.strokeStyle = kind === 0 ? T.cat[key.split(':')[1]] : T.edge;
+      ctx.lineWidth = 0.75;
+      ctx.beginPath();
+      list.forEach(function (e) { path(e); });
+      ctx.stroke();
+      if (kind === 0) { ctx.fillStyle = ctx.strokeStyle; ctx.beginPath(); list.forEach(function (e) { arrow(e); }); ctx.fill(); }
+    });
+    hiList.forEach(function (e) {
+      var other = e[0] === hot ? e[1] : e[0];
+      ctx.globalAlpha = T.edgeHiAlpha * mix;
+      ctx.strokeStyle = ctx.fillStyle = T.cat[byId[other].category];
+      ctx.lineWidth = 1.25;
+      ctx.beginPath(); path(e); ctx.stroke();
+      ctx.beginPath(); arrow(e); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  }
+  // 엣지 방향: 실제 링크 방향에 화살촉을 붙인다. 양방향이면 양끝에
+  function arrow(e) {
+    if (outE.has(e[0] + '>' + e[1])) head(e[0], e[1]);
+    if (outE.has(e[1] + '>' + e[0])) head(e[1], e[0]);
+  }
+  function head(from, to) {
+    var a = disp.get(from).cur, b = disp.get(to).cur;
+    var x1 = sx(a.x), y1 = sy(a.y), x2 = sx(b.x), y2 = sy(b.y);
+    var dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy);
+    if (L < 20) return;
+    var ux = dx / L, uy = dy / L, rr = nodeR(byId[to]) + 2;
+    if (from !== view.cid && to !== view.cid && disp.get(from).ring === 1 && disp.get(to).ring === 1) return; // 곡선 현은 촉 생략
+    var tx = x2 - ux * rr, ty = y2 - uy * rr;
+    ctx.moveTo(tx, ty);
+    ctx.lineTo(tx - ux * 5 - uy * 2.5, ty - uy * 5 + ux * 2.5);
+    ctx.lineTo(tx - ux * 5 + uy * 2.5, ty - uy * 5 - ux * 2.5);
+    ctx.closePath();
+  }
+  function path(e) {
+    var a = disp.get(e[0]).cur, b = disp.get(e[1]).cur;
+    var x1 = sx(a.x), y1 = sy(a.y), x2 = sx(b.x), y2 = sy(b.y);
+    ctx.moveTo(x1, y1);
+    if (e[2] === 1) {
+      // 안쪽 궤도끼리의 현은 중심 쪽으로 휘게 그려 궤도 안을 실로 엮은 모양이 된다
+      ctx.quadraticCurveTo(cam.tx + ((a.x + b.x) / 2) * 0.3 * cam.k, cam.ty + ((a.y + b.y) / 2) * 0.3 * cam.k, x2, y2);
+    } else ctx.lineTo(x2, y2);
+  }
+
+  function labelFont(n, strong) {
+    if (strong || n.degree >= 50) return { f: '700 13px ' + T.fontDisplay, px: 13, c: T.label };
+    if (n.degree >= 15) return { f: '500 12px ' + T.fontDisplay, px: 12, c: T.label };
+    return { f: '500 11px ' + T.fontDisplay, px: 11, c: T.labelMuted };
+  }
+  var fitCache = new Map();
+  function fitText(s, font, maxW) {
+    var key = font + '|' + Math.round(maxW / 8) + '|' + s;
+    if (fitCache.has(key)) return fitCache.get(key);
+    ctx.font = font;
+    var out = s.length > 28 ? s.slice(0, 27) + '…' : s;
+    while (out.length > 4 && ctx.measureText(out).width > maxW) out = out.slice(0, -2) + '…';
+    if (ctx.measureText(out).width > maxW || (out !== s && out.length < Math.min(s.length, 8))) out = ''; // 너무 잘린 라벨은 소음이라 뺀다
+    if (fitCache.size > 4000) fitCache.clear();
+    fitCache.set(key, out);
+    return out;
+  }
+  function halo(txt, x, y) {
+    ctx.save(); ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.strokeStyle = T.labelHalo;
+    ctx.strokeText(txt, x, y); ctx.restore();
+  }
+
+  function drawLabels(hot, cats) {
+    var k = cam.k;
+    var r2max = 0;
+    view.r2.forEach(function (id) { r2max = Math.max(r2max, nodeR(byId[id])); });
+    [1, 2].forEach(function (ring) {
+      var ids = (ring === 1 ? view.r1 : view.r2).filter(function (id) {
+        var d = disp.get(id); return d && d.lt > 0.85 && d.ring === ring && passes(id, cats);
+      });
+      ids.sort(function (a, b) {
+        return pri(b) - pri(a);
+        function pri(id) { return (id === hot ? 1e6 : 0) + (hotNbHas(hot, id) ? 1e4 : 0) + byId[id].degree; }
+      });
+      var kept = [];
+      var outer = ring === 1 ? view.R1o : view.R2o;
+      ids.forEach(function (id) {
+        var d = disp.get(id), n = byId[id], c = d.cur;
+        var strong = id === hot;
+        var lf = labelFont(n, strong);
+        var start = Math.max(c.rad * k + nodeR(n) + 5, outer * k + 7);
+        var maxW = ring === 1 ? (view.R2 * k - r2max - 8) - start : Math.max(56, 135 * k);
+        if (strong) maxW = Math.max(maxW, 200);
+        maxW = Math.min(maxW, edgeRoom(c.ang) - start - 6); // 화면 밖으로 나가는 라벨은 줄이거나 뺀다
+        var need = (lf.px + 2) / start;
+        if (!strong) for (var i = 0; i < kept.length; i++) {
+          var dd = Math.abs(((c.ang - kept[i].ang) % TAU + TAU * 1.5) % TAU - TAU / 2);
+          if (dd < Math.max(need, kept[i].need)) return;
+        }
+        var txt = fitText(n.short, lf.f, maxW);
+        if (!txt) return;
+        kept.push({ ang: c.ang, need: need });
+        var la = clamp((d.lt - 0.85) / 0.15) * (ring === 2 && !strong ? 0.85 : 1);
+        if (hot && !strong && !hotNbHas(hot, id)) la *= 0.35;
+        ctx.save();
+        ctx.globalAlpha = la;
+        ctx.translate(cam.tx, cam.ty);
+        var right = Math.cos(c.ang) >= -0.0001;
+        ctx.rotate(right ? c.ang : c.ang + Math.PI);
+        ctx.font = lf.f; ctx.fillStyle = lf.c;
+        ctx.textAlign = right ? 'left' : 'right'; ctx.textBaseline = 'middle';
+        var x = right ? start : -start;
+        halo(txt, x, 0);
+        ctx.fillText(txt, x, 0);
+        ctx.restore();
+      });
+    });
+    // 중심 라벨: 노드 아래 가로로, 두 줄까지
+    var cd = disp.get(view.cid), cn = byId[view.cid];
+    if (cd && cd.lt > 0.6) {
+      ctx.globalAlpha = clamp((cd.lt - 0.6) / 0.4);
+      ctx.font = '700 15px ' + T.fontDisplay;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.fillStyle = T.label;
+      var lines = wrap(cn.title, Math.max(140, Math.min(300, view.R1 * k * 1.5)), 2);
+      var y0 = sy(cd.cur.y) + nodeR(cn) + 12;
+      lines.forEach(function (ln, i) { halo(ln, sx(cd.cur.x), y0 + i * 19); ctx.fillText(ln, sx(cd.cur.x), y0 + i * 19); });
+      ctx.globalAlpha = 1;
+    }
+  }
+  function edgeRoom(ang) {
+    var cx = Math.cos(ang), cy = Math.sin(ang), t = Infinity;
+    var R = panelOpen && !isMobile() ? W - 376 : W; // 패널 아래로 들어가는 라벨도 뺀다
+    if (cx > 1e-6) t = Math.min(t, (R - cam.tx) / cx); else if (cx < -1e-6) t = Math.min(t, -cam.tx / cx);
+    if (cy > 1e-6) t = Math.min(t, (H - cam.ty) / cy); else if (cy < -1e-6) t = Math.min(t, -cam.ty / cy);
+    return t;
+  }
+  function hotNbHas(hot, id) { return !!hot && nb[hot].has(id); }
+  function wrap(text, maxW, maxLines) {
+    var words = text.split(' '), lines = [], cur = '';
+    for (var i = 0; i < words.length; i++) {
+      var t = cur ? cur + ' ' + words[i] : words[i];
+      if (ctx.measureText(t).width > maxW && cur) {
+        lines.push(cur); cur = words[i];
+        if (lines.length === maxLines) break;
+      } else cur = t;
+    }
+    if (lines.length < maxLines) { lines.push(cur); i = words.length; }
+    if (i < words.length || ctx.measureText(lines[lines.length - 1]).width > maxW) {
+      var last = lines[lines.length - 1];
+      while (last.length > 1 && ctx.measureText(last + '…').width > maxW) last = last.slice(0, -1);
+      lines[lines.length - 1] = last + '…';
+    }
+    return lines;
+  }
+
+  // ── 중심 옮기기, 방문 경로, 딥링크 ────────────────────────────────────
+  function recenter(id, opts) {
+    opts = opts || {};
+    if (!byId[id]) return;
+    if (view && id === view.cid && !opts.force) return;
+    if (!opts.fromTrail) {
+      var at = trail.indexOf(id);
+      if (at >= 0) trail = trail.slice(0, at + 1); else trail.push(id);
+    }
+    if (view && id !== view.cid) expanded = false;
+    focusId = null; hoverId = null; hideTip();
+    transition(layout(id, expanded), !!opts.reveal);
+    var h = '#node=' + id;
+    if (location.hash !== h) history.replaceState(null, '', h);
+    renderPanel(); renderTrail();
+    document.getElementById('live').textContent = byId[id].title + ' 중심. 이웃 ' + nb[id].size + '개';
+  }
+  function back() {
+    if (trail.length < 2) return;
+    trail.pop();
+    recenter(trail[trail.length - 1], { fromTrail: true });
+  }
+  function readHash() {
+    var m = location.hash.match(/node=([^&]+)/);
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+  window.addEventListener('hashchange', function () {
+    var id = readHash();
+    if (id && byId[id]) recenter(id);
+  });
+
+  var crumbs = document.getElementById('crumbs');
+  function renderTrail() {
+    var show = trail.slice(-5), skipped = trail.length - show.length;
+    crumbs.innerHTML = (skipped ? '<li class="trail-more" aria-label="' + skipped + '개 더">…</li>' : '') +
+      show.map(function (id, i) {
+        var n = byId[id], last = i === show.length - 1;
+        return '<li data-cat="' + n.category + '"' + (last ? ' aria-current="page"' : '') + '><button type="button" data-id="' +
+          esc(id) + '" title="' + esc(n.title) + '"><span class="mk-swatch"></span><span>' + esc(n.short) + '</span></button></li>';
+      }).join('');
+    document.getElementById('back').disabled = trail.length < 2;
+    var nav = crumbs.parentNode; nav.scrollLeft = nav.scrollWidth;
+  }
+  crumbs.addEventListener('click', function (ev) {
+    var b = ev.target.closest('button[data-id]');
+    if (!b) return;
+    var id = b.dataset.id, at = trail.indexOf(id);
+    trail = trail.slice(0, at + 1);
+    recenter(id, { fromTrail: true });
+  });
+  document.getElementById('back').addEventListener('click', back);
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  // ── 패널 ──────────────────────────────────────────────────────────────
+  var pBody = document.getElementById('p-body');
+  var pToggle = document.getElementById('panel-toggle');
+  function pageHref(id) { return '../../wiki/' + id + '.md'; } // 시안: 저장소의 wiki 원문으로 간다
+  function renderPanel() {
+    var n = byId[view.cid], meta = Mock.cat(n.category);
+    var pc = document.getElementById('p-cat');
+    pc.dataset.cat = n.category; pc.lastElementChild.textContent = meta.en + ', ' + meta.ko;
+    document.getElementById('p-title').textContent = n.title;
+    document.getElementById('p-meta').innerHTML = '<span>' + n.year + '</span><span>' + n.type + '</span><span>연결 ' + n.degree + '</span>';
+    document.getElementById('p-open').href = pageHref(n.id);
+    pToggle.textContent = '이웃 ' + view.r1.length + '개';
+    var html = n.tags.length ? '<div class="mk-tags">' + n.tags.map(function (t) { return '<span class="mk-tag">' + esc(t) + '</span>'; }).join('') + '</div>' : '';
+    html += '<h3 class="mk-panel-section">이웃 페이지 ' + view.r1.length + '개</h3>';
+    var cur = null;
+    view.r1.forEach(function (id) {
+      var m = byId[id];
+      if (m.category !== cur) {
+        if (cur) html += '</ul>';
+        cur = m.category;
+        var cnt = view.r1.filter(function (x) { return byId[x].category === cur; }).length;
+        html += '<div class="nb-group" data-cat="' + cur + '"><span class="mk-swatch"></span>' + Mock.cat(cur).en + '<span class="mk-deg">' + cnt + '</span></div><ul class="mk-neighbors">';
+      }
+      html += '<li data-cat="' + m.category + '" data-id="' + esc(id) + '" tabindex="0" role="button"><span class="t">' + esc(m.title) +
+        '</span><span class="mk-deg" style="margin-left:auto">' + m.degree + '</span></li>';
+    });
+    if (cur) html += '</ul>';
+    if (view.total2) {
+      html += '<p class="orbit-note">두 다리 건너 닿는 페이지는 ' + view.total2 + '개다. ' +
+        (view.hidden ? '바깥 궤도에는 이웃을 많이 공유하는 ' + view.r2.length + '개만 둔다. <button type="button" class="linkish" data-act="expand">모두 보이기</button>'
+          : expanded ? '바깥 궤도에 모두 보인다. <button type="button" class="linkish" data-act="expand">' + CAP2 + '개로 줄이기</button>' : '바깥 궤도에 모두 보인다.') + '</p>';
+    }
+    pBody.innerHTML = html;
+    pBody.scrollTop = 0;
+  }
+  pBody.addEventListener('click', function (ev) {
+    if (ev.target.closest('[data-act="expand"]')) { toggleExpand(); return; }
+    var li = ev.target.closest('li[data-id]');
+    if (li) recenter(li.dataset.id);
+  });
+  pBody.addEventListener('keydown', function (ev) {
+    var li = ev.target.closest('li[data-id]');
+    if (li && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); ev.stopPropagation(); recenter(li.dataset.id); }
+  });
+  pBody.addEventListener('pointerover', function (ev) {
+    var li = ev.target.closest('li[data-id]');
+    hoverId = li ? li.dataset.id : null; request();
+  });
+  pBody.addEventListener('pointerleave', function () { hoverId = null; request(); });
+  pBody.addEventListener('focusin', function (ev) {
+    var li = ev.target.closest('li[data-id]'); if (li) { hoverId = li.dataset.id; request(); }
+  });
+  function toggleExpand() {
+    expanded = !expanded;
+    transition(layout(view.cid, expanded), false);
+    renderPanel();
+  }
+  function setPanel(open) {
+    panelOpen = open;
+    panel.hidden = !open;
+    syncSheet();
+    if (view) { camFrom = { tx: cam.tx, ty: cam.ty, k: cam.k }; camTo = fitCam(view); anim = anim || { t0: RM ? -1e9 : performance.now(), dur: 600, reveal: false }; request(); }
+  }
+  document.getElementById('p-close').addEventListener('click', function () { setPanel(false); canvas.focus(); });
+  pToggle.addEventListener('click', function () {
+    var peek = panel.classList.toggle('is-peek');
+    pToggle.setAttribute('aria-expanded', String(!peek));
+    syncSheet();
+  });
+
+  // ── 범례 필터 ─────────────────────────────────────────────────────────
+  var legend = document.getElementById('legend');
+  legend.innerHTML = Mock.CATEGORIES.map(function (c) {
+    return '<li data-cat="' + c.id + '" role="button" tabindex="0" aria-pressed="false" title="' + c.en + ', ' + c.ko + '만 강조">' +
+      '<span class="mk-swatch"></span><span class="lbl">' + c.en + '</span><span class="mk-legend-n">' + (counts[c.id] || 0) + '</span></li>';
+  }).join('');
+  function toggleCat(li) {
+    var c = li.dataset.cat;
+    if (filter.has(c)) filter.delete(c); else filter.add(c);
+    li.setAttribute('aria-pressed', String(filter.has(c)));
+    preview = null; request();
+  }
+  legend.addEventListener('click', function (ev) { var li = ev.target.closest('li'); if (li) toggleCat(li); });
+  legend.addEventListener('keydown', function (ev) {
+    var li = ev.target.closest('li');
+    if (li && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); ev.stopPropagation(); toggleCat(li); }
+  });
+  legend.addEventListener('pointerover', function (ev) {
+    if (ev.pointerType !== 'mouse') return;
+    var li = ev.target.closest('li'); preview = li && !filter.size ? li.dataset.cat : null; request();
+  });
+  legend.addEventListener('pointerleave', function () { preview = null; request(); });
+
+  // ── 검색 ──────────────────────────────────────────────────────────────
+  var q = document.getElementById('q'), results = document.getElementById('results');
+  var hits = [], sel = 0;
+  function search() {
+    var s = q.value.trim().toLowerCase();
+    if (!s) { closeResults(); return; }
+    hits = data.nodes.filter(function (n) { return n.title.toLowerCase().indexOf(s) >= 0 || n.stem.indexOf(s) >= 0; })
+      .sort(function (a, b) {
+        return (b.title.toLowerCase().indexOf(s) === 0) - (a.title.toLowerCase().indexOf(s) === 0) || b.degree - a.degree;
+      }).slice(0, 12);
+    sel = 0;
+    results.innerHTML = hits.length ? hits.map(function (n, i) {
+      return '<li role="option" data-cat="' + n.category + '" data-id="' + esc(n.id) + '" aria-selected="' + (i === sel) + '"><span class="mk-swatch"></span>' +
+        '<span>' + esc(n.title) + '</span><span class="mk-deg">' + n.degree + '</span></li>';
+    }).join('') : '<li aria-disabled="true" style="color:var(--muted);cursor:default">일치하는 페이지가 없다. 영문 제목으로 찾아 본다</li>';
+    results.hidden = false; q.setAttribute('aria-expanded', 'true');
+  }
+  function closeResults() { results.hidden = true; q.setAttribute('aria-expanded', 'false'); hits = []; }
+  function pick(i) { var n = hits[i]; if (!n) return; closeResults(); q.value = ''; q.blur(); recenter(n.id); canvas.focus(); }
+  q.addEventListener('input', search);
+  q.addEventListener('keydown', function (ev) {
+    if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
+      ev.preventDefault();
+      if (!hits.length) return;
+      sel = (sel + (ev.key === 'ArrowDown' ? 1 : -1) + hits.length) % hits.length;
+      Array.prototype.forEach.call(results.children, function (li, i) { li.setAttribute('aria-selected', String(i === sel)); if (i === sel) li.scrollIntoView({ block: 'nearest' }); });
+    } else if (ev.key === 'Enter') { ev.preventDefault(); ev.stopPropagation(); pick(sel); }
+    else if (ev.key === 'Escape') { ev.stopPropagation(); if (!results.hidden) closeResults(); else q.blur(); }
+  });
+  results.addEventListener('pointerdown', function (ev) {
+    var li = ev.target.closest('li[data-id]');
+    if (li) { ev.preventDefault(); pick(hits.findIndex(function (n) { return n.id === li.dataset.id; })); }
+  });
+  q.addEventListener('blur', function () { setTimeout(closeResults, 120); });
+
+  // ── 툴팁 ──────────────────────────────────────────────────────────────
+  var tip = document.getElementById('tip');
+  function showTip(id, x, y) {
+    var n = byId[id], m = Mock.cat(n.category), d = disp.get(id);
+    var rel = id === view.cid ? '중심' : d && d.ring === 1 ? '이웃' : '두 다리 건너';
+    tip.innerHTML = '<div class="mk-tip-title">' + esc(n.title) + '</div><div class="mk-tip-meta" data-cat="' + n.category + '"><span class="mk-swatch"></span>' +
+      m.en + '<span>' + n.year + '</span><span>' + n.type + '</span><span>연결 ' + n.degree + '</span><span>' + rel + '</span></div>';
+    tip.hidden = false;
+    var tw = tip.offsetWidth, th = tip.offsetHeight;
+    var lx = x + 12 + tw > W - 8 ? x - 12 - tw : x + 12;
+    var ly = y + 12 + th > H - 8 ? y - 12 - th : y + 12;
+    tip.style.left = Math.max(8, lx) + 'px'; tip.style.top = Math.max(8, ly) + 'px';
+  }
+  function hideTip() { tip.hidden = true; }
+
+  // ── 포인터: 클릭으로 중심 옮기기, 드래그 팬, 휠과 핀치 줌 ──────────────
+  function hit(x, y) {
+    var best = null, bd = Infinity;
+    disp.forEach(function (d, id) {
+      if (d.ring < 0 || d.cur.a < 0.3) return;
+      var dx = sx(d.cur.x) - x, dy = sy(d.cur.y) - y, dist = Math.hypot(dx, dy);
+      var lim = Math.max(nodeR(byId[id]) + 4, coarse ? 16 : 8);
+      if (dist < lim && dist < bd) { bd = dist; best = id; }
+    });
+    return best;
+  }
+  function hitPlus(x, y) {
+    if (!view || !(view.hidden > 0 || expanded)) return false;
+    return Math.abs(x - cam.tx) < 26 && Math.abs(y - (cam.ty - view.R2 * cam.k)) < 12;
+  }
+  var pointers = new Map(), drag = null, pinch = null;
+  function local(ev) { var r = canvas.getBoundingClientRect(); return { x: ev.clientX - r.left, y: ev.clientY - r.top }; }
+  canvas.addEventListener('pointerdown', function (ev) {
+    canvas.setPointerCapture(ev.pointerId);
+    var p = local(ev);
+    pointers.set(ev.pointerId, p);
+    if (pointers.size === 1) drag = { x: p.x, y: p.y, tx: cam.tx, ty: cam.ty, moved: false };
+    else if (pointers.size === 2) {
+      var ps = Array.from(pointers.values());
+      pinch = { d: Math.hypot(ps[0].x - ps[1].x, ps[0].y - ps[1].y), k: cam.k, tx: cam.tx, ty: cam.ty, mx: (ps[0].x + ps[1].x) / 2, my: (ps[0].y + ps[1].y) / 2 };
+      drag = null;
+    }
+  });
+  canvas.addEventListener('pointermove', function (ev) {
+    var p = local(ev);
+    if (pointers.has(ev.pointerId)) pointers.set(ev.pointerId, p);
+    if (pinch && pointers.size === 2) {
+      var ps = Array.from(pointers.values());
+      var d = Math.hypot(ps[0].x - ps[1].x, ps[0].y - ps[1].y);
+      var mx = (ps[0].x + ps[1].x) / 2, my = (ps[0].y + ps[1].y) / 2;
+      var k = Math.max(0.2, Math.min(4, pinch.k * d / pinch.d));
+      cam = { k: k, tx: mx - (pinch.mx - pinch.tx) * k / pinch.k, ty: my - (pinch.my - pinch.ty) * k / pinch.k };
+      stopCamAnim(); request(); return;
+    }
+    if (drag) {
+      if (!drag.moved && Math.hypot(p.x - drag.x, p.y - drag.y) > 5) { drag.moved = true; canvas.classList.add('is-dragging'); hideTip(); }
+      if (drag.moved) { cam = { k: cam.k, tx: drag.tx + p.x - drag.x, ty: drag.ty + p.y - drag.y }; stopCamAnim(); request(); return; }
+    }
+    if (ev.pointerType !== 'mouse') return;
+    var id = hit(p.x, p.y), plus = !id && hitPlus(p.x, p.y);
+    if (id !== hoverId || plus !== hotPlus) { hoverId = id; hotPlus = plus; request(); }
+    canvas.classList.toggle('is-pointing', !!id || plus);
+    if (id) showTip(id, p.x, p.y); else hideTip();
+  });
+  function endPointer(ev) {
+    var p = local(ev);
+    pointers.delete(ev.pointerId);
+    if (pinch) { if (pointers.size < 2) pinch = null; drag = null; return; }
+    if (drag && !drag.moved && ev.type === 'pointerup') {
+      var id = hit(p.x, p.y);
+      if (id && id !== view.cid) recenter(id);
+      else if (id) { if (!panelOpen) setPanel(true); }
+      else if (hitPlus(p.x, p.y)) toggleExpand();
+      else if (focusId) { focusId = null; hideTip(); request(); }
+    }
+    drag = null; canvas.classList.remove('is-dragging');
+  }
+  canvas.addEventListener('pointerup', endPointer);
+  canvas.addEventListener('pointercancel', endPointer);
+  canvas.addEventListener('pointerleave', function (ev) {
+    if (ev.pointerType === 'mouse' && !drag) { hoverId = null; hotPlus = false; hideTip(); request(); }
+  });
+  canvas.addEventListener('wheel', function (ev) {
+    ev.preventDefault();
+    var p = local(ev);
+    var k = Math.max(0.2, Math.min(4, cam.k * Math.exp(-ev.deltaY * (ev.ctrlKey ? 0.01 : 0.0015))));
+    cam = { k: k, tx: p.x - (p.x - cam.tx) * k / cam.k, ty: p.y - (p.y - cam.ty) * k / cam.k };
+    stopCamAnim(); hideTip(); request();
+  }, { passive: false });
+  canvas.addEventListener('dblclick', function (ev) {
+    var p = local(ev);
+    if (hit(p.x, p.y)) return;
+    camFrom = { tx: cam.tx, ty: cam.ty, k: cam.k }; camTo = fitCam(view);
+    anim = anim || { t0: RM ? -1e9 : performance.now(), dur: 600, reveal: false }; request();
+  });
+  function stopCamAnim() { camFrom = camTo = null; }
+
+  // ── 키보드: 방향키로 궤도를 돌고 Enter로 중심을 옮긴다 ─────────────────
+  function ringOf(id) { var d = view.pos.get(id); return d ? d.ring : -1; }
+  function nearest(list, ang) {
+    var best = null, bd = Infinity;
+    list.forEach(function (id) {
+      var d = Math.abs(((view.pos.get(id).ang - ang) % TAU + TAU * 1.5) % TAU - TAU / 2);
+      if (d < bd) { bd = d; best = id; }
+    });
+    return best;
+  }
+  function setFocus(id) {
+    focusId = id; hoverId = null;
+    if (id) {
+      var d = disp.get(id).cur;
+      showTip(id, sx(d.x), sy(d.y));
+      document.getElementById('live').textContent = byId[id].title + ', ' + Mock.cat(byId[id].category).en;
+    } else hideTip();
+    request();
+  }
+  document.addEventListener('keydown', function (ev) {
+    var tag = document.activeElement && document.activeElement.tagName;
+    if (tag === 'INPUT') return;
+    if (ev.key === '/' ) { ev.preventDefault(); q.focus(); return; }
+    var onChrome = document.activeElement && document.activeElement !== canvas && document.activeElement !== document.body;
+    if (ev.key === 'Escape') {
+      if (focusId) setFocus(null); else back();
+      return;
+    }
+    if (ev.key === 'Backspace' && !onChrome) { ev.preventDefault(); back(); return; }
+    if (onChrome) return;
+    var cur = focusId, ring = cur ? ringOf(cur) : 0;
+    var list = ring === 2 ? view.r2 : view.r1;
+    if (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft') {
+      ev.preventDefault();
+      if (ring === 0) { if (view.r1.length) setFocus(view.r1[ev.key === 'ArrowRight' ? 0 : view.r1.length - 1]); return; }
+      var i = list.indexOf(cur) + (ev.key === 'ArrowRight' ? 1 : -1);
+      setFocus(list[(i + list.length) % list.length]);
+    } else if (ev.key === 'ArrowDown') {
+      ev.preventDefault();
+      if (ring === 0) { if (view.r1.length) setFocus(nearest(view.r1, START)); }
+      else if (ring === 1 && view.r2.length) setFocus(nearest(view.r2, view.pos.get(cur).ang));
+    } else if (ev.key === 'ArrowUp') {
+      ev.preventDefault();
+      if (ring === 2) setFocus(nearest(view.r1, view.pos.get(cur).ang));
+      else if (ring === 1) setFocus(view.cid);
+    } else if (ev.key === 'Enter') {
+      ev.preventDefault();
+      if (cur && cur !== view.cid) { recenter(cur); }
+      else location.href = pageHref(view.cid);
+    }
+  });
+
+  // ── 테마, 크기, 시작 ─────────────────────────────────────────────────
+  Mock.onTheme(function (t) { T = t; fitCache.clear(); request(); });
+  window.addEventListener('resize', resize);
+  var mqMobile = matchMedia('(max-width: 640px)');
+  if (!mqMobile.matches) panel.classList.remove('is-peek');
+  mqMobile.addEventListener('change', function (e) { panel.classList.toggle('is-peek', e.matches); syncSheet(); });
+
+  resize();
+  var start = readHash();
+  recenter(start && byId[start] ? start : hub.id, { reveal: true, force: true });
+  // 글꼴이 늦게 오면 라벨 폭을 다시 잰다
+  if (document.fonts) document.fonts.ready.then(function () { fitCache.clear(); syncSheet(); if (view) { cam = fitCam(view); if (camTo) camFrom = camTo = cam; } request(); });
+})();
+</script>
+</body>
+</html>
