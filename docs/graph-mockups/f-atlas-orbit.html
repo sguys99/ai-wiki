@@ -1,0 +1,1822 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시안 F 성도와 궤도</title>
+<!-- 초기 테마: 사이트 templates.mjs 의 FOUC 스크립트와 같다 -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="shared/mock-base.css">
+<style>
+  /* ════════════════════════════════════════════════════════════════════
+   * F 토큰: 시안 F 전용. shared/mock-base.css 의 같은 이름 토큰을 덮어쓴다.
+   * 사이트에 들일 때 이 블록을 styles.css 토큰 층으로 옮긴다 (design-direction.md 3절, 8절).
+   * ════════════════════════════════════════════════════════════════════ */
+  :root {
+    --bg: #070b14;
+    --surface: #0f1626;
+    --surface-2: #172036;
+    --text: #e8ecf5;
+    --muted: #8d98ae;
+    --faint: #5b6680;
+    --hairline: rgba(160, 182, 235, 0.12);
+    --signal: #3ef2d2;
+    --signal-dim: rgba(62, 242, 210, 0.22);
+    --signal-physical: #ffb05a;
+
+    --cat-physical-ai: #ffb05a;
+    --cat-agents: #3ef2d2;
+    --cat-applications: #ff6aa6;
+    --cat-database: #c4a2ff;
+    --cat-llms: #5e8eff;
+    --cat-overviews: #f3f6ff;
+    --cat-evaluations: #cdf25a;
+    --cat-etc: #7d8ba6;
+
+    --graph-bg: #070b14;
+    --graph-edge: #9fb4e0;
+    --graph-edge-alpha: 0.07;
+    --graph-edge-hi-alpha: 0.85;
+    --graph-dim-alpha: 0.14;
+    --graph-label: #eef2fa;
+    --graph-label-muted: #9aa5bb;
+    --graph-label-halo: rgba(6, 10, 19, 0.86);
+    --graph-glow-alpha: 0.55;      /* 빛번짐 스프라이트 세기. light 는 0 (그림자로 바뀐다) */
+    --graph-ring: #070b14;
+
+    --f-bg-core: #101a31;          /* 무대 중앙의 깊은 남색 */
+    --f-bg-edge: #04060c;          /* 가장자리 */
+    --f-vignette: rgba(0, 0, 0, 0.55);
+    --f-dust: #d4e2ff;             /* 별먼지 */
+    --f-dust-alpha: 0.55;
+    --f-backdrop-alpha: 0.16;      /* 궤도 화면에서 남는 성도 */
+    --f-lens: rgba(8, 13, 25, 0.84);
+    --f-filament-blend: lighter;   /* 엣지와 빛번짐을 더하기 합성 */
+    --f-shadow-alpha: 0;
+    --f-glass: rgba(14, 21, 38, 0.64);
+    --f-glass-edge: rgba(200, 216, 255, 0.13);
+    --f-glass-top: rgba(255, 255, 255, 0.10);
+    --f-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0.012) 38%, rgba(255, 255, 255, 0) 100%);
+    --f-float-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
+    --f-primary-top: #8af8e4;
+    --f-primary-bottom: #22d3b6;
+    --f-primary-ink: #03141a;
+
+    --glass: var(--f-glass);
+    --shadow-float: var(--f-float-shadow);
+  }
+  :root[data-theme='light'] {
+    --bg: #f3f4f8;
+    --surface: #ffffff;
+    --surface-2: #eef0f6;
+    --text: #141a2e;
+    --muted: #566079;
+    --faint: #8f98ad;
+    --hairline: rgba(30, 45, 90, 0.10);
+    --signal: #008f78;
+    --signal-dim: rgba(0, 143, 120, 0.16);
+    --signal-physical: #c25e05;
+
+    --cat-physical-ai: #c25e05;
+    --cat-agents: #008f78;
+    --cat-applications: #d42a6c;
+    --cat-database: #8a46e0;
+    --cat-llms: #2458e8;
+    --cat-overviews: #141a2e;
+    --cat-evaluations: #5f8500;
+    --cat-etc: #6b7690;
+
+    --graph-bg: #f3f4f8;
+    --graph-edge: #34405e;
+    --graph-edge-alpha: 0.075;
+    --graph-edge-hi-alpha: 0.78;
+    --graph-dim-alpha: 0.16;
+    --graph-label: #141a2e;
+    --graph-label-muted: #566079;
+    --graph-label-halo: rgba(247, 248, 251, 0.92);
+    --graph-glow-alpha: 0;
+    --graph-ring: #ffffff;
+
+    --f-bg-core: #fdfdfe;
+    --f-bg-edge: #e4e7ef;
+    --f-vignette: rgba(38, 52, 92, 0.07);
+    --f-dust: #26314d;
+    --f-dust-alpha: 0.06;
+    --f-backdrop-alpha: 0.2;
+    --f-lens: rgba(250, 251, 253, 0.86);
+    --f-filament-blend: source-over;
+    --f-shadow-alpha: 1;
+    --f-glass: rgba(255, 255, 255, 0.70);
+    --f-glass-edge: rgba(30, 45, 90, 0.09);
+    --f-glass-top: rgba(255, 255, 255, 0.95);
+    --f-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 40%, rgba(255, 255, 255, 0) 100%);
+    --f-float-shadow: 0 22px 48px rgba(28, 40, 84, 0.13), 0 2px 6px rgba(28, 40, 84, 0.07);
+    --f-primary-top: #10a98f;
+    --f-primary-bottom: #007d69;
+    --f-primary-ink: #ffffff;
+  }
+  /* ── F 토큰 끝 ── */
+
+  /* 무대: 캔버스가 배경을 직접 그린다 */
+  .mk-stage { background: var(--f-bg-edge); }
+
+  /* 유리판: 위쪽 가장자리 빛, 안쪽 광택, 뒤 흐림 */
+  .mk-glass, .mk-bar, .mk-tip, .mk-search input, .f-home, .f-tools .mk-btn {
+    background: var(--f-sheen), var(--f-glass);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+    border: 1px solid var(--f-glass-edge);
+    box-shadow: inset 0 1px 0 var(--f-glass-top);
+  }
+  .mk-bar { border-width: 0 0 1px; box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.02); }
+  .mk-panel, .mk-results, .mk-tip { box-shadow: inset 0 1px 0 var(--f-glass-top), var(--f-float-shadow); }
+  .mk-legend { box-shadow: inset 0 1px 0 var(--f-glass-top), 0 10px 30px rgba(0, 0, 0, 0.18); }
+
+  .mk-title { font-size: 0.95rem; letter-spacing: -0.015em; display: flex; align-items: center; gap: 10px; }
+  .f-mark {
+    width: 9px; height: 9px; border-radius: 50%; flex: none;
+    background: radial-gradient(circle at 35% 30%, #fff 0 12%, var(--cat-agents) 46%, var(--cat-physical-ai) 100%);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--cat-agents) 55%, transparent);
+  }
+  .mk-subtitle { letter-spacing: 0.005em; font-variant-numeric: tabular-nums; }
+  .theme-toggle { background: var(--f-sheen), var(--f-glass); border-color: var(--f-glass-edge); box-shadow: inset 0 1px 0 var(--f-glass-top); }
+
+  /* 견본 점: 작은 구슬 (overviews 고리, etc 빈 원은 mock-base 규칙이 이긴다) */
+  .mk-swatch {
+    background: radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.95) 0 14%, var(--c) 52%, color-mix(in srgb, var(--c) 70%, #000) 100%);
+  }
+  /* 고리 모양(overviews, etc)은 mock-base 의 inset 고리를 지키고 빛만 더한다 */
+  :root:not([data-theme='light']) .mk-legend :not([data-cat='overviews']):not([data-cat='etc']) > .mk-swatch,
+  :root:not([data-theme='light']) .mk-panel-cat:not([data-cat='overviews']):not([data-cat='etc']) .mk-swatch { box-shadow: 0 0 8px color-mix(in srgb, var(--c) 60%, transparent); }
+  :root:not([data-theme='light']) [data-cat='overviews'] > .mk-swatch { box-shadow: inset 0 0 0 2px var(--c), 0 0 8px color-mix(in srgb, var(--c) 45%, transparent); }
+
+  #canvas { cursor: grab; }
+  #canvas.is-panning { cursor: grabbing; }
+  #canvas.is-over { cursor: pointer; }
+  #canvas:focus-visible { outline: none; }
+
+  /* 검색 */
+  .mk-search input { height: 38px; border-radius: 10px; letter-spacing: 0.005em; }
+  .mk-search input:focus { border-color: color-mix(in srgb, var(--signal) 60%, transparent); box-shadow: inset 0 1px 0 var(--f-glass-top), 0 0 0 3px var(--signal-dim); }
+  .mk-results { border-radius: 12px; }
+  .mk-results:empty { display: none; }
+  .mk-results .a-empty { cursor: default; color: var(--muted); }
+  .mk-results .a-empty:hover { background: none; }
+  .mk-results li .a-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mk-results mark { background: none; color: var(--c); font-weight: 650; }
+  .mk-results li[aria-selected='true'], .mk-results li:hover { background: color-mix(in srgb, var(--c) 12%, transparent); }
+
+  /* 궤도 화면의 방문 경로: 검색 아래 한 줄 */
+  .f-trail {
+    top: calc(var(--space-4) + 38px + var(--space-2));
+    left: var(--space-4);
+    max-width: calc(100% - var(--panel-w) - 4 * var(--space-4));
+    display: flex; align-items: center; gap: var(--space-2);
+    height: 30px;
+    font-size: var(--text-xs);
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .f-trail[hidden] { display: none; }
+  .f-trail::-webkit-scrollbar { display: none; }
+  .f-home {
+    flex: none; display: inline-flex; align-items: center; gap: 6px;
+    height: 30px; padding: 0 10px 0 8px;
+    color: var(--text); font-weight: 600; font-size: var(--text-xs);
+    border-radius: 8px; cursor: pointer; white-space: nowrap;
+    transition: border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+  }
+  .f-home:hover { border-color: color-mix(in srgb, var(--signal) 55%, transparent); }
+  .f-home svg { width: 14px; height: 14px; color: var(--signal); }
+  .f-trail ol { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
+  .f-trail li { display: flex; align-items: center; flex: none; }
+  .f-trail li + li::before { content: '/'; color: var(--faint); padding: 0 4px; }
+  .f-trail li button {
+    display: inline-flex; align-items: center; gap: 6px; max-width: 170px;
+    padding: 3px 6px; color: var(--muted); background: none; border: 0; border-radius: var(--radius-sm);
+    cursor: pointer; white-space: nowrap;
+  }
+  .f-trail li button span:last-child { overflow: hidden; text-overflow: ellipsis; }
+  .f-trail li button:hover { color: var(--text); }
+  .f-trail li[aria-current] button { color: var(--text); font-weight: 600; }
+  .f-trail .trail-more { color: var(--faint); padding: 0 4px; }
+
+  /* 좌하단 독: 범례와 조작 안내 */
+  .f-dock { display: flex; align-items: flex-end; gap: var(--space-3); }
+  .mk-stage > .f-dock { bottom: calc(var(--sheet, 0px) + var(--space-4)); }
+  .mk-legend { width: 200px; border-radius: 14px; padding: 8px 12px; }
+  .mk-legend li { user-select: none; border-radius: var(--radius-sm); outline-offset: 0; }
+  .mk-legend li .a-name { letter-spacing: 0.005em; }
+  .mk-legend li[aria-pressed='true'] .mk-legend-n { color: var(--c); }
+  .mk-legend li[aria-pressed='true'] .mk-swatch { transform: scale(1.25); }
+  .mk-legend .mk-swatch { transition: transform var(--dur-fast) var(--ease); }
+  .f-hint { margin: 0 0 6px; font-size: var(--text-2xs); line-height: 1.75; color: var(--faint); }
+  .f-hint kbd { font-family: var(--font-mono); font-size: 10px; color: var(--muted); padding: 0 4px; border: 1px solid var(--hairline); border-radius: var(--radius-sm); }
+  body:not([data-mode='orbit']) .f-hint.is-orbit, body[data-mode='orbit'] .f-hint.is-atlas { display: none; }
+  .f-legend-reset { margin-top: 4px; padding-top: 6px; border-top: 1px solid var(--hairline); font-size: var(--text-2xs); color: var(--faint); cursor: default; }
+  .f-legend-reset button { padding: 0; border: 0; background: none; color: var(--muted); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+  .f-legend-reset[hidden] { display: none; }
+
+  .f-tools { display: flex; gap: var(--space-2); }
+  .f-tools .mk-btn { height: 32px; padding: 0 12px; font-weight: 550; font-size: var(--text-xs); }
+  .f-tools .mk-btn[hidden] { display: none; }
+  body[data-mode='orbit'] .f-tools { display: none; }
+
+  /* 상세 패널 */
+  .mk-panel { border-radius: 16px; }
+  .mk-panel-title { font-size: 1.2rem; letter-spacing: -0.014em; line-height: 1.28; }
+  .mk-panel-cat { letter-spacing: 0.01em; }
+  .mk-panel-head, .mk-panel-foot { border-color: var(--hairline); }
+  .mk-neighbors li { border-color: var(--hairline); outline-offset: -2px; padding: 6px 4px; margin: 0 -4px; border-radius: 6px; transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease); }
+  .mk-neighbors li:hover { background: color-mix(in srgb, var(--c) 9%, transparent); }
+  .mk-neighbors li .t { min-width: 0; }
+  .nb-group { margin: var(--space-4) 0 var(--space-1); display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-xs); color: var(--muted); font-weight: 600; }
+  .nb-group .mk-deg { margin-left: auto; }
+  .f-note { margin: var(--space-3) 0 0; color: var(--muted); font-size: var(--text-xs); line-height: 1.6; }
+  .linkish { padding: 0; color: var(--signal); background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .mk-btn { border-radius: 10px; }
+  .mk-btn.is-primary, :root[data-theme='light'] .mk-btn.is-primary {
+    color: var(--f-primary-ink);
+    background: linear-gradient(180deg, var(--f-primary-top), var(--f-primary-bottom));
+    border: 1px solid color-mix(in srgb, var(--f-primary-bottom) 80%, #000);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 6px 18px color-mix(in srgb, var(--f-primary-bottom) 35%, transparent);
+    letter-spacing: 0.005em;
+  }
+  .mk-btn.is-primary:hover, :root[data-theme='light'] .mk-btn.is-primary:hover { filter: brightness(1.06); background: linear-gradient(180deg, var(--f-primary-top), var(--f-primary-bottom)); }
+  .mk-panel-foot .mk-btn.is-primary { flex: 1; }
+  #panel-toggle { display: none; }
+
+  /* 툴팁 */
+  .mk-tip { border-radius: 10px; padding: 7px 11px 8px; }
+  .mk-tip-title { letter-spacing: -0.005em; }
+
+  /* 대체 목록: 스크립트나 CDN 라이브러리가 실패하면 보인다 */
+  .f-fallback { display: none; position: absolute; inset: 0; overflow-y: auto; padding: var(--space-6) var(--space-4) var(--space-8); }
+  body.is-fallback .f-fallback { display: block; }
+  body.is-fallback .mk-stage > :not(.f-fallback) { display: none; }
+  .f-fallback-lead { max-width: 60ch; margin: 0 0 var(--space-6); color: var(--muted); font-size: var(--text-sm); }
+  .f-fallback-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--space-6) var(--space-8); }
+  .f-fallback h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 var(--space-2); font-family: var(--font-display); font-size: var(--text-base); letter-spacing: -0.01em; }
+  .f-fallback h2 .mk-deg { margin-left: 2px; }
+  .f-fallback ul { margin: 0; padding: 0; list-style: none; font-size: var(--text-sm); line-height: 1.35; }
+  .f-fallback li { padding: 4px 0; border-bottom: 1px solid var(--hairline); }
+  .f-fallback a { color: var(--text); text-decoration: none; }
+  .f-fallback a:hover { color: var(--c); }
+
+  @media (max-width: 640px) {
+    .f-trail { max-width: calc(100% - 2 * var(--space-4)); }
+    .f-hint { display: none !important; }
+    .mk-legend { width: auto; display: flex; gap: 2px; padding: 6px 8px; }
+    .mk-legend li { padding: 0; width: 26px; height: 26px; justify-content: center; }
+    .mk-legend li .a-name, .mk-legend .mk-legend-n, .mk-legend .f-legend-reset { display: none; }
+    .mk-legend li .mk-swatch { width: 10px; height: 10px; }
+    .mk-legend li[aria-pressed='true'] { background: color-mix(in srgb, var(--c) 22%, transparent); }
+    .f-tools #reset-filter { display: none; }
+    .mk-results { max-height: 40vh; }
+    .mk-panel { border-radius: 16px 16px 0 0; }
+    .mk-panel.is-peek .mk-panel-body { display: none; }
+    .mk-panel.is-peek .mk-panel-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: var(--text-base); }
+    .mk-panel-head { padding: var(--space-3) var(--space-4) var(--space-2); }
+    .mk-panel-foot { padding: var(--space-2) var(--space-4) var(--space-3); }
+    #panel-toggle { display: inline-flex; }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3-dispatch@3.0.1/dist/d3-dispatch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-quadtree@3.0.1/dist/d3-quadtree.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-timer@3.0.1/dist/d3-timer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-force@3.0.0/dist/d3-force.min.js"></script>
+<script src="shared/graph-data.js"></script>
+<script src="shared/mock-base.js"></script>
+</head>
+<body data-mode="atlas">
+<header class="mk-bar">
+  <h1 class="mk-title"><span class="f-mark" aria-hidden="true"></span>시안 F 성도와 궤도</h1>
+  <span class="mk-subtitle" id="mk-stats"></span>
+  <div class="mk-bar-end">
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="테마 전환" aria-pressed="false">☀</button>
+  </div>
+</header>
+
+<main class="mk-stage" id="stage">
+  <canvas id="canvas" tabindex="0" aria-label="wiki 페이지 관계 그래프. 페이지를 고르면 그 페이지를 중심으로 이웃을 궤도에 놓는다. 방향키로 이동, Enter로 중심 옮기기, Esc로 전체 보기" aria-describedby="live"></canvas>
+  <p class="mk-sr" id="live" aria-live="polite"></p>
+
+  <div class="mk-float is-tl mk-search" id="search">
+    <label class="mk-sr" for="q">페이지 검색</label>
+    <input id="q" type="search" placeholder="페이지 제목으로 찾기  /" autocomplete="off" role="combobox" aria-controls="results" aria-expanded="false" aria-autocomplete="list">
+    <ul class="mk-results mk-glass" id="results" role="listbox"></ul>
+  </div>
+
+  <nav class="mk-float f-trail" id="trail" aria-label="지나온 페이지" hidden>
+    <button type="button" class="f-home" id="home" title="전체 보기로 돌아가기 (Esc)">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="3.5" cy="11" r="1.6" fill="currentColor"/><circle cx="8" cy="4.5" r="2" fill="currentColor"/><circle cx="12.5" cy="10" r="1.4" fill="currentColor"/><path d="M3.5 11 8 4.5l4.5 5.5" stroke="currentColor" stroke-width="0.9" fill="none" opacity="0.6"/></svg>
+      전체 보기
+    </button>
+    <ol id="crumbs"></ol>
+  </nav>
+
+  <div class="mk-float is-bl f-dock" id="dock">
+    <ul class="mk-glass mk-legend" id="legend" aria-label="카테고리 필터"></ul>
+    <p class="f-hint is-atlas"><kbd>클릭</kbd> 궤도로 열기<br><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동<br><kbd>/</kbd> 검색</p>
+    <p class="f-hint is-orbit"><kbd>← →</kbd> 궤도를 돈다<br><kbd>↑ ↓</kbd> 안팎 궤도로 옮긴다<br><kbd>Enter</kbd> 중심에 둔다<br><kbd>Esc</kbd> 전체 보기</p>
+  </div>
+
+  <div class="mk-float is-br f-tools" id="tools">
+    <button type="button" class="mk-btn" id="reset-filter" hidden>필터 해제</button>
+    <button type="button" class="mk-btn" id="fit">화면 맞춤</button>
+  </div>
+
+  <div class="mk-tip" id="tip" hidden></div>
+
+  <aside class="mk-panel mk-glass" id="panel" hidden aria-label="중심 페이지">
+    <div class="mk-panel-head">
+      <div style="display:flex;align-items:center;gap:var(--space-2)">
+        <span class="mk-panel-cat" id="p-cat"><span class="mk-swatch"></span><span></span></span>
+        <button type="button" class="mk-icon-btn" id="p-close" aria-label="전체 보기로 돌아가기" title="전체 보기로 돌아가기 (Esc)">×</button>
+      </div>
+      <h2 class="mk-panel-title" id="p-title"></h2>
+      <div class="mk-panel-meta" id="p-meta"></div>
+    </div>
+    <div class="mk-panel-body" id="p-body"></div>
+    <div class="mk-panel-foot">
+      <a class="mk-btn is-primary" id="p-open" href="#">페이지 열기</a>
+      <button type="button" class="mk-btn" id="panel-toggle" aria-expanded="false">이웃 보기</button>
+    </div>
+  </aside>
+
+  <section class="f-fallback" id="fallback" aria-label="페이지 목록">
+    <p class="f-fallback-lead" id="fallback-lead">관계 그래프를 그리지 못해 카테고리별 페이지 목록을 보여 준다. 네트워크가 연결되면 새로 고쳐 그래프를 연다.</p>
+    <div class="f-fallback-grid" id="fallback-grid"></div>
+  </section>
+  <noscript><style>.mk-stage > :not(.f-fallback) { display: none; } .f-fallback { display: block; }</style><p style="padding:16px">스크립트가 꺼져 있어 그래프를 그리지 못한다. 사이트의 wiki 목록에서 페이지를 찾는다.</p></noscript>
+</main>
+
+<script>
+// 대체 목록: d3-force 를 못 불러왔거나 그래프 스크립트가 실패하면 카테고리별 텍스트 목록으로 바꾼다
+window.__fFallback = function (why) {
+  document.body.classList.add('is-fallback');
+  var d = window.GRAPH_DATA, grid = document.getElementById('fallback-grid');
+  if (why) document.getElementById('fallback-lead').textContent = why;
+  if (!d || grid.childElementCount) return;
+  var cats = (window.Mock && Mock.CATEGORIES) || [];
+  var order = cats.map(function (c) { return c.id; });
+  var groups = {};
+  d.nodes.forEach(function (n) { (groups[n.category] = groups[n.category] || []).push(n); });
+  Object.keys(groups).forEach(function (c) { if (order.indexOf(c) < 0) order.push(c); });
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  grid.innerHTML = order.filter(function (c) { return groups[c]; }).map(function (c) {
+    var meta = cats.filter(function (x) { return x.id === c; })[0];
+    var list = groups[c].slice().sort(function (a, b) { return a.title.localeCompare(b.title); });
+    return '<div data-cat="' + c + '"><h2><span class="mk-swatch"></span>' + esc(meta ? meta.en : c) + '<span class="mk-deg">' + list.length + '</span></h2><ul>' +
+      list.map(function (n) { return '<li><a href="../../wiki/' + esc(n.id) + '.md">' + esc(n.title) + '</a></li>'; }).join('') + '</ul></div>';
+  }).join('');
+};
+</script>
+<script>
+(function () {
+  'use strict';
+  if (!window.GRAPH_DATA || !window.Mock) { window.__fFallback(); return; }
+  if (!window.d3 || !d3.forceSimulation) {
+    window.__fFallback('그래프 배치 라이브러리(d3-force)를 불러오지 못해 카테고리별 페이지 목록을 보여 준다. 네트워크가 연결되면 새로 고쳐 그래프를 연다.');
+    return;
+  }
+  try { main(); } catch (err) { console.error(err); window.__fFallback(); }
+
+function main() {
+  var data = window.GRAPH_DATA;
+  var nodes = data.nodes;
+  var N = nodes.length;
+  var reduce = Mock.reduceMotion();
+  var TAU = Math.PI * 2, START = -Math.PI / 2;
+  var CAP2 = 28;        // 바깥 궤도의 2-hop 상한. 넘치면 "+k"
+  var TRACK = 24;       // 안쪽 궤도가 여러 겹일 때 겹 간격 (world)
+  var LABEL_ROOM = 150; // 안쪽과 바깥 궤도 사이 라벨 자리 (world)
+  var ATLAS = -2;       // n.role: 성도 화면. -1 궤도 화면의 배경, 0 중심, 1 이웃, 2 두 다리
+
+  // ── 그래프 색인 (A) ───────────────────────────────────────────────────
+  var byId = {}, CAT_ORDER = {};
+  Mock.CATEGORIES.forEach(function (c, i) { CAT_ORDER[c.id] = i; });
+  nodes.forEach(function (n, i) { n.i = i; n.nb = new Set(); n.out = new Set(); byId[n.id] = n; });
+  var edges = [];
+  data.edges.forEach(function (e) {
+    var s = byId[e.source], t = byId[e.target];
+    if (!s || !t || s === t) return;
+    edges.push({ s: s, t: t });
+    s.nb.add(t); t.nb.add(s); s.out.add(t);
+  });
+  var counts = {};
+  nodes.forEach(function (n) { counts[n.category] = (counts[n.category] || 0) + 1; });
+  document.getElementById('mk-stats').textContent = '페이지 ' + N + '개, 연결 ' + edges.length.toLocaleString() + '개';
+
+  function baseR(n) { return Math.min(20, 2 + 1.6 * Math.sqrt(n.degree)); }
+  function shortTitle(t) {
+    var c = t.indexOf(':');
+    if (c >= 2 && c <= 28 && !/[ㄱ-힝]/.test(t.slice(0, c))) return t.slice(0, c);
+    return t.length > 28 ? t.slice(0, 27) + '…' : t;
+  }
+  function primaryTag(n) {
+    for (var i = 0; i < n.tags.length; i++) if (n.tags[i] !== n.category && n.tags[i] !== 'physical-ai') return n.tags[i];
+    return '';
+  }
+  nodes.forEach(function (n) { n.r = baseR(n); n.label = shortTitle(n.title); n.role = ATLAS; n.p = 1; n.lt = 1; n.front = false; });
+
+  // ── 성도 배치 (A 그대로: 카테고리 성운 + 허브 뭉침 완화) ─────────────
+  var ANCHOR = {
+    'physical-ai': [-330, 10], llms: [-40, -300], agents: [300, -90], evaluations: [430, -330],
+    applications: [210, 270], database: [470, 200], etc: [-30, 360], overviews: null,
+  };
+  var SUB = {
+    vla: [0, 0], 'world-model': [-150, -150], manipulation: [-30, 175], humanoid: [130, 150],
+    slam: [-200, 120], 'mobile-robot': [-200, 120], simulator: [-175, -10], benchmark: [120, -170],
+    'robot-dataset': [120, -170], 'robot-learning': [-30, 175], 'imitation-learning': [-30, 175],
+  };
+  // shortcut: 세로 화면이면 성운 배치를 전치한다. 회전 시 다시 계산하지 않는다
+  var portrait = window.innerWidth < window.innerHeight * 0.8;
+  if (portrait) [ANCHOR, SUB].forEach(function (m) { Object.keys(m).forEach(function (k) { if (m[k]) m[k] = [m[k][1] * 1.15, m[k][0] * 0.85]; }); });
+  nodes.forEach(function (n) {
+    var a = ANCHOR[n.category];
+    if (a && n.category === 'physical-ai') {
+      var sub = n.tags.filter(function (g) { return g !== 'physical-ai'; })[0];
+      var o = SUB[sub] || [0, 0];
+      a = [a[0] + o[0], a[1] + o[1]];
+    }
+    n.ax = a ? a[0] : null; n.ay = a ? a[1] : null;
+  });
+  var seed = 7;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  nodes.forEach(function (n) {
+    var cx = n.ax, cy = n.ay;
+    if (cx == null) {
+      cx = 0; cy = 0; var c = 0;
+      n.nb.forEach(function (m) { if (ANCHOR[m.category]) { cx += ANCHOR[m.category][0]; cy += ANCHOR[m.category][1]; c++; } });
+      if (c) { cx /= c; cy /= c; }
+    }
+    var a = rnd() * TAU, d = 20 + rnd() * 90;
+    n.x = cx + Math.cos(a) * d; n.y = cy + Math.sin(a) * d;
+  });
+  var links = edges.map(function (e) { return { source: e.s, target: e.t }; });
+  var sim = d3.forceSimulation(nodes)
+    .force('charge', d3.forceManyBody().strength(function (n) { return -26 - 3.2 * n.degree; }).distanceMax(520).theta(0.85))
+    .force('link', d3.forceLink(links)
+      .distance(function (l) { return 26 + 5.5 * Math.sqrt(Math.max(l.source.degree, l.target.degree)); })
+      .strength(function (l) {
+        var hi = Math.max(l.source.degree, l.target.degree), lo = Math.min(l.source.degree, l.target.degree);
+        var s = 0.7 / lo;
+        if (hi >= 30) s *= 0.3;
+        if (l.source.category !== l.target.category) s *= 0.35;
+        return s;
+      }))
+    .force('x', d3.forceX(function (n) { return n.ax == null ? 0 : n.ax; }).strength(function (n) { return n.ax == null ? 0 : 0.11; }))
+    .force('y', d3.forceY(function (n) { return n.ay == null ? 0 : n.ay; }).strength(function (n) { return n.ay == null ? 0 : 0.11; }))
+    .force('collide', d3.forceCollide(function (n) { return n.r + 3.5; }).strength(0.9).iterations(2))
+    .stop();
+  var t0 = performance.now();
+  for (var it = 0; it < 360; it++) sim.tick();
+  var layoutMs = Math.round(performance.now() - t0);
+  nodes.forEach(function (n) { n.hx = n.x; n.hy = n.y; n.vx = n.vy = 0; }); // 성도 위치 (home)
+
+  var CAT_INFO = Mock.CATEGORIES.map(function (c) {
+    var ns = nodes.filter(function (n) { return n.category === c.id; });
+    var xs = ns.map(function (n) { return n.hx; }).sort(function (a, b) { return a - b; });
+    var ys = ns.map(function (n) { return n.hy; }).sort(function (a, b) { return a - b; });
+    return { id: c.id, en: c.en, n: ns.length, x: xs[xs.length >> 1], top: ys[0], bottom: ys[ys.length - 1] };
+  });
+  var rank = nodes.slice().sort(function (a, b) { return b.degree - a.degree; });
+  rank.forEach(function (n, i) { n.rank = i; });
+
+  // 엣지 묶음: 같은 카테고리 엣지는 그 색 실로, 카테고리를 넘는 엣지는 중성 실로 한 번에 긋는다
+  var buckets = {};
+  edges.forEach(function (e) { var key = e.s.category === e.t.category ? e.s.category : '_x'; (buckets[key] = buckets[key] || []).push(e); });
+  var bucketKeys = Object.keys(buckets);
+
+  // ── 캔버스, 토큰, 스프라이트 ─────────────────────────────────────────
+  var stage = document.getElementById('stage');
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  var panelEl = document.getElementById('panel');
+  var W = 0, H = 0, dpr = 1;
+  var cam = { x: 0, y: 0, k: 1 };
+  var K_MIN = 0.2, K_MAX = 6;
+  var T, F, sprites = {}, bgCanvas = null, dustPattern = null, haze = null;
+  var dark = true;
+  function isMobile() { return W <= 640; }
+
+  function readF() {
+    var cs = getComputedStyle(document.documentElement), g = function (n) { return cs.getPropertyValue(n).trim(); };
+    return {
+      bgCore: g('--f-bg-core'), bgEdge: g('--f-bg-edge'), vignette: g('--f-vignette'),
+      dust: g('--f-dust'), dustAlpha: parseFloat(g('--f-dust-alpha')),
+      backdrop: parseFloat(g('--f-backdrop-alpha')), lens: g('--f-lens'),
+      blend: g('--f-filament-blend') || 'source-over', shadow: parseFloat(g('--f-shadow-alpha')),
+    };
+  }
+  function rgbOf(c) {
+    if (c.charAt(0) === '#') {
+      if (c.length === 4) c = '#' + c[1] + c[1] + c[2] + c[2] + c[3] + c[3];
+      return [parseInt(c.substr(1, 2), 16), parseInt(c.substr(3, 2), 16), parseInt(c.substr(5, 2), 16)];
+    }
+    var m = c.match(/[\d.]+/g) || [0, 0, 0];
+    return [+m[0], +m[1], +m[2]];
+  }
+  function rgba(c, a) { return 'rgba(' + Math.round(c[0]) + ',' + Math.round(c[1]) + ',' + Math.round(c[2]) + ',' + a + ')'; }
+  function mixc(a, b, t) { return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]; }
+  var WHITE = [255, 255, 255], BLACK = [0, 0, 0];
+
+  // 노드 스프라이트: 카테고리마다 한 번 그려 두고 drawImage 로 붙인다 (프레임마다 그라데이션, shadowBlur 없음)
+  var SR = 56; // 스프라이트 구 반지름 (px)
+  function mk(size) { var c = document.createElement('canvas'); c.width = c.height = size; return c; }
+  function buildSprites() {
+    sprites = {};
+    Mock.CATEGORIES.forEach(function (c) {
+      var col = rgbOf(T.cat[c.id]);
+      var S = SR * 2 + 8, o = S / 2;
+      var core = mk(S), g = core.getContext('2d');
+      var hollow = c.id === 'etc';
+      var gr = g.createRadialGradient(o - SR * 0.34, o - SR * 0.4, SR * 0.04, o, o, SR);
+      if (dark) {
+        gr.addColorStop(0, rgba(mixc(col, WHITE, 0.72), 1));
+        gr.addColorStop(0.32, rgba(mixc(col, WHITE, 0.18), 1));
+        gr.addColorStop(0.78, rgba(col, 1));
+        gr.addColorStop(1, rgba(mixc(col, BLACK, 0.38), 1));
+      } else {
+        gr.addColorStop(0, rgba(mixc(col, WHITE, 0.5), 1));
+        gr.addColorStop(0.3, rgba(mixc(col, WHITE, 0.1), 1));
+        gr.addColorStop(0.75, rgba(col, 1));
+        gr.addColorStop(1, rgba(mixc(col, BLACK, 0.32), 1));
+      }
+      if (hollow) { // etc: 유리 고리 (모양으로도 구분)
+        g.lineWidth = SR * 0.26; g.strokeStyle = gr;
+        g.beginPath(); g.arc(o, o, SR * 0.86, 0, TAU); g.stroke();
+      } else {
+        g.fillStyle = gr; g.beginPath(); g.arc(o, o, SR, 0, TAU); g.fill();
+        // 아래쪽 반사광 (에나멜이 바닥빛을 받는다)
+        var b = g.createRadialGradient(o + SR * 0.15, o + SR * 0.62, 0, o + SR * 0.15, o + SR * 0.62, SR * 0.55);
+        b.addColorStop(0, dark ? rgba(mixc(col, WHITE, 0.5), 0.35) : 'rgba(255,255,255,0.32)');
+        b.addColorStop(1, 'rgba(255,255,255,0)');
+        g.save(); g.beginPath(); g.arc(o, o, SR, 0, TAU); g.clip(); g.fillStyle = b; g.fillRect(0, 0, S, S); g.restore();
+        // 가장자리 빛 테
+        g.lineWidth = dark ? 2.2 : 3; g.strokeStyle = dark ? rgba(mixc(col, WHITE, 0.6), 0.35) : 'rgba(255,255,255,0.85)';
+        g.beginPath(); g.arc(o, o, SR - (dark ? 1.2 : 1.6), 0, TAU); g.stroke();
+      }
+      // 반사 하이라이트
+      var hx = o - SR * 0.33, hy = o - SR * 0.4;
+      var sp = g.createRadialGradient(hx, hy, 0, hx, hy, SR * 0.36);
+      sp.addColorStop(0, 'rgba(255,255,255,' + (dark ? 0.9 : 0.95) + ')');
+      sp.addColorStop(0.45, 'rgba(255,255,255,' + (dark ? 0.28 : 0.4) + ')');
+      sp.addColorStop(1, 'rgba(255,255,255,0)');
+      g.fillStyle = sp; g.beginPath(); g.ellipse(hx, hy, SR * 0.36, SR * 0.28, -0.6, 0, TAU); g.fill();
+
+      // 빛번짐 (dark) 또는 부드러운 그림자 (light)
+      var HS = 128, ho = HS / 2, halo = mk(HS), h = halo.getContext('2d');
+      var hg = h.createRadialGradient(ho, ho, 0, ho, ho, ho);
+      if (dark) {
+        hg.addColorStop(0, rgba(col, 0.55)); hg.addColorStop(0.22, rgba(col, 0.26));
+        hg.addColorStop(0.5, rgba(col, 0.07)); hg.addColorStop(1, rgba(col, 0));
+      } else {
+        var ink = [24, 34, 72];
+        hg.addColorStop(0, rgba(ink, 0.34)); hg.addColorStop(0.45, rgba(ink, 0.12)); hg.addColorStop(1, rgba(ink, 0));
+      }
+      h.fillStyle = hg; h.fillRect(0, 0, HS, HS);
+      // light 허브의 색 오라 (에나멜이 바닥에 비친 색)
+      var aura = null;
+      if (!dark) {
+        aura = mk(HS); var ag = aura.getContext('2d'), agr = ag.createRadialGradient(ho, ho, 0, ho, ho, ho);
+        agr.addColorStop(0, rgba(col, 0.22)); agr.addColorStop(0.5, rgba(col, 0.06)); agr.addColorStop(1, rgba(col, 0));
+        ag.fillStyle = agr; ag.fillRect(0, 0, HS, HS);
+      }
+      sprites[c.id] = { core: core, halo: halo, aura: aura, col: col, css: T.cat[c.id] };
+    });
+    // 허브의 렌즈 반짝임: 네 갈래 빛줄기
+    var GS = 256, go = GS / 2, glint = mk(GS), gg = glint.getContext('2d');
+    gg.globalCompositeOperation = 'lighter';
+    [[1, 0.055], [0, 0.055]].forEach(function (v) {
+      var lg = v[0] ? gg.createLinearGradient(0, go, GS, go) : gg.createLinearGradient(go, 0, go, GS);
+      lg.addColorStop(0, 'rgba(255,255,255,0)'); lg.addColorStop(0.5, 'rgba(255,255,255,0.9)'); lg.addColorStop(1, 'rgba(255,255,255,0)');
+      gg.fillStyle = lg;
+      gg.beginPath();
+      if (v[0]) { gg.moveTo(0, go); gg.lineTo(go, go - GS * v[1] / 2); gg.lineTo(GS, go); gg.lineTo(go, go + GS * v[1] / 2); }
+      else { gg.moveTo(go, 0); gg.lineTo(go + GS * v[1] / 2, go); gg.lineTo(go, GS); gg.lineTo(go - GS * v[1] / 2, go); }
+      gg.fill();
+    });
+    sprites._glint = glint;
+  }
+
+  // 배경: 깊은 남색 중심, 비네트, 별먼지 (dark) / 자기 표면, 미세한 결 (light). 크기가 바뀔 때만 다시 그린다
+  function buildBackground() {
+    bgCanvas = mk(1); bgCanvas.width = Math.max(1, Math.floor(W * dpr)); bgCanvas.height = Math.max(1, Math.floor(H * dpr));
+    var g = bgCanvas.getContext('2d'), w = bgCanvas.width, h = bgCanvas.height;
+    g.fillStyle = F.bgEdge; g.fillRect(0, 0, w, h);
+    var R = Math.max(w, h) * 0.78;
+    var rg = g.createRadialGradient(w * 0.46, h * 0.4, 0, w * 0.46, h * 0.4, R);
+    rg.addColorStop(0, F.bgCore); rg.addColorStop(1, F.bgEdge);
+    g.fillStyle = rg; g.fillRect(0, 0, w, h);
+    var vg = g.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.35, w / 2, h / 2, Math.hypot(w, h) * 0.62);
+    vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, F.vignette);
+    g.fillStyle = vg; g.fillRect(0, 0, w, h);
+    // 별먼지 타일 (패턴, 카메라를 4%만 따라가 깊이감을 준다)
+    var TS = 420, tile = mk(Math.round(TS * dpr)), t = tile.getContext('2d'), dc = rgbOf(F.dust);
+    var s2 = 11;
+    function r2() { s2 = (s2 * 16807) % 2147483647; return s2 / 2147483647; }
+    var count = dark ? 90 : 900;
+    for (var i = 0; i < count; i++) {
+      var x = r2() * tile.width, y = r2() * tile.height;
+      if (dark) {
+        var big = r2() < 0.08, rad = (big ? 1.1 : 0.45 + r2() * 0.5) * dpr;
+        t.fillStyle = rgba(dc, F.dustAlpha * (big ? 0.9 : 0.15 + r2() * 0.45));
+        t.beginPath(); t.arc(x, y, rad, 0, TAU); t.fill();
+      } else {
+        t.fillStyle = rgba(dc, F.dustAlpha * (0.4 + r2() * 0.6));
+        t.fillRect(x, y, dpr * 0.8, dpr * 0.8);
+      }
+    }
+    dustPattern = ctx.createPattern(tile, 'repeat');
+    if (dustPattern && dustPattern.setTransform) dustPattern.setTransform(new DOMMatrix().scale(1 / dpr));
+    dustPattern.tileSize = TS;
+  }
+
+  // 성운 안개 (A): 세계 좌표 저해상도 오프스크린
+  function buildHaze() {
+    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    nodes.forEach(function (n) { minX = Math.min(minX, n.hx); maxX = Math.max(maxX, n.hx); minY = Math.min(minY, n.hy); maxY = Math.max(maxY, n.hy); });
+    var PAD = 160, S = 0.25;
+    var ox = minX - PAD, oy = minY - PAD;
+    var w = Math.ceil((maxX - minX + PAD * 2) * S), h = Math.ceil((maxY - minY + PAD * 2) * S);
+    var out = mk(1); out.width = w; out.height = h;
+    var o = out.getContext('2d');
+    var tmp = mk(1); tmp.width = w; tmp.height = h;
+    var t = tmp.getContext('2d');
+    Mock.CATEGORIES.forEach(function (c) {
+      if (c.id === 'overviews') return;
+      t.globalCompositeOperation = 'source-over';
+      t.clearRect(0, 0, w, h);
+      nodes.forEach(function (n) {
+        if (n.category !== c.id) return;
+        var x = (n.hx - ox) * S, y = (n.hy - oy) * S, R = (70 + 6 * Math.sqrt(n.degree)) * S;
+        var g = t.createRadialGradient(x, y, 0, x, y, R);
+        g.addColorStop(0, 'rgba(0,0,0,0.2)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+        t.fillStyle = g; t.fillRect(x - R, y - R, R * 2, R * 2);
+      });
+      t.globalCompositeOperation = 'source-in';
+      t.fillStyle = T.cat[c.id]; t.fillRect(0, 0, w, h);
+      o.globalAlpha = dark ? 0.3 : 0.13;
+      o.drawImage(tmp, 0, 0);
+    });
+    haze = { img: out, ox: ox, oy: oy, s: S };
+  }
+
+  function applyTheme(t) {
+    T = t; F = readF(); dark = T.theme === 'dark';
+    buildSprites(); buildHaze(); if (W) buildBackground();
+    fitCache.clear(); redraw();
+  }
+
+  // ── 카메라 ───────────────────────────────────────────────────────────
+  function camFor(wx, wy, k, sx, sy) { return { x: sx - wx * k, y: sy - wy * k, k: k }; }
+  function atlasRect() {
+    if (isMobile()) return { x: 0, y: 60, w: W, h: Math.max(120, H - 60 - 56) };
+    return { x: 0, y: 0, w: W, h: H };
+  }
+  function fitTarget(list) {
+    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    list.forEach(function (n) {
+      minX = Math.min(minX, n.hx - n.r); maxX = Math.max(maxX, n.hx + n.r);
+      minY = Math.min(minY, n.hy - n.r); maxY = Math.max(maxY, n.hy + n.r);
+    });
+    var v = atlasRect(), pad = Math.min(v.w, v.h) * 0.06;
+    var k = Math.min((v.w - pad * 2) / Math.max(1, maxX - minX), (v.h - pad * 2) / Math.max(1, maxY - minY));
+    k = Math.max(K_MIN, Math.min(2.4, k));
+    return camFor((minX + maxX) / 2, (minY + maxY) / 2, k, v.x + v.w / 2, v.y + v.h / 2);
+  }
+  function sheetH() { return isMobile() && !panelEl.hidden ? panelEl.offsetHeight : 0; }
+  function orbitCam(v) {
+    var top, bottom, left = 16, right = 16, ext = v.extent;
+    if (isMobile()) { top = 104; bottom = sheetH() + 58; ext = v.R2o + 36; }
+    else { top = 112; bottom = 20; right = 360 + 32; }
+    var aw = Math.max(80, W - left - right), ah = Math.max(80, H - top - bottom);
+    var k = Math.max(0.2, Math.min(1.6, Math.min(aw, ah) / (2 * ext)));
+    return camFor(C.x, C.y, k, left + aw / 2, top + ah / 2);
+  }
+  var flight = null;
+  function flyTo(target, dur) {
+    if (reduce || dur === 0) { cam = target; flight = null; redraw(); return; }
+    var a = { cx: (W / 2 - cam.x) / cam.k, cy: (H / 2 - cam.y) / cam.k, lk: Math.log(cam.k) };
+    var b = { cx: (W / 2 - target.x) / target.k, cy: (H / 2 - target.y) / target.k, lk: Math.log(target.k) };
+    flight = { a: a, b: b, t0: performance.now(), dur: dur || 480 };
+    redraw();
+  }
+  function stepFlight(now) {
+    if (!flight) return false;
+    var t = Math.min(1, (now - flight.t0) / flight.dur), e = ease(t), a = flight.a, b = flight.b;
+    cam = camFor(a.cx + (b.cx - a.cx) * e, a.cy + (b.cy - a.cy) * e, Math.exp(a.lk + (b.lk - a.lk) * e), W / 2, H / 2);
+    if (t >= 1) flight = null;
+    return true;
+  }
+  function ease(t) { return 1 - Math.pow(1 - t, 4); }
+  function easeIO(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function clamp(t) { return t < 0 ? 0 : t > 1 ? 1 : t; }
+  function lerpAng(a, b, t) { var d = ((b - a) % TAU + TAU * 1.5) % TAU - TAU / 2; return a + d * t; }
+  function frac(ang) { return (((ang - START) % TAU) + TAU) % TAU / TAU; }
+
+  // ── 궤도 배치 (B) ────────────────────────────────────────────────────
+  var C = { x: 0, y: 0 }; // 궤도 중심 (world). 궤도에 들어갈 때 고른 노드의 성도 위치
+  function placeRing(list, R, tracks, reserve, ring, pos, arcs, arcR, cap) {
+    if (!list.length) return;
+    var groups = 1;
+    for (var i = 1; i < list.length; i++) if (list[i].category !== list[i - 1].category) groups++;
+    var gap = groups > 1 ? Math.min(0.09, 0.7 / groups) : 0;
+    var step = (TAU - reserve - gap * (groups > 1 ? groups : 0)) / list.length;
+    var a = START + reserve / 2 + gap / 2, arc = null;
+    list.forEach(function (n, i) {
+      if (i > 0 && n.category !== list[i - 1].category) a += gap;
+      var tr = tracks > 1 ? i % tracks : 0;
+      pos.set(n.id, { rad: R + tr * TRACK, ang: a + step / 2, ring: ring, cap: cap });
+      if (!arc || arc.cat !== n.category) { arc = { cat: n.category, a0: a, a1: a + step, r: arcR }; arcs.push(arc); }
+      else arc.a1 = a + step;
+      a += step;
+    });
+  }
+  function catThenTag(list) {
+    var freq = {};
+    list.forEach(function (n) { var k = n.category + '|' + primaryTag(n); freq[k] = (freq[k] || 0) + 1; });
+    return function (a, b) {
+      var ka = a.category + '|' + primaryTag(a), kb = b.category + '|' + primaryTag(b);
+      return CAT_ORDER[a.category] - CAT_ORDER[b.category] || freq[kb] - freq[ka] || (ka < kb ? -1 : ka > kb ? 1 : 0) || b.degree - a.degree;
+    };
+  }
+  function layout(cid, expanded) {
+    var c = byId[cid], pos = new Map(), arcs = [], oedges = [];
+    pos.set(cid, { rad: 0, ang: 0, ring: 0 });
+    var r1 = Array.from(c.nb);
+    r1.sort(catThenTag(r1));
+    var tracks1 = r1.length <= 40 ? 1 : r1.length <= 90 ? 2 : 3;
+    var R1 = Math.max(130, r1.length / tracks1 * 21 / TAU);
+    placeRing(r1, R1, tracks1, 0, 1, pos, arcs, R1 - 16, 0.4 * TAU * R1 / Math.max(1, r1.length / tracks1));
+    var R1o = R1 + (tracks1 - 1) * TRACK;
+    var set1 = new Set(r1), par = new Map();
+    r1.forEach(function (n) {
+      n.nb.forEach(function (y) {
+        if (y === c || set1.has(y)) return;
+        if (!par.has(y)) par.set(y, []);
+        par.get(y).push(n);
+      });
+    });
+    var cand = Array.from(par.keys());
+    cand.sort(function (a, b) { return par.get(b).length - par.get(a).length || b.degree - a.degree; });
+    var kept = expanded ? cand : cand.slice(0, CAP2);
+    var hidden = cand.length - kept.length;
+    var mean = new Map();
+    kept.forEach(function (n) {
+      var sx = 0, sy = 0;
+      par.get(n).forEach(function (p) { var q = pos.get(p.id); sx += Math.cos(q.ang); sy += Math.sin(q.ang); });
+      mean.set(n, ((Math.atan2(sy, sx) - START) % TAU + TAU) % TAU);
+    });
+    kept.sort(function (a, b) { return CAT_ORDER[a.category] - CAT_ORDER[b.category] || mean.get(a) - mean.get(b); });
+    var tracks2 = Math.min(3, Math.max(1, Math.ceil(kept.length / 72)));
+    var R2 = Math.max(R1o + LABEL_ROOM, kept.length / tracks2 * 16 / TAU);
+    var reserve = hidden > 0 ? Math.min(0.5, 70 / R2) : 0;
+    placeRing(kept, R2, tracks2, reserve, 2, pos, arcs, R2 - 26, 0.4 * (TAU * R2 - 70) / Math.max(1, kept.length / tracks2));
+    var R2o = R2 + (tracks2 - 1) * TRACK;
+    r1.forEach(function (n) {
+      oedges.push([c, n, 0]);
+      n.nb.forEach(function (b) { if (set1.has(b) && n.id < b.id) oedges.push([n, b, 1]); });
+    });
+    kept.forEach(function (n) { par.get(n).forEach(function (p) { oedges.push([p, n, 2]); }); });
+    var guides = [];
+    for (var t = 0; t < tracks1; t++) guides.push(R1 + t * TRACK);
+    if (kept.length) for (t = 0; t < tracks2; t++) guides.push(R2 + t * TRACK);
+    return {
+      cid: cid, c: c, pos: pos, arcs: arcs, edges: oedges, guides: guides, r1: r1, r2: kept,
+      R1: R1, R1o: R1o, R2: R2, R2o: R2o, hidden: hidden, total2: cand.length,
+      extent: (kept.length ? R2o : R1o) + 130, t0: performance.now(),
+    };
+  }
+
+  // ── 상태 ───────────────────────────────────────────────────────────
+  var mode = 'atlas';          // 'atlas' | 'orbit'
+  var view = null, prevView = null; // 궤도 배치. prevView 는 전환 중 교차 페이드용
+  var morph = null;            // { t0, dur, kind, mixDur }
+  var orbitMix = 0, mixFrom = 0, mixTo = 0;
+  var atlasCam = null;         // 궤도에 들어가기 전 카메라. 나올 때 돌아간다
+  var hovered = null, focused = null, hotPlus = false;
+  var expanded = false, trail = [];
+  var filter = new Set(), legendHover = null, searchHits = new Set();
+  var emph = new Float32Array(N).fill(1);
+  var hoverLift = new Float32Array(N);
+  var revealT0 = reduce ? -1 : null;
+  var pulseT0 = -1, shimmerUntil = 0;
+  var drawTimes = [];
+
+  function activeCats() { return legendHover ? new Set([legendHover]) : filter.size ? filter : null; }
+  function hot() { return focused || hovered; }
+  function targetE(n) {
+    var cats = activeCats();
+    if (mode === 'orbit') {
+      if (n.role < 0) return 1;
+      if (cats && !cats.has(n.category)) return T.dimAlpha * 1.4;
+      var h = hot();
+      if (h && n !== h && !h.nb.has(n) && n !== view.c) return 0.35;
+      return 1;
+    }
+    if (cats) return cats.has(n.category) ? 1 : T.dimAlpha;
+    return 1;
+  }
+
+  // ── 전환: 성도 ↔ 궤도, 궤도 ↔ 궤도 ─────────────────────────────────
+  function setTargets(v, kind) {
+    var now = performance.now();
+    nodes.forEach(function (n) {
+      var p = v ? v.pos.get(n.id) : null, old = n.role;
+      var tx, ty, tp, role;
+      if (p) { tx = C.x + Math.cos(p.ang) * p.rad; ty = C.y + Math.sin(p.ang) * p.rad; tp = p.ring === 2 ? 0.62 : 1; role = p.ring; }
+      else { tx = n.hx; ty = n.hy; tp = v ? F.backdrop : 1; role = v ? -1 : ATLAS; }
+      n.f = { x: n.x, y: n.y, p: n.p };
+      n.t = { x: tx, y: ty, p: tp };
+      var fr = Math.hypot(n.x - C.x, n.y - C.y), trr = p ? p.rad : 0;
+      n.polar = kind === 'recenter' && old >= 1 && role >= 1 && fr > 24 && trr > 24;
+      if (n.polar) { n.fr = fr; n.fa = Math.atan2(n.y - C.y, n.x - C.x); n.tr = trr; n.ta = p.ang; }
+      var delay = 0;
+      if (kind === 'enter' && p) delay = p.ring === 0 ? 0 : p.ring === 1 ? 40 + 160 * frac(p.ang) : 200 + 160 * frac(p.ang);
+      if (kind === 'exit' && old >= 0) delay = old === 2 ? 0 : old === 1 ? 60 + 120 * frac(Math.atan2(n.y - C.y, n.x - C.x)) : 140;
+      n.delay = delay;
+      n.front = role >= 0 || old >= 0;
+      n.role = role;
+      n.cap = p ? p.cap : 0;
+    });
+    mixFrom = orbitMix; mixTo = v ? 1 : 0;
+    morph = { t0: now, kind: kind, dur: kind === 'recenter' ? 600 : 640, mixDur: kind === 'enter' ? 760 : kind === 'exit' ? 640 : 600 };
+    if (reduce) morph.t0 = -1e9;
+  }
+  function stepMorph(now) {
+    if (!morph) return false;
+    var e = now - morph.t0, busy = false;
+    for (var i = 0; i < N; i++) {
+      var n = nodes[i];
+      var lt = clamp((e - n.delay) / morph.dur);
+      if (lt < 1) busy = true;
+      n.lt = lt;
+      var t = morph.kind === 'recenter' ? ease(lt) : easeIO(lt);
+      if (n.polar) {
+        var rad = n.fr + (n.tr - n.fr) * t, ang = lerpAng(n.fa, n.ta, t);
+        n.x = C.x + Math.cos(ang) * rad; n.y = C.y + Math.sin(ang) * rad;
+      } else { n.x = n.f.x + (n.t.x - n.f.x) * t; n.y = n.f.y + (n.t.y - n.f.y) * t; }
+      n.p = n.f.p + (n.t.p - n.f.p) * t;
+    }
+    var mt = clamp(e / morph.mixDur);
+    orbitMix = mixFrom + (mixTo - mixFrom) * easeIO(mt);
+    if (mt < 1) busy = true;
+    if (!busy) {
+      if (morph.kind !== 'exit') shimmerUntil = reduce ? 0 : now + 7000;
+      morph = null; prevView = null;
+      nodes.forEach(function (n) { n.front = n.role >= 0; });
+    }
+    return busy;
+  }
+
+  function enterOrbit(n, opts) {
+    opts = opts || {};
+    if (mode === 'atlas') { atlasCam = { x: cam.x, y: cam.y, k: cam.k }; C = { x: n.hx, y: n.hy }; }
+    mode = 'orbit'; document.body.dataset.mode = 'orbit';
+    trail = [n.id]; expanded = false;
+    hovered = focused = null; hideTip();
+    view = layout(n.id, false); prevView = null;
+    setTargets(view, 'enter');
+    if (opts.instant) { morph.t0 = -1e9; }
+    showPanel();
+    var target = orbitCam(view);
+    if (opts.instant) { cam = target; flight = null; } else flyTo(target, 720);
+    pulseT0 = opts.instant || reduce ? -1 : performance.now() + 380;
+    if (!opts.noHistory) setHash(n.id, true);
+    announce(n);
+    redraw();
+  }
+  function recenter(id, opts) {
+    opts = opts || {};
+    var n = byId[id];
+    if (!n) return;
+    if (mode === 'atlas') { enterOrbit(n, opts); return; }
+    if (n === view.c && !opts.force) return;
+    if (!opts.fromTrail) { var at = trail.indexOf(id); if (at >= 0) trail = trail.slice(0, at + 1); else trail.push(id); }
+    if (n !== view.c) expanded = false;
+    hovered = focused = null; hideTip();
+    prevView = view; view = layout(id, expanded);
+    setTargets(view, 'recenter');
+    flyTo(orbitCam(view), 600);
+    pulseT0 = reduce ? -1 : performance.now() + 200;
+    setHash(id, false);
+    renderPanel(); renderTrail(); announce(n);
+    redraw();
+  }
+  function exitOrbit(opts) {
+    opts = opts || {};
+    if (mode !== 'orbit') return;
+    if (!opts.fromHistory && history.state && history.state.fOrbit) { history.back(); return; } // popstate 가 다시 부른다
+    mode = 'atlas'; document.body.dataset.mode = 'atlas';
+    hovered = focused = null; hideTip();
+    prevView = view; view = null;
+    setTargets(null, 'exit');
+    panelEl.hidden = true; document.getElementById('trail').hidden = true;
+    stage.style.setProperty('--sheet', '0px');
+    if (!opts.fromHistory && location.hash) history.replaceState(null, '', location.pathname + location.search);
+    flyTo(atlasCam || fitTarget(nodes), 640);
+    document.getElementById('live').textContent = '전체 보기';
+    redraw();
+  }
+  function back() {
+    if (trail.length < 2) { exitOrbit(); return; }
+    trail.pop();
+    recenter(trail[trail.length - 1], { fromTrail: true });
+  }
+
+  // ── 딥링크와 브라우저 뒤로 가기 ──────────────────────────────────────
+  function readHash() { var m = /node=([^&]+)/.exec(location.hash); return m ? decodeURIComponent(m[1]) : null; }
+  function setHash(id, push) {
+    var h = '#node=' + id;
+    if (push) history.pushState({ fOrbit: 1 }, '', h);
+    else if (location.hash !== h) history.replaceState(history.state, '', h);
+  }
+  function syncFromHash() {
+    var id = readHash();
+    if (id && byId[id]) { if (mode === 'atlas') enterOrbit(byId[id], { noHistory: true }); else if (id !== view.cid) recenter(id); }
+    else if (mode === 'orbit') exitOrbit({ fromHistory: true });
+  }
+  window.addEventListener('popstate', syncFromHash);
+  window.addEventListener('hashchange', syncFromHash);
+
+  // ── 그리기 ─────────────────────────────────────────────────────────
+  var dirty = true, rafId = 0;
+  function redraw() { dirty = true; if (!rafId) rafId = requestAnimationFrame(frame); }
+  function frame(now) {
+    rafId = 0;
+    var busy = stepFlight(now);
+    if (stepMorph(now)) busy = true;
+    for (var i = 0; i < N; i++) {
+      var n = nodes[i], ta = targetE(n);
+      if (reduce) { emph[i] = ta; hoverLift[i] = n === hovered || n === focused ? 1 : 0; continue; }
+      var d = ta - emph[i];
+      if (Math.abs(d) > 0.01) { emph[i] += Math.sign(d) * Math.min(Math.abs(d), 16 / 160); busy = true; } else emph[i] = ta;
+      var hl = n === hovered || n === focused ? 1 : 0, dl = hl - hoverLift[i];
+      if (Math.abs(dl) > 0.02) { hoverLift[i] += dl * 0.35; busy = true; } else hoverLift[i] = hl;
+    }
+    if (revealT0 === null) revealT0 = now;
+    if (revealT0 >= 0 && now - revealT0 < 1100) busy = true;
+    if (pulseT0 >= 0 && now - pulseT0 < 1000) busy = true;
+    if (mode === 'orbit' && !morph && now < shimmerUntil) busy = true;
+    var td = performance.now();
+    draw(now);
+    drawTimes.push(performance.now() - td); if (drawTimes.length > 600) drawTimes.shift();
+    dirty = false;
+    if (busy) rafId = requestAnimationFrame(frame);
+  }
+  function reveal(n, now) {
+    if (revealT0 < 0) return 1;
+    return clamp((now - revealT0 - (n.rank / N) * 600) / 200);
+  }
+  function S(n) { return { x: n.x * cam.k + cam.x, y: n.y * cam.k + cam.y }; }
+
+  function chromeRects() {
+    var s = stage.getBoundingClientRect(), out = [];
+    ['search', 'dock', 'tools', 'trail'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el.hidden || !el.offsetParent) return;
+      var r = (id === 'dock' ? document.getElementById('legend') : el).getBoundingClientRect();
+      if (r.width) out.push({ x: r.left - s.left - 4, y: r.top - s.top - 4, w: r.width + 8, h: r.height + 8 });
+    });
+    var res = document.getElementById('results');
+    if (res.childElementCount) { var rr = res.getBoundingClientRect(); out.push({ x: rr.left - s.left, y: rr.top - s.top, w: rr.width, h: rr.height }); }
+    if (!panelEl.hidden) { var p = panelEl.getBoundingClientRect(); out.push({ x: p.left - s.left - 4, y: p.top - s.top - 4, w: p.width + 8, h: p.height + 8 }); }
+    return out;
+  }
+
+  function nodeR(n) {
+    var r = n.r * Math.sqrt(cam.k);
+    if (n.role >= 1 && n.cap) r = Math.max(2.5, Math.min(r, n.cap * cam.k));
+    if (n.role === 0) r *= 1.25;
+    return r * (1 + 0.16 * hoverLift[n.i]);
+  }
+
+  var nameBoxes = [];
+  function draw(now) {
+    var k = cam.k, tx = cam.x, ty = cam.y;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+    // 1. 배경과 별먼지
+    ctx.drawImage(bgCanvas, 0, 0, W, H);
+    if (dustPattern) {
+      var ts = dustPattern.tileSize, ox = ((tx * 0.04) % ts + ts) % ts, oy = ((ty * 0.04) % ts + ts) % ts;
+      ctx.save(); ctx.translate(ox - ts, oy - ts); ctx.fillStyle = dustPattern; ctx.fillRect(0, 0, W + ts, H + ts); ctx.restore();
+    }
+    var mix = orbitMix;
+    var hazeIn = revealT0 < 0 ? 1 : clamp((now - revealT0) / 700);
+    var edgeIn = revealT0 < 0 ? 1 : clamp((now - revealT0 - 500) / 400);
+    var cats = activeCats();
+    var h = hot();
+
+    // 2. 성운
+    if (haze) {
+      ctx.globalAlpha = hazeIn * (cats && mode === 'atlas' ? 0.55 : 1) * (1 - 0.72 * mix);
+      ctx.drawImage(haze.img, haze.ox * k + tx, haze.oy * k + ty, haze.img.width / haze.s * k, haze.img.height / haze.s * k);
+    }
+    // 3. 성운 이름
+    nameBoxes = [];
+    var nameA = clamp((1.7 - k) / 0.5) * (1 - clamp(mix * 3));
+    if (nameA > 0) drawNebulaNames(nameA * hazeIn, cats, k, tx, ty);
+
+    // 4. 성도 엣지: 빛 실. 궤도 화면에서는 배경 노드끼리만 아주 흐리게
+    ctx.globalCompositeOperation = F.blend;
+    ctx.lineWidth = 0.7;
+    var atlasEA = edgeIn * (1 - 0.82 * mix) * (mode === 'atlas' && h ? 0.45 : 1);
+    if (atlasEA > 0.01) {
+      for (var b = 0; b < bucketKeys.length; b++) {
+        var key = bucketKeys[b], list = buckets[key], same = key !== '_x';
+        ctx.strokeStyle = same ? T.cat[key] : T.edge;
+        for (var pass = 0; pass < (cats && mode === 'atlas' ? 2 : 1); pass++) {
+          var a = T.edgeAlpha * (same ? 1.25 : 0.9) * atlasEA;
+          if (cats && mode === 'atlas') a *= pass === 0 ? 1.5 : 0.22;
+          ctx.globalAlpha = a;
+          ctx.beginPath();
+          for (var i = 0; i < list.length; i++) {
+            var e = list[i];
+            if (mode === 'orbit' && (e.s.front || e.t.front)) continue;
+            if (cats && mode === 'atlas') {
+              var inF = cats.has(e.s.category) && cats.has(e.t.category);
+              if (inF !== (pass === 0)) continue;
+            }
+            ctx.moveTo(e.s.x * k + tx, e.s.y * k + ty); ctx.lineTo(e.t.x * k + tx, e.t.y * k + ty);
+          }
+          ctx.stroke();
+        }
+      }
+    }
+    // 성도에서 호버한 노드의 엣지: 길이를 따라 두 노드 색으로 변하는 실
+    if (mode === 'atlas' && h && !morph) {
+      ctx.lineWidth = 1.2;
+      ctx.globalAlpha = T.edgeHiAlpha * edgeIn;
+      var hs = S(h);
+      h.nb.forEach(function (m) {
+        var ms = S(m), g = ctx.createLinearGradient(hs.x, hs.y, ms.x, ms.y);
+        g.addColorStop(0, T.cat[h.category]); g.addColorStop(1, T.cat[m.category]);
+        ctx.strokeStyle = g; ctx.beginPath(); ctx.moveTo(hs.x, hs.y); ctx.lineTo(ms.x, ms.y); ctx.stroke();
+      });
+    }
+    ctx.globalCompositeOperation = 'source-over';
+
+    // 5. 뒤쪽 노드 (성도 전체, 또는 궤도 화면의 배경)
+    drawNodes(now, false);
+
+    // 6. 궤도 층: 렌즈, 안내선, 카테고리 호, 궤도 엣지
+    var ov = view || prevView;
+    if (ov && mix > 0.001) {
+      var cs = { x: C.x * k + tx, y: C.y * k + ty };
+      var LR = (ov.R2o + 110) * k;
+      var lg = ctx.createRadialGradient(cs.x, cs.y, 0, cs.x, cs.y, LR);
+      lg.addColorStop(0, F.lens); lg.addColorStop(0.74, F.lens); lg.addColorStop(1, rgba(rgbOf(F.lens), 0)); // 투명 끝도 같은 색이라 회색 띠가 생기지 않는다
+      ctx.globalAlpha = mix; ctx.fillStyle = lg;
+      ctx.fillRect(cs.x - LR, cs.y - LR, LR * 2, LR * 2);
+      var et = morph && morph.kind === 'recenter' ? clamp((now - morph.t0) / 600) : 1;
+      if (prevView && view && et < 1) drawOrbitLayer(prevView, mix * (1 - et), null, cats, now, cs);
+      drawOrbitLayer(ov, mix * (prevView && view ? et : 1), h, cats, now, cs);
+    }
+
+    // 7. 앞쪽 노드 (궤도 위)
+    drawNodes(now, true);
+
+    // 8. 선택 맥박: 중심에서 한 번 퍼지는 고리
+    if (view && pulseT0 >= 0 && now >= pulseT0 && now - pulseT0 < 1000) {
+      var pt = (now - pulseT0) / 1000, c0 = S(view.c), r0 = nodeR(view.c);
+      ctx.globalAlpha = (1 - pt) * 0.7; ctx.strokeStyle = T.cat[view.c.category]; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(c0.x, c0.y, r0 + 6 + ease(pt) * 48, 0, TAU); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
+    // 9. 라벨
+    if (mode === 'atlas' && mix < 0.05) drawAtlasLabels(now, k, tx, ty);
+    if (mode === 'orbit' && view) drawOrbitLabels(h, cats);
+
+    // 10. 접힌 2-hop 수
+    if (mode === 'orbit' && view && (view.hidden > 0 || expanded)) {
+      var pa = view.r2.length ? clamp(mix) : 0;
+      if (pa > 0) {
+        var txt = expanded ? '접기' : '+' + view.hidden;
+        var px = C.x * k + tx, py = (C.y - view.R2) * k + ty;
+        ctx.font = '500 11px ' + T.fontMono; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        var pw = ctx.measureText(txt).width + 14;
+        ctx.globalAlpha = pa * (hotPlus ? 1 : 0.85);
+        roundRect(px - pw / 2, py - 10, pw, 20, 10);
+        ctx.fillStyle = T.labelHalo; ctx.fill();
+        ctx.strokeStyle = hotPlus ? T.signal : T.hairline; ctx.lineWidth = 1; ctx.stroke();
+        ctx.fillStyle = hotPlus ? T.text : T.muted; ctx.fillText(txt, px, py + 0.5);
+        ctx.textAlign = 'left'; ctx.globalAlpha = 1;
+      }
+    }
+  }
+  function roundRect(x, y, w, h, r) {
+    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+
+  function drawNodes(now, front) {
+    var k = cam.k, tx = cam.x, ty = cam.y, glint = sprites._glint;
+    for (var j = N - 1; j >= 0; j--) {
+      var n = rank[j];
+      if (!!n.front !== front) continue;
+      var sx = n.x * k + tx, sy = n.y * k + ty, r = nodeR(n);
+      if (sx < -60 || sy < -60 || sx > W + 60 || sy > H + 60) continue;
+      var a = n.p * emph[n.i] * reveal(n, now);
+      if (a <= 0.004) continue;
+      var sp = sprites[n.category] || sprites.etc;
+      var big = n.degree >= 30 || n.role === 0;
+      if (dark) {
+        // 빛번짐: 더하기 합성. 잎은 작게, 허브는 넓게
+        ctx.globalCompositeOperation = 'lighter';
+        var hr = r * (big ? 3.4 : 2.5) * (1 + 0.25 * hoverLift[n.i]);
+        ctx.globalAlpha = a * T.glowAlpha * (0.5 + 0.5 * Math.min(1, n.degree / 40)) * (n.role === -1 ? 0.5 : 1);
+        ctx.drawImage(sp.halo, sx - hr, sy - hr, hr * 2, hr * 2);
+        ctx.globalCompositeOperation = 'source-over';
+      } else if (F.shadow > 0 && n.role !== -1) {
+        if (big && sp.aura) { var ar = r * 3; ctx.globalAlpha = a; ctx.drawImage(sp.aura, sx - ar, sy - ar, ar * 2, ar * 2); }
+        var sw = r * 1.5;
+        ctx.globalAlpha = a * (0.8 + 0.4 * hoverLift[n.i]);
+        ctx.drawImage(sp.halo, sx - sw, sy - sw * 0.62 + r * (0.42 + 0.25 * hoverLift[n.i]), sw * 2, sw * 1.45);
+      }
+      ctx.globalAlpha = a;
+      var cr = r * (SR + 4) / SR;
+      ctx.drawImage(sp.core, sx - cr, sy - cr, cr * 2, cr * 2);
+      if (n.category === 'overviews') {
+        ctx.strokeStyle = sp.css; ctx.lineWidth = 1; ctx.globalAlpha = a * 0.8;
+        ctx.beginPath(); ctx.arc(sx, sy, r + 2.6, 0, TAU); ctx.stroke();
+      }
+      // 허브의 렌즈 반짝임 (dark)
+      if (dark && glint && (n.role === 0 || (n.degree >= 50 && n.role < 0 && !view)) && a > 0.3) { // 궤도에서는 중심만 반짝인다
+        ctx.globalCompositeOperation = 'lighter';
+        var gl = r * (n.role === 0 ? 4.6 : 3.6);
+        ctx.globalAlpha = a * 0.42;
+        ctx.drawImage(glint, sx - gl, sy - gl, gl * 2, gl * 2);
+        ctx.globalCompositeOperation = 'source-over';
+      }
+      if (view && n === view.c && n.role === 0) {
+        ctx.globalAlpha = a * 0.9; ctx.strokeStyle = sp.css; ctx.lineWidth = 1.6;
+        ctx.beginPath(); ctx.arc(sx, sy, r + 6, 0, TAU); ctx.stroke();
+        ctx.globalAlpha = a * 0.28; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(sx, sy, r + 11, 0, TAU); ctx.stroke();
+      }
+      if (n === focused) {
+        ctx.globalAlpha = 1; ctx.strokeStyle = sp.css; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.arc(sx, sy, r + 4, 0, TAU); ctx.stroke();
+      }
+      if (searchHits.has(n)) {
+        ctx.globalAlpha = 0.9; ctx.strokeStyle = T.label; ctx.lineWidth = 1; ctx.setLineDash([2, 2]);
+        ctx.beginPath(); ctx.arc(sx, sy, r + 4, 0, TAU); ctx.stroke(); ctx.setLineDash([]);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function drawOrbitLayer(v, a, h, cats, now, cs) {
+    if (a <= 0.004) return;
+    var k = cam.k;
+    var prog = reduce ? 1 : easeIO(clamp((now - v.t0 - 80) / 760));
+    // 안내선: 꼭대기에서 시작해 원을 그리며 들어온다
+    ctx.lineWidth = 1; ctx.strokeStyle = T.hairline;
+    ctx.globalAlpha = a;
+    v.guides.forEach(function (R) { ctx.beginPath(); ctx.arc(cs.x, cs.y, R * k, START, START + TAU * prog); ctx.stroke(); });
+    // 카테고리 호: 넓고 흐린 빛 위에 가는 선 한 줄
+    ctx.globalCompositeOperation = F.blend;
+    v.arcs.forEach(function (arc) {
+      var am = cats && !cats.has(arc.cat) ? T.dimAlpha : 1;
+      var a1 = Math.max(arc.a0 + 0.008, arc.a1 - 0.004), a0 = arc.a0 + 0.004;
+      var end = Math.min(a1, START + TAU * prog);
+      if (end <= a0) return;
+      ctx.strokeStyle = T.cat[arc.cat];
+      ctx.globalAlpha = a * am * (dark ? 0.16 : 0.1); ctx.lineWidth = 6;
+      ctx.beginPath(); ctx.arc(cs.x, cs.y, arc.r * k, a0, end); ctx.stroke();
+      ctx.globalAlpha = a * am * 0.85; ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.arc(cs.x, cs.y, arc.r * k, a0, end); ctx.stroke();
+    });
+    // 궤도 엣지
+    var hiList = [], groups = {};
+    v.edges.forEach(function (e) {
+      if (h && (e[0] === h || e[1] === h)) { hiList.push(e); return; }
+      var dim = cats && (!cats.has(e[0].category) || !cats.has(e[1].category));
+      var key = (e[2] === 0 ? 's:' + e[1].category : 'k' + e[2]) + (dim ? ':d' : '');
+      (groups[key] || (groups[key] = [])).push(e);
+    });
+    var base = h ? 0.3 : 1;
+    ctx.lineCap = 'round';
+    Object.keys(groups).forEach(function (key) {
+      var list = groups[key], kind = key.charAt(0) === 's' ? 0 : +key.charAt(1);
+      var ea = kind === 0 ? T.edgeHiAlpha * 0.32 : kind === 1 ? T.edgeAlpha * 2.6 : T.edgeAlpha * 2;
+      if (/:d$/.test(key)) ea *= 0.25;
+      ctx.globalAlpha = ea * a * base;
+      ctx.strokeStyle = kind === 0 ? T.cat[key.split(':')[1]] : T.edge;
+      ctx.lineWidth = kind === 0 ? 0.9 : 0.75;
+      ctx.beginPath(); list.forEach(function (e) { path(e); }); ctx.stroke();
+      if (kind === 0 && !morph) { ctx.fillStyle = ctx.strokeStyle; ctx.beginPath(); list.forEach(function (e) { arrow(e, v); }); ctx.fill(); }
+    });
+    // 반짝임: 선택 직후 몇 초 동안 중심에서 이웃으로 빛이 흐른다
+    if (!reduce && !morph && v === view && now < shimmerUntil && !h) {
+      var fade = clamp((shimmerUntil - now) / 1200);
+      ctx.lineWidth = 1.4;
+      v.edges.forEach(function (e, i) {
+        if (e[2] !== 0) return;
+        var A = S(e[0]), B = S(e[1]);
+        var u = (((now - v.t0) / 2200 + i * 0.137) % 1 + 1) % 1; // rAF 시각이 v.t0 보다 앞설 수 있어 음수를 접는다
+        var g = ctx.createLinearGradient(A.x, A.y, B.x, B.y);
+        var u0 = Math.max(0, u - 0.14), u1 = Math.min(1, u + 0.04);
+        g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(u0, rgba(rgbOf(T.cat[e[1].category]), 0));
+        g.addColorStop(Math.max(u0, Math.min(u1, u)), rgba(dark ? mixc(rgbOf(T.cat[e[1].category]), WHITE, 0.5) : rgbOf(T.cat[e[1].category]), dark ? 0.75 : 0.55));
+        g.addColorStop(u1, rgba(rgbOf(T.cat[e[1].category]), 0)); g.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.globalAlpha = a * fade; ctx.strokeStyle = g;
+        ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+      });
+    }
+    // 강조 엣지: 두 노드 색 사이 그라데이션 + 방향 촉
+    hiList.forEach(function (e) {
+      var A = S(e[0]), B = S(e[1]);
+      var g = ctx.createLinearGradient(A.x, A.y, B.x, B.y);
+      g.addColorStop(0, T.cat[e[0].category]); g.addColorStop(1, T.cat[e[1].category]);
+      ctx.globalAlpha = T.edgeHiAlpha * a; ctx.strokeStyle = g; ctx.lineWidth = 1.3;
+      ctx.beginPath(); path(e); ctx.stroke();
+      var other = e[0] === h ? e[1] : e[0];
+      ctx.fillStyle = T.cat[other.category]; ctx.beginPath(); arrow(e, v); ctx.fill();
+    });
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 1;
+  }
+  function path(e) {
+    var A = S(e[0]), B = S(e[1]);
+    ctx.moveTo(A.x, A.y);
+    if (e[2] === 1) {
+      var k = cam.k;
+      var mx = C.x + ((e[0].x - C.x) + (e[1].x - C.x)) / 2 * 0.3, my = C.y + ((e[0].y - C.y) + (e[1].y - C.y)) / 2 * 0.3;
+      ctx.quadraticCurveTo(mx * k + cam.x, my * k + cam.y, B.x, B.y);
+    } else ctx.lineTo(B.x, B.y);
+  }
+  function arrow(e, v) {
+    if (e[2] === 1) return; // 곡선 현은 촉 생략
+    if (e[0].out.has(e[1])) head(e[0], e[1]);
+    if (e[1].out.has(e[0])) head(e[1], e[0]);
+  }
+  function head(from, to) {
+    var A = S(from), B = S(to), dx = B.x - A.x, dy = B.y - A.y, L = Math.hypot(dx, dy);
+    if (L < 20) return;
+    var ux = dx / L, uy = dy / L, rr = nodeR(to) + 2, x = B.x - ux * rr, y = B.y - uy * rr;
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - ux * 5 - uy * 2.5, y - uy * 5 + ux * 2.5);
+    ctx.lineTo(x - ux * 5 + uy * 2.5, y - uy * 5 - ux * 2.5);
+    ctx.closePath();
+  }
+
+  // 성운 이름: 별과 크롬을 피할 자리가 없으면 그리지 않는다 (A 모바일 겹침 수정)
+  function drawNebulaNames(alpha, cats, k, tx, ty) {
+    var rk = Math.sqrt(k), chrome = chromeRects();
+    ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+    CAT_INFO.forEach(function (c) {
+      if (c.id === 'overviews' || c.n < 5) return;
+      var a = cats ? (cats.has(c.id) ? 1 : 0.25) : 1;
+      var size = c.n > 60 ? 15 : 13;
+      ctx.font = '500 ' + size + 'px ' + T.fontDisplay;
+      if ('letterSpacing' in ctx) ctx.letterSpacing = '0.16em';
+      var tw = ctx.measureText(c.en).width, x0 = c.x * k + tx;
+      var top = c.top * k + ty, bot = c.bottom * k + ty;
+      var cands = [[x0, top - 18], [x0, bot + size + 18], [x0, top - 40], [x0, bot + size + 40], [x0 - tw * 0.6, top - 18], [x0 + tw * 0.6, top - 18]];
+      var spot = null;
+      for (var ci = 0; ci < cands.length && !spot; ci++) {
+        var x = cands[ci][0], y = cands[ci][1];
+        var bx0 = x - tw / 2 - 6, bx1 = x + tw / 2 + 6, by0 = y - size - 4, by1 = y + 6;
+        if (bx0 < 4 || bx1 > W - 4 || by0 < 4 || by1 > H - 4) continue;
+        var clear = nodes.every(function (n) {
+          var nx = n.x * k + tx, ny = n.y * k + ty, nr = n.r * rk + 2;
+          return nx + nr < bx0 || nx - nr > bx1 || ny + nr < by0 || ny - nr > by1;
+        }) && chrome.every(function (q) { return bx1 < q.x || bx0 > q.x + q.w || by1 < q.y || by0 > q.y + q.h; })
+          && nameBoxes.every(function (q) { return bx1 < q.x || bx0 > q.x + q.w || by1 < q.y || by0 > q.y + q.h; });
+        if (clear) spot = [x, y];
+      }
+      if (!spot) return;
+      ctx.globalAlpha = alpha * a * (dark ? 0.7 : 0.8);
+      ctx.fillStyle = T.cat[c.id];
+      ctx.fillText(c.en, spot[0], spot[1]);
+      nameBoxes.push({ x: spot[0] - tw / 2 - 4, y: spot[1] - size - 2, w: tw + 8, h: size + 6 });
+    });
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+    ctx.textAlign = 'left'; ctx.globalAlpha = 1;
+  }
+
+  function minDegreeFor(k) { return k < 0.8 ? 50 : k < 1.4 ? 25 : k < 2.2 ? 10 : 0; }
+  function label(txt, x, y) {
+    ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.strokeStyle = T.labelHalo;
+    ctx.strokeText(txt, x, y); ctx.fillText(txt, x, y);
+  }
+  function drawAtlasLabels(now, k, tx, ty) {
+    if (revealT0 >= 0 && now - revealT0 < 600) return;
+    var minDeg = minDegreeFor(k), cats = activeCats(), cand = [];
+    for (var i = 0; i < N; i++) {
+      var n = nodes[i];
+      var forced = n === hovered || searchHits.has(n) || (hovered && hovered.nb.has(n) && n.degree >= 10);
+      if (!forced) {
+        if (n.degree < minDeg || emph[n.i] < 0.9) continue;
+        if (cats && !cats.has(n.category)) continue;
+      }
+      var sx = n.x * k + tx, sy = n.y * k + ty;
+      if (sx < -20 || sy < -20 || sx > W + 20 || sy > H + 20) continue;
+      cand.push({ n: n, sx: sx, sy: sy, pri: (n === hovered ? 1e6 : 0) + (searchHits.has(n) ? 1e5 : 0) + (forced ? 1e4 : 0) + n.degree });
+    }
+    cand.sort(function (a, b) { return b.pri - a.pri; });
+    var boxes = chromeRects().concat(nameBoxes);
+    ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '0.01em';
+    var drawn = 0;
+    for (var c = 0; c < cand.length && drawn < 160; c++) {
+      var o = cand[c], n = o.n, strong = n === hovered || n.degree >= 50;
+      var size = strong ? 13 : n.degree >= 15 ? 12 : 11;
+      ctx.font = (strong ? '700 ' : '500 ') + size + 'px ' + T.fontDisplay;
+      var tw = ctx.measureText(n.label).width, r = nodeR(n);
+      // 노드와 그 고리를 비켜 오른쪽 위에 붙인다 (A의 "라벨이 제 원을 가로지름" 수정)
+      var gap = r + (n.category === 'overviews' ? 6 : 4) + 3;
+      var lx = o.sx + gap * 0.92, ly = o.sy - gap * 0.62;
+      if (lx + tw > W - 8) lx = o.sx - gap * 0.92 - tw;
+      if (lx < 8) lx = Math.min(8, W - 8 - tw);
+      var box = { x: lx - 2, y: ly - size / 2 - 2, w: tw + 4, h: size + 4 };
+      var hit = boxes.some(function (q) { return box.x < q.x + q.w && box.x + box.w > q.x && box.y < q.y + q.h && box.y + box.h > q.y; });
+      if (hit && o.pri < 1e6) continue;
+      boxes.push(box); drawn++;
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = n.degree >= 15 || strong ? T.label : T.labelMuted;
+      label(n.label, lx, ly);
+    }
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+  }
+
+  // 궤도 라벨: 모두 가로. 옆 호는 바깥쪽으로, 위아래 호는 노드 위나 아래 가운데에 둔다.
+  // 노드 원과 다른 라벨과 크롬에 닿으면 뺀다 (탐욕, 우선순위 순). 다 못 적는 허브는 패널 목록이 맡는다
+  var fitCache = new Map();
+  function fitText(s, font, maxW) {
+    var key = font + '|' + Math.round(maxW / 8) + '|' + s;
+    if (fitCache.has(key)) return fitCache.get(key);
+    ctx.font = font;
+    var out = s.length > 28 ? s.slice(0, 27) + '…' : s;
+    while (out.length > 4 && ctx.measureText(out).width > maxW) out = out.slice(0, -2) + '…';
+    if (ctx.measureText(out).width > maxW || (out !== s && out.length < Math.min(s.length, 8))) out = '';
+    if (fitCache.size > 4000) fitCache.clear();
+    fitCache.set(key, out);
+    return out;
+  }
+  var orbitLabelCount = 0;
+  function drawOrbitLabels(h, cats) {
+    var k = cam.k, cs = S({ x: C.x, y: C.y });
+    var rightBound = isMobile() || panelEl.hidden ? W - 8 : W - 360 - 32;
+    var boxes = chromeRects(), obst = [];
+    var members = view.r1.concat(view.r2);
+    members.forEach(function (n) { var p = S(n), r = nodeR(n); obst.push({ n: n, x: p.x - r - 1, y: p.y - r - 1, w: 2 * r + 2, h: 2 * r + 2 }); });
+    var c0 = S(view.c), rc = nodeR(view.c);
+    obst.push({ n: view.c, x: c0.x - rc - 12, y: c0.y - rc - 12, w: 2 * rc + 24, h: 2 * rc + 24 });
+    // 중심 라벨: 노드 아래 가로로 두 줄까지
+    var cd = view.c;
+    if (cd.lt > 0.6) {
+      ctx.globalAlpha = clamp((cd.lt - 0.6) / 0.4);
+      ctx.font = '700 15px ' + T.fontDisplay; ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.fillStyle = T.label;
+      if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.01em';
+      // 중심 라벨이 안쪽 궤도에 닿지 않게: 궤도가 작으면 짧은 이름 한 줄
+      var room = view.R1 * k - rc - 16;
+      var lines = room > 64 ? wrap(cd.title, Math.min(260, view.R1 * k * 1.3), 2) : wrap(cd.label, Math.min(220, view.R1 * k * 1.5), 1);
+      var y0 = c0.y + rc + 16;
+      lines.forEach(function (ln, i) {
+        label(ln, c0.x, y0 + i * 19);
+        var w = ctx.measureText(ln).width;
+        boxes.push({ x: c0.x - w / 2 - 2, y: y0 + i * 19 - 2, w: w + 4, h: 19 });
+      });
+      if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+    }
+    var list = members.filter(function (n) { return n.role >= 1 && n.lt > 0.85 && (!cats || cats.has(n.category)); });
+    list.sort(function (a, b) { return pri(b) - pri(a); });
+    function pri(n) { return (n === h ? 1e6 : 0) + (h && h.nb.has(n) ? 1e4 : 0) + (n.role === 1 ? 1e3 : 0) + n.degree; }
+    ctx.textBaseline = 'middle';
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '0.01em';
+    var n1 = 0, n2 = 0;
+    orbitLabelCount = 0;
+    list.forEach(function (n) {
+      var strong = n === h;
+      if (!strong && (n.role === 1 ? n1 >= 64 : n2 >= 18)) return;
+      var p = S(n), r = nodeR(n);
+      var ang = Math.atan2(p.y - cs.y, p.x - cs.x), cx = Math.cos(ang), cy = Math.sin(ang);
+      var side = Math.abs(cx) >= 0.4;
+      if (n.role === 2 && !side && !strong) return; // 바깥 궤도의 위아래 라벨은 패널에 맡긴다
+      var lf = strong || n.degree >= 50 ? { f: '700 13px ', px: 13, c: T.label } : n.degree >= 15 ? { f: '500 12px ', px: 12, c: T.label } : { f: '500 11px ', px: 11, c: T.labelMuted };
+      var font = lf.f + T.fontDisplay, lx, ly, align, maxW;
+      if (side) {
+        // 안쪽 궤도는 바깥 겹 바로 밖에서 시작해 두 궤도 사이로 뻗는다
+        var rad = Math.hypot(p.x - cs.x, p.y - cs.y);
+        var start = n.role === 1 ? Math.max(rad + r + 5, view.R1o * k + 8) : rad + r + 5;
+        lx = cs.x + cx * start; ly = cs.y + cy * start;
+        align = cx > 0 ? 'left' : 'right';
+        maxW = n.role === 1 ? Math.max(40, (view.R2 - view.R1o) * k / Math.max(0.6, Math.abs(cx)) - 22) : 150;
+        maxW = Math.min(maxW, 170, cx > 0 ? rightBound - lx : lx - 8);
+      } else {
+        align = 'center'; lx = p.x; ly = p.y + (cy > 0 ? r + lf.px * 0.5 + 5 : -(r + lf.px * 0.5 + 5));
+        maxW = 120;
+      }
+      if (strong) maxW = Math.max(maxW, 200);
+      var txt = fitText(n.label, font, maxW);
+      if (!txt) return;
+      ctx.font = font;
+      var tw = ctx.measureText(txt).width;
+      var bx = align === 'left' ? lx : align === 'right' ? lx - tw : lx - tw / 2;
+      var box = { x: bx - 2, y: ly - lf.px / 2 - 2, w: tw + 4, h: lf.px + 4 };
+      if (box.x < 4 || box.x + box.w > (align === 'left' ? rightBound + 2 : W - 4) || box.y < 4 || box.y + box.h > H - 4) { if (!strong) return; }
+      if (!strong) {
+        for (var i = 0; i < boxes.length; i++) { var q = boxes[i]; if (box.x < q.x + q.w && box.x + box.w > q.x && box.y < q.y + q.h && box.y + box.h > q.y) return; }
+        for (i = 0; i < obst.length; i++) { q = obst[i]; if (q.n !== n && box.x < q.x + q.w && box.x + box.w > q.x && box.y < q.y + q.h && box.y + box.h > q.y) return; }
+      }
+      boxes.push(box);
+      if (n.role === 1) n1++; else n2++;
+      orbitLabelCount++;
+      var la = clamp((n.lt - 0.85) / 0.15) * (n.role === 2 && !strong ? 0.85 : 1);
+      if (h && !strong && !h.nb.has(n)) la *= 0.35;
+      ctx.globalAlpha = la; ctx.textAlign = align; ctx.fillStyle = strong ? T.label : lf.c;
+      label(txt, lx, ly);
+    });
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+    ctx.textAlign = 'left'; ctx.globalAlpha = 1;
+  }
+  function wrap(text, maxW, maxLines) {
+    var words = text.split(' '), lines = [], cur = '', i;
+    for (i = 0; i < words.length; i++) {
+      var t = cur ? cur + ' ' + words[i] : words[i];
+      if (ctx.measureText(t).width > maxW && cur) { lines.push(cur); cur = words[i]; if (lines.length === maxLines) break; }
+      else cur = t;
+    }
+    if (lines.length < maxLines) { lines.push(cur); i = words.length; }
+    if (i < words.length || ctx.measureText(lines[lines.length - 1]).width > maxW) {
+      var last = lines[lines.length - 1];
+      while (last.length > 1 && ctx.measureText(last + '…').width > maxW) last = last.slice(0, -1);
+      lines[lines.length - 1] = last + '…';
+    }
+    return lines;
+  }
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = canvas.getBoundingClientRect(), oldW = W, oldH = H;
+    W = r.width; H = r.height;
+    canvas.width = Math.max(1, Math.floor(W * dpr)); canvas.height = Math.max(1, Math.floor(H * dpr));
+    buildBackground();
+    if (mode === 'orbit' && view) { syncSheet(); cam = orbitCam(view); flight = null; }
+    else if (oldW) { cam.x += (W - oldW) / 2; cam.y += (H - oldH) / 2; }
+    redraw();
+  }
+
+  // ── 패널, 방문 경로 ─────────────────────────────────────────────────
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function pageHref(n) { return '../../wiki/' + n.id + '.md'; } // 시안: 저장소의 wiki 원문
+  var pBody = document.getElementById('p-body'), pToggle = document.getElementById('panel-toggle');
+  var mqMobile = matchMedia('(max-width: 640px)');
+  function syncSheet() { stage.style.setProperty('--sheet', mode === 'orbit' && isMobile() && !panelEl.hidden ? panelEl.offsetHeight + 'px' : '0px'); }
+  function showPanel() {
+    if (mqMobile.matches) { panelEl.classList.add('is-peek'); pToggle.setAttribute('aria-expanded', 'false'); }
+    panelEl.hidden = false;
+    document.getElementById('trail').hidden = false;
+    renderPanel(); renderTrail();
+  }
+  function renderPanel() {
+    var n = view.c, meta = Mock.cat(n.category);
+    var pc = document.getElementById('p-cat');
+    pc.dataset.cat = n.category; pc.lastElementChild.textContent = meta.en + ', ' + meta.ko;
+    document.getElementById('p-title').textContent = n.title;
+    document.getElementById('p-meta').innerHTML = '<span>' + n.year + '</span><span>' + esc(n.type) + '</span><span>연결 ' + n.nb.size + '</span>';
+    document.getElementById('p-open').href = pageHref(n);
+    pToggle.textContent = '이웃 ' + view.r1.length + '개';
+    var html = n.tags.length ? '<div class="mk-tags">' + n.tags.map(function (t) { return '<span class="mk-tag">' + esc(t) + '</span>'; }).join('') + '</div>' : '';
+    html += '<h3 class="mk-panel-section">이웃 페이지 ' + view.r1.length + '개</h3>';
+    if (view.r1.length > 40) html += '<p class="f-note" style="margin-top:0">이웃이 많아 궤도에는 라벨을 일부만 적는다. 전체는 이 목록에 있다.</p>';
+    var cur = null;
+    view.r1.forEach(function (m) {
+      if (m.category !== cur) {
+        if (cur) html += '</ul>';
+        cur = m.category;
+        var cnt = view.r1.filter(function (x) { return x.category === cur; }).length;
+        html += '<div class="nb-group" data-cat="' + cur + '"><span class="mk-swatch"></span>' + Mock.cat(cur).en + '<span class="mk-deg">' + cnt + '</span></div><ul class="mk-neighbors">';
+      }
+      var dir = n.out.has(m) && m.out.has(n) ? '↔' : n.out.has(m) ? '→' : '←';
+      html += '<li data-cat="' + m.category + '" data-id="' + esc(m.id) + '" tabindex="0" role="button"><span class="mk-deg" title="' +
+        (dir === '→' ? '이 페이지가 링크함' : dir === '←' ? '이 페이지를 링크함' : '서로 링크') + '">' + dir + '</span><span class="t">' + esc(m.title) +
+        '</span><span class="mk-deg" style="margin-left:auto">' + m.degree + '</span></li>';
+    });
+    if (cur) html += '</ul>';
+    if (view.total2) {
+      html += '<p class="f-note">두 다리 건너 닿는 페이지는 ' + view.total2 + '개다. ' +
+        (view.hidden ? '바깥 궤도에는 이웃을 많이 공유하는 ' + view.r2.length + '개만 둔다. <button type="button" class="linkish" data-act="expand">모두 보이기</button>'
+          : expanded ? '바깥 궤도에 모두 보인다. <button type="button" class="linkish" data-act="expand">' + CAP2 + '개로 줄이기</button>' : '바깥 궤도에 모두 보인다.') + '</p>';
+    }
+    pBody.innerHTML = html; pBody.scrollTop = 0;
+    syncSheet();
+  }
+  var crumbs = document.getElementById('crumbs');
+  function renderTrail() {
+    var show = trail.slice(-4), skipped = trail.length - show.length;
+    crumbs.innerHTML = (skipped ? '<li class="trail-more" aria-label="' + skipped + '개 더">…</li>' : '') + show.map(function (id, i) {
+      var n = byId[id], last = i === show.length - 1;
+      return '<li data-cat="' + n.category + '"' + (last ? ' aria-current="page"' : '') + '><button type="button" data-id="' + esc(id) + '" title="' + esc(n.title) + '"><span class="mk-swatch"></span><span>' + esc(n.label) + '</span></button></li>';
+    }).join('');
+    var nav = document.getElementById('trail'); nav.scrollLeft = nav.scrollWidth;
+  }
+  crumbs.addEventListener('click', function (ev) {
+    var b = ev.target.closest('button[data-id]');
+    if (!b) return;
+    trail = trail.slice(0, trail.indexOf(b.dataset.id) + 1);
+    recenter(b.dataset.id, { fromTrail: true });
+  });
+  document.getElementById('home').addEventListener('click', function () { exitOrbit(); canvas.focus({ preventScroll: true }); });
+  document.getElementById('p-close').addEventListener('click', function () { exitOrbit(); canvas.focus({ preventScroll: true }); });
+  pBody.addEventListener('click', function (ev) {
+    if (ev.target.closest('[data-act="expand"]')) { toggleExpand(); return; }
+    var li = ev.target.closest('li[data-id]'); if (li) recenter(li.dataset.id);
+  });
+  pBody.addEventListener('keydown', function (ev) {
+    var li = ev.target.closest('li[data-id]');
+    if (li && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); ev.stopPropagation(); recenter(li.dataset.id); canvas.focus({ preventScroll: true }); }
+  });
+  pBody.addEventListener('pointerover', function (ev) { var li = ev.target.closest('li[data-id]'); var n = li ? byId[li.dataset.id] : null; if (n !== hovered) { hovered = n; redraw(); } });
+  pBody.addEventListener('pointerleave', function () { hovered = null; redraw(); });
+  function toggleExpand() {
+    expanded = !expanded;
+    prevView = view; view = layout(view.cid, expanded);
+    setTargets(view, 'recenter');
+    flyTo(orbitCam(view), 600);
+    renderPanel(); redraw();
+  }
+  pToggle.addEventListener('click', function () {
+    var peek = panelEl.classList.toggle('is-peek');
+    pToggle.setAttribute('aria-expanded', String(!peek));
+    syncSheet(); redraw();
+  });
+  function announce(n) { document.getElementById('live').textContent = n.title + ' 중심. 이웃 ' + n.nb.size + '개'; }
+
+  // ── 포인터: 팬, 핀치, 탭, 호버 ──────────────────────────────────────
+  var coarse = matchMedia('(pointer: coarse)').matches;
+  function hitTest(px, py, slop) {
+    var best = null, bd = Infinity;
+    for (var i = 0; i < N; i++) {
+      var n = nodes[i];
+      if (mode === 'orbit' && (n.role < 0 || n.p < 0.3)) continue;
+      var p = S(n), r = nodeR(n), d = Math.hypot(p.x - px, p.y - py) - r;
+      if (d < slop && d < bd) { bd = d; best = n; }
+    }
+    return best;
+  }
+  function hitPlus(x, y) {
+    if (mode !== 'orbit' || !view || !(view.hidden > 0 || expanded)) return false;
+    var p = S({ x: C.x, y: C.y - view.R2 });
+    return Math.abs(x - p.x) < 28 && Math.abs(y - p.y) < 13;
+  }
+  function local(e) { var r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+  var pointers = new Map(), gesture = null;
+  canvas.addEventListener('pointerdown', function (e) {
+    canvas.setPointerCapture(e.pointerId);
+    var p = local(e);
+    pointers.set(e.pointerId, p);
+    flight = null;
+    if (pointers.size === 1) gesture = { moved: false, sx: p.x, sy: p.y, cam: { x: cam.x, y: cam.y, k: cam.k }, type: e.pointerType };
+    else if (pointers.size === 2) {
+      var ps = Array.from(pointers.values());
+      gesture = { moved: true, pinch: { d: Math.hypot(ps[0].x - ps[1].x, ps[0].y - ps[1].y), mx: (ps[0].x + ps[1].x) / 2, my: (ps[0].y + ps[1].y) / 2, cam: { x: cam.x, y: cam.y, k: cam.k } } };
+    }
+  });
+  canvas.addEventListener('pointermove', function (e) {
+    var p = local(e);
+    if (pointers.has(e.pointerId)) {
+      pointers.set(e.pointerId, p);
+      if (gesture && gesture.pinch && pointers.size >= 2) {
+        var ps = Array.from(pointers.values()), g = gesture.pinch;
+        var d = Math.hypot(ps[0].x - ps[1].x, ps[0].y - ps[1].y);
+        var mx = (ps[0].x + ps[1].x) / 2, my = (ps[0].y + ps[1].y) / 2;
+        var k = Math.max(K_MIN, Math.min(K_MAX, g.cam.k * d / Math.max(1, g.d)));
+        cam = camFor((g.mx - g.cam.x) / g.cam.k, (g.my - g.cam.y) / g.cam.k, k, mx, my);
+        redraw(); return;
+      }
+      if (gesture && !gesture.pinch) {
+        var dx = p.x - gesture.sx, dy = p.y - gesture.sy;
+        if (!gesture.moved && Math.hypot(dx, dy) > 4) { gesture.moved = true; canvas.classList.add('is-panning'); hideTip(); }
+        if (gesture.moved) { cam.x = gesture.cam.x + dx; cam.y = gesture.cam.y + dy; redraw(); }
+        return;
+      }
+    }
+    if (e.pointerType === 'mouse') {
+      var n = morph ? null : hitTest(p.x, p.y, 4), plus = !n && hitPlus(p.x, p.y);
+      canvas.classList.toggle('is-over', !!n || plus);
+      if (n !== hovered || plus !== hotPlus) { hovered = n; hotPlus = plus; redraw(); }
+      if (n) showTip(n); else hideTip();
+    }
+  });
+  function endPointer(e) {
+    if (!pointers.has(e.pointerId)) return;
+    var p = local(e);
+    pointers.delete(e.pointerId);
+    canvas.classList.remove('is-panning');
+    if (gesture && !gesture.moved && !gesture.pinch && e.type === 'pointerup') {
+      var n = hitTest(p.x, p.y, gesture.type === 'mouse' ? 4 : 12);
+      if (mode === 'atlas') { if (n) enterOrbit(n); }
+      else if (n && n !== view.c) recenter(n.id);
+      else if (n) { if (panelEl.classList.contains('is-peek') && mqMobile.matches) pToggle.click(); }
+      else if (hitPlus(p.x, p.y)) toggleExpand();
+      else if (focused) { focused = null; hideTip(); redraw(); }
+    }
+    if (pointers.size === 0) gesture = null;
+    else if (pointers.size === 1) { var q = Array.from(pointers.values())[0]; gesture = { moved: true, sx: q.x, sy: q.y, cam: { x: cam.x, y: cam.y, k: cam.k } }; }
+  }
+  canvas.addEventListener('pointerup', endPointer);
+  canvas.addEventListener('pointercancel', endPointer);
+  canvas.addEventListener('pointerleave', function (e) {
+    if (e.pointerType === 'mouse' && !pointers.size) { hovered = null; hotPlus = false; hideTip(); canvas.classList.remove('is-over'); redraw(); }
+  });
+  canvas.addEventListener('wheel', function (e) {
+    e.preventDefault(); flight = null;
+    var p = local(e);
+    var k = Math.max(K_MIN, Math.min(K_MAX, cam.k * Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0018))));
+    cam = camFor((p.x - cam.x) / cam.k, (p.y - cam.y) / cam.k, k, p.x, p.y);
+    hideTip(); redraw();
+  }, { passive: false });
+  canvas.addEventListener('dblclick', function (e) {
+    var p = local(e);
+    if (hitTest(p.x, p.y, 4)) return;
+    flyTo(mode === 'orbit' ? orbitCam(view) : fitTarget(nodes), 480);
+  });
+
+  // ── 툴팁: 노드 아래에 붙인다. 라벨은 노드 오른쪽 위라 겹치지 않는다 (A 수정) ─
+  var tip = document.getElementById('tip');
+  function showTip(n) {
+    var meta = Mock.cat(n.category);
+    var rel = mode === 'orbit' ? (n === view.c ? '<span>중심</span>' : n.role === 1 ? '<span>이웃</span>' : n.role === 2 ? '<span>두 다리 건너</span>' : '') : '';
+    tip.innerHTML = '<div class="mk-tip-title">' + esc(n.title) + '</div><div class="mk-tip-meta" data-cat="' + n.category + '"><span class="mk-swatch"></span>' +
+      meta.en + '<span>' + n.year + '</span><span>' + esc(n.type) + '</span><span>연결 ' + n.nb.size + '</span>' + rel + '</div>';
+    tip.hidden = false;
+    var p = S(n), r = nodeR(n), tw = tip.offsetWidth, th = tip.offsetHeight;
+    var lx = p.x - 14, ly = p.y + r + 10;
+    if (ly + th > H - 8) ly = p.y - r - 10 - th - 18; // 위로 뒤집을 때는 라벨 줄을 넘어서
+    if (lx + tw > W - 8) lx = W - 8 - tw;
+    tip.style.left = Math.max(8, lx) + 'px'; tip.style.top = Math.max(8, ly) + 'px';
+  }
+  function hideTip() { tip.hidden = true; }
+
+  // ── 키보드 ────────────────────────────────────────────────────────
+  function ringList(n) { return n.role === 2 ? view.r2 : view.r1; }
+  function nearest(list, ang) {
+    var best = null, bd = Infinity;
+    list.forEach(function (m) {
+      var d = Math.abs(((view.pos.get(m.id).ang - ang) % TAU + TAU * 1.5) % TAU - TAU / 2);
+      if (d < bd) { bd = d; best = m; }
+    });
+    return best;
+  }
+  function setFocus(n) {
+    focused = n; hovered = null;
+    if (n) { showTip(n); document.getElementById('live').textContent = n.title + ', ' + Mock.cat(n.category).en; } else hideTip();
+    redraw();
+  }
+  document.addEventListener('keydown', function (e) {
+    var tag = document.activeElement && document.activeElement.tagName;
+    if (tag === 'INPUT') return;
+    if (e.key === '/') { e.preventDefault(); q.focus(); return; }
+    var onChrome = document.activeElement && document.activeElement !== canvas && document.activeElement !== document.body;
+    if (e.key === 'Escape') {
+      if (mode === 'orbit') { if (focused) setFocus(null); else exitOrbit(); }
+      else if (filter.size) { filter.clear(); syncLegend(); redraw(); }
+      return;
+    }
+    if (onChrome) return;
+    if (mode === 'atlas') {
+      if (/^Arrow/.test(e.key)) { e.preventDefault(); enterOrbit(rank[0]); }
+      return;
+    }
+    if (e.key === 'Backspace') { e.preventDefault(); back(); return; }
+    var cur = focused, ring = cur ? cur.role : 0;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      if (ring === 0) { if (view.r1.length) setFocus(view.r1[e.key === 'ArrowRight' ? 0 : view.r1.length - 1]); return; }
+      var list = ringList(cur), i = list.indexOf(cur) + (e.key === 'ArrowRight' ? 1 : -1);
+      setFocus(list[(i + list.length) % list.length]);
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (ring === 0) { if (view.r1.length) setFocus(nearest(view.r1, Math.PI / 2)); }
+      else if (ring === 1 && view.r2.length) setFocus(nearest(view.r2, view.pos.get(cur.id).ang));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (ring === 2) setFocus(nearest(view.r1, view.pos.get(cur.id).ang));
+      else if (ring === 1) setFocus(null);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (cur && cur !== view.c) recenter(cur.id); else location.href = pageHref(view.c);
+    }
+  });
+
+  // ── 범례 필터 ──────────────────────────────────────────────────────
+  var legend = document.getElementById('legend'), resetBtn = document.getElementById('reset-filter');
+  legend.innerHTML = Mock.CATEGORIES.map(function (c) {
+    return '<li data-cat="' + c.id + '" tabindex="0" role="button" aria-pressed="false" title="' + c.en + ', ' + c.ko + '만 강조">' +
+      '<span class="mk-swatch"></span><span class="a-name">' + c.en + '</span><span class="mk-legend-n">' + (counts[c.id] || 0) + '</span></li>';
+  }).join('') + '<li class="f-legend-reset" id="legend-reset" hidden><button type="button">필터 해제</button></li>';
+  function syncLegend() {
+    legend.querySelectorAll('li[data-cat]').forEach(function (li) { li.setAttribute('aria-pressed', String(filter.has(li.dataset.cat))); });
+    resetBtn.hidden = !filter.size;
+    document.getElementById('legend-reset').hidden = !filter.size;
+  }
+  function toggleCat(id) { if (filter.has(id)) filter.delete(id); else filter.add(id); legendHover = null; syncLegend(); redraw(); }
+  function clearFilter() { filter.clear(); syncLegend(); redraw(); }
+  legend.addEventListener('click', function (e) {
+    if (e.target.closest('#legend-reset')) { clearFilter(); return; }
+    var li = e.target.closest('li[data-cat]'); if (li) toggleCat(li.dataset.cat);
+  });
+  legend.addEventListener('keydown', function (e) {
+    var li = e.target.closest('li[data-cat]');
+    if (li && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); e.stopPropagation(); toggleCat(li.dataset.cat); }
+  });
+  legend.addEventListener('pointerover', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var li = e.target.closest('li[data-cat]'), c = li && !filter.size ? li.dataset.cat : null;
+    if (c !== legendHover) { legendHover = c; redraw(); }
+  });
+  legend.addEventListener('pointerleave', function () { legendHover = null; redraw(); });
+  resetBtn.addEventListener('click', clearFilter);
+  document.getElementById('fit').addEventListener('click', function () {
+    flyTo(fitTarget(filter.size ? nodes.filter(function (n) { return filter.has(n.category); }) : nodes), 480);
+  });
+
+  // ── 검색 (A) ──────────────────────────────────────────────────────
+  var q = document.getElementById('q'), results = document.getElementById('results');
+  var hits = [], active = -1;
+  function runSearch() {
+    var s = q.value.trim().toLowerCase();
+    searchHits = new Set();
+    if (!s) { hits = []; renderResults(); redraw(); return; }
+    hits = nodes.map(function (n) {
+      var t = n.title.toLowerCase(), i = t.indexOf(s);
+      if (i < 0 && n.stem.indexOf(s) < 0) return null;
+      return { n: n, score: (i === 0 ? 1000 : i > 0 ? 500 : 0) + n.degree, at: i };
+    }).filter(Boolean).sort(function (a, b) { return b.score - a.score; });
+    hits.slice(0, 40).forEach(function (h) { searchHits.add(h.n); });
+    active = hits.length ? 0 : -1;
+    renderResults(); redraw();
+  }
+  function renderResults() {
+    var s = q.value.trim();
+    if (!s) { results.innerHTML = ''; q.setAttribute('aria-expanded', 'false'); return; }
+    q.setAttribute('aria-expanded', 'true');
+    if (!hits.length) { results.innerHTML = '<li class="a-empty">일치하는 페이지가 없다. 영문 제목이나 파일 이름으로 찾아 본다</li>'; return; }
+    results.innerHTML = hits.slice(0, 8).map(function (h, i) {
+      var t = h.n.title, title = h.at >= 0 ? esc(t.slice(0, h.at)) + '<mark>' + esc(t.slice(h.at, h.at + s.length)) + '</mark>' + esc(t.slice(h.at + s.length)) : esc(t);
+      return '<li role="option" id="r' + i + '" data-cat="' + h.n.category + '" data-id="' + esc(h.n.id) + '" aria-selected="' + (i === active) + '">' +
+        '<span class="mk-swatch"></span><span class="a-t">' + title + '</span><span class="mk-deg">' + h.n.degree + '</span></li>';
+    }).join('');
+    q.setAttribute('aria-activedescendant', active >= 0 ? 'r' + active : '');
+  }
+  function pick(n) {
+    q.value = ''; hits = []; searchHits = new Set(); renderResults();
+    if (filter.size && !filter.has(n.category)) { filter.clear(); syncLegend(); }
+    q.blur(); canvas.focus({ preventScroll: true });
+    recenter(n.id);
+  }
+  q.addEventListener('input', runSearch);
+  q.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      var m = Math.min(hits.length, 8); if (!m) return;
+      active = (active + (e.key === 'ArrowDown' ? 1 : -1) + m) % m; renderResults();
+    } else if (e.key === 'Enter' && active >= 0 && hits[active]) { e.preventDefault(); e.stopPropagation(); pick(hits[active].n); } // 포커스가 캔버스로 옮겨 가므로 문서 Enter(페이지 열기)까지 번지지 않게 막는다
+    else if (e.key === 'Escape') { e.stopPropagation(); q.value = ''; runSearch(); q.blur(); canvas.focus({ preventScroll: true }); }
+  });
+  results.addEventListener('pointerdown', function (e) { e.preventDefault(); });
+  results.addEventListener('click', function (e) { var li = e.target.closest('li[data-id]'); if (li) pick(byId[li.dataset.id]); });
+
+  // ── 시작 ──────────────────────────────────────────────────────────
+  Mock.onTheme(applyTheme);
+  window.addEventListener('resize', resize);
+  mqMobile.addEventListener('change', function (e) { panelEl.classList.toggle('is-peek', e.matches); syncSheet(); });
+  T = Mock.readTokens(); F = readF(); dark = T.theme === 'dark';
+  buildSprites(); buildHaze();
+  var r0 = canvas.getBoundingClientRect(); W = r0.width; H = r0.height;
+  resize();
+  cam = fitTarget(nodes);
+  var startId = readHash();
+  if (startId && byId[startId]) {
+    revealT0 = -1; // 딥링크는 곧바로 궤도로 연다. 성도 등장 연출은 건너뛴다
+    atlasCam = { x: cam.x, y: cam.y, k: cam.k };
+    history.replaceState(null, '', location.pathname + location.search);
+    enterOrbit(byId[startId], { instant: true });
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fitCache.clear(); syncSheet(); if (mode === 'orbit' && view && !morph) cam = orbitCam(view); redraw(); });
+
+  // 검증용 노출 (시안 전용)
+  window.__f = {
+    nodes: nodes, layoutMs: layoutMs, byId: byId,
+    mode: function () { return mode; }, cam: function () { return { x: cam.x, y: cam.y, k: cam.k }; },
+    busy: function () { return !!(morph || flight || rafId); },
+    select: function (id) { recenter(id); }, exit: function () { exitOrbit(); },
+    view: function () { return view && { cid: view.cid, r1: view.r1.length, r2: view.r2.length, hidden: view.hidden, labels: orbitLabelCount }; },
+    drawTimes: drawTimes,
+  };
+}
+})();
+</script>
+</body>
+</html>
