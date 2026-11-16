@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시안 C 군도</title>
+<!-- 초기 테마: 사이트 templates.mjs 의 FOUC 스크립트와 같다 -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="shared/mock-base.css">
+<style>
+  /* 시안 C 고유 스타일. 색은 토큰만 쓴다 */
+  #canvas { cursor: grab; }
+  #canvas.is-pointing { cursor: pointer; }
+  #canvas:active { cursor: grabbing; }
+  .mk-legend li { outline-offset: 0; }
+  .c-pair { display: block; min-width: 0; }
+  .c-pair-to { display: block; margin-top: 2px; font-size: var(--text-xs); color: var(--muted); }
+  .c-pair-to .mk-swatch { display: inline-block; margin-right: 6px; transform: translateY(-1px); }
+  .mk-panel-cat .mk-swatch + .mk-swatch { margin-left: -2px; }
+  .c-hint { margin: 0; font-size: var(--text-xs); color: var(--muted); line-height: var(--leading-tight); }
+  @media (max-width: 640px) {
+    .mk-legend { display: flex; gap: 4px; padding: 4px 6px; }
+    .mk-legend li { width: 28px; height: 28px; padding: 0; justify-content: center; }
+    .mk-legend li .c-lg-name, .mk-legend li .mk-legend-n { display: none; }
+    .mk-legend li .mk-swatch { width: 10px; height: 10px; }
+    .mk-legend li[aria-pressed='true'] { background: var(--surface-2); border-radius: var(--radius-sm); }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="shared/graph-data.js"></script>
+<script src="shared/mock-base.js"></script>
+</head>
+<body>
+<header class="mk-bar">
+  <h1 class="mk-title">시안 C 군도</h1>
+  <span class="mk-subtitle" id="mk-stats"></span>
+  <div class="mk-bar-end">
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="테마 전환" aria-pressed="false">☀</button>
+  </div>
+</header>
+
+<main class="mk-stage" id="stage">
+  <canvas id="canvas" aria-label="wiki 페이지 관계 그래프. 카테고리마다 섬 하나, 섬 사이 다리 굵기는 연결 수"></canvas>
+
+  <div class="mk-float is-tl mk-search">
+    <label class="mk-sr" for="q">페이지 검색</label>
+    <input id="q" type="search" placeholder="페이지 제목으로 찾기" autocomplete="off" role="combobox" aria-controls="results" aria-expanded="false">
+    <ul class="mk-results mk-glass" id="results" role="listbox" hidden></ul>
+  </div>
+
+  <ul class="mk-float is-bl mk-glass mk-legend" id="legend" aria-label="카테고리 필터"></ul>
+
+  <div class="mk-tip" id="tip" hidden></div>
+
+  <aside class="mk-panel mk-glass" id="panel" hidden aria-label="선택한 항목">
+    <div class="mk-panel-head">
+      <div style="display:flex;align-items:center">
+        <span class="mk-panel-cat" id="p-cat"></span>
+        <button type="button" class="mk-icon-btn" id="p-close" aria-label="선택 해제">×</button>
+      </div>
+      <h2 class="mk-panel-title" id="p-title"></h2>
+      <div class="mk-panel-meta" id="p-meta"></div>
+    </div>
+    <div class="mk-panel-body" id="p-body"></div>
+    <div class="mk-panel-foot" id="p-foot"><a class="mk-btn is-primary" id="p-open" href="#">페이지 열기</a></div>
+  </aside>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var data = window.GRAPH_DATA;
+  var stage = document.getElementById('stage');
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  var probe = document.createElement('canvas').getContext('2d'); // isPointInPath 전용, 항등 변환
+  var T = Mock.readTokens();
+  var reduce = Mock.reduceMotion();
+
+  // ── 데이터 ────────────────────────────────────────────────────────────
+  var nodes = data.nodes.map(function (n) {
+    return Object.assign({}, n, { r: Math.min(20, 2 + 1.6 * Math.sqrt(n.degree)), nb: new Set(), links: [], _a: 1 });
+  });
+  var byId = {};
+  nodes.forEach(function (n) { byId[n.id] = n; });
+  var edges = [];
+  data.edges.forEach(function (e) {
+    var s = byId[e.source], t = byId[e.target];
+    if (!s || !t) return;
+    var ed = { s: s, t: t };
+    edges.push(ed);
+    s.nb.add(t); t.nb.add(s);
+    s.links.push(ed); t.links.push(ed);
+  });
+
+  // ── 섬: 면적은 노드 수(정확히는 노드 원 면적 합)에 비례 ──────────────
+  var islands = [], islandOf = {};
+  Mock.CATEGORIES.forEach(function (c) {
+    var ns = nodes.filter(function (n) { return n.category === c.id; });
+    if (!ns.length) return;
+    var area = ns.reduce(function (s, n) { return s + Math.pow(n.r + 3.5, 2); }, 0);
+    var isl = { id: c.id, meta: c, nodes: ns, R: Math.sqrt(area / 0.6) + 10, intra: [] };
+    islands.push(isl); islandOf[c.id] = isl;
+  });
+  edges.forEach(function (e) {
+    if (e.s.category === e.t.category) islandOf[e.s.category].intra.push(e);
+  });
+
+  // 다리: 카테고리 쌍마다 하나
+  var bridgeMap = {};
+  edges.forEach(function (e) {
+    var a = e.s.category, b = e.t.category;
+    if (a === b) return;
+    var key = a < b ? a + '|' + b : b + '|' + a;
+    var br = bridgeMap[key];
+    if (!br) {
+      var p = key.split('|');
+      br = bridgeMap[key] = { key: key, a: islandOf[p[0]], b: islandOf[p[1]], count: 0, ab: 0, ba: 0, edges: [], nodes: new Set() };
+    }
+    br.count++;
+    if (e.s.category === br.a.id) br.ab++; else br.ba++;
+    br.edges.push(e); br.nodes.add(e.s); br.nodes.add(e.t);
+  });
+  var bridges = Object.keys(bridgeMap).map(function (k) { return bridgeMap[k]; })
+    .sort(function (x, y) { return x.count - y.count; }); // 굵은 다리를 위에
+  var maxBridge = bridges[bridges.length - 1].count;
+
+  // ── 배치 1: 섬 안. 해바라기 나선으로 시작해 허브를 가운데로 당기고 섬 원 안에 가둔다 ──
+  islands.forEach(function (isl) {
+    var ns = isl.nodes.slice().sort(function (a, b) { return b.degree - a.degree; });
+    var maxDeg = ns[0].degree || 1;
+    ns.forEach(function (n, i) {
+      var rr = isl.R * 0.85 * Math.sqrt((i + 0.5) / ns.length), th = i * 2.399963;
+      n.x = rr * Math.cos(th); n.y = rr * Math.sin(th);
+    });
+    var bound = function () {
+      ns.forEach(function (n) {
+        var d = Math.hypot(n.x, n.y), lim = isl.R - n.r - 6;
+        if (d > lim) { n.x *= lim / d; n.y *= lim / d; }
+      });
+    };
+    var pull = function (n) { return 0.02 + 0.22 * Math.sqrt(n.degree / maxDeg); };
+    var sim = d3.forceSimulation(ns)
+      .force('link', d3.forceLink(isl.intra.map(function (e) { return { source: e.s, target: e.t }; }))
+        .distance(function (l) { return l.source.r + l.target.r + 14; }).strength(0.035))
+      .force('collide', d3.forceCollide(function (n) { return n.r + 2.5; }).iterations(3))
+      .force('x', d3.forceX(0).strength(pull))
+      .force('y', d3.forceY(0).strength(pull))
+      .force('bound', bound)
+      .stop();
+    for (var i = 0; i < 320; i++) sim.tick();
+    bound();
+    ns.forEach(function (n) { n.lx = n.x; n.ly = n.y; delete n.vx; delete n.vy; delete n.index; });
+  });
+
+  // ── 배치 2: 섬 사이. 교류가 많은 쌍일수록 강하게 끌어 붙인다 ──────────
+  var GAP = 64;
+  // 시드 40개로 각각 힘 배치를 돌리고, 교류량 가중 거리와 다른 섬을 가로지르는 다리를 벌점으로 매겨 가장 좋은 판을 고른다.
+  // 섬이 8개뿐이라 전부 합쳐 수십 ms 다. 시드가 고정이라 매번 같은 지도가 나온다
+  function runIslands(seed) {
+    var rnd = d3.randomLcg(seed);
+    islands.forEach(function (isl) { isl.x = (rnd() - 0.5) * 1200; isl.y = (rnd() - 0.5) * 800; isl.vx = isl.vy = 0; });
+    var sim = d3.forceSimulation(islands)
+      .randomSource(rnd)
+      .force('link', d3.forceLink(bridges.map(function (b) { return { source: b.a, target: b.b, c: b.count }; }))
+        .distance(function (l) { return l.source.R + l.target.R + GAP; })
+        .strength(function (l) { return 0.02 + 0.9 * Math.sqrt(l.c / maxBridge); }))
+      .force('collide', d3.forceCollide(function (d) { return d.R + GAP * 0.75; }).strength(1).iterations(4))
+      .force('x', d3.forceX(0).strength(tall ? 0.05 : 0.012))
+      .force('y', d3.forceY(0).strength(tall ? 0.012 : 0.05)) // 화면 비율 쪽으로 눕히거나 세운다
+      .stop();
+    for (var it = 0; it < 500; it++) sim.tick();
+    var score = 0;
+    bridges.forEach(function (br) {
+      var A = br.a, B = br.b, gap = Math.hypot(A.x - B.x, A.y - B.y) - A.R - B.R;
+      score += br.count * gap;
+      islands.forEach(function (C) {
+        if (C === A || C === B) return;
+        if (segDist(C.x, C.y, [A.x, A.y], [B.x, B.y]) < C.R + 12) score += (br.count + 4) * 260;
+      });
+    });
+    var x0 = d3.min(islands, function (d) { return d.x - d.R; }), x1 = d3.max(islands, function (d) { return d.x + d.R; });
+    var y0 = d3.min(islands, function (d) { return d.y - d.R; }), y1 = d3.max(islands, function (d) { return d.y + d.R; });
+    var ratio = (y1 - y0) / (x1 - x0);
+    score += 0.02 * (x1 - x0) * (y1 - y0) + Math.max(0, tall ? 1.5 - ratio : ratio - 0.62) * 60000;
+    return { score: score, pos: islands.map(function (d) { return [d.x, d.y]; }) };
+  }
+  // 세로 화면(모바일)은 지도를 세로로 짠다. 같은 화면 비율이면 늘 같은 지도다
+  var tall = stage.clientHeight > stage.clientWidth * 1.15;
+  var bestRun = null;
+  for (var seed = 1; seed <= 40; seed++) {
+    var run = runIslands(seed / 41);
+    if (!bestRun || run.score < bestRun.score) bestRun = run;
+  }
+  islands.forEach(function (d, i) { d.x = bestRun.pos[i][0]; d.y = bestRun.pos[i][1]; });
+  islands.forEach(function (isl) {
+    isl.nodes.forEach(function (n) { n.x = isl.x + n.lx; n.y = isl.y + n.ly; });
+  });
+
+  // ── 해안선: 섬마다 밀도 등고선. 가장 바깥 등고선이 섬의 경계다 ─────────
+  var geo = d3.geoPath();
+  islands.forEach(function (isl) {
+    var bw = 13, pad = bw * 3 + 8;
+    isl.ox = isl.x - isl.R - pad; isl.oy = isl.y - isl.R - pad;
+    var size = Math.ceil(2 * (isl.R + pad));
+    var dens = d3.contourDensity()
+      .x(function (n) { return n.x - isl.ox; }).y(function (n) { return n.y - isl.oy; })
+      .weight(function (n) { return 1 + n.degree / 12; })
+      .size([size, size]).cellSize(2).bandwidth(bw)
+      .contours(isl.nodes);
+    var t = dens.max * 0.04, coast, tries = 0;
+    for (;;) {
+      var g = dens(t);
+      coast = new Path2D(geo(g));
+      var ok = isl.nodes.every(function (n) { return probe.isPointInPath(coast, n.x - isl.ox, n.y - isl.oy); });
+      if ((ok && g.coordinates.length === 1) || ++tries > 12) { isl.coastGeom = g; break; }
+      t *= 0.72;
+    }
+    isl.coast = coast;
+    isl.rings = [3, 9, 24].map(function (m) { return t * m; }).filter(function (v) { return v < dens.max * 0.9; })
+      .map(function (v) { return new Path2D(geo(dens(v))); });
+    // 라벨 자리: 해안선 외곽 상자의 왼쪽 위
+    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    isl.coastGeom.coordinates.forEach(function (poly) {
+      poly[0].forEach(function (p) {
+        minX = Math.min(minX, p[0]); minY = Math.min(minY, p[1]);
+        maxX = Math.max(maxX, p[0]); maxY = Math.max(maxY, p[1]);
+      });
+    });
+    isl.box = [minX + isl.ox, minY + isl.oy, maxX + isl.ox, maxY + isl.oy];
+  });
+  function inIsland(x, y) {
+    for (var i = 0; i < islands.length; i++) {
+      var s = islands[i];
+      if (probe.isPointInPath(s.coast, x - s.ox, y - s.oy)) return s;
+    }
+    return null;
+  }
+
+  // 다리 곡선: 전체 무게중심 반대쪽으로 휘게 해 가운데 섬을 덮지 않는다
+  var cx0 = d3.mean(islands, function (s) { return s.x; }), cy0 = d3.mean(islands, function (s) { return s.y; });
+  function curve(x0, y0, x1, y1, bend) {
+    var mx = (x0 + x1) / 2, my = (y0 + y1) / 2, dx = x1 - x0, dy = y1 - y0, len = Math.hypot(dx, dy) || 1;
+    var px = -dy / len, py = dx / len;
+    var sign = (mx - cx0) * px + (my - cy0) * py >= 0 ? 1 : -1;
+    return [x0, y0, mx + px * len * bend * sign, my + py * len * bend * sign, x1, y1];
+  }
+  function qpt(c, t) {
+    var u = 1 - t;
+    return [u * u * c[0] + 2 * u * t * c[2] + t * t * c[4], u * u * c[1] + 2 * u * t * c[3] + t * t * c[5]];
+  }
+  bridges.forEach(function (b) {
+    b.c = curve(b.a.x, b.a.y, b.b.x, b.b.y, 0.1);
+    b.w = 1.5 + 1.25 * Math.sqrt(b.count);
+    b.samples = d3.range(0, 1.0001, 1 / 32).map(function (t) { return qpt(b.c, t); });
+    // 물 위에 드러난 구간의 가운데: 개수 표기 자리
+    var wet = b.samples.filter(function (p) { return !inIsland(p[0], p[1]); });
+    b.mid = wet.length ? wet[Math.floor(wet.length / 2)] : qpt(b.c, 0.5);
+    b.wet = wet.length;
+  });
+
+  // ── 상태 ─────────────────────────────────────────────────────────────
+  var state = { sel: null, bridge: null, hover: null, hoverBridge: null, filter: new Set(), legendHover: null, query: '', matches: new Set() };
+  var transform = d3.zoomIdentity;
+  var prevA = new Map(), tweenStart = 0;
+  var revealStart = 0, REVEAL = 600, FADE = 300;
+  var rank = new Map();
+  nodes.slice().sort(function (a, b) { return b.degree - a.degree; }).forEach(function (n, i) { rank.set(n, i / nodes.length); });
+
+  function hexRgb(h) {
+    h = h.replace('#', '');
+    if (h.length === 3) h = h.replace(/./g, '$&$&');
+    var v = parseInt(h, 16);
+    return [v >> 16 & 255, v >> 8 & 255, v & 255];
+  }
+  function rgba(h, a) { var c = hexRgb(h); return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+  function mix(h1, h2, t) {
+    var a = hexRgb(h1), b = hexRgb(h2);
+    return 'rgb(' + a.map(function (v, i) { return Math.round(v + (b[i] - v) * t); }).join(',') + ')';
+  }
+  function catColor(id) { return T.cat[id] || T.cat.etc; }
+
+  function focusSet() {
+    if (state.legendHover) return new Set([state.legendHover]);
+    return state.filter.size ? state.filter : null;
+  }
+  function targetAlpha(n) {
+    if (state.sel) return n === state.sel || state.sel.nb.has(n) ? 1 : T.dimAlpha;
+    if (state.bridge) return state.bridge.nodes.has(n) ? 1 : T.dimAlpha;
+    var f = focusSet();
+    if (f) return f.has(n.category) ? 1 : T.dimAlpha;
+    return 1;
+  }
+  function islandAlpha(isl) {
+    if (state.bridge) return state.bridge.a === isl || state.bridge.b === isl ? 1 : 0.45;
+    var f = focusSet();
+    if (!state.sel && f) return f.has(isl.id) ? 1 : 0.35;
+    return 1;
+  }
+  function bridgeAlpha(b) {
+    var base = T.theme === 'light' ? 0.2 : 0.24;
+    if (state.sel || state.hover) return 0.05;
+    if (state.bridge) return state.bridge === b ? 0 : 0.05;
+    if (state.hoverBridge === b) return base * 2.3;
+    var f = focusSet();
+    if (f) return f.has(b.a.id) || f.has(b.b.id) ? base * 1.4 : 0.04;
+    return base;
+  }
+  function changed() {
+    nodes.forEach(function (n) { prevA.set(n, n._a); });
+    tweenStart = reduce ? -1e9 : performance.now();
+    request();
+  }
+
+  // ── 그리기 ───────────────────────────────────────────────────────────
+  var raf = 0;
+  function request() { if (!raf) raf = requestAnimationFrame(draw); }
+  function font(w, s, fam) { return w + ' ' + s + 'px ' + fam; }
+  var widthCache = new Map();
+  function measure(text, f) {
+    var k = f + '|' + text, w = widthCache.get(k);
+    if (w === undefined) { ctx.font = f; w = ctx.measureText(text).width; widthCache.set(k, w); }
+    return w;
+  }
+  function trunc(s) { return s.length > 28 ? s.slice(0, 27) + '…' : s; }
+  // 섬 안은 k=1 기준으로 빽빽이 쌓았다. 축소할 때 r*k^0.5 를 쓰면 섬이 한 덩어리로 뭉개져서 k<1 에서는 k 에 비례해 줄인다
+  function nodeScale(k) { return k < 1 ? k : Math.sqrt(k); }
+  function labelFloor(k) { return k < 0.8 ? 50 : k < 1.4 ? 25 : k < 2.2 ? 10 : 0; }
+
+  function draw() {
+    raf = 0;
+    var now = performance.now();
+    var W = canvas.clientWidth, H = canvas.clientHeight, k = transform.k, sk = Math.sqrt(k);
+    var nk = nodeScale(k);
+    var rv = reduce ? 1e9 : now - revealStart;
+    var nodeReveal = Math.min(1, rv / REVEAL), fade = Math.min(1, Math.max(0, (rv - REVEAL * 0.6) / FADE));
+    var m = Math.min(1, (now - tweenStart) / 160);
+    var more = nodeReveal < 1 || fade < 1 || m < 1;
+    var focus = state.sel || (!state.bridge && state.hover) || null;
+
+    ctx.fillStyle = T.bg;
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.save();
+    ctx.translate(transform.x, transform.y);
+    ctx.scale(k, k);
+
+    // 1) 다리: 섬 중심끼리 잇고, 불투명한 섬이 그 위를 덮어 해안에서 해안까지만 보인다
+    ctx.lineCap = 'butt';
+    bridges.forEach(function (b) {
+      var a = bridgeAlpha(b) * fade * (b.count < 5 ? 0.5 : 1); // 링크 몇 개짜리 다리는 한 단계 더 조용히
+      if (a <= 0) return;
+      var g = ctx.createLinearGradient(b.a.x, b.a.y, b.b.x, b.b.y);
+      g.addColorStop(0.2, catColor(b.a.id)); g.addColorStop(0.8, catColor(b.b.id));
+      ctx.globalAlpha = a;
+      ctx.strokeStyle = g;
+      ctx.lineWidth = b.w * sk / k;
+      ctx.beginPath(); ctx.moveTo(b.c[0], b.c[1]); ctx.quadraticCurveTo(b.c[2], b.c[3], b.c[4], b.c[5]);
+      ctx.stroke();
+    });
+
+    // 2) 섬: 땅 색, 해안선, 안쪽 등고선
+    var landT = T.theme === 'light' ? 0.07 : 0.085;
+    islands.forEach(function (isl) {
+      var ia = islandAlpha(isl) * Math.min(1, rv / 300);
+      var col = catColor(isl.id);
+      ctx.save();
+      ctx.translate(isl.ox, isl.oy);
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = mix(T.bg, col, landT * ia);
+      ctx.fill(isl.coast);
+      ctx.globalAlpha = (T.theme === 'light' ? 0.5 : 0.42) * ia;
+      ctx.strokeStyle = col;
+      ctx.lineWidth = 1 / k;
+      ctx.stroke(isl.coast);
+      ctx.globalAlpha = (T.theme === 'light' ? 0.2 : 0.16) * ia;
+      ctx.lineWidth = 0.75 / k;
+      isl.rings.forEach(function (p) { ctx.stroke(p); });
+      ctx.restore();
+    });
+
+    // 3) 섬 안 엣지: 섬마다 한 경로
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = T.edge;
+    ctx.lineWidth = 0.75 / k;
+    var f = focusSet();
+    islands.forEach(function (isl) {
+      var a = (focus || state.bridge) ? 0.03 : (!f || f.has(isl.id) ? T.edgeAlpha : 0.03);
+      ctx.globalAlpha = a * fade;
+      ctx.beginPath();
+      isl.intra.forEach(function (e) { ctx.moveTo(e.s.x, e.s.y); ctx.lineTo(e.t.x, e.t.y); });
+      ctx.stroke();
+    });
+    ctx.restore();
+
+    // 4) 풀어 놓은 엣지 (선택, 호버 노드의 모든 엣지 또는 선택한 다리의 엣지)
+    var hi = focus ? focus.links : state.bridge ? state.bridge.edges : null;
+    if (hi) {
+      ctx.lineWidth = 1;
+      hi.forEach(function (e) {
+        var other = focus ? (e.s === focus ? e.t : e.s) : e.s;
+        var s = transform.apply([e.s.x, e.s.y]), t = transform.apply([e.t.x, e.t.y]);
+        var cross = e.s.category !== e.t.category;
+        var c = curve(s[0], s[1], t[0], t[1], cross ? 0.14 : 0);
+        ctx.globalAlpha = T.edgeHiAlpha * (state.bridge && !focus ? 0.55 : 1) * fade;
+        ctx.strokeStyle = catColor(other.category);
+        ctx.beginPath(); ctx.moveTo(c[0], c[1]); ctx.quadraticCurveTo(c[2], c[3], c[4], c[5]); ctx.stroke();
+        if (focus) { // 끝에 4px 화살표
+          var rt = Math.max(1.4, e.t.r * nk) + 1.5, dx = c[4] - c[2], dy = c[5] - c[3], L = Math.hypot(dx, dy) || 1;
+          dx /= L; dy /= L;
+          var ax = c[4] - dx * rt, ay = c[5] - dy * rt;
+          ctx.fillStyle = ctx.strokeStyle;
+          ctx.beginPath();
+          ctx.moveTo(ax, ay);
+          ctx.lineTo(ax - dx * 5 - dy * 3, ay - dy * 5 + dx * 3);
+          ctx.lineTo(ax - dx * 5 + dy * 3, ay - dy * 5 - dx * 3);
+          ctx.fill();
+        }
+      });
+    }
+
+    // 5) 노드
+    var order = drawOrder;
+    for (var i = 0; i < order.length; i++) {
+      var n = order[i];
+      var ta = targetAlpha(n), pa = prevA.has(n) ? prevA.get(n) : ta;
+      n._a = pa + (ta - pa) * m;
+      var ra = Math.min(1, Math.max(0, (nodeReveal - rank.get(n) * 0.7) / 0.3));
+      var a = n._a * ra;
+      if (a <= 0.001) continue;
+      var p = transform.apply([n.x, n.y]), r = Math.max(1.4, n.r * nk) * (0.6 + 0.4 * ra);
+      n.sx = p[0]; n.sy = p[1]; n.sr = r;
+      if (p[0] < -40 || p[1] < -40 || p[0] > W + 40 || p[1] > H + 40) continue;
+      var col = catColor(n.category);
+      if (T.glowAlpha > 0 && n.degree >= 30) {
+        ctx.globalAlpha = T.glowAlpha * a;
+        ctx.fillStyle = col;
+        ctx.beginPath(); ctx.arc(p[0], p[1], r * 2.6, 0, 6.2832); ctx.fill();
+      }
+      ctx.globalAlpha = a;
+      ctx.beginPath(); ctx.arc(p[0], p[1], r, 0, 6.2832);
+      if (n.category === 'etc') {
+        ctx.fillStyle = T.bg; ctx.fill();
+        ctx.strokeStyle = col; ctx.lineWidth = 1.5; ctx.stroke();
+      } else {
+        ctx.fillStyle = col; ctx.fill();
+        if (T.theme === 'light') { ctx.strokeStyle = T.ring; ctx.lineWidth = 1; ctx.stroke(); }
+      }
+      if (n.category === 'overviews') {
+        ctx.strokeStyle = col; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(p[0], p[1], r + 2.5, 0, 6.2832); ctx.stroke();
+      }
+      if (n === state.sel || n === state.hover) {
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = col; ctx.lineWidth = n === state.sel ? 2 : 1;
+        ctx.beginPath(); ctx.arc(p[0], p[1], r + 4 + (n.category === 'overviews' ? 2 : 0), 0, 6.2832); ctx.stroke();
+      }
+    }
+    ctx.globalAlpha = 1;
+
+    // 6) 라벨: 섬 이름을 먼저 자리 잡고, 노드 라벨은 degree 순으로 겹침 검사
+    var taken = [];
+    function free(x0, y0, x1, y1) {
+      for (var j = 0; j < taken.length; j++) {
+        var q = taken[j];
+        if (x0 < q[2] && x1 > q[0] && y0 < q[3] && y1 > q[1]) return false;
+      }
+      return true;
+    }
+    ctx.textBaseline = 'middle';
+    ctx.lineJoin = 'round';
+    var labelFade = Math.min(1, rv / 400);
+    islands.forEach(function (isl) {
+      var p = transform.apply([isl.box[0], isl.box[1]]);
+      var name = isl.meta.en, cnt = String(isl.nodes.length);
+      var fName = font(500, 14, T.fontDisplay), fNum = font(400, 11, T.fontMono);
+      var w1 = measure(name, fName), w2 = measure(cnt, fNum);
+      var x = p[0], y = p[1] - 12;
+      if (!free(x - 2, y - 10, x + w1 + w2 + 9, y + 10)) y = transform.apply([0, isl.box[3]])[1] + 14; // 겹치면 섬 아래로
+      ctx.globalAlpha = Math.max(0.4, islandAlpha(isl)) * labelFade;
+      ctx.font = fName; ctx.lineWidth = 3; ctx.strokeStyle = T.labelHalo; ctx.strokeText(name, x, y);
+      ctx.fillStyle = T.label; ctx.fillText(name, x, y);
+      ctx.font = fNum; ctx.fillStyle = T.labelMuted; ctx.fillText(cnt, x + w1 + 7, y + 1);
+      taken.push([x - 2, y - 10, x + w1 + w2 + 9, y + 10]);
+    });
+
+    var floor = labelFloor(k);
+    var forced = new Set();
+    if (state.hover) forced.add(state.hover);
+    if (state.sel) { forced.add(state.sel); state.sel.nb.forEach(function (n) { forced.add(n); }); }
+    state.matches.forEach(function (n) { forced.add(n); });
+    var cands = nodes.filter(function (n) {
+      if (forced.has(n)) return true;
+      return n.degree >= floor && n._a > 0.5 && n.sx > -20 && n.sx < W + 20 && n.sy > -20 && n.sy < H + 20;
+    }).sort(function (a, b) {
+      var fa = a === state.hover || a === state.sel ? 2 : forced.has(a) ? 1 : 0;
+      var fb = b === state.hover || b === state.sel ? 2 : forced.has(b) ? 1 : 0;
+      return fb - fa || b.degree - a.degree;
+    });
+    cands.forEach(function (n) {
+      var ra = Math.min(1, Math.max(0, (nodeReveal - rank.get(n) * 0.7) / 0.3));
+      if (ra < 1 && !forced.has(n)) return;
+      var big = n === state.hover || n === state.sel || n.degree >= 50;
+      var size = big ? 13 : n.degree >= 15 ? 12 : 11;
+      var fnt = font(big ? 700 : 500, size, T.fontDisplay);
+      var text = trunc(n.title), w = measure(text, fnt);
+      var x = n.sx + n.sr + 4, y = n.sy - n.sr;
+      if (x + w > W - 8) x = n.sx - n.sr - 4 - w;
+      var box = [x - 2, y - size / 2 - 2, x + w + 2, y + size / 2 + 2];
+      if (!free(box[0], box[1], box[2], box[3])) return;
+      taken.push(box);
+      ctx.globalAlpha = labelFade;
+      ctx.font = fnt;
+      ctx.lineWidth = 3; ctx.strokeStyle = T.labelHalo; ctx.strokeText(text, x, y);
+      ctx.fillStyle = big || n.degree >= 15 || forced.has(n) ? T.label : T.labelMuted;
+      ctx.fillText(text, x, y);
+    });
+    // 다리 개수 표기 (해도의 수심 숫자처럼). 노드 라벨이 자리를 먼저 갖는다. 아무것도 고르지 않았을 때만
+    if (!focus && !state.bridge && fade > 0) {
+      ctx.font = font(400, 11, T.fontMono);
+      ctx.textAlign = 'center';
+      bridges.forEach(function (b) {
+        var showAll = k >= 1.4;
+        if (b.wet < 3 || (b.count < 15 && !showAll && state.hoverBridge !== b)) return;
+        var ba = bridgeAlpha(b);
+        if (ba < 0.06) return;
+        var p = transform.apply(b.mid), t = String(b.count), w = measure(t, ctx.font);
+        if (!free(p[0] - w / 2 - 3, p[1] - 8, p[0] + w / 2 + 3, p[1] + 8)) return;
+        taken.push([p[0] - w / 2 - 3, p[1] - 8, p[0] + w / 2 + 3, p[1] + 8]);
+        ctx.globalAlpha = fade;
+        ctx.lineWidth = 3; ctx.strokeStyle = T.labelHalo; ctx.strokeText(t, p[0], p[1]);
+        ctx.fillStyle = state.hoverBridge === b ? T.label : T.labelMuted; ctx.fillText(t, p[0], p[1]);
+      });
+      ctx.textAlign = 'left';
+    }
+
+    ctx.globalAlpha = 1;
+
+    if (more) request();
+  }
+  var drawOrder = nodes.slice().sort(function (a, b) { return a.degree - b.degree; });
+
+  // ── 카메라 ───────────────────────────────────────────────────────────
+  var isMobile = function () { return window.innerWidth <= 640; };
+  var panel = document.getElementById('panel');
+  var legend = document.getElementById('legend');
+  function insets() {
+    var W = canvas.clientWidth;
+    var open = !panel.hidden;
+    if (isMobile()) {
+      return { l: 0, t: 56, r: 0, b: open ? panel.offsetHeight : legend.offsetHeight + 20 };
+    }
+    return { l: W > 1100 ? legend.offsetWidth + 16 : 0, t: 52, r: open ? 360 + 32 : 0, b: 0 };
+  }
+  var zoom = d3.zoom().scaleExtent([0.15, 6]).on('zoom', function (e) { transform = e.transform; hideTip(); request(); });
+  var sel$ = d3.select(canvas).call(zoom).on('dblclick.zoom', null);
+  function zoomTo(t, dur) {
+    if (reduce || !dur) sel$.call(zoom.transform, t);
+    else sel$.transition().duration(dur).ease(d3.easePolyOut.exponent(4)).call(zoom.transform, t);
+  }
+  function fitBox(x0, y0, x1, y1, maxK, dur) {
+    var W = canvas.clientWidth, H = canvas.clientHeight, ins = insets();
+    var aw = W - ins.l - ins.r, ah = H - ins.t - ins.b, mg = Math.min(W, H) * 0.06;
+    var k = Math.min((aw - 2 * mg) / Math.max(1, x1 - x0), (ah - 2 * mg) / Math.max(1, y1 - y0), maxK);
+    var tx = ins.l + aw / 2 - k * (x0 + x1) / 2, ty = ins.t + ah / 2 - k * (y0 + y1) / 2;
+    zoomTo(d3.zoomIdentity.translate(tx, ty).scale(k), dur);
+  }
+  function fitAll(dur) {
+    fitBox(d3.min(islands, function (s) { return s.box[0]; }), d3.min(islands, function (s) { return s.box[1]; }) - 30,
+      d3.max(islands, function (s) { return s.box[2]; }), d3.max(islands, function (s) { return s.box[3]; }), 2, dur);
+  }
+  function fitNode(n, dur) {
+    var ps = [n].concat(Array.from(n.nb));
+    fitBox(d3.min(ps, function (p) { return p.x; }) - 30, d3.min(ps, function (p) { return p.y; }) - 30,
+      d3.max(ps, function (p) { return p.x; }) + 160, d3.max(ps, function (p) { return p.y; }) + 30, 2.4, dur);
+  }
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = canvas.getBoundingClientRect();
+    canvas.width = Math.max(1, Math.floor(r.width * dpr));
+    canvas.height = Math.max(1, Math.floor(r.height * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    request();
+  }
+
+  // ── 선택과 패널 ──────────────────────────────────────────────────────
+  var pCat = document.getElementById('p-cat'), pTitle = document.getElementById('p-title');
+  var pMeta = document.getElementById('p-meta'), pBody = document.getElementById('p-body');
+  var pFoot = document.getElementById('p-foot'), pOpen = document.getElementById('p-open');
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function sw(cat) { return '<span class="mk-swatch" data-cat="' + cat + '"></span>'; }
+  function catOrder(c) { return Mock.CATEGORIES.findIndex(function (m) { return m.id === c; }); }
+  function nbItems(list) {
+    return list.sort(function (a, b) { return catOrder(a.category) - catOrder(b.category) || b.degree - a.degree; })
+      .map(function (n) {
+        return '<li data-cat="' + n.category + '" data-id="' + esc(n.id) + '">' + sw(n.category) +
+          '<span>' + esc(n.title) + '</span><span class="mk-deg" style="margin-left:auto">' + n.degree + '</span></li>';
+      }).join('');
+  }
+
+  function select(n, opts) {
+    opts = opts || {};
+    state.sel = n; state.bridge = null; state.hoverBridge = null;
+    if (!n) {
+      panel.hidden = true;
+      try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { /* file:// */ }
+      changed();
+      return;
+    }
+    var inner = [], outer = [];
+    n.nb.forEach(function (m) { (m.category === n.category ? inner : outer).push(m); });
+    var meta = Mock.cat(n.category);
+    pCat.innerHTML = '<span class="mk-swatch" data-cat="' + n.category + '"></span>' + meta.en;
+    pCat.dataset.cat = n.category;
+    pTitle.textContent = n.title;
+    pMeta.innerHTML = '<span>' + n.year + '</span><span>' + n.type + '</span><span>연결 ' + n.degree +
+      '</span><span>다른 섬 ' + outer.length + '</span>';
+    pBody.innerHTML = (n.tags && n.tags.length ? '<div class="mk-tags">' + n.tags.map(function (t) {
+      return '<span class="mk-tag">' + esc(t) + '</span>'; }).join('') + '</div>' : '') +
+      (inner.length ? '<h3 class="mk-panel-section">같은 섬의 이웃 ' + inner.length + '</h3><ul class="mk-neighbors">' + nbItems(inner) + '</ul>' : '') +
+      (outer.length ? '<h3 class="mk-panel-section">다른 섬의 이웃 ' + outer.length + '</h3><ul class="mk-neighbors">' + nbItems(outer) + '</ul>' : '');
+    pBody.scrollTop = 0;
+    pFoot.style.display = '';
+    pOpen.href = '../../' + n.id + '/'; // 시안: 사이트 경로 모양만 맞춘 죽은 링크
+    panel.hidden = false;
+    try { history.replaceState(null, '', '#node=' + encodeURIComponent(n.id).replace('%2F', '/')); } catch (e) { /* file:// */ }
+    changed();
+    if (opts.fly !== false) fitNode(n, 480);
+  }
+
+  function selectBridge(b) {
+    state.sel = null; state.bridge = b; state.hoverBridge = null;
+    pCat.innerHTML = sw(b.a.id) + sw(b.b.id) + '다리';
+    delete pCat.dataset.cat;
+    pTitle.textContent = b.a.meta.en + ' ↔ ' + b.b.meta.en;
+    pMeta.innerHTML = '<span>연결 ' + b.count + '</span><span>→ ' + b.ab + '</span><span>← ' + b.ba + '</span>';
+    var list = b.edges.slice().sort(function (x, y) { return (y.s.degree + y.t.degree) - (x.s.degree + x.t.degree); });
+    pBody.innerHTML = '<p class="c-hint">' + b.a.meta.en + '에서 나가는 링크 ' + b.ab + '개, ' + b.b.meta.en + '에서 나가는 링크 ' + b.ba +
+      '개. 묶음을 풀어 지도에 하나씩 그렸다. 항목을 누르면 출발 페이지로 간다.</p>' +
+      '<h3 class="mk-panel-section">연결 ' + b.count + '</h3><ul class="mk-neighbors">' +
+      list.map(function (e) {
+        return '<li data-cat="' + e.s.category + '" data-id="' + esc(e.s.id) + '">' + sw(e.s.category) +
+          '<span class="c-pair">' + esc(e.s.title) + '<span class="c-pair-to">' + sw(e.t.category) + esc(e.t.title) + '</span></span></li>';
+      }).join('') + '</ul>';
+    pBody.scrollTop = 0;
+    pFoot.style.display = 'none';
+    panel.hidden = false;
+    changed();
+    var xs = [b.a.box[0], b.b.box[0]], ys = [b.a.box[1], b.b.box[1]], xe = [b.a.box[2], b.b.box[2]], ye = [b.a.box[3], b.b.box[3]];
+    fitBox(Math.min.apply(0, xs), Math.min.apply(0, ys) - 30, Math.max.apply(0, xe), Math.max.apply(0, ye), 2, 480);
+  }
+
+  pBody.addEventListener('click', function (e) {
+    var li = e.target.closest('li[data-id]');
+    if (li) select(byId[li.dataset.id]);
+  });
+  document.getElementById('p-close').addEventListener('click', function () { select(null); });
+
+  // ── 포인터: 호버, 툴팁, 클릭 ─────────────────────────────────────────
+  var tip = document.getElementById('tip');
+  function pickNode(x, y) {
+    var best = null, bd = Infinity;
+    nodes.forEach(function (n) {
+      if (n.sx === undefined || n._a < 0.3) return;
+      var d = Math.hypot(n.sx - x, n.sy - y);
+      if (d < n.sr + 4 && d < bd) { bd = d; best = n; }
+    });
+    return best;
+  }
+  function pickBridge(x, y) {
+    if (state.sel) return null;
+    var w = transform.invert([x, y]);
+    if (inIsland(w[0], w[1])) return null;
+    var best = null, bd = Infinity;
+    bridges.forEach(function (b) {
+      if (bridgeAlpha(b) < 0.06 && state.hoverBridge !== b) return;
+      var half = b.w * Math.sqrt(transform.k) / 2 + 4;
+      for (var i = 1; i < b.samples.length; i++) {
+        var p = transform.apply(b.samples[i - 1]), q = transform.apply(b.samples[i]);
+        var d = segDist(x, y, p, q);
+        if (d < half && d < bd) { bd = d; best = b; }
+      }
+    });
+    return best;
+  }
+  function segDist(x, y, p, q) {
+    var dx = q[0] - p[0], dy = q[1] - p[1], L = dx * dx + dy * dy || 1;
+    var t = Math.max(0, Math.min(1, ((x - p[0]) * dx + (y - p[1]) * dy) / L));
+    return Math.hypot(x - p[0] - t * dx, y - p[1] - t * dy);
+  }
+  function showTip(html, x, y) {
+    tip.innerHTML = html; tip.hidden = false;
+    var W = stage.clientWidth, H = stage.clientHeight, tw = tip.offsetWidth, th = tip.offsetHeight;
+    var lx = x + 12, ly = y + 12;
+    if (lx + tw > W - 8) lx = x - 12 - tw;
+    if (ly + th > H - 8) ly = y - 12 - th;
+    tip.style.left = Math.max(8, lx) + 'px'; tip.style.top = Math.max(8, ly) + 'px';
+  }
+  function hideTip() { tip.hidden = true; }
+
+  canvas.addEventListener('pointermove', function (e) {
+    if (e.pointerType === 'touch' || e.buttons) return;
+    var n = pickNode(e.offsetX, e.offsetY);
+    var b = n ? null : pickBridge(e.offsetX, e.offsetY);
+    if (n !== state.hover || b !== state.hoverBridge) {
+      state.hover = n; state.hoverBridge = b; request();
+    }
+    canvas.classList.toggle('is-pointing', !!(n || b));
+    if (n) {
+      var outer = 0; n.nb.forEach(function (m) { if (m.category !== n.category) outer++; });
+      showTip('<div class="mk-tip-title">' + esc(n.title) + '</div><div class="mk-tip-meta" data-cat="' + n.category + '">' +
+        sw(n.category) + Mock.cat(n.category).en + '<span>' + n.year + '</span><span>연결 ' + n.degree + ', 다른 섬 ' + outer + '</span></div>', e.offsetX, e.offsetY);
+    } else if (b) {
+      showTip('<div class="mk-tip-title">' + b.a.meta.en + ' ↔ ' + b.b.meta.en + '</div><div class="mk-tip-meta">' +
+        sw(b.a.id) + sw(b.b.id) + '<span>연결 ' + b.count + '</span></div><div class="mk-tip-meta">' + b.a.meta.en + '에서 ' + b.ab + ', ' + b.b.meta.en + '에서 ' + b.ba + '</div>', e.offsetX, e.offsetY);
+    } else hideTip();
+  });
+  canvas.addEventListener('pointerleave', function () {
+    state.hover = null; state.hoverBridge = null; hideTip(); request();
+  });
+  canvas.addEventListener('click', function (e) {
+    var n = pickNode(e.offsetX, e.offsetY);
+    if (n) { select(n); return; }
+    var b = pickBridge(e.offsetX, e.offsetY);
+    if (b) { selectBridge(b); hideTip(); return; }
+    if (state.sel || state.bridge) select(null);
+  });
+
+  // ── 범례 필터 ────────────────────────────────────────────────────────
+  var counts = {};
+  nodes.forEach(function (n) { counts[n.category] = (counts[n.category] || 0) + 1; });
+  legend.innerHTML = Mock.CATEGORIES.map(function (c) {
+    return '<li data-cat="' + c.id + '" role="button" tabindex="0" aria-pressed="false" title="' + c.en + ' 섬만 보기">' +
+      '<span class="mk-swatch"></span><span class="c-lg-name">' + c.en + '</span><span class="mk-legend-n">' + (counts[c.id] || 0) + '</span></li>';
+  }).join('');
+  function toggleCat(li) {
+    var c = li.dataset.cat;
+    if (state.filter.has(c)) state.filter.delete(c); else state.filter.add(c);
+    li.setAttribute('aria-pressed', String(state.filter.has(c)));
+    changed();
+  }
+  legend.addEventListener('click', function (e) { var li = e.target.closest('li'); if (li) toggleCat(li); });
+  legend.addEventListener('keydown', function (e) {
+    var li = e.target.closest('li');
+    if (li && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); e.stopPropagation(); toggleCat(li); }
+  });
+  legend.addEventListener('pointerover', function (e) {
+    if (e.pointerType === 'touch') return;
+    var li = e.target.closest('li');
+    var c = li ? li.dataset.cat : null;
+    if (c !== state.legendHover) { state.legendHover = c; changed(); }
+  });
+  legend.addEventListener('pointerleave', function () { if (state.legendHover) { state.legendHover = null; changed(); } });
+
+  // ── 검색 ─────────────────────────────────────────────────────────────
+  var q = document.getElementById('q'), results = document.getElementById('results');
+  var hits = [], active = -1;
+  function renderResults() {
+    results.hidden = !state.query;
+    q.setAttribute('aria-expanded', String(!results.hidden));
+    if (!state.query) return;
+    results.innerHTML = hits.length ? hits.map(function (n, i) {
+      return '<li role="option" data-id="' + esc(n.id) + '" data-cat="' + n.category + '" aria-selected="' + (i === active) + '">' +
+        sw(n.category) + '<span>' + esc(trunc(n.title)) + '</span><span class="mk-deg">' + n.degree + '</span></li>';
+    }).join('') : '<li aria-disabled="true" style="cursor:default;color:var(--muted)">일치하는 페이지가 없다. 영문 제목으로 찾아 본다</li>';
+  }
+  q.addEventListener('input', function () {
+    state.query = q.value.trim().toLowerCase();
+    hits = !state.query ? [] : nodes.map(function (n) {
+      var i = (n.title + ' ' + n.stem).toLowerCase().indexOf(state.query);
+      return { n: n, i: i };
+    }).filter(function (h) { return h.i >= 0; })
+      .sort(function (a, b) { return a.i - b.i || b.n.degree - a.n.degree; })
+      .slice(0, 12).map(function (h) { return h.n; });
+    active = hits.length ? 0 : -1;
+    state.matches = new Set(hits.slice(0, 6));
+    renderResults(); request();
+  });
+  function pickResult(n) {
+    q.value = ''; state.query = ''; hits = []; state.matches = new Set(); renderResults();
+    q.blur();
+    select(n);
+  }
+  q.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!hits.length) return;
+      active = (active + (e.key === 'ArrowDown' ? 1 : -1) + hits.length) % hits.length;
+      renderResults();
+    } else if (e.key === 'Enter' && hits[active]) {
+      e.preventDefault(); pickResult(hits[active]);
+    } else if (e.key === 'Escape') {
+      e.stopPropagation();
+      q.value = ''; q.dispatchEvent(new Event('input')); q.blur();
+    }
+  });
+  results.addEventListener('mousedown', function (e) {
+    var li = e.target.closest('li[data-id]');
+    if (li) { e.preventDefault(); pickResult(byId[li.dataset.id]); }
+  });
+
+  // ── 키보드: Esc 해제, 방향키로 그 방향 이웃, Enter 열기 ──────────────
+  document.addEventListener('keydown', function (e) {
+    if (e.target.closest && e.target.closest('input, .mk-legend, a, button')) return;
+    if (e.key === 'Escape') { select(null); return; }
+    var dir = { ArrowRight: [1, 0], ArrowLeft: [-1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[e.key];
+    if (dir) {
+      e.preventDefault();
+      var s = state.sel;
+      if (!s) { select(nodes.reduce(function (a, b) { return b.degree > a.degree ? b : a; })); return; }
+      var best = null, bs = Infinity;
+      s.nb.forEach(function (m) {
+        var dx = m.x - s.x, dy = m.y - s.y, d = Math.hypot(dx, dy) || 1;
+        var cos = (dx * dir[0] + dy * dir[1]) / d;
+        if (cos < 0.35) return;
+        var score = d * (2 - cos);
+        if (score < bs) { bs = score; best = m; }
+      });
+      if (best) select(best);
+      return;
+    }
+    if (e.key === 'Enter' && state.sel) pOpen.click();
+  });
+
+  // ── 딥링크 ───────────────────────────────────────────────────────────
+  function fromHash() {
+    var m = /#node=([^&]+)/.exec(location.hash);
+    var n = m && byId[decodeURIComponent(m[1])];
+    if (n && n !== state.sel) select(n);
+    return !!n;
+  }
+  window.addEventListener('hashchange', fromHash);
+
+  // ── 시작 ─────────────────────────────────────────────────────────────
+  document.getElementById('mk-stats').textContent =
+    '페이지 ' + nodes.length + '개, 연결 ' + edges.length.toLocaleString() + '개, 섬 ' + islands.length + '개, 다리 ' + bridges.length + '개';
+  Mock.onTheme(function (t) { T = t; widthCache.clear(); request(); });
+  window.addEventListener('resize', function () { resize(); if (state.sel) fitNode(state.sel, 0); else fitAll(0); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { widthCache.clear(); request(); });
+  resize();
+  fitAll(0);
+  revealStart = performance.now();
+  if (!fromHash()) request();
+
+  // 검증용 노출 (시안 전용)
+  window.__C = {
+    nodes: nodes, islands: islands, bridges: bridges,
+    insideCheck: function () {
+      return nodes.filter(function (n) {
+        var s = islandOf[n.category];
+        return !probe.isPointInPath(s.coast, n.x - s.ox, n.y - s.oy) || inIsland(n.x, n.y) !== s;
+      }).map(function (n) { return n.id; });
+    },
+    islandOverlap: function () {
+      var out = [];
+      islands.forEach(function (a, i) { islands.slice(i + 1).forEach(function (b) {
+        if (Math.hypot(a.x - b.x, a.y - b.y) < a.R + b.R + 8) out.push(a.id + '|' + b.id); }); });
+      return out;
+    },
+    select: function (id) { select(byId[id]); },
+    selectBridge: function (key) { selectBridge(bridgeMap[key]); },
+  };
+})();
+</script>
+</body>
+</html>
