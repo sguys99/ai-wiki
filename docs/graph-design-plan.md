@@ -16,8 +16,8 @@
 
 | 항목 | 값 |
 |---|---|
-| 노드 | 342개 (physical-ai 149, agents 84, applications 39, database 28, llms 19, overviews 14, evaluations 6, etc 5) |
-| 엣지 | 2,593개 (방향성, 중복 제거) |
+| 노드 | 344개 (physical-ai 149, agents 84, applications 39, database 28, llms 19, overviews 14, evaluations 6, etc 5) |
+| 엣지 | 2,600개 (방향성, 중복 제거). 페이지로 해석되지 않는 링크 87개는 제외 |
 | 고립 노드 | 0개 |
 | 최대 degree | 118 (`overviews/physical-ai-overview`), 다음은 63, 58, 58, 57 |
 | 노드 필드 | `id`, `stem`, `title`, `category`, `domain`, `degree` |
@@ -120,7 +120,7 @@
 
 ### Phase 1. 디자인 시안
 
-- [ ] `frontend-design` 스킬로 시각 방향 정리 (타이포, 색, 여백, 모션)
+- [x] `frontend-design` 스킬로 시각 방향 정리 (타이포, 색, 여백, 모션): `docs/graph-mockups/design-direction.md`, 공용 기반 `shared/`, 데이터 스냅샷 `build-data.mjs`
 - [ ] 시안 A 성도: `docs/graph-mockups/a-atlas.html`
 - [ ] 시안 B 궤도: `docs/graph-mockups/b-orbit.html`
 - [ ] 시안 C 군도: `docs/graph-mockups/c-archipelago.html`
@@ -192,3 +192,4 @@
 |---|---|
 | 2026-11-16 | 기존 `/graph/` 조사. 전면 재설계로 방향 결정. 계획 문서 작성 |
 | 2026-11-16 | Q1 ~ Q6 확정. 3D 시안 E 추가, 외부 라이브러리 허용, 추가 기능 네 가지 범위 포함 |
+| 2026-11-16 | Phase 1 시각 방향 확정 ("성도 판화"). 카테고리 8색, 공용 CSS와 JS, `year` `type` `tags` 를 붙인 데이터 스냅샷 작성. 실측 재확인: 344노드, 2,600엣지. 노드의 74%(256개)가 2026년이라 시안 D는 한 열에 몰린다 |

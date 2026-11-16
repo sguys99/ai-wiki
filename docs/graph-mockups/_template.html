@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시안 X 이름</title>
+<!-- 초기 테마: 사이트 templates.mjs 의 FOUC 스크립트와 같다 -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="shared/mock-base.css">
+<style>
+  /* 시안 고유 스타일은 여기에. 색은 var(--cat-*), var(--graph-*) 토큰만 쓴다 */
+</style>
+<script src="shared/graph-data.js"></script>
+<script src="shared/mock-base.js"></script>
+</head>
+<body>
+<header class="mk-bar">
+  <h1 class="mk-title">시안 X 이름</h1>
+  <span class="mk-subtitle" id="mk-stats"></span>
+  <div class="mk-bar-end">
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="테마 전환" aria-pressed="false">☀</button>
+  </div>
+</header>
+
+<main class="mk-stage" id="stage">
+  <canvas id="canvas" aria-label="wiki 페이지 관계 그래프"></canvas>
+
+  <div class="mk-float is-tl mk-search">
+    <label class="mk-sr" for="q">페이지 검색</label>
+    <input id="q" type="search" placeholder="페이지 제목으로 찾기" autocomplete="off">
+  </div>
+
+  <ul class="mk-float is-bl mk-glass mk-legend" id="legend"></ul>
+
+  <div class="mk-tip" id="tip" hidden></div>
+
+  <!-- 상세 패널 구조 예시. hidden 을 떼면 슬라이드인한다 (모바일은 하단 시트) -->
+  <aside class="mk-panel mk-glass" id="panel" hidden aria-label="선택한 페이지">
+    <div class="mk-panel-head">
+      <div style="display:flex;align-items:center">
+        <span class="mk-panel-cat" data-cat="agents"><span class="mk-swatch"></span>Agents</span>
+        <button type="button" class="mk-icon-btn" aria-label="선택 해제">×</button>
+      </div>
+      <h2 class="mk-panel-title">페이지 제목</h2>
+      <div class="mk-panel-meta"><span>2025</span><span>paper</span><span>연결 12</span></div>
+    </div>
+    <div class="mk-panel-body">
+      <div class="mk-tags"><span class="mk-tag">tag</span></div>
+      <h3 class="mk-panel-section">이웃 페이지</h3>
+      <ul class="mk-neighbors"><li data-cat="llms"><span class="mk-swatch"></span>이웃 제목<span class="mk-deg" style="margin-left:auto">8</span></li></ul>
+    </div>
+    <div class="mk-panel-foot"><a class="mk-btn is-primary" href="#">페이지 열기</a></div>
+  </aside>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var data = window.GRAPH_DATA;
+  var counts = {};
+  data.nodes.forEach(function (n) { counts[n.category] = (counts[n.category] || 0) + 1; });
+
+  document.getElementById('mk-stats').textContent =
+    '페이지 ' + data.nodes.length + '개, 연결 ' + data.edges.length.toLocaleString() + '개';
+
+  // 범례: 카테고리 메타 순서대로
+  document.getElementById('legend').innerHTML = Mock.CATEGORIES.map(function (c) {
+    return '<li data-cat="' + c.id + '"><span class="mk-swatch"></span>' + c.en +
+      '<span class="mk-legend-n">' + (counts[c.id] || 0) + '</span></li>';
+  }).join('');
+
+  // 캔버스: 크기 맞추기와 테마 따라 다시 그리기만 보여 준다. 배치와 렌더는 시안이 쓴다
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  var tokens = Mock.readTokens();
+
+  function fit() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = canvas.getBoundingClientRect();
+    canvas.width = Math.max(1, Math.floor(r.width * dpr));
+    canvas.height = Math.max(1, Math.floor(r.height * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw();
+  }
+
+  function draw() {
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    ctx.fillStyle = tokens.bg;
+    ctx.fillRect(0, 0, w, h);
+    // 견본: 카테고리 8색 점
+    Mock.CATEGORIES.forEach(function (c, i) {
+      ctx.beginPath();
+      ctx.arc(w / 2 + (i - 3.5) * 28, h / 2, 6, 0, Math.PI * 2);
+      ctx.fillStyle = tokens.cat[c.id];
+      ctx.fill();
+    });
+  }
+
+  Mock.onTheme(function (t) { tokens = t; draw(); });
+  window.addEventListener('resize', fit);
+  fit();
+})();
+</script>
+</body>
+</html>
