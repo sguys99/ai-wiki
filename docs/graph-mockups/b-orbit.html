@@ -117,7 +117,7 @@
 </head>
 <body>
 <header class="mk-bar">
-  <h1 class="mk-title">궤도</h1>
+  <h1 class="mk-title">시안 B 궤도</h1>
   <span class="mk-subtitle" id="mk-stats"></span>
   <div class="mk-bar-end">
     <button type="button" class="theme-toggle" data-theme-toggle aria-label="테마 전환" aria-pressed="false">☀</button>
@@ -752,6 +752,7 @@
     }
     pBody.innerHTML = html;
     pBody.scrollTop = 0;
+    syncSheet(); // 제목 줄 수가 바뀌면 시트 높이도 바뀐다. 범례 독을 그 위로 다시 올린다
   }
   pBody.addEventListener('click', function (ev) {
     if (ev.target.closest('[data-act="expand"]')) { toggleExpand(); return; }

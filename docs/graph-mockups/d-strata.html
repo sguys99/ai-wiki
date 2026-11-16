@@ -31,8 +31,10 @@
   .st-types .mk-chip { flex: none; }
 
   /* 층 머리: 범례이자 필터. 캔버스의 층 띠와 같은 높이에 붙는다 */
-  .st-lanes { position: absolute; left: 0; top: 0; width: var(--gutter); margin: 0; padding: 0; list-style: none; z-index: 5; }
+  .st-lanes { position: absolute; left: 0; top: 0; width: var(--gutter); margin: 0; padding: 0; list-style: none; z-index: 5;
+    height: 100%; pointer-events: none; clip-path: inset(var(--plot-top) 0 0 0); /* 팬한 층 머리가 검색 줄 위로 새지 않게 */ }
   .st-lane {
+    pointer-events: auto;
     position: absolute; left: 0; width: 100%;
     display: flex; align-items: flex-start; gap: var(--space-2);
     padding: 10px 14px 0 var(--space-4);
@@ -78,7 +80,7 @@
 </head>
 <body>
 <header class="mk-bar">
-  <h1 class="mk-title">지층</h1>
+  <h1 class="mk-title">시안 D 지층</h1>
   <span class="mk-subtitle" id="mk-stats"></span>
   <div class="mk-bar-end">
     <div class="st-seg" role="group" aria-label="연도축 너비">
@@ -405,7 +407,9 @@
     ctx.fillStyle = t.bg;
     ctx.fillRect(0, 0, W, H);
 
-    // 층 띠
+    // 층 띠 (세로로 팬해도 축 띠 위로 넘치지 않게 그림 영역에 가둔다)
+    ctx.save();
+    ctx.beginPath(); ctx.rect(0, PT, W, H - PT); ctx.clip();
     CATS.forEach(function (c, i) {
       var L = lanes[c.id], y0 = sy(L.top);
       ctx.globalAlpha = (t.theme === 'dark' ? 0.035 : 0.045) * (collapsed[c.id] ? 0.5 : 1) * (catHover && catHover !== c.id ? 0.4 : 1) * (catHover === c.id ? 2.2 : 1);
@@ -417,6 +421,7 @@
     });
     ctx.fillStyle = t.hairline;
     ctx.fillRect(0, Math.round(sy(contentH)), W, 1);
+    ctx.restore();
 
     // 연도 경계
     ctx.save();
@@ -633,6 +638,7 @@
     CATS.forEach(function (c) {
       if (collapsed[c.id]) return;
       var y = sy(lanes[c.id].top) + 13;
+      if (y - 11 < PT) return; // 위로 팬해서 축 띠와 검색 줄 밑으로 들어간 층 이름은 그리지 않는다
       var txt = Mock.cat(c.id).en;
       ctx.lineWidth = 3; ctx.strokeStyle = t.labelHalo; ctx.strokeText(txt, G + 6, y);
       ctx.fillStyle = t.labelMuted; ctx.fillText(txt, G + 6, y);
