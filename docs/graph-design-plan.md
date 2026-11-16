@@ -125,7 +125,7 @@
 - [x] 시안 B 궤도: `docs/graph-mockups/b-orbit.html`
 - [x] 시안 C 군도: `docs/graph-mockups/c-archipelago.html`
 - [x] 시안 D 지층: `docs/graph-mockups/d-strata.html`
-- [ ] 시안 E 천구 (3D): `docs/graph-mockups/e-celestial.html`
+- [x] 시안 E 천구 (3D): `docs/graph-mockups/e-celestial.html`
 - [ ] 각 시안이 실제 `graph.json` 342노드로 동작하는지 확인
 - [ ] 각 시안의 라이트, 다크, 모바일 폭 스크린샷 확인
 - [ ] 시안 비교 요약 작성 (이 문서 4절 표 갱신)

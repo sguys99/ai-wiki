@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시안 E 천구</title>
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="shared/mock-base.css">
+<style>
+  .mk-stage { cursor: grab; }
+  .mk-stage.is-dragging { cursor: grabbing; }
+  .mk-stage.is-over-node { cursor: pointer; }
+
+  /* 3D 에서 투영한 라벨. 위치는 transform 으로만 바꾼다 */
+  .cel-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 5; }
+  .cel-label {
+    position: absolute; left: 0; top: 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--graph-label-muted);
+    /* HTML 텍스트에는 paint-order 가 듣지 않아 stroke 대신 겹친 그림자로 3px 후광을 만든다 */
+    text-shadow: 0 0 1px var(--graph-label-halo), 0 0 2px var(--graph-label-halo), 0 0 3px var(--graph-label-halo),
+      1px 1px 0 var(--graph-label-halo), -1px -1px 0 var(--graph-label-halo), 1px -1px 0 var(--graph-label-halo), -1px 1px 0 var(--graph-label-halo);
+    will-change: transform, opacity;
+  }
+  .cel-label.is-mid { font-size: 12px; color: var(--graph-label); }
+  .cel-label.is-hub, .cel-label.is-focus { font-size: 13px; font-weight: 700; color: var(--graph-label); }
+
+  /* 오른쪽 아래: 시점 조작 안내와 맞춤 버튼 */
+  .cel-hud { display: flex; align-items: center; gap: var(--space-2); }
+  .cel-hint { font-size: var(--text-xs); color: var(--faint); white-space: nowrap; }
+  .cel-btn { height: 32px; padding: 0 var(--space-3); font-size: var(--text-xs); font-weight: 500; }
+  .mk-panel:not([hidden]) ~ .cel-hud { opacity: 0; pointer-events: none; }
+
+  .mk-neighbors li.is-cursor { color: var(--c); }
+  .mk-neighbors li.is-cursor::before { content: ''; width: 2px; align-self: stretch; background: var(--c); margin-right: 2px; }
+  .mk-results-empty { padding: 8px; font-size: var(--text-sm); color: var(--muted); }
+
+  /* WebGL 불가 또는 라이브러리 로드 실패 */
+  .cel-fallback { position: absolute; inset: 0; overflow-y: auto; padding: var(--space-8) var(--space-4); z-index: 12; background: var(--graph-bg); }
+  .cel-fallback[hidden] { display: none; }
+  .cel-fallback-inner { max-width: 720px; }
+  .cel-fallback h2 { margin: 0 0 var(--space-2); font-size: var(--text-lg); }
+  .cel-fallback p { margin: 0 0 var(--space-6); color: var(--muted); font-size: var(--text-sm); }
+  .cel-fallback h3 { margin: var(--space-6) 0 var(--space-2); font-size: var(--text-sm); display: flex; align-items: center; gap: 8px; }
+  .cel-fallback ul { margin: 0; padding-left: 16px; font-size: var(--text-sm); }
+  .cel-fallback a { color: var(--text); }
+
+  @media (max-width: 640px) {
+    .mk-legend { display: flex; gap: 6px; padding: 8px 10px; }
+    .mk-legend li { padding: 4px; }
+    .mk-legend .cel-legend-name, .mk-legend .mk-legend-n { display: none; }
+    .mk-legend .mk-swatch { width: 12px; height: 12px; }
+    .mk-legend li[aria-pressed='true'] { outline: 1px solid var(--c); border-radius: 50%; }
+    .cel-hint { display: none; }
+    .cel-hud.is-br { bottom: var(--space-4); }
+  }
+</style>
+<script src="shared/graph-data.js"></script>
+<script src="shared/mock-base.js"></script>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js" } }
+</script>
+</head>
+<body>
+<header class="mk-bar">
+  <h1 class="mk-title">천구</h1>
+  <span class="mk-subtitle" id="mk-stats"></span>
+  <div class="mk-bar-end">
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="테마 전환" aria-pressed="false">☀</button>
+  </div>
+</header>
+
+<main class="mk-stage" id="stage">
+  <div id="gl" style="position:absolute;inset:0"></div>
+  <div class="cel-labels" id="labels" aria-hidden="true"></div>
+
+  <div class="mk-float is-tl mk-search">
+    <label class="mk-sr" for="q">페이지 검색</label>
+    <input id="q" type="search" placeholder="페이지 제목으로 찾기" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="results">
+    <ul class="mk-results mk-glass" id="results" role="listbox" hidden></ul>
+  </div>
+
+  <ul class="mk-float is-bl mk-glass mk-legend" id="legend" aria-label="카테고리 필터"></ul>
+
+  <div class="mk-tip" id="tip" hidden></div>
+
+  <aside class="mk-panel mk-glass" id="panel" hidden aria-label="선택한 페이지">
+    <div class="mk-panel-head">
+      <div style="display:flex;align-items:center">
+        <span class="mk-panel-cat" id="p-cat"></span>
+        <button type="button" class="mk-icon-btn" id="p-close" aria-label="선택 해제">×</button>
+      </div>
+      <h2 class="mk-panel-title" id="p-title"></h2>
+      <div class="mk-panel-meta" id="p-meta"></div>
+    </div>
+    <div class="mk-panel-body">
+      <div class="mk-tags" id="p-tags"></div>
+      <h3 class="mk-panel-section" id="p-nb-h">이웃 페이지</h3>
+      <ul class="mk-neighbors" id="p-nb"></ul>
+    </div>
+    <div class="mk-panel-foot"><a class="mk-btn is-primary" id="p-open" href="#">페이지 열기</a></div>
+  </aside>
+
+  <div class="mk-float is-br cel-hud">
+    <span class="cel-hint" id="hint">드래그로 돌리고 휠로 확대한다</span>
+    <button type="button" class="mk-btn cel-btn" id="fit">전체 보기</button>
+  </div>
+
+  <section class="cel-fallback" id="fallback" hidden>
+    <div class="cel-fallback-inner">
+      <h2 id="fb-title">3D 그래프를 띄울 수 없다</h2>
+      <p id="fb-msg">이 브라우저에서 WebGL을 쓸 수 없다. 하드웨어 가속을 켜거나 다른 브라우저로 연다. 아래 목록에서 모든 페이지로 갈 수 있다.</p>
+      <div id="fb-list"></div>
+    </div>
+  </section>
+</main>
+
+<script>
+// 모듈이 4초 안에 시작하지 못하면 (CDN 실패, 오프라인) 텍스트 목록으로 대신한다
+window.__celFallback = function (title, msg) {
+  var fb = document.getElementById('fallback');
+  if (!fb.hidden) return;
+  if (title) document.getElementById('fb-title').textContent = title;
+  if (msg) document.getElementById('fb-msg').textContent = msg;
+  var d = window.GRAPH_DATA;
+  document.getElementById('fb-list').innerHTML = Mock.CATEGORIES.map(function (c) {
+    var items = d.nodes.filter(function (n) { return n.category === c.id; })
+      .sort(function (a, b) { return b.degree - a.degree; });
+    if (!items.length) return '';
+    return '<h3 data-cat="' + c.id + '"><span class="mk-swatch"></span>' + c.en + '</h3><ul>' +
+      items.map(function (n) {
+        return '<li><a href="/ai-wiki/' + n.id + '/">' + n.title.replace(/</g, '&lt;') + '</a></li>';
+      }).join('') + '</ul>';
+  }).join('');
+  fb.hidden = false;
+};
+setTimeout(function () {
+  if (!window.__celReady) window.__celFallback('3D 라이브러리를 불러오지 못했다',
+    'three.js를 내려받지 못했다. 네트워크를 확인하고 새로 고친다. 아래 목록에서 모든 페이지로 갈 수 있다.');
+}, 4000);
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+// 셰이더가 토큰 hex 를 그대로 출력하도록 색 관리(sRGB↔linear 변환)를 끈다
+THREE.ColorManagement.enabled = false;
+window.__celReady = true;
+
+const data = window.GRAPH_DATA;
+const N = data.nodes.length;
+const nodes = data.nodes.map((n, i) => Object.assign({ i }, n));
+const byId = new Map(nodes.map((n) => [n.id, n]));
+const edges = data.edges.map((e) => [byId.get(e.source).i, byId.get(e.target).i]);
+const nbrs = nodes.map(() => new Set());
+edges.forEach(([a, b]) => { nbrs[a].add(b); nbrs[b].add(a); });
+const reduce = Mock.reduceMotion();
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const trunc = (s) => (s.length > 28 ? s.slice(0, 27) + '…' : s);
+const radiusPx = (deg) => Math.min(20, 2 + 1.6 * Math.sqrt(deg));
+
+// ── 크롬: 부제, 범례 ─────────────────────────────────────────────────────
+const counts = {};
+nodes.forEach((n) => { counts[n.category] = (counts[n.category] || 0) + 1; });
+$('mk-stats').textContent = '페이지 ' + N + '개, 연결 ' + edges.length.toLocaleString() + '개';
+$('legend').innerHTML = Mock.CATEGORIES.map((c) =>
+  '<li data-cat="' + c.id + '" role="button" tabindex="0" aria-pressed="false" title="' + c.en + '만 보기">' +
+  '<span class="mk-swatch"></span><span class="cel-legend-name">' + c.en + '</span>' +
+  '<span class="mk-legend-n">' + (counts[c.id] || 0) + '</span></li>').join('');
+
+// ── 3D force 배치. 화면에 그리기 전에 동기로 끝낸다 ─────────────────────
+// 카테고리마다 구 위의 닻을 두고 약하게 끈다. 교류가 많은 카테고리를 이웃 자리에 놓았다
+const R = 100;
+const ANCHOR = {
+  'physical-ai': [-1, 0.05, 0.1], llms: [-0.35, 0.85, -0.35], agents: [0.95, 0.15, -0.1],
+  applications: [0.45, -0.55, 0.7], database: [0.25, -0.75, -0.6], evaluations: [0.55, 0.75, 0.45],
+  etc: [-0.1, -0.2, -1], overviews: [-0.3, 0.1, 0.15],
+};
+let seed = 7;
+const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+const gauss = () => Math.sqrt(-2 * Math.log(rnd() + 1e-9)) * Math.cos(2 * Math.PI * rnd());
+const P = new Float32Array(N * 3), V = new Float32Array(N * 3);
+nodes.forEach((n, i) => {
+  const a = ANCHOR[n.category] || ANCHOR.etc;
+  for (let k = 0; k < 3; k++) P[i * 3 + k] = a[k] * R * 0.9 + gauss() * R * 0.35;
+});
+const tLayout = performance.now();
+(function layout() {
+  const deg = nodes.map((n) => Math.max(1, nbrs[n.i].size));
+  for (let t = 0; t < 320; t++) {
+    const alpha = 1 - t / 320;
+    for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+      let dx = P[i * 3] - P[j * 3], dy = P[i * 3 + 1] - P[j * 3 + 1], dz = P[i * 3 + 2] - P[j * 3 + 2];
+      let d2 = dx * dx + dy * dy + dz * dz + 1;
+      if (d2 > 14400) continue; // shortcut: 120 너머 척력 생략. 노드가 수천이 되면 octree 로 바꾼다
+      const f = (1100 * alpha) / d2 / Math.sqrt(d2);
+      V[i * 3] += dx * f; V[i * 3 + 1] += dy * f; V[i * 3 + 2] += dz * f;
+      V[j * 3] -= dx * f; V[j * 3 + 1] -= dy * f; V[j * 3 + 2] -= dz * f;
+    }
+    for (const [a, b] of edges) {
+      const dx = P[b * 3] - P[a * 3], dy = P[b * 3 + 1] - P[a * 3 + 1], dz = P[b * 3 + 2] - P[a * 3 + 2];
+      const d = Math.sqrt(dx * dx + dy * dy + dz * dz) + 0.01;
+      const f = ((d - 34) / d) * 0.05 * alpha;
+      const wa = deg[b] / (deg[a] + deg[b]), wb = 1 - wa;
+      V[a * 3] += dx * f * wa; V[a * 3 + 1] += dy * f * wa; V[a * 3 + 2] += dz * f * wa;
+      V[b * 3] -= dx * f * wb; V[b * 3 + 1] -= dy * f * wb; V[b * 3 + 2] -= dz * f * wb;
+    }
+    for (let i = 0; i < N; i++) {
+      const a = ANCHOR[nodes[i].category] || ANCHOR.etc;
+      const s = nodes[i].category === 'overviews' ? 0.004 : 0.02;
+      for (let k = 0; k < 3; k++) {
+        V[i * 3 + k] += (a[k] * R * 0.9 - P[i * 3 + k]) * s * alpha;
+        V[i * 3 + k] *= 0.6;
+        P[i * 3 + k] += V[i * 3 + k];
+      }
+    }
+  }
+  // 무게중심을 원점으로
+  const c = [0, 0, 0];
+  for (let i = 0; i < N; i++) for (let k = 0; k < 3; k++) c[k] += P[i * 3 + k] / N;
+  for (let i = 0; i < N; i++) for (let k = 0; k < 3; k++) P[i * 3 + k] -= c[k];
+})();
+const posOf = (i) => new THREE.Vector3(P[i * 3], P[i * 3 + 1], P[i * 3 + 2]);
+const radii = nodes.map((n) => posOf(n.i).length()).sort((a, b) => a - b);
+const sceneR = radii[Math.floor(N * 0.97)];
+
+// ── 렌더러 ───────────────────────────────────────────────────────────────
+const stage = $('stage'), host = $('gl');
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+} catch (e) {
+  window.__celFallback();
+  throw e;
+}
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+host.appendChild(renderer.domElement);
+renderer.domElement.setAttribute('aria-label', 'wiki 페이지 관계 3D 그래프');
+renderer.domElement.style.display = 'block';
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40, 1, 1, 5000);
+window.__cel = { scene, nodes, camera, layoutMs: Math.round(performance.now() - tLayout) }; // 검증 스크립트용
+
+let tokens = Mock.readTokens();
+const isLight = () => tokens.theme === 'light';
+
+// 노드: 화면 px 반지름을 가진 point sprite. 다크는 additive 글로우, 라이트는 잉크 원 + 배경색 테
+const SPREAD = 2.8; // sprite 반폭 / 노드 반지름. 글로우와 선택 고리가 들어갈 자리
+const nodeGeo = new THREE.BufferGeometry();
+nodeGeo.setAttribute('position', new THREE.BufferAttribute(P, 3));
+const aColor = new Float32Array(N * 3), aSize = new Float32Array(N), aAlpha = new Float32Array(N),
+  aShape = new Float32Array(N), aRing = new Float32Array(N);
+nodes.forEach((n, i) => {
+  aSize[i] = radiusPx(n.degree);
+  aShape[i] = n.category === 'overviews' ? 1 : n.category === 'etc' ? 2 : 0;
+});
+nodeGeo.setAttribute('aColor', new THREE.BufferAttribute(aColor, 3));
+nodeGeo.setAttribute('aSize', new THREE.BufferAttribute(aSize, 1));
+nodeGeo.setAttribute('aAlpha', new THREE.BufferAttribute(aAlpha, 1));
+nodeGeo.setAttribute('aShape', new THREE.BufferAttribute(aShape, 1));
+nodeGeo.setAttribute('aRing', new THREE.BufferAttribute(aRing, 1));
+const order = new Uint16Array(N).map((_, i) => i);
+nodeGeo.setIndex(new THREE.BufferAttribute(order, 1));
+
+const common = { uNear: { value: 0 }, uFar: { value: 1 }, uLight: { value: 0 }, uBg: { value: new THREE.Color() } };
+const nodeMat = new THREE.ShaderMaterial({
+  uniforms: Object.assign({ uPx: { value: 1 }, uRef: { value: 1 }, uGlow: { value: 0 }, uScale: { value: 1 } }, common),
+  vertexShader: `
+    attribute vec3 aColor; attribute float aSize, aAlpha, aShape, aRing;
+    uniform float uPx, uRef, uNear, uFar, uScale;
+    varying vec3 vColor; varying float vAlpha, vFog, vShape, vRing, vR;
+    void main() {
+      vec4 mv = modelViewMatrix * vec4(position, 1.0);
+      float depth = -mv.z;
+      vR = aSize * uScale * clamp(pow(uRef / max(depth, 1.0), 0.5), 0.55, 2.2);
+      vFog = clamp((depth - uNear) / (uFar - uNear), 0.0, 1.0);
+      vColor = aColor; vAlpha = aAlpha; vShape = aShape; vRing = aRing;
+      gl_PointSize = vR * ${SPREAD.toFixed(1)} * 2.0 * uPx;
+      gl_Position = projectionMatrix * mv;
+    }`,
+  fragmentShader: `
+    uniform float uLight, uGlow; uniform vec3 uBg;
+    varying vec3 vColor; varying float vAlpha, vFog, vShape, vRing, vR;
+    float band(float d, float a, float b, float aa) { return smoothstep(a - aa, a + aa, d) * (1.0 - smoothstep(b - aa, b + aa, d)); }
+    void main() {
+      float d = length(gl_PointCoord - 0.5) * 2.0 * ${SPREAD.toFixed(1)};
+      float px = 1.0 / vR;                         // 화면 1px 을 반지름 단위로
+      float aa = 0.6 * px;
+      float core = 1.0 - smoothstep(1.0 - aa, 1.0 + aa, d);
+      if (vShape > 1.5) core *= smoothstep(1.0 - 1.5 * px - aa, 1.0 - 1.5 * px + aa, d); // etc: 빈 원
+      float ring = vShape > 0.5 && vShape < 1.5 ? band(d, 1.0 + 2.5 * px, 1.0 + 4.0 * px, aa) : 0.0; // overviews 바깥 고리
+      float sel = vRing > 0.5 ? band(d, 1.0 + 4.0 * px, 1.0 + (vRing > 1.5 ? 6.0 : 5.0) * px, aa) : 0.0;
+      float a; vec3 col;
+      if (uLight < 0.5) {
+        float glow = exp(-d * d * 0.55) * uGlow * (0.45 + 0.55 * smoothstep(4.0, 12.0, vR));
+        a = (max(core * 0.88, max(ring, sel)) + glow * (1.0 - core)) * vAlpha * (1.0 - 0.72 * vFog);
+        col = vColor;
+      } else {
+        float inner = 1.0 - smoothstep(1.0 - 1.4 * px - aa, 1.0 - 1.4 * px + aa, d);
+        if (vShape > 1.5) inner = core;
+        col = mix(uBg, mix(vColor, uBg, vFog * 0.35), max(inner, max(ring, sel)));
+        a = max(core, max(ring, sel)) * vAlpha * (1.0 - 0.3 * vFog);
+      }
+      if (a < 0.004) discard;
+      gl_FragColor = vec4(col, a);
+    }`,
+  transparent: true, depthTest: false, depthWrite: false,
+});
+const points = new THREE.Points(nodeGeo, nodeMat);
+points.frustumCulled = false;
+points.renderOrder = 2;
+scene.add(points);
+
+// 엣지: 2,600개를 LineSegments 하나로. 정점마다 색과 알파
+const edgeShader = (extra) => new THREE.ShaderMaterial({
+  uniforms: Object.assign({}, common),
+  vertexShader: `
+    attribute vec3 aColor; attribute float aAlpha;
+    uniform float uNear, uFar;
+    varying vec3 vColor; varying float vAlpha;
+    void main() {
+      vec4 mv = modelViewMatrix * vec4(position, 1.0);
+      float fog = clamp((-mv.z - uNear) / (uFar - uNear), 0.0, 1.0);
+      vColor = aColor; vAlpha = aAlpha * (1.0 - ${extra.toFixed(2)} * fog);
+      gl_Position = projectionMatrix * mv;
+    }`,
+  fragmentShader: `varying vec3 vColor; varying float vAlpha; void main() { gl_FragColor = vec4(vColor, vAlpha); }`,
+  transparent: true, depthTest: false, depthWrite: false,
+});
+const E = edges.length;
+const ePos = new Float32Array(E * 6), eColor = new Float32Array(E * 6), eAlpha = new Float32Array(E * 2);
+edges.forEach(([a, b], k) => {
+  for (let c = 0; c < 3; c++) { ePos[k * 6 + c] = P[a * 3 + c]; ePos[k * 6 + 3 + c] = P[b * 3 + c]; }
+});
+const edgeGeo = new THREE.BufferGeometry();
+edgeGeo.setAttribute('position', new THREE.BufferAttribute(ePos, 3));
+edgeGeo.setAttribute('aColor', new THREE.BufferAttribute(eColor, 3));
+edgeGeo.setAttribute('aAlpha', new THREE.BufferAttribute(eAlpha, 1));
+const edgeMat = edgeShader(0.85);
+const lines = new THREE.LineSegments(edgeGeo, edgeMat);
+lines.frustumCulled = false;
+lines.renderOrder = 1;
+scene.add(lines);
+
+// 천구의 고리: 적도, 23.4도 기운 황도, 적도 위 15도 눈금. 그래프와 함께 돈다
+const ringR = sceneR * 1.08;
+const rp = [];
+const circle = (tilt) => {
+  for (let k = 0; k < 192; k++) {
+    for (const t of [k, k + 1]) {
+      const a = (t / 192) * Math.PI * 2;
+      const v = new THREE.Vector3(Math.cos(a) * ringR, 0, Math.sin(a) * ringR).applyAxisAngle(new THREE.Vector3(1, 0, 0), tilt);
+      rp.push(v.x, v.y, v.z);
+    }
+  }
+};
+circle(0); circle((23.4 * Math.PI) / 180);
+for (let k = 0; k < 24; k++) {
+  const a = (k / 24) * Math.PI * 2, len = k % 6 === 0 ? 0.06 : 0.03;
+  rp.push(Math.cos(a) * ringR, 0, Math.sin(a) * ringR, Math.cos(a) * ringR * (1 + len), 0, Math.sin(a) * ringR * (1 + len));
+}
+const ringGeo = new THREE.BufferGeometry();
+ringGeo.setAttribute('position', new THREE.Float32BufferAttribute(rp, 3));
+ringGeo.setAttribute('aColor', new THREE.Float32BufferAttribute(new Float32Array(rp.length), 3));
+ringGeo.setAttribute('aAlpha', new THREE.Float32BufferAttribute(new Float32Array(rp.length / 3), 1));
+const rings = new THREE.LineSegments(ringGeo, edgeShader(0.8));
+rings.frustumCulled = false;
+scene.add(rings);
+
+// ── 상태 ────────────────────────────────────────────────────────────────
+let sel = -1, hover = -1, cursor = -1, filterCat = null, legendHover = null, matchSet = null;
+const emCur = new Float32Array(N), emTgt = new Float32Array(N);
+const edCur = new Float32Array(E), edTgt = new Float32Array(E);
+const reveal = new Float32Array(N).fill(reduce ? 1 : 0);
+let edgeReveal = reduce ? 1 : 0;
+const revealOrder = nodes.map((n) => n.i).sort((a, b) => nodes[b].degree - nodes[a].degree);
+const revealAt = new Float32Array(N);
+revealOrder.forEach((i, r) => { revealAt[i] = (r / N) * 600; });
+const t0 = performance.now();
+let dirty = true, targetsChanged = true; // targetsChanged: 즉시 전환(snap)도 GPU 로 올리게 한다
+
+const nodeColor = (i) => new THREE.Color(tokens.cat[nodes[i].category] || tokens.cat.etc);
+
+function applyTheme() {
+  const light = isLight();
+  const bg = new THREE.Color(tokens.bg);
+  renderer.setClearColor(bg, 1);
+  for (const m of [nodeMat, edgeMat, rings.material]) {
+    m.blending = light ? THREE.NormalBlending : THREE.AdditiveBlending;
+    m.uniforms.uLight.value = light ? 1 : 0;
+    m.uniforms.uBg.value.copy(bg);
+    m.needsUpdate = true;
+  }
+  // 글로우 토큰(0.14)은 2D 기준이라 point sprite 에서는 1.5배로 쓴다. light 는 0
+  nodeMat.uniforms.uGlow.value = tokens.glowAlpha * 1.5;
+  nodes.forEach((n, i) => { nodeColor(i).toArray(aColor, i * 3); });
+  nodeGeo.attributes.aColor.needsUpdate = true;
+  const ringCol = new THREE.Color(tokens.muted);
+  const rc = ringGeo.attributes.aColor.array, ra = ringGeo.attributes.aAlpha.array;
+  for (let k = 0; k < ra.length; k++) { ringCol.toArray(rc, k * 3); ra[k] = light ? 0.22 : 0.2; }
+  ringGeo.attributes.aColor.needsUpdate = ringGeo.attributes.aAlpha.needsUpdate = true;
+  recolorEdges();
+  computeTargets(true);
+}
+
+function recolorEdges() {
+  const base = new THREE.Color(tokens.edge);
+  const focus = sel >= 0 ? sel : hover;
+  edges.forEach(([a, b], k) => {
+    let c = base;
+    if (focus >= 0 && (a === focus || b === focus)) c = nodeColor(a === focus ? b : a);
+    c.toArray(eColor, k * 6); c.toArray(eColor, k * 6 + 3);
+  });
+  edgeGeo.attributes.aColor.needsUpdate = true;
+}
+
+function computeTargets(snap) {
+  const dim = tokens.dimAlpha;
+  const fc = legendHover || filterCat;
+  for (let i = 0; i < N; i++) {
+    let v = 1;
+    if (sel >= 0) v = i === sel || nbrs[sel].has(i) ? 1 : dim; // 선택이 필터보다 앞선다
+    else if (fc && nodes[i].category !== fc) v = dim;
+    if (matchSet && !matchSet.has(i)) v = Math.min(v, 0.45);
+    emTgt[i] = v;
+    aRing[i] = i === sel ? 2 : i === hover || i === cursor ? 1 : 0;
+  }
+  nodeGeo.attributes.aRing.needsUpdate = true;
+  const focus = sel >= 0 ? sel : hover;
+  edges.forEach(([a, b], k) => {
+    let v = tokens.edgeAlpha;
+    if (focus >= 0) v = a === focus || b === focus ? tokens.edgeHiAlpha : 0.03;
+    else if (fc) v = nodes[a].category === fc && nodes[b].category === fc ? tokens.edgeAlpha * 1.6 : 0.012;
+    edTgt[k] = v;
+  });
+  if (snap || reduce) { emCur.set(emTgt); edCur.set(edTgt); }
+  dirty = targetsChanged = true;
+}
+
+// ── 카메라: 원점 둘레의 구면 좌표. 직접 구현해 터치와 감속을 손에 쥔다 ──
+const cam = { theta: 0.6, phi: 1.2, dist: 400, target: new THREE.Vector3() };
+let sizeScale = 1, fitDist = 400, viewW = 1, viewH = 1, offX = 0, offY = 0;
+let anim = null; // { from, to, t0, dur }
+let autoRotate = !reduce;
+
+function panelInset() {
+  if ($('panel').hidden) return [0, 0];
+  if (viewW <= 640) return [0, Math.min(viewH * 0.6, $('panel').offsetHeight) / 2];
+  return [(360 + 32) / 2, 0];
+}
+
+function computeFit() {
+  const vf = (camera.fov * Math.PI) / 180;
+  const hf = 2 * Math.atan(Math.tan(vf / 2) * camera.aspect);
+  fitDist = (sceneR * 1.06) / Math.sin(Math.min(vf, hf) / 2);
+}
+
+function resize() {
+  const r = stage.getBoundingClientRect();
+  viewW = Math.max(1, r.width); viewH = Math.max(1, r.height);
+  renderer.setSize(viewW, viewH);
+  camera.aspect = viewW / viewH;
+  computeFit();
+  nodeMat.uniforms.uPx.value = renderer.getPixelRatio();
+  // 좁은 화면에서는 같은 구가 작게 들어오므로 노드도 줄인다. 안 그러면 한 덩어리가 된다
+  sizeScale = Math.min(1, Math.max(0.55, Math.min(viewW, viewH) / 800));
+  nodeMat.uniforms.uScale.value = sizeScale;
+  dirty = true;
+}
+
+function flyTo(target, dist, theta, phi) {
+  const [ox, oy] = panelInset();
+  const to = { target: target.clone(), dist, theta: theta ?? cam.theta, phi: phi ?? cam.phi, ox, oy };
+  if (reduce) { Object.assign(cam, { target: to.target, dist, theta: to.theta, phi: to.phi }); offX = ox; offY = oy; dirty = true; return; }
+  anim = { from: { target: cam.target.clone(), dist: cam.dist, theta: cam.theta, phi: cam.phi, ox: offX, oy: offY }, to, t0: performance.now(), dur: 480 };
+}
+const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
+function updateCamera(now) {
+  if (anim) {
+    const t = Math.min(1, (now - anim.t0) / anim.dur), e = easeOut(t), f = anim.from, to = anim.to;
+    cam.target.lerpVectors(f.target, to.target, e);
+    cam.dist = f.dist + (to.dist - f.dist) * e;
+    cam.theta = f.theta + (to.theta - f.theta) * e;
+    cam.phi = f.phi + (to.phi - f.phi) * e;
+    offX = f.ox + (to.ox - f.ox) * e; offY = f.oy + (to.oy - f.oy) * e;
+    if (t >= 1) anim = null;
+    dirty = true;
+  }
+  if (autoRotate && !anim) { cam.theta += 0.00022 * 16; dirty = true; }
+  const s = Math.sin(cam.phi);
+  camera.position.set(
+    cam.target.x + cam.dist * s * Math.sin(cam.theta),
+    cam.target.y + cam.dist * Math.cos(cam.phi),
+    cam.target.z + cam.dist * s * Math.cos(cam.theta));
+  camera.lookAt(cam.target);
+  // 패널이 덮는 쪽을 피해 초점을 옮긴다 (projection 의 view offset)
+  if (offX || offY) camera.setViewOffset(viewW, viewH, offX, offY, viewW, viewH);
+  else camera.clearViewOffset();
+  camera.updateMatrixWorld();
+  const near = cam.dist - ringR * 0.55, far = cam.dist + ringR * 0.95;
+  for (const m of [nodeMat, edgeMat, rings.material]) { m.uniforms.uNear.value = near; m.uniforms.uFar.value = far; }
+  nodeMat.uniforms.uRef.value = fitDist;
+}
+
+// ── 화면 투영: 라벨, 피킹, 정렬이 함께 쓴다 ──────────────────────────────
+const sx = new Float32Array(N), sy = new Float32Array(N), sd = new Float32Array(N), sr = new Float32Array(N), sf = new Float32Array(N);
+const tmp = new THREE.Vector3();
+function project() {
+  const near = nodeMat.uniforms.uNear.value, far = nodeMat.uniforms.uFar.value;
+  for (let i = 0; i < N; i++) {
+    tmp.set(P[i * 3], P[i * 3 + 1], P[i * 3 + 2]).applyMatrix4(camera.matrixWorldInverse);
+    const depth = -tmp.z;
+    sd[i] = depth;
+    sf[i] = Math.min(1, Math.max(0, (depth - near) / (far - near)));
+    sr[i] = aSize[i] * sizeScale * Math.min(2.2, Math.max(0.55, Math.sqrt(fitDist / Math.max(depth, 1))));
+    tmp.applyMatrix4(camera.projectionMatrix);
+    sx[i] = (tmp.x * 0.5 + 0.5) * viewW;
+    sy[i] = (-tmp.y * 0.5 + 0.5) * viewH;
+  }
+  if (isLight()) {
+    // normal blending 은 순서가 보인다. 먼 것부터 그린다
+    const idx = Array.from(order).sort((a, b) => sd[b] - sd[a]);
+    order.set(idx);
+    nodeGeo.index.needsUpdate = true;
+  }
+}
+
+// ── 라벨: degree 하한은 확대 배율을 따른다. 깊이로 흐리고 충돌하면 덜 중요한 쪽을 뺀다 ──
+const labelHost = $('labels');
+const measure = document.createElement('canvas').getContext('2d');
+const labelW = new Map();
+const pool = [];
+function labelEl(k) {
+  while (pool.length <= k) { const el = document.createElement('div'); el.className = 'cel-label'; labelHost.appendChild(el); pool.push({ el, id: -1 }); }
+  return pool[k];
+}
+function widthOf(i, size, weight) {
+  const key = i + ':' + size;
+  if (!labelW.has(key)) {
+    measure.font = weight + ' ' + size + 'px ' + tokens.fontDisplay;
+    labelW.set(key, measure.measureText(trunc(nodes[i].title)).width);
+  }
+  return labelW.get(key);
+}
+function drawLabels() {
+  const k = fitDist / cam.dist;
+  const minDeg = k < 0.8 ? 50 : k < 1.4 ? 25 : k < 2.2 ? 10 : 0;
+  const fc = legendHover || filterCat;
+  const cand = [];
+  const focusSet = sel >= 0 ? nbrs[sel] : null;
+  const panelEdge = !$('panel').hidden && viewW > 640 ? viewW - 360 - 32 : viewW;
+  for (let i = 0; i < N; i++) {
+    if (sd[i] < 1 || reveal[i] < 0.5) continue;
+    if (sx[i] < -40 || sx[i] > panelEdge || sy[i] < 64 || sy[i] > viewH) continue; // 64: 검색 입력 아래부터
+    let pr = -1;
+    if (i === sel) pr = 1e6;
+    else if (i === hover || i === cursor) pr = 1e5;
+    else if (matchSet && matchSet.has(i)) pr = 5e4 + nodes[i].degree;
+    else if (focusSet) { if (focusSet.has(i)) pr = 1e3 + nodes[i].degree * (1 - sf[i] * 0.6); }
+    else if (nodes[i].degree >= minDeg && (!fc || nodes[i].category === fc)) pr = nodes[i].degree * (1 - sf[i] * 0.7);
+    if (pr >= 0) cand.push([pr, i]);
+  }
+  cand.sort((a, b) => b[0] - a[0]);
+  const placed = [];
+  let used = 0;
+  for (const [pr, i] of cand) {
+    if (used >= 60) break;
+    const focus = pr >= 1e5 || (focusSet && i === cursor);
+    const d = nodes[i].degree;
+    const size = focus || d >= 50 ? 13 : d >= 15 ? 12 : 11;
+    const w = widthOf(i, size, focus || d >= 50 ? 700 : 500) + 6;
+    const h = size + 4;
+    let x = sx[i] + sr[i] + 4, y = sy[i] - sr[i] - h * 0.6;
+    if (x + w > panelEdge - 4) x = sx[i] - sr[i] - 4 - w;
+    if (x < 4) { if (pr < 1e5) continue; x = 4; }
+    const box = [x, y, x + w, y + h];
+    if (pr < 1e5 && placed.some((b) => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1])) continue;
+    placed.push(box);
+    const slot = labelEl(used++);
+    if (slot.id !== i) {
+      slot.el.textContent = trunc(nodes[i].title);
+      slot.el.className = 'cel-label' + (focus ? ' is-focus' : d >= 50 ? ' is-hub' : d >= 15 ? ' is-mid' : '');
+      slot.id = i;
+    }
+    // 앞쪽은 또렷하게, 구 뒤편은 흐리게. 초점 라벨은 늘 읽힌다
+    const op = (focus ? 1 : 1 - sf[i] * 0.75) * Math.min(1, edgeReveal * 2 + 0.2);
+    slot.el.style.opacity = op.toFixed(2);
+    slot.el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+    slot.el.style.display = '';
+  }
+  for (let k2 = used; k2 < pool.length; k2++) { pool[k2].el.style.display = 'none'; }
+}
+
+// ── 프레임 ────────────────────────────────────────────────────────────────
+let last = performance.now();
+function frame(now) {
+  const dt = Math.min(64, now - last); last = now;
+  // 첫 등장: degree 순으로 600ms, 그 뒤 엣지가 페이드인
+  const el = now - t0;
+  let revealing = false;
+  if (!reduce && edgeReveal < 1) {
+    for (let i = 0; i < N; i++) reveal[i] = Math.min(1, Math.max(0, (el - revealAt[i]) / 240));
+    edgeReveal = Math.min(1, Math.max(0, (el - 600) / 400));
+    revealing = true;
+  }
+  // 강조 흐림 전환 160ms
+  const step = reduce ? 1 : Math.min(1, dt / 160);
+  let moving = revealing || targetsChanged;
+  targetsChanged = false;
+  for (let i = 0; i < N; i++) {
+    const d = emTgt[i] - emCur[i];
+    if (Math.abs(d) > 0.002) { emCur[i] += d * Math.min(1, step * 2.5); moving = true; } else emCur[i] = emTgt[i];
+    aAlpha[i] = emCur[i] * reveal[i];
+  }
+  for (let k = 0; k < E; k++) {
+    const d = edTgt[k] - edCur[k];
+    if (Math.abs(d) > 0.001) { edCur[k] += d * Math.min(1, step * 2.5); moving = true; } else edCur[k] = edTgt[k];
+    const a = edCur[k] * edgeReveal;
+    eAlpha[k * 2] = eAlpha[k * 2 + 1] = a;
+  }
+  if (moving) { nodeGeo.attributes.aAlpha.needsUpdate = true; edgeGeo.attributes.aAlpha.needsUpdate = true; dirty = true; }
+  updateCamera(now);
+  if (dirty) {
+    project();
+    renderer.render(scene, camera);
+    drawLabels();
+    dirty = false;
+  }
+  requestAnimationFrame(frame);
+}
+
+// ── 선택과 패널 ─────────────────────────────────────────────────────────
+const panel = $('panel');
+function neighborList(i) { return [...nbrs[i]].sort((a, b) => nodes[b].degree - nodes[a].degree || nodes[a].title.localeCompare(nodes[b].title)); }
+
+function select(i, opts = {}) {
+  sel = i; cursor = -1;
+  stopAuto();
+  if (i < 0) {
+    panel.hidden = true;
+    history.replaceState(null, '', location.pathname + location.search);
+    recolorEdges(); computeTargets();
+    if (opts.keepCamera) flyTo(cam.target, cam.dist); // 패널 오프셋만 되돌린다
+    else flyTo(new THREE.Vector3(), fitDist);
+    return;
+  }
+  const n = nodes[i], c = Mock.cat(n.category);
+  $('p-cat').dataset.cat = n.category;
+  $('p-cat').innerHTML = '<span class="mk-swatch"></span>' + c.en;
+  $('p-title').textContent = n.title;
+  $('p-meta').innerHTML = '<span>' + n.year + '</span><span>' + esc(n.type) + '</span><span>연결 ' + nbrs[i].size + '</span>';
+  $('p-tags').innerHTML = (n.tags || []).map((t) => '<span class="mk-tag">' + esc(t) + '</span>').join('');
+  $('p-nb-h').textContent = '이웃 페이지 ' + nbrs[i].size;
+  $('p-nb').innerHTML = neighborList(i).map((j) =>
+    '<li data-cat="' + nodes[j].category + '" data-i="' + j + '"><span class="mk-swatch"></span>' + esc(nodes[j].title) +
+    '<span class="mk-deg" style="margin-left:auto">' + nodes[j].degree + '</span></li>').join('');
+  $('p-nb').parentElement.scrollTop = 0;
+  $('p-open').href = '/ai-wiki/' + n.id + '/';
+  panel.hidden = false;
+  history.replaceState(null, '', '#node=' + n.id);
+  recolorEdges(); computeTargets();
+  // 이웃이 다 들어오도록 거리를 정한다
+  const p = posOf(i);
+  let spread = 0;
+  nbrs[i].forEach((j) => { spread = Math.max(spread, posOf(j).distanceTo(p)); });
+  const vf = (camera.fov * Math.PI) / 180;
+  const dist = Math.min(fitDist * 0.9, Math.max(fitDist * 0.32, (spread * 1.05) / Math.sin(vf / 2)));
+  flyTo(p, dist);
+}
+
+function setCursor(j) {
+  cursor = j;
+  $('p-nb').querySelectorAll('li').forEach((li) => {
+    const on = +li.dataset.i === j;
+    li.classList.toggle('is-cursor', on);
+    if (on) li.scrollIntoView({ block: 'nearest' });
+  });
+  computeTargets();
+}
+
+$('p-close').addEventListener('click', () => select(-1));
+$('p-nb').addEventListener('click', (e) => { const li = e.target.closest('li'); if (li) select(+li.dataset.i); });
+$('p-nb').addEventListener('mouseover', (e) => { const li = e.target.closest('li'); if (li) { hover = +li.dataset.i; computeTargets(); } });
+$('p-nb').addEventListener('mouseleave', () => { hover = -1; computeTargets(); });
+$('fit').addEventListener('click', () => { stopAuto(); flyTo(new THREE.Vector3(), fitDist); });
+
+// ── 범례 필터 ───────────────────────────────────────────────────────────
+const legend = $('legend');
+function setFilter(c) {
+  filterCat = filterCat === c ? null : c;
+  legend.querySelectorAll('li').forEach((li) => li.setAttribute('aria-pressed', String(li.dataset.cat === filterCat)));
+  computeTargets();
+}
+legend.addEventListener('click', (e) => { const li = e.target.closest('li'); if (li) setFilter(li.dataset.cat); });
+legend.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { const li = e.target.closest('li'); if (li) { e.preventDefault(); setFilter(li.dataset.cat); } } });
+legend.addEventListener('mouseover', (e) => { const li = e.target.closest('li'); if (li && matchMedia('(hover: hover)').matches) { legendHover = li.dataset.cat; computeTargets(); } });
+legend.addEventListener('mouseleave', () => { legendHover = null; computeTargets(); });
+
+// ── 검색 ────────────────────────────────────────────────────────────────
+const q = $('q'), results = $('results');
+let hits = [], active = 0;
+function renderResults() {
+  const s = q.value.trim().toLowerCase();
+  if (!s) { results.hidden = true; q.setAttribute('aria-expanded', 'false'); matchSet = null; computeTargets(); return; }
+  hits = nodes.filter((n) => n.title.toLowerCase().includes(s) || n.stem.includes(s))
+    .sort((a, b) => b.degree - a.degree).slice(0, 8).map((n) => n.i);
+  matchSet = hits.length ? new Set(hits) : null;
+  active = 0;
+  results.innerHTML = hits.length ? hits.map((i, k) =>
+    '<li role="option" data-cat="' + nodes[i].category + '" data-i="' + i + '" aria-selected="' + (k === active) + '">' +
+    '<span class="mk-swatch"></span><span>' + esc(nodes[i].title) + '</span><span class="mk-deg">' + nodes[i].degree + '</span></li>').join('')
+    : '<li class="mk-results-empty" aria-disabled="true">일치하는 페이지가 없다. 영문 제목으로 찾아 본다</li>';
+  results.hidden = false;
+  q.setAttribute('aria-expanded', 'true');
+  computeTargets();
+}
+function pick(i) { q.value = ''; renderResults(); q.blur(); select(i); }
+q.addEventListener('input', renderResults);
+q.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (!hits.length) return;
+    active = (active + (e.key === 'ArrowDown' ? 1 : hits.length - 1)) % hits.length;
+    results.querySelectorAll('li').forEach((li, k) => li.setAttribute('aria-selected', String(k === active)));
+  } else if (e.key === 'Enter' && hits.length) { e.preventDefault(); pick(hits[active]); }
+  else if (e.key === 'Escape') { q.value = ''; renderResults(); q.blur(); }
+});
+results.addEventListener('mousedown', (e) => { const li = e.target.closest('li[data-i]'); if (li) { e.preventDefault(); pick(+li.dataset.i); } });
+
+// ── 포인터: 한 손가락 회전, 두 손가락 핀치, 탭 선택 ──────────────────────
+const canvas = renderer.domElement, tip = $('tip');
+const ptrs = new Map();
+let downAt = null, pinch0 = 0, dist0 = 0;
+function stopAuto() { if (autoRotate) { autoRotate = false; $('hint').textContent = '드래그로 돌리고 휠로 확대한다'; } }
+function hitTest(x, y) {
+  let best = -1, bestD = Infinity;
+  for (let i = 0; i < N; i++) {
+    if (sd[i] < 1 || reveal[i] < 0.5) continue;
+    const dx = sx[i] - x, dy = sy[i] - y, rr = Math.max(sr[i] + 3, 7);
+    if (dx * dx + dy * dy <= rr * rr && sd[i] - emCur[i] * 40 < bestD) { best = i; bestD = sd[i] - emCur[i] * 40; } // 앞쪽, 흐리지 않은 쪽 우선
+  }
+  return best;
+}
+function local(e) { const r = stage.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
+function showTip(i, x, y) {
+  if (i < 0) { tip.hidden = true; return; }
+  const n = nodes[i];
+  tip.innerHTML = '<div class="mk-tip-title">' + esc(n.title) + '</div><div class="mk-tip-meta" data-cat="' + n.category + '"><span class="mk-swatch"></span>' +
+    Mock.cat(n.category).en + '<span>' + n.year + '</span><span>연결 ' + nbrs[i].size + '</span></div>';
+  tip.hidden = false;
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  tip.style.left = (x + 12 + w > viewW ? x - 12 - w : x + 12) + 'px';
+  tip.style.top = (y + 12 + h > viewH ? y - 12 - h : y + 12) + 'px';
+}
+canvas.addEventListener('pointerdown', (e) => {
+  canvas.setPointerCapture(e.pointerId);
+  ptrs.set(e.pointerId, local(e));
+  stopAuto(); anim = null;
+  if (ptrs.size === 1) downAt = { p: local(e), t: performance.now(), moved: 0 };
+  if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; pinch0 = Math.hypot(a[0] - b[0], a[1] - b[1]); dist0 = cam.dist; downAt = null; }
+});
+canvas.addEventListener('pointermove', (e) => {
+  const p = local(e);
+  if (!ptrs.has(e.pointerId)) {
+    if (e.pointerType !== 'mouse') return;
+    const h = hitTest(p[0], p[1]);
+    if (h !== hover) { hover = h; if (sel < 0) recolorEdges(); computeTargets(); }
+    stage.classList.toggle('is-over-node', h >= 0);
+    showTip(h, p[0], p[1]);
+    return;
+  }
+  const prev = ptrs.get(e.pointerId);
+  ptrs.set(e.pointerId, p);
+  if (ptrs.size === 1) {
+    const dx = p[0] - prev[0], dy = p[1] - prev[1];
+    if (downAt) downAt.moved += Math.abs(dx) + Math.abs(dy);
+    if (!downAt || downAt.moved > 5) {
+      stage.classList.add('is-dragging');
+      cam.theta -= dx * 0.006;
+      cam.phi = Math.min(Math.PI - 0.05, Math.max(0.05, cam.phi - dy * 0.006));
+      tip.hidden = true;
+      dirty = true;
+    }
+  } else if (ptrs.size === 2) {
+    const [a, b] = [...ptrs.values()];
+    const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+    cam.dist = Math.min(fitDist * 2.5, Math.max(fitDist * 0.18, (dist0 * pinch0) / Math.max(d, 1)));
+    dirty = true;
+  }
+});
+function endPtr(e) {
+  if (!ptrs.has(e.pointerId)) return;
+  ptrs.delete(e.pointerId);
+  stage.classList.remove('is-dragging');
+  if (downAt && ptrs.size === 0 && downAt.moved <= 5 && performance.now() - downAt.t < 600) {
+    const p = local(e), h = hitTest(p[0], p[1]);
+    if (h >= 0) select(h);
+    else if (sel >= 0) select(-1, { keepCamera: true });
+  }
+  if (ptrs.size === 0) downAt = null;
+}
+canvas.addEventListener('pointerup', endPtr);
+canvas.addEventListener('pointercancel', endPtr);
+canvas.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse' && !ptrs.size) { hover = -1; if (sel < 0) recolorEdges(); computeTargets(); tip.hidden = true; } });
+canvas.addEventListener('wheel', (e) => {
+  e.preventDefault(); stopAuto(); anim = null;
+  cam.dist = Math.min(fitDist * 2.5, Math.max(fitDist * 0.18, cam.dist * Math.exp(e.deltaY * 0.0012)));
+  dirty = true;
+}, { passive: false });
+
+// ── 키보드: Esc 해제, 방향키로 이웃 사이를 옮기고 Enter 로 그 이웃을 선택. 커서가 없으면 Enter 가 페이지를 연다 ──
+document.addEventListener('keydown', (e) => {
+  if (e.target === q || e.target.closest('.mk-legend')) return;
+  if (e.key === 'Escape') { if (sel >= 0) select(-1); else if (filterCat) setFilter(filterCat); return; }
+  if (sel < 0) return;
+  const list = neighborList(sel);
+  if (!list.length) return;
+  if (['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'].includes(e.key)) {
+    e.preventDefault();
+    const k = list.indexOf(cursor), fwd = e.key === 'ArrowDown' || e.key === 'ArrowRight';
+    setCursor(list[k < 0 ? (fwd ? 0 : list.length - 1) : (k + (fwd ? 1 : list.length - 1)) % list.length]);
+  } else if (e.key === 'Enter' && !e.target.closest('a,button')) {
+    e.preventDefault();
+    if (cursor >= 0) select(cursor); else $('p-open').click();
+  }
+});
+
+// ── 딥링크 ──────────────────────────────────────────────────────────────
+function fromHash() {
+  const m = /#node=(.+)$/.exec(location.hash);
+  const n = m && byId.get(decodeURIComponent(m[1]));
+  if (n && n.i !== sel) select(n.i);
+}
+window.addEventListener('hashchange', fromHash);
+
+Mock.onTheme((t) => { tokens = t; labelW.clear(); applyTheme(); });
+window.addEventListener('resize', () => { resize(); if (sel >= 0) { const [ox, oy] = panelInset(); offX = ox; offY = oy; } });
+if (reduce) $('hint').textContent = '드래그로 돌리고 휠로 확대한다';
+else $('hint').textContent = '천천히 도는 중. 드래그하면 멈춘다';
+
+resize();
+cam.dist = fitDist;
+applyTheme();
+fromHash();
+requestAnimationFrame(frame);
+document.fonts && document.fonts.ready.then(() => { labelW.clear(); dirty = true; });
+</script>
+</body>
+</html>
