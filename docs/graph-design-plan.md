@@ -121,7 +121,7 @@
 ### Phase 1. 디자인 시안
 
 - [x] `frontend-design` 스킬로 시각 방향 정리 (타이포, 색, 여백, 모션): `docs/graph-mockups/design-direction.md`, 공용 기반 `shared/`, 데이터 스냅샷 `build-data.mjs`
-- [ ] 시안 A 성도: `docs/graph-mockups/a-atlas.html`
+- [x] 시안 A 성도: `docs/graph-mockups/a-atlas.html`
 - [ ] 시안 B 궤도: `docs/graph-mockups/b-orbit.html`
 - [ ] 시안 C 군도: `docs/graph-mockups/c-archipelago.html`
 - [ ] 시안 D 지층: `docs/graph-mockups/d-strata.html`
