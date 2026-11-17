@@ -1,6 +1,6 @@
 // graph-core.js — 캔버스로 그래프를 그리는 두 화면의 공통 부품.
 //
-//   소비자: constellation.js(홈 히어로 ambient 그래프) · graph-explorer.js(/graph/ 탐색기)
+//   소비자: constellation.js(홈 히어로 ambient 그래프) · graph-explorer.js(/graph/ 탐색기, fetch·리사이즈·테마 구독만)
 //
 // 번들러가 없어 import 를 못 쓰므로 window.GraphCore 로 노출하고, 두 소비자보다 먼저
 // 로드한다. <script defer> 는 문서 순서를 지키므로 templates.mjs 의 scripts 배열에서
@@ -13,11 +13,6 @@
   'use strict';
 
   // ── CSS 토큰 ───────────────────────────────────────────────────────────────
-  function token(name, fallback) {
-    var v = getComputedStyle(document.documentElement).getPropertyValue(name);
-    return (v && v.trim()) || fallback;
-  }
-
   // 한 번의 getComputedStyle 로 그래프가 쓰는 색을 모두 읽는다.
   // core 는 --signal(아쿠아), physical 은 --signal-physical(앰버).
   function palette() {
@@ -43,10 +38,6 @@
   // 노드 도메인 → 강조색. graph.json 에 domain 이 없던 시절 캐시를 만나면 core 로 떨어진다.
   function isPhysical(node) {
     return !!node && node.domain === 'physical';
-  }
-
-  function nodeColor(node, pal) {
-    return isPhysical(node) ? pal.physical : pal.signal;
   }
 
   // ── 캔버스 ─────────────────────────────────────────────────────────────────
@@ -110,38 +101,13 @@
     });
   }
 
-  // 노드 배열 + links([s0,t0,s1,t1,…] 인덱스 평면 배열) → { index: {id: i}, neighbors: [[i,…],…] }.
-  // 인접은 한 번만 만들어 두고 호버마다 재계산하지 않는다.
-  function buildAdjacency(nodes, links) {
-    var index = {};
-    var i;
-    for (i = 0; i < nodes.length; i++) index[nodes[i].id] = i;
-
-    var sets = [];
-    for (i = 0; i < nodes.length; i++) sets.push({});
-    for (i = 0; i + 1 < links.length; i += 2) {
-      var s = links[i];
-      var t = links[i + 1];
-      if (s === t) continue;
-      sets[s][t] = 1;
-      sets[t][s] = 1;
-    }
-    var neighbors = sets.map(function (set) {
-      return Object.keys(set).map(Number);
-    });
-    return { index: index, neighbors: neighbors };
-  }
-
   window.GraphCore = {
-    token: token,
     palette: palette,
     isPhysical: isPhysical,
-    nodeColor: nodeColor,
     reduceMotion: reduceMotion,
     fitCanvas: fitCanvas,
     onResize: onResize,
     onThemeChange: onThemeChange,
     fetchGraph: fetchGraph,
-    buildAdjacency: buildAdjacency,
   };
 })();

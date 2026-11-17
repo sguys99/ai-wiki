@@ -3,7 +3,7 @@
 //   (2) 카드 neighborhood hover: 카드에 마우스를 올리면 연결된 카드를 하이라이트.
 //
 // 색은 도메인당 signal 하나 — core는 aqua, physical은 amber. 토큰 읽기·캔버스 fit·
-// 인접 계산 같은 공통 부품은 graph-core.js(window.GraphCore)가 갖고 있고 /graph/ 탐색기와
+// 리사이즈·테마 구독 같은 공통 부품은 graph-core.js(window.GraphCore)가 갖고 있고 /graph/ 탐색기와
 // 공유한다. CSS 토큰을 런타임에 읽으므로 light/dark 모두 따라간다.
 // 노드 도메인은 graph.json 의 domain 필드다 — 카테고리 목록을 여기 적어 두지 않는다.
 // prefers-reduced-motion 시 정지 프레임 1장만 그린다.

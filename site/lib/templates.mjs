@@ -390,7 +390,7 @@ export function graphPage(data) {
     .sort((a, b) => b.nodes.length - a.nodes.length)
     .map(
       (g) =>
-        `        <button type="button" class="graph-legend-item" data-cat="${escapeHtml(g.slug)}" aria-pressed="false"><span class="graph-swatch" aria-hidden="true"></span><span class="graph-legend-name">${escapeHtml(g.label)}</span><span class="graph-legend-n">${g.nodes.length}</span></button>`
+        `        <button type="button" class="graph-legend-item" data-cat="${escapeHtml(g.slug)}" aria-pressed="false" disabled><span class="graph-swatch" aria-hidden="true"></span><span class="graph-legend-name">${escapeHtml(g.label)}</span><span class="graph-legend-n">${g.nodes.length}</span></button>`
     )
     .join('\n');
 
@@ -421,15 +421,17 @@ ${g.nodes
     )
     .join('\n');
 
+  // 아직 동작을 붙이지 않은 컨트롤은 hidden 이나 disabled 로 내보낸다 (Phase 4 뒤 항목이 하나씩 푼다):
+  // 명령 줄(검색, 필터) 5번, 줌과 맞춤 3번, 조작 안내와 캔버스 Tab 순서 7번, 범례 필터 5번.
   const body = `<h1 class="graph-title" id="graph-title">그래프</h1>
 <a class="graph-skip" href="#list">페이지 목록으로 건너뛰기</a>
 
 <section class="graph-stage" data-mode="atlas" aria-labelledby="graph-title" hidden>
-  <canvas class="graph-canvas" tabindex="0" role="application" aria-roledescription="관계 그래프" aria-label="wiki 페이지 관계 그래프, 전체 보기" aria-describedby="graph-help" data-graph="${escapeHtml(graphHref)}" data-base="${escapeHtml(base)}"></canvas>
+  <canvas class="graph-canvas" tabindex="-1" role="application" aria-roledescription="관계 그래프" aria-label="wiki 페이지 관계 그래프, 전체 보기" aria-describedby="graph-help" data-graph="${escapeHtml(graphHref)}" data-base="${escapeHtml(base)}"></canvas>
   <p class="sr-only" id="graph-help">방향키로 이웃을 고르고 Enter로 중심을 옮긴다. 중심에서 Enter는 페이지를 연다. Esc는 전체 보기. 슬래시로 검색</p>
   <p class="sr-only" id="graph-live" aria-live="polite"></p>
 
-  <div class="graph-cmd graph-float is-tl">
+  <div class="graph-cmd graph-float is-tl" hidden>
     <search class="graph-search" role="search">
       <label class="sr-only" for="graph-q">페이지 검색</label>
       <input id="graph-q" type="search" placeholder="페이지 제목으로 찾기" autocomplete="off" spellcheck="false" role="combobox" aria-controls="graph-results" aria-expanded="false" aria-autocomplete="list">
@@ -486,14 +488,14 @@ ${legend}
       <button type="button" class="graph-legend-reset" hidden>필터 해제</button>
       <!-- Phase 5 예약: 최근 추가 표식 줄 .graph-legend-recent, 약한 연결 링크 #weak-links (01 7절) -->
     </div>
-    <p class="graph-hint is-atlas"><kbd>클릭</kbd> 궤도로 열기<br><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동<br><kbd>/</kbd> 검색</p>
-    <p class="graph-hint is-orbit"><kbd>← →</kbd> 궤도를 돈다<br><kbd>↑ ↓</kbd> 안팎 궤도로 옮긴다<br><kbd>Enter</kbd> 중심에 둔다<br><kbd>Esc</kbd> 전체 보기</p>
+    <p class="graph-hint is-atlas" hidden><kbd>클릭</kbd> 궤도로 열기<br><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동<br><kbd>/</kbd> 검색</p>
+    <p class="graph-hint is-orbit" hidden><kbd>← →</kbd> 궤도를 돈다<br><kbd>↑ ↓</kbd> 안팎 궤도로 옮긴다<br><kbd>Enter</kbd> 중심에 둔다<br><kbd>Esc</kbd> 전체 보기</p>
   </div>
 
   <div class="graph-tools graph-float is-br" role="toolbar" aria-label="보기 도구">
-    <button type="button" class="graph-tool is-zoom" id="graph-zoom-in" aria-label="확대">+</button>
-    <button type="button" class="graph-tool is-zoom" id="graph-zoom-out" aria-label="축소">−</button>
-    <button type="button" class="graph-tool" id="graph-fit"><span class="graph-tool-ico" aria-hidden="true">⤢</span><span class="graph-tool-label">화면 맞춤</span></button>
+    <button type="button" class="graph-tool is-zoom" id="graph-zoom-in" aria-label="확대" hidden>+</button>
+    <button type="button" class="graph-tool is-zoom" id="graph-zoom-out" aria-label="축소" hidden>−</button>
+    <button type="button" class="graph-tool" id="graph-fit" hidden><span class="graph-tool-ico" aria-hidden="true">⤢</span><span class="graph-tool-label">화면 맞춤</span></button>
     <button type="button" class="graph-tool" id="graph-to-list"><span class="graph-tool-ico" aria-hidden="true">☰</span><span class="graph-tool-label">목록 보기</span></button>
     <!-- Phase 5 예약: 데스크톱 전용 3D 실험 페이지 링크 (01 5.6절, 06 6절) -->
   </div>
