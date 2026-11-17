@@ -9,12 +9,13 @@
 
 import { rm, mkdir, writeFile, cp, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { gzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
 import { BASE, STRICT, href, RECENT_COUNT } from './lib/config.mjs';
 import { loadContent, tagsOf } from './lib/content.mjs';
 import { addedDates } from './lib/dates.mjs';
-import { buildGraph } from './lib/graph.mjs';
+import { buildGraph, toGraphJson, recentInfo } from './lib/graph.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
 import { home, wiki, about, tagIndex, tag, graphPage, studyPathSection } from './lib/templates.mjs';
 import { domainOf } from './lib/domains.mjs';
@@ -101,11 +102,15 @@ async function main() {
 
   // 3) 그래프 빌드 → graph.json
   const graph = buildGraph(pages, resolveLink);
-  await writeFile(
-    join(DIST, 'graph.json'),
-    JSON.stringify({ nodes: graph.nodes, edges: graph.edges }, null, 2)
-  );
+  const graphRecent = recentInfo(pages);
+  const graphJson = JSON.stringify(toGraphJson(graph, pages, null, graphRecent));
+  await writeFile(join(DIST, 'graph.json'), graphJson);
   console.log(`[graph] nodes: ${graph.nodes.length}  ·  edges: ${graph.edges.length}`);
+  console.log(
+    `[graph] graph.json ${Buffer.byteLength(graphJson)}B (gzip ${gzipSync(graphJson, { level: 9 }).length}B)`
+  );
+  if (!graphRecent.recentSince)
+    console.log(`[graph] WARN recent: ${graphRecent.count}/${graph.nodes.length} (git 이력 없음?)`);
 
   // 3.5) 무방향 인접 맵 (id → [이웃 id]) — 카드 hover 하이라이트 data 속성용
   const adjacency = new Map();
