@@ -422,7 +422,8 @@ ${g.nodes
     .join('\n');
 
   // 아직 동작을 붙이지 않은 컨트롤은 hidden 이나 disabled 로 내보낸다 (Phase 4 뒤 항목이 하나씩 푼다):
-  // 명령 줄(검색, 필터) 5번, 줌과 맞춤 3번, 조작 안내와 캔버스 Tab 순서 7번, 범례 필터 5번.
+  // 명령 줄(검색, 필터) 5번, 조작 안내의 클릭과 검색 줄 4, 5번, 궤도 안내와 캔버스 Tab 순서 7번, 범례 필터 5번.
+  // 줌과 맞춤 버튼, 조작 안내 상자는 3번(줌과 팬)이 탐색기 시작 때 푼다.
   const body = `<h1 class="graph-title" id="graph-title">그래프</h1>
 <a class="graph-skip" href="#list">페이지 목록으로 건너뛰기</a>
 
@@ -488,7 +489,7 @@ ${legend}
       <button type="button" class="graph-legend-reset" hidden>필터 해제</button>
       <!-- Phase 5 예약: 최근 추가 표식 줄 .graph-legend-recent, 약한 연결 링크 #weak-links (01 7절) -->
     </div>
-    <p class="graph-hint is-atlas" hidden><kbd>클릭</kbd> 궤도로 열기<br><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동<br><kbd>/</kbd> 검색</p>
+    <p class="graph-hint is-atlas" hidden><span class="graph-hint-line" data-hint="select" hidden><kbd>클릭</kbd> 궤도로 열기</span><span class="graph-hint-line" data-hint="zoom"><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동</span><span class="graph-hint-line" data-hint="search" hidden><kbd>/</kbd> 검색</span></p>
     <p class="graph-hint is-orbit" hidden><kbd>← →</kbd> 궤도를 돈다<br><kbd>↑ ↓</kbd> 안팎 궤도로 옮긴다<br><kbd>Enter</kbd> 중심에 둔다<br><kbd>Esc</kbd> 전체 보기</p>
   </div>
 

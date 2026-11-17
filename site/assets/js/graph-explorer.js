@@ -86,6 +86,7 @@
     var cats = [];
     nodes.forEach(function (n) { if (cats.indexOf(n.category) < 0) cats.push(n.category); });
 
+    function clearWidths() { nodes.forEach(function (n) { n.tw = null; }); }
     function shortTitle(t) {
       var c = t.indexOf(':');
       if (c >= 2 && c <= 28 && !/[ㄱ-힝]/.test(t.slice(0, c))) return t.slice(0, c);
@@ -95,7 +96,13 @@
     // ── 상태 ───────────────────────────────────────────────────────────────
     var W = 0, H = 0, dpr = 1;
     var cam = { x: 0, y: 0, k: 1 }; // screen = world × k + (x, y)
-    var K_MIN = 0.2;
+    var K_MIN = 0.2, K_MAX = 6;
+    var DUR_CAMERA = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dur-camera')) || 480;
+    var flight = null;       // { a, b, ax, ay, t0, dur, to } 카메라 비행 (02 3.1절)
+    var glide = null;        // { vx, vy } 손을 뗀 뒤 관성 팬, px/ms (02 J1)
+    var wz = null;           // { k, px, py } 휠 줌 목표. 매 프레임 다가간다
+    var wheelT = 0, lastNow = 0;
+    var bounds = null;       // home 외곽 (world). 팬 경계에 쓴다
     var portrait = null;
     var fitted = false;      // 무대가 처음 보일 때 한 번 화면 맞춤
     var revealT0 = reduce ? -1 : null; // 첫 등장 시각. -1 은 연출 없음
@@ -103,12 +110,15 @@
     var catInfo = [];        // 성운 이름 자리 계산용 카테고리 중심과 외곽 (home 기준)
     var T = null, dark = true, sprites = {}, bg = null, dust = null, haze = null;
     var chromeCache = null, namesCache = null;
-    var drawTimes = [], drawnNodes = 0;
+    var drawTimes = [], drawnNodes = 0, drawnLabels = 0;
 
     // ── 좌표 변환 ─────────────────────────────────────────────────────────
     function sx(wx) { return wx * cam.k + cam.x; }
     function sy(wy) { return wy * cam.k + cam.y; }
     function camFor(wx, wy, k, px, py) { return { x: px - wx * k, y: py - wy * k, k: k }; }
+    // screen → world. 뒤 항목(선택, 검색)도 이것을 쓴다
+    function toWorld(px, py, c) { c = c || cam; return { x: (px - c.x) / c.k, y: (py - c.y) / c.k }; }
+    function clampK(k) { return Math.max(K_MIN, Math.min(K_MAX, k)); }
     function isMobile() { return W <= 640; }
     function headerH() { return header ? header.offsetHeight : 0; }
 
@@ -139,6 +149,11 @@
         n.hy = p ? n.xy[0] : n.xy[1];
         if (animate) { n.f = { x: n.x, y: n.y }; } else { n.x = n.hx; n.y = n.hy; }
       });
+      bounds = { x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity };
+      nodes.forEach(function (n) {
+        bounds.x0 = Math.min(bounds.x0, n.hx); bounds.x1 = Math.max(bounds.x1, n.hx);
+        bounds.y0 = Math.min(bounds.y0, n.hy); bounds.y1 = Math.max(bounds.y1, n.hy);
+      });
       morph = animate && !reduce ? { t0: performance.now(), dur: 640 } : null;
       if (animate && reduce) nodes.forEach(function (n) { n.x = n.hx; n.y = n.hy; });
       catInfo = cats.map(function (c) {
@@ -160,6 +175,67 @@
     }
     function easeIO(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
     function clamp(t) { return t < 0 ? 0 : t > 1 ? 1 : t; }
+
+    // ── 카메라: 비행, 휠 줌, 관성, 팬 경계 (02 3절, 04 6.3절) ─────────────
+    // 사용 영역 중앙의 world 점과 log k 를 4차 ease-out 으로 옮긴다. 줌만 바뀌면 그 점이 화면에 고정된다
+    function flyTo(target, dur) {
+      wz = null; glide = null;
+      if (reduce || dur === 0) { cam = { x: target.x, y: target.y, k: target.k }; flight = null; redraw(); return; }
+      var v = atlasRect(), ax = v.x + v.w / 2, ay = v.y + v.h / 2, a = toWorld(ax, ay), b = toWorld(ax, ay, target);
+      flight = { a: { x: a.x, y: a.y, lk: Math.log(cam.k) }, b: { x: b.x, y: b.y, lk: Math.log(target.k) },
+        ax: ax, ay: ay, t0: performance.now(), dur: dur || DUR_CAMERA, to: target };
+      redraw();
+    }
+    function stepFlight(now) {
+      if (!flight) return false;
+      var f = flight, t = clamp((now - f.t0) / f.dur), e = 1 - Math.pow(1 - t, 4);
+      if (t >= 1) { cam = { x: f.to.x, y: f.to.y, k: f.to.k }; flight = null; return true; }
+      cam = camFor(f.a.x + (f.b.x - f.a.x) * e, f.a.y + (f.b.y - f.a.y) * e, Math.exp(f.a.lk + (f.b.lk - f.a.lk) * e), f.ax, f.ay);
+      return true;
+    }
+    function zoomAt(px, py, k) {
+      var w = toWorld(px, py);
+      cam = camFor(w.x, w.y, clampK(k), px, py);
+      constrain();
+    }
+    // 휠 한 칸의 계단을 짧게 풀어 준다 (시상수 60ms). 커서 아래 world 점은 매 프레임 고정이다
+    function stepWheel(dt) {
+      if (!wz) return false;
+      var d = Math.log(wz.k / cam.k);
+      if (Math.abs(d) < 0.002) { zoomAt(wz.px, wz.py, wz.k); wz = null; return true; }
+      zoomAt(wz.px, wz.py, cam.k * Math.exp(d * (1 - Math.exp(-dt / 60))));
+      return true;
+    }
+    function stepGlide(dt) {
+      if (!glide) return false;
+      var x = cam.x + glide.vx * dt, y = cam.y + glide.vy * dt;
+      cam.x = x; cam.y = y; constrain();
+      if (cam.x !== x) glide.vx = 0; // 경계에 닿은 축은 멈춘다
+      if (cam.y !== y) glide.vy = 0;
+      var f = Math.pow(0.92, dt / 16.67);
+      glide.vx *= f; glide.vy *= f;
+      if (Math.hypot(glide.vx, glide.vy) < 0.015) glide = null;
+      return true;
+    }
+    // 팬 경계: 배치 외곽이 화면 가장자리에서 짧은 변의 25% 안쪽까지는 남게 한다. 지도를 잃지 않는다
+    function constrain() {
+      if (!bounds) return;
+      var m = Math.min(W, H) * 0.25, k = cam.k;
+      var l = bounds.x0 * k + cam.x, r = bounds.x1 * k + cam.x, t = bounds.y0 * k + cam.y, b = bounds.y1 * k + cam.y;
+      if (r < m) cam.x += m - r; else if (l > W - m) cam.x -= l - (W - m);
+      if (b < m) cam.y += m - b; else if (t > H - m) cam.y -= t - (H - m);
+    }
+    // 버튼 줌: 사용 영역 중앙 기준 비행. 비행 중 또 누르면 그 목표에 곱한다 (02 3.2절)
+    function zoomBy(f) {
+      if (wz) { zoomAt(wz.px, wz.py, wz.k); wz = null; }
+      var to = flight ? flight.to : cam;
+      var k = clampK(to.k * f);
+      if (Math.abs(k - to.k) < 1e-6) return;
+      var v = atlasRect(), cx = v.x + v.w / 2, cy = v.y + v.h / 2, w = toWorld(cx, cy, to);
+      flyTo(camFor(w.x, w.y, k, cx, cy), DUR_CAMERA);
+    }
+    function fitView() { flyTo(fitTarget(nodes), DUR_CAMERA); }
+    function moving(now) { return !!(flight || glide || wz || morph || (gesture && gesture.moved) || now - wheelT < 160); }
 
     // ── 토큰, 스프라이트, 배경 ───────────────────────────────────────────
     // main.graph 가 사이트 토큰 일부를 시안 F 값으로 덮어쓰므로 main 에서 읽는다
@@ -325,11 +401,12 @@
       buildSprites(); buildHaze();
       if (W) buildBackground();
       namesCache = null;
+      clearWidths();
       redraw();
     }
 
     // 무대 위 크롬 상자 (무대 좌표). 라벨과 성운 이름이 그 밑에 깔리지 않게 피한다. 리사이즈 때만 다시 잰다 (04 9절)
-    var CHROME = ['.graph-cmd', '#graph-active-filters', '.graph-trail', '.graph-filters', '.graph-legend', '.graph-tools', '.graph-panel'];
+    var CHROME = ['.graph-cmd', '#graph-active-filters', '.graph-trail', '.graph-filters', '.graph-dock', '.graph-tools', '.graph-panel'];
     function chromeRects() {
       if (chromeCache) return chromeCache;
       var s = canvas.getBoundingClientRect(), out = [];
@@ -350,7 +427,12 @@
     function frame(now) {
       rafId = 0;
       if (revealT0 === null) revealT0 = now;
+      // 쉬다 깨어난 첫 프레임은 한 프레임 길이로 본다 (관성과 휠이 튀지 않게)
+      var dt = now - lastNow > 100 ? 16.67 : now - lastNow;
+      lastNow = now;
       var busy = stepMorph(now);
+      busy = stepFlight(now) | stepWheel(dt) | stepGlide(dt) || busy;
+      syncZoomButtons();
       if (revealT0 >= 0 && now - revealT0 < 1100) busy = true;
       var t0 = performance.now();
       draw(now);
@@ -385,7 +467,7 @@
 
       // 3. 성운 이름: 줌을 키우면 사라진다 (k 1.2 이하 완전, 1.7 이상 없음)
       var nameA = clamp((1.7 - k) / 0.5) * hazeIn;
-      var names = nameA > 0 ? drawNebulaNames(nameA) : [];
+      var names = nameA > 0 ? drawNebulaNames(nameA, now) : [];
 
       // 4. 엣지: 더하기 합성으로 겹칠수록 밝은 빛 실
       if (edgeIn > 0) {
@@ -458,12 +540,21 @@
     }
 
     // 성운 이름: 노드와 크롬과 다른 이름을 피할 자리를 찾고, 없으면 그리지 않는다 (04 5.2)
-    function drawNebulaNames(alpha) {
+    // 카메라가 움직이는 동안에는 자리를 다시 찾지 않고 지난 자리를 카메라에 따라 옮긴다 (04 5.2절 L9)
+    function drawNebulaNames(alpha, now) {
       var key = cam.x + ',' + cam.y + ',' + cam.k + ',' + W + ',' + H;
-      if (!namesCache || namesCache.key !== key || morph) namesCache = { key: key, list: placeNames() };
+      if (!namesCache || morph || (namesCache.key !== key && !(moving(now) && namesCache.W === W && namesCache.H === H)))
+        namesCache = { key: key, W: W, H: H, cam: { x: cam.x, y: cam.y, k: cam.k }, list: placeNames() };
+      var c0 = namesCache.cam, s = cam.k / c0.k;
+      var mx = function (x) { return (x - c0.x) * s + cam.x; }, my = function (y) { return (y - c0.y) * s + cam.y; };
+      var list = namesCache.key === key ? namesCache.list : namesCache.list.map(function (p) {
+        return { id: p.id, name: p.name, size: p.size, ls: p.ls, x: mx(p.x), y: my(p.y),
+          lead: p.lead && [mx(p.lead[0]), my(p.lead[1]), mx(p.lead[2]), my(p.lead[3])],
+          box: { x: mx(p.box.x + p.box.w / 2) - p.box.w / 2, y: my(p.box.y + p.box.h / 2) - p.box.h / 2, w: p.box.w, h: p.box.h } };
+      });
       ctx.textAlign = 'center';
       ctx.textBaseline = 'alphabetic';
-      namesCache.list.forEach(function (p) {
+      list.forEach(function (p) {
         if (p.lead) {
           ctx.globalAlpha = alpha * (dark ? 0.45 : 0.55); ctx.strokeStyle = T.cat[p.id]; ctx.lineWidth = 0.8;
           ctx.beginPath(); ctx.moveTo(p.lead[0], p.lead[1]); ctx.lineTo(p.lead[2], p.lead[3]); ctx.stroke();
@@ -477,7 +568,7 @@
       if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
       ctx.textAlign = 'left';
       ctx.globalAlpha = 1;
-      return namesCache.list.map(function (p) { return p.box; });
+      return list.map(function (p) { return p.box; });
     }
     function placeNames() {
       var k = cam.k, tx = cam.x, ty = cam.y, rk = Math.sqrt(k), chrome = chromeRects(), placed = [], mob = isMobile();
@@ -557,7 +648,8 @@
         var o = cand[c], m = o.n, strong = m.degree >= 50;
         var size = strong ? 13 : m.degree >= 15 ? 12 : 11;
         ctx.font = (strong ? '700 ' : '500 ') + size + 'px ' + T.font;
-        var tw = ctx.measureText(m.label).width, r = nodeR(m);
+        if (m.tw == null) m.tw = ctx.measureText(m.label).width; // 줌, 팬 프레임마다 재지 않는다 (04 9절)
+        var tw = m.tw, r = nodeR(m);
         // 노드와 고리를 비켜 오른쪽 위에. 오른쪽 끝을 넘으면 왼쪽으로
         var gap = r + (m.category === 'overviews' ? 6 : 4) + 3;
         var lx = o.x + gap * 0.92, ly = o.y - gap * 0.62;
@@ -575,7 +667,156 @@
         ctx.fillText(m.label, lx, ly);
       }
       if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+      drawnLabels = drawn;
     }
+
+    // ── 입력: Pointer Events 하나, 휠 따로 (02 X1, 4 ~ 5절) ────────────────
+    var pointers = new Map(), gesture = null, lastTap = null;
+    function local(e) { var r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+    function endGesture() {
+      pointers.clear(); gesture = null; glide = null;
+      canvas.classList.remove('is-panning');
+    }
+    function panFrom(p) {
+      return { moved: true, sx: p.x, sy: p.y, cam: { x: cam.x, y: cam.y, k: cam.k }, type: gesture && gesture.type, track: [] };
+    }
+
+    // 히트 테스트: 화면 거리 - 화면 반지름이 여유보다 작은 것 중 가장 가까운 노드 (04 8절)
+    function hitTest(px, py, slop) {
+      var best = null, bd = slop;
+      for (var i = 0; i < N; i++) {
+        var n = nodes[i], d = Math.hypot(sx(n.x) - px, sy(n.y) - py) - nodeR(n);
+        if (d < bd) { bd = d; best = n; }
+      }
+      return best;
+    }
+    // 탭 한 곳. 4번 항목(선택)이 노드 탭 동작을 여기에 붙인다. 빈 곳 두 번 누르기는 맞춤이다 (02 4.3절)
+    function onTap(p, type) {
+      var n = hitTest(p.x, p.y, type === 'mouse' ? 4 : 12), now = performance.now(), prev = lastTap;
+      lastTap = { t: now, x: p.x, y: p.y, type: type, n: n };
+      if (!n && prev && !prev.n && prev.type === type && now - prev.t <= 300 && Math.hypot(p.x - prev.x, p.y - prev.y) <= 24) {
+        lastTap = null;
+        fitView();
+      }
+    }
+
+    canvas.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0 || pointers.size >= 2) return; // 오른쪽, 가운데 버튼과 셋째 손가락은 받지 않는다 (02 4.1절)
+      try { canvas.setPointerCapture(e.pointerId); } catch (err) { /* 이미 끝난 포인터 */ }
+      var p = local(e);
+      pointers.set(e.pointerId, p);
+      glide = null; // 미끄러지는 지도를 손으로 잡는다. 비행은 팬이 시작될 때만 멈춘다
+      if (pointers.size === 1) {
+        gesture = { moved: false, sx: p.x, sy: p.y, cam: null, type: e.pointerType, track: [] };
+      } else {
+        var ps = Array.from(pointers.values());
+        flight = null; wz = null;
+        gesture = { moved: true, type: e.pointerType, pinch: {
+          d: Math.max(1, Math.hypot(ps[0].x - ps[1].x, ps[0].y - ps[1].y)),
+          w: toWorld((ps[0].x + ps[1].x) / 2, (ps[0].y + ps[1].y) / 2), k: cam.k } };
+        canvas.classList.add('is-panning');
+      }
+    });
+    canvas.addEventListener('pointermove', function (e) {
+      if (!gesture || !pointers.has(e.pointerId)) return;
+      var p = local(e);
+      pointers.set(e.pointerId, p);
+      if (gesture.pinch) {
+        if (pointers.size < 2) return;
+        var ps = Array.from(pointers.values()), g = gesture.pinch;
+        var d = Math.hypot(ps[0].x - ps[1].x, ps[0].y - ps[1].y);
+        // 처음 중점 아래 world 점을 지금 중점에 둔다: 확대와 중점 팬이 한 식이다
+        cam = camFor(g.w.x, g.w.y, clampK(g.k * d / g.d), (ps[0].x + ps[1].x) / 2, (ps[0].y + ps[1].y) / 2);
+        constrain(); redraw();
+        return;
+      }
+      var dx = p.x - gesture.sx, dy = p.y - gesture.sy;
+      if (!gesture.moved) {
+        if (Math.hypot(dx, dy) <= (gesture.type === 'mouse' ? 4 : 8)) return; // 탭과 끌기 경계 (02 X2)
+        gesture.moved = true; gesture.cam = { x: cam.x, y: cam.y, k: cam.k };
+        flight = null; wz = null;
+        canvas.classList.add('is-panning');
+      }
+      cam.x = gesture.cam.x + dx; cam.y = gesture.cam.y + dy;
+      constrain();
+      var t = e.timeStamp, tr = gesture.track;
+      tr.push({ x: p.x, y: p.y, t: t });
+      while (tr.length > 2 && t - tr[0].t > 100) tr.shift();
+      redraw();
+    });
+    function endPointer(e) {
+      if (!pointers.has(e.pointerId)) return;
+      var p = local(e), g = gesture;
+      pointers.delete(e.pointerId);
+      if (g && !g.moved && e.type === 'pointerup') onTap(p, g.type);
+      if (pointers.size === 1) {
+        // 핀치에서 한 손가락을 떼면 남은 손가락으로 팬을 잇는다 (02 5.2절)
+        gesture = panFrom(Array.from(pointers.values())[0]);
+        return;
+      }
+      gesture = null;
+      canvas.classList.remove('is-panning');
+      // 관성: 마지막 80ms 속도로 미끄러진다. 손가락이 멈춘 뒤 뗐으면 없다 (02 J1)
+      var tr = g && g.moved && !g.pinch && !reduce ? g.track : [];
+      var last = tr[tr.length - 1];
+      if (last && e.timeStamp - last.t < 50) {
+        var first = tr.filter(function (q) { return last.t - q.t <= 80; })[0];
+        var ddt = last.t - first.t;
+        if (ddt > 8) {
+          var vx = (last.x - first.x) / ddt, vy = (last.y - first.y) / ddt, sp = Math.hypot(vx, vy);
+          if (sp > 0.12) { var c = Math.min(1, 4 / sp); glide = { vx: vx * c, vy: vy * c }; }
+        }
+      }
+      redraw();
+    }
+    canvas.addEventListener('pointerup', endPointer);
+    canvas.addEventListener('pointercancel', endPointer);
+    canvas.addEventListener('lostpointercapture', endPointer);
+    canvas.addEventListener('contextmenu', function () { if (gesture) endGesture(); });
+
+    // 휠: 커서 기준 줌. 두 손가락 스크롤도 줌이고 ctrl 휠(트랙패드 핀치)은 빠른 줌이다 (02 3.3절, N1)
+    canvas.addEventListener('wheel', function (e) {
+      e.preventDefault();
+      if (gesture && gesture.moved) return;
+      flight = null; glide = null;
+      var dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? H : 1);
+      var f = Math.max(0.5, Math.min(2, Math.exp(-dy * (e.ctrlKey ? 0.01 : 0.0018))));
+      var p = local(e);
+      wheelT = performance.now();
+      if (reduce || e.ctrlKey) {
+        // 핀치는 손을 그대로 따른다. 남은 휠 목표가 있으면 그 자리에서 이어 간다
+        wz = null;
+        zoomAt(p.x, p.y, cam.k * f);
+      } else {
+        wz = { k: clampK((wz ? wz.k : cam.k) * f), px: p.x, py: p.y };
+      }
+      clearTimeout(wheelEnd);
+      wheelEnd = setTimeout(redraw, 170); // 휠이 멈추면 성운 이름 자리를 다시 찾는다
+      redraw();
+    }, { passive: false });
+    var wheelEnd = 0;
+    // iOS Safari 의 페이지 핀치 확대를 무대에서 막는다 (02 5.1절)
+    stage.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+
+    // 줌 버튼과 맞춤 (01 5.6절, 02 3.2절)
+    var zoomIn = document.getElementById('graph-zoom-in');
+    var zoomOut = document.getElementById('graph-zoom-out');
+    var fitBtn = document.getElementById('graph-fit');
+    // 안내는 동작하는 줄(휠, 드래그)만 보인다. 클릭과 검색 줄은 그 항목이 푼다
+    [zoomIn, zoomOut, fitBtn, stage.querySelector('.graph-hint.is-atlas')].forEach(function (b) { if (b) b.hidden = false; });
+    if (zoomIn) zoomIn.addEventListener('click', function () { zoomBy(1.5); });
+    if (zoomOut) zoomOut.addEventListener('click', function () { zoomBy(1 / 1.5); });
+    if (fitBtn) fitBtn.addEventListener('click', fitView);
+    var zState = '';
+    function syncZoomButtons() {
+      var k = flight ? flight.to.k : wz ? wz.k : cam.k;
+      var s = (k >= K_MAX - 1e-6 ? 'i' : '') + (k <= K_MIN + 1e-6 ? 'o' : '');
+      if (s === zState) return;
+      zState = s;
+      if (zoomIn) zoomIn.setAttribute('aria-disabled', String(s.indexOf('i') >= 0));
+      if (zoomOut) zoomOut.setAttribute('aria-disabled', String(s.indexOf('o') >= 0));
+    }
+    zState = '-'; syncZoomButtons();
 
     // ── 크기와 테마 ───────────────────────────────────────────────────────
     function resize() {
@@ -587,18 +828,23 @@
       canvas.height = Math.max(1, Math.floor(H * dpr));
       chromeCache = null;
       buildBackground();
+      endGesture(); // 진행 중 제스처는 끝낸다 (02 10절)
       var p = W < H * 0.8;
       if (!fitted) {
         setHome(p, false);
         cam = fitTarget(nodes);
         fitted = true;
       } else if (p !== portrait) {
+        // 노드의 640ms 이동과 카메라 맞춤 비행을 같이 돌려 함께 도착시킨다 (04 3.4절)
+        cam.x += (W - oldW) / 2;
+        cam.y += (H - oldH) / 2;
         setHome(p, true);
-        cam = fitTarget(nodes);
+        flyTo(fitTarget(nodes), 640);
       } else {
         // 같은 곳을 화면 가운데에 둔다 (다시 맞추지 않는다, 04 7.2)
         cam.x += (W - oldW) / 2;
         cam.y += (H - oldH) / 2;
+        constrain();
       }
       redraw();
     }
@@ -660,7 +906,7 @@
     GC.onThemeChange(applyTheme);
     GC.onResize(stage, resize, 0);
     if (header && window.ResizeObserver) new ResizeObserver(syncHeader).observe(header);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { namesCache = null; redraw(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { namesCache = null; clearWidths(); redraw(); });
     if (viewFromHash()) syncFromHash();
     else setView('map');
 
@@ -671,7 +917,12 @@
       drawn: function () { return drawnNodes; },
       drawTimes: drawTimes,
       portrait: function () { return portrait; },
-      busy: function () { return !!(rafId || morph); },
+      busy: function () { return !!(rafId || morph || flight || glide || wz); },
+      toWorld: function (px, py) { return toWorld(px, py); },
+      glide: function () { return glide && { vx: glide.vx, vy: glide.vy }; },
+      flying: function () { return !!flight; },
+      hit: function (px, py, slop) { var n = hitTest(px, py, slop == null ? 12 : slop); return n && n.id; },
+      labels: function () { return drawnLabels; },
     };
   }
 })();

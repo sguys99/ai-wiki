@@ -1982,6 +1982,13 @@
     display: block;
     width: 100%;
     height: 100%;
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  .graph-canvas.is-panning {
+    cursor: grabbing;
   }
   .graph-canvas:focus-visible {
     outline: 2px solid var(--signal);
@@ -2400,6 +2407,12 @@
     line-height: 1.75;
     color: var(--faint);
   }
+  .graph-hint-line {
+    display: block;
+  }
+  .graph-hint-line[hidden] {
+    display: none;
+  }
   .graph-hint kbd {
     padding: 0 4px;
     font-family: var(--font-mono);
@@ -2434,10 +2447,27 @@
     font-weight: 550;
     border-radius: var(--graph-radius-ctl);
     cursor: pointer;
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
+      transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease);
+  }
+  .graph-tool:hover {
+    color: var(--signal);
+    border-color: color-mix(in srgb, var(--signal) 45%, var(--graph-glass-edge));
+  }
+  .graph-tool:active {
+    transform: scale(0.94);
+  }
+  /* 줌 끝에 닿은 버튼: 자리는 지키고 누름은 받지 않는다 (02 3.2절) */
+  .graph-tool[aria-disabled='true'] {
+    color: var(--faint);
+    border-color: var(--graph-glass-edge);
+    cursor: default;
+    transform: none;
   }
   .graph-tool.is-zoom {
     padding: 0;
     font-size: var(--text-base);
+    font-variant-numeric: tabular-nums;
   }
   .graph-tool-ico {
     display: none;
