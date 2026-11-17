@@ -17,11 +17,17 @@
 //   - recentSince = 최근 집합 경계 날짜 (브라우저는 node.added >= recentSince), recentInfo() 참고
 //   - 소비자: 홈 히어로 constellation + graph-core.js, 그래프 탐색기(/graph/)
 //
+// checkGraphJson() 은 쓰인 graph.json 의 불변식 V1 ~ V16 을 점검한다 (03 7절, `node lib/graph.mjs --check FILE`).
+//
 // 코드펜스/인라인코드 안의 [[…]] 예시는 extractWikiTargets가 제외한다.
 
 import { extractWikiTargets } from './markdown.mjs';
-import { domainOf } from './domains.mjs';
+import { readFileSync } from 'node:fs';
+import { gzipSync } from 'node:zlib';
+import { domainOf, CATEGORY_DOMAIN } from './domains.mjs';
 import { RECENT_COUNT, RECENT_DAYS } from './config.mjs';
+import { CATALOG_TYPES } from './content.mjs';
+import { ANCHOR, radius } from './graph-layout.mjs';
 
 export function buildGraph(pages, resolve) {
   const nodes = [];
@@ -107,4 +113,120 @@ export function toGraphJson(graph, pages, layout, recent) {
   for (const e of graph.edges) links.push(index.get(e.source), index.get(e.target));
   const { recentSince, recentMode, recentDays } = recent;
   return { version: 2, recentSince, recentMode, recentDays, nodes, links };
+}
+
+// graph.json 자체 점검 (03 7절 V1 ~ V16). text 는 graph.json 문자열 (V16 바이트 때문).
+// pageCount, edgeCount 는 빌드 메모리 값이고 없으면 V2 등호와 V8 을 건너뛴다.
+// paths, layout3d 는 부속 파일 객체이고 없으면 V14, V15 를 건너뛴다.
+// 반환 { problems (STRICT 실패), warnings, stats (V16 로그 한 줄) }.
+export function checkGraphJson(text, { pageCount, edgeCount, paths, layout3d } = {}) {
+  const problems = [];
+  const warnings = [];
+  const isInt = Number.isInteger;
+  const DATE = /^\d{4}-\d{2}-\d{2}$/;
+  const ex = (x) => x?.id ?? JSON.stringify(x);
+  const each = (out, v, msg, list, ok) => {
+    const bad = list.filter((x) => !ok(x));
+    if (bad.length) out.push(`${v} ${msg} ${bad.length}개 (예: ${ex(bad[0])})`);
+    return !bad.length;
+  };
+  let g;
+  try {
+    g = JSON.parse(text);
+  } catch (e) {
+    return { problems: [`V1 JSON 파싱 실패: ${e.message}`], warnings, stats: '' };
+  }
+  if (g?.version !== 2 || !Array.isArray(g.nodes) || !Array.isArray(g.links))
+    return { problems: ['V1 version 2 와 nodes, links 배열이 아님'], warnings, stats: '' };
+  const { nodes, links } = g;
+  const N = nodes.length;
+
+  if (N < 300 || (pageCount != null && N !== pageCount)) problems.push(`V2 노드 ${N}개 (페이지 ${pageCount ?? '?'}, 300 미만 비정상)`);
+  const KEYS = ['id', 'stem', 'title', 'category', 'domain', 'degree', 'year', 'type', 'tags', 'added', 'xy'];
+  const str = (x) => typeof x === 'string';
+  const shaped = each(problems, 'V4', '필드 누락 또는 형 불일치', nodes, (n) =>
+    n && KEYS.every((k) => k in n) && str(n.id) && str(n.stem) && str(n.title) && n.title !== '' && str(n.category) &&
+    n.domain === domainOf(n.category) && isInt(n.degree) && n.degree >= 0 && (n.year === null || isInt(n.year)) &&
+    (n.type === null || str(n.type)) && Array.isArray(n.tags) && n.tags.every(str) && str(n.added) && Array.isArray(n.xy));
+  if (!shaped) return { problems, warnings, stats: '' }; // 아래 검사는 노드 형을 전제한다
+  const ids = new Map(nodes.map((n, i) => [n.id, i]));
+  if (ids.size !== N) problems.push(`V3 id 중복 ${N - ids.size}건`);
+  each(problems, 'V3', 'id ≠ category/stem', nodes, (n) => n.id === `${n.category}/${n.stem}`);
+  each(warnings, 'V3', 'id 에 [a-z0-9/-] 밖 문자', nodes, (n) => /^[a-z0-9/-]+$/.test(n.id));
+  each(problems, 'V5', 'category 또는 type 이 목록 밖', nodes, (n) => n.category in CATEGORY_DOMAIN && (n.type === null || CATALOG_TYPES.has(n.type)));
+  each(warnings, 'V5', 'year 또는 type 이 null', nodes, (n) => n.year !== null && n.type !== null);
+  each(problems, 'V6', 'added 가 YYYY-MM-DD 아님', nodes, (n) => DATE.test(n.added));
+
+  const pairs = [];
+  for (let i = 0; i + 1 < links.length; i += 2) pairs.push([links[i], links[i + 1]]);
+  const seen = new Set(pairs.map(String));
+  const linksOk =
+    links.length % 2 === 0 &&
+    each(problems, 'V7', '링크 쌍이 범위 밖이거나 자기참조', pairs, ([s, t]) => isInt(s) && isInt(t) && s >= 0 && t >= 0 && s < N && t < N && s !== t);
+  if (links.length % 2) problems.push(`V7 links 길이 ${links.length} 홀수`);
+  if (seen.size !== pairs.length) problems.push(`V7 중복 링크 쌍 ${pairs.length - seen.size}건`);
+  if (edgeCount != null && pairs.length !== edgeCount) problems.push(`V8 링크 쌍 ${pairs.length} ≠ 엣지 ${edgeCount}`);
+  const nb = nodes.map(() => new Set());
+  const ins = new Array(N).fill(0);
+  const outs = new Array(N).fill(0);
+  if (linksOk) {
+    for (const [s, t] of pairs) {
+      nb[s].add(t);
+      nb[t].add(s);
+      outs[s]++;
+      ins[t]++;
+    }
+    each(problems, 'V9', 'degree 가 links 로 센 이웃 수와 다름', nodes, (n) => n.degree === nb[ids.get(n.id)].size);
+  }
+
+  if (each(problems, 'V10', 'xy 가 정수 두 개 아님', nodes, (n) => n.xy.length === 2 && n.xy.every(isInt))) {
+    const xs = nodes.map((n) => n.xy[0]);
+    const width = Math.max(...xs) - Math.min(...xs);
+    if (width < 600 || width > 3000) problems.push(`V10 외곽 가로 ${width} world (600 ~ 3,000 밖)`);
+    let overlap = 0;
+    for (let i = 0; i < N; i++)
+      for (let j = i + 1; j < N; j++) {
+        const [a, b] = [nodes[i], nodes[j]];
+        if (Math.hypot(a.xy[0] - b.xy[0], a.xy[1] - b.xy[1]) < radius(a.degree) + radius(b.degree)) overlap++;
+      }
+    if (overlap) problems.push(`V11 world 에서 겹친 노드 쌍 ${overlap}개`);
+  }
+
+  const { recentSince, recentMode } = g;
+  if (!['days', 'count'].includes(recentMode)) problems.push(`V12 recentMode ${recentMode}`);
+  if (recentSince === null) warnings.push('V12 recentSince null (git 이력 없음?)');
+  else {
+    const c = DATE.test(recentSince) ? nodes.filter((n) => n.added >= recentSince).length : -1;
+    if (c < 1 || c > N / 2) problems.push(`V12 recentSince ${recentSince} 판정 노드 ${c}/${N} (1 ~ 50%)`);
+  }
+  for (const c of new Set(nodes.map((n) => n.category)))
+    if (!(c in ANCHOR)) warnings.push(`V13 앵커 표에 없는 카테고리 ${c} (graph-layout.mjs ANCHOR 에 추가)`);
+
+  if (paths) {
+    for (const p of paths.paths || []) {
+      const steps = p.steps || [];
+      const ns = new Set(steps.map((s) => s.n));
+      const ok = ids.has(p.id) && ns.size === steps.length &&
+        steps.every((s) => ids.has(s.id) && (s.prereq || []).every((q) => ns.has(q) && q < s.n));
+      if (!ok) problems.push(`V14 paths.json 경로 ${p.id} 의 id, n, prereq 불일치`);
+    }
+  }
+  if (layout3d) {
+    const { n, xyz } = layout3d;
+    if (n !== N || xyz?.length !== 3 * N || !xyz.every(isInt)) problems.push(`V15 layout.json n ${n}, xyz ${xyz?.length} (노드 ${N}, 정수)`);
+  }
+
+  const isolated = nodes.filter((n) => n.degree === 0).length;
+  const stats = `고립 ${isolated}  ·  들어옴 0 ${ins.filter((x) => !x).length}  ·  나감 0 ${outs.filter((x) => !x).length}  ·  graph.json ${Buffer.byteLength(text)}B (gzip ${gzipSync(text, { level: 9 }).length}B)`;
+  return { problems, warnings, stats };
+}
+
+// ── self-check: `node lib/graph.mjs --check ../dist/graph.json` ──────────────
+if (process.argv[1]?.endsWith('graph.mjs') && process.argv.includes('--check')) {
+  const file = process.argv[process.argv.indexOf('--check') + 1];
+  const { problems, warnings, stats } = checkGraphJson(readFileSync(file, 'utf8'));
+  for (const w of warnings) console.log(`WARN ${w}`);
+  for (const p of problems) console.log(`FAIL ${p}`);
+  console.log(`graph.json check ${problems.length ? 'FAIL' : '✓'}  ·  ${stats}`);
+  if (problems.length) process.exit(1);
 }

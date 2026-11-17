@@ -176,11 +176,11 @@
 ### Phase 3. 데이터 파이프라인
 
 - [x] `site/lib/graph.mjs`: 노드에 `year`, `type`, `tags`, `added` 추가, 엣지를 `links` 인덱스 배열로, 최상위 `version: 2` 와 `recent*` 키 (`docs/graph-spec/03-schema.md`) (2026-11-17, `toGraphJson` 과 `recentInfo` 추가. 344노드, `links` 5,200, 옛 `edges` 2,600과 집합과 순서 일치)
-- [x] `site/lib/graph-layout.mjs`: d3-force 를 `devDependencies` 에 넣고 빌드에서 배치를 계산해 노드 `xy` 에 싣기 (`04-layout-algorithm.md`, `05-libraries.md`) (2026-11-17, d3-force 3.0.0, d3-dispatch, d3-quadtree, d3-timer 3.0.1 고정. 배치 약 0.4s, 두 번 빌드한 `graph.json` sha256 동일, 그린 원 기준 겹친 쌍 0, 좌표 범위 1308 × 910. 자체 점검 `checkLayout` 은 STRICT 빌드에서 실패 처리)
+- [x] `site/lib/graph-layout.mjs`: d3-force 를 `devDependencies` 에 넣고 빌드에서 배치를 계산해 노드 `xy` 에 싣기 (`04-layout-algorithm.md`, `05-libraries.md`) (2026-11-17, d3-force 3.0.0, d3-dispatch, d3-quadtree, d3-timer 3.0.1 고정. 배치 약 0.4s, 두 번 빌드한 `graph.json` sha256 동일, 그린 원 기준 겹친 쌍 0, 좌표 범위 1308 × 910. 자체 점검은 뒤에 `checkGraphJson` V10, V11, V13으로 옮겼다)
 - [x] 홈 히어로 `constellation.js` 엣지 루프와 `graph-core.js` `buildAdjacency` 를 `links` 에 맞게 수정, 지금 탐색기가 엣지 없이 그려지지 않도록 03 문서 8절의 임시 수정 포함 (2026-11-17, 탐색기는 엣지 쌍 루프까지 세 군데 수정. 344노드 이웃 수가 `degree` 와 일치, 홈 히어로 캔버스는 수정 전과 바이트 동일, 콘솔 오류 0건. 배포가 깨지지 않게 첫 항목과 함께 푸시)
 - [x] `graph.json` 용량 확인 (들여쓰기 제거, 목표 gzip 38KB 안팎) (2026-11-17, 158,199B, gzip -9 37,958B, gzip -6 38,234B, brotli 30,700B. 개행 0, 들여쓰기 없음. 비용은 `title` 10.8KB, `tags` 9.7KB, `links` 6.9KB 순이고 `xy` 는 2.4KB. 코드 변경 없음)
 - [x] 홈 히어로 `constellation.js` 가 그대로 동작하는지 확인 (2026-11-17, 기준 커밋 `1a95b66b` 빌드와 다크, 라이트 × 1440, 768, 375 reduced-motion 캔버스 차이 픽셀 0. 모션, 리사이즈, 테마 전환, `graph.json` 차단, 카드 이웃 hover, `BASE=/ai-wiki` 경로 모두 통과, 콘솔 오류 0건. dpr 2와 ResizeObserver 폴백은 미확인)
-- [ ] `graph.mjs` 자체 점검 `checkGraphJson` 추가 (불변식 V1 ~ V16)
+- [x] `graph.mjs` 자체 점검 `checkGraphJson` 추가 (불변식 V1 ~ V16) (2026-11-17, `graph.json` 을 쓴 직후에 부르고 STRICT 빌드에서 실패 처리. `checkLayout` 은 V10, V11, V13으로 흡수해 지웠다. 정상 파일을 항목마다 망가뜨린 38건을 모두 잡았고 출력 sha256은 그대로. `node lib/graph.mjs --check <파일>` 로 따로 돌릴 수 있다. V14, V15는 `paths.json` 과 3D 배치가 생기는 Phase 5에서 인자를 넘겨야 켜진다)
 
 ### Phase 4. 구현
 
@@ -199,9 +199,9 @@
 - [ ] 약한 연결 리포트: 들어오는 링크 0개 또는 degree 3 이하 페이지 목록을 목록 판 `section#weak-links` 에 서버 렌더
 - [ ] 페이지별 미니 그래프: 기존 `relatedSection()` 자리에 빌드 타임 정적 SVG (이웃 24개 상한), 이웃 링크 목록을 텍스트 판본으로 유지
 - [ ] 최근 추가 강조: 노드 `added` 로 최근 14일(최소 6개) 표시와 토글
-- [ ] 학습 경로 겹쳐 보기: `study_path` 를 빌드에서 `graph/paths.json` 으로 내고 경로 선택 UI, 번호 배지, 단계 막대
+- [ ] 학습 경로 겹쳐 보기: `study_path` 를 빌드에서 `graph/paths.json` 으로 내고 경로 선택 UI, 번호 배지, 단계 막대 (`checkGraphJson` 에 `paths` 를 넘겨 V14를 켠다)
 - [ ] 미니 그래프가 344개 페이지 빌드 시간과 페이지 무게에 주는 영향 확인
-- [ ] 3D 실험 페이지 `/graph/3d/` (보기 전용, three 0.169.0은 이 페이지에서만 로드)
+- [ ] 3D 실험 페이지 `/graph/3d/` (보기 전용, three 0.169.0은 이 페이지에서만 로드, `checkGraphJson` 에 `layout3d` 를 넘겨 V15를 켠다)
 
 ### Phase 6. 검증
 
@@ -246,3 +246,4 @@
 | 2026-11-17 | Phase 2 추가 기능 설계 (`docs/graph-spec/06-extra-features.md`). 추가일은 git 최초 추가일로, `site/lib/dates.mjs` 가 이미 `page.added` 로 계산하고 배포는 `fetch-depth: 0` 이다. "최근"은 홈과 같은 14일에 최소 6개 (지금 13개). 약한 연결은 들어오는 링크 0개 27개와 degree 3 이하 12개의 합집합 36개, 목록 판에 서버 렌더. 학습 경로는 9개 경로 76단계(미해석 0)이고 이웃 단계 사이에 실제 엣지가 없는 경우가 많아 별도 곡선으로 그리며, 데이터는 `graph/paths.json` (gzip 약 7KB)으로 분리해 홈 히어로에 무게를 주지 않는다. 미니 그래프는 기존 `relatedSection()` 자리의 빌드 타임 정적 SVG, 이웃 24개 상한. 3D 페이지는 보기 전용. 구현 순서 추천: 약한 연결, 미니 그래프, 최근 추가, 학습 경로, 3D. 01, 04, 05 문서와 어긋나는 여덟 건은 06 문서 10절에 적었다. 사용자 결정 대기 R1 ~ R6 |
 | 2026-11-17 | Phase 2 스키마 설계 (`docs/graph-spec/03-schema.md`). 노드에 `year`, `type`, `tags`, `added`, `xy`(가로 배치 정수 좌표 한 벌, 세로 화면은 x와 y 교환)를 더하고 최상위에 `version: 2`, `recentSince`, `recentMode`, `recentDays` 를 둔다. 엣지는 객체 배열 `edges` 대신 노드 인덱스 평면 배열 `links` 로 바꾸고 들여쓰기를 없앤다. 실측(344노드, 스크래치 직렬화): 지금 482,615B (gzip 41,072B)에서 158,199B (gzip 37,944B)로, 새 필드를 다 싣고도 홈 비용이 gzip 2.9KB 준다. 엣지 객체를 유지하면 gzip 52,643B다. 대신 홈 히어로의 두 함수(`constellation.js` 엣지 루프, `graph-core.js` `buildAdjacency`)를 Phase 3에서 고쳐야 한다. 검증 불변식 V1 ~ V16. 위험: Phase 3을 Phase 4보다 먼저 배포하면 지금 탐색기가 엣지 없이 그려지므로 03 문서 8절의 두 줄 수정을 함께 넣는다. 02 문서 12절과 06 문서 10절의 어긋남, 좌표 두 벌 대 한 벌을 모두 판정해 01, 02, 04, 05, 06을 맞추고 각 문서에 개정 기록을 남겼다. 사용자 결정 대기 D1 ~ D2 |
 | 2026-11-17 | 사용자 설계 승인 (Q11). 미결 26건을 모두 추천안으로 확정하고 설계 문서의 미결 절을 확정된 결정으로 바꿨다. Phase 3과 Phase 5 항목을 설계 결과에 맞게 갱신했다 (배치 빌드 계산, `links` 전환, `paths.json`, 3D 실험 페이지, 추가 기능 구현 순서). Phase 2 완료 |
+| 2026-11-17 | Phase 3 완료. `graph.json` 을 스키마 version 2로 바꿨다 (노드 `year`, `type`, `tags`, `added`, `xy`, 엣지 인덱스 배열 `links`, 최상위 `recent*`). 483,902B에서 158,199B (gzip 37,958B)로 줄었다. 배치는 빌드에서 d3-force 3.0.0으로 약 0.4s에 계산하고 같은 입력이면 같은 파일이 나온다 (sha256 동일). 홈 히어로와 지금 탐색기는 `links` 를 읽도록 고쳤고 기준 커밋과 히어로 캔버스 차이 픽셀 0이다. 스키마 변경과 소비자 수정은 한 번에 푸시해 배포가 깨지지 않게 했다. `checkGraphJson` 이 V1 ~ V16을 STRICT 빌드에서 지킨다. 미확인: 히어로의 dpr 2 화면과 ResizeObserver 폴백. 반영하지 않은 제안: 노드를 열 지향으로 바꾸면 gzip 약 3.9KB가 더 줄지만 소비자를 모두 고쳐야 한다 (Phase 4 재작성 때 판단) |

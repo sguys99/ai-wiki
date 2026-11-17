@@ -9,14 +9,13 @@
 
 import { rm, mkdir, writeFile, cp, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { gzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
 import { BASE, STRICT, href, RECENT_COUNT } from './lib/config.mjs';
 import { loadContent, tagsOf } from './lib/content.mjs';
 import { addedDates } from './lib/dates.mjs';
-import { buildGraph, toGraphJson, recentInfo } from './lib/graph.mjs';
-import { layoutGraph, checkLayout } from './lib/graph-layout.mjs';
+import { buildGraph, toGraphJson, recentInfo, checkGraphJson } from './lib/graph.mjs';
+import { layoutGraph } from './lib/graph-layout.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
 import { home, wiki, about, tagIndex, tag, graphPage, studyPathSection } from './lib/templates.mjs';
 import { domainOf } from './lib/domains.mjs';
@@ -107,19 +106,16 @@ async function main() {
   const t0 = performance.now();
   const layout = layoutGraph(graph, pages);
   const layoutMs = Math.round(performance.now() - t0);
-  const { problems: layoutProblems, warnings: layoutWarnings } = checkLayout(graph, layout);
-  for (const w of layoutWarnings) console.log(`[graph] WARN ${w}`);
-  for (const p of layoutProblems) console.log(`[graph] ${STRICT ? 'FAIL' : 'WARN'} layout: ${p}`);
-  if (STRICT && layoutProblems.length) throw new Error(`성도 배치 자체 점검 ${layoutProblems.length}건 (STRICT=1)`);
-  console.log(`[graph] layout ${layoutMs}ms${layoutProblems.length ? '' : '  ✓'}`);
+  console.log(`[graph] layout ${layoutMs}ms`);
   const graphJson = JSON.stringify(toGraphJson(graph, pages, layout, graphRecent));
   await writeFile(join(DIST, 'graph.json'), graphJson);
   console.log(`[graph] nodes: ${graph.nodes.length}  ·  edges: ${graph.edges.length}`);
-  console.log(
-    `[graph] graph.json ${Buffer.byteLength(graphJson)}B (gzip ${gzipSync(graphJson, { level: 9 }).length}B)`
-  );
-  if (!graphRecent.recentSince)
-    console.log(`[graph] WARN recent: ${graphRecent.count}/${graph.nodes.length} (git 이력 없음?)`);
+  // 자체 점검 V1 ~ V16 (03 7절). 쓴 직후에 불러 실패해도 dist/graph.json 을 열어 볼 수 있다.
+  const gc = checkGraphJson(graphJson, { pageCount: pages.size, edgeCount: graph.edges.length });
+  for (const w of gc.warnings) console.log(`[graph] WARN ${w}`);
+  for (const p of gc.problems) console.log(`[graph] ${STRICT ? 'FAIL' : 'WARN'} ${p}`);
+  console.log(`[graph] check V1~V16 ${gc.problems.length ? `${gc.problems.length}건` : '✓'}  ·  ${gc.stats}`);
+  if (STRICT && gc.problems.length) throw new Error(`graph.json 자체 점검 ${gc.problems.length}건 (STRICT=1)`);
 
   // 3.5) 무방향 인접 맵 (id → [이웃 id]) — 카드 hover 하이라이트 data 속성용
   const adjacency = new Map();
