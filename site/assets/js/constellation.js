@@ -29,11 +29,7 @@
   function runHero(canvas, graph) {
     var ctx = canvas.getContext('2d');
     var nodes = graph.nodes || [];
-    var edges = graph.edges || [];
-    var index = {};
-    nodes.forEach(function (n, i) {
-      index[n.id] = i;
-    });
+    var L = graph.links || [];
 
     var W = 0,
       H = 0;
@@ -76,12 +72,9 @@
       // 엣지
       ctx.lineWidth = 1;
       ctx.strokeStyle = pal.signalDim;
-      for (var e = 0; e < edges.length; e++) {
-        var si = index[edges[e].source];
-        var ti = index[edges[e].target];
-        if (si == null || ti == null) continue;
-        var a = pos(P[si], t);
-        var b = pos(P[ti], t);
+      for (var e = 0; e + 1 < L.length; e += 2) {
+        var a = pos(P[L[e]], t);
+        var b = pos(P[L[e + 1]], t);
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);

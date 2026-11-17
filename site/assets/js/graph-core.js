@@ -110,19 +110,19 @@
     });
   }
 
-  // 노드 배열 → { index: {id: i}, neighbors: [[i,…],…] }.
+  // 노드 배열 + links([s0,t0,s1,t1,…] 인덱스 평면 배열) → { index: {id: i}, neighbors: [[i,…],…] }.
   // 인접은 한 번만 만들어 두고 호버마다 재계산하지 않는다.
-  function buildAdjacency(nodes, edges) {
+  function buildAdjacency(nodes, links) {
     var index = {};
     var i;
     for (i = 0; i < nodes.length; i++) index[nodes[i].id] = i;
 
     var sets = [];
     for (i = 0; i < nodes.length; i++) sets.push({});
-    for (i = 0; i < edges.length; i++) {
-      var s = index[edges[i].source];
-      var t = index[edges[i].target];
-      if (s == null || t == null || s === t) continue;
+    for (i = 0; i + 1 < links.length; i += 2) {
+      var s = links[i];
+      var t = links[i + 1];
+      if (s === t) continue;
       sets[s][t] = 1;
       sets[t][s] = 1;
     }

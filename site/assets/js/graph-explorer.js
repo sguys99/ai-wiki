@@ -146,7 +146,7 @@
   // ── 본체 ────────────────────────────────────────────────────────────────────
   function run(graph) {
     var nodes = graph.nodes || [];
-    var edges = graph.edges || [];
+    var links = graph.links || [];
     var N = nodes.length;
     if (!N) return;
 
@@ -154,19 +154,17 @@
     if (explorer) explorer.hidden = false;
 
     var ctx = canvas.getContext('2d');
-    var adj = GC.buildAdjacency(nodes, edges);
+    var adj = GC.buildAdjacency(nodes, links);
     var index = adj.index;
     var neighbors = adj.neighbors;
 
     // 엣지를 인덱스 쌍으로 펴 둔다(그릴 때마다 id 조회하지 않도록).
     var es = [];
     var et = [];
-    for (var i = 0; i < edges.length; i++) {
-      var s = index[edges[i].source];
-      var t = index[edges[i].target];
-      if (s == null || t == null || s === t) continue;
-      es.push(s);
-      et.push(t);
+    for (var i = 0; i + 1 < links.length; i += 2) {
+      if (links[i] === links[i + 1]) continue;
+      es.push(links[i]);
+      et.push(links[i + 1]);
     }
 
     var pos = layout(nodes, es, et);
