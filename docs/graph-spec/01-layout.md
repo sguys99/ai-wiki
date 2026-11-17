@@ -11,7 +11,7 @@
 | 항목 | 시안 F | 현재 사이트 `/graph/` | 이 문서의 결정 |
 |---|---|---|---|
 | 상단 | 자체 바 `.mk-bar` 48px (`--bar-h`), 제목과 통계, 테마 버튼 | 공용 헤더 `.site-header` sticky, `--z-header: 100`, 높이 약 `--header-h: 3.6rem` | 자체 바를 없애고 공용 헤더를 쓴다 (2.1절) |
-| 무대 | `position: fixed; inset: var(--bar-h) 0 0` | `.graph-canvas-wrap` 높이 `clamp(22rem, 60vh, 40rem)`, 문서 흐름 안 | 헤더 아래 뷰포트를 꽉 채운다 (2.2절) |
+| 무대 | `position: fixed; inset: var(--bar-h) 0 0` | `.graph-canvas-wrap` 높이 `clamp(22rem, 60vh, 40rem)`, 문서 흐름 안 | 뷰포트 전체를 채우고 공용 헤더가 그 위에 유리판으로 겹친다 (2.2절) |
 | 텍스트 목록 | 스크립트나 CDN 실패 때만 `.f-fallback` 이 무대를 대신한다 | 캔버스 아래 늘 보이는 카테고리별 목록 | "목록 보기" 판으로 전환한다 (2.3절) |
 | 필터 | 범례가 카테고리 필터를 겸한다. 유형, 태그 필터 없음 | 카테고리 칩 줄 `.graph-filter` | 카테고리는 범례, 유형과 태그는 필터 팝오버 (4절) |
 | 줌 | 휠과 핀치, 우하단 "화면 맞춤" 버튼 | 없음 | 우하단 도구 묶음에 확대, 축소, 맞춤 (5.6절) |
@@ -30,28 +30,30 @@
 | 통계 "페이지 344개, 연결 2,600개" | 지도 판은 범례 머리 줄, 목록 판은 제목 아래 `.graph-stat` |
 | 테마 버튼 | 공용 헤더의 `.theme-toggle` 을 쓴다. 테마가 바뀌면 탐색기가 토큰을 다시 읽는다 (`data-theme` 관찰) |
 
-헤더는 `position: sticky; z-index: var(--z-header)` 그대로다. 무대는 헤더 아래에서 시작하는 것이 기본안이고, 헤더를 무대 위 유리판으로 겹치는 안은 11절 미결 사항 M1로 둔다.
+헤더는 `position: sticky; z-index: var(--z-header)` 그대로다. 무대는 뷰포트 맨 위에서 시작하고, 지도 판에서만 헤더 배경을 그래프 유리(`--graph-glass`, blur 18px)로 바꿔 무대 위에 겹친다. 별먼지가 헤더 뒤로 비친다 (11절 M1 결정).
 
 모바일(≤560px) 햄버거 메뉴 `.site-menu` 는 헤더 안에서 `position: absolute` 로 열린다. 헤더가 `--z-header: 100` 이고 무대는 아래 2.2절대로 `isolation: isolate` 로 쌓임 맥락을 가두므로 메뉴는 늘 무대 위에 뜬다. 검색 모달(`--z-modal: 1000`)도 같다.
 
 ### 2.2 무대 높이
 
-`layout()` 은 `<body>` 에 클래스를 붙일 수 없다. 대신 `:has()` 로 지도 판일 때만 body를 두 줄 격자로 바꾼다. 헤더 높이를 어림값 `--header-h` 로 빼지 않아도 된다.
+`layout()` 은 `<body>` 에 클래스를 붙일 수 없다. 대신 `:has()` 로 지도 판일 때만 body와 헤더를 바꾼다. 무대를 담은 `main` 을 `position: fixed; inset: 0` 으로 뷰포트 전체에 깔고, 헤더는 `z-index` 로 그 위에 둔다 (11절 M1).
 
 ```css
-body:has(> main.graph[data-view='map']) {
-  height: 100vh;            /* dvh 미지원 대비 */
-  height: 100dvh;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  overflow: hidden;         /* 지도 판은 문서 스크롤이 없다 */
+body:has(> main.graph[data-view='map']) { overflow: hidden; }   /* 지도 판은 문서 스크롤이 없다 */
+body:has(> main.graph[data-view='map']) .site-header {           /* 무대 위 유리판 */
+  background: var(--graph-glass);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
 }
 main.graph[data-view='map'] ~ .site-footer { display: none; }
-main.graph[data-view='map'] { position: relative; min-height: 0; }
+main.graph[data-view='map'] { position: fixed; inset: 0; }
 .graph-stage { position: absolute; inset: 0; overflow: hidden; isolation: isolate; touch-action: none; }
 ```
 
-`.skip-link` 는 `position: absolute` 라 격자 줄을 차지하지 않는다. 스크립트가 나중에 붙인 `<script>` 는 렌더 상자가 없다.
+- 헤더는 `position: sticky; top: 0; z-index: var(--z-header)` 라 문서 맨 위, 곧 뷰포트 맨 위에 붙고, z-index가 없는 고정 `main` 보다 위에 그려진다. 무대 크기는 헤더 높이와 무관하게 뷰포트와 같다.
+- 무대 위쪽 크롬은 헤더 밑에서 시작해야 한다. 탐색기가 `.site-header` 의 `offsetHeight` 를 `ResizeObserver` 로 읽어 `main.graph` 에 런타임 변수 `--graph-header-h` 로 넣는다. 스크립트가 값을 넣기 전의 대체값은 사이트 토큰 `--header-h` (3.6rem) 다. 위 여백 `--graph-top: calc(var(--graph-header-h, var(--header-h)) + var(--graph-inset))` 이 명령 줄과 상세 패널의 `top` 이다 (8.2절).
+- 헤더 상자는 크롬 장애물 목록(3절)에도 들어간다. 캔버스 라벨이 헤더 유리 밑에 깔려 읽히지 않는 일을 막는다.
+- `.skip-link` 는 `position: absolute` 라 배치에 영향이 없다. 스크립트가 나중에 붙인 `<script>` 는 렌더 상자가 없다.
 
 ### 2.3 두 판: 지도와 목록
 
@@ -132,19 +134,19 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 | 영역 | 클래스 | 위치 (데스크톱) | 크기 | 출처 |
 |---|---|---|---|---|
 | 캔버스 | `.graph-canvas` | 무대 전체 | 100% | 시안 F `#canvas` |
-| 명령 줄 | `.graph-cmd` | 좌상단, `top/left: var(--graph-inset)` | 검색 320px + 간격 8px + 필터 버튼 38px | F `.mk-search` 폭 `min(320px, 100%)`, 높이 38px |
+| 명령 줄 | `.graph-cmd` | 좌상단, `top: var(--graph-top)`, `left: var(--graph-inset)` (헤더 유리판 아래) | 검색 320px + 간격 8px + 필터 버튼 38px | F `.mk-search` 폭 `min(320px, 100%)`, 높이 38px |
 | 검색 결과 | `.graph-results` | 검색 입력 아래 6px | 입력 폭, 최대 높이 320px (모바일 40vh) | F `.mk-results` |
 | 필터 칩 줄 | `#graph-active-filters` | 명령 줄 아래 8px | 높이 30px, 폭은 경로 줄과 같은 식 | 새로 추가 |
 | 경로 줄 | `.graph-trail` | 같은 자리 | 높이 30px, `max-width: calc(100% - var(--graph-panel-w) - 4 * var(--graph-inset))` | F `.f-trail` |
 | 필터 팝오버 | `.graph-filters` | 필터 버튼 아래 6px, 명령 줄 왼쪽에 맞춤 | 폭 320px, 최대 높이 `min(60vh, 480px)` | 새로 추가 (4절) |
-| 상세 패널 | `.graph-panel` | 우측, `top/right/bottom: var(--graph-inset)` | `var(--graph-panel-w)` | F `.mk-panel` |
+| 상세 패널 | `.graph-panel` | 우측, `top: var(--graph-top)`, `right/bottom: var(--graph-inset)` | `var(--graph-panel-w)` | F `.mk-panel` |
 | 범례 독 | `.graph-dock` | 좌하단 | 범례 200px, 안내는 그 오른쪽 | F `.f-dock`, `.mk-legend` |
 | 도구 묶음 | `.graph-tools` | 우하단 | 버튼 높이 32px | F `.f-tools` 에 확대, 축소, 목록 보기를 더했다 |
 | 툴팁 | `.graph-tip` | 노드 아래 `r + 10px` | 최대 280px | F `.mk-tip` |
 | 라이브 영역 | `#graph-live` | 보이지 않음 | | F `#live` |
 | 목록 판 | `.graph-list` | 지도 판에서는 숨김 | 사이트 `.tags-page` 셸, 최대 76rem | 현재 사이트 |
 
-캔버스가 직접 그리는 성운 이름, "+k" 알약, 궤도 라벨은 DOM 영역이 아니다. 다만 이것들이 크롬과 겹치지 않도록 탐색기는 시안 F의 `chromeRects()` 처럼 보이는 크롬 상자를 모두 장애물로 넘긴다. 사이트에서는 그 목록에 `.graph-cmd`, `#graph-active-filters`, `.graph-trail`, 열린 `.graph-filters`, `.graph-dock` 의 범례, `.graph-tools`, 열린 패널을 넣는다. 크롬이 더 늘어나면(7절 예약 자리) 같은 목록에 추가한다.
+캔버스가 직접 그리는 성운 이름, "+k" 알약, 궤도 라벨은 DOM 영역이 아니다. 다만 이것들이 크롬과 겹치지 않도록 탐색기는 시안 F의 `chromeRects()` 처럼 보이는 크롬 상자를 모두 장애물로 넘긴다. 사이트에서는 그 목록에 무대 위에 겹친 공용 `.site-header`, `.graph-cmd`, `#graph-active-filters`, `.graph-trail`, 열린 `.graph-filters`, `.graph-dock` 의 범례, `.graph-tools`, 열린 패널을 넣는다. 크롬이 더 늘어나면(7절 예약 자리) 같은 목록에 추가한다.
 
 ## 4. 필터 배치
 
@@ -175,12 +177,14 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 
 ### 5.2 데스크톱 (1440 × 900 기준)
 
+아래 와이어프레임들의 점선(┄)은 헤더 유리판의 아래 끝이다. 무대는 그 선에서 끊기지 않고 헤더 뒤까지 이어진다 (2.2절).
+
 조감:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────┐
-│ ai-wiki 워드마크                        검색  태그  그래프  About  GH  ☀   │ 사이트 헤더 (약 58px)
-├────────────────────────────────────────────────────────────────────────────┤
+│ ai-wiki 워드마크                        검색  태그  그래프  About  GH  ☀   │ 사이트 헤더 약 58px, 무대 위 유리판
+├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┤
 │ ┌──────────────────────────────┐┌────┐                                     │
 │ │ ⌕ 페이지 제목으로 찾기      / ││필터2│                                     │ 명령 줄 38px
 │ └──────────────────────────────┘└────┘                                     │
@@ -204,7 +208,7 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 ```
 ┌────────────────────────────────────────────────────────────────────────────┐
 │ 사이트 헤더                                                                 │
-├────────────────────────────────────────────────────────────────────────────┤
+├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┤
 │ [⌕ 검색                     ][필터]                  ┌───────────────────┐ │
 │ [✦ 전체 보기] … / ● π0                               │ ● Physical AI   × │ │
 │                                                     │ π0: A Vision-…    │ │
@@ -221,7 +225,7 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 └────────────────────────────────────────────────────────────────────────────┘
 ```
 
-- 궤도 카메라의 사용 영역은 시안 F `orbitCam()` 의 값을 식으로 바꾼다. 위 `inset + 38 + 8 + 30 + 20 = 112px`, 아래 20px, 오른쪽 `var(--graph-panel-w) + 2 * inset`, 왼쪽 16px. 시안은 `right = 360 + 32` 를 숫자로 박았는데 사이트에서는 패널 폭을 토큰에서 읽는다 (`getComputedStyle(stage).getPropertyValue('--graph-panel-w')` 대신 패널 `offsetWidth`).
+- 궤도 카메라의 사용 영역은 시안 F `orbitCam()` 의 값을 식으로 바꾼다. 위 `헤더 높이 + inset + 38 + 8 + 30 + 20` = 헤더 높이 + 112px (헤더 약 58px이면 약 170px. 무대가 헤더 뒤까지 깔리므로 헤더 높이를 더한다), 아래 20px, 오른쪽 `var(--graph-panel-w) + 2 * inset`, 왼쪽 16px. 시안은 `right = 360 + 32` 를 숫자로 박았는데 사이트에서는 패널 폭을 토큰에서 읽는다 (`getComputedStyle(stage).getPropertyValue('--graph-panel-w')` 대신 패널 `offsetWidth`).
 - 도구 묶음은 궤도에서 숨긴다 (시안 F `body[data-mode='orbit'] .f-tools { display: none }`). 우하단이 패널 밑이 되기 때문이다.
 
 ### 5.3 태블릿 (768 × 1024 기준)
@@ -231,7 +235,7 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 ```
 ┌──────────────────────────────────────────────┐
 │ 사이트 헤더                                    │
-├──────────────────────────────────────────────┤
+├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┤
 │ [⌕ 검색                   ][필터]┌───────────┐│
 │ [✦ 전체 보기] / ● π0           │ 패널 320px ││
 │                               │           ││
@@ -256,7 +260,7 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 ```
 ┌───────────────────────────┐
 │ ai-wiki      ⌕   ☀   ☰    │ 사이트 헤더 (햄버거)
-├───────────────────────────┤
+├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┤
 │ [⌕ 페이지 제목으로…][필터] │ 명령 줄, 폭 100% - 32px
 │ [유형 paper ×]             │
 │                           │
@@ -274,7 +278,7 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 ```
 ┌───────────────────────────┐
 │ 사이트 헤더                 │
-├───────────────────────────┤
+├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┤
 │ [⌕ 검색            ][필터] │
 │ [✦ 전체 보기] / ● π0       │
 │      ○   ●●●   ○          │
@@ -292,7 +296,7 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 궤도, 시트 펼침:
 
 ```
-├───────────────────────────┤
+├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┤
 │ [⌕ 검색            ][필터] │
 │ [✦ 전체 보기] / ● π0       │
 │    ○  ●● π0 ●●  ○         │ 궤도를 남은 자리에 다시 맞춘다
@@ -304,8 +308,8 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 └───────────────────────────┘
 ```
 
-- 조감 사용 영역은 시안 F `atlasRect()` 의 `y: 60, h: H - 60 - 56` 을 식으로 바꾼다. 위는 `inset + 38 + 6`, 아래는 `inset + 26 + 14` 다.
-- 궤도 사용 영역은 시안 F 값 `top 104, bottom 시트 높이 + 58 (펼침 20), ext = R2o + 36` 을 쓴다. 위 104px는 `inset + 38 + 8 + 30 + 12` 와 같다.
+- 조감 사용 영역은 시안 F `atlasRect()` 의 `y: 60, h: H - 60 - 56` 을 식으로 바꾼다. 위는 `헤더 높이 + inset + 38 + 6` (헤더 약 58px이면 약 118px), 아래는 `inset + 26 + 14` 다.
+- 궤도 사용 영역은 시안 F 값 `top 104, bottom 시트 높이 + 58 (펼침 20), ext = R2o + 36` 에 위쪽만 헤더 높이를 더해 쓴다. 위는 `헤더 높이 + inset + 38 + 8 + 30 + 12` = 헤더 높이 + 104px (헤더 약 58px이면 약 162px)다.
 - 시트 상태는 접힘 `.is-peek` 과 펼침 두 가지다. 펼침 최대 높이는 `--graph-sheet-max: 42vh`, 펼친 동안 `.graph-stage.is-sheet-full > .graph-dock { display: none }`. 시안 F 진행 기록(2026-11-17)에서 확인한 값이다.
 - 범례는 견본 8개 한 줄, 각 26px 정사각, `max-width: calc(100vw - 2 * var(--graph-inset) - 96px)`. 누른 견본은 이름을 펼친다.
 - 도구 묶음은 아이콘 버튼 두 개(목록 보기, 화면 맞춤)만 둔다. 확대와 축소는 핀치가 맡는다 (11절 M3). 버튼 36px 두 개와 간격 8px = 80px로 범례가 비워 둔 96px 안에 든다.
@@ -318,8 +322,8 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│ 사이트 헤더 44px (가로 화면에서 축소)                            │
-├──────────────────────────────────────────────────────────────┤
+│ 사이트 헤더 44px (가로 화면에서 축소, 무대 위 유리판)              │
+├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┤
 │ [⌕ 검색          ][필터]                    ┌────────────────┐│
 │ [✦ 전체 보기] / ● π0                        │● Physical AI  ×││ 머리 압축
 │ ●                                          │π0: A Vision-… ↗││ 제목 2줄 + 열기 아이콘
@@ -335,7 +339,7 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 
 **잔여 1. 범례가 외곽 궤도 아래쪽에 닿는다.** 가로 화면은 세로 여유가 330px 남짓이라 아래쪽 범례 줄(26px + 여백)이 궤도 사용 영역을 깎는다. 범례를 왼쪽 가장자리의 세로 한 줄로 옮긴다.
 
-- `@media (max-height: 480px)`: `.graph-dock` 을 `top: calc(inset + 38 + 8 + 30 + 8); bottom: auto; left: inset`, 범례 `flex-direction: column`. 견본 8개 × 26px + 간격 2px × 7 + 위아래 여백 12px = 234px. 남은 높이 안에 든다.
+- `@media (max-height: 480px)`: `.graph-dock` 을 `top: calc(var(--graph-top) + 38 + 8 + 30 + 8); bottom: auto; left: inset` (헤더 44px이면 뷰포트 위에서 144px), 범례 `flex-direction: column`. 견본 8개 × 26px + 간격 2px × 7 + 위아래 여백 12px = 234px. 남은 높이 안에 든다.
 - 궤도 카메라 왼쪽 여유를 `inset + 범례 폭(26 + 16) + 8` = 66px로 두고 아래 여유는 20px로 줄인다. 세로로 비는 공간이 늘어 외곽 궤도가 범례에 닿을 일이 없다.
 - 누른 견본의 이름 펼침은 세로 줄에서 오른쪽으로 튀어나오는 알약으로 그린다 (`position: absolute; left: 100%`). 줄 폭은 바뀌지 않는다.
 
@@ -351,7 +355,7 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 
 어림셈으로 머리와 바닥이 차지하던 약 185px가 약 75px로 줄어 이웃 목록이 330px 높이 중 약 250px를 쓴다. 정확한 값은 Phase 6에서 iPhone 13과 Pixel 7 가로 설정으로 잰다.
 
-**사이트 헤더 축소.** 가로 화면에서는 헤더가 높이의 15%를 먹는다. `@media (max-height: 480px)` 에서 그래프 페이지 헤더만 위아래 여백을 `var(--space-1)` 로 줄여 약 44px로 만든다 (`body:has(> main.graph[data-view='map']) .site-header`).
+**사이트 헤더 축소.** 헤더가 무대 위에 겹쳐도 그 아래로는 크롬과 궤도를 둘 수 없으므로, 가로 화면에서는 헤더가 쓸 수 있는 높이의 15%를 먹는다. `@media (max-height: 480px)` 에서 그래프 페이지 헤더만 위아래 여백을 `var(--space-1)` 로 줄여 약 44px로 만든다 (`body:has(> main.graph[data-view='map']) .site-header`, 2.2절 유리판 규칙과 같은 선택자). `--graph-header-h` 는 줄어든 높이를 그대로 읽는다.
 
 ### 5.6 도구 묶음
 
@@ -401,7 +405,7 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 
 ### 8.1 z-index 층
 
-무대가 `isolation: isolate` 라 아래 값은 무대 안에서만 비교된다. 사이트의 `--z-header: 100`, `--z-modal: 1000` 과 섞이지 않는다.
+무대가 `isolation: isolate` 라 아래 값은 무대 안에서만 비교된다. 사이트의 `--z-header: 100`, `--z-modal: 1000` 과 섞이지 않는다. 무대 바깥에서는 고정 `main.graph` (z-index 없음) 위에 공용 헤더(`--z-header: 100`, 유리판), 그 위에 검색 모달(`--z-modal`)이 놓인다. 헤더 안의 햄버거 메뉴도 헤더 층에 속하므로 무대의 어떤 층보다 위다 (2.1절).
 
 | 층 | 토큰 | 값 | 요소 | 시안 F 값 |
 |---|---|---|---|---|
@@ -418,6 +422,8 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 | 항목 | 값 | 토큰 |
 |---|---|---|
 | 무대 바깥 여백 | 16px | `--graph-inset` (= `--space-4`) |
+| 헤더 높이 (런타임) | 탐색기가 `.site-header` 의 `offsetHeight` 를 넣는다. 대체값 `--header-h` (3.6rem) | `--graph-header-h` |
+| 무대 위쪽 크롬 시작 | `calc(var(--graph-header-h, var(--header-h)) + var(--graph-inset))`. 런타임 값을 읽어야 하므로 `:root` 가 아니라 `main.graph` 에 선언한다 | `--graph-top` |
 | 명령 줄 높이 | 38px | `--graph-ctl-h` |
 | 칩 줄, 경로 줄 높이 | 30px | `--graph-row-h` |
 | 줄 사이 간격 | 8px | `--space-2` |
@@ -475,11 +481,13 @@ main.graph[data-view='map'] { position: relative; min-height: 0; }
 | `--graph-lens` | `--f-lens` | 시안 값 |
 | `--graph-filament-blend` | `--f-filament-blend` | `lighter` / `source-over` |
 | `--graph-shadow-alpha` | `--f-shadow-alpha` | 0 / 1 |
-| `--graph-glass`, `--graph-glass-edge`, `--graph-glass-top`, `--graph-sheen` | `--f-glass`, `--f-glass-edge`, `--f-glass-top`, `--f-sheen` | 시안 값 |
+| `--graph-glass`, `--graph-glass-edge`, `--graph-glass-top`, `--graph-sheen` | `--f-glass`, `--f-glass-edge`, `--f-glass-top`, `--f-sheen` | 시안 값. `:root` 에 두므로 `main.graph` 밖의 공용 헤더도 지도 판에서 `--graph-glass` 를 유리판 배경으로 읽는다 (2.2절) |
 | `--graph-float-shadow` | `--f-float-shadow` (`--shadow-float` 별칭 포함) | 시안 값 |
 | `--graph-primary-top`, `--graph-primary-bottom`, `--graph-primary-ink` | `--f-primary-*` | 시안 값 |
 | `--graph-inset`, `--graph-ctl-h`, `--graph-row-h`, `--graph-panel-w`, `--graph-legend-w`, `--graph-sheet-max`, `--graph-radius-panel`, `--graph-radius-pop`, `--graph-radius-ctl` | 새로 | 8.2절 |
 | `--graph-z-float`, `--graph-z-panel`, `--graph-z-pop`, `--graph-z-tip` | 새로 | 8.1절 |
+| `--graph-header-h` | 새로 (런타임) | 탐색기가 `main.graph` 에 넣는다 (2.2절, 8.2절) |
+| `--graph-top` | 새로 | `main.graph` 에 선언한다. `:root` 에 두면 `--graph-header-h` 가 비어 있는 시점의 값으로 굳는다 (8.2절) |
 
 **쓰지 않는 시안 토큰.** `--bar-h`(공용 헤더로 대체), `--glass`(`--graph-glass` 로 대체), `--panel-w`(`--graph-panel-w` 로 대체), `--signal-physical-dim` 덮어쓰기(시안 F도 덮어쓰지 않았다). `--f-` 접두는 "시안 F" 라는 뜻이라 사이트에서는 의미가 없어 `--graph-` 로 바꾼다. `design-direction.md` 9절의 이름은 시안 기준으로 남기고, Phase 4 구현 때 이 표를 대응표로 쓴다.
 
@@ -520,6 +528,8 @@ DOM 순서를 아래로 고정한다. 시각 위치가 달라도(범례가 왼�
 
 캔버스 다음에 패널이 오므로 궤도에서 Enter로 중심을 정한 뒤 Tab 한 번에 패널로 들어간다. 시안 F는 패널이 범례와 도구 뒤에 있었다.
 
+헤더가 무대 위에 겹쳐도 DOM에서는 `main` 앞에 있으므로 순서는 위와 같다. 헤더 요소에 초점이 있을 때 초점 테가 별먼지 위 유리판에서도 보이는지 Phase 6에서 확인한다.
+
 ### 9.3 숨은 영역 처리
 
 시안 F는 숨긴 패널을 `transform` 으로 밀고 `visibility: hidden` 을 늦게 걸어 Tab에서 뺐다. 사이트에서는 `inert` 를 함께 쓴다.
@@ -545,26 +555,28 @@ DOM 순서를 아래로 고정한다. 시각 위치가 달라도(범례가 왼�
 
 ## 10. 구현 메모
 
-- 탐색기의 크롬 기하 상수(시안 F `orbitCam()` 의 112, 104, 58, 20과 `atlasRect()` 의 60, 56)는 숫자로 박지 말고 매 계산 때 장애물 상자와 토큰에서 구한다. 7절 예약 자리가 늘어나도 다시 손댈 곳이 생기지 않는다.
+- 탐색기의 크롬 기하 상수(시안 F `orbitCam()` 의 112, 104, 58, 20과 `atlasRect()` 의 60, 56)는 숫자로 박지 말고 매 계산 때 장애물 상자와 토큰에서 구한다. 위쪽 값에는 헤더 높이(`--graph-header-h`)가 더해진다. 7절 예약 자리가 늘어나도 다시 손댈 곳이 생기지 않는다.
 - 모바일 판정은 시안의 `W <= 640` 과 `matchMedia('(max-width: 640px)')` 를 하나로 합친다. 휴대폰 가로 판정 `matchMedia('(max-height: 480px)')` 를 새로 둔다.
 - 사이트 CSS에서 그래프 절은 지금처럼 `@layer components` 안 한 블록으로 둔다. 시안 F의 `:root:not([data-theme='light'])` 구분은 사이트의 `:root[data-theme='light']` 덮어쓰기 방식으로 뒤집는다 (기본 dark).
 
-## 11. 미결 사항
+## 11. 확정된 결정 (2026-11-17 사용자 승인)
 
-사용자 결정이 필요한 것만 적는다.
+처음에는 사용자 결정이 필요한 미결 사항으로 적었다. 2026-11-17 사용자가 모두 추천안대로 확정했다. 선택지는 근거로 남긴다.
 
-| 번호 | 질문 | 선택지 | 추천 |
+| 번호 | 질문 | 선택지 | 추천과 결정 |
 |---|---|---|---|
-| M1 | 공용 헤더와 무대를 어떻게 잇는가 | (a) 헤더 아래에 무대를 둔다. 헤더는 다른 페이지와 같다. (b) 무대를 헤더 밑까지 깔고 그래프 페이지에서만 헤더를 그래프 유리(`--graph-glass`, blur 18px)로 바꾼다. 별먼지가 헤더 뒤로 비친다 | **(b)**. 몰입감이 크고 비용은 위쪽 여유에 헤더 높이를 더하는 것뿐이다. 2.2절 격자 대신 `main` 을 `position: fixed; inset: 0` 으로 두고 헤더를 `z-index` 로 위에 둔다. (a)로 먼저 구현하고 (b)를 덧입혀도 된다 |
-| M2 | 텍스트 목록을 어디에 두는가 | (a) 지도 판과 목록 판을 버튼으로 전환한다 (2.3절). (b) 무대 아래에 목록을 이어 두고 문서 스크롤로 내려간다 | **(a)**. (b)는 모바일에서 무대가 `touch-action: none` 이라 화면을 꽉 채운 캔버스 위에서 스크롤이 막힌다. 무대를 뷰포트보다 짧게 하면 몰입형 배치가 깨진다 |
-| M3 | 확대, 축소 버튼을 둘 것인가 | (a) 데스크톱과 태블릿에 둔다 (5.6절). (b) 시안 F처럼 "화면 맞춤" 만 둔다 | **(a)**. 휠이 없는 트랙패드 사용자와 키보드 사용자에게 필요하다. 모바일에는 두지 않는다 |
-| M4 | 유형과 태그 필터의 진입점 | (a) 명령 줄의 필터 버튼과 팝오버 (4절). (b) 범례를 탭 세 개(카테고리, 유형, 태그)로 키운다 | **(a)**. 범례는 색 설명이 본업이고, 태그 1,023개는 입력이 필요하다 |
-| M5 | 그래프 모바일 경계를 사이트 헤더 경계 560px에 맞출 것인가 | (a) 640 유지. (b) 560으로 맞춤 | **(a)**. 시안 F가 640으로 검증됐고 두 경계는 서로 다른 요소를 바꾼다 |
-| M6 | 768px 세로 태블릿의 패널 | (a) 옆 패널 320px (5.3절). (b) 모바일처럼 하단 시트 | **(a)**. 세로 1024px에서는 시트가 궤도 자리를 더 많이 먹는다 |
+| M1 | 공용 헤더와 무대를 어떻게 잇는가 | (a) 헤더 아래에 무대를 둔다. 헤더는 다른 페이지와 같다. (b) 무대를 헤더 밑까지 깔고 그래프 페이지에서만 헤더를 그래프 유리(`--graph-glass`, blur 18px)로 바꾼다. 별먼지가 헤더 뒤로 비친다 | 추천 **(b)**. 몰입감이 크고 비용은 위쪽 여유에 헤더 높이를 더하는 것뿐이다. **결정: (b).** 처음 2.2절에 적었던 body 두 줄 격자 대신 `main` 을 `position: fixed; inset: 0` 으로 두고 헤더를 `z-index` 로 위에 둔다. 2.2절, 3절, 5절, 8절, 9.2절을 이 결정에 맞췄다 |
+| M2 | 텍스트 목록을 어디에 두는가 | (a) 지도 판과 목록 판을 버튼으로 전환한다 (2.3절). (b) 무대 아래에 목록을 이어 두고 문서 스크롤로 내려간다 | 추천 **(a)**. (b)는 모바일에서 무대가 `touch-action: none` 이라 화면을 꽉 채운 캔버스 위에서 스크롤이 막힌다. 무대를 뷰포트보다 짧게 하면 몰입형 배치가 깨진다. **결정: (a) 판 전환** |
+| M3 | 확대, 축소 버튼을 둘 것인가 | (a) 데스크톱과 태블릿에 둔다 (5.6절). (b) 시안 F처럼 "화면 맞춤" 만 둔다 | 추천 **(a)**. 휠이 없는 트랙패드 사용자와 키보드 사용자에게 필요하다. **결정: (a). 데스크톱과 태블릿에만 두고 모바일에는 두지 않는다** |
+| M4 | 유형과 태그 필터의 진입점 | (a) 명령 줄의 필터 버튼과 팝오버 (4절). (b) 범례를 탭 세 개(카테고리, 유형, 태그)로 키운다 | 추천 **(a)**. 범례는 색 설명이 본업이고, 태그 1,023개는 입력이 필요하다. **결정: (a) 필터 팝오버** |
+| M5 | 그래프 모바일 경계를 사이트 헤더 경계 560px에 맞출 것인가 | (a) 640 유지. (b) 560으로 맞춤 | 추천 **(a)**. 시안 F가 640으로 검증됐고 두 경계는 서로 다른 요소를 바꾼다. **결정: (a) 640 유지** |
+| M6 | 768px 세로 태블릿의 패널 | (a) 옆 패널 320px (5.3절). (b) 모바일처럼 하단 시트 | 추천 **(a)**. 세로 1024px에서는 시트가 궤도 자리를 더 많이 먹는다. **결정: (a) 옆 패널** |
 
 ## 12. 개선 제안
 
 시안 F보다 더 세련되고 모던하게 보이게 하는 구체 안이다. 모두 이 문서의 영역 구성 안에서 할 수 있고, 하나씩 따로 채택할 수 있다.
+
+이 절은 확정된 설계가 아니다. Phase 4, 5 구현 때 비용이 적은 것부터 골라 넣는다.
 
 | 번호 | 제안 | 무엇이 나아지나 | 비용 |
 |---|---|---|---|
@@ -577,13 +589,14 @@ DOM 순서를 아래로 고정한다. 시각 위치가 달라도(범례가 왼�
 | I7 | **판 전환에 View Transitions API를 쓴다.** 지도 판과 목록 판 전환 때 `document.startViewTransition` 으로 교차 페이드, 지원하지 않으면 즉시 바꾼다 | 목록 판이 다른 페이지처럼 툭 바뀌지 않는다 | JS 몇 줄. 점진적 향상 |
 | I8 | **검색 결과 행을 두 줄로 만든다.** 첫 줄 제목, 둘째 줄 카테고리 견본과 유형, 연도를 `--text-2xs` muted로. 일치 글자는 시안처럼 카테고리 색 | 비슷한 제목(RT-1, RT-2, "모두의 로보틱스" 연재)이 많아 한 줄로는 고르기 어렵다 | 마크업 소폭 |
 | I9 | **빈 상태 문구를 행동으로 쓴다.** 검색 결과 없음: "일치하는 제목이 없다. 필터가 켜져 있으면 해제한다" + 해제 버튼. 필터로 노드가 0개: 범례 아래에 같은 형식 | 막다른 화면이 없어진다 | 문구와 버튼 하나 |
-| I10 | **헤더 유리 연결 (M1 b안).** 헤더 아래 1px 경계를 없애고 무대 위쪽 24px에 배경색으로 녹는 그라데이션만 둔다 | 페이지 전체가 하나의 성도 화면으로 읽힌다 | CSS만, M1 b안 채택 시 |
+| I10 | **헤더 유리 연결 (M1 b안).** 헤더 아래 1px 경계를 없애고 무대 위쪽 24px에 배경색으로 녹는 그라데이션만 둔다 | 페이지 전체가 하나의 성도 화면으로 읽힌다 | CSS만. M1이 (b)로 확정돼 전제가 갖춰졌다 |
 
 넣지 않기를 권하는 것: 미니맵(344노드 화면에서 "화면 맞춤" 과 역할이 겹친다), 상단의 큰 통계 숫자 타일(`design-direction.md` 1절 "피할 것"), 패널 탭 구조(이웃 목록 하나로 충분하다).
 
 ## 13. 확인하지 못한 것
 
-- 사이트 헤더의 실제 높이. `--header-h: 3.6rem` 은 주석상 "대략" 값이다. 2.2절 격자 방식은 이 값에 기대지 않지만, 5.5절 가로 화면 44px 축소는 실측이 필요하다.
+- 사이트 헤더의 실제 높이. `--header-h: 3.6rem` 은 주석상 "대략" 값이다. 2.2절은 런타임에 잰 `--graph-header-h` 를 쓰고 이 값은 스크립트 전 대체값으로만 쓰지만, 5.2절과 5.4절의 "헤더 약 58px" 환산과 5.5절 가로 화면 44px 축소는 실측이 필요하다.
+- 헤더 유리판(`--graph-glass`, blur 18px) 위 헤더 글자와 초점 테의 대비. 별먼지와 성운 빛이 뒤로 비치는 상태에서 재지 않았다.
 - 5.5절 휴대폰 가로 패널의 높이 어림셈(이웃 목록 약 250px). 실제 렌더로 재지 않았다.
 - `<search>` 요소, `inert`, `:has()`, `dvh` 의 대상 브라우저 지원은 일반 지식으로 판단했고 이 저장소에서 확인하지 않았다. Phase 6 교차 엔진 검증 항목에 넣는다.
 - 덮어쓴 `--cat-*` 값을 wiki 페이지 배경(사이트 `--bg` `#0b0e14`, `#f7f8fa`) 위에서 쓸 때의 대비. 시안 F 대비표는 그래프 배경(`#070b14`, `#f3f4f8`) 기준이다.
@@ -597,3 +610,4 @@ DOM 순서를 아래로 고정한다. 시각 위치가 달라도(범례가 왼�
 | 2026-11-17 | 6절 상태별 노출 | 상세 패널을 들어가는 전환 중에도 연다고 적음 (02 2.2절). 학습 경로 단계 막대 행 추가 (06 4.3절) |
 | 2026-11-17 | 7절 예약 자리 | 최근 추가의 모바일 처리(필터 버튼 배지 점), 모바일 궤도와 휴대폰 가로의 단계 막대 알약, 약한 연결 링크 `href="#weak-links"` (06 2.2절, 3.2절, 4.3절) |
 | 2026-11-17 | 9.2절 초점 순서 | 이웃 목록을 roving tabindex로 (02 6.6절) |
+| 2026-11-17 | 2.1절, 2.2절, 3절, 5.2 ~ 5.5절, 8절, 9.2절, 10 ~ 13절 | 사용자 승인으로 M1 ~ M6을 추천안대로 확정. 11절 제목을 "확정된 결정" 으로 바꿨다. M1 (b)에 맞춰 2.2절을 격자에서 고정 `main` 과 헤더 유리판으로 바꾸고, 위쪽 크롬과 카메라 여유에 헤더 높이(`--graph-header-h`, `--graph-top`)를 더했다. 와이어프레임의 헤더 경계를 점선으로. 12절이 확정 설계가 아님을 적었다 |

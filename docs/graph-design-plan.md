@@ -108,7 +108,7 @@
 - **약한 연결 리포트**: degree가 낮은 페이지 목록을 보여 wiki 보강 대상을 찾는다.
 - **최근 추가 강조**: 최근 ingest한 노드를 표시해 지식이 어디서 자라는지 보여 준다.
 
-그래프 페이지 본체(Phase 4)를 먼저 끝내고 Phase 5에서 하나씩 붙인다. 네 기능은 서로 독립이라 순서를 바꾸거나 중간에 멈출 수 있다.
+그래프 페이지 본체(Phase 4)를 먼저 끝내고 Phase 5에서 하나씩 붙인다. 네 기능은 서로 독립이라 순서를 바꾸거나 중간에 멈출 수 있다. 상세 설계는 `docs/graph-spec/06-extra-features.md` 에 있다.
 
 ## 7. 확정된 결정 (2026-11-16)
 
@@ -124,6 +124,7 @@
 | Q8 | 다른 시안에서 빌릴 것 | E 3D를 별도 실험 페이지로 둔다. C의 링크 수 행렬과 D의 연도 요소는 넣지 않는다 |
 | Q9 | 모바일 시작 화면 | 데스크톱과 같은 전체 조감 |
 | Q10 | 실물 휴대폰 확인 | Phase 6으로 넘기고 Phase 1을 종료한다 (2026-11-17 사용자 결정). 실제 터치, iOS Safari, 휴대폰 GPU, 스크린 리더는 실제 사이트 구현 뒤에 확인한다 |
+| Q11 | Phase 2 설계 승인 | `docs/graph-spec/` 문서 여섯 개의 미결 26건을 모두 추천안으로 확정한다 (2026-11-17). 주요 내용: 헤더는 무대 위에 유리판으로 겹친다. 트랙패드 두 손가락 스크롤은 줌이다. 배치는 빌드에서 d3-force 3.0.0으로 계산해 `graph.json` 에 싣는다. 엣지는 인덱스 배열 `links` 로 바꾸고 홈 히어로 두 함수를 함께 고친다. 3D 실험 페이지 `/graph/3d/` 는 Phase 5 마지막에 만든다. 각 문서의 개선 제안은 Phase 4, 5 구현 때 값싼 것부터 선별한다 |
 
 ## 8. 필요한 도구
 
@@ -132,7 +133,7 @@
 - 디자인 스킬: `frontend-design`, `design-taste-frontend` (설치됨).
 - 화면 검증: `playwright` (시스템 Chrome 구동, `pyproject.toml` 에 있음).
 
-라이브러리를 쓰기로 하면 Phase 2에서 후보(d3-force, 3D는 three.js 계열)를 정하고 `site/package.json` 에 추가한다.
+라이브러리는 Phase 2에서 정했다. d3-force 3.0.0과 의존 셋을 `site/package.json` 의 `devDependencies` 에 정확한 버전으로 넣어 빌드에서만 쓰고, three 0.169.0은 3D 실험 페이지에서만 싣는다 (`docs/graph-spec/05-libraries.md`).
 
 브라우저에서 직접 조작해 확인하려면 Claude in Chrome 확장 권한이 있으면 편하다. 없으면 playwright 스크린샷으로 대신한다.
 
@@ -170,14 +171,16 @@
 - [x] 배치 알고리즘 결정 (허브 뭉침 완화 방법 포함): `docs/graph-spec/04-layout-algorithm.md` (미결 4건은 설계 승인에서 확정)
 - [x] 외부 라이브러리 사용 여부와 후보 확정: `docs/graph-spec/05-libraries.md` (미결 사항은 설계 승인에서 확정)
 - [x] 추가 기능 네 가지의 화면 위치와 데이터 출처 확정: `docs/graph-spec/06-extra-features.md` (3D 실험 페이지 포함, 미결 R1 ~ R6은 설계 승인에서 확정)
-- [ ] 사용자 설계 승인
+- [x] 사용자 설계 승인 (2026-11-17, 미결 26건 모두 추천안으로 확정. 7절 Q11)
 
 ### Phase 3. 데이터 파이프라인
 
-- [ ] `site/lib/graph.mjs`: 노드에 `year`, `type`, `tags` 추가
-- [ ] `graph.json` 용량 확인 (들여쓰기 제거 검토)
+- [ ] `site/lib/graph.mjs`: 노드에 `year`, `type`, `tags`, `added` 추가, 엣지를 `links` 인덱스 배열로, 최상위 `version: 2` 와 `recent*` 키 (`docs/graph-spec/03-schema.md`)
+- [ ] `site/lib/graph-layout.mjs`: d3-force 를 `devDependencies` 에 넣고 빌드에서 배치를 계산해 노드 `xy` 에 싣기 (`04-layout-algorithm.md`, `05-libraries.md`)
+- [ ] 홈 히어로 `constellation.js` 엣지 루프와 `graph-core.js` `buildAdjacency` 를 `links` 에 맞게 수정, 지금 탐색기가 엣지 없이 그려지지 않도록 03 문서 8절의 임시 수정 포함
+- [ ] `graph.json` 용량 확인 (들여쓰기 제거, 목표 gzip 38KB 안팎)
 - [ ] 홈 히어로 `constellation.js` 가 그대로 동작하는지 확인
-- [ ] `graph.mjs` 자체 점검 스크립트 추가 (노드 수, 엣지 해석, 필드 존재)
+- [ ] `graph.mjs` 자체 점검 `checkGraphJson` 추가 (불변식 V1 ~ V16)
 
 ### Phase 4. 구현
 
@@ -193,11 +196,12 @@
 
 ### Phase 5. 추가 기능
 
-- [ ] 최근 추가 강조: `graph.json` 노드에 추가일 필드, 그래프에 표시와 토글
-- [ ] 학습 경로 겹쳐 보기: `study_path` 를 빌드에서 `graph.json` 에 싣고 경로 선택 UI와 번호 표시
-- [ ] 약한 연결 리포트: degree 하위 페이지 목록을 그래프 페이지에 추가
-- [ ] 페이지별 미니 그래프: `wiki` 템플릿 하단에 1-hop 그래프, 이웃 링크 목록을 텍스트 판본으로 유지
+- [ ] 약한 연결 리포트: 들어오는 링크 0개 또는 degree 3 이하 페이지 목록을 목록 판 `section#weak-links` 에 서버 렌더
+- [ ] 페이지별 미니 그래프: 기존 `relatedSection()` 자리에 빌드 타임 정적 SVG (이웃 24개 상한), 이웃 링크 목록을 텍스트 판본으로 유지
+- [ ] 최근 추가 강조: 노드 `added` 로 최근 14일(최소 6개) 표시와 토글
+- [ ] 학습 경로 겹쳐 보기: `study_path` 를 빌드에서 `graph/paths.json` 으로 내고 경로 선택 UI, 번호 배지, 단계 막대
 - [ ] 미니 그래프가 344개 페이지 빌드 시간과 페이지 무게에 주는 영향 확인
+- [ ] 3D 실험 페이지 `/graph/3d/` (보기 전용, three 0.169.0은 이 페이지에서만 로드)
 
 ### Phase 6. 검증
 
@@ -241,3 +245,4 @@
 | 2026-11-17 | Phase 2 인터랙션 명세 (`docs/graph-spec/02-interaction.md`). 입력은 Pointer Events 하나로 처리하고 휠만 따로 받는다. 탭과 드래그 경계는 마우스 4px, 터치와 펜 8px. 줌 k 0.20 ~ 6.00. 상태 기계는 영역 여섯 개와 전이 표. Esc는 한 번에 하나만 닫는다. 검색은 제목과 stem 부분 일치(태그 제외), 필터는 축 안 OR, 축 사이 AND. URL은 `#node=…&cat=…&type=…&tag=…` 와 `#list`, 궤도 진입과 목록 판 전환만 history push. 캔버스는 `role="application"`, 이웃 목록은 roving tabindex. 고칠 시안 결함 네 건(복귀 카메라 덮어쓰기, 오른쪽 버튼 팬, `pointerdown` 만으로 비행 중단, `#main` 건너뛰기 링크가 궤도를 닫음). 검증 체크리스트 65항목. 01, 04 문서와 어긋나는 일곱 건은 02 문서 12절에 적었고 설계 승인 전에 01, 04를 맞춘다. 사용자 결정 대기 N1 ~ N5 (트랙패드 스크롤, 태그 OR/AND, 궤도 이동 history, 페이지 열기 탭, 터치 탭 허용 폭) |
 | 2026-11-17 | Phase 2 추가 기능 설계 (`docs/graph-spec/06-extra-features.md`). 추가일은 git 최초 추가일로, `site/lib/dates.mjs` 가 이미 `page.added` 로 계산하고 배포는 `fetch-depth: 0` 이다. "최근"은 홈과 같은 14일에 최소 6개 (지금 13개). 약한 연결은 들어오는 링크 0개 27개와 degree 3 이하 12개의 합집합 36개, 목록 판에 서버 렌더. 학습 경로는 9개 경로 76단계(미해석 0)이고 이웃 단계 사이에 실제 엣지가 없는 경우가 많아 별도 곡선으로 그리며, 데이터는 `graph/paths.json` (gzip 약 7KB)으로 분리해 홈 히어로에 무게를 주지 않는다. 미니 그래프는 기존 `relatedSection()` 자리의 빌드 타임 정적 SVG, 이웃 24개 상한. 3D 페이지는 보기 전용. 구현 순서 추천: 약한 연결, 미니 그래프, 최근 추가, 학습 경로, 3D. 01, 04, 05 문서와 어긋나는 여덟 건은 06 문서 10절에 적었다. 사용자 결정 대기 R1 ~ R6 |
 | 2026-11-17 | Phase 2 스키마 설계 (`docs/graph-spec/03-schema.md`). 노드에 `year`, `type`, `tags`, `added`, `xy`(가로 배치 정수 좌표 한 벌, 세로 화면은 x와 y 교환)를 더하고 최상위에 `version: 2`, `recentSince`, `recentMode`, `recentDays` 를 둔다. 엣지는 객체 배열 `edges` 대신 노드 인덱스 평면 배열 `links` 로 바꾸고 들여쓰기를 없앤다. 실측(344노드, 스크래치 직렬화): 지금 482,615B (gzip 41,072B)에서 158,199B (gzip 37,944B)로, 새 필드를 다 싣고도 홈 비용이 gzip 2.9KB 준다. 엣지 객체를 유지하면 gzip 52,643B다. 대신 홈 히어로의 두 함수(`constellation.js` 엣지 루프, `graph-core.js` `buildAdjacency`)를 Phase 3에서 고쳐야 한다. 검증 불변식 V1 ~ V16. 위험: Phase 3을 Phase 4보다 먼저 배포하면 지금 탐색기가 엣지 없이 그려지므로 03 문서 8절의 두 줄 수정을 함께 넣는다. 02 문서 12절과 06 문서 10절의 어긋남, 좌표 두 벌 대 한 벌을 모두 판정해 01, 02, 04, 05, 06을 맞추고 각 문서에 개정 기록을 남겼다. 사용자 결정 대기 D1 ~ D2 |
+| 2026-11-17 | 사용자 설계 승인 (Q11). 미결 26건을 모두 추천안으로 확정하고 설계 문서의 미결 절을 확정된 결정으로 바꿨다. Phase 3과 Phase 5 항목을 설계 결과에 맞게 갱신했다 (배치 빌드 계산, `links` 전환, `paths.json`, 3D 실험 페이지, 추가 기능 구현 순서). Phase 2 완료 |
