@@ -30,7 +30,7 @@
 
     --cat-physical-ai: #ffb05a;
     --cat-agents: #3ef2d2;
-    --cat-applications: #ff6aa6;
+    --cat-applications: #ff7298;   /* #ff6aa6 은 제1색각 이상에서 etc 와 겹쳤다 (ΔE 0.1) */
     --cat-database: #c4a2ff;
     --cat-llms: #5e8eff;
     --cat-overviews: #f3f6ff;
@@ -281,6 +281,9 @@
     .mk-results { max-height: 40vh; }
     .mk-panel { border-radius: 16px 16px 0 0; }
     .mk-panel.is-peek .mk-panel-body { display: none; }
+    /* 펼친 시트는 화면의 42%까지만. 궤도가 남은 자리에서 읽을 만한 크기를 지키고, 범례는 시트를 접을 때 돌아온다 */
+    .mk-panel:not(.is-peek) { max-height: 42vh; }
+    .mk-stage.is-sheet-full > .f-dock { display: none; }
     .mk-panel.is-peek .mk-panel-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: var(--text-base); }
     .mk-panel-head { padding: var(--space-3) var(--space-4) var(--space-2); }
     .mk-panel-foot { padding: var(--space-2) var(--space-4) var(--space-3); }
@@ -696,7 +699,7 @@ function main() {
   function sheetH() { return isMobile() && !panelEl.hidden ? panelEl.offsetHeight : 0; }
   function orbitCam(v) {
     var top, bottom, left = 16, right = 16, ext = v.extent;
-    if (isMobile()) { top = 104; bottom = sheetH() + 58; ext = v.R2o + 36; }
+    if (isMobile()) { top = 104; bottom = sheetH() + (stage.classList.contains('is-sheet-full') ? 20 : 58); ext = v.R2o + 36; } // 펼친 시트에서는 범례가 숨는다
     else { top = 112; bottom = 20; right = 360 + 32; }
     var aw = Math.max(80, W - left - right), ah = Math.max(80, H - top - bottom);
     var k = Math.max(0.2, Math.min(1.6, Math.min(aw, ah) / (2 * ext)));
@@ -921,7 +924,7 @@ function main() {
     prevView = view; view = null;
     setTargets(null, 'exit');
     panelEl.hidden = true; document.getElementById('trail').hidden = true;
-    stage.style.setProperty('--sheet', '0px');
+    syncSheet();
     if (!opts.fromHistory && location.hash) history.replaceState(null, '', location.pathname + location.search);
     flyTo(atlasCam || fitTarget(nodes), 640);
     document.getElementById('live').textContent = '전체 보기';
@@ -1000,7 +1003,7 @@ function main() {
     return r * (1 + 0.16 * hoverLift[n.i]);
   }
 
-  var nameBoxes = [];
+  var nameBoxes = [], pillBox = null, labelBoxes = [];
   function draw(now) {
     var k = cam.k, tx = cam.x, ty = cam.y;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -1094,25 +1097,37 @@ function main() {
     }
     ctx.globalAlpha = 1;
 
-    // 9. 라벨
+    // 10a. 접힌 2-hop 수 자리: 바깥 궤도 꼭대기 빈 틈. 멀리 줄여 틈이 알약보다 좁아지면 노드와 겹치므로 숨긴다
+    // (같은 수와 "모두 보이기" 는 패널 본문에 늘 있다)
+    pillBox = null;
+    var pa = mode === 'orbit' && view && (view.hidden > 0 || expanded) && view.r2.length ? clamp(mix) : 0;
+    if (pa > 0) {
+      var txt = expanded ? '접기' : '+' + view.hidden;
+      var px = C.x * k + tx, py = (C.y - view.R2) * k + ty;
+      ctx.font = '500 11px ' + T.fontMono;
+      var pw = ctx.measureText(txt).width + 14;
+      pillBox = { x: px - pw / 2, y: py - 10, w: pw, h: 20 };
+      var members = view.r1.concat(view.r2, [view.c]);
+      for (var mi = 0; mi < members.length && pillBox; mi++) {
+        var mp = S(members[mi]), mr = nodeR(members[mi]) * 1.08 + (members[mi] === view.c ? 12 : 4); // 1.08: 스프라이트 테, 중심은 선택 고리
+        var qx = Math.max(pillBox.x, Math.min(mp.x, pillBox.x + pw)), qy = Math.max(pillBox.y, Math.min(mp.y, pillBox.y + 20));
+        if (Math.hypot(mp.x - qx, mp.y - qy) < mr) pillBox = null;
+      }
+    }
+
+    // 9. 라벨 (궤도 라벨은 알약 자리를 비켜 간다)
     if (mode === 'atlas' && mix < 0.05) drawAtlasLabels(now, k, tx, ty);
     if (mode === 'orbit' && view) drawOrbitLabels(h, cats);
 
-    // 10. 접힌 2-hop 수
-    if (mode === 'orbit' && view && (view.hidden > 0 || expanded)) {
-      var pa = view.r2.length ? clamp(mix) : 0;
-      if (pa > 0) {
-        var txt = expanded ? '접기' : '+' + view.hidden;
-        var px = C.x * k + tx, py = (C.y - view.R2) * k + ty;
-        ctx.font = '500 11px ' + T.fontMono; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        var pw = ctx.measureText(txt).width + 14;
-        ctx.globalAlpha = pa * (hotPlus ? 1 : 0.85);
-        roundRect(px - pw / 2, py - 10, pw, 20, 10);
-        ctx.fillStyle = T.labelHalo; ctx.fill();
-        ctx.strokeStyle = hotPlus ? T.signal : T.hairline; ctx.lineWidth = 1; ctx.stroke();
-        ctx.fillStyle = hotPlus ? T.text : T.muted; ctx.fillText(txt, px, py + 0.5);
-        ctx.textAlign = 'left'; ctx.globalAlpha = 1;
-      }
+    // 10b. 접힌 2-hop 수
+    if (pillBox) {
+      ctx.font = '500 11px ' + T.fontMono; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.globalAlpha = pa * (hotPlus ? 1 : 0.85);
+      roundRect(px - pw / 2, py - 10, pw, 20, 10);
+      ctx.fillStyle = T.labelHalo; ctx.fill();
+      ctx.strokeStyle = hotPlus ? T.signal : T.hairline; ctx.lineWidth = 1; ctx.stroke();
+      ctx.fillStyle = hotPlus ? T.text : T.muted; ctx.fillText(txt, px, py + 0.5);
+      ctx.textAlign = 'left'; ctx.globalAlpha = 1;
     }
   }
   function roundRect(x, y, w, h, r) {
@@ -1289,23 +1304,47 @@ function main() {
       // 위아래가 막히면 성운 옆, 그다음 성운 안 빈 자리를 본다 (좁은 모바일에서 Applications 가 빠지던 문제)
       var cands = [[x0, top - 18], [x0, bot + size + 18], [x0, top - 40], [x0, bot + size + 40], [x0 - tw * 0.6, top - 18], [x0 + tw * 0.6, top - 18],
         [lft, ym], [rgt, ym], [x0 - tw * 0.6, bot + size + 18], [x0 + tw * 0.6, bot + size + 18], [x0, ym]];
-      var spot = null;
-      for (var ci = 0; ci < cands.length && !spot; ci++) {
-        var x = cands[ci][0], y = cands[ci][1];
+      function free(x, y) {
         var bx0 = x - tw / 2 - 6, bx1 = x + tw / 2 + 6, by0 = y - size - 4, by1 = y + 6;
-        if (bx0 < 4 || bx1 > W - 4 || by0 < 4 || by1 > H - 4) continue;
-        var clear = nodes.every(function (n) {
-          var nx = n.x * k + tx, ny = n.y * k + ty, nr = n.r * rk + 2;
+        if (bx0 < 4 || bx1 > W - 4 || by0 < 4 || by1 > H - 4) return false;
+        return nodes.every(function (n) {
+          var nx = n.x * k + tx, ny = n.y * k + ty, nr = n.r * rk + 4; // 4: 스프라이트 테와 overviews 고리(r + 2.6)까지
           return nx + nr < bx0 || nx - nr > bx1 || ny + nr < by0 || ny - nr > by1;
         }) && chrome.every(function (q) { return bx1 < q.x || bx0 > q.x + q.w || by1 < q.y || by0 > q.y + q.h; })
           && nameBoxes.every(function (q) { return bx1 < q.x || bx0 > q.x + q.w || by1 < q.y || by0 > q.y + q.h; });
-        if (clear) spot = [x, y];
+      }
+      var spot = null, lead = false;
+      for (var ci = 0; ci < cands.length && !spot; ci++) if (free(cands[ci][0], cands[ci][1])) spot = cands[ci];
+      // 그래도 막히면 성운 둘레를 넓혀 가며 가장 가까운 빈 틈을 찾고 hairline 으로 성운에 잇는다 (좁은 모바일의 Applications)
+      var hx0 = (c.left + c.right) / 2 * k + tx, hy0 = (c.top + c.bottom) / 2 * k + ty;
+      var hrx = (c.right - c.left) / 2 * k + tw / 2, hry = (c.bottom - c.top) / 2 * k + size / 2;
+      for (var d = 8; d <= 160 && !spot; d += 8) {
+        for (var s = 0; s < 24 && !spot; s++) {
+          var an = s / 24 * TAU, px = hx0 + Math.cos(an) * (hrx + d), py = hy0 + Math.sin(an) * (hry + d) + size / 2;
+          if (free(px, py)) { spot = [px, py]; lead = true; }
+        }
       }
       if (!spot) return;
+      var box = { x: spot[0] - tw / 2 - 4, y: spot[1] - size - 2, w: tw + 8, h: size + 6, id: c.id };
+      if (lead) {
+        // 이름 상자에서 가장 가까운 제 성운 노드까지. 노드 원 앞에서 멈춘다
+        var best = null, bd = Infinity;
+        nodes.forEach(function (n) {
+          if (n.category !== c.id) return;
+          var nx = n.x * k + tx, ny = n.y * k + ty, qx = Math.max(box.x, Math.min(nx, box.x + box.w)), qy = Math.max(box.y, Math.min(ny, box.y + box.h));
+          var dd = Math.hypot(nx - qx, ny - qy);
+          if (dd < bd) { bd = dd; best = [nx, ny, qx, qy, n.r * rk + 3]; }
+        });
+        if (best && bd > best[4] + 4) {
+          var ux = (best[2] - best[0]) / bd, uy = (best[3] - best[1]) / bd;
+          ctx.globalAlpha = alpha * a * (dark ? 0.45 : 0.55); ctx.strokeStyle = T.cat[c.id]; ctx.lineWidth = 0.8;
+          ctx.beginPath(); ctx.moveTo(best[2] - ux * 2, best[3] - uy * 2); ctx.lineTo(best[0] + ux * best[4], best[1] + uy * best[4]); ctx.stroke();
+        }
+      }
       ctx.globalAlpha = alpha * a * (dark ? 0.7 : 0.8);
       ctx.fillStyle = T.cat[c.id];
       ctx.fillText(c.en, spot[0], spot[1]);
-      nameBoxes.push({ x: spot[0] - tw / 2 - 4, y: spot[1] - size - 2, w: tw + 8, h: size + 6, id: c.id });
+      nameBoxes.push(box);
     });
     if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
     ctx.textAlign = 'left'; ctx.globalAlpha = 1;
@@ -1375,6 +1414,8 @@ function main() {
     var k = cam.k, cs = S({ x: C.x, y: C.y });
     var rightBound = isMobile() || panelEl.hidden ? W - 8 : W - 360 - 32;
     var boxes = chromeRects(), obst = [];
+    if (pillBox) boxes.push({ x: pillBox.x - 4, y: pillBox.y - 4, w: pillBox.w + 8, h: pillBox.h + 8 });
+    labelBoxes = [];
     var members = view.r1.concat(view.r2);
     members.forEach(function (n) { var p = S(n), r = nodeR(n); obst.push({ n: n, x: p.x - r - 1, y: p.y - r - 1, w: 2 * r + 2, h: 2 * r + 2 }); });
     var c0 = S(view.c), rc = nodeR(view.c);
@@ -1399,7 +1440,7 @@ function main() {
         label(ln, c0.x, y0 + i * 19);
         var w = ctx.measureText(ln).width;
         boxes.push({ x: c0.x - w / 2 - 2, y: y0 + i * 19 - 2, w: w + 4, h: 19 });
-        centerBoxes.push(boxes[boxes.length - 1]);
+        centerBoxes.push(boxes[boxes.length - 1]); labelBoxes.push(boxes[boxes.length - 1]);
       });
       if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
     }
@@ -1443,7 +1484,9 @@ function main() {
         for (var i = 0; i < boxes.length; i++) { var q = boxes[i]; if (box.x < q.x + q.w && box.x + box.w > q.x && box.y < q.y + q.h && box.y + box.h > q.y) return; }
         for (i = 0; i < obst.length; i++) { q = obst[i]; if (q.n !== n && box.x < q.x + q.w && box.x + box.w > q.x && box.y < q.y + q.h && box.y + box.h > q.y) return; }
       }
-      boxes.push(box);
+      // 호버한 라벨은 충돌 검사를 건너뛰므로 알약과 겹치면 알약을 내린다 (수는 패널에 있다)
+      if (strong && pillBox && box.x < pillBox.x + pillBox.w + 4 && box.x + box.w > pillBox.x - 4 && box.y < pillBox.y + pillBox.h + 4 && box.y + box.h > pillBox.y - 4) pillBox = null;
+      boxes.push(box); labelBoxes.push(box);
       if (n.role === 1) n1++; else n2++;
       orbitLabelCount++;
       var la = clamp((n.lt - 0.85) / 0.15) * (n.role === 2 && !strong ? 0.85 : 1);
@@ -1486,7 +1529,11 @@ function main() {
   function pageHref(n) { return '../../wiki/' + n.id + '.md'; } // 시안: 저장소의 wiki 원문
   var pBody = document.getElementById('p-body'), pToggle = document.getElementById('panel-toggle');
   var mqMobile = matchMedia('(max-width: 640px)');
-  function syncSheet() { stage.style.setProperty('--sheet', mode === 'orbit' && isMobile() && !panelEl.hidden ? panelEl.offsetHeight + 'px' : '0px'); }
+  function syncSheet() {
+    var open = mode === 'orbit' && isMobile() && !panelEl.hidden;
+    stage.style.setProperty('--sheet', open ? panelEl.offsetHeight + 'px' : '0px');
+    stage.classList.toggle('is-sheet-full', open && !panelEl.classList.contains('is-peek'));
+  }
   function showPanel() {
     if (mqMobile.matches) { panelEl.classList.add('is-peek'); pToggle.setAttribute('aria-expanded', 'false'); }
     panelEl.hidden = false;
@@ -1582,9 +1629,8 @@ function main() {
     return best;
   }
   function hitPlus(x, y) {
-    if (mode !== 'orbit' || !view || !(view.hidden > 0 || expanded)) return false;
-    var p = S({ x: C.x, y: C.y - view.R2 });
-    return Math.abs(x - p.x) < 28 && Math.abs(y - p.y) < 13;
+    if (mode !== 'orbit' || !pillBox) return false; // 숨긴 알약은 누를 수 없다
+    return x > pillBox.x - 6 && x < pillBox.x + pillBox.w + 6 && y > pillBox.y - 3 && y < pillBox.y + pillBox.h + 3;
   }
   function local(e) { var r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
   var pointers = new Map(), gesture = null;
@@ -1831,6 +1877,16 @@ function main() {
     view: function () { return view && { cid: view.cid, r1: view.r1.length, r2: view.r2.length, hidden: view.hidden, labels: orbitLabelCount }; },
     drawTimes: drawTimes,
     names: function () { return nameBoxes.map(function (b) { return b.id; }); }, centerBoxes: function () { return centerBoxes; },
+    // 겹침 검사용: 이름 상자, 알약, 궤도 라벨, 크롬, 보이는 노드 원 (화면 좌표, 스프라이트 테 포함)
+    geom: function () {
+      return {
+        names: nameBoxes, pill: pillBox, labels: mode === 'orbit' ? labelBoxes : [], chrome: chromeRects(),
+        nodes: nodes.filter(function (n) { return mode === 'atlas' ? n.role === ATLAS : n.role >= 0; }).map(function (n) {
+          var p = S(n), r = nodeR(n) * 1.08 + (n.category === 'overviews' ? 3.1 : 0);
+          return { x: p.x, y: p.y, r: r, cat: n.category, id: n.id };
+        }),
+      };
+    },
   };
 }
 })();
