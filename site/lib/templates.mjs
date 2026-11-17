@@ -422,8 +422,8 @@ ${g.nodes
     .join('\n');
 
   // 아직 동작을 붙이지 않은 컨트롤은 hidden 이나 disabled 로 내보낸다 (Phase 4 뒤 항목이 하나씩 푼다):
-  // 명령 줄(검색, 필터) 5번, 조작 안내의 클릭과 검색 줄 4, 5번, 궤도 안내와 캔버스 Tab 순서 7번, 범례 필터 5번.
-  // 줌과 맞춤 버튼, 조작 안내 상자는 3번(줌과 팬)이 탐색기 시작 때 푼다.
+  // 명령 줄(검색, 필터) 5번, 조작 안내의 검색 줄 5번, 궤도 안내의 키 줄과 캔버스 Tab 순서 7번, 범례 필터 5번.
+  // 줌과 맞춤 버튼, 조작 안내 상자는 3번(줌과 팬)이, 클릭 줄과 궤도 안내 상자는 4번(선택)이 탐색기 시작 때 푼다.
   const body = `<h1 class="graph-title" id="graph-title">그래프</h1>
 <a class="graph-skip" href="#list">페이지 목록으로 건너뛰기</a>
 
@@ -444,7 +444,7 @@ ${g.nodes
   </div>
   <div class="graph-row graph-float" id="graph-active-filters" hidden></div>
   <nav class="graph-row graph-float graph-trail" aria-label="지나온 페이지" hidden>
-    <button type="button" class="graph-home" id="graph-home">전체 보기</button>
+    <button type="button" class="graph-home" id="graph-home"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 11 8 4.5l4.5 5.5" stroke="currentColor" stroke-width="0.9" fill="none" opacity="0.55"/><circle cx="3.5" cy="11" r="1.6" fill="currentColor"/><circle cx="8" cy="4.5" r="2" fill="currentColor"/><circle cx="12.5" cy="10" r="1.4" fill="currentColor"/></svg>전체 보기</button>
     <ol class="graph-crumbs" id="graph-crumbs"></ol>
   </nav>
 
@@ -477,7 +477,7 @@ ${typeChips}
     </div>
     <div class="graph-panel-body" id="graph-p-body"></div>
     <div class="graph-panel-foot">
-      <a class="graph-panel-open" id="graph-p-open" href="${href('/graph/')}">페이지 열기</a>
+      <a class="graph-panel-open" id="graph-p-open" href="${href('/graph/')}"><span class="graph-panel-open-label">페이지 열기</span><span class="graph-panel-open-ico" aria-hidden="true">↗</span></a>
       <button type="button" class="graph-panel-toggle" id="graph-p-toggle" aria-expanded="false" aria-controls="graph-p-body">이웃 보기</button>
     </div>
   </aside>
@@ -490,7 +490,7 @@ ${legend}
       <!-- Phase 5 예약: 최근 추가 표식 줄 .graph-legend-recent, 약한 연결 링크 #weak-links (01 7절) -->
     </div>
     <p class="graph-hint is-atlas" hidden><span class="graph-hint-line" data-hint="select" hidden><kbd>클릭</kbd> 궤도로 열기</span><span class="graph-hint-line" data-hint="zoom"><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동</span><span class="graph-hint-line" data-hint="search" hidden><kbd>/</kbd> 검색</span></p>
-    <p class="graph-hint is-orbit" hidden><kbd>← →</kbd> 궤도를 돈다<br><kbd>↑ ↓</kbd> 안팎 궤도로 옮긴다<br><kbd>Enter</kbd> 중심에 둔다<br><kbd>Esc</kbd> 전체 보기</p>
+    <p class="graph-hint is-orbit" hidden><span class="graph-hint-line" data-hint="recenter"><kbd>클릭</kbd> 중심 옮기기</span><span class="graph-hint-line" data-hint="zoom"><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동</span><span class="graph-hint-line" data-hint="keys" hidden><kbd>← →</kbd> 궤도 돌기</span><span class="graph-hint-line" data-hint="keys" hidden><kbd>↑ ↓</kbd> 안팎 궤도</span><span class="graph-hint-line" data-hint="keys" hidden><kbd>Enter</kbd> 중심에 두기</span><span class="graph-hint-line" data-hint="keys" hidden><kbd>Esc</kbd> 전체 보기</span></p>
   </div>
 
   <div class="graph-tools graph-float is-br" role="toolbar" aria-label="보기 도구">
