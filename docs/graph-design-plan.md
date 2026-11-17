@@ -176,7 +176,7 @@
 ### Phase 3. 데이터 파이프라인
 
 - [x] `site/lib/graph.mjs`: 노드에 `year`, `type`, `tags`, `added` 추가, 엣지를 `links` 인덱스 배열로, 최상위 `version: 2` 와 `recent*` 키 (`docs/graph-spec/03-schema.md`) (2026-11-17, `toGraphJson` 과 `recentInfo` 추가. 344노드, `links` 5,200, 옛 `edges` 2,600과 집합과 순서 일치)
-- [ ] `site/lib/graph-layout.mjs`: d3-force 를 `devDependencies` 에 넣고 빌드에서 배치를 계산해 노드 `xy` 에 싣기 (`04-layout-algorithm.md`, `05-libraries.md`)
+- [x] `site/lib/graph-layout.mjs`: d3-force 를 `devDependencies` 에 넣고 빌드에서 배치를 계산해 노드 `xy` 에 싣기 (`04-layout-algorithm.md`, `05-libraries.md`) (2026-11-17, d3-force 3.0.0, d3-dispatch, d3-quadtree, d3-timer 3.0.1 고정. 배치 약 0.4s, 두 번 빌드한 `graph.json` sha256 동일, 그린 원 기준 겹친 쌍 0, 좌표 범위 1308 × 910. 자체 점검 `checkLayout` 은 STRICT 빌드에서 실패 처리)
 - [x] 홈 히어로 `constellation.js` 엣지 루프와 `graph-core.js` `buildAdjacency` 를 `links` 에 맞게 수정, 지금 탐색기가 엣지 없이 그려지지 않도록 03 문서 8절의 임시 수정 포함 (2026-11-17, 탐색기는 엣지 쌍 루프까지 세 군데 수정. 344노드 이웃 수가 `degree` 와 일치, 홈 히어로 캔버스는 수정 전과 바이트 동일, 콘솔 오류 0건. 배포가 깨지지 않게 첫 항목과 함께 푸시)
 - [ ] `graph.json` 용량 확인 (들여쓰기 제거, 목표 gzip 38KB 안팎)
 - [ ] 홈 히어로 `constellation.js` 가 그대로 동작하는지 확인

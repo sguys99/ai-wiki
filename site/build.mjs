@@ -16,6 +16,7 @@ import { BASE, STRICT, href, RECENT_COUNT } from './lib/config.mjs';
 import { loadContent, tagsOf } from './lib/content.mjs';
 import { addedDates } from './lib/dates.mjs';
 import { buildGraph, toGraphJson, recentInfo } from './lib/graph.mjs';
+import { layoutGraph, checkLayout } from './lib/graph-layout.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
 import { home, wiki, about, tagIndex, tag, graphPage, studyPathSection } from './lib/templates.mjs';
 import { domainOf } from './lib/domains.mjs';
@@ -103,7 +104,15 @@ async function main() {
   // 3) 그래프 빌드 → graph.json
   const graph = buildGraph(pages, resolveLink);
   const graphRecent = recentInfo(pages);
-  const graphJson = JSON.stringify(toGraphJson(graph, pages, null, graphRecent));
+  const t0 = performance.now();
+  const layout = layoutGraph(graph, pages);
+  const layoutMs = Math.round(performance.now() - t0);
+  const { problems: layoutProblems, warnings: layoutWarnings } = checkLayout(graph, layout);
+  for (const w of layoutWarnings) console.log(`[graph] WARN ${w}`);
+  for (const p of layoutProblems) console.log(`[graph] ${STRICT ? 'FAIL' : 'WARN'} layout: ${p}`);
+  if (STRICT && layoutProblems.length) throw new Error(`성도 배치 자체 점검 ${layoutProblems.length}건 (STRICT=1)`);
+  console.log(`[graph] layout ${layoutMs}ms${layoutProblems.length ? '' : '  ✓'}`);
+  const graphJson = JSON.stringify(toGraphJson(graph, pages, layout, graphRecent));
   await writeFile(join(DIST, 'graph.json'), graphJson);
   console.log(`[graph] nodes: ${graph.nodes.length}  ·  edges: ${graph.edges.length}`);
   console.log(
