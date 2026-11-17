@@ -179,7 +179,7 @@
 - [x] `site/lib/graph-layout.mjs`: d3-force 를 `devDependencies` 에 넣고 빌드에서 배치를 계산해 노드 `xy` 에 싣기 (`04-layout-algorithm.md`, `05-libraries.md`) (2026-11-17, d3-force 3.0.0, d3-dispatch, d3-quadtree, d3-timer 3.0.1 고정. 배치 약 0.4s, 두 번 빌드한 `graph.json` sha256 동일, 그린 원 기준 겹친 쌍 0, 좌표 범위 1308 × 910. 자체 점검 `checkLayout` 은 STRICT 빌드에서 실패 처리)
 - [x] 홈 히어로 `constellation.js` 엣지 루프와 `graph-core.js` `buildAdjacency` 를 `links` 에 맞게 수정, 지금 탐색기가 엣지 없이 그려지지 않도록 03 문서 8절의 임시 수정 포함 (2026-11-17, 탐색기는 엣지 쌍 루프까지 세 군데 수정. 344노드 이웃 수가 `degree` 와 일치, 홈 히어로 캔버스는 수정 전과 바이트 동일, 콘솔 오류 0건. 배포가 깨지지 않게 첫 항목과 함께 푸시)
 - [x] `graph.json` 용량 확인 (들여쓰기 제거, 목표 gzip 38KB 안팎) (2026-11-17, 158,199B, gzip -9 37,958B, gzip -6 38,234B, brotli 30,700B. 개행 0, 들여쓰기 없음. 비용은 `title` 10.8KB, `tags` 9.7KB, `links` 6.9KB 순이고 `xy` 는 2.4KB. 코드 변경 없음)
-- [ ] 홈 히어로 `constellation.js` 가 그대로 동작하는지 확인
+- [x] 홈 히어로 `constellation.js` 가 그대로 동작하는지 확인 (2026-11-17, 기준 커밋 `1a95b66b` 빌드와 다크, 라이트 × 1440, 768, 375 reduced-motion 캔버스 차이 픽셀 0. 모션, 리사이즈, 테마 전환, `graph.json` 차단, 카드 이웃 hover, `BASE=/ai-wiki` 경로 모두 통과, 콘솔 오류 0건. dpr 2와 ResizeObserver 폴백은 미확인)
 - [ ] `graph.mjs` 자체 점검 `checkGraphJson` 추가 (불변식 V1 ~ V16)
 
 ### Phase 4. 구현
