@@ -157,7 +157,11 @@
   #canvas { cursor: grab; }
   #canvas.is-panning { cursor: grabbing; }
   #canvas.is-over { cursor: pointer; }
-  #canvas:focus-visible { outline: none; }
+  /* 캔버스가 무대를 꽉 채우므로 키보드 초점 테는 안쪽에 그린다 (바깥 테는 화면 밖으로 잘린다) */
+  #canvas:focus-visible { outline: 2px solid var(--signal); outline-offset: -2px; border-radius: 0; }
+  /* 숨긴 패널은 전환을 위해 transform 으로 밀어 두기만 하므로, 그 안의 버튼과 링크가 Tab 순서와 접근성 트리에 남지 않게 visibility 로도 숨긴다 */
+  .mk-panel { transition: transform var(--dur-panel) var(--ease-out), opacity var(--dur-panel) var(--ease-out), visibility 0s linear 0s; }
+  .mk-panel[hidden] { visibility: hidden; transition-delay: 0s, 0s, var(--dur-panel); }
 
   /* 검색 */
   .mk-search input { height: 38px; border-radius: 10px; letter-spacing: 0.005em; }
@@ -266,17 +270,24 @@
   .f-fallback a { color: var(--text); text-decoration: none; }
   .f-fallback a:hover { color: var(--c); }
 
-  @media (max-width: 640px) {
-    .f-trail { max-width: calc(100% - 2 * var(--space-4)); }
+  /* 좁은 화면과 가로로 눕힌 휴대폰(높이 480px 이하)은 범례를 견본 한 줄로 접고 안내를 숨긴다. 세로 목록 범례는 낮은 화면에서 검색창과 궤도를 덮는다 */
+  @media (max-width: 640px), (max-height: 480px) {
     .f-hint { display: none !important; }
     .mk-legend { width: auto; display: flex; flex-wrap: wrap; gap: 2px; padding: 6px 8px; max-width: calc(100vw - 2 * var(--space-4) - 96px); }
     .mk-legend li { padding: 0; width: 26px; height: 26px; justify-content: center; }
     .mk-legend li .a-name, .mk-legend .mk-legend-n, .mk-legend .f-legend-reset { display: none; }
-    /* 누른 견본은 이름을 펼친다: 성운 이름이 자리를 못 찾아도 탭 한 번으로 카테고리를 읽는다 */
     .mk-legend li[aria-pressed='true'] { width: auto; padding: 0 9px 0 8px; gap: 6px; }
     .mk-legend li[aria-pressed='true'] .a-name { display: inline; font-size: var(--text-xs); color: var(--text); white-space: nowrap; }
     .mk-legend li .mk-swatch { width: 10px; height: 10px; }
     .mk-legend li[aria-pressed='true'] { background: color-mix(in srgb, var(--c) 22%, transparent); }
+  }
+  @media (max-height: 480px) and (min-width: 641px) {
+    /* 옆 패널이 남는 가로 화면: 범례 줄이 패널 밑으로 들어가지 않게 패널 폭만큼 줄인다 */
+    body[data-mode='orbit'] .mk-legend { max-width: calc(100vw - var(--panel-w) - 4 * var(--space-4)); }
+  }
+  @media (max-width: 640px) {
+    .f-trail { max-width: calc(100% - 2 * var(--space-4)); }
+    /* 누른 견본은 이름을 펼친다 (위 블록): 성운 이름이 자리를 못 찾아도 탭 한 번으로 카테고리를 읽는다 */
     .f-tools #reset-filter { display: none; }
     .mk-results { max-height: 40vh; }
     .mk-panel { border-radius: 16px 16px 0 0; }
@@ -1601,11 +1612,15 @@ function main() {
   pBody.addEventListener('pointerover', function (ev) { var li = ev.target.closest('li[data-id]'); var n = li ? byId[li.dataset.id] : null; if (n !== hovered) { hovered = n; redraw(); } });
   pBody.addEventListener('pointerleave', function () { hovered = null; redraw(); });
   function toggleExpand() {
+    var fromBtn = pBody.contains(document.activeElement);
     expanded = !expanded;
     prevView = view; view = layout(view.cid, expanded);
     setTargets(view, 'recenter');
     flyTo(orbitCam(view), 600);
     renderPanel(); redraw();
+    // 목록을 다시 그리면 누른 버튼이 사라져 초점이 body 로 떨어진다. 새 버튼으로 옮긴다
+    var nb = fromBtn && pBody.querySelector('[data-act="expand"]');
+    if (nb) nb.focus({ preventScroll: true });
   }
   pToggle.addEventListener('click', function () {
     var peek = panelEl.classList.toggle('is-peek');
