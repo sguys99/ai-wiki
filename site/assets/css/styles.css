@@ -99,6 +99,62 @@
     --z-header: 100;
     --z-modal: 1000;
 
+    /* 그래프 (/graph/) 와 wiki 미니 그래프가 함께 쓰는 토큰. 값은 시안 F 토큰 블록 (docs/graph-spec/01-layout.md 8.3절) */
+    --text-2xs: 0.6875rem;
+    --dur-fast: 120ms;
+    --dur-panel: 240ms;
+    --dur-camera: 480ms;
+    --dur-reveal: 600ms;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --cat-physical-ai: #ffb05a;
+    --cat-agents: #3ef2d2;
+    --cat-applications: #ff7298;
+    --cat-database: #c4a2ff;
+    --cat-llms: #5e8eff;
+    --cat-overviews: #f3f6ff;
+    --cat-evaluations: #cdf25a;
+    --cat-etc: #7d8ba6;
+    --graph-bg: #070b14;
+    --graph-edge: #9fb4e0;
+    --graph-edge-alpha: 0.07;
+    --graph-edge-hi-alpha: 0.85;
+    --graph-dim-alpha: 0.14;
+    --graph-label: #eef2fa;
+    --graph-label-muted: #9aa5bb;
+    --graph-label-halo: rgba(6, 10, 19, 0.86);
+    --graph-glow-alpha: 0.55;
+    --graph-ring: #070b14;
+    --graph-bg-core: #101a31;
+    --graph-bg-edge: #04060c;
+    --graph-vignette: rgba(0, 0, 0, 0.55);
+    --graph-dust: #d4e2ff;
+    --graph-dust-alpha: 0.55;
+    --graph-backdrop-alpha: 0.16;
+    --graph-lens: rgba(8, 13, 25, 0.84);
+    --graph-filament-blend: lighter;
+    --graph-shadow-alpha: 0;
+    --graph-glass: rgba(14, 21, 38, 0.64);
+    --graph-glass-edge: rgba(200, 216, 255, 0.13);
+    --graph-glass-top: rgba(255, 255, 255, 0.1);
+    --graph-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0.012) 38%, rgba(255, 255, 255, 0) 100%);
+    --graph-float-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
+    --graph-primary-top: #8af8e4;
+    --graph-primary-bottom: #22d3b6;
+    --graph-primary-ink: #03141a;
+    --graph-inset: var(--space-4);
+    --graph-ctl-h: 38px;
+    --graph-row-h: 30px;
+    --graph-panel-w: clamp(320px, 30vw, 380px);
+    --graph-legend-w: 200px;
+    --graph-sheet-max: 42vh;
+    --graph-radius-panel: 16px;
+    --graph-radius-pop: 12px;
+    --graph-radius-ctl: 10px;
+    --graph-z-float: 10;
+    --graph-z-panel: 15;
+    --graph-z-pop: 20;
+    --graph-z-tip: 30;
+
     color-scheme: dark;
   }
 
@@ -115,7 +171,70 @@
     /* 대비비 light bg 4.74:1 / surface 5.04:1 / surface-2 4.53:1 */
     --signal-physical: #a85b12;
     --signal-physical-dim: rgba(168, 91, 18, 0.18);
+    --cat-physical-ai: #c25e05;
+    --cat-agents: #008f78;
+    --cat-applications: #d42a6c;
+    --cat-database: #8a46e0;
+    --cat-llms: #1e4ac3;
+    --cat-overviews: #141a2e;
+    --cat-evaluations: #486500;
+    --cat-etc: #6b7690;
+    --graph-bg: #f3f4f8;
+    --graph-edge: #34405e;
+    --graph-edge-alpha: 0.075;
+    --graph-edge-hi-alpha: 0.78;
+    --graph-dim-alpha: 0.16;
+    --graph-label: #141a2e;
+    --graph-label-muted: #566079;
+    --graph-label-halo: rgba(247, 248, 251, 0.92);
+    --graph-glow-alpha: 0;
+    --graph-ring: #ffffff;
+    --graph-bg-core: #fdfdfe;
+    --graph-bg-edge: #e4e7ef;
+    --graph-vignette: rgba(38, 52, 92, 0.07);
+    --graph-dust: #26314d;
+    --graph-dust-alpha: 0.06;
+    --graph-backdrop-alpha: 0.2;
+    --graph-lens: rgba(250, 251, 253, 0.86);
+    --graph-filament-blend: source-over;
+    --graph-shadow-alpha: 1;
+    --graph-glass: rgba(255, 255, 255, 0.7);
+    --graph-glass-edge: rgba(30, 45, 90, 0.09);
+    --graph-glass-top: rgba(255, 255, 255, 0.95);
+    --graph-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 40%, rgba(255, 255, 255, 0) 100%);
+    --graph-float-shadow: 0 22px 48px rgba(28, 40, 84, 0.13), 0 2px 6px rgba(28, 40, 84, 0.07);
+    --graph-primary-top: #10a98f;
+    --graph-primary-bottom: #007d69;
+    --graph-primary-ink: #ffffff;
     color-scheme: light;
+  }
+
+  /* 그래프 페이지만 사이트 토큰을 시안 F 값으로 덮어쓴다. main 범위라 공용 헤더와 푸터는 그대로다 (01 8.3절) */
+  main.graph {
+    --bg: #070b14;
+    --surface: #0f1626;
+    --surface-2: #172036;
+    --text: #e8ecf5;
+    --muted: #8d98ae;
+    --faint: #5b6680;
+    --hairline: rgba(160, 182, 235, 0.12);
+    --signal: #3ef2d2;
+    --signal-dim: rgba(62, 242, 210, 0.22);
+    --signal-physical: #ffb05a;
+    /* --graph-header-h 는 탐색기가 런타임에 넣으므로 :root 가 아니라 여기서 계산한다 (01 8.2절) */
+    --graph-top: calc(var(--graph-header-h, var(--header-h)) + var(--graph-inset));
+  }
+  :root[data-theme='light'] main.graph {
+    --bg: #f3f4f8;
+    --surface: #ffffff;
+    --surface-2: #eef0f6;
+    --text: #141a2e;
+    --muted: #566079;
+    --faint: #8f98ad;
+    --hairline: rgba(30, 45, 90, 0.1);
+    --signal: #008f78;
+    --signal-dim: rgba(0, 143, 120, 0.16);
+    --signal-physical: #c25e05;
   }
 
   /* 도메인 강조색 스코프 전환. 컴포넌트가 전부 --signal을 읽으므로 토큰만 바꾸면
@@ -1688,86 +1807,64 @@
   }
 }
 
-/* ── components (Phase 5: 전체 그래프 페이지 /graph/) ──────────────────────────── */
+/* ── components (전체 그래프 페이지 /graph/, docs/graph-spec/01-layout.md) ─────────── */
 @layer components {
-  /* 셸은 태그 페이지(.tags-page)와 공유하고 여기서는 탐색기 고유 부분만 둔다. */
-  .graph-filter {
-    margin-bottom: var(--space-6);
+  /* ── 목록 판 (서버 기본값, data-view="list") ── */
+  main.graph[data-view='list'] {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-4) 0;
   }
-  .graph-filter-inner {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
+  .graph-title {
+    margin: var(--space-2) 0 0;
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
   }
-
-  /* 스크립트가 캔버스를 열기 전(또는 graph.json 실패)에는 통째로 빠진다. */
-  .graph-explorer {
-    margin: 0 0 var(--space-12);
+  .graph-lede {
+    max-width: var(--measure);
+    margin: var(--space-4) 0 0;
+    color: var(--muted);
+    line-height: var(--leading-body);
   }
-  .graph-explorer[hidden] {
-    display: none;
-  }
-  /* 캔버스 높이는 뷰포트를 따라가되 상한을 둔다 — 노드가 늘어도 화면을 다 먹지 않게. */
-  .graph-canvas-wrap {
-    height: clamp(22rem, 60vh, 40rem);
-    background: var(--surface);
-    border: var(--hairline-w) solid var(--hairline);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-  .graph-canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-    /* 노드 탭이 더블탭 확대로 먹히지 않도록 */
-    touch-action: manipulation;
-  }
-  /* 상태줄 — 호버/선택한 노드의 제목·카테고리·연결 수. 높이를 잡아 두어 갱신 시 밀리지 않는다. */
-  .graph-status {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: var(--space-2);
-    min-height: 2.4em;
-    margin-top: var(--space-3);
+  .graph-stat {
+    margin: var(--space-3) 0 0;
     font-family: var(--font-mono);
     font-size: var(--text-sm);
-    color: var(--muted);
-  }
-  .graph-status-link {
-    color: var(--signal);
-    text-decoration: none;
-    border-bottom: var(--hairline-w) solid var(--signal-dim);
-  }
-  .graph-status-link:hover,
-  .graph-status-link:focus-visible {
-    border-bottom-color: var(--signal);
-  }
-  .graph-status-meta {
-    font-size: var(--text-xs);
     color: var(--faint);
   }
-
-  /* ── 카테고리별 노드 목록 (캔버스의 텍스트 판본) ── */
-  .graph-list-title {
-    margin: 0 0 var(--space-2);
-    font-size: var(--text-xl);
-  }
-  .graph-list-desc {
-    max-width: var(--measure);
-    margin: 0 0 var(--space-8);
-    color: var(--muted);
+  .graph-list-note {
+    margin: var(--space-3) 0 0;
     font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .graph-to-map {
+    margin-top: var(--space-4);
+    padding: var(--space-2) var(--space-3);
+    font: inherit;
+    font-size: var(--text-sm);
+    color: var(--signal);
+    background: none;
+    border: var(--hairline-w) solid var(--signal-dim);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+  }
+  .graph-list-title {
+    margin: var(--space-8) 0 var(--space-6);
+    font-size: var(--text-xl);
   }
   .graph-group {
     margin-bottom: var(--space-12);
+    scroll-margin-top: calc(var(--header-h) + var(--space-4));
   }
-  .graph-group[hidden] {
-    display: none;
+  .graph-group .band-name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
   }
   .graph-nodes {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
     gap: var(--space-1) var(--space-6);
     margin: 0;
     padding: 0;
@@ -1777,10 +1874,12 @@
     display: flex;
     align-items: baseline;
     gap: var(--space-2);
+    min-width: 0;
     padding: var(--space-1) 0;
-    border-bottom: var(--hairline-w) solid transparent;
   }
   .graph-nodes a {
+    min-width: 0;
+    overflow-wrap: anywhere;
     color: var(--text);
     text-decoration: none;
     font-size: var(--text-sm);
@@ -1796,10 +1895,723 @@
     color: var(--faint);
     white-space: nowrap;
   }
+  /* 목록 판에서는 무대가 없으니 건너뛰기 링크도 필요 없다 */
+  main.graph[data-view='list'] .graph-skip {
+    display: none;
+  }
 
-  @media (max-width: 560px) {
-    .graph-canvas-wrap {
-      height: clamp(18rem, 52vh, 26rem);
+  /* ── 카테고리 색 견본 (범례, 목록 머리) ── */
+  [data-cat='physical-ai'] { --c: var(--cat-physical-ai); }
+  [data-cat='agents'] { --c: var(--cat-agents); }
+  [data-cat='applications'] { --c: var(--cat-applications); }
+  [data-cat='database'] { --c: var(--cat-database); }
+  [data-cat='llms'] { --c: var(--cat-llms); }
+  [data-cat='overviews'] { --c: var(--cat-overviews); }
+  [data-cat='evaluations'] { --c: var(--cat-evaluations); }
+  [data-cat='etc'] { --c: var(--cat-etc); }
+  .graph-swatch {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.95) 0 14%, var(--c) 52%, color-mix(in srgb, var(--c) 70%, #000) 100%);
+    transition: transform var(--dur-fast) var(--ease);
+  }
+  [data-cat='overviews'] > .graph-swatch,
+  [data-cat='overviews'] .graph-swatch {
+    box-shadow: 0 0 0 1px var(--bg), 0 0 0 2px var(--c);
+  }
+  [data-cat='etc'] > .graph-swatch,
+  [data-cat='etc'] .graph-swatch {
+    background: none;
+    box-shadow: inset 0 0 0 2px var(--c);
+  }
+
+  /* ── 지도 판 (탐색기가 data-view="map" 으로 바꾼다) ── */
+  body:has(> main.graph[data-view='map']) {
+    overflow: hidden;
+  }
+  /* 무대 위 유리판 헤더 (01 2.2절, M1) */
+  body:has(> main.graph[data-view='map']) .site-header {
+    background: var(--graph-sheen), var(--graph-glass);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+    border-bottom-color: var(--graph-glass-edge);
+  }
+  main.graph[data-view='map'] ~ .site-footer {
+    display: none;
+  }
+  main.graph[data-view='map'] {
+    position: fixed;
+    inset: 0;
+  }
+  main.graph[data-view='map'] .graph-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .graph-skip {
+    position: absolute;
+    top: -4rem;
+    left: var(--graph-inset);
+    z-index: var(--z-modal);
+    padding: var(--space-2) var(--space-3);
+    color: var(--text);
+    background: var(--surface);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+  }
+  .graph-skip:focus {
+    top: var(--graph-top);
+  }
+
+  .graph-stage {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    isolation: isolate;
+    touch-action: none;
+    background: var(--graph-bg-edge);
+  }
+  .graph-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+  }
+  .graph-canvas:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: -2px;
+  }
+
+  /* 띄운 컨트롤 공통 */
+  .graph-float {
+    position: absolute;
+    z-index: var(--graph-z-float);
+  }
+  .is-tl {
+    top: var(--graph-top);
+    left: var(--graph-inset);
+  }
+  .is-bl {
+    bottom: calc(var(--graph-sheet, 0px) + var(--graph-inset));
+    left: var(--graph-inset);
+  }
+  .is-br {
+    right: var(--graph-inset);
+    bottom: var(--graph-inset);
+  }
+  /* 유리판: 위 가장자리 빛, 안쪽 광택, 뒤 흐림 */
+  .graph-search input,
+  .graph-filter-btn,
+  .graph-results,
+  .graph-filters,
+  .graph-panel,
+  .graph-legend,
+  .graph-tool,
+  .graph-home,
+  .graph-tip {
+    color: var(--text);
+    background: var(--graph-sheen), var(--graph-glass);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+    border: 1px solid var(--graph-glass-edge);
+    box-shadow: inset 0 1px 0 var(--graph-glass-top);
+  }
+  .graph-results,
+  .graph-filters,
+  .graph-panel,
+  .graph-tip {
+    box-shadow: inset 0 1px 0 var(--graph-glass-top), var(--graph-float-shadow);
+  }
+  /* :where 로 특이도를 낮춰 각 컨트롤의 font-size 가 이긴다 */
+  .graph-stage :where(button, input) {
+    font: inherit;
+  }
+  .graph-stage :is(button, input, a):focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+  }
+
+  /* 명령 줄: 검색 + 필터 버튼 (+ Phase 5 학습 경로 버튼) */
+  .graph-cmd {
+    display: flex;
+    gap: var(--space-2);
+    width: min(calc(320px + var(--space-2) + var(--graph-ctl-h) + 2rem), calc(100% - 2 * var(--graph-inset)));
+  }
+  .graph-cmd:has(.graph-results:not(:empty)) {
+    z-index: var(--graph-z-pop);
+  }
+  .graph-search {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+  .graph-search input {
+    width: 100%;
+    height: var(--graph-ctl-h);
+    padding: 0 2.2rem 0 var(--space-3);
+    font-size: var(--text-sm);
+    border-radius: var(--graph-radius-ctl);
+  }
+  .graph-kbd {
+    position: absolute;
+    top: 50%;
+    right: var(--space-3);
+    transform: translateY(-50%);
+    padding: 0 var(--space-1);
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--muted);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-sm);
+    pointer-events: none;
+  }
+  .graph-results {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    max-height: 320px;
+    overflow-y: auto;
+    margin: 0;
+    padding: var(--space-1);
+    list-style: none;
+    border-radius: var(--graph-radius-pop);
+  }
+  .graph-results:empty {
+    display: none;
+  }
+  .graph-filter-btn {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    height: var(--graph-ctl-h);
+    padding: 0 var(--space-3);
+    font-size: var(--text-sm);
+    border-radius: var(--graph-radius-ctl);
+    cursor: pointer;
+  }
+  .graph-badge {
+    min-width: 1.2em;
+    padding: 0 0.3em;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--graph-primary-ink);
+    background: var(--signal);
+    border-radius: 999px;
+  }
+  .graph-badge[hidden] {
+    display: none;
+  }
+
+  /* 필터 칩 줄과 경로 줄: 명령 줄 아래 한 줄, 패널 자리를 비킨다 */
+  .graph-row {
+    top: calc(var(--graph-top) + var(--graph-ctl-h) + var(--space-2));
+    left: var(--graph-inset);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: var(--graph-row-h);
+    max-width: calc(100% - var(--graph-panel-w) - 4 * var(--graph-inset));
+    overflow-x: auto;
+    scrollbar-width: none;
+    font-size: var(--text-xs);
+  }
+  .graph-row[hidden] {
+    display: none;
+  }
+  .graph-home {
+    flex: none;
+    height: var(--graph-row-h);
+    padding: 0 var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .graph-crumbs {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* 필터 팝오버 (모바일은 아래 시트) */
+  .graph-filters {
+    position: absolute;
+    z-index: var(--graph-z-pop);
+    top: calc(var(--graph-top) + var(--graph-ctl-h) + 6px);
+    left: var(--graph-inset);
+    width: min(320px, calc(100% - 2 * var(--graph-inset)));
+    max-height: min(60vh, 480px);
+    overflow-y: auto;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+  }
+  .graph-filters-sec + .graph-filters-sec {
+    margin-top: var(--space-4);
+  }
+  .graph-filters-h {
+    display: block;
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .graph-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+  .graph-chips:empty {
+    display: none;
+  }
+  .graph-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    background: none;
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .graph-chip[aria-pressed='true'] {
+    color: var(--text);
+    border-color: var(--signal);
+    background: var(--signal-dim);
+  }
+  .graph-chip-n {
+    font-family: var(--font-mono);
+    color: var(--faint);
+  }
+  .graph-tag-q {
+    width: 100%;
+    height: 32px;
+    margin-bottom: var(--space-2);
+    padding: 0 var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text);
+    background: var(--surface-2);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--graph-radius-ctl);
+  }
+  .graph-tag-results {
+    margin: 0 0 var(--space-2);
+    padding: 0;
+    list-style: none;
+  }
+  .graph-tag-results:empty {
+    display: none;
+  }
+  .graph-filters-empty {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-xs);
+    color: var(--muted);
+  }
+  .graph-filters-reset {
+    margin-top: var(--space-4);
+    padding: 0;
+    font-size: var(--text-xs);
+    color: var(--muted);
+    background: none;
+    border: 0;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+  }
+
+  /* 상세 패널: 우측. 숨길 때도 전환을 보이려고 [hidden] 에 display 를 다시 준다 (01 9.3절) */
+  .graph-panel {
+    position: absolute;
+    z-index: var(--graph-z-panel);
+    top: var(--graph-top);
+    right: var(--graph-inset);
+    bottom: var(--graph-inset);
+    width: var(--graph-panel-w);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--graph-radius-panel);
+    transition: transform var(--dur-panel) var(--ease-out), opacity var(--dur-panel) var(--ease-out), visibility 0s linear 0s;
+  }
+  .graph-panel[hidden] {
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(calc(100% + var(--graph-inset)));
+    transition-delay: 0s, 0s, var(--dur-panel);
+  }
+  .graph-sheet-grip {
+    display: none;
+  }
+  .graph-panel-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--space-1) var(--space-2);
+    padding: var(--space-4) var(--space-4) var(--space-3);
+    border-bottom: var(--hairline-w) solid var(--hairline);
+  }
+  .graph-panel-cat {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--muted);
+  }
+  .graph-panel-close {
+    width: 32px;
+    height: 32px;
+    font-size: var(--text-lg);
+    color: var(--muted);
+    background: none;
+    border: 0;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+  }
+  .graph-panel-title {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 650;
+    letter-spacing: -0.014em;
+    line-height: 1.28;
+  }
+  .graph-panel-meta {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+  }
+  .graph-panel-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0 var(--space-4);
+    font-size: var(--text-sm);
+  }
+  .graph-panel-foot {
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    border-top: var(--hairline-w) solid var(--hairline);
+  }
+  .graph-panel-open {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    font-weight: 600;
+    color: var(--graph-primary-ink);
+    text-decoration: none;
+    background: linear-gradient(180deg, var(--graph-primary-top), var(--graph-primary-bottom));
+    border-radius: var(--graph-radius-ctl);
+  }
+  .graph-panel-toggle {
+    display: none;
+  }
+
+  /* 좌하단 독: 범례와 조작 안내 */
+  .graph-dock {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-3);
+  }
+  .graph-legend {
+    display: flex;
+    flex-direction: column;
+    width: var(--graph-legend-w);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-lg);
+  }
+  .graph-legend-stat {
+    margin: 0 0 var(--space-1);
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .graph-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: 100%;
+    min-height: 26px;
+    padding: 0 var(--space-1);
+    font-size: var(--text-xs);
+    color: var(--text);
+    text-align: left;
+    background: none;
+    border: 0;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+  .graph-legend-n {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--muted);
+  }
+  .graph-legend-item[aria-pressed='true'] .graph-legend-n {
+    color: var(--c);
+  }
+  .graph-legend-item[aria-pressed='true'] .graph-swatch {
+    transform: scale(1.25);
+  }
+  .graph-legend-reset {
+    margin-top: var(--space-1);
+    padding: var(--space-1) 0 0;
+    font-size: var(--text-2xs);
+    color: var(--muted);
+    text-align: left;
+    background: none;
+    border: 0;
+    border-top: var(--hairline-w) solid var(--hairline);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+  }
+  .graph-legend-reset[hidden] {
+    display: none;
+  }
+  .graph-hint {
+    margin: 0 0 6px;
+    font-size: var(--text-2xs);
+    line-height: 1.75;
+    color: var(--faint);
+  }
+  .graph-hint kbd {
+    padding: 0 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-sm);
+  }
+  .graph-stage:not([data-mode='orbit']) .graph-hint.is-orbit,
+  .graph-stage[data-mode='orbit'] .graph-hint.is-atlas {
+    display: none;
+  }
+
+  /* 우하단 도구 묶음 */
+  .graph-tools {
+    display: flex;
+    gap: var(--space-2);
+  }
+  .graph-tools[hidden],
+  .graph-tool[hidden] {
+    display: none;
+  }
+  .graph-tool {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    min-width: 32px;
+    height: 32px;
+    padding: 0 var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 550;
+    border-radius: var(--graph-radius-ctl);
+    cursor: pointer;
+  }
+  .graph-tool.is-zoom {
+    padding: 0;
+    font-size: var(--text-base);
+  }
+  .graph-tool-ico {
+    display: none;
+  }
+
+  .graph-tip {
+    position: absolute;
+    z-index: var(--graph-z-tip);
+    max-width: 280px;
+    padding: 7px 11px 8px;
+    font-size: var(--text-xs);
+    border-radius: var(--graph-radius-ctl);
+    pointer-events: none;
+  }
+
+  /* 태블릿 이하: 조작 안내는 범례와 궤도가 가까워 숨긴다 (01 5.3절) */
+  @media (max-width: 1023px) {
+    .graph-hint {
+      display: none;
+    }
+  }
+
+  /* 모바일 (≤640px): 견본 한 줄 범례, 아이콘 도구 두 개, 하단 시트 (01 5.4절) */
+  @media (max-width: 640px), (max-height: 480px) {
+    .graph-legend {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2px;
+      width: auto;
+      max-width: calc(100vw - 2 * var(--graph-inset) - 96px);
+      padding: 6px 8px;
+    }
+    .graph-legend-item {
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      padding: 0;
+    }
+    .graph-legend-name,
+    .graph-legend-n,
+    .graph-legend-stat,
+    .graph-legend-reset {
+      display: none;
+    }
+    .graph-legend-item[aria-pressed='true'] {
+      width: auto;
+      padding: 0 9px 0 8px;
+      gap: 6px;
+      background: color-mix(in srgb, var(--c) 22%, transparent);
+    }
+    .graph-legend-item[aria-pressed='true'] .graph-legend-name {
+      display: inline;
+      white-space: nowrap;
+    }
+    .graph-tool.is-zoom {
+      display: none;
+    }
+    .graph-tool {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+    }
+    .graph-tool-ico {
+      display: inline;
+    }
+    .graph-tool-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+  }
+  @media (max-width: 640px) {
+    .graph-row {
+      max-width: calc(100% - 2 * var(--graph-inset));
+    }
+    .graph-results {
+      max-height: 40vh;
+    }
+    .graph-filters {
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: auto;
+      max-height: 60vh;
+      border-radius: var(--graph-radius-panel) var(--graph-radius-panel) 0 0;
+    }
+    .graph-panel {
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: auto;
+      max-height: var(--graph-sheet-max);
+      border-radius: var(--graph-radius-panel) var(--graph-radius-panel) 0 0;
+    }
+    .graph-panel[hidden] {
+      transform: translateY(100%);
+    }
+    .graph-panel.is-peek {
+      max-height: none;
+    }
+    .graph-sheet-grip {
+      display: block;
+      width: 36px;
+      height: 4px;
+      margin: var(--space-2) auto 0;
+      background: var(--faint);
+      border-radius: 2px;
+      touch-action: none;
+    }
+    .graph-panel-head {
+      padding: var(--space-3) var(--space-4) var(--space-2);
+    }
+    .graph-panel.is-peek .graph-panel-title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-size: var(--text-base);
+    }
+    .graph-panel-foot {
+      padding: var(--space-2) var(--space-4) var(--space-3);
+    }
+    .graph-panel-toggle {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--text);
+      background: var(--surface-2);
+      border: var(--hairline-w) solid var(--hairline);
+      border-radius: var(--graph-radius-ctl);
+      cursor: pointer;
+    }
+    .graph-stage.is-sheet-full > .graph-dock {
+      display: none;
+    }
+  }
+
+  /* 휴대폰 가로 (높이 ≤480px): 헤더를 줄이고 범례를 왼쪽 세로 한 줄로 (01 5.5절) */
+  @media (max-height: 480px) {
+    body:has(> main.graph[data-view='map']) .site-header {
+      padding-top: var(--space-1);
+      padding-bottom: var(--space-1);
+    }
+    .graph-dock {
+      top: calc(var(--graph-top) + var(--graph-ctl-h) + var(--space-2) + var(--graph-row-h) + var(--space-2));
+      bottom: auto;
+    }
+    .graph-legend {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      max-width: none;
+    }
+    .graph-legend-item[aria-pressed='true'] {
+      position: relative;
+      width: 26px;
+      padding: 0;
+    }
+    .graph-legend-item[aria-pressed='true'] .graph-legend-name {
+      position: absolute;
+      left: 100%;
+      margin-left: var(--space-1);
+      padding: 2px 8px;
+      background: var(--graph-glass);
+      border-radius: 999px;
+    }
+    .graph-panel-head {
+      padding: 10px 12px 8px;
+    }
+    .graph-panel-title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-size: var(--text-base);
     }
   }
 }
@@ -1897,5 +2709,21 @@
       height: 1.6rem;
       font-size: var(--text-xs);
     }
+  }
+}
+
+/* ── utilities ──────────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* 화면에서는 숨기고 스크린 리더에는 남긴다 */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 }

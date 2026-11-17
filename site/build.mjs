@@ -238,14 +238,16 @@ async function main() {
   }
   console.log(`[render] tag pages rendered: ${tagIdx.tags.length} (+ /tags/ index)`);
 
-  // 6.7) 전체 그래프 (/graph/) — 캔버스 탐색기 + 카테고리별 노드 목록(캔버스의 텍스트 판본).
+  // 6.7) 전체 그래프 (/graph/) — 지도 판(탐색기) + 카테고리별 노드 목록(서버 기본 판, 텍스트 판본).
   //      목록은 그래프 노드에서 만든다. index.md 카탈로그가 아니라 실제 wiki 페이지가 기준이라
   //      카탈로그 드리프트가 있어도 그래프와 목록이 어긋나지 않는다.
   const graphGroups = [];
   const nodesByCategory = new Map();
+  const typeCounts = new Map(); // 필터 팝오버의 유형 칩 (개수 내림차순)
   for (const node of graph.nodes) {
     if (!nodesByCategory.has(node.category)) nodesByCategory.set(node.category, []);
     const page = pages.get(node.id);
+    if (page && page.type) typeCounts.set(page.type, (typeCounts.get(page.type) || 0) + 1);
     nodesByCategory.get(node.category).push({
       id: node.id,
       url: page ? page.url : href(`/${node.id}/`),
@@ -274,6 +276,7 @@ async function main() {
     join(DIST, 'graph', 'index.html'),
     graphPage({
       groups: graphGroups,
+      types: [...typeCounts].sort((a, b) => b[1] - a[1]).map(([type, count]) => ({ type, count })),
       stats: { nodes: graph.nodes.length, edges: graph.edges.length },
       graphHref: href('/graph.json'),
       base: href('/'),

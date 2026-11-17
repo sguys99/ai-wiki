@@ -41,7 +41,7 @@ const FOUC_SCRIPT = `(function(){try{var t=localStorage.getItem('theme');if(!t)t
 
 // ── 공유 셸 ───────────────────────────────────────────────────────────────────
 //
-// opts: { title, description?, body, mainClass?, head?, scripts?:[src,...], path?, domain? }
+// opts: { title, description?, body, mainClass?, mainAttrs?, head?, scripts?:[src,...], path?, domain? }
 //   - path: 페이지의 논리 경로('/', '/about/', '/agents/x/') — OG/canonical 절대 URL 생성용.
 //   - domain: 'core' | 'physical' — <main>에 data-domain 으로 붙어 강조색 토큰을 스코프한다.
 //     헤더·푸터는 <main> 바깥이라 언제나 아쿠아다.
@@ -55,6 +55,7 @@ export function layout(opts) {
     scripts = [],
     path = '/',
     domain = '',
+    mainAttrs = '',
   } = opts;
   const pageTitle = title === SITE.title ? title : `${title} · ${SITE.title}`;
   const canonical = absUrl(path);
@@ -96,7 +97,7 @@ ${head}
 <body>
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 ${header()}
-<main id="main"${mainClass ? ` class="${mainClass}"` : ''}${domain ? ` data-domain="${escapeHtml(domain)}"` : ''}>
+<main id="main"${mainClass ? ` class="${mainClass}"` : ''}${domain ? ` data-domain="${escapeHtml(domain)}"` : ''}${mainAttrs ? ` ${mainAttrs}` : ''}>
 ${body}
 </main>
 ${footer()}
@@ -372,31 +373,40 @@ ${entry.pages.map((p) => card(p, degree, adjacency.get(p.id), tagsFor(p))).join(
 
 // ── 전체 그래프 (/graph/) ─────────────────────────────────────────────────────
 //
-// 캔버스 탐색기 + 카테고리별 노드 목록. 목록은 장식이 아니라 캔버스와 같은 내용의 텍스트
-// 판본이다 — 캔버스는 키보드·스크린리더로 읽히지 않고 스크립트가 없으면 아예 비어 있다.
-// 칩도 실제 <a> 라 JS 없이 해당 카테고리 목록으로 점프한다.
+// 화면 구성은 docs/graph-spec/01-layout.md, 접근성 속성과 URL 규칙은 02-interaction.md 가 정본이다.
+// 서버는 data-view="list" (카테고리별 텍스트 목록) 로 내보내고, 탐색기가 graph.json 과 배치를
+// 마친 뒤에만 "map" 으로 바꾼다. 스크립트가 없거나 실패하면 목록 판이 그대로 남아 모든
+// 페이지에 갈 수 있다. 무대 안 영역은 자리와 id 만 둔다 (내용은 탐색기가 채운다).
 //
-// 탐색기 블록은 hidden 으로 나가고 graph-explorer.js 가 그리기 직전에 연다('+ 더 보기'
-// 버튼과 같은 방식). 스크립트가 없거나 graph.json 을 못 받으면 빈 상자가 남지 않는다.
-//
-// data: { groups:[{ slug, label, domain, nodes:[{ id,url,title,degree }] }], stats:{nodes,edges},
-//         graphHref, base }
+// data: { groups:[{ slug, label, domain, nodes:[{ id,url,title,degree }] }], types:[{ type, count }],
+//         stats:{nodes,edges}, graphHref, base }
 export function graphPage(data) {
-  const { groups, stats, graphHref, base } = data;
+  const { groups, types, stats, graphHref, base } = data;
+  const num = (n) => n.toLocaleString('en-US');
+  const statText = `페이지 ${num(stats.nodes)}개, 연결 ${num(stats.edges)}개`;
 
-  const chips = [
-    `<a class="filter-chip is-active" href="${href('/graph/')}" data-filter="all" role="button" aria-pressed="true">전체<span class="filter-count">${stats.nodes}</span></a>`,
-    ...groups.map(
+  // 범례 순서는 페이지 수 내림차순 (hash cat= 정규 순서도 이 순서다, 02 8.4절).
+  const legend = [...groups]
+    .sort((a, b) => b.nodes.length - a.nodes.length)
+    .map(
       (g) =>
-        `<a class="filter-chip" href="#${escapeHtml(g.slug)}" data-filter="${escapeHtml(g.slug)}" data-label="${escapeHtml(g.label)}" data-domain="${escapeHtml(g.domain)}" role="button" aria-pressed="false">${escapeHtml(g.label)}<span class="filter-count">${g.nodes.length}</span></a>`
-    ),
-  ].join('\n      ');
+        `        <button type="button" class="graph-legend-item" data-cat="${escapeHtml(g.slug)}" aria-pressed="false"><span class="graph-swatch" aria-hidden="true"></span><span class="graph-legend-name">${escapeHtml(g.label)}</span><span class="graph-legend-n">${g.nodes.length}</span></button>`
+    )
+    .join('\n');
 
+  const typeChips = types
+    .map(
+      (t) =>
+        `            <button type="button" class="graph-chip" data-type="${escapeHtml(t.type)}" aria-pressed="false">${escapeHtml(t.type)}<span class="graph-chip-n">${t.count}</span></button>`
+    )
+    .join('\n');
+
+  // 카테고리 절 id 는 slug 그대로 두지 않는다. "#physical-ai" 는 옛 카테고리 필터 hash 로 읽힌다 (02 8.5절).
   const list = groups
     .map(
-      (g) => `    <section class="graph-group" id="${escapeHtml(g.slug)}" data-category="${escapeHtml(g.slug)}" data-domain="${escapeHtml(g.domain)}" aria-labelledby="graph-group-${escapeHtml(g.slug)}">
+      (g) => `    <section class="graph-group" id="graph-cat-${escapeHtml(g.slug)}" data-cat="${escapeHtml(g.slug)}" aria-labelledby="graph-group-${escapeHtml(g.slug)}">
       <div class="band-head">
-        <h3 class="band-name" id="graph-group-${escapeHtml(g.slug)}">${escapeHtml(g.label)}</h3>
+        <h3 class="band-name" id="graph-group-${escapeHtml(g.slug)}"><span class="graph-swatch" aria-hidden="true"></span>${escapeHtml(g.label)}</h3>
         <span class="band-count">${g.nodes.length}</span>
       </div>
       <ul class="graph-nodes">
@@ -411,36 +421,105 @@ ${g.nodes
     )
     .join('\n');
 
-  const body = `<div class="tags-page graph-page">
-  <header class="tags-head graph-head">
-    <p class="eyebrow">지식 그래프</p>
-    <h1 class="tags-title">그래프</h1>
-    <p class="tags-lede">페이지 사이의 위키링크를 점과 선으로 그렸습니다. 점 크기는 연결 수이고 색은 도메인입니다.</p>
-    <p class="tags-stat">노드 ${stats.nodes}개 · 연결 ${stats.edges}개</p>
-  </header>
-  <nav class="graph-filter" aria-label="카테고리 필터">
-    <div class="graph-filter-inner">
-      ${chips}
-    </div>
-  </nav>
-  <div class="graph-explorer" hidden>
-    <div class="graph-canvas-wrap">
-      <canvas class="graph-canvas" data-graph="${escapeHtml(graphHref)}" data-base="${escapeHtml(base)}" role="img" aria-label="위키 페이지 ${stats.nodes}개와 연결 ${stats.edges}개를 점과 선으로 그린 그래프"></canvas>
-    </div>
-    <p class="graph-status" role="status" aria-live="polite">노드를 가리키면 이웃이 강조됩니다. 누르면 해당 페이지로 이동합니다.</p>
+  const body = `<h1 class="graph-title" id="graph-title">그래프</h1>
+<a class="graph-skip" href="#list">페이지 목록으로 건너뛰기</a>
+
+<section class="graph-stage" data-mode="atlas" aria-labelledby="graph-title" hidden>
+  <canvas class="graph-canvas" tabindex="0" role="application" aria-roledescription="관계 그래프" aria-label="wiki 페이지 관계 그래프, 전체 보기" aria-describedby="graph-help" data-graph="${escapeHtml(graphHref)}" data-base="${escapeHtml(base)}"></canvas>
+  <p class="sr-only" id="graph-help">방향키로 이웃을 고르고 Enter로 중심을 옮긴다. 중심에서 Enter는 페이지를 연다. Esc는 전체 보기. 슬래시로 검색</p>
+  <p class="sr-only" id="graph-live" aria-live="polite"></p>
+
+  <div class="graph-cmd graph-float is-tl">
+    <search class="graph-search" role="search">
+      <label class="sr-only" for="graph-q">페이지 검색</label>
+      <input id="graph-q" type="search" placeholder="페이지 제목으로 찾기" autocomplete="off" spellcheck="false" role="combobox" aria-controls="graph-results" aria-expanded="false" aria-autocomplete="list">
+      <kbd class="graph-kbd" aria-hidden="true">/</kbd>
+      <ul class="graph-results" id="graph-results" role="listbox" aria-label="검색 결과"></ul>
+    </search>
+    <button type="button" class="graph-filter-btn" id="graph-filter-btn" aria-expanded="false" aria-controls="graph-filters">필터<span class="graph-badge" hidden></span></button>
+    <!-- Phase 5 예약: 학습 경로 버튼 .graph-path-btn, 경로 팝오버 #graph-paths (01 7절, 06 4절) -->
   </div>
-  <section class="graph-list" aria-labelledby="graph-list-h">
+  <div class="graph-row graph-float" id="graph-active-filters" hidden></div>
+  <nav class="graph-row graph-float graph-trail" aria-label="지나온 페이지" hidden>
+    <button type="button" class="graph-home" id="graph-home">전체 보기</button>
+    <ol class="graph-crumbs" id="graph-crumbs"></ol>
+  </nav>
+
+  <div class="graph-filters" id="graph-filters" role="group" aria-label="유형과 태그 필터" hidden>
+    <p class="graph-filters-empty" id="graph-filters-empty" hidden></p>
+    <div class="graph-filters-sec">
+      <p class="graph-filters-h" id="graph-f-type">유형</p>
+      <div class="graph-chips" role="group" aria-labelledby="graph-f-type">
+${typeChips}
+      </div>
+    </div>
+    <div class="graph-filters-sec">
+      <label class="graph-filters-h" for="graph-tag-q">태그</label>
+      <input id="graph-tag-q" class="graph-tag-q" type="search" placeholder="태그 찾기" autocomplete="off" spellcheck="false" role="combobox" aria-controls="graph-tag-results" aria-expanded="false" aria-autocomplete="list">
+      <ul class="graph-tag-results" id="graph-tag-results" role="listbox" aria-label="태그 제안"></ul>
+      <div class="graph-chips" id="graph-tag-picked" role="group" aria-label="고른 태그"></div>
+      <div class="graph-chips" id="graph-tag-suggest" role="group" aria-label="자주 쓰는 태그"></div>
+    </div>
+    <!-- Phase 5 예약: 셋째 절 "강조" 의 스위치 #graph-recent (01 7절, 06 2절) -->
+    <button type="button" class="graph-filters-reset" id="graph-filters-reset">모두 해제</button>
+  </div>
+
+  <aside class="graph-panel" aria-labelledby="graph-p-title" hidden inert>
+    <div class="graph-sheet-grip" aria-hidden="true"></div>
+    <div class="graph-panel-head">
+      <span class="graph-panel-cat" id="graph-p-cat"></span>
+      <button type="button" class="graph-panel-close" id="graph-p-close" aria-label="전체 보기로 돌아가기">×</button>
+      <h2 class="graph-panel-title" id="graph-p-title"></h2>
+      <p class="graph-panel-meta" id="graph-p-meta"></p>
+    </div>
+    <div class="graph-panel-body" id="graph-p-body"></div>
+    <div class="graph-panel-foot">
+      <a class="graph-panel-open" id="graph-p-open" href="${href('/graph/')}">페이지 열기</a>
+      <button type="button" class="graph-panel-toggle" id="graph-p-toggle" aria-expanded="false" aria-controls="graph-p-body">이웃 보기</button>
+    </div>
+  </aside>
+
+  <div class="graph-dock graph-float is-bl">
+    <div class="graph-legend" role="group" aria-label="카테고리 필터">
+      <p class="graph-legend-stat">${statText}</p>
+${legend}
+      <button type="button" class="graph-legend-reset" hidden>필터 해제</button>
+      <!-- Phase 5 예약: 최근 추가 표식 줄 .graph-legend-recent, 약한 연결 링크 #weak-links (01 7절) -->
+    </div>
+    <p class="graph-hint is-atlas"><kbd>클릭</kbd> 궤도로 열기<br><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동<br><kbd>/</kbd> 검색</p>
+    <p class="graph-hint is-orbit"><kbd>← →</kbd> 궤도를 돈다<br><kbd>↑ ↓</kbd> 안팎 궤도로 옮긴다<br><kbd>Enter</kbd> 중심에 둔다<br><kbd>Esc</kbd> 전체 보기</p>
+  </div>
+
+  <div class="graph-tools graph-float is-br" role="toolbar" aria-label="보기 도구">
+    <button type="button" class="graph-tool is-zoom" id="graph-zoom-in" aria-label="확대">+</button>
+    <button type="button" class="graph-tool is-zoom" id="graph-zoom-out" aria-label="축소">−</button>
+    <button type="button" class="graph-tool" id="graph-fit"><span class="graph-tool-ico" aria-hidden="true">⤢</span><span class="graph-tool-label">화면 맞춤</span></button>
+    <button type="button" class="graph-tool" id="graph-to-list"><span class="graph-tool-ico" aria-hidden="true">☰</span><span class="graph-tool-label">목록 보기</span></button>
+    <!-- Phase 5 예약: 데스크톱 전용 3D 실험 페이지 링크 (01 5.6절, 06 6절) -->
+  </div>
+  <!-- Phase 5 예약: 학습 경로 단계 막대 .graph-pathbar (01 7절) -->
+
+  <div class="graph-tip" aria-hidden="true" hidden></div>
+</section>
+
+<section class="graph-list" id="graph-list" aria-labelledby="graph-list-h">
+  <header class="graph-list-head">
+    <p class="graph-lede">페이지 사이의 위키링크 관계입니다. 이 목록은 그래프와 같은 페이지를 카테고리별로 모았고, 스크립트가 없어도 모든 페이지에 갈 수 있습니다.</p>
+    <p class="graph-stat">${statText}</p>
+    <p class="graph-list-note" id="graph-list-note" hidden></p>
+    <button type="button" class="graph-to-map" id="graph-to-map" hidden>그래프로 보기</button>
     <h2 class="graph-list-title" id="graph-list-h">카테고리별 목록</h2>
-    <p class="graph-list-desc">그래프와 같은 내용을 카테고리별로 정리했습니다. 스크립트가 없어도 이 목록으로 모든 페이지에 갈 수 있습니다.</p>
+  </header>
 ${list}
-  </section>
-</div>`;
+  <!-- Phase 5 예약: 약한 연결 리포트 section#weak-links (01 7절, 06 3절) -->
+</section>`;
 
   return layout({
     title: '그래프',
     description: `${SITE.title} 지식 그래프 — 페이지 ${stats.nodes}개 · 연결 ${stats.edges}개`,
     body,
-    mainClass: 'tags graph',
+    mainClass: 'graph',
+    mainAttrs: 'data-view="list"',
     path: '/graph/',
     scripts: ['/static/js/graph-core.js', '/static/js/graph-explorer.js'],
   });
