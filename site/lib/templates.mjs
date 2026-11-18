@@ -421,34 +421,23 @@ ${g.nodes
     )
     .join('\n');
 
-  // 아직 동작을 붙이지 않은 컨트롤은 hidden 으로 내보낸다 (Phase 4 뒤 항목이 하나씩 푼다):
-  // 명령 줄(검색, 필터)은 5번이 탐색기 시작 때 푼다. "/" 키 표기(검색 칸, 조작 안내의 검색 줄), 궤도 안내의 키 줄, 캔버스 Tab 순서는 7번.
-  // 줌과 맞춤 버튼, 조작 안내 상자는 3번(줌과 팬)이, 클릭 줄과 궤도 안내 상자는 4번(선택)이 탐색기 시작 때 푼다.
+  // 스크립트가 있어야 동작하는 컨트롤은 hidden 으로 내보내고 탐색기가 시작 때 푼다 (명령 줄, 줌과 맞춤 버튼, 조작 안내).
+  // DOM 순서가 곧 Tab 순서다: 명령 줄, 팝오버, 칩 줄과 경로 줄, 캔버스, 패널, 범례, 도구 (01 9.2절).
   const body = `<h1 class="graph-title" id="graph-title">그래프</h1>
 <a class="graph-skip" href="#list">페이지 목록으로 건너뛰기</a>
 
 <section class="graph-stage" data-mode="atlas" aria-labelledby="graph-title" hidden>
-  <canvas class="graph-canvas" tabindex="-1" role="application" aria-roledescription="관계 그래프" aria-label="wiki 페이지 관계 그래프, 전체 보기" aria-describedby="graph-help" data-graph="${escapeHtml(graphHref)}" data-base="${escapeHtml(base)}"></canvas>
-  <p class="sr-only" id="graph-help">방향키로 이웃을 고르고 Enter로 중심을 옮긴다. 중심에서 Enter는 페이지를 연다. Esc는 전체 보기. 슬래시로 검색</p>
-  <p class="sr-only" id="graph-live" aria-live="polite"></p>
-
   <div class="graph-cmd graph-float is-tl" hidden>
     <search class="graph-search" role="search">
       <label class="sr-only" for="graph-q">페이지 검색</label>
       <svg class="graph-search-ico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m10.4 10.4 3.4 3.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       <input id="graph-q" type="search" placeholder="페이지 제목으로 찾기" autocomplete="off" spellcheck="false" role="combobox" aria-controls="graph-results" aria-expanded="false" aria-autocomplete="list">
-      <kbd class="graph-kbd" aria-hidden="true" hidden>/</kbd>
+      <kbd class="graph-kbd" aria-hidden="true"><span class="graph-kbd-idle">/</span><span class="graph-kbd-on">Esc</span></kbd>
       <ul class="graph-results" id="graph-results" role="listbox" aria-label="검색 결과"></ul>
     </search>
     <button type="button" class="graph-filter-btn" id="graph-filter-btn" aria-expanded="false" aria-controls="graph-filters"><svg class="graph-filter-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4.5h11M4.5 8h7M6.5 11.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="graph-filter-label">필터</span><span class="graph-badge" hidden></span></button>
     <!-- Phase 5 예약: 학습 경로 버튼 .graph-path-btn, 경로 팝오버 #graph-paths (01 7절, 06 4절) -->
   </div>
-  <div class="graph-row graph-float" id="graph-active-filters" hidden></div>
-  <nav class="graph-row graph-float graph-trail" aria-label="지나온 페이지" hidden>
-    <button type="button" class="graph-home" id="graph-home"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 11 8 4.5l4.5 5.5" stroke="currentColor" stroke-width="0.9" fill="none" opacity="0.55"/><circle cx="3.5" cy="11" r="1.6" fill="currentColor"/><circle cx="8" cy="4.5" r="2" fill="currentColor"/><circle cx="12.5" cy="10" r="1.4" fill="currentColor"/></svg>전체 보기</button>
-    <ol class="graph-crumbs" id="graph-crumbs"></ol>
-  </nav>
-
   <div class="graph-filters" id="graph-filters" role="group" aria-label="유형과 태그 필터" hidden>
     <p class="graph-filters-empty" id="graph-filters-empty" hidden></p>
     <div class="graph-filters-sec">
@@ -467,6 +456,16 @@ ${typeChips}
     <!-- Phase 5 예약: 셋째 절 "강조" 의 스위치 #graph-recent (01 7절, 06 2절) -->
     <button type="button" class="graph-filters-reset" id="graph-filters-reset">모두 해제</button>
   </div>
+
+  <div class="graph-row graph-float" id="graph-active-filters" hidden></div>
+  <nav class="graph-row graph-float graph-trail" aria-label="지나온 페이지" hidden>
+    <button type="button" class="graph-home" id="graph-home"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 11 8 4.5l4.5 5.5" stroke="currentColor" stroke-width="0.9" fill="none" opacity="0.55"/><circle cx="3.5" cy="11" r="1.6" fill="currentColor"/><circle cx="8" cy="4.5" r="2" fill="currentColor"/><circle cx="12.5" cy="10" r="1.4" fill="currentColor"/></svg>전체 보기</button>
+    <ol class="graph-crumbs" id="graph-crumbs"></ol>
+  </nav>
+
+  <canvas class="graph-canvas" tabindex="0" role="application" aria-roledescription="관계 그래프" aria-label="wiki 페이지 관계 그래프, 전체 보기" aria-describedby="graph-help" data-graph="${escapeHtml(graphHref)}" data-base="${escapeHtml(base)}"></canvas>
+  <p class="sr-only" id="graph-help">방향키나 Enter를 누르면 연결이 가장 많은 페이지를 중심으로 궤도를 엽니다. 궤도에서는 왼쪽과 오른쪽 방향키로 궤도를 돌고, 아래와 위 방향키로 바깥 궤도와 안쪽 궤도를 오갑니다. Enter는 고른 페이지를 중심으로 옮기고, 중심에서 누르면 그 페이지를 엽니다. Backspace는 지나온 페이지로 돌아가고, Esc는 열린 것을 하나씩 닫습니다. 슬래시는 검색, 더하기와 빼기는 확대와 축소, 0은 화면 맞춤입니다.</p>
+  <p class="sr-only" id="graph-live" aria-live="polite"></p>
 
   <aside class="graph-panel" aria-labelledby="graph-p-title" hidden inert>
     <div class="graph-sheet-grip" aria-hidden="true"></div>
@@ -490,8 +489,8 @@ ${legend}
       <button type="button" class="graph-legend-reset" hidden>필터 해제</button>
       <!-- Phase 5 예약: 최근 추가 표식 줄 .graph-legend-recent, 약한 연결 링크 #weak-links (01 7절) -->
     </div>
-    <p class="graph-hint is-atlas" hidden><span class="graph-hint-line" data-hint="select" hidden><kbd>클릭</kbd> 궤도로 열기</span><span class="graph-hint-line" data-hint="zoom"><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동</span><span class="graph-hint-line" data-hint="search" hidden><kbd>/</kbd> 검색</span></p>
-    <p class="graph-hint is-orbit" hidden><span class="graph-hint-line" data-hint="recenter"><kbd>클릭</kbd> 중심 옮기기</span><span class="graph-hint-line" data-hint="zoom"><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동</span><span class="graph-hint-line" data-hint="keys" hidden><kbd>← →</kbd> 궤도 돌기</span><span class="graph-hint-line" data-hint="keys" hidden><kbd>↑ ↓</kbd> 안팎 궤도</span><span class="graph-hint-line" data-hint="keys" hidden><kbd>Enter</kbd> 중심에 두기</span><span class="graph-hint-line" data-hint="keys" hidden><kbd>Esc</kbd> 전체 보기</span></p>
+    <p class="graph-hint is-atlas" hidden><span class="graph-hint-line" data-hint="select" hidden><kbd>클릭</kbd> 궤도로 열기</span><span class="graph-hint-line" data-hint="zoom"><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동</span><span class="graph-hint-line" data-hint="search"><kbd>/</kbd> 검색</span></p>
+    <p class="graph-hint is-orbit" hidden><span class="graph-hint-line" data-hint="recenter"><kbd>클릭</kbd> 중심 옮기기</span><span class="graph-hint-line" data-hint="zoom"><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동</span><span class="graph-hint-line" data-hint="keys"><kbd>← →</kbd> 궤도 돌기</span><span class="graph-hint-line" data-hint="keys"><kbd>↑ ↓</kbd> 안팎 궤도</span><span class="graph-hint-line" data-hint="keys"><kbd>Enter</kbd> 중심에 두기</span><span class="graph-hint-line" data-hint="keys"><kbd>Esc</kbd> 전체 보기</span></p>
   </div>
 
   <div class="graph-tools graph-float is-br" role="toolbar" aria-label="보기 도구">
