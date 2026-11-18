@@ -390,7 +390,7 @@ export function graphPage(data) {
     .sort((a, b) => b.nodes.length - a.nodes.length)
     .map(
       (g) =>
-        `        <button type="button" class="graph-legend-item" data-cat="${escapeHtml(g.slug)}" aria-pressed="false" disabled><span class="graph-swatch" aria-hidden="true"></span><span class="graph-legend-name">${escapeHtml(g.label)}</span><span class="graph-legend-n">${g.nodes.length}</span></button>`
+        `        <button type="button" class="graph-legend-item" data-cat="${escapeHtml(g.slug)}" aria-pressed="false"><span class="graph-swatch" aria-hidden="true"></span><span class="graph-legend-name">${escapeHtml(g.label)}</span><span class="graph-legend-n">${g.nodes.length}</span></button>`
     )
     .join('\n');
 
@@ -421,8 +421,8 @@ ${g.nodes
     )
     .join('\n');
 
-  // 아직 동작을 붙이지 않은 컨트롤은 hidden 이나 disabled 로 내보낸다 (Phase 4 뒤 항목이 하나씩 푼다):
-  // 명령 줄(검색, 필터) 5번, 조작 안내의 검색 줄 5번, 궤도 안내의 키 줄과 캔버스 Tab 순서 7번, 범례 필터 5번.
+  // 아직 동작을 붙이지 않은 컨트롤은 hidden 으로 내보낸다 (Phase 4 뒤 항목이 하나씩 푼다):
+  // 명령 줄(검색, 필터)은 5번이 탐색기 시작 때 푼다. "/" 키 표기(검색 칸, 조작 안내의 검색 줄), 궤도 안내의 키 줄, 캔버스 Tab 순서는 7번.
   // 줌과 맞춤 버튼, 조작 안내 상자는 3번(줌과 팬)이, 클릭 줄과 궤도 안내 상자는 4번(선택)이 탐색기 시작 때 푼다.
   const body = `<h1 class="graph-title" id="graph-title">그래프</h1>
 <a class="graph-skip" href="#list">페이지 목록으로 건너뛰기</a>
@@ -435,11 +435,12 @@ ${g.nodes
   <div class="graph-cmd graph-float is-tl" hidden>
     <search class="graph-search" role="search">
       <label class="sr-only" for="graph-q">페이지 검색</label>
+      <svg class="graph-search-ico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m10.4 10.4 3.4 3.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       <input id="graph-q" type="search" placeholder="페이지 제목으로 찾기" autocomplete="off" spellcheck="false" role="combobox" aria-controls="graph-results" aria-expanded="false" aria-autocomplete="list">
-      <kbd class="graph-kbd" aria-hidden="true">/</kbd>
+      <kbd class="graph-kbd" aria-hidden="true" hidden>/</kbd>
       <ul class="graph-results" id="graph-results" role="listbox" aria-label="검색 결과"></ul>
     </search>
-    <button type="button" class="graph-filter-btn" id="graph-filter-btn" aria-expanded="false" aria-controls="graph-filters">필터<span class="graph-badge" hidden></span></button>
+    <button type="button" class="graph-filter-btn" id="graph-filter-btn" aria-expanded="false" aria-controls="graph-filters"><svg class="graph-filter-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4.5h11M4.5 8h7M6.5 11.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="graph-filter-label">필터</span><span class="graph-badge" hidden></span></button>
     <!-- Phase 5 예약: 학습 경로 버튼 .graph-path-btn, 경로 팝오버 #graph-paths (01 7절, 06 4절) -->
   </div>
   <div class="graph-row graph-float" id="graph-active-filters" hidden></div>

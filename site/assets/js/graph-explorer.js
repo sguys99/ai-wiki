@@ -59,7 +59,7 @@
     // n.p 알파, n.lt 노드별 전환 진행, n.e 이징된 진행 (반지름 보간), n.f / n.t 전환 출발과 목표.
     var nodes = graph.nodes.map(function (d, i) {
       return {
-        i: i, id: d.id, title: d.title, category: d.category, degree: d.degree, tags: d.tags || [],
+        i: i, id: d.id, stem: d.stem || '', title: d.title, category: d.category, degree: d.degree, tags: d.tags || [],
         year: d.year, type: d.type,
         xy: d.xy, r: Math.min(20, 2 + 1.6 * Math.sqrt(d.degree)), label: shortTitle(d.title),
         hx: 0, hy: 0, x: 0, y: 0, nb: new Set(), out: new Set(),
@@ -141,6 +141,12 @@
     var pulseT0 = -1, shimmerUntil = 0;
     var pillBox = null, labelBoxes = [], orbitLabelCount = 0;
     var sheetFull = false, sheetH = 0; // 모바일 시트 상태와 목표 높이 (px)
+    // 필터 (02 8절). 축 안 OR, 축 사이 AND. inF 는 필터 안 여부, lit 은 그리기용 (범례 미리 강조 포함)
+    var filt = { cat: new Set(), type: new Set(), tag: new Set() };
+    var inF = new Uint8Array(N).fill(1), lit = new Uint8Array(N).fill(1), litCat = {};
+    var fActive = false, fCount = N, legendHover = null, fMix = 0;
+    var searchHits = new Set(); // 검색 상위 40개: 라벨 강제 후보와 캔버스 고리 (02 7.3)
+    var popSwallow = false;      // 팝오버 밖 탭은 노드를 고르지 않는다 (02 2.6)
 
     // ── 좌표 변환 ─────────────────────────────────────────────────────────
     function sx(wx) { return wx * cam.k + cam.x; }
@@ -312,8 +318,9 @@
       var v = useRect(), cx = v.x + v.w / 2, cy = v.y + v.h / 2, w = toWorld(cx, cy, to);
       flyTo(camFor(w.x, w.y, k, cx, cy), DUR_CAMERA);
     }
-    // 맞춤: 조감은 전체, 궤도는 궤도 카메라 (02 3.4절)
-    function fitView() { flyTo(mode === 'orbit' && view ? orbitCam(view) : fitTarget(nodes), DUR_CAMERA); }
+    // 맞춤: 조감은 필터 안 노드 (없으면 전체), 궤도는 궤도 카메라 (02 3.4절)
+    function fitView() { flyTo(mode === 'orbit' && view ? orbitCam(view) : fitTarget(fCount ? filtered() : nodes), DUR_CAMERA); }
+    function filtered() { return nodes.filter(function (n) { return inF[n.i]; }); }
     function useRect() { return mode === 'orbit' && view ? orbitRect() : atlasRect(); }
 
     // 궤도 사용 영역: 경로 줄 아래, 패널(또는 시트와 범례) 바깥. 숫자 대신 크롬에서 구한다 (01 10절, 04 6.3)
@@ -349,8 +356,8 @@
       list.forEach(function (n, j) {
         if (j > 0 && n.category !== list[j - 1].category) a += gap;
         pos.set(n.id, { rad: R + (tracks > 1 ? j % tracks : 0) * TRACK, ang: a + step / 2, ring: ring, cap: cap });
-        if (!arc || arc.cat !== n.category) { arc = { cat: n.category, a0: a, a1: a + step, r: arcR, n: 1 }; arcs.push(arc); }
-        else { arc.a1 = a + step; arc.n++; }
+        if (!arc || arc.cat !== n.category) { arc = { cat: n.category, a0: a, a1: a + step, r: arcR, n: 1, m: [n] }; arcs.push(arc); }
+        else { arc.a1 = a + step; arc.n++; arc.m.push(n); }
         a += step;
       });
     }
@@ -425,6 +432,7 @@
         blend: g('--graph-filament-blend') || 'source-over', shadow: parseFloat(g('--graph-shadow-alpha')),
         font: g('--font-display'), mono: g('--font-mono'),
         edgeHi: parseFloat(g('--graph-edge-hi-alpha')), backdrop: parseFloat(g('--graph-backdrop-alpha')) || 0.16,
+        dim: parseFloat(g('--graph-dim-alpha')) || 0.14,
         lens: g('--graph-lens'), hairline: g('--hairline'), signal: g('--signal'), text: g('--text'), muted: g('--muted'),
       };
     }
@@ -630,16 +638,20 @@
       return clamp((now - revealT0 - (n.rank / N) * 600) / 200);
     }
     // 강조: 호버한 노드와 이웃은 그대로, 나머지는 흐리게. 약 160ms 선형으로 다가간다 (02 9.5)
+    // 필터 밖은 --graph-dim-alpha 로 가라앉고, 궤도에서는 구성원으로 남아 조금 덜 흐리다. 궤도 중심은 흐리지 않는다 (02 8.2)
     function targetE(n) {
-      var h = hovered;
+      var h = hovered, base = lit[n.i] ? 1 : T.dim;
       if (mode === 'orbit' && view) {
         if (n.role < 0) return 1;
-        return h && n !== h && !h.nb.has(n) && n !== view.c ? 0.35 : 1;
+        if (n === view.c) base = 1; else if (!lit[n.i]) base = Math.min(1, T.dim * 1.6);
+        return h && n !== h && !h.nb.has(n) && n !== view.c ? Math.min(base, 0.35) : base;
       }
-      return h && n !== h && !h.nb.has(n) ? 0.42 : 1;
+      if (n === h) return 1;
+      return h && !h.nb.has(n) ? Math.min(base, 0.42) : base;
     }
     function stepEmphasis(dt) {
-      var busy = false, step = dt / 160;
+      var busy = false, step = dt / 160, ft = fActive || legendHover ? 1 : 0;
+      if (reduce || Math.abs(ft - fMix) <= step) fMix = ft; else { fMix += ft > fMix ? step : -step; busy = true; }
       for (var i = 0; i < N; i++) {
         var n = nodes[i], ta = targetE(n), d = ta - emph[i], hl = n === hovered ? 1 : 0, dl = hl - hoverLift[i];
         if (reduce || Math.abs(d) <= step) emph[i] = ta; else { emph[i] += d > 0 ? step : -step; busy = true; }
@@ -675,7 +687,7 @@
       var mix = orbitMix, h = hovered;
 
       // 2. 성운 안개: 궤도에서는 28%로 가라앉는다
-      ctx.globalAlpha = hazeIn * (1 - 0.72 * mix);
+      ctx.globalAlpha = hazeIn * (1 - 0.72 * mix) * (1 - 0.45 * fMix); // 필터 중에는 55% (04 7.3)
       ctx.drawImage(haze.img, haze.ox * k + tx, haze.oy * k + ty, haze.img.width / haze.s * k, haze.img.height / haze.s * k);
 
       // 3. 성운 이름: 줌을 키우면 사라진다 (k 1.2 이하 완전, 1.7 이상 없음). 궤도 전환이 1/3 가면 사라진다
@@ -688,18 +700,24 @@
         var inOrbit = mode === 'orbit';
         ctx.globalCompositeOperation = T.blend;
         ctx.lineWidth = 0.7;
+        // 필터 중에는 두 번 긋는다: 양 끝이 모두 필터 안이면 × 1.5, 아니면 × 0.22 (04 7.3)
+        var passes = fMix > 0.001 ? [1, 0] : [-1];
         for (var b = 0; b < bucketKeys.length; b++) {
           var key = bucketKeys[b], list = buckets[key], same = key !== '_x';
           ctx.strokeStyle = same ? T.cat[key] : T.edge;
-          ctx.globalAlpha = T.edgeAlpha * (same ? 1.25 : 0.9) * atlasEA;
-          ctx.beginPath();
-          for (var i = 0; i < list.length; i++) {
-            var e = list[i];
-            if (inOrbit && (e.s.front || e.t.front)) continue;
-            ctx.moveTo(e.s.x * k + tx, e.s.y * k + ty);
-            ctx.lineTo(e.t.x * k + tx, e.t.y * k + ty);
+          for (var pi = 0; pi < passes.length; pi++) {
+            var want = passes[pi];
+            ctx.globalAlpha = T.edgeAlpha * (same ? 1.25 : 0.9) * atlasEA * (want < 0 ? 1 : want ? 1 + 0.5 * fMix : 1 - 0.78 * fMix);
+            ctx.beginPath();
+            for (var i = 0; i < list.length; i++) {
+              var e = list[i];
+              if (inOrbit && (e.s.front || e.t.front)) continue;
+              if (want >= 0 && (lit[e.s.i] && lit[e.t.i] ? 1 : 0) !== want) continue;
+              ctx.moveTo(e.s.x * k + tx, e.s.y * k + ty);
+              ctx.lineTo(e.t.x * k + tx, e.t.y * k + ty);
+            }
+            ctx.stroke();
           }
-          ctx.stroke();
         }
       }
       // 조감에서 호버한 노드의 엣지: 두 노드 색 사이로 변하는 빛 실
@@ -801,15 +819,16 @@
         drawnNodes++;
         var sp = sprites[n.category];
         var big = n.degree >= 30 || n.role === 0, lift = hoverLift[n.i];
+        var shine = lit[n.i] ? fMix : 0; // 필터에 남은 노드는 빛이 한 단계 밝다
         if (dark) {
           // 빛번짐: 잎은 작게, 허브와 궤도 중심은 넓게. 궤도의 배경은 절반
           ctx.globalCompositeOperation = 'lighter';
-          var hr = r * (big ? 3.4 : 2.5) * (1 + 0.25 * lift);
-          ctx.globalAlpha = a * T.glowAlpha * (0.5 + 0.5 * Math.min(1, n.degree / 40)) * (n.role === -1 ? 0.5 : 1);
+          var hr = r * (big ? 3.4 : 2.5) * (1 + 0.25 * lift + 0.3 * shine);
+          ctx.globalAlpha = Math.min(1, a * T.glowAlpha * (0.5 + 0.5 * Math.min(1, n.degree / 40)) * (n.role === -1 ? 0.5 : 1) * (1 + 0.7 * shine));
           ctx.drawImage(sp.halo, px - hr, py - hr, hr * 2, hr * 2);
           ctx.globalCompositeOperation = 'source-over';
         } else if (T.shadow > 0 && n.role !== -1) {
-          if (big && sp.aura) { var ar = r * 3; ctx.globalAlpha = a; ctx.drawImage(sp.aura, px - ar, py - ar, ar * 2, ar * 2); }
+          if ((big || shine > 0) && sp.aura) { var ar = r * 3; ctx.globalAlpha = a * (big ? 1 : shine); ctx.drawImage(sp.aura, px - ar, py - ar, ar * 2, ar * 2); }
           var sw = r * 1.5;
           ctx.globalAlpha = a * (0.8 + 0.4 * lift);
           ctx.drawImage(sp.halo, px - sw, py - sw * 0.62 + r * (0.42 + 0.25 * lift), sw * 2, sw * 1.45);
@@ -837,6 +856,14 @@
           ctx.globalAlpha = a * 0.28; ctx.lineWidth = 1;
           ctx.beginPath(); ctx.arc(px, py, r + 11, 0, TAU); ctx.stroke();
         }
+        // 검색 결과: 신호색 고리 하나. 흐린 노드에도 보이게 노드 알파를 따르지 않는다 (02 7.3)
+        if (searchHits.has(n)) {
+          ctx.strokeStyle = T.signal; ctx.lineWidth = 1.4;
+          ctx.globalAlpha = 0.95 * reveal(n, now);
+          ctx.beginPath(); ctx.arc(px, py, r + 4.5, 0, TAU); ctx.stroke();
+          ctx.globalAlpha = 0.25 * reveal(n, now); ctx.lineWidth = 4;
+          ctx.beginPath(); ctx.arc(px, py, r + 4.5, 0, TAU); ctx.stroke();
+        }
       }
       ctx.globalAlpha = 1;
     }
@@ -862,24 +889,29 @@
         if (arc.n < 2) return;
         var a0 = arc.a0 + 0.004, a1 = Math.max(arc.a0 + 0.008, arc.a1 - 0.004), end = Math.min(a1, START + TAU * prog);
         if (end <= a0) return;
+        // 묶음 전부가 필터 밖이면 호도 흐린 알파로 (04 7.3)
+        var da = arc.m.some(function (m) { return lit[m.i]; }) ? 1 : 1 - (1 - T.dim) * fMix;
         ctx.strokeStyle = T.cat[arc.cat];
-        ctx.globalAlpha = a * (dark ? 0.16 : 0.1); ctx.lineWidth = 6;
+        ctx.globalAlpha = a * da * (dark ? 0.16 : 0.1); ctx.lineWidth = 6;
         ctx.beginPath(); ctx.arc(cs.x, cs.y, arc.r * k, a0, end); ctx.stroke();
-        ctx.globalAlpha = a * 0.85; ctx.lineWidth = 1.6;
+        ctx.globalAlpha = a * da * 0.85; ctx.lineWidth = 1.6;
         ctx.beginPath(); ctx.arc(cs.x, cs.y, arc.r * k, a0, end); ctx.stroke();
       });
       // 궤도 엣지: 바큇살은 이웃 색, 현과 2-hop 선은 중성 색. 호버 중이면 나머지를 30%로
       var hiList = [], groups = {};
+      // 필터 밖 구성원에 닿는 엣지는 25%로 (04 7.3). 중심은 필터 밖이어도 밝은 쪽으로 센다
+      var on = function (n) { return n === v.c || lit[n.i]; };
       v.edges.forEach(function (e) {
         if (h && (e[0] === h || e[1] === h)) { hiList.push(e); return; }
-        var key = e[2] === 0 ? 's:' + e[1].category : 'k' + e[2];
+        var key = (fMix > 0.001 && !(on(e[0]) && on(e[1])) ? '~' : '') + (e[2] === 0 ? 's:' + e[1].category : 'k' + e[2]);
         (groups[key] || (groups[key] = [])).push(e);
       });
       var base = h ? 0.3 : 1;
-      Object.keys(groups).forEach(function (key) {
-        var list = groups[key], kind = key.charAt(0) === 's' ? 0 : +key.charAt(1);
+      Object.keys(groups).forEach(function (gk) {
+        var list = groups[gk], dimmed = gk.charAt(0) === '~', key = dimmed ? gk.slice(1) : gk;
+        var kind = key.charAt(0) === 's' ? 0 : +key.charAt(1);
         var ea = kind === 0 ? T.edgeHi * 0.32 : kind === 1 ? T.edgeAlpha * 2.6 : T.edgeAlpha * 2;
-        ctx.globalAlpha = ea * a * base;
+        ctx.globalAlpha = ea * a * base * (dimmed ? 1 - 0.75 * fMix : 1);
         ctx.strokeStyle = kind === 0 ? T.cat[key.slice(2)] : T.edge;
         ctx.lineWidth = kind === 0 ? 0.9 : 0.75;
         ctx.beginPath(); list.forEach(edgePath); ctx.stroke();
@@ -953,13 +985,14 @@
       ctx.textAlign = 'center';
       ctx.textBaseline = 'alphabetic';
       list.forEach(function (p) {
+        var fa = alpha * (litCat[p.id] === false ? 1 - 0.75 * fMix : 1); // 걸러진 성운 이름은 25% (04 7.3)
         if (p.lead) {
-          ctx.globalAlpha = alpha * (dark ? 0.45 : 0.55); ctx.strokeStyle = T.cat[p.id]; ctx.lineWidth = 0.8;
+          ctx.globalAlpha = fa * (dark ? 0.45 : 0.55); ctx.strokeStyle = T.cat[p.id]; ctx.lineWidth = 0.8;
           ctx.beginPath(); ctx.moveTo(p.lead[0], p.lead[1]); ctx.lineTo(p.lead[2], p.lead[3]); ctx.stroke();
         }
         ctx.font = '500 ' + p.size + 'px ' + T.font;
         if ('letterSpacing' in ctx) ctx.letterSpacing = p.ls;
-        ctx.globalAlpha = alpha * (dark ? 0.7 : 0.8);
+        ctx.globalAlpha = fa * (dark ? 0.7 : 0.8);
         ctx.fillStyle = T.cat[p.id];
         ctx.fillText(p.name, p.x, p.y);
       });
@@ -1032,11 +1065,11 @@
       var k = cam.k, minDeg = minDegreeFor(k), cand = [], h = hovered;
       for (var i = 0; i < N; i++) {
         var n = nodes[i];
-        var forced = n === h || (h && h.nb.has(n) && n.degree >= 10);
-        if (!forced && (n.degree < minDeg || emph[i] < 0.9)) continue;
+        var hit = searchHits.has(n), forced = n === h || hit || (h && h.nb.has(n) && n.degree >= 10);
+        if (!forced && (n.degree < minDeg || emph[i] < 0.9 || !lit[i])) continue;
         var px = sx(n.x), py = sy(n.y);
         if (px < -20 || py < -20 || px > W + 20 || py > H + 20) continue;
-        cand.push({ n: n, x: px, y: py, pri: (n === h ? 1e6 : 0) + (forced ? 1e4 : 0) + n.degree });
+        cand.push({ n: n, x: px, y: py, pri: (n === h ? 1e6 : 0) + (hit ? 1e5 : 0) + (forced ? 1e4 : 0) + n.degree });
       }
       cand.sort(function (a, b) { return b.pri - a.pri; });
       var boxes = chromeRects().concat(names), drawn = 0;
@@ -1129,7 +1162,7 @@
         });
         if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
       }
-      var list = members.filter(function (n) { return n.role >= 1 && n.lt > 0.85; });
+      var list = members.filter(function (n) { return n.role >= 1 && n.lt > 0.85 && (lit[n.i] || n === h); });
       var pri = function (n) { return (n === h ? 1e6 : 0) + (h && h.nb.has(n) ? 1e4 : 0) + (n.role === 1 ? 1e3 : 0) + n.degree; };
       list.sort(function (a, b) { return pri(b) - pri(a); });
       ctx.textBaseline = 'middle';
@@ -1211,6 +1244,7 @@
     }
     // 탭 한 곳: 조감은 궤도 열기, 궤도는 중심 옮기기. 빈 곳 두 번 누르기는 맞춤이다 (02 2.2, 4.2, 4.3절)
     function onTap(p, type) {
+      if (popSwallow) { popSwallow = false; return; }
       var n = hitTest(p.x, p.y, type === 'mouse' ? 4 : 12), plus = !n && hitPlus(p.x, p.y);
       var now = performance.now(), prev = lastTap;
       lastTap = { t: now, x: p.x, y: p.y, type: type, n: n || plus };
@@ -1480,7 +1514,7 @@
     }
     function announceCenter(n) {
       canvas.setAttribute('aria-label', '관계 그래프, ' + n.title + ' 중심');
-      announce(n.title + ' 중심. 이웃 ' + n.degree + '개');
+      announce(n.title + ' 중심. 이웃 ' + n.degree + '개' + (inF[n.i] ? '' : '. 지금 필터 밖입니다'));
     }
 
     // ── 상세 패널과 경로 줄 (01 5, 6, 9절, 02 9.1절) ─────────────────────
@@ -1493,6 +1527,7 @@
       panel.hidden = false;
       trailEl.hidden = false;
       if (tools) tools.hidden = true; // 궤도에서는 경로 줄의 "전체 보기" 가 맞춤을 대신한다 (01 5.6)
+      syncRow();
       renderPanel(); renderTrail();
       syncSheet();
       chromeCache = null;
@@ -1503,6 +1538,7 @@
       panel.hidden = true;
       trailEl.hidden = true;
       if (tools) tools.hidden = false;
+      syncRow();
       syncSheet();
       chromeCache = null;
       if (had) canvas.focus({ preventScroll: true });
@@ -1516,7 +1552,8 @@
       view.r1.forEach(function (m) { if (m.out.has(n)) ins++; if (n.out.has(m)) outs++; });
       pMeta.innerHTML = (n.year ? '<span>' + n.year + '</span>' : '') + (n.type ? '<span>' + esc(n.type) + '</span>' : '') +
         '<span>연결 ' + n.degree + '</span><span class="graph-meta-io" title="이 페이지를 링크하는 페이지 ' + ins + '개, 이 페이지가 링크하는 페이지 ' + outs + '개">' +
-        '<span aria-hidden="true">←</span>' + ins + ' <span aria-hidden="true">→</span>' + outs + '<span class="sr-only">, 들어오는 링크 ' + ins + '개, 나가는 링크 ' + outs + '개</span></span>';
+        '<span aria-hidden="true">←</span>' + ins + ' <span aria-hidden="true">→</span>' + outs + '<span class="sr-only">, 들어오는 링크 ' + ins + '개, 나가는 링크 ' + outs + '개</span></span>' +
+        '<span class="graph-out-mark" hidden>필터 밖</span>';
       pOpen.href = pageHref(n);
       var html = n.tags.length ? '<ul class="graph-p-tags" aria-label="태그">' + n.tags.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '';
       html += '<h3 class="graph-p-section">이웃 페이지 <span>' + nb + '개</span></h3>';
@@ -1545,6 +1582,7 @@
       }
       pBody.innerHTML = html;
       pBody.scrollTop = 0;
+      syncPanelFilter();
       pToggle.textContent = sheetFull ? '이웃 접기' : '이웃 ' + nb + '개';
     }
     function renderTrail() {
@@ -1680,6 +1718,337 @@
     });
     dock.addEventListener('transitionend', function () { chromeCache = null; redraw(); });
 
+    // ── 필터: 카테고리(범례), 유형과 태그(팝오버) (01 4절, 02 8.1 ~ 8.3절, 04 7.3절) ──
+    // 6번(hash)은 getFilters() 로 읽고 setFilters(f, { silent }) 로 쓴다. 모든 변경은 applyFilters() 하나를 지난다
+    var cmd = stage.querySelector('.graph-cmd'), legendEl = stage.querySelector('.graph-legend');
+    var legendStat = stage.querySelector('.graph-legend-stat'), legendReset = stage.querySelector('.graph-legend-reset');
+    var statText = legendStat.textContent;
+    var fBtn = document.getElementById('graph-filter-btn'), badge = fBtn.querySelector('.graph-badge');
+    var pop = document.getElementById('graph-filters'), popEmpty = document.getElementById('graph-filters-empty');
+    var rowEl = document.getElementById('graph-active-filters');
+    var tagQ = document.getElementById('graph-tag-q'), tagRes = document.getElementById('graph-tag-results');
+    var tagPicked = document.getElementById('graph-tag-picked'), tagSuggest = document.getElementById('graph-tag-suggest');
+    var typeChips = Array.prototype.slice.call(pop.querySelectorAll('.graph-chip[data-type]'));
+    var TYPE_ORDER = typeChips.map(function (b) { return b.dataset.type; });
+    var CAT_LIST = Object.keys(catName);
+    var tagFreq = {};
+    nodes.forEach(function (n) { n.tags.forEach(function (t) { tagFreq[t] = (tagFreq[t] || 0) + 1; }); });
+    var TAGS = Object.keys(tagFreq).sort(function (a, b) { return tagFreq[b] - tagFreq[a] || (a < b ? -1 : 1); });
+
+    function matches(n) {
+      if (filt.cat.size && !filt.cat.has(n.category)) return false;
+      if (filt.type.size && !filt.type.has(n.type)) return false;
+      if (filt.tag.size && !n.tags.some(function (t) { return filt.tag.has(t); })) return false;
+      return true;
+    }
+    function getFilters() {
+      return {
+        cat: CAT_LIST.filter(function (c) { return filt.cat.has(c); }),
+        type: TYPE_ORDER.filter(function (t) { return filt.type.has(t); }),
+        tag: Array.from(filt.tag).sort(),
+      };
+    }
+    // 모르는 값은 버린다 (02 8.5). 빠진 축은 비운다
+    function setFilters(f, opts) {
+      f = f || {};
+      filt.cat = new Set((f.cat || []).filter(function (c) { return c in catName; }));
+      filt.type = new Set((f.type || []).filter(function (t) { return TYPE_ORDER.indexOf(t) >= 0; }));
+      filt.tag = new Set((f.tag || []).filter(function (t) { return t in tagFreq; }));
+      applyFilters(opts);
+    }
+    function syncLit() {
+      litCat = {};
+      for (var i = 0; i < N; i++) {
+        var n = nodes[i];
+        lit[i] = fActive ? inF[i] : legendHover ? (n.category === legendHover ? 1 : 0) : 1;
+        if (lit[i]) litCat[n.category] = true; else if (!(n.category in litCat)) litCat[n.category] = false;
+      }
+      namesCache = null;
+      redraw();
+    }
+    function applyFilters(opts) {
+      opts = opts || {};
+      fActive = !!(filt.cat.size || filt.type.size || filt.tag.size);
+      fCount = 0;
+      for (var i = 0; i < N; i++) { inF[i] = matches(nodes[i]) ? 1 : 0; fCount += inF[i]; }
+      if (fActive) legendHover = null;
+      syncLit();
+      // 범례: 눌림, 해제 버튼, 맞는 수
+      legendEl.querySelectorAll('.graph-legend-item[data-cat]').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(filt.cat.has(b.dataset.cat)));
+      });
+      legendReset.hidden = !filt.cat.size;
+      legendStat.textContent = fActive ? '맞는 페이지 ' + fCount + '개 / ' + N + '개' : statText;
+      legendStat.classList.toggle('is-filtered', fActive);
+      // 팝오버: 칩, 배지 (유형과 태그 수만, 01 4절), 0개 안내
+      typeChips.forEach(function (b) { b.setAttribute('aria-pressed', String(filt.type.has(b.dataset.type))); });
+      var nb = filt.type.size + filt.tag.size;
+      badge.hidden = !nb; badge.textContent = nb || '';
+      fBtn.classList.toggle('is-on', nb > 0);
+      fBtn.setAttribute('aria-label', '필터' + (nb ? ', 유형과 태그 ' + nb + '개 켜짐' : ''));
+      popEmpty.hidden = fCount > 0;
+      popEmpty.textContent = fCount ? '' : '조건에 맞는 페이지가 없습니다.';
+      renderTags();
+      syncRow();
+      syncPanelFilter();
+      if (searchQ) runSearch(true);
+      if (!opts.silent) announce(!fActive ? '필터 해제' : fCount ? '필터 적용. 페이지 ' + fCount + '개' : '조건에 맞는 페이지가 없습니다');
+    }
+    // 궤도에서는 칩 줄 자리를 경로 줄이 쓰므로 숨기고 배지만 남긴다 (01 4절, 6절)
+    function syncRow() {
+      var items = getFilters(), show = mode !== 'orbit' && (items.type.length || items.tag.length || (fActive && !fCount));
+      var html = '';
+      if (show) {
+        html = '<span class="graph-row-count' + (fCount ? '' : ' is-zero') + '">' + (fCount ? '페이지 ' + fCount + '개' : '맞는 페이지가 없습니다') + '</span>' +
+          items.type.map(function (t) { return chipX('type', t, '유형'); }).join('') +
+          items.tag.map(function (t) { return chipX('tag', t, '태그'); }).join('') +
+          (fCount ? '' : '<button type="button" class="graph-row-reset" data-act="reset">모두 해제</button>');
+      }
+      var changed = rowEl.hidden === !!show || rowEl.innerHTML !== html;
+      if (rowEl.innerHTML !== html) rowEl.innerHTML = html;
+      rowEl.hidden = !show;
+      if (changed) { chromeCache = null; namesCache = null; redraw(); } // 줄 폭이 바뀌면 라벨이 피할 상자도 바뀐다
+    }
+    function chipX(axis, v, lab) {
+      return '<button type="button" class="graph-fchip" data-axis="' + axis + '" data-v="' + esc(v) + '" aria-label="' + lab + ' ' + esc(v) + ' 해제">' +
+        '<span class="graph-fchip-k">' + lab + '</span>' + esc(v) + '<span class="graph-fchip-x" aria-hidden="true">×</span></button>';
+    }
+    // 패널: 중심이 필터 밖이면 메타에 표시, 이웃 행은 흐리게 (02 8.2)
+    function syncPanelFilter() {
+      if (!view) return;
+      var mark = pMeta.querySelector('.graph-out-mark');
+      if (mark) mark.hidden = inF[view.c.i] === 1;
+      pBody.querySelectorAll('.graph-nb').forEach(function (b) { b.classList.toggle('is-out', !inF[byId[b.dataset.id].i]); });
+    }
+    function toggleIn(set, v) { if (set.has(v)) set.delete(v); else set.add(v); applyFilters(); }
+    function resetAll() { filt.cat.clear(); filt.type.clear(); filt.tag.clear(); applyFilters(); }
+
+    // 범례: 누르면 켜고 끈다. 미리 강조(마우스)는 필터가 하나도 없을 때만 (02 8.1)
+    legendEl.addEventListener('click', function (e) {
+      var b = e.target.closest('.graph-legend-item[data-cat]');
+      if (b) toggleIn(filt.cat, b.dataset.cat);
+    });
+    legendReset.addEventListener('click', function () {
+      filt.cat.clear(); applyFilters();
+      var first = legendEl.querySelector('.graph-legend-item');
+      if (first) first.focus({ preventScroll: true }); // 눌렀던 버튼이 숨으므로 초점을 범례 안에 둔다
+    });
+    legendEl.addEventListener('pointerover', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      var b = e.target.closest('.graph-legend-item[data-cat]'), c = b && !fActive ? b.dataset.cat : null;
+      if (c !== legendHover) { legendHover = c; syncLit(); }
+    });
+    legendEl.addEventListener('pointerleave', function () { if (legendHover) { legendHover = null; syncLit(); } });
+
+    // 활성 필터 줄: × 로 하나씩 푼다
+    rowEl.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      if (b.dataset.act === 'reset') resetAll();
+      else { filt[b.dataset.axis].delete(b.dataset.v); applyFilters(); }
+      if (!rowEl.contains(document.activeElement) || rowEl.hidden) {
+        var nx = rowEl.hidden ? null : rowEl.querySelector('button');
+        (nx || fBtn).focus({ preventScroll: true });
+      }
+    });
+
+    // 팝오버 열고 닫기 (02 2.6). 열면 첫 칩에 초점, Esc 와 버튼은 초점을 버튼으로 돌린다
+    function openFilters() {
+      closeResults();
+      pop.hidden = false;
+      fBtn.setAttribute('aria-expanded', 'true');
+      // 모바일 궤도: 패널 시트를 접고 inert (01 5.4)
+      if (isMobile() && !panel.hidden) { if (sheetFull) setSheet(false, true); panel.setAttribute('inert', ''); }
+      chromeCache = null; namesCache = null;
+      (typeChips[0] || tagQ).focus({ preventScroll: true });
+      redraw();
+    }
+    function closeFilters(focusBtn) {
+      if (pop.hidden) return;
+      var had = pop.contains(document.activeElement);
+      pop.hidden = true;
+      fBtn.setAttribute('aria-expanded', 'false');
+      closeTagList();
+      if (!panel.hidden) panel.removeAttribute('inert');
+      chromeCache = null; namesCache = null;
+      if (focusBtn || had) fBtn.focus({ preventScroll: true });
+      redraw();
+    }
+    fBtn.addEventListener('click', function () { if (pop.hidden) openFilters(); else closeFilters(true); });
+    function popKey(e) {
+      if (e.key !== 'Escape' || pop.hidden || e.isComposing) return;
+      e.preventDefault(); e.stopPropagation();
+      closeFilters(true);
+    }
+    pop.addEventListener('keydown', popKey);
+    fBtn.addEventListener('keydown', popKey);
+    // 밖을 누르면 닫는다. 캔버스 탭이었으면 노드를 고르지 않는다 (드래그는 팬으로 둔다)
+    document.addEventListener('pointerdown', function (e) {
+      var open = !pop.hidden, out = open && !pop.contains(e.target) && !fBtn.contains(e.target);
+      popSwallow = out && e.target === canvas;
+      if (out) closeFilters(false);
+    }, true);
+    pop.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      if (b.id === 'graph-filters-reset') { resetAll(); return; }
+      if (b.dataset.type) { toggleIn(filt.type, b.dataset.type); return; }
+      if (b.dataset.tag) {
+        var box = b.parentNode, at = Array.prototype.indexOf.call(box.children, b);
+        toggleIn(filt.tag, b.dataset.tag);
+        // 다시 그려 사라진 칩 자리에 초점을 남긴다. 없으면 태그 입력으로
+        var nx = box.children[Math.min(at, box.children.length - 1)];
+        (nx || tagQ).focus({ preventScroll: true });
+      }
+    });
+
+    // 태그: 자동완성 입력 + 추천 칩 8개 + 고른 칩 (01 4절). 카테고리와 같은 이름은 추천에서 뺀다
+    var tagHits = [], tagActive = -1;
+    function renderTags() {
+      var picked = Array.from(filt.tag).sort();
+      tagPicked.innerHTML = picked.map(function (t) {
+        return '<button type="button" class="graph-chip is-picked" data-tag="' + esc(t) + '" aria-pressed="true" aria-label="태그 ' + esc(t) + ' 해제">' +
+          esc(t) + '<span class="graph-chip-x" aria-hidden="true">×</span></button>';
+      }).join('');
+      var sug = TAGS.filter(function (t) { return !(t in catName) && !filt.tag.has(t); }).slice(0, 8);
+      tagSuggest.innerHTML = sug.map(function (t) {
+        return '<button type="button" class="graph-chip" data-tag="' + esc(t) + '" aria-pressed="false">' + esc(t) + '<span class="graph-chip-n">' + tagFreq[t] + '</span></button>';
+      }).join('');
+      if (tagQ.value) runTagSearch();
+    }
+    function runTagSearch() {
+      var s = norm(tagQ.value);
+      tagHits = !s ? [] : TAGS.filter(function (t) { return !filt.tag.has(t) && t.indexOf(s) >= 0; })
+        .sort(function (a, b) { return (b.indexOf(s) === 0) - (a.indexOf(s) === 0) || tagFreq[b] - tagFreq[a] || (a < b ? -1 : 1); }).slice(0, 8);
+      tagActive = tagHits.length ? 0 : -1;
+      renderTagList(s);
+    }
+    function renderTagList(s) {
+      if (!s) { closeTagList(); return; }
+      tagQ.setAttribute('aria-expanded', 'true');
+      tagRes.innerHTML = tagHits.length ? tagHits.map(function (t, i) {
+        var at = t.indexOf(s);
+        return '<li role="option" id="graph-tag-opt-' + i + '" data-tag="' + esc(t) + '" aria-selected="' + (i === tagActive) + '">' +
+          '<span class="graph-opt-t">' + esc(t.slice(0, at)) + '<mark>' + esc(t.slice(at, at + s.length)) + '</mark>' + esc(t.slice(at + s.length)) + '</span>' +
+          '<span class="graph-opt-n">' + tagFreq[t] + '</span></li>';
+      }).join('') : '<li class="graph-opt-empty" role="presentation">일치하는 태그가 없습니다</li>';
+      if (tagActive >= 0) tagQ.setAttribute('aria-activedescendant', 'graph-tag-opt-' + tagActive); else tagQ.removeAttribute('aria-activedescendant');
+    }
+    function closeTagList() {
+      tagRes.innerHTML = ''; tagHits = []; tagActive = -1;
+      tagQ.setAttribute('aria-expanded', 'false'); tagQ.removeAttribute('aria-activedescendant');
+    }
+    function pickTag(t) {
+      tagQ.value = ''; closeTagList();
+      filt.tag.add(t); applyFilters();
+      tagQ.focus({ preventScroll: true });
+    }
+    tagQ.addEventListener('input', runTagSearch);
+    tagQ.addEventListener('keydown', function (e) {
+      if (e.isComposing || e.keyCode === 229) return; // 한글 조합 중 Enter, 방향키는 조합이 쓴다 (02 7.1)
+      if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && tagHits.length) {
+        e.preventDefault();
+        tagActive = (tagActive + (e.key === 'ArrowDown' ? 1 : -1) + tagHits.length) % tagHits.length;
+        renderTagList(norm(tagQ.value));
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (tagActive >= 0) pickTag(tagHits[tagActive]);
+      } else if (e.key === 'Escape' && tagRes.innerHTML) {
+        e.preventDefault(); e.stopPropagation(); // 제안 목록만 닫는다 (02 6.5 2단계)
+        closeTagList();
+      }
+    });
+    tagQ.addEventListener('blur', function () { setTimeout(function () { if (document.activeElement !== tagQ) closeTagList(); }, 0); });
+    tagRes.addEventListener('pointerdown', function (e) { e.preventDefault(); });
+    tagRes.addEventListener('click', function (e) { var li = e.target.closest('li[data-tag]'); if (li) pickTag(li.dataset.tag); });
+
+    // ── 검색: 제목과 stem 부분 일치, 태그 제외 (02 7절) ─────────────────────
+    var q = document.getElementById('graph-q'), results = document.getElementById('graph-results');
+    var searchQ = '', hits = [], active = -1, countTimer = 0;
+    function norm(s) { return String(s).normalize('NFC').toLowerCase().trim().replace(/\s+/g, ' '); }
+    nodes.forEach(function (n) { n.qt = norm(n.title); });
+    function runSearch(keepActive) {
+      var s = searchQ = norm(q.value), st = s.replace(/ /g, '-'), prev = active >= 0 && hits[active] && hits[active].n;
+      hits = !s ? [] : nodes.map(function (n) {
+        var at = n.qt.indexOf(s);
+        if (at < 0 && n.stem.indexOf(st) < 0) return null;
+        return { n: n, at: at, score: (at === 0 ? 1000 : at > 0 ? 500 : 0) + n.degree };
+      }).filter(Boolean).sort(function (a, b) { return b.score - a.score || a.n.title.localeCompare(b.n.title, 'ko'); });
+      searchHits = new Set(hits.slice(0, 40).map(function (h) { return h.n; }));
+      active = hits.length ? 0 : -1;
+      if (keepActive && prev) for (var i = 0; i < Math.min(8, hits.length); i++) if (hits[i].n === prev) active = i;
+      renderResults();
+      redraw();
+      // 결과 수는 입력이 500ms 멈춘 뒤 알린다 (02 9.2)
+      clearTimeout(countTimer);
+      if (s && !keepActive) countTimer = setTimeout(function () { announce(hits.length ? '결과 ' + hits.length + '개' : '일치하는 페이지가 없습니다'); }, 500);
+    }
+    function renderResults() {
+      var open = !!searchQ && document.activeElement === q;
+      q.setAttribute('aria-expanded', String(open));
+      if (!open) { results.innerHTML = ''; q.removeAttribute('aria-activedescendant'); return; }
+      var s = searchQ, st = s.replace(/ /g, '-');
+      results.innerHTML = !hits.length
+        ? '<li class="graph-res-empty" role="presentation"><span class="graph-res-empty-t">일치하는 페이지가 없습니다</span>영문 제목이나 파일 이름으로 찾아 보세요.</li>'
+        : hits.slice(0, 8).map(function (h, i) {
+          var n = h.n, t = n.title, out = !inF[n.i];
+          // 정규화 뒤에도 길이가 같을 때만 원문 위치에 강조를 건다
+          var title = h.at >= 0 && n.qt.length === t.length ? esc(t.slice(0, h.at)) + '<mark>' + esc(t.slice(h.at, h.at + s.length)) + '</mark>' + esc(t.slice(h.at + s.length)) : esc(t);
+          var sa = h.at < 0 ? n.stem.indexOf(st) : -1;
+          var stem = sa >= 0 ? '<span class="graph-res-stem">' + esc(n.stem.slice(0, sa)) + '<mark>' + esc(n.stem.slice(sa, sa + st.length)) + '</mark>' + esc(n.stem.slice(sa + st.length)) + '</span>' : '';
+          return '<li role="option" id="graph-res-' + i + '" class="graph-res' + (out ? ' is-out' : '') + '" data-cat="' + esc(n.category) + '" data-id="' + esc(n.id) + '" aria-selected="' + (i === active) + '" title="' + esc(t) + '">' +
+            '<span class="graph-swatch" aria-hidden="true"></span><span class="graph-res-main"><span class="graph-res-t">' + title + '</span>' + stem + '</span>' +
+            '<span class="graph-res-meta">' + (out ? '<span class="graph-res-out">필터 밖</span>' : '') + '<span class="graph-res-deg"><span class="sr-only">연결 </span>' + n.degree + '</span></span></li>';
+        }).join('') + (hits.length > 8 ? '<li class="graph-res-more" role="presentation">위 8개를 보여 줍니다. 결과 ' + hits.length + '개</li>' : '');
+      if (active >= 0) q.setAttribute('aria-activedescendant', 'graph-res-' + active); else q.removeAttribute('aria-activedescendant');
+      var a = results.querySelector('[aria-selected="true"]');
+      if (a && a.scrollIntoView) a.scrollIntoView({ block: 'nearest' });
+    }
+    function closeResults() { results.innerHTML = ''; q.setAttribute('aria-expanded', 'false'); q.removeAttribute('aria-activedescendant'); }
+    function clearSearch() { q.value = ''; searchQ = ''; hits = []; active = -1; searchHits = new Set(); clearTimeout(countTimer); closeResults(); redraw(); }
+    // 고르면: 입력 비우기, 그 노드를 막던 축만 풀기, 궤도 진입이나 중심 옮기기, 초점은 캔버스로 (02 7.5)
+    function pick(n) {
+      clearSearch();
+      var freed = false;
+      if (fActive && !inF[n.i]) {
+        if (filt.cat.size && !filt.cat.has(n.category)) { filt.cat.clear(); freed = true; }
+        if (filt.type.size && !filt.type.has(n.type)) { filt.type.clear(); freed = true; }
+        if (filt.tag.size && !n.tags.some(function (t) { return filt.tag.has(t); })) { filt.tag.clear(); freed = true; }
+        if (freed) applyFilters({ silent: true });
+      }
+      canvas.focus({ preventScroll: true });
+      if (mode === 'orbit' && view && view.c === n) { if (freed) announce('필터 일부를 해제했습니다'); return; }
+      selectNode(n.id);
+      if (freed) announce(live.textContent + '. 필터 일부를 해제했습니다');
+    }
+    q.addEventListener('input', function () { runSearch(false); });
+    q.addEventListener('focus', function () { closeFilters(false); if (searchQ) renderResults(); });
+    q.addEventListener('blur', function () { setTimeout(function () { if (document.activeElement !== q) closeResults(); }, 0); });
+    q.addEventListener('keydown', function (e) {
+      if (e.isComposing || e.keyCode === 229) return; // 조합을 끝내는 Enter 가 결과 선택으로 번지지 않게 (02 7.1)
+      var m = Math.min(hits.length, 8);
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (!results.innerHTML && searchQ) { renderResults(); return; }
+        if (!m) return;
+        active = (active + (e.key === 'ArrowDown' ? 1 : -1) + m) % m;
+        renderResults();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (active >= 0 && hits[active]) pick(hits[active].n);
+      } else if (e.key === 'Escape') {
+        e.preventDefault(); e.stopPropagation(); // 글자를 지우고 결과를 닫는다 (02 6.5 1단계)
+        clearSearch();
+        canvas.focus({ preventScroll: true });
+      }
+    });
+    results.addEventListener('pointerdown', function (e) { e.preventDefault(); }); // 입력 초점을 지킨다 (02 7.4)
+    results.addEventListener('click', function (e) { var li = e.target.closest('li[data-id]'); if (li) pick(byId[li.dataset.id]); });
+
+    cmd.hidden = false;
+    chromeCache = null;
+    applyFilters({ silent: true });
+
     // ── 크기와 테마 ───────────────────────────────────────────────────────
     function resize() {
       var r = canvas.getBoundingClientRect(), oldW = W, oldH = H;
@@ -1810,6 +2179,12 @@
       pos: function (id) { var n = byId[id]; return n && { x: n.x, y: n.y, hx: n.hx, hy: n.hy, sx: sx(n.x), sy: sy(n.y), r: nodeR(n), p: n.p }; },
       screen: function (id) { var n = byId[id]; return n && { x: sx(n.x), y: sy(n.y), r: nodeR(n) }; },
       hovered: function () { return hovered && hovered.id; },
+      // 검색과 필터 (5번). 6번 hash 도 getFilters, setFilters 를 그대로 쓴다
+      getFilters: getFilters,
+      setFilters: setFilters,
+      filtered: function () { return { active: fActive, count: fCount, ids: nodes.filter(function (n) { return inF[n.i]; }).map(function (n) { return n.id; }) }; },
+      emph: function (id) { var n = byId[id]; return n && emph[n.i]; },
+      search: function () { return { q: searchQ, total: hits.length, shown: hits.slice(0, 8).map(function (h) { return h.n.id; }), active: active, canvas: searchHits.size }; },
       sheet: function () { return { full: sheetFull, h: sheetH }; },
       geom: function () {
         return { pill: pillBox, labels: labelBoxes.slice(), chrome: chromeRects(),
