@@ -147,6 +147,8 @@
     var fActive = false, fCount = N, legendHover = null, fMix = 0;
     var searchHits = new Set(); // 검색 상위 40개: 라벨 강제 후보와 캔버스 고리 (02 7.3)
     var popSwallow = false;      // 팝오버 밖 탭은 노드를 고르지 않는다 (02 2.6)
+    // URL (02 8.4 ~ 8.6). hash 를 읽어 상태를 바꾸는 동안과 시작 전에는 history 를 쓰지 않는다
+    var applying = true, expectBack = false;
 
     // ── 좌표 변환 ─────────────────────────────────────────────────────────
     function sx(wx) { return wx * cam.k + cam.x; }
@@ -1428,7 +1430,7 @@
 
     // ── 선택, 궤도, 복귀 (02 2.2, 2.3절, 04 6절) ─────────────────────────────
     // 진입점: selectNode(id) 조감이면 궤도 열기, 궤도면 중심 옮기기. exitOrbit() 조감으로 복귀.
-    // 6번(hash, history)은 opts.instant(딥링크, 전환 없이)를 넘기고 history 를 따로 다룬다
+    // 진입은 pushState, 중심 옮기기와 펼침은 replaceState, 나가기는 push 한 항목이면 back (writeUrl, 02 8.6)
     function selectNode(id, opts) {
       var n = byId[id];
       if (!n) return false;
@@ -1452,6 +1454,7 @@
       if (opts.instant) { cam = target; flight = null; } else flyTo(target, 720, 'enter');
       pulseT0 = opts.instant || reduce ? -1 : performance.now() + 380;
       announceCenter(n);
+      writeUrl(true);
       redraw();
     }
     function recenter(id, opts) {
@@ -1470,6 +1473,7 @@
       flyTo(orbitCam(view), 600, 'recenter');
       pulseT0 = reduce ? -1 : performance.now() + 200;
       if (!opts.keepList) announceCenter(n);
+      writeUrl(false);
       redraw();
     }
     function exitOrbit() {
@@ -1485,6 +1489,9 @@
       flyTo(atlasCam || fitTarget(nodes), 640, 'exit');
       canvas.setAttribute('aria-label', 'wiki 페이지 관계 그래프, 전체 보기');
       announce('전체 보기');
+      // 이 탐색기가 push 한 궤도 항목이면 되돌아가고, 아니면 node 만 지운다 (02 2.3)
+      if (!applying && main.dataset.view === 'map' && history.state && history.state.graph === 'orbit') { expectBack = true; history.back(); }
+      else writeUrl(false);
       redraw();
     }
     function back() { // 경로를 한 칸 되돌린다. 7번(Backspace)이 쓴다
@@ -1503,6 +1510,7 @@
       // 목록을 다시 그리면 누른 버튼이 사라져 초점이 body 로 떨어진다. 새 버튼으로 옮긴다
       var nb = fromBtn && pBody.querySelector('[data-act="expand"]');
       if (nb) nb.focus({ preventScroll: true });
+      writeUrl(false);
       redraw();
     }
 
@@ -1719,7 +1727,7 @@
     dock.addEventListener('transitionend', function () { chromeCache = null; redraw(); });
 
     // ── 필터: 카테고리(범례), 유형과 태그(팝오버) (01 4절, 02 8.1 ~ 8.3절, 04 7.3절) ──
-    // 6번(hash)은 getFilters() 로 읽고 setFilters(f, { silent }) 로 쓴다. 모든 변경은 applyFilters() 하나를 지난다
+    // 모든 변경은 applyFilters() 하나를 지나고 거기서 hash 를 replaceState 한다
     var cmd = stage.querySelector('.graph-cmd'), legendEl = stage.querySelector('.graph-legend');
     var legendStat = stage.querySelector('.graph-legend-stat'), legendReset = stage.querySelector('.graph-legend-reset');
     var statText = legendStat.textContent;
@@ -1793,6 +1801,7 @@
       syncPanelFilter();
       if (searchQ) runSearch(true);
       if (!opts.silent) announce(!fActive ? '필터 해제' : fCount ? '필터 적용. 페이지 ' + fCount + '개' : '조건에 맞는 페이지가 없습니다');
+      writeUrl(false);
     }
     // 궤도에서는 칩 줄 자리를 경로 줄이 쓰므로 숨기고 배지만 남긴다 (01 4절, 6절)
     function syncRow() {
@@ -2104,25 +2113,89 @@
       toMapBtn.hidden = v === 'map';
       if (v === 'map') { syncHeader(); resize(); }
     }
-    // 판만 hash 로 정한다. node=, cat= 같은 나머지 문법은 딥링크 항목이 붙인다
-    function viewFromHash() {
-      var h = location.hash.slice(1);
-      if (!h) return 'map';
-      if (h === 'list') return 'list';
-      var el = document.getElementById(decodeURIComponentSafe(h));
-      if (el && listEl.contains(el)) return 'list';
-      return null; // #main 같은 목록 밖 앵커는 무시한다
+    // ── hash 와 history (02 8.4 ~ 8.6) ────────────────────────────────────
+    function own(o, k) { return Object.prototype.hasOwnProperty.call(o, k); } // #toString 같은 입력이 프로토타입에 걸리지 않게
+    function encId(id) { return /^[a-z0-9/-]+$/.test(id) ? id : id.split('/').map(encodeURIComponent).join('/'); }
+    function hashOf(s) {
+      var p = [];
+      if (s.node) p.push('node=' + encId(s.node));
+      ['cat', 'type', 'tag'].forEach(function (k) { if (s[k].length) p.push(k + '=' + s[k].map(encodeURIComponent).join(',')); });
+      return p.length ? '#' + p.join('&') : '';
     }
-    function decodeURIComponentSafe(s) { try { return decodeURIComponent(s); } catch (e) { return s; } }
-    function syncFromHash() {
-      var v = viewFromHash();
-      if (!v) return;
-      if (v === 'map') pushedList = false;
-      setView(v);
-      if (v === 'list' && location.hash !== '#list') {
-        var el = document.getElementById(decodeURIComponentSafe(location.hash.slice(1)));
-        if (el) el.scrollIntoView();
+    function curState() {
+      var f = getFilters();
+      f.node = mode === 'orbit' && view ? view.c.id : null;
+      return f;
+    }
+    function setUrl(h, push) {
+      var url = location.pathname + location.search + h;
+      try {
+        if (push) history.pushState({ graph: 'orbit' }, '', url);
+        else if (location.hash !== h || (!h && location.href.slice(-1) === '#')) history.replaceState(history.state, '', url);
+      } catch (e) { /* file:// 등 */ }
+    }
+    // 상태 → URL. 궤도 진입만 push, 나머지는 replace (02 8.6, N3)
+    function writeUrl(push) {
+      if (applying || main.dataset.view !== 'map') return;
+      setUrl(hashOf(curState()), push);
+    }
+    // hash 를 { kind: 'state' | 'list' | 'anchor' | 'ignore' } 로 읽는다. 모르는 키와 깨진 인코딩은 그 part만 버린다 (02 8.5)
+    function readHash() {
+      var h = location.hash.slice(1), s = { node: null, cat: [], type: [], tag: [] }, known = false, list = false;
+      if (!h) return { kind: 'state', s: s };
+      h.split('&').forEach(function (part) {
+        if (part === 'list') { list = true; return; }
+        var i = part.indexOf('='), k = part.slice(0, i);
+        if (i < 0 || ['node', 'path', 'cat', 'type', 'tag'].indexOf(k) < 0) return;
+        known = true;
+        try {
+          var raw = part.slice(i + 1);
+          if (k === 'node') s.node = decodeURIComponent(raw) || null;
+          else if (k !== 'path') s[k] = raw.split(',').map(decodeURIComponent).filter(Boolean); // path 는 Phase 5 예약
+        } catch (e) { /* 깨진 % 인코딩 */ }
+      });
+      if (list) return { kind: 'list' };
+      if (known) return { kind: 'state', s: s };
+      if (own(catName, h)) return { kind: 'state', s: { node: null, cat: [h], type: [], tag: [] } }; // 옛 #physical-ai 형식
+      var el = null;
+      try { el = document.getElementById(decodeURIComponent(h)); } catch (e) { /* 깨진 인코딩 */ }
+      return el && listEl.contains(el) ? { kind: 'anchor', el: el } : { kind: 'ignore' };
+    }
+    // URL → 상태. 멱등이라 popstate 와 hashchange 가 함께 와도 한 번만 바뀐다
+    function syncFromHash(e) {
+      if (expectBack && e && e.type === 'popstate') {
+        // exitOrbit 이 부른 back. 궤도 중에 바꾼 필터를 앞 항목에도 남긴다
+        expectBack = false;
+        applying = false;
+        writeUrl(false);
+        return;
       }
+      applying = false;
+      var first = !e, r = readHash();
+      if (r.kind === 'ignore') { if (first) setView('map'); return; } // #main 같은 목록 밖 앵커는 무시한다
+      if (r.kind !== 'state') {
+        setView('list');
+        if (r.kind === 'anchor') r.el.scrollIntoView();
+        else if (location.hash !== '#list') setUrl('#list', false);
+        return;
+      }
+      pushedList = false;
+      applying = true;
+      var s = r.s, n = s.node ? byId[s.node] : null;
+      // 새로 고친 궤도 항목은 이미 앞에 조감 항목이 있다. 그 밖의 첫 딥링크는 조감 항목을 깔고 push 한다 (02 8.6)
+      var stack = first && n && !(history.state && history.state.graph === 'orbit');
+      try {
+        if (main.dataset.view !== 'map') setView('map');
+        var before = JSON.stringify(getFilters());
+        filt.cat = new Set(s.cat); filt.type = new Set(s.type); filt.tag = new Set(s.tag.filter(function (t) { return own(tagFreq, t); }));
+        var f = getFilters(); // 범례, 유형, 사전 순으로 정렬된 정규형
+        setFilters(f, { silent: first || JSON.stringify(f) === before });
+        if (n && !stack) { if (mode !== 'orbit') enterOrbit(n, { instant: first }); else if (view.c !== n) recenter(n.id); }
+        else if (!n && mode === 'orbit') exitOrbit();
+      } finally { applying = false; }
+      if (s.node && !n) announce('요청한 페이지를 그래프에서 찾지 못했습니다');
+      if (stack) { setUrl(hashOf(getFilters()), false); enterOrbit(n, { instant: true }); }
+      else setUrl(hashOf(curState()), false); // 정규형으로 고친다
     }
     toListBtn.addEventListener('click', function () {
       try { history.pushState(null, '', '#list'); pushedList = true; } catch (e) { /* file:// 등 */ }
@@ -2132,8 +2205,8 @@
     });
     toMapBtn.addEventListener('click', function () {
       if (pushedList) { history.back(); return; } // popstate 가 지도 판으로 되돌린다
-      try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { /* file:// 등 */ }
       setView('map');
+      setUrl(hashOf(curState()), false); // 메모리에 둔 궤도와 필터를 되살린다
       canvas.focus({ preventScroll: true });
     });
     window.addEventListener('popstate', syncFromHash);
@@ -2149,8 +2222,7 @@
       if (mode === 'orbit' && view && !morph) { syncSheet(); cam = orbitCam(view); }
       redraw();
     });
-    if (viewFromHash()) syncFromHash();
-    else setView('map');
+    syncFromHash();
 
     // 검증용 읽기 창구 (브라우저 자동 검증과 뒤 항목 테스트가 쓴다)
     window.__graphExplorer = {
