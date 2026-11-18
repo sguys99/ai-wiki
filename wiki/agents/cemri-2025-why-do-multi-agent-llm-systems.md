@@ -508,3 +508,4 @@ structural 전략에서 저자들이 가장 무게를 두는 항목은 verificat
 - [[agents/zhang-2026-recursive-language-models]]: 단일 agent 확장과 MAS를 비교하는 맥락. MAS의 성능 이득이 작다는 이 논문의 문제의식과 이어진다.
 - [[evaluations/bandi-2026-mcp-atlas-a-large-scale-benchmark-for]]: MCP tool use 벤치마크의 11종 실패 분류. MAST와 마찬가지로 실패를 유형화했고, 인지 계열이 63.3%로 tool call 계열을 앞선다.
 - [[agents/runkle-2026-the-art-of-loop-engineering]]: verification 루프를 설계 대상으로 보는 관점. MAST의 Insight 3과 문제의식이 겹친다.
+- [[agents/srinivasan-2026-aligning-ai-teams]]: MAST를 관련 연구로 인용한 후속 연구. 협력하는 에이전트 팀의 안전 목표 미달을 책임 분산으로 설명하고 safety lead 지정과 안전 명세 문서를 해법으로 제시한다.

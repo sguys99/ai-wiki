@@ -262,6 +262,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 - [[agents/runkle-2026-the-art-of-loop-engineering|The Art of Loop Engineering (Sydney Runkle)]]: agent, verification, event driven, hill climbing 네 겹 루프 스택을 LangChain 도구에 매핑한 글 (2026, article)
 - [[agents/seans-ai-stories-2026-agent-harness-loop-engineering|Agent Harness and Loop Engineering (Sean's AI Stories)]]: harness를 마구에 비유해 memory 3종, end-loop guardrail, LLMOps를 잇는 입문 강의 (2026, video)
 - [[agents/cemri-2025-why-do-multi-agent-llm-systems|Why Do Multi-Agent LLM Systems Fail? (MAST)]]: 7개 MAS의 1,642개 trace를 Grounded Theory로 분석해 14개 실패 모드와 3개 카테고리로 정리한 첫 MAS 실패 분류체계 (2025, paper)
+- [[agents/srinivasan-2026-aligning-ai-teams|Aligning AI Teams]]: 정렬된 LLM 에이전트도 팀이 되면 안전 목표를 덜 지키는 격차를 책임 분산으로 설명하고, safety lead 지정과 안전 명세 문서로 복원함을 Claude 5종에서 보인다 (2026, paper)
 - [[agents/microsoft-skillopt|SkillOpt (repo)]]: agent skill 문서를 학습 대상 파라미터로 삼아 딥러닝 옵티마이저의 규율로 훈련하는 Microsoft 프레임워크. 가중치를 고정한 채 `best_skill.md` 한 장만 배포한다 (2026, repo)
 - [[agents/yang-2026-skillopt-executive-strategy-for|SkillOpt]]: skill 문서를 external state로 두고 edit budget과 held-out gate로 훈련하는 text-space optimizer. 52개 셀 전부 best 또는 tied-best (2026, paper)
 - [[agents/rodrigues-2026-mcp-server-architecture-patterns|MCP Server Architecture Patterns]]: MCP 서버 15개를 코딩해 패턴 5종과 anti-pattern 4종을 정리한 산업 경험 논문. tool 10~15개가 Haiku급 정확도 예산이다 (2026, paper)

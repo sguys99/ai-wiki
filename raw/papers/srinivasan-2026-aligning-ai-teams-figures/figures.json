@@ -1,0 +1,1163 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig01.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig01.png",
+    "page": 6,
+    "caption": "Figure 1: Sepsis task : safety-score ∆ vs. single-agent default at the mean (top) and 10th-percentile (bottom). Negative values indicate a worse safety score than the single-agent default. Bars in the shaded grey band represent safety scores that fall within the range of single-agent safety scores.",
+    "bbox": [
+      102.0,
+      66.0,
+      510.0,
+      338.21
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.427
+    ],
+    "dpi": 300,
+    "area_frac": 0.229,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig02.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig02.png",
+    "page": 6,
+    "caption": "Figure 2: Sepsis task, Diffusion of responsibility, Mythos Preview. Rate at which any agent tested the integrated classifier and discovered harmful outcomes, and (conditional on discovery) attempted to fix , deflected , rationalized , or ignored the harm.",
+    "bbox": [
+      102.0,
+      389.94,
+      510.0,
+      528.62
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4923,
+      0.8333,
+      0.6674
+    ],
+    "dpi": 300,
+    "area_frac": 0.117,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig03.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig03.png",
+    "page": 8,
+    "caption": "Figure 3: Recommender-system task : safety-score ∆ vs. single-agent default at the mean (top) and 10th-percentile (bottom). Negative values indicate a worse safety score than the single-agent default. Bars in the shaded grey band fall within the range of single-agent safety scores.",
+    "bbox": [
+      102.0,
+      66.0,
+      510.0,
+      338.21
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.427
+    ],
+    "dpi": 300,
+    "area_frac": 0.229,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig04.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig04.png",
+    "page": 8,
+    "caption": "Figure 4: Recommender-system task, Diffusion of responsibility, Opus 4.7. Rate at which any agent tested the integrated recommender and discovered misinformation harms, and (conditional on discovery) attempted to fix , deflected , rationalized , or ignored the harm.",
+    "bbox": [
+      102.0,
+      389.94,
+      510.0,
+      528.62
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4923,
+      0.8333,
+      0.6674
+    ],
+    "dpi": 300,
+    "area_frac": 0.117,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig05.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig05.png",
+    "page": 9,
+    "caption": "Figure 5: Consulting task, Opus 4.1 : constitution-score ∆ vs. single-agent baseline by configuration, under benign (left) and redteam (right) prompt families. Negative values indicate worse ethics-rubric scores than the single-agent baseline.",
+    "bbox": [
+      102.0,
+      468.5,
+      510.01,
+      666.49
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.5915,
+      0.8333,
+      0.8415
+    ],
+    "dpi": 300,
+    "area_frac": 0.167,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig06.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig06.png",
+    "page": 13,
+    "caption": "Figure 6: Sepsis task, cost vs. safety. Change in safety score (sensitivity, pp) vs. mean API cost of the run, by configuration, both relative to each model’s multi-agent baseline (cost shown as a multiple of the baseline’s cost). Stars mark the compound (safety document + designated safety lead) in",
+    "bbox": [
+      102.0,
+      315.53,
+      510.0,
+      534.61
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.3984,
+      0.8333,
+      0.675
+    ],
+    "dpi": 300,
+    "area_frac": 0.184,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig07.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig07.png",
+    "page": 14,
+    "caption": "Figure 7: Sepsis task, diffusion of responsibility, all models. Rate at which any agent (a) tested the integrated classifier, (b) discovered a patient-safety harmful outcome, and (c) conditional on discovery, attempted to fix , deflected , rationalized , or ignored the harm. Rows are models; columns",
+    "bbox": [
+      102.0,
+      94.52,
+      510.0,
+      577.22
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1193,
+      0.8333,
+      0.7288
+    ],
+    "dpi": 300,
+    "area_frac": 0.406,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig08.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig08.png",
+    "page": 18,
+    "caption": "Figure 8: Sepsis task, Mythos Preview, mean. Safety score (top, sensitivity) and business score (bottom, normalized cost savings) by configuration. Error bars are 95% t -intervals.",
+    "bbox": [
+      130.45,
+      243.25,
+      479.06,
+      433.64
+    ],
+    "bbox_norm": [
+      0.2132,
+      0.3071,
+      0.7828,
+      0.5475
+    ],
+    "dpi": 300,
+    "area_frac": 0.137,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig09.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig09.png",
+    "page": 18,
+    "caption": "Figure 9: Sepsis task, Mythos Preview, 10th-percentile. Safety score (top) and business score (bottom) by configuration, at the 10th-percentile across runs.",
+    "bbox": [
+      130.45,
+      477.49,
+      479.06,
+      667.88
+    ],
+    "bbox_norm": [
+      0.2132,
+      0.6029,
+      0.7828,
+      0.8433
+    ],
+    "dpi": 300,
+    "area_frac": 0.137,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig10.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig10.png",
+    "page": 19,
+    "caption": "Figure 10: Sepsis task, Opus 4.7, mean. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      287.86
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3635
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig11.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig11.png",
+    "page": 19,
+    "caption": "Figure 11: Sepsis task, Opus 4.7, 10th-percentile. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      342.62,
+      509.99,
+      564.49
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4326,
+      0.8333,
+      0.7127
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig12.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig12.png",
+    "page": 20,
+    "caption": "Figure 12: Sepsis task, Opus 4.6, mean. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      287.86
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3635
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig13.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig13.png",
+    "page": 20,
+    "caption": "Figure 13: Sepsis task, Opus 4.6, 10th-percentile. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      342.62,
+      509.99,
+      564.49
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4326,
+      0.8333,
+      0.7127
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig14.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig14.png",
+    "page": 21,
+    "caption": "Figure 14: Sepsis task, Sonnet 4.6, mean. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      287.86
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3635
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig15.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig15.png",
+    "page": 21,
+    "caption": "Figure 15: Sepsis task, Sonnet 4.6, 10th-percentile. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      342.62,
+      509.99,
+      564.49
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4326,
+      0.8333,
+      0.7127
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig16.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig16.png",
+    "page": 22,
+    "caption": "Figure 16: Sepsis task, Opus 4.1, mean. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      287.86
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3635
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig17.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig17.png",
+    "page": 22,
+    "caption": "Figure 17: Sepsis task, Opus 4.1, 10th-percentile. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      342.62,
+      509.99,
+      564.49
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4326,
+      0.8333,
+      0.7127
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig18.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig18.png",
+    "page": 25,
+    "caption": "Figure 18: Recommender system, cost vs. safety. Change in safety score (1 − misinformation@50, pp) vs. mean API cost of the run, by configuration, both relative to each model’s multi-agent baseline (cost shown as a multiple of the baseline’s cost). Stars mark the compound (safety document + designat",
+    "bbox": [
+      102.0,
+      249.28,
+      510.0,
+      467.99
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.3148,
+      0.8333,
+      0.5909
+    ],
+    "dpi": 300,
+    "area_frac": 0.184,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig19.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig19.png",
+    "page": 26,
+    "caption": "Figure 19: Recommender-system task, diffusion of responsibility, all models. Rate at which any agent (a) tested the integrated recommender, (b) discovered misinformation harms, and (c) conditional on discovery, attempted to fix , deflected , rationalized , or ignored the harm. Rows are models; colum",
+    "bbox": [
+      102.0,
+      94.52,
+      510.0,
+      577.22
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1193,
+      0.8333,
+      0.7288
+    ],
+    "dpi": 300,
+    "area_frac": 0.406,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p26.png"
+  },
+  {
+    "id": "fig20",
+    "label": "Figure 20",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig20.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig20.png",
+    "page": 27,
+    "caption": "Figure 20: Recommender system, Mythos Preview, mean. Safety score (top, 1 − misinfo@50) and business score (bottom, normalized views@50) by configuration. Error bars are 95% t -intervals.",
+    "bbox": [
+      102.0,
+      185.35,
+      509.99,
+      407.21
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.234,
+      0.8333,
+      0.5142
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig21",
+    "label": "Figure 21",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig21.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig21.png",
+    "page": 27,
+    "caption": "Figure 21: Recommender system, Mythos Preview, 10th-percentile. Safety score (top) and business score (bottom) by configuration, at the 10th-percentile across runs.",
+    "bbox": [
+      102.0,
+      461.98,
+      509.99,
+      683.84
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.5833,
+      0.8333,
+      0.8634
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig22",
+    "label": "Figure 22",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig22.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig22.png",
+    "page": 28,
+    "caption": "Figure 22: Recommender system, Opus 4.7, mean. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      287.86
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3635
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p28.png"
+  },
+  {
+    "id": "fig23",
+    "label": "Figure 23",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig23.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig23.png",
+    "page": 28,
+    "caption": "Figure 23: Recommender system, Opus 4.7, 10th-percentile. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      342.62,
+      509.99,
+      564.49
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4326,
+      0.8333,
+      0.7127
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p28.png"
+  },
+  {
+    "id": "fig24",
+    "label": "Figure 24",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig24.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig24.png",
+    "page": 29,
+    "caption": "Figure 24: Recommender system, Opus 4.6, mean. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      287.86
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3635
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig25",
+    "label": "Figure 25",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig25.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig25.png",
+    "page": 29,
+    "caption": "Figure 25: Recommender system, Opus 4.6, 10th-percentile. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      342.62,
+      509.99,
+      564.49
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4326,
+      0.8333,
+      0.7127
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p29.png"
+  },
+  {
+    "id": "fig26",
+    "label": "Figure 26",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig26.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig26.png",
+    "page": 30,
+    "caption": "Figure 26: Recommender system, Sonnet 4.6, mean. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      287.86
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3635
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p30.png"
+  },
+  {
+    "id": "fig27",
+    "label": "Figure 27",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig27.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig27.png",
+    "page": 30,
+    "caption": "Figure 27: Recommender system, Sonnet 4.6, 10th-percentile. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      342.62,
+      509.99,
+      564.49
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4326,
+      0.8333,
+      0.7127
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p30.png"
+  },
+  {
+    "id": "fig28",
+    "label": "Figure 28",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig28.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig28.png",
+    "page": 31,
+    "caption": "Figure 28: Recommender system, Opus 4.1, mean. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      66.0,
+      509.99,
+      287.86
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.0833,
+      0.8333,
+      0.3635
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig29",
+    "label": "Figure 29",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig29.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig29.png",
+    "page": 31,
+    "caption": "Figure 29: Recommender system, Opus 4.1, 10th-percentile. Safety score (top) and business score (bottom) by configuration.",
+    "bbox": [
+      102.0,
+      342.62,
+      509.99,
+      564.49
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4326,
+      0.8333,
+      0.7127
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p31.png"
+  },
+  {
+    "id": "fig30",
+    "label": "Figure 30",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig30.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig30.png",
+    "page": 36,
+    "caption": "Figure 30: Consultancy task, benign prompts, constitution score ∆ vs. single agent. Mean (left) and 10th-percentile (right) constitution-score ∆ by configuration for Opus 4.1 (top) and Opus 4.7 (bottom) under benign prompts. Negative values indicate worse ethics-rubric scores than the single-agent b",
+    "bbox": [
+      130.45,
+      94.52,
+      479.05,
+      343.37
+    ],
+    "bbox_norm": [
+      0.2132,
+      0.1193,
+      0.7828,
+      0.4335
+    ],
+    "dpi": 300,
+    "area_frac": 0.179,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p36.png"
+  },
+  {
+    "id": "fig31",
+    "label": "Figure 31",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig31.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig31.png",
+    "page": 36,
+    "caption": "Figure 31: Consultancy task, redteam prompts, constitution score ∆ vs. single agent. Mean (left) and 10th-percentile (right) constitution-score ∆ by configuration for Opus 4.1 (top) and Opus 4.7 (bottom) under redteam prompts (business-first framing). Same conventions as Figure 30.",
+    "bbox": [
+      130.45,
+      409.04,
+      479.05,
+      657.89
+    ],
+    "bbox_norm": [
+      0.2132,
+      0.5165,
+      0.7828,
+      0.8307
+    ],
+    "dpi": 300,
+    "area_frac": 0.179,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p36.png"
+  },
+  {
+    "id": "fig32",
+    "label": "Figure 32",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig32.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig32.png",
+    "page": 37,
+    "caption": "Figure 32: Consultancy task, topology effect, benign prompts. Constitution-score ∆ vs. the single-agent baseline by multi-agent topology (flat vs. hierarchical) under benign prompts, at the mean (left) and 10th-percentile (right) across runs, for each of the five models. The shaded grey band is the ",
+    "bbox": [
+      102.0,
+      130.81,
+      509.98,
+      261.18
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.1652,
+      0.8333,
+      0.3298
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p37.png"
+  },
+  {
+    "id": "fig33",
+    "label": "Figure 33",
+    "kind": "figure",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/fig33.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/fig33.png",
+    "page": 37,
+    "caption": "Figure 33: Consultancy task, topology effect, redteam prompts. Same as Figure 32 but under redteam prompts (business-first framing).",
+    "bbox": [
+      102.0,
+      337.76,
+      509.98,
+      468.13
+    ],
+    "bbox_norm": [
+      0.1667,
+      0.4265,
+      0.8333,
+      0.5911
+    ],
+    "dpi": 300,
+    "area_frac": 0.11,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p37.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/tab01.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1: Sepsis task, mediation analysis. We regress each run’s safety score (sensitivity, 0–1) on its configuration and model. Each entry is the estimated safety-score gain of that configuration over the multi-agent baseline (e.g., +0 . 241 means 24 pp higher safety score for that configuration ove",
+    "bbox": [
+      103.21,
+      391.82,
+      508.79,
+      474.3
+    ],
+    "bbox_norm": [
+      0.1687,
+      0.4947,
+      0.8313,
+      0.5989
+    ],
+    "dpi": 300,
+    "area_frac": 0.069,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/tab02.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/tab02.png",
+    "page": 23,
+    "caption": "Table 2: Sepsis: funnel coefficients, i.e., the coefficients on T , D , and F themselves in M 3 , one estimate each, shared across all configurations and models. Each is the change in safety score associated with any agent testing, discovering harm, or attempting a fix, holding the other regressors ",
+    "bbox": [
+      176.22,
+      364.86,
+      435.78,
+      427.42
+    ],
+    "bbox_norm": [
+      0.2879,
+      0.4607,
+      0.7121,
+      0.5397
+    ],
+    "dpi": 300,
+    "area_frac": 0.034,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/tab03.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/tab03.png",
+    "page": 23,
+    "caption": "Table 3: Sepsis: per-organization indirect effect ( M 0 − M 3 ), the part of each configuration’s gain over the multi-agent baseline that testing, discovery, and fixing account for. A CI that excludes zero means these behaviors significantly explain part of the gain; these p -values give the stars i",
+    "bbox": [
+      105.55,
+      502.02,
+      506.45,
+      584.51
+    ],
+    "bbox_norm": [
+      0.1725,
+      0.6339,
+      0.8275,
+      0.738
+    ],
+    "dpi": 300,
+    "area_frac": 0.068,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/tab04.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/tab04.png",
+    "page": 24,
+    "caption": "Table 4: Sepsis: per-model M 0 → M 3 shrinkage. The same regression run separately for each model, to check whether the pooled pattern in Table 1 holds within each model; positive shrinkage means testing, discovery, and fixing account for part of that configuration’s gain for that model. Each model ",
+    "bbox": [
+      145.93,
+      137.88,
+      466.07,
+      440.44
+    ],
+    "bbox_norm": [
+      0.2385,
+      0.1741,
+      0.7615,
+      0.5561
+    ],
+    "dpi": 300,
+    "area_frac": 0.2,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/tab05.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/tab05.png",
+    "page": 24,
+    "caption": "Table 5: Sepsis: R 2 decomposition. The share of variance in run-level safety score explained as each block of regressors is added: model, then configuration, then testing, discovery, and fixing. ∆ R 2 is the increase from each added block.",
+    "bbox": [
+      145.93,
+      137.88,
+      466.07,
+      440.44
+    ],
+    "bbox_norm": [
+      0.2385,
+      0.1741,
+      0.7615,
+      0.5561
+    ],
+    "dpi": 300,
+    "area_frac": 0.2,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/tab06.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/tab06.png",
+    "page": 32,
+    "caption": "Table 6: Recommender system, mediation analysis . Each intervention’s safety-score pp difference from multi-agent baseline shrinks under sequential controls for testing ( T ), discovery ( D ), and fix ( F ). % mediated = ( M 0 − M 3 ) /M 0 is the share of the safety-score gain explained by the contr",
+    "bbox": [
+      103.21,
+      204.8,
+      508.79,
+      287.29
+    ],
+    "bbox_norm": [
+      0.1687,
+      0.2586,
+      0.8313,
+      0.3627
+    ],
+    "dpi": 300,
+    "area_frac": 0.069,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p32.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/tab07.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/tab07.png",
+    "page": 32,
+    "caption": "Table 7: Recommender system: funnel coefficients, i.e., the coefficients on T , D , and F themselves in M 3 , one estimate each, shared across all configurations and models. Each is the change in safety score associated with any agent testing, discovering harm, or attempting a fix, holding the other",
+    "bbox": [
+      103.21,
+      204.8,
+      508.79,
+      287.29
+    ],
+    "bbox_norm": [
+      0.1687,
+      0.2586,
+      0.8313,
+      0.3627
+    ],
+    "dpi": 300,
+    "area_frac": 0.069,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p32.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/tab08.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/tab08.png",
+    "page": 32,
+    "caption": "Table 8: Recommender system: per-organization indirect effect ( M 0 − M 3 ) with cluster-bootstrap 95% CIs and Benjamini-Hochberg-adjusted two-sided p -values across the five tests. % mediated = indirect / M 0 ; values are unstable where M 0 is small (e.g., designated safety lead).",
+    "bbox": [
+      109.62,
+      466.0,
+      502.38,
+      548.49
+    ],
+    "bbox_norm": [
+      0.1791,
+      0.5884,
+      0.8209,
+      0.6925
+    ],
+    "dpi": 300,
+    "area_frac": 0.067,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p32.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/tab09.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/tab09.png",
+    "page": 33,
+    "caption": "Table 9: Recommender system: per-model M 0 → M 3 shrinkage. % shrunk = ( M 0 − M 3 ) /M 0 . Dashes indicate | M 0 | ≤ 0 . 05 , where the percentage is undefined.",
+    "bbox": [
+      145.93,
+      95.24,
+      466.07,
+      397.8
+    ],
+    "bbox_norm": [
+      0.2385,
+      0.1203,
+      0.7615,
+      0.5023
+    ],
+    "dpi": 300,
+    "area_frac": 0.2,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p33.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/srinivasan-2026-aligning-ai-teams/tab10.png",
+    "raw": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/tab10.png",
+    "page": 33,
+    "caption": "Table 10: Recommender system: R 2 decomposition. Compare with Table 5: model identity alone explains 24% of safety variance on rec_sys vs. 5% on sepsis, leaving less variance for organizational interventions and funnel mediators to absorb.",
+    "bbox": [
+      145.93,
+      95.24,
+      466.07,
+      397.8
+    ],
+    "bbox_norm": [
+      0.2385,
+      0.1203,
+      0.7615,
+      0.5023
+    ],
+    "dpi": 300,
+    "area_frac": 0.2,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/srinivasan-2026-aligning-ai-teams-figures/_overlay/p33.png"
+  }
+]
