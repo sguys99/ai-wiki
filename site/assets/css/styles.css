@@ -154,6 +154,23 @@
     --graph-z-panel: 15;
     --graph-z-pop: 20;
     --graph-z-tip: 30;
+    --graph-z-raise: 1;
+    --graph-ctl-sm: 32px;
+    --graph-ctl-touch: 36px;
+    --graph-chip-h: 28px;
+    --graph-pill-h: 26px;
+    --graph-swatch: 10px;
+    --graph-ico: 15px;
+    --radius-pill: 999px;
+    --space-1-5: 0.375rem;
+    --space-2-5: 0.625rem;
+    --graph-blur: blur(18px) saturate(150%);
+    --graph-glass-solid: rgba(14, 21, 38, 0.95);
+    --graph-swatch-glow: 8px;
+    /* 캔버스 구슬의 반사광, 음영, 라이트 바닥 그림자 색 (graph-explorer.js 가 읽는다) */
+    --graph-specular: #ffffff;
+    --graph-shade: #000000;
+    --graph-shadow-ink: #182248;
 
     color-scheme: dark;
   }
@@ -203,9 +220,11 @@
     --graph-glass-top: rgba(255, 255, 255, 0.95);
     --graph-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 40%, rgba(255, 255, 255, 0) 100%);
     --graph-float-shadow: 0 22px 48px rgba(28, 40, 84, 0.13), 0 2px 6px rgba(28, 40, 84, 0.07);
-    --graph-primary-top: #10a98f;
-    --graph-primary-bottom: #007d69;
+    --graph-primary-top: #0b8f79;
+    --graph-primary-bottom: #006f5c;
     --graph-primary-ink: #ffffff;
+    --graph-glass-solid: rgba(255, 255, 255, 0.96);
+    --graph-swatch-glow: 0px;
     color-scheme: light;
   }
 
@@ -216,13 +235,17 @@
     --surface-2: #172036;
     --text: #e8ecf5;
     --muted: #8d98ae;
-    --faint: #5b6680;
+    --faint: #7a859b;
     --hairline: rgba(160, 182, 235, 0.12);
     --signal: #3ef2d2;
     --signal-dim: rgba(62, 242, 210, 0.22);
     --signal-physical: #ffb05a;
     /* --graph-header-h 는 탐색기가 런타임에 넣으므로 :root 가 아니라 여기서 계산한다 (01 8.2절) */
     --graph-top: calc(var(--graph-header-h, var(--header-h)) + var(--graph-inset));
+    /* --signal 을 읽는 파생 토큰은 덮어쓴 값을 따라가도록 main 에서 계산한다 */
+    --graph-hover-edge: color-mix(in srgb, var(--signal) 45%, var(--graph-glass-edge));
+    --graph-focus-glow: 0 0 0 3px var(--signal-dim);
+    --graph-press: scale(0.96);
   }
   :root[data-theme='light'] main.graph {
     --bg: #f3f4f8;
@@ -230,11 +253,11 @@
     --surface-2: #eef0f6;
     --text: #141a2e;
     --muted: #566079;
-    --faint: #8f98ad;
+    --faint: #646e86;
     --hairline: rgba(30, 45, 90, 0.1);
-    --signal: #008f78;
-    --signal-dim: rgba(0, 143, 120, 0.16);
-    --signal-physical: #c25e05;
+    --signal: #007d69;
+    --signal-dim: rgba(0, 125, 105, 0.16);
+    --signal-physical: #b35505;
   }
 
   /* 도메인 강조색 스코프 전환. 컴포넌트가 전부 --signal을 읽으므로 토큰만 바꾸면
@@ -1808,12 +1831,14 @@
 }
 
 /* ── components (전체 그래프 페이지 /graph/, docs/graph-spec/01-layout.md) ─────────── */
+/* 절 순서는 화면 영역 순서다: 목록 판, 견본, 무대 골격, 유리판 공통, 좌상단 명령 줄, 둘째 줄, 필터 팝오버,
+   상세 패널, 툴팁, 좌하단 독, 우하단 도구, 대체 모습, 브레이크포인트. 색과 간격과 시간은 토큰만 쓴다 */
 @layer components {
-  /* ── 목록 판 (서버 기본값, data-view="list") ── */
+  /* ── 목록 판 (서버 기본값, data-view="list". 스크립트가 없으면 이것만 보인다) ── */
   main.graph[data-view='list'] {
     max-width: 76rem;
     margin: 0 auto;
-    padding: var(--space-8) var(--space-4) 0;
+    padding: var(--space-8) var(--space-4) var(--space-12);
   }
   .graph-title {
     margin: var(--space-2) 0 0;
@@ -1832,6 +1857,7 @@
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     color: var(--faint);
+    font-variant-numeric: tabular-nums;
   }
   .graph-list-note {
     margin: var(--space-3) 0 0;
@@ -1843,11 +1869,24 @@
     padding: var(--space-2) var(--space-3);
     font: inherit;
     font-size: var(--text-sm);
+    font-weight: 550;
     color: var(--signal);
     background: none;
-    border: var(--hairline-w) solid var(--signal-dim);
+    border: var(--hairline-w) solid color-mix(in srgb, var(--signal) 45%, transparent);
     border-radius: var(--radius-md);
     cursor: pointer;
+    transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
+  }
+  .graph-to-map:hover {
+    background: var(--signal-dim);
+    border-color: var(--signal);
+  }
+  .graph-to-map:active {
+    transform: var(--graph-press);
+  }
+  .graph-to-map:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
   }
   .graph-list-title {
     margin: var(--space-8) 0 var(--space-6);
@@ -1865,7 +1904,7 @@
   .graph-nodes {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
-    gap: var(--space-1) var(--space-6);
+    gap: 0 var(--space-6);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -1875,7 +1914,8 @@
     align-items: baseline;
     gap: var(--space-2);
     min-width: 0;
-    padding: var(--space-1) 0;
+    padding: var(--space-1-5) 0;
+    border-bottom: var(--hairline-w) solid var(--hairline);
   }
   .graph-nodes a {
     min-width: 0;
@@ -1883,10 +1923,19 @@
     color: var(--text);
     text-decoration: none;
     font-size: var(--text-sm);
+    border-radius: var(--radius-sm);
+    transition: color var(--dur-fast) var(--ease);
   }
-  .graph-nodes a:hover,
+  .graph-nodes a:hover {
+    color: var(--signal);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--signal) 45%, transparent);
+    text-underline-offset: 3px;
+  }
   .graph-nodes a:focus-visible {
     color: var(--signal);
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
   }
   .graph-deg {
     margin-left: auto;
@@ -1894,13 +1943,14 @@
     font-size: var(--text-xs);
     color: var(--faint);
     white-space: nowrap;
+    font-variant-numeric: tabular-nums;
   }
   /* 목록 판에서는 무대가 없으니 건너뛰기 링크도 필요 없다 */
   main.graph[data-view='list'] .graph-skip {
     display: none;
   }
 
-  /* ── 카테고리 색 견본 (범례, 목록 머리) ── */
+  /* ── 카테고리 색 견본 (범례, 목록 머리, 검색 결과, 패널, 경로 줄) ── */
   [data-cat='physical-ai'] { --c: var(--cat-physical-ai); }
   [data-cat='agents'] { --c: var(--cat-agents); }
   [data-cat='applications'] { --c: var(--cat-applications); }
@@ -1911,31 +1961,33 @@
   [data-cat='etc'] { --c: var(--cat-etc); }
   .graph-swatch {
     flex: none;
-    width: 10px;
-    height: 10px;
+    width: var(--graph-swatch);
+    height: var(--graph-swatch);
     border-radius: 50%;
-    background: radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.95) 0 14%, var(--c) 52%, color-mix(in srgb, var(--c) 70%, #000) 100%);
-    transition: transform var(--dur-fast) var(--ease);
+    background: radial-gradient(circle at 34% 30%, color-mix(in srgb, var(--graph-specular) 95%, transparent) 0 14%, var(--c) 52%, color-mix(in srgb, var(--c) 70%, var(--graph-shade)) 100%);
+    transition: transform var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
   }
-  [data-cat='overviews'] > .graph-swatch,
+  /* 빛나는 견본은 :where 로 특이도를 낮춰 아래 overviews 고리와 etc 테가 이긴다. 라이트에서는 빛이 0이다 */
+  :where(.graph-res, .graph-panel-cat) .graph-swatch {
+    box-shadow: 0 0 var(--graph-swatch-glow) color-mix(in srgb, var(--c) 65%, transparent);
+  }
   [data-cat='overviews'] .graph-swatch {
     box-shadow: 0 0 0 1px var(--bg), 0 0 0 2px var(--c);
   }
-  [data-cat='etc'] > .graph-swatch,
   [data-cat='etc'] .graph-swatch {
     background: none;
     box-shadow: inset 0 0 0 2px var(--c);
   }
 
-  /* ── 지도 판 (탐색기가 data-view="map" 으로 바꾼다) ── */
+  /* ── 무대 골격 (탐색기가 data-view="map" 으로 바꾼다) ── */
   body:has(> main.graph[data-view='map']) {
     overflow: hidden;
   }
   /* 무대 위 유리판 헤더 (01 2.2절, M1) */
   body:has(> main.graph[data-view='map']) .site-header {
     background: var(--graph-sheen), var(--graph-glass);
-    -webkit-backdrop-filter: blur(18px) saturate(150%);
-    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: var(--graph-blur);
+    backdrop-filter: var(--graph-blur);
     border-bottom-color: var(--graph-glass-edge);
   }
   main.graph[data-view='map'] ~ .site-footer {
@@ -1969,7 +2021,6 @@
   .graph-skip:focus {
     top: var(--graph-top);
   }
-
   .graph-stage {
     position: absolute;
     inset: 0;
@@ -1977,6 +2028,10 @@
     isolation: isolate;
     touch-action: none;
     background: var(--graph-bg-edge);
+  }
+  /* hidden 속성을 단 무대 안 요소는 클래스의 display 보다 앞선다. 패널만 전환을 보이려고 예외다 (01 9.3절) */
+  .graph-stage [hidden]:not(.graph-panel) {
+    display: none;
   }
   .graph-canvas {
     display: block;
@@ -2018,7 +2073,7 @@
     }
   }
 
-  /* 띄운 컨트롤 공통 */
+  /* ── 유리판과 띄운 컨트롤 공통 ── */
   .graph-float {
     position: absolute;
     z-index: var(--graph-z-float);
@@ -2036,7 +2091,7 @@
     right: var(--graph-inset);
     bottom: var(--graph-inset);
   }
-  /* 유리판: 위 가장자리 빛, 안쪽 광택, 뒤 흐림 */
+  /* 유리판: 위 가장자리 빛, 안쪽 광택, 뒤 흐림. 떠 있는 판(결과, 팝오버, 패널, 툴팁)만 그림자를 진다 */
   .graph-search input,
   .graph-filter-btn,
   .graph-results,
@@ -2045,12 +2100,15 @@
   .graph-legend,
   .graph-tool,
   .graph-home,
+  .graph-fchip,
+  .graph-row-reset,
+  .graph-panel-toggle,
   .graph-tip {
     color: var(--text);
     background: var(--graph-sheen), var(--graph-glass);
-    -webkit-backdrop-filter: blur(18px) saturate(150%);
-    backdrop-filter: blur(18px) saturate(150%);
-    border: 1px solid var(--graph-glass-edge);
+    -webkit-backdrop-filter: var(--graph-blur);
+    backdrop-filter: var(--graph-blur);
+    border: var(--hairline-w) solid var(--graph-glass-edge);
     box-shadow: inset 0 1px 0 var(--graph-glass-top);
   }
   .graph-results,
@@ -2059,23 +2117,47 @@
   .graph-tip {
     box-shadow: inset 0 1px 0 var(--graph-glass-top), var(--graph-float-shadow);
   }
-  /* :where 로 특이도를 낮춰 각 컨트롤의 font-size 가 이긴다 */
+  /* 유리 컨트롤의 호버와 누름은 한 가지 모양이다: 신호색 테두리, 살짝 눌림 */
+  :is(.graph-filter-btn, .graph-tool, .graph-home, .graph-fchip, .graph-row-reset, .graph-panel-toggle):hover {
+    border-color: var(--graph-hover-edge);
+  }
+  :is(.graph-filter-btn, .graph-tool, .graph-home, .graph-fchip, .graph-row-reset, .graph-panel-toggle, .graph-chip, .graph-legend-item, .graph-filters-reset, .graph-panel-close):active {
+    transform: var(--graph-press);
+  }
+  /* :where 로 특이도를 낮춰 각 컨트롤의 font-size 와 초점 모양이 이긴다 */
   .graph-stage :where(button, input) {
     font: inherit;
   }
-  .graph-stage :is(button, input, a):focus-visible {
+  .graph-stage :where(button, input, a):focus-visible {
     outline: 2px solid var(--signal);
     outline-offset: 2px;
   }
+  @keyframes graph-pop-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px) scale(0.985);
+    }
+  }
+  @keyframes graph-sheet-in {
+    from {
+      opacity: 0;
+      transform: translateY(40%);
+    }
+  }
+  @keyframes graph-badge-in {
+    from {
+      opacity: 0;
+      transform: scale(0.4);
+    }
+  }
 
-  /* 명령 줄: 검색 + 필터 버튼 (+ Phase 5 학습 경로 버튼) */
+  /* ── 좌상단 명령 줄: 검색 + 필터 버튼 (+ Phase 5 학습 경로 버튼) ── */
+  /* 아래 줄(칩, 경로)보다 한 층 위라 :has 가 없어도 검색 결과가 줄에 가리지 않는다 */
   .graph-cmd {
+    z-index: calc(var(--graph-z-float) + var(--graph-z-raise));
     display: flex;
     gap: var(--space-2);
     width: min(calc(300px + var(--space-2) + 5.5rem), calc(100% - 2 * var(--graph-inset)));
-  }
-  .graph-cmd[hidden] {
-    display: none;
   }
   .graph-cmd:has(.graph-results:not(:empty)) {
     z-index: var(--graph-z-pop);
@@ -2088,23 +2170,23 @@
   .graph-search-ico {
     position: absolute;
     top: 50%;
-    left: 11px;
-    width: 15px;
-    height: 15px;
+    left: var(--space-2-5);
+    z-index: var(--graph-z-raise);
+    width: var(--graph-ico);
+    height: var(--graph-ico);
     color: var(--muted);
     transform: translateY(-50%);
-    z-index: 1;
     pointer-events: none;
-    transition: color var(--dur-fast) var(--ease), filter var(--dur-fast) var(--ease);
+    transition: color var(--dur-fast) var(--ease);
   }
   .graph-search input {
     width: 100%;
     height: var(--graph-ctl-h);
-    padding: 0 calc(var(--space-3) + 2.5em) 0 34px; /* 오른쪽은 키 표시 자리 */
+    padding: 0 calc(var(--space-3) + 2.5em) 0 calc(var(--space-2-5) + var(--graph-ico) + var(--space-2)); /* 오른쪽은 키 표시 자리 */
     font-size: var(--text-sm);
     letter-spacing: 0.005em;
     border-radius: var(--graph-radius-ctl);
-    transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur) var(--ease-out);
+    transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
   }
   .graph-search input::placeholder,
   .graph-tag-q::placeholder {
@@ -2112,18 +2194,16 @@
     opacity: 1;
   }
   .graph-search input:hover {
-    border-color: color-mix(in srgb, var(--signal) 28%, var(--graph-glass-edge));
+    border-color: var(--graph-hover-edge);
   }
-  /* 초점: 신호색 테두리와 바깥으로 번지는 빛. 초점 테(outline)는 이 빛이 대신한다 */
-  .graph-stage .graph-search input:focus-visible,
+  /* 초점: 신호색 테두리와 고리. 초점 테(outline)는 이 고리가 대신한다 */
   .graph-search input:focus {
     outline: none;
     border-color: color-mix(in srgb, var(--signal) 65%, transparent);
-    box-shadow: inset 0 1px 0 var(--graph-glass-top), 0 0 0 3px var(--signal-dim), 0 8px 28px color-mix(in srgb, var(--signal) 14%, transparent);
+    box-shadow: inset 0 1px 0 var(--graph-glass-top), var(--graph-focus-glow);
   }
   .graph-search:focus-within .graph-search-ico {
     color: var(--signal);
-    filter: drop-shadow(0 0 4px var(--signal-dim));
   }
   /* 키 표시: 작은 키캡. 검색 칸에서는 지금 누를 키(/ 또는 Esc)만 보인다 (02 J6) */
   .graph-kbd,
@@ -2160,20 +2240,12 @@
     color: var(--signal);
     border-color: color-mix(in srgb, var(--signal) 40%, var(--hairline));
   }
-  /* 글자가 있으면 브라우저 지우기 단추 자리를 비운다. 키보드가 없는 기기에는 키 표시가 필요 없다 */
+  /* 글자가 있으면 브라우저 지우기 단추 자리를 비운다 */
   .graph-search input:not(:placeholder-shown) ~ .graph-kbd {
     display: none;
   }
-  @media (hover: none), (max-width: 640px) {
-    .graph-kbd {
-      display: none;
-    }
-    .graph-search input {
-      padding-right: var(--space-3);
-    }
-  }
 
-  /* 검색 결과: 카테고리 색 점, 일치 부분 강조, 고른 행은 그 색으로 물들고 왼쪽 빛 막대가 선다 */
+  /* 검색 결과: 카테고리 색 점, 일치 부분 강조, 고른 행은 그 색으로 물들고 왼쪽 막대가 선다 */
   .graph-results,
   .graph-tag-results {
     margin: 0;
@@ -2182,7 +2254,7 @@
   }
   .graph-results {
     position: absolute;
-    top: calc(100% + 6px);
+    top: calc(100% + var(--space-1-5));
     left: 0;
     right: 0;
     max-height: 320px;
@@ -2196,24 +2268,20 @@
   .graph-tag-results:empty {
     display: none;
   }
-  @keyframes graph-pop-in {
-    from {
-      opacity: 0;
-      transform: translateY(-4px) scale(0.985);
-    }
-  }
   .graph-res,
   .graph-tag-results li[data-tag] {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 7px 10px;
-    border-radius: 8px;
+    gap: var(--space-2-5);
+    padding: var(--space-1-5) var(--space-2-5);
+    border-radius: var(--radius-md);
     cursor: pointer;
     transition: background var(--dur-fast) var(--ease);
   }
-  .graph-res::before {
+  /* 왼쪽 막대: 결과 행과 이웃 행이 같이 쓴다 */
+  .graph-res::before,
+  .graph-nb::before {
     content: '';
     position: absolute;
     left: 0;
@@ -2222,7 +2290,7 @@
     height: 0;
     background: var(--c);
     border-radius: 1px;
-    box-shadow: 0 0 8px var(--c);
+    box-shadow: 0 0 var(--graph-swatch-glow) var(--c);
     transform: translateY(-50%);
     transition: height var(--dur-fast) var(--ease-out);
   }
@@ -2232,12 +2300,6 @@
   }
   .graph-res[aria-selected='true']::before {
     height: 62%;
-  }
-  .graph-res .graph-swatch {
-    box-shadow: 0 0 7px color-mix(in srgb, var(--c) 70%, transparent);
-  }
-  [data-cat='overviews'].graph-res .graph-swatch {
-    box-shadow: 0 0 0 1px var(--bg), 0 0 0 2px var(--c), 0 0 7px var(--c);
   }
   .graph-res-main {
     display: flex;
@@ -2276,12 +2338,17 @@
     display: flex;
     flex: none;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-1-5);
   }
   .graph-res-deg,
-  .graph-opt-n {
+  .graph-opt-n,
+  .graph-chip-n,
+  .graph-nb-n,
+  .graph-nb-deg,
+  .graph-legend-n {
     font-family: var(--font-mono);
     font-size: var(--text-2xs);
+    font-weight: 400;
     color: var(--faint);
     font-variant-numeric: tabular-nums;
   }
@@ -2291,18 +2358,15 @@
   }
   .graph-res-out,
   .graph-out-mark {
-    padding: 1px 6px;
+    padding: 1px var(--space-1-5);
     font-size: var(--text-2xs);
     color: var(--muted);
     white-space: nowrap;
     border: var(--hairline-w) dashed color-mix(in srgb, var(--muted) 55%, transparent);
-    border-radius: 999px;
-  }
-  .graph-out-mark[hidden] {
-    display: none;
+    border-radius: var(--radius-pill);
   }
   .graph-res-empty {
-    padding: var(--space-3) var(--space-3) var(--space-3);
+    padding: var(--space-3);
     font-size: var(--text-xs);
     line-height: 1.5;
     color: var(--muted);
@@ -2315,8 +2379,8 @@
     color: var(--text);
   }
   .graph-res-more {
-    padding: 6px 10px 4px;
     margin-top: 2px;
+    padding: var(--space-1-5) var(--space-2-5) var(--space-1);
     font-size: var(--text-2xs);
     color: var(--faint);
     border-top: var(--hairline-w) solid var(--hairline);
@@ -2326,62 +2390,47 @@
     flex: none;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-1-5);
     height: var(--graph-ctl-h);
-    padding: 0 var(--space-3) 0 10px;
+    padding: 0 var(--space-3) 0 var(--space-2-5);
     font-size: var(--text-sm);
     font-weight: 550;
     border-radius: var(--graph-radius-ctl);
     cursor: pointer;
-    transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+    transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
   }
   .graph-filter-ico {
-    width: 15px;
-    height: 15px;
+    width: var(--graph-ico);
+    height: var(--graph-ico);
     color: var(--muted);
     transition: color var(--dur-fast) var(--ease);
-  }
-  .graph-filter-btn:hover {
-    border-color: color-mix(in srgb, var(--signal) 40%, var(--graph-glass-edge));
-  }
-  .graph-filter-btn:active {
-    transform: scale(0.96);
   }
   .graph-filter-btn.is-on .graph-filter-ico,
   .graph-filter-btn[aria-expanded='true'] .graph-filter-ico {
     color: var(--signal);
-    filter: drop-shadow(0 0 4px var(--signal-dim));
   }
   .graph-filter-btn[aria-expanded='true'] {
     border-color: color-mix(in srgb, var(--signal) 60%, transparent);
-    box-shadow: inset 0 1px 0 var(--graph-glass-top), 0 0 0 3px var(--signal-dim);
+    box-shadow: inset 0 1px 0 var(--graph-glass-top), var(--graph-focus-glow);
   }
   .graph-badge {
-    min-width: 18px;
-    height: 18px;
-    padding: 0 5px;
+    --graph-badge: 18px;
+    min-width: var(--graph-badge);
+    height: var(--graph-badge);
+    padding: 0 var(--space-1);
     font-family: var(--font-mono);
     font-size: var(--text-2xs);
     font-weight: 600;
-    line-height: 18px;
+    line-height: var(--graph-badge);
     text-align: center;
     color: var(--graph-primary-ink);
     background: linear-gradient(180deg, var(--graph-primary-top), var(--graph-primary-bottom));
-    border-radius: 999px;
-    box-shadow: 0 0 10px color-mix(in srgb, var(--graph-primary-bottom) 55%, transparent);
+    border-radius: var(--radius-pill);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--graph-specular) 35%, transparent);
     animation: graph-badge-in var(--dur-panel) var(--ease-out);
   }
-  .graph-badge[hidden] {
-    display: none;
-  }
-  @keyframes graph-badge-in {
-    from {
-      transform: scale(0.4);
-      opacity: 0;
-    }
-  }
 
-  /* 필터 칩 줄과 경로 줄: 명령 줄 아래 한 줄, 패널 자리를 비킨다 */
+  /* ── 둘째 줄: 활성 필터 칩 줄과 경로 줄. 명령 줄 아래 한 줄, 패널 자리를 비킨다 ── */
   .graph-row {
     top: calc(var(--graph-top) + var(--graph-ctl-h) + var(--space-2));
     left: var(--graph-inset);
@@ -2394,9 +2443,6 @@
     scrollbar-width: none;
     font-size: var(--text-xs);
   }
-  .graph-row[hidden] {
-    display: none;
-  }
   .graph-row::-webkit-scrollbar {
     display: none;
   }
@@ -2407,27 +2453,20 @@
     flex: none;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-1-5);
     height: var(--graph-row-h);
-    padding: 0 10px 0 8px;
+    padding: 0 var(--space-2-5) 0 var(--space-2);
     font-size: var(--text-xs);
     font-weight: 600;
     border-radius: var(--radius-md);
     cursor: pointer;
     white-space: nowrap;
-    transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
+    transition: border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
   }
   .graph-home svg {
-    width: 14px;
-    height: 14px;
+    width: var(--graph-ico);
+    height: var(--graph-ico);
     color: var(--signal);
-    filter: drop-shadow(0 0 3px var(--signal-dim));
-  }
-  .graph-home:hover {
-    border-color: color-mix(in srgb, var(--signal) 55%, var(--graph-glass-edge));
-  }
-  .graph-home:active {
-    transform: scale(0.96);
   }
   .graph-crumbs {
     display: flex;
@@ -2449,9 +2488,9 @@
   .graph-crumbs button {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-1-5);
     max-width: 170px;
-    padding: 3px 6px;
+    padding: 3px var(--space-1-5);
     color: var(--muted);
     background: none;
     border: 0;
@@ -2464,23 +2503,25 @@
     color: var(--text);
     background: color-mix(in srgb, var(--c) 12%, transparent);
   }
+  .graph-crumbs button:active {
+    background: color-mix(in srgb, var(--c) 20%, transparent);
+  }
   .graph-crumbs button[aria-current] {
     color: var(--text);
     font-weight: 600;
   }
-  .graph-crumbs .graph-swatch {
-    width: 8px;
-    height: 8px;
+  .graph-crumbs .graph-swatch,
+  .graph-tip-meta .graph-swatch {
+    --graph-swatch: 8px;
   }
   .graph-crumb-t {
     overflow: hidden;
     text-overflow: ellipsis;
   }
   .graph-crumb-more {
-    padding: 0 4px;
+    padding: 0 var(--space-1);
     color: var(--faint);
   }
-
   /* 활성 필터 줄 (조감): 맞는 수와 켜진 유형, 태그. 누르면 하나씩 푼다 */
   .graph-row-count,
   .graph-fchip,
@@ -2488,32 +2529,25 @@
     flex: none;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    height: 26px;
-    padding: 0 10px;
+    gap: var(--space-1-5);
+    height: var(--graph-pill-h);
+    padding: 0 var(--space-2-5);
     font-size: var(--text-xs);
     white-space: nowrap;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
   }
   .graph-row-count {
     font-family: var(--font-mono);
     font-size: var(--text-2xs);
     color: var(--signal);
     font-variant-numeric: tabular-nums;
-    text-shadow: 0 0 10px var(--signal-dim);
   }
   .graph-row-count.is-zero {
     color: var(--signal-physical);
-    text-shadow: none;
   }
   .graph-fchip,
   .graph-row-reset {
-    color: var(--text);
-    background: var(--graph-sheen), var(--graph-glass);
-    -webkit-backdrop-filter: blur(18px) saturate(150%);
-    backdrop-filter: blur(18px) saturate(150%);
-    border: 1px solid color-mix(in srgb, var(--signal) 35%, var(--graph-glass-edge));
-    box-shadow: inset 0 1px 0 var(--graph-glass-top);
+    border-color: color-mix(in srgb, var(--signal) 35%, var(--graph-glass-edge));
     cursor: pointer;
     transition: border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
   }
@@ -2533,16 +2567,12 @@
   .graph-fchip:hover .graph-fchip-x {
     color: var(--signal);
   }
-  .graph-fchip:active,
-  .graph-row-reset:active {
-    transform: scale(0.96);
-  }
 
-  /* 필터 팝오버 (모바일은 아래 시트). 열 때 버튼 쪽에서 살짝 내려앉는다 */
+  /* ── 필터 팝오버 (모바일은 아래 시트). 열 때 버튼 쪽에서 살짝 내려앉는다 ── */
   .graph-filters {
     position: absolute;
     z-index: var(--graph-z-pop);
-    top: calc(var(--graph-top) + var(--graph-ctl-h) + 6px);
+    top: calc(var(--graph-top) + var(--graph-ctl-h) + var(--space-1-5));
     left: var(--graph-inset);
     width: min(320px, calc(100% - 2 * var(--graph-inset)));
     max-height: min(60vh, 480px);
@@ -2553,9 +2583,6 @@
     animation: graph-pop-in var(--dur-panel) var(--ease-out);
     transform-origin: top right;
   }
-  .graph-filters[hidden] {
-    display: none;
-  }
   .graph-filters-sec + .graph-filters-sec {
     margin-top: var(--space-4);
     padding-top: var(--space-3);
@@ -2564,17 +2591,14 @@
   .graph-filters-h {
     display: block;
     margin: 0 0 var(--space-2);
-    font-family: var(--font-mono);
-    font-size: var(--text-2xs);
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: var(--text-xs);
+    font-weight: 600;
     color: var(--muted);
   }
   .graph-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: var(--space-1-5);
   }
   .graph-chips:empty {
     display: none;
@@ -2582,53 +2606,43 @@
   #graph-tag-picked {
     margin-bottom: var(--space-2);
   }
-  /* 칩: 눌리면 신호색 테와 안쪽 빛, 앞의 점이 켜진다 */
+  /* 칩: 눌리면 신호색 테와 엷은 바탕, 앞의 점이 켜진다 */
   .graph-chip {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    min-height: 28px;
-    padding: 0 10px;
+    gap: var(--space-1-5);
+    min-height: var(--graph-chip-h);
+    padding: 0 var(--space-2-5);
     font-size: var(--text-xs);
     color: var(--muted);
     background: color-mix(in srgb, var(--surface-2) 55%, transparent);
-    border: 1px solid var(--hairline);
-    border-radius: 999px;
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-pill);
     cursor: pointer;
     transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease),
-      box-shadow var(--dur) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+      transform var(--dur-fast) var(--ease-out);
   }
   .graph-chip[data-type]::before {
     content: '';
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    border: 1px solid var(--faint);
-    transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+    border: var(--hairline-w) solid var(--faint);
+    transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
   }
   .graph-chip:hover {
     color: var(--text);
-    border-color: color-mix(in srgb, var(--signal) 40%, var(--hairline));
-  }
-  .graph-chip:active {
-    transform: scale(0.95);
+    border-color: color-mix(in srgb, var(--signal) 45%, var(--hairline));
   }
   .graph-chip[aria-pressed='true'] {
     color: var(--text);
     border-color: color-mix(in srgb, var(--signal) 75%, transparent);
     background: color-mix(in srgb, var(--signal) 14%, transparent);
-    box-shadow: inset 0 1px 0 var(--graph-glass-top), 0 0 14px var(--signal-dim);
+    box-shadow: inset 0 1px 0 var(--graph-glass-top);
   }
   .graph-chip[aria-pressed='true']::before {
     background: var(--signal);
     border-color: var(--signal);
-    box-shadow: 0 0 6px var(--signal);
-  }
-  .graph-chip-n {
-    font-family: var(--font-mono);
-    font-size: var(--text-2xs);
-    color: var(--faint);
-    font-variant-numeric: tabular-nums;
   }
   .graph-chip-x {
     color: var(--muted);
@@ -2639,32 +2653,34 @@
   }
   .graph-tag-q {
     width: 100%;
-    height: 34px;
+    height: var(--graph-ctl-sm);
     margin-bottom: var(--space-2);
     padding: 0 var(--space-3);
     font-size: var(--text-sm);
     color: var(--text);
     background: color-mix(in srgb, var(--surface-2) 70%, transparent);
-    border: 1px solid var(--hairline);
+    border: var(--hairline-w) solid var(--hairline);
     border-radius: var(--graph-radius-ctl);
-    transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur) var(--ease-out);
+    transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
   }
-  .graph-stage .graph-tag-q:focus-visible,
+  .graph-tag-q:hover {
+    border-color: var(--graph-hover-edge);
+  }
   .graph-tag-q:focus {
     outline: none;
     border-color: color-mix(in srgb, var(--signal) 65%, transparent);
-    box-shadow: 0 0 0 3px var(--signal-dim);
+    box-shadow: var(--graph-focus-glow);
   }
   .graph-tag-results {
     margin: calc(-1 * var(--space-1)) 0 var(--space-2);
     background: color-mix(in srgb, var(--surface) 60%, transparent);
-    border: 1px solid var(--hairline);
+    border: var(--hairline-w) solid var(--hairline);
     border-radius: var(--graph-radius-pop);
     animation: graph-pop-in var(--dur-fast) var(--ease-out);
   }
   .graph-tag-results li[data-tag] {
     justify-content: space-between;
-    padding: 5px 10px;
+    padding: var(--space-1) var(--space-2-5);
     font-size: var(--text-xs);
   }
   .graph-tag-results li[aria-selected='true'],
@@ -2672,7 +2688,7 @@
     background: color-mix(in srgb, var(--signal) 13%, transparent);
   }
   .graph-opt-empty {
-    padding: 6px 10px;
+    padding: var(--space-1-5) var(--space-2-5);
     font-size: var(--text-xs);
     color: var(--muted);
   }
@@ -2682,30 +2698,27 @@
     font-size: var(--text-xs);
     color: var(--text);
     background: color-mix(in srgb, var(--signal-physical) 12%, transparent);
-    border: 1px solid color-mix(in srgb, var(--signal-physical) 40%, transparent);
+    border: var(--hairline-w) solid color-mix(in srgb, var(--signal-physical) 40%, transparent);
     border-radius: var(--graph-radius-ctl);
-  }
-  .graph-filters-empty[hidden] {
-    display: none;
   }
   .graph-filters-reset {
     display: block;
     margin: var(--space-4) 0 0 auto;
-    padding: 4px 10px;
+    padding: var(--space-1) var(--space-2-5);
     font-size: var(--text-xs);
     color: var(--muted);
     background: none;
-    border: 1px solid var(--hairline);
-    border-radius: 999px;
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-pill);
     cursor: pointer;
-    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
   }
   .graph-filters-reset:hover {
     color: var(--signal);
     border-color: color-mix(in srgb, var(--signal) 55%, transparent);
   }
 
-  /* 상세 패널: 우측. 숨길 때도 전환을 보이려고 [hidden] 에 display 를 다시 준다 (01 9.3절) */
+  /* ── 상세 패널: 우측. 숨길 때도 전환을 보이려고 [hidden] 에 display 를 다시 준다 (01 9.3절) ── */
   .graph-panel {
     position: absolute;
     z-index: var(--graph-z-panel);
@@ -2743,7 +2756,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--c, var(--signal)) 14%, transparent), transparent 62%);
+    background: radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--c, var(--signal)) 12%, transparent), transparent 62%);
     pointer-events: none;
   }
   .graph-panel-head:has(.graph-panel-cat[data-cat='physical-ai']) { --c: var(--cat-physical-ai); }
@@ -2763,24 +2776,22 @@
     letter-spacing: 0.01em;
     color: var(--muted);
   }
-  :root:not([data-theme='light']) .graph-panel-cat:not([data-cat='overviews']):not([data-cat='etc']) .graph-swatch {
-    box-shadow: 0 0 8px color-mix(in srgb, var(--c) 65%, transparent);
-  }
   .graph-panel-close {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: var(--graph-ctl-sm);
+    height: var(--graph-ctl-sm);
     font-size: var(--text-lg);
     line-height: 1;
     color: var(--muted);
     background: none;
-    border: 1px solid transparent;
+    border: var(--hairline-w) solid transparent;
     border-radius: 50%;
     cursor: pointer;
-    transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+    transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
+      transform var(--dur-fast) var(--ease-out);
   }
   .graph-panel-close:hover {
     color: var(--text);
@@ -2791,10 +2802,10 @@
     position: relative;
     grid-column: 1 / -1;
     margin: var(--space-1) var(--space-2) 0 0;
-    font-size: 1.2rem;
+    font-size: var(--text-lg);
     font-weight: 650;
     letter-spacing: -0.014em;
-    line-height: 1.28;
+    line-height: 1.3;
     text-wrap: pretty;
     overflow-wrap: anywhere;
   }
@@ -2833,13 +2844,13 @@
     list-style: none;
   }
   .graph-p-tags li {
-    padding: 1px 7px;
+    padding: 1px var(--space-2);
     font-family: var(--font-mono);
     font-size: var(--text-2xs);
     color: var(--muted);
     background: color-mix(in srgb, var(--surface-2) 70%, transparent);
-    border: 1px solid var(--hairline);
-    border-radius: 999px;
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-pill);
   }
   .graph-p-section {
     display: flex;
@@ -2871,11 +2882,12 @@
     color: var(--signal);
     background: none;
     border: 0;
-    border-radius: 2px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
     text-decoration: underline;
     text-decoration-color: color-mix(in srgb, var(--signal) 45%, transparent);
     text-underline-offset: 3px;
+    transition: text-decoration-color var(--dur-fast) var(--ease);
   }
   .graph-linkish:hover {
     text-decoration-color: var(--signal);
@@ -2884,60 +2896,43 @@
   .graph-nb-group {
     position: sticky;
     top: calc(-1 * var(--space-3));
-    z-index: 1;
+    z-index: var(--graph-z-raise);
     display: flex;
     align-items: center;
     gap: var(--space-2);
     margin: var(--space-3) calc(-1 * var(--space-3)) 0 calc(-1 * var(--space-4));
     padding: var(--space-2) var(--space-3) var(--space-1) var(--space-4);
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     font-weight: 600;
     color: var(--muted);
     background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent) 70%, transparent);
   }
   .graph-nb-n {
     margin-left: auto;
-    font-family: var(--font-mono);
-    font-size: var(--text-2xs);
-    font-weight: 400;
-    color: var(--faint);
   }
   .graph-nb-list {
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  /* 이웃 행: 왼쪽에 카테고리 색 빛 막대가 자라고 바탕이 그 색으로 엷게 물든다 */
+  /* 이웃 행: 왼쪽에 카테고리 색 막대가 자라고 바탕이 그 색으로 엷게 물든다 */
   .graph-nb {
     position: relative;
     display: flex;
     align-items: baseline;
     gap: var(--space-2);
-    margin: 0 calc(-1 * var(--space-2));
-    padding: 7px var(--space-2);
     width: calc(100% + 2 * var(--space-2));
+    margin: 0 calc(-1 * var(--space-2));
+    padding: var(--space-1-5) var(--space-2);
     font-size: var(--text-sm);
     line-height: 1.35;
     color: var(--text);
     text-align: left;
     background: none;
     border: 0;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     cursor: pointer;
-    transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
-  }
-  .graph-nb::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 2px;
-    height: 0;
-    background: var(--c);
-    border-radius: 1px;
-    box-shadow: 0 0 8px var(--c);
-    transform: translateY(-50%);
-    transition: height var(--dur-fast) var(--ease-out);
+    transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
   }
   .graph-nb-list li + li .graph-nb {
     box-shadow: inset 0 1px 0 var(--hairline);
@@ -2947,12 +2942,23 @@
     background: color-mix(in srgb, var(--c) 10%, transparent);
     box-shadow: none;
   }
+  .graph-nb:active {
+    background: color-mix(in srgb, var(--c) 18%, transparent);
+  }
   .graph-nb:hover::before,
   .graph-nb:focus-visible::before {
     height: 60%;
   }
-  .graph-stage .graph-nb:focus-visible {
+  .graph-nb:focus-visible {
     outline-offset: -2px;
+  }
+  /* 필터 밖 이웃은 목록에서도 물러난다 (02 8.2) */
+  .graph-nb.is-out {
+    opacity: 0.5;
+  }
+  .graph-nb.is-out:hover,
+  .graph-nb.is-out:focus-visible {
+    opacity: 0.85;
   }
   .graph-nb-dir {
     flex: none;
@@ -2963,8 +2969,10 @@
     text-align: center;
     transition: color var(--dur-fast) var(--ease);
   }
-  .graph-nb:hover .graph-nb-dir {
-    color: var(--c);
+  /* 카테고리 색을 글자색과 섞어 라이트 바탕에서도 글자 대비 4.5를 넘긴다 */
+  .graph-nb:hover .graph-nb-dir,
+  .graph-tip-rel {
+    color: color-mix(in srgb, var(--c) 60%, var(--text));
   }
   .graph-nb-t {
     min-width: 0;
@@ -2972,13 +2980,9 @@
   }
   .graph-nb-deg {
     flex: none;
-    white-space: nowrap;
     margin-left: auto;
     padding-left: var(--space-2);
-    font-family: var(--font-mono);
-    font-size: var(--text-2xs);
-    color: var(--faint);
-    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
   .graph-panel-foot {
     display: flex;
@@ -2986,29 +2990,31 @@
     padding: var(--space-3) var(--space-4);
     border-top: var(--hairline-w) solid var(--hairline);
   }
+  /* 패널의 주 동작: 신호색 알약. 위쪽 광택 한 줄과 바닥 그림자로만 떠 보이게 한다 */
   .graph-panel-open {
     flex: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    height: 38px;
+    height: var(--graph-ctl-h);
     font-weight: 600;
     letter-spacing: 0.005em;
     color: var(--graph-primary-ink);
     text-decoration: none;
     background: linear-gradient(180deg, var(--graph-primary-top), var(--graph-primary-bottom));
-    border: 1px solid color-mix(in srgb, var(--graph-primary-bottom) 80%, #000);
+    border: var(--hairline-w) solid color-mix(in srgb, var(--graph-primary-bottom) 80%, var(--graph-shade));
     border-radius: var(--graph-radius-ctl);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 6px 18px color-mix(in srgb, var(--graph-primary-bottom) 35%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--graph-specular) 40%, transparent), 0 6px 16px color-mix(in srgb, var(--graph-primary-bottom) 30%, transparent);
     transition: filter var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
   }
   .graph-panel-open:hover {
-    filter: brightness(1.07);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 8px 26px color-mix(in srgb, var(--graph-primary-bottom) 50%, transparent);
+    filter: brightness(1.06);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--graph-specular) 50%, transparent), 0 8px 22px color-mix(in srgb, var(--graph-primary-bottom) 42%, transparent);
   }
   .graph-panel-open:active {
     transform: translateY(1px);
+    filter: brightness(0.97);
   }
   .graph-panel-open-ico {
     font-size: 0.95em;
@@ -3021,9 +3027,18 @@
     display: none;
   }
 
-  /* 툴팁 내용 */
+  /* ── 툴팁 ── */
+  .graph-tip {
+    position: absolute;
+    z-index: var(--graph-z-tip);
+    max-width: 280px;
+    padding: var(--space-1-5) var(--space-2-5) var(--space-2);
+    font-size: var(--text-xs);
+    border-radius: var(--graph-radius-ctl);
+    pointer-events: none;
+  }
   .graph-tip-title {
-    font-size: 0.8125rem;
+    font-size: var(--text-sm);
     font-weight: 600;
     line-height: 1.3;
     letter-spacing: -0.005em;
@@ -3032,22 +3047,17 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 2px 8px;
+    gap: 2px var(--space-2);
     margin-top: 3px;
     font-family: var(--font-mono);
     font-size: var(--text-2xs);
     color: var(--muted);
   }
   .graph-tip-meta .graph-swatch {
-    width: 8px;
-    height: 8px;
-    margin-right: -4px;
-  }
-  .graph-tip-rel {
-    color: var(--c);
+    margin-right: calc(-1 * var(--space-1));
   }
 
-  /* 좌하단 독: 범례와 조작 안내 */
+  /* ── 좌하단 독: 범례와 조작 안내 ── */
   .graph-dock {
     display: flex;
     align-items: flex-end;
@@ -3066,13 +3076,17 @@
     font-size: var(--text-2xs);
     color: var(--muted);
     font-variant-numeric: tabular-nums;
+    transition: color var(--dur-fast) var(--ease);
+  }
+  .graph-legend-stat.is-filtered {
+    color: var(--signal);
   }
   .graph-legend-item {
     display: flex;
     align-items: center;
     gap: var(--space-2);
     width: 100%;
-    min-height: 26px;
+    min-height: var(--graph-pill-h);
     padding: 0 var(--space-1);
     font-size: var(--text-xs);
     color: var(--text);
@@ -3081,49 +3095,32 @@
     border: 0;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+    transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
   }
   .graph-legend-item:hover {
     background: color-mix(in srgb, var(--c) 10%, transparent);
   }
-  .graph-legend-item:active {
-    transform: scale(0.97);
-  }
   .graph-legend-n {
     margin-left: auto;
-    font-family: var(--font-mono);
-    font-size: var(--text-2xs);
     color: var(--muted);
-    font-variant-numeric: tabular-nums;
+    transition: color var(--dur-fast) var(--ease);
   }
-  /* 눌린 견본: 그 색으로 물들고 점이 빛난다. 하나라도 눌리면 나머지는 한 단계 물러난다 */
+  /* 눌린 견본: 그 색으로 물들고 점이 커진다. 하나라도 눌리면 나머지는 한 단계 물러난다 */
   .graph-legend-item[aria-pressed='true'] {
     background: color-mix(in srgb, var(--c) 17%, transparent);
     box-shadow: inset 2px 0 0 var(--c);
   }
   .graph-legend-item[aria-pressed='true'] .graph-legend-n {
-    color: var(--c);
+    color: color-mix(in srgb, var(--c) 60%, var(--text));
   }
   .graph-legend-item[aria-pressed='true'] .graph-swatch {
     transform: scale(1.25);
-    box-shadow: 0 0 8px var(--c);
   }
   .graph-legend:has([aria-pressed='true']) .graph-legend-item[aria-pressed='false'] {
     color: var(--muted);
   }
   .graph-legend:has([aria-pressed='true']) .graph-legend-item[aria-pressed='false'] .graph-swatch {
     opacity: 0.45;
-  }
-  .graph-legend-stat.is-filtered {
-    color: var(--signal);
-  }
-  /* 필터 밖 이웃은 목록에서도 물러난다 (02 8.2) */
-  .graph-nb.is-out {
-    opacity: 0.5;
-  }
-  .graph-nb.is-out:hover,
-  .graph-nb.is-out:focus-visible {
-    opacity: 0.85;
   }
   .graph-legend-reset {
     margin-top: var(--space-1);
@@ -3137,12 +3134,13 @@
     text-decoration: underline;
     text-underline-offset: 2px;
     cursor: pointer;
+    transition: color var(--dur-fast) var(--ease);
   }
-  .graph-legend-reset[hidden] {
-    display: none;
+  .graph-legend-reset:hover {
+    color: var(--signal);
   }
   .graph-hint {
-    margin: 0 0 6px;
+    margin: 0 0 var(--space-1-5);
     font-size: var(--text-2xs);
     line-height: 1.75;
     color: var(--faint);
@@ -3150,44 +3148,32 @@
   .graph-hint-line {
     display: block;
   }
-  .graph-hint-line[hidden] {
-    display: none;
-  }
   .graph-stage:not([data-mode='orbit']) .graph-hint.is-orbit,
   .graph-stage[data-mode='orbit'] .graph-hint.is-atlas {
     display: none;
   }
 
-  /* 우하단 도구 묶음 */
+  /* ── 우하단 도구 묶음 ── */
   .graph-tools {
     display: flex;
     gap: var(--space-2);
-  }
-  .graph-tools[hidden],
-  .graph-tool[hidden] {
-    display: none;
   }
   .graph-tool {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-1);
-    min-width: 32px;
-    height: 32px;
+    min-width: var(--graph-ctl-sm);
+    height: var(--graph-ctl-sm);
     padding: 0 var(--space-3);
     font-size: var(--text-xs);
     font-weight: 550;
     border-radius: var(--graph-radius-ctl);
     cursor: pointer;
-    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
-      transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease);
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
   }
   .graph-tool:hover {
     color: var(--signal);
-    border-color: color-mix(in srgb, var(--signal) 45%, var(--graph-glass-edge));
-  }
-  .graph-tool:active {
-    transform: scale(0.94);
   }
   /* 줌 끝에 닿은 버튼: 자리는 지키고 누름은 받지 않는다 (02 3.2절) */
   .graph-tool[aria-disabled='true'] {
@@ -3205,24 +3191,49 @@
     display: none;
   }
 
-  .graph-tip {
-    position: absolute;
-    z-index: var(--graph-z-tip);
-    max-width: 280px;
-    padding: 7px 11px 8px;
-    font-size: var(--text-xs);
-    border-radius: var(--graph-radius-ctl);
-    pointer-events: none;
+  /* ── 대체 모습: 뒤 흐림이 없으면 유리판을 거의 불투명하게 깔아 글자가 노드 위에서도 읽힌다 ── */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .graph-search input,
+    .graph-filter-btn,
+    .graph-results,
+    .graph-filters,
+    .graph-panel,
+    .graph-legend,
+    .graph-tool,
+    .graph-home,
+    .graph-fchip,
+    .graph-row-reset,
+    .graph-panel-toggle,
+    .graph-tip,
+    body:has(> main.graph[data-view='map']) .site-header {
+      background: var(--graph-sheen), var(--graph-glass-solid);
+    }
   }
 
-  /* 태블릿 이하: 조작 안내는 범례와 궤도가 가까워 숨긴다 (01 5.3절) */
-  @media (max-width: 1023px) {
+  /* ── 브레이크포인트 ── */
+  /* 태블릿 이하 (01 5.1절 데스크톱 경계 1200 미만): 조작 안내는 범례와 궤도가 가까워 숨긴다 (01 5.3절) */
+  @media (max-width: 1199px) {
     .graph-hint {
       display: none;
     }
   }
-
-  /* 모바일 (≤640px): 견본 한 줄 범례, 아이콘 도구 두 개, 하단 시트 (01 5.4절) */
+  /* 키보드가 없는 기기와 좁은 화면에는 키 표시가 필요 없다 */
+  @media (hover: none), (max-width: 640px) {
+    .graph-kbd {
+      display: none;
+    }
+    .graph-search input {
+      padding-right: var(--space-3);
+    }
+  }
+  /* 16px 미만이면 iOS 가 입력 초점에서 화면을 확대한다 (휴대폰 세로, 가로, 터치 태블릿) */
+  @media (max-width: 640px), (max-height: 480px), (pointer: coarse) {
+    .graph-search input,
+    .graph-tag-q {
+      font-size: var(--text-base);
+    }
+  }
+  /* 모바일과 휴대폰 가로: 견본만 남긴 범례, 아이콘 도구 두 개 (01 5.4절) */
   @media (max-width: 640px), (max-height: 480px) {
     .graph-legend {
       flex-direction: row;
@@ -3230,42 +3241,21 @@
       gap: 2px;
       width: auto;
       max-width: calc(100vw - 2 * var(--graph-inset) - 96px);
-      padding: 6px 8px;
+      padding: var(--space-1-5) var(--space-2);
     }
     .graph-legend-item {
       justify-content: center;
-      width: 26px;
-      height: 26px;
+      width: var(--graph-pill-h);
+      height: var(--graph-pill-h);
       padding: 0;
     }
-    .graph-legend-name,
     .graph-legend-n,
     .graph-legend-stat,
     .graph-legend-reset {
       display: none;
     }
-    .graph-legend-item[aria-pressed='true'] {
-      width: auto;
-      padding: 0 9px 0 8px;
-      gap: 6px;
-      background: color-mix(in srgb, var(--c) 22%, transparent);
-      box-shadow: 0 0 0 1px color-mix(in srgb, var(--c) 45%, transparent);
-    }
-    .graph-legend-item[aria-pressed='true'] .graph-legend-name {
-      display: inline;
-      white-space: nowrap;
-    }
-    .graph-tool.is-zoom {
-      display: none;
-    }
-    .graph-tool {
-      width: 36px;
-      height: 36px;
-      padding: 0;
-    }
-    .graph-tool-ico {
-      display: inline;
-    }
+    /* 이름은 화면에서만 숨긴다. 단추의 접근 이름이라 display:none 이면 스크린 리더가 빈 단추를 읽는다 */
+    .graph-legend-name,
     .graph-tool-label {
       position: absolute;
       width: 1px;
@@ -3274,12 +3264,28 @@
       clip: rect(0, 0, 0, 0);
       white-space: nowrap;
     }
+    /* 눌린 견본은 이름 없이 색 고리와 바탕으로 표시해 범례가 한 줄을 지킨다 (조감 맞춤의 아래 여유가 한 줄 기준) */
+    .graph-legend-item[aria-pressed='true'] {
+      background: color-mix(in srgb, var(--c) 24%, transparent);
+      box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c) 70%, transparent);
+    }
+    .graph-tool.is-zoom {
+      display: none;
+    }
+    .graph-tool {
+      width: var(--graph-ctl-touch);
+      height: var(--graph-ctl-touch);
+      padding: 0;
+    }
+    .graph-tool-ico {
+      display: inline;
+    }
   }
+  /* 모바일 (≤640px): 아래 시트 패널과 시트 팝오버 (01 5.4절) */
   @media (max-width: 640px) {
     .graph-row {
       max-width: calc(100% - 2 * var(--graph-inset));
     }
-
     .graph-results {
       max-height: 40vh;
     }
@@ -3294,12 +3300,6 @@
       border-bottom: 0;
       border-radius: var(--graph-radius-panel) var(--graph-radius-panel) 0 0;
       animation-name: graph-sheet-in;
-    }
-    @keyframes graph-sheet-in {
-      from {
-        transform: translateY(40%);
-        opacity: 0;
-      }
     }
     /* 높이는 탐색기가 내용에서 재어 넣는다 (접힘은 머리와 바닥만, 펼침은 42vh까지) */
     .graph-panel {
@@ -3329,7 +3329,10 @@
     .graph-stage.is-sheet-drag .graph-dock {
       transition: none;
     }
-    /* 손잡이: 36 × 4px 막대, 누르는 자리는 높이 24px 전체 폭 (02 5.3절) */
+    .graph-stage.is-sheet-full > .graph-dock {
+      display: none;
+    }
+    /* 손잡이: 36 × 4px 막대, 누르는 자리는 높이 20px 전체 폭 (02 5.3절) */
     .graph-sheet-grip {
       display: block;
       flex: none;
@@ -3342,9 +3345,9 @@
       display: block;
       width: 36px;
       height: 4px;
-      margin: 8px auto 0;
+      margin: var(--space-2) auto 0;
       background: var(--faint);
-      border-radius: 2px;
+      border-radius: var(--radius-pill);
       opacity: 0.7;
     }
     .graph-panel-head {
@@ -3367,30 +3370,15 @@
       padding: 0 var(--space-3);
       font-size: var(--text-sm);
       font-weight: 550;
-      color: var(--text);
       white-space: nowrap;
-      background: var(--graph-sheen), var(--graph-glass);
-      border: 1px solid var(--graph-glass-edge);
       border-radius: var(--graph-radius-ctl);
-      box-shadow: inset 0 1px 0 var(--graph-glass-top);
       cursor: pointer;
+      transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
     }
     .graph-panel-toggle[aria-expanded='true'] {
       color: var(--signal);
     }
-    .graph-stage.is-sheet-full > .graph-dock {
-      display: none;
-    }
   }
-
-  /* 16px 미만이면 iOS 가 입력 초점에서 화면을 확대한다 (휴대폰 세로, 가로, 터치 태블릿) */
-  @media (max-width: 640px), (max-height: 480px), (pointer: coarse) {
-    .graph-search input,
-    .graph-tag-q {
-      font-size: var(--text-base);
-    }
-  }
-
   /* 휴대폰 가로 (높이 ≤480px): 헤더를 줄이고 범례를 왼쪽 세로 한 줄로 (01 5.5절) */
   @media (max-height: 480px) {
     body:has(> main.graph[data-view='map']) .site-header {
@@ -3406,21 +3394,8 @@
       flex-wrap: nowrap;
       max-width: none;
     }
-    .graph-legend-item[aria-pressed='true'] {
-      position: relative;
-      width: 26px;
-      padding: 0;
-    }
-    .graph-legend-item[aria-pressed='true'] .graph-legend-name {
-      position: absolute;
-      left: 100%;
-      margin-left: var(--space-1);
-      padding: 2px 8px;
-      background: var(--graph-glass);
-      border-radius: 999px;
-    }
     .graph-panel-head {
-      padding: 10px 12px 8px;
+      padding: var(--space-2-5) var(--space-3) var(--space-2);
     }
     .graph-panel-title {
       display: -webkit-box;
@@ -3434,14 +3409,19 @@
   @media (max-height: 480px) and (min-width: 641px) {
     .graph-panel-head {
       grid-template-columns: auto 1fr auto;
-      padding-right: calc(12px + 36px);
+      padding-right: calc(var(--space-3) + var(--graph-ctl-touch));
     }
     .graph-panel-meta {
       grid-row: 1;
       grid-column: 2;
-      margin: 0;
       justify-self: start;
+      flex-wrap: nowrap;
+      gap: var(--space-2);
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
       font-size: var(--text-2xs);
+      white-space: nowrap;
     }
     .graph-panel-close {
       grid-row: 1;
@@ -3461,16 +3441,16 @@
     }
     .graph-panel-foot {
       position: absolute;
-      top: 10px;
-      right: 12px;
+      top: var(--space-2-5);
+      right: var(--space-3);
       padding: 0;
       border: 0;
     }
     .graph-panel-open {
-      width: 32px;
-      height: 32px;
+      width: var(--graph-ctl-sm);
+      height: var(--graph-ctl-sm);
       padding: 0;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+      box-shadow: inset 0 1px 0 color-mix(in srgb, var(--graph-specular) 40%, transparent);
     }
     .graph-panel-open-label {
       position: absolute;

@@ -139,7 +139,7 @@
     var hovered = null, cursor = null, hotPlus = false, expanded = false, trail = []; // cursor: 궤도의 키보드 커서 (02 1절)
     var emph = new Float32Array(N).fill(1), hoverLift = new Float32Array(N);
     var pulseT0 = -1, shimmerUntil = 0;
-    var pillBox = null, labelBoxes = [], orbitLabelCount = 0;
+    var pillBox = null, labelBoxes = [], orbitLabelCount = 0, centerPill = null;
     var sheetFull = false, sheetH = 0; // 모바일 시트 상태와 목표 높이 (px)
     // 필터 (02 8절). 축 안 OR, 축 사이 AND. inF 는 필터 안 여부, lit 은 그리기용 (범례 미리 강조 포함)
     var filt = { cat: new Set(), type: new Set(), tag: new Set() };
@@ -424,8 +424,9 @@
       var cs = getComputedStyle(main), g = function (n) { return cs.getPropertyValue(n).trim(); };
       var cat = {};
       cats.concat(['etc']).forEach(function (c) { cat[c] = g('--cat-' + c); });
-      cats.forEach(function (c) { if (!cat[c]) cat[c] = cat.etc || '#7d8ba6'; });
+      cats.forEach(function (c) { if (!cat[c]) cat[c] = cat.etc; });
       return {
+        specular: rgbOf(g('--graph-specular')), shade: rgbOf(g('--graph-shade')), shadowInk: rgbOf(g('--graph-shadow-ink')),
         cat: cat, edge: g('--graph-edge'), edgeAlpha: parseFloat(g('--graph-edge-alpha')),
         label: g('--graph-label'), labelMuted: g('--graph-label-muted'), labelHalo: g('--graph-label-halo'),
         glowAlpha: parseFloat(g('--graph-glow-alpha')),
@@ -449,12 +450,12 @@
     function rgba(c, a) { return 'rgba(' + Math.round(c[0]) + ',' + Math.round(c[1]) + ',' + Math.round(c[2]) + ',' + a + ')'; }
     function mixc(a, b, t) { return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]; }
     function mk(w, h) { var c = document.createElement('canvas'); c.width = w; c.height = h || w; return c; }
-    var WHITE = [255, 255, 255], BLACK = [0, 0, 0];
 
     // 노드 구슬: 카테고리마다 한 번 그려 두고 drawImage 로 붙인다 (프레임마다 그라데이션 없음)
     var SR = 56;
     function buildSprites() {
       sprites = {};
+      var WHITE = T.specular, BLACK = T.shade, spec = function (a) { return rgba(WHITE, a); };
       cats.forEach(function (id) {
         var col = rgbOf(T.cat[id]), S = SR * 2 + 8, o = S / 2;
         var core = mk(S), g = core.getContext('2d');
@@ -473,17 +474,17 @@
           g.fillStyle = gr; g.beginPath(); g.arc(o, o, SR, 0, TAU); g.fill();
           // 아래쪽 반사광
           var b = g.createRadialGradient(o + SR * 0.15, o + SR * 0.62, 0, o + SR * 0.15, o + SR * 0.62, SR * 0.55);
-          b.addColorStop(0, dark ? rgba(mixc(col, WHITE, 0.5), 0.35) : 'rgba(255,255,255,0.32)');
-          b.addColorStop(1, 'rgba(255,255,255,0)');
+          b.addColorStop(0, dark ? rgba(mixc(col, WHITE, 0.5), 0.35) : spec(0.32));
+          b.addColorStop(1, spec(0));
           g.save(); g.beginPath(); g.arc(o, o, SR, 0, TAU); g.clip(); g.fillStyle = b; g.fillRect(0, 0, S, S); g.restore();
-          g.lineWidth = dark ? 2.2 : 3; g.strokeStyle = dark ? rgba(mixc(col, WHITE, 0.6), 0.35) : 'rgba(255,255,255,0.85)';
+          g.lineWidth = dark ? 2.2 : 3; g.strokeStyle = dark ? rgba(mixc(col, WHITE, 0.6), 0.35) : spec(0.85);
           g.beginPath(); g.arc(o, o, SR - (dark ? 1.2 : 1.6), 0, TAU); g.stroke();
         }
         var hx = o - SR * 0.33, hy = o - SR * 0.4;
         var sp = g.createRadialGradient(hx, hy, 0, hx, hy, SR * 0.36);
-        sp.addColorStop(0, 'rgba(255,255,255,' + (dark ? 0.9 : 0.95) + ')');
-        sp.addColorStop(0.45, 'rgba(255,255,255,' + (dark ? 0.28 : 0.4) + ')');
-        sp.addColorStop(1, 'rgba(255,255,255,0)');
+        sp.addColorStop(0, spec(dark ? 0.9 : 0.95));
+        sp.addColorStop(0.45, spec(dark ? 0.28 : 0.4));
+        sp.addColorStop(1, spec(0));
         g.fillStyle = sp; g.beginPath(); g.ellipse(hx, hy, SR * 0.36, SR * 0.28, -0.6, 0, TAU); g.fill();
 
         // 빛번짐 (dark) 또는 바닥 그림자 (light)
@@ -493,7 +494,7 @@
           hg.addColorStop(0, rgba(col, 0.55)); hg.addColorStop(0.22, rgba(col, 0.26));
           hg.addColorStop(0.5, rgba(col, 0.07)); hg.addColorStop(1, rgba(col, 0));
         } else {
-          var ink = [24, 34, 72];
+          var ink = T.shadowInk;
           hg.addColorStop(0, rgba(ink, 0.34)); hg.addColorStop(0.45, rgba(ink, 0.12)); hg.addColorStop(1, rgba(ink, 0));
         }
         h.fillStyle = hg; h.fillRect(0, 0, HS, HS);
@@ -511,7 +512,7 @@
       gg.globalCompositeOperation = 'lighter';
       [true, false].forEach(function (horiz) {
         var lg = horiz ? gg.createLinearGradient(0, go, GS, go) : gg.createLinearGradient(go, 0, go, GS);
-        lg.addColorStop(0, 'rgba(255,255,255,0)'); lg.addColorStop(0.5, 'rgba(255,255,255,0.9)'); lg.addColorStop(1, 'rgba(255,255,255,0)');
+        lg.addColorStop(0, spec(0)); lg.addColorStop(0.5, spec(0.9)); lg.addColorStop(1, spec(0));
         gg.fillStyle = lg; gg.beginPath();
         var hw = GS * 0.055 / 2;
         if (horiz) { gg.moveTo(0, go); gg.lineTo(go, go - hw); gg.lineTo(GS, go); gg.lineTo(go, go + hw); }
@@ -531,7 +532,7 @@
       rg.addColorStop(0, T.bgCore); rg.addColorStop(1, T.bgEdge);
       g.fillStyle = rg; g.fillRect(0, 0, w, h);
       var vg = g.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.35, w / 2, h / 2, Math.hypot(w, h) * 0.62);
-      vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, T.vignette);
+      vg.addColorStop(0, rgba(rgbOf(T.vignette), 0)); vg.addColorStop(1, T.vignette);
       g.fillStyle = vg; g.fillRect(0, 0, w, h);
       // 별먼지: 고정 시드라 새로 고쳐도 같은 하늘. 카메라를 4%만 따라가 깊이감을 준다
       var TS = 420, tile = mk(Math.round(TS * dpr)), tc = tile.getContext('2d'), dc = rgbOf(T.dust), seed = 11;
@@ -568,7 +569,7 @@
           if (n.category !== c) return;
           var x = (n.hx - ox) * S, y = (n.hy - oy) * S, R = (70 + 6 * Math.sqrt(n.degree)) * S;
           var g = t.createRadialGradient(x, y, 0, x, y, R);
-          g.addColorStop(0, 'rgba(0,0,0,0.2)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+          g.addColorStop(0, rgba(T.shade, 0.2)); g.addColorStop(1, rgba(T.shade, 0)); // 알파 마스크 (뒤에 source-in 으로 색을 입힌다)
           t.fillStyle = g; t.fillRect(x - R, y - R, R * 2, R * 2);
         });
         t.globalCompositeOperation = 'source-in';
@@ -788,9 +789,9 @@
       }
 
       // 10. 라벨 (궤도 라벨은 알약 자리를 비켜 간다)
+      orbitLabelCount = 0; labelBoxes = []; centerPill = null;
       if (mode === 'atlas' && mix < 0.05 && (revealT0 < 0 || now - revealT0 >= 600)) drawLabels(names);
       else drawnLabels = 0;
-      orbitLabelCount = 0; labelBoxes = [];
       if (mode === 'orbit' && view) drawOrbitLabels(h);
 
       if (pillBox) {
@@ -938,9 +939,9 @@
           var u = (((now - v.t0) / 2200 + i * 0.137) % 1 + 1) % 1;
           var u0 = Math.max(0, u - 0.14), u1 = Math.min(1, u + 0.04);
           var g = ctx.createLinearGradient(A.x, A.y, B.x, B.y);
-          g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(u0, rgba(col, 0));
-          g.addColorStop(Math.max(u0, Math.min(u1, u)), rgba(dark ? mixc(col, WHITE, 0.5) : col, dark ? 0.75 : 0.55));
-          g.addColorStop(u1, rgba(col, 0)); g.addColorStop(1, 'rgba(0,0,0,0)');
+          g.addColorStop(0, rgba(col, 0)); g.addColorStop(u0, rgba(col, 0));
+          g.addColorStop(Math.max(u0, Math.min(u1, u)), rgba(dark ? mixc(col, T.specular, 0.5) : col, dark ? 0.75 : 0.55));
+          g.addColorStop(u1, rgba(col, 0)); g.addColorStop(1, rgba(col, 0));
           ctx.globalAlpha = a * fade; ctx.strokeStyle = g;
           ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
         });
@@ -1070,46 +1071,73 @@
     }
 
     // 노드 라벨: 줌이 작을수록 큰 허브만. 크롬, 성운 이름, 앞 라벨과 겹치면 뺀다 (04 5.1)
-    function minDegreeFor(k) { return k < 0.8 ? 50 : k < 1.4 ? 25 : k < 2.2 ? 10 : 0; }
+    function minDegreeFor(k) { return k < 1 ? 20 : k < 1.4 ? 15 : k < 2.2 ? 8 : 0; }
+    // 카테고리마다 가장 큰 허브: 낮은 줌에서도 성운마다 이름 하나는 읽히게 우선한다
+    var catTop = {};
+    nodes.forEach(function (n) { if (!catTop[n.category] || n.degree > catTop[n.category].degree) catTop[n.category] = n; });
     // 호버한 노드와 그 이웃(degree 10 이상)은 줌 하한을 넘어 늘 후보다. 흐린 노드는 뺀다 (04 5.1)
+    // 그 밖의 라벨 수는 화면 넓이와 줌에 비례한다. 줌 문턱 하나에서 5개와 28개를 오가지 않게 한다
     function drawLabels(names) {
       var k = cam.k, minDeg = minDegreeFor(k), cand = [], h = hovered;
+      var budget = k >= 2.2 ? 160 : Math.max(4, Math.round(W * H / 100000 * Math.min(3, k / 0.8)));
       for (var i = 0; i < N; i++) {
-        var n = nodes[i];
+        var n = nodes[i], top = catTop[n.category] === n;
         var hit = searchHits.has(n), forced = n === h || hit || (h && h.nb.has(n) && n.degree >= 10);
-        if (!forced && (n.degree < minDeg || emph[i] < 0.9 || !lit[i])) continue;
+        if (!forced && ((n.degree < minDeg && !top) || emph[i] < 0.9 || !lit[i])) continue;
         var px = sx(n.x), py = sy(n.y);
         if (px < -20 || py < -20 || px > W + 20 || py > H + 20) continue;
-        cand.push({ n: n, x: px, y: py, pri: (n === h ? 1e6 : 0) + (hit ? 1e5 : 0) + (forced ? 1e4 : 0) + n.degree });
+        cand.push({ n: n, x: px, y: py, forced: forced, pri: (n === h ? 1e6 : 0) + (hit ? 1e5 : 0) + (forced ? 1e4 : 0) + (top ? 1e3 : 0) + n.degree });
       }
       cand.sort(function (a, b) { return b.pri - a.pri; });
-      var boxes = chromeRects().concat(names), drawn = 0;
+      var boxes = chromeRects().concat(names), drawn = 0, free = 0, heavy = [];
+      // 라벨이 덮지 않을 구슬: 이름이 붙을 만한 허브와 overviews 고리 (작은 잎은 할로 위로 지나가도 읽힌다)
+      for (var hi = 0; hi < N; hi++) {
+        var hn = nodes[hi];
+        if ((hn.degree >= 15 || hn.category === 'overviews') && emph[hi] >= 0.9) heavy.push({ n: hn, x: sx(hn.x), y: sy(hn.y), r: nodeR(hn) * 1.08 + (hn.category === 'overviews' ? 3.1 : 0) + 1 });
+      }
       ctx.textBaseline = 'middle';
       ctx.textAlign = 'left';
       ctx.lineJoin = 'round';
       if ('letterSpacing' in ctx) ctx.letterSpacing = '0.01em';
       for (var c = 0; c < cand.length && drawn < 160; c++) {
         var o = cand[c], m = o.n, hot = m === h, strong = hot || m.degree >= 50;
+        if (!o.forced && free >= budget) continue;
         var size = strong ? 13 : m.degree >= 15 ? 12 : 11;
         ctx.font = (strong ? '700 ' : '500 ') + size + 'px ' + T.font;
         if (m.tw == null || hot) m.tw = ctx.measureText(m.label).width; // 줌, 팬 프레임마다 재지 않는다 (04 9절)
         var tw = m.tw, r = nodeR(m);
         if (hot) m.tw = null; // 호버가 풀리면 보통 글꼴로 다시 잰다
-        // 노드와 고리를 비켜 오른쪽 위에. 오른쪽 끝을 넘으면 왼쪽으로
-        var gap = r + (m.category === 'overviews' ? 6 : 4) + 3;
-        var lx = o.x + gap * 0.92, ly = o.y - gap * 0.62;
-        if (lx + tw > W - 8) lx = o.x - gap * 0.92 - tw;
-        if (lx < 8) lx = Math.min(8, W - 8 - tw);
-        var box = { x: lx - 2, y: ly - size / 2 - 2, w: tw + 4, h: size + 4 };
-        if (!hot && boxes.some(function (q) { return overlaps(box, q); })) continue;
-        boxes.push(box);
+        // 노드와 고리를 비켜 오른쪽 위에. 막히면 왼쪽 위, 오른쪽 아래, 왼쪽 아래 순으로. 큰 구슬 위에는 얹지 않는다
+        var gap = r + (m.category === 'overviews' ? 6 : 4) + 3, lx, ly, box = null;
+        for (var sp = 0; sp < 4 && !box; sp++) {
+          lx = sp % 2 ? o.x - gap * 0.92 - tw : o.x + gap * 0.92; ly = sp < 2 ? o.y - gap * 0.62 : o.y + gap * 0.62;
+          // 화면 끝에 밀려 제 구슬을 덮는 자리는 버린다 (호버 라벨만 예전처럼 끝에 붙인다)
+          if (!hot && (lx < 8 || lx + tw > W - 8)) continue;
+          if (lx + tw > W - 8) lx = o.x - gap * 0.92 - tw;
+          if (lx < 8) lx = Math.min(8, W - 8 - tw);
+          var bx = { x: lx - 2, y: ly - size / 2 - 2, w: tw + 4, h: size + 4 };
+          if (hot || (!boxes.some(function (q) { return overlaps(bx, q); }) && !heavy.some(function (q) { return q.n !== m && circleHits(bx, q); }))) box = bx;
+        }
+        if (!box && catTop[m.category] === m) { // 성운의 대표 허브는 다른 구슬 위라도 오른쪽 위에 이름을 남긴다
+          lx = o.x + gap * 0.92; ly = o.y - gap * 0.62;
+          if (lx + tw > W - 8) lx = o.x - gap * 0.92 - tw;
+          var tb = { x: lx - 2, y: ly - size / 2 - 2, w: tw + 4, h: size + 4 };
+          if (lx >= 8 && !boxes.some(function (q) { return overlaps(tb, q); })) box = tb;
+        }
+        if (!box) continue;
+        boxes.push(box); labelBoxes.push(box);
         drawn++;
+        if (!o.forced) free++;
         ctx.globalAlpha = 1;
         ctx.fillStyle = strong || m.degree >= 15 ? T.label : T.labelMuted;
         label(m.label, lx, ly);
       }
       if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
       drawnLabels = drawn;
+    }
+    function circleHits(b, c) {
+      var qx = Math.max(b.x, Math.min(c.x, b.x + b.w)), qy = Math.max(b.y, Math.min(c.y, b.y + b.h));
+      return Math.hypot(c.x - qx, c.y - qy) < c.r;
     }
     function label(txt, x, y) {
       ctx.lineWidth = 3; ctx.lineJoin = 'round'; ctx.strokeStyle = T.labelHalo;
@@ -1150,7 +1178,11 @@
       var boxes = chromeRects().slice(), obst = [];
       if (pillBox) boxes.push({ x: pillBox.x - 4, y: pillBox.y - 4, w: pillBox.w + 8, h: pillBox.h + 8 });
       var members = view.r1.concat(view.r2);
-      members.forEach(function (n) { var p = S(n), r = nodeR(n); obst.push({ n: n, x: p.x - r - 1, y: p.y - r - 1, w: 2 * r + 2, h: 2 * r + 2 }); });
+      // 장애물은 그려진 크기로 잰다: 구슬 테(1.08배)와 overviews 고리(+3.1)
+      members.forEach(function (n) {
+        var p = S(n), r = nodeR(n) * 1.08 + (n.category === 'overviews' ? 3.1 : 0) + 1;
+        obst.push({ n: n, x: p.x - r, y: p.y - r, w: 2 * r, h: 2 * r });
+      });
       var cd = view.c, c0 = S(cd), rc = nodeR(cd);
       obst.push({ n: cd, x: c0.x - rc - 12, y: c0.y - rc - 12, w: 2 * rc + 24, h: 2 * rc + 24 });
       ctx.lineJoin = 'round';
@@ -1166,11 +1198,25 @@
         var lines = wrap(cd.title, Math.min(260, chord(y0 - c0.y + 36)), 2);
         var w1 = chord(y0 - c0.y + 17);
         if (/…$/.test(lines[lines.length - 1])) lines = w1 >= 16 ? wrap(cd.label, Math.min(220, w1), 1) : [];
-        lines.forEach(function (ln, i) {
-          label(ln, c0.x, y0 + i * 19);
-          var w = ctx.measureText(ln).width, bx = { x: c0.x - w / 2 - 2, y: y0 + i * 19 - 2, w: w + 4, h: 19 };
-          boxes.push(bx); labelBoxes.push(bx);
-        });
+        // 아래 자리가 범례 같은 크롬에 닿으면 노드 위로 올린다. 위도 막히면 알약으로 넘어간다
+        var chrome0 = chromeRects(), hitsChrome = function (bs) { return bs.some(function (q) { return chrome0.some(function (c) { return overlaps(q, c); }); }); };
+        var place = function (top) { return lines.map(function (ln, i) { var w = ctx.measureText(ln).width; return { x: c0.x - w / 2 - 2, y: top + i * 19 - 2, w: w + 4, h: 19 }; }); };
+        var lb = lines.length && !/^…?$/.test(lines[0]) ? place(y0) : null;
+        if (lb && hitsChrome(lb)) { y0 = c0.y - rc - 14 - lines.length * 19; lb = place(y0); if (hitsChrome(lb)) lb = null; }
+        if (lb) {
+          lines.forEach(function (ln, i) { label(ln, c0.x, y0 + i * 19); boxes.push(lb[i]); labelBoxes.push(lb[i]); });
+        } else {
+          // 안쪽 궤도가 중심에 붙어 자리가 없으면 짧은 이름을 알약에 얹어 궤도 위에 띄운다 (+k 알약과 같은 모양)
+          ctx.font = '600 12px ' + T.font;
+          var pt = fitText(cd.label, ctx.font, 150) || cd.label.slice(0, 10) + '…', pw = ctx.measureText(pt).width + 18, py0 = c0.y + rc + 14;
+          if (hitsChrome([{ x: c0.x - pw / 2, y: py0, w: pw, h: 22 }])) py0 = c0.y - rc - 36;
+          roundRect(c0.x - pw / 2, py0, pw, 22, 11);
+          ctx.fillStyle = T.lens; ctx.fill();
+          ctx.strokeStyle = T.cat[cd.category]; ctx.globalAlpha *= 0.9; ctx.lineWidth = 1; ctx.stroke();
+          ctx.fillStyle = T.label; ctx.textBaseline = 'middle'; ctx.fillText(pt, c0.x, py0 + 11.5);
+          var pbx = { x: c0.x - pw / 2, y: py0, w: pw, h: 22 };
+          boxes.push(pbx); labelBoxes.push(pbx); centerPill = pbx;
+        }
         if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
       }
       var list = members.filter(function (n) { return n.role >= 1 && n.lt > 0.85 && (lit[n.i] || n === h); });
@@ -1182,7 +1228,7 @@
       list.forEach(function (n) {
         var strong = n === h;
         if (!strong && (n.role === 1 ? n1 >= 64 : n2 >= 18)) return;
-        var p = S(n), r = nodeR(n);
+        var p = S(n), r = nodeR(n), rd = r * 1.08 + (n.category === 'overviews' ? 3.1 : 0); // rd: 그려진 반지름
         var ang = Math.atan2(p.y - cs.y, p.x - cs.x), cx = Math.cos(ang), cy = Math.sin(ang);
         var side = Math.abs(cx) >= 0.4;
         if (n.role === 2 && !side && !strong) return; // 바깥 궤도의 위아래 라벨은 패널에 맡긴다
@@ -1194,11 +1240,11 @@
           lx = cs.x + cx * st; ly = cs.y + cy * st;
           align = cx > 0 ? 'left' : 'right';
           // 수직에 가까운 옆 호에서는 글자 상자 모서리가 제 구슬에 닿지 않게 가로로 더 민다
-          lx = cx > 0 ? Math.max(lx, p.x + r * 1.08 + 5) : Math.min(lx, p.x - r * 1.08 - 5);
+          lx = cx > 0 ? Math.max(lx, p.x + rd + 5) : Math.min(lx, p.x - rd - 5);
           maxW = n.role === 1 ? Math.max(40, (view.R2 - view.R1o) * k / Math.max(0.6, Math.abs(cx)) - 22) : 150;
           maxW = Math.min(maxW, 170, cx > 0 ? rightBound - lx : lx - 8);
         } else {
-          align = 'center'; lx = p.x; ly = p.y + (cy > 0 ? r + lf.px * 0.5 + 5 : -(r + lf.px * 0.5 + 5));
+          align = 'center'; lx = p.x; ly = p.y + (cy > 0 ? rd + lf.px * 0.5 + 4 : -(rd + lf.px * 0.5 + 4));
           maxW = 120;
         }
         if (strong) maxW = Math.max(maxW, 200);
@@ -2415,7 +2461,7 @@
       search: function () { return { q: searchQ, total: hits.length, shown: hits.slice(0, 8).map(function (h) { return h.n.id; }), active: active, canvas: searchHits.size }; },
       sheet: function () { return { full: sheetFull, h: sheetH }; },
       geom: function () {
-        return { pill: pillBox, labels: labelBoxes.slice(), chrome: chromeRects(),
+        return { pill: pillBox, centerPill: centerPill, labels: labelBoxes.slice(), chrome: chromeRects(),
           nodes: nodes.filter(function (n) { return mode === 'atlas' ? true : n.role >= 0; }).map(function (n) {
             var r = nodeR(n) * 1.08 + (n.category === 'overviews' ? 3.1 : 0);
             return { id: n.id, x: sx(n.x), y: sy(n.y), r: r };
