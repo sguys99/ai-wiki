@@ -626,7 +626,8 @@
       busy = stepFlight(now) | stepWheel(dt) | stepGlide(dt) || busy;
       busy = stepEmphasis(dt) || busy;
       syncZoomButtons();
-      if (cursor && !tip.hidden) placeTip(cursor); // 비행과 전환 중에도 툴팁이 커서 노드를 따른다
+      // 비행, 전환, 호버 들림 중에도 툴팁이 노드를 따른다 (들림이 덜 끝난 반지름에 멈추지 않게)
+      if (tipNode && !tip.hidden) placeTip(tipNode);
       if (revealT0 >= 0 && now - revealT0 < 1100) busy = true;
       if (pulseT0 >= 0 && now - pulseT0 < 1000) busy = true;
       if (mode === 'orbit' && !morph && now < shimmerUntil) busy = true;
@@ -1147,7 +1148,9 @@
     // 궤도 라벨: 모두 가로. 옆 호는 바깥쪽으로, 위아래 호는 노드 위나 아래 가운데. 크롬, 다른 라벨,
     // 다른 노드 원, 알약과 겹치면 뺀다 (탐욕, 우선순위 순). 다 못 적는 허브는 패널 목록이 맡는다 (04 4.7)
     function fitText(s, font, maxW) {
-      var key = font + '|' + Math.round(maxW / 8) + '|' + s;
+      // 폭을 8px 칸으로 내려 잰다. 칸 안 첫 호출 폭으로 재면 결과가 지나온 프레임에 따라 달라진다
+      maxW = Math.floor(maxW / 8) * 8;
+      var key = font + '|' + maxW + '|' + s;
       if (fitCache.has(key)) return fitCache.get(key);
       ctx.font = font;
       var out = s.length > 28 ? s.slice(0, 27) + '…' : s;
@@ -1413,7 +1416,7 @@
     }
 
     // 툴팁: 노드 아래 r + 10px. 처음은 120ms 뒤, 300ms 안에 옮기면 바로 (02 9.5절)
-    var tipTimer = 0, tipHiddenAt = -1e9;
+    var tipTimer = 0, tipHiddenAt = -1e9, tipNode = null;
     function wantTip(n) {
       clearTimeout(tipTimer);
       if (!n) { if (!tip.hidden) tipHiddenAt = performance.now(); tip.hidden = true; return; }
@@ -1426,7 +1429,7 @@
         '"><span class="graph-swatch"></span><span>' + esc(catName[n.category] || n.category) + '</span>' +
         (n.year ? '<span>' + n.year + '</span>' : '') + (n.type ? '<span>' + esc(n.type) + '</span>' : '') +
         '<span>연결 ' + n.degree + '</span>' + (rel ? '<span class="graph-tip-rel">' + rel + '</span>' : '') + '</div>';
-      tip.hidden = false;
+      tip.hidden = false; tipNode = n;
       placeTip(n);
     }
     function placeTip(n) {
@@ -1781,6 +1784,8 @@
       el.addEventListener('pointercancel', sheetUp);
     });
     dock.addEventListener('transitionend', function () { chromeCache = null; redraw(); });
+    // 팝오버와 시트의 등장 애니메이션 도중 잰 크롬 상자를 끝난 자리로 다시 잰다
+    stage.addEventListener('animationend', function () { chromeCache = null; redraw(); });
 
     // ── 필터: 카테고리(범례), 유형과 태그(팝오버) (01 4절, 02 8.1 ~ 8.3절, 04 7.3절) ──
     // 모든 변경은 applyFilters() 하나를 지나고 거기서 hash 를 replaceState 한다
@@ -2421,6 +2426,27 @@
       if (mode === 'orbit' && view && !morph) { syncSheet(); cam = orbitCam(view); }
       redraw();
     });
+    // 늦게 받은 글꼴로 라벨 폭과 시트 높이가 바뀌므로 다시 잰다 (WebKit 은 loadingdone 이 없어 loading 뒤 ready)
+    if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loading', function () {
+      document.fonts.ready.then(function () {
+        namesCache = null; clearWidths();
+        if (mode === 'orbit' && view && !sdrag) syncSheet();
+        redraw();
+      });
+    });
+    // 페이지를 연 뒤 OS 설정이 바뀌어도 따라간다. 켜지면 진행 중인 모션을 끝 상태로 보낸다 (02 9.5)
+    var mqReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+    function onReduce() {
+      reduce = mqReduce.matches;
+      if (!reduce) return;
+      revealT0 = -1; pulseT0 = -1; shimmerUntil = 0; glide = null;
+      if (morph) morph.t0 = -1e9;
+      if (flight) { cam = { x: flight.to.x, y: flight.to.y, k: flight.to.k }; flight = null; }
+      if (wz) { zoomAt(wz.px, wz.py, wz.k); wz = null; }
+      redraw();
+    }
+    if (mqReduce && mqReduce.addEventListener) mqReduce.addEventListener('change', onReduce);
+    else if (mqReduce && mqReduce.addListener) mqReduce.addListener(onReduce);
     syncFromHash();
 
     // 검증용 읽기 창구 (브라우저 자동 검증과 뒤 항목 테스트가 쓴다)

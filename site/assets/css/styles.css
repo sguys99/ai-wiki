@@ -3461,6 +3461,13 @@
       white-space: nowrap;
     }
   }
+  /* base 의 0.001ms 전역 규칙이 기본값 all 과 만나 글자 크기까지 전환시켜 시트 높이가 한 박자 늦게 읽히므로 무대 안 전환은 끈다 */
+  @media (prefers-reduced-motion: reduce) {
+    .graph-stage,
+    .graph-stage * {
+      transition-property: none !important;
+    }
+  }
 }
 
 /* ── components (Phase 6: 학습 경로 스텝) ──────────────────────────────────────── */
