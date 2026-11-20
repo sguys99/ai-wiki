@@ -133,6 +133,9 @@
     --graph-lens: rgba(8, 13, 25, 0.84);
     --graph-filament-blend: lighter;
     --graph-shadow-alpha: 0;
+    --graph-path: #f3f6ff;
+    --graph-path-glow: rgba(214, 226, 255, 0.2);
+    --graph-path-ink: #070b14;
     --graph-glass: rgba(14, 21, 38, 0.64);
     --graph-glass-edge: rgba(200, 216, 255, 0.13);
     --graph-glass-top: rgba(255, 255, 255, 0.1);
@@ -215,6 +218,9 @@
     --graph-lens: rgba(250, 251, 253, 0.86);
     --graph-filament-blend: source-over;
     --graph-shadow-alpha: 1;
+    --graph-path: #141a2e;
+    --graph-path-glow: rgba(20, 26, 46, 0.12);
+    --graph-path-ink: #ffffff;
     --graph-glass: rgba(255, 255, 255, 0.7);
     --graph-glass-edge: rgba(30, 45, 90, 0.09);
     --graph-glass-top: rgba(255, 255, 255, 0.95);
@@ -2317,6 +2323,7 @@
   /* 유리판: 위 가장자리 빛, 안쪽 광택, 뒤 흐림. 떠 있는 판(결과, 팝오버, 패널, 툴팁)만 그림자를 진다 */
   .graph-search input,
   .graph-filter-btn,
+  .graph-path-btn,
   .graph-results,
   .graph-filters,
   .graph-panel,
@@ -2326,6 +2333,7 @@
   .graph-fchip,
   .graph-row-reset,
   .graph-panel-toggle,
+  .graph-pathbar,
   .graph-tip {
     color: var(--text);
     background: var(--graph-sheen), var(--graph-glass);
@@ -2337,14 +2345,15 @@
   .graph-results,
   .graph-filters,
   .graph-panel,
+  .graph-pathbar,
   .graph-tip {
     box-shadow: inset 0 1px 0 var(--graph-glass-top), var(--graph-float-shadow);
   }
   /* 유리 컨트롤의 호버와 누름은 한 가지 모양이다: 신호색 테두리, 살짝 눌림 */
-  :is(.graph-filter-btn, .graph-tool, .graph-home, .graph-fchip, .graph-row-reset, .graph-panel-toggle):hover {
+  :is(.graph-filter-btn, .graph-path-btn, .graph-tool, .graph-home, .graph-fchip, .graph-row-reset, .graph-panel-toggle):hover {
     border-color: var(--graph-hover-edge);
   }
-  :is(.graph-filter-btn, .graph-tool, .graph-home, .graph-fchip, .graph-row-reset, .graph-panel-toggle, .graph-chip, .graph-legend-item, .graph-filters-reset, .graph-panel-close):active {
+  :is(.graph-filter-btn, .graph-path-btn, .graph-tool, .graph-home, .graph-fchip, .graph-row-reset, .graph-panel-toggle, .graph-chip, .graph-legend-item, .graph-filters-reset, .graph-panel-close, .graph-path-opt, .graph-pb-btn, button.graph-step):active {
     transform: var(--graph-press);
   }
   /* :where 로 특이도를 낮춰 각 컨트롤의 font-size 와 초점 모양이 이긴다 */
@@ -2381,6 +2390,16 @@
     display: flex;
     gap: var(--space-2);
     width: min(calc(300px + var(--space-2) + 5.5rem), calc(100% - 2 * var(--graph-inset)));
+  }
+  /* 학습 경로 버튼만큼 늘린다 (01 7절, 382px → 428px) */
+  .graph-cmd:has(.graph-path-btn) {
+    width: min(calc(300px + 2 * var(--space-2) + 5.5rem + var(--graph-ctl-h)), calc(100% - 2 * var(--graph-inset)));
+  }
+  /* 태블릿 궤도에서 넓어진 명령 줄이 옆 패널에 닿지 않게 검색 입력이 줄어든다 */
+  @media (min-width: 641px) {
+    .graph-stage[data-mode='orbit'] .graph-cmd {
+      max-width: calc(100% - var(--graph-panel-w) - 3 * var(--graph-inset));
+    }
   }
   .graph-cmd:has(.graph-results:not(:empty)) {
     z-index: var(--graph-z-pop);
@@ -2639,10 +2658,13 @@
     transition: color var(--dur-fast) var(--ease);
   }
   .graph-filter-btn.is-on .graph-filter-ico,
-  .graph-filter-btn[aria-expanded='true'] .graph-filter-ico {
+  .graph-filter-btn[aria-expanded='true'] .graph-filter-ico,
+  .graph-path-btn.is-on .graph-filter-ico,
+  .graph-path-btn[aria-expanded='true'] .graph-filter-ico {
     color: var(--signal);
   }
-  .graph-filter-btn[aria-expanded='true'] {
+  .graph-filter-btn[aria-expanded='true'],
+  .graph-path-btn[aria-expanded='true'] {
     border-color: color-mix(in srgb, var(--signal) 60%, transparent);
     box-shadow: inset 0 1px 0 var(--graph-glass-top), var(--graph-focus-glow);
   }
@@ -3023,6 +3045,333 @@
   .graph-filters-reset:hover {
     color: var(--signal);
     border-color: color-mix(in srgb, var(--signal) 55%, transparent);
+  }
+
+  /* ── 학습 경로 (06 4절): 명령 줄 셋째 버튼, 경로 팝오버, 단계 막대 ── */
+  .graph-path-btn {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1-5);
+    min-width: var(--graph-ctl-h);
+    height: var(--graph-ctl-h);
+    padding: 0;
+    border-radius: var(--graph-radius-ctl);
+    cursor: pointer;
+    transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
+  }
+  /* 켜지면 aria-pressed 대신 단계 수 배지 (06 4.1) */
+  .graph-path-btn.is-on {
+    padding: 0 var(--space-2) 0 var(--space-2-5);
+  }
+  /* 팝오버 셸은 필터와 같다 (.graph-filters). 행: 라디오, 제목, 단계 수, 아래에 단계 카테고리 견본 띠 */
+  #graph-paths-n {
+    margin-left: var(--space-1-5);
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--faint);
+  }
+  .graph-path-list {
+    display: grid;
+    gap: 2px;
+    margin: 0 calc(-1 * var(--space-2));
+  }
+  .graph-path-opt {
+    display: grid;
+    grid-template-columns: 14px minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: var(--space-2-5);
+    row-gap: var(--space-1);
+    width: 100%;
+    padding: var(--space-1-5) var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    text-align: left;
+    background: none;
+    border: 0;
+    border-radius: var(--graph-radius-ctl);
+    cursor: pointer;
+    transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
+  }
+  .graph-path-opt:hover {
+    color: var(--text);
+    background: color-mix(in srgb, var(--surface-2) 55%, transparent);
+  }
+  .graph-path-opt[aria-checked='true'] {
+    color: var(--text);
+    background: color-mix(in srgb, var(--signal) 11%, transparent);
+    box-shadow: inset 0 0 0 var(--hairline-w) color-mix(in srgb, var(--signal) 40%, transparent);
+  }
+  .graph-path-opt:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 1px;
+  }
+  .graph-path-radio {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid var(--faint);
+    transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+  }
+  .graph-path-opt[aria-checked='true'] .graph-path-radio {
+    background: var(--signal);
+    border-color: var(--signal);
+    box-shadow: inset 0 0 0 2.5px var(--surface), 0 0 8px var(--signal-dim);
+  }
+  .graph-path-t {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: 550;
+    line-height: 1.35;
+  }
+  .graph-path-opt .graph-chip-n {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .graph-path-band {
+    grid-column: 2 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+  .graph-path-band .graph-swatch {
+    --graph-swatch: 6px;
+  }
+  #graph-path-off:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+
+  /* 단계 막대: 유리 캡슐. 자리는 탐색기가 범례 독과 도구 묶음(궤도는 패널) 사이에서 고른다 (06 4.3) */
+  .graph-pathbar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    width: max-content;
+    height: var(--graph-ctl-h);
+    padding: 0 var(--space-1) 0 var(--space-3);
+    font-size: var(--text-xs);
+    border-radius: var(--radius-pill);
+    animation: graph-bar-in var(--dur-panel) var(--ease-out);
+  }
+  @keyframes graph-bar-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  }
+  .graph-pathbar-name {
+    flex: 0 1 auto;
+    min-width: 0;
+    padding-right: var(--space-1);
+    overflow: hidden;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .graph-pathbar-count {
+    display: none;
+    padding: 0 var(--space-1);
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .graph-pb-btn {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    font-size: var(--text-base);
+    line-height: 1;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease-out);
+  }
+  .graph-pb-btn:hover {
+    color: var(--text);
+    background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  }
+  .graph-pb-btn[aria-disabled='true'] {
+    color: var(--faint);
+    background: none;
+    opacity: 0.5;
+    cursor: default;
+    transform: none;
+  }
+  .graph-pb-btn svg {
+    width: 13px;
+    height: 13px;
+  }
+  .graph-pb-btn .graph-pause-ico,
+  .graph-pb-btn[aria-pressed='true'] .graph-play-ico {
+    display: none;
+  }
+  .graph-pb-btn[aria-pressed='true'] .graph-pause-ico {
+    display: inline;
+  }
+  .graph-pb-btn[aria-pressed='true'] {
+    color: var(--graph-primary-ink);
+    background: linear-gradient(180deg, var(--graph-primary-top), var(--graph-primary-bottom));
+    box-shadow: 0 0 10px var(--signal-dim);
+  }
+  .graph-pb-btn.is-close {
+    font-size: var(--text-sm);
+    color: var(--faint);
+  }
+  .graph-steps {
+    display: flex;
+    flex: 0 1 auto;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+    margin: 0;
+    padding: 3px 2px;
+    overflow-x: auto;
+    list-style: none;
+    scrollbar-width: none;
+    touch-action: pan-x;
+  }
+  .graph-steps::-webkit-scrollbar {
+    display: none;
+  }
+  .graph-steps li {
+    display: flex;
+    flex: none;
+  }
+  /* 단계 점: 앞으로 갈 단계는 카테고리 색 테만, 지나간 단계는 70% 채움, 현재는 신호색 테 2px와 채움 (06 4.3) */
+  .graph-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: var(--text);
+    background: none;
+    border: 1.5px solid color-mix(in srgb, var(--c, var(--faint)) 70%, transparent);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
+      transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease);
+  }
+  button.graph-step:hover {
+    border-color: var(--signal);
+    transform: scale(1.08);
+  }
+  .graph-step.is-past {
+    color: var(--graph-path-ink);
+    background: color-mix(in srgb, var(--graph-path) 70%, transparent);
+    border-color: transparent;
+  }
+  .graph-step[aria-current] {
+    color: var(--graph-path-ink);
+    background: var(--graph-path);
+    border: 2px solid var(--signal);
+    box-shadow: 0 0 0 3px var(--signal-dim);
+  }
+  .is-missing .graph-step {
+    border: 1.5px dashed var(--faint);
+    cursor: default;
+  }
+  /* 모바일 조감: 필터 칩 줄 자리를 쓰고, 칩 줄은 한 줄 내려간다. 이름은 뺀다 */
+  .graph-pathbar.is-row,
+  .graph-pathbar.is-compact {
+    top: calc(var(--graph-top) + var(--graph-ctl-h) + var(--space-2));
+    height: var(--graph-row-h);
+    padding: 0 2px 0 var(--space-1);
+  }
+  .graph-pathbar.is-row {
+    left: var(--graph-inset);
+    right: var(--graph-inset);
+    width: auto;
+  }
+  .graph-pathbar.is-row .graph-steps {
+    flex: 1 1 auto;
+  }
+  .graph-pathbar:is(.is-row, .is-compact) .graph-pathbar-name,
+  .graph-pathbar.is-compact .graph-steps,
+  .graph-pathbar.is-compact .is-close {
+    display: none;
+  }
+  .graph-pathbar:is(.is-row, .is-compact) .graph-pb-btn {
+    width: 26px;
+    height: 26px;
+  }
+  /* 모바일 궤도와 휴대폰 가로: 경로 줄 오른쪽 끝 알약 "3/11 ‹ ›" (06 4.3) */
+  .graph-pathbar.is-compact {
+    padding-left: var(--space-1-5);
+  }
+  .graph-pathbar.is-compact .graph-pathbar-count {
+    display: inline;
+    order: -1;
+  }
+  .graph-stage.has-pathrow #graph-active-filters {
+    top: calc(var(--graph-top) + var(--graph-ctl-h) + var(--graph-row-h) + 2 * var(--space-2));
+  }
+  /* 상세 패널: 중심이 단계 노드면 "…의 4단계" 와 note, 선수 단계 (06 4.4) */
+  .graph-p-path {
+    margin: 0 0 var(--space-3);
+    padding: var(--space-2) var(--space-2-5);
+    font-size: var(--text-xs);
+    background: color-mix(in srgb, var(--signal) 7%, transparent);
+    border: var(--hairline-w) solid color-mix(in srgb, var(--signal) 28%, transparent);
+    border-radius: var(--graph-radius-ctl);
+  }
+  .graph-p-path-h {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .graph-p-path-n {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--graph-path-ink);
+    background: var(--graph-path);
+    border-radius: 50%;
+  }
+  .graph-p-path-note {
+    margin: var(--space-1) 0 0;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .graph-p-path-pre {
+    margin: var(--space-1) 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--faint);
+  }
+  .graph-tip-note {
+    margin: 3px 0 0;
+    color: var(--muted);
+    line-height: 1.45;
   }
 
   /* ── 상세 패널: 우측. 숨길 때도 전환을 보이려고 [hidden] 에 display 를 다시 준다 (01 9.3절) ── */
@@ -3550,6 +3899,7 @@
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .graph-search input,
     .graph-filter-btn,
+    .graph-path-btn,
     .graph-results,
     .graph-filters,
     .graph-panel,
@@ -3559,6 +3909,7 @@
     .graph-fchip,
     .graph-row-reset,
     .graph-panel-toggle,
+    .graph-pathbar,
     .graph-tip,
     body:has(> main.graph[data-view='map']) .site-header {
       background: var(--graph-sheen), var(--graph-glass-solid);
@@ -3833,6 +4184,21 @@
    * `###` 트랙 헤딩 뒤일 수 있다, Phase 7-8). 번호는 마커 대신
    * .study-n 으로 직접 찍으므로 list-style 을 끈다. 색은 전부 기존 토큰이라
    * physical 도메인 페이지에서는 [data-domain='physical'] 오버라이드를 그대로 받는다. */
+  /* 그래프에서 이 경로 보기 (06 4.5). 단계 목록 바로 위 오른쪽 */
+  .study-graph {
+    margin: var(--space-6) 0 calc(-1 * var(--space-4));
+    font-size: var(--text-sm);
+    text-align: right;
+  }
+  .study-graph a {
+    color: var(--signal);
+    text-decoration: none;
+  }
+  .study-graph a:hover,
+  .study-graph a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
   .study-path {
     list-style: none;
     margin: var(--space-6) 0;

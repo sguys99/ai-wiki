@@ -386,7 +386,7 @@ const nodeHref = (id) =>
 //         stats:{nodes,edges}, weak:{ noInbound, lowDegree } (graph.mjs weakLinks),
 //         recent:{ recentSince, recentMode, recentDays, count } (graph.mjs recentInfo), graphHref, base }
 export function graphPage(data) {
-  const { groups, types, stats, weak, recent, graphHref, base } = data;
+  const { groups, types, stats, weak, recent, graphHref, pathsHref, base } = data;
   const num = (n) => n.toLocaleString('en-US');
   const statText = `페이지 ${num(stats.nodes)}개, 연결 ${num(stats.edges)}개`;
 
@@ -468,6 +468,30 @@ ${weakGroup('deg', '연결 3개 이하', weak.lowDegree)}
     ? `\n      <p class="graph-legend-recent" hidden><span class="graph-recent-mark" aria-hidden="true"></span>${recentText}</p>`
     : '';
 
+  // 학습 경로 (06 4절). 목록과 단계는 탐색기가 paths.json 을 받은 뒤 채운다. 경로가 없으면 내보내지 않는다
+  const pathBtn = pathsHref
+    ? `\n    <button type="button" class="graph-path-btn" id="graph-path-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="graph-paths" aria-label="학습 경로"><svg class="graph-filter-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 12.5 7 5l3.5 5L13.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" opacity="0.6"/><circle cx="3" cy="12.5" r="1.7" fill="currentColor"/><circle cx="7" cy="5" r="1.7" fill="currentColor"/><circle cx="13.5" cy="3.5" r="1.7" fill="currentColor"/></svg><span class="graph-badge" hidden></span></button>`
+    : '';
+  const pathPop = pathsHref
+    ? `\n  <div class="graph-filters graph-paths" id="graph-paths" role="dialog" aria-labelledby="graph-paths-h" hidden>
+    <p class="graph-filters-h" id="graph-paths-h">학습 경로<span class="graph-chip-n" id="graph-paths-n"></span></p>
+    <div class="graph-path-list" id="graph-path-list" role="radiogroup" aria-labelledby="graph-paths-h"></div>
+    <button type="button" class="graph-filters-reset" id="graph-path-off" disabled>경로 끄기</button>
+  </div>`
+    : '';
+  const pathBar = pathsHref
+    ? `  <nav class="graph-pathbar graph-float" id="graph-pathbar" aria-label="학습 경로 단계" hidden>
+    <span class="graph-pathbar-name" id="graph-pathbar-name"></span>
+    <button type="button" class="graph-pb-btn" id="graph-path-prev" aria-label="이전 단계">‹</button>
+    <span class="graph-pathbar-count" id="graph-pathbar-count"></span>
+    <ol class="graph-steps" id="graph-steps"></ol>
+    <button type="button" class="graph-pb-btn" id="graph-path-next" aria-label="다음 단계">›</button>
+    <button type="button" class="graph-pb-btn is-play" id="graph-path-play" aria-pressed="false" aria-label="경로 재생"><svg viewBox="0 0 16 16" aria-hidden="true"><path class="graph-play-ico" d="M5 3.5v9l7.5-4.5z" fill="currentColor"/><path class="graph-pause-ico" d="M4.5 3.5h2.5v9H4.5zM9 3.5h2.5v9H9z" fill="currentColor"/></svg></button>
+    <button type="button" class="graph-pb-btn is-close" id="graph-path-close" aria-label="경로 끄기">×</button>
+  </nav>
+`
+    : '';
+
   // 스크립트가 있어야 동작하는 컨트롤은 hidden 으로 내보내고 탐색기가 시작 때 푼다 (명령 줄, 줌과 맞춤 버튼, 조작 안내).
   // DOM 순서가 곧 Tab 순서다: 명령 줄, 팝오버, 칩 줄과 경로 줄, 캔버스, 패널, 범례, 도구 (01 9.2절).
   const body = `<h1 class="graph-title" id="graph-title">그래프</h1>
@@ -483,7 +507,7 @@ ${weakGroup('deg', '연결 3개 이하', weak.lowDegree)}
       <ul class="graph-results" id="graph-results" role="listbox" aria-label="검색 결과"></ul>
     </search>
     <button type="button" class="graph-filter-btn" id="graph-filter-btn" aria-expanded="false" aria-controls="graph-filters"><svg class="graph-filter-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4.5h11M4.5 8h7M6.5 11.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="graph-filter-label">필터</span><span class="graph-badge" hidden></span></button>
-    <!-- Phase 5 예약: 학습 경로 버튼 .graph-path-btn, 경로 팝오버 #graph-paths (01 7절, 06 4절) -->
+${pathBtn}
   </div>
   <div class="graph-filters" id="graph-filters" role="group" aria-label="유형과 태그 필터" hidden>
     <p class="graph-filters-empty" id="graph-filters-empty" hidden></p>
@@ -507,7 +531,7 @@ ${typeChips}
       </div>
     </div>
     <button type="button" class="graph-filters-reset" id="graph-filters-reset">모두 해제</button>
-  </div>
+  </div>${pathPop}
 
   <div class="graph-row graph-float" id="graph-active-filters" hidden></div>
   <nav class="graph-row graph-float graph-trail" aria-label="지나온 페이지" hidden>
@@ -515,7 +539,7 @@ ${typeChips}
     <ol class="graph-crumbs" id="graph-crumbs"></ol>
   </nav>
 
-  <canvas class="graph-canvas" tabindex="0" role="application" aria-roledescription="관계 그래프" aria-label="wiki 페이지 관계 그래프, 전체 보기" aria-describedby="graph-help" data-graph="${escapeHtml(graphHref)}" data-base="${escapeHtml(base)}"></canvas>
+  <canvas class="graph-canvas" tabindex="0" role="application" aria-roledescription="관계 그래프" aria-label="wiki 페이지 관계 그래프, 전체 보기" aria-describedby="graph-help" data-graph="${escapeHtml(graphHref)}"${pathsHref ? ` data-paths="${escapeHtml(pathsHref)}"` : ''} data-base="${escapeHtml(base)}"></canvas>
   <p class="sr-only" id="graph-help">방향키나 Enter를 누르면 연결이 가장 많은 페이지를 중심으로 궤도를 엽니다. 궤도에서는 왼쪽과 오른쪽 방향키로 궤도를 돌고, 아래와 위 방향키로 바깥 궤도와 안쪽 궤도를 오갑니다. Enter는 고른 페이지를 중심으로 옮기고, 중심에서 누르면 그 페이지를 엽니다. Backspace는 지나온 페이지로 돌아가고, Esc는 열린 것을 하나씩 닫습니다. 슬래시는 검색, 더하기와 빼기는 확대와 축소, 0은 화면 맞춤입니다.</p>
   <p class="sr-only" id="graph-live" aria-live="polite"></p>
 
@@ -553,8 +577,7 @@ ${recentLegend.slice(1)}
     <button type="button" class="graph-tool" id="graph-to-list"><span class="graph-tool-ico" aria-hidden="true">☰</span><span class="graph-tool-label">목록 보기</span></button>
     <!-- Phase 5 예약: 데스크톱 전용 3D 실험 페이지 링크 (01 5.6절, 06 6절) -->
   </div>
-  <!-- Phase 5 예약: 학습 경로 단계 막대 .graph-pathbar (01 7절) -->
-
+${pathBar}
   <div class="graph-tip" aria-hidden="true" hidden></div>
 </section>
 
@@ -591,7 +614,8 @@ ${weakSection}
 //
 // steps: content.mjs 의 resolveStudyPaths 결과
 //   [{ n, ok, url, title, note, prereq:[{ ok, url, title, ref }] }]
-export function studyPathSection(steps) {
+// graphHref: 그래프에서 이 경로를 여는 링크 (06 4.5절, `/graph/#path=<overview id>`). 서버 렌더라 스크립트 없이도 있다
+export function studyPathSection(steps, graphHref = '') {
   if (!steps || !steps.length) return '';
 
   const refLink = (r, cls) =>
@@ -615,7 +639,8 @@ export function studyPathSection(steps) {
     })
     .join('\n');
 
-  return `<ol class="study-path">\n${items}\n</ol>`;
+  const link = graphHref ? `<p class="study-graph"><a href="${escapeHtml(graphHref)}">그래프에서 이 경로 보기<span aria-hidden="true"> →</span></a></p>\n` : '';
+  return `${link}<ol class="study-path">\n${items}\n</ol>`;
 }
 
 // ── About 페이지 ──────────────────────────────────────────────────────────────

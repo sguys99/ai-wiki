@@ -9,12 +9,13 @@
 
 import { rm, mkdir, writeFile, cp, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { gzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
 import { BASE, STRICT, href, RECENT_COUNT } from './lib/config.mjs';
 import { loadContent, tagsOf } from './lib/content.mjs';
 import { addedDates } from './lib/dates.mjs';
-import { buildGraph, toGraphJson, recentInfo, checkGraphJson, weakLinks } from './lib/graph.mjs';
+import { buildGraph, toGraphJson, recentInfo, checkGraphJson, weakLinks, toPathsJson } from './lib/graph.mjs';
 import { layoutGraph } from './lib/graph-layout.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
 import { home, wiki, about, tagIndex, tag, graphPage, studyPathSection } from './lib/templates.mjs';
@@ -110,8 +111,17 @@ async function main() {
   const graphJson = JSON.stringify(toGraphJson(graph, pages, layout, graphRecent));
   await writeFile(join(DIST, 'graph.json'), graphJson);
   console.log(`[graph] nodes: ${graph.nodes.length}  ·  edges: ${graph.edges.length}`);
+  // 학습 경로 → graph/paths.json (03 6.1절). 탐색기가 경로 버튼을 처음 열 때만 받는다
+  const paths = toPathsJson(pages);
+  const pathsText = JSON.stringify(paths.json);
+  await mkdir(join(DIST, 'graph'), { recursive: true });
+  await writeFile(join(DIST, 'graph', 'paths.json'), pathsText);
+  for (const w of paths.warnings) console.log(`[study] WARN ${w}`);
+  console.log(
+    `[study] paths.json 경로 ${paths.json.paths.length}  ·  단계 ${paths.json.paths.reduce((n, p) => n + p.steps.length, 0)}  ·  ${Buffer.byteLength(pathsText)}B (gzip ${gzipSync(pathsText, { level: 9 }).length}B)`
+  );
   // 자체 점검 V1 ~ V16 (03 7절). 쓴 직후에 불러 실패해도 dist/graph.json 을 열어 볼 수 있다.
-  const gc = checkGraphJson(graphJson, { pageCount: pages.size, edgeCount: graph.edges.length });
+  const gc = checkGraphJson(graphJson, { pageCount: pages.size, edgeCount: graph.edges.length, paths: paths.json });
   for (const w of gc.warnings) console.log(`[graph] WARN ${w}`);
   for (const p of gc.problems) console.log(`[graph] ${STRICT ? 'FAIL' : 'WARN'} ${p}`);
   console.log(`[graph] check V1~V16 ${gc.problems.length ? `${gc.problems.length}건` : '✓'}  ·  ${gc.stats}`);
@@ -152,7 +162,7 @@ async function main() {
     const { html, toc, broken, study } = renderMarkdown(page.body, {
       resolve: resolveLink,
       hrefFn: href,
-      studyPath: studyPathSection(page.studyPath),
+      studyPath: studyPathSection(page.studyPath, page.studyPath.some((s) => s.ok) ? href(`/graph/#path=${page.id}`) : ''),
     });
     if (broken.length) brokenByPage.push({ id: page.id, targets: broken });
     // 본문 `## 학습 경로` 의 첫 번호 목록을 컴포넌트로 바꿨는데 항목 수가 frontmatter 와
@@ -291,6 +301,7 @@ async function main() {
       weak,
       recent: graphRecent,
       graphHref: href('/graph.json'),
+      pathsHref: paths.json.paths.length ? href('/graph/paths.json') : '',
       base: href('/'),
     })
   );

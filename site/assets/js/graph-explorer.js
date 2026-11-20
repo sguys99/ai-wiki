@@ -148,6 +148,8 @@
     var fActive = false, fCount = N, legendHover = null, fMix = 0;
     var weakOn = false, weakMix = 0; // 약한 연결 렌즈 (06 12.2 E3). 필터가 아니라 표시라 hash 에 싣지 않는다
     var recentOn = false, recentMix = 0; // 최근 추가 위성 점 (06 2절). 같은 이유로 localStorage 에만 둔다
+    // 학습 경로 (06 4절). 한 번에 하나만 켠다 (12.1 R6). stepOf: 노드 → 단계 순번, drawT0: E8 선 그리기 시작 시각 (null 은 비행이 끝나기를 기다림, -1 은 다 그림)
+    var pathOn = null, stepOf = new Map(), stepEdges = [], pathIdx = -1, pendingPath = null, drawT0 = -1, badgeBoxes = [];
     var searchHits = new Set(); // 검색 상위 40개: 라벨 강제 후보와 캔버스 고리 (02 7.3)
     var popSwallow = false;      // 팝오버 밖 탭은 노드를 고르지 않는다 (02 2.6)
     // URL (02 8.4 ~ 8.6). hash 를 읽어 상태를 바꾸는 동안과 시작 전에는 history 를 쓰지 않는다
@@ -168,6 +170,9 @@
       var top = headerH();
       if (isMobile()) top += 60; // inset 16 + 명령 줄 38 + 6
       var bottom = isMobile() ? 56 : 0; // inset 16 + 견본 26 + 14
+      var bm = barMode();
+      if (bm === 'row' || bm === 'compact') top = Math.max(top, pathBar.offsetTop + pathBar.offsetHeight + 8); // 칩 줄 자리의 단계 막대 (06 4.3)
+      if (barMode() === 'float') bottom = Math.max(bottom, H - pathBar.offsetTop + 8);
       return { x: 0, y: top, w: W, h: Math.max(120, H - top - bottom) };
     }
     function fitTarget(list) {
@@ -342,6 +347,7 @@
         top += 20;
         right = W - panel.offsetLeft + inset;
       }
+      if (barMode() === 'float') bottom = Math.max(bottom, H - pathBar.offsetTop + 8);
       return { x: left, y: top, w: Math.max(80, W - left - right), h: Math.max(80, H - top - bottom) };
     }
     function orbitCam(v) {
@@ -439,6 +445,7 @@
         font: g('--font-display'), mono: g('--font-mono'),
         edgeHi: parseFloat(g('--graph-edge-hi-alpha')), backdrop: parseFloat(g('--graph-backdrop-alpha')) || 0.16,
         dim: parseFloat(g('--graph-dim-alpha')) || 0.14,
+        path: g('--graph-path'), pathGlow: g('--graph-path-glow'), pathInk: g('--graph-path-ink'),
         lens: g('--graph-lens'), hairline: g('--hairline'), signal: g('--signal'), text: g('--text'), muted: g('--muted'),
       };
     }
@@ -596,7 +603,7 @@
     }
 
     // 무대 위 크롬 상자 (무대 좌표). 라벨과 성운 이름이 그 밑에 깔리지 않게 피한다. 리사이즈 때만 다시 잰다 (04 9절)
-    var CHROME = ['.graph-cmd', '#graph-active-filters', '.graph-trail', '.graph-filters', '.graph-dock', '.graph-tools'];
+    var CHROME = ['.graph-cmd', '#graph-active-filters', '.graph-trail', '#graph-filters', '#graph-paths', '.graph-dock', '.graph-tools', '.graph-pathbar'];
     function chromeRects() {
       if (chromeCache) return chromeCache;
       var s = canvas.getBoundingClientRect(), out = [];
@@ -634,6 +641,8 @@
       if (revealT0 >= 0 && now - revealT0 < 1100) busy = true;
       if (pulseT0 >= 0 && now - pulseT0 < 1000) busy = true;
       if (mode === 'orbit' && !morph && now < shimmerUntil) busy = true;
+      if (pathOn && drawT0 === null && !flight) drawT0 = now; // E8: 카메라 비행이 끝난 뒤 선을 긋기 시작한다
+      if (pathOn && drawT0 !== -1 && (drawT0 === null || now - drawT0 < 1100)) busy = true;
       var t0 = performance.now();
       draw(now);
       drawTimes.push(performance.now() - t0);
@@ -654,6 +663,7 @@
         if (n === view.c) base = 1; else if (!lit[n.i]) base = Math.min(1, T.dim * 1.6);
         return h && n !== h && !h.nb.has(n) && n !== view.c ? Math.min(base, 0.35) : base;
       }
+      if (pathOn && !stepOf.has(n)) base = Math.min(base, (1 + T.dim) / 2); // 경로가 주인공이지만 지도는 남는다 (06 4.2)
       if (n === h) return 1;
       return h && !h.nb.has(n) ? Math.min(base, 0.42) : base;
     }
@@ -707,7 +717,8 @@
       var names = nameA > 0 ? drawNebulaNames(nameA, now) : [];
 
       // 4. 엣지: 더하기 합성으로 겹칠수록 밝은 빛 실. 궤도에서는 배경 노드끼리만 아주 흐리게
-      var atlasEA = edgeIn * (1 - 0.82 * mix) * (mode === 'atlas' && h ? 0.45 : 1);
+      var pa = pathOn ? 1 - mix : 0; // 경로 층 알파. 궤도에서는 그리지 않는다 (06 4.4)
+      var atlasEA = edgeIn * (1 - 0.82 * mix) * (mode === 'atlas' && h ? 0.45 : 1) * (1 - 0.55 * pa);
       if (atlasEA > 0.01) {
         var inOrbit = mode === 'orbit';
         ctx.globalCompositeOperation = T.blend;
@@ -731,6 +742,13 @@
             ctx.stroke();
           }
         }
+        // 경로 단계끼리의 엣지는 원래 알파로 돌려 놓는다 (나머지는 45%)
+        for (var si = 0; si < stepEdges.length && pa > 0; si++) {
+          var se = stepEdges[si], sm = se.s.category === se.t.category;
+          ctx.strokeStyle = sm ? T.cat[se.s.category] : T.edge;
+          ctx.globalAlpha = T.edgeAlpha * (sm ? 1.25 : 0.9) * atlasEA / (1 - 0.55 * pa) * 0.55 * pa;
+          ctx.beginPath(); ctx.moveTo(sx(se.s.x), sy(se.s.y)); ctx.lineTo(sx(se.t.x), sy(se.t.y)); ctx.stroke();
+        }
       }
       // 조감에서 호버한 노드의 엣지: 두 노드 색 사이로 변하는 빛 실
       if (mode === 'atlas' && h && !morph && edgeIn > 0) {
@@ -749,6 +767,8 @@
       // 5. 뒤쪽 노드 (조감 전체, 또는 궤도의 배경)
       drawnNodes = 0;
       drawNodes(now, false);
+      badgeBoxes = [];
+      if (pa > 0.01) drawPath(now, pa);
 
       // 6. 궤도 층: 렌즈, 중심 빛, 안내선, 카테고리 호, 궤도 엣지
       var ov = view || prevView;
@@ -764,8 +784,12 @@
         drawOrbitLayer(ov, mix * (prevView && view ? et : 1), h, now, cs);
       }
 
-      // 7. 앞쪽 노드 (궤도 위)
+      // 7. 앞쪽 노드 (궤도 위). 궤도 위 단계 노드에도 번호 배지를 단다 (06 4.4)
       drawNodes(now, true);
+      if (pathOn && view && mix > 0.01) pathOn.steps.forEach(function (st) {
+        var m = st.node;
+        if (m.role >= 0 && m.lt > 0.6) badgeAt(m, st.n, 1, mix * clamp((m.lt - 0.6) / 0.4) * (h && m !== h && !h.nb.has(m) && m !== view.c ? 0.35 : 1), true);
+      });
 
       // 8. 선택 맥박: 중심에서 한 번 퍼지는 고리 둘
       if (view && pulseT0 >= 0 && now >= pulseT0 && now - pulseT0 < 1000) {
@@ -817,6 +841,86 @@
     function roundRect(x, y, w, h, r) {
       ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
       ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+    }
+
+    // 경로 선 (06 4.2): 단계 노드를 잇는 Catmull-Rom (장력 0.5) 을 구간마다 24점으로 펴고 노드 원 가장자리에서 끊는다.
+    // 펴 둔 길이로 E8 의 "선이 그려지는" 진행과 배지가 나타나는 시각을 구한다
+    function pathGeom() {
+      var P = pathOn.steps.map(function (st) {
+        var n = st.node;
+        return { x: sx(n.x), y: sy(n.y), r: nodeR(n) * 1.08 + (n.category === 'overviews' ? 3.1 : 0) + 3, n: n };
+      });
+      var segs = [], total = 0, at = [0];
+      for (var i = 0; i + 1 < P.length; i++) {
+        var p0 = P[i - 1] || P[i], p1 = P[i], p2 = P[i + 1], p3 = P[i + 2] || p2;
+        var c1x = p1.x + (p2.x - p0.x) / 6, c1y = p1.y + (p2.y - p0.y) / 6, c2x = p2.x - (p3.x - p1.x) / 6, c2y = p2.y - (p3.y - p1.y) / 6;
+        var pts = [], len = 0;
+        for (var j = 0; j <= 24; j++) {
+          var t = j / 24, u = 1 - t, a = u * u * u, b = 3 * u * u * t, c = 3 * u * t * t, d = t * t * t;
+          var x = a * p1.x + b * c1x + c * c2x + d * p2.x, y = a * p1.y + b * c1y + c * c2y + d * p2.y;
+          if (Math.hypot(x - p1.x, y - p1.y) < p1.r || Math.hypot(x - p2.x, y - p2.y) < p2.r) continue;
+          if (pts.length) len += Math.hypot(x - pts[pts.length - 1][0], y - pts[pts.length - 1][1]);
+          pts.push([x, y]);
+        }
+        segs.push({ pts: pts, start: total, len: len, dashed: !lit[p1.n.i] || !lit[p2.n.i] });
+        total += len; at.push(total);
+      }
+      return { segs: segs, total: total, at: at };
+    }
+    function drawPath(now, pa) {
+      var g = pathGeom(), el = drawT0 === -1 ? 1e9 : drawT0 === null ? 0 : now - drawT0;
+      var D = g.total * ease4(clamp(el / 900));
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      // 빛 띠 6px 위에 선 2px. 필터 밖 단계로 드나드는 구간은 점선 (06 4.2)
+      [[6, T.pathGlow, T.blend], [2, T.path, 'source-over']].forEach(function (pass) {
+        ctx.lineWidth = pass[0]; ctx.strokeStyle = pass[1]; ctx.globalCompositeOperation = pass[2]; ctx.globalAlpha = pa;
+        g.segs.forEach(function (sg) {
+          if (sg.start >= D || sg.pts.length < 2) return;
+          ctx.setLineDash(sg.dashed ? [4, 4] : []);
+          ctx.beginPath(); ctx.moveTo(sg.pts[0][0], sg.pts[0][1]);
+          var acc = sg.start;
+          for (var k = 1; k < sg.pts.length; k++) {
+            var q = sg.pts[k - 1], r = sg.pts[k], dl = Math.hypot(r[0] - q[0], r[1] - q[1]);
+            if (acc + dl > D) { var f = (D - acc) / dl; ctx.lineTo(q[0] + (r[0] - q[0]) * f, q[1] + (r[1] - q[1]) * f); break; }
+            ctx.lineTo(r[0], r[1]); acc += dl;
+          }
+          ctx.stroke();
+        });
+      });
+      ctx.setLineDash([]); ctx.globalCompositeOperation = 'source-over';
+      // 방향 촉: 구간 가운데에 4px. 선이 지나간 구간만
+      ctx.fillStyle = T.path; ctx.globalAlpha = pa;
+      g.segs.forEach(function (sg) {
+        var m = sg.pts.length >> 1;
+        if (sg.pts.length < 5 || sg.len < 36 || sg.start + sg.len / 2 > D) return;
+        var A = sg.pts[m - 1], B = sg.pts[m + 1], ux = B[0] - A[0], uy = B[1] - A[1], ul = Math.hypot(ux, uy) || 1, x = sg.pts[m][0], y = sg.pts[m][1];
+        ux /= ul; uy /= ul;
+        ctx.beginPath(); ctx.moveTo(x + ux * 4, y + uy * 4);
+        ctx.lineTo(x - ux * 3 - uy * 3.5, y - uy * 3 + ux * 3.5); ctx.lineTo(x - ux * 1.2, y - uy * 1.2); ctx.lineTo(x - ux * 3 + uy * 3.5, y - uy * 3 - ux * 3.5);
+        ctx.closePath(); ctx.fill();
+      });
+      ctx.lineCap = 'butt';
+      // 배지: 선 끝이 그 단계에 닿을 때 120ms 커지며 나타난다 (12.2 E8). 닿는 시각은 ease-out 의 역함수로 구한다
+      pathOn.steps.forEach(function (st, i) {
+        var reach = g.total ? 900 * (1 - Math.pow(1 - g.at[i] / g.total, 0.25)) : 0;
+        var s = el >= 1e9 ? 1 : clamp((el - reach) / 120);
+        if (s > 0) badgeAt(st.node, st.n, ease4(s), pa, true);
+      });
+    }
+    // 번호 배지: 노드 왼쪽 아래 (라벨 자리 오른쪽 위의 반대쪽), 지름 18px. 조감에서는 라벨이 피할 장애물이다 (06 4.2)
+    function badgeAt(n, num, s, a, obstacle) {
+      var p = S(n), rd = nodeR(n) * 1.08 + (n.category === 'overviews' ? 3.1 : 0), d = rd + 1 + 9;
+      var x = p.x - d * 0.83, y = p.y + d * 0.56, R = 9 * (0.55 + 0.45 * s);
+      if (x < -20 || y < -20 || x > W + 20 || y > H + 20) return;
+      if (obstacle) badgeBoxes.push({ x: x - 10, y: y - 10, w: 20, h: 20 });
+      ctx.globalAlpha = a * s;
+      ctx.fillStyle = T.labelHalo; ctx.beginPath(); ctx.arc(x, y, R + 1.5, 0, TAU); ctx.fill();
+      ctx.fillStyle = T.path; ctx.beginPath(); ctx.arc(x, y, R, 0, TAU); ctx.fill();
+      ctx.fillStyle = T.pathInk; ctx.font = '700 ' + (11 * (0.55 + 0.45 * s)).toFixed(1) + 'px ' + T.font;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+      ctx.fillText(String(num), x, y + 0.5);
+      ctx.textAlign = 'left'; ctx.globalAlpha = 1;
     }
 
     function drawNodes(now, front) {
@@ -1107,7 +1211,7 @@
       for (var i = 0; i < N; i++) {
         var n = nodes[i], top = catTop[n.category] === n;
         // 최근 노드는 줌과 무관한 후보다. 다만 필터 밖과 흐린 노드는 다른 노드처럼 뺀다 (06 2.2, 표시만 하고 필터와 섞지 않는다)
-        var hit = searchHits.has(n), rec = recentOn && n.recent && lit[i] && emph[i] >= 0.9;
+        var hit = searchHits.has(n) || (pathOn && stepOf.has(n)), rec = recentOn && n.recent && lit[i] && emph[i] >= 0.9; // 단계 노드는 검색 결과와 같은 강제 후보 (06 4.2)
         var forced = n === h || hit || rec || (h && h.nb.has(n) && n.degree >= 10);
         if (!forced && ((n.degree < minDeg && !top) || emph[i] < 0.9 || !lit[i])) continue;
         var px = sx(n.x), py = sy(n.y);
@@ -1115,7 +1219,7 @@
         cand.push({ n: n, x: px, y: py, forced: forced, pri: (n === h ? 1e6 : 0) + (hit ? 1e5 : 0) + (forced ? 1e4 : 0) + (top ? 1e3 : 0) + n.degree });
       }
       cand.sort(function (a, b) { return b.pri - a.pri; });
-      var boxes = chromeRects().concat(names), drawn = 0, free = 0, heavy = [];
+      var boxes = chromeRects().concat(names, badgeBoxes), drawn = 0, free = 0, heavy = [];
       // 라벨이 덮지 않을 구슬: 이름이 붙을 만한 허브와 overviews 고리 (작은 잎은 할로 위로 지나가도 읽힌다)
       for (var hi = 0; hi < N; hi++) {
         var hn = nodes[hi];
@@ -1203,7 +1307,7 @@
     function drawOrbitLabels(h) {
       var k = cam.k, cs = { x: C.x * k + cam.x, y: C.y * k + cam.y };
       var rightBound = isMobile() || panel.hidden ? W - 8 : panel.offsetLeft - 8;
-      var boxes = chromeRects().slice(), obst = [];
+      var boxes = chromeRects().concat(badgeBoxes), obst = []; // 궤도 라벨도 번호 배지를 피한다
       if (pillBox) boxes.push({ x: pillBox.x - 4, y: pillBox.y - 4, w: pillBox.w + 8, h: pillBox.h + 8 });
       var members = view.r1.concat(view.r2);
       // 장애물은 그려진 크기로 잰다: 구슬 테(1.08배)와 overviews 고리(+3.1)
@@ -1551,7 +1655,7 @@
       cursor = null; setHover(null);
       prevView = view; view = layout(id, expanded);
       setTargets(view, 'recenter');
-      renderPanel(); renderTrail();
+      renderPanel(); renderTrail(); syncBar();
       if (isMobile()) setSheet(sheetFull, false); // 내용이 바뀌면 펼친 시트 높이도 바뀐다
       flyTo(orbitCam(view), 600, 'recenter');
       pulseT0 = reduce ? -1 : performance.now() + 200;
@@ -1622,6 +1726,7 @@
       syncRow();
       renderPanel(); renderTrail();
       syncSheet();
+      syncBar();
       chromeCache = null;
     }
     function closePanel() {
@@ -1632,6 +1737,7 @@
       if (tools) tools.hidden = false;
       syncRow();
       syncSheet();
+      syncBar();
       chromeCache = null;
       if (had) canvas.focus({ preventScroll: true });
     }
@@ -1648,7 +1754,11 @@
         '<span class="graph-out-mark" hidden>필터 밖</span>' +
         (n.recent ? '<span class="graph-new-mark"' + (recentOn ? '' : ' hidden') + '>새로 추가 ' + +n.added.slice(5, 7) + '월 ' + +n.added.slice(8, 10) + '일</span>' : '');
       pOpen.href = pageHref(n);
-      var html = n.tags.length ? '<ul class="graph-p-tags" aria-label="태그">' + n.tags.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '';
+      // 중심이 단계 노드면 "…의 4단계" 와 note, 선수 단계 번호 (06 4.4)
+      var st = pathOn && stepOf.has(n) ? pathOn.steps[stepOf.get(n)] : null;
+      var html = st ? '<div class="graph-p-path"><p class="graph-p-path-h"><span class="graph-p-path-n" aria-hidden="true">' + st.n + '</span>' + esc(pathOn.title) + '의 ' + st.n + '단계</p>' +
+        (st.note ? '<p class="graph-p-path-note">' + esc(st.note) + '</p>' : '') + (st.prereq.length ? '<p class="graph-p-path-pre">선수 단계 ' + st.prereq.join(', ') + '</p>' : '') + '</div>' : '';
+      html += n.tags.length ? '<ul class="graph-p-tags" aria-label="태그">' + n.tags.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '';
       html += '<h3 class="graph-p-section">이웃 페이지 <span>' + nb + '개</span></h3>';
       if (nb > 40) html += '<p class="graph-p-note">이웃이 많아 궤도에는 라벨을 일부만 적습니다. 전체는 이 목록에 있습니다.</p>';
       var cur = null, first = true;
@@ -1679,7 +1789,7 @@
       pToggle.textContent = sheetFull ? '이웃 접기' : '이웃 ' + nb + '개';
     }
     function renderTrail() {
-      var show = trail.slice(-4), skipped = trail.length - show.length;
+      var show = trail.slice(pathOn && barMode() === 'compact' && isMobile() ? -2 : -4), skipped = trail.length - show.length;
       crumbs.innerHTML = (skipped ? '<li class="graph-crumb-more"><span aria-hidden="true">…</span><span class="sr-only">앞의 ' + skipped + '개 생략</span></li>' : '') +
         show.map(function (id, i) {
           var m = byId[id], last = i === show.length - 1;
@@ -1982,7 +2092,7 @@
 
     // 팝오버 열고 닫기 (02 2.6). 열면 첫 칩에 초점, Esc 와 버튼은 초점을 버튼으로 돌린다
     function openFilters() {
-      closeResults();
+      closeResults(); closePaths(false);
       pop.hidden = false;
       fBtn.setAttribute('aria-expanded', 'true');
       // 모바일 궤도: 패널 시트를 접고 inert (01 5.4)
@@ -2013,8 +2123,10 @@
     // 밖을 누르면 닫는다. 캔버스 탭이었으면 노드를 고르지 않는다 (드래그는 팬으로 둔다)
     document.addEventListener('pointerdown', function (e) {
       var open = !pop.hidden, out = open && !pop.contains(e.target) && !fBtn.contains(e.target);
-      popSwallow = out && e.target === canvas;
+      var outP = pathPop && !pathPop.hidden && !pathPop.contains(e.target) && !pathBtn.contains(e.target);
+      popSwallow = (out || outP) && e.target === canvas;
       if (out) closeFilters(false);
+      if (outP) closePaths(false);
     }, true);
     pop.addEventListener('click', function (e) {
       var b = e.target.closest('button');
@@ -2148,8 +2260,8 @@
     function closeResults() { results.innerHTML = ''; q.setAttribute('aria-expanded', 'false'); q.removeAttribute('aria-activedescendant'); }
     function clearSearch() { q.value = ''; searchQ = ''; hits = []; active = -1; searchHits = new Set(); clearTimeout(countTimer); closeResults(); redraw(); }
     // 고르면: 입력 비우기, 그 노드를 막던 축만 풀기, 궤도 진입이나 중심 옮기기, 초점은 캔버스로 (02 7.5)
-    function pick(n) {
-      clearSearch();
+    // 고른 노드를 막던 축만 푼다 (02 7.5, 06 4.2 단계 노드를 고를 때도 같다)
+    function freeFor(n) {
       var freed = false;
       if (fActive && !inF[n.i]) {
         if (filt.cat.size && !filt.cat.has(n.category)) { filt.cat.clear(); freed = true; }
@@ -2157,13 +2269,18 @@
         if (filt.tag.size && !n.tags.some(function (t) { return filt.tag.has(t); })) { filt.tag.clear(); freed = true; }
         if (freed) applyFilters({ silent: true });
       }
+      return freed;
+    }
+    function pick(n) {
+      clearSearch();
+      var freed = freeFor(n);
       canvas.focus({ preventScroll: true });
       if (mode === 'orbit' && view && view.c === n) { if (freed) announce('필터 일부를 해제했습니다'); return; }
       selectNode(n.id);
       if (freed) announce(live.textContent + '. 필터 일부를 해제했습니다');
     }
     q.addEventListener('input', function () { runSearch(false); });
-    q.addEventListener('focus', function () { closeFilters(false); if (searchQ) renderResults(); else if (recentOn) runSearch(true); });
+    q.addEventListener('focus', function () { closeFilters(false); closePaths(false); if (searchQ) renderResults(); else if (recentOn) runSearch(true); });
     q.addEventListener('blur', function () { setTimeout(function () { if (document.activeElement !== q) closeResults(); }, 0); });
     q.addEventListener('keydown', function (e) {
       if (e.isComposing || e.keyCode === 229) return; // 조합을 끝내는 Enter 가 결과 선택으로 번지지 않게 (02 7.1)
@@ -2185,6 +2302,294 @@
     });
     results.addEventListener('pointerdown', function (e) { e.preventDefault(); }); // 입력 초점을 지킨다 (02 7.4)
     results.addEventListener('click', function (e) { var li = e.target.closest('li[data-id]'); if (li) pick(byId[li.dataset.id]); });
+
+    // ── 학습 경로 겹쳐 보기 (06 4절, 12.2 E2 재생, E8 진입 연출) ─────────────
+    // paths.json 은 경로 버튼을 처음 열 때나 hash 에 path= 가 있을 때 받는다. 켜고 끄고 바꾸기는 replaceState (02 8.6)
+    var pathBtn = document.getElementById('graph-path-btn'), pathPop = document.getElementById('graph-paths');
+    var pathList = document.getElementById('graph-path-list'), pathOff = document.getElementById('graph-path-off');
+    var pathBar = document.getElementById('graph-pathbar'), pbSteps = document.getElementById('graph-steps');
+    var pbPrev = document.getElementById('graph-path-prev'), pbNext = document.getElementById('graph-path-next');
+    var pbPlay = document.getElementById('graph-path-play'), pbCount = document.getElementById('graph-pathbar-count');
+    var PATHS = null, pathsP = null, playing = false, playT = 0, syncStepTabs = function () {}, syncPathTabs = function () {};
+    function loadPaths() {
+      if (!pathBtn) return Promise.resolve([]);
+      if (!pathsP) pathsP = fetch(canvas.dataset.paths).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }).then(function (d) {
+        if (!d || d.version !== 1 || !Array.isArray(d.paths)) throw new Error('paths.json version 1 이 아니다');
+        return d.paths.map(function (p) {
+          return { id: p.id, title: p.title, steps: (p.steps || []).map(function (st) {
+            return { n: st.n, node: byId[st.id], note: st.note || '', prereq: st.prereq || [] };
+          }).filter(function (st) { return st.node; }) };
+        }).filter(function (p) { return p.steps.length; });
+      }).catch(function (err) {
+        console.warn('[graph] 학습 경로를 불러오지 못했다:', err && err.message ? err.message : err);
+        return [];
+      }).then(function (ps) { PATHS = ps; renderPathList(); return ps; });
+      return pathsP;
+    }
+    function renderPathList() {
+      document.getElementById('graph-paths-n').textContent = PATHS.length;
+      pathList.innerHTML = PATHS.length ? PATHS.map(function (p) {
+        var on = pathOn && pathOn.id === p.id;
+        return '<button type="button" role="radio" class="graph-path-opt" data-id="' + esc(p.id) + '" aria-checked="' + on + '" tabindex="' + (on ? 0 : -1) + '">' +
+          '<span class="graph-path-radio" aria-hidden="true"></span><span class="graph-path-t">' + esc(p.title) + '</span>' +
+          '<span class="graph-chip-n">' + p.steps.length + '단계</span><span class="graph-path-band" aria-hidden="true">' +
+          p.steps.map(function (st) { return '<span class="graph-swatch" data-cat="' + esc(st.node.category) + '"></span>'; }).join('') + '</span></button>';
+      }).join('') : '<p class="graph-opt-empty">학습 경로를 불러오지 못했습니다.</p>';
+      pathOff.disabled = !pathOn;
+      syncPathTabs();
+    }
+    function openPaths() {
+      closeFilters(false); closeResults();
+      pathPop.hidden = false;
+      pathBtn.setAttribute('aria-expanded', 'true');
+      if (isMobile() && !panel.hidden) { if (sheetFull) setSheet(false, true); panel.setAttribute('inert', ''); } // 필터 시트와 같다 (01 5.4)
+      chromeCache = null; namesCache = null;
+      loadPaths().then(function () {
+        if (pathPop.hidden) return;
+        var b = pathList.querySelector('[aria-checked="true"]') || pathList.querySelector('.graph-path-opt') || pathOff;
+        b.focus({ preventScroll: true });
+      });
+      redraw();
+    }
+    function closePaths(focusBtn) {
+      if (!pathPop || pathPop.hidden) return;
+      var had = pathPop.contains(document.activeElement);
+      pathPop.hidden = true;
+      pathBtn.setAttribute('aria-expanded', 'false');
+      if (!panel.hidden && pop.hidden) panel.removeAttribute('inert');
+      chromeCache = null; namesCache = null;
+      if (focusBtn || had) pathBtn.focus({ preventScroll: true });
+      redraw();
+    }
+    // 경로 켜기, 끄기, 바꾸기. opts.fit: 단계 노드 전체에 맞춘다, opts.reveal: E8 진입 연출, opts.quiet: 알리지 않는다
+    function setPath(id, opts) {
+      opts = opts || {};
+      var p = id && PATHS ? PATHS.filter(function (x) { return x.id === id; })[0] : null;
+      if (id && !p) console.warn('[graph] 학습 경로 목록에 없는 id 라 무시한다: ' + id);
+      stopPlay(true);
+      pathOn = p || null;
+      stepOf = new Map(); stepEdges = []; pathIdx = -1;
+      if (pathOn) {
+        pathOn.steps.forEach(function (st, i) { stepOf.set(st.node, i); });
+        edges.forEach(function (e) { if (stepOf.has(e.s) && stepOf.has(e.t)) stepEdges.push(e); });
+      }
+      drawT0 = pathOn && opts.reveal && !reduce ? null : -1;
+      stage.classList.toggle('has-path', !!pathOn);
+      var badge = pathBtn.querySelector('.graph-badge');
+      badge.hidden = !pathOn; badge.textContent = pathOn ? pathOn.steps.length : '';
+      pathBtn.classList.toggle('is-on', !!pathOn);
+      pathBtn.setAttribute('aria-label', '학습 경로' + (pathOn ? ', ' + pathOn.title + ' 켜짐' : ''));
+      if (PATHS) renderPathList();
+      renderBar();
+      if (view) { renderPanel(); renderTrail(); if (isMobile()) setSheet(sheetFull, false); }
+      namesCache = null;
+      if (pathOn && opts.fit) {
+        if (mode === 'orbit') exitOrbit();
+        flyTo(fitTarget(pathOn.steps.map(function (st) { return st.node; })), opts.instant ? 0 : DUR_CAMERA);
+      }
+      if (!opts.quiet) announce(pathOn ? '학습 경로 ' + pathOn.title + ', ' + pathOn.steps.length + '단계' : '학습 경로 끔');
+      writeUrl(false);
+      redraw();
+    }
+    // hash 의 path. paths.json 을 받은 뒤 적용하고, 모르는 id 는 버린 정규 hash 로 고친다 (02 8.4)
+    function applyPath(id, fit) {
+      if (id === (pathOn ? pathOn.id : null)) { pendingPath = null; return; }
+      if (!id) { pendingPath = null; if (pathOn) setPath(null, { quiet: true }); return; }
+      if (!pathBtn) { console.warn('[graph] 학습 경로가 없는 빌드라 path 를 무시한다: ' + id); return; }
+      pendingPath = id;
+      loadPaths().then(function () {
+        if (pendingPath !== id) return; // 그 사이 다른 hash 가 왔다
+        pendingPath = null;
+        var was = applying;
+        applying = true;
+        try { setPath(id, { fit: fit && mode !== 'orbit', reveal: fit && mode !== 'orbit', quiet: true }); } finally { applying = was; }
+        if (!applying) setUrl(hashOf(curState()), false);
+      });
+    }
+
+    // 단계 막대 (06 4.3). 자리: 데스크톱과 태블릿은 아래쪽 떠 있는 막대(float), 모바일 조감은 칩 줄 자리(row),
+    // 모바일 궤도와 휴대폰 가로는 경로 줄 끝 알약(compact)
+    function barMode() {
+      if (!pathOn || !pathBar) return '';
+      return mqLand.matches || (isMobile() && mode === 'orbit') ? 'compact' : isMobile() ? 'row' : 'float';
+    }
+    function renderBar() {
+      if (!pathBar) return;
+      pathBar.hidden = !pathOn;
+      if (!pathOn) { placeBar(); return; }
+      var name = document.getElementById('graph-pathbar-name');
+      name.textContent = pathOn.title.length > 14 ? pathOn.title.slice(0, 13) + '…' : pathOn.title;
+      name.title = pathOn.title;
+      var byN = {}, max = 0, html = '';
+      pathOn.steps.forEach(function (st, i) { byN[st.n] = i; max = Math.max(max, st.n); });
+      for (var k = 1; k <= max; k++) {
+        var i = byN[k], st = pathOn.steps[i];
+        html += k in byN
+          ? '<li><button type="button" class="graph-step" data-i="' + i + '" data-cat="' + esc(st.node.category) + '" aria-label="' + k + '단계, ' + esc(st.node.title) + '" tabindex="-1">' + k + '</button></li>'
+          : '<li class="is-missing" aria-hidden="true"><span class="graph-step"></span></li>'; // 미해석으로 빠진 번호 (06 4.6)
+      }
+      pbSteps.innerHTML = html;
+      syncStepTabs();
+      syncPlayBtn();
+      syncBar();
+    }
+    // 현재와 지나간 단계, ‹ › 가능 여부, 알약의 "3/11", 자리
+    function syncBar() {
+      if (!pathOn) { placeBar(); return; }
+      var cur = mode === 'orbit' && view && stepOf.has(view.c) ? stepOf.get(view.c) : -1;
+      if (cur >= 0) pathIdx = cur;
+      pbSteps.querySelectorAll('button.graph-step').forEach(function (b) {
+        var i = +b.dataset.i;
+        b.classList.toggle('is-past', cur >= 0 && i < cur);
+        if (i === cur) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
+      });
+      pbCount.textContent = (cur >= 0 ? cur + 1 : '-') + '/' + pathOn.steps.length;
+      pbPrev.setAttribute('aria-disabled', String(stepTarget(-1) < 0));
+      pbNext.setAttribute('aria-disabled', String(stepTarget(1) < 0));
+      placeBar();
+    }
+    function placeBar() {
+      if (!pathBar) return;
+      var m = barMode(), st = pathBar.style;
+      pathBar.classList.toggle('is-compact', m === 'compact');
+      pathBar.classList.toggle('is-row', m === 'row');
+      stage.classList.toggle('has-pathrow', m === 'row');
+      st.left = st.right = st.bottom = st.maxWidth = '';
+      trailEl.style.maxWidth = rowEl.style.maxWidth = '';
+      chromeCache = null; namesCache = null;
+      if (m === 'compact') {
+        // 알약은 경로 줄 오른쪽 끝. 휴대폰 가로 궤도에서는 옆 패널 왼쪽에 둔다. 경로 줄과 칩 줄은 알약 앞에서 멈춘다
+        var ins = dock.offsetLeft;
+        st.right = (mode === 'orbit' && !panel.hidden && !isMobile() ? W - panel.offsetLeft + 8 : ins) + 'px';
+        var room = pathBar.offsetLeft - 8;
+        trailEl.style.maxWidth = Math.max(80, room - trailEl.offsetLeft) + 'px';
+        rowEl.style.maxWidth = Math.max(80, room - rowEl.offsetLeft) + 'px';
+      }
+      if (m !== 'float') return;
+      // 범례 독과 오른쪽 장애물(도구 묶음, 궤도는 패널) 사이 가운데. 모자라면 도구 위, 그래도 모자라면 범례 위에 두고 단계 점을 가로로 민다
+      // 이름은 줄어들 수 있으므로 이름을 48px 만 남긴 폭이 들어가면 그 자리를 쓴다
+      var g = 12, inset = dock.offsetLeft, w0 = pathBar.offsetWidth, wMin = w0 - document.getElementById('graph-pathbar-name').offsetWidth + 48;
+      var dockR = dock.offsetLeft + dock.offsetWidth, rightX = mode === 'orbit' && !panel.hidden ? panel.offsetLeft - g : W - inset;
+      var toolsOn = tools && !tools.hidden;
+      var cand = [{ l: dockR + g, r: toolsOn ? tools.offsetLeft - g : rightX, b: inset }];
+      if (toolsOn) cand.push({ l: dockR + g, r: rightX, b: H - tools.offsetTop + 8 });
+      cand.push({ l: inset, r: rightX, b: H - dock.offsetTop + 8 });
+      var pick = cand.filter(function (c) { return c.r - c.l >= wMin; })[0] ||
+        cand.slice().sort(function (a, b) { return (b.r - b.l) - (a.r - a.l); })[0];
+      var w = Math.min(w0, pick.r - pick.l);
+      st.left = Math.round(pick.l + (pick.r - pick.l - w) / 2) + 'px';
+      st.bottom = Math.round(pick.b) + 'px';
+      st.maxWidth = Math.round(pick.r - pick.l) + 'px';
+    }
+    // ‹ › 의 목적지. 조감: › 는 1단계, ‹ 는 마지막. 궤도: 중심이 단계면 앞뒤, 경로 밖이면 마지막에 간 단계 기준
+    function stepTarget(d) {
+      var L = pathOn ? pathOn.steps.length : 0, j;
+      if (!L) return -1;
+      if (mode !== 'orbit' || !view) j = d > 0 ? 0 : L - 1;
+      else {
+        var cur = stepOf.has(view.c) ? stepOf.get(view.c) : -1;
+        j = cur >= 0 ? cur + d : pathIdx < 0 ? (d > 0 ? 0 : L - 1) : d > 0 ? pathIdx + 1 : pathIdx;
+      }
+      return j >= 0 && j < L ? j : -1;
+    }
+    function goStep(j) {
+      var n = pathOn.steps[j].node;
+      pathIdx = j;
+      freeFor(n); // 단계 노드를 고르면 필터를 푼다 (06 4.2)
+      selectNode(n.id);
+      syncBar();
+    }
+
+    // E2 경로 재생: 3초마다 다음 단계로 궤도 중심을 옮긴다. 아무 입력이나 들어오면 멈춘다. reduced-motion 에서는 버튼을 숨긴다
+    function syncPlayBtn() {
+      if (!pbPlay) return;
+      pbPlay.hidden = reduce;
+      pbPlay.setAttribute('aria-pressed', String(playing));
+      pbPlay.setAttribute('aria-label', playing ? '재생 멈춤' : '경로 재생');
+    }
+    function startPlay() {
+      if (!pathOn || reduce) return;
+      playing = true; syncPlayBtn();
+      announce('경로 재생. 3초마다 다음 단계로 옮깁니다');
+      var j = stepTarget(1);
+      goStep(j < 0 ? 0 : j); // 마지막 단계에서 누르면 처음부터
+      tick();
+    }
+    function tick() {
+      clearTimeout(playT);
+      playT = setTimeout(function () {
+        var j = playing && pathOn ? stepTarget(1) : -1;
+        if (j < 0 || mode !== 'orbit') { stopPlay(); return; }
+        goStep(j);
+        tick();
+      }, 3000);
+    }
+    function stopPlay(quiet) {
+      if (!playing) return;
+      playing = false; clearTimeout(playT); syncPlayBtn();
+      if (!quiet) announce('재생 멈춤');
+    }
+    // 캡처 단계에서 먼저 듣는다. 재생 버튼 자신의 입력은 버튼 클릭이 처리한다. 재생 중 Esc 는 멈춤만 한다
+    function anyInput(e) {
+      if (!playing || (pbPlay.contains(e.target) && (e.type !== 'keydown' || e.key === 'Enter' || e.key === ' '))) return;
+      if (e.type === 'keydown' && e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); }
+      stopPlay();
+    }
+
+    // 단계 점의 툴팁: 제목, note, 선수 단계 번호 (.graph-tip 재사용, 06 4.3)
+    function stepTip(b) {
+      var st = pathOn && pathOn.steps[+b.dataset.i];
+      if (!st) return;
+      wantTip(null); tipNode = null;
+      tip.innerHTML = '<div class="graph-tip-title">' + esc(st.node.title) + '</div>' + (st.note ? '<p class="graph-tip-note">' + esc(st.note) + '</p>' : '') +
+        '<div class="graph-tip-meta" data-cat="' + esc(st.node.category) + '"><span class="graph-swatch"></span><span>' + st.n + '단계</span>' +
+        (st.prereq.length ? '<span>선수 단계 ' + st.prereq.join(', ') + '</span>' : '') + '</div>';
+      tip.hidden = false;
+      var r = b.getBoundingClientRect(), c = canvas.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
+      var x = Math.max(8, Math.min(W - 8 - tw, r.left - c.left + r.width / 2 - tw / 2)), y = r.top - c.top - th - 10;
+      if (y < 8 || barMode() !== 'float') y = r.bottom - c.top + 10;
+      tip.style.left = x + 'px'; tip.style.top = y + 'px';
+    }
+    function stepTipOff() { if (!tipNode) { tip.hidden = true; } }
+
+    if (pathBtn) {
+      pathBtn.addEventListener('click', function () { if (pathPop.hidden) openPaths(); else closePaths(true); });
+      var pathPopKey = function (e) {
+        if (e.key !== 'Escape' || pathPop.hidden || e.isComposing) return;
+        e.preventDefault(); e.stopPropagation();
+        closePaths(true);
+      };
+      pathPop.addEventListener('keydown', pathPopKey);
+      pathBtn.addEventListener('keydown', pathPopKey);
+      pathList.addEventListener('click', function (e) {
+        var b = e.target.closest('.graph-path-opt');
+        if (!b) return;
+        closePaths(false);
+        setPath(b.dataset.id, { fit: true, reveal: true });
+        canvas.focus({ preventScroll: true });
+      });
+      pathOff.addEventListener('click', function () { setPath(null); closePaths(true); });
+      syncPathTabs = roving(pathList, '.graph-path-opt');
+      syncStepTabs = roving(pbSteps, 'button.graph-step');
+      pbSteps.addEventListener('click', function (e) {
+        var b = e.target.closest('button.graph-step');
+        if (b) goStep(+b.dataset.i);
+      });
+      pbSteps.addEventListener('pointerover', function (e) { var b = e.target.closest('button.graph-step'); if (b && e.pointerType === 'mouse') stepTip(b); });
+      pbSteps.addEventListener('pointerout', stepTipOff);
+      pbSteps.addEventListener('focusin', function (e) { var b = e.target.closest('button.graph-step'); if (b && b.matches(':focus-visible')) stepTip(b); });
+      pbSteps.addEventListener('focusout', stepTipOff);
+      [[pbPrev, -1], [pbNext, 1]].forEach(function (x) {
+        x[0].addEventListener('click', function () { var j = stepTarget(x[1]); if (j >= 0) goStep(j); });
+      });
+      pbPlay.addEventListener('click', function () { if (playing) stopPlay(); else startPlay(); });
+      document.getElementById('graph-path-close').addEventListener('click', function () { setPath(null); pathBtn.focus({ preventScroll: true }); });
+      ['pointerdown', 'keydown', 'wheel'].forEach(function (t) { window.addEventListener(t, anyInput, { capture: true, passive: t === 'wheel' }); });
+      syncPlayBtn();
+    }
 
     // ── 키보드 (02 6절). 검색, 태그 입력, 팝오버, 이웃 목록은 자기 키를 먼저 처리한다 ──
     function typing(el) { return !!el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)); }
@@ -2266,6 +2671,7 @@
     // Esc 단계 4 ~ 8. 1 ~ 3단계는 검색, 태그 입력, 팝오버가 먼저 처리하고 전파를 멈춘다 (02 6.5절)
     function escStep() {
       if (!pop.hidden) { closeFilters(true); return; }
+      if (pathPop && !pathPop.hidden) { closePaths(true); return; }
       if (mode === 'orbit' && view) {
         if (isMobile() && sheetFull && !panel.hidden) setSheet(false, true);
         else if (cursor) setCursor(null);
@@ -2276,6 +2682,10 @@
         var onReset = document.activeElement === legendReset;
         filt.cat.clear(); applyFilters();
         if (onReset) legendEl.querySelector('.graph-legend-item[tabindex="0"]').focus({ preventScroll: true }); // 누르던 버튼이 숨는다
+      } else if (pathOn) { // 조감에서 마지막으로 경로를 끈다. 막대 안에 초점이 있었으면 경로 버튼으로
+        var inBar = pathBar.contains(document.activeElement);
+        setPath(null);
+        if (inBar) pathBtn.focus({ preventScroll: true });
       }
     }
     // "/" 는 사이트 검색(search.js)보다 먼저 받아 그래프 검색에 준다 (02 6.2절)
@@ -2343,6 +2753,7 @@
       chromeCache = null;
       buildBackground();
       endGesture(); // 진행 중 제스처는 끝낸다 (02 10절)
+      if (pathOn) placeBar();
       syncLegendTabs(); syncToolTabs(); // 폭에 따라 숨는 버튼(모바일 줌)이 Tab 자리를 쥐지 않게
       var p = W < H * 0.8;
       setHover(null);
@@ -2394,12 +2805,14 @@
     function hashOf(s) {
       var p = [];
       if (s.node) p.push('node=' + encId(s.node));
+      if (s.path) p.push('path=' + encId(s.path));
       ['cat', 'type', 'tag'].forEach(function (k) { if (s[k].length) p.push(k + '=' + s[k].map(encodeURIComponent).join(',')); });
       return p.length ? '#' + p.join('&') : '';
     }
     function curState() {
       var f = getFilters();
       f.node = mode === 'orbit' && view ? view.c.id : null;
+      f.path = pathOn ? pathOn.id : pendingPath;
       return f;
     }
     function setUrl(h, push) {
@@ -2416,7 +2829,7 @@
     }
     // hash 를 { kind: 'state' | 'list' | 'anchor' | 'ignore' } 로 읽는다. 모르는 키와 깨진 인코딩은 그 part만 버린다 (02 8.5)
     function readHash() {
-      var h = location.hash.slice(1), s = { node: null, cat: [], type: [], tag: [] }, known = false, list = false;
+      var h = location.hash.slice(1), s = { node: null, path: null, cat: [], type: [], tag: [] }, known = false, list = false;
       if (!h) return { kind: 'state', s: s };
       h.split('&').forEach(function (part) {
         if (part === 'list') { list = true; return; }
@@ -2425,19 +2838,20 @@
         known = true;
         try {
           var raw = part.slice(i + 1);
-          if (k === 'node') s.node = decodeURIComponent(raw) || null;
-          else if (k !== 'path') s[k] = raw.split(',').map(decodeURIComponent).filter(Boolean); // path 는 Phase 5 예약
+          if (k === 'node' || k === 'path') s[k] = decodeURIComponent(raw) || null;
+          else s[k] = raw.split(',').map(decodeURIComponent).filter(Boolean);
         } catch (e) { /* 깨진 % 인코딩 */ }
       });
       if (list) return { kind: 'list' };
       if (known) return { kind: 'state', s: s };
-      if (own(catName, h)) return { kind: 'state', s: { node: null, cat: [h], type: [], tag: [] } }; // 옛 #physical-ai 형식
+      if (own(catName, h)) return { kind: 'state', s: { node: null, path: null, cat: [h], type: [], tag: [] } }; // 옛 #physical-ai 형식
       var el = null;
       try { el = document.getElementById(decodeURIComponent(h)); } catch (e) { /* 깨진 인코딩 */ }
       return el && listEl.contains(el) ? { kind: 'anchor', el: el } : { kind: 'ignore' };
     }
     // URL → 상태. 멱등이라 popstate 와 hashchange 가 함께 와도 한 번만 바뀐다
     function syncFromHash(e) {
+      if (e) stopPlay(true); // 뒤로, 앞으로 가기도 사용자 입력이다 (12.2 E2)
       if (expectBack && e && e.type === 'popstate') {
         // exitOrbit 이 부른 back. 궤도 중에 바꾼 필터를 앞 항목에도 남긴다
         expectBack = false;
@@ -2467,9 +2881,10 @@
         setFilters(f, { silent: first || JSON.stringify(f) === before });
         if (n && !stack) { if (mode !== 'orbit') enterOrbit(n, { instant: first }); else if (view.c !== n) recenter(n.id); }
         else if (!n && mode === 'orbit') exitOrbit();
+        applyPath(s.path, !n);
       } finally { applying = false; }
       if (s.node && !n) announce('요청한 페이지를 그래프에서 찾지 못했습니다');
-      if (stack) { setUrl(hashOf(getFilters()), false); enterOrbit(n, { instant: true }); }
+      if (stack) { setUrl(hashOf(curState()), false); enterOrbit(n, { instant: true }); }
       else setUrl(hashOf(curState()), false); // 정규형으로 고친다
     }
     toListBtn.addEventListener('click', function () {
@@ -2509,6 +2924,7 @@
     var mqReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
     function onReduce() {
       reduce = mqReduce.matches;
+      if (pathBar) { if (reduce) { stopPlay(true); drawT0 = -1; } syncPlayBtn(); }
       if (!reduce) return;
       revealT0 = -1; pulseT0 = -1; shimmerUntil = 0; glide = null;
       if (morph) morph.t0 = -1e9;
@@ -2559,6 +2975,13 @@
       weak: function () { return { on: weakOn, mix: weakMix, ids: nodes.filter(function (n) { return n.weak; }).map(function (n) { return n.id; }) }; },
       search: function () { return { q: searchQ, total: hits.length, shown: hits.slice(0, 8).map(function (h) { return h.n.id; }), active: active, canvas: searchHits.size }; },
       sheet: function () { return { full: sheetFull, h: sheetH }; },
+      // 학습 경로 (Phase 5)
+      path: function () {
+        return { on: pathOn && pathOn.id, steps: pathOn ? pathOn.steps.map(function (st) { return st.node.id; }) : [], idx: pathIdx, pending: pendingPath,
+          playing: playing, drawn: drawT0 === -1 ? 1 : drawT0 === null ? 0 : clamp((performance.now() - drawT0) / 900), badges: badgeBoxes.length, bar: barMode() };
+      },
+      paths: function () { return loadPaths().then(function (ps) { return ps.map(function (p) { return { id: p.id, steps: p.steps.map(function (st) { return st.node.id; }) }; }); }); },
+      setPath: function (id) { return loadPaths().then(function () { setPath(id, { fit: true, reveal: true }); }); },
       geom: function () {
         return { pill: pillBox, centerPill: centerPill, labels: labelBoxes.slice(), chrome: chromeRects(),
           nodes: nodes.filter(function (n) { return mode === 'atlas' ? true : n.role >= 0; }).map(function (n) {

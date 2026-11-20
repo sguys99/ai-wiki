@@ -152,6 +152,30 @@ export function toGraphJson(graph, pages, layout, recent) {
 
 // graph.json 자체 점검 (03 7절 V1 ~ V16). text 는 graph.json 문자열 (V16 바이트 때문).
 // pageCount, edgeCount 는 빌드 메모리 값이고 없으면 V2 등호와 V8 을 건너뛴다.
+// paths.json (03 6.1절, 06 4.6절). 학습 경로를 카탈로그 순서로 싣는다. 미해석 단계는 빼되 원래 번호 n 을 지키고,
+// prereq 는 같은 경로 단계 번호로 바꾼다. 경로 밖 prereq 는 빼고 warnings 에 남긴다. 단계가 하나도 없는 경로는 싣지 않는다
+export function toPathsJson(pages) {
+  const warnings = [];
+  const paths = [...pages.values()]
+    .filter((p) => p.studyPath.some((s) => s.ok))
+    .sort((a, b) => a.order - b.order || (a.id < b.id ? -1 : 1))
+    .map((p) => {
+      const nOf = new Map(p.studyPath.filter((s) => s.ok).map((s) => [s.id, s.n]));
+      const steps = p.studyPath.filter((s) => s.ok).map((s) => ({
+        n: s.n,
+        id: s.id,
+        note: s.note,
+        prereq: s.prereq.flatMap((q) => {
+          if (q.ok && nOf.has(q.id)) return [nOf.get(q.id)];
+          warnings.push(`${p.id} ${s.n}단계 prereq ${q.ref} 가 경로 밖`);
+          return [];
+        }),
+      }));
+      return { id: p.id, title: p.display || p.title, steps };
+    });
+  return { json: { version: 1, paths }, warnings };
+}
+
 // paths, layout3d 는 부속 파일 객체이고 없으면 V14, V15 를 건너뛴다.
 // 반환 { problems (STRICT 실패), warnings, stats (V16 로그 한 줄) }.
 export function checkGraphJson(text, { pageCount, edgeCount, paths, layout3d } = {}) {
@@ -238,11 +262,12 @@ export function checkGraphJson(text, { pageCount, edgeCount, paths, layout3d } =
     if (!(c in ANCHOR)) warnings.push(`V13 앵커 표에 없는 카테고리 ${c} (graph-layout.mjs ANCHOR 에 추가)`);
 
   if (paths) {
+    if (paths.version !== 1 || !Array.isArray(paths.paths)) problems.push(`V14 paths.json version ${paths.version}, paths 배열 아님`);
     for (const p of paths.paths || []) {
       const steps = p.steps || [];
       const ns = new Set(steps.map((s) => s.n));
-      const ok = ids.has(p.id) && ns.size === steps.length &&
-        steps.every((s) => ids.has(s.id) && (s.prereq || []).every((q) => ns.has(q) && q < s.n));
+      const ok = ids.has(p.id) && steps.length > 0 && ns.size === steps.length &&
+        steps.every((s) => isInt(s.n) && s.n >= 1 && ids.has(s.id) && (s.prereq || []).every((q) => ns.has(q) && q < s.n));
       if (!ok) problems.push(`V14 paths.json 경로 ${p.id} 의 id, n, prereq 불일치`);
     }
   }
@@ -256,10 +281,12 @@ export function checkGraphJson(text, { pageCount, edgeCount, paths, layout3d } =
   return { problems, warnings, stats };
 }
 
-// ── self-check: `node lib/graph.mjs --check ../dist/graph.json` ──────────────
+// ── self-check: `node lib/graph.mjs --check ../dist/graph.json [--paths ../dist/graph/paths.json]` ──
 if (process.argv[1]?.endsWith('graph.mjs') && process.argv.includes('--check')) {
-  const file = process.argv[process.argv.indexOf('--check') + 1];
-  const { problems, warnings, stats } = checkGraphJson(readFileSync(file, 'utf8'));
+  const arg = (k) => (process.argv.includes(k) ? process.argv[process.argv.indexOf(k) + 1] : null);
+  const file = arg('--check'), pathsFile = arg('--paths');
+  const paths = pathsFile ? JSON.parse(readFileSync(pathsFile, 'utf8')) : undefined;
+  const { problems, warnings, stats } = checkGraphJson(readFileSync(file, 'utf8'), { paths });
   for (const w of warnings) console.log(`WARN ${w}`);
   for (const p of problems) console.log(`FAIL ${p}`);
   console.log(`graph.json check ${problems.length ? 'FAIL' : '✓'}  ·  ${stats}`);
