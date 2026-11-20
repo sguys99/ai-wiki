@@ -575,7 +575,7 @@ ${recentLegend.slice(1)}
     <button type="button" class="graph-tool is-zoom" id="graph-zoom-out" aria-label="축소" hidden>−</button>
     <button type="button" class="graph-tool" id="graph-fit" hidden><span class="graph-tool-ico" aria-hidden="true">⤢</span><span class="graph-tool-label">화면 맞춤</span></button>
     <button type="button" class="graph-tool" id="graph-to-list"><span class="graph-tool-ico" aria-hidden="true">☰</span><span class="graph-tool-label">목록 보기</span></button>
-    <!-- Phase 5 예약: 데스크톱 전용 3D 실험 페이지 링크 (01 5.6절, 06 6절) -->
+    <a class="graph-tool is-3d" href="${href('/graph/3d/')}" title="3D로 보기 (실험)">3D</a>
   </div>
 ${pathBar}
   <div class="graph-tip" aria-hidden="true" hidden></div>
@@ -585,6 +585,7 @@ ${pathBar}
   <header class="graph-list-head">
     <p class="graph-lede">페이지 사이의 위키링크 관계입니다. 이 목록은 그래프와 같은 페이지를 카테고리별로 모았고, 스크립트가 없어도 모든 페이지에 갈 수 있습니다.</p>
     <p class="graph-stat">${statText}<a class="graph-weak-jump" href="#weak-links">${weakText}<span aria-hidden="true"> →</span></a></p>
+    <p class="graph-3d-jump"><a href="${href('/graph/3d/')}">3D로 보기 (실험)<span aria-hidden="true"> →</span></a></p>
     <p class="graph-list-note" id="graph-list-note" hidden></p>
     <button type="button" class="graph-to-map" id="graph-to-map" hidden>그래프로 보기</button>
     <h2 class="graph-list-title" id="graph-list-h">카테고리별 목록</h2>
@@ -601,6 +602,63 @@ ${weakSection}
     mainAttrs: 'data-view="list"',
     path: '/graph/',
     scripts: ['/static/js/graph-core.js', '/static/js/graph-explorer.js'],
+  });
+}
+
+// ── 3D 실험 페이지 (/graph/3d/) ──────────────────────────────────────────────
+//
+// 보기 전용 (06 6절). 무대는 늘 dark 이고 공용 헤더만 사이트 테마를 따른다 (06 12.1절 R5).
+// 서버는 대체 문구가 보이는 모습으로 내보낸다. 인라인 스크립트가 곧바로 data-state="loading" 으로 바꿔 문구를 숨기고,
+// graph-3d.js 가 three, WebGL, 두 JSON 을 모두 얻으면 "ready", 하나라도 실패하거나 시간 안에 시작하지 못하면 "failed" 다.
+// three 는 이 페이지에서만 불러온다: 모듈 스크립트를 layout() 공통 머리가 아니라 여기에만 둔다 (05 6절).
+// graph-3d.js 가 WebGL 을 확인한 뒤 three 를 동적 import 하므로 modulepreload 는 두지 않는다 (WebGL 없는 브라우저가 170KB를 받지 않게).
+//
+// data: { groups:[{ slug, label, nodes }], stats:{nodes,edges}, graphHref, layoutHref, base }
+export function graph3dPage(data) {
+  const { groups, stats, graphHref, layoutHref, base } = data;
+  const legend = [...groups]
+    .sort((a, b) => b.nodes.length - a.nodes.length)
+    .map(
+      (g) =>
+        `      <button type="button" class="graph-legend-item" data-cat="${escapeHtml(g.slug)}" aria-pressed="false"><span class="graph-swatch" aria-hidden="true"></span><span class="graph-legend-name">${escapeHtml(g.label)}</span><span class="graph-legend-n">${g.nodes.length}</span></button>`
+    )
+    .join('\n');
+  const statText = `페이지 ${stats.nodes.toLocaleString('en-US')}개, 연결 ${stats.edges.toLocaleString('en-US')}개`;
+  const graph2d = href('/graph/');
+  const body = `<h1 class="g3d-title">3D 그래프 (실험)</h1>
+<script>(function(m){m.dataset.state='loading';setTimeout(function(){if(m.dataset.state==='loading')m.dataset.state='failed';},12000);})(document.currentScript.parentNode);</script>
+<div class="g3d-stage" id="g3d-stage" data-graph="${escapeHtml(graphHref)}" data-layout="${escapeHtml(layoutHref)}" data-base="${escapeHtml(base)}" data-graph2d="${escapeHtml(graph2d)}">
+  <div class="g3d-labels" aria-hidden="true"></div>
+  <div class="graph-tip g3d-tip" aria-hidden="true" hidden></div>
+  <div class="g3d-card graph-float" hidden aria-live="polite">
+    <p class="g3d-card-cat"><span class="graph-swatch" aria-hidden="true"></span><span class="g3d-card-catname"></span></p>
+    <h2 class="g3d-card-title"></h2>
+    <p class="g3d-card-meta"></p>
+    <p class="g3d-card-links"><a class="g3d-open" href="#">페이지 열기</a><a class="g3d-2d" href="#">2D에서 보기</a></p>
+    <button type="button" class="g3d-card-close" aria-label="선택 해제">×</button>
+  </div>
+  <div class="graph-legend g3d-legend graph-float is-bl" role="group" aria-label="카테고리 강조">
+    <p class="graph-legend-stat">${statText}</p>
+${legend}
+  </div>
+  <div class="graph-float is-br g3d-tools">
+    <a class="graph-tool" href="${graph2d}"><span class="graph-tool-ico" aria-hidden="true">2D</span><span class="graph-tool-label">2D 그래프로</span></a>
+  </div>
+  <div class="g3d-fallback" role="status">
+    <p>이 브라우저에서는 3D를 그릴 수 없습니다.</p>
+    <p><a href="${graph2d}">2D 그래프와 전체 목록 보기 →</a></p>
+  </div>
+</div>
+<script type="module" src="${href('/static/js/graph-3d.js')}" onerror="document.getElementById('main').dataset.state='failed'"></script>`;
+
+  return layout({
+    title: '3D 그래프 (실험)',
+    description: `${SITE.title} 지식 그래프 3D 실험 판`,
+    body,
+    mainClass: 'g3d',
+    path: '/graph/3d/',
+    head: `<link rel="preload" href="${escapeHtml(graphHref)}" as="fetch" crossorigin>
+<link rel="preload" href="${escapeHtml(layoutHref)}" as="fetch" crossorigin>`,
   });
 }
 

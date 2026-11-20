@@ -281,12 +281,13 @@ export function checkGraphJson(text, { pageCount, edgeCount, paths, layout3d } =
   return { problems, warnings, stats };
 }
 
-// ── self-check: `node lib/graph.mjs --check ../dist/graph.json [--paths ../dist/graph/paths.json]` ──
+// ── self-check: `node lib/graph.mjs --check ../dist/graph.json [--paths ../dist/graph/paths.json] [--layout3d ../dist/graph/3d/layout.json]` ──
 if (process.argv[1]?.endsWith('graph.mjs') && process.argv.includes('--check')) {
   const arg = (k) => (process.argv.includes(k) ? process.argv[process.argv.indexOf(k) + 1] : null);
-  const file = arg('--check'), pathsFile = arg('--paths');
+  const file = arg('--check'), pathsFile = arg('--paths'), layoutFile = arg('--layout3d');
   const paths = pathsFile ? JSON.parse(readFileSync(pathsFile, 'utf8')) : undefined;
-  const { problems, warnings, stats } = checkGraphJson(readFileSync(file, 'utf8'), { paths });
+  const layout3d = layoutFile ? JSON.parse(readFileSync(layoutFile, 'utf8')) : undefined;
+  const { problems, warnings, stats } = checkGraphJson(readFileSync(file, 'utf8'), { paths, layout3d });
   for (const w of warnings) console.log(`WARN ${w}`);
   for (const p of problems) console.log(`FAIL ${p}`);
   console.log(`graph.json check ${problems.length ? 'FAIL' : '✓'}  ·  ${stats}`);

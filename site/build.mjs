@@ -16,9 +16,9 @@ import { BASE, STRICT, href, RECENT_COUNT } from './lib/config.mjs';
 import { loadContent, tagsOf } from './lib/content.mjs';
 import { addedDates } from './lib/dates.mjs';
 import { buildGraph, toGraphJson, recentInfo, checkGraphJson, weakLinks, toPathsJson } from './lib/graph.mjs';
-import { layoutGraph } from './lib/graph-layout.mjs';
+import { layoutGraph, layoutGraph3d } from './lib/graph-layout.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
-import { home, wiki, about, tagIndex, tag, graphPage, studyPathSection } from './lib/templates.mjs';
+import { home, wiki, about, tagIndex, tag, graphPage, graph3dPage, studyPathSection } from './lib/templates.mjs';
 import { domainOf } from './lib/domains.mjs';
 import { prevNext } from './lib/nav.mjs';
 import { aboutMarkdown, ABOUT_INTRO } from './lib/about.mjs';
@@ -120,8 +120,17 @@ async function main() {
   console.log(
     `[study] paths.json 경로 ${paths.json.paths.length}  ·  단계 ${paths.json.paths.reduce((n, p) => n + p.steps.length, 0)}  ·  ${Buffer.byteLength(pathsText)}B (gzip ${gzipSync(pathsText, { level: 9 }).length}B)`
   );
+  // 3D 실험 페이지 배치 → graph/3d/layout.json (05 6절, 03 6.2절). graph.json 노드 순서를 따른다
+  const t3 = performance.now();
+  const layout3d = layoutGraph3d(graph);
+  const layout3dText = JSON.stringify(layout3d);
+  await mkdir(join(DIST, 'graph', '3d'), { recursive: true });
+  await writeFile(join(DIST, 'graph', '3d', 'layout.json'), layout3dText);
+  console.log(
+    `[graph] 3d layout ${Math.round(performance.now() - t3)}ms  ·  layout.json ${Buffer.byteLength(layout3dText)}B (gzip ${gzipSync(layout3dText, { level: 9 }).length}B)`
+  );
   // 자체 점검 V1 ~ V16 (03 7절). 쓴 직후에 불러 실패해도 dist/graph.json 을 열어 볼 수 있다.
-  const gc = checkGraphJson(graphJson, { pageCount: pages.size, edgeCount: graph.edges.length, paths: paths.json });
+  const gc = checkGraphJson(graphJson, { pageCount: pages.size, edgeCount: graph.edges.length, paths: paths.json, layout3d });
   for (const w of gc.warnings) console.log(`[graph] WARN ${w}`);
   for (const p of gc.problems) console.log(`[graph] ${STRICT ? 'FAIL' : 'WARN'} ${p}`);
   console.log(`[graph] check V1~V16 ${gc.problems.length ? `${gc.problems.length}건` : '✓'}  ·  ${gc.stats}`);
@@ -306,6 +315,17 @@ async function main() {
     })
   );
   console.log(`[render] graph page rendered: ${graphGroups.length} category groups`);
+  // 3D 실험 페이지 (/graph/3d/). three 는 이 페이지만 불러온다 (05 6절)
+  await writeFile(
+    join(DIST, 'graph', '3d', 'index.html'),
+    graph3dPage({
+      groups: graphGroups,
+      stats: { nodes: graph.nodes.length, edges: graph.edges.length },
+      graphHref: href('/graph.json'),
+      layoutHref: href('/graph/3d/layout.json'),
+      base: href('/'),
+    })
+  );
 
   // 6.5) About — README/CLAUDE.md 철학·THE FOUR RULES·3-tier 파이프라인.
   //      위키 본문과 같은 렌더 경로(renderMarkdown) → [[category]] 위키링크가 홈 밴드 앵커로 해석.
@@ -385,6 +405,17 @@ async function copyStatic() {
     await cp(join(katexDist, 'fonts'), join(katexOut, 'fonts'), { recursive: true });
   } else {
     console.log('[build] WARN KaTeX 자산 미발견 — `npm install` 확인 필요');
+  }
+
+  // (D) three (3D 실험 페이지 전용, 05 6절) → dist/static/vendor/three
+  const threeDir = join(NODE_MODULES, 'three');
+  const threeOut = join(staticDir, 'vendor', 'three');
+  if (existsSync(join(threeDir, 'build', 'three.module.min.js'))) {
+    await mkdir(threeOut, { recursive: true });
+    await copyFile(join(threeDir, 'build', 'three.module.min.js'), join(threeOut, 'three.module.min.js'));
+    await copyFile(join(threeDir, 'LICENSE'), join(threeOut, 'LICENSE.txt'));
+  } else {
+    console.log('[build] WARN three 미발견 — `npm install` 확인 필요');
   }
 
   console.log('[build] copied site chrome + fonts → dist/static');

@@ -108,3 +108,84 @@ export function layoutGraph(graph, pages) {
 
   return new Map(nodes.map((n) => [n.id, [Math.round(n.x), Math.round(n.y)]]));
 }
+
+// ── 3D 실험 페이지 배치 (05 6절, 03 6.2절) ──────────────────────────────────────
+// 시안 E(docs/graph-mockups/e-celestial.html) 의 자체 O(N²) 배치 320회를 빌드로 옮겼다. 브라우저의 630ms 막힘이 사라진다.
+// 계산은 id 정렬 사본으로 하고 (04 2.1절과 같은 결정성), 결과는 graph.nodes 순서의 정수 xyz 평면 배열로 낸다.
+const ANCHOR3 = {
+  'physical-ai': [-1, 0.05, 0.1],
+  llms: [-0.35, 0.85, -0.35],
+  agents: [0.95, 0.15, -0.1],
+  applications: [0.45, -0.55, 0.7],
+  database: [0.25, -0.75, -0.6],
+  evaluations: [0.55, 0.75, 0.45],
+  etc: [-0.1, -0.2, -1],
+  overviews: [-0.3, 0.1, 0.15],
+};
+
+export function layoutGraph3d(graph) {
+  const R = 100;
+  const order = graph.nodes.map((n, i) => i).sort((a, b) => (graph.nodes[a].id < graph.nodes[b].id ? -1 : 1));
+  const nodes = order.map((i) => graph.nodes[i]);
+  const N = nodes.length;
+  const at = new Map(nodes.map((n, k) => [n.id, k]));
+  const edges = graph.edges.map((e) => [at.get(e.source), at.get(e.target)]);
+  const deg = new Array(N).fill(0);
+  const seen = new Set();
+  for (const [a, b] of edges) {
+    const key = a < b ? `${a},${b}` : `${b},${a}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deg[a]++;
+    deg[b]++;
+  }
+  for (let i = 0; i < N; i++) deg[i] = Math.max(1, deg[i]);
+
+  let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const gauss = () => Math.sqrt(-2 * Math.log(rnd() + 1e-9)) * Math.cos(2 * Math.PI * rnd());
+  const anchor = (n) => ANCHOR3[n.category] || ANCHOR3.etc;
+  const P = new Float64Array(N * 3), V = new Float64Array(N * 3);
+  nodes.forEach((n, i) => {
+    const a = anchor(n);
+    for (let k = 0; k < 3; k++) P[i * 3 + k] = a[k] * R * 0.9 + gauss() * R * 0.35;
+  });
+
+  for (let t = 0; t < 320; t++) {
+    const alpha = 1 - t / 320;
+    for (let i = 0; i < N; i++)
+      for (let j = i + 1; j < N; j++) {
+        const dx = P[i * 3] - P[j * 3], dy = P[i * 3 + 1] - P[j * 3 + 1], dz = P[i * 3 + 2] - P[j * 3 + 2];
+        const d2 = dx * dx + dy * dy + dz * dz + 1;
+        if (d2 > 14400) continue; // shortcut: 120 너머 척력 생략. 노드가 수천이 되면 octree 로 바꾼다
+        const f = (1100 * alpha) / d2 / Math.sqrt(d2);
+        V[i * 3] += dx * f; V[i * 3 + 1] += dy * f; V[i * 3 + 2] += dz * f;
+        V[j * 3] -= dx * f; V[j * 3 + 1] -= dy * f; V[j * 3 + 2] -= dz * f;
+      }
+    for (const [a, b] of edges) {
+      const dx = P[b * 3] - P[a * 3], dy = P[b * 3 + 1] - P[a * 3 + 1], dz = P[b * 3 + 2] - P[a * 3 + 2];
+      const d = Math.sqrt(dx * dx + dy * dy + dz * dz) + 0.01;
+      const f = ((d - 34) / d) * 0.05 * alpha;
+      const wa = deg[b] / (deg[a] + deg[b]), wb = 1 - wa;
+      V[a * 3] += dx * f * wa; V[a * 3 + 1] += dy * f * wa; V[a * 3 + 2] += dz * f * wa;
+      V[b * 3] -= dx * f * wb; V[b * 3 + 1] -= dy * f * wb; V[b * 3 + 2] -= dz * f * wb;
+    }
+    for (let i = 0; i < N; i++) {
+      const a = anchor(nodes[i]);
+      const s = nodes[i].category === 'overviews' ? 0.004 : 0.02;
+      for (let k = 0; k < 3; k++) {
+        V[i * 3 + k] += (a[k] * R * 0.9 - P[i * 3 + k]) * s * alpha;
+        V[i * 3 + k] *= 0.6;
+        P[i * 3 + k] += V[i * 3 + k];
+      }
+    }
+  }
+  const c = [0, 0, 0];
+  for (let i = 0; i < N; i++) for (let k = 0; k < 3; k++) c[k] += P[i * 3 + k] / N;
+
+  const xyz = new Array(N * 3);
+  order.forEach((orig, i) => {
+    for (let k = 0; k < 3; k++) xyz[orig * 3 + k] = Math.round(P[i * 3 + k] - c[k]);
+  });
+  return { version: 1, n: N, xyz };
+}
