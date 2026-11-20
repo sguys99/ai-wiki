@@ -145,6 +145,7 @@
     var filt = { cat: new Set(), type: new Set(), tag: new Set() };
     var inF = new Uint8Array(N).fill(1), lit = new Uint8Array(N).fill(1), litCat = {};
     var fActive = false, fCount = N, legendHover = null, fMix = 0;
+    var weakOn = false, weakMix = 0; // 약한 연결 렌즈 (06 12.2 E3). 필터가 아니라 표시라 hash 에 싣지 않는다
     var searchHits = new Set(); // 검색 상위 40개: 라벨 강제 후보와 캔버스 고리 (02 7.3)
     var popSwallow = false;      // 팝오버 밖 탭은 노드를 고르지 않는다 (02 2.6)
     // URL (02 8.4 ~ 8.6). hash 를 읽어 상태를 바꾸는 동안과 시작 전에는 history 를 쓰지 않는다
@@ -657,6 +658,8 @@
     function stepEmphasis(dt) {
       var busy = false, step = dt / 160, ft = fActive || legendHover ? 1 : 0;
       if (reduce || Math.abs(ft - fMix) <= step) fMix = ft; else { fMix += ft > fMix ? step : -step; busy = true; }
+      var wt = weakOn ? 1 : 0, ws = dt / 220; // 렌즈 고리는 220ms 동안 커지며 나타난다 (06 2.2 첫 등장과 같은 길이)
+      if (reduce || Math.abs(wt - weakMix) <= ws) weakMix = wt; else { weakMix += wt > weakMix ? ws : -ws; busy = true; }
       for (var i = 0; i < N; i++) {
         var n = nodes[i], ta = targetE(n), d = ta - emph[i], hl = n === (hovered || cursor) ? 1 : 0, dl = hl - hoverLift[i];
         if (reduce || Math.abs(d) <= step) emph[i] = ta; else { emph[i] += d > 0 ? step : -step; busy = true; }
@@ -860,6 +863,13 @@
           ctx.beginPath(); ctx.arc(px, py, r + 6, 0, TAU); ctx.stroke();
           ctx.globalAlpha = a * 0.28; ctx.lineWidth = 1;
           ctx.beginPath(); ctx.arc(px, py, r + 11, 0, TAU); ctx.stroke();
+        }
+        // 약한 연결 렌즈: 점선 바깥 고리. 경고색이 아니라 본문색으로 "표시" 만 한다 (06 12.2 E3)
+        if (n.weak && weakMix > 0) {
+          ctx.strokeStyle = T.text; ctx.lineWidth = 1.1; ctx.globalAlpha = a * 0.78 * weakMix;
+          ctx.setLineDash([2.4, 2.6]);
+          ctx.beginPath(); ctx.arc(px, py, r + 3 + 3.5 * ease4(weakMix), 0, TAU); ctx.stroke();
+          ctx.setLineDash([]);
         }
         // 키보드 커서: 신호색 고리와 옅은 빛 테. 흐린 노드에서도 보이게 노드 알파를 따르지 않는다 (02 J3)
         if (n === cursor) {
@@ -1891,6 +1901,17 @@
       pBody.querySelectorAll('.graph-nb').forEach(function (b) { b.classList.toggle('is-out', !inF[byId[b.dataset.id].i]); });
     }
     function toggleIn(set, v) { if (set.has(v)) set.delete(v); else set.add(v); applyFilters(); }
+    // 약한 연결 렌즈: 목록 판 리포트 행의 data-id 가 집합이다 (graph.json 에 싣지 않는다). 상태는 보기 취향이라 localStorage 에만 둔다
+    var weakSw = document.getElementById('graph-weak');
+    listEl.querySelectorAll('#weak-links li[data-id]').forEach(function (li) { var n = byId[li.dataset.id]; if (n) n.weak = true; });
+    function setWeak(on) {
+      weakOn = on;
+      weakSw.setAttribute('aria-checked', String(on));
+      fBtn.classList.toggle('has-emph', on); // 배지 옆 점: 모바일은 범례 줄이 없어 강조가 켜진 것을 여기서 안다
+      announce(on ? '연결이 적은 페이지 강조' : '강조 해제');
+      redraw();
+    }
+    try { if (localStorage.getItem('graph.weak') === '1') { weakOn = true; weakSw.setAttribute('aria-checked', 'true'); fBtn.classList.add('has-emph'); } } catch (err) { /* 저장 불가 */ }
     function resetAll() { filt.cat.clear(); filt.type.clear(); filt.tag.clear(); applyFilters(); }
 
     // 범례: 누르면 켜고 끈다. 미리 강조(마우스)는 필터가 하나도 없을 때만 (02 8.1)
@@ -1961,7 +1982,8 @@
     pop.addEventListener('click', function (e) {
       var b = e.target.closest('button');
       if (!b) return;
-      if (b.id === 'graph-filters-reset') { resetAll(); return; }
+      if (b.id === 'graph-filters-reset') { resetAll(); return; } // 강조 스위치는 그대로 둔다 (06 2.2)
+      if (b === weakSw) { setWeak(!weakOn); try { localStorage.setItem('graph.weak', weakOn ? '1' : '0'); } catch (err) { /* 저장 불가 */ } return; }
       if (b.dataset.type) { toggleIn(filt.type, b.dataset.type); return; }
       if (b.dataset.tag) {
         var box = b.parentNode, at = Array.prototype.indexOf.call(box.children, b);
@@ -2484,6 +2506,7 @@
       setFilters: setFilters,
       filtered: function () { return { active: fActive, count: fCount, ids: nodes.filter(function (n) { return inF[n.i]; }).map(function (n) { return n.id; }) }; },
       emph: function (id) { var n = byId[id]; return n && emph[n.i]; },
+      weak: function () { return { on: weakOn, mix: weakMix, ids: nodes.filter(function (n) { return n.weak; }).map(function (n) { return n.id; }) }; },
       search: function () { return { q: searchQ, total: hits.length, shown: hits.slice(0, 8).map(function (h) { return h.n.id; }), active: active, canvas: searchHits.size }; },
       sheet: function () { return { full: sheetFull, h: sheetH }; },
       geom: function () {

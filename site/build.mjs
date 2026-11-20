@@ -14,7 +14,7 @@ import { dirname, resolve, join } from 'node:path';
 import { BASE, STRICT, href, RECENT_COUNT } from './lib/config.mjs';
 import { loadContent, tagsOf } from './lib/content.mjs';
 import { addedDates } from './lib/dates.mjs';
-import { buildGraph, toGraphJson, recentInfo, checkGraphJson } from './lib/graph.mjs';
+import { buildGraph, toGraphJson, recentInfo, checkGraphJson, weakLinks } from './lib/graph.mjs';
 import { layoutGraph } from './lib/graph-layout.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
 import { home, wiki, about, tagIndex, tag, graphPage, studyPathSection } from './lib/templates.mjs';
@@ -271,6 +271,10 @@ async function main() {
       nodes: list,
     });
   }
+  const weak = weakLinks(graph, pages);
+  console.log(
+    `[graph] weak links: ${weak.noInbound.length + weak.lowDegree.length} (no inbound ${weak.noInbound.length}, degree<=3 ${weak.lowDegree.length})`
+  );
   await mkdir(join(DIST, 'graph'), { recursive: true });
   await writeFile(
     join(DIST, 'graph', 'index.html'),
@@ -278,6 +282,7 @@ async function main() {
       groups: graphGroups,
       types: [...typeCounts].sort((a, b) => b[1] - a[1]).map(([type, count]) => ({ type, count })),
       stats: { nodes: graph.nodes.length, edges: graph.edges.length },
+      weak,
       graphHref: href('/graph.json'),
       base: href('/'),
     })

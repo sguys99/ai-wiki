@@ -379,9 +379,9 @@ ${entry.pages.map((p) => card(p, degree, adjacency.get(p.id), tagsFor(p))).join(
 // 페이지에 갈 수 있다. 무대 안 영역은 자리와 id 만 둔다 (내용은 탐색기가 채운다).
 //
 // data: { groups:[{ slug, label, domain, nodes:[{ id,url,title,degree }] }], types:[{ type, count }],
-//         stats:{nodes,edges}, graphHref, base }
+//         stats:{nodes,edges}, weak:{ noInbound, lowDegree } (graph.mjs weakLinks), graphHref, base }
 export function graphPage(data) {
-  const { groups, types, stats, graphHref, base } = data;
+  const { groups, types, stats, weak, graphHref, base } = data;
   const num = (n) => n.toLocaleString('en-US');
   const statText = `페이지 ${num(stats.nodes)}개, 연결 ${num(stats.edges)}개`;
 
@@ -421,6 +421,40 @@ ${g.nodes
     )
     .join('\n');
 
+  // 약한 연결 리포트 (06 3.2절). 행의 data-id 를 탐색기가 읽어 "연결이 적은 페이지" 렌즈를 그린다 (06 12.2 E3).
+  const weakN = weak.noInbound.length + weak.lowDegree.length;
+  const weakText = `연결이 적은 페이지 ${weakN}개`;
+  const nodeHref = (id) =>
+    `${href('/graph/')}#node=${/^[a-z0-9/-]+$/.test(id) ? id : id.split('/').map(encodeURIComponent).join('/')}`;
+  const weakRow = (w) => {
+    const sugg = w.suggest.length
+      ? `\n          <p class="graph-weak-sugg"><span class="graph-weak-sugg-k">링크 후보</span>${w.suggest
+          .map(
+            (s) =>
+              `<a href="${escapeHtml(s.url)}" data-cat="${escapeHtml(s.category)}" title="겹치는 태그 ${s.shared}개"><span class="graph-swatch" aria-hidden="true"></span>${escapeHtml(s.title)}</a>`
+          )
+          .join('')}</p>`
+      : '';
+    return `        <li data-id="${escapeHtml(w.id)}" data-cat="${escapeHtml(w.category)}">
+          <span class="graph-swatch" aria-hidden="true"></span><a class="graph-weak-title" href="${escapeHtml(w.url)}">${escapeHtml(w.title)}</a>
+          <span class="graph-weak-deg"><span>나감 ${w.outDeg}</span><span${w.inDeg ? '' : ' class="is-zero"'}>들어옴 ${w.inDeg}</span></span>
+          <a class="graph-weak-map" href="${escapeHtml(nodeHref(w.id))}" aria-label="${escapeHtml(w.title)} 그래프에서 보기">그래프</a>${sugg}
+        </li>`;
+  };
+  const weakGroup = (key, label, items) =>
+    items.length
+      ? `    <h3 class="graph-weak-h" id="weak-${key}">${label}<span class="band-count">${items.length}</span></h3>
+      <ul class="graph-weak-list" aria-labelledby="weak-${key}">
+${items.map(weakRow).join('\n')}
+      </ul>`
+      : '';
+  const weakSection = `  <section class="graph-weak" id="weak-links" aria-labelledby="weak-links-h">
+    <h2 class="graph-list-title" id="weak-links-h">연결이 적은 페이지<span class="band-count">${weakN}</span></h2>
+    <p class="graph-weak-lede">위키링크로 닿기 어려운 페이지입니다. 다른 페이지에서 링크를 걸면 그래프가 촘촘해집니다. 링크 후보는 태그가 가장 많이 겹치면서 아직 잇지 않은 페이지입니다.</p>
+${weakGroup('in', '들어오는 링크 없음', weak.noInbound)}
+${weakGroup('deg', '연결 3개 이하', weak.lowDegree)}
+  </section>`;
+
   // 스크립트가 있어야 동작하는 컨트롤은 hidden 으로 내보내고 탐색기가 시작 때 푼다 (명령 줄, 줌과 맞춤 버튼, 조작 안내).
   // DOM 순서가 곧 Tab 순서다: 명령 줄, 팝오버, 칩 줄과 경로 줄, 캔버스, 패널, 범례, 도구 (01 9.2절).
   const body = `<h1 class="graph-title" id="graph-title">그래프</h1>
@@ -453,7 +487,13 @@ ${typeChips}
       <div class="graph-chips" id="graph-tag-picked" role="group" aria-label="고른 태그"></div>
       <div class="graph-chips" id="graph-tag-suggest" role="group" aria-label="자주 쓰는 태그"></div>
     </div>
-    <!-- Phase 5 예약: 셋째 절 "강조" 의 스위치 #graph-recent (01 7절, 06 2절) -->
+    <div class="graph-filters-sec">
+      <p class="graph-filters-h" id="graph-f-emph">강조</p>
+      <div class="graph-switches" role="group" aria-labelledby="graph-f-emph">
+        <!-- Phase 5 예약: 둘째 스위치 #graph-recent "최근 추가" (06 2절) -->
+        <button type="button" class="graph-switch" id="graph-weak" role="switch" aria-checked="false"><span class="graph-switch-track" aria-hidden="true"></span><span class="graph-switch-label">연결이 적은 페이지</span><span class="graph-chip-n">${weakN}</span></button>
+      </div>
+    </div>
     <button type="button" class="graph-filters-reset" id="graph-filters-reset">모두 해제</button>
   </div>
 
@@ -487,7 +527,8 @@ ${typeChips}
       <p class="graph-legend-stat">${statText}</p>
 ${legend}
       <button type="button" class="graph-legend-reset" hidden>필터 해제</button>
-      <!-- Phase 5 예약: 최근 추가 표식 줄 .graph-legend-recent, 약한 연결 링크 #weak-links (01 7절) -->
+      <!-- Phase 5 예약: 최근 추가 표식 줄 .graph-legend-recent (01 7절) -->
+      <a class="graph-legend-weak" href="#weak-links">${weakText}<span aria-hidden="true"> →</span></a>
     </div>
     <p class="graph-hint is-atlas" hidden><span class="graph-hint-line" data-hint="select" hidden><kbd>클릭</kbd> 궤도로 열기</span><span class="graph-hint-line" data-hint="zoom"><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동</span><span class="graph-hint-line" data-hint="search"><kbd>/</kbd> 검색</span></p>
     <p class="graph-hint is-orbit" hidden><span class="graph-hint-line" data-hint="recenter"><kbd>클릭</kbd> 중심 옮기기</span><span class="graph-hint-line" data-hint="zoom"><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동</span><span class="graph-hint-line" data-hint="keys"><kbd>← →</kbd> 궤도 돌기</span><span class="graph-hint-line" data-hint="keys"><kbd>↑ ↓</kbd> 안팎 궤도</span><span class="graph-hint-line" data-hint="keys"><kbd>Enter</kbd> 중심에 두기</span><span class="graph-hint-line" data-hint="keys"><kbd>Esc</kbd> 전체 보기</span></p>
@@ -508,13 +549,13 @@ ${legend}
 <section class="graph-list" id="graph-list" aria-labelledby="graph-list-h">
   <header class="graph-list-head">
     <p class="graph-lede">페이지 사이의 위키링크 관계입니다. 이 목록은 그래프와 같은 페이지를 카테고리별로 모았고, 스크립트가 없어도 모든 페이지에 갈 수 있습니다.</p>
-    <p class="graph-stat">${statText}</p>
+    <p class="graph-stat">${statText}<a class="graph-weak-jump" href="#weak-links">${weakText}<span aria-hidden="true"> →</span></a></p>
     <p class="graph-list-note" id="graph-list-note" hidden></p>
     <button type="button" class="graph-to-map" id="graph-to-map" hidden>그래프로 보기</button>
     <h2 class="graph-list-title" id="graph-list-h">카테고리별 목록</h2>
   </header>
 ${list}
-  <!-- Phase 5 예약: 약한 연결 리포트 section#weak-links (01 7절, 06 3절) -->
+${weakSection}
 </section>`;
 
   return layout({

@@ -1945,6 +1945,148 @@
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
   }
+  /* ── 약한 연결 리포트 (06 3.2절). 카테고리 목록 뒤, 행마다 링크 후보 (E4) ── */
+  .graph-weak-jump {
+    margin-left: var(--space-3);
+    color: var(--signal);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .graph-weak-jump:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .graph-weak {
+    scroll-margin-top: calc(var(--header-h) + var(--space-4));
+    padding-top: var(--space-8);
+    border-top: var(--hairline-w) solid var(--hairline);
+  }
+  .graph-weak .graph-list-title {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-2);
+  }
+  .graph-weak-lede {
+    max-width: var(--measure);
+    margin: 0 0 var(--space-6);
+    font-size: var(--text-sm);
+    color: var(--muted);
+    line-height: var(--leading-body);
+  }
+  .graph-weak-h {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin: var(--space-8) 0 var(--space-2);
+    font-size: var(--text-base);
+    scroll-margin-top: calc(var(--header-h) + var(--space-4));
+  }
+  .graph-weak-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 30rem), 1fr));
+    gap: 0 var(--space-8);
+    margin: 0 0 var(--space-6);
+    padding: 0;
+    list-style: none;
+  }
+  .graph-weak-list > li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    align-items: center;
+    align-content: start; /* 옆 열 행이 더 높아도 제목 줄이 위에 붙는다 */
+    gap: var(--space-1) var(--space-3);
+    padding: var(--space-2) 0;
+    border-bottom: var(--hairline-w) solid var(--hairline);
+  }
+  .graph-weak-title {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: var(--text-sm);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .graph-weak-deg {
+    display: flex;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--faint);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .graph-weak-deg .is-zero {
+    color: var(--signal-physical);
+  }
+  .graph-weak-map {
+    padding: 0 var(--space-2);
+    font-size: var(--text-2xs);
+    line-height: 1.6rem;
+    color: var(--muted);
+    text-decoration: none;
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-pill);
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+  }
+  .graph-weak-map:hover {
+    color: var(--signal);
+    border-color: color-mix(in srgb, var(--signal) 55%, transparent);
+    background: var(--signal-dim);
+  }
+  .graph-weak-sugg {
+    grid-column: 2 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-1) var(--space-3);
+    margin: 0;
+    font-size: var(--text-xs);
+    line-height: 1.5;
+  }
+  .graph-weak-sugg-k {
+    font-size: var(--text-2xs);
+    color: var(--faint);
+  }
+  .graph-weak-sugg a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-1);
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .graph-weak-sugg .graph-swatch {
+    --graph-swatch: 6px;
+    align-self: center;
+  }
+  :is(.graph-weak-title, .graph-weak-sugg a):hover {
+    color: var(--signal);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--signal) 45%, transparent);
+    text-underline-offset: 3px;
+  }
+  :is(.graph-weak-jump, .graph-weak-title, .graph-weak-map, .graph-weak-sugg a):focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+  @media (max-width: 560px) {
+    .graph-weak-list > li {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+    .graph-weak-deg {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    .graph-weak-map {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+    }
+    .graph-weak-sugg {
+      grid-column: 2 / -1;
+    }
+  }
   /* 목록 판에서는 무대가 없으니 건너뛰기 링크도 필요 없다 */
   main.graph[data-view='list'] .graph-skip {
     display: none;
@@ -2430,6 +2572,16 @@
     animation: graph-badge-in var(--dur-panel) var(--ease-out);
   }
 
+  /* 강조 스위치가 켜져 있음: 배지 옆 점 하나 (06 2.2절). 필터 수에는 넣지 않는다 */
+  .graph-filter-btn.has-emph::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--signal);
+    box-shadow: 0 0 6px var(--signal-dim);
+  }
+
   /* ── 둘째 줄: 활성 필터 칩 줄과 경로 줄. 명령 줄 아래 한 줄, 패널 자리를 비킨다 ── */
   .graph-row {
     top: calc(var(--graph-top) + var(--graph-ctl-h) + var(--space-2));
@@ -2700,6 +2852,70 @@
     background: color-mix(in srgb, var(--signal-physical) 12%, transparent);
     border: var(--hairline-w) solid color-mix(in srgb, var(--signal-physical) 40%, transparent);
     border-radius: var(--graph-radius-ctl);
+  }
+  /* 강조 스위치 (role=switch). 표시만 바꾸므로 칩이 아니라 켜고 끄는 줄로 보인다 */
+  .graph-switches {
+    display: grid;
+    gap: var(--space-1);
+  }
+  .graph-switch {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2-5);
+    width: 100%;
+    min-height: var(--graph-chip-h);
+    padding: 0 var(--space-1);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    text-align: left;
+    background: none;
+    border: 0;
+    border-radius: var(--graph-radius-ctl);
+    cursor: pointer;
+    transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+  }
+  .graph-switch:hover {
+    color: var(--text);
+    background: color-mix(in srgb, var(--surface-2) 55%, transparent);
+  }
+  .graph-switch:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 1px;
+  }
+  .graph-switch-track {
+    position: relative;
+    flex: none;
+    width: 28px;
+    height: 16px;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+    box-shadow: inset 0 0 0 var(--hairline-w) var(--hairline);
+    transition: background var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+  }
+  .graph-switch-track::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--faint);
+    transition: transform var(--dur-panel) var(--ease-out), background var(--dur-fast) var(--ease);
+  }
+  .graph-switch-label {
+    flex: 1;
+  }
+  .graph-switch[aria-checked='true'] {
+    color: var(--text);
+  }
+  .graph-switch[aria-checked='true'] .graph-switch-track {
+    background: linear-gradient(180deg, var(--graph-primary-top), var(--graph-primary-bottom));
+    box-shadow: inset 0 1px 0 var(--graph-glass-top), 0 0 8px var(--signal-dim);
+  }
+  .graph-switch[aria-checked='true'] .graph-switch-track::after {
+    background: var(--graph-primary-ink);
+    transform: translateX(12px);
   }
   .graph-filters-reset {
     display: block;
@@ -3139,6 +3355,23 @@
   .graph-legend-reset:hover {
     color: var(--signal);
   }
+  .graph-legend-weak {
+    margin-top: var(--space-1);
+    padding: var(--space-1-5) 0 0;
+    font-size: var(--text-2xs);
+    color: var(--muted);
+    text-decoration: none;
+    border-top: var(--hairline-w) solid var(--hairline);
+    transition: color var(--dur-fast) var(--ease);
+  }
+  .graph-legend-weak:hover {
+    color: var(--signal);
+  }
+  .graph-legend-weak:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
   .graph-hint {
     margin: 0 0 var(--space-1-5);
     font-size: var(--text-2xs);
@@ -3251,7 +3484,8 @@
     }
     .graph-legend-n,
     .graph-legend-stat,
-    .graph-legend-reset {
+    .graph-legend-reset,
+    .graph-legend-weak {
       display: none;
     }
     /* 이름은 화면에서만 숨긴다. 단추의 접근 이름이라 display:none 이면 스크린 리더가 빈 단추를 읽는다 */

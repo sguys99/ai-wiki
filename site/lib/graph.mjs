@@ -93,6 +93,41 @@ export function recentInfo(pages) {
   return { recentSince, recentMode, recentDays: RECENT_DAYS, count };
 }
 
+// 약한 연결 리포트 (06 3절). 들어옴 0 (overviews 제외) ∪ degree 3 이하. 두 조건에 다 걸리면 첫 묶음에만 둔다.
+// 행마다 링크 후보 3개 (06 12.2 E4): 태그가 가장 많이 겹치고 아직 어느 방향으로도 잇지 않은 페이지.
+// 같은 점수는 같은 카테고리, degree 큰 순, id 순. graph.json 에는 싣지 않는다 (서버가 목록 판에 렌더).
+export function weakLinks(graph, pages) {
+  const inDeg = new Map(), outDeg = new Map(), nb = new Map();
+  const bump = (m, k) => m.set(k, (m.get(k) || 0) + 1);
+  const addNb = (a, b) => (nb.get(a) || nb.set(a, new Set()).get(a)).add(b);
+  for (const e of graph.edges) {
+    bump(outDeg, e.source); bump(inDeg, e.target);
+    addNb(e.source, e.target); addNb(e.target, e.source);
+  }
+  const title = (id) => { const p = pages.get(id); return p.display || p.title; };
+  const suggest = (n) => {
+    const mine = new Set(pages.get(n.id).tags || []), linked = nb.get(n.id) || new Set();
+    if (!mine.size) return [];
+    return graph.nodes
+      .filter((m) => m.id !== n.id && !linked.has(m.id))
+      .map((m) => ({ m, score: (pages.get(m.id).tags || []).filter((t) => mine.has(t)).length }))
+      .filter((c) => c.score > 0)
+      .sort((a, b) => b.score - a.score || (b.m.category === n.category) - (a.m.category === n.category) ||
+        b.m.degree - a.m.degree || (a.m.id < b.m.id ? -1 : 1))
+      .slice(0, 3)
+      .map(({ m, score }) => ({ id: m.id, url: pages.get(m.id).url, title: title(m.id), category: m.category, shared: score }));
+  };
+  const item = (n) => ({
+    id: n.id, url: pages.get(n.id).url, title: title(n.id), category: n.category,
+    degree: n.degree, inDeg: inDeg.get(n.id) || 0, outDeg: outDeg.get(n.id) || 0, suggest: suggest(n),
+  });
+  const order = (a, b) => a.degree - b.degree || a.title.localeCompare(b.title, 'ko');
+  const noInbound = graph.nodes.filter((n) => n.category !== 'overviews' && !inDeg.get(n.id)).map(item).sort(order);
+  const first = new Set(noInbound.map((w) => w.id));
+  const lowDegree = graph.nodes.filter((n) => n.degree <= 3 && !first.has(n.id)).map(item).sort(order);
+  return { noInbound, lowDegree };
+}
+
 // graph.json 객체 (03 3절). 필드 순서가 곧 직렬화 순서다. layout 은 Map(id → [x, y]) 또는 생략.
 export function toGraphJson(graph, pages, layout, recent) {
   const index = new Map(graph.nodes.map((n, i) => [n.id, i]));
