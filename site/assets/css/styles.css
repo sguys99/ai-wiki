@@ -1212,22 +1212,88 @@
     height: auto;
     margin: 0 auto var(--space-6);
   }
-  .neigh-edges line {
-    stroke: var(--signal-dim);
+  /* 미니 그래프 (06 5.3절). 색은 data-cat 의 --c, 테마 전환을 따른다 */
+  .neigh-chord {
+    fill: none;
+    stroke: var(--graph-edge);
+    stroke-opacity: 0.35;
+    stroke-width: 0.8;
+  }
+  .neigh-spokes path {
+    fill: none;
+    stroke: var(--signal);
+    stroke-opacity: 0.45;
     stroke-width: 1;
   }
+  .neigh-spokes .is-mutual {
+    stroke-width: 1.2;
+  }
+  .neigh-spokes .is-in {
+    stroke-dasharray: 3 3;
+  }
+  .neigh-spokes .is-hi {
+    stroke-opacity: 1;
+    stroke-width: 1.6;
+  }
+  /* E6 구슬 질감: 왼쪽 위 하이라이트에서 카테고리 색으로, 1px 테 */
+  .neigh stop {
+    stop-color: var(--c);
+  }
+  .neigh .ng-hi {
+    stop-color: color-mix(in srgb, var(--c) 55%, var(--graph-specular));
+  }
   .neigh-nodes circle {
-    fill: var(--faint);
-    transition: fill var(--dur) var(--ease);
+    stroke: var(--c);
+    stroke-width: 1;
   }
   .neigh-nodes a:hover circle,
-  .neigh-nodes a:focus-visible circle {
-    fill: var(--signal);
+  .neigh-nodes a:focus-visible circle,
+  .neigh-nodes a.is-hi circle,
+  .neigh-self:hover .neigh-ring {
+    stroke: var(--signal);
+    stroke-width: 2.5;
   }
   .neigh-center {
-    fill: var(--signal);
+    fill: var(--c);
     stroke: var(--bg);
     stroke-width: 2;
+  }
+  .neigh-ring {
+    fill: none;
+    stroke: var(--c);
+    stroke-width: 1;
+  }
+  .neigh-more {
+    text-decoration: none;
+  }
+  .neigh-more text {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    fill: var(--muted);
+  }
+  .neigh-more:hover text {
+    fill: var(--signal);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .neigh-spokes path,
+    .neigh-nodes circle {
+      transition: stroke var(--dur) var(--ease), stroke-width var(--dur) var(--ease), stroke-opacity var(--dur) var(--ease);
+    }
+  }
+  .related-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .related-graph {
+    flex: none;
+    font-size: var(--text-sm);
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .related-graph:hover {
+    color: var(--signal);
   }
 
   /* 노드 즉시 툴팁 — native <title>(지연) 대체. 좌표는 reader.js가 left/top으로 설정. */
@@ -1302,6 +1368,20 @@
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--faint);
+  }
+  .related-list .graph-swatch {
+    --graph-swatch: 8px;
+    align-self: flex-start; /* 제목이 두 줄로 접혀도 첫 줄에 맞춘다 */
+    margin-top: calc(0.5lh - 4px);
+  }
+  .related-more > summary {
+    padding: var(--space-2) 0;
+    font-size: var(--text-sm);
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .related-more > summary:hover {
+    color: var(--signal);
   }
 
   /* ── 원문 · 소스 ── */

@@ -67,10 +67,12 @@
   update();
 })();
 
-// ── 관련 페이지 그래프: 즉시 툴팁 + 목록 행 강조 ──────────────────────────────
+// ── 관련 페이지 그래프: 즉시 툴팁 + 목록 행과 양방향 강조 ──────────────────────
 //
 // native <title>의 ~1s 지연을 없애려고 커스텀 툴팁을 노드 위에 즉시 띄운다.
-// 노드 <a data-neigh data-title> ↔ 목록 <li data-neigh> 를 인덱스로 매칭.
+// 노드 <a data-neigh data-title> ↔ 목록 <li data-neigh> 를 인덱스로 매칭하고,
+// 바큇살은 노드와 같은 순서로 놓여 있다 (templates.mjs miniGraph).
+// 목록 행을 가리키거나 키보드로 들어가면 그 노드와 바큇살을 밝힌다 (06 12.2 E7).
 (function () {
   'use strict';
   var sec = document.querySelector('.related');
@@ -79,6 +81,7 @@
 
   var anchors = Array.prototype.slice.call(svg.querySelectorAll('.neigh-nodes a[data-neigh]'));
   if (!anchors.length) return;
+  var spokes = svg.querySelectorAll('.neigh-spokes path');
 
   var tip = document.createElement('div');
   tip.className = 'neigh-tip';
@@ -86,6 +89,12 @@
   sec.appendChild(tip);
 
   var activeLi = null;
+
+  function mark(a, on) {
+    var i = anchors.indexOf(a);
+    a.classList.toggle('is-hi', on);
+    if (spokes[i]) spokes[i].classList.toggle('is-hi', on);
+  }
 
   function show(a) {
     var circle = a.querySelector('circle');
@@ -105,6 +114,7 @@
     tip.style.left = left + 'px';
     tip.style.top = top + 'px';
     tip.classList.add('is-visible');
+    mark(a, true);
 
     var li = sec.querySelector('.related-list li[data-neigh="' + a.getAttribute('data-neigh') + '"]');
     if (li) {
@@ -115,6 +125,7 @@
 
   function hide() {
     tip.classList.remove('is-visible');
+    anchors.forEach(function (a) { mark(a, false); });
     if (activeLi) {
       activeLi.classList.remove('is-active');
       activeLi = null;
@@ -130,5 +141,17 @@
     });
     a.addEventListener('mouseleave', hide);
     a.addEventListener('blur', hide);
+  });
+
+  // E7: 목록 → 그림. 그림에 없는 이웃(24개 밖)의 행은 아무것도 밝히지 않는다.
+  sec.querySelectorAll('.related-list li[data-neigh]').forEach(function (li) {
+    var a = svg.querySelector('.neigh-nodes a[data-neigh="' + li.getAttribute('data-neigh') + '"]');
+    if (!a) return;
+    var on = function () { mark(a, true); };
+    var off = function () { mark(a, false); };
+    li.addEventListener('mouseenter', on);
+    li.addEventListener('mouseleave', off);
+    li.addEventListener('focusin', on);
+    li.addEventListener('focusout', off);
   });
 })();

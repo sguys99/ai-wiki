@@ -371,6 +371,10 @@ ${entry.pages.map((p) => card(p, degree, adjacency.get(p.id), tagsFor(p))).join(
   });
 }
 
+// 그래프 탐색기 궤도 딥링크 (02 8절 #node=). 미니 그래프와 약한 연결 리포트가 쓴다.
+const nodeHref = (id) =>
+  `${href('/graph/')}#node=${/^[a-z0-9/-]+$/.test(id) ? id : id.split('/').map(encodeURIComponent).join('/')}`;
+
 // ── 전체 그래프 (/graph/) ─────────────────────────────────────────────────────
 //
 // 화면 구성은 docs/graph-spec/01-layout.md, 접근성 속성과 URL 규칙은 02-interaction.md 가 정본이다.
@@ -424,8 +428,6 @@ ${g.nodes
   // 약한 연결 리포트 (06 3.2절). 행의 data-id 를 탐색기가 읽어 "연결이 적은 페이지" 렌즈를 그린다 (06 12.2 E3).
   const weakN = weak.noInbound.length + weak.lowDegree.length;
   const weakText = `연결이 적은 페이지 ${weakN}개`;
-  const nodeHref = (id) =>
-    `${href('/graph/')}#node=${/^[a-z0-9/-]+$/.test(id) ? id : id.split('/').map(encodeURIComponent).join('/')}`;
   const weakRow = (w) => {
     const sugg = w.suggest.length
       ? `\n          <p class="graph-weak-sugg"><span class="graph-weak-sugg-k">링크 후보</span>${w.suggest
@@ -642,7 +644,7 @@ export function about(html, intro) {
 //   - prev/next: 같은 카테고리(카탈로그 순서) 인접 페이지
 //   - tags: 태그 인덱스 엔트리 배열 — 본문 아래 전체 노출(카드 칩은 2개 상한, 여기는 전량)
 export function wiki(page, html, toc, data = {}) {
-  const { degree, categoryLabel, neighbors = [], prev = null, next = null, tags = [] } = data;
+  const { degree, categoryLabel, neighbors = [], edgeSet = new Set(), prev = null, next = null, tags = [] } = data;
   const deg = (degree && degree.get(page.id)) || 0;
   const catLabel = categoryLabel || page.category;
   const type = (page.catalogType || page.type || '').toUpperCase();
@@ -669,7 +671,7 @@ export function wiki(page, html, toc, data = {}) {
   </header>`;
 
   // 하단 footer (Phase 5): 관련 페이지(neighborhood) + 원문/소스 + 이전/다음.
-  const foot = wikiFoot(page, neighbors, prev, next);
+  const foot = wikiFoot(page, neighbors, edgeSet, prev, next);
 
   // TOC 항목(h2/h3) — 데스크톱 sticky rail 과 모바일 접이식 <details> 가 공유.
   const tocItems = toc
@@ -745,17 +747,120 @@ ${tocItems}
 // ── 위키 하단 footer (Phase 5) ────────────────────────────────────────────────
 //
 // 관련 페이지(neighborhood 그래프 + 목록) → 원문/소스 링크 → 같은 카테고리 이전/다음.
-function wikiFoot(page, neighbors, prev, next) {
+function wikiFoot(page, neighbors, edgeSet, prev, next) {
   return `<footer class="wiki-foot">
-${relatedSection(page, neighbors)}
+${relatedSection(page, neighbors, edgeSet)}
 ${sourcesSection(page)}
 ${prevNextNav(prev, next)}
 </footer>`;
 }
 
-// 관련 페이지: 직접 링크된 이웃을 mini-constellation SVG(중심=현재 페이지)로 시각화하고,
-// 라벨이 붙은 텍스트 목록을 함께 둔다. 그래프는 시각 에코, 목록이 실제 내비게이션.
-function relatedSection(page, neighbors) {
+// 관련 페이지 (06 5절): 직접 이웃을 빌드 타임 정적 SVG 미니 그래프(중심은 현재 페이지, 이웃 24개 상한)와
+// 이웃 전부를 담은 텍스트 목록으로 보인다. 그림은 장식(aria-hidden)이고 목록이 실제 내비게이션이다.
+// 노드 <a data-neigh data-title> 와 목록 <li data-neigh> 짝은 reader.js 툴팁과 양방향 강조(E7)가 쓴다.
+const MINI_CAP = 24; // 06 12.1 R4
+const MINI_CHORDS = 40;
+const LIST_OPEN = 12; // 13번째 행부터 <details>
+// 04 4.2절 2번 카테고리 범례 순서 (탐색기 CAT_ORDER 와 규칙만 같고 구현은 따로다, 06 5.6절)
+const MINI_CAT_ORDER = ['physical-ai', 'agents', 'applications', 'database', 'llms', 'overviews', 'evaluations', 'etc'];
+
+function miniGraph(page, neighbors, edgeSet) {
+  const W = 480, H = 240, cx = 240, cy = 120, rx = 200, ry = 92;
+  const f = (v) => +v.toFixed(1);
+
+  // 1 ~ 2) 서로 링크, degree, 제목 순으로 24개. 24개 밖에만 있는 카테고리는 그 최상위 노드로
+  //        뒤에서부터 바꾼다 (하나뿐인 카테고리 노드는 바꾸지 않는다).
+  const ranked = [...neighbors].sort(
+    (a, b) => (b.out && b.in) - (a.out && a.in) || b.degree - a.degree || a.title.localeCompare(b.title, 'ko')
+  );
+  const picked = ranked.slice(0, MINI_CAP);
+  let tail = picked.length - 1;
+  for (const nb of ranked.slice(MINI_CAP)) {
+    if (picked.some((p) => p.category === nb.category)) continue;
+    while (tail >= 0 && picked.filter((p) => p.category === picked[tail].category).length < 2) tail--;
+    if (tail < 0) break;
+    picked[tail--] = nb;
+  }
+
+  // 3) 카테고리 순, `카테고리|첫 하위 태그` 묶음 크기, 묶음 키, degree 로 다시 정렬하고 placeRing 규칙으로 각도.
+  const ord = (c) => (MINI_CAT_ORDER.includes(c) ? MINI_CAT_ORDER.indexOf(c) : 99);
+  const key = (n) => `${n.category}|${n.tag}`;
+  const freq = {};
+  for (const n of picked) freq[key(n)] = (freq[key(n)] || 0) + 1;
+  picked.sort(
+    (a, b) =>
+      ord(a.category) - ord(b.category) || freq[key(b)] - freq[key(a)] ||
+      (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0) || b.degree - a.degree || (a.id < b.id ? -1 : 1)
+  );
+  const hidden = neighbors.length - picked.length;
+  const reserve = hidden ? 0.5 : 0; // 5) 꼭대기 "+k" 자리
+  let groups = 1;
+  for (let i = 1; i < picked.length; i++) if (picked[i].category !== picked[i - 1].category) groups++;
+  const gap = groups > 1 ? Math.min(0.09, 0.7 / groups) : 0;
+  const step = (2 * Math.PI - reserve - (groups > 1 ? groups * gap : 0)) / picked.length;
+  let ang = -Math.PI / 2 + reserve / 2 + gap / 2;
+  const pos = new Map();
+  picked.forEach((n, j) => {
+    if (j && n.category !== picked[j - 1].category) ang += gap;
+    pos.set(n.id, [f(cx + rx * Math.cos(ang + step / 2)), f(cy + ry * Math.sin(ang + step / 2))]); // 4) 타원
+    ang += step;
+  });
+
+  // 현: 고른 이웃끼리의 엣지, 서로 링크 쌍 먼저, 다음은 두 끝 degree 합. 중점을 중심 쪽으로 30% 당긴 2차 곡선.
+  const pairs = [];
+  for (let i = 0; i < picked.length; i++)
+    for (let j = i + 1; j < picked.length; j++) {
+      const p = picked[i], q = picked[j];
+      const fw = edgeSet.has(`${p.id}>${q.id}`), bw = edgeSet.has(`${q.id}>${p.id}`);
+      if (fw || bw) pairs.push([p, q, fw && bw]);
+    }
+  pairs.sort((x, y) => y[2] - x[2] || y[0].degree + y[1].degree - x[0].degree - x[1].degree);
+  const chords = pairs
+    .slice(0, MINI_CHORDS)
+    .map(([p, q]) => {
+      const [x1, y1] = pos.get(p.id), [x2, y2] = pos.get(q.id);
+      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+      return `M${x1} ${y1}Q${f(mx + 0.3 * (cx - mx))} ${f(my + 0.3 * (cy - my))} ${x2} ${y2}`;
+    })
+    .join('');
+
+  // 바큇살과 노드는 같은 순서로 낸다 (reader.js 가 순번으로 짝짓는다). 6) 반지름 4 + 5 × degree / 최대.
+  const listIdx = new Map(neighbors.map((nb, i) => [nb.id, i]));
+  const maxDeg = Math.max(1, ...picked.map((n) => n.degree));
+  let spokes = '';
+  let nodes = '';
+  for (const nb of picked) {
+    const [x, y] = pos.get(nb.id);
+    const dir = nb.out && nb.in ? 'is-mutual' : nb.out ? 'is-out' : 'is-in';
+    spokes += `<path class="${dir}" d="M${cx} ${cy}L${x} ${y}"/>`;
+    // native <title> 은 약 1초 지연 툴팁이라 두지 않는다. 즉시 툴팁은 reader.js 가 data-title 로 띄운다.
+    nodes +=
+      `<a href="${escapeHtml(nb.url)}" tabindex="-1" data-neigh="${listIdx.get(nb.id)}" data-cat="${escapeHtml(nb.category)}" data-title="${escapeHtml(nb.title)}">` +
+      `<circle cx="${x}" cy="${y}" r="${f(4 + 5 * (nb.degree / maxDeg))}" fill="url(#ng-${escapeHtml(nb.category)})"/></a>`;
+  }
+  // E6 구슬 질감: 쓰인 카테고리마다 방사형 그라데이션 하나. 색은 data-cat 의 --c 를 stop 이 물려받는다.
+  const defs = [...new Set(picked.map((n) => n.category))]
+    .map(
+      (c) =>
+        `<radialGradient id="ng-${escapeHtml(c)}" data-cat="${escapeHtml(c)}" cx=".34" cy=".3" r=".75"><stop class="ng-hi"/><stop offset=".6"/></radialGradient>`
+    )
+    .join('');
+  const self = nodeHref(page.id);
+  const more = hidden
+    ? `<a class="neigh-more" href="${self}" tabindex="-1"><text x="${cx}" y="${cy - ry + 4}" text-anchor="middle">+${hidden}</text></a>`
+    : '';
+
+  return `<svg class="neigh" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <defs>${defs}</defs>
+      ${chords ? `<path class="neigh-chord" d="${chords}"/>` : ''}
+      <g class="neigh-spokes">${spokes}</g>
+      <g class="neigh-nodes">${nodes}</g>
+      <a class="neigh-self" href="${self}" tabindex="-1" data-cat="${escapeHtml(page.category)}"><circle class="neigh-ring" cx="${cx}" cy="${cy}" r="10"/><circle class="neigh-center" cx="${cx}" cy="${cy}" r="7"/></a>
+      ${more}
+    </svg>`;
+}
+
+function relatedSection(page, neighbors, edgeSet) {
   if (!neighbors.length) {
     return `  <section class="related" aria-labelledby="related-h">
     <h2 class="foot-h" id="related-h">관련 페이지</h2>
@@ -763,49 +868,37 @@ function relatedSection(page, neighbors) {
   </section>`;
   }
 
-  // 방사형 배치 (결정적). 중심은 현재 페이지, 이웃은 타원 위.
-  const W = 480, H = 240, cx = 240, cy = 120, rx = 200, ry = 92;
   const n = neighbors.length;
-  const maxDeg = Math.max(1, ...neighbors.map((x) => x.degree));
-  let edges = '';
-  let nodes = '';
-  neighbors.forEach((nb, i) => {
-    const ang = -Math.PI / 2 + (i / n) * Math.PI * 2;
-    const x = cx + rx * Math.cos(ang);
-    const y = cy + ry * Math.sin(ang);
-    const r = 4 + 5 * (nb.degree / maxDeg);
-    edges += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`;
-    // native <title>은 ~1s 지연 툴팁이라 제외 — 즉시 표시는 reader.js가 data-title로 처리.
-    // aria-label은 스크린리더 접근명으로 유지. data-neigh로 아래 목록 행과 매칭.
-    nodes +=
-      `<a href="${escapeHtml(nb.url)}" aria-label="${escapeHtml(nb.title)}" data-neigh="${i}" data-title="${escapeHtml(nb.title)}">` +
-      `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}"/></a>`;
-  });
-  const svg = `<svg class="neigh" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="관련 페이지 그래프 (${n}개)">
-      <g class="neigh-edges">${edges}</g>
-      <g class="neigh-nodes">${nodes}</g>
-      <circle class="neigh-center" cx="${cx}" cy="${cy}" r="7"></circle>
-    </svg>`;
-
-  const list = neighbors
-    .map((nb, i) => {
-      const tag = [String(nb.type || '').toUpperCase(), nb.year || '']
-        .filter(Boolean)
-        .join('·');
-      return `      <li data-neigh="${i}">
+  const row = (nb, i) => {
+    const tag = [String(nb.type || '').toUpperCase(), nb.year || ''].filter(Boolean).join('·');
+    return `      <li data-neigh="${i}" data-cat="${escapeHtml(nb.category)}">
+        <span class="graph-swatch" aria-hidden="true"></span>
         <a href="${escapeHtml(nb.url)}">${escapeHtml(nb.title)}</a>
         ${tag ? `<span class="related-tag">${escapeHtml(tag)}</span>` : ''}
         <span class="related-deg" title="연결 ${nb.degree}개">↳ ${nb.degree}</span>
       </li>`;
-    })
-    .join('\n');
+  };
+  const rows = neighbors.map(row);
+  const rest =
+    n > LIST_OPEN
+      ? `
+    <details class="related-more">
+      <summary>나머지 ${n - LIST_OPEN}개</summary>
+      <ul class="related-list">
+${rows.slice(LIST_OPEN).join('\n')}
+      </ul>
+    </details>`
+      : '';
 
   return `  <section class="related" aria-labelledby="related-h">
-    <h2 class="foot-h" id="related-h">관련 페이지 <span class="foot-count">${n}</span></h2>
-    ${svg}
+    <div class="related-head">
+      <h2 class="foot-h" id="related-h">관련 페이지 <span class="foot-count">${n}</span></h2>
+      <a class="related-graph" href="${nodeHref(page.id)}">그래프에서 보기 <span aria-hidden="true">→</span></a>
+    </div>
+    ${miniGraph(page, neighbors, edgeSet)}
     <ul class="related-list">
-${list}
-    </ul>
+${rows.slice(0, LIST_OPEN).join('\n')}
+    </ul>${rest}
   </section>`;
 }
 

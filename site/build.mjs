@@ -128,6 +128,8 @@ async function main() {
     addAdj(e.target, e.source);
   }
   for (const [id, set] of adjacency) adjacency.set(id, [...set]);
+  // 방향 엣지 집합 'a>b' (미니 그래프 바큇살 방향과 현 선별용, 06 5.6절)
+  const edgeSet = new Set(graph.edges.map((e) => `${e.source}>${e.target}`));
 
   // 4) wiki/assets → dist/assets 복사 (figure 임베드 src)
   const assetsSrc = resolve(ROOT, 'wiki', 'assets');
@@ -170,6 +172,9 @@ async function main() {
         degree: graph.degree.get(p.id) || 0,
         type: p.catalogType || p.type || '',
         year: p.catalogYear || p.year || '',
+        out: edgeSet.has(`${page.id}>${p.id}`),
+        in: edgeSet.has(`${p.id}>${page.id}`),
+        tag: (p.tags || []).find((t) => t !== p.category && t !== 'physical-ai') || '',
       }))
       .sort((a, b) => b.degree - a.degree || a.title.localeCompare(b.title, 'ko'));
 
@@ -184,6 +189,7 @@ async function main() {
         degree: graph.degree,
         categoryLabel: content.categories.get(page.category),
         neighbors,
+        edgeSet,
         prev,
         next,
         tags: tagsFor(page),
