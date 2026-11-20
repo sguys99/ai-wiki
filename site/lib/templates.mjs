@@ -383,9 +383,10 @@ const nodeHref = (id) =>
 // 페이지에 갈 수 있다. 무대 안 영역은 자리와 id 만 둔다 (내용은 탐색기가 채운다).
 //
 // data: { groups:[{ slug, label, domain, nodes:[{ id,url,title,degree }] }], types:[{ type, count }],
-//         stats:{nodes,edges}, weak:{ noInbound, lowDegree } (graph.mjs weakLinks), graphHref, base }
+//         stats:{nodes,edges}, weak:{ noInbound, lowDegree } (graph.mjs weakLinks),
+//         recent:{ recentSince, recentMode, recentDays, count } (graph.mjs recentInfo), graphHref, base }
 export function graphPage(data) {
-  const { groups, types, stats, weak, graphHref, base } = data;
+  const { groups, types, stats, weak, recent, graphHref, base } = data;
   const num = (n) => n.toLocaleString('en-US');
   const statText = `페이지 ${num(stats.nodes)}개, 연결 ${num(stats.edges)}개`;
 
@@ -457,6 +458,16 @@ ${weakGroup('in', '들어오는 링크 없음', weak.noInbound)}
 ${weakGroup('deg', '연결 3개 이하', weak.lowDegree)}
   </section>`;
 
+  // 최근 추가 강조 (06 2절). 집합은 탐색기가 graph.json 의 recentSince 로 다시 판정한다. null 이면 스위치를 내보내지 않는다 (9.1절 가드)
+  const recentText =
+    recent.recentMode === 'days' ? `최근 ${recent.recentDays}일 추가 ${recent.count}개` : `가장 최근 추가 ${recent.count}개`;
+  const recentSwitch = recent.recentSince
+    ? `\n        <button type="button" class="graph-switch" id="graph-recent" role="switch" aria-checked="false"><span class="graph-switch-track" aria-hidden="true"></span><span class="graph-switch-label">최근 추가</span><span class="graph-chip-n">${recent.count}</span></button>`
+    : '';
+  const recentLegend = recent.recentSince
+    ? `\n      <p class="graph-legend-recent" hidden><span class="graph-recent-mark" aria-hidden="true"></span>${recentText}</p>`
+    : '';
+
   // 스크립트가 있어야 동작하는 컨트롤은 hidden 으로 내보내고 탐색기가 시작 때 푼다 (명령 줄, 줌과 맞춤 버튼, 조작 안내).
   // DOM 순서가 곧 Tab 순서다: 명령 줄, 팝오버, 칩 줄과 경로 줄, 캔버스, 패널, 범례, 도구 (01 9.2절).
   const body = `<h1 class="graph-title" id="graph-title">그래프</h1>
@@ -491,8 +502,7 @@ ${typeChips}
     </div>
     <div class="graph-filters-sec">
       <p class="graph-filters-h" id="graph-f-emph">강조</p>
-      <div class="graph-switches" role="group" aria-labelledby="graph-f-emph">
-        <!-- Phase 5 예약: 둘째 스위치 #graph-recent "최근 추가" (06 2절) -->
+      <div class="graph-switches" role="group" aria-labelledby="graph-f-emph">${recentSwitch}
         <button type="button" class="graph-switch" id="graph-weak" role="switch" aria-checked="false"><span class="graph-switch-track" aria-hidden="true"></span><span class="graph-switch-label">연결이 적은 페이지</span><span class="graph-chip-n">${weakN}</span></button>
       </div>
     </div>
@@ -529,7 +539,7 @@ ${typeChips}
       <p class="graph-legend-stat">${statText}</p>
 ${legend}
       <button type="button" class="graph-legend-reset" hidden>필터 해제</button>
-      <!-- Phase 5 예약: 최근 추가 표식 줄 .graph-legend-recent (01 7절) -->
+${recentLegend.slice(1)}
       <a class="graph-legend-weak" href="#weak-links">${weakText}<span aria-hidden="true"> →</span></a>
     </div>
     <p class="graph-hint is-atlas" hidden><span class="graph-hint-line" data-hint="select" hidden><kbd>클릭</kbd> 궤도로 열기</span><span class="graph-hint-line" data-hint="zoom"><kbd>휠</kbd> 확대, <kbd>드래그</kbd> 이동</span><span class="graph-hint-line" data-hint="search"><kbd>/</kbd> 검색</span></p>

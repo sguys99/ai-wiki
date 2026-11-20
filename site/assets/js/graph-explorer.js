@@ -60,7 +60,8 @@
     var nodes = graph.nodes.map(function (d, i) {
       return {
         i: i, id: d.id, stem: d.stem || '', title: d.title, category: d.category, degree: d.degree, tags: d.tags || [],
-        year: d.year, type: d.type,
+        year: d.year, type: d.type, added: d.added || '',
+        recent: !!graph.recentSince && (d.added || '') >= graph.recentSince, // 날짜 문자열 비교, 집합 정의는 빌드 한 곳 (06 2.4)
         xy: d.xy, r: Math.min(20, 2 + 1.6 * Math.sqrt(d.degree)), label: shortTitle(d.title),
         hx: 0, hy: 0, x: 0, y: 0, nb: new Set(), out: new Set(),
         role: ATLAS, p: 1, lt: 1, e: 1, front: false, cap: 0, delay: 0, f: null, t: null, fr0: ATLAS, fc0: 0,
@@ -146,6 +147,7 @@
     var inF = new Uint8Array(N).fill(1), lit = new Uint8Array(N).fill(1), litCat = {};
     var fActive = false, fCount = N, legendHover = null, fMix = 0;
     var weakOn = false, weakMix = 0; // 약한 연결 렌즈 (06 12.2 E3). 필터가 아니라 표시라 hash 에 싣지 않는다
+    var recentOn = false, recentMix = 0; // 최근 추가 위성 점 (06 2절). 같은 이유로 localStorage 에만 둔다
     var searchHits = new Set(); // 검색 상위 40개: 라벨 강제 후보와 캔버스 고리 (02 7.3)
     var popSwallow = false;      // 팝오버 밖 탭은 노드를 고르지 않는다 (02 2.6)
     // URL (02 8.4 ~ 8.6). hash 를 읽어 상태를 바꾸는 동안과 시작 전에는 history 를 쓰지 않는다
@@ -660,6 +662,8 @@
       if (reduce || Math.abs(ft - fMix) <= step) fMix = ft; else { fMix += ft > fMix ? step : -step; busy = true; }
       var wt = weakOn ? 1 : 0, ws = dt / 220; // 렌즈 고리는 220ms 동안 커지며 나타난다 (06 2.2 첫 등장과 같은 길이)
       if (reduce || Math.abs(wt - weakMix) <= ws) weakMix = wt; else { weakMix += wt > weakMix ? ws : -ws; busy = true; }
+      var rt = recentOn ? 1 : 0;
+      if (reduce || Math.abs(rt - recentMix) <= ws) recentMix = rt; else { recentMix += rt > recentMix ? ws : -ws; busy = true; }
       for (var i = 0; i < N; i++) {
         var n = nodes[i], ta = targetE(n), d = ta - emph[i], hl = n === (hovered || cursor) ? 1 : 0, dl = hl - hoverLift[i];
         if (reduce || Math.abs(d) <= step) emph[i] = ta; else { emph[i] += d > 0 ? step : -step; busy = true; }
@@ -887,6 +891,15 @@
           ctx.globalAlpha = 0.25 * reveal(n, now); ctx.lineWidth = 4;
           ctx.beginPath(); ctx.arc(px, py, r + 4.5, 0, TAU); ctx.stroke();
         }
+        // 최근 추가: 오른쪽 위 45도 r + 2.5px 에 지름 4px 위성 점. 줌과 무관한 크기, 반복 맥박 없음 (06 2.2).
+        // 고리들 위에 마지막으로 찍고 배경색 테를 둘러 overviews 고리, 렌즈 점선, 검색 고리와 겹쳐도 점으로 읽힌다
+        if (n.recent && recentMix > 0) {
+          var sd = (r + 2.5) * Math.SQRT1_2, sr = 2 * ease4(recentMix);
+          ctx.globalAlpha = a; ctx.fillStyle = T.labelHalo;
+          ctx.beginPath(); ctx.arc(px + sd, py - sd, sr + 1.2, 0, TAU); ctx.fill();
+          ctx.globalAlpha = a * (dark ? 0.95 : 1); ctx.fillStyle = dark ? rgba(T.specular, 1) : T.text;
+          ctx.beginPath(); ctx.arc(px + sd, py - sd, sr, 0, TAU); ctx.fill();
+        }
       }
       ctx.globalAlpha = 1;
     }
@@ -1093,7 +1106,9 @@
       var budget = k >= 2.2 ? 160 : Math.max(4, Math.round(W * H / 100000 * Math.min(3, k / 0.8)));
       for (var i = 0; i < N; i++) {
         var n = nodes[i], top = catTop[n.category] === n;
-        var hit = searchHits.has(n), forced = n === h || hit || (h && h.nb.has(n) && n.degree >= 10);
+        // 최근 노드는 줌과 무관한 후보다. 다만 필터 밖과 흐린 노드는 다른 노드처럼 뺀다 (06 2.2, 표시만 하고 필터와 섞지 않는다)
+        var hit = searchHits.has(n), rec = recentOn && n.recent && lit[i] && emph[i] >= 0.9;
+        var forced = n === h || hit || rec || (h && h.nb.has(n) && n.degree >= 10);
         if (!forced && ((n.degree < minDeg && !top) || emph[i] < 0.9 || !lit[i])) continue;
         var px = sx(n.x), py = sy(n.y);
         if (px < -20 || py < -20 || px > W + 20 || py > H + 20) continue;
@@ -1630,7 +1645,8 @@
       pMeta.innerHTML = (n.year ? '<span>' + n.year + '</span>' : '') + (n.type ? '<span>' + esc(n.type) + '</span>' : '') +
         '<span>연결 ' + n.degree + '</span><span class="graph-meta-io" title="이 페이지를 링크하는 페이지 ' + ins + '개, 이 페이지가 링크하는 페이지 ' + outs + '개">' +
         '<span aria-hidden="true">←</span>' + ins + ' <span aria-hidden="true">→</span>' + outs + '<span class="sr-only">, 들어오는 링크 ' + ins + '개, 나가는 링크 ' + outs + '개</span></span>' +
-        '<span class="graph-out-mark" hidden>필터 밖</span>';
+        '<span class="graph-out-mark" hidden>필터 밖</span>' +
+        (n.recent ? '<span class="graph-new-mark"' + (recentOn ? '' : ' hidden') + '>새로 추가 ' + +n.added.slice(5, 7) + '월 ' + +n.added.slice(8, 10) + '일</span>' : '');
       pOpen.href = pageHref(n);
       var html = n.tags.length ? '<ul class="graph-p-tags" aria-label="태그">' + n.tags.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '';
       html += '<h3 class="graph-p-section">이웃 페이지 <span>' + nb + '개</span></h3>';
@@ -1907,11 +1923,32 @@
     function setWeak(on) {
       weakOn = on;
       weakSw.setAttribute('aria-checked', String(on));
-      fBtn.classList.toggle('has-emph', on); // 배지 옆 점: 모바일은 범례 줄이 없어 강조가 켜진 것을 여기서 안다
+      syncEmph();
       announce(on ? '연결이 적은 페이지 강조' : '강조 해제');
       redraw();
     }
-    try { if (localStorage.getItem('graph.weak') === '1') { weakOn = true; weakSw.setAttribute('aria-checked', 'true'); fBtn.classList.add('has-emph'); } } catch (err) { /* 저장 불가 */ }
+    // 최근 추가: 집합은 노드의 recent (graph.json recentSince). 서버가 recentSince null 이면 스위치를 내보내지 않는다 (06 9.1)
+    var recentSw = document.getElementById('graph-recent'), recentLeg = legendEl.querySelector('.graph-legend-recent');
+    var recentNodes = nodes.filter(function (n) { return n.recent; })
+      .sort(function (a, b) { return a.added < b.added ? 1 : a.added > b.added ? -1 : a.title.localeCompare(b.title, 'ko'); });
+    function setRecent(on, quiet) {
+      recentOn = on;
+      recentSw.setAttribute('aria-checked', String(on));
+      recentLeg.hidden = !on;
+      var mark = pMeta.querySelector('.graph-new-mark');
+      if (mark) mark.hidden = !on;
+      syncEmph();
+      chromeCache = null; namesCache = null; // 범례 높이가 바뀌어 라벨이 피할 상자도 바뀐다
+      if (!quiet) announce(on ? '최근 추가된 페이지 ' + recentNodes.length + '개 강조' : '강조 해제');
+      redraw();
+    }
+    // 배지 옆 점: 모바일은 범례 줄이 없어 강조가 켜진 것을 여기서 안다. 두 스위치 중 하나라도 켜지면 단다
+    function syncEmph() { fBtn.classList.toggle('has-emph', weakOn || recentOn); }
+    try {
+      if (localStorage.getItem('graph.weak') === '1') { weakOn = true; weakSw.setAttribute('aria-checked', 'true'); }
+      if (recentSw && localStorage.getItem('graph.recent') === '1') setRecent(true, true);
+    } catch (err) { /* 저장 불가 */ }
+    syncEmph();
     function resetAll() { filt.cat.clear(); filt.type.clear(); filt.tag.clear(); applyFilters(); }
 
     // 범례: 누르면 켜고 끈다. 미리 강조(마우스)는 필터가 하나도 없을 때만 (02 8.1)
@@ -1984,6 +2021,7 @@
       if (!b) return;
       if (b.id === 'graph-filters-reset') { resetAll(); return; } // 강조 스위치는 그대로 둔다 (06 2.2)
       if (b === weakSw) { setWeak(!weakOn); try { localStorage.setItem('graph.weak', weakOn ? '1' : '0'); } catch (err) { /* 저장 불가 */ } return; }
+      if (b === recentSw) { setRecent(!recentOn); try { localStorage.setItem('graph.recent', recentOn ? '1' : '0'); } catch (err) { /* 저장 불가 */ } return; }
       if (b.dataset.type) { toggleIn(filt.type, b.dataset.type); return; }
       if (b.dataset.tag) {
         var box = b.parentNode, at = Array.prototype.indexOf.call(box.children, b);
@@ -2061,12 +2099,12 @@
     nodes.forEach(function (n) { n.qt = norm(n.title); });
     function runSearch(keepActive) {
       var s = searchQ = norm(q.value), st = s.replace(/ /g, '-'), prev = active >= 0 && hits[active] && hits[active].n;
-      hits = !s ? [] : nodes.map(function (n) {
+      hits = !s ? recentHits() : nodes.map(function (n) {
         var at = n.qt.indexOf(s);
         if (at < 0 && n.stem.indexOf(st) < 0) return null;
         return { n: n, at: at, score: (at === 0 ? 1000 : at > 0 ? 500 : 0) + n.degree };
       }).filter(Boolean).sort(function (a, b) { return b.score - a.score || a.n.title.localeCompare(b.n.title, 'ko'); });
-      searchHits = new Set(hits.slice(0, 40).map(function (h) { return h.n; }));
+      searchHits = new Set(s ? hits.slice(0, 40).map(function (h) { return h.n; }) : []); // 최근 목록은 위성 점이 이미 표시한다
       active = hits.length ? 0 : -1;
       if (keepActive && prev) for (var i = 0; i < Math.min(8, hits.length); i++) if (hits[i].n === prev) active = i;
       renderResults();
@@ -2075,12 +2113,23 @@
       clearTimeout(countTimer);
       if (s && !keepActive) countTimer = setTimeout(function () { announce(hits.length ? '결과 ' + hits.length + '개' : '일치하는 페이지가 없습니다'); }, 500);
     }
+    // 스위치가 켜진 동안 빈 검색 입력은 결과 자리에 최근 추가를 추가일 내림차순으로 보인다 (06 2.2 노드 순회)
+    function recentHits() { return recentOn ? recentNodes.map(function (n) { return { n: n, at: -1, score: 0 }; }) : []; }
+    function shown() { return searchQ ? Math.min(hits.length, 8) : hits.length; }
     function renderResults() {
-      var open = !!searchQ && document.activeElement === q;
+      var open = (!!searchQ || hits.length > 0) && document.activeElement === q;
       q.setAttribute('aria-expanded', String(open));
       if (!open) { results.innerHTML = ''; q.removeAttribute('aria-activedescendant'); return; }
       var s = searchQ, st = s.replace(/ /g, '-');
-      results.innerHTML = !hits.length
+      results.setAttribute('aria-label', s ? '검색 결과' : '최근 추가된 페이지');
+      results.innerHTML = !s
+        ? '<li class="graph-res-head" role="presentation">최근 추가</li>' + hits.map(function (h, i) {
+          var n = h.n, out = !inF[n.i];
+          return '<li role="option" id="graph-res-' + i + '" class="graph-res' + (out ? ' is-out' : '') + '" data-cat="' + esc(n.category) + '" data-id="' + esc(n.id) + '" aria-selected="' + (i === active) + '" title="' + esc(n.title) + '">' +
+            '<span class="graph-swatch" aria-hidden="true"></span><span class="graph-res-main"><span class="graph-res-t">' + esc(n.title) + '</span></span>' +
+            '<span class="graph-res-meta">' + (out ? '<span class="graph-res-out">필터 밖</span>' : '') + '<span class="graph-res-deg">' + +n.added.slice(5, 7) + '월 ' + +n.added.slice(8, 10) + '일</span></span></li>';
+        }).join('')
+        : !hits.length
         ? '<li class="graph-res-empty" role="presentation"><span class="graph-res-empty-t">일치하는 페이지가 없습니다</span>영문 제목이나 파일 이름으로 찾아 보세요.</li>'
         : hits.slice(0, 8).map(function (h, i) {
           var n = h.n, t = n.title, out = !inF[n.i];
@@ -2114,14 +2163,14 @@
       if (freed) announce(live.textContent + '. 필터 일부를 해제했습니다');
     }
     q.addEventListener('input', function () { runSearch(false); });
-    q.addEventListener('focus', function () { closeFilters(false); if (searchQ) renderResults(); });
+    q.addEventListener('focus', function () { closeFilters(false); if (searchQ) renderResults(); else if (recentOn) runSearch(true); });
     q.addEventListener('blur', function () { setTimeout(function () { if (document.activeElement !== q) closeResults(); }, 0); });
     q.addEventListener('keydown', function (e) {
       if (e.isComposing || e.keyCode === 229) return; // 조합을 끝내는 Enter 가 결과 선택으로 번지지 않게 (02 7.1)
-      var m = Math.min(hits.length, 8);
+      var m = shown();
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
-        if (!results.innerHTML && searchQ) { renderResults(); return; }
+        if (!results.innerHTML && (searchQ || recentOn)) { runSearch(true); return; }
         if (!m) return;
         active = (active + (e.key === 'ArrowDown' ? 1 : -1) + m) % m;
         renderResults();
@@ -2506,6 +2555,7 @@
       setFilters: setFilters,
       filtered: function () { return { active: fActive, count: fCount, ids: nodes.filter(function (n) { return inF[n.i]; }).map(function (n) { return n.id; }) }; },
       emph: function (id) { var n = byId[id]; return n && emph[n.i]; },
+      recent: function () { return { on: recentOn, mix: recentMix, since: graph.recentSince, mode: graph.recentMode, ids: recentNodes.map(function (n) { return n.id; }) }; },
       weak: function () { return { on: weakOn, mix: weakMix, ids: nodes.filter(function (n) { return n.weak; }).map(function (n) { return n.id; }) }; },
       search: function () { return { q: searchQ, total: hits.length, shown: hits.slice(0, 8).map(function (h) { return h.n.id; }), active: active, canvas: searchHits.size }; },
       sheet: function () { return { full: sheetFull, h: sheetH }; },

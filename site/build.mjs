@@ -289,6 +289,7 @@ async function main() {
       types: [...typeCounts].sort((a, b) => b[1] - a[1]).map(([type, count]) => ({ type, count })),
       stats: { nodes: graph.nodes.length, edges: graph.edges.length },
       weak,
+      recent: graphRecent,
       graphHref: href('/graph.json'),
       base: href('/'),
     })
