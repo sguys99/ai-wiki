@@ -334,6 +334,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 
 RAG 응용, 도메인 적용 사례, 제품 패턴.
 
+- [[applications/maier-2025-llms-reproduce-human-purchase-intent|가상 소비자의 구매 의향을 읽는 법]]: 미국 소비자 9,300명의 설문과 가상 패널을 비교한다. 서술형 답을 점수 분포로 바꾸는 방법과 제품별 구매 의향에서 상관 달성률 90%가 뜻하는 바를 설명한다 (2025, paper)
 - [[applications/firecrawl-firecrawl|Firecrawl]]: 웹페이지를 Markdown으로 읽거나 문서 사이트 전체를 수집한다. Jina Reader와 브라우저 자동화 방식의 차이, 로컬 설치와 자체 호스팅, Python 수집 예시를 다룬다 (2026, repo)
 - [[applications/garrytan-gbrain|garrytan/gbrain (repo)]]: Garry Tan이 MIT로 공개한 에이전트 메모리. git markdown을 원본으로 두고 hybrid retrieval, LLM 호출 없는 typed edge graph, 답을 합성하는 brain layer를 결합한다 (2026, repo)
 - [[applications/garrytan-gbrain-tutorials|garrytan/gbrain tutorials]]: 저장소 docs/tutorials의 실전 셋업 4편. 개인 brain, 회사 brain, skillopt, 코딩 에이전트 연결을 소요 시간과 비용 예산까지 절차로 정리한다 (2026, repo)

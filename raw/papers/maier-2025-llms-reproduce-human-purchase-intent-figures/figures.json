@@ -1,0 +1,975 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig01.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig01.png",
+    "page": 3,
+    "caption": "Figure 1: Different response generation procedures and SSR response-likelihood mapping. (A) A synthetic consumer is con- structed by instructing an LLM to impersonate a consumer with certain demographic properties and show them a product concept as an image containing a description and possibly conc",
+    "bbox": [
+      47.69,
+      77.69,
+      579.46,
+      585.4
+    ],
+    "bbox_norm": [
+      0.0779,
+      0.0981,
+      0.9468,
+      0.7391
+    ],
+    "dpi": 300,
+    "area_frac": 0.557,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p03.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig02.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig02.png",
+    "page": 5,
+    "caption": "Figure 2: Comparison of real and synthetic surveys based on GPT-4o with 𝑇 LLM = 0 . 5 . (A) Mean purchase intent comparison for (A.i) Direct likert ratings (DLRs), (A.ii) textual elicitation with follow-up Likert ratings (FLRs) and (A.iii) semantic similarity ratings (SSRs). (B) Eight example survey",
+    "bbox": [
+      37.67,
+      77.68,
+      544.03,
+      382.04
+    ],
+    "bbox_norm": [
+      0.0615,
+      0.0981,
+      0.8889,
+      0.4824
+    ],
+    "dpi": 300,
+    "area_frac": 0.318,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig03.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig03.png",
+    "page": 6,
+    "caption": "Figure 3: Comparison of purchase intent distribution similar- ity between real and synthetic surveys based on GPT-4o with 𝑇 LLM = 0 . 5 for direct Likert ratings (DLRs), textual elicitation with follow-up Likert ratings (FLRs) and semantic similarity ratings (SSRs).",
+    "bbox": [
+      59.81,
+      77.69,
+      288.03,
+      305.91
+    ],
+    "bbox_norm": [
+      0.0977,
+      0.0981,
+      0.4706,
+      0.3863
+    ],
+    "dpi": 300,
+    "area_frac": 0.107,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig04.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig04.png",
+    "page": 6,
+    "caption": "Figure 4: Mean purchase intent stratified by five demographic and product features (shown are results from the SSR method for both GPT-4o and Gem-2f). Error bars represent standard errors.",
+    "bbox": [
+      321.57,
+      77.68,
+      554.59,
+      642.25
+    ],
+    "bbox_norm": [
+      0.5254,
+      0.0981,
+      0.9062,
+      0.8109
+    ],
+    "dpi": 300,
+    "area_frac": 0.271,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig05.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig05.png",
+    "page": 11,
+    "caption": "Figure 5: A surrogate product concept similar to those used in the 57 concept surveys.",
+    "bbox": [
+      41.74,
+      72.41,
+      572.1,
+      423.78
+    ],
+    "bbox_norm": [
+      0.0682,
+      0.0914,
+      0.9348,
+      0.5351
+    ],
+    "dpi": 300,
+    "area_frac": 0.384,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig06.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig06.png",
+    "page": 13,
+    "caption": "Figure 6: Comparison of real and synthetic surveys based on Gem-2f with 𝑇 LLM = 0 . 5 . (A) Mean purchase intent comparison for (A.i) Direct likert ratings (DLRs), (A.ii) textual elicitation with follow-up Likert ratings (FLRs) and (A.iii) semantic similarity ratings (SSRs). (B) Eight example survey",
+    "bbox": [
+      43.65,
+      77.68,
+      544.03,
+      382.04
+    ],
+    "bbox_norm": [
+      0.0713,
+      0.0981,
+      0.8889,
+      0.4824
+    ],
+    "dpi": 300,
+    "area_frac": 0.314,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig07.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig07.png",
+    "page": 13,
+    "caption": "Figure 7: Comparison of purchase intent distribution similarity between real and synthetic surveys based on Gem-2f with 𝑇 LLM = 0 . 5 for direct Likert ratings (DLRs), textual elicitation with follow-up Likert ratings (FLRs), semantic similarity ratings (SSRs), and best-set SSRs for an experiment wh",
+    "bbox": [
+      199.12,
+      433.8,
+      412.88,
+      647.56
+    ],
+    "bbox_norm": [
+      0.3254,
+      0.5477,
+      0.6746,
+      0.8176
+    ],
+    "dpi": 300,
+    "area_frac": 0.094,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig08.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig08.png",
+    "page": 15,
+    "caption": "Figure 8: Mean purchase intent stratified by respondents’ gender and dwelling region (shown are results from the SSR method for both GPT-4o and Gem-2f). Error bars represent standard errors.",
+    "bbox": [
+      186.51,
+      77.68,
+      425.49,
+      316.66
+    ],
+    "bbox_norm": [
+      0.3048,
+      0.0981,
+      0.6952,
+      0.3998
+    ],
+    "dpi": 300,
+    "area_frac": 0.118,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig09.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig09.png",
+    "page": 15,
+    "caption": "Figure 9: Survey histograms for direct Likert ratings at 𝑇 LLM = 0 . 5 for GPT-4o.",
+    "bbox": [
+      47.8,
+      346.51,
+      564.2,
+      610.71
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.4375,
+      0.9219,
+      0.7711
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig10.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig10.png",
+    "page": 16,
+    "caption": "Figure 10: Survey histograms for direct Likert ratings at 𝑇 LLM = 1 . 5 for GPT-4o.",
+    "bbox": [
+      47.8,
+      77.69,
+      564.2,
+      341.89
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.9219,
+      0.4317
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig11.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig11.png",
+    "page": 16,
+    "caption": "Figure 11: Survey histograms for direct Likert ratings at 𝑇 LLM = 0 . 5 for Gem-2f.",
+    "bbox": [
+      47.8,
+      360.77,
+      564.2,
+      624.97
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.4555,
+      0.9219,
+      0.7891
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p16.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig12.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig12.png",
+    "page": 17,
+    "caption": "Figure 12: Survey histograms for direct Likert ratings at 𝑇 LLM = 1 . 5 for Gem-2f.",
+    "bbox": [
+      47.8,
+      77.69,
+      564.2,
+      341.89
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.9219,
+      0.4317
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig13.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig13.png",
+    "page": 17,
+    "caption": "Figure 13: Success metrics for direct Likert ratings at 𝑇 LLM = 0 . 5 for GPT-4o.",
+    "bbox": [
+      173.9,
+      360.77,
+      438.1,
+      624.97
+    ],
+    "bbox_norm": [
+      0.2841,
+      0.4555,
+      0.7159,
+      0.7891
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig14.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig14.png",
+    "page": 18,
+    "caption": "Figure 14: Success metrics for direct Likert ratings at 𝑇 LLM = 1 . 5 for GPT-4o.",
+    "bbox": [
+      173.9,
+      77.69,
+      438.1,
+      341.89
+    ],
+    "bbox_norm": [
+      0.2841,
+      0.0981,
+      0.7159,
+      0.4317
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig15.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig15.png",
+    "page": 18,
+    "caption": "Figure 15: Success metrics for direct Likert ratings at 𝑇 LLM = 0 . 5 for Gem-2f.",
+    "bbox": [
+      173.9,
+      360.77,
+      438.1,
+      624.97
+    ],
+    "bbox_norm": [
+      0.2841,
+      0.4555,
+      0.7159,
+      0.7891
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig16.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig16.png",
+    "page": 19,
+    "caption": "Figure 16: Success metrics for direct Likert ratings at 𝑇 LLM = 1 . 5 for Gem-2f.",
+    "bbox": [
+      173.9,
+      77.69,
+      438.1,
+      341.89
+    ],
+    "bbox_norm": [
+      0.2841,
+      0.0981,
+      0.7159,
+      0.4317
+    ],
+    "dpi": 300,
+    "area_frac": 0.144,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig17.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig17.png",
+    "page": 19,
+    "caption": "Figure 17: First set of survey histograms for textual elicitation with GPT-4o and follow-up ratings at 𝑇 LLM = 0 . 5 , with image stimulus and full demography setup. For semantic similarity rating (SSR), we used the mean over all reference sets.",
+    "bbox": [
+      47.8,
+      360.77,
+      564.2,
+      624.97
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.4555,
+      0.9219,
+      0.7891
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig18.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig18.png",
+    "page": 20,
+    "caption": "Figure 18: Second set of survey histograms for textual elicitation with GPT-4o and follow-up ratings at 𝑇 LLM = 0 . 5 , with image stimulus and full demography setup. For semantic similarity rating (SSR), we used the mean over all reference sets.",
+    "bbox": [
+      47.8,
+      77.69,
+      564.2,
+      341.89
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.9219,
+      0.4317
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig19.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig19.png",
+    "page": 20,
+    "caption": "Figure 19: First set of survey histograms for textual elicitation with Gem-2f and follow-up ratings at 𝑇 LLM = 0 . 5 , with image stimulus and full demography setup. For semantic similarity rating (SSR), we used the mean over all reference sets.",
+    "bbox": [
+      47.8,
+      371.73,
+      564.2,
+      635.93
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.4694,
+      0.9219,
+      0.8029
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig20",
+    "label": "Figure 20",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig20.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig20.png",
+    "page": 21,
+    "caption": "Figure 20: Second set of survey histograms for textual elicitation with Gem-2f and follow-up ratings at 𝑇 LLM = 0 . 5 , with image stimulus and full demography setup. For semantic similarity rating (SSR), we used the mean over all reference sets.",
+    "bbox": [
+      47.8,
+      77.69,
+      564.2,
+      341.89
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.9219,
+      0.4317
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig21",
+    "label": "Figure 21",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig21.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig21.png",
+    "page": 21,
+    "caption": "Figure 21: Success metrics for textual elicitation at 𝑇 LLM = 0 . 5 with GPT-4o, with image stimulus and full demography setup. For semantic similarity rating (SSR), we used the mean over all reference sets.",
+    "bbox": [
+      173.9,
+      371.73,
+      438.1,
+      610.71
+    ],
+    "bbox_norm": [
+      0.2841,
+      0.4694,
+      0.7159,
+      0.7711
+    ],
+    "dpi": 300,
+    "area_frac": 0.13,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig22",
+    "label": "Figure 22",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig22.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig22.png",
+    "page": 22,
+    "caption": "Figure 22: Success metrics for textual elicitation at 𝑇 LLM = 0 . 5 with Gem-2f, with image stimulus and full demography setup. For semantic similarity rating (SSR), we used the mean over all reference sets.",
+    "bbox": [
+      173.9,
+      77.69,
+      438.1,
+      316.67
+    ],
+    "bbox_norm": [
+      0.2841,
+      0.0981,
+      0.7159,
+      0.3998
+    ],
+    "dpi": 300,
+    "area_frac": 0.13,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig23",
+    "label": "Figure 23",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig23.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig23.png",
+    "page": 22,
+    "caption": "Figure 23: First set of survey histograms for textual elicitation with GPT-4o and follow-up ratings at 𝑇 LLM = 0 . 5 , with text stimulus and alternating between prompting the LLM with full demographic information and zero demographic information. For semantic similarity rating (SSR), we used the me",
+    "bbox": [
+      47.8,
+      346.51,
+      564.2,
+      610.71
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.4375,
+      0.9219,
+      0.7711
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig24",
+    "label": "Figure 24",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig24.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig24.png",
+    "page": 23,
+    "caption": "Figure 24: Second set of survey histograms for textual elicitation with GPT-4o and follow-up ratings at 𝑇 LLM = 0 . 5 , with text stimulus and alternating between prompting the LLM with full demographic information and zero demographic information. For semantic similarity rating (SSR), we used the m",
+    "bbox": [
+      47.8,
+      77.69,
+      564.2,
+      341.89
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.9219,
+      0.4317
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p23.png"
+  },
+  {
+    "id": "fig25",
+    "label": "Figure 25",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig25.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig25.png",
+    "page": 23,
+    "caption": "Figure 25: First set of survey histograms for textual elicitation with Gem-2f and follow-up ratings at 𝑇 LLM = 0 . 5 , with text stimulus and alternating between prompting the LLM with full demographic information and zero demographic information. For semantic similarity rating (SSR), we used the me",
+    "bbox": [
+      47.8,
+      382.69,
+      564.2,
+      646.89
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.4832,
+      0.9219,
+      0.8168
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p23.png"
+  },
+  {
+    "id": "fig26",
+    "label": "Figure 26",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig26.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig26.png",
+    "page": 24,
+    "caption": "Figure 26: Second set of survey histograms for textual elicitation with Gem-2f and follow-up ratings at 𝑇 LLM = 0 . 5 , with text stimulus and alternating between prompting the LLM with full demographic information and zero demographic information. For semantic similarity rating (SSR), we used the m",
+    "bbox": [
+      47.8,
+      77.69,
+      564.2,
+      341.89
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.9219,
+      0.4317
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig27",
+    "label": "Figure 27",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig27.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig27.png",
+    "page": 24,
+    "caption": "Figure 27: Success metrics for textual elicitation and demography experiments, at 𝑇 LLM = 0 . 5 with GPT-4o and with text stimulus. For semantic similarity rating (SSR), we used the mean over all reference sets.",
+    "bbox": [
+      47.8,
+      382.69,
+      564.2,
+      621.67
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.4832,
+      0.9219,
+      0.7849
+    ],
+    "dpi": 300,
+    "area_frac": 0.255,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig28",
+    "label": "Figure 28",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig28.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig28.png",
+    "page": 25,
+    "caption": "Figure 28: Success metrics for textual elicitation and demography experiments, at 𝑇 LLM = 0 . 5 with Gem-2f and with text stimulus. For semantic similarity rating (SSR), we used the mean over all reference sets.",
+    "bbox": [
+      47.8,
+      77.69,
+      564.2,
+      316.67
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.9219,
+      0.3998
+    ],
+    "dpi": 300,
+    "area_frac": 0.255,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig29",
+    "label": "Figure 29",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig29.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig29.png",
+    "page": 25,
+    "caption": "Figure 29: Success metrics for textual elicitation and demography experiments, at 𝑇 LLM = 0 . 5 with Gem-2f and image stimulus. For semantic similarity rating (SSR), we used the result for the best reference set (4).",
+    "bbox": [
+      173.9,
+      346.51,
+      438.1,
+      585.49
+    ],
+    "bbox_norm": [
+      0.2841,
+      0.4375,
+      0.7159,
+      0.7393
+    ],
+    "dpi": 300,
+    "area_frac": 0.13,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p25.png"
+  },
+  {
+    "id": "fig30",
+    "label": "Figure 30",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig30.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig30.png",
+    "page": 26,
+    "caption": "Figure 30: First set of survey histograms for textual elicitation with Gem-2f and follow-up ratings at 𝑇 LLM = 0 . 5 , with image stimulus and prompting the LLM with zero demographic information. For semantic similarity rating (SSR), we used the the result for the best reference set (4).",
+    "bbox": [
+      47.8,
+      77.69,
+      564.2,
+      341.89
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.9219,
+      0.4317
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p26.png"
+  },
+  {
+    "id": "fig31",
+    "label": "Figure 31",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig31.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig31.png",
+    "page": 26,
+    "caption": "Figure 31: Second set of survey histograms for textual elicitation with Gem-2f and follow-up ratings at 𝑇 LLM = 0 . 5 , with image stimulus and prompting the LLM with zero demographic information. For semantic similarity rating (SSR), we used the the result for the best reference set (4).",
+    "bbox": [
+      47.8,
+      382.69,
+      564.2,
+      646.89
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.4832,
+      0.9219,
+      0.8168
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p26.png"
+  },
+  {
+    "id": "fig32",
+    "label": "Figure 32",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig32.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig32.png",
+    "page": 27,
+    "caption": "Figure 32: Scan over post-elicitation temperature 𝑇 values and change in success metrics for textual elicitation at 𝑇 LLM = 0 . 5 with GPT-4o and image stimulus, with full demography setup. For semantic similarity rating (SSR), we used the mean over all reference sets. Horizontal lines refer to the ",
+    "bbox": [
+      47.8,
+      77.69,
+      564.21,
+      305.86
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.9219,
+      0.3862
+    ],
+    "dpi": 300,
+    "area_frac": 0.243,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig33",
+    "label": "Figure 33",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig33.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig33.png",
+    "page": 27,
+    "caption": "Figure 33: First set of survey histograms for textual elicitation to question “How relevant is this concept for you?” with Gem-2f and follow-up ratings at 𝑇 LLM = 0 . 5 , with image stimulus and full demography setup. For semantic similarity rating (SSR), we used the mean over three reference sets t",
+    "bbox": [
+      47.8,
+      357.62,
+      564.2,
+      621.83
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.4515,
+      0.9219,
+      0.7851
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig34",
+    "label": "Figure 34",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig34.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig34.png",
+    "page": 28,
+    "caption": "Figure 34: Second set of survey histograms for textual elicitation to question “How relevant is this concept for you?” with Gem-2f and follow-up ratings at 𝑇 LLM = 0 . 5 , with image stimulus and full demography setup. For semantic similarity rating (SSR), we used the mean over three reference sets ",
+    "bbox": [
+      47.8,
+      77.69,
+      564.2,
+      341.89
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.0981,
+      0.9219,
+      0.4317
+    ],
+    "dpi": 300,
+    "area_frac": 0.281,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p28.png"
+  },
+  {
+    "id": "fig35",
+    "label": "Figure 35",
+    "kind": "figure",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/fig35.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/fig35.png",
+    "page": 28,
+    "caption": "Figure 35: Success metrics for textual elicitation to question “How relevant is this concept for you?” with Gem-2f and follow-up ratings at 𝑇 LLM = 0 . 5 , with image stimulus and full demography setup. For semantic similarity rating (SSR), we used the mean over three reference sets that were constr",
+    "bbox": [
+      173.9,
+      382.69,
+      438.1,
+      621.67
+    ],
+    "bbox_norm": [
+      0.2841,
+      0.4832,
+      0.7159,
+      0.7849
+    ],
+    "dpi": 300,
+    "area_frac": 0.13,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/maier-2025-llms-reproduce-human-purchase-intent/tab01.png",
+    "raw": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/tab01.png",
+    "page": 14,
+    "caption": "Table 1: Metrics for all experiments on purchase intent. “Direct” refers to direct Likert rating elicitation (DLR), “Textual” refers to free-text responses followed by SSR and FLR. We show correlation attainment 𝜌 , distributional similarities 𝐾 𝑥𝑦 and 𝐶 𝑥𝑦 , mean purchase intent correlation 𝑅 𝑥𝑦 be",
+    "bbox": [
+      47.8,
+      133.68,
+      568.57,
+      459.3
+    ],
+    "bbox_norm": [
+      0.0781,
+      0.1688,
+      0.929,
+      0.5799
+    ],
+    "dpi": 300,
+    "area_frac": 0.35,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/maier-2025-llms-reproduce-human-purchase-intent-figures/_overlay/p14.png"
+  }
+]
