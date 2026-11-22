@@ -1253,6 +1253,7 @@ RSS 2026의 주요 세션은 VLA, World Models & Memory, Humanoids, Imitation Le
 
 ## 관련 페이지
 
+- [[physical-ai/dsba-2026-physical-ai-seminar-c02-s01-rt-1-rt-2|다음 회차 C02-S01, RT-1과 RT-2]]는 이 장에서 소개한 제어 주기와 action 표현을 두 모델에 적용해 웹에서 배운 지식이 로봇의 대상 선택에 어떻게 쓰이는지 살핀다.
 - [[overviews/physical-ai-overview]]: physical-ai 카테고리 허브. 이 강의가 다루는 VLA 계보와 world model 트랙의 학습 경로가 있다
 - [[overviews/vla-evolution-groot-pi-gemini-robotics-overview]]: 강의의 주요 진영 절에 나온 GR00T, π, Gemini Robotics 계열을 버전별로 비교한 합성 페이지
 - [[physical-ai/brohan-2023-rt-2-vision-language-action-models-transfer-web]]: VLA라는 용어가 나온 분기점 (RT-2)

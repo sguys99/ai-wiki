@@ -1,0 +1,252 @@
+[
+  {
+    "id": "slide05",
+    "label": "Slide 5",
+    "kind": "figure",
+    "file": "slide05.png",
+    "timestamp": "02:38",
+    "strategy": "keyframe",
+    "caption": "2장의 세 회차에서 비교할 모델과 다음 회차로 이어지는 질문",
+    "curated": false
+  },
+  {
+    "id": "slide09",
+    "label": "Slide 9",
+    "kind": "figure",
+    "file": "slide09.png",
+    "timestamp": "06:38",
+    "strategy": "keyframe",
+    "caption": "policy의 목표 갱신과 로봇 제어기의 모터 제어 주기",
+    "curated": false
+  },
+  {
+    "id": "slide10",
+    "label": "Slide 10",
+    "kind": "figure",
+    "file": "slide10.png",
+    "timestamp": "07:38",
+    "strategy": "keyframe",
+    "caption": "출력값의 표현과 한 번에 예측하는 시점 수로 나눈 모델 분류",
+    "curated": true
+  },
+  {
+    "id": "slide11",
+    "label": "Slide 11",
+    "kind": "figure",
+    "file": "slide11.png",
+    "timestamp": "09:08",
+    "strategy": "keyframe",
+    "caption": "Trajectory Transformer와 Gato에서 RT-1으로 이어지는 토큰 기반 제어",
+    "curated": false
+  },
+  {
+    "id": "slide12",
+    "label": "Slide 12",
+    "kind": "figure",
+    "file": "slide12.png",
+    "timestamp": "10:19",
+    "strategy": "keyframe",
+    "caption": "SayCan 계획 성공률 87%와 BC-Z의 기존 주방 및 새 주방 실행 성공률",
+    "curated": true
+  },
+  {
+    "id": "slide13",
+    "label": "Slide 13",
+    "kind": "figure",
+    "file": "slide13.png",
+    "timestamp": "12:08",
+    "strategy": "keyframe",
+    "caption": "두 우회 경로가 있는 시연에서 단봉 회귀와 256개 구간 분류의 차이",
+    "curated": true
+  },
+  {
+    "id": "slide16",
+    "label": "Slide 16",
+    "kind": "figure",
+    "file": "slide16.png",
+    "timestamp": "14:38",
+    "strategy": "keyframe",
+    "caption": "카메라 6프레임에서 시각 토큰 48개를 거쳐 한 시점의 action을 예측하는 RT-1",
+    "curated": true
+  },
+  {
+    "id": "slide17",
+    "label": "Slide 17",
+    "kind": "figure",
+    "file": "slide17.png",
+    "timestamp": "16:38",
+    "strategy": "keyframe",
+    "caption": "RT-1의 팔과 이동 베이스 출력, 모드 선택 및 병렬 예측 구조",
+    "curated": true
+  },
+  {
+    "id": "slide18",
+    "label": "Slide 18",
+    "kind": "figure",
+    "file": "slide18.png",
+    "timestamp": "18:08",
+    "strategy": "keyframe",
+    "caption": "744개 지시문의 구성과 데이터 양 및 과제 다양성을 줄인 실험",
+    "curated": true
+  },
+  {
+    "id": "slide19",
+    "label": "Slide 19",
+    "kind": "figure",
+    "file": "slide19.png",
+    "timestamp": "19:38",
+    "strategy": "keyframe",
+    "caption": "같은 데이터로 학습한 네 모델의 RT-1 평가 조건별 성공률",
+    "curated": true
+  },
+  {
+    "id": "slide20",
+    "label": "Slide 20",
+    "kind": "figure",
+    "file": "slide20.png",
+    "timestamp": "21:38",
+    "strategy": "keyframe",
+    "caption": "시뮬레이션 및 KUKA 데이터 혼합 결과와 두 주방의 SayCan 실행 결과",
+    "curated": true
+  },
+  {
+    "id": "slide21",
+    "label": "Slide 21",
+    "kind": "figure",
+    "file": "slide21.png",
+    "timestamp": "22:08",
+    "strategy": "keyframe",
+    "caption": "RT-1의 구성 요소를 바꿨을 때 조건별 성공률과 추론 시간",
+    "curated": true
+  },
+  {
+    "id": "slide22",
+    "label": "Slide 22",
+    "kind": "figure",
+    "file": "slide22.png",
+    "timestamp": "23:38",
+    "strategy": "keyframe",
+    "caption": "이산 분류와 단봉 회귀의 성능 차이 및 비교 해석의 범위",
+    "curated": false
+  },
+  {
+    "id": "slide23",
+    "label": "Slide 23",
+    "kind": "figure",
+    "file": "slide23.png",
+    "timestamp": "25:08",
+    "strategy": "keyframe",
+    "caption": "익숙한 조합부터 새로운 개념까지 RT-1의 평가 범위",
+    "curated": false
+  },
+  {
+    "id": "slide25",
+    "label": "Slide 25",
+    "kind": "figure",
+    "file": "slide25.png",
+    "timestamp": "26:38",
+    "strategy": "keyframe",
+    "caption": "RT-1에서 RT-2로 이어지는 출력 표현과 달라진 입력 및 학습 데이터",
+    "curated": false
+  },
+  {
+    "id": "slide26",
+    "label": "Slide 26",
+    "kind": "figure",
+    "file": "slide26.png",
+    "timestamp": "28:08",
+    "strategy": "keyframe",
+    "caption": "RT-2의 정수 여덟 개와 자동차 모형을 독일 국기로 옮기는 장면",
+    "curated": true
+  },
+  {
+    "id": "slide27",
+    "label": "Slide 27",
+    "kind": "figure",
+    "file": "slide27.png",
+    "timestamp": "29:38",
+    "strategy": "keyframe",
+    "caption": "로봇과 웹 데이터의 혼합 비율 및 모델 크기별 학습 방식 비교",
+    "curated": true
+  },
+  {
+    "id": "slide28",
+    "label": "Slide 28",
+    "kind": "figure",
+    "file": "slide28.png",
+    "timestamp": "30:38",
+    "strategy": "keyframe",
+    "caption": "RT-2의 학습 과제와 새로운 물체, 배경, 환경에서의 성공률",
+    "curated": true
+  },
+  {
+    "id": "slide29",
+    "label": "Slide 29",
+    "kind": "figure",
+    "file": "slide29.png",
+    "timestamp": "32:08",
+    "strategy": "keyframe",
+    "caption": "기호 이해와 추론 및 인물 인식 평가의 지시문과 실행 예",
+    "curated": true
+  },
+  {
+    "id": "slide30",
+    "label": "Slide 30",
+    "kind": "figure",
+    "file": "slide30.png",
+    "timestamp": "33:38",
+    "strategy": "keyframe",
+    "caption": "배고프다는 요청에서 초콜릿을 고른 계획문과 뒤따르는 action 토큰",
+    "curated": true
+  },
+  {
+    "id": "slide31",
+    "label": "Slide 31",
+    "kind": "figure",
+    "file": "slide31.png",
+    "timestamp": "34:38",
+    "strategy": "keyframe",
+    "caption": "RT-2의 네 실험에서 관찰한 변화와 해석할 때 고려할 조건",
+    "curated": false
+  },
+  {
+    "id": "slide32",
+    "label": "Slide 32",
+    "kind": "figure",
+    "file": "slide32.png",
+    "timestamp": "36:08",
+    "strategy": "keyframe",
+    "caption": "RT-1, RT-2, OpenVLA의 코드와 가중치 및 학습 데이터 공개 범위",
+    "curated": false
+  },
+  {
+    "id": "slide33",
+    "label": "Slide 33",
+    "kind": "figure",
+    "file": "slide33.png",
+    "timestamp": "36:38",
+    "strategy": "keyframe",
+    "caption": "웹 지식이 대상 선택에 기여하는 경로와 로봇 시연이 제공하는 동작 기술",
+    "curated": true
+  },
+  {
+    "id": "slide35",
+    "label": "Slide 35",
+    "kind": "figure",
+    "file": "slide35.png",
+    "timestamp": "38:08",
+    "strategy": "keyframe",
+    "caption": "RT-1과 RT-2의 출력, 모델 크기, 학습 데이터, 제어 주기 비교",
+    "curated": true
+  },
+  {
+    "id": "slide36",
+    "label": "Slide 36",
+    "kind": "figure",
+    "file": "slide36.png",
+    "timestamp": "39:38",
+    "strategy": "keyframe",
+    "caption": "세 질문에 대한 결론 및 공개 모델과 action 생성 후속 회차",
+    "curated": false
+  }
+]
