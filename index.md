@@ -233,6 +233,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 
 Agentic 시스템, tool use, planning, LangGraph 등.
 
+- [[agents/belcak-2026-you-dont-need-long-context|You don’t need long context]]: 작업 이력을 메모로 넘기고 긴 문서에서 필요한 구절을 찾을 때, 컨텍스트 길이와 과제 해결률이 어떻게 달라지는지 비교한다. (2026, paper)
 - [[agents/anthropic-2025-equipping-agents-for-the-real|Equipping Agents with Agent Skills (Anthropic)]]: SKILL.md 폴더 포맷과 progressive disclosure 3레벨 로딩으로 에이전트에 절차 지식과 조직 맥락을 장착하는 설계 해설 (2025, article)
 - [[agents/agentskills-agentskills|Agent Skills (repo)]]: Agent Skills 포맷의 벤더 중립 오픈 표준 저장소. `SKILL.md` 폴더 규격과 discovery, activation, execution 3단계를 정의한다 (2026, repo)
 - [[agents/agentskills-io-2026-agent-skills-overview|Agent Skills Overview (agentskills.io)]]: 오픈 표준 공식 사이트 홈. progressive disclosure 3단계와 42개 클라이언트 Client Showcase로 채택 폭을 보인다 (2026, article)

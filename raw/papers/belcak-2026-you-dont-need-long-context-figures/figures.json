@@ -1,0 +1,697 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/belcak-2026-you-dont-need-long-context/fig01.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/fig01.png",
+    "page": 1,
+    "caption": "Figure 1 ⋃︀ The cost of long context. Dollar cost of generating 1M output tokens on an existing input KV cache as a function of the context window size, obtained by converting the measured peak decode throughput of each deployment at on-demand H100 prices ( $ 3 . 85 per GPU-hour, Nebius, Sept. 2026)",
+    "bbox": [
+      56.36,
+      449.26,
+      538.91,
+      604.34
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.5336,
+      0.9053,
+      0.7178
+    ],
+    "dpi": 300,
+    "area_frac": 0.149,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p01.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/belcak-2026-you-dont-need-long-context/fig02.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/fig02.png",
+    "page": 2,
+    "caption": "Figure 2 ⋃︀ The burden of long context. The token generation latency, token throughput, and memory footprint of several open-source models measured on an NVIDIA DGX Spark plotted as a function of input context length. For several models, later tokens take approximately 2x longer to generate than ear",
+    "bbox": [
+      58.71,
+      79.04,
+      536.57,
+      236.94
+    ],
+    "bbox_norm": [
+      0.0986,
+      0.0939,
+      0.9014,
+      0.2814
+    ],
+    "dpi": 300,
+    "area_frac": 0.151,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/belcak-2026-you-dont-need-long-context/fig03.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/fig03.png",
+    "page": 7,
+    "caption": "Figure 3 ⋃︀Context-management regimes. The three context-management regimes considered in this work: Full-History Accumulation (FHA), End-of-Conversation Compaction (EoCC), and Single-Action Compaction (SAC).",
+    "bbox": [
+      50.55,
+      103.55,
+      544.72,
+      284.56
+    ],
+    "bbox_norm": [
+      0.0849,
+      0.123,
+      0.9151,
+      0.338
+    ],
+    "dpi": 300,
+    "area_frac": 0.178,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/belcak-2026-you-dont-need-long-context/fig04.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/fig04.png",
+    "page": 8,
+    "caption": "Figure 4 ⋃︀ Decode throughput collapses as the context window size grows. Peak sustained decode throughput (tokens/s, left axis) for open-weight coding models served under vLLM on NVIDIA H100 GPUs, as a function of the configured context window size. GLM 5.2 and Kimi K2.6 are served with INT4 expert",
+    "bbox": [
+      56.36,
+      79.04,
+      538.93,
+      230.02
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9054,
+      0.2732
+    ],
+    "dpi": 300,
+    "area_frac": 0.145,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/belcak-2026-you-dont-need-long-context/fig05.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/fig05.png",
+    "page": 9,
+    "caption": "Figure 5 ⋃︀ Long-horizon results as a function of total context limit. Top: accuracy changes in percentage points relative to each model’s full-history baseline; zero indicates unchanged accuracy. Bottom: baseline estimated optimized retail cost divided by the compaction configuration’s estimated op",
+    "bbox": [
+      61.27,
+      319.92,
+      529.84,
+      685.3
+    ],
+    "bbox_norm": [
+      0.1029,
+      0.38,
+      0.8901,
+      0.814
+    ],
+    "dpi": 300,
+    "area_frac": 0.342,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/belcak-2026-you-dont-need-long-context/fig06.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/fig06.png",
+    "page": 11,
+    "caption": "Figure 6 ⋃︀ Long-input results as a function of total context limit. Top: accuracy changes relative to each model’s full-input baseline. Bottom: optimized retail cost savings, using the model in Appendix B .",
+    "bbox": [
+      59.48,
+      314.87,
+      535.8,
+      718.13
+    ],
+    "bbox_norm": [
+      0.0999,
+      0.374,
+      0.9001,
+      0.853
+    ],
+    "dpi": 300,
+    "area_frac": 0.383,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/belcak-2026-you-dont-need-long-context/fig07.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/fig07.png",
+    "page": 12,
+    "caption": "Figure 7 ⋃︀ LongBench v2: conversation length versus document length. Claude Opus 4.5, compaction at 16K / 12K. The document-length axis is logarithmic and the conversation-length axis is linear. The dashed curve marks 𝑦 = 𝑥 .",
+    "bbox": [
+      98.71,
+      251.65,
+      496.57,
+      513.15
+    ],
+    "bbox_norm": [
+      0.1658,
+      0.2989,
+      0.8342,
+      0.6095
+    ],
+    "dpi": 300,
+    "area_frac": 0.208,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/belcak-2026-you-dont-need-long-context/fig08.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/fig08.png",
+    "page": 13,
+    "caption": "Figure 8 ⋃︀ LOONG: conversation length versus document length. Claude Opus 4.5, compaction at 48K / 40K (1,600 questions). The document-length axis is logarithmic and the conversation-length axis is linear. The dashed curve marks 𝑦 = 𝑥 .",
+    "bbox": [
+      98.71,
+      78.35,
+      496.57,
+      339.86
+    ],
+    "bbox_norm": [
+      0.1658,
+      0.0931,
+      0.8342,
+      0.4037
+    ],
+    "dpi": 300,
+    "area_frac": 0.208,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p13.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab01.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab01.png",
+    "page": 2,
+    "caption": "Table 1 ⋃︀ Lengths of literary works against model context window sizes. Word counts use the cited English editions. Word-token conversions use approximately 1 . 33 tokens per English word, while actual counts vary with text and tokenizer. Models and their context window sizes are detailed in Sectio",
+    "bbox": [
+      49.36,
+      572.49,
+      545.92,
+      716.45
+    ],
+    "bbox_norm": [
+      0.0829,
+      0.68,
+      0.9171,
+      0.851
+    ],
+    "dpi": 300,
+    "area_frac": 0.143,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p02.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab02.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab02.png",
+    "page": 14,
+    "caption": "Table 2 ⋃︀ SAC versus FHA and EoCC. The mini baseline is the full-history accumulation regime. The Best EoCC accuracy is accompanied by its total context limit / compaction threshold in parentheses. The Best EoCC and SAC columns under Peak context length report the largest single-call contexts under",
+    "bbox": [
+      49.96,
+      248.36,
+      545.32,
+      374.64
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.295,
+      0.9161,
+      0.445
+    ],
+    "dpi": 300,
+    "area_frac": 0.125,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p14.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab03.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab03.png",
+    "page": 22,
+    "caption": "Table 3 ⋃︀ SWE-bench Verified. Accuracy is the percentage of instances resolved . Token spend lists new / cached input and output, expressed in M tokens, aggregated over the benchmark ( new excludes prompt- cache hits). Nominal retail cost multiplies these rounded totals by published standard API pr",
+    "bbox": [
+      49.96,
+      324.13,
+      545.32,
+      401.58
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.385,
+      0.9161,
+      0.477
+    ],
+    "dpi": 300,
+    "area_frac": 0.077,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab04.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab04.png",
+    "page": 22,
+    "caption": "Table 4 ⋃︀ SWE-bench Multilingual. Results for Claude Opus 4.5 High and GPT 5.6 Sol Medium on 300 instances per model. Columns and quantities are as in Table 3 .",
+    "bbox": [
+      49.96,
+      553.12,
+      545.32,
+      629.73
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.657,
+      0.9161,
+      0.748
+    ],
+    "dpi": 300,
+    "area_frac": 0.076,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p22.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab05.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab05.png",
+    "page": 23,
+    "caption": "Table 5 ⋃︀ Terminal-Bench (TB-2.1). Columns and quantities are as in Table 3 ; Accuracy is the percentage of tasks solved.",
+    "bbox": [
+      49.96,
+      80.82,
+      545.32,
+      157.43
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.096,
+      0.9161,
+      0.187
+    ],
+    "dpi": 300,
+    "area_frac": 0.076,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab06.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab06.png",
+    "page": 23,
+    "caption": "Table 6 ⋃︀ FRAMES. Columns and quantities are as in Table 3 ; Accuracy is the percentage of questions answered correctly.",
+    "bbox": [
+      49.96,
+      250.88,
+      545.32,
+      326.65
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.298,
+      0.9161,
+      0.388
+    ],
+    "dpi": 300,
+    "area_frac": 0.075,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab07.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab07.png",
+    "page": 23,
+    "caption": "Table 7 ⋃︀ BFCLv3 (200 long-context multi-turn episodes). Columns and quantities are as in Table 3 ; Accuracy is the percentage of episodes passed.",
+    "bbox": [
+      49.96,
+      406.63,
+      545.32,
+      475.67
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.483,
+      0.9161,
+      0.565
+    ],
+    "dpi": 300,
+    "area_frac": 0.068,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab08.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab08.png",
+    "page": 23,
+    "caption": "Table 8 ⋃︀ 𝜏 2 -bench. Columns and quantities are as in Table 3 .",
+    "bbox": [
+      49.96,
+      591.85,
+      545.32,
+      697.93
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.703,
+      0.9161,
+      0.829
+    ],
+    "dpi": 300,
+    "area_frac": 0.105,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p23.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab09.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab09.png",
+    "page": 24,
+    "caption": "Table 9 ⋃︀ Open-weight results on SWE-bench Verified. Scores are percentages of 500 instances resolved; patch-application failures count as unresolved. Baseline uses full-history accumulation without an agent context cap; the other columns report EoCC at the indicated total context limit / compactio",
+    "bbox": [
+      127.34,
+      282.03,
+      467.93,
+      372.96
+    ],
+    "bbox_norm": [
+      0.2139,
+      0.335,
+      0.7861,
+      0.443
+    ],
+    "dpi": 300,
+    "area_frac": 0.062,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab10.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab10.png",
+    "page": 24,
+    "caption": "Table 10 ⋃︀ Open-weight results on Terminal-Bench 2.1. Columns are as in Table 9 ; scores are percentages of 89 tasks solved.",
+    "bbox": [
+      127.34,
+      458.83,
+      467.93,
+      549.75
+    ],
+    "bbox_norm": [
+      0.2139,
+      0.545,
+      0.7861,
+      0.653
+    ],
+    "dpi": 300,
+    "area_frac": 0.062,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p24.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab11.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab11.png",
+    "page": 27,
+    "caption": "Table 11 ⋃︀ LongBench v2. Accuracy is the percentage answered correctly. Token spend lists new input / cached input / output, expressed in M tokens, aggregated over the benchmark ( new input excludes prompt-cache hits). Compactions are per task, given as mean / median / max. Nominal retail cost uses",
+    "bbox": [
+      49.96,
+      228.99,
+      545.32,
+      292.98
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.272,
+      0.9161,
+      0.348
+    ],
+    "dpi": 300,
+    "area_frac": 0.063,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p27.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab12.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab12.png",
+    "page": 27,
+    "caption": "Table 12 ⋃︀ LOONG. Columns and quantities are as in Table 11 ; Accuracy (avg / perfect) lists average score / perfect-answer rate.",
+    "bbox": [
+      49.96,
+      457.15,
+      545.32,
+      532.07
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.543,
+      0.9161,
+      0.632
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p27.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab13.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab13.png",
+    "page": 28,
+    "caption": "Table 13 ⋃︀ AA-LCR. Columns and quantities are as in Table 11 .",
+    "bbox": [
+      49.96,
+      128.81,
+      545.32,
+      203.74
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.153,
+      0.9161,
+      0.242
+    ],
+    "dpi": 300,
+    "area_frac": 0.074,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab14.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab14.png",
+    "page": 28,
+    "caption": "Table 14 ⋃︀ NIAH. Columns and quantities are as in Table 11 . The agent selectively reads from a filesystem, while the baseline processes the whole document.",
+    "bbox": [
+      49.96,
+      380.53,
+      545.32,
+      447.89
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.452,
+      0.9161,
+      0.532
+    ],
+    "dpi": 300,
+    "area_frac": 0.067,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab15",
+    "label": "Table 15",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab15.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab15.png",
+    "page": 28,
+    "caption": "Table 15 ⋃︀ RULER. Columns and quantities are as in Table 11 ; Accuracy (recall / exact) lists mean recall / exact- match rate.",
+    "bbox": [
+      49.96,
+      551.44,
+      545.32,
+      612.9
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.655,
+      0.9161,
+      0.728
+    ],
+    "dpi": 300,
+    "area_frac": 0.061,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab16",
+    "label": "Table 16",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab16.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab16.png",
+    "page": 29,
+    "caption": "Table 16 ⋃︀ Counting-Stars. Columns and quantities are as in Table 11 ; Accuracy (mean / exact) lists mean score / exact-match rate.",
+    "bbox": [
+      49.96,
+      142.28,
+      545.32,
+      206.26
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.169,
+      0.9161,
+      0.245
+    ],
+    "dpi": 300,
+    "area_frac": 0.063,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p29.png"
+  },
+  {
+    "id": "tab17",
+    "label": "Table 17",
+    "kind": "table",
+    "file": "assets/belcak-2026-you-dont-need-long-context/tab17.png",
+    "raw": "raw/papers/belcak-2026-you-dont-need-long-context-figures/tab17.png",
+    "page": 29,
+    "caption": "Table 17 ⋃︀ BABILong. Columns and quantities are as in Table 11 .",
+    "bbox": [
+      49.96,
+      309.82,
+      545.32,
+      376.32
+    ],
+    "bbox_norm": [
+      0.0839,
+      0.368,
+      0.9161,
+      0.447
+    ],
+    "dpi": 300,
+    "area_frac": 0.066,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/belcak-2026-you-dont-need-long-context-figures/_overlay/p29.png"
+  }
+]
