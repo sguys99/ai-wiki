@@ -1,0 +1,3 @@
+name = "taxonomy-gap-analyzer"
+description = "번역투 연구와 기존 분류 체계를 대조해 보강할 패턴을 찾는다."
+developer_instructions = "저장소 루트의 .claude/agents/taxonomy-gap-analyzer.md를 읽고 해당 역할의 도구 범위, 입력, 절차, 출력 형식을 따른다. references/는 .claude/skills/humanize-korean/references/를 기준으로 찾는다."

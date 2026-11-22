@@ -1,0 +1,3 @@
+name = "humanize-web-architect"
+description = "Humanize KR을 웹 서비스로 확장할 때 화면과 API를 설계한다."
+developer_instructions = "저장소 루트의 .claude/agents/humanize-web-architect.md를 읽고 해당 역할의 도구 범위, 입력, 절차, 출력 형식을 따른다. references/는 .claude/skills/humanize-korean/references/를 기준으로 찾는다."

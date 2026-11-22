@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# PostToolUse 훅: sources/·wiki/·index.md 를 Write/Edit로 저장하면
+# PostToolUse 훅: sources/·wiki/·index.md 를 Write/Edit 또는 apply_patch로 저장하면
 # scripts/lint_terms.py (용어집 금지 표기)와 scripts/lint_style.py (교재 문체 규칙)를 돌려
 # 위반이 있을 때만 additionalContext 경고를 주입한다.
 #
@@ -16,43 +16,44 @@ export LINT_TERMS_SCRIPT="$HOOK_DIR/../../scripts/lint_terms.py"
 export LINT_STYLE_SCRIPT="$HOOK_DIR/../../scripts/lint_style.py"
 exec python3 -c '
 import sys, json, os, subprocess
+from pathlib import Path
 
 try:
     data = json.load(sys.stdin)
 except Exception:
     sys.exit(0)
 
-fp = (data.get("tool_input") or {}).get("file_path") or ""
-if not fp:
-    sys.exit(0)
+tool_input = data.get("tool_input") or {}
+if data.get("tool_name") == "apply_patch":
+    # 패치 본문 줄은 공백이나 +/-로 시작하므로 헤더와 구분된다.
+    headers = ("*** Add File: ", "*** Update File: ", "*** Move to: ")
+    names = [line.split(": ", 1)[1] for line in tool_input.get("command", "").splitlines()
+             if line.startswith(headers)]
+else:
+    names = [tool_input.get("file_path", "")]
 
-path = fp.replace("\\", "/")
-parts = path.split("/")
-base = parts[-1] if parts else ""
+root = Path(os.environ["LINT_STYLE_SCRIPT"]).resolve().parents[1]
+cwd = Path(data.get("cwd") or os.getcwd())
+files = []
+for name in names:
+    path = (cwd / name).resolve()
+    if path.suffix.lower() != ".md" or not path.is_relative_to(root) or not path.is_file():
+        continue
+    rel = path.relative_to(root)
+    if rel.parts[0] not in ("sources", "wiki") and rel != Path("index.md"):
+        continue
+    if "assets" in rel.parts or any(part.endswith("-figures") for part in rel.parts):
+        continue
+    if path not in files:
+        files.append(path)
 
-# .md 만 대상
-if not base.lower().endswith(".md"):
-    sys.exit(0)
-# 제외: .claude/ 내부, CLAUDE.md, *-figures/ 아카이브, assets/ 사본, raw/ (원문 불변)
-if ".claude" in parts or base == "CLAUDE.md":
-    sys.exit(0)
-if any(seg.endswith("-figures") for seg in parts):
-    sys.exit(0)
-if "assets" in parts or "raw" in parts:
-    sys.exit(0)
-# 포함: sources/ · wiki/ 하위, 또는 저장소 루트 index.md
-if not (any(seg in ("sources", "wiki") for seg in parts) or base == "index.md"):
-    sys.exit(0)
-
-is_glossary = base.startswith("glossary-")
-
-def run_lint(env_key):
+def run_lint(env_key, paths):
     script = os.environ.get(env_key, "")
-    if not script or not os.path.exists(script):
+    if not paths or not script or not os.path.exists(script):
         return []
     try:
         out = subprocess.run(
-            [sys.executable, script, "--json", fp],
+            [sys.executable, script, "--json", *paths],
             capture_output=True, text=True, timeout=30,
         )
         return (json.loads(out.stdout or "{}")).get("warnings") or []
@@ -61,8 +62,8 @@ def run_lint(env_key):
 
 # 용어집 본인은 금지 표기 열에 금지 표기를 싣고 있으므로 lint_terms 대상에서 뺀다.
 # lint_style 은 용어집 예외(중간점·em dash·금지 어휘 면제)를 스스로 처리하므로 그대로 돌린다.
-term_warnings = [] if is_glossary else run_lint("LINT_TERMS_SCRIPT")
-style_warnings = run_lint("LINT_STYLE_SCRIPT")
+term_warnings = run_lint("LINT_TERMS_SCRIPT", [p for p in files if not p.name.startswith("glossary-")])
+style_warnings = run_lint("LINT_STYLE_SCRIPT", files)
 
 if not term_warnings and not style_warnings:
     sys.exit(0)

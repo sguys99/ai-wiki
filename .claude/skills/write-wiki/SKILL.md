@@ -156,7 +156,7 @@ sources와 wiki 파일을 저장한 뒤 아래 넷을 돌려 경고 0을 확인�
 .venv/bin/python scripts/lint_index.py --category {category} --strict
 ```
 
-`lint_terms.py`와 `lint_style.py`는 여기에 없다. `.claude/hooks/wiki-lint-reminder.sh`가 Write/Edit 저장 직후 자동으로 돌려 위반이 있을 때만 알려주기 때문이다. 다만 훅은 `Write`와 `Edit` 도구에만 걸리므로, 파일을 Bash 히어독이나 스크립트로 썼다면 두 개를 수동으로 돌린다.
+Claude Code의 Write/Edit와 Codex의 `apply_patch` 저장 훅은 `.claude/hooks/wiki-lint-reminder.sh`로 `lint_terms.py`와 `lint_style.py`를 실행한다. 훅이 꺼져 있거나 셸이나 스크립트로 썼다면 변경한 파일에 두 검사를 직접 실행한다. 용어집 파일에는 문체 검사만 적용한다.
 
 ```bash
 .venv/bin/python scripts/lint_terms.py sources/{stem}.md wiki/{category}/{stem}.md

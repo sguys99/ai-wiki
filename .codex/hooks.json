@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "^apply_patch$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/.claude/hooks/wiki-lint-reminder.sh\"",
+            "statusMessage": "위키 용어와 문체 검사"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'for d in .taste-skill */.taste-skill */*/.taste-skill; do if [ -d \"$d\" ]; then exec node \"$(git rev-parse --show-toplevel)/.claude/skills/design-taste-frontend/scripts/gate.mjs\" --hook codex; fi; done'",
+            "timeout": 600
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,3 @@
+name = "quick-rules-integrator"
+description = "검증된 분류 패턴을 Fast 윤문용 quick-rules에 통합한다."
+developer_instructions = "저장소 루트의 .claude/agents/quick-rules-integrator.md를 읽고 해당 역할의 도구 범위, 입력, 절차, 출력 형식을 따른다. references/는 .claude/skills/humanize-korean/references/를 기준으로 찾는다."

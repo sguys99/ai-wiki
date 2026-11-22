@@ -40,6 +40,7 @@ wiki/overviews/{topic}.md ← 지식이 복리로 쌓이는 곳
 ```
 ai-wiki/
 ├── CLAUDE.md               # 4 Rules · 스키마 · 워크플로 (에이전트 운영 룰북)
+├── AGENTS.md               # Codex가 공통 룰북과 작업 지침을 읽는 진입점
 ├── DESIGN.md               # 웹사이트 시각 설계 정본
 ├── index.md                # 페이지 카탈로그
 ├── raw/                    # 원본 자료 (cp, never symlink)
@@ -63,6 +64,9 @@ ai-wiki/
 │   └── overviews/          # 합성 페이지 + 도메인 용어집
 ├── scripts/                # 수집·추출 2종, lint 6종, 일회성 도구
 ├── .claude/skills/         # ingest-paper · ingest-article · write-wiki
+├── .agents/skills/         # Codex용 공통 스킬 링크와 사용자 명령
+├── .claude/agents/         # 역할별 작업 지침
+├── .codex/agents/          # 같은 역할을 호출하는 Codex 서브에이전트
 ├── .claude/hooks/          # 저장 시 lint 자동 실행
 └── site/                   # 웹사이트 빌드 (커스텀 Node)
 ```
@@ -127,7 +131,7 @@ Step 1부터 2.5까지는 유형마다 다르고 Step 3과 4는 공통이다. �
 
 검증은 저장 직후와 작성 완료 시 두 층으로 돌아간다.
 
-- **저장 직후**: `.claude/hooks/wiki-lint-reminder.sh`가 `sources/`와 `wiki/`, `index.md`를 저장할 때 `lint_terms.py`(용어집 표기)와 `lint_style.py`(문체, 금지 기호)를 돌린다. 위반이 있을 때만 알려주고 작업을 막지는 않는다.
+- **저장 직후** Claude Code의 Write/Edit와 Codex의 `apply_patch`가 같은 훅을 사용한다. `sources/`, `wiki/`, 루트 `index.md`를 편집하면 `lint_terms.py`와 `lint_style.py`가 용어와 문체 위반을 알려준다. 셸에서 편집했거나 훅을 꺼 둔 경우에는 변경한 파일에 두 검사를 직접 실행한다. 용어집 파일은 문체만 검사한다.
 - **작성 완료 시**: `write-wiki` 스킬의 게이트가 `lint_links.py`(링크 해석), `lint_figures.py`(도식 정합), `audit_captions.py`(캡션), `lint_index.py`(카탈로그 문법)를 돌린다.
 
 `README.md`와 `temp-docs/`는 lint 대상이 아니다. 문체 정책은 `wiki/`와 `sources/` 전용이다.
@@ -164,6 +168,21 @@ uv sync          # pypdf, pymupdf, playwright, beautifulsoup4, yt-dlp
 3. 자료를 5~10개 떨어뜨리고 "이 자료들을 wiki에 추가해줘"라고 시킨다. 그다음 질문한다. 좋은 답이 나오면 "이걸 `wiki/overviews/`에 overview로 저장해줘"라고 한다.
 
 빈 저장소에서 처음 세우거나 도메인을 갈아끼울 거라면 [`temp-docs/ai-wiki.md`](temp-docs/ai-wiki.md)의 부트스트랩 프롬프트를 쓴다.
+
+### Codex에서 사용하기
+
+저장소 루트에서 `codex`를 실행하거나 Codex IDE 확장으로 이 폴더를 연다. 프로젝트를 신뢰한 뒤, CLI의 `/hooks`에서 위키 lint와 디자인 검증 훅을 검토하고 활성화할 수 있다. Windows에서는 WSL에 저장소를 복제하면 Git의 스킬 디렉터리 링크와 Bash 훅을 그대로 쓸 수 있다.
+
+| 작업 | Codex 입력 예시 |
+|---|---|
+| 논문 수집 | `$ingest-paper ./paper.pdf` |
+| 수집한 자료로 위키 작성 | `$write-wiki 방금 수집한 논문을 위키에 정리해줘` |
+| 요청한 파일만 윤문 | `$humanize draft.md --strict` |
+| 역할 직접 호출 | `content-fidelity-auditor 서브에이전트로 원문과 윤문본을 대조해줘` |
+
+Claude Code의 사용자 명령 다섯 개는 Codex에서 `$git-branch`, `$git-commit`, `$git-merge`, `$git-pr`, `$docs-update-roadmap`으로 호출한다. 마지막 명령은 `docs/ROADMAP.md`를 관리하는 프로젝트에서 사용한다.
+
+두 도구의 스킬은 `.claude/skills/<이름>/`에서 한 번만 수정하면 된다. 새 스킬을 추가할 때는 `.agents/skills/`에 같은 이름의 상대 경로 링크를 만든다. 에이전트의 동작은 `.claude/agents/<이름>.md`에서 수정한다. 새 역할을 추가할 때는 `.codex/agents/<이름>.toml`에도 이름, 용도와 역할 파일 경로를 등록한다.
 
 ## 지식이 자라는 방식
 
