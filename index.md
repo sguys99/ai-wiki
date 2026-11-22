@@ -334,6 +334,7 @@ Agentic 시스템, tool use, planning, LangGraph 등.
 
 RAG 응용, 도메인 적용 사례, 제품 패턴.
 
+- [[applications/firecrawl-firecrawl|Firecrawl]]: 웹페이지를 Markdown으로 읽거나 문서 사이트 전체를 수집한다. Jina Reader와 브라우저 자동화 방식의 차이, 로컬 설치와 자체 호스팅, Python 수집 예시를 다룬다 (2026, repo)
 - [[applications/garrytan-gbrain|garrytan/gbrain (repo)]]: Garry Tan이 MIT로 공개한 에이전트 메모리. git markdown을 원본으로 두고 hybrid retrieval, LLM 호출 없는 typed edge graph, 답을 합성하는 brain layer를 결합한다 (2026, repo)
 - [[applications/garrytan-gbrain-tutorials|garrytan/gbrain tutorials]]: 저장소 docs/tutorials의 실전 셋업 4편. 개인 brain, 회사 brain, skillopt, 코딩 에이전트 연결을 소요 시간과 비용 예산까지 절차로 정리한다 (2026, repo)
 - [[applications/xguru-2026-gbrain-open-source-personal-knowledge|GBrain 오픈소스 개인 지식 베이스 (GeekNews)]]: xguru의 한국어 소개글. v0.2.0 기준 핵심 기능 5개와 기술 스택, 변경점 3개를 담은 버전 스냅샷 (2026, article)
