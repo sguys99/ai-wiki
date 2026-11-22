@@ -1,0 +1,955 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig01.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig01.png",
+    "page": 5,
+    "caption": "Figure 1: The capability envelope, competence, and firm scale.",
+    "bbox": [
+      76.8,
+      76.8,
+      521.53,
+      285.39
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.097,
+      0.8522,
+      0.3603
+    ],
+    "dpi": 300,
+    "area_frac": 0.191,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig02.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig02.png",
+    "page": 9,
+    "caption": "Figure 2: The human baseline economy.",
+    "bbox": [
+      121.44,
+      76.8,
+      490.56,
+      254.09
+    ],
+    "bbox_norm": [
+      0.1984,
+      0.097,
+      0.8016,
+      0.3208
+    ],
+    "dpi": 300,
+    "area_frac": 0.135,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig03.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig03.png",
+    "page": 10,
+    "caption": "Figure 3: AI capability regimes in task-competence and coordination space.",
+    "bbox": [
+      121.44,
+      76.8,
+      490.58,
+      296.24
+    ],
+    "bbox_norm": [
+      0.1984,
+      0.097,
+      0.8016,
+      0.374
+    ],
+    "dpi": 300,
+    "area_frac": 0.167,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig04.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig04.png",
+    "page": 11,
+    "caption": "Figure 4: Equilibrium across the four AI regimes.",
+    "bbox": [
+      76.8,
+      263.8,
+      535.2,
+      523.97
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.3331,
+      0.8745,
+      0.6616
+    ],
+    "dpi": 300,
+    "area_frac": 0.246,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig05.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig05.png",
+    "page": 12,
+    "caption": "Figure 5: AI firm output per agent at optimal scale across capability dimensions.",
+    "bbox": [
+      121.44,
+      76.8,
+      490.58,
+      253.02
+    ],
+    "bbox_norm": [
+      0.1984,
+      0.097,
+      0.8016,
+      0.3195
+    ],
+    "dpi": 300,
+    "area_frac": 0.134,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig06.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig06.png",
+    "page": 12,
+    "caption": "Figure 6: Equilibrium human wages and largest active firm size when increasing AI competence or coordination at fixed human coordination ¯ y H ∗ ≈ 0.78.",
+    "bbox": [
+      121.44,
+      351.22,
+      490.57,
+      573.59
+    ],
+    "bbox_norm": [
+      0.1984,
+      0.4435,
+      0.8016,
+      0.7242
+    ],
+    "dpi": 300,
+    "area_frac": 0.169,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig07.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig07.png",
+    "page": 14,
+    "caption": "Figure 7: Firm composition along the two paths.",
+    "bbox": [
+      99.12,
+      76.8,
+      512.88,
+      346.41
+    ],
+    "bbox_norm": [
+      0.162,
+      0.097,
+      0.838,
+      0.4374
+    ],
+    "dpi": 300,
+    "area_frac": 0.23,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p14.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig08.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig08.png",
+    "page": 15,
+    "caption": "Figure 8: Employment dynamics.",
+    "bbox": [
+      76.8,
+      123.68,
+      535.21,
+      289.89
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.1562,
+      0.8745,
+      0.366
+    ],
+    "dpi": 300,
+    "area_frac": 0.157,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig09.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig09.png",
+    "page": 17,
+    "caption": "Figure 9: Firm composition.",
+    "bbox": [
+      340.17,
+      156.91,
+      535.21,
+      405.98
+    ],
+    "bbox_norm": [
+      0.5558,
+      0.1981,
+      0.8745,
+      0.5126
+    ],
+    "dpi": 300,
+    "area_frac": 0.1,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig10.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig10.png",
+    "page": 19,
+    "caption": "Figure 10: Level and scale: competence lifts the curve; coordination bends the tail.",
+    "bbox": [
+      121.44,
+      358.64,
+      490.57,
+      541.78
+    ],
+    "bbox_norm": [
+      0.1984,
+      0.4528,
+      0.8016,
+      0.6841
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig11.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig11.png",
+    "page": 22,
+    "caption": "Figure 11: An industry as a measure over firms.",
+    "bbox": [
+      121.44,
+      323.22,
+      490.56,
+      575.6
+    ],
+    "bbox_norm": [
+      0.1984,
+      0.4081,
+      0.8016,
+      0.7268
+    ],
+    "dpi": 300,
+    "area_frac": 0.192,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p22.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig12.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig12.png",
+    "page": 26,
+    "caption": "Figure 12: Efficient output and human scarcity rents.",
+    "bbox": [
+      268.87,
+      177.34,
+      491.44,
+      358.79
+    ],
+    "bbox_norm": [
+      0.4393,
+      0.2239,
+      0.803,
+      0.453
+    ],
+    "dpi": 300,
+    "area_frac": 0.083,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p26.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig13.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig13.png",
+    "page": 27,
+    "caption": "Figure 13: Capability regimes.",
+    "bbox": [
+      110.28,
+      327.06,
+      501.74,
+      599.94
+    ],
+    "bbox_norm": [
+      0.1802,
+      0.4129,
+      0.8198,
+      0.7575
+    ],
+    "dpi": 300,
+    "area_frac": 0.22,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p27.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig14.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig14.png",
+    "page": 30,
+    "caption": "Figure 14: Firm-size choice and its envelopes.",
+    "bbox": [
+      76.8,
+      76.8,
+      535.19,
+      283.61
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.097,
+      0.8745,
+      0.3581
+    ],
+    "dpi": 300,
+    "area_frac": 0.196,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p30.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig15.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig15.png",
+    "page": 32,
+    "caption": "Figure 15: Composition can dampen or amplify firm growth.",
+    "bbox": [
+      99.12,
+      76.8,
+      512.89,
+      256.77
+    ],
+    "bbox_norm": [
+      0.162,
+      0.097,
+      0.8381,
+      0.3242
+    ],
+    "dpi": 300,
+    "area_frac": 0.154,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p32.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig16.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig16.png",
+    "page": 33,
+    "caption": "Figure 16: Coordination, competence, and surplus.",
+    "bbox": [
+      76.8,
+      330.44,
+      535.2,
+      499.29
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.4172,
+      0.8745,
+      0.6304
+    ],
+    "dpi": 300,
+    "area_frac": 0.16,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p33.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig17.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig17.png",
+    "page": 35,
+    "caption": "Figure 17: AI coordination turns replication into concentration. In panel (b), circle area is proportional to m f , except for the magnified human firms; grey and red show the start and end. The two human firms at each date are offset vertically for visibility.",
+    "bbox": [
+      76.8,
+      197.36,
+      535.22,
+      402.32
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.2492,
+      0.8745,
+      0.508
+    ],
+    "dpi": 300,
+    "area_frac": 0.194,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p35.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig18.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig18.png",
+    "page": 36,
+    "caption": "Figure 18: Human matching vs AI dominance.",
+    "bbox": [
+      85.8,
+      294.96,
+      538.44,
+      520.8
+    ],
+    "bbox_norm": [
+      0.1402,
+      0.3724,
+      0.8798,
+      0.6576
+    ],
+    "dpi": 300,
+    "area_frac": 0.211,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p36.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig19.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig19.png",
+    "page": 38,
+    "caption": "Figure 19: Curvature of ¯ a and firm composition in two CES economies.",
+    "bbox": [
+      76.8,
+      76.8,
+      535.21,
+      321.57
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.097,
+      0.8745,
+      0.406
+    ],
+    "dpi": 300,
+    "area_frac": 0.231,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p38.png"
+  },
+  {
+    "id": "fig20",
+    "label": "Figure 20",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig20.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig20.png",
+    "page": 40,
+    "caption": "Figure 20: Firms’ bids for humans.",
+    "bbox": [
+      73.56,
+      306.84,
+      538.44,
+      560.4
+    ],
+    "bbox_norm": [
+      0.1202,
+      0.3874,
+      0.8798,
+      0.7076
+    ],
+    "dpi": 300,
+    "area_frac": 0.243,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p40.png"
+  },
+  {
+    "id": "fig21",
+    "label": "Figure 21",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig21.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig21.png",
+    "page": 41,
+    "caption": "Figure 21: Comparative advantage sorts humans.",
+    "bbox": [
+      76.8,
+      223.36,
+      535.21,
+      433.05
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.282,
+      0.8745,
+      0.5468
+    ],
+    "dpi": 300,
+    "area_frac": 0.198,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p41.png"
+  },
+  {
+    "id": "fig22",
+    "label": "Figure 22",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig22.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig22.png",
+    "page": 42,
+    "caption": "Figure 22: Human coordinators work with increasingly productive AI",
+    "bbox": [
+      76.8,
+      76.8,
+      535.2,
+      274.8
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.097,
+      0.8745,
+      0.347
+    ],
+    "dpi": 300,
+    "area_frac": 0.187,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p42.png"
+  },
+  {
+    "id": "fig23",
+    "label": "Figure 23",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig23.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig23.png",
+    "page": 44,
+    "caption": "Figure 23: AI progress, firm composition, and human exit.",
+    "bbox": [
+      87.96,
+      206.75,
+      524.04,
+      444.61
+    ],
+    "bbox_norm": [
+      0.1437,
+      0.261,
+      0.8563,
+      0.5614
+    ],
+    "dpi": 300,
+    "area_frac": 0.214,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p44.png"
+  },
+  {
+    "id": "fig24",
+    "label": "Figure 24",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig24.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig24.png",
+    "page": 45,
+    "caption": "Figure 24: y M and curvature of ¯ a .",
+    "bbox": [
+      322.32,
+      76.8,
+      535.2,
+      238.03
+    ],
+    "bbox_norm": [
+      0.5267,
+      0.097,
+      0.8745,
+      0.3005
+    ],
+    "dpi": 300,
+    "area_frac": 0.071,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p45.png"
+  },
+  {
+    "id": "fig25",
+    "label": "Figure 25",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig25.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig25.png",
+    "page": 46,
+    "caption": "Figure 25: Wage changes with/without reorganization.",
+    "bbox": [
+      76.8,
+      173.52,
+      535.21,
+      373.12
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.2191,
+      0.8745,
+      0.4711
+    ],
+    "dpi": 300,
+    "area_frac": 0.189,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p46.png"
+  },
+  {
+    "id": "fig26",
+    "label": "Figure 26",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig26.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig26.png",
+    "page": 47,
+    "caption": "Figure 26: Firm concentration and the loss of the human wage premium.",
+    "bbox": [
+      76.8,
+      76.8,
+      535.22,
+      267.25
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.097,
+      0.8745,
+      0.3374
+    ],
+    "dpi": 300,
+    "area_frac": 0.18,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p47.png"
+  },
+  {
+    "id": "fig27",
+    "label": "Figure 27",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig27.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig27.png",
+    "page": 48,
+    "caption": "Figure 27: Task productivity and assignment within a firm.",
+    "bbox": [
+      85.8,
+      334.56,
+      538.44,
+      517.63
+    ],
+    "bbox_norm": [
+      0.1402,
+      0.4224,
+      0.8798,
+      0.6536
+    ],
+    "dpi": 300,
+    "area_frac": 0.171,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p48.png"
+  },
+  {
+    "id": "fig28",
+    "label": "Figure 28",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig28.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig28.png",
+    "page": 50,
+    "caption": "Figure 28: Humans as coordinators",
+    "bbox": [
+      76.8,
+      255.9,
+      535.22,
+      539.98
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.3231,
+      0.8745,
+      0.6818
+    ],
+    "dpi": 300,
+    "area_frac": 0.269,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p50.png",
+    "duplicate_pages": [
+      50
+    ]
+  },
+  {
+    "id": "fig29",
+    "label": "Figure 29",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig29.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig29.png",
+    "page": 51,
+    "caption": "Figure 29: Improvement in AI competence (automating tasks).",
+    "bbox": [
+      76.8,
+      206.74,
+      535.22,
+      425.82
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.261,
+      0.8745,
+      0.5376
+    ],
+    "dpi": 300,
+    "area_frac": 0.207,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p51.png"
+  },
+  {
+    "id": "fig30",
+    "label": "Figure 30",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig30.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig30.png",
+    "page": 51,
+    "caption": "Figure 30: Improvement in AI competence and coordination.",
+    "bbox": [
+      67.44,
+      451.78,
+      544.56,
+      677.62
+    ],
+    "bbox_norm": [
+      0.1102,
+      0.5704,
+      0.8898,
+      0.8556
+    ],
+    "dpi": 300,
+    "area_frac": 0.222,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p51.png"
+  },
+  {
+    "id": "fig31",
+    "label": "Figure 31",
+    "kind": "figure",
+    "file": "assets/imas-2026-organizing-intelligence/fig31.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/fig31.png",
+    "page": 52,
+    "caption": "Figure 31: Improvement in AI coordination.",
+    "bbox": [
+      67.44,
+      197.54,
+      544.56,
+      421.8
+    ],
+    "bbox_norm": [
+      0.1102,
+      0.2494,
+      0.8898,
+      0.5326
+    ],
+    "dpi": 300,
+    "area_frac": 0.221,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p52.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/imas-2026-organizing-intelligence/tab01.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/tab01.png",
+    "page": 4,
+    "caption": "Table 1: Capabilities of agents in the economy. Task skills report coding y 1 first and writing y 2 .",
+    "bbox": [
+      167.49,
+      238.6,
+      444.51,
+      320.72
+    ],
+    "bbox_norm": [
+      0.2737,
+      0.3013,
+      0.7263,
+      0.4049
+    ],
+    "dpi": 300,
+    "area_frac": 0.047,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p04.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/imas-2026-organizing-intelligence/tab02.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/tab02.png",
+    "page": 28,
+    "caption": "Table 2: Feasibility and interiority conditions.",
+    "bbox": [
+      76.8,
+      385.36,
+      535.2,
+      605.34
+    ],
+    "bbox_norm": [
+      0.1255,
+      0.4866,
+      0.8745,
+      0.7643
+    ],
+    "dpi": 300,
+    "area_frac": 0.208,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p28.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/imas-2026-organizing-intelligence/tab03.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/tab03.png",
+    "page": 102,
+    "caption": "Table 3: Computational checks. The coordinator records are in intel-figures/ ; other file paths and supplementary checks are in images/v5/canonical_ces/REPRODUCTION. md .",
+    "bbox": [
+      87.17,
+      118.53,
+      524.83,
+      302.74
+    ],
+    "bbox_norm": [
+      0.1424,
+      0.1497,
+      0.8576,
+      0.3822
+    ],
+    "dpi": 300,
+    "area_frac": 0.166,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p102.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/imas-2026-organizing-intelligence/tab04.png",
+    "raw": "raw/papers/imas-2026-organizing-intelligence-figures/tab04.png",
+    "page": 106,
+    "caption": "Table 4: Joint-market calculations for the example, with outside option 1/4.",
+    "bbox": [
+      94.69,
+      77.27,
+      517.32,
+      237.09
+    ],
+    "bbox_norm": [
+      0.1547,
+      0.0976,
+      0.8453,
+      0.2994
+    ],
+    "dpi": 300,
+    "area_frac": 0.139,
+    "strategy": "table-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/imas-2026-organizing-intelligence-figures/_overlay/p106.png"
+  }
+]

@@ -392,6 +392,7 @@ RAG 응용, 도메인 적용 사례, 제품 패턴.
 
 다수 자료를 합성한 페이지, 카테고리 지도, 도메인 용어집.
 
+- [[overviews/imas-2026-organizing-intelligence|AI의 업무 능력과 조정 능력]]: 개발자와 작가의 팀으로 모자이크 지능을 설명한다. AI 도입 후 기업 규모와 임금이 바뀌는 조건, 일자리가 서서히 줄거나 한꺼번에 사라지는 두 경로를 비교한다 (2026, overview)
 - [[overviews/agent-skills-overview|Agent Skills 규격과 생태계]]: SKILL.md 폴더 규격과 progressive disclosure 3레벨, 클라이언트 42개의 cross-vendor 채택, Skills와 MCP의 경계를 자료 12편으로 묶었다 (2026, overview)
 - [[overviews/lightrag-family-graph-rag-overview|Graph-based RAG 계보]]: GraphRAG 트렁크에서 LightRAG, LeanRAG, RAG-Anything 세 분기로 갈라지는 계보를 자료 8편으로 합성하고 학습 경로 8단계를 붙였다 (2026, overview)
 - [[overviews/gbrain-ecosystem-overview|GBrain 생태계]]: 저장소가 보유한 GBrain 자료 6편의 역할 분담과 어긋나는 수치, 자기 보고 벤치마크 판정, 6단계 학습 경로를 묶은 허브 (2026, overview)
