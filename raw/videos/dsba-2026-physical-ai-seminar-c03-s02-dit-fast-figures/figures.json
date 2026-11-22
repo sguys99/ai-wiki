@@ -1,0 +1,252 @@
+[
+  {
+    "id": "slide03",
+    "label": "Slide 3",
+    "kind": "figure",
+    "file": "slide03.png",
+    "timestamp": "00:52",
+    "strategy": "keyframe",
+    "caption": "노이즈 수준을 높이는 과정과 원래 더한 노이즈를 맞히는 학습",
+    "curated": false
+  },
+  {
+    "id": "slide04",
+    "label": "Slide 4",
+    "kind": "figure",
+    "file": "slide04.png",
+    "timestamp": "01:25",
+    "strategy": "keyframe",
+    "caption": "생성 중인 값에서의 속도 벡터와 노이즈 분포에서 데이터 분포로 가는 경로",
+    "curated": true
+  },
+  {
+    "id": "slide08",
+    "label": "Slide 8",
+    "kind": "figure",
+    "file": "slide08.png",
+    "timestamp": "04:36",
+    "strategy": "keyframe",
+    "caption": "조건을 준 노이즈 예측과 조건을 뺀 예측을 조합하는 식",
+    "curated": false
+  },
+  {
+    "id": "slide09",
+    "label": "Slide 9",
+    "kind": "figure",
+    "file": "slide09.png",
+    "timestamp": "05:44",
+    "strategy": "keyframe",
+    "caption": "이미지를 압축한 뒤 latent에서 노이즈를 제거하는 구조",
+    "curated": false
+  },
+  {
+    "id": "slide10",
+    "label": "Slide 10",
+    "kind": "figure",
+    "file": "slide10.png",
+    "timestamp": "06:26",
+    "strategy": "keyframe",
+    "caption": "공간 격자를 패치로 나누고 순서가 있는 토큰열로 펼치는 과정",
+    "curated": true
+  },
+  {
+    "id": "slide15",
+    "label": "Slide 15",
+    "kind": "figure",
+    "file": "slide15.png",
+    "timestamp": "10:35",
+    "strategy": "keyframe",
+    "caption": "조건별 배율을 잔차 경로에 곱하는 adaLN-Zero 블록",
+    "curated": true
+  },
+  {
+    "id": "slide16",
+    "label": "Slide 16",
+    "kind": "figure",
+    "file": "slide16.png",
+    "timestamp": "11:28",
+    "strategy": "keyframe",
+    "caption": "DiT 네 크기의 블록 수, 내부 차원, attention head 수",
+    "curated": false
+  },
+  {
+    "id": "slide17",
+    "label": "Slide 17",
+    "kind": "figure",
+    "file": "slide17.png",
+    "timestamp": "12:21",
+    "strategy": "keyframe",
+    "caption": "마지막 토큰열을 공간 격자로 되돌리고 노이즈와 공분산을 분리하는 출력부",
+    "curated": false
+  },
+  {
+    "id": "slide19",
+    "label": "Slide 19",
+    "kind": "figure",
+    "file": "slide19.png",
+    "timestamp": "14:06",
+    "strategy": "keyframe",
+    "caption": "네 조건 주입 방식의 학습 스텝별 FID 비교",
+    "curated": true
+  },
+  {
+    "id": "slide21",
+    "label": "Slide 21",
+    "kind": "figure",
+    "file": "slide21.png",
+    "timestamp": "16:15",
+    "strategy": "keyframe",
+    "caption": "모델 크기와 패치 크기를 각각 고정했을 때의 학습 곡선",
+    "curated": false
+  },
+  {
+    "id": "slide22",
+    "label": "Slide 22",
+    "kind": "figure",
+    "file": "slide22.png",
+    "timestamp": "16:55",
+    "strategy": "keyframe",
+    "caption": "DiT 12개 구성의 순전파 연산량과 FID 사이의 상관계수 −0.93",
+    "curated": true
+  },
+  {
+    "id": "slide23",
+    "label": "Slide 23",
+    "kind": "figure",
+    "file": "slide23.png",
+    "timestamp": "17:35",
+    "strategy": "keyframe",
+    "caption": "누적 학습 연산량이 같을 때 DiT 구성별 FID 차이",
+    "curated": false
+  },
+  {
+    "id": "slide24",
+    "label": "Slide 24",
+    "kind": "figure",
+    "file": "slide24.png",
+    "timestamp": "18:27",
+    "strategy": "keyframe",
+    "caption": "ImageNet 두 해상도에서 guidance 강도에 따른 생성 품질과 다양성",
+    "curated": true
+  },
+  {
+    "id": "slide26",
+    "label": "Slide 26",
+    "kind": "figure",
+    "file": "slide26.png",
+    "timestamp": "19:48",
+    "strategy": "keyframe",
+    "caption": "개별 시점의 구간 토큰화에서 control frequency별 과제 점수 변화",
+    "curated": false
+  },
+  {
+    "id": "slide28",
+    "label": "Slide 28",
+    "kind": "figure",
+    "file": "slide28.png",
+    "timestamp": "22:37",
+    "strategy": "keyframe",
+    "caption": "동일한 곡선에서 샘플 수를 늘렸을 때 두 토큰화 방식의 예측 차이",
+    "curated": true
+  },
+  {
+    "id": "slide30",
+    "label": "Slide 30",
+    "kind": "figure",
+    "file": "slide30.png",
+    "timestamp": "25:25",
+    "strategy": "keyframe",
+    "caption": "분위수 정규화부터 정수 계수 병합까지의 FAST 처리 순서",
+    "curated": false
+  },
+  {
+    "id": "slide31",
+    "label": "Slide 31",
+    "kind": "figure",
+    "file": "slide31.png",
+    "timestamp": "26:47",
+    "strategy": "keyframe",
+    "caption": "두 시계열의 주파수 계수를 양자화하고 열 순서로 펼쳐 압축한 예",
+    "curated": true
+  },
+  {
+    "id": "slide33",
+    "label": "Slide 33",
+    "kind": "figure",
+    "file": "slide33.png",
+    "timestamp": "29:18",
+    "strategy": "keyframe",
+    "caption": "로봇별 분포와 제어 주기가 다른 데이터를 1초 명령 묶음으로 다루는 FAST+",
+    "curated": false
+  },
+  {
+    "id": "slide34",
+    "label": "Slide 34",
+    "kind": "figure",
+    "file": "slide34.png",
+    "timestamp": "30:15",
+    "strategy": "keyframe",
+    "caption": "시뮬레이션과 실제 로봇 과제의 평가 요구 사항 및 control frequency",
+    "curated": false
+  },
+  {
+    "id": "slide35",
+    "label": "Slide 35",
+    "kind": "figure",
+    "file": "slide35.png",
+    "timestamp": "30:44",
+    "strategy": "keyframe",
+    "caption": "복원 오차를 맞춘 네 데이터셋의 1초당 평균 토큰 수와 압축 배율",
+    "curated": true
+  },
+  {
+    "id": "slide36",
+    "label": "Slide 36",
+    "kind": "figure",
+    "file": "slide36.png",
+    "timestamp": "31:38",
+    "strategy": "keyframe",
+    "caption": "같은 모델에서 네 토큰화 방식으로 학습한 과제별 성공률과 진행률",
+    "curated": true
+  },
+  {
+    "id": "slide37",
+    "label": "Slide 37",
+    "kind": "figure",
+    "file": "slide37.png",
+    "timestamp": "33:00",
+    "strategy": "keyframe",
+    "caption": "새 로봇을 포함한 FAST+의 압축률과 데이터셋별 FAST와의 수행 성능 비교",
+    "curated": false
+  },
+  {
+    "id": "slide38",
+    "label": "Slide 38",
+    "kind": "figure",
+    "file": "slide38.png",
+    "timestamp": "33:47",
+    "strategy": "keyframe",
+    "caption": "OpenVLA에 FAST를 적용한 결과와 BPE를 제외한 결과",
+    "curated": true
+  },
+  {
+    "id": "slide39",
+    "label": "Slide 39",
+    "kind": "figure",
+    "file": "slide39.png",
+    "timestamp": "35:05",
+    "strategy": "keyframe",
+    "caption": "개별 과제에서 π₀-FAST와 flow matching 기반 π₀의 학습량별 비교",
+    "curated": true
+  },
+  {
+    "id": "slide40",
+    "label": "Slide 40",
+    "kind": "figure",
+    "file": "slide40.png",
+    "timestamp": "35:56",
+    "strategy": "keyframe",
+    "caption": "동일한 데이터 혼합으로 학습한 범용 모델의 과제별 진행률",
+    "curated": true
+  }
+]

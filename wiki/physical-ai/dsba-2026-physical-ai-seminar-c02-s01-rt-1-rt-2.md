@@ -379,6 +379,7 @@ PaLM-E 기반 RT-2를 짧게 추가 학습한 변형은 action을 내기 전에 
 ## 관련 페이지
 
 - [[physical-ai/dsba-2026-physical-ai-seminar-ch1-quick-tour|이전 회차, 피지컬 AI 빠르게 둘러보기]]에서 제어 루프와 VLA의 기본 어휘를 확인할 수 있다.
+- [[physical-ai/dsba-2026-physical-ai-seminar-c03-s02-dit-fast|위키 시리즈 3편, DiT와 FAST]]에서는 RT 계열의 구간 토큰화를 1초 단위 명령 압축과 비교한다.
 - [[physical-ai/brohan-2022-rt-1-robotics-transformer-for-real-world|RT-1 논문]]과 [[physical-ai/brohan-2023-rt-2-vision-language-action-models-transfer-web|RT-2 논문]]은 각각의 실험 조건과 수치를 더 자세히 다룬다.
 - [[physical-ai/open-x-embodiment-2023-robotic-learning-datasets-and-rt-x|Open X-Embodiment]]와 [[physical-ai/kim-2024-openvla-an-open-source-vision-language-action-model|OpenVLA]]는 다음 회차에서 다룰 데이터 공유와 모델 재현성의 사례다.
 - [[physical-ai/zhao-2023-learning-fine-grained-bimanual-manipulation|ACT와 ALOHA]]는 여러 시점의 명령을 함께 예측하는 방법을 설명한다.
