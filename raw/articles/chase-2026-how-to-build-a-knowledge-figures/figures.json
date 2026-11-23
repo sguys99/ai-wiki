@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/chase-2026-how-to-build-a-knowledge/fig01.png",
+    "raw": "raw/articles/chase-2026-how-to-build-a-knowledge-figures/fig01.png",
+    "caption": "Image 1: Three pieces of knowledge: skills (how to do the work), domain knowledge (how the business works) and data access guidance (where to get current information), each with an example from a revenue report",
+    "source_url": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6b01ca8ba227073b426bacc9_6b01ca1131dfcdcb792afbeb_knowledge-factory-pieces-of-knowledge.png",
+    "bytes": 155309,
+    "width": 2400,
+    "height": 1200,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/chase-2026-how-to-build-a-knowledge/fig02.png",
+    "raw": "raw/articles/chase-2026-how-to-build-a-knowledge-figures/fig02.png",
+    "caption": "Image 2: The knowledge factory loop: agents use knowledge as context and flag what is missing or wrong; a curator agent reads the flags, agent traces and raw sources like Notion and Slack, and updates the knowledge store",
+    "source_url": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6b01ca8ba227073b426baccf_6b01ca11197ed8cfd97983bb_knowledge-factory-loop.png",
+    "bytes": 161559,
+    "width": 2400,
+    "height": 1200,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/chase-2026-how-to-build-a-knowledge/fig03.png",
+    "raw": "raw/articles/chase-2026-how-to-build-a-knowledge-figures/fig03.png",
+    "caption": "Image 3: Revenue report example: the agent flags a renamed BigQuery column, the finance lead asks for a new header, and that night the curator agent reads the flag and trace and updates two skills",
+    "source_url": "https://cdn.prod.website-files.com/65c81e88c254bb0f97633a71/6b01ca8ba227073b426baccc_6b01ca11a227073b426b930c_knowledge-factory-revenue-report.png",
+    "bytes": 182367,
+    "width": 2400,
+    "height": 1200,
+    "strategy": "fetched",
+    "curated": false
+  }
+]
