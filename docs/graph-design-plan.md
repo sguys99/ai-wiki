@@ -207,7 +207,7 @@
 
 ### Phase 6. 검증
 
-- [ ] `cd site && npm run build:strict` 통과
+- [x] `cd site && npm run build:strict` 통과 (2026-11-23, 세 번 빌드 모두 exit 0, 약 2.8 ~ 3.9s. 352노드, 2,622엣지, `checkGraphJson` V1 ~ V16 통과 (V14 `paths`, V15 `layout3d` 포함), 고립 0, 미해석 wikilink 0. 따로 돌린 `node lib/graph.mjs --check ../dist/graph.json --paths ../dist/graph/paths.json --layout3d ../dist/graph/3d/layout.json` 도 exit 0. 세 번 빌드의 `graph.json`, `paths.json`, `3d/layout.json` sha256 같음. 실측: 약한 연결 40개 (들어옴 0 31개, degree 3 이하 9개, 검사기의 들어옴 0 32개와 1 차이는 overviews 제외 때문), 최근 추가 19개 (`recentSince` 2026-11-10), 학습 경로 9개 76단계, `graph.json` 161,205B (gzip 38,692B). 경고는 그래프와 무관한 둘: 중복 stem `nvidia-auto-ontology` 의 bare 링크 모호 WARN 1건, 수식 안 한글로 인한 KaTeX `unicodeTextInMathMode` 23건. 코드 수정 없음)
 - [ ] `BASE=/ai-wiki` 빌드에서 경로 확인
 - [ ] 라이트와 다크 테마 스크린샷
 - [ ] 모바일 폭 (375px) 가로 스크롤 없음, 터치 조작 확인
