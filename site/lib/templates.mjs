@@ -37,7 +37,7 @@ const BAND_EMPTY_NOTE =
   '아직 등록된 자료가 없습니다. 분류와 태그 체계를 먼저 세워 둔 자리라 자료를 정리하는 대로 카드가 채워집니다.';
 
 // FOUC 방지: CSS 적용 전 동기 실행으로 초기 테마를 확정.
-const FOUC_SCRIPT = `(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();`;
+const FOUC_SCRIPT = `(function(){document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();`;
 
 // ── 공유 셸 ───────────────────────────────────────────────────────────────────
 //
@@ -390,9 +390,9 @@ export function graphPage(data) {
   const num = (n) => n.toLocaleString('en-US');
   const statText = `페이지 ${num(stats.nodes)}개, 연결 ${num(stats.edges)}개`;
 
-  // 범례 순서는 페이지 수 내림차순 (hash cat= 정규 순서도 이 순서다, 02 8.4절).
-  const legend = [...groups]
-    .sort((a, b) => b.nodes.length - a.nodes.length)
+  // 범례 순서는 페이지 수 내림차순 (hash cat= 정규 순서도 이 순서다, 02 8.4절). 목록 판과 바로가기도 같은 순서다.
+  const byCount = [...groups].sort((a, b) => b.nodes.length - a.nodes.length);
+  const legend = byCount
     .map(
       (g) =>
         `        <button type="button" class="graph-legend-item" data-cat="${escapeHtml(g.slug)}" aria-pressed="false"><span class="graph-swatch" aria-hidden="true"></span><span class="graph-legend-name">${escapeHtml(g.label)}</span><span class="graph-legend-n">${g.nodes.length}</span></button>`
@@ -407,7 +407,13 @@ export function graphPage(data) {
     .join('\n');
 
   // 카테고리 절 id 는 slug 그대로 두지 않는다. "#physical-ai" 는 옛 카테고리 필터 hash 로 읽힌다 (02 8.5절).
-  const list = groups
+  const jump = byCount
+    .map(
+      (g) =>
+        `      <li data-cat="${escapeHtml(g.slug)}"><a href="#graph-cat-${escapeHtml(g.slug)}"><span class="graph-swatch" aria-hidden="true"></span>${escapeHtml(g.label)}<span class="graph-jump-n">${g.nodes.length}</span></a></li>`
+    )
+    .join('\n');
+  const list = byCount
     .map(
       (g) => `    <section class="graph-group" id="graph-cat-${escapeHtml(g.slug)}" data-cat="${escapeHtml(g.slug)}" aria-labelledby="graph-group-${escapeHtml(g.slug)}">
       <div class="band-head">
@@ -589,6 +595,11 @@ ${pathBar}
     <p class="graph-list-note" id="graph-list-note" hidden></p>
     <button type="button" class="graph-to-map" id="graph-to-map" hidden>그래프로 보기</button>
     <h2 class="graph-list-title" id="graph-list-h">카테고리별 목록</h2>
+    <nav class="graph-jump" aria-label="카테고리 바로가기">
+      <ul>
+${jump}
+      </ul>
+    </nav>
   </header>
 ${list}
 ${weakSection}
@@ -944,11 +955,12 @@ function miniGraph(page, neighbors, edgeSet) {
     : '';
 
   return `<svg class="neigh" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
-      <defs>${defs}</defs>
+      <defs>${defs}<radialGradient id="ng-self" data-cat="${escapeHtml(page.category)}" cx=".34" cy=".3" r=".75"><stop class="ng-hi"/><stop offset=".6"/></radialGradient><radialGradient id="ng-halo" data-cat="${escapeHtml(page.category)}"><stop class="ng-halo"/><stop offset="1" stop-opacity="0"/></radialGradient></defs>
+      <circle cx="${cx}" cy="${cy}" r="34" fill="url(#ng-halo)"/>
       ${chords ? `<path class="neigh-chord" d="${chords}"/>` : ''}
       <g class="neigh-spokes">${spokes}</g>
       <g class="neigh-nodes">${nodes}</g>
-      <a class="neigh-self" href="${self}" tabindex="-1" data-cat="${escapeHtml(page.category)}"><circle class="neigh-ring" cx="${cx}" cy="${cy}" r="10"/><circle class="neigh-center" cx="${cx}" cy="${cy}" r="7"/></a>
+      <a class="neigh-self" href="${self}" tabindex="-1" data-cat="${escapeHtml(page.category)}"><circle class="neigh-ring" cx="${cx}" cy="${cy}" r="18"/><circle class="neigh-center" cx="${cx}" cy="${cy}" r="14" fill="url(#ng-self)"/></a>
       ${more}
     </svg>`;
 }

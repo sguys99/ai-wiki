@@ -198,7 +198,7 @@
     --cat-applications: #d42a6c;
     --cat-database: #8a46e0;
     --cat-llms: #1e4ac3;
-    --cat-overviews: #141a2e;
+    --cat-overviews: #4a5573; /* 백랍 구슬. 짙은 남색은 밝은 바탕에서 구멍처럼 읽혔다. 대비 graph bg 6.7:1 */
     --cat-evaluations: #486500;
     --cat-etc: #6b7690;
     --graph-bg: #f3f4f8;
@@ -1260,16 +1260,24 @@
   .neigh-nodes a.is-hi circle,
   .neigh-self:hover .neigh-ring {
     stroke: var(--signal);
+    stroke-opacity: 1;
     stroke-width: 2.5;
   }
+  /* 중심: 이웃 최대 구슬의 약 1.6배, 같은 구슬 질감에 제 색의 엷은 빛무리 (dark 에서 평평해 보이지 않게) */
   .neigh-center {
-    fill: var(--c);
-    stroke: var(--bg);
-    stroke-width: 2;
+    stroke: var(--c);
+    stroke-width: 1;
+  }
+  .neigh .ng-halo {
+    stop-opacity: 0.32;
+  }
+  :root[data-theme='light'] .neigh .ng-halo {
+    stop-opacity: 0.18;
   }
   .neigh-ring {
     fill: none;
     stroke: var(--c);
+    stroke-opacity: 0.45;
     stroke-width: 1;
   }
   .neigh-more {
@@ -1747,6 +1755,17 @@
       color: var(--signal);
     }
   }
+
+  /* ── 스크립트가 돌지 않을 때: 검색, 테마, 햄버거는 동작하지 않으므로 숨기고 메뉴 링크를 줄 안에 그대로 둔다.
+     .js 는 head 의 첫 인라인 스크립트가 <html> 에 붙인다 ── */
+  html:not(.js) :is([data-search-trigger], [data-theme-toggle], [data-nav-toggle]) {
+    display: none;
+  }
+  @media (max-width: 560px) {
+    html:not(.js) :is(.nav-tags, .nav-graph, .nav-about, .nav-github) {
+      display: inline-flex;
+    }
+  }
 }
 
 /* ── components (Phase 4: 태그 인덱스 · 태그 페이지 · 위키 태그 · 검색 패싯) ────────── */
@@ -1980,6 +1999,50 @@
   .graph-list-title {
     margin: var(--space-8) 0 var(--space-6);
     font-size: var(--text-xl);
+  }
+  /* 카테고리 바로가기: 견본, 이름, 수. 좁은 화면에서는 줄을 바꿔 감싼다 */
+  .graph-list-title:has(+ .graph-jump) {
+    margin-bottom: var(--space-3);
+  }
+  .graph-jump ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-8);
+    padding: 0;
+    list-style: none;
+  }
+  .graph-jump a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    min-height: 2.25rem;
+    padding: 0 var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text);
+    text-decoration: none;
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-pill);
+    transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+  }
+  .graph-jump a:hover {
+    border-color: color-mix(in srgb, var(--c) 55%, transparent);
+    background: color-mix(in srgb, var(--c) 8%, transparent);
+  }
+  .graph-jump a:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+  }
+  .graph-jump-n {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  @media (pointer: coarse) {
+    .graph-jump a {
+      min-height: 44px;
+    }
   }
   .graph-group {
     margin-bottom: var(--space-12);
@@ -2392,11 +2455,11 @@
     z-index: calc(var(--graph-z-float) + var(--graph-z-raise));
     display: flex;
     gap: var(--space-2);
-    width: min(calc(300px + var(--space-2) + 5.5rem), calc(100% - 2 * var(--graph-inset)));
+    width: min(calc(300px + var(--space-2) + 6.125rem), calc(100% - 2 * var(--graph-inset)));
   }
-  /* 학습 경로 버튼만큼 늘린다 (01 7절, 382px → 428px) */
+  /* 학습 경로 버튼만큼 늘린다 (01 7절). 두 버튼은 배지가 붙어도 폭이 같아 검색 칸이 흔들리지 않는다 */
   .graph-cmd:has(.graph-path-btn) {
-    width: min(calc(300px + 2 * var(--space-2) + 5.5rem + var(--graph-ctl-h)), calc(100% - 2 * var(--graph-inset)));
+    width: min(calc(300px + 2 * var(--space-2) + 6.125rem + var(--graph-ctl-h) + 1.375rem), calc(100% - 2 * var(--graph-inset)));
   }
   /* 태블릿 궤도에서 넓어진 명령 줄이 옆 패널에 닿지 않게 검색 입력이 줄어든다 */
   @media (min-width: 641px) {
@@ -2645,6 +2708,8 @@
     flex: none;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    min-width: 6.125rem; /* 두 자리 배지가 붙은 폭 */
     gap: var(--space-1-5);
     height: var(--graph-ctl-h);
     padding: 0 var(--space-3) 0 var(--space-2-5);
@@ -3057,7 +3122,7 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-1-5);
-    min-width: var(--graph-ctl-h);
+    min-width: calc(var(--graph-ctl-h) + 1.375rem); /* 단계 수 배지가 붙은 폭 */
     height: var(--graph-ctl-h);
     padding: 0;
     border-radius: var(--graph-radius-ctl);
@@ -3170,7 +3235,8 @@
   }
   .graph-pathbar-name {
     flex: 0 1 auto;
-    min-width: 0;
+    min-width: min(160px, 25vw);
+    max-width: 260px;
     padding-right: var(--space-1);
     overflow: hidden;
     font-weight: 600;
@@ -3926,6 +3992,36 @@
       display: none;
     }
   }
+  /* 태블릿 궤도: 패널이 오른쪽을 차지하면 범례 카드가 궤도 아래를 가린다. 견본 한 줄로 접는다 */
+  @media (min-width: 641px) and (max-width: 1365px) and (min-height: 481px) {
+    .graph-stage[data-mode='orbit'] .graph-legend {
+      flex-direction: row;
+      gap: 2px;
+      width: auto;
+      padding: var(--space-1-5) var(--space-2);
+    }
+    .graph-stage[data-mode='orbit'] .graph-legend-item {
+      justify-content: center;
+      width: var(--graph-pill-h);
+      height: var(--graph-pill-h);
+      padding: 0;
+    }
+    .graph-stage[data-mode='orbit'] :is(.graph-legend-n, .graph-legend-stat, .graph-legend-reset, .graph-legend-recent, .graph-legend-weak) {
+      display: none;
+    }
+    .graph-stage[data-mode='orbit'] .graph-legend-name {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+    .graph-stage[data-mode='orbit'] .graph-legend-item[aria-pressed='true'] {
+      background: color-mix(in srgb, var(--c) 24%, transparent);
+      box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c) 70%, transparent);
+    }
+  }
   /* 키보드가 없는 기기와 좁은 화면에는 키 표시가 필요 없다 */
   @media (hover: none), (max-width: 640px) {
     .graph-kbd {
@@ -4308,6 +4404,79 @@
   }
 }
 
+/* ── 손가락 조작: 누르는 자리를 44px 이상으로 (02 5.3절). 보이는 크기는 되도록 그대로 두고 투명한 ::after 로 넓힌다 ── */
+@layer components {
+  @media (pointer: coarse) {
+    main.graph {
+      --graph-ctl-h: 44px;
+      --graph-ctl-touch: 44px;
+    }
+    /* 세로로 쌓인 범례 줄은 겹치지 않게 줄 높이 자체를 키운다 */
+    .graph-legend-item {
+      min-height: 44px;
+    }
+    /* 줌 버튼은 8px 틈을 두고 붙어 있어 40px 이어야 넓힌 자리가 이웃과 겹치지 않는다 */
+    .graph-tool {
+      min-width: 40px;
+    }
+    :is(.graph-tool, .graph-panel-close, .graph-crumbs button, .graph-home, .graph-chip, .graph-fchip, .graph-row-reset) {
+      position: relative;
+    }
+    :is(.graph-tool, .graph-panel-close, .graph-crumbs button, .graph-home, .graph-chip, .graph-fchip, .graph-row-reset)::after {
+      content: '';
+      position: absolute;
+      inset: min(0px, calc(50% - 22px));
+    }
+    .graph-sheet-grip {
+      height: 24px;
+    }
+  }
+  /* 경로 줄은 가로 스크롤 상자라 ::after 가 잘린다. 줄 높이를 키운다. 휴대폰 가로는 궤도 자리가 모자라 그대로 둔다 */
+  @media (pointer: coarse) and (min-height: 481px) {
+    main.graph {
+      --graph-row-h: 44px;
+    }
+  }
+  /* 한 줄 견본 범례: 폭은 화면이 정하므로 견본 사이 틈까지 누르는 자리로 쓰고 높이를 44px 로 넓힌다 */
+  @media (pointer: coarse) and (max-width: 640px), (pointer: coarse) and (max-height: 480px) {
+    .graph-legend {
+      gap: 0;
+      padding-inline: var(--space-1);
+    }
+    .graph-legend-item {
+      position: relative;
+      width: 29px;
+      min-height: 0;
+    }
+    .graph-legend-item::after {
+      content: '';
+      position: absolute;
+      inset: min(0px, calc(50% - 22px)) 0;
+    }
+  }
+  /* 휴대폰 가로의 세로 견본 기둥: 높이는 화면이 모자라 옆으로 넓힌다 */
+  @media (pointer: coarse) and (max-height: 480px) {
+    .graph-legend-item::after {
+      inset: 0 min(0px, calc(50% - 22px));
+    }
+  }
+  @media (pointer: coarse) and (min-width: 641px) and (max-width: 1365px) and (min-height: 481px) {
+    .graph-stage[data-mode='orbit'] .graph-legend {
+      gap: 0;
+    }
+    .graph-stage[data-mode='orbit'] .graph-legend-item {
+      position: relative;
+      width: 32px;
+      min-height: 0;
+    }
+    .graph-stage[data-mode='orbit'] .graph-legend-item::after {
+      content: '';
+      position: absolute;
+      inset: min(0px, calc(50% - 22px)) 0;
+    }
+  }
+}
+
 /* ── 3D 실험 페이지 /graph/3d/ (06 6절). 무대는 늘 dark, 헤더만 사이트 테마 ── */
 @layer components {
   body:has(> main.g3d) {
@@ -4318,6 +4487,10 @@
     -webkit-backdrop-filter: var(--graph-blur);
     backdrop-filter: var(--graph-blur);
     border-bottom-color: var(--graph-glass-edge);
+  }
+  /* 라이트 헤더의 반투명 흰 유리가 늘 어두운 무대를 흐리면 탁한 회색이 된다. 거의 불투명한 흰 판으로 깐다 */
+  :root[data-theme='light'] body:has(> main.g3d) .site-header {
+    background: var(--graph-sheen), var(--graph-glass-solid);
   }
   main.g3d ~ .site-footer {
     display: none;

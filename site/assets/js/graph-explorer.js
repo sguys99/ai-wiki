@@ -168,8 +168,8 @@
     // 조감 맞춤 영역: 헤더 유리판 밑. 모바일은 명령 줄과 한 줄 범례 자리를 비운다 (04 7.1, 01 5.4)
     function atlasRect() {
       var top = headerH();
-      if (isMobile()) top += 60; // inset 16 + 명령 줄 38 + 6
-      var bottom = isMobile() ? 56 : 0; // inset 16 + 견본 26 + 14
+      if (isMobile()) top = Math.max(top, cmd.offsetTop + cmd.offsetHeight + 6); // 명령 줄 높이는 터치 기기에서 44px 이다
+      var bottom = isMobile() ? H - dock.offsetTop + 14 : 0; // 한 줄 견본 범례 위
       var bm = barMode();
       if (bm === 'row' || bm === 'compact') top = Math.max(top, pathBar.offsetTop + pathBar.offsetHeight + 8); // 칩 줄 자리의 단계 막대 (06 4.3)
       if (barMode() === 'float') bottom = Math.max(bottom, H - pathBar.offsetTop + 8);
@@ -184,7 +184,31 @@
       var v = atlasRect(), pad = Math.min(v.w, v.h) * 0.06;
       var k = Math.min((v.w - pad * 2) / Math.max(1, maxX - minX), (v.h - pad * 2) / Math.max(1, maxY - minY));
       k = Math.max(K_MIN, Math.min(2.4, k));
-      return camFor((minX + maxX) / 2, (minY + maxY) / 2, k, v.x + v.w / 2, v.y + v.h / 2);
+      var mx = (minX + maxX) / 2, my = (minY + maxY) / 2, ax = v.x + v.w / 2, ay = v.y + v.h / 2;
+      // 범례, 명령 줄, 도구 밑에 노드가 깔리지 않게 배율을 조금씩 낮추고 중심을 비켜 본다. 가장 큰 배율의 빈 자리를 고른다
+      var obs = chromeRects().filter(function (q) { return q.y + q.h > v.y + 1; });
+      var offs = [];
+      for (var i = -4; i <= 4; i++) for (var j = -4; j <= 4; j++) offs.push([i * v.w * 0.03, j * v.h * 0.03]);
+      offs.sort(function (a, b) { return Math.hypot(a[0], a[1]) - Math.hypot(b[0], b[1]); });
+      for (var k1 = k; k1 >= Math.max(K_MIN, k * 0.55); k1 *= 0.97) {
+        for (var o = 0; o < offs.length; o++) {
+          var c = camFor(mx, my, k1, ax + offs[o][0], ay + offs[o][1]);
+          if (fitClear(list, c, v, obs)) return c;
+        }
+      }
+      return camFor(mx, my, k, ax, ay);
+    }
+    function fitClear(list, c, v, obs) {
+      var sk = Math.sqrt(c.k);
+      for (var i = 0; i < list.length; i++) {
+        var n = list[i], x = n.hx * c.k + c.x, y = n.hy * c.k + c.y, r = n.r * sk + 4;
+        if (x - r < v.x || x + r > v.x + v.w || y - r < v.y || y + r > v.y + v.h) return false;
+        for (var q = 0; q < obs.length; q++) {
+          var b = obs[q], dx = x - Math.max(b.x, Math.min(x, b.x + b.w)), dy = y - Math.max(b.y, Math.min(y, b.y + b.h));
+          if (dx * dx + dy * dy < r * r) return false;
+        }
+      }
+      return true;
     }
 
     // 세로 화면은 구운 가로 배치의 x, y 를 맞바꾼다 (03 3.2, 04 3.4)
@@ -346,13 +370,17 @@
       } else {
         top += 20;
         right = W - panel.offsetLeft + inset;
+        if (W < 1366 && !land) bottom = Math.max(bottom, H - dock.offsetTop + 8); // 견본 한 줄로 접힌 범례 위에서 멈춘다 (CSS 1365px 경계와 같다)
       }
       if (barMode() === 'float') bottom = Math.max(bottom, H - pathBar.offsetTop + 8);
       return { x: left, y: top, w: Math.max(80, W - left - right), h: Math.max(80, H - top - bottom) };
     }
     function orbitCam(v) {
       var a = orbitRect(), ext = isMobile() ? (v.r2.length ? v.R2o : v.R1o) + 36 : v.extent;
-      var k = Math.max(0.2, Math.min(1.6, Math.min(a.w, a.h) / (2 * ext)));
+      var k = Math.min(a.w, a.h) / (2 * ext);
+      // 좁은 사용 영역: 옆 라벨이 화면 끝에 붙어 잘리지 않게 양옆에 화면 px로 라벨 자리를 남긴다
+      if (!isMobile() && !mqLand.matches) k = Math.min(k, (a.w / 2 - 88) / (v.r2.length ? v.R2o : v.R1o));
+      k = Math.max(0.2, Math.min(1.6, k));
       return camFor(C.x, C.y, k, a.x + a.w / 2, a.y + a.h / 2);
     }
 
@@ -663,7 +691,7 @@
         if (n === view.c) base = 1; else if (!lit[n.i]) base = Math.min(1, T.dim * 1.6);
         return h && n !== h && !h.nb.has(n) && n !== view.c ? Math.min(base, 0.35) : base;
       }
-      if (pathOn && !stepOf.has(n)) base = Math.min(base, (1 + T.dim) / 2); // 경로가 주인공이지만 지도는 남는다 (06 4.2)
+      if (pathOn && !stepOf.has(n)) base = Math.min(base, T.dim); // 경로가 주인공이다. 나머지는 필터 밖과 같은 흐림으로 가라앉는다 (06 4.2)
       if (n === h) return 1;
       return h && !h.nb.has(n) ? Math.min(base, 0.42) : base;
     }
@@ -709,7 +737,7 @@
       var mix = orbitMix, h = hovered || cursor;
 
       // 2. 성운 안개: 궤도에서는 28%로 가라앉는다
-      ctx.globalAlpha = hazeIn * (1 - 0.72 * mix) * (1 - 0.45 * fMix); // 필터 중에는 55% (04 7.3)
+      ctx.globalAlpha = hazeIn * (1 - 0.72 * mix) * (1 - 0.45 * Math.max(fMix, pathOn ? 1 - mix : 0)); // 필터 중에는 55% (04 7.3)
       ctx.drawImage(haze.img, haze.ox * k + tx, haze.oy * k + ty, haze.img.width / haze.s * k, haze.img.height / haze.s * k);
 
       // 3. 성운 이름: 줌을 키우면 사라진다 (k 1.2 이하 완전, 1.7 이상 없음). 궤도 전환이 1/3 가면 사라진다
@@ -718,7 +746,7 @@
 
       // 4. 엣지: 더하기 합성으로 겹칠수록 밝은 빛 실. 궤도에서는 배경 노드끼리만 아주 흐리게
       var pa = pathOn ? 1 - mix : 0; // 경로 층 알파. 궤도에서는 그리지 않는다 (06 4.4)
-      var atlasEA = edgeIn * (1 - 0.82 * mix) * (mode === 'atlas' && h ? 0.45 : 1) * (1 - 0.55 * pa);
+      var atlasEA = edgeIn * (1 - 0.82 * mix) * (mode === 'atlas' && h ? 0.45 : 1) * (1 - 0.78 * pa);
       if (atlasEA > 0.01) {
         var inOrbit = mode === 'orbit';
         ctx.globalCompositeOperation = T.blend;
@@ -742,11 +770,11 @@
             ctx.stroke();
           }
         }
-        // 경로 단계끼리의 엣지는 원래 알파로 돌려 놓는다 (나머지는 45%)
+        // 경로 단계끼리의 엣지는 원래 알파로 돌려 놓는다 (나머지는 필터 밖 엣지와 같은 22%)
         for (var si = 0; si < stepEdges.length && pa > 0; si++) {
           var se = stepEdges[si], sm = se.s.category === se.t.category;
           ctx.strokeStyle = sm ? T.cat[se.s.category] : T.edge;
-          ctx.globalAlpha = T.edgeAlpha * (sm ? 1.25 : 0.9) * atlasEA / (1 - 0.55 * pa) * 0.55 * pa;
+          ctx.globalAlpha = T.edgeAlpha * (sm ? 1.25 : 0.9) * atlasEA / (1 - 0.78 * pa) * 0.78 * pa;
           ctx.beginPath(); ctx.moveTo(sx(se.s.x), sy(se.s.y)); ctx.lineTo(sx(se.t.x), sy(se.t.y)); ctx.stroke();
         }
       }
@@ -1374,7 +1402,7 @@
           // 수직에 가까운 옆 호에서는 글자 상자 모서리가 제 구슬에 닿지 않게 가로로 더 민다
           lx = cx > 0 ? Math.max(lx, p.x + rd + 5) : Math.min(lx, p.x - rd - 5);
           maxW = n.role === 1 ? Math.max(40, (view.R2 - view.R1o) * k / Math.max(0.6, Math.abs(cx)) - 22) : 150;
-          maxW = Math.min(maxW, 170, cx > 0 ? rightBound - lx : lx - 8);
+          maxW = Math.min(maxW, 170, cx > 0 ? rightBound - lx : lx - 16);
         } else {
           align = 'center'; lx = p.x; ly = p.y + (cy > 0 ? rd + lf.px * 0.5 + 4 : -(rd + lf.px * 0.5 + 4));
           maxW = 120;
@@ -2421,7 +2449,7 @@
       pathBar.hidden = !pathOn;
       if (!pathOn) { placeBar(); return; }
       var name = document.getElementById('graph-pathbar-name');
-      name.textContent = pathOn.title.length > 14 ? pathOn.title.slice(0, 13) + '…' : pathOn.title;
+      name.textContent = pathOn.title; // 넘치면 CSS 말줄임
       name.title = pathOn.title;
       var byN = {}, max = 0, html = '';
       pathOn.steps.forEach(function (st, i) { byN[st.n] = i; max = Math.max(max, st.n); });
@@ -2470,8 +2498,8 @@
       }
       if (m !== 'float') return;
       // 범례 독과 오른쪽 장애물(도구 묶음, 궤도는 패널) 사이 가운데. 모자라면 도구 위, 그래도 모자라면 범례 위에 두고 단계 점을 가로로 민다
-      // 이름은 줄어들 수 있으므로 이름을 48px 만 남긴 폭이 들어가면 그 자리를 쓴다
-      var g = 12, inset = dock.offsetLeft, w0 = pathBar.offsetWidth, wMin = w0 - document.getElementById('graph-pathbar-name').offsetWidth + 48;
+      // 이름은 CSS min-width (160px 또는 25vw) 까지 줄어들 수 있으므로 그 폭이 들어가면 그 자리를 쓴다
+      var g = 12, inset = dock.offsetLeft, w0 = pathBar.offsetWidth, wMin = w0 - document.getElementById('graph-pathbar-name').offsetWidth + Math.min(160, window.innerWidth * 0.25);
       var dockR = dock.offsetLeft + dock.offsetWidth, rightX = mode === 'orbit' && !panel.hidden ? panel.offsetLeft - g : W - inset;
       var toolsOn = tools && !tools.hidden;
       var cand = [{ l: dockR + g, r: toolsOn ? tools.offsetLeft - g : rightX, b: inset }];
