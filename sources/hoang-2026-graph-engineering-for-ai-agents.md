@@ -19,7 +19,7 @@ figures:
     raw: raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig01.png
     caption: "한 모델이 조사와 평가를 겸하는 루프와 근거 검토를 별도 단계로 둔 그래프"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig02
     label: Figure 2
     kind: figure
@@ -27,7 +27,7 @@ figures:
     raw: raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig02.gif
     caption: "Shopify 회계 도구의 고객, 경쟁사, 유통 경로 조사에서 창업자 승인까지의 흐름"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig03
     label: Figure 3
     kind: figure
@@ -35,7 +35,7 @@ figures:
     raw: raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig03.gif
     caption: "세 조사 결과가 같은 필드에 도착할 때 덮어쓰기와 병합의 차이"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig04
     label: Figure 4
     kind: figure
@@ -43,7 +43,7 @@ figures:
     raw: raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig04.png
     caption: "고객과 제품 사이의 관계를 나타내는 그래프와 작업 순서를 정하는 그래프"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig05
     label: Figure 5
     kind: figure
@@ -51,7 +51,7 @@ figures:
     raw: raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig05.png
     caption: "근거 검토 결과만 권고안 작성 단계로 넘기는 연결"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig06
     label: Figure 6
     kind: figure
@@ -59,7 +59,7 @@ figures:
     raw: raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig06.png
     caption: "범위가 좁은 질문을 경쟁사 조사로 바로 보내는 분기"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig07
     label: Figure 7
     kind: figure
@@ -67,7 +67,7 @@ figures:
     raw: raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig07.png
     caption: "고객 불편, 경쟁사, 유통 경로를 병렬로 조사한 뒤 근거를 모으는 단계"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig08
     label: Figure 8
     kind: figure
@@ -75,7 +75,7 @@ figures:
     raw: raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig08.png
     caption: "실행 중에 발견한 조사 범주에 따라 상한 안에서 작업자를 추가하는 구조"
     strategy: fetched
-    curated: false
+    curated: true
   - id: fig09
     label: Figure 9
     kind: figure
@@ -83,7 +83,7 @@ figures:
     raw: raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig09.png
     caption: "권고안 초안을 검토하고 최대 두 차례까지 수정을 허용하는 루프"
     strategy: fetched
-    curated: false
+    curated: true
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -145,14 +145,14 @@ state reducer는 병렬 단계들이 같은 필드를 갱신할 때 결과를 �
 
 ## 8. 그림 후보 (Figure Candidates)
 
-| id | caption | strategy | 추천 |
+| id | caption | strategy | 반영 |
 |---|---|---|---|
-| fig01 | 한 모델이 조사와 평가를 겸하는 루프와 근거 검토를 별도 단계로 둔 그래프 | fetched | 참고 |
-| fig02 | Shopify 회계 도구의 고객, 경쟁사, 유통 경로 조사에서 창업자 승인까지의 흐름 | fetched | ★ 본문 권장 |
-| fig03 | 세 조사 결과가 같은 필드에 도착할 때 덮어쓰기와 병합의 차이 | fetched | ★ 본문 권장 |
-| fig04 | 고객과 제품 사이의 관계를 나타내는 그래프와 작업 순서를 정하는 그래프 | fetched | 참고 |
-| fig05 | 근거 검토 결과만 권고안 작성 단계로 넘기는 연결 | fetched | 참고 |
-| fig06 | 범위가 좁은 질문을 경쟁사 조사로 바로 보내는 분기 | fetched | 참고 |
-| fig07 | 고객 불편, 경쟁사, 유통 경로를 병렬로 조사한 뒤 근거를 모으는 단계 | fetched | 참고 |
-| fig08 | 실행 중에 발견한 조사 범주에 따라 상한 안에서 작업자를 추가하는 구조 | fetched | 참고 |
-| fig09 | 권고안 초안을 검토하고 최대 두 차례까지 수정을 허용하는 루프 | fetched | ★ 본문 권장 |
+| fig01 | 한 모델이 조사와 평가를 겸하는 루프와 근거 검토를 별도 단계로 둔 그래프 | fetched | 본문 수록 |
+| fig02 | Shopify 회계 도구의 고객, 경쟁사, 유통 경로 조사에서 창업자 승인까지의 흐름 | fetched | 본문 수록 |
+| fig03 | 세 조사 결과가 같은 필드에 도착할 때 덮어쓰기와 병합의 차이 | fetched | 본문 수록 |
+| fig04 | 고객과 제품 사이의 관계를 나타내는 그래프와 작업 순서를 정하는 그래프 | fetched | 본문 수록 |
+| fig05 | 근거 검토 결과만 권고안 작성 단계로 넘기는 연결 | fetched | 본문 수록 |
+| fig06 | 범위가 좁은 질문을 경쟁사 조사로 바로 보내는 분기 | fetched | 본문 수록 |
+| fig07 | 고객 불편, 경쟁사, 유통 경로를 병렬로 조사한 뒤 근거를 모으는 단계 | fetched | 본문 수록 |
+| fig08 | 실행 중에 발견한 조사 범주에 따라 상한 안에서 작업자를 추가하는 구조 | fetched | 본문 수록 |
+| fig09 | 권고안 초안을 검토하고 최대 두 차례까지 수정을 허용하는 루프 | fetched | 본문 수록 |
