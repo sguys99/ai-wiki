@@ -11,6 +11,70 @@ raw_filename: perfology-clips-2026-andrej-karpathy-the-future-of.md
 source_collection: external
 tags: [transformer, attention, language-modeling]
 source: perfology-clips-2026-andrej-karpathy-the-future-of.md
+figures:
+  - id: fig01
+    label: "Frame 37:30"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig01.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig01.png
+    timestamp: "37:30"
+    strategy: keyframe
+    caption: "번역기의 구조와 원문 단어와 번역 단어 사이의 정렬을 나타낸 행렬"
+    curated: true
+  - id: fig02
+    label: "Frame 38:00"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig02.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig02.png
+    timestamp: "38:00"
+    strategy: keyframe
+    caption: "Bahdanau가 번역기의 병목과 attention의 착상을 설명한 이메일"
+    curated: true
+  - id: fig03
+    label: "Frame 46:20"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig03.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig03.png
+    timestamp: "46:20"
+    strategy: keyframe
+    caption: "그래프에서 각 노드가 이웃의 정보를 읽는 연산과 그 의사 코드"
+    curated: true
+  - id: fig04
+    label: "Frame 48:20"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig04.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig04.png
+    timestamp: "48:20"
+    strategy: keyframe
+    caption: "인코더와 디코더에서 각 위치가 참조할 수 있는 노드의 범위"
+    curated: true
+  - id: fig05
+    label: "Frame 54:10"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig05.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig05.png
+    timestamp: "54:10"
+    strategy: keyframe
+    caption: "셰익스피어 텍스트에서 입력과 한 문자 이동한 정답을 추출하는 배치 구성"
+    curated: true
+  - id: fig06
+    label: "Frame 58:15"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig06.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig06.png
+    timestamp: "58:15"
+    strategy: keyframe
+    caption: "GPT 디코더 블록의 구조와 통신 및 위치별 계산에 대응하는 코드"
+    curated: true
+  - id: fig07
+    label: "Frame 12:30"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig07.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig07.png
+    timestamp: "12:30"
+    strategy: keyframe
+    caption: "ChatGPT가 가상 터미널에서 파일 생성 명령에 응답하는 시연"
+    curated: true
 ---
 
 ## 요약
@@ -35,11 +99,23 @@ GPT-3에 지문과 질문, 답변의 예시를 차례로 주면 다음 질문에
 
 초기 순환 신경망 번역기는 원문을 차례대로 읽어 마지막 벡터를 디코더에 넘긴다. 원문이 길어져도 전달 통로의 크기는 그대로다. 예컨대 번역 후반에 원문 앞부분의 표현이 필요해도 그 표현에 접근하려면 마지막 벡터에 남은 정보에 의존한다.
 
+![[assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig01.png]]
+
+*번역기의 구조와 원문 단어와 번역 단어 사이의 정렬을 나타낸 행렬. [37:30](https://www.youtube.com/watch?v=Rlk0GLRWwTI&t=2250s)*
+
 공유 링크의 38분 지점에서 Karpathy는 연구자의 이메일을 소개한다. 원문에서 읽을 위치를 커서로 지정하려던 아이디어가 디코더 스스로 어디를 읽을지 학습하는 방식으로 이어졌다. 각 출력 단어에 대해 원문 위치별 점수를 계산하고 그 비중에 따라 정보를 합치면 번역의 매 단계에서 다른 단어에 집중할 수 있다. [38분부터 보기](https://www.youtube.com/watch?v=Rlk0GLRWwTI&t=2280s)
+
+![[assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig02.png]]
+
+*Bahdanau가 번역기의 병목과 attention의 착상을 설명한 이메일. [38:00](https://www.youtube.com/watch?v=Rlk0GLRWwTI&t=2280s)*
 
 ## 정보가 흐르는 그래프
 
 각 노드는 현재 위치의 벡터다. Query는 그 위치가 찾는 정보를, key는 다른 위치가 어떤 정보를 제공할 수 있는지를 표현한다. Query와 key의 내적으로 관련성을 계산하고 허용된 위치들의 점수를 정규화한다. 이 가중치로 각 위치의 value를 합산한 결과가 노드가 받은 메시지다.
+
+![[assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig03.png]]
+
+*그래프에서 각 노드가 이웃의 정보를 읽는 연산과 그 의사 코드. [46:20](https://www.youtube.com/watch?v=Rlk0GLRWwTI&t=2780s)*
 
 | 계산 | 정보를 읽는 범위 | 용도 |
 |---|---|---|
@@ -47,17 +123,33 @@ GPT-3에 지문과 질문, 답변의 예시를 차례로 주면 다음 질문에
 | 디코더 내부 | 현재와 이전 출력 위치 | 다음 단어를 예측할 때 정답 노출을 막는다. |
 | 인코더와 디코더 사이 | 디코더의 query가 원문의 key와 value를 참조 | 현재 번역할 부분에 대응하는 원문 정보를 읽는다. |
 
+![[assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig04.png]]
+
+*인코더와 디코더에서 각 위치가 참조할 수 있는 노드의 범위. [48:20](https://www.youtube.com/watch?v=Rlk0GLRWwTI&t=2900s)*
+
 위치 정보도 따로 제공해야 한다. 관련성 점수를 계산하는 연산만으로는 어떤 단어가 먼저 나왔는지 알 수 없기 때문이다. Transformer는 위치 정보를 포함한 벡터에 attention과 다층 퍼셉트론을 차례로 적용한다. 잔차 연결은 층을 가로질러 정보를 전달하고 정규화는 활성값의 크기를 조절한다.
 
 ## 문자 예측으로 확인하는 계산
 
 nanoGPT 예제는 약 1MB의 셰익스피어 텍스트에서 문자마다 정수를 부여한다. 문맥 길이가 8이면 연속된 여덟 문자가 입력이고, 학습용 정답은 같은 구간을 한 문자 뒤로 옮긴 열이다. 따라서 마지막 위치에서는 아홉 번째 문자를 예측하고 첫 위치에서는 두 번째 문자를 예측한다.
 
+![[assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig05.png]]
+
+*셰익스피어 텍스트에서 입력과 한 문자 이동한 정답을 추출하는 배치 구성. [54:10](https://www.youtube.com/watch?v=Rlk0GLRWwTI&t=3250s)*
+
 배치 크기가 4라면 길이 8인 그래프 네 개를 동시에 계산한다. 각 그래프 안에서는 미래 위치를 마스크로 가린다. 두 번째 문자가 입력 안에 이미 있어도 첫 위치에서는 읽을 수 없으므로 모든 위치의 예측을 한꺼번에 학습할 수 있다. 실제 생성 시에는 마지막 위치의 분포에서 다음 문자를 뽑고 입력에 추가한 뒤 다시 계산한다.
+
+![[assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig06.png]]
+
+*GPT 디코더 블록의 구조와 통신 및 위치별 계산에 대응하는 코드. [58:15](https://www.youtube.com/watch?v=Rlk0GLRWwTI&t=3495s)*
 
 ## 한계
 
 가상 터미널 예제에서 디렉터리 목록은 그럴듯한 텍스트로 생성된다. 실제 파일의 존재나 작업 성공 여부를 확인하려면 외부 시스템에서 결과를 받아야 한다. 같은 이유로 대화가 끝난 뒤에도 기록이 필요한 응용에는 별도의 메모리가 필요하다.
+
+![[assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig07.png]]
+
+*ChatGPT가 가상 터미널에서 파일 생성 명령에 응답하는 시연. [12:30](https://www.youtube.com/watch?v=Rlk0GLRWwTI&t=750s)*
 
 ## 핵심 용어
 

@@ -10,6 +10,70 @@ raw_path: /home/sguys99/project/ai-wiki/raw/videos/perfology-clips-2026-andrej-k
 raw_filename: perfology-clips-2026-andrej-karpathy-the-future-of.md
 source_collection: external
 tags: [transformer, attention, language-modeling]
+figures:
+  - id: fig01
+    label: "Frame 37:30"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig01.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig01.png
+    timestamp: "37:30"
+    strategy: keyframe
+    caption: "번역기의 구조와 원문 단어와 번역 단어 사이의 정렬을 나타낸 행렬"
+    curated: true
+  - id: fig02
+    label: "Frame 38:00"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig02.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig02.png
+    timestamp: "38:00"
+    strategy: keyframe
+    caption: "Bahdanau가 번역기의 병목과 attention의 착상을 설명한 이메일"
+    curated: true
+  - id: fig03
+    label: "Frame 46:20"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig03.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig03.png
+    timestamp: "46:20"
+    strategy: keyframe
+    caption: "그래프에서 각 노드가 이웃의 정보를 읽는 연산과 그 의사 코드"
+    curated: true
+  - id: fig04
+    label: "Frame 48:20"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig04.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig04.png
+    timestamp: "48:20"
+    strategy: keyframe
+    caption: "인코더와 디코더에서 각 위치가 참조할 수 있는 노드의 범위"
+    curated: true
+  - id: fig05
+    label: "Frame 54:10"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig05.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig05.png
+    timestamp: "54:10"
+    strategy: keyframe
+    caption: "셰익스피어 텍스트에서 입력과 한 문자 이동한 정답을 추출하는 배치 구성"
+    curated: true
+  - id: fig06
+    label: "Frame 58:15"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig06.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig06.png
+    timestamp: "58:15"
+    strategy: keyframe
+    caption: "GPT 디코더 블록의 구조와 통신 및 위치별 계산에 대응하는 코드"
+    curated: true
+  - id: fig07
+    label: "Frame 12:30"
+    kind: figure
+    file: assets/perfology-clips-2026-andrej-karpathy-the-future-of/fig07.png
+    raw: raw/videos/perfology-clips-2026-andrej-karpathy-the-future-of-figures/fig07.png
+    timestamp: "12:30"
+    strategy: keyframe
+    caption: "ChatGPT가 가상 터미널에서 파일 생성 명령에 응답하는 시연"
+    curated: true
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -52,3 +116,15 @@ Perfology Clips가 2026년 9월 8일 게시한 68분 30초 분량의 스탠퍼�
 | encoder bottleneck | 원문 전체가 고정 길이 벡터 하나를 통해 전달되는 제약 |
 | causal mask | 미래 위치에서 현재 위치로 정보가 흐르는 경로를 차단하는 마스크 |
 | nanoGPT | 문자 예측 과정을 코드로 확인하는 데 사용한 구현 |
+
+## 8. 그림 후보 (Figure Candidates)
+
+| id | 시각 | 장면 | 추출 방법 | 선정 |
+|---|---|---|---|---|
+| fig01 | 37:30 | 번역기의 구조와 원문 단어와 번역 단어 사이의 정렬을 나타낸 행렬 | keyframe | 수록 |
+| fig02 | 38:00 | Bahdanau가 번역기의 병목과 attention의 착상을 설명한 이메일 | keyframe | 수록 |
+| fig03 | 46:20 | 그래프에서 각 노드가 이웃의 정보를 읽는 연산과 그 의사 코드 | keyframe | 수록 |
+| fig04 | 48:20 | 인코더와 디코더에서 각 위치가 참조할 수 있는 노드의 범위 | keyframe | 수록 |
+| fig05 | 54:10 | 셰익스피어 텍스트에서 입력과 한 문자 이동한 정답을 추출하는 배치 구성 | keyframe | 수록 |
+| fig06 | 58:15 | GPT 디코더 블록의 구조와 통신 및 위치별 계산에 대응하는 코드 | keyframe | 수록 |
+| fig07 | 12:30 | ChatGPT가 가상 터미널에서 파일 생성 명령에 응답하는 시연 | keyframe | 수록 |
