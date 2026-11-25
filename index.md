@@ -53,6 +53,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 
 모델 아키텍처, pre-training, fine-tuning, foundation model 논문.
 
+- [[llms/perfology-clips-2026-andrej-karpathy-the-future-of|The Future of AI Is a Graph]]: 초기 번역기의 병목에서 출발해 Transformer의 정보 흐름을 그래프로 해석하고 nanoGPT의 다음 문자 예측으로 확인한다 (2026, video)
 - [[llms/lipman-2022-flow-matching-for-generative-modeling|Flow Matching]]: CNF를 ODE 시뮬레이션 없이 학습하는 목표. 조건부 vector field 회귀가 원 목표와 gradient가 같고 diffusion을 특수 사례로 포함하며 OT 직선 경로로 샘플링이 빨라진다 (2022, paper)
 - [[llms/rombach-2022-high-resolution-image-synthesis-with-latent|LDM (Latent Diffusion)]]: autoencoder latent에서 diffusion을 학습해 비용을 낮춘 모델. cross-attention 조건화, ImageNet FID 3.60 (2022, paper)
 - [[llms/peebles-2022-scalable-diffusion-models-with-transformers|DiT]]: U-Net backbone을 순수 Transformer로 바꾼 latent diffusion. Gflops와 FID 상관 -0.93, ImageNet 256×256 FID 2.27 (2022, paper)
