@@ -233,6 +233,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 
 Agentic 시스템, tool use, planning, LangGraph 등.
 
+- [[agents/hoang-2026-graph-engineering-for-ai-agents|에이전트 그래프로 시장성 조사를 설계하는 법]]: Shopify 회계 도구를 예로 들어 병렬 조사 결과를 병합하고, 근거가 부족한 권고안을 수정한 뒤 사람이 승인하는 과정을 설명한다. (2026, article)
 - [[agents/chase-2026-how-to-build-a-knowledge|에이전트가 쓰는 사내 지식을 갱신하는 법]]: 매출 보고서에서 발견한 새 열 이름과 머리글 규칙이 어떻게 조회 지침과 작성 스킬에 각각 반영되는지 설명한다 (2026, article)
 - [[agents/belcak-2026-you-dont-need-long-context|You don’t need long context]]: 작업 이력을 메모로 넘기고 긴 문서에서 필요한 구절을 찾을 때, 컨텍스트 길이와 과제 해결률이 어떻게 달라지는지 비교한다. (2026, paper)
 - [[agents/anthropic-2025-equipping-agents-for-the-real|Equipping Agents with Agent Skills (Anthropic)]]: SKILL.md 폴더 포맷과 progressive disclosure 3레벨 로딩으로 에이전트에 절차 지식과 조직 맥락을 장착하는 설계 해설 (2025, article)

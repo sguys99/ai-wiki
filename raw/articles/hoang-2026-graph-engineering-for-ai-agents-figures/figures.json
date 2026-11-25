@@ -1,0 +1,110 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/hoang-2026-graph-engineering-for-ai-agents/fig01.png",
+    "raw": "raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig01.png",
+    "caption": "Figure 1: Single-agent loop vs agents in graph engineering",
+    "source_url": "https://assets.insightmediagroup.io/media/wp-content/uploads/2026/08/single_agent_vs_graph-1024x467.png",
+    "bytes": 98630,
+    "width": 1024,
+    "height": 467,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/hoang-2026-graph-engineering-for-ai-agents/fig02.gif",
+    "raw": "raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig02.gif",
+    "caption": "Figure 2: The Shopify graph in motion — fan-out, fan-in, one loop, one human gate",
+    "source_url": "https://assets.insightmediagroup.io/media/wp-content/uploads/2026/08/shopify_graph_flow.gif",
+    "bytes": 1500902,
+    "width": 1728,
+    "height": 756,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/hoang-2026-graph-engineering-for-ai-agents/fig03.gif",
+    "raw": "raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig03.gif",
+    "caption": "Figure 3: Same three parallel writes, different outcome. Image by author",
+    "source_url": "https://assets.insightmediagroup.io/media/wp-content/uploads/2026/08/reducer_collision.gif",
+    "bytes": 725425,
+    "width": 1728,
+    "height": 756,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/hoang-2026-graph-engineering-for-ai-agents/fig04.png",
+    "raw": "raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig04.png",
+    "caption": "Figure 4: Two different things people call \"graph\"",
+    "source_url": "https://assets.insightmediagroup.io/media/wp-content/uploads/2026/08/graph_types_comparison-1024x467.png",
+    "bytes": 70223,
+    "width": 1024,
+    "height": 467,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/hoang-2026-graph-engineering-for-ai-agents/fig05.png",
+    "raw": "raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig05.png",
+    "caption": "Figure 5: Prompt chaining — the skeptic's verdict is merge's entire input, nothing upstream carries through",
+    "source_url": "https://assets.insightmediagroup.io/media/wp-content/uploads/2026/08/pattern_chaining_flow.png",
+    "bytes": 87418,
+    "width": 2277,
+    "height": 1072,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/hoang-2026-graph-engineering-for-ai-agents/fig06.png",
+    "raw": "raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig06.png",
+    "caption": "Figure 6: Routing — a narrow question skips the fan-out and goes straight to one researcher",
+    "source_url": "https://assets.insightmediagroup.io/media/wp-content/uploads/2026/08/pattern_routing_flow.png",
+    "bytes": 98730,
+    "width": 2277,
+    "height": 1072,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/hoang-2026-graph-engineering-for-ai-agents/fig07.png",
+    "raw": "raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig07.png",
+    "caption": "Figure 7: Parallelization — three researchers run at once and converge on the skeptic",
+    "source_url": "https://assets.insightmediagroup.io/media/wp-content/uploads/2026/08/pattern_parallelization_flow.png",
+    "bytes": 93856,
+    "width": 2277,
+    "height": 1072,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/hoang-2026-graph-engineering-for-ai-agents/fig08.png",
+    "raw": "raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig08.png",
+    "caption": "Figure 8: Orchestrator-workers — worker count is decided mid-run and capped, not fixed at three",
+    "source_url": "https://assets.insightmediagroup.io/media/wp-content/uploads/2026/08/pattern_orchestrator_flow.png",
+    "bytes": 138328,
+    "width": 2277,
+    "height": 1361,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig09",
+    "file": "assets/hoang-2026-graph-engineering-for-ai-agents/fig09.png",
+    "raw": "raw/articles/hoang-2026-graph-engineering-for-ai-agents-figures/fig09.png",
+    "caption": "Figure 9: Evaluator-optimizer — skeptic loops back on merge's draft, capped at two rounds",
+    "source_url": "https://assets.insightmediagroup.io/media/wp-content/uploads/2026/08/pattern_evaluator_optimizer_flow.png",
+    "bytes": 100862,
+    "width": 2277,
+    "height": 1072,
+    "strategy": "fetched",
+    "curated": false
+  }
+]
