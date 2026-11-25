@@ -83,6 +83,7 @@ function start(graph, lay) {
   renderer.setClearColor(0x000000, 0); // 바탕은 main.g3d 의 CSS 그라데이션
   const canvas = renderer.domElement;
   canvas.setAttribute('role', 'img');
+  canvas.tabIndex = -1; // 카드를 닫을 때 초점을 받는다
   canvas.setAttribute('aria-label', `wiki 페이지 ${N}개와 연결 ${E}개를 3D 공간에 놓은 그래프`);
   stage.prepend(canvas);
   const scene = new THREE.Scene();
@@ -545,6 +546,7 @@ function start(graph, lay) {
     hover = -1;
     tip.hidden = true;
     if (i < 0) {
+      if (cardEl.contains(document.activeElement)) canvas.focus({ preventScroll: true });
       cardEl.hidden = true;
       recolorEdges();
       computeTargets();
@@ -621,6 +623,7 @@ function start(graph, lay) {
     return [e.clientX - r.left, e.clientY - r.top];
   };
   canvas.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;
     canvas.setPointerCapture(e.pointerId);
     ptrs.set(e.pointerId, local(e));
     anim = null;
@@ -669,7 +672,7 @@ function start(graph, lay) {
   function endPtr(e) {
     if (!ptrs.has(e.pointerId)) return;
     ptrs.delete(e.pointerId);
-    if (downAt && ptrs.size === 0 && downAt.moved <= 6 && performance.now() - downAt.t < 600) {
+    if (e.type === 'pointerup' && downAt && ptrs.size === 0 && downAt.moved <= 6 && performance.now() - downAt.t < 600) {
       const p = local(e), h = hitTest(p[0], p[1], e.pointerType !== 'mouse');
       if (h >= 0) select(h);
       else if (sel >= 0) select(-1);
@@ -702,6 +705,8 @@ function start(graph, lay) {
     },
     { passive: false }
   );
+  // iOS Safari 의 페이지 핀치 확대를 무대에서 막는다 (2D 와 같다)
+  stage.addEventListener('gesturestart', (e) => e.preventDefault());
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && sel >= 0) select(-1);
   });

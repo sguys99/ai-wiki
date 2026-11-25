@@ -1321,7 +1321,8 @@
     top: 0;
     transform: translate(-50%, -100%);
     pointer-events: none;
-    max-width: 18rem;
+    width: max-content; /* 오른쪽 끝에서 남은 폭으로 쪼그라들지 않게 */
+    max-width: min(18rem, 100%);
     padding: var(--space-1) var(--space-3);
     background: var(--surface-2);
     border: var(--hairline-w) solid var(--hairline);
@@ -1367,7 +1368,8 @@
     text-decoration-color: var(--signal);
   }
   /* 노드 hover 시 그래프와 짝을 이루는 목록 행 강조 (reader.js가 .is-active 토글) */
-  .related-list li.is-active {
+  .related-list li.is-active,
+  .related-more > summary.is-active {
     background: var(--signal-dim);
     box-shadow: inset 2px 0 0 var(--signal);
   }
@@ -1397,7 +1399,7 @@
     color: var(--muted);
     cursor: pointer;
   }
-  .related-more > summary:hover {
+  .related-more > summary:is(:hover, .is-active) {
     color: var(--signal);
   }
 
@@ -4526,6 +4528,7 @@
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+    outline-offset: -2px; /* 무대 clip 에 초점 테가 잘리지 않게 */
   }
   .g3d-stage.is-over canvas {
     cursor: pointer;

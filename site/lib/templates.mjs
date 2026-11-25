@@ -119,7 +119,7 @@ function header() {
   return `<header class="site-header">
   <a class="wordmark" href="${href('/')}">ai<span class="wordmark-dot">·</span>wiki</a>
   <nav class="site-nav" aria-label="주요">
-    <button type="button" class="nav-btn" data-search-trigger data-pagefind="${escapeHtml(href('/pagefind/pagefind.js'))}" aria-label="검색" title="검색 (Ctrl/⌘ K)">
+    <button type="button" class="nav-btn" data-search-trigger data-pagefind="${escapeHtml(href('/pagefind/pagefind.js'))}" aria-label="검색 ⌘K" title="검색 (Ctrl/⌘ K)">
       <span class="nav-btn-ico" aria-hidden="true">⌕</span><span class="nav-btn-label">검색</span><kbd class="nav-kbd">⌘K</kbd>
     </button>
     <a class="nav-btn nav-tags" href="${href('/tags/')}">태그</a>
@@ -447,7 +447,7 @@ ${g.nodes
     return `        <li data-id="${escapeHtml(w.id)}" data-cat="${escapeHtml(w.category)}">
           <span class="graph-swatch" aria-hidden="true"></span><a class="graph-weak-title" href="${escapeHtml(w.url)}">${escapeHtml(w.title)}</a>
           <span class="graph-weak-deg"><span>나감 ${w.outDeg}</span><span${w.inDeg ? '' : ' class="is-zero"'}>들어옴 ${w.inDeg}</span></span>
-          <a class="graph-weak-map" href="${escapeHtml(nodeHref(w.id))}" aria-label="${escapeHtml(w.title)} 그래프에서 보기">그래프</a>${sugg}
+          <a class="graph-weak-map" href="${escapeHtml(nodeHref(w.id))}" aria-label="그래프 보기, ${escapeHtml(w.title)}">그래프</a>${sugg}
         </li>`;
   };
   const weakGroup = (key, label, items) =>

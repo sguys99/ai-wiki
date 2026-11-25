@@ -88,7 +88,7 @@
   tip.setAttribute('aria-hidden', 'true');
   sec.appendChild(tip);
 
-  var activeLi = null;
+  var activeRow = null;
 
   function mark(a, on) {
     var i = anchors.indexOf(a);
@@ -118,17 +118,18 @@
 
     var li = sec.querySelector('.related-list li[data-neigh="' + a.getAttribute('data-neigh') + '"]');
     if (li) {
-      li.classList.add('is-active');
-      activeLi = li;
+      var closed = li.closest('details:not([open])'); // 접힌 행은 보이지 않으니 펼침 줄을 강조한다
+      activeRow = closed ? closed.querySelector('summary') : li;
+      activeRow.classList.add('is-active');
     }
   }
 
   function hide() {
     tip.classList.remove('is-visible');
     anchors.forEach(function (a) { mark(a, false); });
-    if (activeLi) {
-      activeLi.classList.remove('is-active');
-      activeLi = null;
+    if (activeRow) {
+      activeRow.classList.remove('is-active');
+      activeRow = null;
     }
   }
 

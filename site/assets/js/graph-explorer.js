@@ -123,7 +123,7 @@
     var wheelT = 0, lastNow = 0;
     var bounds = null;       // home 외곽 (world). 팬 경계에 쓴다
     var portrait = null;
-    var fitted = false;      // 무대가 처음 보일 때 한 번 화면 맞춤
+    var fit = null;          // 마지막 화면 맞춤 { list, cam }. 무대가 처음 보일 때 생긴다
     var revealT0 = reduce ? -1 : null; // 첫 등장 시각. -1 은 연출 없음
     var morph = null;        // { t0, kind, dur, mixDur } 노드가 n.f 에서 n.t 로 옮겨 가는 중 (kind: home, enter, exit, recenter)
     var catInfo = [];        // 성운 이름 자리 계산용 카테고리 중심과 외곽 (home 기준)
@@ -198,6 +198,8 @@
       }
       return camFor(mx, my, k, ax, ay);
     }
+    function fitTo(list) { var c = fitTarget(list); fit = { list: list, cam: { x: c.x, y: c.y, k: c.k } }; return c; }
+    function atFit(c) { return !!c && c.x === fit.cam.x && c.y === fit.cam.y && c.k === fit.cam.k; } // 맞춘 뒤 확대하거나 옮기지 않았다
     function fitClear(list, c, v, obs) {
       var sk = Math.sqrt(c.k);
       for (var i = 0; i < list.length; i++) {
@@ -353,7 +355,7 @@
       flyTo(camFor(w.x, w.y, k, cx, cy), DUR_CAMERA);
     }
     // 맞춤: 조감은 필터 안 노드 (없으면 전체), 궤도는 궤도 카메라 (02 3.4절)
-    function fitView() { flyTo(mode === 'orbit' && view ? orbitCam(view) : fitTarget(fCount ? filtered() : nodes), DUR_CAMERA); }
+    function fitView() { flyTo(mode === 'orbit' && view ? orbitCam(view) : fitTo(fCount ? filtered() : nodes), DUR_CAMERA); }
     function filtered() { return nodes.filter(function (n) { return inF[n.i]; }); }
     function useRect() { return mode === 'orbit' && view ? orbitRect() : atlasRect(); }
 
@@ -1697,11 +1699,11 @@
       cursor = null; setHover(null);
       // 궤도 중에 미뤄 둔 세로 전환을 나가면서 적용한다. 그때 복귀 카메라는 새 배치의 맞춤이다 (04 3.4)
       var p = W < H * 0.8;
-      if (p !== portrait) { setHome(p); atlasCam = null; }
+      if (p !== portrait) { setHome(p); atlasCam = null; fit.list = nodes; }
       prevView = view; view = null;
       setTargets(null, 'exit');
       closePanel();
-      flyTo(atlasCam || fitTarget(nodes), 640, 'exit');
+      flyTo(atlasCam || fitTo(fit.list), 640, 'exit');
       canvas.setAttribute('aria-label', 'wiki 페이지 관계 그래프, 전체 보기');
       announce('전체 보기');
       // 이 탐색기가 push 한 궤도 항목이면 되돌아가고, 아니면 node 만 지운다 (02 2.3)
@@ -1890,6 +1892,7 @@
       var h = sheetPx(full);
       panel.classList.toggle('is-peek', !full);
       panel.style.height = h + 'px';
+      if (!full && pBody.contains(document.activeElement)) pToggle.focus({ preventScroll: true }); // inert 가 초점을 body 로 떨어뜨리기 전에
       if (full) pBody.removeAttribute('inert'); else pBody.setAttribute('inert', '');
       pToggle.setAttribute('aria-expanded', String(full));
       pToggle.textContent = full ? '이웃 접기' : '이웃 ' + view.r1.length + '개';
@@ -2216,6 +2219,7 @@
     tagQ.addEventListener('input', runTagSearch);
     tagQ.addEventListener('keydown', function (e) {
       if (e.isComposing || e.keyCode === 229) return; // 한글 조합 중 Enter, 방향키는 조합이 쓴다 (02 7.1)
+      if (e.key === 'Tab') { closeTagList(); return; } // 검색 결과와 같은 이유
       if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && tagHits.length) {
         e.preventDefault();
         tagActive = (tagActive + (e.key === 'ArrowDown' ? 1 : -1) + tagHits.length) % tagHits.length;
@@ -2229,7 +2233,7 @@
       }
     });
     tagQ.addEventListener('blur', function () { setTimeout(function () { if (document.activeElement !== tagQ) closeTagList(); }, 0); });
-    tagRes.addEventListener('pointerdown', function (e) { e.preventDefault(); });
+    tagRes.addEventListener('mousedown', function (e) { e.preventDefault(); });
     tagRes.addEventListener('click', function (e) { var li = e.target.closest('li[data-tag]'); if (li) pickTag(li.dataset.tag); });
 
     // ── 검색: 제목과 stem 부분 일치, 태그 제외 (02 7절) ─────────────────────
@@ -2312,6 +2316,7 @@
     q.addEventListener('blur', function () { setTimeout(function () { if (document.activeElement !== q) closeResults(); }, 0); });
     q.addEventListener('keydown', function (e) {
       if (e.isComposing || e.keyCode === 229) return; // 조합을 끝내는 Enter 가 결과 선택으로 번지지 않게 (02 7.1)
+      if (e.key === 'Tab') { closeResults(); return; } // 스크롤되는 목록이 Tab 초점을 받았다가 blur 로 사라지지 않게 먼저 닫는다 (02 7.4)
       var m = shown();
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
@@ -2328,7 +2333,7 @@
         canvas.focus({ preventScroll: true });
       }
     });
-    results.addEventListener('pointerdown', function (e) { e.preventDefault(); }); // 입력 초점을 지킨다 (02 7.4)
+    results.addEventListener('mousedown', function (e) { e.preventDefault(); }); // 입력 초점을 지킨다 (02 7.4). pointerdown 을 막으면 WebKit 터치에서 click 이 오지 않는다
     results.addEventListener('click', function (e) { var li = e.target.closest('li[data-id]'); if (li) pick(byId[li.dataset.id]); });
 
     // ── 학습 경로 겹쳐 보기 (06 4절, 12.2 E2 재생, E8 진입 연출) ─────────────
@@ -2360,7 +2365,7 @@
     function renderPathList() {
       document.getElementById('graph-paths-n').textContent = PATHS.length;
       pathList.innerHTML = PATHS.length ? PATHS.map(function (p) {
-        var on = pathOn && pathOn.id === p.id;
+        var on = !!pathOn && pathOn.id === p.id;
         return '<button type="button" role="radio" class="graph-path-opt" data-id="' + esc(p.id) + '" aria-checked="' + on + '" tabindex="' + (on ? 0 : -1) + '">' +
           '<span class="graph-path-radio" aria-hidden="true"></span><span class="graph-path-t">' + esc(p.title) + '</span>' +
           '<span class="graph-chip-n">' + p.steps.length + '단계</span><span class="graph-path-band" aria-hidden="true">' +
@@ -2416,7 +2421,7 @@
       namesCache = null;
       if (pathOn && opts.fit) {
         if (mode === 'orbit') exitOrbit();
-        flyTo(fitTarget(pathOn.steps.map(function (st) { return st.node; })), opts.instant ? 0 : DUR_CAMERA);
+        flyTo(fitTo(pathOn.steps.map(function (st) { return st.node; })), opts.instant ? 0 : DUR_CAMERA);
       }
       if (!opts.quiet) announce(pathOn ? '학습 경로 ' + pathOn.title + ', ' + pathOn.steps.length + '단계' : '학습 경로 끔');
       writeUrl(false);
@@ -2785,24 +2790,27 @@
       syncLegendTabs(); syncToolTabs(); // 폭에 따라 숨는 버튼(모바일 줌)이 Tab 자리를 쥐지 않게
       var p = W < H * 0.8;
       setHover(null);
-      if (!fitted) {
+      if (!fit) {
         setHome(p);
         nodes.forEach(function (n) { n.x = n.hx; n.y = n.hy; });
-        cam = fitTarget(nodes);
-        fitted = true;
+        cam = fitTo(nodes);
       } else if (mode === 'orbit' && view) {
         // 궤도는 상태를 그대로 두고 카메라만 즉시 다시 맞춘다. 세로 전환은 나갈 때 적용한다 (04 3.4, 7.2)
         syncSheet();
         cam = orbitCam(view); flight = null;
+        if (atFit(atlasCam)) atlasCam = null; // 나갈 때 새 크기에 다시 맞춘다
       } else if (p !== portrait) {
         // 노드의 640ms 이동과 카메라 맞춤 비행을 같이 돌려 함께 도착시킨다 (04 3.4절)
         cam.x += (W - oldW) / 2;
         cam.y += (H - oldH) / 2;
         setHome(p);
         setTargets(null, 'home');
-        flyTo(fitTarget(nodes), 640);
+        flyTo(fitTo(nodes), 640);
+      } else if (!wz && atFit(flight ? flight.to : cam)) {
+        // 맞춘 그대로면 새 크기에 다시 맞춘다. 노드가 크롬 밑에 깔리지 않게
+        flyTo(fitTo(fit.list), flight ? 640 : 0);
       } else {
-        // 같은 곳을 화면 가운데에 둔다 (다시 맞추지 않는다, 04 7.2)
+        // 사용자가 확대하거나 옮겼으면 같은 곳을 화면 가운데에 둔다 (다시 맞추지 않는다, 04 7.2)
         cam.x += (W - oldW) / 2;
         cam.y += (H - oldH) / 2;
         constrain();
@@ -2821,11 +2829,12 @@
     // ── 판 전환: 지도와 목록 (01 2.3, 02 8.4 ~ 8.6) ──────────────────────
     var pushedList = false;
     function setView(v) {
+      var had = document.activeElement === toMapBtn;
       main.dataset.view = v;
       stage.hidden = v !== 'map';
       listEl.hidden = v === 'map';
       toMapBtn.hidden = v === 'map';
-      if (v === 'map') { syncHeader(); resize(); }
+      if (v === 'map') { syncHeader(); resize(); if (had) canvas.focus({ preventScroll: true }); } // 숨는 버튼의 초점을 넘긴다
     }
     // ── hash 와 history (02 8.4 ~ 8.6) ────────────────────────────────────
     function own(o, k) { return Object.prototype.hasOwnProperty.call(o, k); } // #toString 같은 입력이 프로토타입에 걸리지 않게
@@ -2915,17 +2924,24 @@
       if (stack) { setUrl(hashOf(curState()), false); enterOrbit(n, { instant: true }); }
       else setUrl(hashOf(curState()), false); // 정규형으로 고친다
     }
-    toListBtn.addEventListener('click', function () {
+    function openList(focusEl) {
       try { history.pushState(null, '', '#list'); pushedList = true; } catch (e) { /* file:// 등 */ }
       setView('list');
       window.scrollTo(0, 0);
-      toMapBtn.focus({ preventScroll: true });
+      focusEl.focus({ preventScroll: true });
+    }
+    toListBtn.addEventListener('click', function () { openList(toMapBtn); });
+    // 건너뛰기 링크는 목록 첫 링크로 (01 9.2)
+    main.querySelector('.graph-skip').addEventListener('click', function (e) {
+      if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+      e.preventDefault();
+      openList(listEl.querySelector('a'));
     });
     toMapBtn.addEventListener('click', function () {
       if (pushedList) { history.back(); return; } // popstate 가 지도 판으로 되돌린다
       setView('map');
       setUrl(hashOf(curState()), false); // 메모리에 둔 궤도와 필터를 되살린다
-      canvas.focus({ preventScroll: true });
+      canvas.focus({ preventScroll: true }); // Safari 는 누른 버튼에 초점을 주지 않는다
     });
     window.addEventListener('popstate', syncFromHash);
     window.addEventListener('hashchange', syncFromHash);
