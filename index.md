@@ -98,6 +98,7 @@ VLA, world model, robot learning, sim2real 등 물리 세계와 상호작용하�
 - [[physical-ai/nvidia-2025-gr00t-n1-5-an-improved-open|GR00T N1.5 (NVIDIA GEAR Lab)]]: N1의 골격을 두고 네 군데만 손본 후속 버전의 공식 프로젝트 페이지. VLM 고정과 FLARE 손실, DreamGen 합성 데이터가 변경점이다 (2025, article)
 - [[physical-ai/nvidia-isaac-gr00t|Isaac GR00T (N1.7, repo)]]: GR00T 계열 VLA의 공식 구현이자 N1.7 GA 배포처. backbone을 Cosmos-Reason2-2B로 바꾸고 relative EEF action space로 사람 영상까지 pre-training에 썼다 (2026, repo)
 - [[physical-ai/nvidia-gr00t-n1-7-3b|GR00T-N1.7-3B 모델 카드와 LeRobot 통합]]: N1.7 베이스 체크포인트의 입출력 규격, 9개 플랫폼 추론 지연, 학습 비용과 LeRobot `groot` policy의 fine-tuning, rollout 레시피 (2026, repo)
+- [[physical-ai/nvidia-2026-gr00t-2-scaling-robot-foundation|GR00T 2]]: 미래 영상과 로봇 명령을 함께 예측하는 모델. 백서와 공식 시연을 바탕으로 Dexter-50의 소량 적응, 로봇 간 기술 전이, 에이전트의 조립 복구와 G1의 실제 성능을 설명한다 (2026, paper)
 - [[physical-ai/nvidia-2025-accelerate-generalist-humanoid-robot-development|Isaac GR00T N1 릴리스 공지 (NVIDIA)]]: GR00T N1 공개 당일의 NVIDIA 기술 블로그. 논문에 없는 GPU 사양과 다섯 단계 절차가 실무 진입점이다 (2025, article)
 - [[physical-ai/figure-ai-2025-helix-a-vision-language-action|Helix (Figure AI)]]: humanoid 상체를 자연어로 제어하는 dual-system VLA의 공식 발표문. 7B VLM과 80M Transformer를 함께 학습해 200Hz로 35-DoF를 낸다 (2025, article)
 - [[physical-ai/9bow-2025-helix-generalist-humanoid-vla|Helix 한국어 소개 (9bow)]]: PyTorch 한국 사용자 모임이 Helix 발표를 옮긴 글. 원문에서 iframe에 가려 수집되지 않는 System 1과 System 2 구조도가 여기에는 실려 있다 (2025, article)

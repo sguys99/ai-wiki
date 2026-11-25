@@ -1,0 +1,2904 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig01.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig01.png",
+    "page": 4,
+    "caption": "Figure 1: We introduce GR00T 2, a world-action model for general-purpose robots. Top: GR00T 2 pretrains on human and robot data. Second row: given a language goal, multi-view video from the egocentric and both wrist cameras, and the robot state, GR00T 2 jointly predicts multi-view future video and r",
+    "bbox": [
+      56.36,
+      79.04,
+      538.98,
+      521.77
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9054,
+      0.6198
+    ],
+    "dpi": 200,
+    "area_frac": 0.426,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig02",
+    "label": "Figure 2",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig02.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig02.png",
+    "page": 6,
+    "caption": "Figure 2: Cross-embodiment transfer to Dexter with 0, 1, and 5 Dexter episodes. Results on the Dexter-50 tasks, which have no Dexter training data but appear in YAM teleoperation data, human video, or both. Zero-shot runs the pretrained model directly, while 1-shot and 5-shot fine-tune it with LoRA ",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      217.73
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.2586
+    ],
+    "dpi": 200,
+    "area_frac": 0.134,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig03.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig03.png",
+    "page": 7,
+    "caption": "Figure 3: Representative tasks from the two post-training benchmarks. Hot Wheels Assembly on YAM (top) and Make Shipping Label on Dexter (bottom).",
+    "bbox": [
+      52.93,
+      480.61,
+      542.34,
+      634.05
+    ],
+    "bbox_norm": [
+      0.0889,
+      0.5709,
+      0.9111,
+      0.7531
+    ],
+    "dpi": 200,
+    "area_frac": 0.15,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig04.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig04.png",
+    "page": 8,
+    "caption": "Figure 4: Learning new tasks without teleoperation. Each column is one way to demonstrate a task without the target robot. It shows a demonstration, a GR00T 2 rollout on the robot, and the real-robot success rate per task. Best baseline is the highest success among the other models evaluated on that",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      337.72
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.4011
+    ],
+    "dpi": 200,
+    "area_frac": 0.249,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig05.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig05.png",
+    "page": 10,
+    "caption": "Figure 5: Real-robot post-training on four contact-rich manipulation tasks. Labels report success rates, and whiskers are 95% Wilson intervals over 50 trials per bar. Bold marks each task’s best method. GRPO and GRPO-induced self-imitation update GR00T 2 directly, whereas residual RL learns a correc",
+    "bbox": [
+      56.36,
+      79.04,
+      538.93,
+      226.53
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.2691
+    ],
+    "dpi": 200,
+    "area_frac": 0.142,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig06.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig06.png",
+    "page": 10,
+    "caption": "Figure 6: Agentic runtime architecture. System 2 monitors execution and invokes GR00T 2 and CaP tools through an observe-reason-act-verify loop. GR00T 2 or ASPIRE-generated program serves as execution backends with shared execution environment interface.",
+    "bbox": [
+      56.36,
+      280.28,
+      538.91,
+      484.12
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.3329,
+      0.9053,
+      0.575
+    ],
+    "dpi": 200,
+    "area_frac": 0.196,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig07.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig07.png",
+    "page": 11,
+    "caption": "Figure 7: Agentic assistance on real robots. (a) Successful trials out of 100 per method on three long-horizon assembly tasks on YAM. Before every trial a person randomly dumps all parts onto the table, a cluttered starting configuration never seen in post-training and much harder than the arranged ",
+    "bbox": [
+      56.36,
+      79.04,
+      538.93,
+      250.36
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.2974
+    ],
+    "dpi": 200,
+    "area_frac": 0.165,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig08.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig08.png",
+    "page": 12,
+    "caption": "Figure 8: Higher average success with visual steering on both evaluation tiers. (a) Left- and right-hand steering examples. Circles mark grasp targets and crosses mark release targets, and colors identify the acting arm. (b, c) Equal- weight means of benchmark success rates, not pooled trial rates. ",
+    "bbox": [
+      79.89,
+      292.6,
+      515.41,
+      498.75
+    ],
+    "bbox_norm": [
+      0.1342,
+      0.3476,
+      0.8658,
+      0.5924
+    ],
+    "dpi": 200,
+    "area_frac": 0.179,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p12.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig09.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig09.png",
+    "page": 13,
+    "caption": "Figure 9: Three-level stack for whole-body loco-manipulation. An optional reasoning model (S2) picks the task and the prompt. GR00T 2 Turbo (S1) reads RGB images and proprioception and predicts 1.6 s chunks of SONIC whole-body motion tokens at about 1 Hz. SONIC (S0) decodes the tokens into joint pos",
+    "bbox": [
+      73.86,
+      84.77,
+      521.41,
+      272.14
+    ],
+    "bbox_norm": [
+      0.1241,
+      0.1007,
+      0.8759,
+      0.3232
+    ],
+    "dpi": 200,
+    "area_frac": 0.167,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p13.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig10.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig10.png",
+    "page": 15,
+    "caption": "Figure 10: Scaling human video in pretraining. Human-1M data pre-training (0%, 1%, 10%, or 100%) post-trained with Dexter teleoperation data and evaluated on 72 tasks. Real Robot: 3 rollout episodes per task. An operator grades binary success and a vision-language model scores task progress. Video r",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      259.1
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3078
+    ],
+    "dpi": 200,
+    "area_frac": 0.173,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p15.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig11.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig11.png",
+    "page": 17,
+    "caption": "Figure 11: Mapping the hill we climb. Every checkpoint on the current YAM suite, rated relative to the A/B reference (⋆, the board’s top-rated checkpoint, here a GR00T 2 Turbo checkpoint) and placed at the date it was saved. The line tracks the best checkpoint so far, and bars are paired 90% bootstrap intervals for the checkpoints that set a new best. Evidence: the 6,035 blinded A/B comparisons of this suite, from 122 campaigns.",
+    "bbox": [
+      53.53,
+      79.87,
+      277.45,
+      260.25
+    ],
+    "bbox_norm": [
+      0.0899,
+      0.0949,
+      0.4661,
+      0.3091
+    ],
+    "dpi": 200,
+    "area_frac": 0.081,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p17.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig12.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig12.png",
+    "page": 18,
+    "caption": "Figure 12: GR00T 2 learns new robot tasks from human demonstrations. (1) A person performs the task wearing GMSL head and wrist cameras at robot-matched poses, PICO controllers that track 6-DoF wrist poses, and Manus gloves that track finger joints. (2) Retargeting maps each wrist pose to the 7-DoF ",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      281.07
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3339
+    ],
+    "dpi": 200,
+    "area_frac": 0.195,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig13.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig13.png",
+    "page": 18,
+    "caption": "Figure 13: Human demonstrations and GR00T 2 predictions. Two tasks that only humans demonstrated. Given one robot start frame and the instruction, GR00T 2 predicts the robot’s ego view. Times are measured from the start frame. Human demonstrations (top rows) appear only in training. All four tasks a",
+    "bbox": [
+      56.36,
+      584.3,
+      538.92,
+      703.46
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.694,
+      0.9053,
+      0.8356
+    ],
+    "dpi": 200,
+    "area_frac": 0.115,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p18.png"
+  },
+  {
+    "id": "fig14",
+    "label": "Figure 14",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig14.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig14.png",
+    "page": 19,
+    "caption": "Figure 14: GR00T 2-generated future frames on YAM, without and with YAM co-training. Both models observe the same YAM top-camera frame (left) and predict eight future steps of Toy Dumptruck Assembly, a task demonstrated only with Gripper UMI. Trained on UMI data alone (top), GR00T 2 renders human ar",
+    "bbox": [
+      56.36,
+      79.03,
+      538.89,
+      249.95
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.2969
+    ],
+    "dpi": 200,
+    "area_frac": 0.165,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig15",
+    "label": "Figure 15",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig15.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig15.png",
+    "page": 19,
+    "caption": "Figure 15: DexUMI demonstration and GR00T 2 rollout. Prepare Banana Yogurt, with keyframes numbered by subtask: a person demonstrating the task with the DexUMI exoskeletons (top) and a GR00T 2 rollout on a Tianji robot with XHAND1 Pro-U hands (bottom). The task is demonstrated only with DexUMI. All ",
+    "bbox": [
+      56.36,
+      314.65,
+      538.9,
+      449.42
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.3737,
+      0.9053,
+      0.5338
+    ],
+    "dpi": 200,
+    "area_frac": 0.13,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p19.png"
+  },
+  {
+    "id": "fig16",
+    "label": "Figure 16",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig16.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig16.png",
+    "page": 20,
+    "caption": "Figure 16: Human-to-sim-to-real transfer for GR00T 2. (1) Human-to-sim reconstructs assets and motions from one human demonstration. (2) RL trains a state-based manipulation policy in simulation. (3) Data collection under perturbations expands state coverage and captures recovery behavior. (4) GR00T",
+    "bbox": [
+      57.45,
+      79.19,
+      537.38,
+      216.52
+    ],
+    "bbox_norm": [
+      0.0965,
+      0.0941,
+      0.9027,
+      0.2572
+    ],
+    "dpi": 200,
+    "area_frac": 0.132,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p20.png"
+  },
+  {
+    "id": "fig17",
+    "label": "Figure 17",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig17.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig17.png",
+    "page": 21,
+    "caption": "Figure 17: Real-world tasks and their simulated counterparts. Each pair shows the real workcell’s top camera (Real) and the same moment when the recorded robot commands are replayed in simulation (Sim), for five general manipulation tasks and one stage of the multi-stage airplane assembly. More task",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      235.02
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.2792
+    ],
+    "dpi": 200,
+    "area_frac": 0.15,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig18",
+    "label": "Figure 18",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig18.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig18.png",
+    "page": 21,
+    "caption": "Figure 18: Simulated vs. real-world performance per policy. (a) Task progress (mean rubric score) and (b) success rate, averaged over 25 tasks (dashed: y = x). (c) Bradley-Terry Elo ratings fitted separately to pairwise outcomes in simulation and in real-world A/B evaluations (dashed: least-squares ",
+    "bbox": [
+      56.36,
+      277.81,
+      538.92,
+      455.53
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.33,
+      0.9053,
+      0.5411
+    ],
+    "dpi": 200,
+    "area_frac": 0.171,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p21.png"
+  },
+  {
+    "id": "fig19",
+    "label": "Figure 19",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig19.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig19.png",
+    "page": 23,
+    "caption": "Figure 19: Model-prediction latency for GR00T 2 Turbo on G1 using (a) a GeForce RTX 5090 and (b) Jetson Thor in 120 W mode. Bars show medians of 500 predictions after 20 warmup requests, using the same checkpoint weights and input observations. The panels use independent horizontal scales. Denoising",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      230.45
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.2737
+    ],
+    "dpi": 200,
+    "area_frac": 0.146,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p23.png"
+  },
+  {
+    "id": "fig20",
+    "label": "Figure 20",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig20.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig20.png",
+    "page": 24,
+    "caption": "Figure 20: Phase-conditioned task-completion throughput acceleration of GR00T 2. GR00T 2 predicts a future action chunk, while a subtask predictor identifies its task phases. Using a phase-specific speed schedule, we transform the original action chunk to accelerate execution and boost task-completi",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      215.04
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.2554
+    ],
+    "dpi": 200,
+    "area_frac": 0.131,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p24.png"
+  },
+  {
+    "id": "fig21",
+    "label": "Figure 21",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig21.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig21.png",
+    "page": 38,
+    "caption": "Figure 21: YAM post-training benchmark tasks. The six tasks of Tab. 1a , one per row. Left: task name and a short description. Right: key frames from four representative stages of each task, which has more stages than shown (Hot Wheels Assembly has 24).",
+    "bbox": [
+      57.3,
+      154.48,
+      537.99,
+      562.87
+    ],
+    "bbox_norm": [
+      0.0963,
+      0.1835,
+      0.9038,
+      0.6686
+    ],
+    "dpi": 200,
+    "area_frac": 0.392,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p38.png"
+  },
+  {
+    "id": "fig22",
+    "label": "Figure 22",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig22.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig22.png",
+    "page": 39,
+    "caption": "Figure 22: Dexter post-training benchmark tasks. The seven tasks of Tab. 1b , one per row. Left: task name and a short description. Right: key frames from four representative stages of each task.",
+    "bbox": [
+      57.3,
+      79.72,
+      537.99,
+      555.54
+    ],
+    "bbox_norm": [
+      0.0963,
+      0.0947,
+      0.9038,
+      0.6599
+    ],
+    "dpi": 200,
+    "area_frac": 0.456,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p39.png"
+  },
+  {
+    "id": "fig23",
+    "label": "Figure 23",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig23.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig23.png",
+    "page": 40,
+    "caption": "Figure 23: YAM post-training Pareto frontier. Average task progress across the six tasks in Tab. 1a versus inference latency per served call on a GeForce RTX 5090 workstation. The dashed line indicates the Pareto frontier.",
+    "bbox": [
+      103.42,
+      79.04,
+      491.86,
+      250.3
+    ],
+    "bbox_norm": [
+      0.1737,
+      0.0939,
+      0.8263,
+      0.2973
+    ],
+    "dpi": 200,
+    "area_frac": 0.133,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p40.png"
+  },
+  {
+    "id": "fig24",
+    "label": "Figure 24",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig24.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig24.png",
+    "page": 42,
+    "caption": "Figure 24: Cross-embodiment transfer to Dexter with 0, 1, and 5 Dexter episodes, per task. Success rate on the Dexter-50 tasks, which have no Dexter training data but appear in YAM teleoperation data, human video, or both, sorted by zero-shot success. Zero-shot runs the pretrained model directly, wh",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      449.34
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.5337
+    ],
+    "dpi": 200,
+    "area_frac": 0.357,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p42.png"
+  },
+  {
+    "id": "fig25",
+    "label": "Figure 25",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig25.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig25.png",
+    "page": 43,
+    "caption": "Figure 25: Example Dexter rollouts. Top: zero-shot successes. Middle and bottom: tasks the zero-shot model attempts but fails, mostly at a step its new hands cannot yet do (left, with the failure noted above each row), and completes after fine-tuning on one or five Dexter episodes (right). Rollouts ",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      579.23
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.688
+    ],
+    "dpi": 200,
+    "area_frac": 0.482,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p43.png"
+  },
+  {
+    "id": "fig26",
+    "label": "Figure 26",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig26.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig26.png",
+    "page": 45,
+    "caption": "Figure 26: Sensorized human transfer benchmark tasks. Each row shows the ordered stages of one task, with the language instruction that GR00T 2 receives.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      358.14
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.4254
+    ],
+    "dpi": 200,
+    "area_frac": 0.269,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p45.png"
+  },
+  {
+    "id": "fig27",
+    "label": "Figure 27",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig27.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig27.png",
+    "page": 46,
+    "caption": "Figure 27: Learning new tasks with zero or few teleoperated demonstrations. Success rate (top) and task progress (bottom) over 20 trials per point, with 0, 1, or 10 teleoperated demonstrations of the target task added to post-training. At",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      305.9
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3634
+    ],
+    "dpi": 200,
+    "area_frac": 0.218,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p46.png"
+  },
+  {
+    "id": "fig28",
+    "label": "Figure 28",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig28.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig28.png",
+    "page": 47,
+    "caption": "Figure 28: Predicted futures for tasks that only humans demonstrated. Given one robot start frame and the instruction, GR00T 2 predicts the robot’s ego view autoregressively. Each GR00T 2 row comes from a single rollout that starts at the first frame of an evaluation episode, and times are measured ",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      296.21
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3518
+    ],
+    "dpi": 200,
+    "area_frac": 0.209,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p47.png"
+  },
+  {
+    "id": "fig29",
+    "label": "Figure 29",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig29.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig29.png",
+    "page": 49,
+    "caption": "Figure 29: Zero-teleop transfer from UMI to YAM. Each row shows one task with the language instruction GR00T 2 receives and six keyframes of a YAM rollout, numbered by stage: Toy Dumptruck Assembly, NIST Board Disassembly, and Conveyor Belt Sorting and Tossing. Every task is demonstrated only with t",
+    "bbox": [
+      56.36,
+      79.05,
+      538.89,
+      251.84
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.2991
+    ],
+    "dpi": 200,
+    "area_frac": 0.166,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p49.png"
+  },
+  {
+    "id": "fig30",
+    "label": "Figure 30",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig30.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig30.png",
+    "page": 51,
+    "caption": "Figure 30: DexUMI tasks. Each block shows one task with six keyframes, numbered by subtask as in Tab. 5 : a person demonstrating the task with the DexUMI exoskeletons (top) and a GR00T 2 rollout on a Tianji robot with XHAND1 Pro-U hands (bottom). Prepare Banana Yogurt and Scoop Granola are the two h",
+    "bbox": [
+      56.36,
+      209.85,
+      538.9,
+      578.23
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.2493,
+      0.9053,
+      0.6868
+    ],
+    "dpi": 200,
+    "area_frac": 0.355,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p51.png"
+  },
+  {
+    "id": "fig31",
+    "label": "Figure 31",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig31.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig31.png",
+    "page": 55,
+    "caption": "Figure 31: GR00T 2 learns dexterous manipulation through human-to-sim-to-real transfer. Starting from a single human demonstration per task captured with an egocentric stereo camera, the Video-to-Data pipeline generates simulation data for SFT of GR00T 2. The resulting policies transfer zero-shot to",
+    "bbox": [
+      79.89,
+      79.04,
+      515.41,
+      328.36
+    ],
+    "bbox_norm": [
+      0.1342,
+      0.0939,
+      0.8658,
+      0.39
+    ],
+    "dpi": 200,
+    "area_frac": 0.217,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p55.png"
+  },
+  {
+    "id": "fig32",
+    "label": "Figure 32",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig32.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig32.png",
+    "page": 61,
+    "caption": "Figure 32: Skill distribution of the Gripper UMI corpus. Episodes per skill on a logarithmic scale, colored by skill group. An episode counts toward every skill its instruction exercises. Pick-and-place is the most common skill, but 88% of episodes also exercise at least one other skill.",
+    "bbox": [
+      56.36,
+      201.7,
+      539.23,
+      409.95
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.2396,
+      0.9058,
+      0.4869
+    ],
+    "dpi": 200,
+    "area_frac": 0.201,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p61.png"
+  },
+  {
+    "id": "fig33",
+    "label": "Figure 33",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig33.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig33.png",
+    "page": 63,
+    "caption": "Figure 33: Teleoperation system for Tianji + Sharpa. (A) Teleoperation pipeline from operator devices to the robot. The retargeter is the solver used for human-data conversion. (B) Robot platform: Tianji arms, Sharpa hands, and the GEAR Neck. (C) Key upgrades: hardware, numbered at their location in",
+    "bbox": [
+      56.71,
+      79.04,
+      538.57,
+      278.42
+    ],
+    "bbox_norm": [
+      0.0953,
+      0.0939,
+      0.9047,
+      0.3307
+    ],
+    "dpi": 200,
+    "area_frac": 0.192,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p63.png"
+  },
+  {
+    "id": "fig34",
+    "label": "Figure 34",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig34.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig34.png",
+    "page": 66,
+    "caption": "Figure 34: Gauging the current suite. Mean rubric score (bars) and full-credit rate (dots) per task over all graded A/B rollouts on YAM V2, grouped by sub-suite and ordered by task code (M05* is a variant of M05 with 20 rollouts). No task is near the ceiling, and six sit in the shelving zone, where ",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      258.59
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3072
+    ],
+    "dpi": 200,
+    "area_frac": 0.173,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p66.png"
+  },
+  {
+    "id": "fig35",
+    "label": "Figure 35",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig35.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig35.png",
+    "page": 67,
+    "caption": "Figure 35: From an A/B request to a rating. A campaign is requested with its checkpoints, tasks, trial count, and station. The station runs a blinded session in which the operator stages each scene, runs every arm, and grades and ranks the rollouts without knowing which checkpoint produced which. Re",
+    "bbox": [
+      94.85,
+      79.24,
+      497.3,
+      204.55
+    ],
+    "bbox_norm": [
+      0.1593,
+      0.0941,
+      0.8354,
+      0.243
+    ],
+    "dpi": 200,
+    "area_frac": 0.101,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p67.png"
+  },
+  {
+    "id": "fig36",
+    "label": "Figure 36",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig36.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig36.png",
+    "page": 70,
+    "caption": "Figure 36: YAM V2 leaderboard. Elo with 90% scene-clustered bootstrap intervals for 20 checkpoints, colored by model family. Numbers on the right are A/B matches. ⋆ marks the A/B reference. Development checkpoints are shown under anonymized aliases.",
+    "bbox": [
+      78.92,
+      79.04,
+      533.22,
+      494.52
+    ],
+    "bbox_norm": [
+      0.1326,
+      0.0939,
+      0.8958,
+      0.5874
+    ],
+    "dpi": 200,
+    "area_frac": 0.377,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p70.png"
+  },
+  {
+    "id": "fig37",
+    "label": "Figure 37",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig37.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig37.png",
+    "page": 71,
+    "caption": "Figure 37: Climbing the hill. Every checkpoint on each suite, rated relative to that suite’s A/B reference ( ⋆ , the top-rated checkpoint) and placed at the date the checkpoint was saved. The line tracks the best checkpoint so far. Bars are paired 90% bootstrap intervals, shown for the checkpoints t",
+    "bbox": [
+      56.36,
+      217.66,
+      538.91,
+      469.76
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.2585,
+      0.9053,
+      0.558
+    ],
+    "dpi": 200,
+    "area_frac": 0.243,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p71.png"
+  },
+  {
+    "id": "fig38",
+    "label": "Figure 38",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig38.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig38.png",
+    "page": 72,
+    "caption": "Figure 38: Skill versus inference speed on YAM V2. Elo against policy inferences per second (log scale), measured as server-side compute per inference during the same A/B episodes. Bars are 90% Elo intervals, shown for the labelled checkpoints (all intervals are in Fig. 36 ). Inference-rate interval",
+    "bbox": [
+      56.36,
+      79.04,
+      538.91,
+      357.27
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.4244
+    ],
+    "dpi": 200,
+    "area_frac": 0.268,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p72.png"
+  },
+  {
+    "id": "fig39",
+    "label": "Figure 39",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig39.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig39.png",
+    "page": 74,
+    "caption": "Figure 39: Flexure linkage of the handheld gripper. (a) Cut view at the symmetry plane with main dimensions in mm: black parts are PLA, blue parts are TPU 90A, the gray shape is the operator’s finger contour, and the four TPU joints are numbered 1 to 4 (top, mid, static, bottom). (b) Section views o",
+    "bbox": [
+      53.53,
+      79.87,
+      541.75,
+      323.39
+    ],
+    "bbox_norm": [
+      0.0899,
+      0.0949,
+      0.9101,
+      0.3841
+    ],
+    "dpi": 200,
+    "area_frac": 0.237,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p74.png"
+  },
+  {
+    "id": "fig40",
+    "label": "Figure 40",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig40.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig40.png",
+    "page": 75,
+    "caption": "Figure 40: Pre-strain and motion of the flexure linkage. (a) Relaxed (printed) shape (dashed) and its pose at the open stop (solid). The 22.858 mm difference per side pre-strains the TPU joints. (b) Shadows of the linkage closing from the open stop to the closed pose: the finger mounts slide inward ",
+    "bbox": [
+      61.32,
+      104.31,
+      534.76,
+      283.5
+    ],
+    "bbox_norm": [
+      0.103,
+      0.1239,
+      0.8983,
+      0.3367
+    ],
+    "dpi": 200,
+    "area_frac": 0.169,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p75.png"
+  },
+  {
+    "id": "fig41",
+    "label": "Figure 41",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig41.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig41.png",
+    "page": 76,
+    "caption": "Figure 41: UMI direct rollouts. Each row shows one task with its instruction and six keyframes of a GR00T 2 policy post-trained on Gripper UMI demonstrations alone and deployed on the UMI robot gripper, numbered by stage: Toy Dumptruck Assembly, Toy Plane Assembly, Bluey Car Assembly, and Monster Tr",
+    "bbox": [
+      56.36,
+      79.05,
+      538.9,
+      297.91
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3539
+    ],
+    "dpi": 200,
+    "area_frac": 0.211,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p76.png"
+  },
+  {
+    "id": "fig42",
+    "label": "Figure 42",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig42.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig42.png",
+    "page": 78,
+    "caption": "Figure 42: Gripper UMI versus YAM, same task, same camera slots. Top: a Gripper UMI demonstration of Toy Dumptruck Assembly seen through its wide-FOV head camera and two fisheye wrist cameras, recorded in the wild. Bottom: the YAM robot performing the task in its cell, seen through the standard-FOV ",
+    "bbox": [
+      56.36,
+      151.09,
+      539.9,
+      322.31
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.1795,
+      0.907,
+      0.3828
+    ],
+    "dpi": 200,
+    "area_frac": 0.165,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p78.png"
+  },
+  {
+    "id": "fig43",
+    "label": "Figure 43",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig43.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig43.png",
+    "page": 78,
+    "caption": "Figure 43: Wrist views for UMI → YAM transfer. The same UMI wrist frame as (a) the raw fisheye, (b) the stereographic view used in pretraining, and (c) the YAM-aligned re-render that imitates YAM’s wrist camera. (d) The real YAM wrist camera at the same step.",
+    "bbox": [
+      56.36,
+      537.84,
+      539.23,
+      647.96
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.6388,
+      0.9058,
+      0.7697
+    ],
+    "dpi": 200,
+    "area_frac": 0.106,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p78.png"
+  },
+  {
+    "id": "fig44",
+    "label": "Figure 44",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig44.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig44.png",
+    "page": 82,
+    "caption": "Figure 44: GEAR DexUMI kinematic design. (a) A remote-center-of-motion linkage places a virtual joint at the robot hand’s AB/AD and flexion joint centers. (b) The kicked-out thumb linkage keeps the robot hand’s thumb kinematics while clearing the operator’s thumb.",
+    "bbox": [
+      55.02,
+      77.7,
+      539.06,
+      286.56
+    ],
+    "bbox_norm": [
+      0.0924,
+      0.0923,
+      0.9056,
+      0.3404
+    ],
+    "dpi": 200,
+    "area_frac": 0.202,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p82.png"
+  },
+  {
+    "id": "fig45",
+    "label": "Figure 45",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig45.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig45.png",
+    "page": 83,
+    "caption": "Figure 45: GEAR DexUMI joints, contact surfaces, and camera. (a) Double-sided joint support and a custom pin with a direct keying interface to the joint encoder. (b) Fingertip and palm contact surfaces replicate the robot hand’s tactile sensors. (c) The camera mount matches the robot hand’s mounting",
+    "bbox": [
+      54.75,
+      77.42,
+      539.14,
+      288.62
+    ],
+    "bbox_norm": [
+      0.092,
+      0.092,
+      0.9057,
+      0.3428
+    ],
+    "dpi": 200,
+    "area_frac": 0.204,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p83.png"
+  },
+  {
+    "id": "fig46",
+    "label": "Figure 46",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig46.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig46.png",
+    "page": 85,
+    "caption": "Figure 46: Joint video-action denoising with CPS exploration. Four action-denoising events alternate between joint and cached passes. CPS adds fresh noise only to executed action coordinates. Video denoising is deterministic given its initial latent. GRPO scores joint action transitions and backprop",
+    "bbox": [
+      56.36,
+      79.04,
+      538.85,
+      245.78
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9052,
+      0.2919
+    ],
+    "dpi": 200,
+    "area_frac": 0.161,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p85.png"
+  },
+  {
+    "id": "fig47",
+    "label": "Figure 47",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig47.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig47.png",
+    "page": 88,
+    "caption": "Figure 47: Autonomous RL recipe discovery with AutoRL. Hill-climbing performance on RoboCasa365 across successive agent-driven experiments. The curve shows the best evaluation performance achieved.",
+    "bbox": [
+      79.89,
+      79.04,
+      515.4,
+      399.59
+    ],
+    "bbox_norm": [
+      0.1342,
+      0.0939,
+      0.8658,
+      0.4746
+    ],
+    "dpi": 200,
+    "area_frac": 0.279,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p88.png"
+  },
+  {
+    "id": "fig48",
+    "label": "Figure 48",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig48.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig48.png",
+    "page": 90,
+    "caption": "Figure 48: Online post-training infrastructure. (A) Algorithm interfaces, worker groups, and shared services. (B) Resource allocation across execution roles. (C) Experience pipelining. (D) Stateful recovery. Execution patterns are illustrative.",
+    "bbox": [
+      70.54,
+      97.94,
+      524.71,
+      432.04
+    ],
+    "bbox_norm": [
+      0.1185,
+      0.1163,
+      0.8815,
+      0.5132
+    ],
+    "dpi": 200,
+    "area_frac": 0.303,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p90.png"
+  },
+  {
+    "id": "fig49",
+    "label": "Figure 49",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig49.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig49.png",
+    "page": 91,
+    "caption": "Figure 49: Real-world RL tasks. (A) Fixed-pipe fittings: grasp, align, engage threads, turn, and release. (B) Finger placement: grasp, align two pins with the base holes, insert, and release. (C) Cable insertion: plug an Ethernet cable into a network switch. (D) Charger insertion: plug a charger int",
+    "bbox": [
+      21.47,
+      224.43,
+      570.33,
+      468.79
+    ],
+    "bbox_norm": [
+      0.0361,
+      0.2666,
+      0.9581,
+      0.5568
+    ],
+    "dpi": 200,
+    "area_frac": 0.268,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p91.png"
+  },
+  {
+    "id": "fig50",
+    "label": "Figure 50",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig50.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig50.png",
+    "page": 96,
+    "caption": "Figure 50: Joint RL on ten RoboLab tasks. Training GR00T 2 in DreamDojo increases mean task success from 51.32% to 70.88%, evaluated over 500 episodes per task and policy. Error bars denote 95% Wilson confidence intervals.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.94,
+      355.74
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9054,
+      0.4225
+    ],
+    "dpi": 200,
+    "area_frac": 0.266,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p96.png"
+  },
+  {
+    "id": "fig51",
+    "label": "Figure 51",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig51.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig51.png",
+    "page": 96,
+    "caption": "Figure 51: Policy improvement through neural simulation. (a) DreamDojo rollout success and native RoboLab success during RL. (b) Native RoboLab success at matched collection budgets for two batch/group configurations, reaching 71% and 54%. Each configuration has one training run. Batch and group siz",
+    "bbox": [
+      56.36,
+      387.57,
+      538.94,
+      577.35
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.4604,
+      0.9054,
+      0.6858
+    ],
+    "dpi": 200,
+    "area_frac": 0.183,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p96.png"
+  },
+  {
+    "id": "fig52",
+    "label": "Figure 52",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig52.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig52.png",
+    "page": 97,
+    "caption": "Figure 52: Real-world policy improvement with DreamDojo. Top: two-legged peg insertion, test-tube insertion into the fifth rack hole, bun placement on yellow and white cups, and hardware sorting. Bottom: task success before and after RL, and the nine hardware-sorting instructions are trained jointly",
+    "bbox": [
+      56.36,
+      79.04,
+      538.94,
+      367.19
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9054,
+      0.4362
+    ],
+    "dpi": 200,
+    "area_frac": 0.277,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p97.png"
+  },
+  {
+    "id": "fig53",
+    "label": "Figure 53",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig53.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig53.png",
+    "page": 101,
+    "caption": "Figure 53: Online recovery on RoboCasa365 (SFT + Agent). Keyframes from two episodes. The bar below each row shows who controls the robot over the episode. (A) The ASPIRE program grabs the oven handle instead of the drawer handle. S2 stops it and grasps the drawer handle with CaP, and the drawer ope",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      363.31
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.4315
+    ],
+    "dpi": 200,
+    "area_frac": 0.274,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p101.png"
+  },
+  {
+    "id": "fig54",
+    "label": "Figure 54",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig54.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig54.png",
+    "page": 102,
+    "caption": "Figure 54: Why SFT + Agent episodes fail. Primary cause of manually reviewed failed SFT + Agent episodes: 87 on RoboCasa365 and 80 on RoboDojo.",
+    "bbox": [
+      115.18,
+      79.04,
+      480.1,
+      242.04
+    ],
+    "bbox_norm": [
+      0.1935,
+      0.0939,
+      0.8065,
+      0.2875
+    ],
+    "dpi": 200,
+    "area_frac": 0.119,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p102.png"
+  },
+  {
+    "id": "fig55",
+    "label": "Figure 55",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig55.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig55.png",
+    "page": 103,
+    "caption": "Figure 55: Real-world tasks. (A) Toy Plane assembly: dump the parts, attach and fasten the bottom wing, turn the airplane over, and fasten the top wing. (B) Toy Tractor assembly: dump the parts, fasten the wheels on one side, turn the body over, and complete the other side. (C) Hot Wheels assembly: ",
+    "bbox": [
+      56.36,
+      72.35,
+      538.9,
+      348.47
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0859,
+      0.9053,
+      0.4139
+    ],
+    "dpi": 200,
+    "area_frac": 0.266,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p103.png"
+  },
+  {
+    "id": "fig56",
+    "label": "Figure 56",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig56.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig56.png",
+    "page": 105,
+    "caption": "Figure 56: Short-horizon instruction following benchmark on YAM. Eight reference categories, each illustrated by a shared starting scene and two contrasting instructions. Blue and orange text denote the alternatives, and all remaining wording is identical. The panel labeled Constraint shows an exclu",
+    "bbox": [
+      43.14,
+      67.14,
+      552.13,
+      351.43
+    ],
+    "bbox_norm": [
+      0.0725,
+      0.0798,
+      0.9275,
+      0.4174
+    ],
+    "dpi": 200,
+    "area_frac": 0.289,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p105.png"
+  },
+  {
+    "id": "fig57",
+    "label": "Figure 57",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig57.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig57.png",
+    "page": 110,
+    "caption": "Figure 57: Autonomous real-world whole-body loco-manipulation. Representative task sequences executed au- tonomously by post-trained GR00T 2 Turbo policies, with time progressing from left to right. From top to bottom: popcorn serving requires precise bimanual tool use to scoop, fill, and place a cu",
+    "bbox": [
+      58.32,
+      86.88,
+      536.96,
+      368.47
+    ],
+    "bbox_norm": [
+      0.098,
+      0.1032,
+      0.902,
+      0.4377
+    ],
+    "dpi": 200,
+    "area_frac": 0.269,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p110.png"
+  },
+  {
+    "id": "fig58",
+    "label": "Figure 58",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig58.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig58.png",
+    "page": 111,
+    "caption": "Figure 58: Object sets for the tabletop pick-and-place and the table clean-up tasks.",
+    "bbox": [
+      58.32,
+      86.88,
+      536.96,
+      263.58
+    ],
+    "bbox_norm": [
+      0.098,
+      0.1032,
+      0.902,
+      0.3131
+    ],
+    "dpi": 200,
+    "area_frac": 0.169,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p111.png"
+  },
+  {
+    "id": "fig59",
+    "label": "Figure 59",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig59.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig59.png",
+    "page": 112,
+    "caption": "Figure 59: Motion-centric simulation data generation. (A) We use the recorded whole-body motion of a teleoperated episode. (B) SONIC replays the motion in simulation while CMA-ES fits the table and object placement. (C) A fit is kept only if the robot lifts the object and holds it under a pull equal",
+    "bbox": [
+      29.75,
+      79.04,
+      539.97,
+      219.88
+    ],
+    "bbox_norm": [
+      0.05,
+      0.0939,
+      0.9071,
+      0.2612
+    ],
+    "dpi": 200,
+    "area_frac": 0.143,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p112.png"
+  },
+  {
+    "id": "fig60",
+    "label": "Figure 60",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig60.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig60.png",
+    "page": 114,
+    "caption": "Figure 60: Timing boundaries for GR00T 2 policy inference. Model prediction covers request-time encoding and iterative denoising. Observation-to-applied-action latency additionally includes observation preparation, communication, response handling, and controller scheduling. The diagram is schematic",
+    "bbox": [
+      56.36,
+      79.04,
+      538.93,
+      298.26
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3543
+    ],
+    "dpi": 200,
+    "area_frac": 0.211,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p114.png"
+  },
+  {
+    "id": "fig61",
+    "label": "Figure 61",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig61.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig61.png",
+    "page": 118,
+    "caption": "Figure 61: Subset of environments for Real-to-Sim Evaluation. Side-by-side of real-world tasks that are used to evaluate generalist capabilities of GR00T 2 and their simulation counterparts. Odd columns are the simulation environments and even columns are frames from the real-world robot workcell. E",
+    "bbox": [
+      56.36,
+      79.04,
+      538.99,
+      470.61
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9055,
+      0.559
+    ],
+    "dpi": 200,
+    "area_frac": 0.377,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p118.png"
+  },
+  {
+    "id": "fig62",
+    "label": "Figure 62",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig62.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig62.png",
+    "page": 120,
+    "caption": "Figure 62: Reconstructed assembly tasks. Toy plane, Hot Wheels car, and toy tractor (left to right), shown in reset configurations (top) and assembled configurations (bottom). Camera and scale are held fixed within each column. The panels illustrate asset configurations rather than robot-policy succ",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      326.32
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.3876
+    ],
+    "dpi": 200,
+    "area_frac": 0.238,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p120.png"
+  },
+  {
+    "id": "fig63",
+    "label": "Figure 63",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig63.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig63.png",
+    "page": 120,
+    "caption": "Figure 63: From physical objects to sim-ready assets. Source photograph, input scan, reconstructed visual asset, handling collision hulls (purple), and fitting signed-distance-field (SDF) source surfaces (teal) for the same tractor body, from left to right. Circular close-ups compare the same wheel ",
+    "bbox": [
+      56.36,
+      369.11,
+      538.92,
+      451.7
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.4384,
+      0.9053,
+      0.5365
+    ],
+    "dpi": 200,
+    "area_frac": 0.08,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p120.png"
+  },
+  {
+    "id": "fig64",
+    "label": "Figure 64",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig64.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig64.png",
+    "page": 121,
+    "caption": "Figure 64: Robot assembly of the toy plane. Wing insertion, reorientation, and fastening with a power drill, shown from left to right during a single continuous demonstration-guided execution.",
+    "bbox": [
+      56.36,
+      79.04,
+      538.92,
+      208.68
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9053,
+      0.2479
+    ],
+    "dpi": 200,
+    "area_frac": 0.125,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p121.png"
+  },
+  {
+    "id": "fig65",
+    "label": "Figure 65",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig65.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig65.png",
+    "page": 121,
+    "caption": "Figure 65: Sim-real Pearson correlation per policy for three computed metrics, compared with the noise ceiling: the correlation a perfect simulator would reach given the same number of real and simulated trials.",
+    "bbox": [
+      56.36,
+      240.51,
+      538.94,
+      368.96
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.2857,
+      0.9054,
+      0.4382
+    ],
+    "dpi": 200,
+    "area_frac": 0.124,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p121.png"
+  },
+  {
+    "id": "fig66",
+    "label": "Figure 66",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig66.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig66.png",
+    "page": 122,
+    "caption": "Figure 66: Simulated vs. real-world performance per policy on DROID. We evaluate 5 generalist checkpoints on the DROID embodiment across 10 tasks, with 5 real-world and 10 simulated trials per task, on the same layouts for every checkpoint. Panels and metrics as in Fig. 18 : (a) task progress and (b",
+    "bbox": [
+      56.36,
+      79.04,
+      538.94,
+      277.8
+    ],
+    "bbox_norm": [
+      0.0947,
+      0.0939,
+      0.9054,
+      0.33
+    ],
+    "dpi": 200,
+    "area_frac": 0.191,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p122.png"
+  },
+  {
+    "id": "fig67",
+    "label": "Figure 67",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig67.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig67.png",
+    "page": 127,
+    "caption": "Figure 67: Overall software and hardware stack of GR00T 2.",
+    "bbox": [
+      94.01,
+      249.38,
+      501.28,
+      526.95
+    ],
+    "bbox_norm": [
+      0.1579,
+      0.2962,
+      0.8421,
+      0.6259
+    ],
+    "dpi": 200,
+    "area_frac": 0.226,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p127.png"
+  },
+  {
+    "id": "fig68",
+    "label": "Figure 68",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig68.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig68.png",
+    "page": 130,
+    "caption": "Figure 68: Data delivery during multi-view pretraining on 1,024 NVIDIA GB300 GPUs over 100 consecutive steady- state steps. (a) Delivered sample-window throughput. (b) Exposed batch-retrieval wait, showing the mean and maximum across ranks.",
+    "bbox": [
+      70.48,
+      157.9,
+      524.8,
+      360.99
+    ],
+    "bbox_norm": [
+      0.1184,
+      0.1876,
+      0.8816,
+      0.4288
+    ],
+    "dpi": 200,
+    "area_frac": 0.184,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p130.png"
+  },
+  {
+    "id": "fig69",
+    "label": "Figure 69",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig69.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig69.png",
+    "page": 134,
+    "caption": "Figure 69: Transformation of human demonstration recordings into aligned multimodal episodes and training-ready dataset shards.",
+    "bbox": [
+      53.53,
+      74.82,
+      541.75,
+      197.95
+    ],
+    "bbox_norm": [
+      0.0899,
+      0.0889,
+      0.9101,
+      0.2351
+    ],
+    "dpi": 200,
+    "area_frac": 0.12,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p134.png"
+  },
+  {
+    "id": "fig70",
+    "label": "Figure 70",
+    "kind": "figure",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig70.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig70.png",
+    "page": 135,
+    "caption": "Figure 70: Multimodal data ingestion: (A) asynchronous overlap, (B) processing stages and the feedback from input release to admission, (C) storage tiers, and (D) recovery. Numbers identify shards, and timings are illustrative. Compute/upload overlap occurs across workers.",
+    "bbox": [
+      91.65,
+      103.99,
+      503.63,
+      424.95
+    ],
+    "bbox_norm": [
+      0.154,
+      0.1235,
+      0.846,
+      0.5048
+    ],
+    "dpi": 200,
+    "area_frac": 0.264,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p135.png"
+  },
+  {
+    "id": "tab01",
+    "label": "Table 1",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab01.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab01.png",
+    "page": 7,
+    "caption": "Table 1: Post-training benchmarks. For each model, Prog. is the average task progress score across all trials and SR is the success rate, both on a scale from 0 to 100. Bold marks the best Prog. and SR in each row, and the last row of each table averages its tasks. Each YAM result is based on up to ",
+    "bbox": [
+      53.41,
+      149.75,
+      541.87,
+      488.4
+    ],
+    "bbox_norm": [
+      0.0897,
+      0.1779,
+      0.9103,
+      0.5801
+    ],
+    "dpi": 200,
+    "area_frac": 0.33,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p07.png"
+  },
+  {
+    "id": "tab02",
+    "label": "Table 2",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab02.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab02.png",
+    "page": 40,
+    "caption": "Table 2: YAM V2 zero-shot evaluation. For each model, Prog. is the average task score and SR is the success rate, both on a 0 to 100 scale. We pool graded trials across available evaluations and weight tasks equally within each group. Trial counts vary across tasks and models, and results include gr",
+    "bbox": [
+      53.41,
+      440.2,
+      541.87,
+      548.18
+    ],
+    "bbox_norm": [
+      0.0897,
+      0.5229,
+      0.9103,
+      0.6511
+    ],
+    "dpi": 200,
+    "area_frac": 0.105,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p40.png"
+  },
+  {
+    "id": "tab03",
+    "label": "Table 3",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab03.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab03.png",
+    "page": 41,
+    "caption": "Table 3: Dexter zero-shot evaluation. For each model, Prog. is the average task progress and SR is the success rate, both on a 0 to 100 scale, pooled over 71 tasks (49 manipulation tasks and 22 out-of-distribution instruction tasks) with three trials per task. The four models run interleaved in the ",
+    "bbox": [
+      53.41,
+      141.33,
+      541.87,
+      223.21
+    ],
+    "bbox_norm": [
+      0.0897,
+      0.1679,
+      0.9103,
+      0.2651
+    ],
+    "dpi": 200,
+    "area_frac": 0.08,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p41.png"
+  },
+  {
+    "id": "tab04",
+    "label": "Table 4",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab04.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab04.png",
+    "page": 49,
+    "caption": "Table 4: Zero-teleop transfer from UMI to YAM. For each model, Prog. is the average substage score and SR the end-to-end success rate on YAM, both on a 0 to 100 scale. Every task is demonstrated only with Gripper UMI (41 to 75 episodes) and co-trained with task-agnostic YAM teleoperation data. All m",
+    "bbox": [
+      53.41,
+      519.34,
+      541.87,
+      634.89
+    ],
+    "bbox_norm": [
+      0.0897,
+      0.6169,
+      0.9103,
+      0.7541
+    ],
+    "dpi": 200,
+    "area_frac": 0.113,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p49.png"
+  },
+  {
+    "id": "tab05",
+    "label": "Table 5",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab05.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab05.png",
+    "page": 50,
+    "caption": "Table 5: DexUMI post-training results. Fraction of real-robot trials that reach the end of each subtask. Overall is the fraction that completes the whole task.",
+    "bbox": [
+      80.79,
+      108.5,
+      514.48,
+      310.76
+    ],
+    "bbox_norm": [
+      0.1357,
+      0.1289,
+      0.8643,
+      0.3691
+    ],
+    "dpi": 200,
+    "area_frac": 0.175,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p50.png"
+  },
+  {
+    "id": "tab06",
+    "label": "Table 6",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab06.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab06.png",
+    "page": 54,
+    "caption": "Table 6: DexUMI → Tianji + Sharpa results. Fraction of real-robot trials that complete the whole task, over 20 trials per task. No training data contain a robot trajectory of either task.",
+    "bbox": [
+      129.54,
+      108.5,
+      465.73,
+      177.75
+    ],
+    "bbox_norm": [
+      0.2176,
+      0.1289,
+      0.7824,
+      0.2111
+    ],
+    "dpi": 200,
+    "area_frac": 0.046,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p54.png"
+  },
+  {
+    "id": "tab07",
+    "label": "Table 7",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab07.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab07.png",
+    "page": 56,
+    "caption": "Table 7: GR00T 2 learns dexterous manipulation skills from simulation demonstrations generated from human videos and transfers these skills zero-shot to the real world. Fine-tuned models are evaluated in simulation ( s ) and the real world ( r ).",
+    "bbox": [
+      105.91,
+      119.44,
+      489.36,
+      235.84
+    ],
+    "bbox_norm": [
+      0.1779,
+      0.1419,
+      0.8221,
+      0.2801
+    ],
+    "dpi": 200,
+    "area_frac": 0.089,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p56.png"
+  },
+  {
+    "id": "tab08",
+    "label": "Table 8",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab08.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab08.png",
+    "page": 58,
+    "caption": "Table 8: Quantitative criteria for selecting training timesteps.",
+    "bbox": [
+      142.82,
+      518.5,
+      452.46,
+      617.21
+    ],
+    "bbox_norm": [
+      0.2399,
+      0.6159,
+      0.7601,
+      0.7331
+    ],
+    "dpi": 200,
+    "area_frac": 0.061,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p58.png"
+  },
+  {
+    "id": "tab09",
+    "label": "Table 9",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab09.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab09.png",
+    "page": 59,
+    "caption": "Table 9: In-lab collection criteria.",
+    "bbox": [
+      92.34,
+      527.76,
+      502.94,
+      746.02
+    ],
+    "bbox_norm": [
+      0.1551,
+      0.6269,
+      0.8449,
+      0.8861
+    ],
+    "dpi": 200,
+    "area_frac": 0.179,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p59.png"
+  },
+  {
+    "id": "tab10",
+    "label": "Table 10",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab10.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab10.png",
+    "page": 61,
+    "caption": "Table 10: UMI-10K for GR00T 2. Gripper UMI episodes in the pretraining corpus.",
+    "bbox": [
+      180.62,
+      97.55,
+      414.66,
+      203.84
+    ],
+    "bbox_norm": [
+      0.3034,
+      0.1159,
+      0.6966,
+      0.2421
+    ],
+    "dpi": 200,
+    "area_frac": 0.05,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p61.png"
+  },
+  {
+    "id": "tab11",
+    "label": "Table 11",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab11.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab11.png",
+    "page": 62,
+    "caption": "Table 11: Robot teleoperation data in the GR00T 2 pretraining mixture. Share is the fraction of robot-data samples drawn from each source.",
+    "bbox": [
+      61.98,
+      108.5,
+      533.3,
+      299.82
+    ],
+    "bbox_norm": [
+      0.1041,
+      0.1289,
+      0.8959,
+      0.3561
+    ],
+    "dpi": 200,
+    "area_frac": 0.18,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p62.png"
+  },
+  {
+    "id": "tab12",
+    "label": "Table 12",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab12.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab12.png",
+    "page": 65,
+    "caption": "Table 12: GearArena at a glance (snapshot of November 6, 2026, 12:28 PT). A campaign is one A/B evaluation request, a trial runs every arm once on the same scene, a rollout is one graded robot episode, and a match is one pairwise comparison inside a trial. The three suites are separate leagues whose",
+    "bbox": [
+      69.54,
+      240.67,
+      525.74,
+      400.0
+    ],
+    "bbox_norm": [
+      0.1168,
+      0.2859,
+      0.8832,
+      0.4751
+    ],
+    "dpi": 200,
+    "area_frac": 0.145,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p65.png"
+  },
+  {
+    "id": "tab13",
+    "label": "Table 13",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab13.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab13.png",
+    "page": 69,
+    "caption": "Table 13: Paired comparisons on YAM V2. Elo difference (A minus B) with its paired 95% interval, and the share of 500 bootstrap resamples in which A rates higher ( Eq. (8) ). “GR00T 2” is the released checkpoint, and the expected win rate follows from the Elo difference.",
+    "bbox": [
+      64.06,
+      119.44,
+      531.21,
+      230.78
+    ],
+    "bbox_norm": [
+      0.1076,
+      0.1419,
+      0.8924,
+      0.2741
+    ],
+    "dpi": 200,
+    "area_frac": 0.104,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p69.png"
+  },
+  {
+    "id": "tab14",
+    "label": "Table 14",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab14.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab14.png",
+    "page": 71,
+    "caption": "Table 14: Matched rubric scores by sub-suite. Mean rubric score (0 to 1) over the trials in which both checkpoints were graded in the same campaign. Trial counts in parentheses.",
+    "bbox": [
+      77.22,
+      108.5,
+      518.06,
+      219.84
+    ],
+    "bbox_norm": [
+      0.1297,
+      0.1289,
+      0.8703,
+      0.2611
+    ],
+    "dpi": 200,
+    "area_frac": 0.098,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p71.png"
+  },
+  {
+    "id": "tab15",
+    "label": "Table 15",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab15.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab15.png",
+    "page": 76,
+    "caption": "Table 15: UMI direct. Prog. is the average substage score and SR the end-to-end success rate on the UMI robot gripper, both on a 0 to 100 scale, of GR00T 2 post-trained on Gripper UMI demonstrations alone. GR00T 2 w/o UMI pretraining starts from an earlier pretraining checkpoint whose mixture contai",
+    "bbox": [
+      53.41,
+      414.1,
+      541.87,
+      541.44
+    ],
+    "bbox_norm": [
+      0.0897,
+      0.4919,
+      0.9103,
+      0.6431
+    ],
+    "dpi": 200,
+    "area_frac": 0.124,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p76.png"
+  },
+  {
+    "id": "tab16",
+    "label": "Table 16",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab16.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab16.png",
+    "page": 77,
+    "caption": "Table 16: Gripper UMI versus YAM. YAM differs from the handheld gripper in its cameras, its gripper interface, and its control frame.",
+    "bbox": [
+      114.25,
+      108.5,
+      481.03,
+      297.29
+    ],
+    "bbox_norm": [
+      0.1919,
+      0.1289,
+      0.8081,
+      0.3531
+    ],
+    "dpi": 200,
+    "area_frac": 0.138,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p77.png"
+  },
+  {
+    "id": "tab17",
+    "label": "Table 17",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab17.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab17.png",
+    "page": 79,
+    "caption": "Table 17: UMI → YAM ablations. Prog. is the average substage score and SR the end-to-end success rate on YAM, both on a 0 to 100 scale, as in Tab. 4 . The shaded row in each block is the default configuration (shared action head, YAM-aligned wrist-view warping, all UMI episodes, pretraining with UMI",
+    "bbox": [
+      131.39,
+      354.33,
+      463.89,
+      544.81
+    ],
+    "bbox_norm": [
+      0.2207,
+      0.4209,
+      0.7793,
+      0.6471
+    ],
+    "dpi": 200,
+    "area_frac": 0.126,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p79.png"
+  },
+  {
+    "id": "tab18",
+    "label": "Table 18",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab18.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab18.png",
+    "page": 91,
+    "caption": "Table 18: Per-iteration time breakdown for single-robot GRPO. All times are reported in minutes.",
+    "bbox": [
+      53.41,
+      97.55,
+      541.87,
+      231.63
+    ],
+    "bbox_norm": [
+      0.0897,
+      0.1159,
+      0.9103,
+      0.2751
+    ],
+    "dpi": 200,
+    "area_frac": 0.131,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p91.png"
+  },
+  {
+    "id": "tab19",
+    "label": "Table 19",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab19.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab19.png",
+    "page": 99,
+    "caption": "Table 19: Comparison with the top seven entries of the RoboCasa365 and RoboDojo leaderboards , including agentic submissions. We report success rate (%) overall and per category. The RoboDojo average is the official mean over the five capability dimensions. Leaderboard numbers are as of November 6, ",
+    "bbox": [
+      53.41,
+      152.28,
+      541.87,
+      562.49
+    ],
+    "bbox_norm": [
+      0.0897,
+      0.1809,
+      0.9103,
+      0.6681
+    ],
+    "dpi": 200,
+    "area_frac": 0.4,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p99.png"
+  },
+  {
+    "id": "tab20",
+    "label": "Table 20",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab20.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab20.png",
+    "page": 100,
+    "caption": "Table 20: Episode outcomes by whether S2 intervenes (SFT + Agent). Each cell gives the number of episodes and how many of them succeed, over all episodes of the SFT + Agent runs (2,093 on RoboDojo and 2,500 on RoboCasa365).",
+    "bbox": [
+      152.05,
+      242.36,
+      443.23,
+      305.71
+    ],
+    "bbox_norm": [
+      0.2554,
+      0.2879,
+      0.7446,
+      0.3631
+    ],
+    "dpi": 200,
+    "area_frac": 0.037,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p100.png"
+  },
+  {
+    "id": "tab21",
+    "label": "Table 21",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab21.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab21.png",
+    "page": 104,
+    "caption": "Table 21: Embodiment-specific choices for visual steering. Everything not listed follows the shared rules in the text. The Dexter column describes the joint YAM and Dexter recipe used for Dexter trash sorting.",
+    "bbox": [
+      55.55,
+      108.5,
+      539.72,
+      339.39
+    ],
+    "bbox_norm": [
+      0.0933,
+      0.1289,
+      0.9067,
+      0.4031
+    ],
+    "dpi": 200,
+    "area_frac": 0.223,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p104.png"
+  },
+  {
+    "id": "tab22",
+    "label": "Table 22",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab22.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab22.png",
+    "page": 106,
+    "caption": "Table 22: Visual steering results on every benchmark. Short horizon: success rate (%), with successful trials in parentheses (pass@1 on YAM). Long horizon: full-task successes over episodes, with the mean rubric score (0 to 1) in parentheses. 𝑛 counts trials (short horizon) or episodes (long horizon",
+    "bbox": [
+      66.09,
+      130.39,
+      529.19,
+      246.78
+    ],
+    "bbox_norm": [
+      0.111,
+      0.1549,
+      0.889,
+      0.2931
+    ],
+    "dpi": 200,
+    "area_frac": 0.108,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p106.png"
+  },
+  {
+    "id": "tab23",
+    "label": "Table 23",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab23.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab23.png",
+    "page": 106,
+    "caption": "Table 23: YAM short-horizon pass@1 (%) by reference category. Each category has six instructions and 18 scored trials per setting.",
+    "bbox": [
+      120.2,
+      274.35,
+      475.08,
+      426.1
+    ],
+    "bbox_norm": [
+      0.2019,
+      0.3259,
+      0.7981,
+      0.5061
+    ],
+    "dpi": 200,
+    "area_frac": 0.107,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p106.png"
+  },
+  {
+    "id": "tab24",
+    "label": "Table 24",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab24.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab24.png",
+    "page": 107,
+    "caption": "Table 24: Agent cost and latency on trash sorting. Medians over the 20 episodes per setting. Latency is the per-episode median agent-turn time, agent cost is the charge for the agent’s turns (excluding the completion checks), and waiting is the share of the episode during which the robot holds still",
+    "bbox": [
+      83.95,
+      119.44,
+      511.33,
+      247.62
+    ],
+    "bbox_norm": [
+      0.141,
+      0.1419,
+      0.859,
+      0.2941
+    ],
+    "dpi": 200,
+    "area_frac": 0.109,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p107.png"
+  },
+  {
+    "id": "tab25",
+    "label": "Table 25",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab25.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab25.png",
+    "page": 111,
+    "caption": "Table 25: Real-world whole-body loco-manipulation on the Unitree G1. Success rate (%) using each listed model as S1, with the SONIC controller as S0. No partial credit is given (the reported success rate is the sum of the binary scores over all trials divided by the total number of trials). All poli",
+    "bbox": [
+      93.05,
+      340.02,
+      502.22,
+      443.78
+    ],
+    "bbox_norm": [
+      0.1563,
+      0.4039,
+      0.8437,
+      0.5271
+    ],
+    "dpi": 200,
+    "area_frac": 0.085,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p111.png"
+  },
+  {
+    "id": "tab26",
+    "label": "Table 26",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab26.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab26.png",
+    "page": 112,
+    "caption": "Table 26: WAMs consume simulation data better than VLAs. Tabletop pick-and-place success rate (%) over 30 trials on the G1 when simulated demonstrations are mixed into the same real dataset.",
+    "bbox": [
+      138.41,
+      302.97,
+      456.86,
+      394.95
+    ],
+    "bbox_norm": [
+      0.2325,
+      0.3599,
+      0.7675,
+      0.4691
+    ],
+    "dpi": 200,
+    "area_frac": 0.058,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p112.png"
+  },
+  {
+    "id": "tab27",
+    "label": "Table 27",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab27.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab27.png",
+    "page": 115,
+    "caption": "Table 27: Median model-prediction latency (p50) for GR00T 2 and GR00T 2 Turbo across embodiments and hardware. Speedup is baseline latency divided by optimized latency.",
+    "bbox": [
+      53.41,
+      126.18,
+      541.87,
+      268.67
+    ],
+    "bbox_norm": [
+      0.0897,
+      0.1499,
+      0.9103,
+      0.3191
+    ],
+    "dpi": 200,
+    "area_frac": 0.139,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p115.png"
+  },
+  {
+    "id": "tab28",
+    "label": "Table 28",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab28.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab28.png",
+    "page": 116,
+    "caption": "Table 28: Evaluation of a simple noisy-prefix RTC extension under simulated inference latency. Success and progress use 1,200 matched episodes per condition, while jerk uses 120 matched diagnostic layouts. Jerk changes are relative to async execution of the noisy-prefix fine-tuned checkpoint at the ",
+    "bbox": [
+      53.41,
+      130.39,
+      541.87,
+      287.19
+    ],
+    "bbox_norm": [
+      0.0897,
+      0.1549,
+      0.9103,
+      0.3411
+    ],
+    "dpi": 200,
+    "area_frac": 0.153,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p116.png"
+  },
+  {
+    "id": "tab29",
+    "label": "Table 29",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab29.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab29.png",
+    "page": 117,
+    "caption": "Table 29: Task success rate and completion time on Dexter post-training tasks. Completion time is averaged over successful trials only.",
+    "bbox": [
+      67.1,
+      185.95,
+      528.18,
+      294.77
+    ],
+    "bbox_norm": [
+      0.1127,
+      0.2209,
+      0.8873,
+      0.3501
+    ],
+    "dpi": 200,
+    "area_frac": 0.1,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p117.png"
+  },
+  {
+    "id": "tab30",
+    "label": "Table 30",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab30.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab30.png",
+    "page": 124,
+    "caption": "Table 30: Results on the RoboCasa365 benchmark. We report success rate (%). The best and second-best results are highlighted in bold and underline, respectively.",
+    "bbox": [
+      67.1,
+      108.5,
+      528.18,
+      248.46
+    ],
+    "bbox_norm": [
+      0.1127,
+      0.1289,
+      0.8873,
+      0.2951
+    ],
+    "dpi": 200,
+    "area_frac": 0.129,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p124.png"
+  },
+  {
+    "id": "tab31",
+    "label": "Table 31",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab31.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab31.png",
+    "page": 124,
+    "caption": "Table 31: Results on the RoboDojo benchmark. Dimension columns report success rate (%), while the last two columns report the average score and success rate (%). GR00T 2 is evaluated on all three layout banks. Tab. 19 reports layout bank 0 only, for all four GR00T 2 configurations including RL and a",
+    "bbox": [
+      63.94,
+      297.92,
+      531.33,
+      450.52
+    ],
+    "bbox_norm": [
+      0.1074,
+      0.3539,
+      0.8926,
+      0.5351
+    ],
+    "dpi": 200,
+    "area_frac": 0.142,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p124.png"
+  },
+  {
+    "id": "tab32",
+    "label": "Table 32",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab32.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab32.png",
+    "page": 125,
+    "caption": "Table 32: Results on the RoboLab benchmark. We report success rate (%) overall and per difficulty tier. The best and second-best results are highlighted in bold and underline, respectively.",
+    "bbox": [
+      100.61,
+      108.5,
+      494.66,
+      248.46
+    ],
+    "bbox_norm": [
+      0.169,
+      0.1289,
+      0.831,
+      0.2951
+    ],
+    "dpi": 200,
+    "area_frac": 0.11,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p125.png"
+  },
+  {
+    "id": "tab33",
+    "label": "Table 33",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab33.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab33.png",
+    "page": 125,
+    "caption": "Table 33: Results on the MolmoSpaces benchmark. We report success rate (%). The best and second-best results are highlighted in bold and underline, respectively. Baselines: 𝜋 0 . 5 -DROID ( Physical Intelligence et al. , 2025 ), GR00T 1.7 ( NVIDIA , 2026a ), MolmoAct2 DROID ( Fang et al. , 2026 ), P",
+    "bbox": [
+      72.4,
+      297.92,
+      522.88,
+      466.51
+    ],
+    "bbox_norm": [
+      0.1216,
+      0.3539,
+      0.8784,
+      0.5541
+    ],
+    "dpi": 200,
+    "area_frac": 0.152,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p125.png"
+  },
+  {
+    "id": "tab34",
+    "label": "Table 34",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab34.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab34.png",
+    "page": 126,
+    "caption": "Table 34: Results on G1 Factory. We report success rate (%) over 100 episodes per task. The best results are highlighted in bold. Baseline: GR00T 1.7 ( NVIDIA , 2026a ).",
+    "bbox": [
+      90.49,
+      108.5,
+      504.78,
+      205.53
+    ],
+    "bbox_norm": [
+      0.152,
+      0.1289,
+      0.848,
+      0.2441
+    ],
+    "dpi": 200,
+    "area_frac": 0.08,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p126.png"
+  },
+  {
+    "id": "tab35",
+    "label": "Table 35",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab35.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab35.png",
+    "page": 132,
+    "caption": "Table 35: Measured training-input delivery over 100 steady-state steps on 1,024 NVIDIA GB300 GPUs. The wait-time share is relative to aggregate measured rank-step time.",
+    "bbox": [
+      53.41,
+      515.13,
+      541.87,
+      614.69
+    ],
+    "bbox_norm": [
+      0.0897,
+      0.6119,
+      0.9103,
+      0.7301
+    ],
+    "dpi": 200,
+    "area_frac": 0.097,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p132.png"
+  },
+  {
+    "id": "tab36",
+    "label": "Table 36",
+    "kind": "table",
+    "file": "assets/nvidia-2026-gr00t-2-scaling-robot-foundation/tab36.png",
+    "raw": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/tab36.png",
+    "page": 135,
+    "caption": "Table 36: Production evaluation of the data ingestion system. Ranges span jobs. Memory and disk use are per-node means.",
+    "bbox": [
+      53.41,
+      543.75,
+      541.87,
+      740.13
+    ],
+    "bbox_norm": [
+      0.0897,
+      0.6459,
+      0.9103,
+      0.8791
+    ],
+    "dpi": 200,
+    "area_frac": 0.191,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/_overlay/p135.png"
+  }
+]

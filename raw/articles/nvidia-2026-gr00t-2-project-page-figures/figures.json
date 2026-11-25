@@ -1,0 +1,74 @@
+[
+  {
+    "id": "fig01",
+    "file": "assets/nvidia-2026-gr00t-2-project-page/fig01.jpg",
+    "raw": "raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig01.jpg",
+    "caption": "A person sets up filter paper in a funnel",
+    "source_url": "https://research.nvidia.com/labs/gear/gr00t-2/assets/img/xa_human_demo.jpg",
+    "bytes": 43675,
+    "width": 720,
+    "height": 405,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig02",
+    "file": "assets/nvidia-2026-gr00t-2-project-page/fig02.jpg",
+    "raw": "raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig02.jpg",
+    "caption": "Dexter sets up filter paper in a funnel",
+    "source_url": "https://research.nvidia.com/labs/gear/gr00t-2/assets/img/xa_human_robot.jpg",
+    "bytes": 48047,
+    "width": 720,
+    "height": 405,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig03",
+    "file": "assets/nvidia-2026-gr00t-2-project-page/fig03.jpg",
+    "raw": "raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig03.jpg",
+    "caption": "A person with a handheld UMI gripper sorts packages from a conveyor belt into two bins",
+    "source_url": "https://research.nvidia.com/labs/gear/gr00t-2/assets/img/xa_umi_demo.jpg?v=3",
+    "bytes": 35152,
+    "width": 720,
+    "height": 405,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig04",
+    "file": "assets/nvidia-2026-gr00t-2-project-page/fig04.jpg",
+    "raw": "raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig04.jpg",
+    "caption": "YAM sorts packages from the same conveyor belt into the two bins",
+    "source_url": "https://research.nvidia.com/labs/gear/gr00t-2/assets/img/xa_umi_yam.jpg?v=3",
+    "bytes": 35141,
+    "width": 720,
+    "height": 405,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig05",
+    "file": "assets/nvidia-2026-gr00t-2-project-page/fig05.jpg",
+    "raw": "raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig05.jpg",
+    "caption": "A person wearing the DexUMI exoskeleton scoops granola",
+    "source_url": "https://research.nvidia.com/labs/gear/gr00t-2/assets/img/xa_dexumi_demo.jpg",
+    "bytes": 50757,
+    "width": 672,
+    "height": 378,
+    "strategy": "fetched",
+    "curated": false
+  },
+  {
+    "id": "fig06",
+    "file": "assets/nvidia-2026-gr00t-2-project-page/fig06.jpg",
+    "raw": "raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig06.jpg",
+    "caption": "A robot hand scoops granola",
+    "source_url": "https://research.nvidia.com/labs/gear/gr00t-2/assets/img/xa_dexumi_robot.jpg",
+    "bytes": 76472,
+    "width": 672,
+    "height": 378,
+    "strategy": "fetched",
+    "curated": false
+  }
+]
