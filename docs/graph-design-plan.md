@@ -250,7 +250,7 @@
 
 - [ ] 라이트 테마 공용 크롬의 낮은 대비 수정: axe가 사이트 공용 크롬과 wiki 페이지에서 대비 2.4:1 글자를 잡았다 (그래프 전용 아님). 해당 토큰을 찾아 AA(4.5:1, 큰 글자 3:1)로 올린다. 색 결정 뒤에 한다.
 - [x] 404 페이지 추가 (2026-11-26, `templates.mjs` 의 `notFound()` 가 공용 `layout()` 으로 감싸 모든 URL이 BASE 접두를 받는다. `noindex`, pagefind 본문 표지 없음, 그래프에 들어가지 않음. "홈으로" 와 "그래프에서 찾기" 버튼, 길 잃은 노드 SVG. 검증: STRICT와 deploy 빌드 통과, GitHub Pages를 흉내 낸 로컬 서버에서 `/ai-wiki/a/b/c/missing` 이 1440과 375 폭, 라이트와 다크에서 콘솔 오류 0, 실패 요청 0, 가로 스크롤 0, 헤더 검색과 테마 토글 동작. 미확인: 실제 GitHub Pages, 모바일 햄버거 시트): 지금은 없는 주소에서 GitHub Pages 기본 화면이 뜬다. 공용 헤더와 검색, 홈과 그래프로 가는 링크를 둔 `dist/404.html` 을 빌드가 내게 하고 `BASE=/ai-wiki` 경로를 확인한다.
-- [ ] 중복 stem `nvidia-auto-ontology` 정리: `wiki/database/` 와 `wiki/agents/` 에 같은 stem이 있어 bare `[[nvidia-auto-ontology]]` 가 모호하다는 빌드 WARN이 난다. 두 문서의 관계(같은 자료의 중복인지, 다른 자료인지)를 확인해 하나로 합치거나 stem을 바꾸고 링크를 고친다. wiki 콘텐츠 변경이라 `write-wiki` 규칙과 lint를 따른다.
+- [x] 중복 stem `nvidia-auto-ontology` 정리 (2026-11-26, 같은 repo와 같은 raw의 중복이었다. 사용자 결정대로 `database` 에 남기고 `agents` 사본을 지웠다. agents 사본에만 있던 다섯 역할 표, bridge table 설명, Key Features, MCP 설정 세부, 관련 페이지 둘을 raw와 대조해 옮겼다. `index.md` 항목 하나와 `sources` 의 `category` 를 고쳤다. lint 여섯 종 신규 오류 0, 빌드 WARN 사라짐, 노드 357에서 356): `wiki/database/` 와 `wiki/agents/` 에 같은 stem이 있어 bare `[[nvidia-auto-ontology]]` 가 모호하다는 빌드 WARN이 난다. 두 문서의 관계(같은 자료의 중복인지, 다른 자료인지)를 확인해 하나로 합치거나 stem을 바꾸고 링크를 고친다. wiki 콘텐츠 변경이라 `write-wiki` 규칙과 lint를 따른다.
 
 **정리**
 

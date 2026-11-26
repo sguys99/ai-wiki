@@ -67,6 +67,18 @@ text-to-SQL이 틀리는 원인은 대개 데이터의 의미를 모르는 데 �
 
 Auto Ontology는 이 layer를 기업 메타데이터에서 생성하고, 시스템마다 다른 정의를 조정한다. 고객이 이미 가진 semantic model을 대체하지 않고 보완하는 위치에 선다는 점도 명시한다. 그래서 Apache Ossie라는 semantic model 교환 표준과의 import, export를 기본 기능으로 둔다.
 
+README는 라이브러리의 역할을 다섯 동사로 나눈다.
+
+| 역할 | 내용 |
+|---|---|
+| Discover | 메타데이터에서 기업 ontology를 생성하고, 기존 ontology와 semantic model을 연결하며, AI가 쓸 수 있는 knowledge graph를 구축한다 |
+| Ground | 지표, entity, 관계의 신뢰된 업무 의미를 에이전트에게 제공하고 시스템 간 불일치 정의를 조정한다 |
+| Validate | 생성된 질의를 인증된 정의와 lineage로 검사하고, 모든 답에 provenance를 붙여 돌려준다 |
+| Expose | MCP, CLI, API로 어떤 agent harness에도 context를 제공한다 |
+| Learn | 인증된 수정과 사용 기록을 ontology에 되먹여 질문이 쌓일수록 공유 context가 나아지게 한다 |
+
+grounding은 모델 출력을 외부 근거에 붙들어 매는 것으로, 여기서는 에이전트의 SQL이 인증된 업무 정의에 근거하도록 만드는 것을 뜻한다. provenance는 어떤 정보가 어느 원본에서 어떤 경로로 왔는지 되짚을 수 있게 남긴 출처 계보이며, Auto Ontology에서는 답과 함께 돌려주는 SQL과 단계 기록이 그 역할을 한다.
+
 ## 핵심 개념
 
 ### term
@@ -79,7 +91,7 @@ SQL attribute는 term 아래 두는 검토된 SQL 식이다. 마진이나 누적
 
 ### relationship
 
-relationship은 테이블이 어떻게 join되는지를 적은 정의다. 두 테이블을 잇는 중간 테이블(bridge table)도 포함하며, key 정의와 실제 데이터에서 추론한다. 에이전트는 질문에 등장한 term들을 이 relationship을 따라 연결해 join 경로를 찾는다.
+relationship은 테이블이 어떻게 join되는지를 적은 정의다. 두 테이블을 잇는 중간 테이블(bridge table)도 포함하며, key 정의와 실제 데이터에서 추론한다. bridge table은 다대다 관계를 잇는 테이블로, 주문과 제품 사이에 주문 행 테이블이 끼어 있으면 두 개념을 잇는 relationship은 그 테이블을 거쳐야 한다. 에이전트는 질문에 등장한 term들을 이 relationship을 따라 연결해 join 경로를 찾는다.
 
 ### certify
 
@@ -104,7 +116,7 @@ ingestion service가 원천 데이터베이스에서 ontology 초안을 만든�
 | 3 | 관계 해석 | 테이블 사이 join과 bridge table 추론, 질의 이력에서 SQL attribute 제안 |
 | 4 | ontology 기록 | term, 관계, SQL attribute를 Postgres에 저장하고 retrieval용 임베딩을 pgvector에 저장 |
 
-결과물은 UI에서 탐색할 수 있는 semantic graph다. README 예시에서 Wide World Importers를 한 번 컴파일하자 term 31개가 만들어졌다. Order term을 선택하면 설명("고객 주문과 날짜, 배송 정보, 비고, 처리 메타데이터")과 함께 관련 term, 매핑 column, SQL attribute 개수가 나타난다.
+결과물은 UI에서 탐색할 수 있는 semantic graph다. README 예시에서 Wide World Importers를 한 번 컴파일하자 term 31개가 만들어졌다. Order term을 선택하면 설명("고객 주문과 날짜, 배송 정보, 비고, 처리 메타데이터")과 함께 관련 term, 매핑 column, SQL attribute 개수가 나타난다. 그래프의 노드는 Customer, Invoice, Stock Item, Delivery Method, City 같은 업무 개념이고, 오른쪽 아래 범례는 term 외에 column attribute, SQL attribute, table, schema, column, SQL, custom analysis를 구분한다.
 
 ![[assets/nvidia-auto-ontology/ontology-graph.png]]
 *Figure 2: Wide World Importers semantic graph. term 31개가 노드이고, 선택한 Order term은 관련 term 7개, attribute column 10개, SQL attribute 2개를 가진다 (NVIDIA auto-ontology README)*
@@ -155,6 +167,8 @@ Chat 화면에서는 각 답이 SQL을 함께 보여 주고, 결과 행 보기, 
 
 README 앞부분의 Software Components 표는 내용이 조금 다르다. Frontend를 Next.js 16 (React 19, TypeScript, Tailwind CSS 4)로 구체적으로 적고, 3002번 서비스를 "Ingestion worker"로 부르며 역할을 "표 데이터를 수집하고 임베딩을 기록"으로 적는다. MCP server 행은 없다. 뒤쪽 표가 MCP server를 포함하므로 더 최신 구성으로 보인다.
 
+README 앞부분의 주요 기능 목록은 NIM 기반 자연어 질의, Postgres에 카탈로그와 함께 저장되는 semantic catalog, Better Auth 기반 인증과 RBAC, chat, analysis, data catalog, analytics, settings를 담은 Web UI, Kubernetes용 Helm chart나 로컬용 Docker Compose 배포를 든다.
+
 카탈로그와 ontology와 벡터를 모두 한 Postgres에 두는 것이 저장 계층의 특징이다. 별도 vector database를 두지 않고 pgvector 확장으로 임베딩 검색을 처리한다.
 
 ### 보안 경계
@@ -196,7 +210,7 @@ README 안에서 기본 모델 표기가 두 곳에서 어긋난다. NVIDIA NIM 
 | REST API | 애플리케이션 | SSE 스트림으로 답 반환 |
 | Import / Export | 다른 semantic model 도구 | Apache Ossie YAML |
 
-**MCP server.** MCP는 모델이 외부 도구와 데이터 원천에 표준화된 방식으로 접근하게 하는 프로토콜이다. Auto Ontology의 MCP 서버는 모든 도구가 읽기 전용이고, 사용자마다 Auto Ontology로 로그인해 그 사용자의 권한으로 호출이 실행된다. `uvx`로 저장소의 `mcp` 하위 디렉토리를 바로 실행하며, Claude Desktop은 `mcp-remote`로 HTTP 엔드포인트에 연결한다.
+**MCP server.** MCP는 모델이 외부 도구와 데이터 원천에 표준화된 방식으로 접근하게 하는 프로토콜이다. Auto Ontology의 MCP 서버는 모든 도구가 읽기 전용이고, 사용자마다 Auto Ontology로 로그인해 그 사용자의 권한으로 호출이 실행된다. `AUTO_ONTOLOGY_API_URL`에 배포 주소를 지정하고 `uvx`로 저장소의 `mcp` 하위 디렉토리를 바로 실행한다. Cursor는 `http://localhost:3003/mcp`를 URL로 직접 등록하고, Claude Desktop은 `mcp-remote`로 같은 주소에 연결한다. 설정을 바꾼 뒤에는 클라이언트를 재시작하고 로그인 요청에 응한다.
 
 | 용도 | 도구 |
 |---|---|
@@ -256,7 +270,7 @@ README에는 정확도 같은 정량 벤치마크가 없다. BIRD 같은 text-to
 | 1 | 저장소를 clone하고 `.env`에 API 키, `AUTH_SECRET`, `APP_URL`, Postgres와 관리자와 pgAdmin 비밀번호, `CONNECTION_STRINGS` 설정 |
 | 2 | Postgres만 기동하고 auto-ontology-eval 저장소의 seed 스크립트로 Wide World Importers 적재 |
 | 3 | `docker compose up -d --build`로 나머지 스택 기동 |
-| 4 | localhost:3000에 로그인하고 Settings의 Semantic Compilation 활성화. ingestion은 기동 시 실행되고 컴파일이 끝나면 준비 완료 메시지 표시 |
+| 4 | localhost:3000에 로그인하고 Settings의 Semantic Compilation 활성화. ingestion은 기동 시 실행되고 컴파일이 끝나면 "Semantic compilation is ready" 표시 |
 | 5 | Chat에서 질문 |
 
 ### 답할 수 있는 질문
@@ -311,4 +325,6 @@ README에는 정확도 같은 정량 벤치마크가 없다. BIRD 같은 text-to
 - [[applications/wlsdks-ontology-atlas]]: 코드베이스 ontology를 Markdown 폴더로 유지하고 MCP로 노출하는 워크벤치. 대상이 데이터베이스가 아니라 코드다
 - [[agents/getzep-graphiti]]: 에이전트 메모리를 temporal context graph로 다루는 엔진. 둘 다 에이전트용 graph 형태 context를 만든다
 - [[database/volcengine-openviking]]: 에이전트 context를 파일시스템 하나로 통합하는 context database
+- [[etc/google-okf]]: 데이터 지식과 provenance를 Markdown frontmatter로 표현하는 포맷. 데이터 카탈로그 지식을 에이전트에게 주려는 같은 문제의식을 공유한다
+- [[agents/rodrigues-2026-mcp-server-architecture-patterns]]: MCP 서버 설계 패턴. Auto Ontology의 읽기 전용, 사용자별 권한 MCP 서버를 이 패턴에 비춰 볼 수 있다
 - [[database/microsoft-graphrag]]: 비정형 문서에서 entity와 관계를 뽑아 knowledge graph를 만드는 GraphRAG 구현. Auto Ontology는 정형 데이터베이스 메타데이터에서 출발한다

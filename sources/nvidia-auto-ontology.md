@@ -2,7 +2,7 @@
 title: "Auto Ontology"
 type: repo
 year: 2026
-category: agents
+category: database
 raw_path: raw/repos/nvidia-auto-ontology.md
 raw_filename: "nvidia-auto-ontology.md"
 source_collection: external
