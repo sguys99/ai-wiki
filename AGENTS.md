@@ -1,6 +1,6 @@
 # AI Wiki에서 Codex로 작업하기
 
-작업을 시작할 때 저장소 루트의 [CLAUDE.md](CLAUDE.md)를 끝까지 읽고 적용한다. 두 도구가 공유하는 위키 운영 규칙, 자료 유형별 수집 절차, 스키마와 작성 기준이 이 파일에 있다. [.claude/memory/MEMORY.md](.claude/memory/MEMORY.md)가 가리키는 작업 지침도 따른다.
+작업을 시작할 때 저장소 루트의 [CLAUDE.md](CLAUDE.md)를 끝까지 읽고 적용한다. 두 도구가 공유하는 위키 운영 규칙과 파이프라인 개요가 이 파일에 있고, frontmatter 스키마와 작성 템플릿은 `.claude/skills/write-wiki/references/`, repos와 videos 수집 절차는 `docs/ingest-repos-videos.md`에 있다. [.claude/memory/MEMORY.md](.claude/memory/MEMORY.md)가 가리키는 작업 지침도 따른다.
 
 - 위키 질문에는 `wiki/`와 `sources/`를 먼저 읽고, 필요하면 `raw/`의 원문을 확인한다. 사용자가 특정 자료 수집을 요청한 경우에만 해당 원본을 가져온다. 기사는 `scripts/fetch_article.py`를 사용한다. GitHub README는 지정한 저장소에서 원문을 가져온다.
 - 커밋과 푸시는 각각 사용자가 명시적으로 요청할 때만 실행한다. `rm -rf`, 강제 푸시, `git reset --hard`는 사용하지 않는다. 윤문도 명시적으로 요청할 때만 실행한다.

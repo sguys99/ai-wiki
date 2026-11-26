@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """figures lint — Step 2.5(이미지 추출)와 Step 3~4(frontmatter 기록)의 어긋남을 검사한다.
 
-CLAUDE.md "Image & Figure Handling"의 규약을 stem 단위로 확인한다:
+write-wiki references/schema.md의 figure 규약을 stem 단위로 확인한다:
   [error]   raw/{type}/{stem}-figures/ 에 크롭이 있는데 sources/{stem}.md 에 figures: 키가 없음
   [warning] figures.json 매니페스트의 id 가 sources figures: 에 일부만 기록됨 (부분 백필)
   [warning] -figures/ 에 대응하는 sources/{stem}.md 가 없음 (stem 규약 밖 고아 디렉토리)

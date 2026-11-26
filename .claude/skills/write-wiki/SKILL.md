@@ -6,7 +6,7 @@ description: sources/·wiki/ 한글 페이지를 작성하는 스킬 (CLAUDE.md 
 
 # Write Wiki (sources/와 wiki/ 작성)
 
-CLAUDE.md 6-step 중 **Step 3(sources 작성) → Step 3.5(사용자 confirm) → Step 4(wiki 작성 + assets cp + index.md 갱신)** 를 담당한다. frontmatter 스키마, 본문 골격, 문체 규칙은 CLAUDE.md 해당 절("wiki 교재 문체 가이드" 포함)이 정본이고, 이 문서는 **작업 순서, 용어 표기 규칙, 작성 체크리스트**를 다룬다.
+CLAUDE.md 6-step 중 **Step 3(sources 작성) → Step 3.5(사용자 confirm) → Step 4(wiki 작성 + assets cp + index.md 갱신)** 를 담당한다. frontmatter 스키마와 figure 규약은 [references/schema.md](references/schema.md), 본문 골격과 index.md 문법은 [references/templates.md](references/templates.md)가 정본이다. 작성 전에 두 파일을 Read한다. 이 문서는 **작업 순서, 용어 표기 규칙, 작성 체크리스트, 문체 가이드**를 다룬다.
 
 ## 담당 범위
 
@@ -48,7 +48,7 @@ git commit은 하지 않는다 (사용자가 지시할 때만). humanize 자동 
 
   나쁜 예: "정책(policy)은 관측(observation)을 받아…" (괄호 병기 + 직역). 이 스타일을 쓰지 않는다.
 - **자명한 것은 풀이 생략**: 널리 알려진 약어(GPU, API, PDF)와 고유명사(Transformer, EfficientNet, Isaac Lab)는 풀이 없이 그대로.
-- **산문 문체**는 아래 "6. wiki 교재 문체 가이드"가 정본이다. 본문 골격(절 구성과 템플릿)은 CLAUDE.md의 Step 4 템플릿을 따른다.
+- **산문 문체**는 아래 "6. wiki 교재 문체 가이드"가 정본이다. 본문 골격(절 구성과 템플릿)은 references/templates.md의 Step 4 템플릿을 따른다.
 
 ## 2. Step 4 wiki 작성 방법 (압축이 아니라 교재식 재구성)
 
@@ -58,7 +58,7 @@ wiki 페이지는 sources를 줄여 쓰는 단계가 **아니다**. 독자가 �
 
 1. `sources/{stem}.md` 전체를 읽는다.
 2. `raw/{type}/{stem}.*`을 읽어 sources에서 빠진 세부(수치, 예시, 비유, 전개 순서)를 확보한다. 원문이 한국어 해설이면 그 전개 구조 자체를 살린다. raw 재독은 누락 복원뿐 아니라 **근거 없는 서술 검출**에도 쓴다. sources와 기존 wiki가 적고 있는 주장을 raw에서 한 문장씩 대조하고, 근거가 없으면 양쪽을 함께 정정한다. 파일럿 osmani-2026에서는 양쪽이 공유하던 "재유도하는 토큰 낭비 제거"가 raw에 없어(원문은 재유도 반복 제거만 말한다) 정정했다.
-3. CLAUDE.md Step 4의 교재식 골격(요약 → 배경 → 핵심 개념 → 방법 → 결과 → 한계 → 핵심 용어 → 관련 페이지)으로 재구성한다.
+3. references/templates.md Step 4의 교재식 골격(요약 → 배경 → 핵심 개념 → 방법 → 결과 → 한계 → 핵심 용어 → 관련 페이지)으로 재구성한다.
 4. curated figure를 관련 절에 배치하고 캡션을 단다.
 5. 분량을 확인한다: wiki 본문이 sources 본문보다 짧으면 어딘가에서 정보를 잃은 것이다. 대조 기준은 **재작성 후 sources 본문**이다. sources를 문체 정비하며 본문이 늘었다면 게이트도 함께 올라간다.
 
