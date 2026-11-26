@@ -39,6 +39,7 @@
     "context7@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
-    "eli5@claude-community": true
+    "eli5@claude-community": true,
+    "vercel@claude-plugins-official": false
   }
 }
