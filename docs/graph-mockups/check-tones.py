@@ -1,6 +1,7 @@
 """check-tones.py: 색상과 톤 시안(F, G, H, I)의 색각 이상 거리와 WCAG 대비를 잰다.
 
     실행: 저장소 루트에서 .venv/bin/python docs/graph-mockups/check-tones.py
+          빌드된 사이트를 잴 때: ... check-tones.py --site http://localhost:4173 (사이트 판 I 와 모노 보기를 잰다)
 
 g-view.html 을 시스템 Chrome 으로 열어 탐색기가 실제로 읽는 계산된 토큰을 main.graph 에서 가져온다.
 - 색각 이상: Machado 2009 행렬(심각도 1.0)로 제1, 제2, 제3 색각 이상을 흉내 내고 카테고리 8색의 모든 짝을
@@ -23,6 +24,7 @@ TOKENS = [f'--cat-{c}' for c in CATS] + [
     '--graph-bg-core', '--graph-bg-edge', '--graph-label', '--graph-label-muted', '--graph-glass', '--graph-glass-solid',
     '--graph-primary-top', '--graph-primary-bottom', '--graph-primary-ink', '--text', '--muted', '--faint', '--signal',
     '--graph-name-alpha', '--graph-name-mix', '--graph-mono', '--graph-mono-1', '--graph-mono-2', '--graph-mono-3',
+    '--graph-mono-accent', '--signal-physical', '--surface', '--bg',
 ]
 
 # Machado, Oliveira, Fernandes 2009, severity 1.0 (선형 RGB 에 곱한다)
@@ -155,10 +157,47 @@ def check(tok, theme):
     aa['강조색 그래픽'] = mn(parse(tok['--signal']), 3)
     if mono:
         aa['무채색 잎 그래픽'] = mn(parse(tok['--graph-mono-1']), 3)  # 쉬는 노드 중 가장 흐린 단계
+        if tok.get('--graph-mono-accent'):
+            aa['모노 강조색 그래픽'] = mn(parse(tok['--graph-mono-accent']), 3)
+    if tok.get('--signal-physical'):  # 목록 판 "들어옴 0" 같은 경고 글자. 무대 바탕과 표면 위
+        aa['--signal-physical 글자'] = (round(min(contrast(parse(tok['--signal-physical']), parse(tok[k])) for k in ['--bg', '--surface']), 2), 4.5)
     return out
 
 
+def check_site(base):
+    """빌드된 사이트: /graph/ 의 I 토큰과 모노 보기, wiki 페이지 미니 그래프 (카테고리 색과 바큇살 --signal 을 wiki --bg 위에서)."""
+    res = {}
+    with sync_playwright() as p:
+        b = p.chromium.launch(channel='chrome')
+        for th in ['dark', 'light']:
+            ctx = b.new_context()
+            ctx.add_init_script(f'localStorage.setItem("theme", "{th}")')
+            pg = ctx.new_page()
+            pg.goto(base + '/graph/')
+            pg.wait_for_selector('main.graph')
+            tok = pg.evaluate('(ns) => { const cs = getComputedStyle(document.querySelector("main.graph")); '
+                              'return Object.fromEntries(ns.map(n => [n, cs.getPropertyValue(n).trim()])); }', TOKENS)
+            tok['--graph-name-alpha'] = '1'  # 사이트 탐색기는 성운 이름 알파 1 로 그린다
+            res[f'site-{th}'] = check(dict(tok, **{'--graph-mono': ''}), th)
+            res[f'site-{th}-mono'] = check(dict(tok, **{'--graph-mono': '1'}), th)
+            pg.goto(base + '/overviews/glossary-agents/')
+            pg.wait_for_selector('.neigh')
+            w = pg.evaluate('() => { const cs = getComputedStyle(document.querySelector(".related")); const g = (n) => cs.getPropertyValue(n).trim(); '
+                            'return { bg: getComputedStyle(document.body).backgroundColor, signal: g("--signal"), '
+                            'cats: [...document.querySelectorAll(".neigh [data-cat]")].map((e) => getComputedStyle(e).getPropertyValue("--c").trim()) }; }')
+            bg = parse(w['bg'])
+            res[f'wiki-{th}'] = {'cvd': {}, 'aa': {
+                '미니 그래프 카테고리 색 그래픽': (round(min(contrast(parse(c), bg) for c in set(w['cats'])), 2), 3),
+                '미니 그래프 바큇살 --signal (불투명, 호버)': (round(contrast(parse(w['signal']), bg), 2), 3),
+            }}
+            ctx.close()
+        b.close()
+    return res
+
+
 def main():
+    if len(sys.argv) > 2 and sys.argv[1] == '--site':
+        return report(check_site(sys.argv[2].rstrip('/')), 'p7-check.json')
     tones = sys.argv[1].split(',') if len(sys.argv) > 1 else ['f', 'g', 'h', 'i']
     res = {}
     with sync_playwright() as p:
@@ -172,6 +211,10 @@ def main():
                                   'return Object.fromEntries(ns.map(n => [n, cs.getPropertyValue(n).trim()])); }', TOKENS)
                 res[f'{t}-{th}'] = check(tok, th)
         b.close()
+    report(res, 'g-check.json')
+
+
+def report(res, out):
     fails = 0
     for k, r in res.items():
         print(f'\n== {k}')
@@ -182,7 +225,7 @@ def main():
             fails += 0 if v >= need else 1
             print(f'  {name}: {v} (기준 {need}){flag}')
     print(f'\n미달 {fails}건')
-    (HERE / 'screenshots' / 'g-check.json').write_text(json.dumps(res, ensure_ascii=False, indent=1))
+    (HERE / 'screenshots' / out).write_text(json.dumps(res, ensure_ascii=False, indent=1))
 
 
 if __name__ == '__main__':

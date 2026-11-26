@@ -148,6 +148,7 @@
     var fActive = false, fCount = N, legendHover = null, fMix = 0;
     var weakOn = false, weakMix = 0; // 약한 연결 렌즈 (06 12.2 E3). 필터가 아니라 표시라 hash 에 싣지 않는다
     var recentOn = false, recentMix = 0; // 최근 추가 위성 점 (06 2절). 같은 이유로 localStorage 에만 둔다
+    var monoOn = false; // "고른 것만 색으로" 보기 (Phase 7 Q12). 쉬는 노드는 무채색, 색은 colorOn() 이 고른 것에만. 역시 localStorage
     // 학습 경로 (06 4절). 한 번에 하나만 켠다 (12.1 R6). stepOf: 노드 → 단계 순번, drawT0: E8 선 그리기 시작 시각 (null 은 비행이 끝나기를 기다림, -1 은 다 그림)
     var pathOn = null, stepOf = new Map(), stepEdges = [], pathIdx = -1, pendingPath = null, drawT0 = -1, badgeBoxes = [];
     var searchHits = new Set(); // 검색 상위 40개: 라벨 강제 후보와 캔버스 고리 (02 7.3)
@@ -458,7 +459,7 @@
     function moving(now) { return !!(flight || glide || wz || morph || (gesture && gesture.moved) || now - wheelT < 160); }
 
     // ── 토큰, 스프라이트, 배경 ───────────────────────────────────────────
-    // main.graph 가 사이트 토큰 일부를 시안 F 값으로 덮어쓰므로 main 에서 읽는다
+    // main.graph 가 사이트 토큰 일부(--signal 등)를 그래프 값으로 덮어쓰므로 main 에서 읽는다
     function readTokens() {
       var cs = getComputedStyle(main), g = function (n) { return cs.getPropertyValue(n).trim(); };
       var cat = {};
@@ -477,6 +478,9 @@
         dim: parseFloat(g('--graph-dim-alpha')) || 0.14,
         path: g('--graph-path'), pathGlow: g('--graph-path-glow'), pathInk: g('--graph-path-ink'),
         lens: g('--graph-lens'), hairline: g('--hairline'), signal: g('--signal'), text: g('--text'), muted: g('--muted'),
+        sheen: parseFloat(g('--graph-node-sheen')) || 1, haze: parseFloat(g('--graph-haze-alpha')) || 0.2,
+        nameMix: parseFloat(g('--graph-name-mix')) || 0, accent: g('--graph-mono-accent'),
+        ring: g('--graph-ring'), mono: { _m1: g('--graph-mono-1'), _m2: g('--graph-mono-2'), _m3: g('--graph-mono-3') },
       };
     }
     function rgbOf(c) {
@@ -493,11 +497,17 @@
 
     // 노드 구슬: 카테고리마다 한 번 그려 두고 drawImage 로 붙인다 (프레임마다 그라데이션 없음)
     var SR = 56;
+    // 모노 보기에서 제 색을 켜는 노드: 궤도 구성원, 호버와 그 이웃, 필터와 범례 결과, 경로 단계, 검색 결과
+    function colorOn(n) {
+      var h = hovered || cursor;
+      return (mode === 'orbit' && n.role >= 0) || !!(h && (n === h || h.nb.has(n))) || !!((fActive || legendHover) && lit[n.i]) ||
+        !!(pathOn && stepOf.has(n)) || searchHits.has(n);
+    }
     function buildSprites() {
       sprites = {};
-      var WHITE = T.specular, BLACK = T.shade, spec = function (a) { return rgba(WHITE, a); };
+      var WHITE = T.specular, BLACK = T.shade, spec = function (a) { return rgba(WHITE, a * T.sheen); };
       cats.forEach(function (id) {
-        var col = rgbOf(T.cat[id]), S = SR * 2 + 8, o = S / 2;
+        var css = T.cat[id], col = rgbOf(css), S = SR * 2 + 8, o = S / 2;
         var core = mk(S), g = core.getContext('2d');
         var gr = g.createRadialGradient(o - SR * 0.34, o - SR * 0.4, SR * 0.04, o, o, SR);
         if (dark) {
@@ -545,21 +555,15 @@
           agr.addColorStop(0, rgba(col, 0.22)); agr.addColorStop(0.5, rgba(col, 0.06)); agr.addColorStop(1, rgba(col, 0));
           ag.fillStyle = agr; ag.fillRect(0, 0, HS, HS);
         }
-        sprites[id] = { core: core, halo: halo, aura: aura, css: T.cat[id] };
+        sprites[id] = { core: core, halo: halo, aura: aura, css: css };
       });
-      // 허브의 렌즈 반짝임: 네 갈래 빛줄기
-      var GS = 256, go = GS / 2, glint = mk(GS), gg = glint.getContext('2d');
-      gg.globalCompositeOperation = 'lighter';
-      [true, false].forEach(function (horiz) {
-        var lg = horiz ? gg.createLinearGradient(0, go, GS, go) : gg.createLinearGradient(go, 0, go, GS);
-        lg.addColorStop(0, spec(0)); lg.addColorStop(0.5, spec(0.9)); lg.addColorStop(1, spec(0));
-        gg.fillStyle = lg; gg.beginPath();
-        var hw = GS * 0.055 / 2;
-        if (horiz) { gg.moveTo(0, go); gg.lineTo(go, go - hw); gg.lineTo(GS, go); gg.lineTo(go, go + hw); }
-        else { gg.moveTo(go, 0); gg.lineTo(go + hw, go); gg.lineTo(go, GS); gg.lineTo(go - hw, go); }
-        gg.fill();
+      // 모노 보기의 쉬는 노드: 빛 없는 무광 원에 무대색 테. 광택, 빛번짐, 그림자는 제 색을 켠 노드에만 남긴다
+      ['_m1', '_m2', '_m3'].forEach(function (id) {
+        var S = SR * 2 + 8, o = S / 2, core = mk(S), g = core.getContext('2d');
+        g.fillStyle = T.mono[id]; g.beginPath(); g.arc(o, o, SR, 0, TAU); g.fill();
+        g.lineWidth = SR * 0.12; g.strokeStyle = rgba(rgbOf(T.ring), 0.55); g.beginPath(); g.arc(o, o, SR * 0.94, 0, TAU); g.stroke();
+        sprites[id] = { core: core, css: T.mono[id] };
       });
-      sprites._glint = glint;
     }
 
     // 배경: 중심이 밝은 남색(dark) 또는 자기 표면(light), 비네트, 별먼지 타일. 크기가 바뀔 때만 다시 그린다
@@ -613,8 +617,8 @@
           t.fillStyle = g; t.fillRect(x - R, y - R, R * 2, R * 2);
         });
         t.globalCompositeOperation = 'source-in';
-        t.fillStyle = T.cat[c]; t.fillRect(0, 0, w, h);
-        o.globalAlpha = dark ? 0.3 : 0.13;
+        t.fillStyle = monoOn ? T.mono._m2 : T.cat[c]; t.fillRect(0, 0, w, h);
+        o.globalAlpha = T.haze * (monoOn ? 0.3 : 1); // 회색 안개는 엷게
         o.drawImage(tmp, 0, 0);
       });
       haze = { img: out, ox: ox, oy: oy, s: S };
@@ -757,7 +761,7 @@
         var passes = fMix > 0.001 ? [1, 0] : [-1];
         for (var b = 0; b < bucketKeys.length; b++) {
           var key = bucketKeys[b], list = buckets[key], same = key !== '_x';
-          ctx.strokeStyle = same ? T.cat[key] : T.edge;
+          ctx.strokeStyle = same && !monoOn ? T.cat[key] : T.edge;
           for (var pi = 0; pi < passes.length; pi++) {
             var want = passes[pi];
             ctx.globalAlpha = T.edgeAlpha * (same ? 1.25 : 0.9) * atlasEA * (want < 0 ? 1 : want ? 1 + 0.5 * fMix : 1 - 0.78 * fMix);
@@ -775,7 +779,7 @@
         // 경로 단계끼리의 엣지는 원래 알파로 돌려 놓는다 (나머지는 필터 밖 엣지와 같은 22%)
         for (var si = 0; si < stepEdges.length && pa > 0; si++) {
           var se = stepEdges[si], sm = se.s.category === se.t.category;
-          ctx.strokeStyle = sm ? T.cat[se.s.category] : T.edge;
+          ctx.strokeStyle = sm && !monoOn ? T.cat[se.s.category] : T.edge;
           ctx.globalAlpha = T.edgeAlpha * (sm ? 1.25 : 0.9) * atlasEA / (1 - 0.78 * pa) * 0.78 * pa;
           ctx.beginPath(); ctx.moveTo(sx(se.s.x), sy(se.s.y)); ctx.lineTo(sx(se.t.x), sy(se.t.y)); ctx.stroke();
         }
@@ -789,7 +793,7 @@
         h.nb.forEach(function (m) {
           var ms = S(m), g = ctx.createLinearGradient(hs.x, hs.y, ms.x, ms.y);
           g.addColorStop(0, T.cat[h.category]); g.addColorStop(1, T.cat[m.category]);
-          ctx.strokeStyle = g; ctx.beginPath(); ctx.moveTo(hs.x, hs.y); ctx.lineTo(ms.x, ms.y); ctx.stroke();
+          ctx.strokeStyle = monoOn ? T.accent : g; ctx.beginPath(); ctx.moveTo(hs.x, hs.y); ctx.lineTo(ms.x, ms.y); ctx.stroke();
         });
       }
       ctx.globalCompositeOperation = 'source-over';
@@ -954,7 +958,7 @@
     }
 
     function drawNodes(now, front) {
-      var k = cam.k, tx = cam.x, ty = cam.y, glint = sprites._glint;
+      var k = cam.k, tx = cam.x, ty = cam.y;
       for (var j = N - 1; j >= 0; j--) {
         var n = rank[j];
         if (n.front !== front) continue;
@@ -963,10 +967,10 @@
         var a = n.p * emph[n.i] * reveal(n, now);
         if (a <= 0.004) continue;
         drawnNodes++;
-        var sp = sprites[n.category];
+        var sp = sprites[monoOn && !colorOn(n) ? (n.degree >= 30 ? '_m3' : n.degree >= 8 ? '_m2' : '_m1') : n.category];
         var big = n.degree >= 30 || n.role === 0, lift = hoverLift[n.i];
         var shine = lit[n.i] ? fMix : 0; // 필터에 남은 노드는 빛이 한 단계 밝다
-        if (dark) {
+        if (!sp.halo) { /* 모노 무광 노드 */ } else if (dark) {
           // 빛번짐: 잎은 작게, 허브와 궤도 중심은 넓게. 궤도의 배경은 절반
           ctx.globalCompositeOperation = 'lighter';
           var hr = r * (big ? 3.4 : 2.5) * (1 + 0.25 * lift + 0.3 * shine);
@@ -985,14 +989,6 @@
         if (n.category === 'overviews') {
           ctx.strokeStyle = sp.css; ctx.lineWidth = 1; ctx.globalAlpha = a * 0.8;
           ctx.beginPath(); ctx.arc(px, py, r + 2.6, 0, TAU); ctx.stroke();
-        }
-        // 렌즈 반짝임: 조감은 큰 허브, 궤도는 중심만 (dark)
-        if (dark && (n.role === 0 || (n.degree >= 50 && n.role === ATLAS && !view)) && a > 0.3) {
-          ctx.globalCompositeOperation = 'lighter';
-          var gl = r * (n.role === 0 ? 4.6 : 3.6);
-          ctx.globalAlpha = a * 0.42;
-          ctx.drawImage(glint, px - gl, py - gl, gl * 2, gl * 2);
-          ctx.globalCompositeOperation = 'source-over';
         }
         // 궤도 중심의 선택 고리 두 겹
         if (view && n === view.c && n.role === 0) {
@@ -1157,13 +1153,14 @@
       list.forEach(function (p) {
         var fa = alpha * (litCat[p.id] === false ? 1 - 0.75 * fMix : 1); // 걸러진 성운 이름은 25% (04 7.3)
         if (p.lead) {
-          ctx.globalAlpha = fa * (dark ? 0.45 : 0.55); ctx.strokeStyle = T.cat[p.id]; ctx.lineWidth = 0.8;
+          ctx.globalAlpha = fa * (dark ? 0.45 : 0.55); ctx.strokeStyle = monoOn ? T.labelMuted : T.cat[p.id]; ctx.lineWidth = 0.8;
           ctx.beginPath(); ctx.moveTo(p.lead[0], p.lead[1]); ctx.lineTo(p.lead[2], p.lead[3]); ctx.stroke();
         }
         ctx.font = '500 ' + p.size + 'px ' + T.font;
         if ('letterSpacing' in ctx) ctx.letterSpacing = p.ls;
-        ctx.globalAlpha = fa * (dark ? 0.7 : 0.8);
-        ctx.fillStyle = T.cat[p.id];
+        ctx.globalAlpha = fa;
+        // 카테고리 색을 라벨색 쪽으로 --graph-name-mix 만큼 섞어 AA 4.5:1 을 맞춘다. 모노 보기는 흐린 라벨색
+        ctx.fillStyle = monoOn ? T.labelMuted : rgba(mixc(rgbOf(T.cat[p.id]), rgbOf(T.label), T.nameMix), 1);
         ctx.fillText(p.name, p.x, p.y);
       });
       if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
@@ -2083,10 +2080,21 @@
       if (!quiet) announce(on ? '최근 추가된 페이지 ' + recentNodes.length + '개 강조' : '강조 해제');
       redraw();
     }
-    // 배지 옆 점: 모바일은 범례 줄이 없어 강조가 켜진 것을 여기서 안다. 두 스위치 중 하나라도 켜지면 단다
-    function syncEmph() { fBtn.classList.toggle('has-emph', weakOn || recentOn); }
+    // 고른 것만 색으로: 쉬는 노드, 엣지, 성운 이름을 무채색으로 (G 시안 규칙). 안개 색이 바뀌므로 안개만 다시 굽는다
+    var monoSw = document.getElementById('graph-mono');
+    function setMono(on, quiet) {
+      monoOn = on;
+      monoSw.setAttribute('aria-checked', String(on));
+      syncEmph();
+      if (T) buildHaze(); // 처음 읽을 때는 아직 토큰 전이다. applyTheme 이 굽는다
+      if (!quiet) announce(on ? '고른 것만 색으로 표시' : '모든 노드를 색으로 표시');
+      redraw();
+    }
+    // 배지 옆 점: 모바일은 범례 줄이 없어 강조가 켜진 것을 여기서 안다. 스위치 중 하나라도 켜지면 단다
+    function syncEmph() { fBtn.classList.toggle('has-emph', weakOn || recentOn || monoOn); }
     try {
       if (localStorage.getItem('graph.weak') === '1') { weakOn = true; weakSw.setAttribute('aria-checked', 'true'); }
+      if (localStorage.getItem('graph.mono') === '1') setMono(true, true);
       if (recentSw && localStorage.getItem('graph.recent') === '1') setRecent(true, true);
     } catch (err) { /* 저장 불가 */ }
     syncEmph();
@@ -2165,6 +2173,7 @@
       if (b.id === 'graph-filters-reset') { resetAll(); return; } // 강조 스위치는 그대로 둔다 (06 2.2)
       if (b === weakSw) { setWeak(!weakOn); try { localStorage.setItem('graph.weak', weakOn ? '1' : '0'); } catch (err) { /* 저장 불가 */ } return; }
       if (b === recentSw) { setRecent(!recentOn); try { localStorage.setItem('graph.recent', recentOn ? '1' : '0'); } catch (err) { /* 저장 불가 */ } return; }
+      if (b === monoSw) { setMono(!monoOn); try { localStorage.setItem('graph.mono', monoOn ? '1' : '0'); } catch (err) { /* 저장 불가 */ } return; }
       if (b.dataset.type) { toggleIn(filt.type, b.dataset.type); return; }
       if (b.dataset.tag) {
         var box = b.parentNode, at = Array.prototype.indexOf.call(box.children, b);

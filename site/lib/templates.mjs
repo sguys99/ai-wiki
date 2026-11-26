@@ -534,6 +534,7 @@ ${typeChips}
       <p class="graph-filters-h" id="graph-f-emph">강조</p>
       <div class="graph-switches" role="group" aria-labelledby="graph-f-emph">${recentSwitch}
         <button type="button" class="graph-switch" id="graph-weak" role="switch" aria-checked="false"><span class="graph-switch-track" aria-hidden="true"></span><span class="graph-switch-label">연결이 적은 페이지</span><span class="graph-chip-n">${weakN}</span></button>
+        <button type="button" class="graph-switch" id="graph-mono" role="switch" aria-checked="false"><span class="graph-switch-track" aria-hidden="true"></span><span class="graph-switch-label">고른 것만 색으로</span></button>
       </div>
     </div>
     <button type="button" class="graph-filters-reset" id="graph-filters-reset">모두 해제</button>

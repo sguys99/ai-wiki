@@ -101,51 +101,51 @@
     --z-header: 100;
     --z-modal: 1000;
 
-    /* 그래프 (/graph/) 와 wiki 미니 그래프가 함께 쓰는 토큰. 값은 시안 F 토큰 블록 (docs/graph-spec/01-layout.md 8.3절) */
+    /* 그래프 (/graph/) 와 wiki 미니 그래프가 함께 쓰는 토큰. 값은 Phase 7 시안 I 심해 그라디언트 (docs/graph-mockups/g-tones.css) */
     --text-2xs: 0.6875rem;
     --dur-fast: 120ms;
     --dur-panel: 240ms;
     --dur-camera: 480ms;
     --dur-reveal: 600ms;
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-    --cat-physical-ai: #ffb05a;
-    --cat-agents: #3ef2d2;
-    --cat-applications: #ff7298;
-    --cat-database: #c4a2ff;
-    --cat-llms: #5e8eff;
-    --cat-overviews: #f3f6ff;
-    --cat-evaluations: #cdf25a;
-    --cat-etc: #7d8ba6;
-    --graph-bg: #070b14;
-    --graph-edge: #9fb4e0;
-    --graph-edge-alpha: 0.07;
+    --cat-physical-ai: #ff9d55;
+    --cat-agents: #45e4dd;
+    --cat-applications: #ff6faa;
+    --cat-database: #ac90ff;
+    --cat-llms: #4f85fe;
+    --cat-overviews: #eef3ff;
+    --cat-evaluations: #ffd85e;
+    --cat-etc: #7a89b9;
+    --graph-bg: #040a1f;
+    --graph-edge: #9ab8ff;
+    --graph-edge-alpha: 0.065;
     --graph-edge-hi-alpha: 0.85;
     --graph-dim-alpha: 0.14;
-    --graph-label: #eef2fa;
-    --graph-label-muted: #9aa5bb;
-    --graph-label-halo: rgba(6, 10, 19, 0.86);
-    --graph-glow-alpha: 0.55;
-    --graph-ring: #070b14;
-    --graph-bg-core: #101a31;
-    --graph-bg-edge: #04060c;
-    --graph-vignette: rgba(0, 0, 0, 0.55);
-    --graph-dust: #d4e2ff;
-    --graph-dust-alpha: 0.55;
+    --graph-label: #eaf0ff;
+    --graph-label-muted: #9aa8cc;
+    --graph-label-halo: rgba(4, 10, 31, 0.86);
+    --graph-glow-alpha: 0.32;
+    --graph-ring: #040a1f;
+    --graph-bg-core: #0f1e4a;
+    --graph-bg-edge: #040a1f;
+    --graph-vignette: rgba(0, 3, 15, 0.5);
+    --graph-dust: #9fc4ff;
+    --graph-dust-alpha: 0.3;
     --graph-backdrop-alpha: 0.16;
-    --graph-lens: rgba(8, 13, 25, 0.84);
+    --graph-lens: rgba(6, 13, 38, 0.86);
     --graph-filament-blend: lighter;
     --graph-shadow-alpha: 0;
-    --graph-path: #f3f6ff;
-    --graph-path-glow: rgba(214, 226, 255, 0.2);
-    --graph-path-ink: #070b14;
-    --graph-glass: rgba(14, 21, 38, 0.64);
-    --graph-glass-edge: rgba(200, 216, 255, 0.13);
-    --graph-glass-top: rgba(255, 255, 255, 0.1);
-    --graph-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0.012) 38%, rgba(255, 255, 255, 0) 100%);
-    --graph-float-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
-    --graph-primary-top: #8af8e4;
-    --graph-primary-bottom: #22d3b6;
-    --graph-primary-ink: #03141a;
+    --graph-path: #eaf0ff;
+    --graph-path-glow: rgba(140, 170, 255, 0.22);
+    --graph-path-ink: #040a1f;
+    --graph-glass: rgba(12, 24, 62, 0.62);
+    --graph-glass-edge: rgba(150, 180, 255, 0.14);
+    --graph-glass-top: rgba(255, 255, 255, 0.09);
+    --graph-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 38%, rgba(255, 255, 255, 0) 100%);
+    --graph-float-shadow: 0 24px 60px rgba(0, 4, 20, 0.6), 0 2px 8px rgba(0, 4, 20, 0.4);
+    --graph-primary-top: #8fb0ff;
+    --graph-primary-bottom: #a88bff;
+    --graph-primary-ink: #060b22;
     --graph-inset: var(--space-4);
     --graph-ctl-h: 38px;
     --graph-row-h: 30px;
@@ -170,12 +170,21 @@
     --space-1-5: 0.375rem;
     --space-2-5: 0.625rem;
     --graph-blur: blur(18px) saturate(150%);
-    --graph-glass-solid: rgba(14, 21, 38, 0.95);
-    --graph-swatch-glow: 8px;
+    --graph-glass-solid: rgba(12, 24, 62, 0.96);
+    --graph-swatch-glow: 6px;
     /* 캔버스 구슬의 반사광, 음영, 라이트 바닥 그림자 색 (graph-explorer.js 가 읽는다) */
     --graph-specular: #ffffff;
     --graph-shade: #000000;
-    --graph-shadow-ink: #182248;
+    --graph-shadow-ink: #0a1a5c;
+    /* 구슬 반사광 세기, 성운 안개 알파, 성운 이름을 라벨색 쪽으로 섞는 비율 (AA 4.5:1 을 맞춘다) */
+    --graph-node-sheen: 0.55;
+    --graph-haze-alpha: 0.26;
+    --graph-name-mix: 0.08;
+    /* "고른 것만 색으로" 보기 (#graph-mono): 쉬는 노드의 무채색 세 단계 (degree 8 미만, 30 미만, 30 이상) 와 호버 엣지 강조색 */
+    --graph-mono-1: #6a6e75;
+    --graph-mono-2: #82868e;
+    --graph-mono-3: #c4c8d0;
+    --graph-mono-accent: #8b93ff;
 
     color-scheme: dark;
   }
@@ -193,62 +202,70 @@
     /* 대비비 light bg 4.74:1 / surface 5.04:1 / surface-2 4.53:1 */
     --signal-physical: #a85b12;
     --signal-physical-dim: rgba(168, 91, 18, 0.18);
-    --cat-physical-ai: #c25e05;
-    --cat-agents: #008f78;
-    --cat-applications: #d42a6c;
-    --cat-database: #8a46e0;
-    --cat-llms: #1e4ac3;
-    --cat-overviews: #4a5573; /* 백랍 구슬. 짙은 남색은 밝은 바탕에서 구멍처럼 읽혔다. 대비 graph bg 6.7:1 */
-    --cat-evaluations: #486500;
-    --cat-etc: #6b7690;
-    --graph-bg: #f3f4f8;
-    --graph-edge: #34405e;
-    --graph-edge-alpha: 0.075;
+    --cat-physical-ai: #c55a0c;
+    --cat-agents: #007f8a;
+    --cat-applications: #c4287f;
+    --cat-database: #6637c8;
+    --cat-llms: #305be8;
+    --cat-overviews: #1a2550;
+    --cat-evaluations: #866d35;
+    --cat-etc: #6679a2;
+    --graph-bg: #e6ecf8;
+    --graph-edge: #23356e;
+    --graph-edge-alpha: 0.07;
     --graph-edge-hi-alpha: 0.78;
     --graph-dim-alpha: 0.16;
-    --graph-label: #141a2e;
-    --graph-label-muted: #566079;
-    --graph-label-halo: rgba(247, 248, 251, 0.92);
+    --graph-label: #101a3d;
+    --graph-label-muted: #4f5d82;
+    --graph-label-halo: rgba(248, 250, 255, 0.92);
     --graph-glow-alpha: 0;
     --graph-ring: #ffffff;
-    --graph-bg-core: #fdfdfe;
-    --graph-bg-edge: #e4e7ef;
-    --graph-vignette: rgba(38, 52, 92, 0.07);
-    --graph-dust: #26314d;
-    --graph-dust-alpha: 0.06;
+    --graph-bg-core: #fbfcff;
+    --graph-bg-edge: #e3e9f7;
+    --graph-vignette: rgba(20, 40, 110, 0.07);
+    --graph-dust: #1b2c66;
+    --graph-dust-alpha: 0.05;
     --graph-backdrop-alpha: 0.2;
-    --graph-lens: rgba(250, 251, 253, 0.86);
+    --graph-lens: rgba(248, 250, 255, 0.86);
     --graph-filament-blend: source-over;
     --graph-shadow-alpha: 1;
-    --graph-path: #141a2e;
-    --graph-path-glow: rgba(20, 26, 46, 0.12);
+    --graph-path: #101a3d;
+    --graph-path-glow: rgba(36, 83, 216, 0.14);
     --graph-path-ink: #ffffff;
     --graph-glass: rgba(255, 255, 255, 0.7);
-    --graph-glass-edge: rgba(30, 45, 90, 0.09);
+    --graph-glass-edge: rgba(30, 50, 120, 0.1);
     --graph-glass-top: rgba(255, 255, 255, 0.95);
     --graph-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 40%, rgba(255, 255, 255, 0) 100%);
-    --graph-float-shadow: 0 22px 48px rgba(28, 40, 84, 0.13), 0 2px 6px rgba(28, 40, 84, 0.07);
-    --graph-primary-top: #0b8f79;
-    --graph-primary-bottom: #006f5c;
+    --graph-float-shadow: 0 22px 48px rgba(20, 40, 110, 0.13), 0 2px 6px rgba(20, 40, 110, 0.07);
+    --graph-primary-top: #3d6bff;
+    --graph-primary-bottom: #6a45e6;
     --graph-primary-ink: #ffffff;
     --graph-glass-solid: rgba(255, 255, 255, 0.96);
     --graph-swatch-glow: 0px;
+    --graph-shadow-ink: #1b2a6b;
+    --graph-node-sheen: 0.7;
+    --graph-haze-alpha: 0.14;
+    --graph-name-mix: 0.22;
+    --graph-mono-1: #7f8289;
+    --graph-mono-2: #6a6e75;
+    --graph-mono-3: #2b2f37;
+    --graph-mono-accent: #5055e0;
     color-scheme: light;
   }
 
-  /* 그래프 페이지만 사이트 토큰을 시안 F 값으로 덮어쓴다. main 범위라 공용 헤더와 푸터는 그대로다 (01 8.3절) */
+  /* 그래프 페이지만 사이트 토큰을 시안 I 값으로 덮어쓴다 (강조색 --signal 도 그래프 안에서만 바뀐다). main 범위라 공용 헤더와 푸터는 그대로다 (01 8.3절) */
   main.graph,
   main.g3d {
-    --bg: #070b14;
-    --surface: #0f1626;
-    --surface-2: #172036;
-    --text: #e8ecf5;
-    --muted: #8d98ae;
-    --faint: #7a859b;
-    --hairline: rgba(160, 182, 235, 0.12);
-    --signal: #3ef2d2;
-    --signal-dim: rgba(62, 242, 210, 0.22);
-    --signal-physical: #ffb05a;
+    --bg: #040a1f;
+    --surface: #0c1a44;
+    --surface-2: #132353;
+    --text: #eaf0ff;
+    --muted: #9aa8cc;
+    --faint: #8391b6;
+    --hairline: rgba(150, 180, 255, 0.13);
+    --signal: #6fe3f0;
+    --signal-dim: rgba(111, 227, 240, 0.22);
+    --signal-physical: #ff9d55;
     /* --graph-header-h 는 탐색기가 런타임에 넣으므로 :root 가 아니라 여기서 계산한다 (01 8.2절) */
     --graph-top: calc(var(--graph-header-h, var(--header-h)) + var(--graph-inset));
     /* --signal 을 읽는 파생 토큰은 덮어쓴 값을 따라가도록 main 에서 계산한다 */
@@ -257,16 +274,16 @@
     --graph-press: scale(0.96);
   }
   :root[data-theme='light'] main.graph {
-    --bg: #f3f4f8;
+    --bg: #e6ecf8;
     --surface: #ffffff;
-    --surface-2: #eef0f6;
-    --text: #141a2e;
-    --muted: #566079;
-    --faint: #646e86;
-    --hairline: rgba(30, 45, 90, 0.1);
-    --signal: #007d69;
-    --signal-dim: rgba(0, 125, 105, 0.16);
-    --signal-physical: #b35505;
+    --surface-2: #eef2fb;
+    --text: #101a3d;
+    --muted: #4f5d82;
+    --faint: #5a6890;
+    --hairline: rgba(30, 50, 120, 0.1);
+    --signal: #1f5fd6;
+    --signal-dim: rgba(31, 95, 214, 0.16);
+    --signal-physical: #a34c08;
   }
 
   /* 도메인 강조색 스코프 전환. 컴포넌트가 전부 --signal을 읽으므로 토큰만 바꾸면

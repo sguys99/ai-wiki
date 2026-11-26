@@ -7,37 +7,25 @@
 // graph-core.js 를 앞에 두는 것으로 순서가 보장된다.
 //
 // 색은 CSS 토큰을 런타임에 읽는다. 하드코딩하지 않으므로 테마 토글이 그대로 따라온다.
-// 노드 도메인은 graph.json 의 domain 필드다(빌드의 domains.mjs 가 단일 소스).
 
 (function () {
   'use strict';
 
   // ── CSS 토큰 ───────────────────────────────────────────────────────────────
-  // 한 번의 getComputedStyle 로 그래프가 쓰는 색을 모두 읽는다.
-  // core 는 --signal(아쿠아), physical 은 --signal-physical(앰버).
+  // 한 번의 getComputedStyle 로 히어로가 쓰는 색을 읽는다. 카테고리 색은 /graph/ 와 같은 --cat-* 토큰이다.
   function palette() {
     var cs = getComputedStyle(document.documentElement);
     var get = function (name, fallback) {
       var v = cs.getPropertyValue(name);
       return (v && v.trim()) || fallback;
     };
+    var etc = get('--cat-etc', '#7a89b9');
     return {
-      bg: get('--bg', '#0b0e14'),
-      surface: get('--surface', '#141923'),
-      text: get('--text', '#e6e9ef'),
-      muted: get('--muted', '#8a93a3'),
-      faint: get('--faint', '#5a6373'),
-      hairline: get('--hairline', '#232a38'),
-      signal: get('--signal', '#5eead4'),
-      signalDim: get('--signal-dim', 'rgba(94,234,212,.25)'),
-      physical: get('--signal-physical', '#f0a868'),
-      physicalDim: get('--signal-physical-dim', 'rgba(240,168,104,.25)'),
+      edge: get('--graph-edge', '#9ab8ff'),
+      cat: function (c) {
+        return get('--cat-' + c, etc);
+      },
     };
-  }
-
-  // 노드 도메인 → 강조색. graph.json 에 domain 이 없던 시절 캐시를 만나면 core 로 떨어진다.
-  function isPhysical(node) {
-    return !!node && node.domain === 'physical';
   }
 
   // ── 캔버스 ─────────────────────────────────────────────────────────────────
@@ -103,7 +91,6 @@
 
   window.GraphCore = {
     palette: palette,
-    isPhysical: isPhysical,
     reduceMotion: reduceMotion,
     fitCanvas: fitCanvas,
     onResize: onResize,
