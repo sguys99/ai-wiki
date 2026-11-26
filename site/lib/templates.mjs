@@ -738,6 +738,37 @@ export function about(html, intro) {
   });
 }
 
+// ── 404 (dist/404.html) ──────────────────────────────────────────────────────
+//
+// GitHub Pages 는 어느 깊이의 없는 주소에도 이 파일을 그대로 준다. 그래서 링크와 에셋은
+// 전부 href() 의 BASE 절대경로여야 하고(layout 이 이미 그렇다), 상대경로를 쓰면 안 된다.
+// data-pagefind-body 가 없어 Pagefind 색인에서도 빠진다.
+export function notFound() {
+  const body = `<div class="nf">
+  <svg class="nf-mark" viewBox="0 0 120 56" aria-hidden="true">
+    <line x1="12" y1="40" x2="44" y2="14"/><line x1="44" y1="14" x2="74" y2="38"/>
+    <line class="nf-gap" x1="74" y1="38" x2="104" y2="16"/>
+    <circle cx="12" cy="40" r="4"/><circle cx="44" cy="14" r="5"/><circle cx="74" cy="38" r="4"/>
+    <circle class="nf-lost" cx="106" cy="15" r="6"/>
+  </svg>
+  <p class="eyebrow">404 · 없는 페이지</p>
+  <h1 class="nf-title">이 주소에는 페이지가 없습니다</h1>
+  <p class="nf-lede">주소가 바뀌었거나 아직 없는 페이지입니다. 위의 검색으로 찾거나 홈이나 그래프에서 다시 시작하세요.</p>
+  <nav class="nf-links" aria-label="다시 시작">
+    <a class="nf-link is-primary" href="${href('/')}">홈으로</a>
+    <a class="nf-link" href="${href('/graph/')}">그래프에서 찾기</a>
+  </nav>
+</div>`;
+
+  return layout({
+    title: '페이지를 찾을 수 없습니다',
+    body,
+    mainClass: 'not-found',
+    path: '/404.html',
+    head: '<meta name="robots" content="noindex">',
+  });
+}
+
 // ── 위키(절) 페이지 ───────────────────────────────────────────────────────────
 //
 // 리딩 컬럼(~72ch) + 데스크톱 우측 TOC rail(scrollspy) + 상단 진행바 + 페이지 헤더.

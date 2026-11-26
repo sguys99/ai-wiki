@@ -4702,3 +4702,80 @@
     }
   }
 }
+
+/* ── 404 (dist/404.html). 어느 깊이의 없는 주소에서도 같은 파일이 뜬다 ── */
+@layer components {
+  .nf {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: clamp(var(--space-12), 12vh, 7rem) var(--space-4) var(--space-12);
+    text-align: center;
+  }
+  .nf-mark {
+    display: block;
+    width: 8.5rem;
+    height: auto;
+    margin: 0 auto var(--space-6);
+    color: var(--signal);
+    overflow: visible;
+  }
+  .nf-mark line {
+    stroke: currentColor;
+    stroke-opacity: 0.45;
+    stroke-width: 1.5;
+  }
+  .nf-mark circle {
+    fill: currentColor;
+  }
+  .nf-mark .nf-gap,
+  .nf-mark .nf-lost {
+    fill: none;
+    stroke: var(--faint);
+    stroke-opacity: 1;
+    stroke-width: 1.5;
+    stroke-dasharray: 3 4;
+  }
+  .nf-title {
+    margin: var(--space-2) 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-2xl), 5vw, var(--text-3xl));
+    line-height: var(--leading-tight);
+    text-wrap: balance;
+  }
+  .nf-lede {
+    max-width: 32rem;
+    margin: var(--space-4) auto 0;
+    color: var(--muted);
+    line-height: var(--leading-body);
+    text-wrap: pretty;
+  }
+  .nf-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+  .nf-link {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: 550;
+    color: var(--text);
+    text-decoration: none;
+    border: var(--hairline-w) solid var(--hairline);
+    border-radius: var(--radius-md);
+    transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+  }
+  .nf-link:hover {
+    border-color: var(--signal);
+  }
+  /* 그래프 페이지의 주 버튼과 같은 토큰. 두 테마 모두 글자 대비가 맞춰져 있다 */
+  .nf-link.is-primary {
+    color: var(--graph-primary-ink);
+    background: linear-gradient(180deg, var(--graph-primary-top), var(--graph-primary-bottom));
+    border-color: transparent;
+  }
+  .nf-link.is-primary:hover {
+    filter: brightness(1.06);
+  }
+}

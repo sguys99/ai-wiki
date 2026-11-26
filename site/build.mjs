@@ -18,7 +18,7 @@ import { addedDates } from './lib/dates.mjs';
 import { buildGraph, toGraphJson, recentInfo, checkGraphJson, weakLinks, toPathsJson } from './lib/graph.mjs';
 import { layoutGraph, layoutGraph3d } from './lib/graph-layout.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
-import { home, wiki, about, tagIndex, tag, graphPage, graph3dPage, studyPathSection } from './lib/templates.mjs';
+import { home, wiki, about, tagIndex, tag, graphPage, graph3dPage, studyPathSection, notFound } from './lib/templates.mjs';
 import { domainOf } from './lib/domains.mjs';
 import { prevNext } from './lib/nav.mjs';
 import { aboutMarkdown, ABOUT_INTRO } from './lib/about.mjs';
@@ -335,6 +335,9 @@ async function main() {
   await mkdir(join(DIST, 'about'), { recursive: true });
   await writeFile(join(DIST, 'about', 'index.html'), about(aboutRender.html, ABOUT_INTRO));
   console.log('[render] about page rendered');
+
+  // 6.6) 404 — GitHub Pages 가 없는 주소마다 dist/404.html 을 준다
+  await writeFile(join(DIST, '404.html'), notFound());
 
   // 7) 깨진 링크 리포트
   const brokenTotal = brokenByPage.reduce((n, b) => n + b.targets.length, 0);
