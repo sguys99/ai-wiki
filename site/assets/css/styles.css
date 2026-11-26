@@ -61,7 +61,7 @@
     --surface-2: #1b2230;
     --text: #e6e9ef;
     --muted: #8a93a3;
-    --faint: #5a6373;
+    --faint: #7f899a; /* AA: bg 5.47 / surface 4.98 / surface-2 4.51 */
     --hairline: #232a38;
     --signal: #5eead4; /* luminous aqua — core 도메인 강조 */
     --signal-dim: rgba(94, 234, 212, 0.25); /* edge/glow/selection */
@@ -195,13 +195,15 @@
     --surface-2: #f1f3f7;
     --text: #161a22;
     --muted: #5c6473;
-    --faint: #9aa2b0;
+    --faint: #686f7c; /* AA: bg 4.76 / surface 5.06 / surface-2 4.55 */
     --hairline: #e3e7ee;
-    --signal: #0fb89b;
-    --signal-dim: rgba(15, 184, 155, 0.18);
-    /* 대비비 light bg 4.74:1 / surface 5.04:1 / surface-2 4.53:1 */
-    --signal-physical: #a85b12;
-    --signal-physical-dim: rgba(168, 91, 18, 0.18);
+    /* 두 강조색은 글자 AA 를 -dim 틴트 호버 바탕(칩, 펼침 요약) 위에서도 지키도록 OKLCH 명도만 낮췄다.
+       --signal oklch(0.474 0.099 176): bg 5.93 / surface 6.30 / surface-2 5.67 / 틴트 위 4.54 이상
+       --signal-physical oklch(0.501 0.127 57): bg 5.87 / surface 6.23 / surface-2 5.61 / 틴트 위 4.50 이상 */
+    --signal: #006d59;
+    --signal-dim: rgba(0, 109, 89, 0.18);
+    --signal-physical: #984c00;
+    --signal-physical-dim: rgba(152, 76, 0, 0.18);
     --cat-physical-ai: #c55a0c;
     --cat-agents: #007f8a;
     --cat-applications: #c4287f;
@@ -752,7 +754,7 @@
     color: var(--faint);
   }
   .filter-chip.is-active .filter-count {
-    color: color-mix(in srgb, var(--bg) 70%, var(--signal));
+    color: var(--bg); /* 칩 바탕이 --signal 이라 섞으면 AA 미달 */
   }
 
   /* ── 카테고리 밴드 ── */
@@ -1943,7 +1945,7 @@
     color: var(--faint);
   }
   .facet-chip.is-active .facet-n {
-    color: color-mix(in srgb, var(--bg) 70%, var(--signal));
+    color: var(--bg); /* 칩 바탕이 --signal 이라 섞으면 AA 미달 */
   }
 
   /* 모바일: 태그 헤더 여백 축소 */

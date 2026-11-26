@@ -81,7 +81,7 @@
 
 `main.graph` (light 는 `:root[data-theme='light'] main.graph`) 는 그래프 안의 사이트 토큰을 덮어쓴다: dark `--bg #040a1f`, `--surface #0c1a44`, `--surface-2 #132353`, `--text #eaf0ff`, `--muted #9aa8cc`, `--faint #8391b6`, `--signal #6fe3f0`, `--signal-physical #ff9d55`. light `--bg #e6ecf8`, `--surface #ffffff`, `--surface-2 #eef2fb`, `--text #101a3d`, `--muted #4f5d82`, `--faint #5a6890`, `--signal #1f5fd6`, `--signal-physical #a34c08` (목록 판 "들어옴 0" 경고 글자가 무대와 표면 위에서 4.93:1 이 되게 I 의 physical-ai 보다 짙게 했다).
 
-남겨 둔 것: wiki 미니 그래프의 바큇살과 호버 테는 페이지의 강조색 `--signal` 을 따른다 (core 아쿠아, physical 앰버). 라이트 core 의 `#0fb89b` 는 wiki 바탕 위 2.37:1 로 그래픽 3:1 에 못 미치는데, 사이트 공용 크롬의 라이트 대비 문제와 같은 토큰이라 그 작업에서 함께 올린다.
+남겨 둔 것: wiki 미니 그래프의 바큇살과 호버 테는 페이지의 강조색 `--signal` 을 따른다 (core 아쿠아, physical 앰버). 라이트 강조색은 공용 크롬 대비 수정에서 `--signal` `#0fb89b` → `#006d59` (wiki 바탕 5.93:1), `--signal-physical` `#a85b12` → `#984c00` (5.87:1) 로 낮췄다. 바큇살은 `stroke-opacity: 0.45` 라 실제 합성색은 바탕 위 약 2.0:1 이다 (장식이고 이웃 목록이 텍스트 판본).
 
 ## 0. 처음 판(A ~ E)과 F의 차이
 
