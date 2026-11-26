@@ -1,0 +1,152 @@
+[
+  {
+    "id": "slide04",
+    "label": "Slide 4",
+    "kind": "figure",
+    "file": "frame-0148.png",
+    "timestamp": "01:48",
+    "strategy": "keyframe",
+    "caption": "철학의 존재론에서 특정 분야의 개념과 관계를 나타내는 지도로 이어지는 정의",
+    "curated": true
+  },
+  {
+    "id": "slide05",
+    "label": "Slide 5",
+    "kind": "figure",
+    "file": "frame-0328.png",
+    "timestamp": "03:28",
+    "strategy": "keyframe",
+    "caption": "대학 사례의 개체, 범주, 속성, 관계를 비교한 표",
+    "curated": true
+  },
+  {
+    "id": "slide06",
+    "label": "Slide 6",
+    "kind": "figure",
+    "file": "frame-0548.png",
+    "timestamp": "05:48",
+    "strategy": "keyframe",
+    "caption": "트리플의 세 자리와 ontology를 적용했을 때의 역할",
+    "curated": true
+  },
+  {
+    "id": "slide08",
+    "label": "Slide 8",
+    "kind": "figure",
+    "file": "frame-0708.png",
+    "timestamp": "07:08",
+    "strategy": "keyframe",
+    "caption": "학생과 교수, 교육기관의 범주 정의를 실제 인물과 학교에 대응시킨 도식",
+    "curated": true
+  },
+  {
+    "id": "slide09",
+    "label": "Slide 9",
+    "kind": "figure",
+    "file": "frame-0848.png",
+    "timestamp": "08:48",
+    "strategy": "keyframe",
+    "caption": "동물의 상하위 분류와 자동차를 중심으로 연결한 어휘 관계",
+    "curated": true
+  },
+  {
+    "id": "slide10",
+    "label": "Slide 10",
+    "kind": "figure",
+    "file": "frame-1248.png",
+    "timestamp": "12:48",
+    "strategy": "keyframe",
+    "caption": "배터리 프로젝트의 여러 이름과 제조 불량의 부서별 추적 경로",
+    "curated": true
+  },
+  {
+    "id": "slide11",
+    "label": "Slide 11",
+    "kind": "figure",
+    "file": "frame-1428.png",
+    "timestamp": "14:28",
+    "strategy": "keyframe",
+    "caption": "데이터베이스, 데이터 사전, 분류 체계가 제공하는 연결의 비교",
+    "curated": true
+  },
+  {
+    "id": "slide14",
+    "label": "Slide 14",
+    "kind": "figure",
+    "file": "frame-1628.png",
+    "timestamp": "16:28",
+    "strategy": "keyframe",
+    "caption": "WordNet의 의미 단위 동의어 집합과 주요 어휘 관계",
+    "curated": true
+  },
+  {
+    "id": "slide15",
+    "label": "Slide 15",
+    "kind": "figure",
+    "file": "frame-1708.png",
+    "timestamp": "17:08",
+    "strategy": "keyframe",
+    "caption": "Visuwords에서 인공지능의 상위 개념과 하위 개념을 탐색한 화면",
+    "curated": true
+  },
+  {
+    "id": "slide16",
+    "label": "Slide 16",
+    "kind": "figure",
+    "file": "frame-1828.png",
+    "timestamp": "18:28",
+    "strategy": "keyframe",
+    "caption": "UMLS의 개념 통합과 의미 유형 연결을 담당하는 두 구성 요소",
+    "curated": true
+  },
+  {
+    "id": "slide17",
+    "label": "Slide 17",
+    "kind": "figure",
+    "file": "frame-1928.png",
+    "timestamp": "19:28",
+    "strategy": "keyframe",
+    "caption": "UMLS에서 직접 관계와 상속 관계를 방향별로 나눈 표",
+    "curated": true
+  },
+  {
+    "id": "slide18",
+    "label": "Slide 18",
+    "kind": "figure",
+    "file": "frame-2028.png",
+    "timestamp": "20:28",
+    "strategy": "keyframe",
+    "caption": "UMLS 브라우저가 한 의미 유형의 정의와 관계를 나눠 표시한 화면",
+    "curated": true
+  },
+  {
+    "id": "slide19",
+    "label": "Slide 19",
+    "kind": "figure",
+    "file": "frame-2228.png",
+    "timestamp": "22:28",
+    "strategy": "keyframe",
+    "caption": "같은 음식점 정보를 표현한 서로 다른 HTML과 Schema.org 표시의 비교",
+    "curated": true
+  },
+  {
+    "id": "slide20",
+    "label": "Slide 20",
+    "kind": "figure",
+    "file": "frame-2348.png",
+    "timestamp": "23:48",
+    "strategy": "keyframe",
+    "caption": "Google Maps의 서울대학교 예에서 확인한 Schema.org Place 표기",
+    "curated": true
+  },
+  {
+    "id": "slide22",
+    "label": "Slide 22",
+    "kind": "figure",
+    "file": "frame-2528.png",
+    "timestamp": "25:28",
+    "strategy": "keyframe",
+    "caption": "구축과 평가에서 LLM과 시계열 및 이미지 활용까지 이어지는 스터디 계획",
+    "curated": true
+  }
+]

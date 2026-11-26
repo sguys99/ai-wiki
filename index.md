@@ -48,6 +48,7 @@ Vector DB, RAG 인프라, embedding store (pgvector, Qdrant, Weaviate 등).
 - [[database/startrail-org-pixelrag|PixelRAG (repo)]]: 문서를 파싱하지 않고 스크린샷으로 렌더링해 이미지 자체를 검색하는 visual RAG. 위키피디아 828만 페이지 인덱스를 키 없이 쓰는 API와 Claude Code 플러그인 pixelbrowse를 함께 공개한다 (2026, repo)
 - [[database/volcengine-openviking|OpenViking (repo)]]: 에이전트의 context를 viking:// 파일시스템 하나로 통합하고 directory recursive retrieval로 LoCoMo, tau2-bench 성능을 높인 context database (2026, repo)
 - [[database/nvidia-auto-ontology|NVIDIA/auto-ontology (repo)]]: DB 메타데이터에서 ontology를 생성하고 사람이 인증한 term과 SQL attribute로 에이전트가 검증된 SQL을 짜게 하는 context layer. MCP와 REST API로 노출한다 (2026, repo)
+- [[database/dsba-2026-dsba-study-ontology-knowledge-graph|DSBA ontology와 지식 그래프 입문]]: 학생, 교수, 학교를 연결하는 예로 개체와 관계를 익히고 WordNet, UMLS, Schema.org를 강의 화면으로 살펴본다 (2026, video)
 
 ## LLMs (llms)
 
