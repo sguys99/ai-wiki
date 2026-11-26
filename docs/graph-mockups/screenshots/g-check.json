@@ -1,0 +1,570 @@
+{
+ "f-dark": {
+  "cvd": {
+   "normal": [
+    13.2,
+    "llms/etc"
+   ],
+   "protan": [
+    7.1,
+    "applications/etc"
+   ],
+   "deutan": [
+    6.8,
+    "physical-ai/evaluations"
+   ],
+   "tritan": [
+    11.0,
+    "overviews/evaluations"
+   ]
+  },
+  "aa": {
+   "캔버스 라벨": [
+    15.42,
+    4.5
+   ],
+   "흐린 라벨": [
+    6.98,
+    4.5
+   ],
+   "성운 이름": [
+    3.14,
+    4.5
+   ],
+   "--text / glass": [
+    15.11,
+    4.5
+   ],
+   "--muted / glass": [
+    6.16,
+    4.5
+   ],
+   "--faint / glass": [
+    4.82,
+    4.5
+   ],
+   "--text / glass-solid": [
+    15.34,
+    4.5
+   ],
+   "--muted / glass-solid": [
+    6.26,
+    4.5
+   ],
+   "--faint / glass-solid": [
+    4.89,
+    4.5
+   ],
+   "주 버튼 글": [
+    12.1,
+    4.5
+   ],
+   "카테고리 색 그래픽": [
+    5.04,
+    3
+   ],
+   "강조색 그래픽": [
+    12.22,
+    3
+   ]
+  }
+ },
+ "f-light": {
+  "cvd": {
+   "normal": [
+    12.4,
+    "overviews/etc"
+   ],
+   "protan": [
+    5.1,
+    "applications/overviews"
+   ],
+   "deutan": [
+    10.1,
+    "agents/applications"
+   ],
+   "tritan": [
+    5.6,
+    "physical-ai/applications"
+   ]
+  },
+  "aa": {
+   "캔버스 라벨": [
+    13.95,
+    4.5
+   ],
+   "흐린 라벨": [
+    5.08,
+    4.5
+   ],
+   "성운 이름": [
+    2.58,
+    4.5
+   ],
+   "--text / glass": [
+    16.22,
+    4.5
+   ],
+   "--muted / glass": [
+    5.9,
+    4.5
+   ],
+   "--faint / glass": [
+    4.79,
+    4.5
+   ],
+   "--text / glass-solid": [
+    17.12,
+    4.5
+   ],
+   "--muted / glass-solid": [
+    6.23,
+    4.5
+   ],
+   "--faint / glass-solid": [
+    5.06,
+    4.5
+   ],
+   "주 버튼 글": [
+    4.94,
+    4.5
+   ],
+   "카테고리 색 그래픽": [
+    3.26,
+    3
+   ],
+   "강조색 그래픽": [
+    4.1,
+    3
+   ]
+  }
+ },
+ "g-dark": {
+  "cvd": {
+   "normal": [
+    14.3,
+    "llms/etc"
+   ],
+   "protan": [
+    5.3,
+    "database/llms"
+   ],
+   "deutan": [
+    6.0,
+    "agents/applications"
+   ],
+   "tritan": [
+    7.8,
+    "physical-ai/applications"
+   ]
+  },
+  "aa": {
+   "캔버스 라벨": [
+    15.14,
+    4.5
+   ],
+   "흐린 라벨": [
+    6.38,
+    4.5
+   ],
+   "성운 이름": [
+    6.38,
+    4.5
+   ],
+   "--text / glass": [
+    14.86,
+    4.5
+   ],
+   "--muted / glass": [
+    6.06,
+    4.5
+   ],
+   "--faint / glass": [
+    4.74,
+    4.5
+   ],
+   "--text / glass-solid": [
+    14.86,
+    4.5
+   ],
+   "--muted / glass-solid": [
+    6.06,
+    4.5
+   ],
+   "--faint / glass-solid": [
+    4.74,
+    4.5
+   ],
+   "주 버튼 글": [
+    7.13,
+    4.5
+   ],
+   "카테고리 색 그래픽": [
+    4.95,
+    3
+   ],
+   "강조색 그래픽": [
+    6.46,
+    3
+   ],
+   "무채색 잎 그래픽": [
+    3.14,
+    3
+   ]
+  }
+ },
+ "g-light": {
+  "cvd": {
+   "normal": [
+    12.7,
+    "database/llms"
+   ],
+   "protan": [
+    5.4,
+    "database/llms"
+   ],
+   "deutan": [
+    7.0,
+    "agents/etc"
+   ],
+   "tritan": [
+    6.3,
+    "physical-ai/applications"
+   ]
+  },
+  "aa": {
+   "캔버스 라벨": [
+    15.85,
+    4.5
+   ],
+   "흐린 라벨": [
+    5.32,
+    4.5
+   ],
+   "성운 이름": [
+    5.32,
+    4.5
+   ],
+   "--text / glass": [
+    17.41,
+    4.5
+   ],
+   "--muted / glass": [
+    5.84,
+    4.5
+   ],
+   "--faint / glass": [
+    4.82,
+    4.5
+   ],
+   "--text / glass-solid": [
+    17.72,
+    4.5
+   ],
+   "--muted / glass-solid": [
+    5.95,
+    4.5
+   ],
+   "--faint / glass-solid": [
+    4.91,
+    4.5
+   ],
+   "주 버튼 글": [
+    5.65,
+    4.5
+   ],
+   "카테고리 색 그래픽": [
+    3.9,
+    3
+   ],
+   "강조색 그래픽": [
+    5.04,
+    3
+   ],
+   "무채색 잎 그래픽": [
+    3.09,
+    3
+   ]
+  }
+ },
+ "h-dark": {
+  "cvd": {
+   "normal": [
+    16.2,
+    "applications/database"
+   ],
+   "protan": [
+    5.3,
+    "database/llms"
+   ],
+   "deutan": [
+    5.3,
+    "agents/applications"
+   ],
+   "tritan": [
+    5.4,
+    "physical-ai/applications"
+   ]
+  },
+  "aa": {
+   "캔버스 라벨": [
+    13.28,
+    4.5
+   ],
+   "흐린 라벨": [
+    5.81,
+    4.5
+   ],
+   "성운 이름": [
+    4.84,
+    4.5
+   ],
+   "--text / glass": [
+    12.86,
+    4.5
+   ],
+   "--muted / glass": [
+    5.62,
+    4.5
+   ],
+   "--faint / glass": [
+    5.02,
+    4.5
+   ],
+   "--text / glass-solid": [
+    12.8,
+    4.5
+   ],
+   "--muted / glass-solid": [
+    5.6,
+    4.5
+   ],
+   "--faint / glass-solid": [
+    5.0,
+    4.5
+   ],
+   "주 버튼 글": [
+    14.42,
+    4.5
+   ],
+   "카테고리 색 그래픽": [
+    4.84,
+    3
+   ],
+   "강조색 그래픽": [
+    6.86,
+    3
+   ]
+  }
+ },
+ "h-light": {
+  "cvd": {
+   "normal": [
+    14.0,
+    "agents/evaluations"
+   ],
+   "protan": [
+    5.5,
+    "physical-ai/evaluations"
+   ],
+   "deutan": [
+    5.7,
+    "agents/applications"
+   ],
+   "tritan": [
+    5.7,
+    "physical-ai/applications"
+   ]
+  },
+  "aa": {
+   "캔버스 라벨": [
+    15.46,
+    4.5
+   ],
+   "흐린 라벨": [
+    4.66,
+    4.5
+   ],
+   "성운 이름": [
+    4.82,
+    4.5
+   ],
+   "--text / glass": [
+    16.66,
+    4.5
+   ],
+   "--muted / glass": [
+    5.02,
+    4.5
+   ],
+   "--faint / glass": [
+    5.02,
+    4.5
+   ],
+   "--text / glass-solid": [
+    16.8,
+    4.5
+   ],
+   "--muted / glass-solid": [
+    5.06,
+    4.5
+   ],
+   "--faint / glass-solid": [
+    5.06,
+    4.5
+   ],
+   "주 버튼 글": [
+    16.83,
+    4.5
+   ],
+   "카테고리 색 그래픽": [
+    3.33,
+    3
+   ],
+   "강조색 그래픽": [
+    5.11,
+    3
+   ]
+  }
+ },
+ "i-dark": {
+  "cvd": {
+   "normal": [
+    11.0,
+    "llms/etc"
+   ],
+   "protan": [
+    5.4,
+    "applications/etc"
+   ],
+   "deutan": [
+    8.7,
+    "physical-ai/evaluations"
+   ],
+   "tritan": [
+    8.5,
+    "physical-ai/applications"
+   ]
+  },
+  "aa": {
+   "캔버스 라벨": [
+    14.11,
+    4.5
+   ],
+   "흐린 라벨": [
+    6.78,
+    4.5
+   ],
+   "성운 이름": [
+    5.15,
+    4.5
+   ],
+   "--text / glass": [
+    14.75,
+    4.5
+   ],
+   "--muted / glass": [
+    7.09,
+    4.5
+   ],
+   "--faint / glass": [
+    5.36,
+    4.5
+   ],
+   "--text / glass-solid": [
+    15.1,
+    4.5
+   ],
+   "--muted / glass-solid": [
+    7.26,
+    4.5
+   ],
+   "--faint / glass-solid": [
+    5.49,
+    4.5
+   ],
+   "주 버튼 글": [
+    8.07,
+    4.5
+   ],
+   "카테고리 색 그래픽": [
+    4.68,
+    3
+   ],
+   "강조색 그래픽": [
+    10.67,
+    3
+   ]
+  }
+ },
+ "i-light": {
+  "cvd": {
+   "normal": [
+    12.9,
+    "database/llms"
+   ],
+   "protan": [
+    5.6,
+    "physical-ai/evaluations"
+   ],
+   "deutan": [
+    5.4,
+    "database/llms"
+   ],
+   "tritan": [
+    7.8,
+    "physical-ai/applications"
+   ]
+  },
+  "aa": {
+   "캔버스 라벨": [
+    13.96,
+    4.5
+   ],
+   "흐린 라벨": [
+    5.36,
+    4.5
+   ],
+   "성운 이름": [
+    4.83,
+    4.5
+   ],
+   "--text / glass": [
+    16.03,
+    4.5
+   ],
+   "--muted / glass": [
+    6.16,
+    4.5
+   ],
+   "--faint / glass": [
+    5.19,
+    4.5
+   ],
+   "--text / glass-solid": [
+    16.85,
+    4.5
+   ],
+   "--muted / glass-solid": [
+    6.47,
+    4.5
+   ],
+   "--faint / glass-solid": [
+    5.46,
+    4.5
+   ],
+   "주 버튼 글": [
+    5.18,
+    4.5
+   ],
+   "카테고리 색 그래픽": [
+    3.57,
+    3
+   ],
+   "강조색 그래픽": [
+    4.71,
+    3
+   ]
+  }
+ }
+}

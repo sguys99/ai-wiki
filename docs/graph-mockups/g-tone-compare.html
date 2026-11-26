@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>색상과 톤 비교</title>
+<!-- Phase 7 색상과 톤 시안 비교. 네 칸은 같은 g-view.html 을 tone 인자만 바꿔 연다.
+     주소 인자: screen=atlas|orbit|mini, theme=dark|light -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root { --bg: #0d0f13; --ink: #e9ebef; --soft: #9aa0ab; --line: rgba(255, 255, 255, 0.09); --on: #ffffff; --on-ink: #0d0f13; color-scheme: dark; }
+  :root[data-theme='light'] { --bg: #f3f4f6; --ink: #15181e; --soft: #5b616c; --line: rgba(0, 0, 0, 0.1); --on: #15181e; --on-ink: #ffffff; color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 'Pretendard Variable', system-ui, sans-serif; }
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+  h1 { margin: 0 auto 0 0; font-size: 16px; font-weight: 650; letter-spacing: -0.01em; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 9px; padding: 2px; }
+  .seg button { font: inherit; font-size: 13.5px; color: var(--soft); background: none; border: 0; border-radius: 7px; padding: 5px 12px; cursor: pointer; min-height: 32px; }
+  .seg button[aria-pressed='true'] { background: var(--on); color: var(--on-ink); }
+  .seg button:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  main { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 16px 20px 24px; }
+  figure { margin: 0; min-width: 0; }
+  figcaption { display: flex; align-items: baseline; gap: 10px; padding: 0 2px 8px; }
+  figcaption b { font-weight: 650; font-size: 14.5px; }
+  figcaption span { color: var(--soft); font-size: 13.5px; flex: 1; min-width: 0; }
+  figcaption a { color: var(--soft); font-size: 13px; }
+  .frame { position: relative; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; aspect-ratio: 1440 / 900; }
+  .frame iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; }
+  @media (max-width: 900px) { main { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<header>
+  <h1>그래프 색상과 톤 비교</h1>
+  <div class="seg" role="group" aria-label="화면">
+    <button type="button" data-screen="atlas">조감</button>
+    <button type="button" data-screen="orbit">궤도와 상세 패널</button>
+    <button type="button" data-screen="mini">미니 그래프</button>
+  </div>
+  <div class="seg" role="group" aria-label="테마">
+    <button type="button" data-theme="dark">다크</button>
+    <button type="button" data-theme="light">라이트</button>
+  </div>
+</header>
+<main id="grid"></main>
+<script>
+  (function () {
+    var TONES = [
+      ['f', 'F 지금 판', '빛나는 구슬과 빛 실. 기준안'],
+      ['g', 'G 모노크롬과 단일 강조', '쉬는 노드는 무채색 세 단계, 색은 고른 것에만'],
+      ['h', 'H 무광 저채도', '채도를 낮춘 평면 원과 가는 엣지, 빛 없음'],
+      ['i', 'I 심해 그라디언트', '청록에서 호박까지 한 줄기 스펙트럼, 은은한 빛'],
+    ];
+    var q = new URLSearchParams(location.search);
+    var state = { screen: q.get('screen') || 'atlas', theme: q.get('theme') === 'light' ? 'light' : 'dark' };
+    var grid = document.getElementById('grid');
+    function src(t) { return 'g-view.html?tone=' + t + '&theme=' + state.theme + '&screen=' + state.screen; }
+    function render() {
+      document.documentElement.dataset.theme = state.theme;
+      document.querySelectorAll('.seg button').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.screen === state.screen || b.dataset.theme === state.theme));
+      });
+      history.replaceState(null, '', '?screen=' + state.screen + '&theme=' + state.theme);
+      grid.innerHTML = TONES.map(function (t) {
+        return '<figure><figcaption><b>' + t[1] + '</b><span>' + t[2] + '</span><a href="' + src(t[0]) + '" target="_blank" rel="noopener">크게 열기</a></figcaption>' +
+          '<div class="frame"><iframe title="' + t[1] + '" src="' + src(t[0]) + '" loading="lazy"></iframe></div></figure>';
+      }).join('');
+      fit();
+    }
+    function fit() {
+      grid.querySelectorAll('.frame').forEach(function (f) { f.firstChild.style.transform = 'scale(' + f.clientWidth / 1440 + ')'; });
+    }
+    document.querySelectorAll('.seg button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.screen) state.screen = b.dataset.screen; else state.theme = b.dataset.theme;
+        render();
+      });
+    });
+    window.addEventListener('resize', fit);
+    render();
+  })();
+</script>
+</body>
+</html>

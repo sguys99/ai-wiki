@@ -1,0 +1,397 @@
+/* g-tones.css: Phase 7 색상과 톤 시안 G, H, I 의 토큰 묶음.
+ *
+ * 지금 판(F)은 덮어쓰지 않는다. 사이트 styles.css 값 그대로가 기준안이다.
+ * 시안마다 두 블록(dark, light)이 있고, 고른 시안은 선택자만 바꿔 styles.css 에 옮긴다.
+ *   그래프 토큰 [data-tone='g'] :is(main.graph, .related, …헤더)        → :root (사이트 :root 의 --cat-*, --graph-* 를 바꾼다)
+ *   그래프 쪽 사이트 토큰 [data-tone='g'] main.graph                   → main.graph, main.g3d (styles.css 의 "그래프 페이지만" 블록)
+ *   light 는 같은 두 블록에 :root[data-theme='light'] 를 붙인다.
+ * wiki 미니 그래프(.related)는 --cat-*, --graph-* 만 따르고 강조색 --signal 은 사이트 것을 쓴다.
+ * 토큰 블록 아래의 짧은 규칙(견본, 미니 그래프)은 무광 질감이라 그라데이션을 걷어 내는 것들이다.
+ *
+ * 새 토큰 (graph-explorer.js 의 [tone] 훅이 읽는다. 없으면 지금 판과 같다):
+ *   --graph-node-style   orb(구슬) | matte(단색 원과 무대색 테)
+ *   --graph-node-sheen   구슬 반사광 세기 배율 (1 = 지금 판)
+ *   --graph-glint        허브 렌즈 반짝임 1 | 0
+ *   --graph-haze-alpha   성운 안개 알파 (지금 판 dark 0.3, light 0.13)
+ *   --graph-edge-width   조감 엣지 굵기 px (지금 판 0.7)
+ *   --graph-mono         1 이면 쉬는 노드와 엣지를 무채색으로 그리고 색은 호버, 궤도, 필터, 경로, 검색 결과에만 켠다
+ *   --graph-mono-1/2/3   무채색 세 단계 (degree 8 미만, 30 미만, 30 이상)
+ *   --graph-name-alpha   성운 이름 알파 (지금 판 dark 0.7, light 0.8)
+ *   --graph-name-mix     성운 이름 글자를 카테고리 색에서 --graph-label 쪽으로 섞는 비율 (지금 판 0). AA 4.5:1 을 맞추는 데 쓴다
+ */
+
+/* ── G 모노크롬과 단일 강조: 흑연 무대, 무채색 명도 세 단계, 강조색은 남보라 하나 ───────────── */
+[data-tone='g'] :is(main.graph, .related, body:has(> main.graph) > .site-header) {
+  --cat-physical-ai: #eea25c;
+  --cat-agents: #45cfb3;
+  --cat-applications: #f27ba3;
+  --cat-database: #b89eff;
+  --cat-llms: #5894ff;
+  --cat-overviews: #eceef2;
+  --cat-evaluations: #c3df63;
+  --cat-etc: #7b88a6;
+
+  --graph-mono: 1;
+  --graph-mono-1: #64686f;
+  --graph-mono-2: #82868e;
+  --graph-mono-3: #c4c8d0;
+  --graph-node-style: matte;
+  --graph-node-sheen: 0;
+  --graph-glint: 0;
+  --graph-haze-alpha: 0.07;
+  --graph-name-alpha: 1;
+  --graph-edge-width: 0.6;
+
+  --graph-bg: #0c0d10;
+  --graph-bg-core: #17191e;
+  --graph-bg-edge: #0c0d10;
+  --graph-vignette: rgba(0, 0, 0, 0.3);
+  --graph-dust: #ffffff;
+  --graph-dust-alpha: 0;
+  --graph-edge: #b6bcc8;
+  --graph-edge-alpha: 0.055;
+  --graph-edge-hi-alpha: 0.9;
+  --graph-dim-alpha: 0.12;
+  --graph-backdrop-alpha: 0.14;
+  --graph-glow-alpha: 0.06;
+  --graph-filament-blend: source-over;
+  --graph-shadow-alpha: 0;
+  --graph-label: #eceef2;
+  --graph-label-muted: #969ca8;
+  --graph-label-halo: rgba(12, 13, 16, 0.88);
+  --graph-ring: #0c0d10;
+  --graph-lens: rgba(12, 13, 16, 0.88);
+  --graph-path: #eceef2;
+  --graph-path-glow: rgba(139, 147, 255, 0.2);
+  --graph-path-ink: #0c0d10;
+  --graph-glass: rgba(23, 25, 30, 0.76);
+  --graph-glass-solid: rgba(23, 25, 30, 0.97);
+  --graph-glass-edge: rgba(255, 255, 255, 0.08);
+  --graph-glass-top: rgba(255, 255, 255, 0.05);
+  --graph-sheen: linear-gradient(transparent, transparent);
+  --graph-float-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --graph-primary-top: #8b93ff;
+  --graph-primary-bottom: #8b93ff;
+  --graph-primary-ink: #0b0c1a;
+  --graph-swatch-glow: 0px;
+  --graph-blur: blur(14px);
+}
+[data-tone='g'] main.graph {
+  --bg: #0c0d10;
+  --surface: #17191e;
+  --surface-2: #1e2127;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --signal: #8b93ff;
+  --signal-dim: rgba(139, 147, 255, 0.22);
+}
+[data-tone='g'][data-theme='light'] :is(main.graph, .related, body:has(> main.graph) > .site-header) {
+  --cat-physical-ai: #bd5f0c;
+  --cat-agents: #0a8670;
+  --cat-applications: #c93467;
+  --cat-database: #7e52e1;
+  --cat-llms: #2550cc;
+  --cat-overviews: #2b2f37;
+  --cat-evaluations: #486923;
+  --cat-etc: #6c727e;
+
+  --graph-mono-1: #878a91;
+  --graph-mono-2: #6a6e75;
+  --graph-mono-3: #2b2f37;
+  --graph-haze-alpha: 0.05;
+
+  --graph-bg: #f4f5f7;
+  --graph-bg-core: #ffffff;
+  --graph-bg-edge: #f1f2f4;
+  --graph-vignette: rgba(0, 0, 0, 0);
+  --graph-dust: #000000;
+  --graph-dust-alpha: 0;
+  --graph-edge: #1f232b;
+  --graph-edge-alpha: 0.065;
+  --graph-edge-hi-alpha: 0.85;
+  --graph-dim-alpha: 0.18;
+  --graph-backdrop-alpha: 0.2;
+  --graph-glow-alpha: 0;
+  --graph-filament-blend: source-over;
+  --graph-shadow-alpha: 0;
+  --graph-label: #16181d;
+  --graph-label-muted: #5d6470;
+  --graph-label-halo: rgba(255, 255, 255, 0.92);
+  --graph-ring: #ffffff;
+  --graph-lens: rgba(255, 255, 255, 0.9);
+  --graph-path: #16181d;
+  --graph-path-glow: rgba(80, 85, 224, 0.14);
+  --graph-path-ink: #ffffff;
+  --graph-glass: rgba(255, 255, 255, 0.82);
+  --graph-glass-solid: rgba(255, 255, 255, 0.98);
+  --graph-glass-edge: rgba(15, 18, 25, 0.09);
+  --graph-glass-top: rgba(255, 255, 255, 1);
+  --graph-sheen: linear-gradient(transparent, transparent);
+  --graph-float-shadow: 0 12px 32px rgba(15, 18, 25, 0.08), 0 1px 2px rgba(15, 18, 25, 0.06);
+  --graph-primary-top: #5055e0;
+  --graph-primary-bottom: #5055e0;
+  --graph-primary-ink: #ffffff;
+}
+[data-tone='g'][data-theme='light'] main.graph {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --surface-2: #f1f2f4;
+  --text: #16181d;
+  --muted: #5d6470;
+  --faint: #6a717d;
+  --hairline: rgba(15, 18, 25, 0.09);
+  --signal: #5055e0;
+  --signal-dim: rgba(80, 85, 224, 0.16);
+}
+
+/* ── H 무광 저채도: 회색 종이 무대, 채도를 낮춘 8색의 평면 원, 가는 엣지, 빛 없음 ─────────────── */
+[data-tone='h'] :is(main.graph, .related, body:has(> main.graph) > .site-header) {
+  --cat-physical-ai: #d6964a;
+  --cat-agents: #5bb4a7;
+  --cat-applications: #d88aa6;
+  --cat-database: #ac99ca;
+  --cat-llms: #6f9bdf;
+  --cat-overviews: #ebe9e6;
+  --cat-evaluations: #b4bd6d;
+  --cat-etc: #8d8f94;
+
+  --graph-node-style: matte;
+  --graph-node-sheen: 0;
+  --graph-glint: 0;
+  --graph-haze-alpha: 0.09;
+  --graph-name-alpha: 1;
+  --graph-edge-width: 0.5;
+
+  --graph-bg: #1c1c1e;
+  --graph-bg-core: #232326;
+  --graph-bg-edge: #1c1c1e;
+  --graph-vignette: rgba(0, 0, 0, 0);
+  --graph-dust: #ffffff;
+  --graph-dust-alpha: 0;
+  --graph-edge: #d4d4da;
+  --graph-edge-alpha: 0.05;
+  --graph-edge-hi-alpha: 0.8;
+  --graph-dim-alpha: 0.14;
+  --graph-backdrop-alpha: 0.16;
+  --graph-glow-alpha: 0;
+  --graph-filament-blend: source-over;
+  --graph-shadow-alpha: 0;
+  --graph-label: #ececee;
+  --graph-label-muted: #9d9da3;
+  --graph-label-halo: rgba(28, 28, 30, 0.9);
+  --graph-ring: #1c1c1e;
+  --graph-lens: rgba(28, 28, 30, 0.9);
+  --graph-path: #ececee;
+  --graph-path-glow: rgba(255, 255, 255, 0.08);
+  --graph-path-ink: #1c1c1e;
+  --graph-glass: rgba(38, 38, 41, 0.86);
+  --graph-glass-solid: rgba(38, 38, 41, 0.98);
+  --graph-glass-edge: rgba(255, 255, 255, 0.07);
+  --graph-glass-top: rgba(255, 255, 255, 0.04);
+  --graph-sheen: linear-gradient(transparent, transparent);
+  --graph-float-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --graph-primary-top: #ececee;
+  --graph-primary-bottom: #ececee;
+  --graph-primary-ink: #1c1c1e;
+  --graph-swatch-glow: 0px;
+  --graph-blur: blur(20px);
+}
+[data-tone='h'] main.graph {
+  --bg: #1c1c1e;
+  --surface: #232326;
+  --surface-2: #2c2c2f;
+  --text: #ececee;
+  --muted: #9d9da3;
+  --faint: #949499;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --signal: #79aef5;
+  --signal-dim: rgba(121, 174, 245, 0.2);
+}
+[data-tone='h'][data-theme='light'] :is(main.graph, .related, body:has(> main.graph) > .site-header) {
+  --cat-physical-ai: #b0652a;
+  --cat-agents: #318468;
+  --cat-applications: #b34e7b;
+  --cat-database: #7964bc;
+  --cat-llms: #3d689e;
+  --cat-overviews: #3a3a3c;
+  --cat-evaluations: #5f7543;
+  --cat-etc: #86868b;
+
+  --graph-haze-alpha: 0.06;
+  --graph-name-mix: 0.25;
+
+  --graph-bg: #f5f5f7;
+  --graph-bg-core: #ffffff;
+  --graph-bg-edge: #f5f5f7;
+  --graph-vignette: rgba(0, 0, 0, 0);
+  --graph-dust: #000000;
+  --graph-dust-alpha: 0;
+  --graph-edge: #1d1d1f;
+  --graph-edge-alpha: 0.055;
+  --graph-edge-hi-alpha: 0.75;
+  --graph-dim-alpha: 0.18;
+  --graph-backdrop-alpha: 0.2;
+  --graph-glow-alpha: 0;
+  --graph-filament-blend: source-over;
+  --graph-shadow-alpha: 0;
+  --graph-label: #1d1d1f;
+  --graph-label-muted: #6e6e73;
+  --graph-label-halo: rgba(255, 255, 255, 0.92);
+  --graph-ring: #ffffff;
+  --graph-lens: rgba(255, 255, 255, 0.9);
+  --graph-path: #1d1d1f;
+  --graph-path-glow: rgba(0, 0, 0, 0.06);
+  --graph-path-ink: #ffffff;
+  --graph-glass: rgba(255, 255, 255, 0.88);
+  --graph-glass-solid: rgba(255, 255, 255, 0.98);
+  --graph-glass-edge: rgba(0, 0, 0, 0.08);
+  --graph-glass-top: rgba(255, 255, 255, 1);
+  --graph-sheen: linear-gradient(transparent, transparent);
+  --graph-float-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.05);
+  --graph-primary-top: #1d1d1f;
+  --graph-primary-bottom: #1d1d1f;
+  --graph-primary-ink: #ffffff;
+}
+[data-tone='h'][data-theme='light'] main.graph {
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --surface-2: #f5f5f7;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --faint: #6e6e73;
+  --hairline: rgba(0, 0, 0, 0.08);
+  --signal: #0066cc;
+  --signal-dim: rgba(0, 102, 204, 0.16);
+}
+
+/* ── I 심해 그라디언트: 짙은 남색 무대, 청록에서 남색, 보라, 분홍을 지나 호박으로 가는 한 줄기 스펙트럼 ── */
+[data-tone='i'] :is(main.graph, .related, body:has(> main.graph) > .site-header) {
+  --cat-agents: #45e4dd;
+  --cat-llms: #4f85fe;
+  --cat-database: #ac90ff;
+  --cat-applications: #ff6faa;
+  --cat-physical-ai: #ff9d55;
+  --cat-evaluations: #ffd85e;
+  --cat-overviews: #eef3ff;
+  --cat-etc: #7a89b9;
+
+  --graph-node-sheen: 0.55;
+  --graph-glint: 0;
+  --graph-haze-alpha: 0.26;
+  --graph-name-alpha: 1;
+  --graph-name-mix: 0.08;
+
+  --graph-bg: #040a1f;
+  --graph-bg-core: #0f1e4a;
+  --graph-bg-edge: #040a1f;
+  --graph-vignette: rgba(0, 3, 15, 0.5);
+  --graph-dust: #9fc4ff;
+  --graph-dust-alpha: 0.3;
+  --graph-edge: #9ab8ff;
+  --graph-edge-alpha: 0.065;
+  --graph-edge-hi-alpha: 0.85;
+  --graph-dim-alpha: 0.14;
+  --graph-backdrop-alpha: 0.16;
+  --graph-glow-alpha: 0.32;
+  --graph-filament-blend: lighter;
+  --graph-shadow-alpha: 0;
+  --graph-label: #eaf0ff;
+  --graph-label-muted: #9aa8cc;
+  --graph-label-halo: rgba(4, 10, 31, 0.86);
+  --graph-ring: #040a1f;
+  --graph-lens: rgba(6, 13, 38, 0.86);
+  --graph-path: #eaf0ff;
+  --graph-path-glow: rgba(140, 170, 255, 0.22);
+  --graph-path-ink: #040a1f;
+  --graph-glass: rgba(12, 24, 62, 0.62);
+  --graph-glass-solid: rgba(12, 24, 62, 0.96);
+  --graph-glass-edge: rgba(150, 180, 255, 0.14);
+  --graph-glass-top: rgba(255, 255, 255, 0.09);
+  --graph-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 38%, rgba(255, 255, 255, 0) 100%);
+  --graph-float-shadow: 0 24px 60px rgba(0, 4, 20, 0.6), 0 2px 8px rgba(0, 4, 20, 0.4);
+  --graph-primary-top: #8fb0ff;
+  --graph-primary-bottom: #a88bff;
+  --graph-primary-ink: #060b22;
+  --graph-swatch-glow: 6px;
+  --graph-shadow-ink: #0a1a5c;
+}
+[data-tone='i'] main.graph {
+  --bg: #040a1f;
+  --surface: #0c1a44;
+  --surface-2: #132353;
+  --text: #eaf0ff;
+  --muted: #9aa8cc;
+  --faint: #8391b6;
+  --hairline: rgba(150, 180, 255, 0.13);
+  --signal: #6fe3f0;
+  --signal-dim: rgba(111, 227, 240, 0.22);
+}
+[data-tone='i'][data-theme='light'] :is(main.graph, .related, body:has(> main.graph) > .site-header) {
+  --cat-agents: #007f8a;
+  --cat-llms: #305be8;
+  --cat-database: #6637c8;
+  --cat-applications: #c4287f;
+  --cat-physical-ai: #c55a0c;
+  --cat-evaluations: #866d35;
+  --cat-overviews: #1a2550;
+  --cat-etc: #6679a2;
+
+  --graph-node-sheen: 0.7;
+  --graph-haze-alpha: 0.14;
+  --graph-name-mix: 0.22;
+
+  --graph-bg: #e6ecf8;
+  --graph-bg-core: #fbfcff;
+  --graph-bg-edge: #e3e9f7;
+  --graph-vignette: rgba(20, 40, 110, 0.07);
+  --graph-dust: #1b2c66;
+  --graph-dust-alpha: 0.05;
+  --graph-edge: #23356e;
+  --graph-edge-alpha: 0.07;
+  --graph-edge-hi-alpha: 0.78;
+  --graph-dim-alpha: 0.16;
+  --graph-backdrop-alpha: 0.2;
+  --graph-glow-alpha: 0;
+  --graph-filament-blend: source-over;
+  --graph-shadow-alpha: 1;
+  --graph-shadow-ink: #1b2a6b;
+  --graph-label: #101a3d;
+  --graph-label-muted: #4f5d82;
+  --graph-label-halo: rgba(248, 250, 255, 0.92);
+  --graph-ring: #ffffff;
+  --graph-lens: rgba(248, 250, 255, 0.86);
+  --graph-path: #101a3d;
+  --graph-path-glow: rgba(36, 83, 216, 0.14);
+  --graph-path-ink: #ffffff;
+  --graph-glass: rgba(255, 255, 255, 0.7);
+  --graph-glass-solid: rgba(255, 255, 255, 0.96);
+  --graph-glass-edge: rgba(30, 50, 120, 0.1);
+  --graph-glass-top: rgba(255, 255, 255, 0.95);
+  --graph-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 40%, rgba(255, 255, 255, 0) 100%);
+  --graph-float-shadow: 0 22px 48px rgba(20, 40, 110, 0.13), 0 2px 6px rgba(20, 40, 110, 0.07);
+  --graph-primary-top: #3d6bff;
+  --graph-primary-bottom: #6a45e6;
+  --graph-primary-ink: #ffffff;
+  --graph-swatch-glow: 0px;
+}
+[data-tone='i'][data-theme='light'] main.graph {
+  --bg: #e6ecf8;
+  --surface: #ffffff;
+  --surface-2: #eef2fb;
+  --text: #101a3d;
+  --muted: #4f5d82;
+  --faint: #5a6890;
+  --hairline: rgba(30, 50, 120, 0.1);
+  --signal: #1f5fd6;
+  --signal-dim: rgba(31, 95, 214, 0.16);
+}
+
+/* ── 무광 질감 (G, H): 견본과 미니 그래프의 반사광 그라데이션을 걷는다.
+ *    styles.css 는 @layer 안이라 이 규칙이 이긴다. etc 빈 원과 overviews 고리는 다시 적는다. ── */
+:where([data-tone='g'], [data-tone='h']) .graph-swatch { background: var(--c); }
+:where([data-tone='g'], [data-tone='h']) [data-cat='etc'] .graph-swatch { background: none; }
+:where([data-tone='g'], [data-tone='h']) .neigh .ng-hi { stop-color: var(--c); }
+:where([data-tone='g'], [data-tone='h']) .neigh .ng-halo { stop-opacity: 0; }
+
+/* G 미니 그래프: 이웃은 무채색으로 쉬고, 올리거나 목록에서 고른 이웃만 제 색을 켠다. 중심은 제 색 */
+[data-tone='g'] .neigh-nodes circle { fill: var(--graph-mono-2); stroke: var(--graph-mono-2); }
+[data-tone='g'] :is(.neigh-nodes a:hover, .neigh-nodes a:focus-visible, .neigh-nodes a.is-hi) circle { fill: var(--c); stroke: var(--signal); }

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko" data-theme="dark" data-tone="f">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>색상과 톤 시안 화면</title>
+<!-- 미니 그래프 화면은 사이트 헤더 없이 wiki 꼬리만 둔다.
+     주소 인자: tone=f|g|h|i, theme=dark|light, screen=atlas|orbit|mini, node=category/stem (궤도 중심) -->
+<script>
+  (function () {
+    var q = new URLSearchParams(location.search), d = document.documentElement;
+    d.classList.add('js');
+    d.dataset.tone = /^[fghi]$/.test(q.get('tone')) ? q.get('tone') : 'f';
+    d.dataset.theme = q.get('theme') === 'light' ? 'light' : 'dark';
+    d.dataset.screen = ['atlas', 'orbit', 'mini'].indexOf(q.get('screen')) >= 0 ? q.get('screen') : 'atlas';
+  })();
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="shared/tone/css/styles.css">
+<link rel="stylesheet" href="g-tones.css">
+<style>
+  /* 미니 그래프 화면: 사이트의 wiki 페이지 꼬리를 읽는 폭 하나에 둔다 */
+  .tone-mini { max-width: 46rem; margin: 0 auto; padding: var(--space-8) var(--space-4) var(--space-12); }
+  .tone-mini .wiki-title { margin-bottom: var(--space-8); }
+  :root:not([data-screen='mini']) .tone-mini { display: none; }
+</style>
+<script src="shared/tone/snapshot.js"></script>
+</head>
+<body>
+<div id="mount"></div>
+<script>
+  // 사이트 마크업을 그대로 꽂는다. graph.json 과 paths.json 은 file:// 에서도 열리게 스냅샷에서 돌려준다
+  (function () {
+    var S = window.TONE_SNAPSHOT, d = document.documentElement, mount = document.getElementById('mount');
+    var realFetch = window.fetch;
+    window.fetch = function (url) {
+      var u = String(url);
+      var body = /graph\.json$/.test(u) ? S.graph : /paths\.json$/.test(u) ? S.paths : null;
+      if (!body) return realFetch.apply(this, arguments);
+      return Promise.resolve(new Response(JSON.stringify(body), { headers: { 'content-type': 'application/json' } }));
+    };
+    var scripts = ['shared/tone/graph-core.js'];
+    if (d.dataset.screen === 'mini') {
+      mount.outerHTML = '<main class="wiki tone-mini"><article class="wiki-article">' + S.mini.title + '</article>' + S.mini.foot + '</main>';
+      scripts.push('shared/tone/reader.js');
+    } else {
+      mount.outerHTML = S.header + S.graphMain;
+      if (d.dataset.screen === 'orbit') history.replaceState(null, '', location.pathname + location.search + '#node=' + (new URLSearchParams(location.search).get('node') || S.orbitNode));
+      scripts.push('shared/tone/graph-explorer-tone.js');
+    }
+    // 헤더의 링크와 검색은 시안에서 쓰지 않는다
+    document.querySelectorAll('.site-header a').forEach(function (a) { a.removeAttribute('href'); });
+    (function next() {
+      var src = scripts.shift(); if (!src) return;
+      var s = document.createElement('script'); s.src = src; s.onload = next; document.body.appendChild(s);
+    })();
+  })();
+</script>
+</body>
+</html>
