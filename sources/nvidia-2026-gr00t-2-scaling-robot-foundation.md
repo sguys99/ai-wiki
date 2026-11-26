@@ -15,11 +15,11 @@ figures:
     kind: figure
     file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig01.png
     raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig01.png
-    caption: "사람과 로봇의 영상에서 미래 장면과 제어 명령을 함께 학습하는 GR00T 2의 입출력과 응용"
+    caption: "GR00T 2의 학습 자료, 입력과 출력, 로봇 간 기술 전이와 응용"
     page: 4
     bbox_norm: [0.0947, 0.0939, 0.9054, 0.6198]
     strategy: caption-region
-    curated: false
+    curated: true
   - id: fig02
     label: Figure 2
     kind: figure
@@ -29,7 +29,7 @@ figures:
     page: 6
     bbox_norm: [0.0947, 0.0939, 0.9053, 0.2586]
     strategy: caption-region
-    curated: false
+    curated: true
   - id: fig03
     label: Figure 3
     kind: figure
@@ -69,7 +69,7 @@ figures:
     page: 10
     bbox_norm: [0.0947, 0.3329, 0.9053, 0.575]
     strategy: caption-region
-    curated: false
+    curated: true
   - id: fig07
     label: Figure 7
     kind: figure
@@ -95,11 +95,11 @@ figures:
     kind: figure
     file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig09.png
     raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig09.png
-    caption: "추론 모델에서 Turbo를 거쳐 SONIC으로 이어지는 humanoid 제어 구조"
+    caption: "추론 모델에서 Turbo를 거쳐 SONIC으로 이어지는 G1 제어 구조"
     page: 13
     bbox_norm: [0.1241, 0.1007, 0.8759, 0.3232]
     strategy: caption-region
-    curated: false
+    curated: true
   - id: fig10
     label: Figure 10
     kind: figure
@@ -109,7 +109,7 @@ figures:
     page: 15
     bbox_norm: [0.0947, 0.0939, 0.9053, 0.3078]
     strategy: caption-region
-    curated: false
+    curated: true
   - id: fig11
     label: Figure 11
     kind: figure
@@ -145,11 +145,11 @@ figures:
     kind: figure
     file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig14.png
     raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig14.png
-    caption: "YAM 데이터를 함께 학습했을 때 달라지는 예상 손목 카메라 영상"
+    caption: "동일한 YAM 첫 화면에서 학습 데이터에 따라 달라지는 덤프트럭 조립 예측 영상"
     page: 19
     bbox_norm: [0.0947, 0.0939, 0.9053, 0.2969]
     strategy: caption-region
-    curated: false
+    curated: true
   - id: fig15
     label: Figure 15
     kind: figure
@@ -189,7 +189,7 @@ figures:
     page: 21
     bbox_norm: [0.0947, 0.33, 0.9053, 0.5411]
     strategy: caption-region
-    curated: false
+    curated: true
   - id: fig19
     label: Figure 19
     kind: figure
@@ -535,11 +535,11 @@ figures:
     kind: figure
     file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig53.png
     raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig53.png
-    caption: "RoboCasa365에서 에이전트가 실행 중 오류를 복구한 두 사례"
+    caption: "RoboCasa365 시뮬레이션에서 에이전트 개입으로 서랍을 연 사례와 토스트 회수에 실패한 사례"
     page: 101
     bbox_norm: [0.0947, 0.0939, 0.9053, 0.4315]
     strategy: caption-region
-    curated: false
+    curated: true
   - id: fig54
     label: Figure 54
     kind: figure
@@ -569,7 +569,7 @@ figures:
     page: 105
     bbox_norm: [0.0725, 0.0798, 0.9275, 0.4174]
     strategy: caption-region
-    curated: false
+    curated: true
   - id: fig57
     label: Figure 57
     kind: figure
@@ -579,7 +579,7 @@ figures:
     page: 110
     bbox_norm: [0.098, 0.1032, 0.902, 0.4377]
     strategy: caption-region
-    curated: false
+    curated: true
   - id: fig58
     label: Figure 58
     kind: figure
@@ -1138,24 +1138,24 @@ Dexter-50은 시연 5회로 이미 80% 이상 성공하는 과제에서 골랐�
 
 | id | 위치 | 설명 | 추출 방식 | 추천 |
 |---|---|---|---|---|
-| fig01 | 4 | 사람과 로봇의 영상에서 미래 장면과 제어 명령을 함께 학습하는 GR00T 2의 입출력과 응용 | caption-region | ★ 본문 권장 |
-| fig02 | 6 | Dexter 시연 수에 따른 50개 과제의 평균 성공률과 과제별 분포 | caption-region | ★ 본문 권장 |
+| fig01 | 4 | GR00T 2의 학습 자료, 입력과 출력, 로봇 간 기술 전이와 응용 | caption-region | 본문 수록 |
+| fig02 | 6 | Dexter 시연 수에 따른 50개 과제의 평균 성공률과 과제별 분포 | caption-region | 본문 수록 |
 | fig03 | 7 | YAM의 장난감 자동차 조립과 Dexter의 배송 라벨 부착 순서 | manual | 참고 |
 | fig04 | 8 | 센서 장갑, DexUMI, 휴대형 그리퍼, 시뮬레이션을 거쳐 기술을 옮기는 네 경로 | caption-region | ★ 본문 권장 |
 | fig05 | 10 | 실제 로봇의 접촉 과제 네 가지에서 지도학습과 강화학습 이후의 성공률 | caption-region | 참고 |
-| fig06 | 10 | 상위 에이전트가 WAM과 복구 도구를 호출하는 실행 구조 | caption-region | 참고 |
+| fig06 | 10 | 상위 에이전트가 WAM과 복구 도구를 호출하는 실행 구조 | caption-region | 본문 수록 |
 | fig07 | 11 | 장난감 조립과 연속 삽입에서 에이전트와 학습 방식에 따른 성공 횟수 | caption-region | 참고 |
 | fig08 | 12 | 물체와 목적지를 카메라 영상에 표시했을 때의 짧은 지시와 여러 단계 과제 결과 | caption-region | 참고 |
-| fig09 | 13 | 추론 모델에서 Turbo를 거쳐 SONIC으로 이어지는 humanoid 제어 구조 | caption-region | 참고 |
-| fig10 | 15 | 사람 영상의 학습 비율에 따른 실제 Dexter와 생성 영상의 성공률 및 진행도 | caption-region | 참고 |
+| fig09 | 13 | 추론 모델에서 Turbo를 거쳐 SONIC으로 이어지는 G1 제어 구조 | caption-region | 본문 수록 |
+| fig10 | 15 | 사람 영상의 학습 비율에 따른 실제 Dexter와 생성 영상의 성공률 및 진행도 | caption-region | 본문 수록 |
 | fig11 | 17 | YAM V2에서 체크포인트 개발 시점에 따라 달라진 상대 Elo | manual | 참고 |
 | fig12 | 18 | 센서 장갑으로 기록한 손동작을 로봇에 옮기는 절차 | caption-region | 참고 |
 | fig13 | 18 | 사람이 시연한 실험실 과제와 Dexter가 실행한 장면 | caption-region | 참고 |
-| fig14 | 19 | YAM 데이터를 함께 학습했을 때 달라지는 예상 손목 카메라 영상 | caption-region | 참고 |
+| fig14 | 19 | 동일한 YAM 첫 화면에서 학습 데이터에 따라 달라지는 덤프트럭 조립 예측 영상 | caption-region | 본문 수록 |
 | fig15 | 19 | 바나나 요구르트를 만드는 DexUMI 시연과 로봇 실행 | caption-region | 참고 |
 | fig16 | 20 | 사람 영상 한 편에서 시뮬레이션 시연을 만들어 실제 손으로 옮기는 과정 | caption-region | 참고 |
 | fig17 | 21 | 실제 작업대와 시뮬레이션에서 재구성한 과제의 대응 | caption-region | 참고 |
-| fig18 | 21 | YAM 체크포인트별 실제 환경과 시뮬레이션의 진행도, 성공률, Elo | caption-region | 참고 |
+| fig18 | 21 | YAM 체크포인트별 실제 환경과 시뮬레이션의 진행도, 성공률, Elo | caption-region | 본문 수록 |
 | fig19 | 23 | RTX 5090과 Jetson Thor에서 최적화 단계별 G1 예측 지연 | caption-region | 참고 |
 | fig20 | 24 | 과제 구간에 따라 예측한 동작의 실행 속도를 조절하는 과정 | caption-region | 참고 |
 | fig21 | 38 | YAM long-horizon 과제 여섯 가지의 시작 장면과 수행 단계 | caption-region | 참고 |
@@ -1190,11 +1190,11 @@ Dexter-50은 시연 5회로 이미 80% 이상 성공하는 과제에서 골랐�
 | fig50 | 96 | DreamDojo에서 함께 학습한 RoboLab 과제 열 가지의 성공률 변화 | caption-region | 참고 |
 | fig51 | 96 | DreamDojo 학습 진행과 배치 및 그룹 크기에 따른 RoboLab 성능 | caption-region | 참고 |
 | fig52 | 97 | DreamDojo 학습 후 실제 로봇에서 평가한 삽입과 물체 배치 | caption-region | 참고 |
-| fig53 | 101 | RoboCasa365에서 에이전트가 실행 중 오류를 복구한 두 사례 | caption-region | 참고 |
+| fig53 | 101 | RoboCasa365 시뮬레이션에서 에이전트 개입으로 서랍을 연 사례와 토스트 회수에 실패한 사례 | caption-region | 본문 수록 |
 | fig54 | 102 | RoboCasa365와 RoboDojo에서 에이전트 결합 모델의 실패 원인 | caption-region | 참고 |
 | fig55 | 103 | 실제 작업대에서 장난감 세 종류를 조립하고 연속 삽입을 수행하는 장면 | caption-region | 참고 |
-| fig56 | 105 | YAM 단기 지시문 평가에 쓰인 참조 유형 여덟 가지 | caption-region | 참고 |
-| fig57 | 110 | G1이 이동과 양손 작업을 함께 수행한 과제별 장면 | caption-region | 참고 |
+| fig56 | 105 | YAM 단기 지시문 평가에 쓰인 참조 유형 여덟 가지 | caption-region | 본문 수록 |
+| fig57 | 110 | G1이 이동과 양손 작업을 함께 수행한 과제별 장면 | caption-region | 본문 수록 |
 | fig58 | 111 | 탁자 위 물체 옮기기와 정리에 쓰인 물체 집합 | caption-region | 참고 |
 | fig59 | 112 | 기록한 G1 동작을 여러 가상 장면에서 재생해 시연을 만드는 과정 | caption-region | 참고 |
 | fig60 | 114 | 센서 입력부터 실행까지의 전체 지연과 모델 예측 지연의 측정 구간 | caption-region | 참고 |

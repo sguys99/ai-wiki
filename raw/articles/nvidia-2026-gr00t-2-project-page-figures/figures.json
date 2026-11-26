@@ -70,5 +70,31 @@
     "height": 378,
     "strategy": "fetched",
     "curated": false
+  },
+  {
+    "id": "fig07",
+    "file": "assets/nvidia-2026-gr00t-2-project-page/fig07.png",
+    "raw": "raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig07.png",
+    "caption": "Dexter 트럭 조립에서 과거 영상과 예측 영상, 관절 명령을 연결한 공식 구조도",
+    "source_url": "https://research.nvidia.com/labs/gear/gr00t-2/#archfig",
+    "selector": "#archfig",
+    "bytes": 323714,
+    "width": 1380,
+    "height": 743,
+    "strategy": "screenshot",
+    "curated": false
+  },
+  {
+    "id": "fig08",
+    "file": "assets/nvidia-2026-gr00t-2-project-page/fig08.png",
+    "raw": "raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig08.png",
+    "caption": "거름종이 놓기, 컨베이어 분류, 그래놀라 뜨기에서 시연과 로봇 실행을 짝지은 공식 사진",
+    "source_url": "https://research.nvidia.com/labs/gear/gr00t-2/#x-adapt",
+    "selector": "#x-adapt .xa",
+    "bytes": 774419,
+    "width": 1380,
+    "height": 593,
+    "strategy": "screenshot",
+    "curated": false
   }
 ]

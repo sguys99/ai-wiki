@@ -14,6 +14,125 @@ sources:
   - nvidia-2026-gr00t-2-scaling-robot-foundation.md
   - nvidia-2026-gr00t-2-project-page.md
 project_url: "https://research.nvidia.com/labs/gear/gr00t-2/#cite"
+figures:
+  - id: fig01
+    label: Figure 1
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig01.png
+    raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig01.png
+    caption: "GR00T 2의 학습 자료, 입력과 출력, 로봇 간 기술 전이와 응용"
+    page: 4
+    bbox_norm: [0.0947, 0.0939, 0.9054, 0.6198]
+    strategy: caption-region
+    curated: true
+  - id: fig07
+    label: Model Architecture
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-project-page/fig07.png
+    raw: raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig07.png
+    caption: "Dexter 트럭 조립에서 과거 영상과 예측 영상, 관절 명령을 연결한 공식 구조도"
+    strategy: screenshot
+    curated: true
+    from_source: nvidia-2026-gr00t-2-project-page
+  - id: fig10
+    label: Figure 10
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig10.png
+    raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig10.png
+    caption: "사람 영상의 학습 비율에 따른 실제 Dexter와 생성 영상의 성공률 및 진행도"
+    page: 15
+    bbox_norm: [0.0947, 0.0939, 0.9053, 0.3078]
+    strategy: caption-region
+    curated: true
+  - id: fig08
+    label: X-Adaptability
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-project-page/fig08.png
+    raw: raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig08.png
+    caption: "거름종이 놓기, 컨베이어 분류, 그래놀라 뜨기에서 시연과 로봇 실행을 짝지은 공식 사진"
+    strategy: screenshot
+    curated: true
+    from_source: nvidia-2026-gr00t-2-project-page
+  - id: fig14
+    label: Figure 14
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig14.png
+    raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig14.png
+    caption: "동일한 YAM 첫 화면에서 학습 데이터에 따라 달라지는 덤프트럭 조립 예측 영상"
+    page: 19
+    bbox_norm: [0.0947, 0.0939, 0.9053, 0.2969]
+    strategy: caption-region
+    curated: true
+  - id: fig02
+    label: Figure 2
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig02.png
+    raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig02.png
+    caption: "Dexter 시연 수에 따른 50개 과제의 평균 성공률과 과제별 분포"
+    page: 6
+    bbox_norm: [0.0947, 0.0939, 0.9053, 0.2586]
+    strategy: caption-region
+    curated: true
+  - id: fig06
+    label: Figure 6
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig06.png
+    raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig06.png
+    caption: "상위 에이전트가 WAM과 복구 도구를 호출하는 실행 구조"
+    page: 10
+    bbox_norm: [0.0947, 0.3329, 0.9053, 0.575]
+    strategy: caption-region
+    curated: true
+  - id: fig53
+    label: Figure 53
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig53.png
+    raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig53.png
+    caption: "RoboCasa365 시뮬레이션에서 에이전트 개입으로 서랍을 연 사례와 토스트 회수에 실패한 사례"
+    page: 101
+    bbox_norm: [0.0947, 0.0939, 0.9053, 0.4315]
+    strategy: caption-region
+    curated: true
+  - id: fig56
+    label: Figure 56
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig56.png
+    raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig56.png
+    caption: "YAM 단기 지시문 평가에 쓰인 참조 유형 여덟 가지"
+    page: 105
+    bbox_norm: [0.0725, 0.0798, 0.9275, 0.4174]
+    strategy: caption-region
+    curated: true
+  - id: fig09
+    label: Figure 9
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig09.png
+    raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig09.png
+    caption: "추론 모델에서 Turbo를 거쳐 SONIC으로 이어지는 G1 제어 구조"
+    page: 13
+    bbox_norm: [0.1241, 0.1007, 0.8759, 0.3232]
+    strategy: caption-region
+    curated: true
+  - id: fig57
+    label: Figure 57
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig57.png
+    raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig57.png
+    caption: "G1이 이동과 양손 작업을 함께 수행한 과제별 장면"
+    page: 110
+    bbox_norm: [0.098, 0.1032, 0.902, 0.4377]
+    strategy: caption-region
+    curated: true
+  - id: fig18
+    label: Figure 18
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig18.png
+    raw: raw/papers/nvidia-2026-gr00t-2-scaling-robot-foundation-figures/fig18.png
+    caption: "YAM 체크포인트별 실제 환경과 시뮬레이션의 진행도, 성공률, Elo"
+    page: 21
+    bbox_norm: [0.0947, 0.33, 0.9053, 0.5411]
+    strategy: caption-region
+    curated: true
 ---
 
 ## 요약
@@ -21,6 +140,9 @@ project_url: "https://research.nvidia.com/labs/gear/gr00t-2/#cite"
 GR00T 2는 로봇이 다음에 보게 될 장면과 그때까지 실행할 동작을 함께 예측하는 NVIDIA의 로봇 모델이다. 사람이 깔때기에 거름종이를 놓는 영상에는 로봇의 관절 명령이 없어도, 종이를 펼쳐 깔때기 안쪽에 밀착시키는 과정이 담겨 있다. 모델은 사람 영상에서 장면이 바뀌는 과정을 배우고, 로봇 기록에서 그 변화를 자신의 팔과 손으로 만드는 방법을 배운다.
 
 이 전이가 어디까지 되는지는 목표 로봇에서의 성공률로 확인할 수 있다. 두 손에 각각 22개 자유도를 갖춘 Dexter는 자기 손으로 시연한 적 없는 과제 50개에서 평균 40% 성공했다. 과제별로 시연 데이터(demonstration)를 1회 제공하면 71%, 5회 제공하면 95%였다. 연구진은 시연 5회로 성공률 80% 이상에 도달한 과제에서 이 50개를 골랐다. 따라서 95%는 소량 적응이 가능한 과제에서 달성한 성적으로 읽어야 한다. [백서 3.1절, 부록 A.3](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf#page=6)
+
+![[assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig01.png]]
+*백서 그림 1 (4쪽). 가운데 행을 왼쪽에서 오른쪽으로 읽으면 카메라 영상과 로봇 상태, 지시문에서 미래 영상과 로봇 명령이 함께 나온다. 아래 행은 이 모델을 서로 다른 손과 G1에 적용한 사례다.*
 
 ## 배경
 
@@ -46,6 +168,9 @@ GR00T 2는 최대 네 대의 카메라가 최근 0.8초 동안 초당 5프레임
 영상과 동작을 연결하는 지점은 Transformer 내부다. action을 예측하는 동안 손목 카메라의 미래 영상까지 참조할 수 있으므로, 로봇 명령은 현재 물체의 위치와 모델이 예상한 다음 위치를 함께 반영할 수 있다. 영상과 action에는 각각 flow matching 손실을 준다. 이는 잡음에서 시작해 실제 학습 예시의 영상이나 명령으로 접근하는 방향을 배우는 방법이다.
 
 로봇이 움직이는 동안에는 다음 명령 묶음을 미리 계산한다. 백서의 배치 설정은 영상을 1~2단계, action을 2~4단계에 걸쳐 생성한다. 백서가 남긴 질문은 학습 중의 영상 예측과 실행 중의 미래 예측이 각각 어느 정도 이득을 주는가이다. [백서 2절, 5절](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf#page=5)
+
+![[assets/nvidia-2026-gr00t-2-project-page/fig07.png]]
+*공식 프로젝트 페이지의 모델 구조도. 왼쪽은 Dexter의 머리와 두 손목 카메라로 찍은 최근 0.8초다. 오른쪽 위는 모델이 생성한 세 시점의 미래 장면이고, 오른쪽 아래 곡선은 같은 구간에 예측한 팔과 손의 관절 목표값이다.*
 
 ### 기본형과 Turbo의 차이
 
@@ -84,6 +209,9 @@ Flora는 긴 기록에서 동작의 경계를 찾고 구간마다 독립적으�
 | 생성 영상 성공률 | 30% | 33% | 38% | 51% |
 | 생성 영상 진행도 | 64% | 66% | 72% | 77% |
 
+![[assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig10.png]]
+*백서 그림 10 (15쪽). 왼쪽 두 그래프는 실제 Dexter의 수행 결과이고 오른쪽 두 그래프는 생성 영상을 채점한 결과다. 사람 영상 비중이 0%에서 100%가 될 때 실제 로봇의 성공률은 18%에서 41%로 높아졌다.*
+
 실제 로봇의 진행도는 네 설정에서 차례로 올랐지만, 1%에서 10%로 늘렸을 때 최종 성공률 차이는 1%p였다. 물체를 올바로 잡고 움직여도 마지막 삽입에서 실패하면 그 실행은 미완료로 집계되기 때문이다. 실험 설계상 0% 설정은 공통 사람 영상 학습 단계 전체를 건너뛰고 나머지 설정은 각 자료량에 비례해 학습한다. 그림 10은 이 학습 조건에서의 성능 변화를 보여 주며, 같은 연산 시간으로 사람 영상 한 시간을 더했을 때의 효과를 분리해 측정한 실험은 아니다. [백서 4.2.1절, 그림 10](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf#page=15)
 
 ### 학습 장비에 영상을 공급하는 방법
@@ -96,6 +224,9 @@ Flora는 긴 기록에서 동작의 경계를 찾고 구간마다 독립적으�
 
 X-Adapt에서 새롭다는 말은 **목표 로봇이 그 과제를 시연한 적이 없다**는 뜻이다. 사람이 해당 과제를 수행한 기록과 목표 로봇이 다른 물체를 자유롭게 다룬 기록은 함께 사용할 수 있다. 전자는 무엇을 해야 하는지를 보여 주고, 후자는 목표 손으로 물체를 가리거나 집었을 때 카메라에 무엇이 보이는지 알려 준다.
 
+![[assets/nvidia-2026-gr00t-2-project-page/fig08.png]]
+*공식 프로젝트 페이지의 전이 시연. 각 열의 위는 학습에 쓴 시연, 아래는 같은 과제를 수행하는 로봇이다. 왼쪽부터 사람 손과 Dexter, 휴대형 UMI와 YAM, 착용형 DexUMI와 로봇 손을 비교할 수 있다.*
+
 | 시연에서 실행까지 | 서로 다른 부분을 맞춘 방법 | 목표 로봇의 결과 |
 |---|---|---|
 | 센서 장갑 → Dexter | 머리와 손목 카메라로 시연을 기록하고 사람 손가락의 위치를 Sharpa 손에 맞게 변환 | 깔때기에 거름종이를 놓고 적시기 65%, 20회 평가 |
@@ -105,6 +236,9 @@ X-Adapt에서 새롭다는 말은 **목표 로봇이 그 과제를 시연한 적
 | 사람 영상 → 시뮬레이션 → 실제 손 | 영상 한 편에서 도구와 손동작을 재구성하고 가상 환경에서 학습한 시연을 생성 | 실제 손으로 못 박기 10회 중 9회 성공 |
 
 컨베이어 실험의 86%는 벨트 위 물체 50개 가운데 맞는 상자로 보낸 비율이다. 한 대를 끝까지 조립하면 성공하는 덤프트럭과 분모가 다르다. 프로젝트 페이지의 위아래 영상에서 같은 물체가 사람의 휴대형 그리퍼와 YAM의 손목 카메라에 서로 다른 각도로 보이는 점을 확인할 수 있다. [백서 3.2절, 표 4~7](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf#page=48) / [공식 전이 시연](https://research.nvidia.com/labs/gear/gr00t-2/#x-adapt)
+
+![[assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig14.png]]
+*백서 그림 14 (19쪽). 왼쪽 첫 프레임은 두 줄에서 같다. UMI 시연만 학습한 위쪽에는 사람 팔과 파란 그리퍼가 나타난다. YAM의 다른 작업 기록을 함께 학습한 아래쪽에는 YAM 자신의 팔이 나타난다.*
 
 시야를 맞추는 효과는 부록 E.3의 ablation에서 드러난다. UMI 시연을 전량 사용해도 손목 영상을 변환하지 않으면 덤프트럭 조립과 기판 분해는 모두 0%였고 컨베이어 물체의 46%를 분류했다. YAM의 카메라에 맞추면 각각 60%, 50%, 86%가 됐다. 데이터를 절반만 사용하면 각각 30%, 0%, 84%였다. 반복되는 분류에는 적은 시연으로도 대응했지만 여러 단계를 연결해야 하는 분해 과제에서는 마지막 단계까지 성공하는 데 차이가 컸다.
 
@@ -121,6 +255,9 @@ Dexter-50의 과제는 YAM이나 사람 영상에는 등장하지만 Dexter의 �
 | 0회 | 40% | 4/50개 |
 | 1회 | 71% | 19/50개 |
 | 5회 | 95% | 37/50개 |
+
+![[assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig02.png]]
+*백서 그림 2 (6쪽). 왼쪽 막대는 시연이 0회, 1회, 5회일 때의 평균 성공률이다. 오른쪽 막대는 과제 수를 나타낸다. 다섯 번 시연한 뒤 모든 시도에서 성공한 과제는 짙은 초록색으로 표시된 37개다.*
 
 한 번의 성공 시연에서도 과제의 모든 순간이 같은 양의 정보를 주지는 않는다. 손을 목표물 가까이 옮기는 단계는 이미 잘하지만 손잡이에 손가락을 거는 순간에 자주 실패할 수 있다. 연구진은 시연 하나를 100개 시간 구간으로 나누고, 기존 모델에서 손실이 큰 구간을 더 자주 학습했다. Transformer의 선형층에 rank 32 LoRA를 적용하고 영상 인코더와 원래 가중치는 고정했다. 5회 시연의 로봇 기록은 과제당 3분 미만이며, 적응에는 과제당 RTX 5090 한 장으로 약 30분이 걸렸다.
 
@@ -171,6 +308,9 @@ Dexter 트럭 조립에는 초기 배치 차이가 있다. 표에 실린 두 GR0
 
 GR00T 2가 받는 0.8초의 영상만으로는 몇 분 전에 어느 나사를 조였는지 확인하기 어렵다. 상위 에이전트는 전체 과제의 순서를 보관하고 현재 화면과 로봇 상태를 확인한다. 부품이 떨어지면 모델 실행을 멈추고 부품 위치를 복구하는 코드 기반 기술을 호출한다. 장면이 다시 준비되면 GR00T 2에 정밀 조립을 맡긴다.
 
+![[assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig06.png]]
+*백서 그림 6 (10쪽). 왼쪽 에이전트가 카메라를 확인하고 실행을 요청하면 가운데 서버가 GR00T 2 또는 복구용 코드를 호출한다. 오른쪽의 로봇 상태가 다시 에이전트로 돌아오므로 재시도 여부를 판단할 수 있다.*
+
 연구진은 매 시도 직전에 사람이 장난감 부품 전체를 탁자에 쏟도록 했다. 부품의 위치와 겹침이 달라지고 로봇은 통상 5~14분 동안 필요한 부품을 찾아 차례대로 조립해야 한다. 자동차 조립의 고정 배치 성공률은 85%였지만 부품을 무작위로 쏟자 지도학습 모델은 100회 중 23회만 성공했다. 초기 배치와 작업 중 복구를 함께 검증하는 시험이다.
 
 | 무작위 배치, 과제당 100회 | 지도학습 | DAgger 교정 시연 추가 | 교정 시연과 에이전트 결합 |
@@ -180,6 +320,9 @@ GR00T 2가 받는 0.8초의 영상만으로는 몇 분 전에 어느 나사를 �
 | 자동차 | 23회 | 78회 | 97회 |
 
 세 과제에서 총 300회 중 292회 조립을 마쳤다. 남은 실패 8회 중 3회에서는 나사가 끝까지 들어가지 않았는데도 모델과 에이전트가 완료로 판정했다. 카메라에서 부품이 제자리에 있는 것처럼 보이는 상황에서는 완료 판정 자체가 병목이 된다. 외부 에이전트를 결합한 수치를 기본 모델 단독 성적으로 해석할 수 없는 이유이기도 하다.
+
+![[assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig53.png]]
+*백서 그림 53 (101쪽). 시뮬레이션의 위쪽 사례에서는 에이전트가 오븐 손잡이를 놓고 서랍 손잡이를 잡아 복구한다. 아래쪽에서는 토스트를 다시 잡지 못해 시간이 끝난다. 각 행 아래 색 띠는 어느 시점에 제어권이 바뀌었는지 보여 준다.*
 
 한 번의 정밀 동작과 연속 작업의 차이는 삽입 실험에서도 확인된다. 케이블 다섯 개를 연달아 꽂을 때 에이전트는 부품을 찾아 위치를 맞추고 GR00T 2는 삽입을 담당했다. 에이전트를 공통으로 사용한 조건에서 삽입 모델에 강화학습을 추가하자 전체 성공은 20회 중 12회에서 19회가 됐다. 사람이 가리킨 곳에 충전기 다섯 개를 꽂는 과제는 20회 중 2회에서 20회로 높아졌다. [백서 3.4절, 그림 7](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf#page=11) / [연속 실행 영상](https://research.nvidia.com/labs/gear/gr00t-2/#agentic-control)
 
@@ -192,6 +335,9 @@ GR00T 2가 받는 0.8초의 영상만으로는 몇 분 전에 어느 나사를 �
 | YAM, 설정당 90회 | 40% | 66% | 92% |
 | Dexter, 설정당 64회 | 30% | 33% | 70% |
 
+![[assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig56.png]]
+*백서 그림 56 (105쪽). 위쪽에서는 과일의 순서, 이름, 위치, 개수를 바꾼다. 아래쪽에서는 열기와 닫기, 사용할 팔, 잡는 방향, 움직이면 안 되는 물체를 바꾼다. 같은 장면에서도 지시문의 한 단어가 성공 조건을 바꾼다.*
+
 표시가 주는 정보는 과제의 종류에 따라 달라진다. YAM에서 무엇을 어디로 옮길지 묻는 경우와 달리, 어떻게 잡거나 움직일지 지정한 54회에서는 성공률이 44%에서 59%로 높아졌다. 잡을 점과 놓을 점이 같아도 붓기, 닦기에는 서로 다른 중간 동작과 최종 방향이 필요하기 때문이다.
 
 긴 쓰레기 분류에서 YAM은 단계별 지시문만으로 20회 모두 미완료였고, 영상 표시를 더하자 17회 완료했다. 기판 분해는 각각 10회 중 0회와 3회였다. Dexter 쓰레기 분류에 대해서는 백서 표 22가 단계별 지시문에서 1/20회, 표시를 더하면 9/20회라고 명시한다. 프로젝트 페이지의 정성적 설명보다 정확한 비교에는 이 분모와 완료 횟수가 적합하다. [백서 표 22~23](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf#page=106) / [시각적 지시 시연](https://research.nvidia.com/labs/gear/gr00t-2/#steering)
@@ -201,6 +347,9 @@ GR00T 2가 받는 0.8초의 영상만으로는 몇 분 전에 어느 나사를 �
 ### 모델 예측과 관절 제어의 속도
 
 G1이 컵을 들고 걸을 때 다음에 어디로 갈지 정하는 주기와 균형을 유지하는 데 필요한 주기는 다르다. Turbo는 약 1초 간격으로 앞으로 1.6초의 전신 움직임을 예측하고, SONIC은 이 표현을 50Hz로 관절 목표값으로 바꾼다. 따라서 Jetson Thor에서 측정한 124ms는 모델이 명령 묶음을 예측하는 데 걸리는 시간이다. SONIC이 관절 목표를 갱신하는 주기는 20ms다.
+
+![[assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig09.png]]
+*백서 그림 9 (13쪽). 왼쪽의 선택적 추론 모델이 과제를 지정하면 Turbo가 앞으로 1.6초의 움직임을 예측한다. SONIC은 이 예측과 몸의 현재 상태를 읽어 초당 50회 관절 목표를 갱신한다.*
 
 | 플랫폼과 모델 | GPU | 최적화 전 예측 중앙값 | 최적화 후 예측 중앙값 |
 |---|---|---:|---:|
@@ -219,6 +368,9 @@ G1이 컵을 들고 걸을 때 다음에 어디로 갈지 정하는 주기와 �
 
 G1 실험은 물체를 한 번 집는 동작에서 끝나지 않는다. 팝콘 과제는 컵 두 개를 모두 채워 놓아야 성공하고, 탁자 정리는 여섯 가지 물체를 모두 집어 통으로 옮겨야 성공한다. 같은 장비에서 평가한 결과는 팝콘 서빙 48/48회, 탁자 정리 28/30회, 바닥 물체 집기 25/30회, 흘린 액체 닦기 14/30회였다. 네 과제의 평균 성공률은 80.8%다. 작업별 분모가 다르므로 이 평균은 모든 시도를 합산한 비율과 다르다. [백서 표 25](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf#page=111)
 
+![[assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig57.png]]
+*백서 그림 57 (110쪽). 각 행에서 시간이 왼쪽에서 오른쪽으로 흐른다. 위에서부터 팝콘 서빙, 탁자 정리, 바닥 물체 집기, 흘린 액체 닦기다. 마지막 행에서는 G1이 발로 수건을 밀어 닦은 뒤 몸을 낮춰 수건을 회수한다.*
+
 물체와 작업대 배치가 달라지는 조건에서는 합성 시연의 효과를 따로 측정했다. 기록한 G1 동작을 유지하면서 가상 장면을 바꿔 총 25만 episode, 1,000시간을 생성했다. 같은 실제 데이터에 이 시연을 더하면 분포 밖 탁자 과제의 성공률은 Turbo에서 6.7%에서 63.3%로, GR00T 1.7에서 6.7%에서 40.0%로 높아졌다. 기존 동작으로 집을 수 있는 가상 장면을 먼저 찾아 검증한 뒤 학습 자료에 추가했다는 점이 중요하다. [백서 표 26](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf#page=112)
 
 ## 평가를 해석할 때의 한계
@@ -226,6 +378,9 @@ G1 실험은 물체를 한 번 집는 동작에서 끝나지 않는다. 팝콘 �
 실제 로봇의 실험실 점수는 같은 모델에서도 날짜, 작업자, 카메라 위치에 따라 달라진다. GearArena는 한 사람이 같은 장면에서 2~4개 체크포인트를 무작위 순서로 실행하고 모델 이름을 가린 채 비교한다. 이 기록에서 어느 체크포인트가 상대적으로 더 잘했는지 추정한다. 승패가 자주 갈리는 과제와 대부분의 모델이 모두 성공하거나 모두 실패하는 과제는 순위를 가르는 데 제공하는 정보가 다르다.
 
 재구성한 가상 작업대는 실제 평가에 투입할 후보를 고르는 데 쓸 수 있다. YAM 과제 25개에서 체크포인트 14개의 성능을 실물과 시뮬레이션에서 각각 측정했을 때 Pearson 상관계수는 진행도 0.93, 성공률 0.92, 상대 Elo 0.93이었다. 연구진은 시뮬레이션으로 후보를 세 개까지 줄인 다음 실제 로봇에서 비교했다. 이 상관계수는 접촉이 더 복잡한 조립이나 시뮬레이터의 오차를 이용하도록 학습한 모델에서도 같은 순위를 보장하지 않는다. [백서 4.3~4.5절, 그림 18](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf#page=21)
+
+![[assets/nvidia-2026-gr00t-2-scaling-robot-foundation/fig18.png]]
+*백서 그림 18 (21쪽). 점 하나는 체크포인트 하나다. 가로는 실제 로봇, 세로는 같은 과제를 재현한 시뮬레이션의 점수다. 가운데 그래프에서 성공률의 Pearson 상관계수는 0.92였다.*
 
 수집 시간을 어떻게 배분할지도 열린 문제다. 한 시간의 사람 영상은 여러 환경에서 물체가 움직이는 방식을 보여 주고, 같은 시간의 목표 로봇 시연은 그 장치가 실제로 실행할 수 있는 명령을 제공한다. 사람 영상이 성능을 높였다는 결과만으로 두 자료의 교환 비율이나 새로운 로봇을 대표하는 데 필요한 최소 시연량을 계산할 수는 없다. 실패와 복구가 드물게 담긴 성공 시연만으로 자동 채점기를 학습시키기도 어렵다.
 

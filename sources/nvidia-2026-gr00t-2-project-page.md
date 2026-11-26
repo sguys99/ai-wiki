@@ -59,6 +59,22 @@ figures:
     caption: "로봇 손이 그릇에 그래놀라를 담는 장면"
     strategy: fetched
     curated: false
+  - id: fig07
+    label: Model Architecture
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-project-page/fig07.png
+    raw: raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig07.png
+    caption: "Dexter 트럭 조립에서 과거 영상과 예측 영상, 관절 명령을 연결한 공식 구조도"
+    strategy: screenshot
+    curated: true
+  - id: fig08
+    label: X-Adaptability
+    kind: figure
+    file: assets/nvidia-2026-gr00t-2-project-page/fig08.png
+    raw: raw/articles/nvidia-2026-gr00t-2-project-page-figures/fig08.png
+    caption: "거름종이 놓기, 컨베이어 분류, 그래놀라 뜨기에서 시연과 로봇 실행을 짝지은 공식 사진"
+    strategy: screenshot
+    curated: true
 ---
 
 ## 한 줄 요약 (One-line Summary)
@@ -117,3 +133,5 @@ NVIDIA GEAR 프로젝트 페이지는 사람이 보여 준 동작과 로봇의 �
 | fig04 | 웹 | YAM이 같은 컨베이어에서 물체를 분류하는 장면 | fetched | ★ 본문 권장 |
 | fig05 | 웹 | 사람이 DexUMI를 착용하고 그래놀라를 뜨는 시연 | fetched | 참고 |
 | fig06 | 웹 | 로봇 손이 그릇에 그래놀라를 담는 장면 | fetched | 참고 |
+| fig07 | 웹 | Dexter 트럭 조립에서 과거 영상과 예측 영상, 관절 명령을 연결한 공식 구조도 | screenshot | 본문 수록 |
+| fig08 | 웹 | 거름종이 놓기, 컨베이어 분류, 그래놀라 뜨기에서 시연과 로봇 실행을 짝지은 공식 사진 | screenshot | 본문 수록 |
