@@ -1,0 +1,337 @@
+[
+  {
+    "id": "fig01",
+    "label": "Figure 1",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig01.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig01.png",
+    "page": 2,
+    "caption": "Figure 1 | In harness-driven context management (top), the harness triggers compaction when context usage reaches a threshold. In model-driven context management (bottom), the model edits its own context along the way.",
+    "bbox": [
+      48.77,
+      74.0,
+      547.7,
+      327.79
+    ],
+    "bbox_norm": [
+      0.0819,
+      0.0879,
+      0.9201,
+      0.3893
+    ],
+    "dpi": 300,
+    "area_frac": 0.253,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p02.png"
+  },
+  {
+    "id": "fig03",
+    "label": "Figure 3",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig03.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig03.png",
+    "page": 4,
+    "caption": "Figure 3 | Score vs. context budget, OfficeQA Pro v2 , harness-driven vs. model-driven, by model. Score is passed tasks over all 90 trials, including errors. Points are equal-weight replicate means; bars span replicate min–max.",
+    "bbox": [
+      48.77,
+      74.0,
+      547.7,
+      446.06
+    ],
+    "bbox_norm": [
+      0.0819,
+      0.0879,
+      0.9201,
+      0.5298
+    ],
+    "dpi": 300,
+    "area_frac": 0.37,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p04.png"
+  },
+  {
+    "id": "fig04",
+    "label": "Figure 4",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig04.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig04.png",
+    "page": 5,
+    "caption": "Figure 4 | Score vs. context budget, MLE-bench Lite , harness-driven vs. model-driven, by model. Mean over 22 tasks. Scores are leaderboard percentile (missing scores count as zero). Each point averages the verified runs at that budget.",
+    "bbox": [
+      48.77,
+      214.0,
+      547.7,
+      586.25
+    ],
+    "bbox_norm": [
+      0.0819,
+      0.2542,
+      0.9201,
+      0.6963
+    ],
+    "dpi": 300,
+    "area_frac": 0.371,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p05.png"
+  },
+  {
+    "id": "fig05",
+    "label": "Figure 5",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig05.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig05.png",
+    "page": 6,
+    "caption": "Figure 5 | Models differ in how often they use the context API. Share of tasks with at least one compaction call, model-driven runs, all budgets.",
+    "bbox": [
+      151.04,
+      79.04,
+      444.25,
+      237.05
+    ],
+    "bbox_norm": [
+      0.2537,
+      0.0939,
+      0.7463,
+      0.2816
+    ],
+    "dpi": 300,
+    "area_frac": 0.092,
+    "strategy": "caption-region",
+    "low_confidence": false,
+    "curated": false,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p06.png"
+  },
+  {
+    "id": "fig06",
+    "label": "Figure 6",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig06.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig06.png",
+    "page": 7,
+    "caption": "Figure 6 | Left: compression factor per compaction call, the input tokens of the request in which the model decided to compact divided by the input tokens of the next request, which also carries the executed cell’s output. A factor of 2 × means the context was halved; below 1 × means it grew. Boxes ",
+    "bbox": [
+      48.77,
+      121.0,
+      547.7,
+      345.67
+    ],
+    "bbox_norm": [
+      0.0819,
+      0.1437,
+      0.9201,
+      0.4106
+    ],
+    "dpi": 300,
+    "area_frac": 0.224,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig07",
+    "label": "Figure 7",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig07.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig07.png",
+    "page": 7,
+    "caption": "Figure 7 | What models do under context pressure. Share of first-warning episodes by how they resolved, 64K context budget. When the context approaches its limit, we send the model a warning and observe how it responds.",
+    "bbox": [
+      48.77,
+      516.0,
+      547.7,
+      678.5
+    ],
+    "bbox_norm": [
+      0.0819,
+      0.6129,
+      0.9201,
+      0.8059
+    ],
+    "dpi": 300,
+    "area_frac": 0.162,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p07.png"
+  },
+  {
+    "id": "fig08",
+    "label": "Figure 8",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig08.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig08.png",
+    "page": 8,
+    "caption": "Figure 8 | Context in use at the first compaction: median % of the context budget, with and without the timing instruction. Each point is the median over tasks of the first compaction decision in that task. It measures when a model starts compacting. A budget with no point means the model never comp",
+    "bbox": [
+      48.77,
+      74.0,
+      547.7,
+      448.69
+    ],
+    "bbox_norm": [
+      0.0819,
+      0.0879,
+      0.9201,
+      0.533
+    ],
+    "dpi": 300,
+    "area_frac": 0.373,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p08.png"
+  },
+  {
+    "id": "fig09",
+    "label": "Figure 9",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig09.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig09.png",
+    "page": 9,
+    "caption": "Figure 9 | Kimi K3: score vs. cumulative input tokens on OfficeQA Pro v2, each point labelled with its context budget. Cumulative input counts all input tokens, cached or not, at every turn.",
+    "bbox": [
+      48.77,
+      74.0,
+      547.7,
+      303.43
+    ],
+    "bbox_norm": [
+      0.0819,
+      0.0879,
+      0.9201,
+      0.3604
+    ],
+    "dpi": 300,
+    "area_frac": 0.228,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p09.png"
+  },
+  {
+    "id": "fig10",
+    "label": "Figure 10",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig10.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig10.png",
+    "page": 10,
+    "caption": "Figure 10 | Score vs. token usage, OfficeQA Pro v2 , harness-driven vs. model-driven, by model. Cumulative input tokens; points at 8K–64K are labelled with their context budget. Cumulative input counts all input tokens, cached or not, at every turn. Points are ordered by tokens, so labels may not as",
+    "bbox": [
+      48.77,
+      201.0,
+      547.7,
+      586.51
+    ],
+    "bbox_norm": [
+      0.0819,
+      0.2388,
+      0.9201,
+      0.6967
+    ],
+    "dpi": 300,
+    "area_frac": 0.384,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p10.png"
+  },
+  {
+    "id": "fig11",
+    "label": "Figure 11",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig11.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig11.png",
+    "page": 11,
+    "caption": "Figure 11 | Score vs. token usage, MLE-bench Lite , harness-driven vs. model-driven, by model. Total input + output tokens, points labelled with their context budget. Token usage is the total recorded input and output tokens per run, including repeated prompts. Lines join increasing budgets and may ",
+    "bbox": [
+      48.77,
+      101.0,
+      547.7,
+      485.97
+    ],
+    "bbox_norm": [
+      0.0819,
+      0.12,
+      0.9201,
+      0.5772
+    ],
+    "dpi": 300,
+    "area_frac": 0.383,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig12",
+    "label": "Figure 12",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig12.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig12.png",
+    "page": 11,
+    "caption": "Figure 12 | Compacting B shortens the prompt, but the summary and everything after it must be computed again.",
+    "bbox": [
+      48.77,
+      585.0,
+      547.7,
+      710.96
+    ],
+    "bbox_norm": [
+      0.0819,
+      0.6949,
+      0.9201,
+      0.8445
+    ],
+    "dpi": 300,
+    "area_frac": 0.125,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p11.png"
+  },
+  {
+    "id": "fig13",
+    "label": "Figure 13",
+    "kind": "figure",
+    "file": "assets/devoto-2026-letting-models-manage-their-own/fig13.png",
+    "raw": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/fig13.png",
+    "page": 12,
+    "caption": "Figure 13 | Suffix KV reuse versus standard prefix caching, Qwen3.6-27B at 32K context, under model-driven ( NOOA ’s context API) and harness-driven (summarize, keep the last 10 events) context management. Left: reduction in prefilled input tokens per request. Right: change in reward, measured in ea",
+    "bbox": [
+      48.77,
+      72.0,
+      547.7,
+      324.88
+    ],
+    "bbox_norm": [
+      0.0819,
+      0.0855,
+      0.9201,
+      0.3859
+    ],
+    "dpi": 300,
+    "area_frac": 0.252,
+    "strategy": "manual",
+    "low_confidence": false,
+    "curated": false,
+    "override": true,
+    "overlay": "raw/papers/devoto-2026-letting-models-manage-their-own-figures/_overlay/p12.png"
+  }
+]
