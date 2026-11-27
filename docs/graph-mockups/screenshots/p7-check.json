@@ -2,73 +2,73 @@
  "site-dark": {
   "cvd": {
    "normal": [
-    11.0,
-    "llms/etc"
+    11.2,
+    "database/etc"
    ],
    "protan": [
-    5.4,
-    "applications/etc"
+    5.8,
+    "agents/evaluations"
    ],
    "deutan": [
-    8.7,
-    "physical-ai/evaluations"
+    6.0,
+    "agents/overviews"
    ],
    "tritan": [
-    8.5,
-    "physical-ai/applications"
+    8.6,
+    "database/etc"
    ]
   },
   "aa": {
    "캔버스 라벨": [
-    14.11,
+    15.16,
     4.5
    ],
    "흐린 라벨": [
-    6.78,
+    7.28,
     4.5
    ],
    "성운 이름": [
-    5.15,
+    5.24,
     4.5
    ],
    "--text / glass": [
-    14.75,
+    15.37,
     4.5
    ],
    "--muted / glass": [
-    7.09,
+    7.39,
     4.5
    ],
    "--faint / glass": [
-    5.36,
+    5.59,
     4.5
    ],
    "--text / glass-solid": [
-    15.1,
+    15.48,
     4.5
    ],
    "--muted / glass-solid": [
-    7.26,
+    7.44,
     4.5
    ],
    "--faint / glass-solid": [
-    5.49,
+    5.63,
     4.5
    ],
    "주 버튼 글": [
-    8.07,
+    8.01,
     4.5
    ],
    "카테고리 색 그래픽": [
-    4.68,
+    3.58,
     3
    ],
    "강조색 그래픽": [
-    10.67,
+    11.46,
     3
    ],
    "--signal-physical 글자": [
-    8.19,
+    8.44,
     4.5
    ]
   }
@@ -76,81 +76,81 @@
  "site-dark-mono": {
   "cvd": {
    "normal": [
-    11.0,
-    "llms/etc"
+    11.2,
+    "database/etc"
    ],
    "protan": [
-    5.4,
-    "applications/etc"
+    5.8,
+    "agents/evaluations"
    ],
    "deutan": [
-    8.7,
-    "physical-ai/evaluations"
+    6.0,
+    "agents/overviews"
    ],
    "tritan": [
-    8.5,
-    "physical-ai/applications"
+    8.6,
+    "database/etc"
    ]
   },
   "aa": {
    "캔버스 라벨": [
-    14.11,
+    15.16,
     4.5
    ],
    "흐린 라벨": [
-    6.78,
+    7.28,
     4.5
    ],
    "성운 이름": [
-    6.78,
+    7.28,
     4.5
    ],
    "--text / glass": [
-    14.75,
+    15.37,
     4.5
    ],
    "--muted / glass": [
-    7.09,
+    7.39,
     4.5
    ],
    "--faint / glass": [
-    5.36,
+    5.59,
     4.5
    ],
    "--text / glass-solid": [
-    15.1,
+    15.48,
     4.5
    ],
    "--muted / glass-solid": [
-    7.26,
+    7.44,
     4.5
    ],
    "--faint / glass-solid": [
-    5.49,
+    5.63,
     4.5
    ],
    "주 버튼 글": [
-    8.07,
+    8.01,
     4.5
    ],
    "카테고리 색 그래픽": [
-    4.68,
+    3.58,
     3
    ],
    "강조색 그래픽": [
-    10.67,
+    11.46,
     3
    ],
    "무채색 잎 그래픽": [
-    3.14,
+    3.38,
     3
    ],
    "모노 강조색 그래픽": [
-    5.91,
+    6.35,
     3
    ],
    "--signal-physical 글자": [
-    8.19,
+    8.44,
     4.5
    ]
   }
@@ -159,7 +159,7 @@
   "cvd": {},
   "aa": {
    "미니 그래프 카테고리 색 그래픽": [
-    5.62,
+    4.0,
     3
    ],
    "미니 그래프 바큇살 --signal (불투명, 호버)": [
@@ -171,20 +171,20 @@
  "site-light": {
   "cvd": {
    "normal": [
-    12.9,
-    "database/llms"
+    6.6,
+    "llms/etc"
    ],
    "protan": [
-    5.6,
-    "physical-ai/evaluations"
+    5.3,
+    "llms/etc"
    ],
    "deutan": [
-    5.4,
-    "database/llms"
+    6.1,
+    "llms/etc"
    ],
    "tritan": [
-    7.8,
-    "physical-ai/applications"
+    9.2,
+    "llms/etc"
    ]
   },
   "aa": {
@@ -197,7 +197,7 @@
     4.5
    ],
    "성운 이름": [
-    4.83,
+    5.04,
     4.5
    ],
    "--text / glass": [
@@ -229,7 +229,7 @@
     4.5
    ],
    "카테고리 색 그래픽": [
-    3.57,
+    3.0,
     3
    ],
    "강조색 그래픽": [
@@ -245,20 +245,20 @@
  "site-light-mono": {
   "cvd": {
    "normal": [
-    12.9,
-    "database/llms"
+    6.6,
+    "llms/etc"
    ],
    "protan": [
-    5.6,
-    "physical-ai/evaluations"
+    5.3,
+    "llms/etc"
    ],
    "deutan": [
-    5.4,
-    "database/llms"
+    6.1,
+    "llms/etc"
    ],
    "tritan": [
-    7.8,
-    "physical-ai/applications"
+    9.2,
+    "llms/etc"
    ]
   },
   "aa": {
@@ -303,7 +303,7 @@
     4.5
    ],
    "카테고리 색 그래픽": [
-    3.57,
+    3.0,
     3
    ],
    "강조색 그래픽": [
@@ -328,11 +328,11 @@
   "cvd": {},
   "aa": {
    "미니 그래프 카테고리 색 그래픽": [
-    4.1,
+    3.43,
     3
    ],
    "미니 그래프 바큇살 --signal (불투명, 호버)": [
-    2.37,
+    3.12,
     3
    ]
   }

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 7 개정 시안</title>
+<style>
+  :root { --bg:#0b0e14; --surface:#141923; --line:#232a38; --text:#e6e9ef; --muted:#9aa3b2; --signal:#5eead4; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.65 'Pretendard Variable',-apple-system,'Apple SD Gothic Neo',sans-serif; }
+  main { max-width: 1480px; margin: 0 auto; padding: 48px 24px 96px; }
+  h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: -.02em; }
+  h2 { font-size: 21px; margin: 64px 0 6px; letter-spacing: -.01em; }
+  h2 small { color: var(--muted); font-weight: 400; font-size: 14px; margin-left: 8px; }
+  p.lead, p.note { color: var(--muted); margin: 0 0 18px; max-width: 80ch; }
+  .grid { display:grid; gap:18px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); }
+  figure { margin:0; background:var(--surface); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  figure.pick { border-color: var(--signal); box-shadow: 0 0 0 1px var(--signal); }
+  figure a { display:block; }
+  figure img { display:block; width:100%; height:auto; }
+  figcaption { padding: 12px 14px 14px; font-size: 14px; }
+  figcaption b { font-size: 15px; }
+  figcaption .tag { display:inline-block; font: 600 11px/1.6 'JetBrains Mono', ui-monospace, monospace; padding: 0 6px; border-radius: 4px; background: var(--signal); color: #04211c; margin-left: 6px; vertical-align: 1px; }
+  figcaption .m { color: var(--muted); display:block; margin-top: 4px; }
+  .sw { display:flex; gap:4px; margin-top:8px; }
+  .sw i { width:18px; height:18px; border-radius:50%; display:block; border:1px solid rgba(255,255,255,.12); }
+  .sw.light { background:#f7f8fa; padding:4px; border-radius:6px; width:max-content; }
+  code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: #c7d0de; }
+  .who { background: var(--surface); border:1px solid var(--line); border-radius:12px; padding: 14px 18px; margin: 18px 0 0; }
+  .who li { margin: 2px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Phase 7 개정 시안</h1>
+  <p class="lead">실제 사이트(로컬 빌드)에 CSS 만 덧씌워 1440×860 으로 찍었다. 그림을 누르면 원본 크기로 열린다. 테두리가 빛나는 칸이 추천안이다.</p>
+
+  <!-- 1 -->
+  <h2>1. 다크 모드 그래프 배경 <small>메인 페이지와 톤 맞추기</small></h2>
+  <p class="note">지금 그래프는 짙은 남색(<code>#040a1f</code>, 가운데 <code>#0f1e4a</code>)이고 메인은 중성 잉크(<code>#0b0e14</code>)라서 페이지를 오가면 색이 튄다. 두 시안 모두 무대 가장자리를 메인 배경과 같은 <code>#0b0e14</code> 로 두어 헤더와 경계가 이어진다.</p>
+  <div class="grid">
+    <figure><a href="screenshots/p7r-bg-home.jpg"><img src="screenshots/p7r-bg-home.jpg" alt="메인 페이지 다크"></a><figcaption><b>기준: 메인 페이지</b><span class="m">배경 #0b0e14</span></figcaption></figure>
+    <figure><a href="screenshots/p7r-bg-now.jpg"><img src="screenshots/p7r-bg-now.jpg" alt="현재 그래프 배경"></a><figcaption><b>현재: 심해 남색</b><span class="m">가장자리 #040a1f, 가운데 #0f1e4a, 유리판도 남색</span></figcaption></figure>
+    <figure><a href="screenshots/p7r-bg-ink.jpg"><img src="screenshots/p7r-bg-ink.jpg" alt="1A 잉크 통일"></a><figcaption><b>1A 잉크로 통일</b><span class="m">가장자리 #0b0e14, 가운데 #161b26 (무채), 유리판과 패널도 메인의 surface 색</span></figcaption></figure>
+    <figure class="pick"><a href="screenshots/p7r-bg-inknavy.jpg"><img src="screenshots/p7r-bg-inknavy.jpg" alt="1B 잉크와 엷은 남색"></a><figcaption><b>1B 잉크 + 엷은 남색 코어</b><span class="tag">추천</span><span class="m">가장자리 #0b0e14 로 메인과 이어지고, 가운데만 #121a2f 로 살짝 푸르게 남겨 깊이감을 유지</span></figcaption></figure>
+  </div>
+
+  <!-- 2 -->
+  <h2>2. 노드 색 <small>덜 알록달록하게</small></h2>
+  <p class="note">다크는 1B 배경 위에서 찍었다. 색각 이상 거리(제1·2·3 색각 이상 흉내 후 CIEDE2000 최솟값, 기준 5 이상)와 배경 대비(그래픽 기준 3:1 이상)를 함께 적었다. 모양 단서가 있는 Etc(빈 원)와 Overviews(고리)는 거리 계산에서 뺐다.</p>
+  <div class="grid">
+    <figure><a href="screenshots/p7r-pal-I-dark.jpg"><img src="screenshots/p7r-pal-I-dark.jpg" alt="현재 I 다크"></a><figcaption><b>현재: I 심해 8색</b><span class="m">색각 거리 5.4, 대비 5.6 이상. 8색이 모두 채도가 높다</span>
+      <div class="sw"><i style="background:#ff9d55"></i><i style="background:#45e4dd"></i><i style="background:#ff6faa"></i><i style="background:#ac90ff"></i><i style="background:#4f85fe"></i><i style="background:#eef3ff"></i><i style="background:#ffd85e"></i><i style="background:#7a89b9"></i></div></figcaption></figure>
+    <figure><a href="screenshots/p7r-pal-A-dark.jpg"><img src="screenshots/p7r-pal-A-dark.jpg" alt="A 모노 기본 다크"></a><figcaption><b>2A 모노를 기본으로</b><span class="m">이미 만든 "고른 것만 색으로" 스위치를 처음부터 켠다. 쉬는 노드는 회색 세 단계, 호버·검색·필터로 고른 것만 카테고리 색. 코드 변경이 가장 적다. 처음 봤을 때 카테고리 구분은 성운 이름과 범례에만 의존한다</span></figcaption></figure>
+    <figure><a href="screenshots/p7r-pal-B-dark.jpg"><img src="screenshots/p7r-pal-B-dark.jpg" alt="B 차분한 8색 다크"></a><figcaption><b>2B 차분한 8색</b><span class="m">색상(hue)은 그대로, 채도를 절반쯤 낮춘 파스텔. 색각 거리 다크 6.0 / 라이트 5.9, 대비 다크 4.9 / 라이트 3.1</span>
+      <div class="sw"><i style="background:#e9b089"></i><i style="background:#90dbd5"></i><i style="background:#d695ad"></i><i style="background:#a89ad5"></i><i style="background:#6a8cc9"></i><i style="background:#eaeff7"></i><i style="background:#ecdaa2"></i><i style="background:#778093"></i></div></figcaption></figure>
+    <figure class="pick"><a href="screenshots/p7r-pal-C-dark.jpg"><img src="screenshots/p7r-pal-C-dark.jpg" alt="C 두 강조색 다크"></a><figcaption><b>2C 사이트 두 강조색 + 회청색</b><span class="tag">추천</span><span class="m">가장 큰 두 카테고리 Physical AI(152)와 Agents(88)만 사이트의 앰버와 아쿠아, 나머지 여섯은 채도를 거의 뺀 회청·회보라·모래색. 그래프가 사이트 색 언어 안으로 들어온다. 색각 거리 다크 5.8 / 라이트 6.8, 대비 다크 4.0 / 라이트 3.4</span>
+      <div class="sw"><i style="background:#f6ab6b"></i><i style="background:#6ceed7"></i><i style="background:#ae96a5"></i><i style="background:#85829d"></i><i style="background:#a5bad1"></i><i style="background:#eceef4"></i><i style="background:#d7d1bb"></i><i style="background:#6c727e"></i></div></figcaption></figure>
+    <figure><a href="screenshots/p7r-pal-I-light.jpg"><img src="screenshots/p7r-pal-I-light.jpg" alt="현재 I 라이트"></a><figcaption><b>현재 I (라이트)</b></figcaption></figure>
+    <figure><a href="screenshots/p7r-pal-A-light.jpg"><img src="screenshots/p7r-pal-A-light.jpg" alt="A 모노 라이트"></a><figcaption><b>2A 모노 기본 (라이트)</b></figcaption></figure>
+    <figure><a href="screenshots/p7r-pal-B-light.jpg"><img src="screenshots/p7r-pal-B-light.jpg" alt="B 차분한 8색 라이트"></a><figcaption><b>2B 차분한 8색 (라이트)</b>
+      <div class="sw light"><i style="background:#985535"></i><i style="background:#3e7d81"></i><i style="background:#a65778"></i><i style="background:#8972b3"></i><i style="background:#264f8b"></i><i style="background:#252d42"></i><i style="background:#9a8e58"></i><i style="background:#7d8699"></i></div></figcaption></figure>
+    <figure class="pick"><a href="screenshots/p7r-pal-C-light.jpg"><img src="screenshots/p7r-pal-C-light.jpg" alt="C 두 강조색 라이트"></a><figcaption><b>2C 두 강조색 (라이트)</b><span class="tag">추천</span>
+      <div class="sw light"><i style="background:#ad5c15"></i><i style="background:#1c8d7a"></i><i style="background:#796070"></i><i style="background:#4c4967"></i><i style="background:#74889e"></i><i style="background:#222938"></i><i style="background:#878065"></i><i style="background:#828690"></i></div></figcaption></figure>
+  </div>
+  <p class="note" style="margin-top:14px">2C 를 고르더라도 모노 스위치는 그대로 남는다. 2B나 2C에 "모노를 기본으로"를 겹치는 조합도 가능하다.</p>
+
+  <!-- 3 -->
+  <h2>3. 라이트 모드 강조색 <small>메인과 wiki 공용</small></h2>
+  <div class="who">
+    <b>누가 바꿨나:</b> 이번 Phase 7 작업에서 제가 맡긴 하위 에이전트가 그래프 범위를 넘어 공용 토큰을 바꿨다. 범위를 지키지 못한 제 관리 실수다.
+    <ul>
+      <li><code>00b37a24</code> (11-27 08:14) "공용 크롬 대비를 두 테마에서 WCAG AA로": 라이트 <code>--signal</code> #0fb89b → <b>#006d59</b>, <code>--signal-physical</code> #a85b12 → #984c00, 라이트 <code>--faint</code> #9aa2b0 → #686f7c, 다크 <code>--faint</code> #5a6373 → #7f899a</li>
+      <li><code>be4aef82</code> (11-27 07:54) "그래프 색상을 심해 그라디언트로": 메인 히어로 그림이 아쿠아 선과 앰버 점에서 카테고리 8색 점과 회청색 선으로 바뀜</li>
+    </ul>
+    원래 값 #0fb89b 는 밝은 바탕 위 대비가 2.37:1 이라 WCAG 글자 기준(작은 글자 4.5, 큰 글자 3.0)에 둘 다 못 미친다. 그래서 바꾼 것이지만 색감이 크게 어두워졌다.
+  </div>
+  <p class="note" style="margin-top:14px">아래 네 장은 히어로 그림을 원래 그림(강조색을 따르는 선)으로 두고 강조색만 바꿔 찍었다.</p>
+  <div class="grid">
+    <figure><a href="screenshots/p7r-sig-now.jpg"><img src="screenshots/p7r-sig-now.jpg" alt="현재 006d59"></a><figcaption><b>현재 #006d59</b><span class="m">대비 5.9:1, 모두 통과. 짙은 녹색</span></figcaption></figure>
+    <figure><a href="screenshots/p7r-sig-revert.jpg"><img src="screenshots/p7r-sig-revert.jpg" alt="원복 0fb89b"></a><figcaption><b>3A 원복 #0fb89b</b><span class="m">--faint, --signal-physical 도 예전 값. 대비 2.37:1 로 글자 기준 미달 (예전 상태 그대로)</span></figcaption></figure>
+    <figure class="pick"><a href="screenshots/p7r-sig-bright.jpg"><img src="screenshots/p7r-sig-bright.jpg" alt="3B 밝은 틸"></a><figcaption><b>3B 밝은 틸 #0d9f87 + 칩 위 짙은 글자</b><span class="tag">추천</span><span class="m">원래 색에 가까운 밝은 틸. 큰 글자와 그래픽 기준 3.1:1 통과. 채운 칩과 NEW 배지의 글자는 흰색 대신 짙은 잉크(#04211c, 5.1:1), 본문 속 작은 링크만 #0f766e(5.2:1)</span></figcaption></figure>
+    <figure><a href="screenshots/p7r-sig-cyan.jpg"><img src="screenshots/p7r-sig-cyan.jpg" alt="3C 청록 0e7490"></a><figcaption><b>3C 녹색기를 뺀 청록 #0e7490</b><span class="m">대비 5.0:1, 모두 통과. 명도는 현재와 비슷하지만 녹색이 아니라 푸른 청록으로 읽힌다</span></figcaption></figure>
+    <figure><a href="screenshots/p7r-sig-wiki-now.jpg"><img src="screenshots/p7r-sig-wiki-now.jpg" alt="wiki 현재"></a><figcaption><b>wiki 페이지: 현재</b></figcaption></figure>
+    <figure><a href="screenshots/p7r-sig-wiki-revert.jpg"><img src="screenshots/p7r-sig-wiki-revert.jpg" alt="wiki 원복"></a><figcaption><b>wiki 페이지: 3A 원복</b></figcaption></figure>
+    <figure class="pick"><a href="screenshots/p7r-sig-wiki-bright.jpg"><img src="screenshots/p7r-sig-wiki-bright.jpg" alt="wiki 밝은 틸"></a><figcaption><b>wiki 페이지: 3B 밝은 틸</b></figcaption></figure>
+    <figure><a href="screenshots/p7r-sig-wiki-cyan.jpg"><img src="screenshots/p7r-sig-wiki-cyan.jpg" alt="wiki 청록"></a><figcaption><b>wiki 페이지: 3C 청록</b></figcaption></figure>
+  </div>
+
+  <!-- 4 -->
+  <h2>4. 메인 히어로 그림 <small>그래프 페이지와 따로 갈지, 함께 갈지</small></h2>
+  <p class="note">원래 그림은 선을 강조색(아쿠아)으로, 허브만 아쿠아 점, Physical AI 점은 앰버로 그렸다. 지금은 그래프 페이지와 같은 카테고리 색 점과 회청색 선이다. 2C 를 고르면 히어로도 "아쿠아와 앰버 + 회색"이 되어 원래 인상에 가까워진다.</p>
+  <div class="grid">
+    <figure class="pick"><a href="screenshots/p7r-hero-orig-dark.jpg"><img src="screenshots/p7r-hero-orig-dark.jpg" alt="원래 히어로 다크"></a><figcaption><b>H1 원래 그림으로 원복 (다크)</b><span class="tag">추천</span><span class="m">사이트 첫인상을 Phase 7 이전으로 되돌린다. 그래프 페이지 팔레트와 무관</span></figcaption></figure>
+    <figure><a href="screenshots/p7r-hero-I-dark.jpg"><img src="screenshots/p7r-hero-I-dark.jpg" alt="현재 히어로 다크"></a><figcaption><b>현재: 카테고리 I 8색 (다크)</b></figcaption></figure>
+    <figure><a href="screenshots/p7r-hero-B-dark.jpg"><img src="screenshots/p7r-hero-B-dark.jpg" alt="B 히어로 다크"></a><figcaption><b>H2 그래프 팔레트를 따름: 2B (다크)</b></figcaption></figure>
+    <figure><a href="screenshots/p7r-hero-C-dark.jpg"><img src="screenshots/p7r-hero-C-dark.jpg" alt="C 히어로 다크"></a><figcaption><b>H2 그래프 팔레트를 따름: 2C (다크)</b></figcaption></figure>
+    <figure class="pick"><a href="screenshots/p7r-hero-orig-light.jpg"><img src="screenshots/p7r-hero-orig-light.jpg" alt="원래 히어로 라이트"></a><figcaption><b>H1 원복 (라이트, 강조색 #0fb89b)</b><span class="tag">추천</span><span class="m">선 색은 3번에서 고른 강조색을 따른다</span></figcaption></figure>
+    <figure><a href="screenshots/p7r-hero-I-light.jpg"><img src="screenshots/p7r-hero-I-light.jpg" alt="현재 히어로 라이트"></a><figcaption><b>현재 (라이트)</b></figcaption></figure>
+    <figure><a href="screenshots/p7r-hero-B-light.jpg"><img src="screenshots/p7r-hero-B-light.jpg" alt="B 히어로 라이트"></a><figcaption><b>H2: 2B (라이트)</b></figcaption></figure>
+    <figure><a href="screenshots/p7r-hero-C-light.jpg"><img src="screenshots/p7r-hero-C-light.jpg" alt="C 히어로 라이트"></a><figcaption><b>H2: 2C (라이트)</b></figcaption></figure>
+  </div>
+</main>
+</body>
+</html>

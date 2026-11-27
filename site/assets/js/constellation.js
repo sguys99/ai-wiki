@@ -2,10 +2,9 @@
 //   (1) 히어로 ambient 그래프: graph.json을 캔버스에 렌더, 노드 drift + 엣지.
 //   (2) 카드 neighborhood hover: 카드에 마우스를 올리면 연결된 카드를 하이라이트.
 //
-// 색은 /graph/ 와 같은 카테고리 토큰(--cat-*)과 엣지 토큰(--graph-edge)이다. 토큰 읽기·캔버스 fit·
+// 색은 도메인당 signal 하나 — core는 aqua, physical은 amber (/graph/ 의 카테고리 색과 따로 간다). 토큰 읽기·캔버스 fit·
 // 리사이즈·테마 구독 같은 공통 부품은 graph-core.js(window.GraphCore)가 갖고 있고 /graph/ 탐색기와
 // 공유한다. CSS 토큰을 런타임에 읽으므로 light/dark 모두 따라간다.
-// 카테고리 목록을 여기 적어 두지 않는다 (노드의 category 로 토큰 이름을 만든다).
 // prefers-reduced-motion 시 정지 프레임 1장만 그린다.
 
 (function () {
@@ -48,7 +47,7 @@
         ph: (i * 1.7) % (Math.PI * 2),
         sp: 0.6 + (((i * 53) % 100) / 100) * 0.8,
         r: 1.2 + 2.6 * (n.degree / maxDeg),
-        cat: n.category,
+        phys: n.category === 'physical-ai', // domains.mjs 의 physical 도메인
       };
     });
 
@@ -71,8 +70,7 @@
 
       // 엣지
       ctx.lineWidth = 1;
-      ctx.strokeStyle = pal.edge;
-      ctx.globalAlpha = 0.09; // 엣지 2천여 개가 겹치므로 엷게 두어 카테고리 색 점이 읽히게 한다
+      ctx.strokeStyle = pal.signalDim;
       for (var e = 0; e + 1 < L.length; e += 2) {
         var a = pos(P[L[e]], t);
         var b = pos(P[L[e + 1]], t);
@@ -81,14 +79,15 @@
         ctx.lineTo(b.x, b.y);
         ctx.stroke();
       }
-      // 노드 — 제 카테고리 색. 허브가 아닌 노드는 알파로 낮춰 허브가 별자리의 뼈대로 읽히게 한다.
+      // 노드 — core는 허브만 aqua, 나머지는 faint. physical은 도메인이 눈에 띄어야
+      // 하므로 항상 amber로 칠하고 허브가 아닌 노드만 알파로 낮춘다.
       for (var i = 0; i < P.length; i++) {
         var pt = pos(P[i], t);
         var hub = P[i].r > 2.6;
         ctx.beginPath();
         ctx.arc(pt.x, pt.y, P[i].r, 0, Math.PI * 2);
-        ctx.globalAlpha = hub ? 1 : 0.6;
-        ctx.fillStyle = pal.cat(P[i].cat);
+        ctx.globalAlpha = P[i].phys && !hub ? 0.55 : 1;
+        ctx.fillStyle = P[i].phys ? pal.physical : hub ? pal.signal : pal.faint;
         ctx.fill();
       }
       ctx.globalAlpha = 1;

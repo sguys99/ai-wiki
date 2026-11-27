@@ -12,19 +12,18 @@
   'use strict';
 
   // ── CSS 토큰 ───────────────────────────────────────────────────────────────
-  // 한 번의 getComputedStyle 로 히어로가 쓰는 색을 읽는다. 카테고리 색은 /graph/ 와 같은 --cat-* 토큰이다.
+  // 한 번의 getComputedStyle 로 히어로가 쓰는 색을 읽는다. core 는 --signal(아쿠아), physical 은 --signal-physical(앰버).
   function palette() {
     var cs = getComputedStyle(document.documentElement);
     var get = function (name, fallback) {
       var v = cs.getPropertyValue(name);
       return (v && v.trim()) || fallback;
     };
-    var etc = get('--cat-etc', '#7a89b9');
     return {
-      edge: get('--graph-edge', '#9ab8ff'),
-      cat: function (c) {
-        return get('--cat-' + c, etc);
-      },
+      faint: get('--faint', '#7f899a'),
+      signal: get('--signal', '#5eead4'),
+      signalDim: get('--signal-dim', 'rgba(94,234,212,.25)'),
+      physical: get('--signal-physical', '#f0a868'),
     };
   }
 
