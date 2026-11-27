@@ -480,7 +480,7 @@
         lens: g('--graph-lens'), hairline: g('--hairline'), signal: g('--signal'), text: g('--text'), muted: g('--muted'),
         sheen: parseFloat(g('--graph-node-sheen')) || 1, haze: parseFloat(g('--graph-haze-alpha')) || 0.2,
         nameMix: parseFloat(g('--graph-name-mix')) || 0, accent: g('--graph-mono-accent'),
-        ring: g('--graph-ring'), mono: { _m1: g('--graph-mono-1'), _m2: g('--graph-mono-2'), _m3: g('--graph-mono-3') },
+        ring: g('--graph-ring'), monoCol: { _m1: g('--graph-mono-1'), _m2: g('--graph-mono-2'), _m3: g('--graph-mono-3') },
       };
     }
     function rgbOf(c) {
@@ -560,9 +560,9 @@
       // 모노 보기의 쉬는 노드: 빛 없는 무광 원에 무대색 테. 광택, 빛번짐, 그림자는 제 색을 켠 노드에만 남긴다
       ['_m1', '_m2', '_m3'].forEach(function (id) {
         var S = SR * 2 + 8, o = S / 2, core = mk(S), g = core.getContext('2d');
-        g.fillStyle = T.mono[id]; g.beginPath(); g.arc(o, o, SR, 0, TAU); g.fill();
+        g.fillStyle = T.monoCol[id]; g.beginPath(); g.arc(o, o, SR, 0, TAU); g.fill();
         g.lineWidth = SR * 0.12; g.strokeStyle = rgba(rgbOf(T.ring), 0.55); g.beginPath(); g.arc(o, o, SR * 0.94, 0, TAU); g.stroke();
-        sprites[id] = { core: core, css: T.mono[id] };
+        sprites[id] = { core: core, css: T.monoCol[id] };
       });
     }
 
@@ -617,7 +617,7 @@
           t.fillStyle = g; t.fillRect(x - R, y - R, R * 2, R * 2);
         });
         t.globalCompositeOperation = 'source-in';
-        t.fillStyle = monoOn ? T.mono._m2 : T.cat[c]; t.fillRect(0, 0, w, h);
+        t.fillStyle = monoOn ? T.monoCol._m2 : T.cat[c]; t.fillRect(0, 0, w, h);
         o.globalAlpha = T.haze * (monoOn ? 0.3 : 1); // 회색 안개는 엷게
         o.drawImage(tmp, 0, 0);
       });

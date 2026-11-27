@@ -108,7 +108,7 @@
 | `version` | 정수 `2` | `2` | 상수 | 탐색기 (없거나 2가 아니면 목록 판 유지) | 필수 |
 | `recentSince` | `"YYYY-MM-DD"` 또는 `null` | `"2026-11-07"` | 3.4절 계산 | 탐색기 최근 강조 (06 2절) | 필수 (값은 null 가능) |
 | `recentMode` | `"days"` 또는 `"count"` | `"days"` | 3.4절 | 탐색기 범례 문구 | 필수 |
-| `recentDays` | 정수 | `14` | `config.mjs` `RECENT_DAYS` | 탐색기 범례 문구 | 필수 |
+| ~~`recentDays`~~ | 정수 | `14` | `config.mjs` `RECENT_DAYS` | 없음. 범례 문구는 서버가 `recentInfo()` 로 렌더한다 | Phase 7 정리에서 뺐다 (2026-11-27) |
 | `nodes` | 배열 | | 3.2절 | 홈 히어로, 탐색기, 3D 페이지 | 필수 |
 | `links` | 정수 배열, 길이 짝수 | `[12, 40, 12, 7, …]` | 3.3절 | 홈 히어로, 탐색기, 3D 페이지 | 필수 |
 
@@ -122,7 +122,7 @@
 | `stem` | 문자열 | `"ai-2026-pi07-a-steerable-generalist-robotic"` | `page.stem` | 검색 stem 일치 (02 7.2절) | 필수 |
 | `title` | 문자열, 비어 있지 않음 | `"π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities"` | `page.title` | 패널, 툴팁, 라벨, 검색 | 필수 |
 | `category` | 카테고리 8개 중 하나 | `"physical-ai"` | `page.category` | 색, 앵커, 범례 필터 | 필수 |
-| `domain` | `"core"` 또는 `"physical"` | `"physical"` | `domainOf(category)` | 홈 히어로 색 | 필수 |
+| ~~`domain`~~ | `"core"` 또는 `"physical"` | `"physical"` | `domainOf(category)` | 없음. 홈 히어로가 Phase 7 부터 `category` 색을 쓴다 | Phase 7 정리에서 뺐다 (2026-11-27) |
 | `degree` | 정수 ≥ 0, 무방향 고유 이웃 수 | `16` | `buildGraph` | 반지름, 라벨 하한, 정렬 | 필수 |
 | `year` | 정수 또는 `null` | `2026` | frontmatter `year` 를 `parseInt` | 패널 메타, 툴팁 | 필수 (값은 null 가능) |
 | `type` | `paper`, `repo`, `article`, `report`, `video`, `book`, `lecture`, `overview` 중 하나 또는 `null` | `"paper"` | frontmatter `type` (`content.mjs` 76행) | 유형 필터, 패널 메타 | 필수 (값은 null 가능) |
@@ -306,7 +306,7 @@ Phase 3 "graph.mjs 자체 점검" 은 `site/lib/graph.mjs` 에 `checkGraphJson(j
 | V1 | `version === 2`, `nodes` 와 `links` 가 배열 | 실패 |
 | V2 | 노드 수 = wiki 페이지 수 (`pages.size`). 지금 344. 300 미만이면 비정상 | 실패 |
 | V3 | `id` 고유, `id === category + '/' + stem`, `id` 가 `[a-z0-9/-]` 만 | 실패 (마지막 조건은 경고. 02 8.4절이 인코딩으로 처리한다) |
-| V4 | 노드 필드 열한 개가 모두 있고 3.2절 형과 맞다. `domain === domainOf(category)` | 실패 |
+| V4 | 노드 필드 열 개가 모두 있고 3.2절 형과 맞다 (Phase 7 정리 전에는 `domain` 포함 열한 개와 `domain === domainOf(category)`) | 실패 |
 | V5 | `category` 가 8개 목록 안, `type` 이 8개 목록 안이거나 `null` | 실패. `year`, `type` 이 `null` 이면 그 수만 경고 |
 | V6 | `added` 가 `^\d{4}-\d{2}-\d{2}$` | 실패 |
 | V7 | `links.length` 가 짝수, 모든 값이 `0 ≤ i < nodes.length` 정수, 쌍마다 `s !== t`, 같은 쌍 중복 없음 | 실패 |

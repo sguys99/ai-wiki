@@ -4,12 +4,10 @@
 //   빌드 안의 인접 맵, 통계, nav.mjs 가 edges 객체 배열을 그대로 쓴다.
 //
 // 산출 graph.json (version 2, 정본 docs/graph-spec/03-schema.md), toGraphJson() 이 만든다:
-//   { version: 2, recentSince, recentMode, recentDays,
-//     nodes: [{ id, stem, title, category, domain, degree, year, type, tags, added, xy }],
+//   { version: 2, recentSince, recentMode,
+//     nodes: [{ id, stem, title, category, degree, year, type, tags, added, xy }],
 //     links: [s0, t0, s1, t1, …] }
 //   - id = "category/stem" (페이지 라우트와 동일)
-//   - domain = domains.mjs 의 domainOf(category). 브라우저 스크립트는 번들러 없이 실려
-//     domains.mjs 를 import 할 수 없으므로 매핑을 여기서 한 번 풀어 실어 보낸다.
 //   - degree = 무방향 인접(고유 이웃) 수
 //   - year 정수|null, type 문자열|null, tags frontmatter 순서 그대로, added "YYYY-MM-DD" (git 최초 추가일)
 //   - xy = 가로 배치 정수 좌표 [x, y]. 배치(graph-layout.mjs)가 주어질 때만 싣는다
@@ -24,7 +22,7 @@
 import { extractWikiTargets } from './markdown.mjs';
 import { readFileSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
-import { domainOf, CATEGORY_DOMAIN } from './domains.mjs';
+import { CATEGORY_DOMAIN } from './domains.mjs';
 import { RECENT_COUNT, RECENT_DAYS } from './config.mjs';
 import { CATALOG_TYPES } from './content.mjs';
 import { ANCHOR, radius } from './graph-layout.mjs';
@@ -37,7 +35,6 @@ export function buildGraph(pages, resolve) {
       stem: page.stem,
       title: page.title,
       category: page.category,
-      domain: domainOf(page.category),
       degree: 0,
     });
   }
@@ -146,8 +143,8 @@ export function toGraphJson(graph, pages, layout, recent) {
   });
   const links = [];
   for (const e of graph.edges) links.push(index.get(e.source), index.get(e.target));
-  const { recentSince, recentMode, recentDays } = recent;
-  return { version: 2, recentSince, recentMode, recentDays, nodes, links };
+  const { recentSince, recentMode } = recent;
+  return { version: 2, recentSince, recentMode, nodes, links };
 }
 
 // graph.json 자체 점검 (03 7절 V1 ~ V16). text 는 graph.json 문자열 (V16 바이트 때문).
@@ -201,11 +198,11 @@ export function checkGraphJson(text, { pageCount, edgeCount, paths, layout3d } =
   const N = nodes.length;
 
   if (N < 300 || (pageCount != null && N !== pageCount)) problems.push(`V2 노드 ${N}개 (페이지 ${pageCount ?? '?'}, 300 미만 비정상)`);
-  const KEYS = ['id', 'stem', 'title', 'category', 'domain', 'degree', 'year', 'type', 'tags', 'added', 'xy'];
+  const KEYS = ['id', 'stem', 'title', 'category', 'degree', 'year', 'type', 'tags', 'added', 'xy'];
   const str = (x) => typeof x === 'string';
   const shaped = each(problems, 'V4', '필드 누락 또는 형 불일치', nodes, (n) =>
     n && KEYS.every((k) => k in n) && str(n.id) && str(n.stem) && str(n.title) && n.title !== '' && str(n.category) &&
-    n.domain === domainOf(n.category) && isInt(n.degree) && n.degree >= 0 && (n.year === null || isInt(n.year)) &&
+    isInt(n.degree) && n.degree >= 0 && (n.year === null || isInt(n.year)) &&
     (n.type === null || str(n.type)) && Array.isArray(n.tags) && n.tags.every(str) && str(n.added) && Array.isArray(n.xy));
   if (!shaped) return { problems, warnings, stats: '' }; // 아래 검사는 노드 형을 전제한다
   const ids = new Map(nodes.map((n, i) => [n.id, i]));

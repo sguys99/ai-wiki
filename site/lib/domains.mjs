@@ -7,8 +7,6 @@
 //
 // 새 카테고리가 생기면 이 맵에 한 줄 추가한다. 등록하지 않은 카테고리는 'core'다.
 
-export const DOMAINS = ['core', 'physical'];
-
 export const CATEGORY_DOMAIN = {
   database: 'core',
   llms: 'core',

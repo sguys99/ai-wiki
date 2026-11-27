@@ -106,7 +106,6 @@
     --dur-fast: 120ms;
     --dur-panel: 240ms;
     --dur-camera: 480ms;
-    --dur-reveal: 600ms;
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --cat-physical-ai: #ff9d55;
     --cat-agents: #45e4dd;
@@ -503,18 +502,6 @@
     color: var(--muted);
   }
 
-  /* INTERIM 파이프라인-검증 배너 (Phase 3/4 템플릿 적용 시 제거) */
-  .interim {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--signal);
-    background: var(--surface-2);
-    border: var(--hairline-w) solid var(--hairline);
-    border-radius: var(--radius-md);
-    padding: var(--space-2) var(--space-3);
-    margin-bottom: var(--space-6);
-  }
-
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -530,13 +517,6 @@
 
 /* ── components (Phase 3: 홈 랜딩 — 헤더·히어로·카드·푸터) ─────────────────────── */
 @layer components {
-  /* 읽기 컬럼 (위키 INTERIM 본문) */
-  .shell {
-    max-width: var(--measure);
-    margin: 0 auto;
-    padding: var(--space-6) var(--space-4) var(--space-12);
-  }
-
   .skip-link {
     position: absolute;
     left: var(--space-2);
@@ -675,9 +655,6 @@
     font-size: var(--text-lg);
     max-width: 36rem;
     margin: 0 0 var(--space-8);
-  }
-  .hero-lede code {
-    font-size: 0.85em;
   }
   .hero-stats {
     display: flex;
@@ -992,11 +969,6 @@
   }
   .footer-sep {
     color: var(--faint);
-  }
-
-  /* INTERIM 위키 본문의 TOC 인라인 줄 */
-  .toc-inline a {
-    margin-right: 0.4em;
   }
 
   /* 모바일: 검색 라벨 축약 */

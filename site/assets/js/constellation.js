@@ -123,7 +123,6 @@
     cards.forEach(function (c) {
       byId[c.dataset.id] = c;
     });
-    var grid = document.querySelector('.card-grid');
     cards.forEach(function (c) {
       c.addEventListener('mouseenter', function () {
         document.body.classList.add('cards-focusing');
@@ -142,7 +141,6 @@
         });
       });
     });
-    void grid;
   }
 
   function init() {

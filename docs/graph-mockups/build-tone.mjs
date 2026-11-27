@@ -1,5 +1,9 @@
 // build-tone.mjs: Phase 7 색상과 톤 시안(g-*.html)이 쓰는 사이트 스냅샷을 shared/tone/ 에 만든다.
 //
+// 역사 기록 (2026-11-27): 톤 결정(Q12, I + G 모노 보기) 뒤 사이트 탐색기가 I 토큰과 모노 보기를 직접 갖게 되어
+// 지금 graph-explorer.js 에서는 PATCHES 19개 중 13개가 덧댈 자리를 못 찾는다. 돌리면 snapshot.js, styles.css 를
+// 먼저 덮어쓴 뒤 patch() 에서 멈추므로 결정 당시 스냅샷 shared/tone/ 을 지키려고 실행을 막았다. 아래는 그때의 절차다.
+//
 //   실행: (cd site && npm run build) 뒤 저장소 루트에서 node docs/graph-mockups/build-tone.mjs [빌드 폴더]
 //         빌드 폴더를 주지 않으면 dist/ 를 읽는다. dist/ 에는 쓰지 않는다.
 //
@@ -12,6 +16,9 @@ import { readFile, writeFile, mkdir, copyFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
 import assert from 'node:assert/strict';
+
+console.error('build-tone.mjs 는 역사 기록이다 (머리 주석). shared/tone/ 을 덮어쓰지 않으려고 멈춘다.');
+process.exit(1);
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SRC = resolve(process.argv[2] || resolve(HERE, '../../dist'));
