@@ -269,7 +269,7 @@
 - [x] 메인 히어로 그림 원복, H1 (2026-11-27, `constellation.js` 와 `GraphCore.palette()` 를 Phase 7 이전 그림으로 되돌렸다. 선은 `--signal-dim`, 허브는 `--signal`, Physical AI 는 `--signal-physical`, 나머지는 `--faint`. 지운 `domain` 필드 대신 `category === 'physical-ai'` 로 가린다)
 - [x] 개정 검증 (2026-11-27, STRICT 빌드 통과. `check-tones.py --site` 미달 0건: 색각 세 종 CIEDE2000 최소 5.3, 성운 이름 다크 5.24 / 라이트 5.04, 카테고리 그래픽 3.0 이상. axe color-contrast 위반 0건: 홈, wiki, 태그, 그래프 지도와 목록, About, 404 를 두 테마로. 콘솔 오류 0)
 - [ ] 사용자 최종 확인
-- [ ] 커밋 (사용자 지시 시)
+- [x] 커밋 (사용자 지시 시) (2026-11-26 ~ 11-27, /goal 지시대로 항목마다 커밋하고 푸시했다. 마지막 개정 `c70f059c` 배포 성공을 라이브 CSS 와 JS 에서 확인)
 
 ## 10. 진행 기록
 
