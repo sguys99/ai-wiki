@@ -6,12 +6,12 @@
 
 | 번호 | 항목 | 결정 |
 |---|---|---|
-| S1 | 새 노드 필드 | `year`(정수), `type`(문자열), `tags`(문자열 배열, frontmatter 순서), `added`(`"YYYY-MM-DD"`), `xy`(정수 두 개 배열). 기존 `id`, `stem`, `title`, `category`, `domain`, `degree` 는 이름과 뜻을 그대로 둔다 |
+| S1 | 새 노드 필드 | `year`(정수), `type`(문자열), `tags`(문자열 배열, frontmatter 순서), `added`(`"YYYY-MM-DD"`), `xy`(정수 두 개 배열). 기존 `id`, `stem`, `title`, `category`, `domain`, `degree` 는 이름과 뜻을 그대로 둔다. Phase 7 정리에서 `domain` 을 뺐다 (3.2절) |
 | S2 | 좌표 | **04 안을 따른다.** 가로 배치 한 벌을 정수로 굽고 세로 화면은 런타임에 x, y를 맞바꾼다. 05의 두 벌(`xy`, `xyp`, 소수 1자리)은 버린다. 필드 이름은 `xy: [x, y]` |
 | S3 | 엣지 | `edges` 객체 배열을 버리고 `links`: 노드 배열 인덱스의 평면 정수 배열 `[s0, t0, s1, t1, …]` 로 싣는다. gzip 14.7KB 절약. 홈 히어로와 `graph-core.js` 두 곳을 Phase 3에서 함께 고친다 (9절 D1, 2026-11-17 승인) |
 | S4 | 태그 | 노드마다 문자열 배열. 최상위 태그 사전과 인덱스는 원본은 12KB 작지만 gzip이 1.8KB 커서 쓰지 않는다 |
 | S5 | in, out degree | 싣지 않는다. 방향 `links` 에서 런타임에 센다 (2,600쌍 한 번). 실으면 gzip +1.3KB |
-| S6 | 최상위 | `version: 2`, `recentSince`, `recentMode`, `recentDays` (06 9.1절). 배치 메타(월드 크기, 앵커)는 싣지 않는다. 런타임이 쓰는 값은 모두 노드 좌표에서 구한다 |
+| S6 | 최상위 | `version: 2`, `recentSince`, `recentMode`, `recentDays` (06 9.1절). Phase 7 정리에서 `recentDays` 를 뺐다 (3.1절). 배치 메타(월드 크기, 앵커)는 싣지 않는다. 런타임이 쓰는 값은 모두 노드 좌표에서 구한다 |
 | S7 | 직렬화 | 들여쓰기 없이 쓴다. 노드 배열 순서는 지금 `buildGraph` 순서 그대로 둔다 |
 | S8 | 파일 분리 | 하나의 `graph.json` 을 홈과 그래프 페이지가 함께 받는다. 새 파일(37,944B gzip)이 지금 배포 파일(41,072B gzip)보다 작아 홈 비용이 오히려 준다. 홈 전용 경량 파일은 개선 제안 C1로 둔다 |
 | S9 | 부속 파일 | `graph/paths.json` 은 06 9.2절 형태에 `version` 을 더한다. `graph/3d/layout.json` 의 노드 순서는 `graph.json` 의 `nodes` 배열 순서와 같다 |
@@ -107,7 +107,7 @@
 |---|---|---|---|---|---|
 | `version` | 정수 `2` | `2` | 상수 | 탐색기 (없거나 2가 아니면 목록 판 유지) | 필수 |
 | `recentSince` | `"YYYY-MM-DD"` 또는 `null` | `"2026-11-07"` | 3.4절 계산 | 탐색기 최근 강조 (06 2절) | 필수 (값은 null 가능) |
-| `recentMode` | `"days"` 또는 `"count"` | `"days"` | 3.4절 | 탐색기 범례 문구 | 필수 |
+| `recentMode` | `"days"` 또는 `"count"` | `"days"` | 3.4절 | V12 점검과 탐색기 디버그 훅뿐이다. 범례 문구는 서버가 `recentInfo()` 로 렌더한다 (Phase 7 확인) | 필수 |
 | ~~`recentDays`~~ | 정수 | `14` | `config.mjs` `RECENT_DAYS` | 없음. 범례 문구는 서버가 `recentInfo()` 로 렌더한다 | Phase 7 정리에서 뺐다 (2026-11-27) |
 | `nodes` | 배열 | | 3.2절 | 홈 히어로, 탐색기, 3D 페이지 | 필수 |
 | `links` | 정수 배열, 길이 짝수 | `[12, 40, 12, 7, …]` | 3.3절 | 홈 히어로, 탐색기, 3D 페이지 | 필수 |
@@ -118,10 +118,10 @@
 
 | 필드 | 형 | 예 | 출처 | 소비자 | 필수 |
 |---|---|---|---|---|---|
-| `id` | 문자열 `category/stem`, `[a-z0-9/-]` | `"physical-ai/ai-2026-pi07-a-steerable-generalist-robotic"` | `page.id` | 모두. 딥링크 `#node=`, `paths.json` 참조 | 필수, 고유 |
+| `id` | 문자열 `category/stem`, `[a-z0-9/-]` | `"physical-ai/ai-2026-pi07-a-steerable-generalist-robotic"` | `page.id` | 탐색기, 3D 페이지. 딥링크 `#node=`, `paths.json` 참조. 홈 히어로는 읽지 않는다 (Phase 7 확인) | 필수, 고유 |
 | `stem` | 문자열 | `"ai-2026-pi07-a-steerable-generalist-robotic"` | `page.stem` | 검색 stem 일치 (02 7.2절) | 필수 |
 | `title` | 문자열, 비어 있지 않음 | `"π0.7: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities"` | `page.title` | 패널, 툴팁, 라벨, 검색 | 필수 |
-| `category` | 카테고리 8개 중 하나 | `"physical-ai"` | `page.category` | 색, 앵커, 범례 필터 | 필수 |
+| `category` | 카테고리 8개 중 하나 | `"physical-ai"` | `page.category` | 색 (홈 히어로 포함, Phase 7), 앵커, 범례 필터 | 필수 |
 | ~~`domain`~~ | `"core"` 또는 `"physical"` | `"physical"` | `domainOf(category)` | 없음. 홈 히어로가 Phase 7 부터 `category` 색을 쓴다 | Phase 7 정리에서 뺐다 (2026-11-27) |
 | `degree` | 정수 ≥ 0, 무방향 고유 이웃 수 | `16` | `buildGraph` | 반지름, 라벨 하한, 정렬 | 필수 |
 | `year` | 정수 또는 `null` | `2026` | frontmatter `year` 를 `parseInt` | 패널 메타, 툴팁 | 필수 (값은 null 가능) |
@@ -237,6 +237,8 @@
 
 노드 필드 추가는 영향이 없다. 영향은 엣지 표현 하나다.
 
+위 표는 Phase 3 시점 기록이다. Phase 7 현재 히어로는 `n.id`, `n.domain` 을 읽지 않고 노드 배열 순서, `degree`, `category`, `links` 만 읽는다. 소비자별 필드 목록은 `site/lib/graph.mjs` 머리 주석에 둔다.
+
 ### 5.2 Phase 3에서 고칠 소비자 코드
 
 | 파일 | 지금 | 바꿀 것 |
@@ -244,7 +246,7 @@
 | `constellation.js` `runHero` | `var edges = graph.edges \|\| []` 와 `index[edges[e].source]` | `var L = graph.links \|\| []`, 루프 `i += 2` 에서 `P[L[i]]`, `P[L[i + 1]]`. `index` 맵은 필요 없어진다 |
 | `graph-core.js` `buildAdjacency(nodes, edges)` | `edges[i].source` 를 `index` 로 푼다 | `buildAdjacency(nodes, links)` 로 받아 인덱스를 바로 쓴다. 반환 형태 `{ index, neighbors }` 는 그대로 |
 | `graph-explorer.js` | `graph.edges` (149행) | Phase 4에서 재작성하므로 Phase 3에서는 그대로 둔다. Phase 3과 4 사이 배포가 있으면 지금 `/graph/` 가 엣지 없이 그려진다 (8절 순서 주의) |
-| `site/lib/graph.mjs` 머리 주석 | version 1 스키마 | 새 스키마와 소비자로 갱신 (계획서 Phase 7 항목을 Phase 3으로 당긴다) |
+| `site/lib/graph.mjs` 머리 주석 | version 1 스키마 | 새 스키마와 소비자로 갱신 (계획서 Phase 7 항목을 Phase 3으로 당긴다). Phase 7 정리 뒤 다시 갱신했다 (2026-11-27) |
 | `docs/graph-mockups/build-data.mjs` | `edges` 객체, `generated` | 고치지 않는다. 시안은 Phase 1 산출물이고 자기 스냅샷 형태를 쓴다 |
 
 ### 5.3 캐시된 옛 파일과 옛 스크립트
@@ -351,7 +353,7 @@ V9은 `degree` 와 `links` 가 서로 다른 계산에서 나와 어긋나는 �
 
 | 번호 | 제안 | 효과 | 비용 |
 |---|---|---|---|
-| C1 | **홈 전용 경량 파일.** `dist/graph-hero.json` 에 노드마다 `domain`, `degree` 와 `links` 만 싣는다. `links` 가 인덱스이면 히어로는 `id` 를 쓰지 않는다. 1절 J(`id` 포함)가 gzip 13,070B라 그보다 작다 | 홈 전송량 37.9KB에서 13KB 미만으로. 홈은 사이트 첫 화면이다 | 빌드 10줄, 히어로 `data-graph` 경로 하나. 계획서 3절 제약 문구를 바꾼다 |
+| C1 | **홈 전용 경량 파일.** `dist/graph-hero.json` 에 노드마다 `category`(Phase 7 전에는 `domain`), `degree` 와 `links` 만 싣는다. `links` 가 인덱스이면 히어로는 `id` 를 쓰지 않는다. 1절 J(`id` 포함)가 gzip 13,070B라 그보다 작다 | 홈 전송량 37.9KB에서 13KB 미만으로. 홈은 사이트 첫 화면이다 | 빌드 10줄, 히어로 `data-graph` 경로 하나. 계획서 3절 제약 문구를 바꾼다 |
 | C2 | **`stem` 제거.** `id.slice(id.indexOf('/') + 1)` 로 구한다 | gzip -1.9KB (1절 I) | 검색 코드 한 줄. 이번에는 기존 필드를 남겨 소비자 변경을 줄였다 |
 | C3 | **노드 순서를 id 사전순으로 고정.** `buildGraph` 가 노드를 정렬한다 | 파일시스템마다 홈 그림이 같아지고, 페이지 추가 때 `links` 인덱스 변화가 국소화된다 | 한 줄. 홈 히어로 그림이 한 번 바뀐다 |
 | C4 | **빌드 두 번 좌표 비교.** Phase 6에 "같은 커밋으로 두 번 빌드한 `graph.json` 의 `xy` 가 같다" (05 개선 제안과 같다) | 배치 결정성 회귀를 값싸게 잡는다 | 스크립트 몇 줄 |
@@ -370,3 +372,4 @@ V9은 `degree` 와 `links` 가 서로 다른 계산에서 나와 어긋나는 �
 | 날짜 | 고친 곳 | 내용 |
 |---|---|---|
 | 2026-11-17 | 0절 S3, 4.2절, 9절, 10절 | 사용자 승인으로 D1, D2를 추천안대로 확정하고 9절 제목을 "확정된 결정" 으로 바꿨다. 10절이 확정 설계가 아님을 적었다 |
+| 2026-11-27 | 0절 S1, S6, 3.1절, 3.2절, 5.1절, 5.2절, 10절 C1 | Phase 7 `graph.mjs` 머리 주석 갱신과 함께 코드와 대조했다. `domain`, `recentDays` 제거를 결정 요약에 적고, `recentMode`, `id`, `category` 의 소비자를 지금 코드대로 고쳤다 |

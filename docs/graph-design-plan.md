@@ -256,7 +256,7 @@
 **정리**
 
 - [x] 쓰지 않는 CSS와 JS 제거 (2026-11-27, 증거로 확인한 것만 지웠다. 699개 선택자를 두 테마, 두 폭, 페이지와 상태 조합에서 `querySelector` 로 대조하고 맞지 않은 44개 중 런타임에 만들어지는 40개는 남겼다. 지운 것: CSS `.shell`, `.toc-inline a`, `.interim`, `.hero-lede code`, 토큰 `--dur-reveal`, `constellation.js` 의 빈 `grid`, `domains.mjs` 의 `DOMAINS` export, `graph.json` 의 노드 `domain` 과 최상위 `recentDays` (소비자 없음, version 2 유지, `03-schema.md` 에 표시). `graph.json` 163,247B → 156,911B. `build-tone.mjs` 는 지금 탐색기와 맞지 않아 실행하면 스냅샷을 덮어쓰므로 역사 기록으로 표시하고 바로 끝나게 했다. eslint가 잡은 Phase 7 회귀 하나를 함께 고쳤다: `readTokens()` 의 `mono` 키가 두 번 정의돼 궤도 "+N" 표시가 JetBrains Mono를 못 받았다 (색 키를 `monoCol` 로 바꿈). 검증: STRICT와 deploy 빌드 통과, `graph.json` 세 번 빌드 sha256 동일, HTML 출력 변화 없음, 40개 화면 콘솔 오류 0과 가로 스크롤 0, 픽셀 차이는 렌더링 잡음 범위)
-- [ ] `graph.mjs` 머리 주석 갱신 (스키마, 소비자)
+- [x] `graph.mjs` 머리 주석 갱신 (스키마, 소비자) (2026-11-27, 코드와 새 빌드의 `graph.json` 에서 다시 읽어 썼다. 내보내는 함수 여섯과 각 산출물, version 2 스키마와 `links`, `xy` 규칙, 결정성, 소비자별로 읽는 필드를 적었다. 홈 히어로, 탐색기, 3D 페이지, 빌드 안 미니 그래프, `checkGraphJson`. `03-schema.md` 의 Phase 7 불일치 일곱 곳을 고쳤다 (`domain`, `recentDays` 제거, `recentMode` 와 `id`, `category` 소비자, 5.1 히어로 표). 주석을 다시 쓰다 찾은 죽은 코드 `nav.mjs` `neighborhood()` 도 지웠다. STRICT 빌드 통과, `graph.json` 두 번 빌드 동일)
 - [ ] 사용자 최종 확인
 - [ ] 커밋 (사용자 지시 시)
 

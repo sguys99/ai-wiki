@@ -1,21 +1,46 @@
-// graph.mjs — 모든 wiki 페이지 본문의 [[…]] 인접을 파싱해 그래프 모델을 만든다.
+// graph.mjs — 모든 wiki 페이지 본문의 [[…]] 링크로 그래프 모델을 만들고, 그 모델로 graph.json 과 부속 산출물을 만든다.
+// 스키마 정본은 docs/graph-spec/03-schema.md (필드 3절, 부속 파일 6절, 점검 7절). 여기는 요약이다.
 //
-// buildGraph() 반환값(메모리): { nodes, edges: [{ source, target }], unresolved, degree }
-//   빌드 안의 인접 맵, 통계, nav.mjs 가 edges 객체 배열을 그대로 쓴다.
+// 내보내는 함수 (모두 build.mjs 3절이 부른다)
+//   buildGraph(pages, resolve)  → 메모리 모델 { nodes, edges: [{ source, target }], unresolved, degree: Map(id → n) }
+//   toGraphJson(graph, pages, layout, recent) → dist/graph.json 객체
+//   recentInfo(pages)           → { recentSince, recentMode, recentDays, count }. 앞 둘만 graph.json 에 싣고, 넷 다 /graph/ 범례 문구(templates.mjs)가 쓴다
+//   toPathsJson(pages)          → dist/graph/paths.json { version: 1, paths: [{ id, title, steps: [{ n, id, note, prereq }] }] }
+//   weakLinks(graph, pages)     → { noInbound, lowDegree }. graph.json 에 싣지 않고 서버가 /graph/ 목록 판에 렌더한다
+//   checkGraphJson(text, opts)  → 불변식 V1 ~ V16 { problems, warnings, stats }
+// dist/graph/3d/layout.json { version: 1, n, xyz } 은 graph-layout.mjs layoutGraph3d 가 만든다. 여기서는 V15 로 점검만 한다.
 //
-// 산출 graph.json (version 2, 정본 docs/graph-spec/03-schema.md), toGraphJson() 이 만든다:
+// graph.json (version 2, 들여쓰기 없음, 객체 필드 순서 = 직렬화 순서)
 //   { version: 2, recentSince, recentMode,
 //     nodes: [{ id, stem, title, category, degree, year, type, tags, added, xy }],
 //     links: [s0, t0, s1, t1, …] }
-//   - id = "category/stem" (페이지 라우트와 동일)
-//   - degree = 무방향 인접(고유 이웃) 수
-//   - year 정수|null, type 문자열|null, tags frontmatter 순서 그대로, added "YYYY-MM-DD" (git 최초 추가일)
-//   - xy = 가로 배치 정수 좌표 [x, y]. 배치(graph-layout.mjs)가 주어질 때만 싣는다
-//   - links = 방향 엣지를 nodes 배열 인덱스 쌍으로 이어 붙인 평면 배열 (buildGraph 엣지 순서)
-//   - recentSince = 최근 집합 경계 날짜 (브라우저는 node.added >= recentSince), recentInfo() 참고
-//   - 소비자: 홈 히어로 constellation + graph-core.js, 그래프 탐색기(/graph/)
+//   - recentSince "YYYY-MM-DD"|null = 최근 집합 경계. 브라우저는 node.added >= recentSince 로 판정한다. git 이력이 없는 빌드면 null
+//   - recentMode "days"|"count" = RECENT_DAYS 안 추가가 RECENT_COUNT 이상이면 days, 아니면 최신 RECENT_COUNT 개
+//   - id = "category/stem" (페이지 라우트와 같다), degree = 무방향 고유 이웃 수
+//   - year 정수|null, type 문자열|null, tags frontmatter 순서 그대로 (첫 하위 태그가 배치 앵커와 궤도 묶음을 정한다),
+//     added "YYYY-MM-DD" (git 최초 추가일)
+//   - xy = [x, y] 정수 world 좌표, 가로 배치 한 벌 (graph-layout.mjs layoutGraph). 캔버스 축이라 y 는 아래로 커진다.
+//     세로 화면은 탐색기가 x, y 를 맞바꾼다
+//   - links = 방향 엣지를 nodes 배열 인덱스 쌍 (source, target) 으로 이어 붙인 평면 배열. buildGraph 엣지 순서이고,
+//     서로 링크한 쌍은 두 번 나온다
+//   - nodes 순서는 buildGraph 순서 (content.mjs readdir 순서) 그대로다. links 인덱스, layout.json xyz, 홈 히어로 자리가 이 순서에 묶인다
+//   - node.domain 과 최상위 recentDays 는 Phase 7 에서 뺐다
 //
-// checkGraphJson() 은 쓰인 graph.json 의 불변식 V1 ~ V16 을 점검한다 (03 7절, `node lib/graph.mjs --check FILE`).
+// 결정성: 배치는 브라우저가 아니라 빌드에서 계산한다. 2D xy 는 d3-force 3.0.0 (정확한 버전 고정), 3D 는 자체 배치이고
+//   둘 다 id 정렬 사본과 고정 시드를 쓴다. 시각 필드가 없어 같은 입력이면 같은 파일이 나온다.
+//
+// 소비자 (필드를 바꾸면 깨지는 곳)
+//   - 홈 히어로 assets/js/constellation.js (graph-core.js fetchGraph, palette): nodes 순서, degree, category, links
+//   - 그래프 탐색기 assets/js/graph-explorer.js (/graph/): version 2 와 모든 노드의 xy 가 없으면 목록 판에 남는다.
+//     노드 필드 열 개 전부 (stem 검색, tags 필터와 궤도, added 최근 강조, year, type 메타), links, recentSince.
+//     recentMode 는 디버그 훅만 읽는다. paths.json 은 경로 버튼을 처음 열 때 받는다
+//   - 3D 실험 assets/js/graph-3d.js (/graph/3d/): nodes 순서와 길이 (layout.json n 과 맞춘다), id, title, category, degree,
+//     year, type, links
+//   - 빌드 안 (graph.json 이 아니라 buildGraph 반환값): build.mjs 가 edges 로 인접 맵과 방향 집합 edgeSet 을 만들어
+//     위키 페이지 하단 미니 그래프 (templates.mjs miniGraph, reader.js) 와 홈/태그 카드 hover data-links 에 쓰고,
+//     degree 로 카드와 목록 판을 만든다. graph-layout.mjs 는 nodes, edges 로 2D xy 와 3D layout.json 을 계산한다
+//   - checkGraphJson: build.mjs 가 쓴 직후 부르고 STRICT 면 실패한다. `node lib/graph.mjs --check FILE [--paths F] [--layout3d F]`
+//     로도 돈다. V4 가 노드 필드 열 개를 강제하므로 필드를 더하거나 빼면 KEYS 와 03 3.2절을 함께 고친다
 //
 // 코드펜스/인라인코드 안의 [[…]] 예시는 extractWikiTargets가 제외한다.
 
